@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.Tests", "RethinkDb.Driver.Tests\RethinkDb.Driver.Tests.csproj", "{40037F4C-E867-462A-B3E6-AFED77582442}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver", "RethinkDb.Driver\RethinkDb.Driver.csproj", "{BF0E5A4A-4E2D-48B9-BCAA-054506396524}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Templates", "Templates\Templates.csproj", "{37C1CCF5-F8DA-4F56-93AB-C2F6BAFB01B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40037F4C-E867-462A-B3E6-AFED77582442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40037F4C-E867-462A-B3E6-AFED77582442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40037F4C-E867-462A-B3E6-AFED77582442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40037F4C-E867-462A-B3E6-AFED77582442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF0E5A4A-4E2D-48B9-BCAA-054506396524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF0E5A4A-4E2D-48B9-BCAA-054506396524}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF0E5A4A-4E2D-48B9-BCAA-054506396524}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF0E5A4A-4E2D-48B9-BCAA-054506396524}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37C1CCF5-F8DA-4F56-93AB-C2F6BAFB01B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37C1CCF5-F8DA-4F56-93AB-C2F6BAFB01B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37C1CCF5-F8DA-4F56-93AB-C2F6BAFB01B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37C1CCF5-F8DA-4F56-93AB-C2F6BAFB01B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

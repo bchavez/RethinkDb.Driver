@@ -1,0 +1,1264 @@
+{
+    "DATUM": {
+        "include_in": [],
+        "id": 1
+    },
+    "MAKE_ARRAY": {
+        "include_in": [],
+        "id": 2
+    },
+    "MAKE_OBJ": {
+        "include_in": [],
+        "id": 3
+    },
+    "VAR": {
+        "include_in": [],
+        "id": 10
+    },
+    "JAVASCRIPT": {
+        "alias": "js",
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR"]],
+        "optargs": {
+            "timeout": "T_NUM"
+        },
+        "id": 11
+    },
+    "UUID": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 169
+    },
+    "HTTP": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR"]],
+        "optargs": {
+            "timeout": "T_NUM",
+            "reattempts": "T_NUM",
+            "redirects": "T_NUM",
+            "verify": "T_BOOL",
+            "result_format": "E_RESULT_FORMAT",
+            "method": "E_HTTP_METHOD",
+            "auth": {
+                "type": "E_AUTH_TYPE",
+                "user": "T_STR",
+                "pass": "T_STR"
+            },
+            "params": "T_OBJECT",
+            "header": ["T_ARRAY", "T_OBJECT"],
+            "data": ["T_STR", "T_OBJECT"]
+        },
+        "id": 153
+    },
+    "ERROR": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR"]],
+        "id": 12
+    },
+    "IMPLICIT_VAR": {
+        "alias": "row",
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 13
+    },
+    "DB": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR"]],
+        "id": 14
+    },
+    "TABLE": {
+        "include_in": [
+            "top",
+            "db"
+        ],
+        "signatures": [
+            ["T_EXPR"],
+            ["T_DB", "T_EXPR"]
+        ],
+        "optargs": {
+            "read_mode": "E_READ_MODE",
+            "identifier_format": "E_IDENTIFIER_FORMAT"
+        },
+        "id": 15
+    },
+    "GET": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [["T_TABLE", "T_EXPR"]],
+        "id": 16
+    },
+    "GET_ALL": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [["T_TABLE", "T_EXPR", "*"]],
+        "optargs": {
+            "index": "T_STR"
+        },
+        "id": 78
+    },
+    "EQ": {
+        "binop": true,
+        "comparison": true,
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR", "*"]],
+        "id": 17
+    },
+    "NE": {
+        "binop": true,
+        "comparison": true,
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR", "*"]],
+        "id": 18
+    },
+    "LT": {
+        "binop": true,
+        "comparison": true,
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR", "*"]],
+        "id": 19
+    },
+    "LE": {
+        "binop": true,
+        "comparison": true,
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR", "*"]],
+        "id": 20
+    },
+    "GT": {
+        "binop": true,
+        "comparison": true,
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR", "*"]],
+        "id": 21
+    },
+    "GE": {
+        "binop": true,
+        "comparison": true,
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR", "*"]],
+        "id": 22
+    },
+    "NOT": {
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR"]],
+        "id": 23
+    },
+    "ADD": {
+        "binop": true,
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "*"]],
+        "id": 24
+    },
+    "SUB": {
+        "binop": true,
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "*"]],
+        "id": 25
+    },
+    "MUL": {
+        "binop": true,
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "*"]],
+        "id": 26
+    },
+    "DIV": {
+        "binop": true,
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "*"]],
+        "id": 27
+    },
+    "MOD": {
+        "binop": true,
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 28
+    },
+    "FLOOR": {
+        "signatures": [["T_EXPR"]],
+        "id": 183
+    },
+    "CEIL": {
+        "signatures": [["T_EXPR"]],
+        "id": 184
+    },
+    "ROUND": {
+        "signatures": [["T_EXPR"]],
+        "id": 185
+    },
+    "APPEND": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 29
+    },
+    "PREPEND": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 80
+    },
+    "DIFFERENCE": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 95
+    },
+    "SET_INSERT": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 88
+    },
+    "SET_INTERSECTION": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 89
+    },
+    "SET_UNION": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 90
+    },
+    "SET_DIFFERENCE": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 91
+    },
+    "SLICE": {
+        "signatures": [
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_EXPR", "T_EXPR"]
+        ],
+        "optargs": {
+            "left_bound": "E_BOUND",
+            "right_bound": "E_BOUND"
+        },
+        "id": 30
+    },
+    "SKIP": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 70
+    },
+    "LIMIT": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 71
+    },
+    "OFFSETS_OF": {
+        "signatures": [
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_FUNC1"]
+        ],
+        "id": 87
+    },
+    "CONTAINS": {
+        "signatures": [
+            ["T_EXPR", ["T_EXPR", "T_FUNC1"], "*"]
+        ],
+        "id": 93
+    },
+    "GET_FIELD": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 31
+    },
+    "KEYS": {
+        "signatures": [["T_EXPR"]],
+        "id": 94
+    },
+    "OBJECT": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR", "*"]],
+        "id": 143
+    },
+    "HAS_FIELDS": {
+        "signatures": [["T_EXPR", "T_EXPR", "*"]],
+        "id": 32
+    },
+    "WITH_FIELDS": {
+        "signatures": [["T_EXPR", "T_EXPR", "*"]],
+        "id": 96
+    },
+    "PLUCK": {
+        "signatures": [["T_EXPR", "T_EXPR", "*"]],
+        "id": 33
+    },
+    "WITHOUT": {
+        "signatures": [["T_EXPR", "T_EXPR", "*"]],
+        "id": 34
+    },
+    "MERGE": {
+        "signatures": [
+            ["T_EXPR", ["T_EXPR", "T_FUNC1"], "*"]
+        ],
+        "id": 35
+    },
+    "BETWEEN_DEPRECATED": {
+        "deprecated": true,
+        "include_in": [],
+        "id": 36
+    },
+    "BETWEEN": {
+        "include_in": ["table"],
+        "signatures": [["T_TABLE", "T_EXPR", "T_EXPR"]],
+        "optargs": {
+            "index": "T_STR",
+            "left_bound": "E_BOUND",
+            "right_bound": "E_BOUND"
+        },
+        "id": 182
+    },
+    "REDUCE": {
+        "signatures": [["T_EXPR", "T_FUNC2"]],
+        "id": 37
+    },
+    "MAP": {
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [
+            ["T_EXPR", "T_EXPR", "*", "T_FUNCX"]
+        ],
+        "id": 38
+    },
+    "FILTER": {
+        "signatures": [["T_EXPR", "T_FUNC1"]],
+        "optargs": {
+            "default": "T_EXPR"
+        },
+        "id": 39
+    },
+    "CONCAT_MAP": {
+        "signatures": [["T_EXPR", "T_FUNC1"]],
+        "id": 40
+    },
+    "ORDER_BY": {
+        "signatures": [["T_EXPR", "T_EXPR", "*"]],
+        "optargs": {
+            "index": "T_EXPR"
+        },
+        "id": 41
+    },
+    "DISTINCT": {
+        "signatures": [["T_EXPR"]],
+        "optargs": {
+            "index": "T_STR"
+        },
+        "id": 42
+    },
+    "COUNT": {
+        "signatures": [
+            ["T_EXPR"],
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_FUNC1"]
+        ],
+        "id": 43
+    },
+    "IS_EMPTY": {
+        "signatures": [["T_EXPR"]],
+        "id": 86
+    },
+    "UNION": {
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "*"]],
+        "id": 44
+    },
+    "NTH": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 45
+    },
+    "BRACKET": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 170
+    },
+    "INNER_JOIN": {
+        "signatures": [["T_EXPR", "T_EXPR", "T_FUNC2"]],
+        "id": 48
+    },
+    "OUTER_JOIN": {
+        "signatures": [["T_EXPR", "T_EXPR", "T_FUNC2"]],
+        "id": 49
+    },
+    "EQ_JOIN": {
+        "signatures": [
+            ["T_EXPR", "T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_FUNC1", "T_EXPR"]
+        ],
+        "optargs": {
+            "index": "T_STR"
+        },
+        "id": 50
+    },
+    "ZIP": {
+        "signatures": [["T_EXPR"]],
+        "id": 72
+    },
+    "RANGE": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [
+            [],
+            ["T_EXPR"],
+            ["T_EXPR", "T_EXPR"]
+        ],
+        "id": 173
+    },
+    "INSERT_AT": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 82
+    },
+    "DELETE_AT": {
+        "signatures": [
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_EXPR", "T_EXPR"]
+        ],
+        "id": 83
+    },
+    "CHANGE_AT": {
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR"]],
+        "id": 84
+    },
+    "SPLICE_AT": {
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR"]],
+        "id": 85
+    },
+    "COERCE_TO": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 51
+    },
+    "TYPE_OF": {
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR"]],
+        "id": 52
+    },
+    "UPDATE": {
+        "signatures": [
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_FUNC1"]
+        ],
+        "optargs": {
+            "durability": "E_DURABILITY",
+            "return_changes": ["T_BOOL", "always"],
+            "non_atomic": "T_BOOL"
+        },
+        "id": 53
+    },
+    "DELETE": {
+        "signatures": [["T_EXPR"]],
+        "optargs": {
+            "durability": "E_DURABILITY",
+            "return_changes": ["T_BOOL", "always"]
+        },
+        "id": 54
+    },
+    "REPLACE": {
+        "signatures": [
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_FUNC1"]
+        ],
+        "optargs": {
+            "durability": "E_DURABILITY",
+            "return_changes": ["T_BOOL", "always"],
+            "non_atomic": "T_BOOL"
+        },
+        "id": 55
+    },
+    "INSERT": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [["T_TABLE", "T_EXPR"]],
+        "optargs": {
+            "durability": "E_DURABILITY",
+            "return_changes": ["T_BOOL", "always"],
+            "conflict": "E_CONFLICT"
+        },
+        "id": 56
+    },
+    "DB_CREATE": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 57
+    },
+    "DB_DROP": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 58
+    },
+    "DB_LIST": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 59
+    },
+    "TABLE_CREATE": {
+        "include_in": [
+            "top",
+            "db"
+        ],
+        "signatures": [["T_DB", "T_EXPR"]],
+        "optargs": {
+            "primary_key": "T_STR",
+            "durability": "E_DURABILITY",
+            "shards": "T_NUM",
+            "replicas": ["T_NUM", "T_OBJECT"],
+            "primary_replica_tag": "T_STR"
+        },
+        "id": 60
+    },
+    "TABLE_DROP": {
+        "include_in": [
+            "top",
+            "db"
+        ],
+        "signatures": [
+            ["T_EXPR"],
+            ["T_DB", "T_EXPR"]
+        ],
+        "id": 61
+    },
+    "TABLE_LIST": {
+        "include_in": [
+            "top",
+            "db"
+        ],
+        "signatures": [["T_DB"]],
+        "id": 62
+    },
+    "CONFIG": {
+        "include_in": [
+            "db",
+            "table"
+        ],
+        "signatures": [
+            ["T_DB"],
+            ["T_TABLE"]
+        ],
+        "id": 174
+    },
+    "STATUS": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [["T_TABLE"]],
+        "id": 175
+    },
+    "WAIT": {
+        "include_in": [
+            "top",
+            "db",
+            "table"
+        ],
+        "signatures": [
+            [],
+            ["T_TABLE"],
+            ["T_DB"]
+        ],
+        "optargs": {
+            "wait_for": "E_STATUS",
+            "timeout": "T_NUM"
+        },
+        "id": 177
+    },
+    "RECONFIGURE": {
+        "include_in": [
+            "top",
+            "db",
+            "table"
+        ],
+        "signatures": [
+            [],
+            ["T_TABLE"],
+            ["T_DB"]
+        ],
+        "optargs": {
+            "shards": "T_NUM",
+            "replicas": ["T_OBJECT", "T_NUM"],
+            "primary_replica_tag": "T_STR",
+            "dry_run": "T_BOOL",
+            "nonvoting_replica_tags": "T_ARRAY",
+            "emergency_repair": "E_EMERGENCY_REPAIR"
+        },
+        "id": 176
+    },
+    "REBALANCE": {
+        "include_in": [
+            "top",
+            "db",
+            "table"
+        ],
+        "signatures": [
+            [],
+            ["T_DB"],
+            ["T_TABLE"]
+        ],
+        "id": 179
+    },
+    "SYNC": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [["T_TABLE"]],
+        "id": 138
+    },
+    "INDEX_CREATE": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [
+            ["T_TABLE", "T_EXPR"],
+            ["T_TABLE", "T_EXPR", "T_FUNC1"]
+        ],
+        "optargs": {
+            "multi": "T_BOOL",
+            "geo": "T_BOOL"
+        },
+        "id": 75
+    },
+    "INDEX_DROP": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [["T_TABLE", "T_EXPR"]],
+        "id": 76
+    },
+    "INDEX_LIST": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [["T_TABLE"]],
+        "id": 77
+    },
+    "INDEX_STATUS": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [["T_TABLE", "T_EXPR", "*"]],
+        "id": 139
+    },
+    "INDEX_WAIT": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [["T_TABLE", "T_EXPR", "*"]],
+        "id": 140
+    },
+    "INDEX_RENAME": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [["T_TABLE", "T_EXPR", "T_EXPR"]],
+        "optargs": {
+            "overwrite": "T_BOOL"
+        },
+        "id": 156
+    },
+    "FUNCALL": {
+        "alias": "do",
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [
+            ["T_EXPR", "T_EXPR", "*"],
+            ["T_EXPR", "T_EXPR", "*", "T_FUNCX"]
+        ],
+        "id": 64
+    },
+    "BRANCH": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR"]],
+        "id": 65
+    },
+    "OR": {
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR", "*"]],
+        "id": 66
+    },
+    "AND": {
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "*"]],
+        "id": 67
+    },
+    "FOR_EACH": {
+        "signatures": ["T_EXPR", "T_FUNC1"],
+        "id": 68
+    },
+    "FUNC": {
+        "include_in": [],
+        "id": 69
+    },
+    "ASC": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR"]],
+        "id": 73
+    },
+    "DESC": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR"]],
+        "id": 74
+    },
+    "INFO": {
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR"]],
+        "id": 79
+    },
+    "MATCH": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 97
+    },
+    "UPCASE": {
+        "signatures": [["T_EXPR"]],
+        "id": 141
+    },
+    "DOWNCASE": {
+        "signatures": [["T_EXPR"]],
+        "id": 142
+    },
+    "SAMPLE": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 81
+    },
+    "DEFAULT": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 92
+    },
+    "JSON": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR"]],
+        "id": 98
+    },
+    "TO_JSON_STRING": {
+        "alias": "to_json",
+        "signatures": [["T_EXPR"]],
+        "id": 172
+    },
+    "ISO8601": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [
+            ["T_EXPR"]
+        ],
+        "optargs": {
+            "default_timezone": "T_STR"
+        },
+        "id": 99
+    },
+    "TO_ISO8601": {
+        "signatures": [["R_EXPR"]],
+        "id": 100
+    },
+    "EPOCH_TIME": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["R_EXPR"]],
+        "id": 101
+    },
+    "TO_EPOCH_TIME": {
+        "signatures": [["R_EXPR"]],
+        "id": 102
+    },
+    "NOW": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 103
+    },
+    "IN_TIMEZONE": {
+        "signatures": [["R_EXPR", "R_EXPR"]],
+        "id": 104
+    },
+    "DURING": {
+        "signatures": [["R_EXPR", "R_EXPR", "R_EXPR"]],
+        "optargs": {
+            "left_bound": "E_BOUND",
+            "right_bound": "E_BOUND"
+        },
+        "id": 105
+    },
+    "DATE": {
+        "signatures": [["R_EXPR"]],
+        "id": 106
+    },
+    "TIME_OF_DAY": {
+        "signatures": [["R_EXPR"]],
+        "id": 126
+    },
+    "TIMEZONE": {
+        "signatures": [["R_EXPR"]],
+        "id": 127
+    },
+    "YEAR": {
+        "signatures": [["R_EXPR"]],
+        "id": 128
+    },
+    "MONTH": {
+        "signatures": [["R_EXPR"]],
+        "id": 129
+    },
+    "DAY": {
+        "signatures": [["R_EXPR"]],
+        "id": 130
+    },
+    "DAY_OF_WEEK": {
+        "signatures": [["R_EXPR"]],
+        "id": 131
+    },
+    "DAY_OF_YEAR": {
+        "signatures": [["R_EXPR"]],
+        "id": 132
+    },
+    "HOURS": {
+        "signatures": [["R_EXPR"]],
+        "id": 133
+    },
+    "MINUTES": {
+        "signatures": [["R_EXPR"]],
+        "id": 134
+    },
+    "SECONDS": {
+        "signatures": [["R_EXPR"]],
+        "id": 135
+    },
+    "TIME": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [
+            ["T_EXPR", "T_EXPR", "T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_EXPR", "T_EXPR", "T_EXPR", "T_EXPR", "T_EXPR", "T_EXPR"]
+        ],
+        "id": 136
+    },
+    "MONDAY": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 107
+    },
+    "TUESDAY": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 108
+    },
+    "WEDNESDAY": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 109
+    },
+    "THURSDAY": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 110
+    },
+    "FRIDAY": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 111
+    },
+    "SATURDAY": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 112
+    },
+    "SUNDAY": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 113
+    },
+    "JANUARY": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 114
+    },
+    "FEBRUARY": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 115
+    },
+    "MARCH": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 116
+    },
+    "APRIL": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 117
+    },
+    "MAY": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 118
+    },
+    "JUNE": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 119
+    },
+    "JULY": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 120
+    },
+    "AUGUST": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 121
+    },
+    "SEPTEMBER": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 122
+    },
+    "OCTOBER": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 123
+    },
+    "NOVEMBER": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 124
+    },
+    "DECEMBER": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 125
+    },
+    "LITERAL": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [
+            [],
+            ["T_EXPR"]
+        ],
+        "id": 137
+    },
+    "GROUP": {
+        "signatures": [
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_FUNC1"]
+        ],
+        "optargs": {
+            "index": "T_STR",
+            "multi": "T_BOOL"
+        },
+        "id": 144
+    },
+    "SUM": {
+        "signatures": [
+            ["T_EXPR"],
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_FUNC"]
+        ],
+        "id": 145
+    },
+    "AVG": {
+        "signatures": [
+            ["R_EXPR"],
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_FUNC"]
+        ],
+        "id": 146
+    },
+    "MIN": {
+        "signatures": [
+            ["T_EXPR"],
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_FUNC1"]
+        ],
+        "optargs": {
+            "index": "T_STR"
+        },
+        "id": 147
+    },
+    "MAX": {
+        "signatures": [
+            ["T_EXPR"],
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_FUNC1"]
+        ],
+        "optargs": {
+            "index": "T_STR"
+        },
+        "id": 148
+    },
+    "SPLIT": {
+        "signatures": [
+            ["T_EXPR"],
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_EXPR", "T_EXPR"]
+        ],
+        "id": 149
+    },
+    "UNGROUP": {
+        "signatures": [["T_EXPR"]],
+        "id": 150
+    },
+    "RANDOM": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [
+            [],
+            ["T_EXPR"],
+            ["T_EXPR", "T_EXPR"]
+        ],
+        "optargs": {
+            "float": "T_BOOL"
+        },
+        "id": 151
+    },
+    "CHANGES": {
+        "signatures": [["T_EXPR"]],
+        "optargs": {
+            "squash": "T_BOOL",
+            "include_states": "T_BOOL"
+        },
+        "id": 152
+    },
+    "ARGS": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR"]],
+        "id": 154
+    },
+    "BINARY": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR"]],
+        "id": 155
+    },
+    "GEOJSON": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR"]],
+        "id": 157
+    },
+    "TO_GEOJSON": {
+        "signatures": [["T_EXPR"]],
+        "id": 158
+    },
+    "POINT": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 159
+    },
+    "LINE": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR", "*"]],
+        "id": 160
+    },
+    "POLYGON": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR", "T_EXPR", "*"]],
+        "id": 161
+    },
+    "DISTANCE": {
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "optargs": {
+            "geo_system": "E_GEO_SYSTEM",
+            "unit": "E_UNIT"
+        },
+        "id": 162
+    },
+    "INTERSECTS": {
+        "include_in": [
+            "top",
+            "query"
+        ],
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 163
+    },
+    "INCLUDES": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 164
+    },
+    "CIRCLE": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [
+            ["T_EXPR"],
+            ["T_EXPR", "T_EXPR"],
+            ["T_EXPR", "T_EXPR", "T_EXPR"]
+        ],
+        "optargs": {
+            "num_vertices": "T_EXPR",
+            "geo_system": "E_GEO_SYSTEM",
+            "unit": "E_UNIT",
+            "fill": "T_BOOL"
+        },
+        "id": 165
+    },
+    "GET_INTERSECTING": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [["T_TABLE", "T_EXPR"]],
+        "optargs": {
+            "index": "T_STR"
+        },
+        "id": 166
+    },
+    "FILL": {
+        "signatures": [["T_EXPR"]],
+        "id": 167
+    },
+    "GET_NEAREST": {
+        "include_in": [
+            "table"
+        ],
+        "signatures": [["T_TABLE", "T_EXPR"]],
+        "optargs": {
+            "index": "T_STR",
+            "max_results": "T_NUM",
+            "unit": "E_UNIT",
+            "max_dist": "T_NUM",
+            "geo_system": "E_GEO_SYSTEM"
+        },
+        "id": 168
+    },
+    "POLYGON_SUB": {
+        "signatures": [["T_EXPR", "T_EXPR"]],
+        "id": 171
+    },
+    "MINVAL": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 180
+    },
+    "MAXVAL": {
+        "include_in": [
+            "top"
+        ],
+        "signatures": [[]],
+        "id": 181
+    }
+}

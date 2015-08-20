@@ -1,18 +1,16 @@
 ﻿using System;
+using Newtonsoft.Json.Linq;
 
 namespace com.rethinkdb.model
 {
-
-	using JSONArray = org.json.simple.JSONArray;
-
 	public class Profile
 	{
 
-		public static Optional<Profile> fromJSONArray(JSONArray profileObj)
+		public static Profile fromJSONArray(JArray profileObj)
 		{
 			if (profileObj == null)
 			{
-				return Optional.empty();
+				return null;
 			}
 			throw new Exception("fromJSONArray not implemented");
 		}

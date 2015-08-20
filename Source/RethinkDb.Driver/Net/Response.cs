@@ -36,9 +36,9 @@ namespace RethinkDb.Driver.Net
 			Builder res = new Builder(token, responseType);
 			if (jsonResp.containsKey("e"))
 			{
-				res.ErrorType = (int) jsonResp.get("e");
+				res.errorType = (int) jsonResp.get("e");
 			}
-			return res.setProfile((JSONArray) jsonResp.getOrDefault("p", null)).setBacktrace((JSONArray) jsonResp.getOrDefault("b", null)).setData((JSONArray) jsonResp.getOrDefault("r", new JSONArray())).build();
+			return res.setProfile((JArray) jsonResp.getOrDefault("p", null)).setBacktrace((JSONArray) jsonResp.getOrDefault("b", null)).setData((JSONArray) jsonResp.getOrDefault("r", new JArray())).build();
 		}
 
 		private Response(long token, ResponseType responseType, JArray data, List<ResponseNote> responseNotes, Profile profile, Backtrace backtrace, ErrorType errorType)
@@ -170,7 +170,7 @@ namespace RethinkDb.Driver.Net
 
 		internal virtual ReqlError makeError(Query query)
 		{
-			string msg = data.size() > 0 ? (string) data.get(0) : "Unknown error message";
+			string msg = data.Count > 0 ? (string) data[0] : "Unknown error message";
 			return (new ErrorBuilder(msg, type)).setBacktrace(backtrace).setErrorType(errorType).setTerm(query).build();
 		}
 

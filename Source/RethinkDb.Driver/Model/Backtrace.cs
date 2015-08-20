@@ -7,11 +7,11 @@ namespace RethinkDb.Driver.Model
     
 	public class Backtrace
 	{
-		public static Optional<Backtrace> fromJSONArray(JArray @object)
+		public static Backtrace fromJSONArray(JArray @object)
 		{
-			if (@object == null || @object.size() == 0)
+			if (@object == null || @object.Count == 0)
 			{
-				return Optional.empty();
+			    return null;
 			}
 			throw new Exception("fromJSONArray not implemented");
 		}

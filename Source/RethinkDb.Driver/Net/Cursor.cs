@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.Net
 		internal virtual void extend(Response response)
 		{
 			outstandingRequests -= 1;
-			threshold = response.data.size();
+			threshold = response.data.Count;
 			if (error == null)
 			{
 				if (response.Partial)
@@ -76,7 +76,7 @@ namespace RethinkDb.Driver.Net
 
 		protected internal virtual void maybeFetchBatch()
 		{
-			if (error == null && items.size() <= threshold && outstandingRequests == 0)
+			if (error == null && items.Count <= threshold && outstandingRequests == 0)
 			{
 				outstandingRequests += 1;
 				connection.continue_(this);
@@ -123,7 +123,7 @@ namespace RethinkDb.Driver.Net
 
 			internal override T getNext(Optional<int?> timeout)
 			{
-				while (items.size() == 0)
+				while (items.Count == 0)
 				{
 					maybeFetchBatch();
 					error.ifPresent(exc =>

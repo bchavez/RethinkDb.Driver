@@ -29,7 +29,7 @@ namespace Templates
             var rootProjectPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", ProjectFolder);
             Directory.SetCurrentDirectory(rootProjectPath);
             Clean();
-            EnsurePaths();
+            EnsurePathsExist();
         }
 
         private void Clean()
@@ -39,7 +39,8 @@ namespace Templates
                 Directory.Delete(GenerateRootDir, true);
             }
         }
-        private void EnsurePaths()
+
+        private void EnsurePathsExist()
         {
             if( !Directory.Exists(GenerateRootDir) )
                 Directory.CreateDirectory(GenerateRootDir);
@@ -127,6 +128,12 @@ namespace Templates
             RenderExceptions(errorHearchy);
         }
 
+
+
+
+
+
+
         private void RenderExceptions(JObject error, string superClass = "Exception")
         {
             foreach( var p in error.Properties() )
@@ -135,8 +142,7 @@ namespace Templates
                 RenderExceptions(p.Value as JObject, p.Name);
             }
         }
-
-
+        
         public void RenderErrorClass(string className, string superClass)
         {
             var tmpl = new ExceptionTemplate()

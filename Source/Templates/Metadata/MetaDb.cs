@@ -17,9 +17,6 @@ namespace Templates.Metadata
             
         }
 
-
-
-
         public static JObject Protocol;
         public static JObject Global;
         public static JObject TermInfo;

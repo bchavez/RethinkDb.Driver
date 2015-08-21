@@ -23,12 +23,11 @@ namespace RethinkDb.Driver.Net
 		public readonly ErrorType errorType;
 
 
-		public static Response parseFrom(long token, ByteBuffer buf)
+		public static Response parseFrom(long token, string buf)
 		{
-			Console.WriteLine("Received: " + Util.bufferToString(buf));
-			StreamReader codepointReader = new StreamReader(new ByteArrayInputStream(buf.array()));
-			JObject jsonResp = (JObject) JSONValue.parse(codepointReader);
-			ResponseType responseType = ResponseType.fromValue(((long?) jsonResp.get("t")).intValue());
+			Console.WriteLine("Received: " + buf);
+		    var jsonResp = JObject.Parse(buf);
+		    var responseType = jsonResp["t"].ToObject<ResponseType>();
 			List<int?> responseNoteVals = (List<int?>) jsonResp.getOrDefault("n", new ArrayList());
 			List<ResponseNote> responseNotes = responseNoteVals.stream().map(Proto.ResponseNote::fromValue).collect(Collectors.toCollection(System.Collections.ArrayList::new));
 			ErrorType et = (ErrorType) jsonResp.getOrDefault("e", null);

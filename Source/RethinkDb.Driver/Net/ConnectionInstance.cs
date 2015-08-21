@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using RethinkDb.Driver;
-using RethinkDb.Driver.Net;
 
-namespace com.rethinkdb.net
+namespace RethinkDb.Driver.Net
 {
 	public class ConnectionInstance
 	{
@@ -10,13 +8,10 @@ namespace com.rethinkdb.net
 		internal SocketWrapper socket = null;
 
 		// protected members
-		protected internal Dictionary<long?, Cursor> cursorCache = new Dictionary<long?, Cursor>();
+		protected internal Dictionary<long, ICursor> cursorCache = new Dictionary<long, ICursor>();
 		protected internal bool closing = false;
 	    protected internal ByteBuffer headerInProgress = null;
 
-		public ConnectionInstance()
-		{
-		}
 
 		public virtual void connect(string hostname, int port, byte[] handshake, int? timeout)
 		{
@@ -30,18 +25,18 @@ namespace com.rethinkdb.net
 			get { return socket?.Open ?? false; }
 		}
 
-		public virtual void close<T>()
+		public virtual void close()
 		{
 			closing = true;
-			foreach (Cursor<T> cursor in cursorCache.Values)
+			foreach (var cursor in cursorCache.Values)
 			{
-				cursor.Error = "Connection is closed.";
+			    cursor.SetError("Connection is closed.");
 			}
 			cursorCache.Clear();
 		    socket?.close();
 		}
 
-		internal virtual void addToCache(long token, Cursor cursor)
+		internal virtual void addToCache(long token, ICursor cursor)
 		{
 			cursorCache[token] = cursor;
 		}
@@ -65,25 +60,26 @@ namespace com.rethinkdb.net
 
 			while (true)
 			{
-				if (!headerInProgress.Present)
+				if (headerInProgress == null)
 				{
-					headerInProgress = Optional.of(sock.recvall(12, deadline));
+					headerInProgress = sock.recvall(12, deadline);
 				}
 				long resToken = headerInProgress.get().Long;
 				int resLen = headerInProgress.get().Int;
 				ByteBuffer resBuf = sock.recvall(resLen, deadline);
-				headerInProgress = Optional.empty();
+			    headerInProgress = null;
 
-				Response res = Response.parseFrom(resToken, resBuf);
+				var res = Response.parseFrom(resToken, resBuf);
 
-				Optional<Cursor> cursor = Optional.ofNullable(cursorCache[resToken]);
-				cursor.ifPresent(c => c.extend(res));
+				var cursor = cursorCache[resToken];
+
+                cursor?.Extend(res);
 
 				if (res.token == token)
 				{
 					return res;
 				}
-				else if (closing || cursor.Present)
+				else if (closing || cursor != null)
 				{
 					close();
 					throw new ReqlDriverError("Unexpected response received");

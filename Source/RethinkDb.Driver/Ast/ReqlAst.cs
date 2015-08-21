@@ -2,6 +2,7 @@
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
+using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver.Ast
@@ -66,14 +67,14 @@ namespace RethinkDb.Driver.Ast
             return list;
         }
 
-        public virtual Optional<object> run(Connection conn, GlobalOptions g)
+        public virtual object run<T>(Connection conn, GlobalOptions g)
         {
-            return conn.run(this, g);
+            return conn.run<T>(this, g);
         }
 
-        public virtual Optional<object> run(Connection conn)
+        public virtual object run<T>(Connection conn)
         {
-            return conn.run(this, new GlobalOptions());
+            return conn.run<T>(this, new GlobalOptions());
         }
 
         public override string ToString()

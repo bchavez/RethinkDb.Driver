@@ -1,5 +1,6 @@
 ﻿using com.rethinkdb.net;
 using RethinkDb.Driver.Ast;
+using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver
@@ -15,7 +16,7 @@ namespace RethinkDb.Driver
 		{
 		}
 
-		public virtual Connection.Builder<ConnectionInstance> connection()
+		public virtual ConnectionBuilder connection()
 		{
 			return Connection.build();
 		}

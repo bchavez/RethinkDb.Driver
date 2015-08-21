@@ -1,36 +1,57 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.ExceptionServices;
 using com.rethinkdb.net;
+using Newtonsoft.Json.Linq;
 using RethinkDb.Driver;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver.Net
 {
+    internal interface ICursor
+    {
+        void Extend(Response response);
+        void SetError(string msg);
+        long Token { get; }
+    }
 
-	public abstract class Cursor<T> : IEnumerator<T>
+    internal abstract class Cursor<T> : IEnumerable<T>, IEnumerator<T>, ICursor
 	{
 		// public immutable members
-		public readonly long token;
+		public long Token { get; }
 
 		// immutable members
 		protected internal readonly Connection connection;
 		protected internal readonly Query query;
 
 		// mutable members
-		protected internal List<T> items = new List<T>();
+		protected internal List<JToken> items = new List<JToken>();
 		protected internal int outstandingRequests = 1;
 		protected internal int threshold = 0;
 		protected internal Exception error = null;
 
-		public Cursor(Connection<T> connection, Query query)
+		public Cursor(Connection connection, Query query)
 		{
 			this.connection = connection;
 			this.query = query;
-			this.token = query.token;
+			this.Token = query.token;
 			connection.addToCache(query.token, this);
 		}
+
+        public void SetError(string msg)
+        {
+            if( this.error != null ) return;
+
+            this.error = new ReqlRuntimeError(msg);
+
+            var dummyResponse = Response.make(query.token, ResponseType.SUCCESS_SEQUENCE)
+                .build();
+
+            Extend(dummyResponse);
+        }
 
 		public virtual void close()
 		{
@@ -45,9 +66,7 @@ namespace RethinkDb.Driver.Net
 			}
 		}
 
-        
-
-		internal virtual void extend(Response response)
+        public virtual void Extend(Response response)
 		{
 			outstandingRequests -= 1;
 			threshold = response.data.Count;
@@ -55,20 +74,22 @@ namespace RethinkDb.Driver.Net
 			{
 				if (response.Partial)
 				{
-					items.addAll(response.data);
+				    foreach( var item in response.data )
+				        items.Add(item);
 				}
 				else if (response.Sequence)
 				{
-					items.addAll(response.data);
-					error = Optional.of(new NoSuchElementException());
+                    foreach( var item in response.data )
+                        items.Add(item);
+				    error = new InvalidOperationException("No such element");
 				}
 				else
 				{
-					error = Optional.of(response.makeError(query));
+				    error = response.makeError(query);
 				}
 			}
 			maybeFetchBatch();
-			if (outstandingRequests == 0 && error.Present)
+			if (outstandingRequests == 0 && error != null)
 			{
 				connection.removeFromCache(response.token);
 			}
@@ -91,17 +112,17 @@ namespace RethinkDb.Driver.Net
 				{
 				    error = new ReqlRuntimeError(value);
 					Response dummyResponse = Response.make(query.token, ResponseType.SUCCESS_SEQUENCE).build();
-					extend(dummyResponse);
+					Extend(dummyResponse);
 				}
 			}
 		}
 
-		public static Cursor<T> empty<T>(Connection<T> connection, Query query)
+		public static Cursor<T> empty(Connection connection, Query query)
 		{
 			return new DefaultCursor<T>(connection, query);
 		}
 
-		public override T next()
+		public T next()
 		{
 			return getNext(null);
 		}
@@ -111,32 +132,63 @@ namespace RethinkDb.Driver.Net
 			return getNext(timeout);
 		}
 
-
 		// Abstract methods
 		internal abstract T getNext(int? timeout);
 
 		private class DefaultCursor<T> : Cursor<T>
 		{
-			public DefaultCursor(Connection<T> connection, Query query) : base(connection, query)
+			public DefaultCursor(Connection connection, Query query) : base(connection, query)
 			{
 			}
 
-			internal override T getNext(Optional<int?> timeout)
+			internal override T getNext(int? timeout)
 			{
 				while (items.Count == 0)
 				{
 					maybeFetchBatch();
-					error.ifPresent(exc =>
-					{
-						throw exc;
-					});
-					connection.readResponse(query.token, timeout.map(Util::deadline));
+				    if( error != null )
+				        throw error;
+
+				    connection.readResponse(query.token, Util.deadline(timeout.GetValueOrDefault(60)));
 				}
-				object element = items.pop();
+			    object element = items.First();
+			    items.RemoveAt(0);
 				return (T) Converter.convertPseudo(element, query.globalOptions);
 			}
 
 		}
-	}
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void Dispose()
+        {
+            this.close();
+        }
+
+        public bool MoveNext()
+        {
+            this.Current = this.next();
+            return this.Current != null;
+        }
+
+        public void Reset()
+        {
+            this.Current = default(T);
+        }
+
+        public T Current { get; private set; }
+
+        object IEnumerator.Current
+        {
+            get { return Current; }
+        }
+	}
 }

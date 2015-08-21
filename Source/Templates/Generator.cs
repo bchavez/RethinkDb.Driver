@@ -5,23 +5,20 @@ using System.Linq;
 using Humanizer;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
+using Templates.CodeGen;
 using Templates.Metadata;
+
 
 namespace Templates
 {
-    public class Foo
-    {
-        
-    }
     [TestFixture]
     public class Generator
     {
         public string ProjectFolder = "RethinkDb.Driver";
-        public string ProtoDir = @"./Proto";
-        public string AstClasses = @"./Ast/Gen";
-        public string ModelDir = @"./Model";
-        public string PackageDir = @"./";
+        public string GenerateRootDir = @"./Generated";
+        public string ProtoDir = @"./Generated/Proto";
+        public string AstClasses = @"./Generated/Ast";
+        public string ModelDir = @"./Generated/Model";
 
         [TestFixtureSetUp]
         public void BeforeRunningTestSession()
@@ -31,6 +28,37 @@ namespace Templates
             //remount the working directory before we begin.
             var rootProjectPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", ProjectFolder);
             Directory.SetCurrentDirectory(rootProjectPath);
+            Clean();
+            EnsurePaths();
+        }
+
+        private void Clean()
+        {
+            if( Directory.Exists(GenerateRootDir) )
+            {
+                Directory.Delete(GenerateRootDir, true);
+            }
+        }
+        private void EnsurePaths()
+        {
+            if( !Directory.Exists(GenerateRootDir) )
+                Directory.CreateDirectory(GenerateRootDir);
+            if( !Directory.Exists(ProtoDir) )
+                Directory.CreateDirectory(ProtoDir);
+            if( !Directory.Exists(AstClasses) )
+                Directory.CreateDirectory(AstClasses);
+            if( !Directory.Exists(ModelDir) )
+                Directory.CreateDirectory(ModelDir);
+        }
+
+        [Test]
+        [Explicit]
+        public void Generate_All()
+        {
+            Render_Proto_Enums();
+            Render_Ast_SubClasses();
+            Render_Global_Options();
+            Render_Exceptions();
         }
 
         [Test]
@@ -84,7 +112,7 @@ namespace Templates
         {
             var optArgs = MetaDb.Global["global_optargs"].ToObject<Dictionary<string, string>>();
 
-            var tmpl = new GlobalOptions()
+            var tmpl = new GlobalOptionsTemplate()
                 {
                     OptArgs = optArgs
                 };
@@ -111,19 +139,19 @@ namespace Templates
 
         public void RenderErrorClass(string className, string superClass)
         {
-            var tmpl = new Exception()
+            var tmpl = new ExceptionTemplate()
                 {
                     ClassName = className,
                     SuperClass = superClass
                 };
 
-            File.WriteAllText(Path.Combine(PackageDir, $"{className.Pascalize()}.cs"), tmpl.TransformText());
+            File.WriteAllText(Path.Combine(GenerateRootDir, $"{className.Pascalize()}.cs"), tmpl.TransformText());
         }
 
         public void RenderAstSubclass(string termType, string className, string superClass, string includeIn, Dictionary<string, JObject> meta)
         {
             className = className ?? termType.ToLower();
-            var tmpl = new AstSubclass()
+            var tmpl = new AstSubclassTemplate()
                 {
                     TermType = termType,
                     ClassName = className,
@@ -138,7 +166,7 @@ namespace Templates
 
         public void RenderEnum(string enumName, Dictionary<string, object> enums )
         {
-            var tmpl = new Enum
+            var tmpl = new EnumTemplate
                 {
                     EnumName = enumName,
                     Enums = enums

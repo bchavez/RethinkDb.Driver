@@ -14,7 +14,7 @@ namespace com.rethinkdb.ast
 	using MakeArray = com.rethinkdb.ast.gen.MakeArray;
 	using MakeObj = com.rethinkdb.ast.gen.MakeObj;
 	using Iso8601 = com.rethinkdb.ast.gen.Iso8601;
-	using ReqlFunction2 = com.rethinkdb.model.ReqlFunction2;
+	using ReqlFunction2 = ReqlFunction2;
 
 
 

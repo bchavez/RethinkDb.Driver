@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace com.rethinkdb.model
+namespace RethinkDb.Driver.Model
 {
 
 	public class MapObject : Dictionary<string, object>

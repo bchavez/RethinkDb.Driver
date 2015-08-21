@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
 
-namespace com.rethinkdb.model
+namespace RethinkDb.Driver.Model
 {
 	public class Profile
 	{

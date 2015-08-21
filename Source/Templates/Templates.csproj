@@ -60,55 +60,55 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exception.generated.cs">
-      <DependentUpon>Exception.cshtml</DependentUpon>
+    <Compile Include="CodeGen\ExceptionTemplate.generated.cs">
+      <DependentUpon>ExceptionTemplate.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="GlobalOptions.generated.cs">
-      <DependentUpon>GlobalOptions.cshtml</DependentUpon>
+    <Compile Include="CodeGen\GlobalOptionsTemplate.generated.cs">
+      <DependentUpon>GlobalOptionsTemplate.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="AstSubclass.generated.cs">
-      <DependentUpon>AstSubclass.cshtml</DependentUpon>
+    <Compile Include="CodeGen\AstSubclassTemplate.generated.cs">
+      <DependentUpon>AstSubclassTemplate.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="BaseTemplate.cs" />
-    <Compile Include="EnumTests.cs" />
+    <Compile Include="CodeGen\BaseTemplate.cs" />
+    <Compile Include="CodeGen\EnumTests.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Metadata\MetaDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Enum.generated.cs">
+    <Compile Include="CodeGen\EnumTemplate.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Enum.cshtml</DependentUpon>
+      <DependentUpon>EnumTemplate.cshtml</DependentUpon>
     </Compile>
     <Compile Include="TemplateTest.cs" />
     <Compile Include="Utils\ExtensionsForTesting.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Exception.cshtml">
+    <None Include="CodeGen\ExceptionTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Exception.generated.cs</LastGenOutput>
+      <LastGenOutput>ExceptionTemplate.generated.cs</LastGenOutput>
     </None>
-    <None Include="GlobalOptions.cshtml">
+    <None Include="CodeGen\GlobalOptionsTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
-      <LastGenOutput>GlobalOptions.generated.cs</LastGenOutput>
+      <LastGenOutput>GlobalOptionsTemplate.generated.cs</LastGenOutput>
     </None>
-    <None Include="AstSubclass.cshtml">
+    <None Include="CodeGen\AstSubclassTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
-      <LastGenOutput>AstSubclass.generated.cs</LastGenOutput>
+      <LastGenOutput>AstSubclassTemplate.generated.cs</LastGenOutput>
     </None>
     <None Include="Metadata\global_info.json" />
     <None Include="Metadata\proto_basic.json" />
     <None Include="Metadata\term_info.json" />
-    <None Include="packages.config" />
-    <None Include="Enum.cshtml">
+    <None Include="CodeGen\EnumTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Enum.generated.cs</LastGenOutput>
+      <LastGenOutput>EnumTemplate.generated.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
     <None Include="razorgenerator.directives" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

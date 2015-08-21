@@ -1,7 +1,6 @@
 ﻿using RethinkDb.Driver.Ast;
-using RethinkDb.Driver.Model;
 
-namespace com.rethinkdb.model
+namespace RethinkDb.Driver.Model
 {
 	public interface ReqlFunction2 : ReqlLambda
 	{

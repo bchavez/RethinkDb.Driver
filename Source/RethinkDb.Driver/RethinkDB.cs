@@ -1,14 +1,11 @@
 ﻿using com.rethinkdb.net;
-using RethinkDb.Driver.Ast.Gen;
+using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver
 {
-
-
 	public class RethinkDB : TopLevel
 	{
-
 		/// <summary>
 		/// The Singleton to use to begin interacting with RethinkDB Driver
 		/// </summary>

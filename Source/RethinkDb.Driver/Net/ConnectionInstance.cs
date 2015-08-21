@@ -18,7 +18,7 @@ namespace com.rethinkdb.net
 		{
 		}
 
-		public virtual void connect(string hostname, int port, ByteBuffer handshake, int? timeout)
+		public virtual void connect(string hostname, int port, byte[] handshake, int? timeout)
 		{
 			SocketWrapper sock = new SocketWrapper(hostname, port, timeout);
 			sock.connect(handshake);

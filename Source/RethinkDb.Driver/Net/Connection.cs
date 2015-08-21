@@ -1,10 +1,11 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using System.Threading;
 using RethinkDb.Driver;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
-using RethinkDb.Driver.Proto;
 
 namespace com.rethinkdb.net
 {
@@ -21,17 +22,28 @@ namespace com.rethinkdb.net
 		// private mutable
 		private string dbname;
 		private int? connectTimeout;
-		private ByteBuffer handshake;
+		private byte[] handshake;
 	    private T instance = null;
 
 		private Connection(Builder<T> builder)
 		{
 			dbname = builder.dbname;
-			string authKey = builder.authKey_Renamed.orElse("");
-			handshake = Util.leByteBuffer(4 + 4 + authKey.Length + 4).putInt(Version.V0_4.value).putInt(authKey.Length).put(authKey.GetBytes()).putInt(Protocol.JSON);
-			handshake.flip();
-			hostname = builder.hostname_Renamed.orElse("localhost");
-			port = builder.port_Renamed.orElse(28015);
+			var authKey = builder.authKey_Renamed ?? string.Empty;
+		    var authKeyBytes = Encoding.ASCII.GetBytes(authKey);
+
+            using( var ms = new MemoryStream() )
+            using( var bw = new BinaryWriter(ms) )
+            {
+                bw.Write((int)RethinkDb.Driver.Proto.Version.V0_4);
+                bw.Write(authKeyBytes.Length);
+                bw.Write(authKeyBytes);
+                bw.Write((int)RethinkDb.Driver.Proto.Protocol.JSON);
+                bw.Flush();
+                handshake = ms.ToArray();
+            }
+
+			hostname = builder.hostname_Renamed ?? "localhost";
+			port = builder.port_Renamed ?? 28015;
 			connectTimeout = builder.timeout_Renamed;
 
 			instanceMaker = builder.instanceMaker;
@@ -47,7 +59,7 @@ namespace com.rethinkdb.net
 			return dbname;
 		}
 
-		internal virtual void addToCache(long token, Cursor cursor)
+		internal virtual void addToCache(long token, Cursor<T> cursor)
 		{
             if( instance == null )
                 throw new ReqlDriverError("Can't add to cache when not connected.");

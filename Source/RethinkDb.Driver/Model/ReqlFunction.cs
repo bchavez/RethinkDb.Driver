@@ -1,5 +1,4 @@
-﻿using com.rethinkdb.model;
-using RethinkDb.Driver.Ast;
+﻿using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Model
 {

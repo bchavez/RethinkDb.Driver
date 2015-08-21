@@ -1,4 +1,4 @@
-﻿namespace com.rethinkdb
+﻿namespace RethinkDb.Driver
 {
 
 	public class RethinkDBConstants

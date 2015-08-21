@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using com.rethinkdb.net;
-using RethinkDb.Driver;
 
 namespace RethinkDb.Driver.Net
 {
 	public class SocketWrapper
 	{
-		private TcpClient socketChannel;
+        private TcpClient socketChannel;
 		private int? timeout = null;
 		private ByteBuffer readBuffer = null;
+	    private NetworkStream ns = null;
+	    private BinaryWriter bw = null;
+	    private BinaryReader br = null;
+
 
 		public readonly string hostname;
 		public readonly int port;
@@ -24,28 +26,33 @@ namespace RethinkDb.Driver.Net
 		    this.socketChannel = new TcpClient();
 		}
 
-		public virtual void connect(ByteBuffer handshake)
+		public virtual void connect(byte[] handshake)
 		{
-			int? deadline = timeout.map(com.rethinkdb.net.Util.deadline);
+		    int? deadline = Util.deadline(timeout.GetValueOrDefault(60));
 			try
 			{
-				socketChannel.configureBlocking(true);
-				socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true);
-				socketChannel.socket().connect(new InetSocketAddress(hostname, port), timeout.orElse(0));
-				socketChannel.write(handshake);
+			    socketChannel.NoDelay = true;
+                socketChannel.Client.Blocking = true;
+                var timedout = socketChannel.ConnectAsync(this.hostname, this.port).Wait(timeout.GetValueOrDefault(60));
+			    if( timedout )
+			    {
+			        throw new ReqlDriverError("Connection timed out.");
+			    }
+			    this.ns = socketChannel.GetStream();
+			    this.bw = new BinaryWriter(ns);
+			    this.br = new BinaryReader(ns);
+
+			    this.bw.Write(handshake);
+
 				string msg = readNullTerminatedString(deadline);
 				if (!msg.Equals("SUCCESS"))
 				{
 					throw new ReqlDriverError("Server dropped connection with message: \"%s\"", msg);
 				}
 			}
-			catch (SocketTimeoutException)
+			catch
 			{
-				throw new TimeoutException("Connect timed out.");
-			}
-			catch (IOException e)
-			{
-				throw new ReqlRuntimeError(e);
+			    throw;
 			}
 		}
 
@@ -65,8 +72,9 @@ namespace RethinkDb.Driver.Net
 			}
 		}
 
-		private string readNullTerminatedString(Optional<int?> deadline)
+		private string readNullTerminatedString(int? deadline)
 		{
+		    br.ReadString();
 			ByteBuffer byteBuf = Util.leByteBuffer(1);
 			IList<sbyte?> bytelist = new List<sbyte?>();
 			while (true)
@@ -78,14 +86,15 @@ namespace RethinkDb.Driver.Net
 				}
 				// Maybe we read -1? Throw an error
 
-				deadline.ifPresent(d =>
-				{
-					if (d <= Util.Timestamp)
-					{
-						throw new ReqlDriverError("Connection timed out.");
-					}
-				});
-				if (byteBuf.get(0) == (sbyte)0)
+			    if( deadline.HasValue )
+			    {
+			        if( deadline <= Util.Timestamp )
+			        {
+			            throw new ReqlDriverError("Connection timed out.");
+			        }
+			    }
+
+			    if (byteBuf.get(0) == (sbyte)0)
 				{
 					sbyte[] raw = new sbyte[bytelist.Count];
 					for (int i = 0; i < raw.Length; i++)

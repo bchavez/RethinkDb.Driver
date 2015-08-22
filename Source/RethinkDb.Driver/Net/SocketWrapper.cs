@@ -3,7 +3,8 @@ using System.IO;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using com.rethinkdb.net;
+using RethinkDb.Driver.Ast;
+using Util = com.rethinkdb.net.Util;
 
 namespace RethinkDb.Driver.Net
 {
@@ -70,6 +71,14 @@ namespace RethinkDb.Driver.Net
 				throw new ReqlError(e);
 			}
 		}
+
+	    public virtual void writeQuery(long token, string json)
+	    {
+	        this.bw.Write(token);
+	        var jsonBytes = Encoding.UTF8.GetBytes(json);
+	        this.bw.Write(jsonBytes.Length);
+	        this.bw.Write(jsonBytes);
+	    }
 
 		private string readNullTerminatedString(int? deadline)
 		{

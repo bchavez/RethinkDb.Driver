@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.Ast
 
 					obj[(string) entry.Key] = toReqlAst(entry.Value);
 				}
-				return MakeObj.fromMap(obj);
+				return MakeObj.FromMap(obj);
 			}
 
 			if (val is ReqlFunction)
@@ -67,7 +67,7 @@ namespace RethinkDb.Driver.Ast
 				TimeZone tz = TimeZone.getTimeZone("UTC");
 				DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
 				df.TimeZone = tz;
-				return Iso8601.fromString(df.format((DateTime) val));
+				return Iso8601.FromString(df.format((DateTime) val));
 			}
 
 			if (val is int?)
@@ -87,7 +87,7 @@ namespace RethinkDb.Driver.Ast
 				return new Datum((string) val);
 			}
 
-			throw new ReqlDriverError("Can't convert %s to a ReqlAst", val);
+			throw new ReqlDriverError($"Can't convert {val} to a ReqlAst");
 		}
 
 		// /*

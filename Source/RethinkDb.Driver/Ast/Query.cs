@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json.Linq;
 using RethinkDb.Driver;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
@@ -48,17 +49,23 @@ namespace RethinkDb.Driver.Ast
 			return new Query(QueryType.NOREPLY_WAIT, token, null, new GlobalOptions());
 		}
 
-		public virtual ByteBuffer serialize()
+		public virtual string serialize()
 		{
-			JSONArray queryArr = new JSONArray();
-			queryArr.add(type.value);
-		    if( term != null )
-		        queryArr.add(term.build());
-			queryArr.add(globalOptions.toOptArgs());
-			string queryJson = queryArr.toJSONString();
-			ByteBuffer bb = Util.leByteBuffer(8 + 4 + queryJson.Length).putLong(token).putInt(queryJson.Length).put(queryJson.GetBytes());
-			Console.WriteLine("Sending: " + Util.bufferToString(bb)); //RSI
-			return bb;
+			var queryArr = new JArray();
+
+            queryArr.Add(type);
+
+            if( term != null )
+		    {
+		        queryArr.Add(term.build());
+		    }
+		    queryArr.Add(globalOptions.toOptArgs());
+
+			string queryJson = queryArr.ToString();
+
+			Console.WriteLine($"Sending: Token: {token}, JSON: {queryJson}"); //RSI
+
+			return queryJson;
 		}
 	}
 

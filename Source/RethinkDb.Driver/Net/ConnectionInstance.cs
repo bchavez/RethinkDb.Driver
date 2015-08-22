@@ -8,9 +8,8 @@ namespace RethinkDb.Driver.Net
 		internal SocketWrapper socket = null;
 
 		// protected members
-		protected internal Dictionary<long, ICursor> cursorCache = new Dictionary<long, ICursor>();
+	    internal Dictionary<long, ICursor> cursorCache = new Dictionary<long, ICursor>();
 		protected internal bool closing = false;
-	    protected internal ByteBuffer headerInProgress = null;
 
 
 		public virtual void connect(string hostname, int port, byte[] handshake, int? timeout)

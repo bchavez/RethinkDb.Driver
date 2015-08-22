@@ -94,40 +94,12 @@ namespace RethinkDb.Driver.Net
 			write(bytes);
 		}
 
-		public virtual ByteBuffer recvall(int bufsize)
-		{
-			return recvall(bufsize, Optional.empty());
-		}
-
-		public virtual ByteBuffer recvall(int bufsize, int? deadline)
-		{
-			// TODO: make deadline work
-			ByteBuffer buf = Util.leByteBuffer(bufsize);
-			try
-			{
-				int bytesRead = socketChannel.read(buf);
-				if (bytesRead != bufsize)
-				{
-					do
-					{
-						bytesRead += socketChannel.read(buf);
-					} while (bytesRead < bufsize);
-				}
-			}
-			catch (IOException ex)
-			{
-				throw new ReqlDriverError(ex);
-			}
-			buf.flip();
-			return buf;
-		}
-
 		public virtual Response read()
 		{
-			long token = recvall(8).Long;
-			int responseLength = recvall(4).Int;
-			ByteBuffer responseBytes = recvall(responseLength);
-			return Response.parseFrom(token, responseBytes);
+		    var token = this.br.ReadInt64();
+		    var responseLength = this.br.ReadInt32();
+		    var response = this.br.ReadBytes(responseLength);
+		    return Response.parseFrom(token, Encoding.UTF8.GetString(response));
 		}
 
 		public virtual bool Closed => !socketChannel.Connected;

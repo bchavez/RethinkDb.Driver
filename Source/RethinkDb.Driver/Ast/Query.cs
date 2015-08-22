@@ -1,5 +1,4 @@
 ﻿using System;
-using com.rethinkdb.ast;
 using RethinkDb.Driver;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;

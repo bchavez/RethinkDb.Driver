@@ -42,18 +42,9 @@
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RazorGenerator.Templating, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
-      <HintPath>..\packages\RazorGenerator.Templating.2.3.3\lib\portable-net40+sl50+win+wpa81+wp80\RazorGenerator.Templating.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
     <Reference Include="Z.ExtensionMethods.WithOneNamespace, Version=2.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Z.ExtensionMethods.WithOneNamespace.2.0.7\lib\net45\Z.ExtensionMethods.WithOneNamespace.dll</HintPath>
       <Private>True</Private>
@@ -77,6 +68,37 @@
     </Compile>
     <Compile Include="CodeGen\BaseTemplate.cs" />
     <Compile Include="CodeGen\EnumTests.cs" />
+    <Compile Include="CodeGen\RazorTemplateBase.cs" />
+    <Compile Include="CodeGen\Specialized\Iso8601.generated.cs">
+      <DependentUpon>Iso8601.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CodeGen\Specialized\Func.generated.cs">
+      <DependentUpon>Func.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CodeGen\Specialized\Datum.generated.cs">
+      <DependentUpon>Datum.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CodeGen\Specialized\ResponseType.generated.cs">
+      <DependentUpon>ResponseType.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CodeGen\Specialized\ResponseNote.generated.cs">
+      <DependentUpon>ResponseNote.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CodeGen\Specialized\MakeObj.generated.cs">
+      <DependentUpon>MakeObj.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Generator.cs" />
     <Compile Include="Metadata\MetaDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +122,30 @@
     <None Include="CodeGen\AstSubclassTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>AstSubclassTemplate.generated.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGen\Specialized\Iso8601.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Iso8601.generated.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGen\Specialized\Func.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Func.generated.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGen\Specialized\Datum.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Datum.generated.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGen\Specialized\ResponseType.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>ResponseType.generated.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGen\Specialized\ResponseNote.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>ResponseNote.generated.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGen\Specialized\MakeObj.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>MakeObj.generated.cs</LastGenOutput>
     </None>
     <None Include="Metadata\global_info.json" />
     <None Include="Metadata\proto_basic.json" />

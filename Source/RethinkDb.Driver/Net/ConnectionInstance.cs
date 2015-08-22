@@ -51,15 +51,11 @@ namespace RethinkDb.Driver.Net
 			return readResponse(token, null);
 		}
 
-		internal virtual Response readResponse(long token, int? deadline)
-		{
-		    if( socket == null )
-		        throw new ReqlError("Socket not open");
-
-		    var sock = socket;
-
-			while (true)
-			{
+	    internal virtual Response readResponse(long token, int? deadline)
+	    {
+	        if( socket == null )
+	            throw new ReqlError("Socket not open");
+            /*
 				if (headerInProgress == null)
 				{
 					headerInProgress = sock.recvall(12, deadline);
@@ -69,23 +65,28 @@ namespace RethinkDb.Driver.Net
 				ByteBuffer resBuf = sock.recvall(resLen, deadline);
 			    headerInProgress = null;
 
-				var res = Response.parseFrom(resToken, resBuf);
+				var res = Response.parseFrom(resToken, resBuf);*/
 
-				var cursor = cursorCache[resToken];
+	        while( true )
+	        {
+                //may or maynot be the token we're looking for.
+	            var res = this.socket.read();
 
-                cursor?.Extend(res);
+	            var cursor = cursorCache[res.token];
 
-				if (res.token == token)
-				{
-					return res;
-				}
-				else if (closing || cursor != null)
-				{
-					close();
-					throw new ReqlDriverError("Unexpected response received");
-				}
-			}
-		}
+	            cursor?.Extend(res);
+
+	            if( res.token == token )
+	            {
+	                return res;
+	            }
+	            else if( closing || cursor != null )
+	            {
+	                close();
+	                throw new ReqlDriverError("Unexpected response received");
+	            }
+	        }
+	    }
 	}
 
 }

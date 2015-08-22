@@ -12,5 +12,6 @@ namespace RethinkDb.Driver.Proto {
         OPT = 2,
     }
 
+    
 
 }

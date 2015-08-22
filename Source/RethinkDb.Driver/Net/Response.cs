@@ -11,7 +11,7 @@ using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver.Net
 {
-	internal class Response
+    public class Response
 	{
 		public readonly long token;
 		public readonly ResponseType type;
@@ -28,15 +28,18 @@ namespace RethinkDb.Driver.Net
 			Console.WriteLine("Received: " + buf);
 		    var jsonResp = JObject.Parse(buf);
 		    var responseType = jsonResp["t"].ToObject<ResponseType>();
-			List<int?> responseNoteVals = (List<int?>) jsonResp.getOrDefault("n", new ArrayList());
-			List<ResponseNote> responseNotes = responseNoteVals.stream().map(Proto.ResponseNote::fromValue).collect(Collectors.toCollection(System.Collections.ArrayList::new));
-			ErrorType et = (ErrorType) jsonResp.getOrDefault("e", null);
-			Builder res = new Builder(token, responseType);
-			if (jsonResp.containsKey("e"))
+		    var responseNotes = jsonResp["n"]?.ToObject<List<ResponseNote>>() ?? new List<ResponseNote>();
+			ErrorType? et = jsonResp["e"]?.ToObject<ErrorType>();
+
+            Builder res = new Builder(token, responseType);
+			if (et != null)
 			{
-				res.errorType = (int) jsonResp.get("e");
+			    res.errorType = et.Value;
 			}
-			return res.setProfile((JArray) jsonResp.getOrDefault("p", null)).setBacktrace((JSONArray) jsonResp.getOrDefault("b", null)).setData((JSONArray) jsonResp.getOrDefault("r", new JArray())).build();
+		    return res.setProfile((JArray)jsonResp["p"])
+		        .setBacktrace((JArray)jsonResp["b"])
+		        .setData((JArray)jsonResp["r"] ?? new JArray())
+		        .build();
 		}
 
 		private Response(long token, ResponseType responseType, JArray data, List<ResponseNote> responseNotes, Profile profile, Backtrace backtrace, ErrorType errorType)

@@ -1,0 +1,33 @@
+@* Generator: Template  GeneratePrettyNames: true *@
+@using System.Collections.Generic
+@using System.Linq
+@using Humanizer
+@using Newtonsoft.Json.Linq
+@using Templates.CodeGen
+
+@inherits EnumTemplate
+
+@{
+    this.Layout = UseParentLayout(this);
+}
+
+@functions {
+    
+}
+
+@section CustomMethods {
+       public static class @("ExtensionsFor" + EnumName) {
+            public static bool IsError(this ResponseType note){
+                 switch( note ){
+                   @foreach( var k in Enums.Keys.Where(k => k.EndsWith("ERROR")) ) { 
+                        @:case ResponseType.@k:
+                            @:return true;
+                    }
+                    default:
+                        return false;
+                 }
+            }
+      }
+}
+
+

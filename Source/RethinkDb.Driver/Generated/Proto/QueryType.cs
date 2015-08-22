@@ -14,5 +14,6 @@ namespace RethinkDb.Driver.Proto {
         NOREPLY_WAIT = 4,
     }
 
+    
 
 }

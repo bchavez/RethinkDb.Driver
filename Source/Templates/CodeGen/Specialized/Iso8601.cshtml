@@ -1,0 +1,26 @@
+@* Generator: Template  GeneratePrettyNames: true *@
+@using System.Collections.Generic
+@using System.Linq
+@using Humanizer
+@using Newtonsoft.Json.Linq
+@using Templates.CodeGen
+
+@inherits AstSubclassTemplate
+
+@{
+    this.Layout = UseParentLayout(this);
+}
+
+
+@section SpecialMethods{
+        
+    public static @Class(ClassName) FromString(string iso) {
+       return new @Class(ClassName) (new Arguments(iso), null);
+    }
+}
+
+@functions {
+    
+}
+       
+      

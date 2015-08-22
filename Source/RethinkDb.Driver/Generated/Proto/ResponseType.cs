@@ -17,19 +17,21 @@ namespace RethinkDb.Driver.Proto {
         RUNTIME_ERROR = 18,
     }
 
-        public static class ExtensionsForResponseType {
-            public static bool IsError(this ResponseType t){
-                 switch( t ){
-                     case ResponseType.CLIENT_ERROR:
-                        return true;
-                     case ResponseType.COMPILE_ERROR:
-                        return true;
-                     case ResponseType.RUNTIME_ERROR:
-                        return true;
+    
+       public static class ExtensionsForResponseType {
+            public static bool IsError(this ResponseType note){
+                 switch( note ){
+                        case ResponseType.CLIENT_ERROR:
+                            return true;
+                        case ResponseType.COMPILE_ERROR:
+                            return true;
+                        case ResponseType.RUNTIME_ERROR:
+                            return true;
                     default:
                         return false;
-                }
+                 }
             }
-        }
+      }
+
 
 }

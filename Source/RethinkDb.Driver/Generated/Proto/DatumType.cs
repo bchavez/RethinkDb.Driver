@@ -17,5 +17,6 @@ namespace RethinkDb.Driver.Proto {
         R_JSON = 7,
     }
 
+    
 
 }

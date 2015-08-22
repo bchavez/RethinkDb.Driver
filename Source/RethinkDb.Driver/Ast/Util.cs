@@ -1,23 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 
-namespace com.rethinkdb.ast
+namespace RethinkDb.Driver.Ast
 {
-
-	using Arguments = Arguments;
-	using ReqlFunction = ReqlFunction;
-	using Datum = com.rethinkdb.ast.gen.Datum;
-	using Func = com.rethinkdb.ast.gen.Func;
-	using MakeArray = com.rethinkdb.ast.gen.MakeArray;
-	using MakeObj = com.rethinkdb.ast.gen.MakeObj;
-	using Iso8601 = com.rethinkdb.ast.gen.Iso8601;
-	using ReqlFunction2 = ReqlFunction2;
-
-
-
 
 	public class Util
 	{

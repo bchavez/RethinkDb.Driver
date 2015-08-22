@@ -24,5 +24,34 @@ namespace Templates
         {
             return str.Camelize();
         }
+
+        public RazorTemplateBase ChildTemplate { get; set; }
+
+        public override string RenderSection(string name)
+        {
+            //render child first
+            if( this.ChildTemplate != null && this.ChildTemplate.sections.ContainsKey(name) )
+            {
+                //check child if they have a section.
+
+                //render it. because we need it
+                var content = this.content;
+                this.ChildTemplate.Clear();
+                this.ChildTemplate.sections[name]();
+                var sectionContent = this.ChildTemplate.generatingEnvironment.ToString();
+                this.content = content;
+                return sectionContent;
+
+            }
+            else
+            {
+                return base.RenderSection(name);
+            }
+        }
+
+        public virtual RazorTemplateBase UseParentLayout(RazorTemplateBase child)
+        {
+            return null;
+        }
     }
 }

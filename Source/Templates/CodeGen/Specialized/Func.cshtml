@@ -1,0 +1,40 @@
+@* Generator: Template  GeneratePrettyNames: true *@
+@using System.Collections.Generic
+@using System.Linq
+@using Humanizer
+@using Newtonsoft.Json.Linq
+@using Templates.CodeGen
+
+@inherits AstSubclassTemplate
+
+@{
+    this.Layout = UseParentLayout(this);
+}
+
+@section Ctors{
+   public Func(ReqlFunction function) : this(Arguments.make(
+            new MakeArray(new Arguments(1), null),
+                Util.toReqlAst(function.apply(new Var(1)))))
+    {
+    }
+
+    public Func(ReqlFunction2 function) :
+        this(Arguments.make(
+            new MakeArray(Arguments.make(1, 2)),
+                Util.toReqlAst(function.apply(new Var(1), new Var(1)))))
+    {
+    }
+
+    protected Func(Arguments args) : base(null, TermType.FUNC, args, null) {
+    }
+}
+@section StaticFactories{
+    
+}
+
+
+@functions {
+    
+}
+       
+      

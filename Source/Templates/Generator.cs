@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Humanizer;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using Templates.CodeGen;
+using Templates.CodeGen.Specialized;
 using Templates.Metadata;
+using Templates.Utils;
 
 
 namespace Templates
@@ -28,7 +31,6 @@ namespace Templates
             //remount the working directory before we begin.
             var rootProjectPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", ProjectFolder);
             Directory.SetCurrentDirectory(rootProjectPath);
-            Clean();
             EnsurePathsExist();
         }
 
@@ -56,6 +58,8 @@ namespace Templates
         [Explicit]
         public void Generate_All()
         {
+            Clean();
+            EnsurePathsExist();
             Render_Proto_Enums();
             Render_Ast_SubClasses();
             Render_Global_Options();
@@ -128,8 +132,7 @@ namespace Templates
             RenderExceptions(errorHearchy);
         }
 
-
-
+        
 
 
 
@@ -157,26 +160,41 @@ namespace Templates
         public void RenderAstSubclass(string termType, string className, string superClass, string includeIn, Dictionary<string, JObject> meta)
         {
             className = className ?? termType.ToLower();
-            var tmpl = new AstSubclassTemplate()
-                {
-                    TermType = termType,
-                    ClassName = className,
-                    Superclass = superClass,
-                    IncludeIn = includeIn,
-                    Meta = meta
-                };
+
+            var tmpl = GetSpeicalizedTemplate<AstSubclassTemplate>(className) ?? new AstSubclassTemplate();
+
+            tmpl.TermType = termType;
+            tmpl.ClassName = className;
+            tmpl.Superclass = superClass;
+            tmpl.IncludeIn = includeIn;
+            tmpl.Meta = meta;
 
             File.WriteAllText(Path.Combine(AstClasses, $"{className.Pascalize()}.cs"), tmpl.TransformText());
+        }
+
+        public T GetSpeicalizedTemplate<T>(string className)
+        {
+            var type = typeof(MakeObj);
+            var path = type.FullName.Replace(type.Name, "");
+            var lookingFor = $"{path}{className.Pascalize()}";
+
+            var specialType = Assembly.GetExecutingAssembly().GetType(lookingFor, false, true);
+            if( specialType != null )
+            {
+                Console.WriteLine("Using Speical Template: " + lookingFor);
+                return (T)Activator.CreateInstance(specialType);
+            }
+
+            return default(T);
         }
 
 
         public void RenderEnum(string enumName, Dictionary<string, object> enums )
         {
-            var tmpl = new EnumTemplate
-                {
-                    EnumName = enumName,
-                    Enums = enums
-                };
+            var tmpl = GetSpeicalizedTemplate<EnumTemplate>(enumName) ?? new EnumTemplate();
+
+            tmpl.EnumName = enumName;
+            tmpl.Enums = enums;
 
             File.WriteAllText(Path.Combine(ProtoDir, $"{enumName.Pascalize()}.cs"), tmpl.TransformText());
         }

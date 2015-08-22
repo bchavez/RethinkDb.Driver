@@ -2,10 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.ExceptionServices;
 using com.rethinkdb.net;
 using Newtonsoft.Json.Linq;
-using RethinkDb.Driver;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Proto;
 

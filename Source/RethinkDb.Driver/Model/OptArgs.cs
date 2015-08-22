@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using com.rethinkdb.ast;
 using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Model

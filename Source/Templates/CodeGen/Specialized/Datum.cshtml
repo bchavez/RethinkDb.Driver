@@ -1,0 +1,37 @@
+@* Generator: Template  GeneratePrettyNames: true *@
+@using System.Collections.Generic
+@using System.Linq
+@using Humanizer
+@using Newtonsoft.Json.Linq
+@using Templates.CodeGen
+
+@inherits AstSubclassTemplate
+
+@{
+    this.Layout = UseParentLayout(this);
+}
+
+@section Ctors{
+    public Datum(object arg) : base(null, TermType.DATUM, null, null) {
+            datum = arg;
+        }
+}
+@section StaticFactories{
+    
+}
+
+@section SpecialMethods{
+    
+        protected object build() {
+            // Overridden because Datums are leaf-nodes and therefore
+            // don't contain lower ReqlAst objects.
+            return datum;
+        }
+}
+
+@functions {
+    
+}
+       
+        protected object datum;
+

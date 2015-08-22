@@ -1,0 +1,24 @@
+@* Generator: Template  GeneratePrettyNames: true *@
+@using System.Collections.Generic
+@using System.Linq
+@using Humanizer
+@using Newtonsoft.Json.Linq
+@using Templates.CodeGen
+
+@inherits AstSubclassTemplate
+
+@{
+    this.Layout = UseParentLayout(this);
+}
+
+@functions {
+    
+}
+
+@section SpecialMethods {
+    public static MakeObj FromMap(Dictionary<string, ReqlAst> map){
+        return new MakeObj(OptArgs.fromMap(map));
+    }
+}
+
+

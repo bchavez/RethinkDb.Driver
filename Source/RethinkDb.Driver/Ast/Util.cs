@@ -40,8 +40,8 @@ namespace RethinkDb.Driver.Ast
 
 			if (val is IDictionary)
 			{
-				IDictionary<string, ReqlAst> obj = new Dictionary<string, ReqlAst>();
-				foreach (KeyValuePair<object, object> entry in (HashSet<DictionaryEntry>)((IDictionary) val).SetOfKeyValuePairs())
+				var obj = new Dictionary<string, ReqlAst>();
+				foreach (var entry in val as IDictionary<string, ReqlAst>)
 				{
 					if (!(entry.Key is string))
 					{
@@ -64,19 +64,18 @@ namespace RethinkDb.Driver.Ast
 
 			if (val is DateTime)
 			{
-				TimeZone tz = TimeZone.getTimeZone("UTC");
-				DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
-				df.TimeZone = tz;
-				return Iso8601.FromString(df.format((DateTime) val));
+			    var dt = (DateTime)val;
+			    var isoStr = dt.ToUniversalTime().ToString("o");
+				return Iso8601.FromString(isoStr);
 			}
 
 			if (val is int?)
 			{
 				return new Datum((int?) val);
 			}
-			if (val is Number)
+			if (IsNumber(val))
 			{
-				return new Datum((Number) val);
+				return new Datum(val);
 			}
 			if (val is bool?)
 			{
@@ -90,88 +89,103 @@ namespace RethinkDb.Driver.Ast
 			throw new ReqlDriverError($"Can't convert {val} to a ReqlAst");
 		}
 
-		// /*
-		//     Called on arguments that should be functions
-		//  */
-		// public static ReqlAst funcWrap(java.lang.Object o) {
-		//     final ReqlAst ReqlQuery = toReqlAst(o);
+        public static bool IsNumber(object value)
+        {
+            return value is sbyte
+                    || value is byte
+                    || value is short
+                    || value is ushort
+                    || value is int
+                    || value is uint
+                    || value is long
+                    || value is ulong
+                    || value is float
+                    || value is double
+                    || value is decimal;
+        }
 
-		//     if (hasImplicitVar(ReqlQuery)) {
-		//         return new Func(new ReqlFunction() {
-		//             @Override
-		//             public ReqlAst apply(ReqlAst row) {
-		//                 return ReqlQuery;
-		//             }
-		//         });
-		//     } else {
-		//         return ReqlQuery;
-		//     }
-		// }
+        // /*
+        //     Called on arguments that should be functions
+        //  */
+        // public static ReqlAst funcWrap(java.lang.Object o) {
+        //     final ReqlAst ReqlQuery = toReqlAst(o);
+
+        //     if (hasImplicitVar(ReqlQuery)) {
+        //         return new Func(new ReqlFunction() {
+        //             @Override
+        //             public ReqlAst apply(ReqlAst row) {
+        //                 return ReqlQuery;
+        //             }
+        //         });
+        //     } else {
+        //         return ReqlQuery;
+        //     }
+        // }
 
 
-		// public static boolean hasImplicitVar(ReqlAst node) {
-		//     if (node.getTermType() == Q2L.Term.TermType.IMPLICIT_VAR) {
-		//         return true;
-		//     }
-		//     for (ReqlAst arg : node.getArgs()) {
-		//         if (hasImplicitVar(arg)) {
-		//             return true;
-		//         }
-		//     }
-		//     for (Map.Entry<String, ReqlAst> kv : node.getOptionalArgs().entrySet()) {
-		//         if (hasImplicitVar(kv.getValue())) {
-		//             return true;
-		//         }
-		//     }
+        // public static boolean hasImplicitVar(ReqlAst node) {
+        //     if (node.getTermType() == Q2L.Term.TermType.IMPLICIT_VAR) {
+        //         return true;
+        //     }
+        //     for (ReqlAst arg : node.getArgs()) {
+        //         if (hasImplicitVar(arg)) {
+        //             return true;
+        //         }
+        //     }
+        //     for (Map.Entry<String, ReqlAst> kv : node.getOptionalArgs().entrySet()) {
+        //         if (hasImplicitVar(kv.getValue())) {
+        //             return true;
+        //         }
+        //     }
 
-		//     return false;
-		// }
+        //     return false;
+        // }
 
-		// public static Q2L.Datum createDatum(java.lang.Object value) {
-		//     Q2L.Datum.Builder builder = Q2L.Datum.newBuilder();
+        // public static Q2L.Datum createDatum(java.lang.Object value) {
+        //     Q2L.Datum.Builder builder = Q2L.Datum.newBuilder();
 
-		//     if (value == null) {
-		//         return builder
-		//                 .setType(Q2L.Datum.DatumType.R_NULL)
-		//                 .build();
-		//     }
+        //     if (value == null) {
+        //         return builder
+        //                 .setType(Q2L.Datum.DatumType.R_NULL)
+        //                 .build();
+        //     }
 
-		//     if (value instanceof String) {
-		//         return builder
-		//                 .setType(Q2L.Datum.DatumType.R_STR)
-		//                 .setRStr((String) value)
-		//                 .build();
-		//     }
+        //     if (value instanceof String) {
+        //         return builder
+        //                 .setType(Q2L.Datum.DatumType.R_STR)
+        //                 .setRStr((String) value)
+        //                 .build();
+        //     }
 
-		//     if (value instanceof Number) {
-		//         return builder
-		//                 .setType(Q2L.Datum.DatumType.R_NUM)
-		//                 .setRNum(((Number) value).doubleValue())
-		//                 .build();
-		//     }
+        //     if (value instanceof Number) {
+        //         return builder
+        //                 .setType(Q2L.Datum.DatumType.R_NUM)
+        //                 .setRNum(((Number) value).doubleValue())
+        //                 .build();
+        //     }
 
-		//     if (value instanceof Boolean) {
-		//         return builder
-		//                 .setType(Q2L.Datum.DatumType.R_BOOL)
-		//                 .setRBool((Boolean) value)
-		//                 .build();
-		//     }
+        //     if (value instanceof Boolean) {
+        //         return builder
+        //                 .setType(Q2L.Datum.DatumType.R_BOOL)
+        //                 .setRBool((Boolean) value)
+        //                 .build();
+        //     }
 
-		//     if (value instanceof Collection) {
-		//         Q2L.Datum.Builder arr = builder
-		//                 .setType(Q2L.Datum.DatumType.R_ARRAY);
+        //     if (value instanceof Collection) {
+        //         Q2L.Datum.Builder arr = builder
+        //                 .setType(Q2L.Datum.DatumType.R_ARRAY);
 
-		//         for (java.lang.Object o : (Collection) value) {
-		//             arr.addRArray(createDatum(o));
-		//         }
+        //         for (java.lang.Object o : (Collection) value) {
+        //             arr.addRArray(createDatum(o));
+        //         }
 
-		//         return arr.build();
+        //         return arr.build();
 
-		//     }
+        //     }
 
-		//     throw new ReqlError("Unknown Value can't create datatype for : " + value.getClass());
-		// }
+        //     throw new ReqlError("Unknown Value can't create datatype for : " + value.getClass());
+        // }
 
-	}
+    }
 
 }

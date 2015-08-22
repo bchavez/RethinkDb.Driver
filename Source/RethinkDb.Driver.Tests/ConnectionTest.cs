@@ -21,7 +21,7 @@ namespace RethinkDb.Driver.Tests
                 .port(RethinkDBConstants.DEFAULT_PORT)
                 .connect();
 
-            var res = r.random(1, 2).add(r.random(1, 2)).run(c);
+            var res = r.random(1, 2).add(r.random(1, 2)).run<int>(c);
         }
         
     }

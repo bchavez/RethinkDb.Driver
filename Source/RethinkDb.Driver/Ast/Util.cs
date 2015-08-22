@@ -21,6 +21,8 @@ namespace RethinkDb.Driver.Ast
 			return toReqlAst(val, 20);
 		}
 
+
+        //TODO: don't use "is" for performance
 		private static ReqlAst toReqlAst(object val, int remainingDepth)
 		{
 			if (val is ReqlAst)

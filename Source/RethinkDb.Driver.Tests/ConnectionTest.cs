@@ -19,6 +19,7 @@ namespace RethinkDb.Driver.Tests
             var c = r.connection()
                 .hostname("192.168.0.11")
                 .port(RethinkDBConstants.DEFAULT_PORT)
+                .timeout(60)
                 .connect();
 
             var res = r.random(1, 2).add(r.random(1, 2)).run<int>(c);

@@ -73,14 +73,143 @@ namespace RethinkDb.Driver.Ast {
             public Mod mod (params object[] fields){
                     return new Mod (this, new Arguments(fields), new OptArgs());
             }
+            public Floor floor (params object[] fields){
+                    return new Floor (this, new Arguments(fields), new OptArgs());
+            }
+            public Ceil ceil (params object[] fields){
+                    return new Ceil (this, new Arguments(fields), new OptArgs());
+            }
+            public Round round (params object[] fields){
+                    return new Round (this, new Arguments(fields), new OptArgs());
+            }
+            public Append append (params object[] fields){
+                    return new Append (this, new Arguments(fields), new OptArgs());
+            }
+            public Prepend prepend (params object[] fields){
+                    return new Prepend (this, new Arguments(fields), new OptArgs());
+            }
+            public Difference difference (params object[] fields){
+                    return new Difference (this, new Arguments(fields), new OptArgs());
+            }
+            public SetInsert setInsert (params object[] fields){
+                    return new SetInsert (this, new Arguments(fields), new OptArgs());
+            }
+            public SetIntersection setIntersection (params object[] fields){
+                    return new SetIntersection (this, new Arguments(fields), new OptArgs());
+            }
+            public SetUnion setUnion (params object[] fields){
+                    return new SetUnion (this, new Arguments(fields), new OptArgs());
+            }
+            public SetDifference setDifference (params object[] fields){
+                    return new SetDifference (this, new Arguments(fields), new OptArgs());
+            }
+            public Slice slice (params object[] fields){
+                    return new Slice (this, new Arguments(fields), new OptArgs());
+            }
+            public Skip skip (params object[] fields){
+                    return new Skip (this, new Arguments(fields), new OptArgs());
+            }
+            public Limit limit (params object[] fields){
+                    return new Limit (this, new Arguments(fields), new OptArgs());
+            }
+            public OffsetsOf offsetsOf (params object[] fields){
+                    return new OffsetsOf (this, new Arguments(fields), new OptArgs());
+            }
+            public Contains contains (params object[] fields){
+                    return new Contains (this, new Arguments(fields), new OptArgs());
+            }
+            public GetField getField (params object[] fields){
+                    return new GetField (this, new Arguments(fields), new OptArgs());
+            }
+            public Keys keys (params object[] fields){
+                    return new Keys (this, new Arguments(fields), new OptArgs());
+            }
+            public HasFields hasFields (params object[] fields){
+                    return new HasFields (this, new Arguments(fields), new OptArgs());
+            }
+            public WithFields withFields (params object[] fields){
+                    return new WithFields (this, new Arguments(fields), new OptArgs());
+            }
+            public Pluck pluck (params object[] fields){
+                    return new Pluck (this, new Arguments(fields), new OptArgs());
+            }
+            public Without without (params object[] fields){
+                    return new Without (this, new Arguments(fields), new OptArgs());
+            }
+            public Merge merge (params object[] fields){
+                    return new Merge (this, new Arguments(fields), new OptArgs());
+            }
+            public Reduce reduce (params object[] fields){
+                    return new Reduce (this, new Arguments(fields), new OptArgs());
+            }
             public Map map (params object[] fields){
                     return new Map (this, new Arguments(fields), new OptArgs());
+            }
+            public Filter filter (params object[] fields){
+                    return new Filter (this, new Arguments(fields), new OptArgs());
+            }
+            public ConcatMap concatMap (params object[] fields){
+                    return new ConcatMap (this, new Arguments(fields), new OptArgs());
+            }
+            public OrderBy orderBy (params object[] fields){
+                    return new OrderBy (this, new Arguments(fields), new OptArgs());
+            }
+            public Distinct distinct (params object[] fields){
+                    return new Distinct (this, new Arguments(fields), new OptArgs());
+            }
+            public Count count (params object[] fields){
+                    return new Count (this, new Arguments(fields), new OptArgs());
+            }
+            public IsEmpty isEmpty (params object[] fields){
+                    return new IsEmpty (this, new Arguments(fields), new OptArgs());
             }
             public Union union (params object[] fields){
                     return new Union (this, new Arguments(fields), new OptArgs());
             }
+            public Nth nth (params object[] fields){
+                    return new Nth (this, new Arguments(fields), new OptArgs());
+            }
+            public Bracket bracket (params object[] fields){
+                    return new Bracket (this, new Arguments(fields), new OptArgs());
+            }
+            public InnerJoin innerJoin (params object[] fields){
+                    return new InnerJoin (this, new Arguments(fields), new OptArgs());
+            }
+            public OuterJoin outerJoin (params object[] fields){
+                    return new OuterJoin (this, new Arguments(fields), new OptArgs());
+            }
+            public EqJoin eqJoin (params object[] fields){
+                    return new EqJoin (this, new Arguments(fields), new OptArgs());
+            }
+            public Zip zip (params object[] fields){
+                    return new Zip (this, new Arguments(fields), new OptArgs());
+            }
+            public InsertAt insertAt (params object[] fields){
+                    return new InsertAt (this, new Arguments(fields), new OptArgs());
+            }
+            public DeleteAt deleteAt (params object[] fields){
+                    return new DeleteAt (this, new Arguments(fields), new OptArgs());
+            }
+            public ChangeAt changeAt (params object[] fields){
+                    return new ChangeAt (this, new Arguments(fields), new OptArgs());
+            }
+            public SpliceAt spliceAt (params object[] fields){
+                    return new SpliceAt (this, new Arguments(fields), new OptArgs());
+            }
+            public CoerceTo coerceTo (params object[] fields){
+                    return new CoerceTo (this, new Arguments(fields), new OptArgs());
+            }
             public TypeOf typeOf (params object[] fields){
                     return new TypeOf (this, new Arguments(fields), new OptArgs());
+            }
+            public Update update (params object[] fields){
+                    return new Update (this, new Arguments(fields), new OptArgs());
+            }
+            public Delete delete (params object[] fields){
+                    return new Delete (this, new Arguments(fields), new OptArgs());
+            }
+            public Replace replace (params object[] fields){
+                    return new Replace (this, new Arguments(fields), new OptArgs());
             }
             public Funcall funcall (params object[] fields){
                     return new Funcall (this, new Arguments(fields), new OptArgs());
@@ -91,14 +220,116 @@ namespace RethinkDb.Driver.Ast {
             public And and (params object[] fields){
                     return new And (this, new Arguments(fields), new OptArgs());
             }
+            public ForEach forEach (params object[] fields){
+                    return new ForEach (this, new Arguments(fields), new OptArgs());
+            }
             public Info info (params object[] fields){
                     return new Info (this, new Arguments(fields), new OptArgs());
+            }
+            public Match match (params object[] fields){
+                    return new Match (this, new Arguments(fields), new OptArgs());
+            }
+            public Upcase upcase (params object[] fields){
+                    return new Upcase (this, new Arguments(fields), new OptArgs());
+            }
+            public Downcase downcase (params object[] fields){
+                    return new Downcase (this, new Arguments(fields), new OptArgs());
+            }
+            public Sample sample (params object[] fields){
+                    return new Sample (this, new Arguments(fields), new OptArgs());
+            }
+            public Default default_ (params object[] fields){
+                    return new Default (this, new Arguments(fields), new OptArgs());
+            }
+            public ToJsonString toJsonString (params object[] fields){
+                    return new ToJsonString (this, new Arguments(fields), new OptArgs());
+            }
+            public ToIso8601 toIso8601 (params object[] fields){
+                    return new ToIso8601 (this, new Arguments(fields), new OptArgs());
+            }
+            public ToEpochTime toEpochTime (params object[] fields){
+                    return new ToEpochTime (this, new Arguments(fields), new OptArgs());
+            }
+            public InTimezone inTimezone (params object[] fields){
+                    return new InTimezone (this, new Arguments(fields), new OptArgs());
+            }
+            public During during (params object[] fields){
+                    return new During (this, new Arguments(fields), new OptArgs());
+            }
+            public Date date (params object[] fields){
+                    return new Date (this, new Arguments(fields), new OptArgs());
+            }
+            public TimeOfDay timeOfDay (params object[] fields){
+                    return new TimeOfDay (this, new Arguments(fields), new OptArgs());
+            }
+            public Timezone timezone (params object[] fields){
+                    return new Timezone (this, new Arguments(fields), new OptArgs());
+            }
+            public Year year (params object[] fields){
+                    return new Year (this, new Arguments(fields), new OptArgs());
+            }
+            public Month month (params object[] fields){
+                    return new Month (this, new Arguments(fields), new OptArgs());
+            }
+            public Day day (params object[] fields){
+                    return new Day (this, new Arguments(fields), new OptArgs());
+            }
+            public DayOfWeek dayOfWeek (params object[] fields){
+                    return new DayOfWeek (this, new Arguments(fields), new OptArgs());
+            }
+            public DayOfYear dayOfYear (params object[] fields){
+                    return new DayOfYear (this, new Arguments(fields), new OptArgs());
+            }
+            public Hours hours (params object[] fields){
+                    return new Hours (this, new Arguments(fields), new OptArgs());
+            }
+            public Minutes minutes (params object[] fields){
+                    return new Minutes (this, new Arguments(fields), new OptArgs());
+            }
+            public Seconds seconds (params object[] fields){
+                    return new Seconds (this, new Arguments(fields), new OptArgs());
+            }
+            public Group group (params object[] fields){
+                    return new Group (this, new Arguments(fields), new OptArgs());
+            }
+            public Sum sum (params object[] fields){
+                    return new Sum (this, new Arguments(fields), new OptArgs());
+            }
+            public Avg avg (params object[] fields){
+                    return new Avg (this, new Arguments(fields), new OptArgs());
+            }
+            public Min min (params object[] fields){
+                    return new Min (this, new Arguments(fields), new OptArgs());
+            }
+            public Max max (params object[] fields){
+                    return new Max (this, new Arguments(fields), new OptArgs());
+            }
+            public Split split (params object[] fields){
+                    return new Split (this, new Arguments(fields), new OptArgs());
+            }
+            public Ungroup ungroup (params object[] fields){
+                    return new Ungroup (this, new Arguments(fields), new OptArgs());
+            }
+            public Changes changes (params object[] fields){
+                    return new Changes (this, new Arguments(fields), new OptArgs());
+            }
+            public ToGeojson toGeojson (params object[] fields){
+                    return new ToGeojson (this, new Arguments(fields), new OptArgs());
             }
             public Distance distance (params object[] fields){
                     return new Distance (this, new Arguments(fields), new OptArgs());
             }
             public Intersects intersects (params object[] fields){
                     return new Intersects (this, new Arguments(fields), new OptArgs());
+            }
+            public Includes includes (params object[] fields){
+                    return new Includes (this, new Arguments(fields), new OptArgs());
+            }
+            public Fill fill (params object[] fields){
+                    return new Fill (this, new Arguments(fields), new OptArgs());
+            }
+            public PolygonSub polygonSub (params object[] fields){
+                    return new PolygonSub (this, new Arguments(fields), new OptArgs());
             }
 
     

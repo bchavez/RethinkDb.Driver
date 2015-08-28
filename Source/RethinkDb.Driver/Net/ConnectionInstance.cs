@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Net
 {
@@ -12,7 +13,7 @@ namespace RethinkDb.Driver.Net
 		protected internal bool closing = false;
 
 
-		public virtual void connect(string hostname, int port, byte[] handshake, int? timeout)
+		public virtual void connect(string hostname, int port, byte[] handshake, TimeSpan? timeout)
 		{
 			SocketWrapper sock = new SocketWrapper(hostname, port, timeout);
 			sock.connect(handshake);
@@ -50,7 +51,7 @@ namespace RethinkDb.Driver.Net
 			return readResponse(token, null);
 		}
 
-	    internal virtual Response readResponse(long token, int? deadline)
+	    internal virtual Response readResponse(long token, long? deadline)
 	    {
 	        if( socket == null )
 	            throw new ReqlError("Socket not open");

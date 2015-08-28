@@ -64,6 +64,7 @@ namespace Templates
             Render_Ast_SubClasses();
             Render_Global_Options();
             Render_Exceptions();
+            Render_OptArg_Enums();
         }
 
         [Test]
@@ -93,8 +94,8 @@ namespace Templates
             var terms = MetaDb.TermInfo.ToObject<Dictionary<string, JObject>>();
             EnsureLanguageSafeTerms(terms);
 
-            RenderAstSubclass(null,"ReqlQuery", speicalSuperclasses["ReqlQuery"], "query", terms);
-            RenderAstSubclass(null, "TopLevel", speicalSuperclasses["TopLevel"], "top", terms);
+            RenderAstSubclass(null, "ReqlQuery", speicalSuperclasses["ReqlQuery"], "T_EXPR", terms);
+            RenderAstSubclass(null, "TopLevel", speicalSuperclasses["TopLevel"], "T_TOP_LEVEL", terms);
 
             foreach( var kvp in terms )
             {
@@ -132,9 +133,18 @@ namespace Templates
             RenderExceptions(errorHearchy);
         }
 
-        
+        [Test]
+        public void Render_OptArg_Enums()
+        {
+            var optArgs = MetaDb.Global["optarg_enums"].ToObject<Dictionary<string, string[]>>();
 
-
+            foreach( var kvp in optArgs )
+            {
+                var enumName = kvp.Key.Substring(2).ToLower().Pascalize();
+                var values = kvp.Value;
+                RenderEnumString(enumName, values);
+            }
+        }
 
 
         private void RenderExceptions(JObject error, string superClass = "Exception")
@@ -198,6 +208,16 @@ namespace Templates
 
             File.WriteAllText(Path.Combine(ProtoDir, $"{enumName.Pascalize()}.cs"), tmpl.TransformText());
         }
+        public void RenderEnumString(string enumName, string[] enums)
+        {
+            var tmpl = GetSpeicalizedTemplate<EnumStringTemplate>(enumName) ?? new EnumStringTemplate();
+
+            tmpl.EnumName = enumName;
+            tmpl.Enums = enums;
+
+            File.WriteAllText(Path.Combine(ModelDir, $"{enumName.Pascalize()}.cs"), tmpl.TransformText());
+        }
+
 
         private void EnsureLanguageSafeTerms(Dictionary<string,JObject> terms)
         {

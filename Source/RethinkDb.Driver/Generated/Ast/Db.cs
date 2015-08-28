@@ -47,30 +47,6 @@ namespace RethinkDb.Driver.Ast {
 
     
 
-            public Table table (params object[] fields){
-                    return new Table (this, new Arguments(fields), new OptArgs());
-            }
-            public TableCreate tableCreate (params object[] fields){
-                    return new TableCreate (this, new Arguments(fields), new OptArgs());
-            }
-            public TableDrop tableDrop (params object[] fields){
-                    return new TableDrop (this, new Arguments(fields), new OptArgs());
-            }
-            public TableList tableList (params object[] fields){
-                    return new TableList (this, new Arguments(fields), new OptArgs());
-            }
-            public Config config (params object[] fields){
-                    return new Config (this, new Arguments(fields), new OptArgs());
-            }
-            public Wait wait (params object[] fields){
-                    return new Wait (this, new Arguments(fields), new OptArgs());
-            }
-            public Reconfigure reconfigure (params object[] fields){
-                    return new Reconfigure (this, new Arguments(fields), new OptArgs());
-            }
-            public Rebalance rebalance (params object[] fields){
-                    return new Rebalance (this, new Arguments(fields), new OptArgs());
-            }
 
     
     }

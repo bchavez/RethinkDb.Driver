@@ -51,6 +51,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeGen\EnumStringTemplate.generated.cs">
+      <DependentUpon>EnumStringTemplate.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="CodeGen\ExceptionTemplate.generated.cs">
       <DependentUpon>ExceptionTemplate.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -111,6 +116,10 @@
     <Compile Include="Utils\ExtensionsForTesting.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CodeGen\EnumStringTemplate.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>EnumStringTemplate.generated.cs</LastGenOutput>
+    </None>
     <None Include="CodeGen\ExceptionTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>ExceptionTemplate.generated.cs</LastGenOutput>

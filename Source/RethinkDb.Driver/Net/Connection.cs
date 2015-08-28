@@ -18,14 +18,14 @@ namespace RethinkDb.Driver.Net
 
         // private mutable
         private string dbname;
-        private int? connectTimeout;
+        private TimeSpan? connectTimeout;
         private byte[] handshake;
         private ConnectionInstance instance = null;
 
         internal Connection(ConnectionBuilder builder)
         {
             dbname = builder.dbname;
-            var authKey = builder.authKey_Renamed ?? string.Empty;
+            var authKey = builder._authKey ?? string.Empty;
             var authKeyBytes = Encoding.ASCII.GetBytes(authKey);
 
             using( var ms = new MemoryStream() )
@@ -39,9 +39,9 @@ namespace RethinkDb.Driver.Net
                 handshake = ms.ToArray();
             }
 
-            hostname = builder.hostname_Renamed ?? "localhost";
-            port = builder.port_Renamed ?? 28015;
-            connectTimeout = builder.timeout_Renamed;
+            hostname = builder._hostmame ?? "localhost";
+            port = builder._port ?? 28015;
+            connectTimeout = builder._timeout;
 
             instanceMaker = builder.instanceMaker;
         }
@@ -74,7 +74,7 @@ namespace RethinkDb.Driver.Net
             dbname = db;
         }
 
-        public virtual int? timeout()
+        public virtual TimeSpan? timeout()
         {
             return connectTimeout;
         }
@@ -84,7 +84,7 @@ namespace RethinkDb.Driver.Net
             return reconnect(false, null);
         }
 
-        public virtual Connection reconnect(bool noreplyWait, int? timeout)
+        public virtual Connection reconnect(bool noreplyWait, TimeSpan? timeout)
         {
             if( !timeout.HasValue )
             {
@@ -133,7 +133,7 @@ namespace RethinkDb.Driver.Net
             return Interlocked.Increment(ref nextToken);
         }
 
-        internal virtual Response readResponse(long token, int? deadline)
+        internal virtual Response readResponse(long token, long? deadline)
         {
             return checkOpen().readResponse(token, deadline);
         }
@@ -222,11 +222,11 @@ namespace RethinkDb.Driver.Net
     public class ConnectionBuilder
     {
         internal readonly Func<ConnectionInstance> instanceMaker;
-        internal string hostname_Renamed = null;
-        internal int? port_Renamed = null;
+        internal string _hostmame = null;
+        internal int? _port = null;
         internal string dbname = null;
-        internal string authKey_Renamed = null;
-        internal int? timeout_Renamed = null;
+        internal string _authKey = null;
+        internal TimeSpan? _timeout = null;
 
         public ConnectionBuilder(Func<ConnectionInstance> instanceMaker)
         {
@@ -235,37 +235,37 @@ namespace RethinkDb.Driver.Net
 
         public virtual ConnectionBuilder hostname(string val)
         {
-            hostname_Renamed = val;
+            this._hostmame = val;
             return this;
         }
 
         public virtual ConnectionBuilder port(int val)
         {
-            port_Renamed = val;
+            this._port = val;
             return this;
         }
 
         public virtual ConnectionBuilder db(string val)
         {
-            dbname = val;
+            this.dbname = val;
             return this;
         }
 
         public virtual ConnectionBuilder authKey(string val)
         {
-            authKey_Renamed = val;
+            this._authKey = val;
             return this;
         }
 
         public virtual ConnectionBuilder timeout(int val)
         {
-            timeout_Renamed = val;
+            this._timeout = TimeSpan.FromSeconds(val);
             return this;
         }
 
         public virtual Connection connect()
         {
-            Connection conn = new Connection(this);
+            var conn = new Connection(this);
             conn.reconnect();
             return conn;
         }

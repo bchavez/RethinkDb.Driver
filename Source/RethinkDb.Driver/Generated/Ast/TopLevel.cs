@@ -38,235 +38,235 @@ namespace RethinkDb.Driver.Ast {
     
 
             public Javascript javascript (params object[] fields){
-                    return new Javascript (null, new Arguments(fields), new OptArgs());
+                    return new Javascript (this, new Arguments(fields), new OptArgs());
             }
             public Uuid uuid (params object[] fields){
-                    return new Uuid (null, new Arguments(fields), new OptArgs());
+                    return new Uuid (this, new Arguments(fields), new OptArgs());
             }
             public Http http (params object[] fields){
-                    return new Http (null, new Arguments(fields), new OptArgs());
+                    return new Http (this, new Arguments(fields), new OptArgs());
             }
             public Error error (params object[] fields){
-                    return new Error (null, new Arguments(fields), new OptArgs());
+                    return new Error (this, new Arguments(fields), new OptArgs());
             }
             public ImplicitVar implicitVar (params object[] fields){
-                    return new ImplicitVar (null, new Arguments(fields), new OptArgs());
+                    return new ImplicitVar (this, new Arguments(fields), new OptArgs());
             }
             public Db db (params object[] fields){
-                    return new Db (null, new Arguments(fields), new OptArgs());
+                    return new Db (this, new Arguments(fields), new OptArgs());
             }
             public Table table (params object[] fields){
-                    return new Table (null, new Arguments(fields), new OptArgs());
+                    return new Table (this, new Arguments(fields), new OptArgs());
             }
             public Eq eq (params object[] fields){
-                    return new Eq (null, new Arguments(fields), new OptArgs());
+                    return new Eq (this, new Arguments(fields), new OptArgs());
             }
             public Ne ne (params object[] fields){
-                    return new Ne (null, new Arguments(fields), new OptArgs());
+                    return new Ne (this, new Arguments(fields), new OptArgs());
             }
             public Lt lt (params object[] fields){
-                    return new Lt (null, new Arguments(fields), new OptArgs());
+                    return new Lt (this, new Arguments(fields), new OptArgs());
             }
             public Le le (params object[] fields){
-                    return new Le (null, new Arguments(fields), new OptArgs());
+                    return new Le (this, new Arguments(fields), new OptArgs());
             }
             public Gt gt (params object[] fields){
-                    return new Gt (null, new Arguments(fields), new OptArgs());
+                    return new Gt (this, new Arguments(fields), new OptArgs());
             }
             public Ge ge (params object[] fields){
-                    return new Ge (null, new Arguments(fields), new OptArgs());
+                    return new Ge (this, new Arguments(fields), new OptArgs());
             }
             public Not not (params object[] fields){
-                    return new Not (null, new Arguments(fields), new OptArgs());
+                    return new Not (this, new Arguments(fields), new OptArgs());
             }
             public Add add (params object[] fields){
-                    return new Add (null, new Arguments(fields), new OptArgs());
+                    return new Add (this, new Arguments(fields), new OptArgs());
             }
             public Sub sub (params object[] fields){
-                    return new Sub (null, new Arguments(fields), new OptArgs());
+                    return new Sub (this, new Arguments(fields), new OptArgs());
             }
             public Mul mul (params object[] fields){
-                    return new Mul (null, new Arguments(fields), new OptArgs());
+                    return new Mul (this, new Arguments(fields), new OptArgs());
             }
             public Div div (params object[] fields){
-                    return new Div (null, new Arguments(fields), new OptArgs());
+                    return new Div (this, new Arguments(fields), new OptArgs());
             }
             public Mod mod (params object[] fields){
-                    return new Mod (null, new Arguments(fields), new OptArgs());
+                    return new Mod (this, new Arguments(fields), new OptArgs());
             }
             public Object object_ (params object[] fields){
-                    return new Object (null, new Arguments(fields), new OptArgs());
+                    return new Object (this, new Arguments(fields), new OptArgs());
             }
             public Map map (params object[] fields){
-                    return new Map (null, new Arguments(fields), new OptArgs());
+                    return new Map (this, new Arguments(fields), new OptArgs());
             }
             public Union union (params object[] fields){
-                    return new Union (null, new Arguments(fields), new OptArgs());
+                    return new Union (this, new Arguments(fields), new OptArgs());
             }
             public Range range (params object[] fields){
-                    return new Range (null, new Arguments(fields), new OptArgs());
+                    return new Range (this, new Arguments(fields), new OptArgs());
             }
             public TypeOf typeOf (params object[] fields){
-                    return new TypeOf (null, new Arguments(fields), new OptArgs());
+                    return new TypeOf (this, new Arguments(fields), new OptArgs());
             }
             public DbCreate dbCreate (params object[] fields){
-                    return new DbCreate (null, new Arguments(fields), new OptArgs());
+                    return new DbCreate (this, new Arguments(fields), new OptArgs());
             }
             public DbDrop dbDrop (params object[] fields){
-                    return new DbDrop (null, new Arguments(fields), new OptArgs());
+                    return new DbDrop (this, new Arguments(fields), new OptArgs());
             }
             public DbList dbList (params object[] fields){
-                    return new DbList (null, new Arguments(fields), new OptArgs());
+                    return new DbList (this, new Arguments(fields), new OptArgs());
             }
             public TableCreate tableCreate (params object[] fields){
-                    return new TableCreate (null, new Arguments(fields), new OptArgs());
+                    return new TableCreate (this, new Arguments(fields), new OptArgs());
             }
             public TableDrop tableDrop (params object[] fields){
-                    return new TableDrop (null, new Arguments(fields), new OptArgs());
+                    return new TableDrop (this, new Arguments(fields), new OptArgs());
             }
             public TableList tableList (params object[] fields){
-                    return new TableList (null, new Arguments(fields), new OptArgs());
+                    return new TableList (this, new Arguments(fields), new OptArgs());
             }
             public Wait wait (params object[] fields){
-                    return new Wait (null, new Arguments(fields), new OptArgs());
+                    return new Wait (this, new Arguments(fields), new OptArgs());
             }
             public Reconfigure reconfigure (params object[] fields){
-                    return new Reconfigure (null, new Arguments(fields), new OptArgs());
+                    return new Reconfigure (this, new Arguments(fields), new OptArgs());
             }
             public Rebalance rebalance (params object[] fields){
-                    return new Rebalance (null, new Arguments(fields), new OptArgs());
+                    return new Rebalance (this, new Arguments(fields), new OptArgs());
             }
             public Funcall funcall (params object[] fields){
-                    return new Funcall (null, new Arguments(fields), new OptArgs());
+                    return new Funcall (this, new Arguments(fields), new OptArgs());
             }
             public Branch branch (params object[] fields){
-                    return new Branch (null, new Arguments(fields), new OptArgs());
+                    return new Branch (this, new Arguments(fields), new OptArgs());
             }
             public Or or (params object[] fields){
-                    return new Or (null, new Arguments(fields), new OptArgs());
+                    return new Or (this, new Arguments(fields), new OptArgs());
             }
             public And and (params object[] fields){
-                    return new And (null, new Arguments(fields), new OptArgs());
+                    return new And (this, new Arguments(fields), new OptArgs());
             }
             public Asc asc (params object[] fields){
-                    return new Asc (null, new Arguments(fields), new OptArgs());
+                    return new Asc (this, new Arguments(fields), new OptArgs());
             }
             public Desc desc (params object[] fields){
-                    return new Desc (null, new Arguments(fields), new OptArgs());
+                    return new Desc (this, new Arguments(fields), new OptArgs());
             }
             public Info info (params object[] fields){
-                    return new Info (null, new Arguments(fields), new OptArgs());
+                    return new Info (this, new Arguments(fields), new OptArgs());
             }
             public Json json (params object[] fields){
-                    return new Json (null, new Arguments(fields), new OptArgs());
+                    return new Json (this, new Arguments(fields), new OptArgs());
             }
             public Iso8601 iso8601 (params object[] fields){
-                    return new Iso8601 (null, new Arguments(fields), new OptArgs());
+                    return new Iso8601 (this, new Arguments(fields), new OptArgs());
             }
             public EpochTime epochTime (params object[] fields){
-                    return new EpochTime (null, new Arguments(fields), new OptArgs());
+                    return new EpochTime (this, new Arguments(fields), new OptArgs());
             }
             public Now now (params object[] fields){
-                    return new Now (null, new Arguments(fields), new OptArgs());
+                    return new Now (this, new Arguments(fields), new OptArgs());
             }
             public Time time (params object[] fields){
-                    return new Time (null, new Arguments(fields), new OptArgs());
+                    return new Time (this, new Arguments(fields), new OptArgs());
             }
             public Monday monday (params object[] fields){
-                    return new Monday (null, new Arguments(fields), new OptArgs());
+                    return new Monday (this, new Arguments(fields), new OptArgs());
             }
             public Tuesday tuesday (params object[] fields){
-                    return new Tuesday (null, new Arguments(fields), new OptArgs());
+                    return new Tuesday (this, new Arguments(fields), new OptArgs());
             }
             public Wednesday wednesday (params object[] fields){
-                    return new Wednesday (null, new Arguments(fields), new OptArgs());
+                    return new Wednesday (this, new Arguments(fields), new OptArgs());
             }
             public Thursday thursday (params object[] fields){
-                    return new Thursday (null, new Arguments(fields), new OptArgs());
+                    return new Thursday (this, new Arguments(fields), new OptArgs());
             }
             public Friday friday (params object[] fields){
-                    return new Friday (null, new Arguments(fields), new OptArgs());
+                    return new Friday (this, new Arguments(fields), new OptArgs());
             }
             public Saturday saturday (params object[] fields){
-                    return new Saturday (null, new Arguments(fields), new OptArgs());
+                    return new Saturday (this, new Arguments(fields), new OptArgs());
             }
             public Sunday sunday (params object[] fields){
-                    return new Sunday (null, new Arguments(fields), new OptArgs());
+                    return new Sunday (this, new Arguments(fields), new OptArgs());
             }
             public January january (params object[] fields){
-                    return new January (null, new Arguments(fields), new OptArgs());
+                    return new January (this, new Arguments(fields), new OptArgs());
             }
             public February february (params object[] fields){
-                    return new February (null, new Arguments(fields), new OptArgs());
+                    return new February (this, new Arguments(fields), new OptArgs());
             }
             public March march (params object[] fields){
-                    return new March (null, new Arguments(fields), new OptArgs());
+                    return new March (this, new Arguments(fields), new OptArgs());
             }
             public April april (params object[] fields){
-                    return new April (null, new Arguments(fields), new OptArgs());
+                    return new April (this, new Arguments(fields), new OptArgs());
             }
             public May may (params object[] fields){
-                    return new May (null, new Arguments(fields), new OptArgs());
+                    return new May (this, new Arguments(fields), new OptArgs());
             }
             public June june (params object[] fields){
-                    return new June (null, new Arguments(fields), new OptArgs());
+                    return new June (this, new Arguments(fields), new OptArgs());
             }
             public July july (params object[] fields){
-                    return new July (null, new Arguments(fields), new OptArgs());
+                    return new July (this, new Arguments(fields), new OptArgs());
             }
             public August august (params object[] fields){
-                    return new August (null, new Arguments(fields), new OptArgs());
+                    return new August (this, new Arguments(fields), new OptArgs());
             }
             public September september (params object[] fields){
-                    return new September (null, new Arguments(fields), new OptArgs());
+                    return new September (this, new Arguments(fields), new OptArgs());
             }
             public October october (params object[] fields){
-                    return new October (null, new Arguments(fields), new OptArgs());
+                    return new October (this, new Arguments(fields), new OptArgs());
             }
             public November november (params object[] fields){
-                    return new November (null, new Arguments(fields), new OptArgs());
+                    return new November (this, new Arguments(fields), new OptArgs());
             }
             public December december (params object[] fields){
-                    return new December (null, new Arguments(fields), new OptArgs());
+                    return new December (this, new Arguments(fields), new OptArgs());
             }
             public Literal literal (params object[] fields){
-                    return new Literal (null, new Arguments(fields), new OptArgs());
+                    return new Literal (this, new Arguments(fields), new OptArgs());
             }
             public Random random (params object[] fields){
-                    return new Random (null, new Arguments(fields), new OptArgs());
+                    return new Random (this, new Arguments(fields), new OptArgs());
             }
             public Args args (params object[] fields){
-                    return new Args (null, new Arguments(fields), new OptArgs());
+                    return new Args (this, new Arguments(fields), new OptArgs());
             }
             public Binary binary (params object[] fields){
-                    return new Binary (null, new Arguments(fields), new OptArgs());
+                    return new Binary (this, new Arguments(fields), new OptArgs());
             }
             public Geojson geojson (params object[] fields){
-                    return new Geojson (null, new Arguments(fields), new OptArgs());
+                    return new Geojson (this, new Arguments(fields), new OptArgs());
             }
             public Point point (params object[] fields){
-                    return new Point (null, new Arguments(fields), new OptArgs());
+                    return new Point (this, new Arguments(fields), new OptArgs());
             }
             public Line line (params object[] fields){
-                    return new Line (null, new Arguments(fields), new OptArgs());
+                    return new Line (this, new Arguments(fields), new OptArgs());
             }
             public Polygon polygon (params object[] fields){
-                    return new Polygon (null, new Arguments(fields), new OptArgs());
+                    return new Polygon (this, new Arguments(fields), new OptArgs());
             }
             public Distance distance (params object[] fields){
-                    return new Distance (null, new Arguments(fields), new OptArgs());
+                    return new Distance (this, new Arguments(fields), new OptArgs());
             }
             public Intersects intersects (params object[] fields){
-                    return new Intersects (null, new Arguments(fields), new OptArgs());
+                    return new Intersects (this, new Arguments(fields), new OptArgs());
             }
             public Circle circle (params object[] fields){
-                    return new Circle (null, new Arguments(fields), new OptArgs());
+                    return new Circle (this, new Arguments(fields), new OptArgs());
             }
             public Minval minval (params object[] fields){
-                    return new Minval (null, new Arguments(fields), new OptArgs());
+                    return new Minval (this, new Arguments(fields), new OptArgs());
             }
             public Maxval maxval (params object[] fields){
-                    return new Maxval (null, new Arguments(fields), new OptArgs());
+                    return new Maxval (this, new Arguments(fields), new OptArgs());
             }
 
     

@@ -126,13 +126,13 @@ namespace RethinkDb.Driver.Net
 			return getNext(null);
 		}
 
-		public virtual T next(int timeout)
+		public virtual T next(TimeSpan? timeout)
 		{
 			return getNext(timeout);
 		}
 
 		// Abstract methods
-		internal abstract T getNext(int? timeout);
+		internal abstract T getNext(TimeSpan? timeout);
 
 		private class DefaultCursor<T> : Cursor<T>
 		{
@@ -140,7 +140,7 @@ namespace RethinkDb.Driver.Net
 			{
 			}
 
-			internal override T getNext(int? timeout)
+			internal override T getNext(TimeSpan? timeout)
 			{
 				while (items.Count == 0)
 				{
@@ -148,7 +148,7 @@ namespace RethinkDb.Driver.Net
 				    if( error != null )
 				        throw error;
 
-				    connection.readResponse(query.token, Util.deadline(timeout.GetValueOrDefault(60)));
+				    connection.readResponse(query.token, Util.deadline(timeout));
 				}
 			    object element = items.First();
 			    items.RemoveAt(0);

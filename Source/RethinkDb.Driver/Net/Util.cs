@@ -7,17 +7,19 @@ namespace com.rethinkdb.net
 
 	public class Util
 	{
-		public static int Timestamp
+		public static long Timestamp
 		{
 			get
 			{
-				return (int)(DateTime.UtcNow.Ticks / 1000000L);
+				return DateTime.UtcNow.Ticks;
 			}
 		}
 
-		public static int deadline(int timeout)
+		public static long deadline(TimeSpan? timeout)
 		{
-			return Timestamp + timeout;
+		    timeout = timeout ?? TimeSpan.FromSeconds(60);
+
+			return Timestamp + timeout.Value.Ticks;
 		}
 
 	}

@@ -144,7 +144,7 @@ namespace RethinkDb.Driver.Net
             if( inst.socket == null )
                 throw new ReqlDriverError("No socket open.");
 
-            inst.socket.writeQuery( query.token, query.serialize());
+            inst.socket.WriteQuery( query.token, query.serialize());
 
             if( noreply )
             {

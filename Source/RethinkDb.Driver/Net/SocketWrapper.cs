@@ -1,27 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
-using RethinkDb.Driver.Ast;
-using Util = com.rethinkdb.net.Util;
 
 namespace RethinkDb.Driver.Net
 {
 	public class SocketWrapper
 	{
-        private TcpClient socketChannel;
-		private TimeSpan timeout;
-	    private NetworkStream ns = null;
-	    private BinaryWriter bw = null;
-	    private BinaryReader br = null;
+        private readonly TcpClient socketChannel;
+		private readonly TimeSpan timeout;
 
+		private readonly string hostname;
+		private readonly int port;
 
-		public readonly string hostname;
-		public readonly int port;
+        private NetworkStream ns = null;
+        private BinaryWriter bw = null;
+        private BinaryReader br = null;
 
-		public SocketWrapper(string hostname, int port, TimeSpan? timeout)
+        public SocketWrapper(string hostname, int port, TimeSpan? timeout)
 		{
 			this.hostname = hostname;
 			this.port = port;
@@ -31,9 +27,9 @@ namespace RethinkDb.Driver.Net
 		    this.socketChannel = new TcpClient();
 		}
 
-		public virtual void connect(byte[] handshake)
+		public virtual void Connect(byte[] handshake)
 		{
-		    var deadline = Util.deadline(this.timeout);
+		    var deadline = NetUtil.Deadline(this.timeout);
 		    var taskComplete = false;
 			try
 			{
@@ -45,14 +41,15 @@ namespace RethinkDb.Driver.Net
 			        throw new ReqlDriverError("Connection timed out.");
 			    }
 			    this.ns = socketChannel.GetStream();
-			    this.bw = new BinaryWriter(ns);
+			    this.bw = new BinaryWriter(this.ns);
                 this.br = new BinaryReader(this.ns);
 
                 this.bw.Write(handshake);
                 this.bw.Flush();
 
-                string msg = this.readNullTerminatedString(timeout);
-				if (!msg.Equals("SUCCESS"))
+                var msg = this.ReadNullTerminatedString(timeout);
+
+                if (!msg.Equals("SUCCESS"))
 				{
 				    throw new ReqlDriverError($"Server dropped connection with message: '{msg}'");
 				}
@@ -64,19 +61,12 @@ namespace RethinkDb.Driver.Net
 			}
 		}
 
-		public virtual void write(byte[] buffer)
+		public virtual void Write(byte[] buffer)
 		{
-			try
-			{
-			    this.bw.Write(buffer);
-			}
-			catch (IOException e)
-			{
-				throw new ReqlError(e);
-			}
+		    this.bw.Write(buffer);
 		}
 
-	    public virtual void writeQuery(long token, string json)
+	    public virtual void WriteQuery(long token, string json)
 	    {
 	        this.bw.Write(token);
 	        var jsonBytes = Encoding.UTF8.GetBytes(json);
@@ -84,7 +74,7 @@ namespace RethinkDb.Driver.Net
 	        this.bw.Write(jsonBytes);
 	    }
 
-		private string readNullTerminatedString(TimeSpan deadline)
+		private string ReadNullTerminatedString(TimeSpan deadline)
 		{
 		    var sb = new StringBuilder();
 		    char c;
@@ -95,25 +85,14 @@ namespace RethinkDb.Driver.Net
 		    return sb.ToString();
 		}
 
-		public virtual void writeLEInt(int i)
-		{
-		    this.bw.Write(i);
-		}
-
-		public virtual void writeStringWithLength(string s)
+		public virtual void WriteStringWithLength(string s)
 		{
 		    var buffer = Encoding.UTF8.GetBytes(s);
-            writeLEInt(buffer.Length);
-		    write(buffer);
+		    this.bw.Write(buffer.Length);
+		    this.bw.Write(buffer);
 		}
 
-		public virtual void write(sbyte[] bytes)
-		{
-			writeLEInt(bytes.Length);
-			write(bytes);
-		}
-
-		public virtual Response read()
+		public virtual Response Read()
 		{
 		    var token = this.br.ReadInt64();
 		    var responseLength = this.br.ReadInt32();
@@ -125,7 +104,7 @@ namespace RethinkDb.Driver.Net
 
 	    public virtual bool Open => socketChannel.Connected;
 
-	    public virtual void close()
+	    public virtual void Close()
 		{
 			try
 			{

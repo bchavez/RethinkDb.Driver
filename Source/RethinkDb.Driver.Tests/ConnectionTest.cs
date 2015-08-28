@@ -27,7 +27,7 @@ namespace RethinkDb.Driver.Tests
 
             var result = r.random(1, 9).add(r.random(1, 9)).run<JValue>(c).ToObject<int>();
             Console.WriteLine(result);
-            result.Should().BeGreaterThan(2).And.BeLessThan(18);
+            result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
         }
         
     }

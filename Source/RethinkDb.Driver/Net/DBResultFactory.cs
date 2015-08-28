@@ -1,5 +1,4 @@
 ﻿using System;
-using com.rethinkdb.net;
 
 namespace RethinkDb.Driver.Net
 {

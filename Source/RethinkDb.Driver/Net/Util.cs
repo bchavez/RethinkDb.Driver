@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 
-namespace com.rethinkdb.net
+namespace RethinkDb.Driver.Net
 {
-
-
-	public class Util
+	public class NetUtil
 	{
 		public static long Timestamp
 		{
@@ -15,7 +12,7 @@ namespace com.rethinkdb.net
 			}
 		}
 
-		public static long deadline(TimeSpan? timeout)
+		public static long Deadline(TimeSpan? timeout)
 		{
 		    timeout = timeout ?? TimeSpan.FromSeconds(60);
 

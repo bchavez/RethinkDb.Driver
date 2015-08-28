@@ -16,7 +16,7 @@ namespace RethinkDb.Driver.Net
 		public virtual void connect(string hostname, int port, byte[] handshake, TimeSpan? timeout)
 		{
 			SocketWrapper sock = new SocketWrapper(hostname, port, timeout);
-			sock.connect(handshake);
+			sock.Connect(handshake);
 		    socket = sock;
 		}
 
@@ -33,7 +33,7 @@ namespace RethinkDb.Driver.Net
 			    cursor.SetError("Connection is closed.");
 			}
 			cursorCache.Clear();
-		    socket?.close();
+		    socket?.Close();
 		}
 
 		internal virtual void addToCache(long token, ICursor cursor)
@@ -70,7 +70,7 @@ namespace RethinkDb.Driver.Net
 	        while( true )
 	        {
                 //may or maynot be the token we're looking for.
-	            var res = this.socket.read();
+	            var res = this.socket.Read();
 
 	            ICursor cursor;
 	            if( cursorCache.TryGetValue(res.token, out cursor) )

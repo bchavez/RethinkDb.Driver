@@ -2,11 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using com.rethinkdb.net;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Proto;
-using Util = com.rethinkdb.net.Util;
 
 namespace RethinkDb.Driver.Net
 {
@@ -148,7 +146,7 @@ namespace RethinkDb.Driver.Net
 				    if( error != null )
 				        throw error;
 
-				    connection.readResponse(query.token, Util.deadline(timeout));
+				    connection.readResponse(query.token, NetUtil.Deadline(timeout));
 				}
 			    object element = items.First();
 			    items.RemoveAt(0);

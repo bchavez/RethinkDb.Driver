@@ -70,12 +70,12 @@ namespace RethinkDb.Driver.Net
 	            var res = this.Socket.Read();
 
 	            ICursor cursor;
-	            if( cursorCache.TryGetValue(res.token, out cursor) )
+	            if( cursorCache.TryGetValue(res.Token, out cursor) )
 	            {
 	                cursor.Extend(res);
 	            }
 
-                if( res.token == token )
+                if( res.Token == token )
 	            {
 	                return res;
 	            }

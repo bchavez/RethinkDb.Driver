@@ -1,93 +1,90 @@
-﻿using System;
-using RethinkDb.Driver;
-using RethinkDb.Driver.Ast;
+﻿using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 
-namespace com.rethinkdb
+namespace RethinkDb.Driver
 {
-
 	public class ErrorBuilder
 	{
-		internal readonly string msg;
-		internal readonly ResponseType? responseType;
-	    internal Backtrace backtrace = null;
-	    internal ErrorType? errorType = null;
-	    internal ReqlAst term = null;
+	    internal string Msg { get; }
+	    internal ResponseType? ResponseType { get; }
+	    internal Backtrace Backtrace { get; set; } = null;
+	    internal ErrorType? ErrorType { get; set; } = null;
+	    internal ReqlAst Term { get; set; } = null;
 
-		public ErrorBuilder(string msg, ResponseType responseType)
+	    public ErrorBuilder(string msg, ResponseType responseType)
 		{
-			this.msg = msg;
-			this.responseType = responseType;
+			this.Msg = msg;
+			this.ResponseType = responseType;
 		}
 
-		public virtual ErrorBuilder setBacktrace(Backtrace backtrace)
+		public virtual ErrorBuilder SetBacktrace(Backtrace backtrace)
 		{
-			this.backtrace = backtrace;
+			this.Backtrace = backtrace;
 			return this;
 		}
 
-		public virtual ErrorBuilder setErrorType(ErrorType errorType)
+		public virtual ErrorBuilder SetErrorType(ErrorType errorType)
 		{
-			this.errorType = errorType;
+			this.ErrorType = errorType;
 			return this;
 		}
 
-		public virtual ErrorBuilder setTerm(Query query)
+		public virtual ErrorBuilder SetTerm(Query query)
 		{
-			this.term = query.term;
+			this.Term = query.term;
 			return this;
 		}
 
-		public virtual ReqlError build()
+		public virtual ReqlError Build()
 		{
 			ReqlError con;
-			switch (responseType)
+			switch (ResponseType)
 			{
-				case ResponseType.CLIENT_ERROR:
-					con = new ReqlClientError(msg);
+				case Proto.ResponseType.CLIENT_ERROR:
+					con = new ReqlClientError(Msg);
 					break;
-				case ResponseType.COMPILE_ERROR:
-					con = new ReqlCompileError(msg);
+				case Proto.ResponseType.COMPILE_ERROR:
+					con = new ReqlCompileError(Msg);
 					break;
-				case ResponseType.RUNTIME_ERROR:
+				case Proto.ResponseType.RUNTIME_ERROR:
 			    {
-			        switch( errorType )
+			        switch( ErrorType )
 			        {
-			            case ErrorType.INTERNAL:
-			                con = new ReqlInternalError(msg);
+			            case Proto.ErrorType.INTERNAL:
+			                con = new ReqlInternalError(Msg);
 			                break;
-			            case ErrorType.RESOURCE:
-			                con = new ReqlResourceLimitError(msg);
+			            case Proto.ErrorType.RESOURCE:
+			                con = new ReqlResourceLimitError(Msg);
 			                break;
-			            case ErrorType.LOGIC:
-			                con =  new ReqlQueryLogicError(msg);
+			            case Proto.ErrorType.LOGIC:
+			                con =  new ReqlQueryLogicError(Msg);
 			                break;
-			            case ErrorType.NON_EXISTENCE:
-			                con = new ReqlNonExistenceError(msg);
+			            case Proto.ErrorType.NON_EXISTENCE:
+			                con = new ReqlNonExistenceError(Msg);
 			                break;
-			            case ErrorType.OP_FAILED:
-			                con = new ReqlOpFailedError(msg);
+			            case Proto.ErrorType.OP_FAILED:
+			                con = new ReqlOpFailedError(Msg);
 			                break;
-			            case ErrorType.OP_INDETERMINATE:
-			                con = new ReqlOpIndeterminateError(msg);
+			            case Proto.ErrorType.OP_INDETERMINATE:
+			                con = new ReqlOpIndeterminateError(Msg);
 			                break;
-			            case ErrorType.USER:
-			                con =  new ReqlUserError(msg);
+			            case Proto.ErrorType.USER:
+			                con =  new ReqlUserError(Msg);
 			                break;
 			            default:
-			                con = new ReqlRuntimeError(msg);
+			                con = new ReqlRuntimeError(Msg);
 			                break;
 			        }
 			        break;
 			    }
 				default:
-			        con = new ReqlError(msg);
+			        con = new ReqlError(Msg);
 				break;
 			}
 
-		    con.Backtrace = this.backtrace;
-		    con.Term = this.term;
+		    con.Backtrace = this.Backtrace;
+		    con.Term = this.Term;
 
 		    return con;
 		}

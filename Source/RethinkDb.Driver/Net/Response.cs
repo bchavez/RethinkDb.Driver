@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using com.rethinkdb;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
@@ -13,17 +10,17 @@ namespace RethinkDb.Driver.Net
 {
     public class Response
 	{
-		public readonly long token;
-		public readonly ResponseType type;
-		public readonly List<ResponseNote> notes;
+        public long Token { get; }
+        public ResponseType Type1 { get; }
+        public List<ResponseNote> Notes { get; }
 
-		public readonly JArray data;
-		public readonly Profile profile;
-		public readonly Backtrace backtrace;
-		public readonly ErrorType errorType;
+        public JArray Data { get; }
+        public Profile Profile { get; }
+        public Backtrace Backtrace { get; }
+        public ErrorType ErrorType { get; }
 
 
-		public static Response parseFrom(long token, string buf)
+        public static Response ParseFrom(long token, string buf)
 		{
 			//Console.WriteLine("Received: " + buf);
 		    var jsonResp = JObject.Parse(buf);
@@ -37,24 +34,24 @@ namespace RethinkDb.Driver.Net
 			{
 			    res.errorType = et.Value;
 			}
-		    return res.setProfile((JArray)jsonResp["p"])
-		        .setBacktrace((JArray)jsonResp["b"])
-		        .setData((JArray)jsonResp["r"] ?? new JArray())
-		        .build();
+		    return res.SetProfile((JArray)jsonResp["p"])
+		        .SetBacktrace((JArray)jsonResp["b"])
+		        .SetData((JArray)jsonResp["r"] ?? new JArray())
+		        .Build();
 		}
 
-		private Response(long token, ResponseType responseType, JArray data, List<ResponseNote> responseNotes, Profile profile, Backtrace backtrace, ErrorType errorType)
-		{
-			this.token = token;
-			this.type = responseType;
-			this.data = data;
-			this.notes = responseNotes;
-			this.profile = profile;
-			this.backtrace = backtrace;
-			this.errorType = errorType;
-		}
+        private Response(long token, ResponseType responseType, JArray data, List<ResponseNote> responseNotes, Profile profile, Backtrace backtrace, ErrorType errorType)
+        {
+            this.Token = token;
+            this.Type1 = responseType;
+            this.Data = data;
+            this.Notes = responseNotes;
+            this.Profile = profile;
+            this.Backtrace = backtrace;
+            this.ErrorType = errorType;
+        }
 
-		internal class Builder
+        internal class Builder
 		{
 			internal long token;
 			internal ResponseType responseType;
@@ -70,13 +67,13 @@ namespace RethinkDb.Driver.Net
 				this.responseType = responseType;
 			}
 
-			internal virtual Builder setNotes(List<ResponseNote> notes)
+			internal virtual Builder SetNotes(List<ResponseNote> notes)
 			{
 				this.notes.AddRange(notes);
 				return this;
 			}
 
-			internal virtual Builder setData(JArray data)
+			internal virtual Builder SetData(JArray data)
 			{
 				if (data != null)
 				{
@@ -85,31 +82,31 @@ namespace RethinkDb.Driver.Net
 				return this;
 			}
 
-			internal virtual Builder setProfile(JArray profile)
+			internal virtual Builder SetProfile(JArray profile)
 			{
 				this.profile = Profile.fromJSONArray(profile);
 				return this;
 			}
 
-			internal virtual Builder setBacktrace(JArray backtrace)
+			internal virtual Builder SetBacktrace(JArray backtrace)
 			{
 				this.backtrace = Backtrace.fromJSONArray(backtrace);
 				return this;
 			}
 
-			internal virtual Builder setErrorType(int value)
+			internal virtual Builder SetErrorType(int value)
 			{
 				this.errorType = (ErrorType)value;
 				return this;
 			}
 
-			internal virtual Response build()
+			internal virtual Response Build()
 			{
 				return new Response(token, responseType, data, notes, profile, backtrace, errorType);
 			}
 		}
 
-		internal static Builder make(long token, ResponseType type)
+		internal static Builder Make(long token, ResponseType type)
 		{
 			return new Builder(token, type);
 		}
@@ -118,7 +115,7 @@ namespace RethinkDb.Driver.Net
 		{
 			get
 			{
-				return type == ResponseType.WAIT_COMPLETE;
+				return Type1 == ResponseType.WAIT_COMPLETE;
 			}
 		}
 
@@ -127,7 +124,7 @@ namespace RethinkDb.Driver.Net
 		{
 			get
 			{
-			    return notes.TrueForAll(rn => rn.IsFeed());
+			    return Notes.TrueForAll(rn => rn.IsFeed());
 			}
 		}
 
@@ -136,7 +133,7 @@ namespace RethinkDb.Driver.Net
 		{
 			get
 			{
-				return type.IsError();
+				return Type1.IsError();
 			}
 		}
 
@@ -150,7 +147,7 @@ namespace RethinkDb.Driver.Net
 		{
 			get
 			{
-				return type == ResponseType.SUCCESS_ATOM;
+				return Type1 == ResponseType.SUCCESS_ATOM;
 			}
 		}
 
@@ -158,7 +155,7 @@ namespace RethinkDb.Driver.Net
 		{
 			get
 			{
-				return type == ResponseType.SUCCESS_SEQUENCE;
+				return Type1 == ResponseType.SUCCESS_SEQUENCE;
 			}
 		}
 
@@ -166,14 +163,14 @@ namespace RethinkDb.Driver.Net
 		{
 			get
 			{
-				return type == ResponseType.SUCCESS_PARTIAL;
+				return Type1 == ResponseType.SUCCESS_PARTIAL;
 			}
 		}
 
-		internal virtual ReqlError makeError(Query query)
+		internal virtual ReqlError MakeError(Query query)
 		{
-			string msg = data.Count > 0 ? (string) data[0] : "Unknown error message";
-			return (new ErrorBuilder(msg, type)).setBacktrace(backtrace).setErrorType(errorType).setTerm(query).build();
+			string msg = Data.Count > 0 ? (string) Data[0] : "Unknown error message";
+			return (new ErrorBuilder(msg, Type1)).SetBacktrace(Backtrace).SetErrorType(ErrorType).SetTerm(query).Build();
 		}
 
 		public override string ToString()

@@ -97,7 +97,7 @@ namespace RethinkDb.Driver.Net
 		    var token = this.br.ReadInt64();
 		    var responseLength = this.br.ReadInt32();
 		    var response = this.br.ReadBytes(responseLength);
-		    return Response.parseFrom(token, Encoding.UTF8.GetString(response));
+		    return Response.ParseFrom(token, Encoding.UTF8.GetString(response));
 		}
 
 		public virtual bool Closed => !socketChannel.Connected;

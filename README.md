@@ -33,5 +33,5 @@ and the AST classes will be re-generated.
 The code generator templates are located in [`Source/Templates/CodeGen/`](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/Templates/CodeGen).
 The templates are [RazorGenerator](https://github.com/RazorGenerator/RazorGenerator) templates. If you wish to update any of the `*.cshtml` code generation
 templates be sure to install [RazorGenerator's Visual Studio Extension](https://visualstudiogallery.msdn.microsoft.com/1f6ec6ff-e89b-4c47-8e79-d2d68df894ec)
-or use a RazorGenerator's MSBuild task to convert transform the Razor `*.cshtml` templates to `*.generated.cs` code-behind files.
+or use a RazorGenerator's MSBuild task to transform the Razor `*.cshtml` templates to `*.generated.cs` code-behind files.
 

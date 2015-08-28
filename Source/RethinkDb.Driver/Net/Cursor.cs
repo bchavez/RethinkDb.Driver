@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Net
 			this.connection = connection;
 			this.query = query;
 			this.Token = query.token;
-			connection.addToCache(query.token, this);
+			connection.AddToCache(query.token, this);
 		}
 
         public void SetError(string msg)
@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Net
 
             this.error = new ReqlRuntimeError(msg);
 
-            var dummyResponse = Response.make(query.token, ResponseType.SUCCESS_SEQUENCE)
-                .build();
+            var dummyResponse = Response.Make(query.token, ResponseType.SUCCESS_SEQUENCE)
+                .Build();
 
             Extend(dummyResponse);
         }
@@ -58,7 +58,7 @@ namespace RethinkDb.Driver.Net
 				if (connection.Open)
 				{
 					outstandingRequests += 1;
-					connection.stop(this);
+					connection.Stop(this);
 				}
 			}
 		}
@@ -66,29 +66,29 @@ namespace RethinkDb.Driver.Net
         public virtual void Extend(Response response)
 		{
 			outstandingRequests -= 1;
-			threshold = response.data.Count;
+			threshold = response.Data.Count;
 			if (error == null)
 			{
 				if (response.Partial)
 				{
-				    foreach( var item in response.data )
+				    foreach( var item in response.Data )
 				        items.Add(item);
 				}
 				else if (response.Sequence)
 				{
-                    foreach( var item in response.data )
+                    foreach( var item in response.Data )
                         items.Add(item);
 				    error = new InvalidOperationException("No such element");
 				}
 				else
 				{
-				    error = response.makeError(query);
+				    error = response.MakeError(query);
 				}
 			}
 			maybeFetchBatch();
 			if (outstandingRequests == 0 && error != null)
 			{
-				connection.removeFromCache(response.token);
+				connection.RemoveFromCache(response.Token);
 			}
 		}
 
@@ -97,7 +97,7 @@ namespace RethinkDb.Driver.Net
 			if (error == null && items.Count <= threshold && outstandingRequests == 0)
 			{
 				outstandingRequests += 1;
-				connection.continue_(this);
+				connection.Continue(this);
 			}
 		}
 
@@ -108,7 +108,7 @@ namespace RethinkDb.Driver.Net
 				if (error != null)
 				{
 				    error = new ReqlRuntimeError(value);
-					Response dummyResponse = Response.make(query.token, ResponseType.SUCCESS_SEQUENCE).build();
+					Response dummyResponse = Response.Make(query.token, ResponseType.SUCCESS_SEQUENCE).Build();
 					Extend(dummyResponse);
 				}
 			}
@@ -146,7 +146,7 @@ namespace RethinkDb.Driver.Net
 				    if( error != null )
 				        throw error;
 
-				    connection.readResponse(query.token, NetUtil.Deadline(timeout));
+				    connection.ReadResponse(query.token, NetUtil.Deadline(timeout));
 				}
 			    object element = items.First();
 			    items.RemoveAt(0);

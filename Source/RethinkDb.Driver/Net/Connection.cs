@@ -18,8 +18,8 @@ namespace RethinkDb.Driver.Net
 
         // private mutable
         private string dbname;
-        private TimeSpan? connectTimeout;
-        private byte[] handshake;
+        private readonly TimeSpan? connectTimeout;
+        private readonly byte[] handshake;
         private ConnectionInstance instance = null;
 
         internal Connection(ConnectionBuilder builder)
@@ -56,7 +56,7 @@ namespace RethinkDb.Driver.Net
             return dbname;
         }
 
-        internal virtual void addToCache<T>(long token, Cursor<T> cursor)
+        internal virtual void AddToCache<T>(long token, Cursor<T> cursor)
         {
             if( instance == null )
                 throw new ReqlDriverError("Can't add to cache when not connected.");
@@ -64,7 +64,7 @@ namespace RethinkDb.Driver.Net
             instance?.AddToCache(token, cursor);
         }
 
-        internal virtual void removeFromCache(long token)
+        internal virtual void RemoveFromCache(long token)
         {
             instance?.RemoveFromCache(token);
         }
@@ -116,7 +116,7 @@ namespace RethinkDb.Driver.Net
                 {
                     if( shouldNoreplyWait )
                     {
-                        noreplyWait();
+                        NoReplyWait();
                     }
                 }
                 finally
@@ -128,17 +128,17 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-        private long newToken()
+        private long NewToken()
         {
             return Interlocked.Increment(ref nextToken);
         }
 
-        internal virtual Response readResponse(long token, long? deadline)
+        internal virtual Response ReadResponse(long token, long? deadline)
         {
             return checkOpen().ReadResponse(token, deadline);
         }
 
-        internal virtual object runQuery<T>(Query query, bool noreply)
+        internal virtual object RunQuery<T>(Query query, bool noreply)
         {
             ConnectionInstance inst = checkOpen();
             if( inst.Socket == null )
@@ -159,7 +159,7 @@ namespace RethinkDb.Driver.Net
             {
                 try
                 {
-                    return Response.convertPseudotypes(res.data, res.profile)[0];
+                    return Response.convertPseudotypes(res.Data, res.Profile)[0];
                 }
                 catch( System.IndexOutOfRangeException ex )
                 {
@@ -178,23 +178,23 @@ namespace RethinkDb.Driver.Net
             }
             else
             {
-                throw res.makeError(query);
+                throw res.MakeError(query);
             }
         }
 
-        internal virtual object runQuery<T>(Query query)
+        internal virtual object RunQuery<T>(Query query)
         {
-            return runQuery<T>(query, false);
+            return RunQuery<T>(query, false);
         }
 
-        internal virtual void runQueryNoreply(Query query)
+        internal virtual void RunQueryNoreply(Query query)
         {
-            runQuery<object>(query, true);
+            RunQuery<object>(query, true);
         }
 
-        public virtual void noreplyWait()
+        public virtual void NoReplyWait()
         {
-            runQuery<object>(Query.noreplyWait(newToken()));
+            RunQuery<object>(Query.noreplyWait(NewToken()));
         }
 
         public virtual object run<T>(ReqlAst term, GlobalOptions globalOpts)
@@ -203,18 +203,18 @@ namespace RethinkDb.Driver.Net
             {
                 globalOpts.Db = dbname;
             }
-            Query q = Query.start(newToken(), term, globalOpts);
-            return runQuery<T>(q, globalOpts.Noreply.GetValueOrDefault(false));
+            Query q = Query.start(NewToken(), term, globalOpts);
+            return RunQuery<T>(q, globalOpts.Noreply.GetValueOrDefault(false));
         }
 
-        internal virtual void continue_(ICursor cursor)
+        internal virtual void Continue(ICursor cursor)
         {
-            runQueryNoreply(Query.continue_(cursor.Token));
+            RunQueryNoreply(Query.continue_(cursor.Token));
         }
 
-        internal virtual void stop(ICursor cursor)
+        internal virtual void Stop(ICursor cursor)
         {
-            runQueryNoreply(Query.stop(cursor.Token));
+            RunQueryNoreply(Query.stop(cursor.Token));
         }
 
     }

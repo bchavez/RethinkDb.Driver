@@ -5,27 +5,24 @@ namespace RethinkDb.Driver.Net
 {
 	public class ConnectionInstance
 	{
-		// package private
-		internal SocketWrapper socket = null;
+		internal SocketWrapper Socket { get; private set; }
 
-		// protected members
-	    internal Dictionary<long, ICursor> cursorCache = new Dictionary<long, ICursor>();
-		protected internal bool closing = false;
+	    private readonly Dictionary<long, ICursor> cursorCache = new Dictionary<long, ICursor>();
+		private bool closing = false;
 
-
-		public virtual void connect(string hostname, int port, byte[] handshake, TimeSpan? timeout)
+		public virtual void Connect(string hostname, int port, byte[] handshake, TimeSpan? timeout)
 		{
-			SocketWrapper sock = new SocketWrapper(hostname, port, timeout);
+			var sock = new SocketWrapper(hostname, port, timeout);
 			sock.Connect(handshake);
-		    socket = sock;
+		    Socket = sock;
 		}
 
 		public virtual bool Open
 		{
-			get { return socket?.Open ?? false; }
+			get { return Socket?.Open ?? false; }
 		}
 
-		public virtual void close()
+		public virtual void Close()
 		{
 			closing = true;
 			foreach (var cursor in cursorCache.Values)
@@ -33,27 +30,27 @@ namespace RethinkDb.Driver.Net
 			    cursor.SetError("Connection is closed.");
 			}
 			cursorCache.Clear();
-		    socket?.Close();
+		    Socket?.Close();
 		}
 
-		internal virtual void addToCache(long token, ICursor cursor)
+		internal virtual void AddToCache(long token, ICursor cursor)
 		{
 			cursorCache[token] = cursor;
 		}
 
-		internal virtual void removeFromCache(long token)
+		internal virtual void RemoveFromCache(long token)
 		{
 			cursorCache.Remove(token);
 		}
 
-		internal virtual Response readResponse(long token)
+		internal virtual Response ReadResponse(long token)
 		{
-			return readResponse(token, null);
+			return ReadResponse(token, null);
 		}
 
-	    internal virtual Response readResponse(long token, long? deadline)
+	    internal virtual Response ReadResponse(long token, long? deadline)
 	    {
-	        if( socket == null )
+	        if( Socket == null )
 	            throw new ReqlError("Socket not open");
             /*
 				if (headerInProgress == null)
@@ -70,7 +67,7 @@ namespace RethinkDb.Driver.Net
 	        while( true )
 	        {
                 //may or maynot be the token we're looking for.
-	            var res = this.socket.Read();
+	            var res = this.Socket.Read();
 
 	            ICursor cursor;
 	            if( cursorCache.TryGetValue(res.token, out cursor) )
@@ -84,7 +81,7 @@ namespace RethinkDb.Driver.Net
 	            }
 	            else if( closing || cursor != null )
 	            {
-	                close();
+	                Close();
 	                throw new ReqlDriverError("Unexpected response received");
 	            }
 	        }

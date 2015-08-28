@@ -61,12 +61,12 @@ namespace RethinkDb.Driver.Net
             if( instance == null )
                 throw new ReqlDriverError("Can't add to cache when not connected.");
 
-            instance?.addToCache(token, cursor);
+            instance?.AddToCache(token, cursor);
         }
 
         internal virtual void removeFromCache(long token)
         {
-            instance?.removeFromCache(token);
+            instance?.RemoveFromCache(token);
         }
 
         public virtual void use(string db)
@@ -93,7 +93,7 @@ namespace RethinkDb.Driver.Net
             close(noreplyWait);
             ConnectionInstance inst = instanceMaker();
             instance = inst;
-            inst.connect(hostname, port, handshake, timeout);
+            inst.Connect(hostname, port, handshake, timeout);
             return this;
         }
 
@@ -122,7 +122,7 @@ namespace RethinkDb.Driver.Net
                 finally
                 {
                     nextToken = 0;
-                    instance.close();
+                    instance.Close();
                     instance = null;
                 }
             }
@@ -135,23 +135,23 @@ namespace RethinkDb.Driver.Net
 
         internal virtual Response readResponse(long token, long? deadline)
         {
-            return checkOpen().readResponse(token, deadline);
+            return checkOpen().ReadResponse(token, deadline);
         }
 
         internal virtual object runQuery<T>(Query query, bool noreply)
         {
             ConnectionInstance inst = checkOpen();
-            if( inst.socket == null )
+            if( inst.Socket == null )
                 throw new ReqlDriverError("No socket open.");
 
-            inst.socket.WriteQuery( query.token, query.serialize());
+            inst.Socket.WriteQuery( query.token, query.serialize());
 
             if( noreply )
             {
                 return null;
             }
 
-            Response res = inst.readResponse(query.token);
+            Response res = inst.ReadResponse(query.token);
 
             // TODO: This logic needs to move into the Response class
             Console.WriteLine(res.ToString()); //RSI

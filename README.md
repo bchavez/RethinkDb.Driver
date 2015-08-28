@@ -8,8 +8,8 @@ architecture of both drivers are the same.
 
 #### Build Process
 
-The build process is pretty much the same as the Java driver, except that this C# driver
-starts off from the `ql2.proto` **JSON** files created by the `metajava.py` script.
+The build process is similar to the Java driver, except that this C# driver
+starts off from the **JSON** files created from `ql2.proto` by `metajava.py` script.
 The **JSON** files are required for building C# AST classes from JSON. 
 The required JSON files are:
 
@@ -27,3 +27,11 @@ copy/update/overwrite the `*.json` files into `Source/Templates/Metadata`.
 
 Next, run the unit test `Generate_All` inside [Source/Templates/Generator.cs](https://github.com/bchavez/RethinkDb.Driver/blob/master/Source/Templates/Generator.cs)
 and the AST classes will be re-generated.
+
+##### CodeGen Templates
+
+The code generator templates are located in [`Source/Templates/CodeGen/`](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/Templates/CodeGen).
+The templates are [RazorGenerator](https://github.com/RazorGenerator/RazorGenerator) templates. If you wish to update any of the `*.cshtml` code generation
+templates be sure to install [RazorGenerator's Visual Studio Extension](https://visualstudiogallery.msdn.microsoft.com/1f6ec6ff-e89b-4c47-8e79-d2d68df894ec)
+or use a RazorGenerator's MSBuild task to convert transform the Razor `*.cshtml` templates to `*.generated.cs` code-behind files.
+

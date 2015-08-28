@@ -4,7 +4,7 @@ A RethinkDB database driver written in C# striving for 100% API compatibility an
 This driver is based on https://github.com/rethinkdb/rethinkdb/tree/josh/java-driver.
 
 The code here is a one-to-one port of the Java driver. The basic mechanics and 
-architecture are the same.
+architecture of both drivers are the same.
 
 #### Build Process
 

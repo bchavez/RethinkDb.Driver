@@ -19,7 +19,7 @@ The required JSON files are:
 
 
 These files reside inside [Source/Templates/Metadata](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/Templates/Metadata) 
-*currently from 8e701ed158e649c25984e568431e96d5c675b24a commit*
+@ (8e701ed158e649c25984e568431e96d5c675b24a)[https://github.com/rethinkdb/rethinkdb/tree/8e701ed158e649c25984e568431e96d5c675b24a]
 
 If you wish to update / refresh the AST classes (and enums) from `ql2.proto` you'll first
 need to generate the updated `*.json` files from `metajava.py` over in the Java driver. Then

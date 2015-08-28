@@ -1,7 +1,7 @@
 using Humanizer;
 using RazorGenerator.Templating;
 
-namespace Templates
+namespace Templates.CodeGen
 {
     public class BaseTemplate : RazorTemplateBase
     {

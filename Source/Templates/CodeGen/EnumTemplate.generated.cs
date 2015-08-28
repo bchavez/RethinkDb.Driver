@@ -39,7 +39,7 @@ namespace Templates.CodeGen
     #line hidden
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
-    public partial class EnumTemplate : Templates.BaseTemplate
+    public partial class EnumTemplate : BaseTemplate
     {
 #line hidden
 

@@ -51,7 +51,7 @@ namespace Templates.CodeGen
     #line hidden
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
-    public partial class AstSubclassTemplate : Templates.BaseTemplate
+    public partial class AstSubclassTemplate : BaseTemplate
     {
 #line hidden
 

@@ -39,7 +39,7 @@ namespace Templates.CodeGen
     #line hidden
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
-    public partial class ExceptionTemplate : Templates.BaseTemplate
+    public partial class ExceptionTemplate : Templates.CodeGen.BaseTemplate
     {
 #line hidden
 

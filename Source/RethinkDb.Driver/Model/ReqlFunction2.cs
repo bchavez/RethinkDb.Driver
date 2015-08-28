@@ -4,7 +4,7 @@ namespace RethinkDb.Driver.Model
 {
 	public interface ReqlFunction2 : ReqlLambda
 	{
-		ReqlAst apply(ReqlAst row1, ReqlAst row2);
+		ReqlAst Apply(ReqlAst row1, ReqlAst row2);
 	}
 
 }

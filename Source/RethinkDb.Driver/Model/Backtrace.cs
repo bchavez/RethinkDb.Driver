@@ -7,7 +7,7 @@ namespace RethinkDb.Driver.Model
     
 	public class Backtrace
 	{
-		public static Backtrace fromJSONArray(JArray @object)
+		public static Backtrace FromJsonArray(JArray @object)
 		{
 			if (@object == null || @object.Count == 0)
 			{

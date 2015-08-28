@@ -8,9 +8,9 @@ namespace RethinkDb.Driver
 	{
 	    internal string Msg { get; }
 	    internal ResponseType? ResponseType { get; }
-	    internal Backtrace Backtrace { get; set; } = null;
-	    internal ErrorType? ErrorType { get; set; } = null;
-	    internal ReqlAst Term { get; set; } = null;
+	    internal Backtrace Backtrace { get; set; }
+	    internal ErrorType? ErrorType { get; set; }
+	    internal ReqlAst Term { get; set; }
 
 	    public ErrorBuilder(string msg, ResponseType responseType)
 		{

@@ -84,13 +84,13 @@ namespace RethinkDb.Driver.Net
 
 			internal virtual Builder SetProfile(JArray profile)
 			{
-				this.profile = Profile.fromJSONArray(profile);
+				this.profile = Profile.FromJsonArray(profile);
 				return this;
 			}
 
 			internal virtual Builder SetBacktrace(JArray backtrace)
 			{
-				this.backtrace = Backtrace.fromJSONArray(backtrace);
+				this.backtrace = Backtrace.FromJsonArray(backtrace);
 				return this;
 			}
 

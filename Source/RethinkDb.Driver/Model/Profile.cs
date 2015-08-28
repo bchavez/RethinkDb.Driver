@@ -6,7 +6,7 @@ namespace RethinkDb.Driver.Model
 	public class Profile
 	{
 
-		public static Profile fromJSONArray(JArray profileObj)
+		public static Profile FromJsonArray(JArray profileObj)
 		{
 			if (profileObj == null)
 			{

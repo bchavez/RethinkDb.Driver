@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver;
 using RethinkDb.Driver.Model;
@@ -21,7 +22,7 @@ namespace RethinkDb.Driver.Ast
 		{
 			this.type = type;
 			this.token = token;
-			this.term = null;
+			this.term = term;
 			this.globalOptions = globalOptions;
 		}
 
@@ -61,7 +62,7 @@ namespace RethinkDb.Driver.Ast
 		    }
 		    queryArr.Add(globalOptions.toOptArgs());
 
-			string queryJson = queryArr.ToString();
+			string queryJson = queryArr.ToString(Formatting.None);
 
 			Console.WriteLine($"Sending: Token: {token}, JSON: {queryJson}"); //RSI
 

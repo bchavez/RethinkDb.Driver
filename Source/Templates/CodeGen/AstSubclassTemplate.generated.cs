@@ -403,7 +403,7 @@ WriteLiteral(" (params object[] fields){\r\n");
 
             
             #line 97 "..\..\CodeGen\AstSubclassTemplate.cshtml"
-                if( IncludeIn == "top" )
+                if( IncludeIn == "T_TOP_LEVEL" )
                 {
 
             

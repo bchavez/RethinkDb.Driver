@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using com.rethinkdb;
 using com.rethinkdb.net;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
@@ -25,9 +26,10 @@ namespace RethinkDb.Driver.Net
 
 		public static Response parseFrom(long token, string buf)
 		{
-			Console.WriteLine("Received: " + buf);
+			//Console.WriteLine("Received: " + buf);
 		    var jsonResp = JObject.Parse(buf);
-		    var responseType = jsonResp["t"].ToObject<ResponseType>();
+            Console.WriteLine("Received: " + jsonResp);
+            var responseType = jsonResp["t"].ToObject<ResponseType>();
 		    var responseNotes = jsonResp["n"]?.ToObject<List<ResponseNote>>() ?? new List<ResponseNote>();
 			ErrorType? et = jsonResp["e"]?.ToObject<ErrorType>();
 
@@ -177,7 +179,7 @@ namespace RethinkDb.Driver.Net
 
 		public override string ToString()
 		{
-			return "Response{" + "token=" + token + ", type=" + type + ", notes=" + notes + ", data=" + data + ", profile=" + profile + ", backtrace=" + backtrace + '}';
+		    return JsonConvert.SerializeObject(this, Formatting.Indented);
 		}
 	}
 

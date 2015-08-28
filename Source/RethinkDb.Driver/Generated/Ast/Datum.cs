@@ -47,7 +47,7 @@ namespace RethinkDb.Driver.Ast {
 
     
     
-        protected object build() {
+        protected internal override object build() {
             // Overridden because Datums are leaf-nodes and therefore
             // don't contain lower ReqlAst objects.
             return datum;

@@ -94,7 +94,7 @@ namespace RethinkDb.Driver.Ast {
         @foreach( var t in this.TermsIn )
         {
             @:public @Class(t.Key.ToLower()) @(Method(t.Value["sharp_alias"]?.ToString() ?? t.Key.ToLower())) (params object[] fields){
-                if( IncludeIn == "top" )
+                if( IncludeIn == "T_TOP_LEVEL" )
                 {
                     @:return new @Class(t.Key.ToLower()) (null, new Arguments(fields), new OptArgs());
                 }

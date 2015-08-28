@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
+using FluentAssertions;
+using Newtonsoft.Json.Linq;
+using NUnit.Framework;
 
 namespace RethinkDb.Driver.Tests
 {
@@ -22,7 +25,9 @@ namespace RethinkDb.Driver.Tests
                 .timeout(60)
                 .connect();
 
-            var res = r.random(1, 2).add(r.random(1, 2)).run<int>(c);
+            var result = r.random(1, 9).add(r.random(1, 9)).run<JValue>(c).ToObject<int>();
+            Console.WriteLine(result);
+            result.Should().BeGreaterThan(2).And.BeLessThan(18);
         }
         
     }

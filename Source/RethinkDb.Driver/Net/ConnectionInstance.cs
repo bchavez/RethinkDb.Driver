@@ -72,11 +72,13 @@ namespace RethinkDb.Driver.Net
                 //may or maynot be the token we're looking for.
 	            var res = this.socket.read();
 
-	            var cursor = cursorCache[res.token];
+	            ICursor cursor;
+	            if( cursorCache.TryGetValue(res.token, out cursor) )
+	            {
+	                cursor.Extend(res);
+	            }
 
-	            cursor?.Extend(res);
-
-	            if( res.token == token )
+                if( res.token == token )
 	            {
 	                return res;
 	            }

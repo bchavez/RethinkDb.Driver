@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
@@ -27,8 +28,8 @@ namespace RethinkDb.Driver.Ast
             }
             this.termType = termType;
             this.args = new Arguments();
-            if( prev != null )
-            {
+            if( prev != null ) // TopLevel should have prev = null
+            { 
                 this.args.Add(prev);
             }
             if( args != null )
@@ -49,12 +50,17 @@ namespace RethinkDb.Driver.Ast
             list.Add(termType);
             if( args.Count > 0 )
             {
-                list.Add(args.Select(a => a.build()).ToList());
+                var collect = args.Select(a =>
+                    {
+                        return a.build();
+                    });
+                list.Add(new JArray(collect));
             }
             else
             {
                 list.Add(new JArray());
             }
+
             if( optargs.Count > 0 )
             {
                 JObject joptargs = new JObject();
@@ -67,21 +73,16 @@ namespace RethinkDb.Driver.Ast
             return list;
         }
 
-        public virtual object run<T>(Connection conn, GlobalOptions g)
+        public virtual T run<T>(Connection conn, GlobalOptions g)
         {
-            return conn.run<T>(this, g);
+            return (T)conn.run<T>(this, g);
         }
 
-        public virtual object run<T>(Connection conn)
+        public virtual T run<T>(Connection conn)
         {
-            return conn.run<T>(this, new GlobalOptions());
+            return (T)conn.run<T>(this, new GlobalOptions());
         }
-
-        public override string ToString()
-        {
-            return "ReqlAst{" + "prev=" + prev + ", termType=" + termType + ", args=" + args + ", optargs=" + optargs + '}';
-        }
-
+        
     }
 
 }

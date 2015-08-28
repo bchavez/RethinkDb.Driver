@@ -108,9 +108,9 @@ WriteLiteral("\r\n\r\n");
 
 DefineSection("SpecialMethods", () => {
 
-WriteLiteral("\r\n    \r\n        protected object build() {\r\n            // Overridden because Dat" +
-"ums are leaf-nodes and therefore\r\n            // don\'t contain lower ReqlAst obj" +
-"ects.\r\n            return datum;\r\n        }\r\n");
+WriteLiteral("\r\n    \r\n        protected internal override object build() {\r\n            // Over" +
+"ridden because Datums are leaf-nodes and therefore\r\n            // don\'t contain" +
+" lower ReqlAst objects.\r\n            return datum;\r\n        }\r\n");
 
 
 });

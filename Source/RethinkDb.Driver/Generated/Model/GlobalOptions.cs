@@ -25,37 +25,37 @@ namespace RethinkDb.Driver.Model {
             public double? MaxBatchSeconds { get; set; }
             public double? FirstBatchScaledownFactor { get; set; }
 
-        public OptArgs toOptArgs(){
+        public OptArgs ToOptArgs(){
              var ret = new OptArgs();
             
                  if( this.UseOutdated != null )
-                    ret.with("use_outdated", this.UseOutdated);
+                    ret.With("use_outdated", this.UseOutdated);
                  if( this.TimeFormat != null )
-                    ret.with("time_format", this.TimeFormat);
+                    ret.With("time_format", this.TimeFormat);
                  if( this.Profile != null )
-                    ret.with("profile", this.Profile);
+                    ret.With("profile", this.Profile);
                  if( this.Durability != null )
-                    ret.with("durability", this.Durability);
+                    ret.With("durability", this.Durability);
                  if( this.GroupFormat != null )
-                    ret.with("group_format", this.GroupFormat);
+                    ret.With("group_format", this.GroupFormat);
                  if( this.Noreply != null )
-                    ret.with("noreply", this.Noreply);
+                    ret.With("noreply", this.Noreply);
                  if( this.Db != null )
-                    ret.with("db", this.Db);
+                    ret.With("db", this.Db);
                  if( this.ArrayLimit != null )
-                    ret.with("array_limit", this.ArrayLimit);
+                    ret.With("array_limit", this.ArrayLimit);
                  if( this.BinaryFormat != null )
-                    ret.with("binary_format", this.BinaryFormat);
+                    ret.With("binary_format", this.BinaryFormat);
                  if( this.MinBatchRows != null )
-                    ret.with("min_batch_rows", this.MinBatchRows);
+                    ret.With("min_batch_rows", this.MinBatchRows);
                  if( this.MaxBatchRows != null )
-                    ret.with("max_batch_rows", this.MaxBatchRows);
+                    ret.With("max_batch_rows", this.MaxBatchRows);
                  if( this.MaxBatchBytes != null )
-                    ret.with("max_batch_bytes", this.MaxBatchBytes);
+                    ret.With("max_batch_bytes", this.MaxBatchBytes);
                  if( this.MaxBatchSeconds != null )
-                    ret.with("max_batch_seconds", this.MaxBatchSeconds);
+                    ret.With("max_batch_seconds", this.MaxBatchSeconds);
                  if( this.FirstBatchScaledownFactor != null )
-                    ret.with("first_batch_scaledown_factor", this.FirstBatchScaledownFactor);
+                    ret.With("first_batch_scaledown_factor", this.FirstBatchScaledownFactor);
 
             return ret;
         }

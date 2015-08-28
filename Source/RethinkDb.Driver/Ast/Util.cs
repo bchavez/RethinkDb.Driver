@@ -16,14 +16,14 @@ namespace RethinkDb.Driver.Ast
 		/// </summary>
 		/// <param name="val"> val </param>
 		/// <returns> ReqlAst </returns>
-		public static ReqlAst toReqlAst(object val)
+		public static ReqlAst ToReqlAst(object val)
 		{
-			return toReqlAst(val, 20);
+			return ToReqlAst(val, 20);
 		}
 
 
         //TODO: don't use "is" for performance
-		private static ReqlAst toReqlAst(object val, int remainingDepth)
+		private static ReqlAst ToReqlAst(object val, int remainingDepth)
 		{
 			if (val is ReqlAst)
 			{
@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Ast
 				Arguments innerValues = new Arguments();
 				foreach (object innerValue in (IList) val)
 				{
-					innerValues.Add(toReqlAst(innerValue, remainingDepth - 1));
+					innerValues.Add(ToReqlAst(innerValue, remainingDepth - 1));
 				}
 				return new MakeArray(innerValues, null);
 			}
@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.Ast
 						throw new ReqlError("Object key can only be strings");
 					}
 
-					obj[(string) entry.Key] = toReqlAst(entry.Value);
+					obj[(string) entry.Key] = ToReqlAst(entry.Value);
 				}
 				return MakeObj.FromMap(obj);
 			}

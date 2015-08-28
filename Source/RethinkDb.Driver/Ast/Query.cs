@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using RethinkDb.Driver;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 
@@ -13,58 +12,58 @@ namespace RethinkDb.Driver.Ast
 	*/
 	public class Query
 	{
-		public readonly QueryType type;
-		public readonly long token;
-		public readonly ReqlAst term;
-		public readonly GlobalOptions globalOptions;
+	    public QueryType Type { get; }
+	    public long Token { get; }
+	    public ReqlAst Term { get; }
+	    public GlobalOptions GlobalOptions { get; }
 
-		public Query(QueryType type, long token, ReqlAst term, GlobalOptions globalOptions)
+	    public Query(QueryType type, long token, ReqlAst term, GlobalOptions globalOptions)
 		{
-			this.type = type;
-			this.token = token;
-			this.term = term;
-			this.globalOptions = globalOptions;
+			this.Type = type;
+			this.Token = token;
+			this.Term = term;
+			this.GlobalOptions = globalOptions;
 		}
 
 		public Query(QueryType type, long token) : this(type, token, null, new GlobalOptions())
 		{
 		}
 
-		public static Query stop(long token)
+		public static Query Stop(long token)
 		{
 			return new Query(QueryType.STOP, token, null, new GlobalOptions());
 		}
 
-		public static Query continue_(long token)
+		public static Query Continue(long token)
 		{
 			return new Query(QueryType.CONTINUE, token, null, new GlobalOptions());
 		}
 
-		public static Query start(long token, ReqlAst term, GlobalOptions globalOptions)
+		public static Query Start(long token, ReqlAst term, GlobalOptions globalOptions)
 		{
 			return new Query(QueryType.START, token, term, globalOptions);
 		}
 
-		public static Query noreplyWait(long token)
+		public static Query NoReplyWait(long token)
 		{
 			return new Query(QueryType.NOREPLY_WAIT, token, null, new GlobalOptions());
 		}
 
-		public virtual string serialize()
+		public virtual string Serialize()
 		{
 			var queryArr = new JArray();
 
-            queryArr.Add(type);
+            queryArr.Add(Type);
 
-            if( term != null )
+            if( Term != null )
 		    {
-		        queryArr.Add(term.build());
+		        queryArr.Add(Term.Build());
 		    }
-		    queryArr.Add(globalOptions.toOptArgs());
+		    queryArr.Add(GlobalOptions.ToOptArgs());
 
 			string queryJson = queryArr.ToString(Formatting.None);
 
-			Console.WriteLine($"Sending: Token: {token}, JSON: {queryJson}"); //RSI
+			Console.WriteLine($"Sending: Token: {Token}, JSON: {queryJson}"); //RSI
 
 			return queryJson;
 		}

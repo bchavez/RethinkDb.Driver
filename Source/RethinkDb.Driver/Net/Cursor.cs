@@ -34,8 +34,8 @@ namespace RethinkDb.Driver.Net
 		{
 			this.connection = connection;
 			this.query = query;
-			this.Token = query.token;
-			connection.AddToCache(query.token, this);
+			this.Token = query.Token;
+			connection.AddToCache(query.Token, this);
 		}
 
         public void SetError(string msg)
@@ -44,7 +44,7 @@ namespace RethinkDb.Driver.Net
 
             this.error = new ReqlRuntimeError(msg);
 
-            var dummyResponse = Response.Make(query.token, ResponseType.SUCCESS_SEQUENCE)
+            var dummyResponse = Response.Make(query.Token, ResponseType.SUCCESS_SEQUENCE)
                 .Build();
 
             Extend(dummyResponse);
@@ -108,7 +108,7 @@ namespace RethinkDb.Driver.Net
 				if (error != null)
 				{
 				    error = new ReqlRuntimeError(value);
-					Response dummyResponse = Response.Make(query.token, ResponseType.SUCCESS_SEQUENCE).Build();
+					Response dummyResponse = Response.Make(query.Token, ResponseType.SUCCESS_SEQUENCE).Build();
 					Extend(dummyResponse);
 				}
 			}
@@ -146,11 +146,11 @@ namespace RethinkDb.Driver.Net
 				    if( error != null )
 				        throw error;
 
-				    connection.ReadResponse(query.token, NetUtil.Deadline(timeout));
+				    connection.ReadResponse(query.Token, NetUtil.Deadline(timeout));
 				}
 			    object element = items.First();
 			    items.RemoveAt(0);
-				return (T) Converter.convertPseudo(element, query.globalOptions);
+				return (T) Converter.convertPseudo(element, query.GlobalOptions);
 			}
 
 		}

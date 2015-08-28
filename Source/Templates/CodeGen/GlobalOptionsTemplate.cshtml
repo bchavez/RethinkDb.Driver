@@ -37,13 +37,13 @@ namespace RethinkDb.Driver.Model {
             @:public @ReqlToNativeType(kvp.Value) @Property(kvp.Key) { get; set; }
         }
 
-        public OptArgs toOptArgs(){
+        public OptArgs ToOptArgs(){
              var ret = new OptArgs();
             
             @foreach( var kvp in OptArgs )
             {
                  @:if( this.@Property(kvp.Key) != null )
-                    @:ret.with("@kvp.Key", this.@Property(kvp.Key));
+                    @:ret.With("@kvp.Key", this.@Property(kvp.Key));
              
             }
 

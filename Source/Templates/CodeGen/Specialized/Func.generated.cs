@@ -90,14 +90,14 @@ DefineSection("Ctors", () => {
 WriteLiteral(@"
    public Func(ReqlFunction function) : this(Arguments.make(
             new MakeArray(new Arguments(1), null),
-                Util.toReqlAst(function.apply(new Var(1)))))
+                Util.ToReqlAst(function.apply(new Var(1)))))
     {
     }
 
     public Func(ReqlFunction2 function) :
         this(Arguments.make(
             new MakeArray(Arguments.make(1, 2)),
-                Util.toReqlAst(function.apply(new Var(1), new Var(1)))))
+                Util.ToReqlAst(function.apply(new Var(1), new Var(1)))))
     {
     }
 

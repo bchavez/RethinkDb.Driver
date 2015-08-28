@@ -5,25 +5,25 @@ namespace RethinkDb.Driver.Model
 {
 	public class OptArgs : Dictionary<string, ReqlAst>
 	{
-		public virtual OptArgs with(string key, object value)
+		public virtual OptArgs With(string key, object value)
 		{
 			if (key != null)
 			{
-				this[key] = Util.toReqlAst(value);
+				this[key] = Util.ToReqlAst(value);
 			}
 			return this;
 		}
 
-		public virtual OptArgs with(string key, IList<object> value)
+		public virtual OptArgs With(string key, IList<object> value)
 		{
 			if (key != null)
 			{
-				this[key] = Util.toReqlAst(value);
+				this[key] = Util.ToReqlAst(value);
 			}
 			return this;
 		}
 
-		public static OptArgs fromMap(IDictionary<string, ReqlAst> map)
+		public static OptArgs FromMap(IDictionary<string, ReqlAst> map)
 		{
 			OptArgs oa = new OptArgs();
 

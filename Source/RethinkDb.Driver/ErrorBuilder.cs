@@ -32,7 +32,7 @@ namespace RethinkDb.Driver
 
 		public virtual ErrorBuilder SetTerm(Query query)
 		{
-			this.Term = query.term;
+			this.Term = query.Term;
 			return this;
 		}
 

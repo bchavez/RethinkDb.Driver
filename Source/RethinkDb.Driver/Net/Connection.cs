@@ -144,14 +144,14 @@ namespace RethinkDb.Driver.Net
             if( inst.Socket == null )
                 throw new ReqlDriverError("No socket open.");
 
-            inst.Socket.WriteQuery( query.token, query.serialize());
+            inst.Socket.WriteQuery( query.Token, query.Serialize());
 
             if( noreply )
             {
                 return null;
             }
 
-            Response res = inst.ReadResponse(query.token);
+            Response res = inst.ReadResponse(query.Token);
 
             // TODO: This logic needs to move into the Response class
             Console.WriteLine(res.ToString()); //RSI
@@ -194,7 +194,7 @@ namespace RethinkDb.Driver.Net
 
         public virtual void NoReplyWait()
         {
-            RunQuery<object>(Query.noreplyWait(NewToken()));
+            RunQuery<object>(Query.NoReplyWait(NewToken()));
         }
 
         public virtual object run<T>(ReqlAst term, GlobalOptions globalOpts)
@@ -203,18 +203,18 @@ namespace RethinkDb.Driver.Net
             {
                 globalOpts.Db = dbname;
             }
-            Query q = Query.start(NewToken(), term, globalOpts);
+            Query q = Query.Start(NewToken(), term, globalOpts);
             return RunQuery<T>(q, globalOpts.Noreply.GetValueOrDefault(false));
         }
 
         internal virtual void Continue(ICursor cursor)
         {
-            RunQueryNoreply(Query.continue_(cursor.Token));
+            RunQueryNoreply(Query.Continue(cursor.Token));
         }
 
         internal virtual void Stop(ICursor cursor)
         {
-            RunQueryNoreply(Query.stop(cursor.Token));
+            RunQueryNoreply(Query.Stop(cursor.Token));
         }
 
     }

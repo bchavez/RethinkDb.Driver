@@ -14,45 +14,41 @@ namespace RethinkDb.Driver.Ast
 	/// </summary>
 	public class ReqlAst
 	{
-        protected internal readonly ReqlAst prev;
-        protected internal readonly TermType termType;
-        protected internal readonly Arguments args;
-        protected internal readonly OptArgs optargs;
+	    protected internal ReqlAst Prev { get; }
+	    protected internal TermType TermType { get; }
+	    protected internal Arguments Args { get; }
+	    protected internal OptArgs OptArgs { get; }
 
-        protected internal ReqlAst(ReqlAst prev, TermType termType, Arguments args, OptArgs optargs)
+	    protected internal ReqlAst(ReqlAst prev, TermType termType, Arguments args, OptArgs optargs)
         {
-            this.prev = prev;
-            if( termType == null )
-            {
-                throw new ReqlDriverError("termType can't be null!");
-            }
-            this.termType = termType;
-            this.args = new Arguments();
+            this.Prev = prev;
+            this.TermType = termType;
+            this.Args = new Arguments();
             if( prev != null ) // TopLevel should have prev = null
             { 
-                this.args.Add(prev);
+                this.Args.Add(prev);
             }
             if( args != null )
             {
-                this.args.AddRange(args);
+                this.Args.AddRange(args);
             }
-            this.optargs = optargs != null ? optargs : new OptArgs();
+            this.OptArgs = optargs != null ? optargs : new OptArgs();
         }
 
         protected internal ReqlAst(TermType termType, Arguments args) : this(null, termType, args, null)
         {
         }
 
-        protected internal virtual object build()
+        protected internal virtual object Build()
         {
             // Create a JSON object from the Ast
             JArray list = new JArray();
-            list.Add(termType);
-            if( args.Count > 0 )
+            list.Add(TermType);
+            if( Args.Count > 0 )
             {
-                var collect = args.Select(a =>
+                var collect = Args.Select(a =>
                     {
-                        return a.build();
+                        return a.Build();
                     });
                 list.Add(new JArray(collect));
             }
@@ -61,12 +57,12 @@ namespace RethinkDb.Driver.Ast
                 list.Add(new JArray());
             }
 
-            if( optargs.Count > 0 )
+            if( OptArgs.Count > 0 )
             {
                 JObject joptargs = new JObject();
-                foreach( KeyValuePair<string, ReqlAst> entry in optargs )
+                foreach( KeyValuePair<string, ReqlAst> entry in OptArgs )
                 {
-                    joptargs.Add(entry.Key, (JToken)entry.Value.build());
+                    joptargs.Add(entry.Key, (JToken)entry.Value.Build());
                 }
                 list.Add(joptargs);
             }

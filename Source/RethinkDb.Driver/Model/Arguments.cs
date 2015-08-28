@@ -12,7 +12,7 @@ namespace RethinkDb.Driver.Model
 		}
 		public Arguments(object arg1)
 		{
-			this.Add(Util.toReqlAst(arg1));
+			this.Add(Util.ToReqlAst(arg1));
 		}
 		public Arguments(ReqlAst arg1)
 		{
@@ -25,7 +25,7 @@ namespace RethinkDb.Driver.Model
 
 		public Arguments(IList<object> args)
 		{
-		    var ast = args.Select(o => Util.toReqlAst(o)).ToList();
+		    var ast = args.Select(o => Util.ToReqlAst(o)).ToList();
 			this.AddRange(ast);
 		}
 

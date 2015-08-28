@@ -122,7 +122,7 @@ WriteLiteral(" { get; set; }\r\n");
             
             #line default
             #line hidden
-WriteLiteral("\r\n        public OptArgs toOptArgs(){\r\n             var ret = new OptArgs();\r\n   " +
+WriteLiteral("\r\n        public OptArgs ToOptArgs(){\r\n             var ret = new OptArgs();\r\n   " +
 "         \r\n");
 
 
@@ -152,7 +152,7 @@ WriteLiteral(" != null )\r\n");
 
 WriteLiteral("                    ");
 
-WriteLiteral("ret.with(\"");
+WriteLiteral("ret.With(\"");
 
 
             

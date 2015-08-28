@@ -9,8 +9,6 @@ using NUnit.Framework;
 using Templates.CodeGen;
 using Templates.CodeGen.Specialized;
 using Templates.Metadata;
-using Templates.Utils;
-
 
 namespace Templates
 {

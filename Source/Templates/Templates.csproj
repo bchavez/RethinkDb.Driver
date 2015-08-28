@@ -72,7 +72,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="CodeGen\BaseTemplate.cs" />
-    <Compile Include="CodeGen\EnumTests.cs" />
     <Compile Include="CodeGen\RazorTemplateBase.cs" />
     <Compile Include="CodeGen\Specialized\Iso8601.generated.cs">
       <DependentUpon>Iso8601.cshtml</DependentUpon>

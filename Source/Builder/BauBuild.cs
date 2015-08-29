@@ -26,7 +26,7 @@ namespace Builder
             var buildTasks = new BuildTasks();
 
             new Bau(Arguments.Parse(args))
-                .DependsOn("clean", "build")
+                .DependsOn("clean", "restore", "build")
                 .MSBuild("build").DependsOn("meta")
                 .Do(msb =>
                     {
@@ -65,6 +65,12 @@ namespace Builder
                 .Do(ng =>
                     {
                         ng.Push(Projects.DriverProject.NugetNupkg.ToString())
+                            .WithNuGetExePathOverride(nugetExe.FullName);
+                    })
+                .NuGet("restore")
+                .Do(ng =>
+                    {
+                        ng.Restore(Projects.SolutionFile.ToString())
                             .WithNuGetExePathOverride(nugetExe.FullName);
                     })
 

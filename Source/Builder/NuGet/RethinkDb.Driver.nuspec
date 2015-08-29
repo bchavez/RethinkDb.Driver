@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>RethinkDb.Driver</id>
+    <version>0.0.0.0</version>
+    <authors>Brian Chavez</authors>
+    <owners>Brian Chavez</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/bchavez/RethinkDb.Driver</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/Docs/logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A RethinkDB database driver written in C# striving for 100% API compatibility and completeness.</description>
+    <summary>A RethinkDB database driver written in C# striving for 100% API compatibility and completeness.</summary>
+    <releaseNotes>
+        History: v0.0.0.3
+        * Connection to RethinkDB working.
+
+        v0.0.0.0:
+        * Initial port from Josh's Java Driver.
+    </releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>rethinkdb database driver</tags>
+    <dependencies>
+      <group targetFramework="net45">
+          <dependency id="Newtonsoft.Json" version="[7,8)" />
+      </group>
+    </dependencies>
+  </metadata>
+
+  <files>
+      <file src="RethinkDb.Driver.dll" target="lib\net45" />
+      <file src="RethinkDb.Driver.pdb" target="lib\net45" />
+      <file src="RethinkDb.Driver.XML" target="lib\net45" />
+      <file src="..\Source\RethinkDb.Driver\**\*.cs"
+            exclude="..\Source\RethinkDb.Driver\obj\**" target="src" />
+  </files>
+
+</package>

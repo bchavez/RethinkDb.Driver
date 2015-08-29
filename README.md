@@ -16,7 +16,7 @@ The code here is a one-to-one port of the Java driver. The basic mechanics and
 architecture of both drivers are the same.
 
 ### Download & Install
-**NuGet Package [RethinkDb.Driver](https://www.nuget.org/packages/Bogus/)**
+**NuGet Package [RethinkDb.Driver](https://www.nuget.org/packages/RethinkDb.Driver/)**
 
 ```
 Install-Package RethinkDb.Driver

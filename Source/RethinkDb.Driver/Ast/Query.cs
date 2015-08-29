@@ -1,4 +1,5 @@
 ﻿using System;
+using Common.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
@@ -12,6 +13,7 @@ namespace RethinkDb.Driver.Ast
 	*/
 	public class Query
 	{
+	    private static ILog log = Log.Instance;
 	    public QueryType Type { get; }
 	    public long Token { get; }
 	    public ReqlAst Term { get; }
@@ -63,9 +65,9 @@ namespace RethinkDb.Driver.Ast
 
 			string queryJson = queryArr.ToString(Formatting.None);
 
-			Console.WriteLine($"Sending: Token: {Token}, JSON: {queryJson}"); //RSI
+		    log.Debug($"Sending: Token: {Token}, JSON: {queryJson}");//RSI
 
-			return queryJson;
+            return queryJson;
 		}
 	}
 

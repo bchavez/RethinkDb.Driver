@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Threading;
+using Common.Logging;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 
@@ -9,6 +10,7 @@ namespace RethinkDb.Driver.Net
 {
     public class Connection
     {
+        private static ILog log = Log.Instance;
         // public immutable
         public readonly string hostname;
         public readonly int port;
@@ -154,7 +156,7 @@ namespace RethinkDb.Driver.Net
             Response res = inst.ReadResponse(query.Token);
 
             // TODO: This logic needs to move into the Response class
-            Console.WriteLine(res.ToString()); //RSI
+            log.Debug(res.ToString()); //RSI
             if( res.Atom )
             {
                 try

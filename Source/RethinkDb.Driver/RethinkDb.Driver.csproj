@@ -35,6 +35,14 @@
     <DocumentationFile>bin\Release\RethinkDb.Driver.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.2.0\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -260,6 +268,7 @@
     <Compile Include="Generated\ReqlResourceLimitError.cs" />
     <Compile Include="Generated\ReqlRuntimeError.cs" />
     <Compile Include="Generated\ReqlUserError.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Model\Arguments.cs" />
     <Compile Include="Model\Backtrace.cs" />
     <Compile Include="Model\MapObject.cs" />

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Common.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
@@ -10,6 +10,7 @@ namespace RethinkDb.Driver.Net
 {
     public class Response
 	{
+        private static ILog log = Log.Instance;
         public long Token { get; }
         public ResponseType Type1 { get; }
         public List<ResponseNote> Notes { get; }
@@ -24,7 +25,7 @@ namespace RethinkDb.Driver.Net
 		{
 			//Console.WriteLine("Received: " + buf);
 		    var jsonResp = JObject.Parse(buf);
-            Console.WriteLine("Received: " + jsonResp);
+            log.Debug("Received: " + jsonResp);
             var responseType = jsonResp["t"].ToObject<ResponseType>();
 		    var responseNotes = jsonResp["n"]?.ToObject<List<ResponseNote>>() ?? new List<ResponseNote>();
 			ErrorType? et = jsonResp["e"]?.ToObject<ErrorType>();

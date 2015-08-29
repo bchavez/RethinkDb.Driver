@@ -45,7 +45,7 @@ Building
 
 #### Prerequisites
 * [Visual Studio 2015 Community](https://www.visualstudio.com/vs-2015-product-editions) or higher
-* NuGet Package Command Line installed in PATH [(via NuGet.org)](http://docs.nuget.org/consume/installing-nuget) or [(via Chocolatey)](https://chocolatey.org/packages/NuGet.CommandLine)
+* NuGet Package Command Line installed in your PATH [via NuGet.org](http://docs.nuget.org/consume/installing-nuget) or [via Chocolatey](https://chocolatey.org/packages/NuGet.CommandLine).
 
 #### Build Commands
 * `git clone https://github.com/bchavez/RethinkDb.Driver.git`
@@ -60,7 +60,7 @@ The following folders at the root level be generated:
 * `__package` - Contains the result of the packaging process.
 
 #### Project Structure
-* `Source\Builder` - Primary location where build tasks are defined. See `BauBuild.cs`.
+* `Source\Builder` - Primary location where build tasks are defined. See [`Source\Builder\BauBuild.cs`](https://github.com/bchavez/RethinkDb.Driver/blob/master/Source/Builder/BauBuild.cs).
 * `Source\RethinkDb.Driver` - The RethinkDB C# driver.
 * `Source\RethinkDb.Driver.Tests` - Driver unit tests.
 * `Source\Templates` - Code generation templates.
@@ -84,8 +84,9 @@ If you wish to update / refresh the AST classes (and enums) from `ql2.proto` you
 need to generate the updated `*.json` files from `metajava.py` over in the Java driver. Then
 copy/update/overwrite the `*.json` files into `Source/Templates/Metadata`.
 
-Next, run the unit test `Generate_All` inside [Source/Templates/Generator.cs](https://github.com/bchavez/RethinkDb.Driver/blob/master/Source/Templates/Generator.cs)
-and the AST classes will be re-generated.
+* `build codegen` - Rebuilds C# AST classes.
+
+The `build codegen` task will regenerate all the AST C# classes; which in effect runs `Templates\Generator.cs:Generate_All()`.
 
 #### CodeGen Templates
 

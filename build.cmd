@@ -9,7 +9,9 @@ IF NOT DEFINED DevEnvDir (
 	)
 )
 
-msbuild source\Builder\Builder.csproj
+nuget restore Source\RethinkDb.Driver.sln
+
+msbuild Source\Builder\Builder.csproj
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 ECHO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -48,12 +48,12 @@ Building
 * NuGet Package Command Line installed in PATH [(via NuGet.org)](http://docs.nuget.org/consume/installing-nuget) or [(via Chocolatey)](https://chocolatey.org/packages/NuGet.CommandLine)
 
 #### Build Commands
-* git clone https://github.com/bchavez/RethinkDb.Driver.git
-* cd RethinkDb.Driver
-* build
+* `git clone https://github.com/bchavez/RethinkDb.Driver.git`
+* `cd RethinkDb.Driver`
+* `build`
 
 If you want to build the nuget package, run:
-* build pack
+* `build pack`
 
 The following folders at the root level be generated:
 * `__compile` - contains the result of the build process

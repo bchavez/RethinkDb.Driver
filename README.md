@@ -56,8 +56,14 @@ If you want to build the nuget package, run:
 * `build pack`
 
 The following folders at the root level be generated:
-* `__compile` - contains the result of the build process
-* `__package` - contains the result of the packaging process
+* `__compile` - Contains the result of the build process.
+* `__package` - Contains the result of the packaging process.
+
+#### Project Structure
+* `Source\Builder` - Primary location where build tasks are defined. See `BauBuild.cs`.
+* `Source\RethinkDb.Driver` - The RethinkDB C# driver.
+* `Source\RethinkDb.Driver.Tests` - Driver unit tests.
+* `Source\Templates` - Code generation templates.
 
 #### Build Process
 

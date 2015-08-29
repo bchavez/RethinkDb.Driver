@@ -3,13 +3,24 @@ using System.IO;
 using BauCore;
 using BauMSBuild;
 using BauNuGet;
-using Builder.Tasks;
+using Builder.Extensions;
 using FluentAssertions;
+using FluentBuild;
+using Templates.Metadata;
 
 namespace Builder
 {
     public static class BauBuild
     {
+        //Build Tasks
+        public const string Build = "build";
+        public const string Clean = "clean";
+        public const string Restore = "restore";
+        public const string BuildInfo = "buildinfo";
+        public const string CodeGen = "codegen";
+        public const string Pack = "pack";
+        public const string Push = "push";
+
         public static void Main(string[] args)
         {
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
@@ -23,15 +34,13 @@ namespace Builder
 
             var nugetExe = FindNugetExe();
 
-            var buildTasks = new BuildTasks();
-
             new Bau(Arguments.Parse(args))
-                .DependsOn("clean", "restore", "build")
-                .MSBuild("build").DependsOn("meta")
+                .DependsOn(Clean, Restore, Build)
+                .MSBuild(Build).Desc("Invokes MSBuild to build solution")
+                .DependsOn(BuildInfo, CodeGen)
                 .Do(msb =>
                     {
                         msb.ToolsVersion = "14.0";
-                        //msb.MSBuildVersion = "net45";
                         msb.Solution = Projects.SolutionFile.ToString();
                         msb.Properties = new
                             {
@@ -40,16 +49,37 @@ namespace Builder
                             };
                         msb.Targets = new[] {"Rebuild"};
                     })
-                .Task("meta").Do(() =>
+                .Task(BuildInfo).Desc("Creates dynamic AssemblyInfos for projects")
+                .Do(() =>
                     {
-                        buildTasks.Meta();
+                        Task.CreateAssemblyInfo.Language.CSharp(aid =>
+                            {
+                                Projects.DriverProject.AssemblyInfo(aid);
+                                var outputPath = Projects.DriverProject.Folder.SubFolder("Properties").File("AssemblyInfo.cs");
+                                Console.WriteLine($"Creating AssemblyInfo file: {outputPath}");
+                                aid.OutputPath(outputPath);
+                            });
                     })
-                .Task("clean").Do(() =>
+                .Task(CodeGen).Desc("Regenerates C# AST classes")
+                .Do(() =>
                     {
-                        buildTasks.Clean();
+                        Directory.SetCurrentDirectory(Projects.DriverProject.Folder.ToString());
+                        MetaDb.Initialize(Projects.TemplatesProject.Metadata.ToString());
+
+                        var gen = new Templates.Generator();
+                        gen.EnsurePathsExist();
+                        gen.Generate_All();
                     })
-                .NuGet("pack").DependsOn("build")
-                .Do(ng =>
+                .Task(Clean).Desc("Cleans project files")
+                .Do(() =>
+                    {
+                        Console.WriteLine($"Removing {Folders.CompileOutput}");
+                        Folders.CompileOutput.Wipe();
+                        Console.WriteLine($"Removing {Folders.Package}");
+                        Folders.Package.Wipe();
+                    })
+                .NuGet(Pack).Desc("Packs NuGet packages")
+                .DependsOn(Build).Do(ng =>
                     {
                         ng.Pack(Projects.DriverProject.NugetSpec.ToString(),
                             p =>
@@ -61,13 +91,13 @@ namespace Builder
                                 })
                             .WithNuGetExePathOverride(nugetExe.FullName);
                     })
-                .NuGet("push").DependsOn("pack")
-                .Do(ng =>
+                .NuGet(Push).Desc("Pushes NuGet packages")
+                .DependsOn(Pack).Do(ng =>
                     {
                         ng.Push(Projects.DriverProject.NugetNupkg.ToString())
                             .WithNuGetExePathOverride(nugetExe.FullName);
                     })
-                .NuGet("restore")
+                .NuGet(Restore).Desc("Restores NuGet packages")
                 .Do(ng =>
                     {
                         ng.Restore(Projects.SolutionFile.ToString())

@@ -40,7 +40,7 @@ namespace Templates
             }
         }
 
-        private void EnsurePathsExist()
+        public void EnsurePathsExist()
         {
             if( !Directory.Exists(GenerateRootDir) )
                 Directory.CreateDirectory(GenerateRootDir);

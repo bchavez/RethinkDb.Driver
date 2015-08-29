@@ -59,6 +59,14 @@ namespace Builder
                     };
         }
 
+        public class TemplatesProject
+        {
+            public const string Name = "Templates";
+            public static readonly Directory Folder = Folders.Source.SubFolder(Name);
+            public static readonly File ProjectFile = Folder.File($"{Name}.csproj");
+            public static readonly Directory Metadata = Folder.SubFolder("Metadata");
+        }
+
         public class Tests
         {
             public static readonly Directory Folder = Folders.Source.SubFolder( "RethinkDb.Driver.Tests" );

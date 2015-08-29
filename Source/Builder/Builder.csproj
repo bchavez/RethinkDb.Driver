@@ -89,13 +89,18 @@
     <Compile Include="BuildSettings.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tasks\BuildTasks.cs" />
+    <Compile Include="Testing.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NuGet\RethinkDb.Driver.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Templates\Templates.csproj">
+      <Project>{37c1ccf5-f8da-4f56-93ab-c2f6bafb01b4}</Project>
+      <Name>Templates</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

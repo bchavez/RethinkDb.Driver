@@ -1,3 +1,6 @@
+<img src="https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/Docs/logo.png" align='right' />
+![Build Status](https://bchavez.visualstudio.com/DefaultCollection/_apis/public/build/definitions/0e63b37e-487a-4bcd-83d7-c43e7feb96af/3/badge) ![Nuget](https://img.shields.io/nuget/v/RethinkDb.Driver.svg) ![Users](https://img.shields.io/nuget/dt/RethinkDb.Driver.svg) ![Twitter](https://img.shields.io/twitter/url/https/github.com/bchavez/RethinkDb.Driver.svg?style=social)
+
 # RethinkDb.Driver
 A RethinkDB database driver written in C# striving for 100% API compatibility and completeness.
 

@@ -60,7 +60,7 @@ The following folders at the root level be generated:
 * `__package` - Contains the result of the packaging process.
 
 #### Project Structure
-* `Source\Builder` - Primary location where build tasks are defined. See [`Source\Builder\BauBuild.cs`](https://github.com/bchavez/RethinkDb.Driver/blob/master/Source/Builder/BauBuild.cs).
+* `Source\Builder` - Primary location where build tasks are defined. See [`BauBuild.cs`](https://github.com/bchavez/RethinkDb.Driver/blob/master/Source/Builder/BauBuild.cs).
 * `Source\RethinkDb.Driver` - The RethinkDB C# driver.
 * `Source\RethinkDb.Driver.Tests` - Driver unit tests.
 * `Source\Templates` - Code generation templates.

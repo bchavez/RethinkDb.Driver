@@ -1,4 +1,3 @@
-using Humanizer;
 using RazorGenerator.Templating;
 
 namespace Templates.CodeGen
@@ -7,22 +6,27 @@ namespace Templates.CodeGen
     {
         public string Class(string str)
         {
-            return str.Pascalize();
+            return str.ClassName();
         }
 
         public string Method(string str)
         {
-            return str.Camelize();
+            return str.MethodName();
         }
 
         public string Property(string str)
         {
-            return str.Pascalize();
+            return str.PropertyName();
         }
 
-        public string Argument(string str)
+        public string ArgumentVariable(string str)
         {
-            return str.Camelize();
+            return str.ArgumentName();
+        }
+
+        public string ArgumentType(string str)
+        {
+            return str.ArgumentTypeName();
         }
 
         public RazorTemplateBase ChildTemplate { get; set; }

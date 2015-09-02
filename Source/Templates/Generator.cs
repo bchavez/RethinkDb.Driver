@@ -175,7 +175,7 @@ namespace Templates
             tmpl.ClassName = className;
             tmpl.Superclass = superClass;
             tmpl.IncludeIn = includeIn;
-            tmpl.Meta = meta;
+            tmpl.AllTerms = meta;
 
             File.WriteAllText(Path.Combine(AstClasses, $"{className.Pascalize()}.cs"), tmpl.TransformText());
         }

@@ -54,8 +54,8 @@ namespace RethinkDb.Driver.Model {
         
         @foreach( var kvp in OptArgs )
         {
-            @:public static GlobalOptions @("with"+Class(kvp.Key)) (@ReqlToNativeType(kvp.Value) @Argument(kvp.Key ) ){
-                @:return new GlobalOptions{ @(Property(kvp.Key) + " = " + Argument(kvp.Key)) };
+            @:public static GlobalOptions @("with"+Class(kvp.Key)) (@ReqlToNativeType(kvp.Value) @ArgumentVariable(kvp.Key ) ){
+                @:return new GlobalOptions{ @(Property(kvp.Key) + " = " + ArgumentVariable(kvp.Key)) };
             @:}
         }
     

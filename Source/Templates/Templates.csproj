@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeGen\CSharpStyle.cs" />
     <Compile Include="CodeGen\EnumStringTemplate.generated.cs">
       <DependentUpon>EnumStringTemplate.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>

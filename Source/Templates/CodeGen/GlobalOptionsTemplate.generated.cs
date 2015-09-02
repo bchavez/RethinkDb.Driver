@@ -221,7 +221,7 @@ WriteLiteral(" ");
 
             
             #line 57 "..\..\CodeGen\GlobalOptionsTemplate.cshtml"
-                                                                                            Write(Argument(kvp.Key ));
+                                                                                            Write(ArgumentVariable(kvp.Key ));
 
             
             #line default
@@ -237,7 +237,7 @@ WriteLiteral("return new GlobalOptions{ ");
 
             
             #line 58 "..\..\CodeGen\GlobalOptionsTemplate.cshtml"
-                                        Write(Property(kvp.Key) + " = " + Argument(kvp.Key));
+                                        Write(Property(kvp.Key) + " = " + ArgumentVariable(kvp.Key));
 
             
             #line default

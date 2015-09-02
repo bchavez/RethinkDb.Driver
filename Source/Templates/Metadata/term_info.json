@@ -756,7 +756,7 @@
         ],
         "signatures": [
             ["T_EXPR", "T_EXPR", "*"],
-            ["T_EXPR", "T_EXPR", "*", "T_FUNCX"]
+            ["T_FUNCX", "T_EXPR", "T_EXPR", "*"]
         ],
         "id": 64
     },
@@ -1337,5 +1337,10 @@
         ],
         "signatures": [[]],
         "id": 181
+    },
+    "VALUES": {
+        "include_in": ["T_EXPR"],
+        "signatures": [["T_EXPR"]],
+        "id": 186
     }
 }

@@ -14,11 +14,12 @@ namespace Templates.Metadata
             Protocol = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Path.Combine(pathToJson, "proto_basic.json")));
             Global = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Path.Combine(pathToJson, "global_info.json")));
             TermInfo = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Path.Combine(pathToJson, "term_info.json")));
-            
+            JavaTermInfo = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Path.Combine(pathToJson, "java_term_info.json")));
         }
 
         public static JObject Protocol;
         public static JObject Global;
         public static JObject TermInfo;
+        public static JObject JavaTermInfo { get; set; }
     }
 }

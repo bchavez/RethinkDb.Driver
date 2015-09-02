@@ -159,7 +159,7 @@ WriteLiteral("public ");
             
             #line default
             #line hidden
-WriteLiteral(" (Arguments args, OptArgs optargs) : this(null, args, optargs) {\r\n");
+WriteLiteral(" (Arguments args) : this(null, args, optargs) {\r\n");
 
 
 
@@ -181,7 +181,7 @@ WriteLiteral("public ");
             
             #line default
             #line hidden
-WriteLiteral(" (ReqlAst prev, Arguments args, OptArgs optargs)\r\n");
+WriteLiteral(" (Arguments args, OptArgs optargs)\r\n");
 
 
 
@@ -223,8 +223,8 @@ WriteLiteral("\r\n    protected ");
             
             #line default
             #line hidden
-WriteLiteral(" (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(pr" +
-"evious, termType, args, optargs)\r\n    {\r\n    }\r\n");
+WriteLiteral(" (TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, " +
+"args, optargs)\r\n    {\r\n    }\r\n");
 
 
 });

@@ -1,0 +1,4697 @@
+{
+  "DATUM": {
+    "include_in": [], 
+    "id": 1, 
+    "methodname": "datum", 
+    "classname": "Datum", 
+    "superclass": "ReqlExpr", 
+    "signatures": []
+  }, 
+  "MAKE_ARRAY": {
+    "include_in": [], 
+    "id": 2, 
+    "methodname": "makeArray", 
+    "classname": "MakeArray", 
+    "superclass": "ReqlExpr", 
+    "signatures": []
+  }, 
+  "MAKE_OBJ": {
+    "include_in": [], 
+    "id": 3, 
+    "methodname": "makeObj", 
+    "classname": "MakeObj", 
+    "superclass": "ReqlExpr", 
+    "signatures": []
+  }, 
+  "VAR": {
+    "include_in": [], 
+    "id": 10, 
+    "methodname": "var", 
+    "classname": "Var", 
+    "superclass": "ReqlExpr", 
+    "signatures": []
+  }, 
+  "JAVASCRIPT": {
+    "alias": "js", 
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "timeout": "T_NUM"
+    }, 
+    "id": 11, 
+    "methodname": "js", 
+    "classname": "Javascript", 
+    "superclass": "ReqlExpr"
+  }, 
+  "UUID": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 169, 
+    "methodname": "uuid", 
+    "classname": "Uuid", 
+    "superclass": "ReqlExpr"
+  }, 
+  "HTTP": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "timeout": "T_NUM", 
+      "reattempts": "T_NUM", 
+      "redirects": "T_NUM", 
+      "verify": "T_BOOL", 
+      "result_format": "E_RESULT_FORMAT", 
+      "method": "E_HTTP_METHOD", 
+      "auth": {
+        "type": "E_AUTH_TYPE", 
+        "user": "T_STR", 
+        "pass": "T_STR"
+      }, 
+      "params": "T_OBJECT", 
+      "header": [
+        "T_ARRAY", 
+        "T_OBJECT"
+      ], 
+      "data": [
+        "T_STR", 
+        "T_OBJECT"
+      ]
+    }, 
+    "id": 153, 
+    "methodname": "http", 
+    "classname": "Http", 
+    "superclass": "ReqlExpr"
+  }, 
+  "ERROR": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 12, 
+    "methodname": "error", 
+    "classname": "Error", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DB": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 14, 
+    "methodname": "db", 
+    "classname": "Db", 
+    "superclass": "ReqlAst"
+  }, 
+  "TABLE": {
+    "include_in": [
+      "TopLevel", 
+      "Db"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "Db", 
+        "args": [
+          {
+            "var": "db", 
+            "type": "Db"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "read_mode": "E_READ_MODE", 
+      "identifier_format": "E_IDENTIFIER_FORMAT"
+    }, 
+    "id": 15, 
+    "methodname": "table", 
+    "classname": "Table", 
+    "superclass": "ReqlExpr"
+  }, 
+  "GET": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 16, 
+    "methodname": "get", 
+    "classname": "Get", 
+    "superclass": "ReqlExpr"
+  }, 
+  "GET_ALL": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "index": "T_STR"
+    }, 
+    "id": 78, 
+    "methodname": "getAll", 
+    "classname": "GetAll", 
+    "superclass": "ReqlExpr"
+  }, 
+  "EQ": {
+    "binop": true, 
+    "comparison": true, 
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 17, 
+    "methodname": "eq", 
+    "classname": "Eq", 
+    "superclass": "ReqlExpr"
+  }, 
+  "NE": {
+    "binop": true, 
+    "comparison": true, 
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 18, 
+    "methodname": "ne", 
+    "classname": "Ne", 
+    "superclass": "ReqlExpr"
+  }, 
+  "LT": {
+    "binop": true, 
+    "comparison": true, 
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 19, 
+    "methodname": "lt", 
+    "classname": "Lt", 
+    "superclass": "ReqlExpr"
+  }, 
+  "LE": {
+    "binop": true, 
+    "comparison": true, 
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 20, 
+    "methodname": "le", 
+    "classname": "Le", 
+    "superclass": "ReqlExpr"
+  }, 
+  "GT": {
+    "binop": true, 
+    "comparison": true, 
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 21, 
+    "methodname": "gt", 
+    "classname": "Gt", 
+    "superclass": "ReqlExpr"
+  }, 
+  "GE": {
+    "binop": true, 
+    "comparison": true, 
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 22, 
+    "methodname": "ge", 
+    "classname": "Ge", 
+    "superclass": "ReqlExpr"
+  }, 
+  "NOT": {
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 23, 
+    "methodname": "not", 
+    "classname": "Not", 
+    "superclass": "ReqlExpr"
+  }, 
+  "ADD": {
+    "binop": true, 
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 24, 
+    "methodname": "add", 
+    "classname": "Add", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SUB": {
+    "binop": true, 
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 25, 
+    "methodname": "sub", 
+    "classname": "Sub", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MUL": {
+    "binop": true, 
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 26, 
+    "methodname": "mul", 
+    "classname": "Mul", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DIV": {
+    "binop": true, 
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 27, 
+    "methodname": "div", 
+    "classname": "Div", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MOD": {
+    "binop": true, 
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 28, 
+    "methodname": "mod", 
+    "classname": "Mod", 
+    "superclass": "ReqlExpr"
+  }, 
+  "FLOOR": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 183, 
+    "methodname": "floor", 
+    "classname": "Floor", 
+    "superclass": "ReqlExpr"
+  }, 
+  "CEIL": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 184, 
+    "methodname": "ceil", 
+    "classname": "Ceil", 
+    "superclass": "ReqlExpr"
+  }, 
+  "ROUND": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 185, 
+    "methodname": "round", 
+    "classname": "Round", 
+    "superclass": "ReqlExpr"
+  }, 
+  "APPEND": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 29, 
+    "methodname": "append", 
+    "classname": "Append", 
+    "superclass": "ReqlExpr"
+  }, 
+  "PREPEND": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 80, 
+    "methodname": "prepend", 
+    "classname": "Prepend", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DIFFERENCE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 95, 
+    "methodname": "difference", 
+    "classname": "Difference", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SET_INSERT": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 88, 
+    "methodname": "setInsert", 
+    "classname": "SetInsert", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SET_INTERSECTION": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 89, 
+    "methodname": "setIntersection", 
+    "classname": "SetIntersection", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SET_UNION": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 90, 
+    "methodname": "setUnion", 
+    "classname": "SetUnion", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SET_DIFFERENCE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 91, 
+    "methodname": "setDifference", 
+    "classname": "SetDifference", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SLICE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "left_bound": "E_BOUND", 
+      "right_bound": "E_BOUND"
+    }, 
+    "id": 30, 
+    "methodname": "slice", 
+    "classname": "Slice", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SKIP": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 70, 
+    "methodname": "skip", 
+    "classname": "Skip", 
+    "superclass": "ReqlExpr"
+  }, 
+  "LIMIT": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 71, 
+    "methodname": "limit", 
+    "classname": "Limit", 
+    "superclass": "ReqlExpr"
+  }, 
+  "OFFSETS_OF": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "id": 87, 
+    "methodname": "offsetsOf", 
+    "classname": "OffsetsOf", 
+    "superclass": "ReqlExpr"
+  }, 
+  "CONTAINS": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }, 
+          {
+            "var": "func1A", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "id": 93, 
+    "methodname": "contains", 
+    "classname": "Contains", 
+    "superclass": "ReqlExpr"
+  }, 
+  "GET_FIELD": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 31, 
+    "methodname": "getField", 
+    "classname": "GetField", 
+    "superclass": "ReqlExpr"
+  }, 
+  "KEYS": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 94, 
+    "methodname": "keys", 
+    "classname": "Keys", 
+    "superclass": "ReqlExpr"
+  }, 
+  "OBJECT": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 143, 
+    "methodname": "object", 
+    "classname": "ReqlObject", 
+    "superclass": "ReqlExpr"
+  }, 
+  "HAS_FIELDS": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 32, 
+    "methodname": "hasFields", 
+    "classname": "HasFields", 
+    "superclass": "ReqlExpr"
+  }, 
+  "WITH_FIELDS": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 96, 
+    "methodname": "withFields", 
+    "classname": "WithFields", 
+    "superclass": "ReqlExpr"
+  }, 
+  "PLUCK": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 33, 
+    "methodname": "pluck", 
+    "classname": "Pluck", 
+    "superclass": "ReqlExpr"
+  }, 
+  "WITHOUT": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 34, 
+    "methodname": "without", 
+    "classname": "Without", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MERGE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }, 
+          {
+            "var": "func1A", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "id": 35, 
+    "methodname": "merge", 
+    "classname": "Merge", 
+    "superclass": "ReqlExpr"
+  }, 
+  "BETWEEN_DEPRECATED": {
+    "deprecated": true, 
+    "include_in": [], 
+    "id": 36, 
+    "methodname": "betweenDeprecated", 
+    "classname": "BetweenDeprecated", 
+    "superclass": "ReqlExpr", 
+    "signatures": []
+  }, 
+  "BETWEEN": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "index": "T_STR", 
+      "left_bound": "E_BOUND", 
+      "right_bound": "E_BOUND"
+    }, 
+    "id": 182, 
+    "methodname": "between", 
+    "classname": "Between", 
+    "superclass": "ReqlExpr"
+  }, 
+  "REDUCE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func2", 
+            "type": "ReqlFunction2"
+          }
+        ]
+      }
+    ], 
+    "id": 37, 
+    "methodname": "reduce", 
+    "classname": "Reduce", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MAP": {
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func2", 
+            "type": "ReqlFunction2"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func3", 
+            "type": "ReqlFunction3"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprC", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func4", 
+            "type": "ReqlFunction4"
+          }
+        ]
+      }
+    ], 
+    "id": 38, 
+    "methodname": "map", 
+    "classname": "Map", 
+    "superclass": "ReqlExpr"
+  }, 
+  "FILTER": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "default": "T_EXPR"
+    }, 
+    "id": 39, 
+    "methodname": "filter", 
+    "classname": "Filter", 
+    "superclass": "ReqlExpr"
+  }, 
+  "CONCAT_MAP": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "id": 40, 
+    "methodname": "concatMap", 
+    "classname": "ConcatMap", 
+    "superclass": "ReqlExpr"
+  }, 
+  "ORDER_BY": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "index": "T_EXPR"
+    }, 
+    "id": 41, 
+    "methodname": "orderBy", 
+    "classname": "OrderBy", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DISTINCT": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "index": "T_STR"
+    }, 
+    "id": 42, 
+    "methodname": "distinct", 
+    "classname": "Distinct", 
+    "superclass": "ReqlExpr"
+  }, 
+  "COUNT": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "id": 43, 
+    "methodname": "count", 
+    "classname": "Count", 
+    "superclass": "ReqlExpr"
+  }, 
+  "IS_EMPTY": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 86, 
+    "methodname": "isEmpty", 
+    "classname": "IsEmpty", 
+    "superclass": "ReqlExpr"
+  }, 
+  "UNION": {
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 44, 
+    "methodname": "union", 
+    "classname": "Union", 
+    "superclass": "ReqlExpr"
+  }, 
+  "NTH": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 45, 
+    "methodname": "nth", 
+    "classname": "Nth", 
+    "superclass": "ReqlExpr"
+  }, 
+  "BRACKET": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 170, 
+    "methodname": "bracket", 
+    "classname": "Bracket", 
+    "superclass": "ReqlExpr"
+  }, 
+  "INNER_JOIN": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func2", 
+            "type": "ReqlFunction2"
+          }
+        ]
+      }
+    ], 
+    "id": 48, 
+    "methodname": "innerJoin", 
+    "classname": "InnerJoin", 
+    "superclass": "ReqlExpr"
+  }, 
+  "OUTER_JOIN": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func2", 
+            "type": "ReqlFunction2"
+          }
+        ]
+      }
+    ], 
+    "id": 49, 
+    "methodname": "outerJoin", 
+    "classname": "OuterJoin", 
+    "superclass": "ReqlExpr"
+  }, 
+  "EQ_JOIN": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "index": "T_STR"
+    }, 
+    "id": 50, 
+    "methodname": "eqJoin", 
+    "classname": "EqJoin", 
+    "superclass": "ReqlExpr"
+  }, 
+  "ZIP": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 72, 
+    "methodname": "zip", 
+    "classname": "Zip", 
+    "superclass": "ReqlExpr"
+  }, 
+  "RANGE": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 173, 
+    "methodname": "range", 
+    "classname": "Range", 
+    "superclass": "ReqlExpr"
+  }, 
+  "INSERT_AT": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 82, 
+    "methodname": "insertAt", 
+    "classname": "InsertAt", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DELETE_AT": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 83, 
+    "methodname": "deleteAt", 
+    "classname": "DeleteAt", 
+    "superclass": "ReqlExpr"
+  }, 
+  "CHANGE_AT": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 84, 
+    "methodname": "changeAt", 
+    "classname": "ChangeAt", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SPLICE_AT": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 85, 
+    "methodname": "spliceAt", 
+    "classname": "SpliceAt", 
+    "superclass": "ReqlExpr"
+  }, 
+  "COERCE_TO": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 51, 
+    "methodname": "coerceTo", 
+    "classname": "CoerceTo", 
+    "superclass": "ReqlExpr"
+  }, 
+  "TYPE_OF": {
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 52, 
+    "methodname": "typeOf", 
+    "classname": "TypeOf", 
+    "superclass": "ReqlExpr"
+  }, 
+  "UPDATE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "durability": "E_DURABILITY", 
+      "return_changes": [
+        "T_BOOL", 
+        "always"
+      ], 
+      "non_atomic": "T_BOOL"
+    }, 
+    "id": 53, 
+    "methodname": "update", 
+    "classname": "Update", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DELETE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "durability": "E_DURABILITY", 
+      "return_changes": [
+        "T_BOOL", 
+        "always"
+      ]
+    }, 
+    "id": 54, 
+    "methodname": "delete", 
+    "classname": "Delete", 
+    "superclass": "ReqlExpr"
+  }, 
+  "REPLACE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "durability": "E_DURABILITY", 
+      "return_changes": [
+        "T_BOOL", 
+        "always"
+      ], 
+      "non_atomic": "T_BOOL"
+    }, 
+    "id": 55, 
+    "methodname": "replace", 
+    "classname": "Replace", 
+    "superclass": "ReqlExpr"
+  }, 
+  "INSERT": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "durability": "E_DURABILITY", 
+      "return_changes": [
+        "T_BOOL", 
+        "always"
+      ], 
+      "conflict": "E_CONFLICT"
+    }, 
+    "id": 56, 
+    "methodname": "insert", 
+    "classname": "Insert", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DB_CREATE": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 57, 
+    "methodname": "dbCreate", 
+    "classname": "DbCreate", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DB_DROP": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 58, 
+    "methodname": "dbDrop", 
+    "classname": "DbDrop", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DB_LIST": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 59, 
+    "methodname": "dbList", 
+    "classname": "DbList", 
+    "superclass": "ReqlExpr"
+  }, 
+  "TABLE_CREATE": {
+    "include_in": [
+      "TopLevel", 
+      "Db"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Db", 
+        "args": [
+          {
+            "var": "db", 
+            "type": "Db"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "primary_key": "T_STR", 
+      "durability": "E_DURABILITY", 
+      "shards": "T_NUM", 
+      "replicas": [
+        "T_NUM", 
+        "T_OBJECT"
+      ], 
+      "primary_replica_tag": "T_STR"
+    }, 
+    "id": 60, 
+    "methodname": "tableCreate", 
+    "classname": "TableCreate", 
+    "superclass": "ReqlExpr"
+  }, 
+  "TABLE_DROP": {
+    "include_in": [
+      "TopLevel", 
+      "Db"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "Db", 
+        "args": [
+          {
+            "var": "db", 
+            "type": "Db"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 61, 
+    "methodname": "tableDrop", 
+    "classname": "TableDrop", 
+    "superclass": "ReqlExpr"
+  }, 
+  "TABLE_LIST": {
+    "include_in": [
+      "TopLevel", 
+      "Db"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Db", 
+        "args": [
+          {
+            "var": "db", 
+            "type": "Db"
+          }
+        ]
+      }
+    ], 
+    "id": 62, 
+    "methodname": "tableList", 
+    "classname": "TableList", 
+    "superclass": "ReqlExpr"
+  }, 
+  "CONFIG": {
+    "include_in": [
+      "Db", 
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Db", 
+        "args": [
+          {
+            "var": "db", 
+            "type": "Db"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }
+        ]
+      }
+    ], 
+    "id": 174, 
+    "methodname": "config", 
+    "classname": "Config", 
+    "superclass": "ReqlExpr"
+  }, 
+  "STATUS": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }
+        ]
+      }
+    ], 
+    "id": 175, 
+    "methodname": "status", 
+    "classname": "Status", 
+    "superclass": "ReqlExpr"
+  }, 
+  "WAIT": {
+    "include_in": [
+      "TopLevel", 
+      "Db", 
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }, 
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "Db", 
+        "args": [
+          {
+            "var": "db", 
+            "type": "Db"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "wait_for": "E_STATUS", 
+      "timeout": "T_NUM"
+    }, 
+    "id": 177, 
+    "methodname": "wait_", 
+    "classname": "Wait", 
+    "superclass": "ReqlExpr"
+  }, 
+  "RECONFIGURE": {
+    "include_in": [
+      "TopLevel", 
+      "Db", 
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }, 
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "Db", 
+        "args": [
+          {
+            "var": "db", 
+            "type": "Db"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "shards": "T_NUM", 
+      "replicas": [
+        "T_OBJECT", 
+        "T_NUM"
+      ], 
+      "primary_replica_tag": "T_STR", 
+      "dry_run": "T_BOOL", 
+      "nonvoting_replica_tags": "T_ARRAY", 
+      "emergency_repair": "E_EMERGENCY_REPAIR"
+    }, 
+    "id": 176, 
+    "methodname": "reconfigure", 
+    "classname": "Reconfigure", 
+    "superclass": "ReqlExpr"
+  }, 
+  "REBALANCE": {
+    "include_in": [
+      "TopLevel", 
+      "Db", 
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }, 
+      {
+        "first_arg": "Db", 
+        "args": [
+          {
+            "var": "db", 
+            "type": "Db"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }
+        ]
+      }
+    ], 
+    "id": 179, 
+    "methodname": "rebalance", 
+    "classname": "Rebalance", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SYNC": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }
+        ]
+      }
+    ], 
+    "id": 138, 
+    "methodname": "sync", 
+    "classname": "Sync", 
+    "superclass": "ReqlExpr"
+  }, 
+  "INDEX_CREATE": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "multi": "T_BOOL", 
+      "geo": "T_BOOL"
+    }, 
+    "id": 75, 
+    "methodname": "indexCreate", 
+    "classname": "IndexCreate", 
+    "superclass": "ReqlExpr"
+  }, 
+  "INDEX_DROP": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 76, 
+    "methodname": "indexDrop", 
+    "classname": "IndexDrop", 
+    "superclass": "ReqlExpr"
+  }, 
+  "INDEX_LIST": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }
+        ]
+      }
+    ], 
+    "id": 77, 
+    "methodname": "indexList", 
+    "classname": "IndexList", 
+    "superclass": "ReqlExpr"
+  }, 
+  "INDEX_STATUS": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 139, 
+    "methodname": "indexStatus", 
+    "classname": "IndexStatus", 
+    "superclass": "ReqlExpr"
+  }, 
+  "INDEX_WAIT": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 140, 
+    "methodname": "indexWait", 
+    "classname": "IndexWait", 
+    "superclass": "ReqlExpr"
+  }, 
+  "INDEX_RENAME": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "overwrite": "T_BOOL"
+    }, 
+    "id": 156, 
+    "methodname": "indexRename", 
+    "classname": "IndexRename", 
+    "superclass": "ReqlExpr"
+  }, 
+  "FUNCALL": {
+    "alias": "do", 
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func2", 
+            "type": "ReqlFunction2"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func3", 
+            "type": "ReqlFunction3"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprC", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func4", 
+            "type": "ReqlFunction4"
+          }
+        ]
+      }
+    ], 
+    "id": 64, 
+    "methodname": "do_", 
+    "classname": "Funcall", 
+    "superclass": "ReqlExpr"
+  }, 
+  "BRANCH": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 65, 
+    "methodname": "branch", 
+    "classname": "Branch", 
+    "superclass": "ReqlExpr"
+  }, 
+  "OR": {
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 66, 
+    "methodname": "or", 
+    "classname": "Or", 
+    "superclass": "ReqlExpr"
+  }, 
+  "AND": {
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 67, 
+    "methodname": "and", 
+    "classname": "And", 
+    "superclass": "ReqlExpr"
+  }, 
+  "FOR_EACH": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "id": 68, 
+    "methodname": "forEach", 
+    "classname": "ForEach", 
+    "superclass": "ReqlExpr"
+  }, 
+  "FUNC": {
+    "include_in": [], 
+    "id": 69, 
+    "methodname": "func", 
+    "classname": "Func", 
+    "superclass": "ReqlExpr", 
+    "signatures": []
+  }, 
+  "ASC": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 73, 
+    "methodname": "asc", 
+    "classname": "Asc", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DESC": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 74, 
+    "methodname": "desc", 
+    "classname": "Desc", 
+    "superclass": "ReqlExpr"
+  }, 
+  "INFO": {
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 79, 
+    "methodname": "info", 
+    "classname": "Info", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MATCH": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 97, 
+    "methodname": "match", 
+    "classname": "Match", 
+    "superclass": "ReqlExpr"
+  }, 
+  "UPCASE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 141, 
+    "methodname": "upcase", 
+    "classname": "Upcase", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DOWNCASE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 142, 
+    "methodname": "downcase", 
+    "classname": "Downcase", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SAMPLE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 81, 
+    "methodname": "sample", 
+    "classname": "Sample", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DEFAULT": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 92, 
+    "methodname": "default_", 
+    "classname": "Default", 
+    "superclass": "ReqlExpr"
+  }, 
+  "JSON": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 98, 
+    "methodname": "json", 
+    "classname": "Json", 
+    "superclass": "ReqlExpr"
+  }, 
+  "TO_JSON_STRING": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "alias": "to_json", 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 172, 
+    "methodname": "to_json", 
+    "classname": "ToJsonString", 
+    "superclass": "ReqlExpr"
+  }, 
+  "ISO8601": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "default_timezone": "T_STR"
+    }, 
+    "id": 99, 
+    "methodname": "iso8601", 
+    "classname": "Iso8601", 
+    "superclass": "ReqlExpr"
+  }, 
+  "TO_ISO8601": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 100, 
+    "methodname": "toIso8601", 
+    "classname": "ToIso8601", 
+    "superclass": "ReqlExpr"
+  }, 
+  "EPOCH_TIME": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 101, 
+    "methodname": "epochTime", 
+    "classname": "EpochTime", 
+    "superclass": "ReqlExpr"
+  }, 
+  "TO_EPOCH_TIME": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 102, 
+    "methodname": "toEpochTime", 
+    "classname": "ToEpochTime", 
+    "superclass": "ReqlExpr"
+  }, 
+  "NOW": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 103, 
+    "methodname": "now", 
+    "classname": "Now", 
+    "superclass": "ReqlExpr"
+  }, 
+  "IN_TIMEZONE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 104, 
+    "methodname": "inTimezone", 
+    "classname": "InTimezone", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DURING": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "left_bound": "E_BOUND", 
+      "right_bound": "E_BOUND"
+    }, 
+    "id": 105, 
+    "methodname": "during", 
+    "classname": "During", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DATE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 106, 
+    "methodname": "date", 
+    "classname": "Date", 
+    "superclass": "ReqlExpr"
+  }, 
+  "TIME_OF_DAY": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 126, 
+    "methodname": "timeOfDay", 
+    "classname": "TimeOfDay", 
+    "superclass": "ReqlExpr"
+  }, 
+  "TIMEZONE": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 127, 
+    "methodname": "timezone", 
+    "classname": "Timezone", 
+    "superclass": "ReqlExpr"
+  }, 
+  "YEAR": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 128, 
+    "methodname": "year", 
+    "classname": "Year", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MONTH": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 129, 
+    "methodname": "month", 
+    "classname": "Month", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DAY": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 130, 
+    "methodname": "day", 
+    "classname": "Day", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DAY_OF_WEEK": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 131, 
+    "methodname": "dayOfWeek", 
+    "classname": "DayOfWeek", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DAY_OF_YEAR": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 132, 
+    "methodname": "dayOfYear", 
+    "classname": "DayOfYear", 
+    "superclass": "ReqlExpr"
+  }, 
+  "HOURS": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 133, 
+    "methodname": "hours", 
+    "classname": "Hours", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MINUTES": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 134, 
+    "methodname": "minutes", 
+    "classname": "Minutes", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SECONDS": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 135, 
+    "methodname": "seconds", 
+    "classname": "Seconds", 
+    "superclass": "ReqlExpr"
+  }, 
+  "TIME": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprC", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprC", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprD", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprE", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprF", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 136, 
+    "methodname": "time", 
+    "classname": "Time", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MONDAY": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 107, 
+    "methodname": "monday", 
+    "classname": "Monday", 
+    "superclass": "ReqlExpr"
+  }, 
+  "TUESDAY": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 108, 
+    "methodname": "tuesday", 
+    "classname": "Tuesday", 
+    "superclass": "ReqlExpr"
+  }, 
+  "WEDNESDAY": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 109, 
+    "methodname": "wednesday", 
+    "classname": "Wednesday", 
+    "superclass": "ReqlExpr"
+  }, 
+  "THURSDAY": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 110, 
+    "methodname": "thursday", 
+    "classname": "Thursday", 
+    "superclass": "ReqlExpr"
+  }, 
+  "FRIDAY": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 111, 
+    "methodname": "friday", 
+    "classname": "Friday", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SATURDAY": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 112, 
+    "methodname": "saturday", 
+    "classname": "Saturday", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SUNDAY": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 113, 
+    "methodname": "sunday", 
+    "classname": "Sunday", 
+    "superclass": "ReqlExpr"
+  }, 
+  "JANUARY": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 114, 
+    "methodname": "january", 
+    "classname": "January", 
+    "superclass": "ReqlExpr"
+  }, 
+  "FEBRUARY": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 115, 
+    "methodname": "february", 
+    "classname": "February", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MARCH": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 116, 
+    "methodname": "march", 
+    "classname": "March", 
+    "superclass": "ReqlExpr"
+  }, 
+  "APRIL": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 117, 
+    "methodname": "april", 
+    "classname": "April", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MAY": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 118, 
+    "methodname": "may", 
+    "classname": "May", 
+    "superclass": "ReqlExpr"
+  }, 
+  "JUNE": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 119, 
+    "methodname": "june", 
+    "classname": "June", 
+    "superclass": "ReqlExpr"
+  }, 
+  "JULY": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 120, 
+    "methodname": "july", 
+    "classname": "July", 
+    "superclass": "ReqlExpr"
+  }, 
+  "AUGUST": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 121, 
+    "methodname": "august", 
+    "classname": "August", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SEPTEMBER": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 122, 
+    "methodname": "september", 
+    "classname": "September", 
+    "superclass": "ReqlExpr"
+  }, 
+  "OCTOBER": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 123, 
+    "methodname": "october", 
+    "classname": "October", 
+    "superclass": "ReqlExpr"
+  }, 
+  "NOVEMBER": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 124, 
+    "methodname": "november", 
+    "classname": "November", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DECEMBER": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 125, 
+    "methodname": "december", 
+    "classname": "December", 
+    "superclass": "ReqlExpr"
+  }, 
+  "LITERAL": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 137, 
+    "methodname": "literal", 
+    "classname": "Literal", 
+    "superclass": "ReqlExpr"
+  }, 
+  "GROUP": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "index": "T_STR", 
+      "multi": "T_BOOL"
+    }, 
+    "id": 144, 
+    "methodname": "group", 
+    "classname": "Group", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SUM": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "id": 145, 
+    "methodname": "sum", 
+    "classname": "Sum", 
+    "superclass": "ReqlExpr"
+  }, 
+  "AVG": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "id": 146, 
+    "methodname": "avg", 
+    "classname": "Avg", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MIN": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "index": "T_STR"
+    }, 
+    "id": 147, 
+    "methodname": "min", 
+    "classname": "Min", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MAX": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func1", 
+            "type": "ReqlFunction1"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "index": "T_STR"
+    }, 
+    "id": 148, 
+    "methodname": "max", 
+    "classname": "Max", 
+    "superclass": "ReqlExpr"
+  }, 
+  "SPLIT": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 149, 
+    "methodname": "split", 
+    "classname": "Split", 
+    "superclass": "ReqlExpr"
+  }, 
+  "UNGROUP": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 150, 
+    "methodname": "ungroup", 
+    "classname": "Ungroup", 
+    "superclass": "ReqlExpr"
+  }, 
+  "RANDOM": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "float": "T_BOOL"
+    }, 
+    "id": 151, 
+    "methodname": "random", 
+    "classname": "Random", 
+    "superclass": "ReqlExpr"
+  }, 
+  "CHANGES": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "squash": "T_BOOL", 
+      "include_states": "T_BOOL"
+    }, 
+    "id": 152, 
+    "methodname": "changes", 
+    "classname": "Changes", 
+    "superclass": "ReqlExpr"
+  }, 
+  "ARGS": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 154, 
+    "methodname": "args", 
+    "classname": "Args", 
+    "superclass": "ReqlExpr"
+  }, 
+  "BINARY": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 155, 
+    "methodname": "binary", 
+    "classname": "Binary", 
+    "superclass": "ReqlExpr"
+  }, 
+  "GEOJSON": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 157, 
+    "methodname": "geojson", 
+    "classname": "Geojson", 
+    "superclass": "ReqlExpr"
+  }, 
+  "TO_GEOJSON": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 158, 
+    "methodname": "toGeojson", 
+    "classname": "ToGeojson", 
+    "superclass": "ReqlExpr"
+  }, 
+  "POINT": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 159, 
+    "methodname": "point", 
+    "classname": "Point", 
+    "superclass": "ReqlExpr"
+  }, 
+  "LINE": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 160, 
+    "methodname": "line", 
+    "classname": "Line", 
+    "superclass": "ReqlExpr"
+  }, 
+  "POLYGON": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprs", 
+            "type": "Object..."
+          }
+        ]
+      }
+    ], 
+    "id": 161, 
+    "methodname": "polygon", 
+    "classname": "Polygon", 
+    "superclass": "ReqlExpr"
+  }, 
+  "DISTANCE": {
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "geo_system": "E_GEO_SYSTEM", 
+      "unit": "E_UNIT"
+    }, 
+    "id": 162, 
+    "methodname": "distance", 
+    "classname": "Distance", 
+    "superclass": "ReqlExpr"
+  }, 
+  "INTERSECTS": {
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 163, 
+    "methodname": "intersects", 
+    "classname": "Intersects", 
+    "superclass": "ReqlExpr"
+  }, 
+  "INCLUDES": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 164, 
+    "methodname": "includes", 
+    "classname": "Includes", 
+    "superclass": "ReqlExpr"
+  }, 
+  "CIRCLE": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprB", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "num_vertices": "T_EXPR", 
+      "geo_system": "E_GEO_SYSTEM", 
+      "unit": "E_UNIT", 
+      "fill": "T_BOOL"
+    }, 
+    "id": 165, 
+    "methodname": "circle", 
+    "classname": "Circle", 
+    "superclass": "ReqlExpr"
+  }, 
+  "GET_INTERSECTING": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "index": "T_STR"
+    }, 
+    "id": 166, 
+    "methodname": "getIntersecting", 
+    "classname": "GetIntersecting", 
+    "superclass": "ReqlExpr"
+  }, 
+  "FILL": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 167, 
+    "methodname": "fill", 
+    "classname": "Fill", 
+    "superclass": "ReqlExpr"
+  }, 
+  "GET_NEAREST": {
+    "include_in": [
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "index": "T_STR", 
+      "max_results": "T_NUM", 
+      "unit": "E_UNIT", 
+      "max_dist": "T_NUM", 
+      "geo_system": "E_GEO_SYSTEM"
+    }, 
+    "id": 168, 
+    "methodname": "getNearest", 
+    "classname": "GetNearest", 
+    "superclass": "ReqlExpr"
+  }, 
+  "POLYGON_SUB": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 171, 
+    "methodname": "polygonSub", 
+    "classname": "PolygonSub", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MINVAL": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 180, 
+    "methodname": "minval", 
+    "classname": "Minval", 
+    "superclass": "ReqlExpr"
+  }, 
+  "MAXVAL": {
+    "include_in": [
+      "TopLevel"
+    ], 
+    "signatures": [
+      {
+        "first_arg": null, 
+        "args": []
+      }
+    ], 
+    "id": 181, 
+    "methodname": "maxval", 
+    "classname": "Maxval", 
+    "superclass": "ReqlExpr"
+  }, 
+  "VALUES": {
+    "include_in": [
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 186, 
+    "methodname": "values", 
+    "classname": "Values", 
+    "superclass": "ReqlExpr"
+  }
+}

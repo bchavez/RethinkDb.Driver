@@ -46,14 +46,14 @@
     {
         @:public @Class(ClassName) (object arg) : this(new Arguments(arg), null) {
         @:}
-        @:public @Class(ClassName) (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        @:public @Class(ClassName) (Arguments args) : this(null, args, optargs) {
         @:}
-        @:public @Class(ClassName) (ReqlAst prev, Arguments args, OptArgs optargs)
+        @:public @Class(ClassName) (Arguments args, OptArgs optargs)
         @:     : this(prev, TermType.@TermType, args, optargs) {
         @:}
     }
 
-    protected @Class(ClassName) (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected @Class(ClassName) (TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
     {
     }
 }

@@ -1,0 +1,56 @@
+@* Generator: Template  GeneratePrettyNames: true *@
+@using System.Collections.Generic
+@using System.Linq
+@using Humanizer
+@using Newtonsoft.Json.Linq
+@using Templates.CodeGen
+
+@inherits AstSubclassTemplate
+
+@{
+    this.Layout = UseParentLayout(this);
+}
+
+@section add_imports{
+    using RethinkDb.Driver.Net;
+}
+
+@section member_vars{
+    byte[] b64Data = null;
+}
+@section Ctors{
+    public @Class(ClassName) (byte[] bytes) : this(new Arguments()){
+        b64Data = bytes;
+    }
+    public @Class(ClassName) (Object arg) : this(new Arguments(arg), null) {
+        
+    }
+    public @Class(ClassName) (Arguments args) : this(args, null){
+
+    }
+    public @Class(ClassName) (Arguments args, OptArgs optargs) : this(TermType.@TermName, args, optargs) {
+        
+    }
+    protected @Class(ClassName) (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs){
+        
+    }
+}
+@section StaticFactories{
+    
+}
+
+@section SpecialMethods{
+    
+        protected internal override object Build() {
+            if( b64Data != null){
+                return Converter.ToBinary(b64Data);
+            }
+            else{
+                return base.Build();
+            }
+        }
+}
+
+@functions {
+    
+}

@@ -61,6 +61,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="CodeGen\Specialized\Binary.generated.cs">
+      <DependentUpon>Binary.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="CodeGen\TopLevelTemplate.generated.cs">
       <DependentUpon>TopLevelTemplate.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -130,6 +135,10 @@
     <None Include="CodeGen\ReqlFunctionTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>ReqlFunctionTemplate.generated.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGen\Specialized\Binary.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Binary.generated.cs</LastGenOutput>
     </None>
     <None Include="CodeGen\TopLevelTemplate.cshtml">
       <Generator>RazorGenerator</Generator>

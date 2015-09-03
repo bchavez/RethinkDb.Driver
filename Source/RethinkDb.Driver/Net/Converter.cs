@@ -121,6 +121,14 @@ namespace RethinkDb.Driver.Net
 	                    return new GroupedResult(group, g);
 	                }).ToList();
 	    }
+
+	    public static object ToBinary(byte[] data)
+	    {
+	        var mob = new MapObject();
+	        mob.With(PSEUDOTYPE_KEY, BINARY);
+	        mob.With("data", Convert.ToBase64String(data));
+	        return mob;
+	    }
 	}
 
 }

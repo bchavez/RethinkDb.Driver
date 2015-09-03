@@ -25,49 +25,49 @@ namespace RethinkDb.Driver.Ast {
 
                     public Javascript js ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Javascript (arguments);
                     }
                     public Uuid uuid (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Uuid (arguments);
                     }
                     public Http http ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Http (arguments);
                     }
                     public Error error ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Error (arguments);
                     }
                     public Db db ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Db (arguments);
                     }
                     public Table table ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Table (arguments);
                     }
                     public Table table ( Db db, Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(db);
                         arguments.CoerceAndAdd(expr);
                         return new Table (arguments);
                     }
                     public Eq eq ( Object expr, Object exprA, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAddAll(exprs);
@@ -75,7 +75,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Ne ne ( Object expr, Object exprA, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAddAll(exprs);
@@ -83,7 +83,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Lt lt ( Object expr, Object exprA, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAddAll(exprs);
@@ -91,7 +91,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Le le ( Object expr, Object exprA, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAddAll(exprs);
@@ -99,7 +99,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Gt gt ( Object expr, Object exprA, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAddAll(exprs);
@@ -107,7 +107,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Ge ge ( Object expr, Object exprA, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAddAll(exprs);
@@ -115,61 +115,61 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Not not ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Not (arguments);
                     }
                     public Add add ( Object expr, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAddAll(exprs);
                         return new Add (arguments);
                     }
                     public Sub sub ( Object expr, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAddAll(exprs);
                         return new Sub (arguments);
                     }
                     public Mul mul ( Object expr, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAddAll(exprs);
                         return new Mul (arguments);
                     }
                     public Div div ( Object expr, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAddAll(exprs);
                         return new Div (arguments);
                     }
                     public Mod mod ( Object expr, Object exprA )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         return new Mod (arguments);
                     }
                     public ReqlObject object_ ( params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAddAll(exprs);
                         return new ReqlObject (arguments);
                     }
                     public Map map ( Object expr, ReqlFunction1 func1 )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(func1);
                         return new Map (arguments);
                     }
                     public Map map ( Object expr, Object exprA, ReqlFunction2 func2 )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAdd(func2);
@@ -177,7 +177,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Map map ( Object expr, Object exprA, Object exprB, ReqlFunction3 func3 )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAdd(exprB);
@@ -186,7 +186,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Map map ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAdd(exprB);
@@ -196,147 +196,147 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Union union ( params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAddAll(exprs);
                         return new Union (arguments);
                     }
                     public Range range (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Range (arguments);
                     }
                     public Range range ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Range (arguments);
                     }
                     public Range range ( Object expr, Object exprA )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         return new Range (arguments);
                     }
                     public TypeOf typeOf_ ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new TypeOf (arguments);
                     }
                     public DbCreate dbCreate ( Object expr, Object exprA )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         return new DbCreate (arguments);
                     }
                     public DbDrop dbDrop ( Object expr, Object exprA )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         return new DbDrop (arguments);
                     }
                     public DbList dbList (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new DbList (arguments);
                     }
                     public TableCreate tableCreate ( Db db, Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(db);
                         arguments.CoerceAndAdd(expr);
                         return new TableCreate (arguments);
                     }
                     public TableDrop tableDrop ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new TableDrop (arguments);
                     }
                     public TableDrop tableDrop ( Db db, Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(db);
                         arguments.CoerceAndAdd(expr);
                         return new TableDrop (arguments);
                     }
                     public TableList tableList ( Db db )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(db);
                         return new TableList (arguments);
                     }
                     public Wait wait_ (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Wait (arguments);
                     }
                     public Wait wait_ ( Table table )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(table);
                         return new Wait (arguments);
                     }
                     public Wait wait_ ( Db db )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(db);
                         return new Wait (arguments);
                     }
                     public Reconfigure reconfigure (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Reconfigure (arguments);
                     }
                     public Reconfigure reconfigure ( Table table )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(table);
                         return new Reconfigure (arguments);
                     }
                     public Reconfigure reconfigure ( Db db )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(db);
                         return new Reconfigure (arguments);
                     }
                     public Rebalance rebalance (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Rebalance (arguments);
                     }
                     public Rebalance rebalance ( Db db )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(db);
                         return new Rebalance (arguments);
                     }
                     public Rebalance rebalance ( Table table )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(table);
                         return new Rebalance (arguments);
                     }
                     public Funcall do_ ( Object expr, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAddAll(exprs);
                         return new Funcall (arguments);
                     }
                     public Funcall do_ ( Object expr, ReqlFunction1 func1 )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(func1);
                         return new Funcall (arguments);
                     }
                     public Funcall do_ ( Object expr, Object exprA, ReqlFunction2 func2 )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAdd(func2);
@@ -344,7 +344,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Funcall do_ ( Object expr, Object exprA, Object exprB, ReqlFunction3 func3 )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAdd(exprB);
@@ -353,7 +353,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Funcall do_ ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAdd(exprB);
@@ -363,7 +363,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Branch branch ( Object expr, Object exprA, Object exprB )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAdd(exprB);
@@ -371,7 +371,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Or or ( Object expr, Object exprA, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAddAll(exprs);
@@ -379,55 +379,55 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public And and ( Object expr, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAddAll(exprs);
                         return new And (arguments);
                     }
                     public Asc asc ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Asc (arguments);
                     }
                     public Desc desc ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Desc (arguments);
                     }
                     public Info info ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Info (arguments);
                     }
                     public Json json ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Json (arguments);
                     }
                     public Iso8601 iso8601 ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Iso8601 (arguments);
                     }
                     public EpochTime epochTime ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new EpochTime (arguments);
                     }
                     public Now now (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Now (arguments);
                     }
                     public Time time ( Object expr, Object exprA, Object exprB, Object exprC )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAdd(exprB);
@@ -436,7 +436,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Time time ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD, Object exprE, Object exprF )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAdd(exprB);
@@ -448,131 +448,131 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Monday monday (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Monday (arguments);
                     }
                     public Tuesday tuesday (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Tuesday (arguments);
                     }
                     public Wednesday wednesday (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Wednesday (arguments);
                     }
                     public Thursday thursday (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Thursday (arguments);
                     }
                     public Friday friday (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Friday (arguments);
                     }
                     public Saturday saturday (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Saturday (arguments);
                     }
                     public Sunday sunday (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Sunday (arguments);
                     }
                     public January january (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new January (arguments);
                     }
                     public February february (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new February (arguments);
                     }
                     public March march (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new March (arguments);
                     }
                     public April april (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new April (arguments);
                     }
                     public May may (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new May (arguments);
                     }
                     public June june (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new June (arguments);
                     }
                     public July july (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new July (arguments);
                     }
                     public August august (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new August (arguments);
                     }
                     public September september (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new September (arguments);
                     }
                     public October october (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new October (arguments);
                     }
                     public November november (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new November (arguments);
                     }
                     public December december (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new December (arguments);
                     }
                     public Literal literal (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Literal (arguments);
                     }
                     public Literal literal ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Literal (arguments);
                     }
                     public Random random (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Random (arguments);
                     }
                     public Random random ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Random (arguments);
                     }
                     public Random random ( Object expr, Object exprA )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         return new Random (arguments);
                     }
                     public Args args ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Args (arguments);
                     }
@@ -582,26 +582,26 @@ namespace RethinkDb.Driver.Ast {
                         if( expr != null ){
                             return new Binary(byteArray);
                         }
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Binary (arguments);
                     }
                     public Geojson geojson ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Geojson (arguments);
                     }
                     public Point point ( Object expr, Object exprA )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         return new Point (arguments);
                     }
                     public Line line ( Object expr, Object exprA, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAddAll(exprs);
@@ -609,7 +609,7 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Polygon polygon ( Object expr, Object exprA, Object exprB, params object[] exprs )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAdd(exprB);
@@ -618,34 +618,34 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Distance distance ( Object expr, Object exprA )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         return new Distance (arguments);
                     }
                     public Intersects intersects ( Object expr, Object exprA )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         return new Intersects (arguments);
                     }
                     public Circle circle ( Object expr )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         return new Circle (arguments);
                     }
                     public Circle circle ( Object expr, Object exprA )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         return new Circle (arguments);
                     }
                     public Circle circle ( Object expr, Object exprA, Object exprB )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAdd(exprA);
                         arguments.CoerceAndAdd(exprB);
@@ -653,12 +653,12 @@ namespace RethinkDb.Driver.Ast {
                     }
                     public Minval minval (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Minval (arguments);
                     }
                     public Maxval maxval (  )
                     {
-                        Arguments arguments = new Arguments(this);
+                        Arguments arguments = new Arguments();
                         return new Maxval (arguments);
                     }
 

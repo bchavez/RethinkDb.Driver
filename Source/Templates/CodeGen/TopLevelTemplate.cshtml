@@ -53,7 +53,7 @@ namespace RethinkDb.Driver.Ast {
                             @:return new Binary(byteArray);
                         @:}
                     }
-                        @:Arguments arguments = new Arguments(this);
+                        @:Arguments arguments = new Arguments();
                         foreach ( var param in signature.Args )
                         {
                             if( param.Type == "Object..." )

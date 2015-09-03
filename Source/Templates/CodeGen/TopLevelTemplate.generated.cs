@@ -215,7 +215,7 @@ WriteLiteral("}\r\n");
             #line hidden
 WriteLiteral("                        ");
 
-WriteLiteral("Arguments arguments = new Arguments(this);\r\n");
+WriteLiteral("Arguments arguments = new Arguments();\r\n");
 
 
             

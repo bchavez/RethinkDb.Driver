@@ -52,7 +52,7 @@ namespace RethinkDb.Driver.Model
 
 	    public void CoerceAndAddAll(object[] args)
 	    {
-	        CoerceAndAddAll(args);
+	        CoerceAndAddAll(args.ToList());
 	    }
 	    public void CoerceAndAddAll(IList<object> list)
 	    {

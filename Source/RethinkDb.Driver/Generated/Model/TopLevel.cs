@@ -224,18 +224,16 @@ namespace RethinkDb.Driver.Ast {
                         arguments.CoerceAndAdd(expr);
                         return new TypeOf (arguments);
                     }
-                    public DbCreate dbCreate ( Object expr, Object exprA )
+                    public DbCreate dbCreate ( Object expr )
                     {
                         Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
-                        arguments.CoerceAndAdd(exprA);
                         return new DbCreate (arguments);
                     }
-                    public DbDrop dbDrop ( Object expr, Object exprA )
+                    public DbDrop dbDrop ( Object expr )
                     {
                         Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
-                        arguments.CoerceAndAdd(exprA);
                         return new DbDrop (arguments);
                     }
                     public DbList dbList (  )

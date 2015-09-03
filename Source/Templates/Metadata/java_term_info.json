@@ -2201,10 +2201,6 @@
           {
             "var": "expr", 
             "type": "Object"
-          }, 
-          {
-            "var": "exprA", 
-            "type": "Object"
           }
         ]
       }
@@ -2224,10 +2220,6 @@
         "args": [
           {
             "var": "expr", 
-            "type": "Object"
-          }, 
-          {
-            "var": "exprA", 
             "type": "Object"
           }
         ]

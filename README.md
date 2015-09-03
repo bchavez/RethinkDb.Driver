@@ -82,7 +82,7 @@ These files reside inside [Source/Templates/Metadata](https://github.com/bchavez
 
 `java_term_info.json` (not to be confused with `term_info.json`) is a somewhat of a special file.
 `java_term_info.json` is derived from and is a more refined output of `term_info.json` with
-more language centric requirements for RethinkDB's AST in a type-safe world. `java_term_info.json` generated 
+more Java language semantics for RethinkDB's AST in a type-safe world. `java_term_info.json` generated 
 by running the following command in the java driver's directory:
 
 `python metajava.py --term-info term_info.json --output-file java_term_info.json generate-java-terminfo`

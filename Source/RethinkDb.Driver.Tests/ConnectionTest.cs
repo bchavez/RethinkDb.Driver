@@ -8,11 +8,27 @@ namespace RethinkDb.Driver.Tests
     [TestFixture]
     public class ConnectionTest
     {
+        private const string DbName = "CSharpDriverTests";
+        private const string TableName = "ATable";
+
         public static RethinkDB r = RethinkDB.r;
 
         [TestFixtureSetUp]
         public void BeforeRunningTestSession()
         {
+
+        }
+
+        [Test]
+        [Explicit]
+        public void test_setup()
+        {
+            r.connection()
+                .hostname("192.168.0.11")
+                .port(RethinkDBConstants.DEFAULT_PORT)
+                .connect();
+
+            r.dbCreate(DbName);
 
         }
 

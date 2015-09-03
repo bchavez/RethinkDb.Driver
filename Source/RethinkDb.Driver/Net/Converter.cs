@@ -70,6 +70,8 @@ namespace RethinkDb.Driver.Net
 
 	    public static object ConvertPesudo(JObject value, FormatOptions fmt)
 	    {
+	        if( value == null ) return null;
+
 	        var reqlType = value[PSEUDOTYPE_KEY].ToString();
 
 	        switch( reqlType )

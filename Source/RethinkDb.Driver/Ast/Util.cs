@@ -87,6 +87,10 @@ namespace RethinkDb.Driver.Ast
 			{
 				return new Datum((string) val);
 			}
+		    if( val == null )
+		    {
+		        return new Datum(null);
+		    }
 
 			throw new ReqlDriverError($"Can't convert {val} to a ReqlAst");
 		}

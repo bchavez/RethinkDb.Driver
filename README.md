@@ -68,20 +68,25 @@ The following folders at the root level be generated:
 #### Build Process
 
 The build process is similar to the Java driver, except this C# driver
-starts off from **JSON** files created from `ql2.proto` by `metajava.py` script.
-The **JSON** files are required for building C# AST classes from JSON. 
-The required JSON files are:
+requires **JSON** metadata files derived from `ql2.proto` by the Java Driver's
+`metajava.py` script. The **JSON** metadata files are:
 
 * `proto_basic.json`
-* `term_info.json`
 * `global_info.json`
+* `java_term_info.json`
 
 
-These files reside inside [Source/Templates/Metadata](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/Templates/Metadata) 
-@ [8e701ed158e649c25984e568431e96d5c675b24a](https://github.com/rethinkdb/rethinkdb/tree/8e701ed158e649c25984e568431e96d5c675b24a)
+These files reside inside [Source/Templates/Metadata](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/Templates/Metadata).
 
-If you wish to update / refresh the AST classes (and enums) from `ql2.proto` you'll first
-need to generate the updated `*.json` files from `metajava.py` over in the Java driver. Then
+`java_term_info.json` (not to be confused with `term_info.json`) is a somewhat of a special file.
+`java_term_info.json` is derived from and is a more refined output of `term_info.json` with
+more language centric requirements for RethinkDB's AST in a type-safe world. `java_term_info.json` generated 
+by running the following command in the java driver's directory:
+
+`python metajava.py --term-info term_info.json --output-file java_term_info.json generate-java-terminfo`
+
+If you wish to update the C# AST classes (and enums) you first
+need to re-generate `*.json` files from `metajava.py` script that resides the Java Driver. Then
 copy/update/overwrite the `*.json` files into `Source/Templates/Metadata`.
 
 * `build codegen` - Rebuilds C# AST classes.

@@ -25,6 +25,8 @@ Install-Package RethinkDb.Driver
 Usage
 -----
 ```csharp
+public static RethinkDB r = RethinkDB.r;
+
 [Test]
 public void can_connect()
 {
@@ -91,7 +93,7 @@ copy/update/overwrite the `*.json` files into `Source/Templates/Metadata`.
 
 * `build codegen` - Rebuilds C# AST classes.
 
-The `build codegen` task will regenerate all the AST C# classes; which in effect runs `Templates\Generator.cs:Generate_All()`.
+The `build codegen` task will use the `*.json` files to regenerate all the AST C# classes; which, in effect, runs `Templates\Generator.cs:Generate_All()`.
 
 #### CodeGen Templates
 

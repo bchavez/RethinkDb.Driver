@@ -25,7 +25,7 @@ namespace RethinkDb.Driver.Net
         private readonly byte[] handshake;
         private ConnectionInstance instance = null;
 
-        internal Connection(ConnectionBuilder builder)
+        internal Connection(Builder builder)
         {
             dbname = builder.dbname;
             var authKey = builder._authKey ?? string.Empty;
@@ -49,9 +49,9 @@ namespace RethinkDb.Driver.Net
             instanceMaker = builder.instanceMaker;
         }
 
-        public static ConnectionBuilder build()
+        public static Builder build()
         {
-            return new ConnectionBuilder(() => new ConnectionInstance());
+            return new Builder(() => new ConnectionInstance());
         }
 
         public virtual string db()
@@ -228,57 +228,59 @@ namespace RethinkDb.Driver.Net
             RunQueryNoreply(Query.Stop(cursor.Token));
         }
 
+
+        public class Builder
+        {
+            internal readonly Func<ConnectionInstance> instanceMaker;
+            internal string _hostmame = null;
+            internal int? _port = null;
+            internal string dbname = null;
+            internal string _authKey = null;
+            internal TimeSpan? _timeout = null;
+
+            public Builder(Func<ConnectionInstance> instanceMaker)
+            {
+                this.instanceMaker = instanceMaker;
+            }
+
+            public virtual Builder hostname(string val)
+            {
+                this._hostmame = val;
+                return this;
+            }
+
+            public virtual Builder port(int val)
+            {
+                this._port = val;
+                return this;
+            }
+
+            public virtual Builder db(string val)
+            {
+                this.dbname = val;
+                return this;
+            }
+
+            public virtual Builder authKey(string val)
+            {
+                this._authKey = val;
+                return this;
+            }
+
+            public virtual Builder timeout(int val)
+            {
+                this._timeout = TimeSpan.FromSeconds(val);
+                return this;
+            }
+
+            public virtual Connection connect()
+            {
+                var conn = new Connection(this);
+                conn.reconnect();
+                return conn;
+            }
+        }
     }
 
-    public class ConnectionBuilder
-    {
-        internal readonly Func<ConnectionInstance> instanceMaker;
-        internal string _hostmame = null;
-        internal int? _port = null;
-        internal string dbname = null;
-        internal string _authKey = null;
-        internal TimeSpan? _timeout = null;
-
-        public ConnectionBuilder(Func<ConnectionInstance> instanceMaker)
-        {
-            this.instanceMaker = instanceMaker;
-        }
-
-        public virtual ConnectionBuilder hostname(string val)
-        {
-            this._hostmame = val;
-            return this;
-        }
-
-        public virtual ConnectionBuilder port(int val)
-        {
-            this._port = val;
-            return this;
-        }
-
-        public virtual ConnectionBuilder db(string val)
-        {
-            this.dbname = val;
-            return this;
-        }
-
-        public virtual ConnectionBuilder authKey(string val)
-        {
-            this._authKey = val;
-            return this;
-        }
-
-        public virtual ConnectionBuilder timeout(int val)
-        {
-            this._timeout = TimeSpan.FromSeconds(val);
-            return this;
-        }
-
-        public virtual Connection connect()
-        {
-            var conn = new Connection(this);
-            conn.reconnect();
-            return conn;
-        }
-    }
+   
 }

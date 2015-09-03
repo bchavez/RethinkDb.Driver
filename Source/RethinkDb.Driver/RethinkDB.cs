@@ -11,7 +11,7 @@ namespace RethinkDb.Driver
 		/// </summary>
 		public static readonly RethinkDB r = new RethinkDB();
 
-		public virtual ConnectionBuilder connection()
+		public virtual Connection.Builder connection()
 		{
 			return Connection.build();
 		}

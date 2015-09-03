@@ -111,7 +111,7 @@ namespace RethinkDb.Driver.Net
             return instance;
         }
 
-        public virtual void close(bool shouldNoreplyWait)
+        public virtual void close(bool shouldNoreplyWait = true)
         {
             if( instance != null )
             {

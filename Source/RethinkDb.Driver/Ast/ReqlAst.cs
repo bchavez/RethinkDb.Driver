@@ -69,7 +69,16 @@ namespace RethinkDb.Driver.Ast
             return (T)conn.run<T>(this, new OptArgs());
         }
 
-	    public void runNoReply(Connection conn)
+	    public virtual object run(Connection conn)
+	    {
+	        return run<object>(conn);
+	    }
+        public virtual object run(Connection conn, OptArgs args)
+        {
+            return run<object>(conn, args);
+        }
+
+        public void runNoReply(Connection conn)
 	    {
 	        conn.runNoReply(this, new OptArgs());
 	    }

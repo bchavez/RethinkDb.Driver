@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using RethinkDb.Driver.Net;
 
 namespace RethinkDb.Driver.Tests
 {
@@ -13,6 +14,19 @@ namespace RethinkDb.Driver.Tests
 
         public static RethinkDB r = RethinkDB.r;
 
+        private Connection conn;
+
+        private void EnsureConnection()
+        {
+            if( conn == null )
+            {
+                this.conn = r.connection()
+                    .hostname("192.168.0.11")
+                    .port(RethinkDBConstants.DEFAULT_PORT)
+                    .connect();
+            }
+        }
+
         [TestFixtureSetUp]
         public void BeforeRunningTestSession()
         {
@@ -23,13 +37,24 @@ namespace RethinkDb.Driver.Tests
         [Explicit]
         public void test_setup()
         {
-            r.connection()
-                .hostname("192.168.0.11")
-                .port(RethinkDBConstants.DEFAULT_PORT)
-                .connect();
+            EnsureConnection();
 
-            r.dbCreate(DbName);
+            r.dbCreate(DbName).run(conn);
 
+            r.db(DbName).wait_().run(conn);
+            r.db(DbName).tableCreate(TableName).run(conn);
+            r.db(DbName).table(TableName).wait_().run(conn);
+        }
+
+        [Test]
+        [Explicit]
+        public void test_check_teardown()
+        {
+            EnsureConnection();
+
+            r.db(DbName).tableDrop(TableName).run(conn);
+            r.dbDrop(DbName).run(conn);
+            conn.close();
         }
 
         [Test]

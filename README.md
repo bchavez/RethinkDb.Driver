@@ -8,9 +8,7 @@ Project Description
 -------------------
 A RethinkDB database driver written in C# striving for 100% API compatibility and completeness.
 
-This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/josh/java-driver).
-
-This driver and the official Java Driver are *still under active development*.
+This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/josh/java-driver). This driver and the official Java Driver are *still under active development*.
 
 The code here is a one-to-one port of the Java driver. The basic mechanics and 
 architecture of both drivers are the same.
@@ -48,6 +46,7 @@ Building
 #### Prerequisites
 * [Visual Studio 2015 Community](https://www.visualstudio.com/vs-2015-product-editions) or higher
 * NuGet Package Command Line installed in your PATH [via NuGet.org](http://docs.nuget.org/consume/installing-nuget) or [via Chocolatey](https://chocolatey.org/packages/NuGet.CommandLine).
+* (Optional) [RazorGenerator](https://github.com/RazorGenerator/RazorGenerator) to modify CodeGen templates.
 
 #### Build Commands
 * `git clone https://github.com/bchavez/RethinkDb.Driver.git`
@@ -80,24 +79,21 @@ requires **JSON** metadata files derived from `ql2.proto` by the Java Driver's
 
 These files reside inside [Source/Templates/Metadata](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/Templates/Metadata).
 
-`java_term_info.json` (not to be confused with `term_info.json`) is a somewhat of a special file.
-`java_term_info.json` is derived from and is a more refined output of `term_info.json` with
-more Java language semantics for RethinkDB's AST in a type-safe world. `java_term_info.json` generated 
-by running the following command in the java driver's directory:
+`java_term_info.json` is a special file (not to be confused with `term_info.json`).
+`java_term_info.json` is a more refined output of `term_info.json` that includes extra metadata to support Java language semantics when producing RethinkDB's AST. `java_term_info.json` generated 
+by running the following command in the Java driver's directory:
 
 `python metajava.py --term-info term_info.json --output-file java_term_info.json generate-java-terminfo`
 
 If you wish to update the C# AST classes (and enums) you first
-need to re-generate `*.json` files from `metajava.py` script that resides the Java Driver. Then
-copy/update/overwrite the `*.json` files into `Source/Templates/Metadata`.
-
-* `build codegen` - Rebuilds C# AST classes.
+need to re-generate `*.json` files from `metajava.py` script that resides the Java driver. Then
+copy/overwrite the `*.json` files in `Source/Templates/Metadata`.
 
 The `build codegen` task will use the `*.json` files to regenerate all the AST C# classes; which, in effect, runs `Templates\Generator.cs:Generate_All()`.
 
 #### CodeGen Templates
 
 The code generator templates are located in [`Source/Templates/CodeGen/`](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/Templates/CodeGen).
-The templates are [RazorGenerator](https://github.com/RazorGenerator/RazorGenerator) templates. If you wish to update any of the `*.cshtml` code generation
-templates be sure to install [RazorGenerator's Visual Studio Extension](https://visualstudiogallery.msdn.microsoft.com/1f6ec6ff-e89b-4c47-8e79-d2d68df894ec)
-or use a RazorGenerator's MSBuild task to transform the Razor `*.cshtml` templates to `*.generated.cs` code-behind files.
+The templates are [RazorGenerator](https://github.com/RazorGenerator/RazorGenerator) templates. Updating any of the `*.cshtml` code generation
+templates requires installing [RazorGenerator's Visual Studio Extension](https://visualstudiogallery.msdn.microsoft.com/1f6ec6ff-e89b-4c47-8e79-d2d68df894ec)
+or using RazorGenerator's MSBuild task to transform the Razor `*.cshtml` templates to `*.generated.cs` razor code-behind files.

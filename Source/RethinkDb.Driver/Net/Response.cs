@@ -23,7 +23,6 @@ namespace RethinkDb.Driver.Net
 
         public static Response ParseFrom(long token, string buf)
 		{
-			//Console.WriteLine("Received: " + buf);
 		    var jsonResp = JObject.Parse(buf);
             log.Debug("Received: " + jsonResp);
             var responseType = jsonResp["t"].ToObject<ResponseType>();
@@ -112,7 +111,7 @@ namespace RethinkDb.Driver.Net
 			return new Builder(token, type);
 		}
 
-		internal virtual bool WaitComplete
+		internal virtual bool IsWaitComplete
 		{
 			get
 			{
@@ -138,13 +137,8 @@ namespace RethinkDb.Driver.Net
 			}
 		}
 
-		public static JArray convertPseudotypes(JArray obj, Profile profile)
-		{
-			return obj; // TODO remove pass-through
-		}
-
 		/* What type of success the response contains */
-		internal virtual bool Atom
+		internal virtual bool IsAtom
 		{
 			get
 			{
@@ -152,7 +146,7 @@ namespace RethinkDb.Driver.Net
 			}
 		}
 
-		internal virtual bool Sequence
+		internal virtual bool IsSequence
 		{
 			get
 			{
@@ -160,7 +154,7 @@ namespace RethinkDb.Driver.Net
 			}
 		}
 
-		internal virtual bool Partial
+		internal virtual bool IsPartial
 		{
 			get
 			{

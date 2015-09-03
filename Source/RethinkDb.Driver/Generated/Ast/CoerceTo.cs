@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class CoerceTo : ReqlQuery {
+    public class CoerceTo : ReqlExpr {
+
+    
     
     
         public CoerceTo (object arg) : this(new Arguments(arg), null) {
         }
-        public CoerceTo (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public CoerceTo (Arguments args) : this(args, null) {
         }
-        public CoerceTo (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.COERCE_TO, args, optargs) {
+        public CoerceTo (Arguments args, OptArgs optargs)
+             : this(TermType.COERCE_TO, args, optargs) {
         }
 
-    protected CoerceTo (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected CoerceTo (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static CoerceTo FromArgs(params object[] args){
-         return new CoerceTo (new Arguments(args), null);
-        }
 
 
     

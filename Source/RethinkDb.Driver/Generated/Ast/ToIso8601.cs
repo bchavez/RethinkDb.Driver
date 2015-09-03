@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class ToIso8601 : ReqlQuery {
+    public class ToIso8601 : ReqlExpr {
+
+    
     
     
         public ToIso8601 (object arg) : this(new Arguments(arg), null) {
         }
-        public ToIso8601 (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public ToIso8601 (Arguments args) : this(args, null) {
         }
-        public ToIso8601 (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.TO_ISO8601, args, optargs) {
+        public ToIso8601 (Arguments args, OptArgs optargs)
+             : this(TermType.TO_ISO8601, args, optargs) {
         }
 
-    protected ToIso8601 (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected ToIso8601 (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static ToIso8601 FromArgs(params object[] args){
-         return new ToIso8601 (new Arguments(args), null);
-        }
 
 
     

@@ -14,28 +14,18 @@ namespace RethinkDb.Driver.Ast
 	/// </summary>
 	public class ReqlAst
 	{
-	    protected internal ReqlAst Prev { get; }
 	    protected internal TermType TermType { get; }
 	    protected internal Arguments Args { get; }
 	    protected internal OptArgs OptArgs { get; }
 
-	    protected internal ReqlAst(ReqlAst prev, TermType termType, Arguments args, OptArgs optargs)
+	    protected internal ReqlAst(TermType termType, Arguments args, OptArgs optargs)
         {
-            this.Prev = prev;
             this.TermType = termType;
-            this.Args = new Arguments();
-            if( prev != null ) // TopLevel should have prev = null
-            { 
-                this.Args.Add(prev);
-            }
-            if( args != null )
-            {
-                this.Args.AddRange(args);
-            }
-            this.OptArgs = optargs != null ? optargs : new OptArgs();
+            this.Args = args ?? new Arguments();
+            this.OptArgs = optargs ?? new OptArgs();
         }
 
-        protected internal ReqlAst(TermType termType, Arguments args) : this(null, termType, args, null)
+        protected internal ReqlAst(TermType termType, Arguments args) : this(termType, args, null)
         {
         }
 
@@ -69,14 +59,28 @@ namespace RethinkDb.Driver.Ast
             return list;
         }
 
-        public virtual T run<T>(Connection conn, GlobalOptions g)
+	    public static Dictionary<string, object> BuildOptarg(OptArgs opts)
+	    {
+	        return opts.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Build());
+	    }
+
+        public virtual T run<T>(Connection conn, OptArgs g)
         {
             return (T)conn.run<T>(this, g);
         }
 
         public virtual T run<T>(Connection conn)
         {
-            return (T)conn.run<T>(this, new GlobalOptions());
+            return (T)conn.run<T>(this, new OptArgs());
+        }
+
+	    public void runNoReply(Connection conn)
+	    {
+	        conn.runNoReply(this, new OptArgs());
+	    }
+        public void runNoReply(Connection conn, OptArgs globalOpts)
+        {
+            conn.runNoReply(this, globalOpts);
         }
         
     }

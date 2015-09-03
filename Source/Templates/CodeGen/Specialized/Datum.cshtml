@@ -12,7 +12,7 @@
 }
 
 @section Ctors{
-    public Datum(object arg) : base(null, TermType.DATUM, null, null) {
+    public Datum(object arg) : base(TermType.DATUM, null, null) {
             datum = arg;
         }
 }
@@ -33,5 +33,5 @@
     
 }
        
-        protected object datum;
+        internal object datum;
 

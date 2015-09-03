@@ -13,41 +13,150 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class Table : ReqlQuery {
+    public class Table : ReqlExpr {
+
+    
     
     
         public Table (object arg) : this(new Arguments(arg), null) {
         }
-        public Table (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public Table (Arguments args) : this(args, null) {
         }
-        public Table (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.TABLE, args, optargs) {
+        public Table (Arguments args, OptArgs optargs)
+             : this(TermType.TABLE, args, optargs) {
         }
 
-    protected Table (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected Table (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static Table FromArgs(params object[] args){
-         return new Table (new Arguments(args), null);
-        }
 
 
     
 
     
 
+                    public Get get ( Object expr )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(expr);
+                        return new Get (arguments);
+                    }
+                    public GetAll getAll ( params object[] exprs )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAddAll(exprs);
+                        return new GetAll (arguments);
+                    }
+                    public Between between ( Object expr, Object exprA )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(expr);
+                        arguments.CoerceAndAdd(exprA);
+                        return new Between (arguments);
+                    }
+                    public Insert insert ( Object expr )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(expr);
+                        return new Insert (arguments);
+                    }
+                    public Config config (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new Config (arguments);
+                    }
+                    public Status status (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new Status (arguments);
+                    }
+                    public Wait wait_ (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new Wait (arguments);
+                    }
+                    public Reconfigure reconfigure (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new Reconfigure (arguments);
+                    }
+                    public Rebalance rebalance (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new Rebalance (arguments);
+                    }
+                    public Sync sync (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new Sync (arguments);
+                    }
+                    public IndexCreate indexCreate ( Object expr )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(expr);
+                        return new IndexCreate (arguments);
+                    }
+                    public IndexCreate indexCreate ( Object expr, ReqlFunction1 func1 )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(expr);
+                        arguments.CoerceAndAdd(func1);
+                        return new IndexCreate (arguments);
+                    }
+                    public IndexDrop indexDrop ( Object expr )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(expr);
+                        return new IndexDrop (arguments);
+                    }
+                    public IndexList indexList (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new IndexList (arguments);
+                    }
+                    public IndexStatus indexStatus ( params object[] exprs )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAddAll(exprs);
+                        return new IndexStatus (arguments);
+                    }
+                    public IndexWait indexWait ( params object[] exprs )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAddAll(exprs);
+                        return new IndexWait (arguments);
+                    }
+                    public IndexRename indexRename ( Object expr, Object exprA )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(expr);
+                        arguments.CoerceAndAdd(exprA);
+                        return new IndexRename (arguments);
+                    }
+                    public GetIntersecting getIntersecting ( Object expr )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(expr);
+                        return new GetIntersecting (arguments);
+                    }
+                    public GetNearest getNearest ( Object expr )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(expr);
+                        return new GetNearest (arguments);
+                    }
 
     
     }

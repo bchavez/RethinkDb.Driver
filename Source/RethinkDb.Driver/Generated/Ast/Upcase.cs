@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class Upcase : ReqlQuery {
+    public class Upcase : ReqlExpr {
+
+    
     
     
         public Upcase (object arg) : this(new Arguments(arg), null) {
         }
-        public Upcase (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public Upcase (Arguments args) : this(args, null) {
         }
-        public Upcase (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.UPCASE, args, optargs) {
+        public Upcase (Arguments args, OptArgs optargs)
+             : this(TermType.UPCASE, args, optargs) {
         }
 
-    protected Upcase (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected Upcase (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static Upcase FromArgs(params object[] args){
-         return new Upcase (new Arguments(args), null);
-        }
 
 
     

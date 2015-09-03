@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class IndexDrop : ReqlQuery {
+    public class IndexDrop : ReqlExpr {
+
+    
     
     
         public IndexDrop (object arg) : this(new Arguments(arg), null) {
         }
-        public IndexDrop (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public IndexDrop (Arguments args) : this(args, null) {
         }
-        public IndexDrop (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.INDEX_DROP, args, optargs) {
+        public IndexDrop (Arguments args, OptArgs optargs)
+             : this(TermType.INDEX_DROP, args, optargs) {
         }
 
-    protected IndexDrop (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected IndexDrop (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static IndexDrop FromArgs(params object[] args){
-         return new IndexDrop (new Arguments(args), null);
-        }
 
 
     

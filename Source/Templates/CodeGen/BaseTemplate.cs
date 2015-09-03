@@ -1,4 +1,5 @@
 using RazorGenerator.Templating;
+using Templates.CodeGen.Util;
 
 namespace Templates.CodeGen
 {

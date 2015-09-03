@@ -51,6 +51,7 @@ namespace RethinkDb.Driver.Proto {
         CONTAINS = 93,
         GET_FIELD = 31,
         KEYS = 94,
+        VALUES = 186,
         OBJECT = 143,
         HAS_FIELDS = 32,
         WITH_FIELDS = 96,

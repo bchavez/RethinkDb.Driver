@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class Min : ReqlQuery {
+    public class Min : ReqlExpr {
+
+    
     
     
         public Min (object arg) : this(new Arguments(arg), null) {
         }
-        public Min (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public Min (Arguments args) : this(args, null) {
         }
-        public Min (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.MIN, args, optargs) {
+        public Min (Arguments args, OptArgs optargs)
+             : this(TermType.MIN, args, optargs) {
         }
 
-    protected Min (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected Min (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static Min FromArgs(params object[] args){
-         return new Min (new Arguments(args), null);
-        }
 
 
     

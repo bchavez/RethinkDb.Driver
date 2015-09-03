@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class InTimezone : ReqlQuery {
+    public class InTimezone : ReqlExpr {
+
+    
     
     
         public InTimezone (object arg) : this(new Arguments(arg), null) {
         }
-        public InTimezone (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public InTimezone (Arguments args) : this(args, null) {
         }
-        public InTimezone (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.IN_TIMEZONE, args, optargs) {
+        public InTimezone (Arguments args, OptArgs optargs)
+             : this(TermType.IN_TIMEZONE, args, optargs) {
         }
 
-    protected InTimezone (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected InTimezone (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static InTimezone FromArgs(params object[] args){
-         return new InTimezone (new Arguments(args), null);
-        }
 
 
     

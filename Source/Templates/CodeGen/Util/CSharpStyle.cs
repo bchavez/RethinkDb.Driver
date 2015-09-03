@@ -1,6 +1,6 @@
 using Humanizer;
 
-namespace Templates.CodeGen
+namespace Templates.CodeGen.Util
 {
     public static class CSharpStyle
     {

@@ -87,8 +87,8 @@ WriteLiteral("\r\n");
 
 DefineSection("Ctors", () => {
 
-WriteLiteral("\r\n    public Datum(object arg) : base(null, TermType.DATUM, null, null) {\r\n      " +
-"      datum = arg;\r\n        }\r\n");
+WriteLiteral("\r\n    public Datum(object arg) : base(TermType.DATUM, null, null) {\r\n            " +
+"datum = arg;\r\n        }\r\n");
 
 
 });
@@ -118,7 +118,7 @@ WriteLiteral("\r\n    \r\n        protected internal override object Build() {\r
 WriteLiteral("\r\n\r\n");
 
 
-WriteLiteral("\r\n       \r\n        protected object datum;\r\n\r\n");
+WriteLiteral("\r\n       \r\n        internal object datum;\r\n\r\n");
 
 
         }

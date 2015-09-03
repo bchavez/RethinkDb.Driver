@@ -13,37 +13,128 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+    using System.Threading;
+
+
 namespace RethinkDb.Driver.Ast {
-    public class Func : ReqlQuery {
+    public class Func : ReqlExpr {
+
+    
+        private static int VarId = 0;
+
     
     
-   public Func(ReqlFunction function) : this(Arguments.make(
-            new MakeArray(new Arguments(1), null),
-                Util.ToReqlAst(function.Apply(new Var(1)))))
-    {
+    
+        protected Func(Arguments args) : base(TermType.FUNC, args, null)
+        {
+        }
+
+
+
+    
+    
+    
+    public static Func FromLambda(ReqlLambda function){
+    
+            //Function 1
+            var func1 = function as ReqlFunction1;
+            if( func1 != null){
+                int var1 = NextVarId();
+                var varIds = new List<int>{ 
+                    var1,
+                };
+                var appliedFunction = func1.Apply(
+                    new Var(var1) 
+                );
+                return new Func(Arguments.Make(
+                        new MakeArray(varIds),
+                        Util.ToReqlAst(appliedFunction)
+                ));
+            }
+            //Function 2
+            var func2 = function as ReqlFunction2;
+            if( func2 != null){
+                int var1 = NextVarId();
+                int var2 = NextVarId();
+                var varIds = new List<int>{ 
+                    var1,
+                    var2,
+                };
+                var appliedFunction = func2.Apply(
+                    new Var(var1) ,
+                    new Var(var2) 
+                );
+                return new Func(Arguments.Make(
+                        new MakeArray(varIds),
+                        Util.ToReqlAst(appliedFunction)
+                ));
+            }
+            //Function 3
+            var func3 = function as ReqlFunction3;
+            if( func3 != null){
+                int var1 = NextVarId();
+                int var2 = NextVarId();
+                int var3 = NextVarId();
+                var varIds = new List<int>{ 
+                    var1,
+                    var2,
+                    var3,
+                };
+                var appliedFunction = func3.Apply(
+                    new Var(var1) ,
+                    new Var(var2) ,
+                    new Var(var3) 
+                );
+                return new Func(Arguments.Make(
+                        new MakeArray(varIds),
+                        Util.ToReqlAst(appliedFunction)
+                ));
+            }
+            //Function 4
+            var func4 = function as ReqlFunction4;
+            if( func4 != null){
+                int var1 = NextVarId();
+                int var2 = NextVarId();
+                int var3 = NextVarId();
+                int var4 = NextVarId();
+                var varIds = new List<int>{ 
+                    var1,
+                    var2,
+                    var3,
+                    var4,
+                };
+                var appliedFunction = func4.Apply(
+                    new Var(var1) ,
+                    new Var(var2) ,
+                    new Var(var3) ,
+                    new Var(var4) 
+                );
+                return new Func(Arguments.Make(
+                        new MakeArray(varIds),
+                        Util.ToReqlAst(appliedFunction)
+                ));
+            }
+    
+        throw new ReqlDriverError("Arity of ReqlLambda not recognized!");
     }
 
-    public Func(ReqlFunction2 function) :
-        this(Arguments.make(
-            new MakeArray(Arguments.make(1, 2)),
-                Util.ToReqlAst(function.Apply(new Var(1), new Var(1)))))
-    {
-    }
-
-    protected Func(Arguments args) : base(null, TermType.FUNC, args, null) {
-    }
-
-
-    
     
 
 
     
+
+
+
+
+
+
+
 
 
 
@@ -56,6 +147,10 @@ namespace RethinkDb.Driver.Ast {
       
 
     
+        private static int NextVarId(){
+            return Interlocked.Increment(ref VarId);
+        }
+
 
 
     

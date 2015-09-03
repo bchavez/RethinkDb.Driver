@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class IndexCreate : ReqlQuery {
+    public class IndexCreate : ReqlExpr {
+
+    
     
     
         public IndexCreate (object arg) : this(new Arguments(arg), null) {
         }
-        public IndexCreate (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public IndexCreate (Arguments args) : this(args, null) {
         }
-        public IndexCreate (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.INDEX_CREATE, args, optargs) {
+        public IndexCreate (Arguments args, OptArgs optargs)
+             : this(TermType.INDEX_CREATE, args, optargs) {
         }
 
-    protected IndexCreate (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected IndexCreate (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static IndexCreate FromArgs(params object[] args){
-         return new IndexCreate (new Arguments(args), null);
-        }
 
 
     

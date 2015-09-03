@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class Map : ReqlQuery {
+    public class Map : ReqlExpr {
+
+    
     
     
         public Map (object arg) : this(new Arguments(arg), null) {
         }
-        public Map (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public Map (Arguments args) : this(args, null) {
         }
-        public Map (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.MAP, args, optargs) {
+        public Map (Arguments args, OptArgs optargs)
+             : this(TermType.MAP, args, optargs) {
         }
 
-    protected Map (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected Map (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static Map FromArgs(params object[] args){
-         return new Map (new Arguments(args), null);
-        }
 
 
     

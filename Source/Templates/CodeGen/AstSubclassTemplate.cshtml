@@ -8,6 +8,7 @@
 @using Newtonsoft.Json.Linq
 @using RazorGenerator.Templating
 @using Templates.CodeGen
+@using Templates.CodeGen.Util
 @using Z.ExtensionMethods
 
 @inherits BaseTemplate
@@ -15,9 +16,8 @@
 @functions {
     public string ClassName { get; set; }
     public string Superclass { get; set; }
-    public string IncludeIn { get; set; }
 
-    public string TermType { get; set; }
+    public string TermName { get; set; }
     public Dictionary<string,JObject> AllTerms { get; set; }
 
     public override RazorTemplateBase UseParentLayout(RazorTemplateBase child)
@@ -26,36 +26,22 @@
         {
             ClassName = this.ClassName,
             Superclass = this.Superclass,
-            IncludeIn = this.IncludeIn,
-            TermType = this.TermType,
+            TermName = this.TermName,
             AllTerms = this.AllTerms,
             ChildTemplate = child
         };
-    }
-
-    public class Signature
-    {
-        [JsonProperty("first_arg")]
-        public string FirstArg { get; set; }
-        public SigArg[] Args { get; set; }
-        public class SigArg
-        {
-            public string Var { get; set; }
-            public string Type { get; set; }
-        }
-    }
-    
+    }    
 }
 
 @section Ctors{
-    @if( this.TermType != null )
+    @if( this.TermName != null )
     {
         @:public @Class(ClassName) (object arg) : this(new Arguments(arg), null) {
         @:}
         @:public @Class(ClassName) (Arguments args) : this(args, null) {
         @:}
         @:public @Class(ClassName) (Arguments args, OptArgs optargs)
-        @:     : this(TermType.@TermType, args, optargs) {
+        @:     : this(TermType.@TermName, args, optargs) {
         @:}
     }
 
@@ -74,13 +60,17 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
+@RenderSection("add_imports")
 
 namespace RethinkDb.Driver.Ast {
     public class @Class(ClassName) : @Superclass {
+
+    @RenderSection("member_vars")
     
     @RenderSection("ctors")
 
@@ -96,31 +86,32 @@ namespace RethinkDb.Driver.Ast {
         var info = termInfo.Value;
 
 
-        if( info["include_in"].ToObject<string[]>().Any(inc => string.Equals(inc, term, StringComparison.OrdinalIgnoreCase)) )
+        if( info["include_in"].ToObject<string[]>().Any(inc => string.Equals(inc, ClassName, StringComparison.OrdinalIgnoreCase)) )
         { // is the current term included in this class we're generating?
 
             foreach(var signature in info["signatures"].ToObject<Signature[]>() )
             {
                 if( signature.FirstArg == ClassName )
                 {
-                    @:public @Class(info["classname"].ToString()) @Method(info["methodname"].ToString()) (
-                       var parameters = signature.Args.Skip(1).Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
-                       @string.Join(", ", parameters.ToArray() )
-                    @:) {
+                    var parameters = signature.Args.Skip(1).Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
+
+                    @:public @Class(info["classname"].ToString()) @Method(info["methodname"].ToString()) ( @string.Join(", ", parameters.ToArray()) )
+                    @:{
 
                         @:Arguments arguments = new Arguments(this);
                     foreach( var param in signature.Args.Skip(1) )
                     {
                         if( param.Type == "Object..." )
                         {
-                            @:arguments.coerceAndAddAll(@ArgumentVariable(param.Var)
+                        @:arguments.CoerceAndAddAll(@ArgumentVariable(param.Var));
                         }
                         else
                         {
-                            @:arguments.coerceAndAdd(@ArgumentVariable(param.Var)
+                        @:arguments.CoerceAndAdd(@ArgumentVariable(param.Var));
                         }
-                        @:return new @Class(info["classname"].ToString()) (arguments);
                     }
+                        @:return new @Class(info["classname"].ToString()) (arguments);
+
                     @:}
                 }
             }

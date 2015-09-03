@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class SetDifference : ReqlQuery {
+    public class SetDifference : ReqlExpr {
+
+    
     
     
         public SetDifference (object arg) : this(new Arguments(arg), null) {
         }
-        public SetDifference (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public SetDifference (Arguments args) : this(args, null) {
         }
-        public SetDifference (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.SET_DIFFERENCE, args, optargs) {
+        public SetDifference (Arguments args, OptArgs optargs)
+             : this(TermType.SET_DIFFERENCE, args, optargs) {
         }
 
-    protected SetDifference (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected SetDifference (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static SetDifference FromArgs(params object[] args){
-         return new SetDifference (new Arguments(args), null);
-        }
 
 
     

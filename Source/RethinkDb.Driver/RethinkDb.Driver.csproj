@@ -120,7 +120,6 @@
     <Compile Include="Generated\Ast\HasFields.cs" />
     <Compile Include="Generated\Ast\Hours.cs" />
     <Compile Include="Generated\Ast\Http.cs" />
-    <Compile Include="Generated\Ast\ImplicitVar.cs" />
     <Compile Include="Generated\Ast\Includes.cs" />
     <Compile Include="Generated\Ast\IndexCreate.cs" />
     <Compile Include="Generated\Ast\IndexDrop.cs" />
@@ -168,7 +167,6 @@
     <Compile Include="Generated\Ast\November.cs" />
     <Compile Include="Generated\Ast\Now.cs" />
     <Compile Include="Generated\Ast\Nth.cs" />
-    <Compile Include="Generated\Ast\Object.cs" />
     <Compile Include="Generated\Ast\October.cs" />
     <Compile Include="Generated\Ast\OffsetsOf.cs" />
     <Compile Include="Generated\Ast\Or.cs" />
@@ -185,7 +183,8 @@
     <Compile Include="Generated\Ast\Reconfigure.cs" />
     <Compile Include="Generated\Ast\Reduce.cs" />
     <Compile Include="Generated\Ast\Replace.cs" />
-    <Compile Include="Generated\Ast\ReqlQuery.cs" />
+    <Compile Include="Generated\Ast\ReqlExpr.cs" />
+    <Compile Include="Generated\Ast\ReqlObject.cs" />
     <Compile Include="Generated\Ast\Round.cs" />
     <Compile Include="Generated\Ast\Sample.cs" />
     <Compile Include="Generated\Ast\Saturday.cs" />
@@ -216,7 +215,6 @@
     <Compile Include="Generated\Ast\ToGeojson.cs" />
     <Compile Include="Generated\Ast\ToIso8601.cs" />
     <Compile Include="Generated\Ast\ToJsonString.cs" />
-    <Compile Include="Generated\Ast\TopLevel.cs" />
     <Compile Include="Generated\Ast\Tuesday.cs" />
     <Compile Include="Generated\Ast\TypeOf.cs" />
     <Compile Include="Generated\Ast\Ungroup.cs" />
@@ -224,6 +222,7 @@
     <Compile Include="Generated\Ast\Upcase.cs" />
     <Compile Include="Generated\Ast\Update.cs" />
     <Compile Include="Generated\Ast\Uuid.cs" />
+    <Compile Include="Generated\Ast\Values.cs" />
     <Compile Include="Generated\Ast\Var.cs" />
     <Compile Include="Generated\Ast\Wait.cs" />
     <Compile Include="Generated\Ast\Wednesday.cs" />
@@ -238,12 +237,16 @@
     <Compile Include="Generated\Model\EmergencyRepair.cs" />
     <Compile Include="Generated\Model\Format.cs" />
     <Compile Include="Generated\Model\GeoSystem.cs" />
-    <Compile Include="Generated\Model\GlobalOptions.cs" />
     <Compile Include="Generated\Model\HttpMethod.cs" />
     <Compile Include="Generated\Model\IdentifierFormat.cs" />
     <Compile Include="Generated\Model\ReadMode.cs" />
+    <Compile Include="Generated\Model\ReqlFunction1.cs" />
+    <Compile Include="Generated\Model\ReqlFunction2.cs" />
+    <Compile Include="Generated\Model\ReqlFunction3.cs" />
+    <Compile Include="Generated\Model\ReqlFunction4.cs" />
     <Compile Include="Generated\Model\ResultFormat.cs" />
     <Compile Include="Generated\Model\Status.cs" />
+    <Compile Include="Generated\Model\TopLevel.cs" />
     <Compile Include="Generated\Model\Unit.cs" />
     <Compile Include="Generated\Proto\DatumType.cs" />
     <Compile Include="Generated\Proto\ErrorType.cs" />
@@ -271,12 +274,11 @@
     <Compile Include="Log.cs" />
     <Compile Include="Model\Arguments.cs" />
     <Compile Include="Model\Backtrace.cs" />
+    <Compile Include="Model\GroupedResult.cs" />
     <Compile Include="Model\MapObject.cs" />
     <Compile Include="Model\OptArgs.cs" />
     <Compile Include="Model\PathSpec.cs" />
     <Compile Include="Model\Profile.cs" />
-    <Compile Include="Model\ReqlFunction.cs" />
-    <Compile Include="Model\ReqlFunction2.cs" />
     <Compile Include="Model\ReqlLambda.cs" />
     <Compile Include="Net\Connection.cs" />
     <Compile Include="Net\ConnectionInstance.cs" />

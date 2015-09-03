@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class ConcatMap : ReqlQuery {
+    public class ConcatMap : ReqlExpr {
+
+    
     
     
         public ConcatMap (object arg) : this(new Arguments(arg), null) {
         }
-        public ConcatMap (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public ConcatMap (Arguments args) : this(args, null) {
         }
-        public ConcatMap (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.CONCAT_MAP, args, optargs) {
+        public ConcatMap (Arguments args, OptArgs optargs)
+             : this(TermType.CONCAT_MAP, args, optargs) {
         }
 
-    protected ConcatMap (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected ConcatMap (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static ConcatMap FromArgs(params object[] args){
-         return new ConcatMap (new Arguments(args), null);
-        }
 
 
     

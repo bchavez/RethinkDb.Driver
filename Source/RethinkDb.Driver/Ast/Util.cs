@@ -6,20 +6,24 @@ using RethinkDb.Driver.Model;
 namespace RethinkDb.Driver.Ast
 {
 
-	public class Util
+	public static class Util
 	{
-		private Util()
-		{
-		}
-		/// <summary>
-		/// Coerces objects from their native type to ReqlAst
-		/// </summary>
-		/// <param name="val"> val </param>
-		/// <returns> ReqlAst </returns>
+
 		public static ReqlAst ToReqlAst(object val)
 		{
-			return ToReqlAst(val, 20);
+			return ToReqlAst(val, 1000);
 		}
+
+	    public static ReqlExpr ToReqlExpr(object val)
+	    {
+	        var converted = ToReqlAst(val);
+	        var reqlAst = converted as ReqlExpr;
+	        if( reqlAst != null )
+	        {
+	            return reqlAst;
+	        }
+	        throw new ReqlDriverError($"Cannot convert {val} to ReqlExpr");
+	    }
 
 
         //TODO: don't use "is" for performance
@@ -55,15 +59,11 @@ namespace RethinkDb.Driver.Ast
 				return MakeObj.FromMap(obj);
 			}
 
-			if (val is ReqlFunction)
+			if (val is ReqlLambda)
 			{
-				return new Func((ReqlFunction) val);
+			    return Func.FromLambda((ReqlLambda)val);
 			}
-			if (val is ReqlFunction2)
-			{
-				return new Func((ReqlFunction2) val);
-			}
-
+			
 			if (val is DateTime)
 			{
 			    var dt = (DateTime)val;
@@ -106,88 +106,7 @@ namespace RethinkDb.Driver.Ast
                     || value is decimal;
         }
 
-        // /*
-        //     Called on arguments that should be functions
-        //  */
-        // public static ReqlAst funcWrap(java.lang.Object o) {
-        //     final ReqlAst ReqlQuery = toReqlAst(o);
-
-        //     if (hasImplicitVar(ReqlQuery)) {
-        //         return new Func(new ReqlFunction() {
-        //             @Override
-        //             public ReqlAst apply(ReqlAst row) {
-        //                 return ReqlQuery;
-        //             }
-        //         });
-        //     } else {
-        //         return ReqlQuery;
-        //     }
-        // }
-
-
-        // public static boolean hasImplicitVar(ReqlAst node) {
-        //     if (node.getTermType() == Q2L.Term.TermType.IMPLICIT_VAR) {
-        //         return true;
-        //     }
-        //     for (ReqlAst arg : node.getArgs()) {
-        //         if (hasImplicitVar(arg)) {
-        //             return true;
-        //         }
-        //     }
-        //     for (Map.Entry<String, ReqlAst> kv : node.getOptionalArgs().entrySet()) {
-        //         if (hasImplicitVar(kv.getValue())) {
-        //             return true;
-        //         }
-        //     }
-
-        //     return false;
-        // }
-
-        // public static Q2L.Datum createDatum(java.lang.Object value) {
-        //     Q2L.Datum.Builder builder = Q2L.Datum.newBuilder();
-
-        //     if (value == null) {
-        //         return builder
-        //                 .setType(Q2L.Datum.DatumType.R_NULL)
-        //                 .build();
-        //     }
-
-        //     if (value instanceof String) {
-        //         return builder
-        //                 .setType(Q2L.Datum.DatumType.R_STR)
-        //                 .setRStr((String) value)
-        //                 .build();
-        //     }
-
-        //     if (value instanceof Number) {
-        //         return builder
-        //                 .setType(Q2L.Datum.DatumType.R_NUM)
-        //                 .setRNum(((Number) value).doubleValue())
-        //                 .build();
-        //     }
-
-        //     if (value instanceof Boolean) {
-        //         return builder
-        //                 .setType(Q2L.Datum.DatumType.R_BOOL)
-        //                 .setRBool((Boolean) value)
-        //                 .build();
-        //     }
-
-        //     if (value instanceof Collection) {
-        //         Q2L.Datum.Builder arr = builder
-        //                 .setType(Q2L.Datum.DatumType.R_ARRAY);
-
-        //         for (java.lang.Object o : (Collection) value) {
-        //             arr.addRArray(createDatum(o));
-        //         }
-
-        //         return arr.build();
-
-        //     }
-
-        //     throw new ReqlError("Unknown Value can't create datatype for : " + value.getClass());
-        // }
-
+    
     }
 
 }

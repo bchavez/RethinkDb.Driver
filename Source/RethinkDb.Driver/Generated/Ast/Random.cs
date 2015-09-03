@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class Random : ReqlQuery {
+    public class Random : ReqlExpr {
+
+    
     
     
         public Random (object arg) : this(new Arguments(arg), null) {
         }
-        public Random (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public Random (Arguments args) : this(args, null) {
         }
-        public Random (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.RANDOM, args, optargs) {
+        public Random (Arguments args, OptArgs optargs)
+             : this(TermType.RANDOM, args, optargs) {
         }
 
-    protected Random (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected Random (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static Random FromArgs(params object[] args){
-         return new Random (new Arguments(args), null);
-        }
 
 
     

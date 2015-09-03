@@ -11,10 +11,6 @@ namespace RethinkDb.Driver
 		/// </summary>
 		public static readonly RethinkDB r = new RethinkDB();
 
-		private RethinkDB() : base(null, TermType.DATUM, null, null)
-		{
-		}
-
 		public virtual ConnectionBuilder connection()
 		{
 			return Connection.build();

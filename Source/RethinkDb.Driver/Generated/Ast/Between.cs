@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class Between : ReqlQuery {
+    public class Between : ReqlExpr {
+
+    
     
     
         public Between (object arg) : this(new Arguments(arg), null) {
         }
-        public Between (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public Between (Arguments args) : this(args, null) {
         }
-        public Between (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.BETWEEN, args, optargs) {
+        public Between (Arguments args, OptArgs optargs)
+             : this(TermType.BETWEEN, args, optargs) {
         }
 
-    protected Between (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected Between (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static Between FromArgs(params object[] args){
-         return new Between (new Arguments(args), null);
-        }
 
 
     

@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class SetUnion : ReqlQuery {
+    public class SetUnion : ReqlExpr {
+
+    
     
     
         public SetUnion (object arg) : this(new Arguments(arg), null) {
         }
-        public SetUnion (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public SetUnion (Arguments args) : this(args, null) {
         }
-        public SetUnion (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.SET_UNION, args, optargs) {
+        public SetUnion (Arguments args, OptArgs optargs)
+             : this(TermType.SET_UNION, args, optargs) {
         }
 
-    protected SetUnion (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected SetUnion (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static SetUnion FromArgs(params object[] args){
-         return new SetUnion (new Arguments(args), null);
-        }
 
 
     

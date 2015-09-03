@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class PolygonSub : ReqlQuery {
+    public class PolygonSub : ReqlExpr {
+
+    
     
     
         public PolygonSub (object arg) : this(new Arguments(arg), null) {
         }
-        public PolygonSub (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public PolygonSub (Arguments args) : this(args, null) {
         }
-        public PolygonSub (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.POLYGON_SUB, args, optargs) {
+        public PolygonSub (Arguments args, OptArgs optargs)
+             : this(TermType.POLYGON_SUB, args, optargs) {
         }
 
-    protected PolygonSub (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected PolygonSub (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static PolygonSub FromArgs(params object[] args){
-         return new PolygonSub (new Arguments(args), null);
-        }
 
 
     

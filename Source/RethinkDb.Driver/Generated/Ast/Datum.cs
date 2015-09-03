@@ -13,16 +13,20 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class Datum : ReqlQuery {
+    public class Datum : ReqlExpr {
+
     
     
-    public Datum(object arg) : base(null, TermType.DATUM, null, null) {
+    
+    public Datum(object arg) : base(TermType.DATUM, null, null) {
             datum = arg;
         }
 
@@ -42,7 +46,7 @@ namespace RethinkDb.Driver.Ast {
 
 
        
-        protected object datum;
+        internal object datum;
 
 
 

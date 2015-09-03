@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class OuterJoin : ReqlQuery {
+    public class OuterJoin : ReqlExpr {
+
+    
     
     
         public OuterJoin (object arg) : this(new Arguments(arg), null) {
         }
-        public OuterJoin (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public OuterJoin (Arguments args) : this(args, null) {
         }
-        public OuterJoin (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.OUTER_JOIN, args, optargs) {
+        public OuterJoin (Arguments args, OptArgs optargs)
+             : this(TermType.OUTER_JOIN, args, optargs) {
         }
 
-    protected OuterJoin (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected OuterJoin (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static OuterJoin FromArgs(params object[] args){
-         return new OuterJoin (new Arguments(args), null);
-        }
 
 
     

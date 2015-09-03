@@ -51,19 +51,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeGen\CSharpStyle.cs" />
     <Compile Include="CodeGen\EnumStringTemplate.generated.cs">
       <DependentUpon>EnumStringTemplate.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="CodeGen\ExceptionTemplate.generated.cs">
-      <DependentUpon>ExceptionTemplate.cshtml</DependentUpon>
+    <Compile Include="CodeGen\ReqlFunctionTemplate.generated.cs">
+      <DependentUpon>ReqlFunctionTemplate.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="CodeGen\GlobalOptionsTemplate.generated.cs">
-      <DependentUpon>GlobalOptionsTemplate.cshtml</DependentUpon>
+    <Compile Include="CodeGen\TopLevelTemplate.generated.cs">
+      <DependentUpon>TopLevelTemplate.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CodeGen\ExceptionTemplate.generated.cs">
+      <DependentUpon>ExceptionTemplate.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -104,6 +108,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="CodeGen\Util\CSharpStyle.cs" />
+    <Compile Include="CodeGen\Util\Signature.cs" />
+    <Compile Include="CSharpTermInfoMutator.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Metadata\MetaDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,13 +127,17 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>EnumStringTemplate.generated.cs</LastGenOutput>
     </None>
+    <None Include="CodeGen\ReqlFunctionTemplate.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>ReqlFunctionTemplate.generated.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGen\TopLevelTemplate.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>TopLevelTemplate.generated.cs</LastGenOutput>
+    </None>
     <None Include="CodeGen\ExceptionTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>ExceptionTemplate.generated.cs</LastGenOutput>
-    </None>
-    <None Include="CodeGen\GlobalOptionsTemplate.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>GlobalOptionsTemplate.generated.cs</LastGenOutput>
     </None>
     <None Include="CodeGen\AstSubclassTemplate.cshtml">
       <Generator>RazorGenerator</Generator>

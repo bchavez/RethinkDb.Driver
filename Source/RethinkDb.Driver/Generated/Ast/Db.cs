@@ -13,41 +13,83 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
     public class Db : ReqlAst {
+
+    
     
     
         public Db (object arg) : this(new Arguments(arg), null) {
         }
-        public Db (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public Db (Arguments args) : this(args, null) {
         }
-        public Db (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.DB, args, optargs) {
+        public Db (Arguments args, OptArgs optargs)
+             : this(TermType.DB, args, optargs) {
         }
 
-    protected Db (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected Db (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static Db FromArgs(params object[] args){
-         return new Db (new Arguments(args), null);
-        }
 
 
     
 
     
 
+                    public Table table ( Object expr )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(expr);
+                        return new Table (arguments);
+                    }
+                    public TableCreate tableCreate ( Object expr )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(expr);
+                        return new TableCreate (arguments);
+                    }
+                    public TableDrop tableDrop ( Object expr )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(expr);
+                        return new TableDrop (arguments);
+                    }
+                    public TableList tableList (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new TableList (arguments);
+                    }
+                    public Config config (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new Config (arguments);
+                    }
+                    public Wait wait_ (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new Wait (arguments);
+                    }
+                    public Reconfigure reconfigure (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new Reconfigure (arguments);
+                    }
+                    public Rebalance rebalance (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new Rebalance (arguments);
+                    }
 
     
     }

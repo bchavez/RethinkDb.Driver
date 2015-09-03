@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class DbDrop : ReqlQuery {
+    public class DbDrop : ReqlExpr {
+
+    
     
     
         public DbDrop (object arg) : this(new Arguments(arg), null) {
         }
-        public DbDrop (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public DbDrop (Arguments args) : this(args, null) {
         }
-        public DbDrop (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.DB_DROP, args, optargs) {
+        public DbDrop (Arguments args, OptArgs optargs)
+             : this(TermType.DB_DROP, args, optargs) {
         }
 
-    protected DbDrop (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected DbDrop (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static DbDrop FromArgs(params object[] args){
-         return new DbDrop (new Arguments(args), null);
-        }
 
 
     

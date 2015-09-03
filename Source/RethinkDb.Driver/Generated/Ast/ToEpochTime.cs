@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class ToEpochTime : ReqlQuery {
+    public class ToEpochTime : ReqlExpr {
+
+    
     
     
         public ToEpochTime (object arg) : this(new Arguments(arg), null) {
         }
-        public ToEpochTime (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public ToEpochTime (Arguments args) : this(args, null) {
         }
-        public ToEpochTime (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.TO_EPOCH_TIME, args, optargs) {
+        public ToEpochTime (Arguments args, OptArgs optargs)
+             : this(TermType.TO_EPOCH_TIME, args, optargs) {
         }
 
-    protected ToEpochTime (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected ToEpochTime (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static ToEpochTime FromArgs(params object[] args){
-         return new ToEpochTime (new Arguments(args), null);
-        }
 
 
     

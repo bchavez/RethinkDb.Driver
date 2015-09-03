@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class GetNearest : ReqlQuery {
+    public class GetNearest : ReqlExpr {
+
+    
     
     
         public GetNearest (object arg) : this(new Arguments(arg), null) {
         }
-        public GetNearest (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public GetNearest (Arguments args) : this(args, null) {
         }
-        public GetNearest (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.GET_NEAREST, args, optargs) {
+        public GetNearest (Arguments args, OptArgs optargs)
+             : this(TermType.GET_NEAREST, args, optargs) {
         }
 
-    protected GetNearest (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected GetNearest (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static GetNearest FromArgs(params object[] args){
-         return new GetNearest (new Arguments(args), null);
-        }
 
 
     

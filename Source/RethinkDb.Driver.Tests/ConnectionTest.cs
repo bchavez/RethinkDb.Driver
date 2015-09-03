@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Tests
                 .port(RethinkDBConstants.DEFAULT_PORT)
                 .timeout(60)
                 .connect();
-            
+
             var result = r.random(1, 9).add(r.random(1, 9)).run<JValue>(c).ToObject<int>();
             Console.WriteLine(result);
             result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);

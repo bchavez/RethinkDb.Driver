@@ -54,10 +54,10 @@ namespace RethinkDb.Driver
 			            case Proto.ErrorType.INTERNAL:
 			                con = new ReqlInternalError(Msg);
 			                break;
-			            case Proto.ErrorType.RESOURCE:
+			            case Proto.ErrorType.RESOURCE_LIMIT:
 			                con = new ReqlResourceLimitError(Msg);
 			                break;
-			            case Proto.ErrorType.LOGIC:
+			            case Proto.ErrorType.QUERY_LOGIC:
 			                con =  new ReqlQueryLogicError(Msg);
 			                break;
 			            case Proto.ErrorType.NON_EXISTENCE:

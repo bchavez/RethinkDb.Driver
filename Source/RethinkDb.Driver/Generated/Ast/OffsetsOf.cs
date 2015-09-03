@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class OffsetsOf : ReqlQuery {
+    public class OffsetsOf : ReqlExpr {
+
+    
     
     
         public OffsetsOf (object arg) : this(new Arguments(arg), null) {
         }
-        public OffsetsOf (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public OffsetsOf (Arguments args) : this(args, null) {
         }
-        public OffsetsOf (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.OFFSETS_OF, args, optargs) {
+        public OffsetsOf (Arguments args, OptArgs optargs)
+             : this(TermType.OFFSETS_OF, args, optargs) {
         }
 
-    protected OffsetsOf (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected OffsetsOf (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static OffsetsOf FromArgs(params object[] args){
-         return new OffsetsOf (new Arguments(args), null);
-        }
 
 
     

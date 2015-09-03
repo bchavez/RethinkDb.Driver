@@ -61,20 +61,7 @@ namespace RethinkDb.Driver.Net
 			}
 		}
 
-		public virtual void Write(byte[] buffer)
-		{
-		    this.bw.Write(buffer);
-		}
-
-	    public virtual void WriteQuery(long token, string json)
-	    {
-	        this.bw.Write(token);
-	        var jsonBytes = Encoding.UTF8.GetBytes(json);
-	        this.bw.Write(jsonBytes.Length);
-	        this.bw.Write(jsonBytes);
-	    }
-
-		private string ReadNullTerminatedString(TimeSpan deadline)
+	    private string ReadNullTerminatedString(TimeSpan deadline)
 		{
 		    var sb = new StringBuilder();
 		    char c;
@@ -85,22 +72,30 @@ namespace RethinkDb.Driver.Net
 		    return sb.ToString();
 		}
 
-		public virtual void WriteStringWithLength(string s)
+	    public virtual Response Read()
+	    {
+	        var token = this.br.ReadInt64();
+	        var responseLength = this.br.ReadInt32();
+	        var response = this.br.ReadBytes(responseLength);
+	        return Response.ParseFrom(token, Encoding.UTF8.GetString(response));
+	    }
+
+	    public virtual void WriteQuery(long token, string json)
+	    {
+	        this.bw.Write(token);
+	        var jsonBytes = Encoding.UTF8.GetBytes(json);
+	        this.bw.Write(jsonBytes.Length);
+	        this.bw.Write(jsonBytes);
+	    }
+
+	    public virtual void WriteStringWithLength(string s)
 		{
 		    var buffer = Encoding.UTF8.GetBytes(s);
 		    this.bw.Write(buffer.Length);
 		    this.bw.Write(buffer);
 		}
 
-		public virtual Response Read()
-		{
-		    var token = this.br.ReadInt64();
-		    var responseLength = this.br.ReadInt32();
-		    var response = this.br.ReadBytes(responseLength);
-		    return Response.ParseFrom(token, Encoding.UTF8.GetString(response));
-		}
-
-		public virtual bool Closed => !socketChannel.Connected;
+	    public virtual bool Closed => !socketChannel.Connected;
 
 	    public virtual bool Open => socketChannel.Connected;
 

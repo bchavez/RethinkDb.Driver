@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class Delete : ReqlQuery {
+    public class Delete : ReqlExpr {
+
+    
     
     
         public Delete (object arg) : this(new Arguments(arg), null) {
         }
-        public Delete (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public Delete (Arguments args) : this(args, null) {
         }
-        public Delete (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.DELETE, args, optargs) {
+        public Delete (Arguments args, OptArgs optargs)
+             : this(TermType.DELETE, args, optargs) {
         }
 
-    protected Delete (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected Delete (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static Delete FromArgs(params object[] args){
-         return new Delete (new Arguments(args), null);
-        }
 
 
     

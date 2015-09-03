@@ -69,12 +69,12 @@ namespace RethinkDb.Driver.Net
 			threshold = response.Data.Count;
 			if (error == null)
 			{
-				if (response.Partial)
+				if (response.IsPartial)
 				{
 				    foreach( var item in response.Data )
 				        items.Add(item);
 				}
-				else if (response.Sequence)
+				else if (response.IsSequence)
 				{
                     foreach( var item in response.Data )
                         items.Add(item);
@@ -134,8 +134,10 @@ namespace RethinkDb.Driver.Net
 
 		private class DefaultCursor<T> : Cursor<T>
 		{
+		    private Converter.FormatOptions fmt;
 			public DefaultCursor(Connection connection, Query query) : base(connection, query)
 			{
+			    this.fmt = new Converter.FormatOptions(query.GlobalOptions);
 			}
 
 			internal override T getNext(TimeSpan? timeout)
@@ -150,7 +152,7 @@ namespace RethinkDb.Driver.Net
 				}
 			    object element = items.First();
 			    items.RemoveAt(0);
-				return (T) Converter.convertPseudo(element, query.GlobalOptions);
+				return (T) Converter.ConvertPesudoTypes(element, fmt);
 			}
 
 		}

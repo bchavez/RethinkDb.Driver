@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -140,7 +141,7 @@ namespace RethinkDb.Driver.Net
             return checkOpen().ReadResponse(token, deadline);
         }
 
-        internal virtual object RunQuery<T>(Query query, bool noreply)
+        internal virtual T RunQuery<T>(Query query)
         {
             ConnectionInstance inst = checkOpen();
             if( inst.Socket == null )
@@ -148,35 +149,31 @@ namespace RethinkDb.Driver.Net
 
             inst.Socket.WriteQuery( query.Token, query.Serialize());
 
-            if( noreply )
-            {
-                return null;
-            }
-
             Response res = inst.ReadResponse(query.Token);
 
             // TODO: This logic needs to move into the Response class
             log.Debug(res.ToString()); //RSI
-            if( res.Atom )
+            if( res.IsAtom )
             {
                 try
                 {
-                    return Response.convertPseudotypes(res.Data, res.Profile)[0];
+                    Converter.FormatOptions fmt = new Converter.FormatOptions(query.GlobalOptions);
+                    return (T)( (IList)Converter.ConvertPesudoTypes(res.Data, fmt))[0];
                 }
                 catch( System.IndexOutOfRangeException ex )
                 {
                     throw new ReqlDriverError("Atom response was empty!", ex);
                 }
             }
-            else if( res.Partial || res.Sequence )
+            else if( res.IsPartial || res.IsSequence )
             {
                 ICursor cursor = Cursor<T>.empty(this, query);
                 cursor.Extend(res);
-                return cursor;
+                return (T) cursor;
             }
-            else if( res.WaitComplete )
+            else if( res.IsWaitComplete )
             {
-                return null;
+                return default(T);
             }
             else
             {
@@ -184,14 +181,11 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-        internal virtual object RunQuery<T>(Query query)
-        {
-            return RunQuery<T>(query, false);
-        }
-
         internal virtual void RunQueryNoreply(Query query)
         {
-            RunQuery<object>(query, true);
+            var inst = checkOpen();
+            if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
+            inst.Socket.WriteStringWithLength(query.Serialize());
         }
 
         public virtual void NoReplyWait()
@@ -199,14 +193,29 @@ namespace RethinkDb.Driver.Net
             RunQuery<object>(Query.NoReplyWait(NewToken()));
         }
 
-        public virtual object run<T>(ReqlAst term, GlobalOptions globalOpts)
+        public virtual object run<T>(ReqlAst term, OptArgs globalOpts)
         {
-            if( globalOpts.Db == null )
-            {
-                globalOpts.Db = dbname;
-            }
+            SetDefaultDb(globalOpts);
             Query q = Query.Start(NewToken(), term, globalOpts);
-            return RunQuery<T>(q, globalOpts.Noreply.GetValueOrDefault(false));
+            if( globalOpts.ContainsKey("noreply") )
+            {
+                throw new ReqlDriverError("Don't provide the noreply option as an optarg. Use `.runNoReply` instead of `.run`");
+            }
+            return RunQuery<T>(q);
+        }
+
+        private void SetDefaultDb(OptArgs globalOpts)
+        {
+            if( !globalOpts.ContainsKey("db") && this.dbname != null )
+            {
+                globalOpts.With("db", this.dbname);
+            }
+        }
+
+        public void runNoReply(ReqlAst term, OptArgs globalOpts)
+        {
+            SetDefaultDb(globalOpts);
+            RunQueryNoreply(Query.Start(NewToken(), term, globalOpts));
         }
 
         internal virtual void Continue(ICursor cursor)

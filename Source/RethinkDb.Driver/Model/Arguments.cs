@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using RethinkDb.Driver.Ast;
 
@@ -10,26 +11,57 @@ namespace RethinkDb.Driver.Model
 		public Arguments()
 		{
 		}
-		public Arguments(object arg1)
+		public Arguments(object arg)
 		{
-			this.Add(Util.ToReqlAst(arg1));
+		    var list = arg as IList;
+		    if( list != null )
+		    {
+		        this.CoerceAndAddAll(list);
+		    }
+		    else
+		    {
+		        this.CoerceAndAdd(arg);
+		        this.Add(Util.ToReqlAst(arg));
+		    }
 		}
-		public Arguments(ReqlAst arg1)
-		{
-			this.Add(arg1);
-		}
+	    public Arguments(Arguments args)
+	    {
+	        this.AddRange(args);
+	    }
 
-		public Arguments(object[] args) : this(args.ToList())
-		{
-		}
+	    public Arguments(ReqlAst arg)
+	    {
+	        this.Add(arg);
+	    }
 
-		public Arguments(IList<object> args)
-		{
-		    var ast = args.Select(o => Util.ToReqlAst(o)).ToList();
-			this.AddRange(ast);
-		}
+	    public Arguments(object[] args)
+	    {
+	        CoerceAndAddAll(args);
+	    }
 
-		public static Arguments make(params object[] args)
+	    public Arguments(IList<object> args)
+	    {
+	        var ast = args.Select(o => Util.ToReqlAst(o)).ToList();
+	        this.AddRange(ast);
+	    }
+
+	    public void CoerceAndAdd(object o)
+	    {
+	        this.Add(Util.ToReqlAst(o));
+	    }
+
+	    public void CoerceAndAddAll(object[] args)
+	    {
+	        CoerceAndAdd(args.ToList());
+	    }
+	    public void CoerceAndAddAll(IList list)
+	    {
+	        var ast = list.OfType<object>().Select(Util.ToReqlAst);
+	        this.AddRange(ast);
+	    }
+
+
+	    public static Arguments Make(params object[] args)
 		{
 			return new Arguments(args);
 		}

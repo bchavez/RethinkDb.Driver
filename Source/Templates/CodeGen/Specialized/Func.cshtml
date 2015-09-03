@@ -3,6 +3,7 @@
 @using System.Linq
 @using Humanizer
 @using Newtonsoft.Json.Linq
+@using Templates
 @using Templates.CodeGen
 
 @inherits AstSubclassTemplate
@@ -11,24 +12,66 @@
     this.Layout = UseParentLayout(this);
 }
 
-@section Ctors{
-   public Func(ReqlFunction function) : this(Arguments.make(
-            new MakeArray(new Arguments(1), null),
-                Util.ToReqlAst(function.Apply(new Var(1)))))
-    {
-    }
-
-    public Func(ReqlFunction2 function) :
-        this(Arguments.make(
-            new MakeArray(Arguments.make(1, 2)),
-                Util.ToReqlAst(function.Apply(new Var(1), new Var(1)))))
-    {
-    }
-
-    protected Func(Arguments args) : base(null, TermType.FUNC, args, null) {
-    }
+@section Add_Imports{
+    using System.Threading;
 }
+
+@section Ctors{
+    
+        protected Func(Arguments args) : base(TermType.FUNC, args, null)
+        {
+        }
+
+}
+
+@section Member_Vars{
+        private static int VarId = 0;
+}
+
+@section SpecialMethods{
+        private static int NextVarId(){
+            return Interlocked.Increment(ref VarId);
+        }
+}
+
 @section StaticFactories{
+    
+    
+    public static Func FromLambda(ReqlLambda function){
+    
+        @foreach( var n in Enumerable.Range(1, Generator.GetMaxArity()) )
+        {
+            @://Function @n
+            @:var @("func"+n) = function as @("ReqlFunction"+n);
+            @:if( @("func"+n) != null){
+                for( int v = 1; v <= n; v++ )
+                {
+                @:int @("var" + v) = NextVarId();
+                }
+                @:var varIds = new List<int>{ 
+                for( int v = 1; v <= n; v++ )
+                {
+                    @:var@(v + ",")
+                }
+                @:};
+
+                @:var appliedFunction = @("func"+n).Apply(
+                    for (int v = 1; v <= n; v++)
+                {
+                    @:new Var(var@(v)) @(v == n ? "" : ",")
+                }
+                @:);
+
+                @:return new Func(Arguments.Make(
+                        @:new MakeArray(varIds),
+                        @:Util.ToReqlAst(appliedFunction)
+                @:));
+            @:}
+        }
+    
+        throw new ReqlDriverError("Arity of ReqlLambda not recognized!");
+    }
+
     
 }
 

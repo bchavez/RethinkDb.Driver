@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class Wait : ReqlQuery {
+    public class Wait : ReqlExpr {
+
+    
     
     
         public Wait (object arg) : this(new Arguments(arg), null) {
         }
-        public Wait (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public Wait (Arguments args) : this(args, null) {
         }
-        public Wait (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.WAIT, args, optargs) {
+        public Wait (Arguments args, OptArgs optargs)
+             : this(TermType.WAIT, args, optargs) {
         }
 
-    protected Wait (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected Wait (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static Wait FromArgs(params object[] args){
-         return new Wait (new Arguments(args), null);
-        }
 
 
     

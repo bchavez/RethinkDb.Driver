@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class Sum : ReqlQuery {
+    public class Sum : ReqlExpr {
+
+    
     
     
         public Sum (object arg) : this(new Arguments(arg), null) {
         }
-        public Sum (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public Sum (Arguments args) : this(args, null) {
         }
-        public Sum (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.SUM, args, optargs) {
+        public Sum (Arguments args, OptArgs optargs)
+             : this(TermType.SUM, args, optargs) {
         }
 
-    protected Sum (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected Sum (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static Sum FromArgs(params object[] args){
-         return new Sum (new Arguments(args), null);
-        }
 
 
     

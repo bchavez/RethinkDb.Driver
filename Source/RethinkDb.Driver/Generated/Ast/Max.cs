@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class Max : ReqlQuery {
+    public class Max : ReqlExpr {
+
+    
     
     
         public Max (object arg) : this(new Arguments(arg), null) {
         }
-        public Max (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public Max (Arguments args) : this(args, null) {
         }
-        public Max (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.MAX, args, optargs) {
+        public Max (Arguments args, OptArgs optargs)
+             : this(TermType.MAX, args, optargs) {
         }
 
-    protected Max (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected Max (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static Max FromArgs(params object[] args){
-         return new Max (new Arguments(args), null);
-        }
 
 
     

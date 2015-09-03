@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class InnerJoin : ReqlQuery {
+    public class InnerJoin : ReqlExpr {
+
+    
     
     
         public InnerJoin (object arg) : this(new Arguments(arg), null) {
         }
-        public InnerJoin (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public InnerJoin (Arguments args) : this(args, null) {
         }
-        public InnerJoin (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.INNER_JOIN, args, optargs) {
+        public InnerJoin (Arguments args, OptArgs optargs)
+             : this(TermType.INNER_JOIN, args, optargs) {
         }
 
-    protected InnerJoin (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected InnerJoin (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static InnerJoin FromArgs(params object[] args){
-         return new InnerJoin (new Arguments(args), null);
-        }
 
 
     

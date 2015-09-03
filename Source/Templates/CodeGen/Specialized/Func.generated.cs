@@ -39,6 +39,12 @@ namespace Templates.CodeGen.Specialized
     #line hidden
     
     #line 6 "..\..\CodeGen\Specialized\Func.cshtml"
+    using Templates;
+    
+    #line default
+    #line hidden
+    
+    #line 7 "..\..\CodeGen\Specialized\Func.cshtml"
     using Templates.CodeGen;
     
     #line default
@@ -49,7 +55,7 @@ namespace Templates.CodeGen.Specialized
     {
 #line hidden
 
-        #line 36 "..\..\CodeGen\Specialized\Func.cshtml"
+        #line 79 "..\..\CodeGen\Specialized\Func.cshtml"
 
     
 
@@ -67,6 +73,7 @@ WriteLiteral("\r\n");
 
 
 
+
 WriteLiteral("\r\n");
 
 
@@ -74,7 +81,7 @@ WriteLiteral("\r\n");
 
 
             
-            #line 10 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 11 "..\..\CodeGen\Specialized\Func.cshtml"
   
     this.Layout = UseParentLayout(this);
 
@@ -85,35 +92,300 @@ WriteLiteral("\r\n");
 WriteLiteral("\r\n");
 
 
-DefineSection("Ctors", () => {
+DefineSection("Add_Imports", () => {
 
-WriteLiteral(@"
-   public Func(ReqlFunction function) : this(Arguments.make(
-            new MakeArray(new Arguments(1), null),
-                Util.ToReqlAst(function.Apply(new Var(1)))))
-    {
-    }
-
-    public Func(ReqlFunction2 function) :
-        this(Arguments.make(
-            new MakeArray(Arguments.make(1, 2)),
-                Util.ToReqlAst(function.Apply(new Var(1), new Var(1)))))
-    {
-    }
-
-    protected Func(Arguments args) : base(null, TermType.FUNC, args, null) {
-    }
-");
+WriteLiteral("\r\n    using System.Threading;\r\n");
 
 
 });
 
-WriteLiteral("\r\n");
+WriteLiteral("\r\n\r\n");
+
+
+DefineSection("Ctors", () => {
+
+WriteLiteral("\r\n    \r\n        protected Func(Arguments args) : base(TermType.FUNC, args, null)\r" +
+"\n        {\r\n        }\r\n\r\n");
+
+
+});
+
+WriteLiteral("\r\n\r\n");
+
+
+DefineSection("Member_Vars", () => {
+
+WriteLiteral("\r\n        private static int VarId = 0;\r\n");
+
+
+});
+
+WriteLiteral("\r\n\r\n");
+
+
+DefineSection("SpecialMethods", () => {
+
+WriteLiteral("\r\n        private static int NextVarId(){\r\n            return Interlocked.Increme" +
+"nt(ref VarId);\r\n        }\r\n");
+
+
+});
+
+WriteLiteral("\r\n\r\n");
 
 
 DefineSection("StaticFactories", () => {
 
-WriteLiteral("\r\n    \r\n");
+WriteLiteral("\r\n    \r\n    \r\n    public static Func FromLambda(ReqlLambda function){\r\n    \r\n");
+
+
+            
+            #line 42 "..\..\CodeGen\Specialized\Func.cshtml"
+         foreach( var n in Enumerable.Range(1, Generator.GetMaxArity()) )
+        {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("            ");
+
+WriteLiteral("//Function ");
+
+
+            
+            #line 44 "..\..\CodeGen\Specialized\Func.cshtml"
+                    Write(n);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n");
+
+
+
+WriteLiteral("            ");
+
+WriteLiteral("var ");
+
+
+            
+            #line 45 "..\..\CodeGen\Specialized\Func.cshtml"
+              Write("func"+n);
+
+            
+            #line default
+            #line hidden
+WriteLiteral(" = function as ");
+
+
+            
+            #line 45 "..\..\CodeGen\Specialized\Func.cshtml"
+                                        Write("ReqlFunction"+n);
+
+            
+            #line default
+            #line hidden
+WriteLiteral(";\r\n");
+
+
+
+WriteLiteral("            ");
+
+WriteLiteral("if( ");
+
+
+            
+            #line 46 "..\..\CodeGen\Specialized\Func.cshtml"
+              Write("func"+n);
+
+            
+            #line default
+            #line hidden
+WriteLiteral(" != null){\r\n");
+
+
+            
+            #line 47 "..\..\CodeGen\Specialized\Func.cshtml"
+                for( int v = 1; v <= n; v++ )
+                {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                ");
+
+WriteLiteral("int ");
+
+
+            
+            #line 49 "..\..\CodeGen\Specialized\Func.cshtml"
+                  Write("var" + v);
+
+            
+            #line default
+            #line hidden
+WriteLiteral(" = NextVarId();\r\n");
+
+
+            
+            #line 50 "..\..\CodeGen\Specialized\Func.cshtml"
+                }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                ");
+
+WriteLiteral("var varIds = new List<int>{ \r\n");
+
+
+            
+            #line 52 "..\..\CodeGen\Specialized\Func.cshtml"
+                for( int v = 1; v <= n; v++ )
+                {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                    ");
+
+WriteLiteral("var");
+
+
+            
+            #line 54 "..\..\CodeGen\Specialized\Func.cshtml"
+                     Write(v + ",");
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n");
+
+
+            
+            #line 55 "..\..\CodeGen\Specialized\Func.cshtml"
+                }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                ");
+
+WriteLiteral("};\r\n");
+
+
+            
+            #line 57 "..\..\CodeGen\Specialized\Func.cshtml"
+
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                ");
+
+WriteLiteral("var appliedFunction = ");
+
+
+            
+            #line 58 "..\..\CodeGen\Specialized\Func.cshtml"
+                                    Write("func"+n);
+
+            
+            #line default
+            #line hidden
+WriteLiteral(".Apply(\r\n");
+
+
+            
+            #line 59 "..\..\CodeGen\Specialized\Func.cshtml"
+                    for (int v = 1; v <= n; v++)
+                {
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                    ");
+
+WriteLiteral("new Var(var");
+
+
+            
+            #line 61 "..\..\CodeGen\Specialized\Func.cshtml"
+                             Write(v);
+
+            
+            #line default
+            #line hidden
+WriteLiteral(") ");
+
+
+            
+            #line 61 "..\..\CodeGen\Specialized\Func.cshtml"
+                                   Write(v == n ? "" : ",");
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n");
+
+
+            
+            #line 62 "..\..\CodeGen\Specialized\Func.cshtml"
+                }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                ");
+
+WriteLiteral(");\r\n");
+
+
+            
+            #line 64 "..\..\CodeGen\Specialized\Func.cshtml"
+
+
+            
+            #line default
+            #line hidden
+WriteLiteral("                ");
+
+WriteLiteral("return new Func(Arguments.Make(\r\n");
+
+
+
+WriteLiteral("                        ");
+
+WriteLiteral("new MakeArray(varIds),\r\n");
+
+
+
+WriteLiteral("                        ");
+
+WriteLiteral("Util.ToReqlAst(appliedFunction)\r\n");
+
+
+
+WriteLiteral("                ");
+
+WriteLiteral("));\r\n");
+
+
+
+WriteLiteral("            ");
+
+WriteLiteral("}\r\n");
+
+
+            
+            #line 70 "..\..\CodeGen\Specialized\Func.cshtml"
+        }
+
+            
+            #line default
+            #line hidden
+WriteLiteral("    \r\n        throw new ReqlDriverError(\"Arity of ReqlLambda not recognized!\");\r\n" +
+"    }\r\n\r\n    \r\n");
 
 
 });

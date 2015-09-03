@@ -13,35 +13,34 @@
 #pragma warning disable 1591
 // ReSharper disable CheckNamespace
 
+using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
+
 namespace RethinkDb.Driver.Ast {
-    public class Uuid : ReqlQuery {
+    public class Uuid : ReqlExpr {
+
+    
     
     
         public Uuid (object arg) : this(new Arguments(arg), null) {
         }
-        public Uuid (Arguments args, OptArgs optargs) : this(null, args, optargs) {
+        public Uuid (Arguments args) : this(args, null) {
         }
-        public Uuid (ReqlAst prev, Arguments args, OptArgs optargs)
-             : this(prev, TermType.UUID, args, optargs) {
+        public Uuid (Arguments args, OptArgs optargs)
+             : this(TermType.UUID, args, optargs) {
         }
 
-    protected Uuid (ReqlAst previous, TermType termType, Arguments args, OptArgs optargs) : base(previous, termType, args, optargs)
+    protected Uuid (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
     {
     }
 
 
     
 
-    /* Static Factories */
-
-        public static Uuid FromArgs(params object[] args){
-         return new Uuid (new Arguments(args), null);
-        }
 
 
     

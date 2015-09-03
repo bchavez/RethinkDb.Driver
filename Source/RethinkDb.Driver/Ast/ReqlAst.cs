@@ -49,12 +49,7 @@ namespace RethinkDb.Driver.Ast
 
             if( OptArgs.Count > 0 )
             {
-                JObject joptargs = new JObject();
-                foreach( KeyValuePair<string, ReqlAst> entry in OptArgs )
-                {
-                    joptargs.Add(entry.Key, (JToken)entry.Value.Build());
-                }
-                list.Add(joptargs);
+                list.Add(BuildOptarg(OptArgs));
             }
             return list;
         }

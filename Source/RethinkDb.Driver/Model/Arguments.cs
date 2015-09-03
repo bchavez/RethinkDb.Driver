@@ -16,7 +16,7 @@ namespace RethinkDb.Driver.Model
 		    var list = arg as IList;
 		    if( list != null )
 		    {
-		        this.CoerceAndAddAll(list);
+		        this.CoerceAndAddAll(list.OfType<object>().ToList());
 		    }
 		    else
 		    {
@@ -52,11 +52,11 @@ namespace RethinkDb.Driver.Model
 
 	    public void CoerceAndAddAll(object[] args)
 	    {
-	        CoerceAndAdd(args.ToList());
+	        CoerceAndAddAll(args);
 	    }
-	    public void CoerceAndAddAll(IList list)
+	    public void CoerceAndAddAll(IList<object> list)
 	    {
-	        var ast = list.OfType<object>().Select(Util.ToReqlAst);
+	        var ast = list.Select(Util.ToReqlAst);
 	        this.AddRange(ast);
 	    }
 

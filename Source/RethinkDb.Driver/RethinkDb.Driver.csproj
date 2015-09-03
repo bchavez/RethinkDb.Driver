@@ -284,7 +284,6 @@
     <Compile Include="Net\ConnectionInstance.cs" />
     <Compile Include="Net\Converter.cs" />
     <Compile Include="Net\Cursor.cs" />
-    <Compile Include="Net\DBResultFactory.cs" />
     <Compile Include="Net\Response.cs" />
     <Compile Include="Net\SocketWrapper.cs" />
     <Compile Include="Net\Util.cs" />

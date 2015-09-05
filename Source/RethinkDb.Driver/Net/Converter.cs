@@ -96,7 +96,7 @@ namespace RethinkDb.Driver.Net
 	        string timezone = value["timezone"].ToString();
 
 	        var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-	        var dt = epoch + TimeSpan.FromMilliseconds(epoch_time);
+	        var dt = epoch + TimeSpan.FromSeconds(epoch_time);
 
 	        var tz = TimeSpan.Parse(timezone.Substring(1));
 	        if( !timezone.StartsWith("+") )

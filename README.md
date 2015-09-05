@@ -34,11 +34,14 @@ public void can_connect()
         .timeout(60)
         .connect();
     
-    var result = r.random(1, 9).add(r.random(1, 9)).run<JValue>(c).ToObject<int>();
+    var result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
     Console.WriteLine(result);
     result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
 }
+// Output: 8
 ```
+You should be able to follow any examples found in the [ReQL documentation](http://www.rethinkdb.com/api/javascript/) with this driver.
+
 
 Building
 --------

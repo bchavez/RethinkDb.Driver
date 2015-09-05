@@ -10,7 +10,7 @@ using RethinkDb.Driver.Model;
 
 namespace RethinkDb.Driver.Net
 {
-	public class Converter
+    public class Converter
 	{
 	    //public static Func<long, string, Response> ResponseBuillder = Response.ParseFrom;
 
@@ -19,27 +19,6 @@ namespace RethinkDb.Driver.Net
 	    public const string GROUPED_DATA = "GROUPED_DATA";
 	    public const string GEOMETRY = "GEOMETRY";
 	    public const string BINARY = "BINARY"; 
-
-        public class FormatOptions
-        {
-            public bool RawTime { get; }
-            public bool RawGroups { get; }
-            public bool RawBinary { get; }
-
-            public FormatOptions(OptArgs args)
-            {
-                // TODO: find a better way to do this.
-                ReqlAst datum;
-                var value = args.TryGetValue("time_format", out datum) ? ((Datum)datum).datum :  new Datum("native").datum;
-                this.RawTime = value.Equals("raw");
-
-                value = args.TryGetValue("binary_format", out datum) ? ((Datum)datum).datum : new Datum("native").datum;
-                this.RawBinary = value.Equals("raw");
-
-                value = args.TryGetValue("group_format", out datum) ? ((Datum)datum).datum : new Datum("native").datum;
-                this.RawGroups = value.Equals("raw");
-            }
-        }
 
 	    public static object ConvertPesudoTypes(object obj, FormatOptions fmt)
 	    {

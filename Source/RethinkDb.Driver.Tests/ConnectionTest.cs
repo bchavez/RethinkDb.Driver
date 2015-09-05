@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
 using System.Linq;
+using Templates.Utils;
 
 namespace RethinkDb.Driver.Tests
 {
@@ -11,7 +12,7 @@ namespace RethinkDb.Driver.Tests
     public class ConnectionTest
     {
         private const string DbName = "CSharpDriverTests";
-        private const string TableName = "ATable";
+        private const string TableName = "TableA";
 
         public static RethinkDB r = RethinkDB.r;
 
@@ -32,40 +33,49 @@ namespace RethinkDb.Driver.Tests
         public void BeforeRunningTestSession()
         {
             EnsureConnection();
-            try
-            {
-                r.dbCreate(DbName).run(conn);
+            //try
+            //{
+            //    r.dbCreate(DbName).run(conn);
 
-                r.db(DbName).wait_().run(conn);
-                r.db(DbName).tableCreate(TableName).run(conn);
-                r.db(DbName).table(TableName).wait_().run(conn);
-            }
-            catch
-            {
-            }
+            //    r.db(DbName).wait_().run(conn);
+            //    r.db(DbName).tableCreate(TableName).run(conn);
+            //    r.db(DbName).table(TableName).wait_().run(conn);
+            //}
+            //catch
+            //{
+            //}
         }
 
         [TestFixtureTearDown]
         public void AfterRunningTestSession()
         {
-            try
-            {
-                r.db(DbName).tableDrop(TableName).run(conn);
-                r.dbDrop(DbName).run(conn);
-                conn.close();
-            }
-            catch { }
+            //try
+            //{
+            //    r.db(DbName).tableDrop(TableName).run(conn);
+            //    r.dbDrop(DbName).run(conn);
+            //    conn.close();
+            //}
+            //catch { }
         }
 
         [Test]
         [Explicit]
-        public void test()
+        public void create_table()
         {
             r.dbCreate(DbName).run(conn);
 
             r.db(DbName).wait_().run(conn);
             r.db(DbName).tableCreate(TableName).run(conn);
             r.db(DbName).table(TableName).wait_().run(conn);
+        }
+
+        [Test]
+        [Explicit]
+        public void delete_table()
+        {
+            r.db(DbName).tableDrop(TableName).run(conn);
+            r.dbDrop(DbName).run(conn);
+            conn.close();
         }
 
         [Test]
@@ -95,6 +105,14 @@ namespace RethinkDb.Driver.Tests
             var t = r.now().run<DateTimeOffset>(conn);
             //ten minute limit for clock drift.
             t.Should().BeCloseTo(DateTimeOffset.UtcNow, 600000);
+        }
+
+        [Test]
+        public void test_jvalue()
+        {
+            var t = r.now().run<JValue>(conn);
+            //ten minute limit for clock drift.
+            t.Dump();
         }
         
     }

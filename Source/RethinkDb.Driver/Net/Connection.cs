@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using Common.Logging;
+using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 
@@ -157,8 +158,8 @@ namespace RethinkDb.Driver.Net
             {
                 try
                 {
-                    Converter.FormatOptions fmt = new Converter.FormatOptions(query.GlobalOptions);
-                    return (T)( (IList)Converter.ConvertPesudoTypes(res.Data, fmt))[0];
+                    var fmt = new FormatOptions(query.GlobalOptions);
+                    return Converter3.ConvertPesudoTypes(res.Data, fmt)[0].Value<T>();
                 }
                 catch( System.IndexOutOfRangeException ex )
                 {

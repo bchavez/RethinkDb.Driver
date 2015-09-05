@@ -85,14 +85,14 @@ namespace RethinkDb.Driver.Net
 				    error = response.MakeError(query);
 				}
 			}
-			maybeFetchBatch();
+			MaybeFetchBatch();
 			if (outstandingRequests == 0 && error != null)
 			{
 				connection.RemoveFromCache(response.Token);
 			}
 		}
 
-		protected internal virtual void maybeFetchBatch()
+		protected internal virtual void MaybeFetchBatch()
 		{
 			if (error == null && items.Count <= threshold && outstandingRequests == 0)
 			{
@@ -134,25 +134,25 @@ namespace RethinkDb.Driver.Net
 
 		private class DefaultCursor<T> : Cursor<T>
 		{
-		    private Converter.FormatOptions fmt;
+		    private FormatOptions fmt;
 			public DefaultCursor(Connection connection, Query query) : base(connection, query)
 			{
-			    this.fmt = new Converter.FormatOptions(query.GlobalOptions);
+			    this.fmt = new FormatOptions(query.GlobalOptions);
 			}
 
 			internal override T getNext(TimeSpan? timeout)
 			{
 				while (items.Count == 0)
 				{
-					maybeFetchBatch();
+					MaybeFetchBatch();
 				    if( error != null )
 				        throw error;
 
 				    connection.ReadResponse(query.Token, NetUtil.Deadline(timeout));
 				}
-			    object element = items.First();
+			    var element = items.First();
 			    items.RemoveAt(0);
-				return (T) Converter.ConvertPesudoTypes(element, fmt);
+				return Converter3.ConvertPesudoTypes(element, fmt).Value<T>();
 			}
 
 		}

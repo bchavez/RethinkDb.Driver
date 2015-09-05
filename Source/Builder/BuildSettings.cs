@@ -1,4 +1,5 @@
 using System;
+using Builder.Extensions;
 using FluentBuild;
 using FluentBuild.AssemblyInfoBuilding;
 using FluentFs.Core;
@@ -18,7 +19,8 @@ namespace Builder
 
     public class BuildContext
     {
-        public static readonly string Version = Environment.GetEnvironmentVariable("BUILD_VERSION") ?? "0.0.0.0";
+        public static readonly string FullVersion = Environment.GetEnvironmentVariable("BUILD_VERSION").Trim() ?? "0.0.0.0";
+        public static readonly string Version = FullVersion.WithoutPreReleaseName();
     }
 
     public class Projects
@@ -29,7 +31,7 @@ namespace Builder
                .Copyright( "Brian Chavez © " + DateTime.UtcNow.Year )
                .Version( BuildContext.Version )
                .FileVersion( BuildContext.Version )
-               .InformationalVersion( $"{BuildContext.Version} built on {DateTime.UtcNow} UTC" )
+               .InformationalVersion( $"{BuildContext.FullVersion} built on {DateTime.UtcNow} UTC" )
                .Trademark( "MIT License" )
                .Description( "http://www.github.com/bchavez/RethinkDb.Driver" )
                .ComVisible(false);
@@ -47,7 +49,7 @@ namespace Builder
             public static readonly Directory PackageDir = Folders.Package.SubFolder( Name );
             
             public static readonly File NugetSpec = Folders.Builder.SubFolder("NuGet").File( $"{Name}.nuspec" );
-            public static readonly File NugetNupkg = Folders.Package.File($"{Name}.{BuildContext.Version}.nupkg");
+            public static readonly File NugetNupkg = Folders.Package.File($"{Name}.{BuildContext.FullVersion}.nupkg");
 
             public static readonly Action<IAssemblyInfoDetails> AssemblyInfo =
                 i =>

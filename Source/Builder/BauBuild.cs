@@ -85,7 +85,7 @@ namespace Builder
                             p =>
                                 {
                                     p.BasePath = Folders.CompileOutput.ToString();
-                                    p.Version = BuildContext.Version;
+                                    p.Version = BuildContext.FullVersion;
                                     p.Symbols = true;
                                     p.OutputDirectory = Folders.Package.ToString();
                                 })

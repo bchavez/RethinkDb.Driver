@@ -9,6 +9,7 @@
 @using RazorGenerator.Templating
 @using Templates.CodeGen
 @using Templates.CodeGen.Util
+@using Templates.Metadata
 @using Z.ExtensionMethods
 
 @inherits BaseTemplate
@@ -33,13 +34,30 @@
     }    
 }
 
+@helper RenderCtorXmlDoc(string term)
+{   
+    Documentation doc;
+    if( MetaDb.Docs.TryGetValue(term, out doc) )
+    {
+@:/// <summary>
+@:/// @doc.Description
+@:/// </summary>
+@:/// <example>@doc.Example</example>
+    };
+}
+
 @section Ctors{
     @if( this.TermName != null )
     {
+        @RenderCtorXmlDoc(this.TermName)
         @:public @Class(ClassName) (object arg) : this(new Arguments(arg), null) {
         @:}
+
+        @RenderCtorXmlDoc(this.TermName)
         @:public @Class(ClassName) (Arguments args) : this(args, null) {
         @:}
+
+        @RenderCtorXmlDoc(this.TermName)
         @:public @Class(ClassName) (Arguments args, OptArgs optargs)
         @:     : this(TermType.@TermName, args, optargs) {
         @:}
@@ -68,6 +86,7 @@ using System.Collections.Generic;
 @RenderSection("add_imports")
 
 namespace RethinkDb.Driver.Ast {
+
     public class @Class(ClassName) : @Superclass {
 
     @RenderSection("member_vars")
@@ -94,7 +113,7 @@ namespace RethinkDb.Driver.Ast {
                 if( signature.FirstArg == ClassName )
                 {
                     var parameters = signature.Args.Skip(1).Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
-
+                    @RenderCtorXmlDoc(term)
                     @:public @Class(info["classname"].ToString()) @Method(info["methodname"].ToString()) ( @string.Join(", ", parameters.ToArray()) )
                     @:{
 

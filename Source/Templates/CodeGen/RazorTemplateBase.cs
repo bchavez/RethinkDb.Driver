@@ -4,16 +4,45 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 
+namespace System.Web.WebPages
+{
+    public class HelperResult
+    {
+        private readonly Action<TextWriter> writer;
+
+        public HelperResult(Action<TextWriter> writer)
+        {
+            this.writer = writer;
+        }
+
+        public override string ToString()
+        {
+            writer(null);
+            return string.Empty;
+        }
+    }
+
+}
+
 namespace RazorGenerator.Templating
 {
     public class RazorTemplateBase
     {
         public RazorTemplateBase Layout { get; set; }
         protected string content;
-        internal StringBuilder generatingEnvironment = new StringBuilder();
+        internal StringBuilder genEnv = new StringBuilder();
 
         public virtual void Execute()
         {
+        }
+
+        public void WriteLiteralTo(TextWriter writer, string textToAppend)
+        {
+            if( string.IsNullOrEmpty(textToAppend) )
+            {
+                return;
+            }
+            genEnv.Append(textToAppend);
         }
 
         public void WriteLiteral(string textToAppend)
@@ -22,7 +51,7 @@ namespace RazorGenerator.Templating
             {
                 return;
             }
-            generatingEnvironment.Append(textToAppend); ;
+            genEnv.Append(textToAppend); ;
         }
 
         public void Write(object value)
@@ -45,18 +74,18 @@ namespace RazorGenerator.Templating
             Execute();
             if( Layout != null )
             {
-                Layout.content = generatingEnvironment.ToString();
+                Layout.content = genEnv.ToString();
                 return Layout.TransformText();
             }
             else
             {
-                return generatingEnvironment.ToString();
+                return genEnv.ToString();
             }
         }
 
         public void Clear()
         {
-            generatingEnvironment.Clear();
+            genEnv.Clear();
 
             if( Layout != null )
             {
@@ -66,7 +95,8 @@ namespace RazorGenerator.Templating
 
         public void WriteTo(TextWriter writer, object value)
         {
-            writer.Write(Convert.ToString(value, CultureInfo.InvariantCulture));
+            genEnv.Append(Convert.ToString(value, CultureInfo.InvariantCulture));
+            //writer.Write();
         }
 
         internal Dictionary<string, Action> sections = new Dictionary<string, Action>(StringComparer.OrdinalIgnoreCase);

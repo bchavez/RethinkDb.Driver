@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
     <Reference Include="Z.ExtensionMethods.WithOneNamespace, Version=2.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Z.ExtensionMethods.WithOneNamespace.2.0.7\lib\net45\Z.ExtensionMethods.WithOneNamespace.dll</HintPath>
       <Private>True</Private>
@@ -186,6 +187,9 @@
     </None>
     <None Include="packages.config" />
     <None Include="razorgenerator.directives" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Metadata\reql_docs.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

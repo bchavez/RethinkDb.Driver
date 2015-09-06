@@ -43,7 +43,7 @@ namespace Templates.CodeGen
                 var content = this.content;
                 this.ChildTemplate.Clear();
                 this.ChildTemplate.sections[name]();
-                var sectionContent = this.ChildTemplate.generatingEnvironment.ToString();
+                var sectionContent = this.ChildTemplate.genEnv.ToString();
                 this.content = content;
                 return sectionContent;
 

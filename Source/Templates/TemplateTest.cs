@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Templates.CodeGen;
 using Templates.Metadata;
+using Templates.Utils;
 
 namespace Templates
 {
@@ -12,7 +13,7 @@ namespace Templates
         [TestFixtureSetUp]
         public void BeforeRunningTestSession()
         {
-            MetaDb.Initialize(@"..\..\Metadata");
+//            MetaDb.Initialize(@"..\..\Metadata");
         }
 
         [Test]
@@ -39,6 +40,13 @@ namespace Templates
                 Enums = versions
             };
             Console.WriteLine(tmpl.TransformText());
+        }
+
+        [Test]
+        public void test_doc()
+        {
+            MetaDb.ReadDocMeta(@"..\..\Metadata");
+            MetaDb.Docs.Keys.Dump();
         }
     }
 }

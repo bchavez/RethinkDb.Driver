@@ -14,6 +14,7 @@ using Templates.Metadata;
 
 namespace Templates
 {
+
     [TestFixture]
     public class Generator
     {

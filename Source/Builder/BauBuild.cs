@@ -75,8 +75,10 @@ namespace Builder
                     {
                         Console.WriteLine($"Removing {Folders.CompileOutput}");
                         Folders.CompileOutput.Wipe();
+                        Directory.CreateDirectory(Folders.CompileOutput.ToString());
                         Console.WriteLine($"Removing {Folders.Package}");
                         Folders.Package.Wipe();
+                        Directory.CreateDirectory(Folders.Package.ToString());
                     })
                 .NuGet(Pack).Desc("Packs NuGet packages")
                 .DependsOn(Build).Do(ng =>

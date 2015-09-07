@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyrightAttribute("Brian Chavez © 2015")]
 [assembly: AssemblyVersionAttribute("0.0.4")]
 [assembly: AssemblyFileVersion("0.0.4")]
-[assembly: AssemblyInformationalVersion("0.0.4-alpha2 built on 9/6/2015 11:48:07 PM UTC")]
+[assembly: AssemblyInformationalVersion("0.0.4-alpha2 built on 9/7/2015 12:09:54 AM UTC")]
 [assembly: AssemblyTrademark("MIT License")]
 [assembly: AssemblyDescriptionAttribute("http://www.github.com/bchavez/RethinkDb.Driver")]
 [assembly: ComVisible(false)]

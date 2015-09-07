@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Returns a left outer join of two sequences.
+/// <para>Returns a left outer join of two sequences.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a list of all Marvel heroes, paired with any DC heroes who could beat them in a fight.
+/// <example><para>Example: Return a list of all Marvel heroes, paired with any DC heroes who could beat them in a fight.</para>
 /// <code>r.table('marvel').outerJoin(r.table('dc'), function(marvelRow, dcRow) {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).run(conn, callback)
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public OuterJoin (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Returns a left outer join of two sequences.
+/// <para>Returns a left outer join of two sequences.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a list of all Marvel heroes, paired with any DC heroes who could beat them in a fight.
+/// <example><para>Example: Return a list of all Marvel heroes, paired with any DC heroes who could beat them in a fight.</para>
 /// <code>r.table('marvel').outerJoin(r.table('dc'), function(marvelRow, dcRow) {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).run(conn, callback)
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public OuterJoin (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Returns a left outer join of two sequences.
+/// <para>Returns a left outer join of two sequences.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a list of all Marvel heroes, paired with any DC heroes who could beat them in a fight.
+/// <example><para>Example: Return a list of all Marvel heroes, paired with any DC heroes who could beat them in a fight.</para>
 /// <code>r.table('marvel').outerJoin(r.table('dc'), function(marvelRow, dcRow) {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).run(conn, callback)

@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Get all documents where the given value matches the value of the requested index.
+/// <para>Get all documents where the given value matches the value of the requested index.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Secondary index keys are not guaranteed to be unique so we cannot query via <a href="/api/javascript/get/">get</a> when using a secondary index.
+/// <example><para>Example: Secondary index keys are not guaranteed to be unique so we cannot query via <a href="/api/javascript/get/">get</a> when using a secondary index.</para>
 /// <code>r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback)
 /// </code></example>
         public GetAll (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Get all documents where the given value matches the value of the requested index.
+/// <para>Get all documents where the given value matches the value of the requested index.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Secondary index keys are not guaranteed to be unique so we cannot query via <a href="/api/javascript/get/">get</a> when using a secondary index.
+/// <example><para>Example: Secondary index keys are not guaranteed to be unique so we cannot query via <a href="/api/javascript/get/">get</a> when using a secondary index.</para>
 /// <code>r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback)
 /// </code></example>
         public GetAll (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Get all documents where the given value matches the value of the requested index.
+/// <para>Get all documents where the given value matches the value of the requested index.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Secondary index keys are not guaranteed to be unique so we cannot query via <a href="/api/javascript/get/">get</a> when using a secondary index.
+/// <example><para>Example: Secondary index keys are not guaranteed to be unique so we cannot query via <a href="/api/javascript/get/">get</a> when using a secondary index.</para>
 /// <code>r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback)
 /// </code></example>
         public GetAll (Arguments args, OptArgs optargs)

@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Get a single field from an object or a single element from a sequence.
+/// <para>Get a single field from an object or a single element from a sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What was Iron Man's first appearance in a comic?
+/// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan')('firstAppearance').run(conn, callback)
 /// </code></example>
         public Bracket (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Get a single field from an object or a single element from a sequence.
+/// <para>Get a single field from an object or a single element from a sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What was Iron Man's first appearance in a comic?
+/// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan')('firstAppearance').run(conn, callback)
 /// </code></example>
         public Bracket (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Get a single field from an object or a single element from a sequence.
+/// <para>Get a single field from an object or a single element from a sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What was Iron Man's first appearance in a comic?
+/// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan')('firstAppearance').run(conn, callback)
 /// </code></example>
         public Bracket (Arguments args, OptArgs optargs)

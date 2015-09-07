@@ -30,27 +30,27 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Get all documents where the given geometry object intersects the geometry object of the requested geospatial index.
+/// <para>Get all documents where the given geometry object intersects the geometry object of the requested geospatial index.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Which of the locations in a list of parks intersect <code>circle1</code>?
+/// <example><para>Example: Which of the locations in a list of parks intersect <code>circle1</code>?</para>
 /// <code>var circle1 = r.circle([-117.220406,32.719464], 10, {unit: 'mi'});
 /// r.table('parks').getIntersecting(circle1, {index: 'area'}).run(conn, callback);
 /// </code></example>
         public GetIntersecting (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Get all documents where the given geometry object intersects the geometry object of the requested geospatial index.
+/// <para>Get all documents where the given geometry object intersects the geometry object of the requested geospatial index.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Which of the locations in a list of parks intersect <code>circle1</code>?
+/// <example><para>Example: Which of the locations in a list of parks intersect <code>circle1</code>?</para>
 /// <code>var circle1 = r.circle([-117.220406,32.719464], 10, {unit: 'mi'});
 /// r.table('parks').getIntersecting(circle1, {index: 'area'}).run(conn, callback);
 /// </code></example>
         public GetIntersecting (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Get all documents where the given geometry object intersects the geometry object of the requested geospatial index.
+/// <para>Get all documents where the given geometry object intersects the geometry object of the requested geospatial index.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Which of the locations in a list of parks intersect <code>circle1</code>?
+/// <example><para>Example: Which of the locations in a list of parks intersect <code>circle1</code>?</para>
 /// <code>var circle1 = r.circle([-117.220406,32.719464], 10, {unit: 'mi'});
 /// r.table('parks').getIntersecting(circle1, {index: 'area'}).run(conn, callback);
 /// </code></example>

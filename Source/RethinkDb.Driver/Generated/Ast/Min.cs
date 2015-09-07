@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Finds the minimum element of a sequence.
+/// <para>Finds the minimum element of a sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the minimum value in the list <code>[3, 5, 7]</code>.
+/// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).min().run(conn, callback);
 /// </code></example>
         public Min (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Finds the minimum element of a sequence.
+/// <para>Finds the minimum element of a sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the minimum value in the list <code>[3, 5, 7]</code>.
+/// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).min().run(conn, callback);
 /// </code></example>
         public Min (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Finds the minimum element of a sequence.
+/// <para>Finds the minimum element of a sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the minimum value in the list <code>[3, 5, 7]</code>.
+/// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).min().run(conn, callback);
 /// </code></example>
         public Min (Arguments args, OptArgs optargs)

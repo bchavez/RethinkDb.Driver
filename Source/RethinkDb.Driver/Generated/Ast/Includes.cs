@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Tests whether a geometry object is completely contained within another. When applied to a sequence of geometry objects, <code>includes</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that include the argument.
+/// <para>Tests whether a geometry object is completely contained within another. When applied to a sequence of geometry objects, <code>includes</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that include the argument.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Is <code>point2</code> included within a 2000-meter circle around <code>point1</code>?
+/// <example><para>Example: Is <code>point2</code> included within a 2000-meter circle around <code>point1</code>?</para>
 /// <code>var point1 = r.point(-117.220406,32.719464);
 /// var point2 = r.point(-117.206201,32.725186);
 /// r.circle(point1, 2000).includes(point2).run(conn, callback);
@@ -42,9 +42,9 @@ namespace RethinkDb.Driver.Ast {
         public Includes (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Tests whether a geometry object is completely contained within another. When applied to a sequence of geometry objects, <code>includes</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that include the argument.
+/// <para>Tests whether a geometry object is completely contained within another. When applied to a sequence of geometry objects, <code>includes</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that include the argument.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Is <code>point2</code> included within a 2000-meter circle around <code>point1</code>?
+/// <example><para>Example: Is <code>point2</code> included within a 2000-meter circle around <code>point1</code>?</para>
 /// <code>var point1 = r.point(-117.220406,32.719464);
 /// var point2 = r.point(-117.206201,32.725186);
 /// r.circle(point1, 2000).includes(point2).run(conn, callback);
@@ -54,9 +54,9 @@ namespace RethinkDb.Driver.Ast {
         public Includes (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Tests whether a geometry object is completely contained within another. When applied to a sequence of geometry objects, <code>includes</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that include the argument.
+/// <para>Tests whether a geometry object is completely contained within another. When applied to a sequence of geometry objects, <code>includes</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that include the argument.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Is <code>point2</code> included within a 2000-meter circle around <code>point1</code>?
+/// <example><para>Example: Is <code>point2</code> included within a 2000-meter circle around <code>point1</code>?</para>
 /// <code>var point1 = r.point(-117.220406,32.719464);
 /// var point2 = r.point(-117.206201,32.725186);
 /// r.circle(point1, 2000).includes(point2).run(conn, callback);

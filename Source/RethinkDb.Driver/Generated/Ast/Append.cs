@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Append a value to an array.
+/// <para>Append a value to an array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve Iron Man's equipment list with the addition of some new boots.
+/// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').append('newBoots').run(conn, callback)
 /// </code></example>
         public Append (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Append a value to an array.
+/// <para>Append a value to an array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve Iron Man's equipment list with the addition of some new boots.
+/// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').append('newBoots').run(conn, callback)
 /// </code></example>
         public Append (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Append a value to an array.
+/// <para>Append a value to an array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve Iron Man's equipment list with the addition of some new boots.
+/// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').append('newBoots').run(conn, callback)
 /// </code></example>
         public Append (Arguments args, OptArgs optargs)

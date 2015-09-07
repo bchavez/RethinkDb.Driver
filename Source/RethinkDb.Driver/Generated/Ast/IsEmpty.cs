@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Test if a sequence is empty.
+/// <para>Test if a sequence is empty.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Are there any documents in the marvel table?
+/// <example><para>Example: Are there any documents in the marvel table?</para>
 /// <code>r.table('marvel').isEmpty().run(conn, callback)
 /// </code></example>
         public IsEmpty (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Test if a sequence is empty.
+/// <para>Test if a sequence is empty.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Are there any documents in the marvel table?
+/// <example><para>Example: Are there any documents in the marvel table?</para>
 /// <code>r.table('marvel').isEmpty().run(conn, callback)
 /// </code></example>
         public IsEmpty (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Test if a sequence is empty.
+/// <para>Test if a sequence is empty.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Are there any documents in the marvel table?
+/// <example><para>Example: Are there any documents in the marvel table?</para>
 /// <code>r.table('marvel').isEmpty().run(conn, callback)
 /// </code></example>
         public IsEmpty (Arguments args, OptArgs optargs)

@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.
+/// <para>Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Generate a random number in the range <code>[0,1)</code>
+/// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
         public Random (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.
+/// <para>Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Generate a random number in the range <code>[0,1)</code>
+/// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
         public Random (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.
+/// <para>Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Generate a random number in the range <code>[0,1)</code>
+/// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
         public Random (Arguments args, OptArgs optargs)

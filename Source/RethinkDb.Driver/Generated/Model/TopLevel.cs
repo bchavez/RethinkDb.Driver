@@ -35,9 +35,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Javascript (arguments);
                     }
 /// <summary>
-/// Return a UUID (universally unique identifier), a string that can be used as a unique ID.
+/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Generate a UUID.
+/// <example><para>Example: Generate a UUID.</para>
 /// <code>&gt; r.uuid().run(conn, callback)
 /// // result returned to callback
 /// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
@@ -48,9 +48,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Uuid (arguments);
                     }
 /// <summary>
-/// Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.
+/// <para>Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Perform a simple HTTP <code>GET</code> request, and store the result in a table.
+/// <example><para>Example: Perform a simple HTTP <code>GET</code> request, and store the result in a table.</para>
 /// <code>r.table('posts').insert(r.http('http://httpbin.org/get')).run(conn, callback)
 /// </code></example>
                     public Http http ( Object expr )
@@ -60,9 +60,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Http (arguments);
                     }
 /// <summary>
-/// Throw a runtime error. If called with no arguments inside the second argument to <code>default</code>, re-throw the current error.
+/// <para>Throw a runtime error. If called with no arguments inside the second argument to <code>default</code>, re-throw the current error.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Iron Man can't possibly have lost a battle:
+/// <example><para>Example: Iron Man can't possibly have lost a battle:</para>
 /// <code>r.table('marvel').get('IronMan').do(function(ironman) {
 ///     return r.branch(ironman('victories').lt(ironman('battles')),
 ///         r.error('impossible code path'),
@@ -76,9 +76,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Error (arguments);
                     }
 /// <summary>
-/// Reference a database.
+/// <para>Reference a database.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Explicitly specify a database for a query.
+/// <example><para>Example: Explicitly specify a database for a query.</para>
 /// <code>r.db('heroes').table('marvel').run(conn, callback)
 /// </code></example>
                     public Db db ( Object expr )
@@ -88,10 +88,10 @@ namespace RethinkDb.Driver.Ast {
                         return new Db (arguments);
                     }
 /// <summary>
-/// Select all documents in a table. This command can be chained with other commands to do
-/// further processing on the data.
+/// <para>Select all documents in a table. This command can be chained with other commands to do
+/// further processing on the data.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Return all documents in the table 'marvel' of the default database.
+/// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
 /// </code></example>
                     public Table table ( Object expr )
@@ -101,10 +101,10 @@ namespace RethinkDb.Driver.Ast {
                         return new Table (arguments);
                     }
 /// <summary>
-/// Select all documents in a table. This command can be chained with other commands to do
-/// further processing on the data.
+/// <para>Select all documents in a table. This command can be chained with other commands to do
+/// further processing on the data.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Return all documents in the table 'marvel' of the default database.
+/// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
 /// </code></example>
                     public Table table ( Db db, Object expr )
@@ -115,9 +115,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Table (arguments);
                     }
 /// <summary>
-/// Test if two values are equal.
+/// <para>Test if two values are equal.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Does 2 equal 2?
+/// <example><para>Example: Does 2 equal 2?</para>
 /// <code>r.expr(2).eq(2).run(conn, callback)
 /// </code></example>
                     public Eq eq ( Object expr, Object exprA, params object[] exprs )
@@ -129,9 +129,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Eq (arguments);
                     }
 /// <summary>
-/// Test if two values are not equal.
+/// <para>Test if two values are not equal.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Does 2 not equal 2?
+/// <example><para>Example: Does 2 not equal 2?</para>
 /// <code>r.expr(2).ne(2).run(conn, callback)
 /// </code></example>
                     public Ne ne ( Object expr, Object exprA, params object[] exprs )
@@ -143,9 +143,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Ne (arguments);
                     }
 /// <summary>
-/// Test if the first value is less than other.
+/// <para>Test if the first value is less than other.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Is 2 less than 2?
+/// <example><para>Example: Is 2 less than 2?</para>
 /// <code>r.expr(2).lt(2).run(conn, callback)
 /// </code></example>
                     public Lt lt ( Object expr, Object exprA, params object[] exprs )
@@ -157,9 +157,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Lt (arguments);
                     }
 /// <summary>
-/// Test if the first value is less than or equal to other.
+/// <para>Test if the first value is less than or equal to other.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Is 2 less than or equal to 2?
+/// <example><para>Example: Is 2 less than or equal to 2?</para>
 /// <code>r.expr(2).le(2).run(conn, callback)
 /// </code></example>
                     public Le le ( Object expr, Object exprA, params object[] exprs )
@@ -171,9 +171,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Le (arguments);
                     }
 /// <summary>
-/// Test if the first value is greater than other.
+/// <para>Test if the first value is greater than other.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Is 2 greater than 2?
+/// <example><para>Example: Is 2 greater than 2?</para>
 /// <code>r.expr(2).gt(2).run(conn, callback)
 /// </code></example>
                     public Gt gt ( Object expr, Object exprA, params object[] exprs )
@@ -185,9 +185,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Gt (arguments);
                     }
 /// <summary>
-/// Test if the first value is greater than or equal to other.
+/// <para>Test if the first value is greater than or equal to other.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Is 2 greater than or equal to 2?
+/// <example><para>Example: Is 2 greater than or equal to 2?</para>
 /// <code>r.expr(2).ge(2).run(conn, callback)
 /// </code></example>
                     public Ge ge ( Object expr, Object exprA, params object[] exprs )
@@ -199,10 +199,10 @@ namespace RethinkDb.Driver.Ast {
                         return new Ge (arguments);
                     }
 /// <summary>
-/// Compute the logical inverse (not) of an expression.
-/// <code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.
+/// <para>Compute the logical inverse (not) of an expression.</para>
+/// <para><code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Not true is false.
+/// <example><para>Example: Not true is false.</para>
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
 /// </code></example>
@@ -213,9 +213,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Not (arguments);
                     }
 /// <summary>
-/// Sum two numbers, concatenate two strings, or concatenate 2 arrays.
+/// <para>Sum two numbers, concatenate two strings, or concatenate 2 arrays.</para>
 ///</summary>
-/// <example><strong>Example:</strong> It's as easy as 2 + 2 = 4.
+/// <example><para>Example: It's as easy as 2 + 2 = 4.</para>
 /// <code>r.expr(2).add(2).run(conn, callback)
 /// </code></example>
                     public Add add ( Object expr, params object[] exprs )
@@ -226,9 +226,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Add (arguments);
                     }
 /// <summary>
-/// Subtract two numbers.
+/// <para>Subtract two numbers.</para>
 ///</summary>
-/// <example><strong>Example:</strong> It's as easy as 2 - 2 = 0.
+/// <example><para>Example: It's as easy as 2 - 2 = 0.</para>
 /// <code>r.expr(2).sub(2).run(conn, callback)
 /// </code></example>
                     public Sub sub ( Object expr, params object[] exprs )
@@ -239,9 +239,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Sub (arguments);
                     }
 /// <summary>
-/// Multiply two numbers, or make a periodic array.
+/// <para>Multiply two numbers, or make a periodic array.</para>
 ///</summary>
-/// <example><strong>Example:</strong> It's as easy as 2 * 2 = 4.
+/// <example><para>Example: It's as easy as 2 * 2 = 4.</para>
 /// <code>r.expr(2).mul(2).run(conn, callback)
 /// </code></example>
                     public Mul mul ( Object expr, params object[] exprs )
@@ -252,9 +252,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Mul (arguments);
                     }
 /// <summary>
-/// Divide two numbers.
+/// <para>Divide two numbers.</para>
 ///</summary>
-/// <example><strong>Example:</strong> It's as easy as 2 / 2 = 1.
+/// <example><para>Example: It's as easy as 2 / 2 = 1.</para>
 /// <code>r.expr(2).div(2).run(conn, callback)
 /// </code></example>
                     public Div div ( Object expr, params object[] exprs )
@@ -265,9 +265,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Div (arguments);
                     }
 /// <summary>
-/// Find the remainder when dividing two numbers.
+/// <para>Find the remainder when dividing two numbers.</para>
 ///</summary>
-/// <example><strong>Example:</strong> It's as easy as 2 % 2 = 0.
+/// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)
 /// </code></example>
                     public Mod mod ( Object expr, Object exprA )
@@ -278,11 +278,11 @@ namespace RethinkDb.Driver.Ast {
                         return new Mod (arguments);
                     }
 /// <summary>
-/// Creates an object from a list of key-value pairs, where the keys must
+/// <para>Creates an object from a list of key-value pairs, where the keys must
 /// be strings.  <code>r.object(A, B, C, D)</code> is equivalent to
-/// <code>r.expr([[A, B], [C, D]]).coerce_to('OBJECT')</code>.
+/// <code>r.expr([[A, B], [C, D]]).coerce_to('OBJECT')</code>.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Create a simple object.
+/// <example><para>Example: Create a simple object.</para>
 /// <code>r.object('id', 5, 'data', ['foo', 'bar']).run(conn, callback)
 /// </code></example>
                     public ReqlObject object_ ( params object[] exprs )
@@ -292,9 +292,9 @@ namespace RethinkDb.Driver.Ast {
                         return new ReqlObject (arguments);
                     }
 /// <summary>
-/// Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Return the first five squares.
+/// <example><para>Example: Return the first five squares.</para>
 /// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
 ///     return val.mul(val);
 /// }).run(conn, callback);
@@ -309,9 +309,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Map (arguments);
                     }
 /// <summary>
-/// Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Return the first five squares.
+/// <example><para>Example: Return the first five squares.</para>
 /// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
 ///     return val.mul(val);
 /// }).run(conn, callback);
@@ -327,9 +327,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Map (arguments);
                     }
 /// <summary>
-/// Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Return the first five squares.
+/// <example><para>Example: Return the first five squares.</para>
 /// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
 ///     return val.mul(val);
 /// }).run(conn, callback);
@@ -346,9 +346,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Map (arguments);
                     }
 /// <summary>
-/// Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Return the first five squares.
+/// <example><para>Example: Return the first five squares.</para>
 /// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
 ///     return val.mul(val);
 /// }).run(conn, callback);
@@ -366,9 +366,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Map (arguments);
                     }
 /// <summary>
-/// Concatenate two or more sequences.
+/// <para>Concatenate two or more sequences.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Construct a stream of all heroes.
+/// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
 /// </code></example>
                     public Union union ( params object[] exprs )
@@ -378,9 +378,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Union (arguments);
                     }
 /// <summary>
-/// Generate a stream of sequential integers in a specified range.
+/// <para>Generate a stream of sequential integers in a specified range.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Return a four-element range of <code>[0, 1, 2, 3]</code>.
+/// <example><para>Example: Return a four-element range of <code>[0, 1, 2, 3]</code>.</para>
 /// <code>&gt; r.range(4).run(conn, callback)
 /// 
 /// [0, 1, 2, 3]
@@ -391,9 +391,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Range (arguments);
                     }
 /// <summary>
-/// Generate a stream of sequential integers in a specified range.
+/// <para>Generate a stream of sequential integers in a specified range.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Return a four-element range of <code>[0, 1, 2, 3]</code>.
+/// <example><para>Example: Return a four-element range of <code>[0, 1, 2, 3]</code>.</para>
 /// <code>&gt; r.range(4).run(conn, callback)
 /// 
 /// [0, 1, 2, 3]
@@ -405,9 +405,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Range (arguments);
                     }
 /// <summary>
-/// Generate a stream of sequential integers in a specified range.
+/// <para>Generate a stream of sequential integers in a specified range.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Return a four-element range of <code>[0, 1, 2, 3]</code>.
+/// <example><para>Example: Return a four-element range of <code>[0, 1, 2, 3]</code>.</para>
 /// <code>&gt; r.range(4).run(conn, callback)
 /// 
 /// [0, 1, 2, 3]
@@ -420,9 +420,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Range (arguments);
                     }
 /// <summary>
-/// Gets the type of a value.
+/// <para>Gets the type of a value.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Get the type of a string.
+/// <example><para>Example: Get the type of a string.</para>
 /// <code>r.expr("foo").typeOf().run(conn, callback)
 /// </code></example>
                     public TypeOf typeOf_ ( Object expr )
@@ -432,13 +432,13 @@ namespace RethinkDb.Driver.Ast {
                         return new TypeOf (arguments);
                     }
 /// <summary>
-/// Create a database. A RethinkDB database is a collection of tables, similar to
-/// relational databases.
-/// If successful, the operation returns an object: <code>{created: 1}</code>. If a database with the
-/// same name already exists the operation throws <code>RqlRuntimeError</code>.
-/// Note: that you can only use alphanumeric characters and underscores for the database name.
+/// <para>Create a database. A RethinkDB database is a collection of tables, similar to
+/// relational databases.</para>
+/// <para>If successful, the operation returns an object: <code>{created: 1}</code>. If a database with the
+/// same name already exists the operation throws <code>RqlRuntimeError</code>.</para>
+/// <para>Note: that you can only use alphanumeric characters and underscores for the database name.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Create a database named 'superheroes'.
+/// <example><para>Example: Create a database named 'superheroes'.</para>
 /// <code>r.dbCreate('superheroes').run(conn, callback)
 /// </code></example>
                     public DbCreate dbCreate ( Object expr )
@@ -448,11 +448,11 @@ namespace RethinkDb.Driver.Ast {
                         return new DbCreate (arguments);
                     }
 /// <summary>
-/// Drop a database. The database, all its tables, and corresponding data will be deleted.
-/// If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
-/// doesn't exist a <code>RqlRuntimeError</code> is thrown.
+/// <para>Drop a database. The database, all its tables, and corresponding data will be deleted.</para>
+/// <para>If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
+/// doesn't exist a <code>RqlRuntimeError</code> is thrown.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Drop a database named 'superheroes'.
+/// <example><para>Example: Drop a database named 'superheroes'.</para>
 /// <code>r.dbDrop('superheroes').run(conn, callback)
 /// </code></example>
                     public DbDrop dbDrop ( Object expr )
@@ -462,9 +462,9 @@ namespace RethinkDb.Driver.Ast {
                         return new DbDrop (arguments);
                     }
 /// <summary>
-/// List all database names in the system. The result is a list of strings.
+/// <para>List all database names in the system. The result is a list of strings.</para>
 ///</summary>
-/// <example><strong>Example:</strong> List all databases.
+/// <example><para>Example: List all databases.</para>
 /// <code>r.dbList().run(conn, callback)
 /// </code></example>
                     public DbList dbList (  )
@@ -473,9 +473,9 @@ namespace RethinkDb.Driver.Ast {
                         return new DbList (arguments);
                     }
 /// <summary>
-/// Create a table. A RethinkDB table is a collection of JSON documents.
+/// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Create a table named 'dc_universe' with the default settings.
+/// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
 /// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
 /// </code></example>
                     public TableCreate tableCreate ( Db db, Object expr )
@@ -486,9 +486,9 @@ namespace RethinkDb.Driver.Ast {
                         return new TableCreate (arguments);
                     }
 /// <summary>
-/// Drop a table. The table and all its data will be deleted.
+/// <para>Drop a table. The table and all its data will be deleted.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Drop a table named 'dc_universe'.
+/// <example><para>Example: Drop a table named 'dc_universe'.</para>
 /// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
 /// </code></example>
                     public TableDrop tableDrop ( Object expr )
@@ -498,9 +498,9 @@ namespace RethinkDb.Driver.Ast {
                         return new TableDrop (arguments);
                     }
 /// <summary>
-/// Drop a table. The table and all its data will be deleted.
+/// <para>Drop a table. The table and all its data will be deleted.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Drop a table named 'dc_universe'.
+/// <example><para>Example: Drop a table named 'dc_universe'.</para>
 /// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
 /// </code></example>
                     public TableDrop tableDrop ( Db db, Object expr )
@@ -511,9 +511,9 @@ namespace RethinkDb.Driver.Ast {
                         return new TableDrop (arguments);
                     }
 /// <summary>
-/// List all table names in a database. The result is a list of strings.
+/// <para>List all table names in a database. The result is a list of strings.</para>
 ///</summary>
-/// <example><strong>Example:</strong> List all tables of the 'test' database.
+/// <example><para>Example: List all tables of the 'test' database.</para>
 /// <code>r.db('test').tableList().run(conn, callback)
 /// </code></example>
                     public TableList tableList ( Db db )
@@ -523,9 +523,9 @@ namespace RethinkDb.Driver.Ast {
                         return new TableList (arguments);
                     }
 /// <summary>
-/// Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.
+/// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Wait for a table to be ready.
+/// <example><para>Example: Wait for a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
 /// </code></example>
                     public Wait wait_ (  )
@@ -534,9 +534,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Wait (arguments);
                     }
 /// <summary>
-/// Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.
+/// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Wait for a table to be ready.
+/// <example><para>Example: Wait for a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
 /// </code></example>
                     public Wait wait_ ( Table table )
@@ -546,9 +546,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Wait (arguments);
                     }
 /// <summary>
-/// Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.
+/// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Wait for a table to be ready.
+/// <example><para>Example: Wait for a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
 /// </code></example>
                     public Wait wait_ ( Db db )
@@ -558,9 +558,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Wait (arguments);
                     }
 /// <summary>
-/// Reconfigure a table's sharding and replication.
+/// <para>Reconfigure a table's sharding and replication.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Reconfigure a table.
+/// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
                     public Reconfigure reconfigure (  )
@@ -569,9 +569,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Reconfigure (arguments);
                     }
 /// <summary>
-/// Reconfigure a table's sharding and replication.
+/// <para>Reconfigure a table's sharding and replication.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Reconfigure a table.
+/// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
                     public Reconfigure reconfigure ( Table table )
@@ -581,9 +581,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Reconfigure (arguments);
                     }
 /// <summary>
-/// Reconfigure a table's sharding and replication.
+/// <para>Reconfigure a table's sharding and replication.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Reconfigure a table.
+/// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
                     public Reconfigure reconfigure ( Db db )
@@ -593,9 +593,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Reconfigure (arguments);
                     }
 /// <summary>
-/// Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.
+/// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Rebalance a table.
+/// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
                     public Rebalance rebalance (  )
@@ -604,9 +604,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Rebalance (arguments);
                     }
 /// <summary>
-/// Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.
+/// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Rebalance a table.
+/// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
                     public Rebalance rebalance ( Db db )
@@ -616,9 +616,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Rebalance (arguments);
                     }
 /// <summary>
-/// Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.
+/// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Rebalance a table.
+/// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
                     public Rebalance rebalance ( Table table )
@@ -669,12 +669,12 @@ namespace RethinkDb.Driver.Ast {
                         return new Funcall (arguments);
                     }
 /// <summary>
-/// If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
-/// Otherwise, the <code>true_branch</code> will be evaluated.
-/// The <code>branch</code> command is effectively an <code>if</code> renamed due to language constraints.
-/// The type of the result is determined by the type of the branch that gets executed.
+/// <para>If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
+/// Otherwise, the <code>true_branch</code> will be evaluated.</para>
+/// <para>The <code>branch</code> command is effectively an <code>if</code> renamed due to language constraints.
+/// The type of the result is determined by the type of the branch that gets executed.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Return heroes and superheroes.
+/// <example><para>Example: Return heroes and superheroes.</para>
 /// <code>r.table('marvel').map(
 ///     r.branch(
 ///         r.row('victories').gt(100),
@@ -692,9 +692,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Branch (arguments);
                     }
 /// <summary>
-/// Compute the logical "or" of two or more values.
+/// <para>Compute the logical "or" of two or more values.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Return whether either <code>a</code> or <code>b</code> evaluate to true.
+/// <example><para>Example: Return whether either <code>a</code> or <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
 /// r.expr(a).or(b).run(conn, callback);
 /// // result passed to callback
@@ -709,9 +709,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Or (arguments);
                     }
 /// <summary>
-/// Compute the logical "and" of two or more values.
+/// <para>Compute the logical "and" of two or more values.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Return whether both <code>a</code> and <code>b</code> evaluate to true.
+/// <example><para>Example: Return whether both <code>a</code> and <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
 /// r.expr(a).and(b).run(conn, callback);
 /// // result passed to callback
@@ -737,9 +737,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Desc (arguments);
                     }
 /// <summary>
-/// Get information about a ReQL value.
+/// <para>Get information about a ReQL value.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Get information about a table such as primary key, or cache size.
+/// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
 /// <code>r.table('marvel').info().run(conn, callback)
 /// </code></example>
                     public Info info ( Object expr )
@@ -749,9 +749,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Info (arguments);
                     }
 /// <summary>
-/// Parse a JSON string on the server.
+/// <para>Parse a JSON string on the server.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Send an array to the server.
+/// <example><para>Example: Send an array to the server.</para>
 /// <code>r.json("[1,2,3]").run(conn, callback)
 /// </code></example>
                     public Json json ( Object expr )
@@ -761,9 +761,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Json (arguments);
                     }
 /// <summary>
-/// Create a time object based on an ISO 8601 date-time string (e.g. '2013-01-01T01:01:01+00:00'). We support all valid ISO 8601 formats except for week dates. If you pass an ISO 8601 date-time without a time zone, you must specify the time zone with the <code>defaultTimezone</code> argument. Read more about the ISO 8601 format at <a href="http://en.wikipedia.org/wiki/ISO_8601">Wikipedia</a>.
+/// <para>Create a time object based on an ISO 8601 date-time string (e.g. '2013-01-01T01:01:01+00:00'). We support all valid ISO 8601 formats except for week dates. If you pass an ISO 8601 date-time without a time zone, you must specify the time zone with the <code>defaultTimezone</code> argument. Read more about the ISO 8601 format at <a href="http://en.wikipedia.org/wiki/ISO_8601">Wikipedia</a>.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Update the time of John's birth.
+/// <example><para>Example: Update the time of John's birth.</para>
 /// <code>r.table("user").get("John").update({birth: r.ISO8601('1986-11-03T08:30:00-07:00')}).run(conn, callback)
 /// </code></example>
                     public Iso8601 iso8601 ( Object expr )
@@ -773,10 +773,10 @@ namespace RethinkDb.Driver.Ast {
                         return new Iso8601 (arguments);
                     }
 /// <summary>
-/// Create a time object based on seconds since epoch. The first argument is a double and
-/// will be rounded to three decimal places (millisecond-precision).
+/// <para>Create a time object based on seconds since epoch. The first argument is a double and
+/// will be rounded to three decimal places (millisecond-precision).</para>
 ///</summary>
-/// <example><strong>Example:</strong> Update the birthdate of the user "John" to November 3rd, 1986.
+/// <example><para>Example: Update the birthdate of the user "John" to November 3rd, 1986.</para>
 /// <code>r.table("user").get("John").update({birthdate: r.epochTime(531360000)})
 ///     .run(conn, callback)
 /// </code></example>
@@ -787,9 +787,9 @@ namespace RethinkDb.Driver.Ast {
                         return new EpochTime (arguments);
                     }
 /// <summary>
-/// Return a time object representing the current time in UTC. The command now() is computed once when the server receives the query, so multiple instances of r.now() will always return the same time inside a query.
+/// <para>Return a time object representing the current time in UTC. The command now() is computed once when the server receives the query, so multiple instances of r.now() will always return the same time inside a query.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Add a new user with the time at which he subscribed.
+/// <example><para>Example: Add a new user with the time at which he subscribed.</para>
 /// <code>r.table("users").insert({
 ///     name: "John",
 ///     subscription_date: r.now()
@@ -801,8 +801,8 @@ namespace RethinkDb.Driver.Ast {
                         return new Now (arguments);
                     }
 /// <summary>
-/// Create a time object for a specific time.
-/// A few restrictions exist on the arguments:
+/// <para>Create a time object for a specific time.</para>
+/// <para>A few restrictions exist on the arguments:</para>
 /// <ul>
 /// <li><code>year</code> is an integer between 1400 and 9,999.</li>
 /// <li><code>month</code> is an integer between 1 and 12.</li>
@@ -814,7 +814,7 @@ namespace RethinkDb.Driver.Ast {
 /// <li><code>timezone</code> can be <code>'Z'</code> (for UTC) or a string with the format <code>±[hh]:[mm]</code>.</li>
 /// </ul>
 ///</summary>
-/// <example><strong>Example:</strong> Update the birthdate of the user "John" to November 3rd, 1986 UTC.
+/// <example><para>Example: Update the birthdate of the user "John" to November 3rd, 1986 UTC.</para>
 /// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
 ///     .run(conn, callback)
 /// </code></example>
@@ -828,8 +828,8 @@ namespace RethinkDb.Driver.Ast {
                         return new Time (arguments);
                     }
 /// <summary>
-/// Create a time object for a specific time.
-/// A few restrictions exist on the arguments:
+/// <para>Create a time object for a specific time.</para>
+/// <para>A few restrictions exist on the arguments:</para>
 /// <ul>
 /// <li><code>year</code> is an integer between 1400 and 9,999.</li>
 /// <li><code>month</code> is an integer between 1 and 12.</li>
@@ -841,7 +841,7 @@ namespace RethinkDb.Driver.Ast {
 /// <li><code>timezone</code> can be <code>'Z'</code> (for UTC) or a string with the format <code>±[hh]:[mm]</code>.</li>
 /// </ul>
 ///</summary>
-/// <example><strong>Example:</strong> Update the birthdate of the user "John" to November 3rd, 1986 UTC.
+/// <example><para>Example: Update the birthdate of the user "John" to November 3rd, 1986 UTC.</para>
 /// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
 ///     .run(conn, callback)
 /// </code></example>
@@ -953,9 +953,9 @@ namespace RethinkDb.Driver.Ast {
                         return new December (arguments);
                     }
 /// <summary>
-/// Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.
-/// <code>js
-/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code>
+/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.</para>
+/// <para><code>js
+/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
 ///</summary>
 /// <example></example>
                     public Literal literal (  )
@@ -964,9 +964,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Literal (arguments);
                     }
 /// <summary>
-/// Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.
-/// <code>js
-/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code>
+/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.</para>
+/// <para><code>js
+/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
 ///</summary>
 /// <example></example>
                     public Literal literal ( Object expr )
@@ -976,9 +976,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Literal (arguments);
                     }
 /// <summary>
-/// Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.
+/// <para>Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Generate a random number in the range <code>[0,1)</code>
+/// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
                     public Random random (  )
@@ -987,9 +987,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Random (arguments);
                     }
 /// <summary>
-/// Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.
+/// <para>Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Generate a random number in the range <code>[0,1)</code>
+/// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
                     public Random random ( Object expr )
@@ -999,9 +999,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Random (arguments);
                     }
 /// <summary>
-/// Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.
+/// <para>Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Generate a random number in the range <code>[0,1)</code>
+/// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
                     public Random random ( Object expr, Object exprA )
@@ -1012,12 +1012,12 @@ namespace RethinkDb.Driver.Ast {
                         return new Random (arguments);
                     }
 /// <summary>
-/// <code>r.args</code> is a special term that's used to splice an array of arguments
+/// <para><code>r.args</code> is a special term that's used to splice an array of arguments
 /// into another term.  This is useful when you want to call a variadic
-/// term such as <code>getAll</code> with a set of arguments produced at runtime.
-/// This is analogous to using <strong>apply</strong> in JavaScript.
+/// term such as <code>getAll</code> with a set of arguments produced at runtime.</para>
+/// <para>This is analogous to using apply in JavaScript.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Get Alice and Bob from the table <code>people</code>.
+/// <example><para>Example: Get Alice and Bob from the table <code>people</code>.</para>
 /// <code>r.table('people').getAll('Alice', 'Bob').run(conn, callback)
 /// // or
 /// r.table('people').getAll(r.args(['Alice', 'Bob'])).run(conn, callback)
@@ -1029,9 +1029,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Args (arguments);
                     }
 /// <summary>
-/// Encapsulate binary data within a query.
+/// <para>Encapsulate binary data within a query.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Save an avatar image to a existing user record.
+/// <example><para>Example: Save an avatar image to a existing user record.</para>
 /// <code>var fs = require('fs');
 /// fs.readFile('./defaultAvatar.png', function (err, avatarImage) {
 ///     if (err) {
@@ -1055,9 +1055,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Binary (arguments);
                     }
 /// <summary>
-/// Convert a <a href="http://geojson.org">GeoJSON</a> object to a ReQL geometry object.
+/// <para>Convert a <a href="http://geojson.org">GeoJSON</a> object to a ReQL geometry object.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Convert a GeoJSON object to a ReQL geometry object.
+/// <example><para>Example: Convert a GeoJSON object to a ReQL geometry object.</para>
 /// <code>var geoJson = {
 ///     'type': 'Point',
 ///     'coordinates': [ -122.423246, 37.779388 ]
@@ -1075,9 +1075,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Geojson (arguments);
                     }
 /// <summary>
-/// Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (&minus;180 to 180) and the latitude (&minus;90 to 90) of the point on a perfect sphere.
+/// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (&minus;180 to 180) and the latitude (&minus;90 to 90) of the point on a perfect sphere.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Define a point.
+/// <example><para>Example: Define a point.</para>
 /// <code>r.table('geo').insert({
 ///     id: 1,
 ///     name: 'San Francisco',
@@ -1092,13 +1092,13 @@ namespace RethinkDb.Driver.Ast {
                         return new Point (arguments);
                     }
 /// <summary>
-/// Construct a geometry object of type Line. The line can be specified in one of two ways:
+/// <para>Construct a geometry object of type Line. The line can be specified in one of two ways:</para>
 /// <ul>
 /// <li>Two or more two-item arrays, specifying longitude and latitude numbers of the line's vertices;</li>
 /// <li>Two or more <a href="/api/javascript/point">Point</a> objects specifying the line's vertices.</li>
 /// </ul>
 ///</summary>
-/// <example><strong>Example:</strong> Define a line.
+/// <example><para>Example: Define a line.</para>
 /// <code>r.table('geo').insert({
 ///     id: 101,
 ///     route: r.line([-122.423246,37.779388], [-121.886420,37.329898])
@@ -1113,13 +1113,13 @@ namespace RethinkDb.Driver.Ast {
                         return new Line (arguments);
                     }
 /// <summary>
-/// Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:
+/// <para>Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:</para>
 /// <ul>
 /// <li>Three or more two-item arrays, specifying longitude and latitude numbers of the polygon's vertices;</li>
 /// <li>Three or more <a href="/api/javascript/point">Point</a> objects specifying the polygon's vertices.</li>
 /// </ul>
 ///</summary>
-/// <example><strong>Example:</strong> Define a polygon.
+/// <example><para>Example: Define a polygon.</para>
 /// <code>r.table('geo').insert({
 ///     id: 101,
 ///     rectangle: r.polygon(
@@ -1140,9 +1140,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Polygon (arguments);
                     }
 /// <summary>
-/// Compute the distance between a point and another geometry object. At least one of the geometry objects specified must be a point.
+/// <para>Compute the distance between a point and another geometry object. At least one of the geometry objects specified must be a point.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Compute the distance between two points on the Earth in kilometers.
+/// <example><para>Example: Compute the distance between two points on the Earth in kilometers.</para>
 /// <code>var point1 = r.point(-122.423246,37.779388);
 /// var point2 = r.point(-117.220406,32.719464);
 /// r.distance(point1, point2, {unit: 'km'}).run(conn, callback);
@@ -1157,9 +1157,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Distance (arguments);
                     }
 /// <summary>
-/// Tests whether two geometry objects intersect with one another. When applied to a sequence of geometry objects, <code>intersects</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that intersect with the argument.
+/// <para>Tests whether two geometry objects intersect with one another. When applied to a sequence of geometry objects, <code>intersects</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that intersect with the argument.</para>
 ///</summary>
-/// <example><strong>Example:</strong> Is <code>point2</code> within a 2000-meter circle around <code>point1</code>?
+/// <example><para>Example: Is <code>point2</code> within a 2000-meter circle around <code>point1</code>?</para>
 /// <code>var point1 = r.point(-117.220406,32.719464);
 /// var point2 = r.point(-117.206201,32.725186);
 /// r.circle(point1, 2000).intersects(point2).run(conn, callback);
@@ -1174,9 +1174,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Intersects (arguments);
                     }
 /// <summary>
-/// Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).
+/// <para>Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).</para>
 ///</summary>
-/// <example><strong>Example:</strong> Define a circle.
+/// <example><para>Example: Define a circle.</para>
 /// <code>r.table('geo').insert({
 ///     id: 300,
 ///     name: 'Hayes Valley',
@@ -1190,9 +1190,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Circle (arguments);
                     }
 /// <summary>
-/// Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).
+/// <para>Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).</para>
 ///</summary>
-/// <example><strong>Example:</strong> Define a circle.
+/// <example><para>Example: Define a circle.</para>
 /// <code>r.table('geo').insert({
 ///     id: 300,
 ///     name: 'Hayes Valley',
@@ -1207,9 +1207,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Circle (arguments);
                     }
 /// <summary>
-/// Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).
+/// <para>Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).</para>
 ///</summary>
-/// <example><strong>Example:</strong> Define a circle.
+/// <example><para>Example: Define a circle.</para>
 /// <code>r.table('geo').insert({
 ///     id: 300,
 ///     name: 'Hayes Valley',

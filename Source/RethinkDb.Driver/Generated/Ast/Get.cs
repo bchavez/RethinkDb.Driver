@@ -30,28 +30,28 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Get a document by primary key.
-/// If no document exists with that primary key, <code>get</code> will return <code>null</code>.
+/// <para>Get a document by primary key.</para>
+/// <para>If no document exists with that primary key, <code>get</code> will return <code>null</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Find a document by UUID.
+/// <example><para>Example: Find a document by UUID.</para>
 /// <code>r.table('posts').get('a9849eef-7176-4411-935b-79a6e3c56a74').run(conn, callback)
 /// </code></example>
         public Get (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Get a document by primary key.
-/// If no document exists with that primary key, <code>get</code> will return <code>null</code>.
+/// <para>Get a document by primary key.</para>
+/// <para>If no document exists with that primary key, <code>get</code> will return <code>null</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Find a document by UUID.
+/// <example><para>Example: Find a document by UUID.</para>
 /// <code>r.table('posts').get('a9849eef-7176-4411-935b-79a6e3c56a74').run(conn, callback)
 /// </code></example>
         public Get (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Get a document by primary key.
-/// If no document exists with that primary key, <code>get</code> will return <code>null</code>.
+/// <para>Get a document by primary key.</para>
+/// <para>If no document exists with that primary key, <code>get</code> will return <code>null</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Find a document by UUID.
+/// <example><para>Example: Find a document by UUID.</para>
 /// <code>r.table('posts').get('a9849eef-7176-4411-935b-79a6e3c56a74').run(conn, callback)
 /// </code></example>
         public Get (Arguments args, OptArgs optargs)

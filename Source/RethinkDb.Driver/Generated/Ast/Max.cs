@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Finds the maximum element of a sequence.
+/// <para>Finds the maximum element of a sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the maximum value in the list <code>[3, 5, 7]</code>.
+/// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).max().run(conn, callback);
 /// </code></example>
         public Max (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Finds the maximum element of a sequence.
+/// <para>Finds the maximum element of a sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the maximum value in the list <code>[3, 5, 7]</code>.
+/// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).max().run(conn, callback);
 /// </code></example>
         public Max (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Finds the maximum element of a sequence.
+/// <para>Finds the maximum element of a sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the maximum value in the list <code>[3, 5, 7]</code>.
+/// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).max().run(conn, callback);
 /// </code></example>
         public Max (Arguments args, OptArgs optargs)

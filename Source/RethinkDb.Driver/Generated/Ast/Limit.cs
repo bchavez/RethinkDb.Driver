@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// End the sequence after the given number of elements.
+/// <para>End the sequence after the given number of elements.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Only so many can fit in our Pantheon of heroes.
+/// <example><para>Example: Only so many can fit in our Pantheon of heroes.</para>
 /// <code>r.table('marvel').orderBy('belovedness').limit(10).run(conn, callback)
 /// </code></example>
         public Limit (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// End the sequence after the given number of elements.
+/// <para>End the sequence after the given number of elements.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Only so many can fit in our Pantheon of heroes.
+/// <example><para>Example: Only so many can fit in our Pantheon of heroes.</para>
 /// <code>r.table('marvel').orderBy('belovedness').limit(10).run(conn, callback)
 /// </code></example>
         public Limit (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// End the sequence after the given number of elements.
+/// <para>End the sequence after the given number of elements.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Only so many can fit in our Pantheon of heroes.
+/// <example><para>Example: Only so many can fit in our Pantheon of heroes.</para>
 /// <code>r.table('marvel').orderBy('belovedness').limit(10).run(conn, callback)
 /// </code></example>
         public Limit (Arguments args, OptArgs optargs)

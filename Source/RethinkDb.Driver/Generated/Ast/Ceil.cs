@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).
+/// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the ceiling of 12.345.
+/// <example><para>Example: Return the ceiling of 12.345.</para>
 /// <code>&gt; r.ceil(12.345).run(conn, callback);
 /// 
 /// 13.0
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Ceil (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).
+/// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the ceiling of 12.345.
+/// <example><para>Example: Return the ceiling of 12.345.</para>
 /// <code>&gt; r.ceil(12.345).run(conn, callback);
 /// 
 /// 13.0
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Ceil (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).
+/// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the ceiling of 12.345.
+/// <example><para>Example: Return the ceiling of 12.345.</para>
 /// <code>&gt; r.ceil(12.345).run(conn, callback);
 /// 
 /// 13.0

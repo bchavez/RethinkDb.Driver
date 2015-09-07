@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Test if two values are not equal.
+/// <para>Test if two values are not equal.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Does 2 not equal 2?
+/// <example><para>Example: Does 2 not equal 2?</para>
 /// <code>r.expr(2).ne(2).run(conn, callback)
 /// </code></example>
         public Ne (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Test if two values are not equal.
+/// <para>Test if two values are not equal.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Does 2 not equal 2?
+/// <example><para>Example: Does 2 not equal 2?</para>
 /// <code>r.expr(2).ne(2).run(conn, callback)
 /// </code></example>
         public Ne (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Test if two values are not equal.
+/// <para>Test if two values are not equal.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Does 2 not equal 2?
+/// <example><para>Example: Does 2 not equal 2?</para>
 /// <code>r.expr(2).ne(2).run(conn, callback)
 /// </code></example>
         public Ne (Arguments args, OptArgs optargs)

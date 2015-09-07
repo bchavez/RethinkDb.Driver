@@ -30,12 +30,12 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
-/// Otherwise, the <code>true_branch</code> will be evaluated.
-/// The <code>branch</code> command is effectively an <code>if</code> renamed due to language constraints.
-/// The type of the result is determined by the type of the branch that gets executed.
+/// <para>If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
+/// Otherwise, the <code>true_branch</code> will be evaluated.</para>
+/// <para>The <code>branch</code> command is effectively an <code>if</code> renamed due to language constraints.
+/// The type of the result is determined by the type of the branch that gets executed.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return heroes and superheroes.
+/// <example><para>Example: Return heroes and superheroes.</para>
 /// <code>r.table('marvel').map(
 ///     r.branch(
 ///         r.row('victories').gt(100),
@@ -47,12 +47,12 @@ namespace RethinkDb.Driver.Ast {
         public Branch (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
-/// Otherwise, the <code>true_branch</code> will be evaluated.
-/// The <code>branch</code> command is effectively an <code>if</code> renamed due to language constraints.
-/// The type of the result is determined by the type of the branch that gets executed.
+/// <para>If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
+/// Otherwise, the <code>true_branch</code> will be evaluated.</para>
+/// <para>The <code>branch</code> command is effectively an <code>if</code> renamed due to language constraints.
+/// The type of the result is determined by the type of the branch that gets executed.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return heroes and superheroes.
+/// <example><para>Example: Return heroes and superheroes.</para>
 /// <code>r.table('marvel').map(
 ///     r.branch(
 ///         r.row('victories').gt(100),
@@ -64,12 +64,12 @@ namespace RethinkDb.Driver.Ast {
         public Branch (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
-/// Otherwise, the <code>true_branch</code> will be evaluated.
-/// The <code>branch</code> command is effectively an <code>if</code> renamed due to language constraints.
-/// The type of the result is determined by the type of the branch that gets executed.
+/// <para>If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
+/// Otherwise, the <code>true_branch</code> will be evaluated.</para>
+/// <para>The <code>branch</code> command is effectively an <code>if</code> renamed due to language constraints.
+/// The type of the result is determined by the type of the branch that gets executed.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return heroes and superheroes.
+/// <example><para>Example: Return heroes and superheroes.</para>
 /// <code>r.table('marvel').map(
 ///     r.branch(
 ///         r.row('victories').gt(100),

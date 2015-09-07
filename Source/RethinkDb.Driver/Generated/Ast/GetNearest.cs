@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Get all documents where the specified geospatial index is within a certain distance of the specified point (default 100 kilometers).
+/// <para>Get all documents where the specified geospatial index is within a certain distance of the specified point (default 100 kilometers).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a list of enemy hideouts within 5000 meters of the secret base.
+/// <example><para>Example: Return a list of enemy hideouts within 5000 meters of the secret base.</para>
 /// <code>var secretBase = r.point(-122.422876,37.777128);
 /// r.table('hideouts').getNearest(secretBase,
 ///     {index: 'location', maxDist: 5000}
@@ -41,9 +41,9 @@ namespace RethinkDb.Driver.Ast {
         public GetNearest (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Get all documents where the specified geospatial index is within a certain distance of the specified point (default 100 kilometers).
+/// <para>Get all documents where the specified geospatial index is within a certain distance of the specified point (default 100 kilometers).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a list of enemy hideouts within 5000 meters of the secret base.
+/// <example><para>Example: Return a list of enemy hideouts within 5000 meters of the secret base.</para>
 /// <code>var secretBase = r.point(-122.422876,37.777128);
 /// r.table('hideouts').getNearest(secretBase,
 ///     {index: 'location', maxDist: 5000}
@@ -52,9 +52,9 @@ namespace RethinkDb.Driver.Ast {
         public GetNearest (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Get all documents where the specified geospatial index is within a certain distance of the specified point (default 100 kilometers).
+/// <para>Get all documents where the specified geospatial index is within a certain distance of the specified point (default 100 kilometers).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a list of enemy hideouts within 5000 meters of the secret base.
+/// <example><para>Example: Return a list of enemy hideouts within 5000 meters of the secret base.</para>
 /// <code>var secretBase = r.point(-122.422876,37.777128);
 /// r.table('hideouts').getNearest(secretBase,
 ///     {index: 'location', maxDist: 5000}

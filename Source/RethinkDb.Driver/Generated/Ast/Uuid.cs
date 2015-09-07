@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return a UUID (universally unique identifier), a string that can be used as a unique ID.
+/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Generate a UUID.
+/// <example><para>Example: Generate a UUID.</para>
 /// <code>&gt; r.uuid().run(conn, callback)
 /// // result returned to callback
 /// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Uuid (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return a UUID (universally unique identifier), a string that can be used as a unique ID.
+/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Generate a UUID.
+/// <example><para>Example: Generate a UUID.</para>
 /// <code>&gt; r.uuid().run(conn, callback)
 /// // result returned to callback
 /// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Uuid (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return a UUID (universally unique identifier), a string that can be used as a unique ID.
+/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Generate a UUID.
+/// <example><para>Example: Generate a UUID.</para>
 /// <code>&gt; r.uuid().run(conn, callback)
 /// // result returned to callback
 /// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9

@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Use <code>polygon2</code> to "punch out" a hole in <code>polygon1</code>. <code>polygon2</code> must be completely contained within <code>polygon1</code> and must have no holes itself (it must not be the output of <code>polygonSub</code> itself).
+/// <para>Use <code>polygon2</code> to "punch out" a hole in <code>polygon1</code>. <code>polygon2</code> must be completely contained within <code>polygon1</code> and must have no holes itself (it must not be the output of <code>polygonSub</code> itself).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Define a polygon with a hole punched in it.
+/// <example><para>Example: Define a polygon with a hole punched in it.</para>
 /// <code>var outerPolygon = r.polygon(
 ///     [-122.4,37.7],
 ///     [-122.4,37.3],
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public PolygonSub (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Use <code>polygon2</code> to "punch out" a hole in <code>polygon1</code>. <code>polygon2</code> must be completely contained within <code>polygon1</code> and must have no holes itself (it must not be the output of <code>polygonSub</code> itself).
+/// <para>Use <code>polygon2</code> to "punch out" a hole in <code>polygon1</code>. <code>polygon2</code> must be completely contained within <code>polygon1</code> and must have no holes itself (it must not be the output of <code>polygonSub</code> itself).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Define a polygon with a hole punched in it.
+/// <example><para>Example: Define a polygon with a hole punched in it.</para>
 /// <code>var outerPolygon = r.polygon(
 ///     [-122.4,37.7],
 ///     [-122.4,37.3],
@@ -70,9 +70,9 @@ namespace RethinkDb.Driver.Ast {
         public PolygonSub (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Use <code>polygon2</code> to "punch out" a hole in <code>polygon1</code>. <code>polygon2</code> must be completely contained within <code>polygon1</code> and must have no holes itself (it must not be the output of <code>polygonSub</code> itself).
+/// <para>Use <code>polygon2</code> to "punch out" a hole in <code>polygon1</code>. <code>polygon2</code> must be completely contained within <code>polygon1</code> and must have no holes itself (it must not be the output of <code>polygonSub</code> itself).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Define a polygon with a hole punched in it.
+/// <example><para>Example: Define a polygon with a hole punched in it.</para>
 /// <code>var outerPolygon = r.polygon(
 ///     [-122.4,37.7],
 ///     [-122.4,37.3],

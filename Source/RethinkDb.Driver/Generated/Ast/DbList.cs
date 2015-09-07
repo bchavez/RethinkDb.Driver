@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// List all database names in the system. The result is a list of strings.
+/// <para>List all database names in the system. The result is a list of strings.</para>
 /// </summary>
-/// <example><strong>Example:</strong> List all databases.
+/// <example><para>Example: List all databases.</para>
 /// <code>r.dbList().run(conn, callback)
 /// </code></example>
         public DbList (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// List all database names in the system. The result is a list of strings.
+/// <para>List all database names in the system. The result is a list of strings.</para>
 /// </summary>
-/// <example><strong>Example:</strong> List all databases.
+/// <example><para>Example: List all databases.</para>
 /// <code>r.dbList().run(conn, callback)
 /// </code></example>
         public DbList (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// List all database names in the system. The result is a list of strings.
+/// <para>List all database names in the system. The result is a list of strings.</para>
 /// </summary>
-/// <example><strong>Example:</strong> List all databases.
+/// <example><para>Example: List all databases.</para>
 /// <code>r.dbList().run(conn, callback)
 /// </code></example>
         public DbList (Arguments args, OptArgs optargs)

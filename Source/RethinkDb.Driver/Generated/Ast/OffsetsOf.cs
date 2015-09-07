@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.
+/// <para>Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Find the position of the letter 'c'.
+/// <example><para>Example: Find the position of the letter 'c'.</para>
 /// <code>r.expr(['a','b','c']).offsetsOf('c').run(conn, callback)
 /// </code></example>
         public OffsetsOf (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.
+/// <para>Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Find the position of the letter 'c'.
+/// <example><para>Example: Find the position of the letter 'c'.</para>
 /// <code>r.expr(['a','b','c']).offsetsOf('c').run(conn, callback)
 /// </code></example>
         public OffsetsOf (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.
+/// <para>Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Find the position of the letter 'c'.
+/// <example><para>Example: Find the position of the letter 'c'.</para>
 /// <code>r.expr(['a','b','c']).offsetsOf('c').run(conn, callback)
 /// </code></example>
         public OffsetsOf (Arguments args, OptArgs optargs)

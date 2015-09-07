@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Test if the first value is greater than other.
+/// <para>Test if the first value is greater than other.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Is 2 greater than 2?
+/// <example><para>Example: Is 2 greater than 2?</para>
 /// <code>r.expr(2).gt(2).run(conn, callback)
 /// </code></example>
         public Gt (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Test if the first value is greater than other.
+/// <para>Test if the first value is greater than other.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Is 2 greater than 2?
+/// <example><para>Example: Is 2 greater than 2?</para>
 /// <code>r.expr(2).gt(2).run(conn, callback)
 /// </code></example>
         public Gt (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Test if the first value is greater than other.
+/// <para>Test if the first value is greater than other.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Is 2 greater than 2?
+/// <example><para>Example: Is 2 greater than 2?</para>
 /// <code>r.expr(2).gt(2).run(conn, callback)
 /// </code></example>
         public Gt (Arguments args, OptArgs optargs)

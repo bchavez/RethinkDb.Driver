@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return the seconds in a time object as a number between 0 and 59.999 (double precision).
+/// <para>Return the seconds in a time object as a number between 0 and 59.999 (double precision).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the post submitted during the first 30 seconds of every minute.
+/// <example><para>Example: Return the post submitted during the first 30 seconds of every minute.</para>
 /// <code>r.table("posts").filter(function(post) {
 ///     return post("date").seconds().lt(30)
 /// })
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Seconds (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return the seconds in a time object as a number between 0 and 59.999 (double precision).
+/// <para>Return the seconds in a time object as a number between 0 and 59.999 (double precision).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the post submitted during the first 30 seconds of every minute.
+/// <example><para>Example: Return the post submitted during the first 30 seconds of every minute.</para>
 /// <code>r.table("posts").filter(function(post) {
 ///     return post("date").seconds().lt(30)
 /// })
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Seconds (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return the seconds in a time object as a number between 0 and 59.999 (double precision).
+/// <para>Return the seconds in a time object as a number between 0 and 59.999 (double precision).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the post submitted during the first 30 seconds of every minute.
+/// <example><para>Example: Return the post submitted during the first 30 seconds of every minute.</para>
 /// <code>r.table("posts").filter(function(post) {
 ///     return post("date").seconds().lt(30)
 /// })

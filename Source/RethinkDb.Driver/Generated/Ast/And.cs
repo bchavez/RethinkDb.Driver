@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Compute the logical "and" of two or more values.
+/// <para>Compute the logical "and" of two or more values.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return whether both <code>a</code> and <code>b</code> evaluate to true.
+/// <example><para>Example: Return whether both <code>a</code> and <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
 /// r.expr(a).and(b).run(conn, callback);
 /// // result passed to callback
@@ -41,9 +41,9 @@ namespace RethinkDb.Driver.Ast {
         public And (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Compute the logical "and" of two or more values.
+/// <para>Compute the logical "and" of two or more values.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return whether both <code>a</code> and <code>b</code> evaluate to true.
+/// <example><para>Example: Return whether both <code>a</code> and <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
 /// r.expr(a).and(b).run(conn, callback);
 /// // result passed to callback
@@ -52,9 +52,9 @@ namespace RethinkDb.Driver.Ast {
         public And (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Compute the logical "and" of two or more values.
+/// <para>Compute the logical "and" of two or more values.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return whether both <code>a</code> and <code>b</code> evaluate to true.
+/// <example><para>Example: Return whether both <code>a</code> and <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
 /// r.expr(a).and(b).run(conn, callback);
 /// // result passed to callback

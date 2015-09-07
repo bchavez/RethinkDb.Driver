@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Convert a time object to a string in ISO 8601 format.
+/// <para>Convert a time object to a string in ISO 8601 format.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the current ISO 8601 time.
+/// <example><para>Example: Return the current ISO 8601 time.</para>
 /// <code>r.now().toISO8601().run(conn, callback)
 /// // Result passed to callback
 /// "2015-04-20T18:37:52.690+00:00"
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public ToIso8601 (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Convert a time object to a string in ISO 8601 format.
+/// <para>Convert a time object to a string in ISO 8601 format.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the current ISO 8601 time.
+/// <example><para>Example: Return the current ISO 8601 time.</para>
 /// <code>r.now().toISO8601().run(conn, callback)
 /// // Result passed to callback
 /// "2015-04-20T18:37:52.690+00:00"
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public ToIso8601 (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Convert a time object to a string in ISO 8601 format.
+/// <para>Convert a time object to a string in ISO 8601 format.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the current ISO 8601 time.
+/// <example><para>Example: Return the current ISO 8601 time.</para>
 /// <code>r.now().toISO8601().run(conn, callback)
 /// // Result passed to callback
 /// "2015-04-20T18:37:52.690+00:00"

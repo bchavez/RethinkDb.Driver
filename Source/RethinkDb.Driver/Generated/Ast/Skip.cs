@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Skip a number of elements from the head of the sequence.
+/// <para>Skip a number of elements from the head of the sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Here in conjunction with <code>orderBy</code> we choose to ignore the most successful heroes.
+/// <example><para>Example: Here in conjunction with <code>orderBy</code> we choose to ignore the most successful heroes.</para>
 /// <code>r.table('marvel').orderBy('successMetric').skip(10).run(conn, callback)
 /// </code></example>
         public Skip (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Skip a number of elements from the head of the sequence.
+/// <para>Skip a number of elements from the head of the sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Here in conjunction with <code>orderBy</code> we choose to ignore the most successful heroes.
+/// <example><para>Example: Here in conjunction with <code>orderBy</code> we choose to ignore the most successful heroes.</para>
 /// <code>r.table('marvel').orderBy('successMetric').skip(10).run(conn, callback)
 /// </code></example>
         public Skip (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Skip a number of elements from the head of the sequence.
+/// <para>Skip a number of elements from the head of the sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Here in conjunction with <code>orderBy</code> we choose to ignore the most successful heroes.
+/// <example><para>Example: Here in conjunction with <code>orderBy</code> we choose to ignore the most successful heroes.</para>
 /// <code>r.table('marvel').orderBy('successMetric').skip(10).run(conn, callback)
 /// </code></example>
         public Skip (Arguments args, OptArgs optargs)

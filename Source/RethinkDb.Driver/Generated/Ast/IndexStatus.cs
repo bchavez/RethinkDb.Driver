@@ -30,37 +30,37 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Get the status of the specified indexes on this table, or the status
-/// of all indexes on this table if no indexes are specified.
+/// <para>Get the status of the specified indexes on this table, or the status
+/// of all indexes on this table if no indexes are specified.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get the status of all the indexes on <code>test</code>:
+/// <example><para>Example: Get the status of all the indexes on <code>test</code>:</para>
 /// <code>r.table('test').indexStatus().run(conn, callback)
 /// </code>
-/// <strong>Example:</strong> Get the status of the <code>timestamp</code> index:
+/// <para>Example: Get the status of the <code>timestamp</code> index:</para>
 /// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
         public IndexStatus (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Get the status of the specified indexes on this table, or the status
-/// of all indexes on this table if no indexes are specified.
+/// <para>Get the status of the specified indexes on this table, or the status
+/// of all indexes on this table if no indexes are specified.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get the status of all the indexes on <code>test</code>:
+/// <example><para>Example: Get the status of all the indexes on <code>test</code>:</para>
 /// <code>r.table('test').indexStatus().run(conn, callback)
 /// </code>
-/// <strong>Example:</strong> Get the status of the <code>timestamp</code> index:
+/// <para>Example: Get the status of the <code>timestamp</code> index:</para>
 /// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
         public IndexStatus (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Get the status of the specified indexes on this table, or the status
-/// of all indexes on this table if no indexes are specified.
+/// <para>Get the status of the specified indexes on this table, or the status
+/// of all indexes on this table if no indexes are specified.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get the status of all the indexes on <code>test</code>:
+/// <example><para>Example: Get the status of all the indexes on <code>test</code>:</para>
 /// <code>r.table('test').indexStatus().run(conn, callback)
 /// </code>
-/// <strong>Example:</strong> Get the status of the <code>timestamp</code> index:
+/// <para>Example: Get the status of the <code>timestamp</code> index:</para>
 /// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
         public IndexStatus (Arguments args, OptArgs optargs)

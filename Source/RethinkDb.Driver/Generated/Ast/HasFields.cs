@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Test if an object has one or more fields. An object has a field if it has that key and the key has a non-null value. For instance, the object <code>{'a': 1,'b': 2,'c': null}</code> has the fields <code>a</code> and <code>b</code>.
+/// <para>Test if an object has one or more fields. An object has a field if it has that key and the key has a non-null value. For instance, the object <code>{'a': 1,'b': 2,'c': null}</code> has the fields <code>a</code> and <code>b</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the players who have won games.
+/// <example><para>Example: Return the players who have won games.</para>
 /// <code>r.table('players').hasFields('games_won').run(conn, callback)
 /// </code></example>
         public HasFields (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Test if an object has one or more fields. An object has a field if it has that key and the key has a non-null value. For instance, the object <code>{'a': 1,'b': 2,'c': null}</code> has the fields <code>a</code> and <code>b</code>.
+/// <para>Test if an object has one or more fields. An object has a field if it has that key and the key has a non-null value. For instance, the object <code>{'a': 1,'b': 2,'c': null}</code> has the fields <code>a</code> and <code>b</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the players who have won games.
+/// <example><para>Example: Return the players who have won games.</para>
 /// <code>r.table('players').hasFields('games_won').run(conn, callback)
 /// </code></example>
         public HasFields (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Test if an object has one or more fields. An object has a field if it has that key and the key has a non-null value. For instance, the object <code>{'a': 1,'b': 2,'c': null}</code> has the fields <code>a</code> and <code>b</code>.
+/// <para>Test if an object has one or more fields. An object has a field if it has that key and the key has a non-null value. For instance, the object <code>{'a': 1,'b': 2,'c': null}</code> has the fields <code>a</code> and <code>b</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the players who have won games.
+/// <example><para>Example: Return the players who have won games.</para>
 /// <code>r.table('players').hasFields('games_won').run(conn, callback)
 /// </code></example>
         public HasFields (Arguments args, OptArgs optargs)

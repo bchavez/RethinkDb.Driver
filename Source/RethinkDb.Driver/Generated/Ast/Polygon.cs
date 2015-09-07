@@ -30,13 +30,13 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:
+/// <para>Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:</para>
 /// <ul>
 /// <li>Three or more two-item arrays, specifying longitude and latitude numbers of the polygon's vertices;</li>
 /// <li>Three or more <a href="/api/javascript/point">Point</a> objects specifying the polygon's vertices.</li>
 /// </ul>
 /// </summary>
-/// <example><strong>Example:</strong> Define a polygon.
+/// <example><para>Example: Define a polygon.</para>
 /// <code>r.table('geo').insert({
 ///     id: 101,
 ///     rectangle: r.polygon(
@@ -50,13 +50,13 @@ namespace RethinkDb.Driver.Ast {
         public Polygon (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:
+/// <para>Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:</para>
 /// <ul>
 /// <li>Three or more two-item arrays, specifying longitude and latitude numbers of the polygon's vertices;</li>
 /// <li>Three or more <a href="/api/javascript/point">Point</a> objects specifying the polygon's vertices.</li>
 /// </ul>
 /// </summary>
-/// <example><strong>Example:</strong> Define a polygon.
+/// <example><para>Example: Define a polygon.</para>
 /// <code>r.table('geo').insert({
 ///     id: 101,
 ///     rectangle: r.polygon(
@@ -70,13 +70,13 @@ namespace RethinkDb.Driver.Ast {
         public Polygon (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:
+/// <para>Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:</para>
 /// <ul>
 /// <li>Three or more two-item arrays, specifying longitude and latitude numbers of the polygon's vertices;</li>
 /// <li>Three or more <a href="/api/javascript/point">Point</a> objects specifying the polygon's vertices.</li>
 /// </ul>
 /// </summary>
-/// <example><strong>Example:</strong> Define a polygon.
+/// <example><para>Example: Define a polygon.</para>
 /// <code>r.table('geo').insert({
 ///     id: 101,
 ///     rectangle: r.polygon(

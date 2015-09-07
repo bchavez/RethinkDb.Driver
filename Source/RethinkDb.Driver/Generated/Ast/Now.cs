@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return a time object representing the current time in UTC. The command now() is computed once when the server receives the query, so multiple instances of r.now() will always return the same time inside a query.
+/// <para>Return a time object representing the current time in UTC. The command now() is computed once when the server receives the query, so multiple instances of r.now() will always return the same time inside a query.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Add a new user with the time at which he subscribed.
+/// <example><para>Example: Add a new user with the time at which he subscribed.</para>
 /// <code>r.table("users").insert({
 ///     name: "John",
 ///     subscription_date: r.now()
@@ -41,9 +41,9 @@ namespace RethinkDb.Driver.Ast {
         public Now (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return a time object representing the current time in UTC. The command now() is computed once when the server receives the query, so multiple instances of r.now() will always return the same time inside a query.
+/// <para>Return a time object representing the current time in UTC. The command now() is computed once when the server receives the query, so multiple instances of r.now() will always return the same time inside a query.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Add a new user with the time at which he subscribed.
+/// <example><para>Example: Add a new user with the time at which he subscribed.</para>
 /// <code>r.table("users").insert({
 ///     name: "John",
 ///     subscription_date: r.now()
@@ -52,9 +52,9 @@ namespace RethinkDb.Driver.Ast {
         public Now (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return a time object representing the current time in UTC. The command now() is computed once when the server receives the query, so multiple instances of r.now() will always return the same time inside a query.
+/// <para>Return a time object representing the current time in UTC. The command now() is computed once when the server receives the query, so multiple instances of r.now() will always return the same time inside a query.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Add a new user with the time at which he subscribed.
+/// <example><para>Example: Add a new user with the time at which he subscribed.</para>
 /// <code>r.table("users").insert({
 ///     name: "John",
 ///     subscription_date: r.now()

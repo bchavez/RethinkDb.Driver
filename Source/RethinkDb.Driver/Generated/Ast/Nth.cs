@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Get the <em>nth</em> element of a sequence, counting from zero. If the argument is negative, count from the last element.
+/// <para>Get the <em>nth</em> element of a sequence, counting from zero. If the argument is negative, count from the last element.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Select the second element in the array.
+/// <example><para>Example: Select the second element in the array.</para>
 /// <code>r.expr([1,2,3]).nth(1).run(conn, callback)
 /// </code></example>
         public Nth (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Get the <em>nth</em> element of a sequence, counting from zero. If the argument is negative, count from the last element.
+/// <para>Get the <em>nth</em> element of a sequence, counting from zero. If the argument is negative, count from the last element.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Select the second element in the array.
+/// <example><para>Example: Select the second element in the array.</para>
 /// <code>r.expr([1,2,3]).nth(1).run(conn, callback)
 /// </code></example>
         public Nth (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Get the <em>nth</em> element of a sequence, counting from zero. If the argument is negative, count from the last element.
+/// <para>Get the <em>nth</em> element of a sequence, counting from zero. If the argument is negative, count from the last element.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Select the second element in the array.
+/// <example><para>Example: Select the second element in the array.</para>
 /// <code>r.expr([1,2,3]).nth(1).run(conn, callback)
 /// </code></example>
         public Nth (Arguments args, OptArgs optargs)

@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Insert several values in to an array at a given index. Returns the modified array.
+/// <para>Insert several values in to an array at a given index. Returns the modified array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Hulk and Thor decide to join the avengers.
+/// <example><para>Example: Hulk and Thor decide to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).spliceAt(1, ["Hulk", "Thor"]).run(conn, callback)
 /// </code></example>
         public SpliceAt (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Insert several values in to an array at a given index. Returns the modified array.
+/// <para>Insert several values in to an array at a given index. Returns the modified array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Hulk and Thor decide to join the avengers.
+/// <example><para>Example: Hulk and Thor decide to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).spliceAt(1, ["Hulk", "Thor"]).run(conn, callback)
 /// </code></example>
         public SpliceAt (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Insert several values in to an array at a given index. Returns the modified array.
+/// <para>Insert several values in to an array at a given index. Returns the modified array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Hulk and Thor decide to join the avengers.
+/// <example><para>Example: Hulk and Thor decide to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).spliceAt(1, ["Hulk", "Thor"]).run(conn, callback)
 /// </code></example>
         public SpliceAt (Arguments args, OptArgs optargs)

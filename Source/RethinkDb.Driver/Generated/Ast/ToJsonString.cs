@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Convert a ReQL value or object to a JSON string. You may use either <code>toJsonString</code> or <code>toJSON</code>.
+/// <para>Convert a ReQL value or object to a JSON string. You may use either <code>toJsonString</code> or <code>toJSON</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get a ReQL document as a JSON string.
+/// <example><para>Example: Get a ReQL document as a JSON string.</para>
 /// <code>&gt; r.table('hero').get(1).toJSON()
 /// // result returned to callback
 /// '{"id": 1, "name": "Batman", "city": "Gotham", "powers": ["martial arts", "cinematic entrances"]}'
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public ToJsonString (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Convert a ReQL value or object to a JSON string. You may use either <code>toJsonString</code> or <code>toJSON</code>.
+/// <para>Convert a ReQL value or object to a JSON string. You may use either <code>toJsonString</code> or <code>toJSON</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get a ReQL document as a JSON string.
+/// <example><para>Example: Get a ReQL document as a JSON string.</para>
 /// <code>&gt; r.table('hero').get(1).toJSON()
 /// // result returned to callback
 /// '{"id": 1, "name": "Batman", "city": "Gotham", "powers": ["martial arts", "cinematic entrances"]}'
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public ToJsonString (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Convert a ReQL value or object to a JSON string. You may use either <code>toJsonString</code> or <code>toJSON</code>.
+/// <para>Convert a ReQL value or object to a JSON string. You may use either <code>toJsonString</code> or <code>toJSON</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get a ReQL document as a JSON string.
+/// <example><para>Example: Get a ReQL document as a JSON string.</para>
 /// <code>&gt; r.table('hero').get(1).toJSON()
 /// // result returned to callback
 /// '{"id": 1, "name": "Batman", "city": "Gotham", "powers": ["martial arts", "cinematic entrances"]}'

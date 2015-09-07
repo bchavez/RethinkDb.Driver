@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// List all table names in a database. The result is a list of strings.
+/// <para>List all table names in a database. The result is a list of strings.</para>
 /// </summary>
-/// <example><strong>Example:</strong> List all tables of the 'test' database.
+/// <example><para>Example: List all tables of the 'test' database.</para>
 /// <code>r.db('test').tableList().run(conn, callback)
 /// </code></example>
         public TableList (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// List all table names in a database. The result is a list of strings.
+/// <para>List all table names in a database. The result is a list of strings.</para>
 /// </summary>
-/// <example><strong>Example:</strong> List all tables of the 'test' database.
+/// <example><para>Example: List all tables of the 'test' database.</para>
 /// <code>r.db('test').tableList().run(conn, callback)
 /// </code></example>
         public TableList (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// List all table names in a database. The result is a list of strings.
+/// <para>List all table names in a database. The result is a list of strings.</para>
 /// </summary>
-/// <example><strong>Example:</strong> List all tables of the 'test' database.
+/// <example><para>Example: List all tables of the 'test' database.</para>
 /// <code>r.db('test').tableList().run(conn, callback)
 /// </code></example>
         public TableList (Arguments args, OptArgs optargs)

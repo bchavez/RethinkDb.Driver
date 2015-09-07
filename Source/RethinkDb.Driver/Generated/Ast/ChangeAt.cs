@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Change a value in an array at a given index. Returns the modified array.
+/// <para>Change a value in an array at a given index. Returns the modified array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Bruce Banner hulks out.
+/// <example><para>Example: Bruce Banner hulks out.</para>
 /// <code>r.expr(["Iron Man", "Bruce", "Spider-Man"]).changeAt(1, "Hulk").run(conn, callback)
 /// </code></example>
         public ChangeAt (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Change a value in an array at a given index. Returns the modified array.
+/// <para>Change a value in an array at a given index. Returns the modified array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Bruce Banner hulks out.
+/// <example><para>Example: Bruce Banner hulks out.</para>
 /// <code>r.expr(["Iron Man", "Bruce", "Spider-Man"]).changeAt(1, "Hulk").run(conn, callback)
 /// </code></example>
         public ChangeAt (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Change a value in an array at a given index. Returns the modified array.
+/// <para>Change a value in an array at a given index. Returns the modified array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Bruce Banner hulks out.
+/// <example><para>Example: Bruce Banner hulks out.</para>
 /// <code>r.expr(["Iron Man", "Bruce", "Spider-Man"]).changeAt(1, "Hulk").run(conn, callback)
 /// </code></example>
         public ChangeAt (Arguments args, OptArgs optargs)

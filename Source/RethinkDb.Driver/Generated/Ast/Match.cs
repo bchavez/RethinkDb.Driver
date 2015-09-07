@@ -30,16 +30,16 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Matches against a regular expression. If there is a match, returns an object with the fields:
+/// <para>Matches against a regular expression. If there is a match, returns an object with the fields:</para>
 /// <ul>
 /// <li><code>str</code>: The matched string</li>
 /// <li><code>start</code>: The matched string's start</li>
 /// <li><code>end</code>: The matched string's end</li>
 /// <li><code>groups</code>: The capture groups defined with parentheses</li>
 /// </ul>
-/// If no match is found, returns <code>null</code>.
+/// <para>If no match is found, returns <code>null</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get all users whose name starts with "A". 
+/// <example><para>Example: Get all users whose name starts with "A". </para>
 /// <code>r.table('users').filter(function(doc){
 ///     return doc('name').match("^A")
 /// }).run(conn, callback)
@@ -47,16 +47,16 @@ namespace RethinkDb.Driver.Ast {
         public Match (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Matches against a regular expression. If there is a match, returns an object with the fields:
+/// <para>Matches against a regular expression. If there is a match, returns an object with the fields:</para>
 /// <ul>
 /// <li><code>str</code>: The matched string</li>
 /// <li><code>start</code>: The matched string's start</li>
 /// <li><code>end</code>: The matched string's end</li>
 /// <li><code>groups</code>: The capture groups defined with parentheses</li>
 /// </ul>
-/// If no match is found, returns <code>null</code>.
+/// <para>If no match is found, returns <code>null</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get all users whose name starts with "A". 
+/// <example><para>Example: Get all users whose name starts with "A". </para>
 /// <code>r.table('users').filter(function(doc){
 ///     return doc('name').match("^A")
 /// }).run(conn, callback)
@@ -64,16 +64,16 @@ namespace RethinkDb.Driver.Ast {
         public Match (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Matches against a regular expression. If there is a match, returns an object with the fields:
+/// <para>Matches against a regular expression. If there is a match, returns an object with the fields:</para>
 /// <ul>
 /// <li><code>str</code>: The matched string</li>
 /// <li><code>start</code>: The matched string's start</li>
 /// <li><code>end</code>: The matched string's end</li>
 /// <li><code>groups</code>: The capture groups defined with parentheses</li>
 /// </ul>
-/// If no match is found, returns <code>null</code>.
+/// <para>If no match is found, returns <code>null</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get all users whose name starts with "A". 
+/// <example><para>Example: Get all users whose name starts with "A". </para>
 /// <code>r.table('users').filter(function(doc){
 ///     return doc('name').match("^A")
 /// }).run(conn, callback)

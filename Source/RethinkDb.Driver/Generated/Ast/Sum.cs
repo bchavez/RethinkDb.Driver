@@ -30,40 +30,40 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Sums all the elements of a sequence.  If called with a field name,
+/// <para>Sums all the elements of a sequence.  If called with a field name,
 /// sums all the values of that field in the sequence, skipping elements
 /// of the sequence that lack that field.  If called with a function,
 /// calls that function on every element of the sequence and sums the
 /// results, skipping elements of the sequence where that function returns
-/// <code>null</code> or a non-existence error.
+/// <code>null</code> or a non-existence error.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What's 3 + 5 + 7?
+/// <example><para>Example: What's 3 + 5 + 7?</para>
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
         public Sum (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Sums all the elements of a sequence.  If called with a field name,
+/// <para>Sums all the elements of a sequence.  If called with a field name,
 /// sums all the values of that field in the sequence, skipping elements
 /// of the sequence that lack that field.  If called with a function,
 /// calls that function on every element of the sequence and sums the
 /// results, skipping elements of the sequence where that function returns
-/// <code>null</code> or a non-existence error.
+/// <code>null</code> or a non-existence error.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What's 3 + 5 + 7?
+/// <example><para>Example: What's 3 + 5 + 7?</para>
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
         public Sum (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Sums all the elements of a sequence.  If called with a field name,
+/// <para>Sums all the elements of a sequence.  If called with a field name,
 /// sums all the values of that field in the sequence, skipping elements
 /// of the sequence that lack that field.  If called with a function,
 /// calls that function on every element of the sequence and sums the
 /// results, skipping elements of the sequence where that function returns
-/// <code>null</code> or a non-existence error.
+/// <code>null</code> or a non-existence error.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What's 3 + 5 + 7?
+/// <example><para>Example: What's 3 + 5 + 7?</para>
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
         public Sum (Arguments args, OptArgs optargs)

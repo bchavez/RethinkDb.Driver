@@ -30,28 +30,28 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Intersect two arrays returning values that occur in both of them as a set (an array with
-/// distinct values).
+/// <para>Intersect two arrays returning values that occur in both of them as a set (an array with
+/// distinct values).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Check which pieces of equipment Iron Man has from a fixed list.
+/// <example><para>Example: Check which pieces of equipment Iron Man has from a fixed list.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setIntersection(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
         public SetIntersection (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Intersect two arrays returning values that occur in both of them as a set (an array with
-/// distinct values).
+/// <para>Intersect two arrays returning values that occur in both of them as a set (an array with
+/// distinct values).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Check which pieces of equipment Iron Man has from a fixed list.
+/// <example><para>Example: Check which pieces of equipment Iron Man has from a fixed list.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setIntersection(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
         public SetIntersection (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Intersect two arrays returning values that occur in both of them as a set (an array with
-/// distinct values).
+/// <para>Intersect two arrays returning values that occur in both of them as a set (an array with
+/// distinct values).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Check which pieces of equipment Iron Man has from a fixed list.
+/// <example><para>Example: Check which pieces of equipment Iron Man has from a fixed list.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setIntersection(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
         public SetIntersection (Arguments args, OptArgs optargs)

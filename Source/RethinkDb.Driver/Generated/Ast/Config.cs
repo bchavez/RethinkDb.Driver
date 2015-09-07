@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Query (read and/or update) the configurations for individual tables or databases.
+/// <para>Query (read and/or update) the configurations for individual tables or databases.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get the configuration for the <code>users</code> table.
+/// <example><para>Example: Get the configuration for the <code>users</code> table.</para>
 /// <code>&gt; r.table('users').config().run(conn, callback);
 /// </code></example>
         public Config (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Query (read and/or update) the configurations for individual tables or databases.
+/// <para>Query (read and/or update) the configurations for individual tables or databases.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get the configuration for the <code>users</code> table.
+/// <example><para>Example: Get the configuration for the <code>users</code> table.</para>
 /// <code>&gt; r.table('users').config().run(conn, callback);
 /// </code></example>
         public Config (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Query (read and/or update) the configurations for individual tables or databases.
+/// <para>Query (read and/or update) the configurations for individual tables or databases.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get the configuration for the <code>users</code> table.
+/// <example><para>Example: Get the configuration for the <code>users</code> table.</para>
 /// <code>&gt; r.table('users').config().run(conn, callback);
 /// </code></example>
         public Config (Arguments args, OptArgs optargs)

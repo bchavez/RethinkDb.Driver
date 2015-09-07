@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Delete a previously created secondary index of this table.
+/// <para>Delete a previously created secondary index of this table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Drop a secondary index named 'code_name'.
+/// <example><para>Example: Drop a secondary index named 'code_name'.</para>
 /// <code>r.table('dc').indexDrop('code_name').run(conn, callback)
 /// </code></example>
         public IndexDrop (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Delete a previously created secondary index of this table.
+/// <para>Delete a previously created secondary index of this table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Drop a secondary index named 'code_name'.
+/// <example><para>Example: Drop a secondary index named 'code_name'.</para>
 /// <code>r.table('dc').indexDrop('code_name').run(conn, callback)
 /// </code></example>
         public IndexDrop (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Delete a previously created secondary index of this table.
+/// <para>Delete a previously created secondary index of this table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Drop a secondary index named 'code_name'.
+/// <example><para>Example: Drop a secondary index named 'code_name'.</para>
 /// <code>r.table('dc').indexDrop('code_name').run(conn, callback)
 /// </code></example>
         public IndexDrop (Arguments args, OptArgs optargs)

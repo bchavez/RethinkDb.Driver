@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return the day of a time object as a number between 1 and 31.
+/// <para>Return the day of a time object as a number between 1 and 31.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the users born on the 24th of any month.
+/// <example><para>Example: Return the users born on the 24th of any month.</para>
 /// <code>r.table("users").filter(
 ///     r.row("birthdate").day().eq(24)
 /// ).run(conn, callback)
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Day (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return the day of a time object as a number between 1 and 31.
+/// <para>Return the day of a time object as a number between 1 and 31.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the users born on the 24th of any month.
+/// <example><para>Example: Return the users born on the 24th of any month.</para>
 /// <code>r.table("users").filter(
 ///     r.row("birthdate").day().eq(24)
 /// ).run(conn, callback)
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Day (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return the day of a time object as a number between 1 and 31.
+/// <para>Return the day of a time object as a number between 1 and 31.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the users born on the 24th of any month.
+/// <example><para>Example: Return the users born on the 24th of any month.</para>
 /// <code>r.table("users").filter(
 ///     r.row("birthdate").day().eq(24)
 /// ).run(conn, callback)

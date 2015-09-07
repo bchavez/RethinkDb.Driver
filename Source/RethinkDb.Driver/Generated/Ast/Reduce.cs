@@ -30,10 +30,10 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Produce a single value from a sequence through repeated application of a reduction
-/// function.
+/// <para>Produce a single value from a sequence through repeated application of a reduction
+/// function.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the number of documents in the table `posts.
+/// <example><para>Example: Return the number of documents in the table `posts.</para>
 /// <code>r.table("posts").map(function(doc) {
 ///     return 1
 /// }).reduce(function(left, right) {
@@ -43,10 +43,10 @@ namespace RethinkDb.Driver.Ast {
         public Reduce (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Produce a single value from a sequence through repeated application of a reduction
-/// function.
+/// <para>Produce a single value from a sequence through repeated application of a reduction
+/// function.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the number of documents in the table `posts.
+/// <example><para>Example: Return the number of documents in the table `posts.</para>
 /// <code>r.table("posts").map(function(doc) {
 ///     return 1
 /// }).reduce(function(left, right) {
@@ -56,10 +56,10 @@ namespace RethinkDb.Driver.Ast {
         public Reduce (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Produce a single value from a sequence through repeated application of a reduction
-/// function.
+/// <para>Produce a single value from a sequence through repeated application of a reduction
+/// function.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the number of documents in the table `posts.
+/// <example><para>Example: Return the number of documents in the table `posts.</para>
 /// <code>r.table("posts").map(function(doc) {
 ///     return 1
 /// }).reduce(function(left, right) {

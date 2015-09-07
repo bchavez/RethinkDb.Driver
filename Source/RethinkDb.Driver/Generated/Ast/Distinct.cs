@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Remove duplicate elements from the sequence.
+/// <para>Remove duplicate elements from the sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Which unique villains have been vanquished by marvel heroes?
+/// <example><para>Example: Which unique villains have been vanquished by marvel heroes?</para>
 /// <code>r.table('marvel').concatMap(function(hero) {
 ///     return hero('villainList')
 /// }).distinct().run(conn, callback)
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Distinct (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Remove duplicate elements from the sequence.
+/// <para>Remove duplicate elements from the sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Which unique villains have been vanquished by marvel heroes?
+/// <example><para>Example: Which unique villains have been vanquished by marvel heroes?</para>
 /// <code>r.table('marvel').concatMap(function(hero) {
 ///     return hero('villainList')
 /// }).distinct().run(conn, callback)
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Distinct (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Remove duplicate elements from the sequence.
+/// <para>Remove duplicate elements from the sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Which unique villains have been vanquished by marvel heroes?
+/// <example><para>Example: Which unique villains have been vanquished by marvel heroes?</para>
 /// <code>r.table('marvel').concatMap(function(hero) {
 ///     return hero('villainList')
 /// }).distinct().run(conn, callback)

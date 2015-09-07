@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (&minus;180 to 180) and the latitude (&minus;90 to 90) of the point on a perfect sphere.
+/// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (&minus;180 to 180) and the latitude (&minus;90 to 90) of the point on a perfect sphere.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Define a point.
+/// <example><para>Example: Define a point.</para>
 /// <code>r.table('geo').insert({
 ///     id: 1,
 ///     name: 'San Francisco',
@@ -42,9 +42,9 @@ namespace RethinkDb.Driver.Ast {
         public Point (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (&minus;180 to 180) and the latitude (&minus;90 to 90) of the point on a perfect sphere.
+/// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (&minus;180 to 180) and the latitude (&minus;90 to 90) of the point on a perfect sphere.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Define a point.
+/// <example><para>Example: Define a point.</para>
 /// <code>r.table('geo').insert({
 ///     id: 1,
 ///     name: 'San Francisco',
@@ -54,9 +54,9 @@ namespace RethinkDb.Driver.Ast {
         public Point (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (&minus;180 to 180) and the latitude (&minus;90 to 90) of the point on a perfect sphere.
+/// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (&minus;180 to 180) and the latitude (&minus;90 to 90) of the point on a perfect sphere.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Define a point.
+/// <example><para>Example: Define a point.</para>
 /// <code>r.table('geo').insert({
 ///     id: 1,
 ///     name: 'San Francisco',

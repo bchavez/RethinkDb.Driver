@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Subtract two numbers.
+/// <para>Subtract two numbers.</para>
 /// </summary>
-/// <example><strong>Example:</strong> It's as easy as 2 - 2 = 0.
+/// <example><para>Example: It's as easy as 2 - 2 = 0.</para>
 /// <code>r.expr(2).sub(2).run(conn, callback)
 /// </code></example>
         public Sub (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Subtract two numbers.
+/// <para>Subtract two numbers.</para>
 /// </summary>
-/// <example><strong>Example:</strong> It's as easy as 2 - 2 = 0.
+/// <example><para>Example: It's as easy as 2 - 2 = 0.</para>
 /// <code>r.expr(2).sub(2).run(conn, callback)
 /// </code></example>
         public Sub (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Subtract two numbers.
+/// <para>Subtract two numbers.</para>
 /// </summary>
-/// <example><strong>Example:</strong> It's as easy as 2 - 2 = 0.
+/// <example><para>Example: It's as easy as 2 - 2 = 0.</para>
 /// <code>r.expr(2).sub(2).run(conn, callback)
 /// </code></example>
         public Sub (Arguments args, OptArgs optargs)

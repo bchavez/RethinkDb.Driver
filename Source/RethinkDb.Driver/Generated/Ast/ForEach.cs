@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Loop over a sequence, evaluating the given write query for each element.
+/// <para>Loop over a sequence, evaluating the given write query for each element.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Now that our heroes have defeated their villains, we can safely remove them from the villain table.
+/// <example><para>Example: Now that our heroes have defeated their villains, we can safely remove them from the villain table.</para>
 /// <code>r.table('marvel').forEach(function(hero) {
 ///     return r.table('villains').get(hero('villainDefeated')).delete()
 /// }).run(conn, callback)
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public ForEach (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Loop over a sequence, evaluating the given write query for each element.
+/// <para>Loop over a sequence, evaluating the given write query for each element.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Now that our heroes have defeated their villains, we can safely remove them from the villain table.
+/// <example><para>Example: Now that our heroes have defeated their villains, we can safely remove them from the villain table.</para>
 /// <code>r.table('marvel').forEach(function(hero) {
 ///     return r.table('villains').get(hero('villainDefeated')).delete()
 /// }).run(conn, callback)
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public ForEach (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Loop over a sequence, evaluating the given write query for each element.
+/// <para>Loop over a sequence, evaluating the given write query for each element.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Now that our heroes have defeated their villains, we can safely remove them from the villain table.
+/// <example><para>Example: Now that our heroes have defeated their villains, we can safely remove them from the villain table.</para>
 /// <code>r.table('marvel').forEach(function(hero) {
 ///     return r.table('villains').get(hero('villainDefeated')).delete()
 /// }).run(conn, callback)

@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.
+/// <para>Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Perform a simple HTTP <code>GET</code> request, and store the result in a table.
+/// <example><para>Example: Perform a simple HTTP <code>GET</code> request, and store the result in a table.</para>
 /// <code>r.table('posts').insert(r.http('http://httpbin.org/get')).run(conn, callback)
 /// </code></example>
         public Http (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.
+/// <para>Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Perform a simple HTTP <code>GET</code> request, and store the result in a table.
+/// <example><para>Example: Perform a simple HTTP <code>GET</code> request, and store the result in a table.</para>
 /// <code>r.table('posts').insert(r.http('http://httpbin.org/get')).run(conn, callback)
 /// </code></example>
         public Http (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.
+/// <para>Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Perform a simple HTTP <code>GET</code> request, and store the result in a table.
+/// <example><para>Example: Perform a simple HTTP <code>GET</code> request, and store the result in a table.</para>
 /// <code>r.table('posts').insert(r.http('http://httpbin.org/get')).run(conn, callback)
 /// </code></example>
         public Http (Arguments args, OptArgs optargs)

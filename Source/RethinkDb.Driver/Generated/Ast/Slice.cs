@@ -30,28 +30,28 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return the elements of a sequence within the specified range.
-/// <strong>Example:</strong> Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3&ndash;5.)
-/// <code>js
-/// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code>
+/// <para>Return the elements of a sequence within the specified range.</para>
+/// <para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3&ndash;5.)</para>
+/// <para><code>js
+/// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
         public Slice (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return the elements of a sequence within the specified range.
-/// <strong>Example:</strong> Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3&ndash;5.)
-/// <code>js
-/// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code>
+/// <para>Return the elements of a sequence within the specified range.</para>
+/// <para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3&ndash;5.)</para>
+/// <para><code>js
+/// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
         public Slice (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return the elements of a sequence within the specified range.
-/// <strong>Example:</strong> Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3&ndash;5.)
-/// <code>js
-/// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code>
+/// <para>Return the elements of a sequence within the specified range.</para>
+/// <para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3&ndash;5.)</para>
+/// <para><code>js
+/// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
         public Slice (Arguments args, OptArgs optargs)

@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.
+/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get a list of users and their posts, excluding any users who have not made any posts.
+/// <example><para>Example: Get a list of users and their posts, excluding any users who have not made any posts.</para>
 /// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
 /// </code></example>
         public WithFields (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.
+/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get a list of users and their posts, excluding any users who have not made any posts.
+/// <example><para>Example: Get a list of users and their posts, excluding any users who have not made any posts.</para>
 /// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
 /// </code></example>
         public WithFields (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.
+/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get a list of users and their posts, excluding any users who have not made any posts.
+/// <example><para>Example: Get a list of users and their posts, excluding any users who have not made any posts.</para>
 /// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
 /// </code></example>
         public WithFields (Arguments args, OptArgs optargs)

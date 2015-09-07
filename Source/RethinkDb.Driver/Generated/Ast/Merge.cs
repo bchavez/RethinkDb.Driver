@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Equip Thor for battle.
+/// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
 ///     r.table('equipment').get('hammer'),
 ///     r.table('equipment').get('pimento_sandwich')
@@ -41,9 +41,9 @@ namespace RethinkDb.Driver.Ast {
         public Merge (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Equip Thor for battle.
+/// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
 ///     r.table('equipment').get('hammer'),
 ///     r.table('equipment').get('pimento_sandwich')
@@ -52,9 +52,9 @@ namespace RethinkDb.Driver.Ast {
         public Merge (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Equip Thor for battle.
+/// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
 ///     r.table('equipment').get('hammer'),
 ///     r.table('equipment').get('pimento_sandwich')

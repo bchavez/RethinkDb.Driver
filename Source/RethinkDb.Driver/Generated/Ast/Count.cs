@@ -30,31 +30,31 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Count the number of elements in the sequence. With a single argument, count the number
+/// <para>Count the number of elements in the sequence. With a single argument, count the number
 /// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.
+/// filter before count.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Just how many super heroes are there?
+/// <example><para>Example: Just how many super heroes are there?</para>
 /// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
 /// </code></example>
         public Count (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Count the number of elements in the sequence. With a single argument, count the number
+/// <para>Count the number of elements in the sequence. With a single argument, count the number
 /// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.
+/// filter before count.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Just how many super heroes are there?
+/// <example><para>Example: Just how many super heroes are there?</para>
 /// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
 /// </code></example>
         public Count (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Count the number of elements in the sequence. With a single argument, count the number
+/// <para>Count the number of elements in the sequence. With a single argument, count the number
 /// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.
+/// filter before count.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Just how many super heroes are there?
+/// <example><para>Example: Just how many super heroes are there?</para>
 /// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
 /// </code></example>
         public Count (Arguments args, OptArgs optargs)

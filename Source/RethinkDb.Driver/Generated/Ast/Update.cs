@@ -30,31 +30,31 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
+/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
 /// combination of the two. You can pass options like <code>returnChanges</code> that will return the old
-/// and new values of the row you have modified.
+/// and new values of the row you have modified.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.
+/// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
 /// </code></example>
         public Update (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
+/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
 /// combination of the two. You can pass options like <code>returnChanges</code> that will return the old
-/// and new values of the row you have modified.
+/// and new values of the row you have modified.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.
+/// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
 /// </code></example>
         public Update (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
+/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
 /// combination of the two. You can pass options like <code>returnChanges</code> that will return the old
-/// and new values of the row you have modified.
+/// and new values of the row you have modified.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.
+/// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
 /// </code></example>
         public Update (Arguments args, OptArgs optargs)

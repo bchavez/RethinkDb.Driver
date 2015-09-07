@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Gets the type of a value.
+/// <para>Gets the type of a value.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get the type of a string.
+/// <example><para>Example: Get the type of a string.</para>
 /// <code>r.expr("foo").typeOf().run(conn, callback)
 /// </code></example>
         public TypeOf (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Gets the type of a value.
+/// <para>Gets the type of a value.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get the type of a string.
+/// <example><para>Example: Get the type of a string.</para>
 /// <code>r.expr("foo").typeOf().run(conn, callback)
 /// </code></example>
         public TypeOf (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Gets the type of a value.
+/// <para>Gets the type of a value.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get the type of a string.
+/// <example><para>Example: Get the type of a string.</para>
 /// <code>r.expr("foo").typeOf().run(conn, callback)
 /// </code></example>
         public TypeOf (Arguments args, OptArgs optargs)

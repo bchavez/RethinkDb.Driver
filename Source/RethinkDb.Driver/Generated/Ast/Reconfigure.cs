@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Reconfigure a table's sharding and replication.
+/// <para>Reconfigure a table's sharding and replication.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Reconfigure a table.
+/// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
         public Reconfigure (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Reconfigure a table's sharding and replication.
+/// <para>Reconfigure a table's sharding and replication.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Reconfigure a table.
+/// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
         public Reconfigure (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Reconfigure a table's sharding and replication.
+/// <para>Reconfigure a table's sharding and replication.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Reconfigure a table.
+/// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
         public Reconfigure (Arguments args, OptArgs optargs)

@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Remove one or more elements from an array at a given index. Returns the modified array.
+/// <para>Remove one or more elements from an array at a given index. Returns the modified array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Delete the second element of an array.
+/// <example><para>Example: Delete the second element of an array.</para>
 /// <code>&gt; r(['a','b','c','d','e','f']).deleteAt(1).run(conn, callback)
 /// // result passed to callback
 /// ['a', 'c', 'd', 'e', 'f']
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public DeleteAt (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Remove one or more elements from an array at a given index. Returns the modified array.
+/// <para>Remove one or more elements from an array at a given index. Returns the modified array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Delete the second element of an array.
+/// <example><para>Example: Delete the second element of an array.</para>
 /// <code>&gt; r(['a','b','c','d','e','f']).deleteAt(1).run(conn, callback)
 /// // result passed to callback
 /// ['a', 'c', 'd', 'e', 'f']
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public DeleteAt (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Remove one or more elements from an array at a given index. Returns the modified array.
+/// <para>Remove one or more elements from an array at a given index. Returns the modified array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Delete the second element of an array.
+/// <example><para>Example: Delete the second element of an array.</para>
 /// <code>&gt; r(['a','b','c','d','e','f']).deleteAt(1).run(conn, callback)
 /// // result passed to callback
 /// ['a', 'c', 'd', 'e', 'f']

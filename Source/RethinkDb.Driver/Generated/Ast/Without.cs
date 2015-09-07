@@ -30,31 +30,31 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// The opposite of pluck; takes an object or a sequence of objects, and returns them with
-/// the specified paths removed.
+/// <para>The opposite of pluck; takes an object or a sequence of objects, and returns them with
+/// the specified paths removed.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Since we don't need it for this computation we'll save bandwidth and leave
-/// out the list of IronMan's romantic conquests.
+/// <example><para>Example: Since we don't need it for this computation we'll save bandwidth and leave
+/// out the list of IronMan's romantic conquests.</para>
 /// <code>r.table('marvel').get('IronMan').without('personalVictoriesList').run(conn, callback)
 /// </code></example>
         public Without (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// The opposite of pluck; takes an object or a sequence of objects, and returns them with
-/// the specified paths removed.
+/// <para>The opposite of pluck; takes an object or a sequence of objects, and returns them with
+/// the specified paths removed.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Since we don't need it for this computation we'll save bandwidth and leave
-/// out the list of IronMan's romantic conquests.
+/// <example><para>Example: Since we don't need it for this computation we'll save bandwidth and leave
+/// out the list of IronMan's romantic conquests.</para>
 /// <code>r.table('marvel').get('IronMan').without('personalVictoriesList').run(conn, callback)
 /// </code></example>
         public Without (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// The opposite of pluck; takes an object or a sequence of objects, and returns them with
-/// the specified paths removed.
+/// <para>The opposite of pluck; takes an object or a sequence of objects, and returns them with
+/// the specified paths removed.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Since we don't need it for this computation we'll save bandwidth and leave
-/// out the list of IronMan's romantic conquests.
+/// <example><para>Example: Since we don't need it for this computation we'll save bandwidth and leave
+/// out the list of IronMan's romantic conquests.</para>
 /// <code>r.table('marvel').get('IronMan').without('personalVictoriesList').run(conn, callback)
 /// </code></example>
         public Without (Arguments args, OptArgs optargs)

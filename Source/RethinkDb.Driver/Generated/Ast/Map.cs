@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the first five squares.
+/// <example><para>Example: Return the first five squares.</para>
 /// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
 ///     return val.mul(val);
 /// }).run(conn, callback);
@@ -42,9 +42,9 @@ namespace RethinkDb.Driver.Ast {
         public Map (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the first five squares.
+/// <example><para>Example: Return the first five squares.</para>
 /// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
 ///     return val.mul(val);
 /// }).run(conn, callback);
@@ -54,9 +54,9 @@ namespace RethinkDb.Driver.Ast {
         public Map (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the first five squares.
+/// <example><para>Example: Return the first five squares.</para>
 /// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
 ///     return val.mul(val);
 /// }).run(conn, callback);

@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Create a table. A RethinkDB table is a collection of JSON documents.
+/// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Create a table named 'dc_universe' with the default settings.
+/// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
 /// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
 /// </code></example>
         public TableCreate (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Create a table. A RethinkDB table is a collection of JSON documents.
+/// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Create a table named 'dc_universe' with the default settings.
+/// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
 /// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
 /// </code></example>
         public TableCreate (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Create a table. A RethinkDB table is a collection of JSON documents.
+/// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Create a table named 'dc_universe' with the default settings.
+/// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
 /// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
 /// </code></example>
         public TableCreate (Arguments args, OptArgs optargs)

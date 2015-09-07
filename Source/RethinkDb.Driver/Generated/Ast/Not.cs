@@ -30,30 +30,30 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Compute the logical inverse (not) of an expression.
-/// <code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.
+/// <para>Compute the logical inverse (not) of an expression.</para>
+/// <para><code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Not true is false.
+/// <example><para>Example: Not true is false.</para>
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
 /// </code></example>
         public Not (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Compute the logical inverse (not) of an expression.
-/// <code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.
+/// <para>Compute the logical inverse (not) of an expression.</para>
+/// <para><code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Not true is false.
+/// <example><para>Example: Not true is false.</para>
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
 /// </code></example>
         public Not (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Compute the logical inverse (not) of an expression.
-/// <code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.
+/// <para>Compute the logical inverse (not) of an expression.</para>
+/// <para><code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Not true is false.
+/// <example><para>Example: Not true is false.</para>
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
 /// </code></example>

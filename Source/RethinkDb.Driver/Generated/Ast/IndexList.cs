@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// List all the secondary indexes of this table.
+/// <para>List all the secondary indexes of this table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> List the available secondary indexes for this table.
+/// <example><para>Example: List the available secondary indexes for this table.</para>
 /// <code>r.table('marvel').indexList().run(conn, callback)
 /// </code></example>
         public IndexList (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// List all the secondary indexes of this table.
+/// <para>List all the secondary indexes of this table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> List the available secondary indexes for this table.
+/// <example><para>Example: List the available secondary indexes for this table.</para>
 /// <code>r.table('marvel').indexList().run(conn, callback)
 /// </code></example>
         public IndexList (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// List all the secondary indexes of this table.
+/// <para>List all the secondary indexes of this table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> List the available secondary indexes for this table.
+/// <example><para>Example: List the available secondary indexes for this table.</para>
 /// <code>r.table('marvel').indexList().run(conn, callback)
 /// </code></example>
         public IndexList (Arguments args, OptArgs optargs)

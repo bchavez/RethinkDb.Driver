@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return the number of seconds elapsed since the beginning of the day stored in the time object.
+/// <para>Return the number of seconds elapsed since the beginning of the day stored in the time object.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve posts that were submitted before noon.
+/// <example><para>Example: Retrieve posts that were submitted before noon.</para>
 /// <code>r.table("posts").filter(
 ///     r.row("date").timeOfDay().le(12*60*60)
 /// ).run(conn, callback)
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public TimeOfDay (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return the number of seconds elapsed since the beginning of the day stored in the time object.
+/// <para>Return the number of seconds elapsed since the beginning of the day stored in the time object.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve posts that were submitted before noon.
+/// <example><para>Example: Retrieve posts that were submitted before noon.</para>
 /// <code>r.table("posts").filter(
 ///     r.row("date").timeOfDay().le(12*60*60)
 /// ).run(conn, callback)
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public TimeOfDay (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return the number of seconds elapsed since the beginning of the day stored in the time object.
+/// <para>Return the number of seconds elapsed since the beginning of the day stored in the time object.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve posts that were submitted before noon.
+/// <example><para>Example: Retrieve posts that were submitted before noon.</para>
 /// <code>r.table("posts").filter(
 ///     r.row("date").timeOfDay().le(12*60*60)
 /// ).run(conn, callback)

@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Add a value to an array and return it as a set (an array with distinct values).
+/// <para>Add a value to an array and return it as a set (an array with distinct values).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve Iron Man's equipment list with the addition of some new boots.
+/// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setInsert('newBoots').run(conn, callback)
 /// </code></example>
         public SetInsert (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Add a value to an array and return it as a set (an array with distinct values).
+/// <para>Add a value to an array and return it as a set (an array with distinct values).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve Iron Man's equipment list with the addition of some new boots.
+/// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setInsert('newBoots').run(conn, callback)
 /// </code></example>
         public SetInsert (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Add a value to an array and return it as a set (an array with distinct values).
+/// <para>Add a value to an array and return it as a set (an array with distinct values).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve Iron Man's equipment list with the addition of some new boots.
+/// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setInsert('newBoots').run(conn, callback)
 /// </code></example>
         public SetInsert (Arguments args, OptArgs optargs)

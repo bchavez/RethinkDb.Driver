@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Find the remainder when dividing two numbers.
+/// <para>Find the remainder when dividing two numbers.</para>
 /// </summary>
-/// <example><strong>Example:</strong> It's as easy as 2 % 2 = 0.
+/// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)
 /// </code></example>
         public Mod (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Find the remainder when dividing two numbers.
+/// <para>Find the remainder when dividing two numbers.</para>
 /// </summary>
-/// <example><strong>Example:</strong> It's as easy as 2 % 2 = 0.
+/// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)
 /// </code></example>
         public Mod (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Find the remainder when dividing two numbers.
+/// <para>Find the remainder when dividing two numbers.</para>
 /// </summary>
-/// <example><strong>Example:</strong> It's as easy as 2 % 2 = 0.
+/// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)
 /// </code></example>
         public Mod (Arguments args, OptArgs optargs)

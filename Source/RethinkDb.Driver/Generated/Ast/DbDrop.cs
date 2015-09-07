@@ -30,31 +30,31 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Drop a database. The database, all its tables, and corresponding data will be deleted.
-/// If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
-/// doesn't exist a <code>RqlRuntimeError</code> is thrown.
+/// <para>Drop a database. The database, all its tables, and corresponding data will be deleted.</para>
+/// <para>If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
+/// doesn't exist a <code>RqlRuntimeError</code> is thrown.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Drop a database named 'superheroes'.
+/// <example><para>Example: Drop a database named 'superheroes'.</para>
 /// <code>r.dbDrop('superheroes').run(conn, callback)
 /// </code></example>
         public DbDrop (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Drop a database. The database, all its tables, and corresponding data will be deleted.
-/// If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
-/// doesn't exist a <code>RqlRuntimeError</code> is thrown.
+/// <para>Drop a database. The database, all its tables, and corresponding data will be deleted.</para>
+/// <para>If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
+/// doesn't exist a <code>RqlRuntimeError</code> is thrown.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Drop a database named 'superheroes'.
+/// <example><para>Example: Drop a database named 'superheroes'.</para>
 /// <code>r.dbDrop('superheroes').run(conn, callback)
 /// </code></example>
         public DbDrop (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Drop a database. The database, all its tables, and corresponding data will be deleted.
-/// If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
-/// doesn't exist a <code>RqlRuntimeError</code> is thrown.
+/// <para>Drop a database. The database, all its tables, and corresponding data will be deleted.</para>
+/// <para>If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
+/// doesn't exist a <code>RqlRuntimeError</code> is thrown.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Drop a database named 'superheroes'.
+/// <example><para>Example: Drop a database named 'superheroes'.</para>
 /// <code>r.dbDrop('superheroes').run(conn, callback)
 /// </code></example>
         public DbDrop (Arguments args, OptArgs optargs)

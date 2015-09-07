@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Rounds the given value to the nearest whole integer.
+/// <para>Rounds the given value to the nearest whole integer.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Round 12.345 to the nearest integer.
+/// <example><para>Example: Round 12.345 to the nearest integer.</para>
 /// <code>&gt; r.round(12.345).run(conn, callback);
 /// 
 /// 12.0
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Round (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Rounds the given value to the nearest whole integer.
+/// <para>Rounds the given value to the nearest whole integer.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Round 12.345 to the nearest integer.
+/// <example><para>Example: Round 12.345 to the nearest integer.</para>
 /// <code>&gt; r.round(12.345).run(conn, callback);
 /// 
 /// 12.0
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Round (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Rounds the given value to the nearest whole integer.
+/// <para>Rounds the given value to the nearest whole integer.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Round 12.345 to the nearest integer.
+/// <example><para>Example: Round 12.345 to the nearest integer.</para>
 /// <code>&gt; r.round(12.345).run(conn, callback);
 /// 
 /// 12.0

@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Convert a <a href="http://geojson.org">GeoJSON</a> object to a ReQL geometry object.
+/// <para>Convert a <a href="http://geojson.org">GeoJSON</a> object to a ReQL geometry object.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Convert a GeoJSON object to a ReQL geometry object.
+/// <example><para>Example: Convert a GeoJSON object to a ReQL geometry object.</para>
 /// <code>var geoJson = {
 ///     'type': 'Point',
 ///     'coordinates': [ -122.423246, 37.779388 ]
@@ -46,9 +46,9 @@ namespace RethinkDb.Driver.Ast {
         public Geojson (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Convert a <a href="http://geojson.org">GeoJSON</a> object to a ReQL geometry object.
+/// <para>Convert a <a href="http://geojson.org">GeoJSON</a> object to a ReQL geometry object.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Convert a GeoJSON object to a ReQL geometry object.
+/// <example><para>Example: Convert a GeoJSON object to a ReQL geometry object.</para>
 /// <code>var geoJson = {
 ///     'type': 'Point',
 ///     'coordinates': [ -122.423246, 37.779388 ]
@@ -62,9 +62,9 @@ namespace RethinkDb.Driver.Ast {
         public Geojson (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Convert a <a href="http://geojson.org">GeoJSON</a> object to a ReQL geometry object.
+/// <para>Convert a <a href="http://geojson.org">GeoJSON</a> object to a ReQL geometry object.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Convert a GeoJSON object to a ReQL geometry object.
+/// <example><para>Example: Convert a GeoJSON object to a ReQL geometry object.</para>
 /// <code>var geoJson = {
 ///     'type': 'Point',
 ///     'coordinates': [ -122.423246, 37.779388 ]

@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return the status of a table.
+/// <para>Return the status of a table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get a table's status.
+/// <example><para>Example: Get a table's status.</para>
 /// <code>&gt; r.table('superheroes').status().run(conn, callback);
 /// </code></example>
         public Status (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return the status of a table.
+/// <para>Return the status of a table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get a table's status.
+/// <example><para>Example: Get a table's status.</para>
 /// <code>&gt; r.table('superheroes').status().run(conn, callback);
 /// </code></example>
         public Status (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return the status of a table.
+/// <para>Return the status of a table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get a table's status.
+/// <example><para>Example: Get a table's status.</para>
 /// <code>&gt; r.table('superheroes').status().run(conn, callback);
 /// </code></example>
         public Status (Arguments args, OptArgs optargs)

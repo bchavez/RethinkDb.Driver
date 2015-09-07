@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.
+/// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Rebalance a table.
+/// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
         public Rebalance (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.
+/// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Rebalance a table.
+/// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
         public Rebalance (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.
+/// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Rebalance a table.
+/// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
         public Rebalance (Arguments args, OptArgs optargs)

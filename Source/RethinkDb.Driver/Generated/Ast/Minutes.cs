@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return the minute in a time object as a number between 0 and 59.
+/// <para>Return the minute in a time object as a number between 0 and 59.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return all the posts submitted during the first 10 minutes of every hour.
+/// <example><para>Example: Return all the posts submitted during the first 10 minutes of every hour.</para>
 /// <code>r.table("posts").filter(function(post) {
 ///     return post("date").minutes().lt(10)
 /// })
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Minutes (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return the minute in a time object as a number between 0 and 59.
+/// <para>Return the minute in a time object as a number between 0 and 59.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return all the posts submitted during the first 10 minutes of every hour.
+/// <example><para>Example: Return all the posts submitted during the first 10 minutes of every hour.</para>
 /// <code>r.table("posts").filter(function(post) {
 ///     return post("date").minutes().lt(10)
 /// })
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Minutes (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return the minute in a time object as a number between 0 and 59.
+/// <para>Return the minute in a time object as a number between 0 and 59.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return all the posts submitted during the first 10 minutes of every hour.
+/// <example><para>Example: Return all the posts submitted during the first 10 minutes of every hour.</para>
 /// <code>r.table("posts").filter(function(post) {
 ///     return post("date").minutes().lt(10)
 /// })

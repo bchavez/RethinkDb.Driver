@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Add a several values to an array and return it as a set (an array with distinct values).
+/// <para>Add a several values to an array and return it as a set (an array with distinct values).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve Iron Man's equipment list with the addition of some new boots and an arc reactor.
+/// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots and an arc reactor.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setUnion(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
         public SetUnion (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Add a several values to an array and return it as a set (an array with distinct values).
+/// <para>Add a several values to an array and return it as a set (an array with distinct values).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve Iron Man's equipment list with the addition of some new boots and an arc reactor.
+/// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots and an arc reactor.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setUnion(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
         public SetUnion (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Add a several values to an array and return it as a set (an array with distinct values).
+/// <para>Add a several values to an array and return it as a set (an array with distinct values).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve Iron Man's equipment list with the addition of some new boots and an arc reactor.
+/// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots and an arc reactor.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setUnion(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
         public SetUnion (Arguments args, OptArgs optargs)

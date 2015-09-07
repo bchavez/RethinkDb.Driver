@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Reference a database.
+/// <para>Reference a database.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Explicitly specify a database for a query.
+/// <example><para>Example: Explicitly specify a database for a query.</para>
 /// <code>r.db('heroes').table('marvel').run(conn, callback)
 /// </code></example>
         public Db (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Reference a database.
+/// <para>Reference a database.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Explicitly specify a database for a query.
+/// <example><para>Example: Explicitly specify a database for a query.</para>
 /// <code>r.db('heroes').table('marvel').run(conn, callback)
 /// </code></example>
         public Db (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Reference a database.
+/// <para>Reference a database.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Explicitly specify a database for a query.
+/// <example><para>Example: Explicitly specify a database for a query.</para>
 /// <code>r.db('heroes').table('marvel').run(conn, callback)
 /// </code></example>
         public Db (Arguments args, OptArgs optargs)
@@ -69,10 +69,10 @@ namespace RethinkDb.Driver.Ast {
     
 
 /// <summary>
-/// Select all documents in a table. This command can be chained with other commands to do
-/// further processing on the data.
+/// <para>Select all documents in a table. This command can be chained with other commands to do
+/// further processing on the data.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return all documents in the table 'marvel' of the default database.
+/// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
 /// </code></example>
                     public Table table ( Object expr )
@@ -82,9 +82,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Table (arguments);
                     }
 /// <summary>
-/// Create a table. A RethinkDB table is a collection of JSON documents.
+/// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Create a table named 'dc_universe' with the default settings.
+/// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
 /// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
 /// </code></example>
                     public TableCreate tableCreate ( Object expr )
@@ -94,9 +94,9 @@ namespace RethinkDb.Driver.Ast {
                         return new TableCreate (arguments);
                     }
 /// <summary>
-/// Drop a table. The table and all its data will be deleted.
+/// <para>Drop a table. The table and all its data will be deleted.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Drop a table named 'dc_universe'.
+/// <example><para>Example: Drop a table named 'dc_universe'.</para>
 /// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
 /// </code></example>
                     public TableDrop tableDrop ( Object expr )
@@ -106,9 +106,9 @@ namespace RethinkDb.Driver.Ast {
                         return new TableDrop (arguments);
                     }
 /// <summary>
-/// List all table names in a database. The result is a list of strings.
+/// <para>List all table names in a database. The result is a list of strings.</para>
 /// </summary>
-/// <example><strong>Example:</strong> List all tables of the 'test' database.
+/// <example><para>Example: List all tables of the 'test' database.</para>
 /// <code>r.db('test').tableList().run(conn, callback)
 /// </code></example>
                     public TableList tableList (  )
@@ -117,9 +117,9 @@ namespace RethinkDb.Driver.Ast {
                         return new TableList (arguments);
                     }
 /// <summary>
-/// Query (read and/or update) the configurations for individual tables or databases.
+/// <para>Query (read and/or update) the configurations for individual tables or databases.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get the configuration for the <code>users</code> table.
+/// <example><para>Example: Get the configuration for the <code>users</code> table.</para>
 /// <code>&gt; r.table('users').config().run(conn, callback);
 /// </code></example>
                     public Config config (  )
@@ -128,9 +128,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Config (arguments);
                     }
 /// <summary>
-/// Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.
+/// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Wait for a table to be ready.
+/// <example><para>Example: Wait for a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
 /// </code></example>
                     public Wait wait_ (  )
@@ -139,9 +139,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Wait (arguments);
                     }
 /// <summary>
-/// Reconfigure a table's sharding and replication.
+/// <para>Reconfigure a table's sharding and replication.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Reconfigure a table.
+/// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
                     public Reconfigure reconfigure (  )
@@ -150,9 +150,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Reconfigure (arguments);
                     }
 /// <summary>
-/// Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.
+/// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Rebalance a table.
+/// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
                     public Rebalance rebalance (  )

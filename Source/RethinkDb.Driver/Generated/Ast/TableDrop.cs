@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Drop a table. The table and all its data will be deleted.
+/// <para>Drop a table. The table and all its data will be deleted.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Drop a table named 'dc_universe'.
+/// <example><para>Example: Drop a table named 'dc_universe'.</para>
 /// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
 /// </code></example>
         public TableDrop (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Drop a table. The table and all its data will be deleted.
+/// <para>Drop a table. The table and all its data will be deleted.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Drop a table named 'dc_universe'.
+/// <example><para>Example: Drop a table named 'dc_universe'.</para>
 /// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
 /// </code></example>
         public TableDrop (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Drop a table. The table and all its data will be deleted.
+/// <para>Drop a table. The table and all its data will be deleted.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Drop a table named 'dc_universe'.
+/// <example><para>Example: Drop a table named 'dc_universe'.</para>
 /// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
 /// </code></example>
         public TableDrop (Arguments args, OptArgs optargs)

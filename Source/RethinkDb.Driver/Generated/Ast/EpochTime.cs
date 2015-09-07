@@ -30,30 +30,30 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Create a time object based on seconds since epoch. The first argument is a double and
-/// will be rounded to three decimal places (millisecond-precision).
+/// <para>Create a time object based on seconds since epoch. The first argument is a double and
+/// will be rounded to three decimal places (millisecond-precision).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Update the birthdate of the user "John" to November 3rd, 1986.
+/// <example><para>Example: Update the birthdate of the user "John" to November 3rd, 1986.</para>
 /// <code>r.table("user").get("John").update({birthdate: r.epochTime(531360000)})
 ///     .run(conn, callback)
 /// </code></example>
         public EpochTime (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Create a time object based on seconds since epoch. The first argument is a double and
-/// will be rounded to three decimal places (millisecond-precision).
+/// <para>Create a time object based on seconds since epoch. The first argument is a double and
+/// will be rounded to three decimal places (millisecond-precision).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Update the birthdate of the user "John" to November 3rd, 1986.
+/// <example><para>Example: Update the birthdate of the user "John" to November 3rd, 1986.</para>
 /// <code>r.table("user").get("John").update({birthdate: r.epochTime(531360000)})
 ///     .run(conn, callback)
 /// </code></example>
         public EpochTime (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Create a time object based on seconds since epoch. The first argument is a double and
-/// will be rounded to three decimal places (millisecond-precision).
+/// <para>Create a time object based on seconds since epoch. The first argument is a double and
+/// will be rounded to three decimal places (millisecond-precision).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Update the birthdate of the user "John" to November 3rd, 1986.
+/// <example><para>Example: Update the birthdate of the user "John" to November 3rd, 1986.</para>
 /// <code>r.table("user").get("John").update({birthdate: r.epochTime(531360000)})
 ///     .run(conn, callback)
 /// </code></example>

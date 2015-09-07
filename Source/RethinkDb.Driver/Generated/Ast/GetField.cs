@@ -30,28 +30,28 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Get a single field from an object. If called on a sequence, gets that field from every
-/// object in the sequence, skipping objects that lack it.
+/// <para>Get a single field from an object. If called on a sequence, gets that field from every
+/// object in the sequence, skipping objects that lack it.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What was Iron Man's first appearance in a comic?
+/// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan').getField('firstAppearance').run(conn, callback)
 /// </code></example>
         public GetField (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Get a single field from an object. If called on a sequence, gets that field from every
-/// object in the sequence, skipping objects that lack it.
+/// <para>Get a single field from an object. If called on a sequence, gets that field from every
+/// object in the sequence, skipping objects that lack it.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What was Iron Man's first appearance in a comic?
+/// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan').getField('firstAppearance').run(conn, callback)
 /// </code></example>
         public GetField (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Get a single field from an object. If called on a sequence, gets that field from every
-/// object in the sequence, skipping objects that lack it.
+/// <para>Get a single field from an object. If called on a sequence, gets that field from every
+/// object in the sequence, skipping objects that lack it.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What was Iron Man's first appearance in a comic?
+/// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan').getField('firstAppearance').run(conn, callback)
 /// </code></example>
         public GetField (Arguments args, OptArgs optargs)

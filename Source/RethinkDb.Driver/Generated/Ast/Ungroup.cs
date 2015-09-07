@@ -30,14 +30,14 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Takes a grouped stream or grouped data and turns it into an array of
+/// <para>Takes a grouped stream or grouped data and turns it into an array of
 /// objects representing the groups.  Any commands chained after <code>ungroup</code>
 /// will operate on this array, rather than operating on each group
 /// individually.  This is useful if you want to e.g. order the groups by
-/// the value of their reduction.
+/// the value of their reduction.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What is the maximum number of points scored by each
-/// player, with the highest scorers first?
+/// <example><para>Example: What is the maximum number of points scored by each
+/// player, with the highest scorers first?</para>
 /// <code>r.table('games')
 ///     .group('player').max('points')['points']
 ///     .ungroup().orderBy(r.desc('reduction')).run(conn)
@@ -45,14 +45,14 @@ namespace RethinkDb.Driver.Ast {
         public Ungroup (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Takes a grouped stream or grouped data and turns it into an array of
+/// <para>Takes a grouped stream or grouped data and turns it into an array of
 /// objects representing the groups.  Any commands chained after <code>ungroup</code>
 /// will operate on this array, rather than operating on each group
 /// individually.  This is useful if you want to e.g. order the groups by
-/// the value of their reduction.
+/// the value of their reduction.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What is the maximum number of points scored by each
-/// player, with the highest scorers first?
+/// <example><para>Example: What is the maximum number of points scored by each
+/// player, with the highest scorers first?</para>
 /// <code>r.table('games')
 ///     .group('player').max('points')['points']
 ///     .ungroup().orderBy(r.desc('reduction')).run(conn)
@@ -60,14 +60,14 @@ namespace RethinkDb.Driver.Ast {
         public Ungroup (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Takes a grouped stream or grouped data and turns it into an array of
+/// <para>Takes a grouped stream or grouped data and turns it into an array of
 /// objects representing the groups.  Any commands chained after <code>ungroup</code>
 /// will operate on this array, rather than operating on each group
 /// individually.  This is useful if you want to e.g. order the groups by
-/// the value of their reduction.
+/// the value of their reduction.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What is the maximum number of points scored by each
-/// player, with the highest scorers first?
+/// <example><para>Example: What is the maximum number of points scored by each
+/// player, with the highest scorers first?</para>
 /// <code>r.table('games')
 ///     .group('player').max('points')['points']
 ///     .ungroup().orderBy(r.desc('reduction')).run(conn)

@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Delete one or more documents from a table.
+/// <para>Delete one or more documents from a table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Delete a single document from the table <code>comments</code>.
+/// <example><para>Example: Delete a single document from the table <code>comments</code>.</para>
 /// <code>r.table("comments").get("7eab9e63-73f1-4f33-8ce4-95cbea626f59").delete().run(conn, callback)
 /// </code></example>
         public Delete (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Delete one or more documents from a table.
+/// <para>Delete one or more documents from a table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Delete a single document from the table <code>comments</code>.
+/// <example><para>Example: Delete a single document from the table <code>comments</code>.</para>
 /// <code>r.table("comments").get("7eab9e63-73f1-4f33-8ce4-95cbea626f59").delete().run(conn, callback)
 /// </code></example>
         public Delete (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Delete one or more documents from a table.
+/// <para>Delete one or more documents from a table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Delete a single document from the table <code>comments</code>.
+/// <example><para>Example: Delete a single document from the table <code>comments</code>.</para>
 /// <code>r.table("comments").get("7eab9e63-73f1-4f33-8ce4-95cbea626f59").delete().run(conn, callback)
 /// </code></example>
         public Delete (Arguments args, OptArgs optargs)

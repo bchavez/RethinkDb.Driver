@@ -30,40 +30,40 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Averages all the elements of a sequence.  If called with a field name,
+/// <para>Averages all the elements of a sequence.  If called with a field name,
 /// averages all the values of that field in the sequence, skipping
 /// elements of the sequence that lack that field.  If called with a
 /// function, calls that function on every element of the sequence and
 /// averages the results, skipping elements of the sequence where that
-/// function returns <code>null</code> or a non-existence error.
+/// function returns <code>null</code> or a non-existence error.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What's the average of 3, 5, and 7?
+/// <example><para>Example: What's the average of 3, 5, and 7?</para>
 /// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
 /// </code></example>
         public Avg (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Averages all the elements of a sequence.  If called with a field name,
+/// <para>Averages all the elements of a sequence.  If called with a field name,
 /// averages all the values of that field in the sequence, skipping
 /// elements of the sequence that lack that field.  If called with a
 /// function, calls that function on every element of the sequence and
 /// averages the results, skipping elements of the sequence where that
-/// function returns <code>null</code> or a non-existence error.
+/// function returns <code>null</code> or a non-existence error.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What's the average of 3, 5, and 7?
+/// <example><para>Example: What's the average of 3, 5, and 7?</para>
 /// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
 /// </code></example>
         public Avg (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Averages all the elements of a sequence.  If called with a field name,
+/// <para>Averages all the elements of a sequence.  If called with a field name,
 /// averages all the values of that field in the sequence, skipping
 /// elements of the sequence that lack that field.  If called with a
 /// function, calls that function on every element of the sequence and
 /// averages the results, skipping elements of the sequence where that
-/// function returns <code>null</code> or a non-existence error.
+/// function returns <code>null</code> or a non-existence error.</para>
 /// </summary>
-/// <example><strong>Example:</strong> What's the average of 3, 5, and 7?
+/// <example><para>Example: What's the average of 3, 5, and 7?</para>
 /// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
 /// </code></example>
         public Avg (Arguments args, OptArgs optargs)

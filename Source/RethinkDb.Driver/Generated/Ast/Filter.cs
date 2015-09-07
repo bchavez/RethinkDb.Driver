@@ -30,49 +30,49 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Get all the documents for which the given predicate is true.
-/// <code>filter</code> can be called on a sequence, selection, or a field containing an array of
-/// elements. The return type is the same as the type on which the function was called on.
-/// The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
+/// <para>Get all the documents for which the given predicate is true.</para>
+/// <para><code>filter</code> can be called on a sequence, selection, or a field containing an array of
+/// elements. The return type is the same as the type on which the function was called on.</para>
+/// <para>The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
 /// if a non-existence errors is thrown (when you try to access a field that does not exist
 /// in a document), RethinkDB will just ignore the document.
 /// The <code>default</code> value can be changed by passing an object with a <code>default</code> field.
 /// Setting this optional argument to <code>r.error()</code> will cause any non-existence errors to
-/// return a <code>RqlRuntimeError</code>.
+/// return a <code>RqlRuntimeError</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get all the users that are 30 years old.
+/// <example><para>Example: Get all the users that are 30 years old.</para>
 /// <code>r.table('users').filter({age: 30}).run(conn, callback)
 /// </code></example>
         public Filter (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Get all the documents for which the given predicate is true.
-/// <code>filter</code> can be called on a sequence, selection, or a field containing an array of
-/// elements. The return type is the same as the type on which the function was called on.
-/// The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
+/// <para>Get all the documents for which the given predicate is true.</para>
+/// <para><code>filter</code> can be called on a sequence, selection, or a field containing an array of
+/// elements. The return type is the same as the type on which the function was called on.</para>
+/// <para>The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
 /// if a non-existence errors is thrown (when you try to access a field that does not exist
 /// in a document), RethinkDB will just ignore the document.
 /// The <code>default</code> value can be changed by passing an object with a <code>default</code> field.
 /// Setting this optional argument to <code>r.error()</code> will cause any non-existence errors to
-/// return a <code>RqlRuntimeError</code>.
+/// return a <code>RqlRuntimeError</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get all the users that are 30 years old.
+/// <example><para>Example: Get all the users that are 30 years old.</para>
 /// <code>r.table('users').filter({age: 30}).run(conn, callback)
 /// </code></example>
         public Filter (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Get all the documents for which the given predicate is true.
-/// <code>filter</code> can be called on a sequence, selection, or a field containing an array of
-/// elements. The return type is the same as the type on which the function was called on.
-/// The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
+/// <para>Get all the documents for which the given predicate is true.</para>
+/// <para><code>filter</code> can be called on a sequence, selection, or a field containing an array of
+/// elements. The return type is the same as the type on which the function was called on.</para>
+/// <para>The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
 /// if a non-existence errors is thrown (when you try to access a field that does not exist
 /// in a document), RethinkDB will just ignore the document.
 /// The <code>default</code> value can be changed by passing an object with a <code>default</code> field.
 /// Setting this optional argument to <code>r.error()</code> will cause any non-existence errors to
-/// return a <code>RqlRuntimeError</code>.
+/// return a <code>RqlRuntimeError</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get all the users that are 30 years old.
+/// <example><para>Example: Get all the users that are 30 years old.</para>
 /// <code>r.table('users').filter({age: 30}).run(conn, callback)
 /// </code></example>
         public Filter (Arguments args, OptArgs optargs)

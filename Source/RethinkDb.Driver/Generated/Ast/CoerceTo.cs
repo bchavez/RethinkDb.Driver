@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Convert a value of one type into another.
+/// <para>Convert a value of one type into another.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Coerce a stream to an array.
+/// <example><para>Example: Coerce a stream to an array.</para>
 /// <code>r.table('posts').map(function (post) {
 ///     post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
 /// }).run(conn, callback)
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public CoerceTo (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Convert a value of one type into another.
+/// <para>Convert a value of one type into another.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Coerce a stream to an array.
+/// <example><para>Example: Coerce a stream to an array.</para>
 /// <code>r.table('posts').map(function (post) {
 ///     post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
 /// }).run(conn, callback)
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public CoerceTo (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Convert a value of one type into another.
+/// <para>Convert a value of one type into another.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Coerce a stream to an array.
+/// <example><para>Example: Coerce a stream to an array.</para>
 /// <code>r.table('posts').map(function (post) {
 ///     post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
 /// }).run(conn, callback)

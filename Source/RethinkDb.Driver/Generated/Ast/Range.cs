@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Generate a stream of sequential integers in a specified range.
+/// <para>Generate a stream of sequential integers in a specified range.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a four-element range of <code>[0, 1, 2, 3]</code>.
+/// <example><para>Example: Return a four-element range of <code>[0, 1, 2, 3]</code>.</para>
 /// <code>&gt; r.range(4).run(conn, callback)
 /// 
 /// [0, 1, 2, 3]
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Range (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Generate a stream of sequential integers in a specified range.
+/// <para>Generate a stream of sequential integers in a specified range.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a four-element range of <code>[0, 1, 2, 3]</code>.
+/// <example><para>Example: Return a four-element range of <code>[0, 1, 2, 3]</code>.</para>
 /// <code>&gt; r.range(4).run(conn, callback)
 /// 
 /// [0, 1, 2, 3]
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Range (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Generate a stream of sequential integers in a specified range.
+/// <para>Generate a stream of sequential integers in a specified range.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a four-element range of <code>[0, 1, 2, 3]</code>.
+/// <example><para>Example: Return a four-element range of <code>[0, 1, 2, 3]</code>.</para>
 /// <code>&gt; r.range(4).run(conn, callback)
 /// 
 /// [0, 1, 2, 3]

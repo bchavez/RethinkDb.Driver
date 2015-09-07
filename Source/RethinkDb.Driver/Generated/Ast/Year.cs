@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return the year of a time object.
+/// <para>Return the year of a time object.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve all the users born in 1986.
+/// <example><para>Example: Retrieve all the users born in 1986.</para>
 /// <code>r.table("users").filter(function(user) {
 ///     return user("birthdate").year().eq(1986)
 /// }).run(conn, callback)
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Year (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return the year of a time object.
+/// <para>Return the year of a time object.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve all the users born in 1986.
+/// <example><para>Example: Retrieve all the users born in 1986.</para>
 /// <code>r.table("users").filter(function(user) {
 ///     return user("birthdate").year().eq(1986)
 /// }).run(conn, callback)
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Year (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return the year of a time object.
+/// <para>Return the year of a time object.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve all the users born in 1986.
+/// <example><para>Example: Retrieve all the users born in 1986.</para>
 /// <code>r.table("users").filter(function(user) {
 ///     return user("birthdate").year().eq(1986)
 /// }).run(conn, callback)

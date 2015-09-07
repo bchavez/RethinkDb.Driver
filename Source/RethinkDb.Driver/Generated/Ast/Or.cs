@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Compute the logical "or" of two or more values.
+/// <para>Compute the logical "or" of two or more values.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return whether either <code>a</code> or <code>b</code> evaluate to true.
+/// <example><para>Example: Return whether either <code>a</code> or <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
 /// r.expr(a).or(b).run(conn, callback);
 /// // result passed to callback
@@ -41,9 +41,9 @@ namespace RethinkDb.Driver.Ast {
         public Or (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Compute the logical "or" of two or more values.
+/// <para>Compute the logical "or" of two or more values.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return whether either <code>a</code> or <code>b</code> evaluate to true.
+/// <example><para>Example: Return whether either <code>a</code> or <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
 /// r.expr(a).or(b).run(conn, callback);
 /// // result passed to callback
@@ -52,9 +52,9 @@ namespace RethinkDb.Driver.Ast {
         public Or (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Compute the logical "or" of two or more values.
+/// <para>Compute the logical "or" of two or more values.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return whether either <code>a</code> or <code>b</code> evaluate to true.
+/// <example><para>Example: Return whether either <code>a</code> or <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
 /// r.expr(a).or(b).run(conn, callback);
 /// // result passed to callback

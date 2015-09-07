@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Convert a Line object into a Polygon object. If the last point does not specify the same coordinates as the first point, <code>polygon</code> will close the polygon by connecting them.
+/// <para>Convert a Line object into a Polygon object. If the last point does not specify the same coordinates as the first point, <code>polygon</code> will close the polygon by connecting them.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Create a line object and then convert it to a polygon.
+/// <example><para>Example: Create a line object and then convert it to a polygon.</para>
 /// <code>r.table('geo').insert({
 ///     id: 201,
 ///     rectangle: r.line(
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Fill (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Convert a Line object into a Polygon object. If the last point does not specify the same coordinates as the first point, <code>polygon</code> will close the polygon by connecting them.
+/// <para>Convert a Line object into a Polygon object. If the last point does not specify the same coordinates as the first point, <code>polygon</code> will close the polygon by connecting them.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Create a line object and then convert it to a polygon.
+/// <example><para>Example: Create a line object and then convert it to a polygon.</para>
 /// <code>r.table('geo').insert({
 ///     id: 201,
 ///     rectangle: r.line(
@@ -70,9 +70,9 @@ namespace RethinkDb.Driver.Ast {
         public Fill (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Convert a Line object into a Polygon object. If the last point does not specify the same coordinates as the first point, <code>polygon</code> will close the polygon by connecting them.
+/// <para>Convert a Line object into a Polygon object. If the last point does not specify the same coordinates as the first point, <code>polygon</code> will close the polygon by connecting them.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Create a line object and then convert it to a polygon.
+/// <example><para>Example: Create a line object and then convert it to a polygon.</para>
 /// <code>r.table('geo').insert({
 ///     id: 201,
 ///     rectangle: r.line(

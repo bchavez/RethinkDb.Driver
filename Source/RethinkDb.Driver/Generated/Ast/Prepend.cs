@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Prepend a value to an array.
+/// <para>Prepend a value to an array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve Iron Man's equipment list with the addition of some new boots.
+/// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').prepend('newBoots').run(conn, callback)
 /// </code></example>
         public Prepend (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Prepend a value to an array.
+/// <para>Prepend a value to an array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve Iron Man's equipment list with the addition of some new boots.
+/// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').prepend('newBoots').run(conn, callback)
 /// </code></example>
         public Prepend (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Prepend a value to an array.
+/// <para>Prepend a value to an array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve Iron Man's equipment list with the addition of some new boots.
+/// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').prepend('newBoots').run(conn, callback)
 /// </code></example>
         public Prepend (Arguments args, OptArgs optargs)

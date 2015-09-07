@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Parse a JSON string on the server.
+/// <para>Parse a JSON string on the server.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Send an array to the server.
+/// <example><para>Example: Send an array to the server.</para>
 /// <code>r.json("[1,2,3]").run(conn, callback)
 /// </code></example>
         public Json (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Parse a JSON string on the server.
+/// <para>Parse a JSON string on the server.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Send an array to the server.
+/// <example><para>Example: Send an array to the server.</para>
 /// <code>r.json("[1,2,3]").run(conn, callback)
 /// </code></example>
         public Json (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Parse a JSON string on the server.
+/// <para>Parse a JSON string on the server.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Send an array to the server.
+/// <example><para>Example: Send an array to the server.</para>
 /// <code>r.json("[1,2,3]").run(conn, callback)
 /// </code></example>
         public Json (Arguments args, OptArgs optargs)

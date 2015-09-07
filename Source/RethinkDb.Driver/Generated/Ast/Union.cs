@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Concatenate two or more sequences.
+/// <para>Concatenate two or more sequences.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Construct a stream of all heroes.
+/// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
 /// </code></example>
         public Union (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Concatenate two or more sequences.
+/// <para>Concatenate two or more sequences.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Construct a stream of all heroes.
+/// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
 /// </code></example>
         public Union (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Concatenate two or more sequences.
+/// <para>Concatenate two or more sequences.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Construct a stream of all heroes.
+/// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
 /// </code></example>
         public Union (Arguments args, OptArgs optargs)

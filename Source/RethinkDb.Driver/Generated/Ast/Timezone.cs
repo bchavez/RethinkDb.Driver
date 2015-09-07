@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return the timezone of the time object.
+/// <para>Return the timezone of the time object.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return all the users in the "-07:00" timezone.
+/// <example><para>Example: Return all the users in the "-07:00" timezone.</para>
 /// <code>r.table("users").filter( function(user) {
 ///     return user("subscriptionDate").timezone().eq("-07:00")
 /// })
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Timezone (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return the timezone of the time object.
+/// <para>Return the timezone of the time object.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return all the users in the "-07:00" timezone.
+/// <example><para>Example: Return all the users in the "-07:00" timezone.</para>
 /// <code>r.table("users").filter( function(user) {
 ///     return user("subscriptionDate").timezone().eq("-07:00")
 /// })
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Timezone (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return the timezone of the time object.
+/// <para>Return the timezone of the time object.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return all the users in the "-07:00" timezone.
+/// <example><para>Example: Return all the users in the "-07:00" timezone.</para>
 /// <code>r.table("users").filter( function(user) {
 ///     return user("subscriptionDate").timezone().eq("-07:00")
 /// })

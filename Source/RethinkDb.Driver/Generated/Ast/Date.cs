@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return a new time object only based on the day, month and year (ie. the same day at 00:00).
+/// <para>Return a new time object only based on the day, month and year (ie. the same day at 00:00).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve all the users whose birthday is today
+/// <example><para>Example: Retrieve all the users whose birthday is today</para>
 /// <code>r.table("users").filter(function(user) {
 ///     return user("birthdate").date().eq(r.now().date())
 /// }).run(conn, callback)
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Date (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return a new time object only based on the day, month and year (ie. the same day at 00:00).
+/// <para>Return a new time object only based on the day, month and year (ie. the same day at 00:00).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve all the users whose birthday is today
+/// <example><para>Example: Retrieve all the users whose birthday is today</para>
 /// <code>r.table("users").filter(function(user) {
 ///     return user("birthdate").date().eq(r.now().date())
 /// }).run(conn, callback)
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Date (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return a new time object only based on the day, month and year (ie. the same day at 00:00).
+/// <para>Return a new time object only based on the day, month and year (ie. the same day at 00:00).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve all the users whose birthday is today
+/// <example><para>Example: Retrieve all the users whose birthday is today</para>
 /// <code>r.table("users").filter(function(user) {
 ///     return user("birthdate").date().eq(r.now().date())
 /// }).run(conn, callback)

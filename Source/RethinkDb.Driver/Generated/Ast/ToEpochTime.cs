@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Convert a time object to its epoch time.
+/// <para>Convert a time object to its epoch time.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the current time in seconds since the Unix Epoch with millisecond-precision.
+/// <example><para>Example: Return the current time in seconds since the Unix Epoch with millisecond-precision.</para>
 /// <code>r.now().toEpochTime()
 /// </code></example>
         public ToEpochTime (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Convert a time object to its epoch time.
+/// <para>Convert a time object to its epoch time.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the current time in seconds since the Unix Epoch with millisecond-precision.
+/// <example><para>Example: Return the current time in seconds since the Unix Epoch with millisecond-precision.</para>
 /// <code>r.now().toEpochTime()
 /// </code></example>
         public ToEpochTime (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Convert a time object to its epoch time.
+/// <para>Convert a time object to its epoch time.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the current time in seconds since the Unix Epoch with millisecond-precision.
+/// <example><para>Example: Return the current time in seconds since the Unix Epoch with millisecond-precision.</para>
 /// <code>r.now().toEpochTime()
 /// </code></example>
         public ToEpochTime (Arguments args, OptArgs optargs)

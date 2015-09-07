@@ -30,15 +30,15 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Handle non-existence errors. Tries to evaluate and return its first argument. If an
+/// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
 /// error related to the absence of a value is thrown in the process, or if its first
 /// argument returns <code>null</code>, returns its second argument. (Alternatively, the second argument
 /// may be a function which will be called with either the text of the non-existence error
-/// or <code>null</code>.)
+/// or <code>null</code>.)</para>
 /// </summary>
-/// <example><strong>Example:</strong> Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
+/// <example><para>Example: Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
 /// In the case where the author field is missing or <code>null</code>, we want to retrieve the string
-/// <code>Anonymous</code>.
+/// <code>Anonymous</code>.</para>
 /// <code>r.table("posts").map( function(post) {
 ///     return {
 ///         title: post("title"),
@@ -49,15 +49,15 @@ namespace RethinkDb.Driver.Ast {
         public Default (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Handle non-existence errors. Tries to evaluate and return its first argument. If an
+/// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
 /// error related to the absence of a value is thrown in the process, or if its first
 /// argument returns <code>null</code>, returns its second argument. (Alternatively, the second argument
 /// may be a function which will be called with either the text of the non-existence error
-/// or <code>null</code>.)
+/// or <code>null</code>.)</para>
 /// </summary>
-/// <example><strong>Example:</strong> Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
+/// <example><para>Example: Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
 /// In the case where the author field is missing or <code>null</code>, we want to retrieve the string
-/// <code>Anonymous</code>.
+/// <code>Anonymous</code>.</para>
 /// <code>r.table("posts").map( function(post) {
 ///     return {
 ///         title: post("title"),
@@ -68,15 +68,15 @@ namespace RethinkDb.Driver.Ast {
         public Default (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Handle non-existence errors. Tries to evaluate and return its first argument. If an
+/// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
 /// error related to the absence of a value is thrown in the process, or if its first
 /// argument returns <code>null</code>, returns its second argument. (Alternatively, the second argument
 /// may be a function which will be called with either the text of the non-existence error
-/// or <code>null</code>.)
+/// or <code>null</code>.)</para>
 /// </summary>
-/// <example><strong>Example:</strong> Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
+/// <example><para>Example: Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
 /// In the case where the author field is missing or <code>null</code>, we want to retrieve the string
-/// <code>Anonymous</code>.
+/// <code>Anonymous</code>.</para>
 /// <code>r.table("posts").map( function(post) {
 ///     return {
 ///         title: post("title"),

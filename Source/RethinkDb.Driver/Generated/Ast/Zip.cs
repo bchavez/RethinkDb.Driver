@@ -30,27 +30,27 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Used to 'zip' up the result of a join by merging the 'right' fields into 'left' fields of each member of the sequence.
+/// <para>Used to 'zip' up the result of a join by merging the 'right' fields into 'left' fields of each member of the sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> 'zips up' the sequence by merging the left and right fields produced by a join.
+/// <example><para>Example: 'zips up' the sequence by merging the left and right fields produced by a join.</para>
 /// <code>r.table('marvel').eqJoin('main_dc_collaborator', r.table('dc'))
 ///     .zip().run(conn, callback)
 /// </code></example>
         public Zip (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Used to 'zip' up the result of a join by merging the 'right' fields into 'left' fields of each member of the sequence.
+/// <para>Used to 'zip' up the result of a join by merging the 'right' fields into 'left' fields of each member of the sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> 'zips up' the sequence by merging the left and right fields produced by a join.
+/// <example><para>Example: 'zips up' the sequence by merging the left and right fields produced by a join.</para>
 /// <code>r.table('marvel').eqJoin('main_dc_collaborator', r.table('dc'))
 ///     .zip().run(conn, callback)
 /// </code></example>
         public Zip (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Used to 'zip' up the result of a join by merging the 'right' fields into 'left' fields of each member of the sequence.
+/// <para>Used to 'zip' up the result of a join by merging the 'right' fields into 'left' fields of each member of the sequence.</para>
 /// </summary>
-/// <example><strong>Example:</strong> 'zips up' the sequence by merging the left and right fields produced by a join.
+/// <example><para>Example: 'zips up' the sequence by merging the left and right fields produced by a join.</para>
 /// <code>r.table('marvel').eqJoin('main_dc_collaborator', r.table('dc'))
 ///     .zip().run(conn, callback)
 /// </code></example>

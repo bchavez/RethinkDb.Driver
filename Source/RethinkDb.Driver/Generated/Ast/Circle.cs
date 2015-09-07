@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).
+/// <para>Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Define a circle.
+/// <example><para>Example: Define a circle.</para>
 /// <code>r.table('geo').insert({
 ///     id: 300,
 ///     name: 'Hayes Valley',
@@ -42,9 +42,9 @@ namespace RethinkDb.Driver.Ast {
         public Circle (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).
+/// <para>Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Define a circle.
+/// <example><para>Example: Define a circle.</para>
 /// <code>r.table('geo').insert({
 ///     id: 300,
 ///     name: 'Hayes Valley',
@@ -54,9 +54,9 @@ namespace RethinkDb.Driver.Ast {
         public Circle (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).
+/// <para>Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Define a circle.
+/// <example><para>Example: Define a circle.</para>
 /// <code>r.table('geo').insert({
 ///     id: 300,
 ///     name: 'Hayes Valley',

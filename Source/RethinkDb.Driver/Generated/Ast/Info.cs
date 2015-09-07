@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Get information about a ReQL value.
+/// <para>Get information about a ReQL value.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get information about a table such as primary key, or cache size.
+/// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
 /// <code>r.table('marvel').info().run(conn, callback)
 /// </code></example>
         public Info (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Get information about a ReQL value.
+/// <para>Get information about a ReQL value.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get information about a table such as primary key, or cache size.
+/// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
 /// <code>r.table('marvel').info().run(conn, callback)
 /// </code></example>
         public Info (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Get information about a ReQL value.
+/// <para>Get information about a ReQL value.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get information about a table such as primary key, or cache size.
+/// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
 /// <code>r.table('marvel').info().run(conn, callback)
 /// </code></example>
         public Info (Arguments args, OptArgs optargs)

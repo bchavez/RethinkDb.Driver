@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Rename an existing secondary index on a table. If the optional argument <code>overwrite</code> is specified as <code>true</code>, a previously existing index with the new name will be deleted and the index will be renamed. If <code>overwrite</code> is <code>false</code> (the default) an error will be raised if the new index name already exists.
+/// <para>Rename an existing secondary index on a table. If the optional argument <code>overwrite</code> is specified as <code>true</code>, a previously existing index with the new name will be deleted and the index will be renamed. If <code>overwrite</code> is <code>false</code> (the default) an error will be raised if the new index name already exists.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Rename an index on the comments table.
+/// <example><para>Example: Rename an index on the comments table.</para>
 /// <code>r.table('comments').indexRename('postId', 'messageId').run(conn, callback)
 /// </code></example>
         public IndexRename (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Rename an existing secondary index on a table. If the optional argument <code>overwrite</code> is specified as <code>true</code>, a previously existing index with the new name will be deleted and the index will be renamed. If <code>overwrite</code> is <code>false</code> (the default) an error will be raised if the new index name already exists.
+/// <para>Rename an existing secondary index on a table. If the optional argument <code>overwrite</code> is specified as <code>true</code>, a previously existing index with the new name will be deleted and the index will be renamed. If <code>overwrite</code> is <code>false</code> (the default) an error will be raised if the new index name already exists.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Rename an index on the comments table.
+/// <example><para>Example: Rename an index on the comments table.</para>
 /// <code>r.table('comments').indexRename('postId', 'messageId').run(conn, callback)
 /// </code></example>
         public IndexRename (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Rename an existing secondary index on a table. If the optional argument <code>overwrite</code> is specified as <code>true</code>, a previously existing index with the new name will be deleted and the index will be renamed. If <code>overwrite</code> is <code>false</code> (the default) an error will be raised if the new index name already exists.
+/// <para>Rename an existing secondary index on a table. If the optional argument <code>overwrite</code> is specified as <code>true</code>, a previously existing index with the new name will be deleted and the index will be renamed. If <code>overwrite</code> is <code>false</code> (the default) an error will be raised if the new index name already exists.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Rename an index on the comments table.
+/// <example><para>Example: Rename an index on the comments table.</para>
 /// <code>r.table('comments').indexRename('postId', 'messageId').run(conn, callback)
 /// </code></example>
         public IndexRename (Arguments args, OptArgs optargs)

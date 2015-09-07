@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Divide two numbers.
+/// <para>Divide two numbers.</para>
 /// </summary>
-/// <example><strong>Example:</strong> It's as easy as 2 / 2 = 1.
+/// <example><para>Example: It's as easy as 2 / 2 = 1.</para>
 /// <code>r.expr(2).div(2).run(conn, callback)
 /// </code></example>
         public Div (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Divide two numbers.
+/// <para>Divide two numbers.</para>
 /// </summary>
-/// <example><strong>Example:</strong> It's as easy as 2 / 2 = 1.
+/// <example><para>Example: It's as easy as 2 / 2 = 1.</para>
 /// <code>r.expr(2).div(2).run(conn, callback)
 /// </code></example>
         public Div (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Divide two numbers.
+/// <para>Divide two numbers.</para>
 /// </summary>
-/// <example><strong>Example:</strong> It's as easy as 2 / 2 = 1.
+/// <example><para>Example: It's as easy as 2 / 2 = 1.</para>
 /// <code>r.expr(2).div(2).run(conn, callback)
 /// </code></example>
         public Div (Arguments args, OptArgs optargs)

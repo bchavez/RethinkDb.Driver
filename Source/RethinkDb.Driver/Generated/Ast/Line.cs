@@ -30,13 +30,13 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Construct a geometry object of type Line. The line can be specified in one of two ways:
+/// <para>Construct a geometry object of type Line. The line can be specified in one of two ways:</para>
 /// <ul>
 /// <li>Two or more two-item arrays, specifying longitude and latitude numbers of the line's vertices;</li>
 /// <li>Two or more <a href="/api/javascript/point">Point</a> objects specifying the line's vertices.</li>
 /// </ul>
 /// </summary>
-/// <example><strong>Example:</strong> Define a line.
+/// <example><para>Example: Define a line.</para>
 /// <code>r.table('geo').insert({
 ///     id: 101,
 ///     route: r.line([-122.423246,37.779388], [-121.886420,37.329898])
@@ -45,13 +45,13 @@ namespace RethinkDb.Driver.Ast {
         public Line (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Construct a geometry object of type Line. The line can be specified in one of two ways:
+/// <para>Construct a geometry object of type Line. The line can be specified in one of two ways:</para>
 /// <ul>
 /// <li>Two or more two-item arrays, specifying longitude and latitude numbers of the line's vertices;</li>
 /// <li>Two or more <a href="/api/javascript/point">Point</a> objects specifying the line's vertices.</li>
 /// </ul>
 /// </summary>
-/// <example><strong>Example:</strong> Define a line.
+/// <example><para>Example: Define a line.</para>
 /// <code>r.table('geo').insert({
 ///     id: 101,
 ///     route: r.line([-122.423246,37.779388], [-121.886420,37.329898])
@@ -60,13 +60,13 @@ namespace RethinkDb.Driver.Ast {
         public Line (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Construct a geometry object of type Line. The line can be specified in one of two ways:
+/// <para>Construct a geometry object of type Line. The line can be specified in one of two ways:</para>
 /// <ul>
 /// <li>Two or more two-item arrays, specifying longitude and latitude numbers of the line's vertices;</li>
 /// <li>Two or more <a href="/api/javascript/point">Point</a> objects specifying the line's vertices.</li>
 /// </ul>
 /// </summary>
-/// <example><strong>Example:</strong> Define a line.
+/// <example><para>Example: Define a line.</para>
 /// <code>r.table('geo').insert({
 ///     id: 101,
 ///     route: r.line([-122.423246,37.779388], [-121.886420,37.329898])

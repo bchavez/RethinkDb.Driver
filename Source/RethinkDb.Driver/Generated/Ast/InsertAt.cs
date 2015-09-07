@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Insert a value in to an array at a given index. Returns the modified array.
+/// <para>Insert a value in to an array at a given index. Returns the modified array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Hulk decides to join the avengers.
+/// <example><para>Example: Hulk decides to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).insertAt(1, "Hulk").run(conn, callback)
 /// </code></example>
         public InsertAt (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Insert a value in to an array at a given index. Returns the modified array.
+/// <para>Insert a value in to an array at a given index. Returns the modified array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Hulk decides to join the avengers.
+/// <example><para>Example: Hulk decides to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).insertAt(1, "Hulk").run(conn, callback)
 /// </code></example>
         public InsertAt (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Insert a value in to an array at a given index. Returns the modified array.
+/// <para>Insert a value in to an array at a given index. Returns the modified array.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Hulk decides to join the avengers.
+/// <example><para>Example: Hulk decides to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).insertAt(1, "Hulk").run(conn, callback)
 /// </code></example>
         public InsertAt (Arguments args, OptArgs optargs)

@@ -30,28 +30,28 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Select all documents in a table. This command can be chained with other commands to do
-/// further processing on the data.
+/// <para>Select all documents in a table. This command can be chained with other commands to do
+/// further processing on the data.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return all documents in the table 'marvel' of the default database.
+/// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
 /// </code></example>
         public Table (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Select all documents in a table. This command can be chained with other commands to do
-/// further processing on the data.
+/// <para>Select all documents in a table. This command can be chained with other commands to do
+/// further processing on the data.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return all documents in the table 'marvel' of the default database.
+/// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
 /// </code></example>
         public Table (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Select all documents in a table. This command can be chained with other commands to do
-/// further processing on the data.
+/// <para>Select all documents in a table. This command can be chained with other commands to do
+/// further processing on the data.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return all documents in the table 'marvel' of the default database.
+/// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
 /// </code></example>
         public Table (Arguments args, OptArgs optargs)
@@ -72,10 +72,10 @@ namespace RethinkDb.Driver.Ast {
     
 
 /// <summary>
-/// Get a document by primary key.
-/// If no document exists with that primary key, <code>get</code> will return <code>null</code>.
+/// <para>Get a document by primary key.</para>
+/// <para>If no document exists with that primary key, <code>get</code> will return <code>null</code>.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Find a document by UUID.
+/// <example><para>Example: Find a document by UUID.</para>
 /// <code>r.table('posts').get('a9849eef-7176-4411-935b-79a6e3c56a74').run(conn, callback)
 /// </code></example>
                     public Get get ( Object expr )
@@ -85,9 +85,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Get (arguments);
                     }
 /// <summary>
-/// Get all documents where the given value matches the value of the requested index.
+/// <para>Get all documents where the given value matches the value of the requested index.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Secondary index keys are not guaranteed to be unique so we cannot query via <a href="/api/javascript/get/">get</a> when using a secondary index.
+/// <example><para>Example: Secondary index keys are not guaranteed to be unique so we cannot query via <a href="/api/javascript/get/">get</a> when using a secondary index.</para>
 /// <code>r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback)
 /// </code></example>
                     public GetAll getAll ( params object[] exprs )
@@ -97,14 +97,14 @@ namespace RethinkDb.Driver.Ast {
                         return new GetAll (arguments);
                     }
 /// <summary>
-/// Get all documents between two keys. Accepts three optional arguments: <code>index</code>,
+/// <para>Get all documents between two keys. Accepts three optional arguments: <code>index</code>,
 /// <code>left_bound</code>, and <code>right_bound</code>. If <code>index</code> is set to the name of a secondary index,
 /// <code>between</code> will return all documents where that index's value is in the specified range
 /// (it uses the primary key by default). <code>left_bound</code> or <code>right_bound</code> may be set to <code>open</code>
 /// or <code>closed</code> to indicate whether or not to include that endpoint of the range (by default,
-/// <code>left_bound</code> is closed and <code>right_bound</code> is open).
+/// <code>left_bound</code> is closed and <code>right_bound</code> is open).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Find all users with primary key &gt;= 10 and &lt; 20 (a normal half-open interval).
+/// <example><para>Example: Find all users with primary key &gt;= 10 and &lt; 20 (a normal half-open interval).</para>
 /// <code>r.table('marvel').between(10, 20).run(conn, callback)
 /// </code></example>
                     public Between between ( Object expr, Object exprA )
@@ -115,10 +115,10 @@ namespace RethinkDb.Driver.Ast {
                         return new Between (arguments);
                     }
 /// <summary>
-/// Insert JSON documents into a table. Accepts a single JSON document or an array of
-/// documents.
+/// <para>Insert JSON documents into a table. Accepts a single JSON document or an array of
+/// documents.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Insert a document into the table <code>posts</code>.
+/// <example><para>Example: Insert a document into the table <code>posts</code>.</para>
 /// <code>r.table("posts").insert({
 ///     id: 1,
 ///     title: "Lorem ipsum",
@@ -132,9 +132,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Insert (arguments);
                     }
 /// <summary>
-/// Query (read and/or update) the configurations for individual tables or databases.
+/// <para>Query (read and/or update) the configurations for individual tables or databases.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get the configuration for the <code>users</code> table.
+/// <example><para>Example: Get the configuration for the <code>users</code> table.</para>
 /// <code>&gt; r.table('users').config().run(conn, callback);
 /// </code></example>
                     public Config config (  )
@@ -143,9 +143,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Config (arguments);
                     }
 /// <summary>
-/// Return the status of a table.
+/// <para>Return the status of a table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get a table's status.
+/// <example><para>Example: Get a table's status.</para>
 /// <code>&gt; r.table('superheroes').status().run(conn, callback);
 /// </code></example>
                     public Status status (  )
@@ -154,9 +154,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Status (arguments);
                     }
 /// <summary>
-/// Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.
+/// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Wait for a table to be ready.
+/// <example><para>Example: Wait for a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
 /// </code></example>
                     public Wait wait_ (  )
@@ -165,9 +165,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Wait (arguments);
                     }
 /// <summary>
-/// Reconfigure a table's sharding and replication.
+/// <para>Reconfigure a table's sharding and replication.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Reconfigure a table.
+/// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
                     public Reconfigure reconfigure (  )
@@ -176,9 +176,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Reconfigure (arguments);
                     }
 /// <summary>
-/// Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.
+/// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Rebalance a table.
+/// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
                     public Rebalance rebalance (  )
@@ -187,13 +187,13 @@ namespace RethinkDb.Driver.Ast {
                         return new Rebalance (arguments);
                     }
 /// <summary>
-/// <code>sync</code> ensures that writes on a given table are written to permanent storage. Queries
+/// <para><code>sync</code> ensures that writes on a given table are written to permanent storage. Queries
 /// that specify soft durability (<code>{durability: 'soft'}</code>) do not give such guarantees, so
 /// <code>sync</code> can be used to ensure the state of these queries. A call to <code>sync</code> does not return
-/// until all previous writes to the table are persisted.
+/// until all previous writes to the table are persisted.</para>
 /// </summary>
-/// <example><strong>Example:</strong> After having updated multiple heroes with soft durability, we now want to wait
-/// until these changes are persisted.
+/// <example><para>Example: After having updated multiple heroes with soft durability, we now want to wait
+/// until these changes are persisted.</para>
 /// <code>r.table('marvel').sync().run(conn, callback)
 /// </code></example>
                     public Sync sync (  )
@@ -202,9 +202,9 @@ namespace RethinkDb.Driver.Ast {
                         return new Sync (arguments);
                     }
 /// <summary>
-/// Create a new secondary index on a table.
+/// <para>Create a new secondary index on a table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Create a simple index based on the field <code>postId</code>.
+/// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
 /// </code></example>
                     public IndexCreate indexCreate ( Object expr )
@@ -214,9 +214,9 @@ namespace RethinkDb.Driver.Ast {
                         return new IndexCreate (arguments);
                     }
 /// <summary>
-/// Create a new secondary index on a table.
+/// <para>Create a new secondary index on a table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Create a simple index based on the field <code>postId</code>.
+/// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
 /// </code></example>
                     public IndexCreate indexCreate ( Object expr, ReqlFunction1 func1 )
@@ -227,9 +227,9 @@ namespace RethinkDb.Driver.Ast {
                         return new IndexCreate (arguments);
                     }
 /// <summary>
-/// Delete a previously created secondary index of this table.
+/// <para>Delete a previously created secondary index of this table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Drop a secondary index named 'code_name'.
+/// <example><para>Example: Drop a secondary index named 'code_name'.</para>
 /// <code>r.table('dc').indexDrop('code_name').run(conn, callback)
 /// </code></example>
                     public IndexDrop indexDrop ( Object expr )
@@ -239,9 +239,9 @@ namespace RethinkDb.Driver.Ast {
                         return new IndexDrop (arguments);
                     }
 /// <summary>
-/// List all the secondary indexes of this table.
+/// <para>List all the secondary indexes of this table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> List the available secondary indexes for this table.
+/// <example><para>Example: List the available secondary indexes for this table.</para>
 /// <code>r.table('marvel').indexList().run(conn, callback)
 /// </code></example>
                     public IndexList indexList (  )
@@ -250,13 +250,13 @@ namespace RethinkDb.Driver.Ast {
                         return new IndexList (arguments);
                     }
 /// <summary>
-/// Get the status of the specified indexes on this table, or the status
-/// of all indexes on this table if no indexes are specified.
+/// <para>Get the status of the specified indexes on this table, or the status
+/// of all indexes on this table if no indexes are specified.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get the status of all the indexes on <code>test</code>:
+/// <example><para>Example: Get the status of all the indexes on <code>test</code>:</para>
 /// <code>r.table('test').indexStatus().run(conn, callback)
 /// </code>
-/// <strong>Example:</strong> Get the status of the <code>timestamp</code> index:
+/// <para>Example: Get the status of the <code>timestamp</code> index:</para>
 /// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
                     public IndexStatus indexStatus ( params object[] exprs )
@@ -266,13 +266,13 @@ namespace RethinkDb.Driver.Ast {
                         return new IndexStatus (arguments);
                     }
 /// <summary>
-/// Wait for the specified indexes on this table to be ready, or for all
-/// indexes on this table to be ready if no indexes are specified.
+/// <para>Wait for the specified indexes on this table to be ready, or for all
+/// indexes on this table to be ready if no indexes are specified.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Wait for all indexes on the table <code>test</code> to be ready:
+/// <example><para>Example: Wait for all indexes on the table <code>test</code> to be ready:</para>
 /// <code>r.table('test').indexWait().run(conn, callback)
 /// </code>
-/// <strong>Example:</strong> Wait for the index <code>timestamp</code> to be ready:
+/// <para>Example: Wait for the index <code>timestamp</code> to be ready:</para>
 /// <code>r.table('test').indexWait('timestamp').run(conn, callback)
 /// </code></example>
                     public IndexWait indexWait ( params object[] exprs )
@@ -282,9 +282,9 @@ namespace RethinkDb.Driver.Ast {
                         return new IndexWait (arguments);
                     }
 /// <summary>
-/// Rename an existing secondary index on a table. If the optional argument <code>overwrite</code> is specified as <code>true</code>, a previously existing index with the new name will be deleted and the index will be renamed. If <code>overwrite</code> is <code>false</code> (the default) an error will be raised if the new index name already exists.
+/// <para>Rename an existing secondary index on a table. If the optional argument <code>overwrite</code> is specified as <code>true</code>, a previously existing index with the new name will be deleted and the index will be renamed. If <code>overwrite</code> is <code>false</code> (the default) an error will be raised if the new index name already exists.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Rename an index on the comments table.
+/// <example><para>Example: Rename an index on the comments table.</para>
 /// <code>r.table('comments').indexRename('postId', 'messageId').run(conn, callback)
 /// </code></example>
                     public IndexRename indexRename ( Object expr, Object exprA )
@@ -295,9 +295,9 @@ namespace RethinkDb.Driver.Ast {
                         return new IndexRename (arguments);
                     }
 /// <summary>
-/// Get all documents where the given geometry object intersects the geometry object of the requested geospatial index.
+/// <para>Get all documents where the given geometry object intersects the geometry object of the requested geospatial index.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Which of the locations in a list of parks intersect <code>circle1</code>?
+/// <example><para>Example: Which of the locations in a list of parks intersect <code>circle1</code>?</para>
 /// <code>var circle1 = r.circle([-117.220406,32.719464], 10, {unit: 'mi'});
 /// r.table('parks').getIntersecting(circle1, {index: 'area'}).run(conn, callback);
 /// </code></example>
@@ -308,9 +308,9 @@ namespace RethinkDb.Driver.Ast {
                         return new GetIntersecting (arguments);
                     }
 /// <summary>
-/// Get all documents where the specified geospatial index is within a certain distance of the specified point (default 100 kilometers).
+/// <para>Get all documents where the specified geospatial index is within a certain distance of the specified point (default 100 kilometers).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a list of enemy hideouts within 5000 meters of the secret base.
+/// <example><para>Example: Return a list of enemy hideouts within 5000 meters of the secret base.</para>
 /// <code>var secretBase = r.point(-122.422876,37.777128);
 /// r.table('hideouts').getNearest(secretBase,
 ///     {index: 'location', maxDist: 5000}

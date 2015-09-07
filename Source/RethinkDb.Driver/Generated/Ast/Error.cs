@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Throw a runtime error. If called with no arguments inside the second argument to <code>default</code>, re-throw the current error.
+/// <para>Throw a runtime error. If called with no arguments inside the second argument to <code>default</code>, re-throw the current error.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Iron Man can't possibly have lost a battle:
+/// <example><para>Example: Iron Man can't possibly have lost a battle:</para>
 /// <code>r.table('marvel').get('IronMan').do(function(ironman) {
 ///     return r.branch(ironman('victories').lt(ironman('battles')),
 ///         r.error('impossible code path'),
@@ -42,9 +42,9 @@ namespace RethinkDb.Driver.Ast {
         public Error (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Throw a runtime error. If called with no arguments inside the second argument to <code>default</code>, re-throw the current error.
+/// <para>Throw a runtime error. If called with no arguments inside the second argument to <code>default</code>, re-throw the current error.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Iron Man can't possibly have lost a battle:
+/// <example><para>Example: Iron Man can't possibly have lost a battle:</para>
 /// <code>r.table('marvel').get('IronMan').do(function(ironman) {
 ///     return r.branch(ironman('victories').lt(ironman('battles')),
 ///         r.error('impossible code path'),
@@ -54,9 +54,9 @@ namespace RethinkDb.Driver.Ast {
         public Error (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Throw a runtime error. If called with no arguments inside the second argument to <code>default</code>, re-throw the current error.
+/// <para>Throw a runtime error. If called with no arguments inside the second argument to <code>default</code>, re-throw the current error.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Iron Man can't possibly have lost a battle:
+/// <example><para>Example: Iron Man can't possibly have lost a battle:</para>
 /// <code>r.table('marvel').get('IronMan').do(function(ironman) {
 ///     return r.branch(ironman('victories').lt(ironman('battles')),
 ///         r.error('impossible code path'),

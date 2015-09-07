@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Returns an inner join of two sequences.
+/// <para>Returns an inner join of two sequences.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a list of all matchups between Marvel and DC heroes in which the DC hero could beat the Marvel hero in a fight.
+/// <example><para>Example: Return a list of all matchups between Marvel and DC heroes in which the DC hero could beat the Marvel hero in a fight.</para>
 /// <code>r.table('marvel').innerJoin(r.table('dc'), function(marvelRow, dcRow) {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).zip().run(conn, callback)
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public InnerJoin (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Returns an inner join of two sequences.
+/// <para>Returns an inner join of two sequences.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a list of all matchups between Marvel and DC heroes in which the DC hero could beat the Marvel hero in a fight.
+/// <example><para>Example: Return a list of all matchups between Marvel and DC heroes in which the DC hero could beat the Marvel hero in a fight.</para>
 /// <code>r.table('marvel').innerJoin(r.table('dc'), function(marvelRow, dcRow) {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).zip().run(conn, callback)
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public InnerJoin (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Returns an inner join of two sequences.
+/// <para>Returns an inner join of two sequences.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return a list of all matchups between Marvel and DC heroes in which the DC hero could beat the Marvel hero in a fight.
+/// <example><para>Example: Return a list of all matchups between Marvel and DC heroes in which the DC hero could beat the Marvel hero in a fight.</para>
 /// <code>r.table('marvel').innerJoin(r.table('dc'), function(marvelRow, dcRow) {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).zip().run(conn, callback)

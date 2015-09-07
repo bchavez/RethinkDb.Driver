@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Uppercases a string.
+/// <para>Uppercases a string.</para>
 /// </summary>
-/// <example><strong>Example:</strong>
+/// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").upcase().run(conn, callback)
 /// </code></example>
         public Upcase (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Uppercases a string.
+/// <para>Uppercases a string.</para>
 /// </summary>
-/// <example><strong>Example:</strong>
+/// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").upcase().run(conn, callback)
 /// </code></example>
         public Upcase (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Uppercases a string.
+/// <para>Uppercases a string.</para>
 /// </summary>
-/// <example><strong>Example:</strong>
+/// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").upcase().run(conn, callback)
 /// </code></example>
         public Upcase (Arguments args, OptArgs optargs)

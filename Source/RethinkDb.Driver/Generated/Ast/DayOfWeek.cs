@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return the day of week of a time object as a number between 1 and 7 (following ISO 8601 standard). For your convenience, the terms r.monday, r.tuesday etc. are defined and map to the appropriate integer.
+/// <para>Return the day of week of a time object as a number between 1 and 7 (following ISO 8601 standard). For your convenience, the terms r.monday, r.tuesday etc. are defined and map to the appropriate integer.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return today's day of week.
+/// <example><para>Example: Return today's day of week.</para>
 /// <code>r.now().dayOfWeek().run(conn, callback)
 /// </code></example>
         public DayOfWeek (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return the day of week of a time object as a number between 1 and 7 (following ISO 8601 standard). For your convenience, the terms r.monday, r.tuesday etc. are defined and map to the appropriate integer.
+/// <para>Return the day of week of a time object as a number between 1 and 7 (following ISO 8601 standard). For your convenience, the terms r.monday, r.tuesday etc. are defined and map to the appropriate integer.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return today's day of week.
+/// <example><para>Example: Return today's day of week.</para>
 /// <code>r.now().dayOfWeek().run(conn, callback)
 /// </code></example>
         public DayOfWeek (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return the day of week of a time object as a number between 1 and 7 (following ISO 8601 standard). For your convenience, the terms r.monday, r.tuesday etc. are defined and map to the appropriate integer.
+/// <para>Return the day of week of a time object as a number between 1 and 7 (following ISO 8601 standard). For your convenience, the terms r.monday, r.tuesday etc. are defined and map to the appropriate integer.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return today's day of week.
+/// <example><para>Example: Return today's day of week.</para>
 /// <code>r.now().dayOfWeek().run(conn, callback)
 /// </code></example>
         public DayOfWeek (Arguments args, OptArgs optargs)

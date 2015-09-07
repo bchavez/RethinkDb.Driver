@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.
+/// <para>Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Subscribe to the changes on a table.
+/// <example><para>Example: Subscribe to the changes on a table.</para>
 /// <code>r.table('games').changes().run(conn, function(err, cursor) {
 ///   cursor.each(console.log)
 /// })
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Changes (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.
+/// <para>Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Subscribe to the changes on a table.
+/// <example><para>Example: Subscribe to the changes on a table.</para>
 /// <code>r.table('games').changes().run(conn, function(err, cursor) {
 ///   cursor.each(console.log)
 /// })
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Changes (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.
+/// <para>Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Subscribe to the changes on a table.
+/// <example><para>Example: Subscribe to the changes on a table.</para>
 /// <code>r.table('games').changes().run(conn, function(err, cursor) {
 ///   cursor.each(console.log)
 /// })

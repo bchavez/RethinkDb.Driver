@@ -30,8 +30,8 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Create a time object for a specific time.
-/// A few restrictions exist on the arguments:
+/// <para>Create a time object for a specific time.</para>
+/// <para>A few restrictions exist on the arguments:</para>
 /// <ul>
 /// <li><code>year</code> is an integer between 1400 and 9,999.</li>
 /// <li><code>month</code> is an integer between 1 and 12.</li>
@@ -43,15 +43,15 @@ namespace RethinkDb.Driver.Ast {
 /// <li><code>timezone</code> can be <code>'Z'</code> (for UTC) or a string with the format <code>±[hh]:[mm]</code>.</li>
 /// </ul>
 /// </summary>
-/// <example><strong>Example:</strong> Update the birthdate of the user "John" to November 3rd, 1986 UTC.
+/// <example><para>Example: Update the birthdate of the user "John" to November 3rd, 1986 UTC.</para>
 /// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
 ///     .run(conn, callback)
 /// </code></example>
         public Time (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Create a time object for a specific time.
-/// A few restrictions exist on the arguments:
+/// <para>Create a time object for a specific time.</para>
+/// <para>A few restrictions exist on the arguments:</para>
 /// <ul>
 /// <li><code>year</code> is an integer between 1400 and 9,999.</li>
 /// <li><code>month</code> is an integer between 1 and 12.</li>
@@ -63,15 +63,15 @@ namespace RethinkDb.Driver.Ast {
 /// <li><code>timezone</code> can be <code>'Z'</code> (for UTC) or a string with the format <code>±[hh]:[mm]</code>.</li>
 /// </ul>
 /// </summary>
-/// <example><strong>Example:</strong> Update the birthdate of the user "John" to November 3rd, 1986 UTC.
+/// <example><para>Example: Update the birthdate of the user "John" to November 3rd, 1986 UTC.</para>
 /// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
 ///     .run(conn, callback)
 /// </code></example>
         public Time (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Create a time object for a specific time.
-/// A few restrictions exist on the arguments:
+/// <para>Create a time object for a specific time.</para>
+/// <para>A few restrictions exist on the arguments:</para>
 /// <ul>
 /// <li><code>year</code> is an integer between 1400 and 9,999.</li>
 /// <li><code>month</code> is an integer between 1 and 12.</li>
@@ -83,7 +83,7 @@ namespace RethinkDb.Driver.Ast {
 /// <li><code>timezone</code> can be <code>'Z'</code> (for UTC) or a string with the format <code>±[hh]:[mm]</code>.</li>
 /// </ul>
 /// </summary>
-/// <example><strong>Example:</strong> Update the birthdate of the user "John" to November 3rd, 1986 UTC.
+/// <example><para>Example: Update the birthdate of the user "John" to November 3rd, 1986 UTC.</para>
 /// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
 ///     .run(conn, callback)
 /// </code></example>

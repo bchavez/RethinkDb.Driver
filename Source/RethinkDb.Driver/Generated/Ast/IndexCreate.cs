@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Create a new secondary index on a table.
+/// <para>Create a new secondary index on a table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Create a simple index based on the field <code>postId</code>.
+/// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
 /// </code></example>
         public IndexCreate (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Create a new secondary index on a table.
+/// <para>Create a new secondary index on a table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Create a simple index based on the field <code>postId</code>.
+/// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
 /// </code></example>
         public IndexCreate (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Create a new secondary index on a table.
+/// <para>Create a new secondary index on a table.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Create a simple index based on the field <code>postId</code>.
+/// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
 /// </code></example>
         public IndexCreate (Arguments args, OptArgs optargs)

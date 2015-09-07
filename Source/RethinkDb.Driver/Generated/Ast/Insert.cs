@@ -30,10 +30,10 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Insert JSON documents into a table. Accepts a single JSON document or an array of
-/// documents.
+/// <para>Insert JSON documents into a table. Accepts a single JSON document or an array of
+/// documents.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Insert a document into the table <code>posts</code>.
+/// <example><para>Example: Insert a document into the table <code>posts</code>.</para>
 /// <code>r.table("posts").insert({
 ///     id: 1,
 ///     title: "Lorem ipsum",
@@ -43,10 +43,10 @@ namespace RethinkDb.Driver.Ast {
         public Insert (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Insert JSON documents into a table. Accepts a single JSON document or an array of
-/// documents.
+/// <para>Insert JSON documents into a table. Accepts a single JSON document or an array of
+/// documents.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Insert a document into the table <code>posts</code>.
+/// <example><para>Example: Insert a document into the table <code>posts</code>.</para>
 /// <code>r.table("posts").insert({
 ///     id: 1,
 ///     title: "Lorem ipsum",
@@ -56,10 +56,10 @@ namespace RethinkDb.Driver.Ast {
         public Insert (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Insert JSON documents into a table. Accepts a single JSON document or an array of
-/// documents.
+/// <para>Insert JSON documents into a table. Accepts a single JSON document or an array of
+/// documents.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Insert a document into the table <code>posts</code>.
+/// <example><para>Example: Insert a document into the table <code>posts</code>.</para>
 /// <code>r.table("posts").insert({
 ///     id: 1,
 ///     title: "Lorem ipsum",

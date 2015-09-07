@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.
-/// <code>js
-/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code>
+/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.</para>
+/// <para><code>js
+/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
         public Literal (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.
-/// <code>js
-/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code>
+/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.</para>
+/// <para><code>js
+/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
         public Literal (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.
-/// <code>js
-/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code>
+/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.</para>
+/// <para><code>js
+/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
         public Literal (Arguments args, OptArgs optargs)

@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Concatenate one or more elements into a single sequence using a mapping function.
+/// <para>Concatenate one or more elements into a single sequence using a mapping function.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Construct a sequence of all monsters defeated by Marvel heroes. The field "defeatedMonsters" is an array of one or more monster names.
+/// <example><para>Example: Construct a sequence of all monsters defeated by Marvel heroes. The field "defeatedMonsters" is an array of one or more monster names.</para>
 /// <code>r.table('marvel').concatMap(function(hero) {
 ///     return hero('defeatedMonsters')
 /// }).run(conn, callback)
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public ConcatMap (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Concatenate one or more elements into a single sequence using a mapping function.
+/// <para>Concatenate one or more elements into a single sequence using a mapping function.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Construct a sequence of all monsters defeated by Marvel heroes. The field "defeatedMonsters" is an array of one or more monster names.
+/// <example><para>Example: Construct a sequence of all monsters defeated by Marvel heroes. The field "defeatedMonsters" is an array of one or more monster names.</para>
 /// <code>r.table('marvel').concatMap(function(hero) {
 ///     return hero('defeatedMonsters')
 /// }).run(conn, callback)
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public ConcatMap (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Concatenate one or more elements into a single sequence using a mapping function.
+/// <para>Concatenate one or more elements into a single sequence using a mapping function.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Construct a sequence of all monsters defeated by Marvel heroes. The field "defeatedMonsters" is an array of one or more monster names.
+/// <example><para>Example: Construct a sequence of all monsters defeated by Marvel heroes. The field "defeatedMonsters" is an array of one or more monster names.</para>
 /// <code>r.table('marvel').concatMap(function(hero) {
 ///     return hero('defeatedMonsters')
 /// }).run(conn, callback)

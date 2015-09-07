@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return if a time is between two other times (by default, inclusive for the start, exclusive for the end).
+/// <para>Return if a time is between two other times (by default, inclusive for the start, exclusive for the end).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve all the posts that were posted between December 1st, 2013 (inclusive) and December 10th, 2013 (exclusive).
+/// <example><para>Example: Retrieve all the posts that were posted between December 1st, 2013 (inclusive) and December 10th, 2013 (exclusive).</para>
 /// <code>r.table("posts").filter(
 ///     r.row('date').during(r.time(2013, 12, 1), r.time(2013, 12, 10))
 /// ).run(conn, callback)
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public During (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return if a time is between two other times (by default, inclusive for the start, exclusive for the end).
+/// <para>Return if a time is between two other times (by default, inclusive for the start, exclusive for the end).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve all the posts that were posted between December 1st, 2013 (inclusive) and December 10th, 2013 (exclusive).
+/// <example><para>Example: Retrieve all the posts that were posted between December 1st, 2013 (inclusive) and December 10th, 2013 (exclusive).</para>
 /// <code>r.table("posts").filter(
 ///     r.row('date').during(r.time(2013, 12, 1), r.time(2013, 12, 10))
 /// ).run(conn, callback)
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public During (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return if a time is between two other times (by default, inclusive for the start, exclusive for the end).
+/// <para>Return if a time is between two other times (by default, inclusive for the start, exclusive for the end).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve all the posts that were posted between December 1st, 2013 (inclusive) and December 10th, 2013 (exclusive).
+/// <example><para>Example: Retrieve all the posts that were posted between December 1st, 2013 (inclusive) and December 10th, 2013 (exclusive).</para>
 /// <code>r.table("posts").filter(
 ///     r.row('date').during(r.time(2013, 12, 1), r.time(2013, 12, 10))
 /// ).run(conn, callback)

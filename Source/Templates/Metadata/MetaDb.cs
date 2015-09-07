@@ -70,10 +70,12 @@ namespace Templates.Metadata
             return data
                 .Replace("<pre>", "")
                 .Replace("</pre>", "")
-                .Replace("<p>", "")
-                .Replace("</p>", "")
+                .Replace("<p>", "<para>")
+                .Replace("</p>", "</para>")
                 .Replace("\n","\r\n/// "
-                .Replace("&rarr", "JArray"));
+                .Replace("&rarr", "JArray"))
+                .Replace("<strong>","")
+                .Replace("</strong>","");
 
         }
     }

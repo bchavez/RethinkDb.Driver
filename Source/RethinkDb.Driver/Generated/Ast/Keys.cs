@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return an array containing all of the object's keys.
+/// <para>Return an array containing all of the object's keys.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get all the keys of a row.
+/// <example><para>Example: Get all the keys of a row.</para>
 /// <code>r.table('marvel').get('ironman').keys().run(conn, callback)
 /// </code></example>
         public Keys (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return an array containing all of the object's keys.
+/// <para>Return an array containing all of the object's keys.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get all the keys of a row.
+/// <example><para>Example: Get all the keys of a row.</para>
 /// <code>r.table('marvel').get('ironman').keys().run(conn, callback)
 /// </code></example>
         public Keys (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return an array containing all of the object's keys.
+/// <para>Return an array containing all of the object's keys.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get all the keys of a row.
+/// <example><para>Example: Get all the keys of a row.</para>
 /// <code>r.table('marvel').get('ironman').keys().run(conn, callback)
 /// </code></example>
         public Keys (Arguments args, OptArgs optargs)

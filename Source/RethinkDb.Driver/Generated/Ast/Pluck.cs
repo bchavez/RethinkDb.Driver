@@ -30,31 +30,31 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Plucks out one or more attributes from either an object or a sequence of objects
-/// (projection).
+/// <para>Plucks out one or more attributes from either an object or a sequence of objects
+/// (projection).</para>
 /// </summary>
-/// <example><strong>Example:</strong> We just need information about IronMan's reactor and not the rest of the
-/// document.
+/// <example><para>Example: We just need information about IronMan's reactor and not the rest of the
+/// document.</para>
 /// <code>r.table('marvel').get('IronMan').pluck('reactorState', 'reactorPower').run(conn, callback)
 /// </code></example>
         public Pluck (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Plucks out one or more attributes from either an object or a sequence of objects
-/// (projection).
+/// <para>Plucks out one or more attributes from either an object or a sequence of objects
+/// (projection).</para>
 /// </summary>
-/// <example><strong>Example:</strong> We just need information about IronMan's reactor and not the rest of the
-/// document.
+/// <example><para>Example: We just need information about IronMan's reactor and not the rest of the
+/// document.</para>
 /// <code>r.table('marvel').get('IronMan').pluck('reactorState', 'reactorPower').run(conn, callback)
 /// </code></example>
         public Pluck (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Plucks out one or more attributes from either an object or a sequence of objects
-/// (projection).
+/// <para>Plucks out one or more attributes from either an object or a sequence of objects
+/// (projection).</para>
 /// </summary>
-/// <example><strong>Example:</strong> We just need information about IronMan's reactor and not the rest of the
-/// document.
+/// <example><para>Example: We just need information about IronMan's reactor and not the rest of the
+/// document.</para>
 /// <code>r.table('marvel').get('IronMan').pluck('reactorState', 'reactorPower').run(conn, callback)
 /// </code></example>
         public Pluck (Arguments args, OptArgs optargs)

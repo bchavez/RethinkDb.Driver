@@ -30,12 +30,12 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <code>r.args</code> is a special term that's used to splice an array of arguments
+/// <para><code>r.args</code> is a special term that's used to splice an array of arguments
 /// into another term.  This is useful when you want to call a variadic
-/// term such as <code>getAll</code> with a set of arguments produced at runtime.
-/// This is analogous to using <strong>apply</strong> in JavaScript.
+/// term such as <code>getAll</code> with a set of arguments produced at runtime.</para>
+/// <para>This is analogous to using apply in JavaScript.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get Alice and Bob from the table <code>people</code>.
+/// <example><para>Example: Get Alice and Bob from the table <code>people</code>.</para>
 /// <code>r.table('people').getAll('Alice', 'Bob').run(conn, callback)
 /// // or
 /// r.table('people').getAll(r.args(['Alice', 'Bob'])).run(conn, callback)
@@ -43,12 +43,12 @@ namespace RethinkDb.Driver.Ast {
         public Args (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <code>r.args</code> is a special term that's used to splice an array of arguments
+/// <para><code>r.args</code> is a special term that's used to splice an array of arguments
 /// into another term.  This is useful when you want to call a variadic
-/// term such as <code>getAll</code> with a set of arguments produced at runtime.
-/// This is analogous to using <strong>apply</strong> in JavaScript.
+/// term such as <code>getAll</code> with a set of arguments produced at runtime.</para>
+/// <para>This is analogous to using apply in JavaScript.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get Alice and Bob from the table <code>people</code>.
+/// <example><para>Example: Get Alice and Bob from the table <code>people</code>.</para>
 /// <code>r.table('people').getAll('Alice', 'Bob').run(conn, callback)
 /// // or
 /// r.table('people').getAll(r.args(['Alice', 'Bob'])).run(conn, callback)
@@ -56,12 +56,12 @@ namespace RethinkDb.Driver.Ast {
         public Args (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <code>r.args</code> is a special term that's used to splice an array of arguments
+/// <para><code>r.args</code> is a special term that's used to splice an array of arguments
 /// into another term.  This is useful when you want to call a variadic
-/// term such as <code>getAll</code> with a set of arguments produced at runtime.
-/// This is analogous to using <strong>apply</strong> in JavaScript.
+/// term such as <code>getAll</code> with a set of arguments produced at runtime.</para>
+/// <para>This is analogous to using apply in JavaScript.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Get Alice and Bob from the table <code>people</code>.
+/// <example><para>Example: Get Alice and Bob from the table <code>people</code>.</para>
 /// <code>r.table('people').getAll('Alice', 'Bob').run(conn, callback)
 /// // or
 /// r.table('people').getAll(r.args(['Alice', 'Bob'])).run(conn, callback)

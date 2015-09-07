@@ -30,31 +30,31 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Returns whether or not a sequence contains all the specified values, or if functions are
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.
+/// specified functions.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Has Iron Man ever fought Superman?
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
         public Contains (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Returns whether or not a sequence contains all the specified values, or if functions are
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.
+/// specified functions.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Has Iron Man ever fought Superman?
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
         public Contains (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Returns whether or not a sequence contains all the specified values, or if functions are
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.
+/// specified functions.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Has Iron Man ever fought Superman?
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
         public Contains (Arguments args, OptArgs optargs)

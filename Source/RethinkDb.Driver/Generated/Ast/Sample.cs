@@ -30,25 +30,25 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Select a given number of elements from a sequence with uniform random distribution. Selection is done without replacement.
+/// <para>Select a given number of elements from a sequence with uniform random distribution. Selection is done without replacement.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Select 3 random heroes.
+/// <example><para>Example: Select 3 random heroes.</para>
 /// <code>r.table('marvel').sample(3).run(conn, callback)
 /// </code></example>
         public Sample (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Select a given number of elements from a sequence with uniform random distribution. Selection is done without replacement.
+/// <para>Select a given number of elements from a sequence with uniform random distribution. Selection is done without replacement.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Select 3 random heroes.
+/// <example><para>Example: Select 3 random heroes.</para>
 /// <code>r.table('marvel').sample(3).run(conn, callback)
 /// </code></example>
         public Sample (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Select a given number of elements from a sequence with uniform random distribution. Selection is done without replacement.
+/// <para>Select a given number of elements from a sequence with uniform random distribution. Selection is done without replacement.</para>
 /// </summary>
-/// <example><strong>Example:</strong> Select 3 random heroes.
+/// <example><para>Example: Select 3 random heroes.</para>
 /// <code>r.table('marvel').sample(3).run(conn, callback)
 /// </code></example>
         public Sample (Arguments args, OptArgs optargs)

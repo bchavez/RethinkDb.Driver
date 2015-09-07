@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Return the day of the year of a time object as a number between 1 and 366 (following ISO 8601 standard).
+/// <para>Return the day of the year of a time object as a number between 1 and 366 (following ISO 8601 standard).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve all the users who were born the first day of a year.
+/// <example><para>Example: Retrieve all the users who were born the first day of a year.</para>
 /// <code>r.table("users").filter(
 ///     r.row("birthdate").dayOfYear().eq(1)
 /// )
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public DayOfYear (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Return the day of the year of a time object as a number between 1 and 366 (following ISO 8601 standard).
+/// <para>Return the day of the year of a time object as a number between 1 and 366 (following ISO 8601 standard).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve all the users who were born the first day of a year.
+/// <example><para>Example: Retrieve all the users who were born the first day of a year.</para>
 /// <code>r.table("users").filter(
 ///     r.row("birthdate").dayOfYear().eq(1)
 /// )
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public DayOfYear (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Return the day of the year of a time object as a number between 1 and 366 (following ISO 8601 standard).
+/// <para>Return the day of the year of a time object as a number between 1 and 366 (following ISO 8601 standard).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Retrieve all the users who were born the first day of a year.
+/// <example><para>Example: Retrieve all the users who were born the first day of a year.</para>
 /// <code>r.table("users").filter(
 ///     r.row("birthdate").dayOfYear().eq(1)
 /// )

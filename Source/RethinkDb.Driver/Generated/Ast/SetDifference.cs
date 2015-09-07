@@ -30,28 +30,28 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Remove the elements of one array from another and return them as a set (an array with
-/// distinct values).
+/// <para>Remove the elements of one array from another and return them as a set (an array with
+/// distinct values).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Check which pieces of equipment Iron Man has, excluding a fixed list.
+/// <example><para>Example: Check which pieces of equipment Iron Man has, excluding a fixed list.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setDifference(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
         public SetDifference (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Remove the elements of one array from another and return them as a set (an array with
-/// distinct values).
+/// <para>Remove the elements of one array from another and return them as a set (an array with
+/// distinct values).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Check which pieces of equipment Iron Man has, excluding a fixed list.
+/// <example><para>Example: Check which pieces of equipment Iron Man has, excluding a fixed list.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setDifference(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
         public SetDifference (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Remove the elements of one array from another and return them as a set (an array with
-/// distinct values).
+/// <para>Remove the elements of one array from another and return them as a set (an array with
+/// distinct values).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Check which pieces of equipment Iron Man has, excluding a fixed list.
+/// <example><para>Example: Check which pieces of equipment Iron Man has, excluding a fixed list.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setDifference(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
         public SetDifference (Arguments args, OptArgs optargs)

@@ -30,9 +30,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).
+/// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the floor of 12.345.
+/// <example><para>Example: Return the floor of 12.345.</para>
 /// <code>&gt; r.floor(12.345).run(conn, callback);
 /// 
 /// 12.0
@@ -40,9 +40,9 @@ namespace RethinkDb.Driver.Ast {
         public Floor (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).
+/// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the floor of 12.345.
+/// <example><para>Example: Return the floor of 12.345.</para>
 /// <code>&gt; r.floor(12.345).run(conn, callback);
 /// 
 /// 12.0
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Floor (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).
+/// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
 /// </summary>
-/// <example><strong>Example:</strong> Return the floor of 12.345.
+/// <example><para>Example: Return the floor of 12.345.</para>
 /// <code>&gt; r.floor(12.345).run(conn, callback);
 /// 
 /// 12.0

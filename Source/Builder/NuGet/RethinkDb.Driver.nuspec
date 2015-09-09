@@ -15,20 +15,25 @@
     <description>A RethinkDB ReQL database driver written in C# striving for 100% API compatibility and completeness. Architecturally, this driver is a one-to-one port of the offical Java driver.</description>
     
     <releaseNotes>
-        History:v0.0.4-alpha2
-        * Added IntelliSense XML documentation.
-        
-        v0.0.4-alpha1
-        * Refined serialization.
-        * DB methods fixed.
-        * Create/Delete database working.
-        * RethinkDB PesudoType conversion working.
-        
-        v0.0.0.3
-        * Connection to RethinkDB working.
+      History:
+      v0.0.4-alpha3
+      * Fixed recursion in MakeObject
+      * optArg now explicitly included where needed
 
-        v0.0.0.0:
-        * Initial port from Josh's Java Driver.
+      v0.0.4-alpha2
+      * Added IntelliSense XML documentation.
+
+      v0.0.4-alpha1
+      * Refined serialization.
+      * DB methods fixed.
+      * Create/Delete database working.
+      * RethinkDB PesudoType conversion working.
+
+      v0.0.0.3
+      * Connection to RethinkDB working.
+
+      v0.0.0.0:
+      * Initial port from Josh's Java Driver.
     </releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>rethinkdb database driver reql</tags>

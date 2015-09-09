@@ -113,7 +113,7 @@ WriteLiteral("\r\n    \r\n        protected Func(Arguments args) : base(TermType
 WriteLiteral("\r\n\r\n");
 
 
-DefineSection("Member_Vars", () => {
+DefineSection("MemberVars", () => {
 
 WriteLiteral("\r\n        private static int VarId = 0;\r\n");
 

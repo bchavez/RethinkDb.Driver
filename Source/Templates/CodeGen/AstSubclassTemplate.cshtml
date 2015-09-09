@@ -20,6 +20,7 @@
     public string Superclass { get; set; }
 
     public string TermName { get; set; }
+    public JObject TermMeta { get; set; }
     public Dictionary<string,JObject> AllTerms { get; set; }
 
     public override RazorTemplateBase UseParentLayout(RazorTemplateBase child)
@@ -29,6 +30,7 @@
             ClassName = this.ClassName,
             Superclass = this.Superclass,
             TermName = this.TermName,
+            TermMeta = this.TermMeta,
             AllTerms = this.AllTerms,
             ChildTemplate = child
         };
@@ -74,9 +76,9 @@
 }
 
 @section OptArgs{
-    @if( TermName != null && AllTerms[TermName]["optargs"] != null )
+    @if( TermMeta?["optargs"] != null )
     {
-        var optArgs = AllTerms[TermName]["optargs"] as JObject;
+        var optArgs = TermMeta["optargs"] as JObject;
 @:///<summary>
 @:/// @optArgs.ToString().Trim('{', '}').Trim().Replace("\n","\n///")
 @:///</summary>
@@ -105,9 +107,9 @@ namespace RethinkDb.Driver.Ast {
 
     public class @Class(ClassName) : @Superclass {
 
-    @RenderSection("member_vars")
+    @RenderSection("MemberVars")
     
-    @RenderSection("ctors")
+    @RenderSection("Ctors")
 
     @RenderSection("StaticFactories")
 

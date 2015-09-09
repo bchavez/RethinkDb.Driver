@@ -95,7 +95,7 @@ WriteLiteral("\r\n    using RethinkDb.Driver.Net;\r\n");
 WriteLiteral("\r\n\r\n");
 
 
-DefineSection("member_vars", () => {
+DefineSection("MemberVars", () => {
 
 WriteLiteral("\r\n    byte[] b64Data = null;\r\n");
 

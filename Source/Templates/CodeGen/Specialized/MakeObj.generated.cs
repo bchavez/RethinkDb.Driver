@@ -88,7 +88,7 @@ WriteLiteral("\r\n");
 WriteLiteral("\r\n\r\n");
 
 
-DefineSection("ctors", () => {
+DefineSection("Ctors", () => {
 
 WriteLiteral(@"
         public MakeObj(Object arg) : this(new Arguments(arg), null) {

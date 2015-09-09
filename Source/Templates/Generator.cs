@@ -133,19 +133,19 @@ namespace Templates
             var mutator = new CSharpTermInfoMutator(allTerms);
             mutator.EnsureLanguageSafeTerms();
 
-            RenderAstSubclass(null, "ReqlExpr", "ReqlAst",  allTerms);
+            RenderAstSubclass(null, "ReqlExpr", "ReqlAst",  allTerms, null);
 
             foreach( var kvp in allTerms )
             {
                 var termName = kvp.Key;
-                var meta = kvp.Value;
+                var termMeta = kvp.Value;
 
                 if( !kvp.Value["deprecated"]?.ToObject<bool?>() ?? true )
                 {
-                    var className = meta["classname"].ToString();
-                    var superclass = meta["superclass"].ToString();
+                    var className = termMeta["classname"].ToString();
+                    var superclass = termMeta["superclass"].ToString();
 
-                    RenderAstSubclass(termName, className, superclass, allTerms);
+                    RenderAstSubclass(termName, className, superclass, allTerms, termMeta);
                 }
                 else
                 {
@@ -196,7 +196,7 @@ namespace Templates
             File.WriteAllText(Path.Combine(GenerateRootDir, $"{className.ClassName()}.cs"), tmpl.TransformText());
         }
 
-        public void RenderAstSubclass(string termType, string className, string superClass,  Dictionary<string, JObject> meta)
+        public void RenderAstSubclass(string termType, string className, string superClass,  Dictionary<string, JObject> allTerms, JObject termMeta = null)
         {
             className = className ?? termType.ToLower();
 
@@ -205,7 +205,8 @@ namespace Templates
             tmpl.TermName = termType;
             tmpl.ClassName = className;
             tmpl.Superclass = superClass;
-            tmpl.AllTerms = meta;
+	        tmpl.TermMeta = termMeta;
+            tmpl.AllTerms = allTerms;
 
             File.WriteAllText(Path.Combine(AstClasses, $"{className.ClassName()}.cs"), tmpl.TransformText());
         }

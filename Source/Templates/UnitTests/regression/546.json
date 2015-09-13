@@ -1,0 +1,20 @@
+{
+  "desc": "Regression tests for issue",
+  "tests": [
+    {
+      "js": "r(1).do(function(a) { return a; })",
+      "py": "r.expr(1).do(lambda a:a)",
+      "ot": "1"
+    },
+    {
+      "js": "r(1).do(function(a) {\n  return r(2).do(function(b) {\n    return b;\n  });\n})",
+      "py": "r.expr(1).do(lambda a:r.expr(2).do(lambda b:b))",
+      "ot": "2"
+    },
+    {
+      "js": "r(1).do(function(a) {\n  return r(2).do(function(b) {\n    return a;\n  });\n})",
+      "py": "r.expr(1).do(lambda a:r.expr(2).do(lambda b:a))",
+      "ot": "1"
+    }
+  ]
+}

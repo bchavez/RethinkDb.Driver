@@ -1,0 +1,25 @@
+{
+  "desc": "Tests meta operations in composite queries",
+  "tests": [
+    {
+      "cd": "r.db_drop('test')",
+      "ot": "partial({'dbs_dropped':1})"
+    },
+    {
+      "py": "r.expr([1,2,3]).for_each(r.db_create('db_' + r.row.coerce_to('string')))",
+      "ot": "({'dbs_created':3,'config_changes':arrlen(3)})"
+    },
+    {
+      "py": "r.db_list().set_difference([\"rethinkdb\"]).for_each(lambda db_name:\n    r.expr([1,2,3]).for_each(lambda i:\n        r.db(db_name).table_create('tbl_' + i.coerce_to('string'))))\n",
+      "ot": "partial({'tables_created':9})"
+    },
+    {
+      "py": "r.db_list().set_difference([\"rethinkdb\"]).for_each(r.db_drop(r.row))",
+      "ot": "partial({'dbs_dropped':3,'tables_dropped':9})"
+    },
+    {
+      "cd": "r.db_create('test')",
+      "ot": "partial({'dbs_created':1})"
+    }
+  ]
+}

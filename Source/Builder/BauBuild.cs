@@ -66,7 +66,7 @@ namespace Builder
                         Directory.SetCurrentDirectory(Projects.DriverProject.Folder.ToString());
                         MetaDb.Initialize(Projects.TemplatesProject.Metadata.ToString());
 
-                        var gen = new Templates.Generator();
+                        var gen = new Templates.GeneratorForAst();
                         gen.EnsurePathsExist();
                         gen.Generate_All();
                     })

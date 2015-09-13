@@ -39,7 +39,7 @@
     
     public static Func FromLambda(ReqlLambda function){
     
-        @foreach( var n in Enumerable.Range(1, Generator.GetMaxArity()) )
+        @foreach( var n in Enumerable.Range(1, GeneratorForAst.GetMaxArity()) )
         {
             @://Function @n
             @:var @("func"+n) = function as @("ReqlFunction"+n);

@@ -1,0 +1,16 @@
+{
+  "desc": "Regression tests for issue",
+  "tests": [
+    {
+      "cd": "r.db('test').table_create('t665')",
+      "def": "t = r.db('test').table('t665')"
+    },
+    {
+      "cd": "t.insert([{'id':1}, {'id':4}])",
+      "ot": "({'unchanged':0, 'skipped':0, 'replaced':0, 'inserted':2, 'errors':0, 'deleted':0 })"
+    },
+    {
+      "cd": "r.db('test').table_drop('t665')"
+    }
+  ]
+}

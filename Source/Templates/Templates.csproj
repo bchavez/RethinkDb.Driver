@@ -34,6 +34,38 @@
       <HintPath>..\packages\Humanizer.1.37.7\lib\portable-win+net40+sl50+wp8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Humanizer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="IronPython, Version=2.7.5.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.5\lib\Net45\IronPython.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IronPython.Modules, Version=2.7.5.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.5\lib\Net45\IronPython.Modules.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IronPython.SQLite, Version=2.7.5.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.5\lib\Net45\IronPython.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IronPython.Wpf, Version=2.7.5.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.5\lib\Net45\IronPython.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.5\lib\Net45\Microsoft.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.5\lib\Net45\Microsoft.Scripting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.AspNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.5\lib\Net45\Microsoft.Scripting.AspNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPython.2.7.5\lib\Net45\Microsoft.Scripting.Metadata.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -46,6 +78,14 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml" />
+    <Reference Include="YamlDotNet, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.3.7.0\lib\net35\YamlDotNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="YamlDotNet.Dynamic, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.Dynamic.3.2.3\lib\net40\YamlDotNet.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Z.ExtensionMethods.WithOneNamespace, Version=2.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Z.ExtensionMethods.WithOneNamespace.2.0.7\lib\net45\Z.ExtensionMethods.WithOneNamespace.dll</HintPath>
       <Private>True</Private>
@@ -117,7 +157,8 @@
     <Compile Include="CodeGen\Util\CSharpStyle.cs" />
     <Compile Include="CodeGen\Util\Signature.cs" />
     <Compile Include="CSharpTermInfoMutator.cs" />
-    <Compile Include="Generator.cs" />
+    <Compile Include="GeneratorForAst.cs" />
+    <Compile Include="GeneratorForUnitTests.cs" />
     <Compile Include="Metadata\MetaDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CodeGen\EnumTemplate.generated.cs">
@@ -126,6 +167,7 @@
       <DependentUpon>EnumTemplate.cshtml</DependentUpon>
     </Compile>
     <Compile Include="TemplateTest.cs" />
+    <Compile Include="UnitTests\UnitTestDb.cs" />
     <Compile Include="Utils\ExtensionsForTesting.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -187,10 +229,132 @@
     </None>
     <None Include="packages.config" />
     <None Include="razorgenerator.directives" />
+    <None Include="UnitTests\aggregation.json" />
+    <None Include="UnitTests\changefeeds\edge.json" />
+    <None Include="UnitTests\changefeeds\idxcopy.json" />
+    <None Include="UnitTests\changefeeds\include_states.json" />
+    <None Include="UnitTests\changefeeds\point.json" />
+    <None Include="UnitTests\changefeeds\sindex.json" />
+    <None Include="UnitTests\changefeeds\table.json" />
+    <None Include="UnitTests\control.json" />
+    <None Include="UnitTests\datum\array.json" />
+    <None Include="UnitTests\datum\binary.json" />
+    <None Include="UnitTests\datum\bool.json" />
+    <None Include="UnitTests\datum\null.json" />
+    <None Include="UnitTests\datum\number.json" />
+    <None Include="UnitTests\datum\object.json" />
+    <None Include="UnitTests\datum\string.json" />
+    <None Include="UnitTests\datum\typeof.json" />
+    <None Include="UnitTests\datum\uuid.json" />
+    <None Include="UnitTests\default.json" />
+    <None Include="UnitTests\geo\constructors.json" />
+    <None Include="UnitTests\geo\geojson.json" />
+    <None Include="UnitTests\geo\indexing.json" />
+    <None Include="UnitTests\geo\intersection_inclusion.json" />
+    <None Include="UnitTests\geo\operations.json" />
+    <None Include="UnitTests\geo\primitives.json" />
+    <None Include="UnitTests\joins.json" />
+    <None Include="UnitTests\json.json" />
+    <None Include="UnitTests\limits.json" />
+    <None Include="UnitTests\match.json" />
+    <None Include="UnitTests\math_logic\add.json" />
+    <None Include="UnitTests\math_logic\aliases.json" />
+    <None Include="UnitTests\math_logic\comparison.json" />
+    <None Include="UnitTests\math_logic\div.json" />
+    <None Include="UnitTests\math_logic\floor_ceil_round.json" />
+    <None Include="UnitTests\math_logic\logic.json" />
+    <None Include="UnitTests\math_logic\math.json" />
+    <None Include="UnitTests\math_logic\mod.json" />
+    <None Include="UnitTests\math_logic\mul.json" />
+    <None Include="UnitTests\math_logic\sub.json" />
+    <None Include="UnitTests\meta\composite.json" />
+    <None Include="UnitTests\meta\dbs.json" />
+    <None Include="UnitTests\meta\table.json" />
+    <None Include="UnitTests\mutation\atomic_get_set.json" />
+    <None Include="UnitTests\mutation\delete.json" />
+    <None Include="UnitTests\mutation\insert.json" />
+    <None Include="UnitTests\mutation\replace.json" />
+    <None Include="UnitTests\mutation\sync.json" />
+    <None Include="UnitTests\mutation\update.json" />
+    <None Include="UnitTests\polymorphism.json" />
+    <None Include="UnitTests\random.json" />
+    <None Include="UnitTests\range.json" />
+    <None Include="UnitTests\regression\1001.json" />
+    <None Include="UnitTests\regression\1023.json" />
+    <None Include="UnitTests\regression\1081.json" />
+    <None Include="UnitTests\regression\1132.json" />
+    <None Include="UnitTests\regression\1155.json" />
+    <None Include="UnitTests\regression\1179.json" />
+    <None Include="UnitTests\regression\1468.json" />
+    <None Include="UnitTests\regression\1789.json" />
+    <None Include="UnitTests\regression\2052.json" />
+    <None Include="UnitTests\regression\2399.json" />
+    <None Include="UnitTests\regression\2639.rb.json" />
+    <None Include="UnitTests\regression\2696.json" />
+    <None Include="UnitTests\regression\2697.json" />
+    <None Include="UnitTests\regression\2709.json" />
+    <None Include="UnitTests\regression\2710.json" />
+    <None Include="UnitTests\regression\2766.json" />
+    <None Include="UnitTests\regression\2767.json" />
+    <None Include="UnitTests\regression\2774.json" />
+    <None Include="UnitTests\regression\2838.json" />
+    <None Include="UnitTests\regression\2930.json" />
+    <None Include="UnitTests\regression\3057.json" />
+    <None Include="UnitTests\regression\3059.json" />
+    <None Include="UnitTests\regression\309.json" />
+    <None Include="UnitTests\regression\3444.json" />
+    <None Include="UnitTests\regression\3449.json" />
+    <None Include="UnitTests\regression\354.json" />
+    <None Include="UnitTests\regression\3637.json" />
+    <None Include="UnitTests\regression\370.json" />
+    <None Include="UnitTests\regression\3745.json" />
+    <None Include="UnitTests\regression\3759.json" />
+    <None Include="UnitTests\regression\4030.json" />
+    <None Include="UnitTests\regression\4146.json" />
+    <None Include="UnitTests\regression\4431.json" />
+    <None Include="UnitTests\regression\4462.json" />
+    <None Include="UnitTests\regression\4501.json" />
+    <None Include="UnitTests\regression\453.json" />
+    <None Include="UnitTests\regression\4582.json" />
+    <None Include="UnitTests\regression\4591.json" />
+    <None Include="UnitTests\regression\46.json" />
+    <None Include="UnitTests\regression\469.json" />
+    <None Include="UnitTests\regression\522.json" />
+    <None Include="UnitTests\regression\545.json" />
+    <None Include="UnitTests\regression\546.json" />
+    <None Include="UnitTests\regression\568.json" />
+    <None Include="UnitTests\regression\578.json" />
+    <None Include="UnitTests\regression\579.json" />
+    <None Include="UnitTests\regression\619.json" />
+    <None Include="UnitTests\regression\665.json" />
+    <None Include="UnitTests\regression\678.json" />
+    <None Include="UnitTests\regression\718.json" />
+    <None Include="UnitTests\regression\730.json" />
+    <None Include="UnitTests\regression\757.json" />
+    <None Include="UnitTests\regression\763.js.json" />
+    <None Include="UnitTests\regression\779.json" />
+    <None Include="UnitTests\regression\831.json" />
+    <None Include="UnitTests\selection.json" />
+    <None Include="UnitTests\sindex\api.json" />
+    <None Include="UnitTests\sindex\status.json" />
+    <None Include="UnitTests\sindex\truncation.json" />
+    <None Include="UnitTests\timeout.json" />
+    <None Include="UnitTests\times\api.json" />
+    <None Include="UnitTests\times\constructors.json" />
+    <None Include="UnitTests\times\index.json" />
+    <None Include="UnitTests\times\portions.json" />
+    <None Include="UnitTests\times\shim.json" />
+    <None Include="UnitTests\times\timezones.json" />
+    <None Include="UnitTests\times\time_arith.json" />
+    <None Include="UnitTests\transformation.json" />
+    <None Include="UnitTests\transform\array.json" />
+    <None Include="UnitTests\transform\map.json" />
+    <None Include="UnitTests\transform\object.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Metadata\reql_docs.js" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

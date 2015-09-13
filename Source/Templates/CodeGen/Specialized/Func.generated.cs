@@ -141,7 +141,7 @@ WriteLiteral("\r\n    \r\n    \r\n    public static Func FromLambda(ReqlLambda f
 
             
             #line 42 "..\..\CodeGen\Specialized\Func.cshtml"
-         foreach( var n in Enumerable.Range(1, Generator.GetMaxArity()) )
+         foreach( var n in Enumerable.Range(1, GeneratorForAst.GetMaxArity()) )
         {
 
             

@@ -93,7 +93,7 @@ If you wish to update the C# AST classes (and enums) you first
 need to re-generate `*.json` files from `metajava.py` script that resides the Java driver. Then
 copy/overwrite the `*.json` files in `Source/Templates/Metadata`.
 
-The `build codegen` task will use the `*.json` files to regenerate all the AST C# classes; which, in effect, runs `Templates\Generator.cs:Generate_All()`.
+The `build codegen` task will use the `*.json` files to regenerate all the AST C# classes; which, in effect, runs `Templates\GeneratorForAst.cs:Generate_All()`.
 
 #### CodeGen Templates
 

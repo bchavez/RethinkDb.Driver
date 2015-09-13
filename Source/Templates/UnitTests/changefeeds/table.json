@@ -1,0 +1,137 @@
+{
+  "desc": "Test changefeeds on a table",
+  "table_variable_name": "tbl",
+  "tests": [
+    {
+      "cd": "all = tbl.changes()"
+    },
+    {
+      "cd": "tbl.insert([{'id':1}, {'id':2}])",
+      "ot": "partial({'errors':0, 'inserted':2})"
+    },
+    {
+      "cd": "fetch(all, 2)",
+      "ot": "bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])"
+    },
+    {
+      "cd": "tbl.get(1).update({'version':1})",
+      "ot": "partial({'errors':0, 'replaced':1})"
+    },
+    {
+      "cd": "fetch(all, 1)",
+      "ot": [
+        {
+          "old_val": {
+            "id": "1"
+          },
+          "new_val": {
+            "id": "1",
+            "version": "1"
+          }
+        }
+      ]
+    },
+    {
+      "cd": "tbl.get(1).delete()",
+      "ot": "partial({'errors':0, 'deleted':1})"
+    },
+    {
+      "cd": "fetch(all, 1)",
+      "ot": [
+        {
+          "old_val": {
+            "id": "1",
+            "version": "1"
+          },
+          "new_val": null
+        }
+      ]
+    },
+    {
+      "cd": "pluck = tbl.changes().pluck({'new_val':['version']})"
+    },
+    {
+      "cd": "tbl.insert([{'id':5, 'version':5}])",
+      "ot": "partial({'errors':0, 'inserted':1})"
+    },
+    {
+      "cd": "fetch(pluck, 1)",
+      "ot": [
+        {
+          "new_val": {
+            "version": "5"
+          }
+        }
+      ]
+    },
+    {
+      "cd": "ordered = tbl.changes().order_by('id')",
+      "ot": "err('ReqlQueryLogicError', \"Cannot call a terminal (`reduce`, `count`, etc.) on an infinite stream (such as a changefeed).\")"
+    },
+    {
+      "def": "vtbl = r.db('rethinkdb').table('_debug_scratch')"
+    },
+    {
+      "cd": "allVirtual = vtbl.changes()"
+    },
+    {
+      "cd": "vtbl.insert([{'id':1}, {'id':2}])",
+      "ot": "partial({'errors':0, 'inserted':2})"
+    },
+    {
+      "cd": "fetch(allVirtual, 2)",
+      "ot": "bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])"
+    },
+    {
+      "cd": "vtbl.get(1).update({'version':1})",
+      "ot": "partial({'errors':0, 'replaced':1})"
+    },
+    {
+      "cd": "fetch(allVirtual, 1)",
+      "ot": [
+        {
+          "old_val": {
+            "id": "1"
+          },
+          "new_val": {
+            "id": "1",
+            "version": "1"
+          }
+        }
+      ]
+    },
+    {
+      "cd": "vtbl.get(1).delete()",
+      "ot": "partial({'errors':0, 'deleted':1})"
+    },
+    {
+      "cd": "fetch(allVirtual, 1)",
+      "ot": [
+        {
+          "old_val": {
+            "id": "1",
+            "version": "1"
+          },
+          "new_val": null
+        }
+      ]
+    },
+    {
+      "cd": "vpluck = vtbl.changes().pluck({'new_val':['version']})"
+    },
+    {
+      "cd": "vtbl.insert([{'id':5, 'version':5}])",
+      "ot": "partial({'errors':0, 'inserted':1})"
+    },
+    {
+      "cd": "fetch(vpluck, 1)",
+      "ot": [
+        {
+          "new_val": {
+            "version": "5"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "desc": "Tests meta queries for databases",
+  "tests": [
+    {
+      "cd": "r.db_list()",
+      "ot": "bag(['rethinkdb', 'test'])"
+    },
+    {
+      "cd": "r.db_create('a')",
+      "ot": "partial({'dbs_created':1})"
+    },
+    {
+      "cd": "r.db_create('b')",
+      "ot": "partial({'dbs_created':1})"
+    },
+    {
+      "cd": "r.db_list()",
+      "ot": "bag(['rethinkdb', 'a', 'b', 'test'])"
+    },
+    {
+      "cd": "r.db('a').config()",
+      "ot": {
+        "name": "a",
+        "uuid": "uuid()"
+      }
+    },
+    {
+      "cd": "r.db_drop('b')",
+      "ot": "partial({'dbs_dropped':1})"
+    },
+    {
+      "cd": "r.db_list()",
+      "ot": "bag(['rethinkdb', 'a', 'test'])"
+    },
+    {
+      "cd": "r.db_drop('a')",
+      "ot": "partial({'dbs_dropped':1})"
+    },
+    {
+      "cd": "r.db_list()",
+      "ot": "bag(['rethinkdb', 'test'])"
+    },
+    {
+      "cd": "r.db_create('bar')",
+      "ot": "partial({'dbs_created':1})"
+    },
+    {
+      "cd": "r.db_create('bar')",
+      "ot": "err('ReqlOpFailedError', 'Database `bar` already exists.', [0])"
+    },
+    {
+      "cd": "r.db_drop('bar')",
+      "ot": "partial({'dbs_dropped':1})"
+    },
+    {
+      "cd": "r.db_drop('bar')",
+      "ot": "err('ReqlOpFailedError', 'Database `bar` does not exist.', [0])"
+    }
+  ]
+}

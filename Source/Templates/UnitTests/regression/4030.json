@@ -1,0 +1,34 @@
+{
+  "desc": "test that r.union is a top level function",
+  "table_variable_name": "tbl",
+  "tests": [
+    {
+      "def": "data = [{'id':1}, {'id':2}, {'id':3}, {'id':4}, {'id':5}, {'id':6}]"
+    },
+    {
+      "def": "changes = [{'id':7}, {'id':8}, {'id':9}, {'id':10}]"
+    },
+    {
+      "cd": "tbl.insert(data)",
+      "ot": "partial({'errors':0, 'inserted':6})"
+    },
+    {
+      "cd": "tbl.count()",
+      "ot": "(6)"
+    },
+    {
+      "cd": "tbl.union(tbl)",
+      "ot": {
+        "cd": "bag(data * 2)",
+        "js": "bag(data.concat(data))"
+      }
+    },
+    {
+      "cd": "r.union(tbl, tbl)",
+      "ot": {
+        "cd": "bag(data * 2)",
+        "js": "bag(data.concat(data))"
+      }
+    }
+  ]
+}

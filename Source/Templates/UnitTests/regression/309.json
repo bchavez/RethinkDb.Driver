@@ -1,0 +1,17 @@
+{
+  "desc": "Regression tests for issue",
+  "table_variable_name": "t",
+  "tests": [
+    {
+      "cd": "t.insert([{'id':0}, {'id':1}])"
+    },
+    {
+      "cd": "t.union([2,3,4])",
+      "ot": "bag([{'id':0}, {'id':1}, 2, 3, 4])"
+    },
+    {
+      "cd": "r.expr([2,3,4]).union(t)",
+      "ot": "bag([{'id':0}, {'id':1}, 2, 3, 4])"
+    }
+  ]
+}

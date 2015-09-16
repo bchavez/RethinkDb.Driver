@@ -2,9 +2,9 @@ version: 0.0.{build}
 
 build_script: build.cmd pack
 
-test:
-  assemblies:
-    - __compile\RethinkDb.Driver.Tests.dll
+test: off
+#  assemblies:
+#    - __compile\RethinkDb.Driver.Tests.dll
 
 artifacts:
   - path: __package\*.nupkg

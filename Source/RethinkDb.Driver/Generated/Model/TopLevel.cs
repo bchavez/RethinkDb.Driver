@@ -14,6 +14,8 @@
 // ReSharper disable CheckNamespace
 
 using System;
+using System.Linq;
+using System.Collections;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 
@@ -26,6 +28,14 @@ namespace RethinkDb.Driver.Ast {
 
         public ReqlExpr row(params object[] values) {
             throw new ReqlDriverError("r.row is not implemented in the C# driver. Use lambda syntax instead.");
+        }
+
+        public MapObject hashMap(string key, object val) {
+            return new MapObject().with(key, val);
+        }
+
+        public IList array(params object[] values){
+            return values.ToList();
         }
 
                     public Javascript js ( Object expr )

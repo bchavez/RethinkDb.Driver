@@ -71,8 +71,8 @@ namespace RethinkDb.Driver.Ast {
 /// "overwrite": "T_BOOL"
 ///</summary>
         public IndexRename optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new IndexRename (this.Args, newOptargs);
         }
 

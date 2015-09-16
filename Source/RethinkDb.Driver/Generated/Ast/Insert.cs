@@ -91,8 +91,8 @@ namespace RethinkDb.Driver.Ast {
 ///  "conflict": "E_CONFLICT"
 ///</summary>
         public Insert optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Insert (this.Args, newOptargs);
         }
 

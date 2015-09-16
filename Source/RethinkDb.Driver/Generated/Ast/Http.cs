@@ -90,8 +90,8 @@ namespace RethinkDb.Driver.Ast {
 ///  ]
 ///</summary>
         public Http optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Http (this.Args, newOptargs);
         }
 

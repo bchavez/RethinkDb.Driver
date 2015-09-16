@@ -10,7 +10,7 @@ namespace RethinkDb.Driver.Model
 		{
 		}
 
-		public virtual MapObject With(string key, object value)
+		public virtual MapObject with(string key, object value)
 		{
 			this[key] = value;
 			return this;

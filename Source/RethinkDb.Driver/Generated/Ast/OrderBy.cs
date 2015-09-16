@@ -107,8 +107,8 @@ namespace RethinkDb.Driver.Ast {
 /// "index": "T_EXPR"
 ///</summary>
         public OrderBy optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new OrderBy (this.Args, newOptargs);
         }
 

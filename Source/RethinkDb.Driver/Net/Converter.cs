@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Net
 	    public static object ToBinary(byte[] data)
 	    {
 	        var mob = new MapObject();
-	        mob.With(PSEUDOTYPE_KEY, BINARY);
-	        mob.With("data", Convert.ToBase64String(data));
+	        mob.with(PSEUDOTYPE_KEY, BINARY);
+	        mob.with("data", Convert.ToBase64String(data));
 	        return mob;
 	    }
 	}

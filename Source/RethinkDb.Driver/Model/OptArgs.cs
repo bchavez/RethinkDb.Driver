@@ -5,7 +5,7 @@ namespace RethinkDb.Driver.Model
 {
 	public class OptArgs : Dictionary<string, ReqlAst>
 	{
-		public virtual OptArgs With(string key, object value)
+		public virtual OptArgs with(string key, object value)
 		{
 			if (key != null)
 			{
@@ -14,7 +14,7 @@ namespace RethinkDb.Driver.Model
 			return this;
 		}
 
-		public virtual OptArgs With(string key, IList<object> value)
+		public virtual OptArgs with(string key, IList<object> value)
 		{
 			if (key != null)
 			{
@@ -23,7 +23,7 @@ namespace RethinkDb.Driver.Model
 			return this;
 		}
 
-		public static OptArgs FromMap(IDictionary<string, ReqlAst> map)
+		public static OptArgs fromMap(IDictionary<string, ReqlAst> map)
 		{
 			OptArgs oa = new OptArgs();
 

@@ -84,8 +84,8 @@ namespace RethinkDb.Driver.Ast {
 ///  "unit": "E_UNIT"
 ///</summary>
         public Distance optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Distance (this.Args, newOptargs);
         }
 

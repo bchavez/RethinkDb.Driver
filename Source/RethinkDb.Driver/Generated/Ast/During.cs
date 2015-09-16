@@ -78,8 +78,8 @@ namespace RethinkDb.Driver.Ast {
 ///  "right_bound": "E_BOUND"
 ///</summary>
         public During optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new During (this.Args, newOptargs);
         }
 

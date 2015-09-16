@@ -72,8 +72,8 @@ namespace RethinkDb.Driver.Ast {
 ///  "geo": "T_BOOL"
 ///</summary>
         public IndexCreate optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new IndexCreate (this.Args, newOptargs);
         }
 

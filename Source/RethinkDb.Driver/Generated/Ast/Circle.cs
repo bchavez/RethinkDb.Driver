@@ -86,8 +86,8 @@ namespace RethinkDb.Driver.Ast {
 ///  "fill": "T_BOOL"
 ///</summary>
         public Circle optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Circle (this.Args, newOptargs);
         }
 

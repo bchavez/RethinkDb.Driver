@@ -79,8 +79,8 @@ namespace RethinkDb.Driver.Ast {
 ///  "emergency_repair": "E_EMERGENCY_REPAIR"
 ///</summary>
         public Reconfigure optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Reconfigure (this.Args, newOptargs);
         }
 

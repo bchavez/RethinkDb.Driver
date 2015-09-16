@@ -78,8 +78,8 @@ namespace RethinkDb.Driver.Ast {
 ///  "multi": "T_BOOL"
 ///</summary>
         public Group optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Group (this.Args, newOptargs);
         }
 

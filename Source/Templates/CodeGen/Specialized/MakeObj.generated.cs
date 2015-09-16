@@ -115,8 +115,8 @@ WriteLiteral("\r\n\r\n");
 
 DefineSection("SpecialMethods", () => {
 
-WriteLiteral("\r\n        public static MakeObj FromMap(Dictionary<string, ReqlAst> map){\r\n      " +
-"      return new MakeObj(OptArgs.FromMap(map));\r\n        }\r\n");
+WriteLiteral("\r\n        public static MakeObj fromMap(Dictionary<string, ReqlAst> map){\r\n      " +
+"      return new MakeObj(OptArgs.fromMap(map));\r\n        }\r\n");
 
 
 });

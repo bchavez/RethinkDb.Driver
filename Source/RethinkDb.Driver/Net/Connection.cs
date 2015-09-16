@@ -209,7 +209,7 @@ namespace RethinkDb.Driver.Net
         {
             if( !globalOpts.ContainsKey("db") && this.dbname != null )
             {
-                globalOpts.With("db", this.dbname);
+                globalOpts.with("db", this.dbname);
             }
         }
 

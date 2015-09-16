@@ -83,8 +83,8 @@
 @:/// @optArgs.ToString().Trim('{', '}').Trim().Replace("\n","\n///")
 @:///</summary>
         @:public @Class(ClassName) optArg(string optname, object value) {
-        @:     var newOptargs = OptArgs.FromMap(this.OptArgs)
-        @:                             .With(optname, value);
+        @:     var newOptargs = OptArgs.fromMap(this.OptArgs)
+        @:                             .with(optname, value);
         @:     return new @Class(ClassName) (this.Args, newOptargs);
         @:}
      }

@@ -84,8 +84,8 @@ namespace RethinkDb.Driver.Ast {
 ///  "geo_system": "E_GEO_SYSTEM"
 ///</summary>
         public GetNearest optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new GetNearest (this.Args, newOptargs);
         }
 

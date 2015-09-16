@@ -53,8 +53,8 @@ namespace RethinkDb.Driver.Ast {
 /// "timeout": "T_NUM"
 ///</summary>
         public Javascript optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Javascript (this.Args, newOptargs);
         }
 

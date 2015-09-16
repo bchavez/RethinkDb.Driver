@@ -75,8 +75,8 @@ namespace RethinkDb.Driver.Ast {
 ///  ]
 ///</summary>
         public Delete optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Delete (this.Args, newOptargs);
         }
 

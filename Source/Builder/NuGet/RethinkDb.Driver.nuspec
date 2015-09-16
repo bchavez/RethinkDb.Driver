@@ -5,19 +5,22 @@
     <version>0.0.0.0</version>
     <authors>Brian Chavez</authors>
     <owners>Brian Chavez</owners>
-    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/bchavez/RethinkDb.Driver</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/Docs/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     
-    <summary>A RethinkDB ReQL database driver written in C# striving for 100% API compatibility and completeness. Architecturally, this driver is a one-to-one port of the offical Java driver.</summary>
+    <summary>A RethinkDB database driver written in C# striving for 100% ReQL API compatibility and completeness. Architecturally, this driver is a one-to-one port of the official Java driver.</summary>
     
-    <description>A RethinkDB ReQL database driver written in C# striving for 100% API compatibility and completeness. Architecturally, this driver is a one-to-one port of the offical Java driver.</description>
+    <description>A RethinkDB database driver written in C# striving for 100% ReQL API compatibility and completeness. Architecturally, this driver is a one-to-one port of the official Java driver.</description>
     
     <releaseNotes>
       History:
+      v0.0.4-alpha5
+      * Added a toplevel r.array and r.hashMap utility
+      
       v0.0.4-alpha4
-      * Fix null reference exception: JObject.FromObject before objects to JArray list. -cadabloom
+      * PR#2: Fix null reference exception: JObject.FromObject before objects to JArray list. -cadabloom
 
       v0.0.4-alpha3
       * Fixed recursion in MakeObject

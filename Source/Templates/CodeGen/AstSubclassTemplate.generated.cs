@@ -452,13 +452,13 @@ WriteLiteral(" optArg(string optname, object value) {\r\n");
 
 WriteLiteral("        ");
 
-WriteLiteral("     var newOptargs = OptArgs.FromMap(this.OptArgs)\r\n");
+WriteLiteral("     var newOptargs = OptArgs.fromMap(this.OptArgs)\r\n");
 
 
 
 WriteLiteral("        ");
 
-WriteLiteral("                             .With(optname, value);\r\n");
+WriteLiteral("                             .with(optname, value);\r\n");
 
 
 

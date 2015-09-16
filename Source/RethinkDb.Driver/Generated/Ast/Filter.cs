@@ -95,8 +95,8 @@ namespace RethinkDb.Driver.Ast {
 /// "default": "T_EXPR"
 ///</summary>
         public Filter optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Filter (this.Args, newOptargs);
         }
 

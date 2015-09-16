@@ -78,8 +78,8 @@ namespace RethinkDb.Driver.Ast {
 ///  "include_states": "T_BOOL"
 ///</summary>
         public Changes optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Changes (this.Args, newOptargs);
         }
 

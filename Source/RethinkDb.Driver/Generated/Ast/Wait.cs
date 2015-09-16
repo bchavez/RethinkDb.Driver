@@ -72,8 +72,8 @@ namespace RethinkDb.Driver.Ast {
 ///  "timeout": "T_NUM"
 ///</summary>
         public Wait optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Wait (this.Args, newOptargs);
         }
 

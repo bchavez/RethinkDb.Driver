@@ -82,8 +82,8 @@ namespace RethinkDb.Driver.Ast {
 ///  "non_atomic": "T_BOOL"
 ///</summary>
         public Update optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Update (this.Args, newOptargs);
         }
 

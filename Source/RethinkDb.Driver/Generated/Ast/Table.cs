@@ -75,8 +75,8 @@ namespace RethinkDb.Driver.Ast {
 ///  "identifier_format": "E_IDENTIFIER_FORMAT"
 ///</summary>
         public Table optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Table (this.Args, newOptargs);
         }
 

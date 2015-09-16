@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Ast {
 /// "index": "T_STR"
 ///</summary>
         public GetIntersecting optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new GetIntersecting (this.Args, newOptargs);
         }
 

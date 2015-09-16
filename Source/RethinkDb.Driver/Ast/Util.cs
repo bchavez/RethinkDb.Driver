@@ -56,7 +56,7 @@ namespace RethinkDb.Driver.Ast
 
 					obj[(string) entry.Key] = ToReqlAst(entry.Value);
 				}
-				return MakeObj.FromMap(obj);
+				return MakeObj.fromMap(obj);
 			}
 
 			if (val is ReqlLambda)

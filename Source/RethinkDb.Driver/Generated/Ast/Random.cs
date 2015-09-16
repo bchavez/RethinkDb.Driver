@@ -71,8 +71,8 @@ namespace RethinkDb.Driver.Ast {
 /// "float": "T_BOOL"
 ///</summary>
         public Random optArg(string optname, object value) {
-             var newOptargs = OptArgs.FromMap(this.OptArgs)
-                                     .With(optname, value);
+             var newOptargs = OptArgs.fromMap(this.OptArgs)
+                                     .with(optname, value);
              return new Random (this.Args, newOptargs);
         }
 

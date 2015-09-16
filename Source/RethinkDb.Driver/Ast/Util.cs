@@ -47,7 +47,7 @@ namespace RethinkDb.Driver.Ast
 			if (val is IDictionary)
 			{
 				var obj = new Dictionary<string, ReqlAst>();
-				foreach (var entry in val as IDictionary<string, ReqlAst>)
+				foreach (var entry in val as IDictionary<string, object>)
 				{
 					if (!(entry.Key is string))
 					{

@@ -49,7 +49,7 @@ namespace RethinkDb.Driver.Ast
 
             if( OptArgs.Count > 0 )
             {
-                list.Add(BuildOptarg(OptArgs));
+                list.Add(JObject.FromObject(BuildOptarg(OptArgs)));
             }
             return list;
         }

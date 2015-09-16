@@ -16,6 +16,9 @@
     
     <releaseNotes>
       History:
+      v0.0.4-alpha4
+      * Fix null reference exception: JObject.FromObject before objects to JArray list. -cadabloom
+
       v0.0.4-alpha3
       * Fixed recursion in MakeObject
       * optArg now explicitly included where needed

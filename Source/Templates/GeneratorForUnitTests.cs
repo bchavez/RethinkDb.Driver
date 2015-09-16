@@ -6,6 +6,8 @@ using IronPython;
 using IronPython.Compiler;
 using IronPython.Compiler.Ast;
 using IronPython.Hosting;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
 using Microsoft.Scripting.Hosting.Providers;
@@ -21,40 +23,50 @@ using Z.ExtensionMethods;
 
 namespace Templates
 {
-	public class SharpWalker : PythonWalker
+	public class ReQLVisitor
 	{
-		public override void PostWalk(NameExpression node)
-		{
-			base.PostWalk(node);
-			Console.WriteLine("NODE NAME: "+node.Name);
-		}
-
-		public override void PostWalk(CallExpression node)
-		{
-			base.PostWalk(node);
-			Console.WriteLine("CALL EXPRESSION: Target: " + node.Target + ", Args: "+ node.Args.StringJoin(", "));
-		}
-
-		public override void PostWalk(MemberExpression node)
-		{
-			base.PostWalk(node);
-			Console.WriteLine("MEMBER EXPRESSION: Name: " + node.Name + ", Target:" + node.Target);
-		}
-
-		public override void PostWalk(ExpressionStatement node)
-		{
-			base.PostWalk(node);
-			Console.WriteLine("EXPRESSION:" + node.Expression);
-		}
-
-		public override bool Walk(LambdaExpression node)
-		{
-			return base.Walk(node);
-
-		}
+		
+	}
+	public class TestDef { }
+	public class Def : TestDef
+	{
+		
+	}
+	public class Query : TestDef
+	{
+		public Expression QueryAst;
+		public string RawLine;
 
 	}
+	public static class TestAndDefs
+	{
+		public static TestDef Inspect(Statement s, string rawLine)
+		{
+			if( s is ExpressionStatement )
+			{
+				var es = s as ExpressionStatement;
+				
+				return new Query()
+					{
+						QueryAst = es.Expression,
+						RawLine = rawLine
+					};
+			}
+			return null;
+		}
 
+		public static void AstToCSharp(TestDef item)
+		{
+			if( item is Query )
+			{
+				
+			}
+			else if( item is Def )
+			{
+				
+			}
+		}
+	}
 	[TestFixture]
 	public class GeneratorForUnitTests
 	{
@@ -118,9 +130,13 @@ namespace Templates
 
 				var parser = GetParser(py, pyengine);
 				var ast = parser.ParseSingleStatement();
-				var walker = new SharpWalker();
-				ast.Walk(walker);
 
+
+				var testDef = TestAndDefs.Inspect(ast.Body, py);
+				//var walker = new SharpWalker();
+				//ast.Walk(walker);
+
+				//Console.WriteLine("+"+walker.gen);
 				break;
 			}
 		}
@@ -140,6 +156,7 @@ namespace Templates
 			};
 
 		[Test]
+		[Explicit]
 		public void ImportYamlTestsAndConvertToJson()
 		{
 			var files = GetAllYamlTests();

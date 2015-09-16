@@ -37,7 +37,7 @@ namespace Builder
             new Bau(Arguments.Parse(args))
                 .DependsOn(Clean, Restore, Build)
                 .MSBuild(Build).Desc("Invokes MSBuild to build solution")
-                .DependsOn(BuildInfo, CodeGen)
+                .DependsOn(Clean, BuildInfo, CodeGen)
                 .Do(msb =>
                     {
                         msb.ToolsVersion = "14.0";

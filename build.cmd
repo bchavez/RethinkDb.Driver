@@ -1,7 +1,7 @@
 @ECHO OFF
 SETLOCAL
 
-set BUILD_VERSION=0.0.4-alpha3
+set BUILD_VERSION=0.0.4-alpha4
 
 IF NOT DEFINED DevEnvDir (
 	IF DEFINED vs140comntools ( 

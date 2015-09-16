@@ -9,8 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver", "Rethink
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Templates", "Templates\Templates.csproj", "{37C1CCF5-F8DA-4F56-93AB-C2F6BAFB01B4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{BBBED03D-30BD-4F0F-8724-7541FF090361}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{BBBED03D-30BD-4F0F-8724-7541FF090361}"
 	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
 		..\build.cmd = ..\build.cmd
 		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md

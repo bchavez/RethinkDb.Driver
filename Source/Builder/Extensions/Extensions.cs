@@ -46,9 +46,9 @@ namespace Builder.Extensions
             ver = Environment.GetEnvironmentVariable("APPVEYOR_REPO_TAG_NAME")?.Trim(' ', 'v');
             if( ver.IsNotNullOrWhiteSpace() )
                 return ver;
-            ver = Environment.GetEnvironmentVariable("APPVEYOR_BUILD_NUMBER")?.Trim();
+            ver = Environment.GetEnvironmentVariable("APPVEYOR_BUILD_VERSION")?.Trim();
             if (ver.IsNotNullOrWhiteSpace())
-                return $"0.0.{ver}-ci";
+                return $"{ver}-ci";
             return "0.0.0-localbuild";
         }
     }

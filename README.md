@@ -40,8 +40,19 @@ public void can_connect()
 }
 // Output: 8
 ```
-You should be able to follow any examples found in the offical [ReQL documentation](http://www.rethinkdb.com/api/javascript/) with this driver.
+You should be able to follow any examples found in the official [ReQL documentation](http://www.rethinkdb.com/api/javascript/) with this driver.
 
+
+
+Contributing
+------------
+Here are some helpful guidelines to keep in mind when contributing.  While following them isn't absolutely required, it does help everyone to accept your pull-requests with maximum awesomeness.
+
+* :heavy_check_mark: **CONSIDER** adding a unit test if your PR resolves an issue.
+* :heavy_check_mark: **DO** keep pull requests small so they can be easily digested. 
+* :heavy_check_mark: **DO** make sure unit tests pass.
+* :x: **AVOID** break the continuous integration build. 
+* :x: **AVOID** making significant changes to the driver's overall architecture. We'd like to keep this driver in-sync with the overall architecture of the Java driver so both projects benefit from bug fixes and new features. 
 
 Building
 --------
@@ -64,7 +75,7 @@ The following folders at the root level be generated:
 * `__package` - Contains the result of the packaging process.
 
 #### Project Structure
-* `build.cmd` - Ensures build enviornment and fowards build commands to `Builder`.
+* `build.cmd` - Ensures build environment and forwards build commands to `Builder`.
 * `Source\Builder` - Primary location where build tasks are defined. See [`BauBuild.cs`](https://github.com/bchavez/RethinkDb.Driver/blob/master/Source/Builder/BauBuild.cs).
 * `Source\RethinkDb.Driver` - The RethinkDB C# driver.
 * `Source\RethinkDb.Driver.Tests` - Driver unit tests.
@@ -78,7 +89,7 @@ There are two main components of this C# driver. The **ReQL Abstract Syntax Tree
 
 The ReQL AST is located in [`Source\RethinkDb.Driver\Generated\Ast`](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/RethinkDb.Driver/Generated). The AST C# classes are generated using code generation templates in `Source\Templates`. The code generation process is similar to the Java driver, except this C# driver
 requires **JSON** metadata files derived the Java driver's
-python scripts (namely, `metajava.py`). The **JSON** metadata files required to rebuild the AST, enums, and various models are:
+python scripts (namely, `metajava.py`). The **JSON** metadata files required to rebuild the AST (and other objects) are:
 
 * `proto_basic.json`
 * `global_info.json`
@@ -88,7 +99,7 @@ python scripts (namely, `metajava.py`). The **JSON** metadata files required to 
 These files reside inside [`Source/Templates/Metadata`](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/Templates/Metadata).
 
 `java_term_info.json` is a special file (not to be confused with `term_info.json`).
-`java_term_info.json` is a more refined output of `term_info.json` that includes extra metadata to support Java language semantics when generating RethinkDB's AST. `java_term_info.json` generated 
+`java_term_info.json` is a more refined output of `term_info.json` that includes extra metadata to support OOP language semantics when generating RethinkDB's AST. `java_term_info.json` generated 
 by running the following command in the Java driver's folder:
 
 `python metajava.py --term-info term_info.json --output-file java_term_info.json generate-java-terminfo`

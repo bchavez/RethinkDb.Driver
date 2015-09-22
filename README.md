@@ -51,7 +51,7 @@ Here are some helpful guidelines to keep in mind when contributing.  While follo
 * :heavy_check_mark: **CONSIDER** adding a unit test if your PR resolves an issue.
 * :heavy_check_mark: **DO** keep pull requests small so they can be easily digested. 
 * :heavy_check_mark: **DO** make sure unit tests pass.
-* :x: **AVOID** break the continuous integration build. 
+* :x: **AVOID** breaking the continuous integration build. 
 * :x: **AVOID** making significant changes to the driver's overall architecture. We'd like to keep this driver in-sync with the overall architecture of the Java driver so both projects benefit from bug fixes and new features. 
 
 Building

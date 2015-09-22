@@ -49,6 +49,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="Z.ExtensionMethods.WithOneNamespace, Version=2.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.ExtensionMethods.WithOneNamespace.2.0.7\lib\net45\Z.ExtensionMethods.WithOneNamespace.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ast\Query.cs" />

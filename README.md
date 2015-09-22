@@ -70,32 +70,34 @@ The following folders at the root level be generated:
 * `Source\RethinkDb.Driver.Tests` - Driver unit tests.
 * `Source\Templates` - Code generation templates.
 
-#### Build Process
+#### Driver Architecture
 
-The build process is similar to the Java driver, except this C# driver
-requires **JSON** metadata files derived from `ql2.proto` by the Java Driver's
-`metajava.py` script. The **JSON** metadata files are:
+There are two main components of this C# driver. The **ReQL Abstract Syntax Tree (AST)** and **the infrastructure** to handle serialization/deserialization of the AST. The infrastructure also handles communication with a RethinkDB server.
+
+#### AST & Code Generation
+
+The ReQL AST is located in [`Source\RethinkDb.Driver\Generated\Ast`](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/RethinkDb.Driver/Generated). The AST C# classes are generated using code generation templates in `Source\Templates`. The code generation process is similar to the Java driver, except this C# driver
+requires **JSON** metadata files derived the Java driver's
+python scripts (namely, `metajava.py`). The **JSON** metadata files required to rebuild the AST, enums, and various models are:
 
 * `proto_basic.json`
 * `global_info.json`
 * `java_term_info.json`
 
 
-These files reside inside [Source/Templates/Metadata](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/Templates/Metadata).
+These files reside inside [`Source/Templates/Metadata`](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/Templates/Metadata).
 
 `java_term_info.json` is a special file (not to be confused with `term_info.json`).
-`java_term_info.json` is a more refined output of `term_info.json` that includes extra metadata to support Java language semantics when producing RethinkDB's AST. `java_term_info.json` generated 
-by running the following command in the Java driver's directory:
+`java_term_info.json` is a more refined output of `term_info.json` that includes extra metadata to support Java language semantics when generating RethinkDB's AST. `java_term_info.json` generated 
+by running the following command in the Java driver's folder:
 
 `python metajava.py --term-info term_info.json --output-file java_term_info.json generate-java-terminfo`
 
-If you wish to update the C# AST classes (and enums) you first
-need to re-generate `*.json` files from `metajava.py` script that resides the Java driver. Then
-copy/overwrite the `*.json` files in `Source/Templates/Metadata`.
+The result of the command above will produce `java_term_info.json`. The **JSON** files inside the Java driver's folder can be copied to & overwritten inside the C# driver's folder `Source/Templates/Metadata`. The `build codegen` task will use the `*.json` files mentioned above to regenerate all AST C# classes, protocol enums, and various models.
 
-The `build codegen` task will use the `*.json` files to regenerate all the AST C# classes; which, in effect, runs `Templates\GeneratorForAst.cs:Generate_All()`.
+`build codegen` build task essentially runs `Templates\GeneratorForAst.cs:Generate_All()`.
 
-#### CodeGen Templates
+#### Changing Code Generation Templates
 
 The code generator templates are located in [`Source/Templates/CodeGen/`](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/Templates/CodeGen).
 The templates are [RazorGenerator](https://github.com/RazorGenerator/RazorGenerator) templates. Updating any of the `*.cshtml` code generation

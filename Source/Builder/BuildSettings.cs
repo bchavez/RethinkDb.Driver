@@ -3,6 +3,7 @@ using Builder.Extensions;
 using FluentBuild;
 using FluentBuild.AssemblyInfoBuilding;
 using FluentFs.Core;
+using Z.ExtensionMethods;
 
 namespace Builder
 {
@@ -19,10 +20,7 @@ namespace Builder
 
     public class BuildContext
     {
-        public static readonly string FullVersion = Environment.GetEnvironmentVariable("FORCE_VERSION")?.Trim() ??
-                                                    Environment.GetEnvironmentVariable("APPVEYOR_REPO_TAG_NAME")?.Trim(' ', 'v') ??
-                                                    Environment.GetEnvironmentVariable("APPVEYOR_BUILD_VERSION")?.Trim() + "-ci" ??
-                                                    "0.0.0-custom";
+        public static readonly string FullVersion = VersionGetter.GetVersion();
         public static readonly string Version = FullVersion.WithoutPreReleaseName();
     }
 

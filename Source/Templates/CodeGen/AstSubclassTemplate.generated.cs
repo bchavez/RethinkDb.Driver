@@ -690,7 +690,7 @@ WriteLiteral("Arguments arguments = new Arguments(this);\r\n");
             #line 141 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                     foreach( var param in signature.Args.Skip(1) )
                     {
-                        if( param.Type == "Object..." )
+                        if( param.Type.EndsWith("...") )
                         {
 
             

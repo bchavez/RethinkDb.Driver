@@ -140,7 +140,7 @@ namespace RethinkDb.Driver.Ast {
                         @:Arguments arguments = new Arguments(this);
                     foreach( var param in signature.Args.Skip(1) )
                     {
-                        if( param.Type == "Object..." )
+                        if( param.Type.EndsWith("...") )
                         {
                         @:arguments.CoerceAndAddAll(@ArgumentVariable(param.Var));
                         }

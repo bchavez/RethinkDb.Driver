@@ -55,7 +55,7 @@
                 }
                 @:};
 
-                @:var appliedFunction = @("func"+n).Apply(
+                @:var appliedFunction = @("func"+n).apply(
                     for (int v = 1; v <= n; v++)
                 {
                     @:new Var(var@(v)) @(v == n ? "" : ",")

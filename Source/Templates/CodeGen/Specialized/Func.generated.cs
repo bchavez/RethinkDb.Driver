@@ -293,7 +293,7 @@ WriteLiteral("var appliedFunction = ");
             
             #line default
             #line hidden
-WriteLiteral(".Apply(\r\n");
+WriteLiteral(".apply(\r\n");
 
 
             

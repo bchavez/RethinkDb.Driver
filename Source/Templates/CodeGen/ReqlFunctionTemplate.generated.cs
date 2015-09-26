@@ -105,12 +105,12 @@ WriteLiteral(" : ReqlLambda{\r\n");
             
             #line default
             #line hidden
-WriteLiteral("         ReqlAst Apply( ");
+WriteLiteral("         object apply( ");
 
 
             
             #line 29 "..\..\CodeGen\ReqlFunctionTemplate.cshtml"
-                   Write(string.Join(", ", param));
+                  Write(string.Join(", ", param));
 
             
             #line default

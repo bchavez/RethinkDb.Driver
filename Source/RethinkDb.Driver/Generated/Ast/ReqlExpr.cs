@@ -501,13 +501,413 @@ namespace RethinkDb.Driver.Ast {
                         return new Contains (arguments);
                     }
 /// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( Object exprA, Object exprB, Object exprC )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1 )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprA);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( Object exprA, Object exprB, Object exprC, Object exprD )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        arguments.CoerceAndAdd(exprD);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        arguments.CoerceAndAdd(func1);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprC);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1B);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        arguments.CoerceAndAdd(exprA);
+                        return new Contains (arguments);
+                    }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+/// </summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        arguments.CoerceAndAdd(func1C);
+                        return new Contains (arguments);
+                    }
+/// <summary>
 /// <para>Get a single field from an object. If called on a sequence, gets that field from every
 /// object in the sequence, skipping objects that lack it.</para>
 /// </summary>
 /// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan').getField('firstAppearance').run(conn, callback)
 /// </code></example>
-                    public GetField getField ( Object exprA )
+                    public GetField g ( Object exprA )
                     {
                         Arguments arguments = new Arguments(this);
                         arguments.CoerceAndAdd(exprA);
@@ -682,6 +1082,430 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                         arguments.CoerceAndAdd(func1);
                         arguments.CoerceAndAdd(func1A);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( Object exprA, Object exprB, Object exprC )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1 )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprA);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( Object exprA, Object exprB, Object exprC, Object exprD )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        arguments.CoerceAndAdd(exprD);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        arguments.CoerceAndAdd(func1);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprC);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1B);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        arguments.CoerceAndAdd(exprA);
+                        return new Merge (arguments);
+                    }
+/// <summary>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// </summary>
+/// <example><para>Example: Equip Thor for battle.</para>
+/// <code>r.table('marvel').get('thor').merge(
+///     r.table('equipment').get('hammer'),
+///     r.table('equipment').get('pimento_sandwich')
+/// ).run(conn, callback)
+/// </code></example>
+                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        arguments.CoerceAndAdd(func1C);
                         return new Merge (arguments);
                     }
 /// <summary>
@@ -900,9 +1724,10 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
 /// </code></example>
-                    public Union union (  )
+                    public Union union ( params object[] exprs )
                     {
                         Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAddAll(exprs);
                         return new Union (arguments);
                     }
 /// <summary>
@@ -1551,6 +2376,19 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
+                    public Group group (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
                     public Group group ( Object exprA )
                     {
                         Arguments arguments = new Arguments(this);
@@ -1569,6 +2407,466 @@ namespace RethinkDb.Driver.Ast {
                     {
                         Arguments arguments = new Arguments(this);
                         arguments.CoerceAndAdd(func1);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, ReqlFunction1 func1 )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, Object exprA )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, Object exprB, Object exprC )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, Object exprB, ReqlFunction1 func1 )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, ReqlFunction1 func1, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, Object exprA, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprA);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, Object exprB, Object exprC, Object exprD )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        arguments.CoerceAndAdd(exprD);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        arguments.CoerceAndAdd(func1);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprC);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(exprC);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        arguments.CoerceAndAdd(func1A);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(func1B);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        arguments.CoerceAndAdd(exprA);
+                        return new Group (arguments);
+                    }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// </summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
+                        arguments.CoerceAndAdd(func1A);
+                        arguments.CoerceAndAdd(func1B);
+                        arguments.CoerceAndAdd(func1C);
                         return new Group (arguments);
                     }
 /// <summary>

@@ -14,6 +14,6 @@ using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Ast {
     public interface ReqlFunction1 : ReqlLambda{
-         ReqlAst Apply( ReqlExpr arg1 );
+         object apply( ReqlExpr arg1 );
     }
 }

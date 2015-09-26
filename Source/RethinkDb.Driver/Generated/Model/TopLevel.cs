@@ -381,9 +381,10 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
 /// </code></example>
-                    public Union union ( params object[] exprs )
+                    public Union union ( Object expr, params object[] exprs )
                     {
                         Arguments arguments = new Arguments();
+                        arguments.CoerceAndAdd(expr);
                         arguments.CoerceAndAddAll(exprs);
                         return new Union (arguments);
                     }

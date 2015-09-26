@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
                 var varIds = new List<int>{ 
                     var1,
                 };
-                var appliedFunction = func1.Apply(
+                var appliedFunction = func1.apply(
                     new Var(var1) 
                 );
                 return new Func(Arguments.Make(
@@ -71,7 +71,7 @@ namespace RethinkDb.Driver.Ast {
                     var1,
                     var2,
                 };
-                var appliedFunction = func2.Apply(
+                var appliedFunction = func2.apply(
                     new Var(var1) ,
                     new Var(var2) 
                 );
@@ -91,7 +91,7 @@ namespace RethinkDb.Driver.Ast {
                     var2,
                     var3,
                 };
-                var appliedFunction = func3.Apply(
+                var appliedFunction = func3.apply(
                     new Var(var1) ,
                     new Var(var2) ,
                     new Var(var3) 
@@ -114,7 +114,7 @@ namespace RethinkDb.Driver.Ast {
                     var3,
                     var4,
                 };
-                var appliedFunction = func4.Apply(
+                var appliedFunction = func4.apply(
                     new Var(var1) ,
                     new Var(var2) ,
                     new Var(var3) ,

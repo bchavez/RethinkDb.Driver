@@ -1,364 +1,633 @@
 {
-  "desc": "Tests RQL control flow structures",
-  "table_variable_name": "tbl, tbl2",
-  "tests": [
+  "modulename": "Control",
+  "table_var_names": [
+    "tbl",
+    "tbl2"
+  ],
+  "defs_and_test": [
     {
-      "py": "r.expr(1).do(lambda v: v * 2)",
-      "js": "r.expr(1).do(function(v) { return v.mul(2); })",
-      "rb": "r.expr(1).do{|v| v * 2 }",
-      "ot": "2"
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "1",
+      "original": "2",
+      "expected_type": "Integer",
+      "expected_java": "2",
+      "obtained": "r.expr(1).do_(v -> r.mul(v, 2))"
     },
     {
-      "py": "r.expr([0, 1, 2]).do(lambda v: v.append(3))",
-      "js": "r([0, 1, 2]).do(function(v) { return v.append(3); })",
-      "rb": "r([0, 1, 2]).do{ |v| v.append(3) }",
-      "ot": [
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "2",
+      "original": [
         "0",
         "1",
         "2",
         "3"
-      ]
-    },
-    {
-      "py": "r.do(1, 2, lambda x, y: x + y)",
-      "js": "r.do(1, 2, function(x, y) { return x.add(y); })",
-      "rb": "r.do(1, 2) {|x, y| x + y}",
-      "ot": "3"
-    },
-    {
-      "py": "r.do(lambda: 1)",
-      "js": "r.do(function() { return 1; })",
-      "rb": "r.do{1}",
-      "ot": "1"
-    },
-    {
-      "py": "r.do(1, 2, lambda x: x)",
-      "js": "r.do(1, 2, function(x) { return x; })",
-      "rb": "r.do(1, 2) {|x| x}",
-      "ot": "err(\"ReqlQueryLogicError\", 'Expected function with 2 arguments but found function with 1 argument.', [1])"
-    },
-    {
-      "py": "r.do(1, 2, 3, lambda x, y: x + y)",
-      "js": "r.do(1, 2, 3, function(x, y) { return x.add(y); })",
-      "rb": "r.do(1, 2, 3) {|x, y| x + y}",
-      "ot": "err(\"ReqlQueryLogicError\", 'Expected function with 3 arguments but found function with 2 arguments.', [1])"
-    },
-    {
-      "cd": "r.do(1)",
-      "ot": "1"
-    },
-    {
-      "js": "r.do(1, function(x) {})",
-      "ot": "err(\"ReqlDriverError\", 'Anonymous function returned `undefined`. Did you forget a `return`?', [1])"
-    },
-    {
-      "js": "r.do(1, function(x) { return undefined; })",
-      "ot": "err(\"ReqlDriverError\", 'Anonymous function returned `undefined`. Did you forget a `return`?', [1])"
-    },
-    {
-      "cd": "r.do()",
-      "ot": {
-        "cd": "err(\"ReqlCompileError\", 'Expected 1 or more arguments but found 0.', [1])",
-        "js": "err(\"ReqlDriverError\", 'Expected 1 or more arguments but found 0.', [1])"
-      }
-    },
-    {
-      "py": "r.expr('abc').do(lambda v: v.append(3))",
-      "js": "r('abc').do(function(v) { return v.append(3); })",
-      "rb": "r('abc').do{ |v| v.append(3) }",
-      "ot": "err(\"ReqlQueryLogicError\", \"Expected type ARRAY but found STRING.\", [1, 0])"
-    },
-    {
-      "py": "r.expr('abc').do(lambda v: v + 3)",
-      "js": "r('abc').do(function(v) { return v.add(3); })",
-      "rb": "r('abc').do{ |v| v + 3 }",
-      "ot": "err(\"ReqlQueryLogicError\", \"Expected type STRING but found NUMBER.\", [1, 1])"
-    },
-    {
-      "py": "r.expr('abc').do(lambda v: v + 'def') + 3",
-      "js": "r('abc').do(function(v) { return v.add('def'); }).add(3)",
-      "rb": "r('abc').do{ |v| v + 'def' } + 3",
-      "ot": "err(\"ReqlQueryLogicError\", \"Expected type STRING but found NUMBER.\", [1])"
-    },
-    {
-      "py": "r.expr(0).do(lambda a,b: a + b)",
-      "js": "r(0).do(function(a,b) { return a.add(b); })",
-      "rb": "r(0).do{ |a, b| a + b }",
-      "ot": "err(\"ReqlQueryLogicError\", 'Expected function with 1 argument but found function with 2 arguments.', [1])"
-    },
-    {
-      "py": "r.do(1, 2, lambda a: a)",
-      "js": "r.do(1,2, function(a) { return a; })",
-      "rb": "r.do(1, 2) { |a| a }",
-      "ot": "err(\"ReqlQueryLogicError\", 'Expected function with 2 arguments but found function with 1 argument.', [1])"
-    },
-    {
-      "cd": "r.expr(5).do(r.row)",
-      "rb": "r(5).do{ |row| row }",
-      "ot": "5"
-    },
-    {
-      "cd": "r.branch(True, 1, 2)",
-      "ot": "1"
-    },
-    {
-      "cd": "r.branch(False, 1, 2)",
-      "ot": "2"
-    },
-    {
-      "cd": "r.branch(1, 'c', False)",
-      "ot": "(\"c\")"
-    },
-    {
-      "cd": "r.branch(null, {}, [])",
-      "ot": "([])"
-    },
-    {
-      "cd": "r.branch(r.db('test'), 1, 2)",
-      "ot": "err(\"ReqlQueryLogicError\", \"Expected type DATUM but found DATABASE:\", [])"
-    },
-    {
-      "cd": "r.branch(tbl, 1, 2)",
-      "ot": "err(\"ReqlQueryLogicError\", \"Expected type DATUM but found TABLE:\", [])"
-    },
-    {
-      "cd": "r.branch(r.error(\"a\"), 1, 2)",
-      "ot": "err(\"ReqlUserError\", \"a\", [])"
-    },
-    {
-      "cd": "r.branch([], 1, 2)",
-      "ot": "1"
-    },
-    {
-      "cd": "r.branch({}, 1, 2)",
-      "ot": "1"
-    },
-    {
-      "cd": "r.branch(\"a\", 1, 2)",
-      "ot": "1"
-    },
-    {
-      "cd": "r.branch(1.2, 1, 2)",
-      "ot": "1"
-    },
-    {
-      "cd": "r.error('Hello World')",
-      "ot": "err(\"ReqlUserError\", \"Hello World\", [0])"
-    },
-    {
-      "cd": "r.error(5)",
-      "ot": "err(\"ReqlQueryLogicError\", \"Expected type STRING but found NUMBER.\", [0])"
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).filter()",
-      "ot": {
-        "cd": "err(\"ReqlCompileError\", \"Expected 2 arguments but found 1.\", [0])",
-        "js": "err(\"ReqlDriverError\", \"Expected 1 argument (not including options) but found 0.\", [0])"
-      }
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).filter(1, 2)",
-      "ot": {
-        "cd": "err(\"ReqlCompileError\", \"Expected 2 arguments but found 3.\", [0])",
-        "js": "err(\"ReqlDriverError\", \"Expected 1 argument (not including options) but found 2.\", [0])"
-      }
-    },
-    {
-      "cd": "r.js('1 + 1')",
-      "ot": "2"
-    },
-    {
-      "cd": "r.js('1 + 1; 2 + 2')",
-      "ot": "4"
-    },
-    {
-      "cd": "r.do(1, 2, r.js('(function(a, b) { return a + b; })'))",
-      "ot": "3"
-    },
-    {
-      "cd": "r.expr(1).do(r.js('(function(x) { return x + 1; })'))",
-      "ot": "2"
-    },
-    {
-      "cd": "r.expr('foo').do(r.js('(function(x) { return x + \"bar\"; })'))",
-      "ot": "'foobar'"
-    },
-    {
-      "cd": "r.js('1 + 2', {timeout:1.2})",
-      "py": "r.js('1 + 2', timeout=1.2)",
-      "ot": "3"
-    },
-    {
-      "cd": "r.js('(function() { return 1; })')",
-      "ot": "err(\"ReqlQueryLogicError\", \"Query result must be of type DATUM, GROUPED_DATA, or STREAM (got FUNCTION).\", [0])"
-    },
-    {
-      "cd": "r.js('function() { return 1; }')",
-      "ot": "err(\"ReqlQueryLogicError\", \"SyntaxError: Unexpected token (\", [0])"
-    },
-    {
-      "cd": "r.do(1, 2, r.js('(function(a) { return a; })'))",
-      "ot": "1"
-    },
-    {
-      "cd": "r.do(1, 2, r.js('(function(a, b, c) { return a; })'))",
-      "ot": "1"
-    },
-    {
-      "cd": "r.do(1, 2, r.js('(function(a, b, c) { return c; })'))",
-      "ot": "err(\"ReqlQueryLogicError\", \"Cannot convert javascript `undefined` to ql::datum_t.\", [0])"
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).filter(r.js('(function(a) { return a >= 2; })'))",
-      "ot": "([2, 3])"
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).map(r.js('(function(a) { return a + 1; })'))",
-      "ot": "([2, 3, 4])"
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).map(r.js('1'))",
-      "ot": "err(\"ReqlQueryLogicError\", \"Expected type FUNCTION but found DATUM:\", [0])"
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).filter(r.js('(function(a) {})'))",
-      "ot": "err(\"ReqlQueryLogicError\", \"Cannot convert javascript `undefined` to ql::datum_t.\", [0])"
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).map(1)",
-      "ot": "err(\"ReqlQueryLogicError\", \"Expected type FUNCTION but found DATUM:\", [0])"
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).filter('foo')",
-      "ot": "([1, 2, 3])"
-    },
-    {
-      "cd": "r.expr([1, 2, 4]).filter([])",
-      "ot": "([1, 2, 4])"
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).filter(null)",
-      "ot": "([])"
-    },
-    {
-      "cd": "r.expr([1, 2, 4]).filter(False)",
-      "rb": "r([1, 2, 4]).filter(false)",
-      "ot": "([])"
-    },
-    {
-      "cd": "tbl.count()",
-      "ot": "0"
-    },
-    {
-      "js": "r([1, 2, 3]).forEach(function (row) { return tbl.insert({ id:row }) })",
-      "py": "r.expr([1, 2, 3]).for_each(lambda row:tbl.insert({ 'id':row }))",
-      "rb": "r([1, 2, 3]).for_each{ |row| tbl.insert({ :id => row }) }",
-      "ot": "({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3})"
-    },
-    {
-      "cd": "tbl.count()",
-      "ot": "3"
-    },
-    {
-      "js": "r([1, 2, 3]).forEach(function (row) { return tbl.update({ foo:row }) })",
-      "py": "r.expr([1,2,3]).for_each(lambda row:tbl.update({'foo':row}))",
-      "rb": "r.expr([1,2,3]).for_each{ |row| tbl.update({ :foo => row }) }",
-      "ot": "({'deleted':0.0,'replaced':9,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})"
-    },
-    {
-      "js": "r([1, 2, 3]).forEach(function (row) { return [tbl.insert({ id:row }), tbl.insert({ id:row.mul(10) })] })",
-      "py": "r.expr([1,2,3]).for_each(lambda row:[tbl.insert({ 'id':row }), tbl.insert({ 'id':row*10 })])",
-      "rb": "r.expr([1,2,3]).for_each{ |row| [tbl.insert({ :id => row}), tbl.insert({ :id => row*10})] }",
-      "ot": "({'first_error':\"Duplicate primary key `id`:\\n{\\n\\t\\\"foo\\\":\\t3,\\n\\t\\\"id\\\":\\t1\\n}\\n{\\n\\t\\\"id\\\":\\t1\\n}\",'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':3,'skipped':0.0,'inserted':3})"
-    },
-    {
-      "cd": "tbl.count()",
-      "ot": "6"
-    },
-    {
-      "cd": "tableCount = tbl2.count()"
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).for_each( tbl2.insert({}) )",
-      "ot": "({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(3,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3})"
-    },
-    {
-      "cd": "tbl2.count()",
-      "ot": "tableCount + 1"
-    },
-    {
-      "js": "r([1, 2, 3]).forEach(function (row) { return [tbl.update({ foo:row }), tbl.update({ bar:row })] })",
-      "py": "r.expr([1,2,3]).for_each(lambda row:[tbl.update({'foo':row}), tbl.update({'bar':row})])",
-      "rb": "r.expr([1,2,3]).for_each{ |row| [tbl.update({:foo => row}), tbl.update({:bar => row})]}",
-      "ot": "({'deleted':0.0,'replaced':36,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})"
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).for_each( tbl2.insert({ 'id':r.row }) )",
-      "rb": "r([1, 2, 3]).for_each{ |row| tbl2.insert({ 'id':row }) }",
-      "ot": "({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3})"
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).for_each(1)",
-      "ot": "err(\"ReqlQueryLogicError\", \"FOR_EACH expects one or more basic write queries.  Expected type ARRAY but found NUMBER.\", [0])"
-    },
-    {
-      "py": "r.expr([1, 2, 3]).for_each(lambda x:x)",
-      "js": "r([1, 2, 3]).forEach(function (x) { return x; })",
-      "rb": "r([1, 2, 3]).for_each{ |x| x }",
-      "ot": "err(\"ReqlQueryLogicError\", \"FOR_EACH expects one or more basic write queries.  Expected type ARRAY but found NUMBER.\", [1, 1])"
-    },
-    {
-      "cd": "r.expr([1, 2, 3]).for_each(r.row)",
-      "rb": "r([1, 2, 3]).for_each{ |row| row }",
-      "ot": "err(\"ReqlQueryLogicError\", \"FOR_EACH expects one or more basic write queries.  Expected type ARRAY but found NUMBER.\", [1, 1])"
-    },
-    {
-      "js": "r([1, 2, 3]).forEach(function (row) { return tbl; })",
-      "py": "r.expr([1, 2, 3]).for_each(lambda row:tbl)",
-      "rb": "r([1, 2, 3]).for_each{ |row| tbl }",
-      "ot": "err(\"ReqlQueryLogicError\", \"FOR_EACH expects one or more basic write queries.\", [1, 1])"
-    },
-    {
-      "js": "r([1, 2, 3]).forEach(function (row) {})",
-      "ot": "err(\"ReqlDriverError\", 'Anonymous function returned `undefined`. Did you forget a `return`?', [1])"
-    },
-    {
-      "cd": "r.expr(1).do(tbl.insert({'foo':r.row}))",
-      "rb": "r(1).do{ |row| tbl.insert({ :foo => row }) }",
-      "ot": "({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(1,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})"
-    },
-    {
-      "py": "r.expr([1, 2])[0].do(tbl.insert({'foo':r.row}))",
-      "js": "r.expr([1, 2]).nth(0).do(tbl.insert({'foo':r.row}))",
-      "rb": "r([1, 2])[0].do{ |row| tbl.insert({ :foo => row }) }",
-      "ot": "({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(1,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})"
-    },
-    {
-      "cd": "r.expr([1, 2]).map(tbl.insert({'foo':r.row}))",
-      "rb": "r([1, 2]).map{ |row| tbl.insert({ :foo => row }) }",
-      "ot": "err('ReqlCompileError', 'Cannot nest writes or meta ops in stream operations.  Use FOR_EACH instead.', [0])"
-    },
-    {
-      "cd": "r.expr([1, 2]).map(r.db('test').table_create('nested_table'))",
-      "ot": "err('ReqlCompileError', 'Cannot nest writes or meta ops in stream operations.  Use FOR_EACH instead.', [0])"
-    },
-    {
-      "cd": "r.expr([1, 2]).map(r.db('test').table_create('nested_table'))",
-      "ot": "err('ReqlCompileError', 'Cannot nest writes or meta ops in stream operations.  Use FOR_EACH instead.', [0])"
-    },
-    {
-      "cd": "r.expr([1, 2]).map(tbl.insert({'foo':r.row}).get_field('inserted'))",
-      "rb": "r.expr([1, 2]).map{|x| tbl.insert({'foo':x}).get_field('inserted')}",
-      "ot": "err('ReqlCompileError', 'Cannot nest writes or meta ops in stream operations.  Use FOR_EACH instead.', [0])"
-    },
-    {
-      "cd": "r.expr([1, 2]).map(tbl.insert({'foo':r.row}).get_field('inserted').add(5))",
-      "rb": "r.expr([1, 2]).map{|x| tbl.insert({'foo':x}).get_field('inserted').add(5)}",
-      "ot": "err('ReqlCompileError', 'Cannot nest writes or meta ops in stream operations.  Use FOR_EACH instead.', [0])"
-    },
-    {
-      "cd": "r.expr(1).do(r.db('test').table_create('nested_table'))",
-      "ot": "partial({'tables_created':1})"
+      ],
+      "expected_type": "List",
+      "expected_java": "Arrays.asList(0, 1, 2, 3)",
+      "obtained": "r.expr(Arrays.asList(0, 1, 2)).do_(v -> v.append(3))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "3",
+      "original": "3",
+      "expected_type": "Integer",
+      "expected_java": "3",
+      "obtained": "r.do_(1, 2, (x, y) -> r.add(x, y))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "4",
+      "original": "1",
+      "expected_type": "Integer",
+      "expected_java": "1",
+      "obtained": "r.do_(() -> 1)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "5",
+      "original": "err(\"ReqlQueryLogicError\", 'Expected function with 2 arguments but found function with 1 argument.', [1])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Expected function with 2 arguments but found function with 1 argument.\", Arrays.asList(1))",
+      "obtained": "r.do_(1, 2, x -> x)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "6",
+      "original": "err(\"ReqlQueryLogicError\", 'Expected function with 3 arguments but found function with 2 arguments.', [1])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Expected function with 3 arguments but found function with 2 arguments.\", Arrays.asList(1))",
+      "obtained": "r.do_(1, 2, 3, (x, y) -> r.add(x, y))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "7",
+      "original": "1",
+      "expected_type": "Integer",
+      "expected_java": "1",
+      "obtained": "r.do_(1)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "10",
+      "original": "err(\"ReqlCompileError\", 'Expected 1 or more arguments but found 0.', [1])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlCompileError\", \"Expected 1 or more arguments but found 0.\", Arrays.asList(1))",
+      "obtained": "r.do_()"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "11",
+      "original": "err(\"ReqlQueryLogicError\", \"Expected type ARRAY but found STRING.\", [1, 0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Expected type ARRAY but found STRING.\", Arrays.asList(1, 0))",
+      "obtained": "r.expr(\"abc\").do_(v -> v.append(3))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "12",
+      "original": "err(\"ReqlQueryLogicError\", \"Expected type STRING but found NUMBER.\", [1, 1])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Expected type STRING but found NUMBER.\", Arrays.asList(1, 1))",
+      "obtained": "r.expr(\"abc\").do_(v -> r.add(v, 3))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "13",
+      "original": "err(\"ReqlQueryLogicError\", \"Expected type STRING but found NUMBER.\", [1])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Expected type STRING but found NUMBER.\", Arrays.asList(1))",
+      "obtained": "r.add(r.expr(\"abc\").do_(v -> r.add(v, \"def\")), 3)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "14",
+      "original": "err(\"ReqlQueryLogicError\", 'Expected function with 1 argument but found function with 2 arguments.', [1])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Expected function with 1 argument but found function with 2 arguments.\", Arrays.asList(1))",
+      "obtained": "r.expr(0).do_((a, b) -> r.add(a, b))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "15",
+      "original": "err(\"ReqlQueryLogicError\", 'Expected function with 2 arguments but found function with 1 argument.', [1])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Expected function with 2 arguments but found function with 1 argument.\", Arrays.asList(1))",
+      "obtained": "r.do_(1, 2, a -> a)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "17",
+      "original": "1",
+      "expected_type": "Integer",
+      "expected_java": "1",
+      "obtained": "r.branch(true, 1, 2)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "18",
+      "original": "2",
+      "expected_type": "Integer",
+      "expected_java": "2",
+      "obtained": "r.branch(false, 1, 2)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "19",
+      "original": "(\"c\")",
+      "expected_type": "String",
+      "expected_java": "c",
+      "obtained": "r.branch(1, \"c\", false)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "20",
+      "original": "([])",
+      "expected_type": "List",
+      "expected_java": "Arrays.asList()",
+      "obtained": "r.branch(null, new MapObject(), Arrays.asList())"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "21",
+      "original": "err(\"ReqlQueryLogicError\", \"Expected type DATUM but found DATABASE:\", [])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Expected type DATUM but found DATABASE:\", Arrays.asList())",
+      "obtained": "r.branch(r.db(\"test\"), 1, 2)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "22",
+      "original": "err(\"ReqlQueryLogicError\", \"Expected type DATUM but found TABLE:\", [])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Expected type DATUM but found TABLE:\", Arrays.asList())",
+      "obtained": "r.branch(tbl, 1, 2)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "23",
+      "original": "err(\"ReqlUserError\", \"a\", [])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlUserError\", \"a\", Arrays.asList())",
+      "obtained": "r.branch(r.error(\"a\"), 1, 2)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "24",
+      "original": "1",
+      "expected_type": "Integer",
+      "expected_java": "1",
+      "obtained": "r.branch(Arrays.asList(), 1, 2)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "25",
+      "original": "1",
+      "expected_type": "Integer",
+      "expected_java": "1",
+      "obtained": "r.branch(new MapObject(), 1, 2)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "26",
+      "original": "1",
+      "expected_type": "Integer",
+      "expected_java": "1",
+      "obtained": "r.branch(\"a\", 1, 2)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "27",
+      "original": "1",
+      "expected_type": "Integer",
+      "expected_java": "1",
+      "obtained": "r.branch(1.2, 1, 2)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "28",
+      "original": "1",
+      "expected_type": "Integer",
+      "expected_java": "1",
+      "obtained": "r.branch(true, 1, true, 2, 3)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "29",
+      "original": "1",
+      "expected_type": "Integer",
+      "expected_java": "1",
+      "obtained": "r.branch(true, 1, false, 2, 3)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "30",
+      "original": "2",
+      "expected_type": "Integer",
+      "expected_java": "2",
+      "obtained": "r.branch(false, 1, true, 2, 3)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "31",
+      "original": "3",
+      "expected_type": "Integer",
+      "expected_java": "3",
+      "obtained": "r.branch(false, 1, false, 2, 3)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "32",
+      "original": "err(\"ReqlQueryLogicError\", \"Cannot call `branch` term with an even number of arguments.\")",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Cannot call `branch` term with an even number of arguments.\")",
+      "obtained": "r.branch(true, 1, true, 2)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "33",
+      "original": "err(\"ReqlUserError\", \"Hello World\", [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlUserError\", \"Hello World\", Arrays.asList(0))",
+      "obtained": "r.error(\"Hello World\")"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "34",
+      "original": "err(\"ReqlQueryLogicError\", \"Expected type STRING but found NUMBER.\", [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Expected type STRING but found NUMBER.\", Arrays.asList(0))",
+      "obtained": "r.error(5)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "35",
+      "original": "err(\"ReqlCompileError\", \"Expected 2 arguments but found 1.\", [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlCompileError\", \"Expected 2 arguments but found 1.\", Arrays.asList(0))",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).filter()"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "36",
+      "original": "err(\"ReqlCompileError\", \"Expected 2 arguments but found 3.\", [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlCompileError\", \"Expected 2 arguments but found 3.\", Arrays.asList(0))",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).filter(1, 2)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "37",
+      "original": "2",
+      "expected_type": "Integer",
+      "expected_java": "2",
+      "obtained": "r.js(\"1 + 1\")"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "38",
+      "original": "4",
+      "expected_type": "Integer",
+      "expected_java": "4",
+      "obtained": "r.js(\"1 + 1; 2 + 2\")"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "39",
+      "original": "3",
+      "expected_type": "Integer",
+      "expected_java": "3",
+      "obtained": "r.do_(1, 2, r.js(\"(function(a, b) { return a + b; })\"))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "40",
+      "original": "2",
+      "expected_type": "Integer",
+      "expected_java": "2",
+      "obtained": "r.expr(1).do_(r.js(\"(function(x) { return x + 1; })\"))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "41",
+      "original": "foobar",
+      "expected_type": "String",
+      "expected_java": "foobar",
+      "obtained": "r.expr(\"foo\").do_(r.js(\"(function(x) { return x + \"bar\"; })\"))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "42",
+      "original": "3",
+      "expected_type": "Integer",
+      "expected_java": "3",
+      "obtained": "r.js(\"1 + 2\").optArg(\"timeout\", 1.2)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "43",
+      "original": "err(\"ReqlQueryLogicError\", \"Query result must be of type DATUM, GROUPED_DATA, or STREAM (got FUNCTION).\", [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Query result must be of type DATUM, GROUPED_DATA, or STREAM (got FUNCTION).\", Arrays.asList(0))",
+      "obtained": "r.js(\"(function() { return 1; })\")"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "44",
+      "original": "err(\"ReqlQueryLogicError\", \"SyntaxError: Unexpected token (\", [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"SyntaxError: Unexpected token (\", Arrays.asList(0))",
+      "obtained": "r.js(\"function() { return 1; }\")"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "45",
+      "original": "1",
+      "expected_type": "Integer",
+      "expected_java": "1",
+      "obtained": "r.do_(1, 2, r.js(\"(function(a) { return a; })\"))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "46",
+      "original": "1",
+      "expected_type": "Integer",
+      "expected_java": "1",
+      "obtained": "r.do_(1, 2, r.js(\"(function(a, b, c) { return a; })\"))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "47",
+      "original": "err(\"ReqlQueryLogicError\", \"Cannot convert javascript `undefined` to ql::datum_t.\", [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Cannot convert javascript `undefined` to ql::datum_t.\", Arrays.asList(0))",
+      "obtained": "r.do_(1, 2, r.js(\"(function(a, b, c) { return c; })\"))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "48",
+      "original": "([2, 3])",
+      "expected_type": "List",
+      "expected_java": "Arrays.asList(2, 3)",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).filter(r.js(\"(function(a) { return a >= 2; })\"))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "49",
+      "original": "([2, 3, 4])",
+      "expected_type": "List",
+      "expected_java": "Arrays.asList(2, 3, 4)",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).map(r.js(\"(function(a) { return a + 1; })\"))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "50",
+      "original": "err(\"ReqlQueryLogicError\", \"Expected type FUNCTION but found DATUM:\", [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Expected type FUNCTION but found DATUM:\", Arrays.asList(0))",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).map(r.js(\"1\"))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "51",
+      "original": "err(\"ReqlQueryLogicError\", \"Cannot convert javascript `undefined` to ql::datum_t.\", [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Cannot convert javascript `undefined` to ql::datum_t.\", Arrays.asList(0))",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).filter(r.js(\"(function(a) {})\"))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "52",
+      "original": "err(\"ReqlQueryLogicError\", \"Expected type FUNCTION but found DATUM:\", [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"Expected type FUNCTION but found DATUM:\", Arrays.asList(0))",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).map(1)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "53",
+      "original": "([1, 2, 3])",
+      "expected_type": "List",
+      "expected_java": "Arrays.asList(1, 2, 3)",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).filter(\"foo\")"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "54",
+      "original": "([1, 2, 4])",
+      "expected_type": "List",
+      "expected_java": "Arrays.asList(1, 2, 4)",
+      "obtained": "r.expr(Arrays.asList(1, 2, 4)).filter(Arrays.asList())"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "55",
+      "original": "([])",
+      "expected_type": "List",
+      "expected_java": "Arrays.asList()",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).filter(null)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "56",
+      "original": "([])",
+      "expected_type": "List",
+      "expected_java": "Arrays.asList()",
+      "obtained": "r.expr(Arrays.asList(1, 2, 4)).filter(false)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "57",
+      "original": "0",
+      "expected_type": "Integer",
+      "expected_java": "0",
+      "obtained": "tbl.count()"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "58",
+      "original": "({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3})",
+      "expected_type": "Map",
+      "expected_java": "new MapObject().with(\"deleted\", 0.0).with(\"replaced\", 0.0).with(\"unchanged\", 0.0).with(\"errors\", 0.0).with(\"skipped\", 0.0).with(\"inserted\", 3)",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).forEach(row -> tbl.insert(new MapObject().with(\"id\", row)))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "59",
+      "original": "3",
+      "expected_type": "Integer",
+      "expected_java": "3",
+      "obtained": "tbl.count()"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "60",
+      "original": "({'deleted':0.0,'replaced':9,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})",
+      "expected_type": "Map",
+      "expected_java": "new MapObject().with(\"deleted\", 0.0).with(\"replaced\", 9).with(\"unchanged\", 0.0).with(\"errors\", 0.0).with(\"skipped\", 0.0).with(\"inserted\", 0.0)",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).forEach(row -> tbl.update(new MapObject().with(\"foo\", row)))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "61",
+      "original": "({\"first_error\":\"Duplicate primary key `id`:\\n{\\n\\t\\\"foo\\\":\\t3,\\n\\t\\\"id\\\":\\t1\\n}\\n{\\n\\t\\\"id\\\":\\t1\\n}\",\"deleted\":0.0,\"replaced\":0.0,\"unchanged\":0.0,\"errors\":3,\"skipped\":0.0,\"inserted\":3})",
+      "expected_type": "Map",
+      "expected_java": "new MapObject().with(\"first_error\", \"Duplicate primary key `id`:\\n{\\n\\t\"foo\":\\t3,\\n\\t\"id\":\\t1\\n}\\n{\\n\\t\"id\":\\t1\\n}\").with(\"deleted\", 0.0).with(\"replaced\", 0.0).with(\"unchanged\", 0.0).with(\"errors\", 3).with(\"skipped\", 0.0).with(\"inserted\", 3)",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).forEach(row -> Arrays.asList(tbl.insert(new MapObject().with(\"id\", row)), tbl.insert(new MapObject().with(\"id\", r.mul(row, 10)))))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "62",
+      "original": "6",
+      "expected_type": "Integer",
+      "expected_java": "6",
+      "obtained": "tbl.count()"
+    },
+    {
+      "type_item": "JavaDef",
+      "test_file": "control.yaml",
+      "test_num": "63",
+      "original": "tableCount = tbl2.count()",
+      "java": "Count tableCount = tbl2.count();"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "64",
+      "original": "({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(3,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3})",
+      "expected_type": "Map",
+      "expected_java": "new MapObject().with(\"deleted\", 0.0).with(\"replaced\", 0.0).with(\"generated_keys\", arrlen(3, uuid())).with(\"unchanged\", 0.0).with(\"errors\", 0.0).with(\"skipped\", 0.0).with(\"inserted\", 3)",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).forEach(tbl2.insert(new MapObject()))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "65",
+      "original": "tableCount + 1",
+      "expected_type": "Add",
+      "expected_java": "r.add(tableCount, 1)",
+      "obtained": "tbl2.count()"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "66",
+      "original": "({'deleted':0.0,'replaced':36,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})",
+      "expected_type": "Map",
+      "expected_java": "new MapObject().with(\"deleted\", 0.0).with(\"replaced\", 36).with(\"unchanged\", 0.0).with(\"errors\", 0.0).with(\"skipped\", 0.0).with(\"inserted\", 0.0)",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).forEach(row -> Arrays.asList(tbl.update(new MapObject().with(\"foo\", row)), tbl.update(new MapObject().with(\"bar\", row))))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "68",
+      "original": "err(\"ReqlQueryLogicError\", \"FOR_EACH expects one or more basic write queries.  Expected type ARRAY but found NUMBER.\", [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"FOR_EACH expects one or more basic write queries.  Expected type ARRAY but found NUMBER.\", Arrays.asList(0))",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).forEach(1)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "69",
+      "original": "err(\"ReqlQueryLogicError\", \"FOR_EACH expects one or more basic write queries.  Expected type ARRAY but found NUMBER.\", [1, 1])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"FOR_EACH expects one or more basic write queries.  Expected type ARRAY but found NUMBER.\", Arrays.asList(1, 1))",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).forEach(x -> x)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "71",
+      "original": "err(\"ReqlQueryLogicError\", \"FOR_EACH expects one or more basic write queries.\", [1, 1])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlQueryLogicError\", \"FOR_EACH expects one or more basic write queries.\", Arrays.asList(1, 1))",
+      "obtained": "r.expr(Arrays.asList(1, 2, 3)).forEach(row -> tbl)"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "76",
+      "original": "err('ReqlCompileError', 'Cannot nest writes or meta ops in stream operations.  Use FOR_EACH instead.', [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlCompileError\", \"Cannot nest writes or meta ops in stream operations.  Use FOR_EACH instead.\", Arrays.asList(0))",
+      "obtained": "r.expr(Arrays.asList(1, 2)).map(r.db(\"test\").tableCreate(\"nested_table\"))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "77",
+      "original": "err('ReqlCompileError', 'Cannot nest writes or meta ops in stream operations.  Use FOR_EACH instead.', [0])",
+      "expected_type": "String",
+      "expected_java": "err(\"ReqlCompileError\", \"Cannot nest writes or meta ops in stream operations.  Use FOR_EACH instead.\", Arrays.asList(0))",
+      "obtained": "r.expr(Arrays.asList(1, 2)).map(r.db(\"test\").tableCreate(\"nested_table\"))"
+    },
+    {
+      "type_item": "JavaQuery",
+      "test_file": "control.yaml",
+      "test_num": "80",
+      "original": "partial({'tables_created':1})",
+      "expected_type": "Map",
+      "expected_java": "partial(new MapObject().with(\"tables_created\", 1))",
+      "obtained": "r.expr(1).do_(r.db(\"test\").tableCreate(\"nested_table\"))"
     }
   ]
 }

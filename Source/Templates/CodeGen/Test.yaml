@@ -1,0 +1,40 @@
+modulename: "${module_name}"
+table_var_names:
+%for var_name in table_var_names:
+    - ${var_name}
+%endfor
+
+defs_and_test:
+
+        <%rendered_something = False %>
+        %for item in defs_and_test:
+        %if type(item) == JavaDef:
+        <%rendered_something = True %>
+
+   - type_item: JavaDef
+     test_file: ${item.testfile}
+     test_num: ${item.test_num}
+     original: ${item.line.original}
+     java: ${item.line.java}
+        %elif type(item) == JavaQuery:
+   - type_item: JavaQuery
+     test_file: ${item.testfile}
+     test_num: ${item.test_num}
+     original: ${item.expected_line.original}
+     expected_type: ${item.expected_type}
+     expected_java: ${item.expected_line.java}
+     obtained: ${item.line.java}
+            %if item.runopts:   
+     runopts:
+              %for key, val in item.runopts.items():
+                - key: ${key}
+                  val: ${val}
+              %endfor
+            %else:
+            %endif
+        %endif
+        %endfor
+        %if not rendered_something:
+render_something: false
+        %endif
+

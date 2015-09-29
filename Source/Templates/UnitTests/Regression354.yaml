@@ -1,50 +1,42 @@
-
-ModuleName: "Regression354"
-TableVarNames:
-
+ModuleName: Regression354
 DefsAndTests:
-
-        
-        
-
-   - TestType: JavaDef
-     TestFile: regression/354.yaml
-     TestNum: 1
-     Original: b'YXJyID0gci5leHByKFsxLDIsMyw0LDVdKQ=='
-     Java: MakeArray arr = (MakeArray) r.expr(Arrays.asList(1, 2, 3, 4, 5));
-   - TestType: JavaQuery
-     TestFile: regression/354.yaml
-     TestNum: 2
-     Original: b'WzMsIDQsIDVd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgzLCA0LCA1KQ=='
-     Obtained: arr.skip(2)
-   - TestType: JavaQuery
-     TestFile: regression/354.yaml
-     TestNum: 3
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgWzFdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgxKSk='
-     Obtained: arr.skip("a")
-   - TestType: JavaQuery
-     TestFile: regression/354.yaml
-     TestNum: 4
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBBUlJBWS4iLCBbMV0p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBBUlJBWS4iLCBBcnJheXMuYXNMaXN0KDEpKQ=='
-     Obtained: arr.skip(Arrays.asList(1, 2, 3))
-   - TestType: JavaQuery
-     TestFile: regression/354.yaml
-     TestNum: 5
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBPQkpFQ1QuIiwgWzAsIDFdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBPQkpFQ1QuIiwgQXJyYXlzLmFzTGlzdCgwLCAxKSk='
-     Obtained: arr.skip(new MapObject()).count()
-   - TestType: JavaQuery
-     TestFile: regression/354.yaml
-     TestNum: 6
-     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgWzFdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgQXJyYXlzLmFzTGlzdCgxKSk='
-     Obtained: arr.skip(null)
-
+- TestType: JavaDef
+  TestFile: regression/354.yaml
+  TestNum: 1
+  Original: arr = r.expr([1,2,3,4,5])
+  Java: MakeArray arr = (MakeArray) r.expr(Arrays.asList(1, 2, 3, 4, 5));
+- TestType: JavaQuery
+  TestFile: regression/354.yaml
+  TestNum: 2
+  Original: '[3, 4, 5]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(3, 4, 5)
+  Obtained: arr.skip(2)
+- TestType: JavaQuery
+  TestFile: regression/354.yaml
+  TestNum: 3
+  Original: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [1])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(1))
+  Obtained: arr.skip("a")
+- TestType: JavaQuery
+  TestFile: regression/354.yaml
+  TestNum: 4
+  Original: err("ReqlQueryLogicError", "Expected type NUMBER but found ARRAY.", [1])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found ARRAY.", Arrays.asList(1))
+  Obtained: arr.skip(Arrays.asList(1, 2, 3))
+- TestType: JavaQuery
+  TestFile: regression/354.yaml
+  TestNum: 5
+  Original: err("ReqlQueryLogicError", "Expected type NUMBER but found OBJECT.", [0, 1])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found OBJECT.", Arrays.asList(0, 1))
+  Obtained: arr.skip(new MapObject()).count()
+- TestType: JavaQuery
+  TestFile: regression/354.yaml
+  TestNum: 6
+  Original: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", [1])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", Arrays.asList(1))
+  Obtained: arr.skip(null)

@@ -1,44 +1,38 @@
-
-ModuleName: "Regression3759"
+ModuleName: Regression3759
 TableVarNames:
-    - tbl
-
+- tbl
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/3759.yaml
-     TestNum: 1
-     Original: b'WzFd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxKQ=='
-     Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
-   - TestType: JavaQuery
-     TestFile: regression/3759.yaml
-     TestNum: 2
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
-     RunOpts:
-                - Key: noreply
-                  Val: true
-   - TestType: JavaQuery
-     TestFile: regression/3759.yaml
-     TestNum: 3
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
-     RunOpts:
-                - Key: noreply
-                  Val: true
-   - TestType: JavaQuery
-     TestFile: regression/3759.yaml
-     TestNum: 4
-     Original: b'WzFd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxKQ=='
-     Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/3759.yaml
+  TestNum: 1
+  Original: '[1]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1)
+  Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
+- TestType: JavaQuery
+  TestFile: regression/3759.yaml
+  TestNum: 2
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
+  RunOpts:
+  - Key: noreply
+    Val: true
+- TestType: JavaQuery
+  TestFile: regression/3759.yaml
+  TestNum: 3
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
+  RunOpts:
+  - Key: noreply
+    Val: true
+- TestType: JavaQuery
+  TestFile: regression/3759.yaml
+  TestNum: 4
+  Original: '[1]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1)
+  Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)

@@ -1,352 +1,345 @@
-
-ModuleName: "MathLogicLogic"
-TableVarNames:
-
+ModuleName: MathLogicLogic
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 1
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.and(r.expr(true), true)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 1
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.and(true, r.expr(true))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 1
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.and(true, true)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 1
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.expr(true).and(true)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 2
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.and(r.expr(true), false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 2
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.and(r.expr(false), false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 2
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.and(true, r.expr(false))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 2
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.and(false, r.expr(false))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 2
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.and(true, false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 2
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.and(false, false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 2
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.expr(true).and(false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 2
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.expr(false).and(false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 3
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.or(r.expr(true), true)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 3
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.or(r.expr(true), false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 3
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.or(true, r.expr(true))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 3
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.or(true, r.expr(false))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 3
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.or(true, true)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 3
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.or(true, false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 3
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.expr(true).or(true)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 3
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.expr(true).or(false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 4
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.or(r.expr(false), false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 4
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.or(false, r.expr(false))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 4
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.and(false, false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 4
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.expr(false).and(false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 5
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: ~r.expr(true)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 5
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.not_(true)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 6
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: ~r.expr(false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 6
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.not_(false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 7
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.expr(true).not_()
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 8
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.expr(false).not_()
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 9
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.eq(~r.and(true, true), r.or(~r.expr(true), ~r.expr(true)))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 9
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.eq(~r.and(true, false), r.or(~r.expr(true), ~r.expr(false)))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 9
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.eq(~r.and(false, false), r.or(~r.expr(false), ~r.expr(false)))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 9
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.eq(~r.and(false, true), r.or(~r.expr(false), ~r.expr(true)))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 10
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.and(true, true, true, true, true)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 11
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.and(true, true, true, false, true)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 12
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.and(true, false, true, false, true)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 13
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.or(false, false, false, false, false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 14
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.or(false, false, false, true, false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 15
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.or(false, true, false, true, false)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 16
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBwZXJmb3JtIGJyYWNrZXQgb24gYSBub24tb2JqZWN0IG5vbi1zZXF1ZW5jZSBgXCJhXCJgLiIsIFtdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBwZXJmb3JtIGJyYWNrZXQgb24gYSBub24tb2JqZWN0IG5vbi1zZXF1ZW5jZSBgImEiYC4iLCBBcnJheXMuYXNMaXN0KCkp'
-     Obtained: r.expr(r.expr("a").bracket("b")).default_(2)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 17
-     Original: b'ZXJyKCJSZXFsRHJpdmVyRXJyb3IiLCAiQ2FsbGluZyAnPT0nIG9uIHJlc3VsdCBvZiBpbmZpeCBiaXR3aXNlIG9wZXJhdG9yOiIsIFtdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsRHJpdmVyRXJyb3IiLCAiQ2FsbGluZyAnPT0nIG9uIHJlc3VsdCBvZiBpbmZpeCBiaXR3aXNlIG9wZXJhdG9yOiIsIEFycmF5cy5hc0xpc3QoKSk='
-     Obtained: r.expr(r.eq(r.and(r.expr(true), r.expr(false)), r.or(r.expr(false), r.expr(true))))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 18
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.expr(r.eq(r.and(true, false), r.or(false, true)))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 19
-     Original: b'ZXJyKCJSZXFsRHJpdmVyRXJyb3IiLCAiQ2FsbGluZyAnPj0nIG9uIHJlc3VsdCBvZiBpbmZpeCBiaXR3aXNlIG9wZXJhdG9yOiIsIFtdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsRHJpdmVyRXJyb3IiLCAiQ2FsbGluZyAnPj0nIG9uIHJlc3VsdCBvZiBpbmZpeCBiaXR3aXNlIG9wZXJhdG9yOiIsIEFycmF5cy5hc0xpc3QoKSk='
-     Obtained: r.expr(r.ge(r.and(r.expr(true), r.expr(false)), r.or(r.expr(false), r.expr(true))))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 20
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.expr(r.ge(r.and(true, false), r.or(false, true)))
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 21
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.and(r.expr(1), true)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 22
-     Original: b'KCJzdHIiKQ=='
-     ExpectedType: String
-     ExpectedJava: b'InN0ciI='
-     Obtained: r.or(r.expr(false), "str")
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 23
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: ~r.expr(1)
-   - TestType: JavaQuery
-     TestFile: math_logic/logic.yaml
-     TestNum: 24
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: ~r.expr(null)
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 1
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.and(r.expr(true), true)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 1
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.and(true, r.expr(true))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 1
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.and(true, true)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 1
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.expr(true).and(true)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 2
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.and(r.expr(true), false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 2
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.and(r.expr(false), false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 2
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.and(true, r.expr(false))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 2
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.and(false, r.expr(false))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 2
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.and(true, false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 2
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.and(false, false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 2
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.expr(true).and(false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 2
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.expr(false).and(false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 3
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.or(r.expr(true), true)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 3
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.or(r.expr(true), false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 3
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.or(true, r.expr(true))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 3
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.or(true, r.expr(false))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 3
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.or(true, true)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 3
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.or(true, false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 3
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.expr(true).or(true)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 3
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.expr(true).or(false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 4
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.or(r.expr(false), false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 4
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.or(false, r.expr(false))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 4
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.and(false, false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 4
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.expr(false).and(false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 5
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: ~r.expr(true)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 5
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.not_(true)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 6
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: ~r.expr(false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 6
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.not_(false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 7
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.expr(true).not_()
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 8
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.expr(false).not_()
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 9
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.eq(~r.and(true, true), r.or(~r.expr(true), ~r.expr(true)))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 9
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.eq(~r.and(true, false), r.or(~r.expr(true), ~r.expr(false)))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 9
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.eq(~r.and(false, false), r.or(~r.expr(false), ~r.expr(false)))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 9
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.eq(~r.and(false, true), r.or(~r.expr(false), ~r.expr(true)))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 10
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.and(true, true, true, true, true)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 11
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.and(true, true, true, false, true)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 12
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.and(true, false, true, false, true)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 13
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.or(false, false, false, false, false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 14
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.or(false, false, false, true, false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 15
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.or(false, true, false, true, false)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 16
+  Original: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `"a"`.", Arrays.asList())
+  Obtained: r.expr(r.expr("a").bracket("b")).default_(2)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 17
+  Original: err("ReqlDriverError", "Calling '==' on result of infix bitwise operator:", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlDriverError", "Calling '==' on result of infix bitwise operator:", Arrays.asList())
+  Obtained: r.expr(r.eq(r.and(r.expr(true), r.expr(false)), r.or(r.expr(false), r.expr(true))))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 18
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.expr(r.eq(r.and(true, false), r.or(false, true)))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 19
+  Original: err("ReqlDriverError", "Calling '>=' on result of infix bitwise operator:", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlDriverError", "Calling '>=' on result of infix bitwise operator:", Arrays.asList())
+  Obtained: r.expr(r.ge(r.and(r.expr(true), r.expr(false)), r.or(r.expr(false), r.expr(true))))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 20
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.expr(r.ge(r.and(true, false), r.or(false, true)))
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 21
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.and(r.expr(1), true)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 22
+  Original: ("str")
+  ExpectedType: String
+  ExpectedJava: '"str"'
+  Obtained: r.or(r.expr(false), "str")
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 23
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: ~r.expr(1)
+- TestType: JavaQuery
+  TestFile: math_logic/logic.yaml
+  TestNum: 24
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: ~r.expr(null)

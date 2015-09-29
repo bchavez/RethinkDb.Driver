@@ -1,31 +1,25 @@
-
-ModuleName: "Regression3745"
+ModuleName: Regression3745
 TableVarNames:
-    - tbl
-
+- tbl
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/3745.yaml
-     TestNum: 1
-     Original: b'cGFydGlhbCh7J2luc2VydGVkJzoyfSk='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiaW5zZXJ0ZWQiLCAyKSk='
-     Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 0).with("a", 5), new MapObject().with("id", 1).with("a", 6)))
-   - TestType: JavaQuery
-     TestFile: regression/3745.yaml
-     TestNum: 2
-     Original: b'KHsnYSc6MTF9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImEiLCAxMSk='
-     Obtained: tbl.reduce((x, y) -> r.object("a", r.add(x.bracket("a"), y.bracket("a"))))
-   - TestType: JavaQuery
-     TestFile: regression/3745.yaml
-     TestNum: 3
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnQ2Fubm90IGNvbnZlcnQgTlVNQkVSIHRvIFNFUVVFTkNFJyk='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb252ZXJ0IE5VTUJFUiB0byBTRVFVRU5DRSIp'
-     Obtained: tbl.reduce((x, y) -> r.expr(0).bracket(0))
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/3745.yaml
+  TestNum: 1
+  Original: partial({'inserted':2})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("inserted", 2))
+  Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 0).with("a", 5), new MapObject().with("id", 1).with("a", 6)))
+- TestType: JavaQuery
+  TestFile: regression/3745.yaml
+  TestNum: 2
+  Original: ({'a':11})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("a", 11)
+  Obtained: tbl.reduce((x, y) -> r.object("a", r.add(x.bracket("a"), y.bracket("a"))))
+- TestType: JavaQuery
+  TestFile: regression/3745.yaml
+  TestNum: 3
+  Original: err('ReqlQueryLogicError','Cannot convert NUMBER to SEQUENCE')
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot convert NUMBER to SEQUENCE")
+  Obtained: tbl.reduce((x, y) -> r.expr(0).bracket(0))

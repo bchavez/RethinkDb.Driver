@@ -1,31 +1,25 @@
-
-ModuleName: "Regression579"
+ModuleName: Regression579
 TableVarNames:
-    - tbl
-
+- tbl
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/579.yaml
-     TestNum: 1
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: tbl.insert(new MapObject().with("name", "Jim Brown"))
-   - TestType: JavaQuery
-     TestFile: regression/579.yaml
-     TestNum: 2
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNvdWxkIG5vdCBwcm92ZSBmdW5jdGlvbiBkZXRlcm1pbmlzdGljLiAgSW5kZXggZnVuY3Rpb25zIG11c3QgYmUgZGV0ZXJtaW5pc3RpYy4iLCBbXSk='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNvdWxkIG5vdCBwcm92ZSBmdW5jdGlvbiBkZXRlcm1pbmlzdGljLiAgSW5kZXggZnVuY3Rpb25zIG11c3QgYmUgZGV0ZXJtaW5pc3RpYy4iLCBBcnJheXMuYXNMaXN0KCkp'
-     Obtained: tbl.indexCreate("579", rec -> r.js("1"))
-   - TestType: JavaQuery
-     TestFile: regression/579.yaml
-     TestNum: 3
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNvdWxkIG5vdCBwcm92ZSBmdW5jdGlvbiBkZXRlcm1pbmlzdGljLiAgSW5kZXggZnVuY3Rpb25zIG11c3QgYmUgZGV0ZXJtaW5pc3RpYy4iLCBbXSk='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNvdWxkIG5vdCBwcm92ZSBmdW5jdGlvbiBkZXRlcm1pbmlzdGljLiAgSW5kZXggZnVuY3Rpb25zIG11c3QgYmUgZGV0ZXJtaW5pc3RpYy4iLCBBcnJheXMuYXNMaXN0KCkp'
-     Obtained: tbl.indexCreate("579", rec -> tbl.get(0))
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/579.yaml
+  TestNum: 1
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: tbl.insert(new MapObject().with("name", "Jim Brown"))
+- TestType: JavaQuery
+  TestFile: regression/579.yaml
+  TestNum: 2
+  Original: err("ReqlQueryLogicError", "Could not prove function deterministic.  Index functions must be deterministic.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Could not prove function deterministic.  Index functions must be deterministic.", Arrays.asList())
+  Obtained: tbl.indexCreate("579", rec -> r.js("1"))
+- TestType: JavaQuery
+  TestFile: regression/579.yaml
+  TestNum: 3
+  Original: err("ReqlQueryLogicError", "Could not prove function deterministic.  Index functions must be deterministic.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Could not prove function deterministic.  Index functions must be deterministic.", Arrays.asList())
+  Obtained: tbl.indexCreate("579", rec -> tbl.get(0))

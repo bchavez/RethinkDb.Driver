@@ -1,282 +1,273 @@
-
-ModuleName: "MutationInsert"
+ModuleName: MutationInsert
 TableVarNames:
-    - tbl
-
+- tbl
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 1
-     Original: b'cGFydGlhbCh7J3RhYmxlc19jcmVhdGVkJzoxfSk='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2NyZWF0ZWQiLCAxKSk='
-     Obtained: r.db("test").tableCreate("test2")
-        
-
-   - TestType: JavaDef
-     TestFile: mutation/insert.yaml
-     TestNum: 2
-     Original: b'dGJsMiA9IHIuZGIoJ3Rlc3QnKS50YWJsZSgndGVzdDInKQ=='
-     Java: Table tbl2 = (Table) r.db("test").table("test2");
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 3
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjF9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAxKQ=='
-     Obtained: tbl.insert(new MapObject().with("id", 0).with("a", 0))
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 4
-     Original: b'MQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'MQ=='
-     Obtained: tbl.count()
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 5
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjF9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAxKQ=='
-     Obtained: tbl.insert(new MapObject().with("id", 1).with("a", 1)).optArg("durability", "hard")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 6
-     Original: b'Mg=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mg=='
-     Obtained: tbl.count()
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 7
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjF9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAxKQ=='
-     Obtained: tbl.insert(new MapObject().with("id", 2).with("a", 2)).optArg("durability", "soft")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 8
-     Original: b'Mw=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mw=='
-     Obtained: tbl.count()
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 9
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0R1cmFiaWxpdHkgb3B0aW9uIGB3cm9uZ2AgdW5yZWNvZ25pemVkIChvcHRpb25zIGFyZSAiaGFyZCIgYW5kICJzb2Z0IikuJywgWzBdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkR1cmFiaWxpdHkgb3B0aW9uIGB3cm9uZ2AgdW5yZWNvZ25pemVkIChvcHRpb25zIGFyZSAiaGFyZCIgYW5kICJzb2Z0IikuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
-     Obtained: tbl.insert(new MapObject().with("id", 3).with("a", 3)).optArg("durability", "wrong")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 10
-     Original: b'Mw=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mw=='
-     Obtained: tbl.count()
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 11
-     Original: b'KHsnZGVsZXRlZCc6MSwncmVwbGFjZWQnOjAuMCwndW5jaGFuZ2VkJzowLjAsJ2Vycm9ycyc6MC4wLCdza2lwcGVkJzowLjAsJ2luc2VydGVkJzowLjB9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAxKS53aXRoKCJyZXBsYWNlZCIsIDAuMCkud2l0aCgidW5jaGFuZ2VkIiwgMC4wKS53aXRoKCJlcnJvcnMiLCAwLjApLndpdGgoInNraXBwZWQiLCAwLjApLndpdGgoImluc2VydGVkIiwgMC4wKQ=='
-     Obtained: tbl.get(2).delete()
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 12
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjJ9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAyKQ=='
-     Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 2).with("a", 2), new MapObject().with("id", 3).with("a", 3)))
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 13
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjR9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCA0KQ=='
-     Obtained: tbl2.insert(tbl)
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 14
-     Original: b'KHsnZmlyc3RfZXJyb3InOiJEdXBsaWNhdGUgcHJpbWFyeSBrZXkgYGlkYDpcbntcblx0XCJhXCI6XHQyLFxuXHRcImlkXCI6XHQyXG59XG57XG5cdFwiYlwiOlx0MjAsXG5cdFwiaWRcIjpcdDJcbn0iLCdkZWxldGVkJzowLjAsJ3JlcGxhY2VkJzowLjAsJ3VuY2hhbmdlZCc6MC4wLCdlcnJvcnMnOjEsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjAuMH0p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImZpcnN0X2Vycm9yIiwgIkR1cGxpY2F0ZSBwcmltYXJ5IGtleSBgaWRgOlxue1xuXHQiYSI6XHQyLFxuXHQiaWQiOlx0MlxufVxue1xuXHQiYiI6XHQyMCxcblx0ImlkIjpcdDJcbn0iKS53aXRoKCJkZWxldGVkIiwgMC4wKS53aXRoKCJyZXBsYWNlZCIsIDAuMCkud2l0aCgidW5jaGFuZ2VkIiwgMC4wKS53aXRoKCJlcnJvcnMiLCAxKS53aXRoKCJza2lwcGVkIiwgMC4wKS53aXRoKCJpbnNlcnRlZCIsIDAuMCk='
-     Obtained: tbl.insert(new MapObject().with("id", 2).with("b", 20))
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 15
-     Original: b'KHsnZmlyc3RfZXJyb3InOiJEdXBsaWNhdGUgcHJpbWFyeSBrZXkgYGlkYDpcbntcblx0XCJhXCI6XHQyLFxuXHRcImlkXCI6XHQyXG59XG57XG5cdFwiYlwiOlx0MjAsXG5cdFwiaWRcIjpcdDJcbn0iLCdkZWxldGVkJzowLjAsJ3JlcGxhY2VkJzowLjAsJ3VuY2hhbmdlZCc6MC4wLCdlcnJvcnMnOjEsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjAuMH0p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImZpcnN0X2Vycm9yIiwgIkR1cGxpY2F0ZSBwcmltYXJ5IGtleSBgaWRgOlxue1xuXHQiYSI6XHQyLFxuXHQiaWQiOlx0MlxufVxue1xuXHQiYiI6XHQyMCxcblx0ImlkIjpcdDJcbn0iKS53aXRoKCJkZWxldGVkIiwgMC4wKS53aXRoKCJyZXBsYWNlZCIsIDAuMCkud2l0aCgidW5jaGFuZ2VkIiwgMC4wKS53aXRoKCJlcnJvcnMiLCAxKS53aXRoKCJza2lwcGVkIiwgMC4wKS53aXRoKCJpbnNlcnRlZCIsIDAuMCk='
-     Obtained: tbl.insert(new MapObject().with("id", 2).with("b", 20)).optArg("conflict", "error")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 16
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjF9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAxKQ=='
-     Obtained: tbl.insert(new MapObject().with("id", 15).with("b", 20)).optArg("conflict", "error")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 17
-     Original: b'KHsnaWQnOjE1LCdiJzoyMH0p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMTUpLndpdGgoImIiLCAyMCk='
-     Obtained: tbl.get(15)
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 18
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MSwndW5jaGFuZ2VkJzowLjAsJ2Vycm9ycyc6MC4wLCdza2lwcGVkJzowLjAsJ2luc2VydGVkJzowLjB9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMSkud2l0aCgidW5jaGFuZ2VkIiwgMC4wKS53aXRoKCJlcnJvcnMiLCAwLjApLndpdGgoInNraXBwZWQiLCAwLjApLndpdGgoImluc2VydGVkIiwgMC4wKQ=='
-     Obtained: tbl.insert(new MapObject().with("id", 2).with("b", 20)).optArg("conflict", "replace")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 19
-     Original: b'KHsnaWQnOjIsJ2InOjIwfSk='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMikud2l0aCgiYiIsIDIwKQ=='
-     Obtained: tbl.get(2)
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 20
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjF9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAxKQ=='
-     Obtained: tbl.insert(new MapObject().with("id", 20).with("b", 20)).optArg("conflict", "replace")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 21
-     Original: b'KHsnaWQnOjIwLCdiJzoyMH0p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMjApLndpdGgoImIiLCAyMCk='
-     Obtained: tbl.get(20)
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 22
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MSwndW5jaGFuZ2VkJzowLjAsJ2Vycm9ycyc6MC4wLCdza2lwcGVkJzowLjAsJ2luc2VydGVkJzowLjB9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMSkud2l0aCgidW5jaGFuZ2VkIiwgMC4wKS53aXRoKCJlcnJvcnMiLCAwLjApLndpdGgoInNraXBwZWQiLCAwLjApLndpdGgoImluc2VydGVkIiwgMC4wKQ=='
-     Obtained: tbl.insert(new MapObject().with("id", 2).with("c", 30)).optArg("conflict", "update")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 23
-     Original: b'KHsnaWQnOjIsICdiJzoyMCwgJ2MnOjMwfSk='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMikud2l0aCgiYiIsIDIwKS53aXRoKCJjIiwgMzAp'
-     Obtained: tbl.get(2)
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 24
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjF9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAxKQ=='
-     Obtained: tbl.insert(new MapObject().with("id", 30).with("b", 20)).optArg("conflict", "update")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 25
-     Original: b'KHsnaWQnOjMwLCdiJzoyMH0p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMzApLndpdGgoImIiLCAyMCk='
-     Obtained: tbl.get(30)
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 26
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0NvbmZsaWN0IG9wdGlvbiBgd3JvbmdgIHVucmVjb2duaXplZCAob3B0aW9ucyBhcmUgImVycm9yIiwgInJlcGxhY2UiIGFuZCAidXBkYXRlIikuJywgWzBdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNvbmZsaWN0IG9wdGlvbiBgd3JvbmdgIHVucmVjb2duaXplZCAob3B0aW9ucyBhcmUgImVycm9yIiwgInJlcGxhY2UiIGFuZCAidXBkYXRlIikuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
-     Obtained: tbl.insert(new MapObject().with("id", 3).with("a", 3)).optArg("conflict", "wrong")
-        
-
-   - TestType: JavaDef
-     TestFile: mutation/insert.yaml
-     TestNum: 27
-     Original: b'dGJscGtleSA9IHIuZGIoJ3Rlc3QnKS50YWJsZSgndGVzdHBrZXknKQ=='
-     Java: Table tblpkey = (Table) r.db("test").table("testpkey");
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 27
-     Original: b'cGFydGlhbCh7J3RhYmxlc19jcmVhdGVkJzoxfSk='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2NyZWF0ZWQiLCAxKSk='
-     Obtained: r.db("test").tableCreate("testpkey").optArg("primary_key", "foo")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 28
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCdnZW5lcmF0ZWRfa2V5cyc6YXJybGVuKDEsdXVpZCgpKSwndW5jaGFuZ2VkJzowLjAsJ2Vycm9ycyc6MC4wLCdza2lwcGVkJzowLjAsJ2luc2VydGVkJzoxfSk='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJnZW5lcmF0ZWRfa2V5cyIsIGFycmxlbigxLCB1dWlkKCkpKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAxKQ=='
-     Obtained: tblpkey.insert(new MapObject())
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 29
-     Original: b'KFt7J2Zvbyc6dXVpZCgpfV0p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZm9vIiwgdXVpZCgpKSk='
-     Obtained: tblpkey
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 30
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCdnZW5lcmF0ZWRfa2V5cyc6YXJybGVuKDEsdXVpZCgpKSwndW5jaGFuZ2VkJzowLjAsJ2Vycm9ycyc6MC4wLCdza2lwcGVkJzowLjAsJ2luc2VydGVkJzoxfSk='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJnZW5lcmF0ZWRfa2V5cyIsIGFycmxlbigxLCB1dWlkKCkpKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAxKQ=='
-     Obtained: tblpkey.insert(new MapObject().with("b", 20)).optArg("conflict", "replace")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 31
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCdnZW5lcmF0ZWRfa2V5cyc6YXJybGVuKDEsdXVpZCgpKSwndW5jaGFuZ2VkJzowLjAsJ2Vycm9ycyc6MC4wLCdza2lwcGVkJzowLjAsJ2luc2VydGVkJzoxfSk='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJnZW5lcmF0ZWRfa2V5cyIsIGFycmxlbigxLCB1dWlkKCkpKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAxKQ=='
-     Obtained: tblpkey.insert(new MapObject().with("b", 20)).optArg("conflict", "update")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 32
-     Original: b'cGFydGlhbCh7J3RhYmxlc19kcm9wcGVkJzoxfSk='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2Ryb3BwZWQiLCAxKSk='
-     Obtained: r.db("test").tableDrop("testpkey")
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 33
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjd9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCA3KQ=='
-     Obtained: tbl.forEach(row -> tbl2.insert(row.merge(new MapObject().with("id", r.add(row.bracket("id"), 100)))))
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 34
-     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MSwnZmlyc3RfZXJyb3InOidgci5taW52YWxgIGFuZCBgci5tYXh2YWxgIGNhbm5vdCBiZSB3cml0dGVuIHRvIGRpc2suJ30p'
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMSkud2l0aCgiZmlyc3RfZXJyb3IiLCAiYHIubWludmFsYCBhbmQgYHIubWF4dmFsYCBjYW5ub3QgYmUgd3JpdHRlbiB0byBkaXNrLiIpKQ=='
-     Obtained: tbl.insert(new MapObject().with("value", r.minval()))
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 35
-     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MSwnZmlyc3RfZXJyb3InOidgci5taW52YWxgIGFuZCBgci5tYXh2YWxgIGNhbm5vdCBiZSB3cml0dGVuIHRvIGRpc2suJ30p'
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMSkud2l0aCgiZmlyc3RfZXJyb3IiLCAiYHIubWludmFsYCBhbmQgYHIubWF4dmFsYCBjYW5ub3QgYmUgd3JpdHRlbiB0byBkaXNrLiIpKQ=='
-     Obtained: tbl.insert(new MapObject().with("value", r.maxval()))
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 36
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnQ2Fubm90IGNvbnZlcnQgYHIubWludmFsYCB0byBKU09OLicp'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb252ZXJ0IGByLm1pbnZhbGAgdG8gSlNPTi4iKQ=='
-     Obtained: r.minval()
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 37
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnQ2Fubm90IGNvbnZlcnQgYHIubWF4dmFsYCB0byBKU09OLicp'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb252ZXJ0IGByLm1heHZhbGAgdG8gSlNPTi4iKQ=='
-     Obtained: r.maxval()
-   - TestType: JavaQuery
-     TestFile: mutation/insert.yaml
-     TestNum: 38
-     Original: b'cGFydGlhbCh7J3RhYmxlc19kcm9wcGVkJzoxfSk='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2Ryb3BwZWQiLCAxKSk='
-     Obtained: r.db("test").tableDrop("test2")
-
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 1
+  Original: partial({'tables_created':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("tables_created", 1))
+  Obtained: r.db("test").tableCreate("test2")
+- TestType: JavaDef
+  TestFile: mutation/insert.yaml
+  TestNum: 2
+  Original: tbl2 = r.db('test').table('test2')
+  Java: Table tbl2 = (Table) r.db("test").table("test2");
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 3
+  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  Obtained: tbl.insert(new MapObject().with("id", 0).with("a", 0))
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 4
+  Original: 1
+  ExpectedType: Integer
+  ExpectedJava: 1
+  Obtained: tbl.count()
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 5
+  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  Obtained: tbl.insert(new MapObject().with("id", 1).with("a", 1)).optArg("durability", "hard")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 6
+  Original: 2
+  ExpectedType: Integer
+  ExpectedJava: 2
+  Obtained: tbl.count()
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 7
+  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  Obtained: tbl.insert(new MapObject().with("id", 2).with("a", 2)).optArg("durability", "soft")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 8
+  Original: 3
+  ExpectedType: Integer
+  ExpectedJava: 3
+  Obtained: tbl.count()
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 9
+  Original: err('ReqlQueryLogicError', 'Durability option `wrong` unrecognized (options are "hard" and "soft").', [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Durability option `wrong` unrecognized (options are "hard" and "soft").", Arrays.asList(0))
+  Obtained: tbl.insert(new MapObject().with("id", 3).with("a", 3)).optArg("durability", "wrong")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 10
+  Original: 3
+  ExpectedType: Integer
+  ExpectedJava: 3
+  Obtained: tbl.count()
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 11
+  Original: ({'deleted':1,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 1).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 0.0)
+  Obtained: tbl.get(2).delete()
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 12
+  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':2})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 2)
+  Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 2).with("a", 2), new MapObject().with("id", 3).with("a", 3)))
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 13
+  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':4})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 4)
+  Obtained: tbl2.insert(tbl)
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 14
+  Original: ({'first_error':"Duplicate primary key `id`:\n{\n\t\"a\":\t2,\n\t\"id\":\t2\n}\n{\n\t\"b\":\t20,\n\t\"id\":\t2\n}",'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':1,'skipped':0.0,'inserted':0.0})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("first_error", "Duplicate primary key `id`:\n{\n\t"a":\t2,\n\t"id":\t2\n}\n{\n\t"b":\t20,\n\t"id":\t2\n}").with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 1).with("skipped", 0.0).with("inserted", 0.0)
+  Obtained: tbl.insert(new MapObject().with("id", 2).with("b", 20))
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 15
+  Original: ({'first_error':"Duplicate primary key `id`:\n{\n\t\"a\":\t2,\n\t\"id\":\t2\n}\n{\n\t\"b\":\t20,\n\t\"id\":\t2\n}",'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':1,'skipped':0.0,'inserted':0.0})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("first_error", "Duplicate primary key `id`:\n{\n\t"a":\t2,\n\t"id":\t2\n}\n{\n\t"b":\t20,\n\t"id":\t2\n}").with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 1).with("skipped", 0.0).with("inserted", 0.0)
+  Obtained: tbl.insert(new MapObject().with("id", 2).with("b", 20)).optArg("conflict", "error")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 16
+  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  Obtained: tbl.insert(new MapObject().with("id", 15).with("b", 20)).optArg("conflict", "error")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 17
+  Original: ({'id':15,'b':20})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("id", 15).with("b", 20)
+  Obtained: tbl.get(15)
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 18
+  Original: ({'deleted':0.0,'replaced':1,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 1).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 0.0)
+  Obtained: tbl.insert(new MapObject().with("id", 2).with("b", 20)).optArg("conflict", "replace")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 19
+  Original: ({'id':2,'b':20})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("id", 2).with("b", 20)
+  Obtained: tbl.get(2)
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 20
+  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  Obtained: tbl.insert(new MapObject().with("id", 20).with("b", 20)).optArg("conflict", "replace")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 21
+  Original: ({'id':20,'b':20})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("id", 20).with("b", 20)
+  Obtained: tbl.get(20)
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 22
+  Original: ({'deleted':0.0,'replaced':1,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 1).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 0.0)
+  Obtained: tbl.insert(new MapObject().with("id", 2).with("c", 30)).optArg("conflict", "update")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 23
+  Original: ({'id':2, 'b':20, 'c':30})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("id", 2).with("b", 20).with("c", 30)
+  Obtained: tbl.get(2)
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 24
+  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  Obtained: tbl.insert(new MapObject().with("id", 30).with("b", 20)).optArg("conflict", "update")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 25
+  Original: ({'id':30,'b':20})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("id", 30).with("b", 20)
+  Obtained: tbl.get(30)
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 26
+  Original: err('ReqlQueryLogicError', 'Conflict option `wrong` unrecognized (options are "error", "replace" and "update").', [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Conflict option `wrong` unrecognized (options are "error", "replace" and "update").", Arrays.asList(0))
+  Obtained: tbl.insert(new MapObject().with("id", 3).with("a", 3)).optArg("conflict", "wrong")
+- TestType: JavaDef
+  TestFile: mutation/insert.yaml
+  TestNum: 27
+  Original: tblpkey = r.db('test').table('testpkey')
+  Java: Table tblpkey = (Table) r.db("test").table("testpkey");
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 27
+  Original: partial({'tables_created':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("tables_created", 1))
+  Obtained: r.db("test").tableCreate("testpkey").optArg("primary_key", "foo")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 28
+  Original: ({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(1,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("generated_keys", arrlen(1, uuid())).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  Obtained: tblpkey.insert(new MapObject())
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 29
+  Original: ([{'foo':uuid()}])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("foo", uuid()))
+  Obtained: tblpkey
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 30
+  Original: ({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(1,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("generated_keys", arrlen(1, uuid())).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  Obtained: tblpkey.insert(new MapObject().with("b", 20)).optArg("conflict", "replace")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 31
+  Original: ({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(1,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("generated_keys", arrlen(1, uuid())).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  Obtained: tblpkey.insert(new MapObject().with("b", 20)).optArg("conflict", "update")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 32
+  Original: partial({'tables_dropped':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("tables_dropped", 1))
+  Obtained: r.db("test").tableDrop("testpkey")
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 33
+  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':7})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 7)
+  Obtained: tbl.forEach(row -> tbl2.insert(row.merge(new MapObject().with("id", r.add(row.bracket("id"), 100)))))
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 34
+  Original: partial({'errors':1,'first_error':'`r.minval` and `r.maxval` cannot be written to disk.'})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("errors", 1).with("first_error", "`r.minval` and `r.maxval` cannot be written to disk."))
+  Obtained: tbl.insert(new MapObject().with("value", r.minval()))
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 35
+  Original: partial({'errors':1,'first_error':'`r.minval` and `r.maxval` cannot be written to disk.'})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("errors", 1).with("first_error", "`r.minval` and `r.maxval` cannot be written to disk."))
+  Obtained: tbl.insert(new MapObject().with("value", r.maxval()))
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 36
+  Original: err('ReqlQueryLogicError','Cannot convert `r.minval` to JSON.')
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot convert `r.minval` to JSON.")
+  Obtained: r.minval()
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 37
+  Original: err('ReqlQueryLogicError','Cannot convert `r.maxval` to JSON.')
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot convert `r.maxval` to JSON.")
+  Obtained: r.maxval()
+- TestType: JavaQuery
+  TestFile: mutation/insert.yaml
+  TestNum: 38
+  Original: partial({'tables_dropped':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("tables_dropped", 1))
+  Obtained: r.db("test").tableDrop("test2")

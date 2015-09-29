@@ -1,58 +1,51 @@
-
-ModuleName: "MathLogicMod"
-TableVarNames:
-
+ModuleName: MathLogicMod
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: math_logic/mod.yaml
-     TestNum: 1
-     Original: b'MQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'MQ=='
-     Obtained: r.mod(r.expr(10), 3)
-   - TestType: JavaQuery
-     TestFile: math_logic/mod.yaml
-     TestNum: 1
-     Original: b'MQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'MQ=='
-     Obtained: r.mod(10, r.expr(3))
-   - TestType: JavaQuery
-     TestFile: math_logic/mod.yaml
-     TestNum: 1
-     Original: b'MQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'MQ=='
-     Obtained: r.expr(10).mod(3)
-   - TestType: JavaQuery
-     TestFile: math_logic/mod.yaml
-     TestNum: 2
-     Original: b'LTE='
-     ExpectedType: Integer
-     ExpectedJava: b'LTE='
-     Obtained: r.mod(r.expr(-10), -3)
-   - TestType: JavaQuery
-     TestFile: math_logic/mod.yaml
-     TestNum: 3
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuJywgWzFdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgxKSk='
-     Obtained: r.mod(r.expr(4), "a")
-   - TestType: JavaQuery
-     TestFile: math_logic/mod.yaml
-     TestNum: 4
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuJywgWzBdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
-     Obtained: r.mod(r.expr("a"), 1)
-   - TestType: JavaQuery
-     TestFile: math_logic/mod.yaml
-     TestNum: 5
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuJywgWzBdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
-     Obtained: r.mod(r.expr("a"), "b")
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: math_logic/mod.yaml
+  TestNum: 1
+  Original: 1
+  ExpectedType: Integer
+  ExpectedJava: 1
+  Obtained: r.mod(r.expr(10), 3)
+- TestType: JavaQuery
+  TestFile: math_logic/mod.yaml
+  TestNum: 1
+  Original: 1
+  ExpectedType: Integer
+  ExpectedJava: 1
+  Obtained: r.mod(10, r.expr(3))
+- TestType: JavaQuery
+  TestFile: math_logic/mod.yaml
+  TestNum: 1
+  Original: 1
+  ExpectedType: Integer
+  ExpectedJava: 1
+  Obtained: r.expr(10).mod(3)
+- TestType: JavaQuery
+  TestFile: math_logic/mod.yaml
+  TestNum: 2
+  Original: -1
+  ExpectedType: Integer
+  ExpectedJava: -1
+  Obtained: r.mod(r.expr(-10), -3)
+- TestType: JavaQuery
+  TestFile: math_logic/mod.yaml
+  TestNum: 3
+  Original: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(1))
+  Obtained: r.mod(r.expr(4), "a")
+- TestType: JavaQuery
+  TestFile: math_logic/mod.yaml
+  TestNum: 4
+  Original: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(0))
+  Obtained: r.mod(r.expr("a"), 1)
+- TestType: JavaQuery
+  TestFile: math_logic/mod.yaml
+  TestNum: 5
+  Original: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(0))
+  Obtained: r.mod(r.expr("a"), "b")

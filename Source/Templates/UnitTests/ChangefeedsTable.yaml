@@ -1,163 +1,146 @@
-
-ModuleName: "ChangefeedsTable"
+ModuleName: ChangefeedsTable
 TableVarNames:
-    - tbl
-
+- tbl
 DefsAndTests:
-
-        
-        
-
-   - TestType: JavaDef
-     TestFile: changefeeds/table.yaml
-     TestNum: 1
-     Original: b'YWxsID0gdGJsLmNoYW5nZXMoKQ=='
-     Java: Changes all = (Changes) tbl.changes();
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 2
-     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MCwgJ2luc2VydGVkJzoyfSk='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMCkud2l0aCgiaW5zZXJ0ZWQiLCAyKSk='
-     Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 2)))
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 3
-     Original: b'YmFnKFt7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzoxfX0sIHsnb2xkX3ZhbCc6bnVsbCwgJ25ld192YWwnOnsnaWQnOjJ9fV0p'
-     ExpectedType: Bag
-     ExpectedJava: b'YmFnKEFycmF5cy5hc0xpc3QobmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMSkpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgib2xkX3ZhbCIsIG51bGwpLndpdGgoIm5ld192YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAyKSkpKQ=='
-     Obtained: fetch(all, 2)
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 4
-     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MCwgJ3JlcGxhY2VkJzoxfSk='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMCkud2l0aCgicmVwbGFjZWQiLCAxKSk='
-     Obtained: tbl.get(1).update(new MapObject().with("version", 1))
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 5
-     Original: b'W3snbmV3X3ZhbCc6IHsnaWQnOiAxLCAndmVyc2lvbic6IDF9LCAnb2xkX3ZhbCc6IHsnaWQnOiAxfX1d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDEpLndpdGgoInZlcnNpb24iLCAxKSkud2l0aCgib2xkX3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDEpKSk='
-     Obtained: fetch(all, 1)
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 6
-     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MCwgJ2RlbGV0ZWQnOjF9KQ=='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMCkud2l0aCgiZGVsZXRlZCIsIDEpKQ=='
-     Obtained: tbl.get(1).delete()
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 7
-     Original: b'W3snbmV3X3ZhbCc6IE5vbmUsICdvbGRfdmFsJzogeydpZCc6IDEsICd2ZXJzaW9uJzogMX19XQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgibmV3X3ZhbCIsIG51bGwpLndpdGgoIm9sZF92YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAxKS53aXRoKCJ2ZXJzaW9uIiwgMSkpKQ=='
-     Obtained: fetch(all, 1)
-        
-
-   - TestType: JavaDef
-     TestFile: changefeeds/table.yaml
-     TestNum: 8
-     Original: b'cGx1Y2sgPSB0YmwuY2hhbmdlcygpLnBsdWNrKHsnbmV3X3ZhbCc6Wyd2ZXJzaW9uJ119KQ=='
-     Java: Pluck pluck = (Pluck) tbl.changes().pluck(new MapObject().with("new_val", Arrays.asList("version")));
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 9
-     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MCwgJ2luc2VydGVkJzoxfSk='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMCkud2l0aCgiaW5zZXJ0ZWQiLCAxKSk='
-     Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 5).with("version", 5)))
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 10
-     Original: b'W3snbmV3X3ZhbCc6IHsndmVyc2lvbic6IDV9fV0='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJ2ZXJzaW9uIiwgNSkpKQ=='
-     Obtained: fetch(pluck, 1)
-        
-
-   - TestType: JavaDef
-     TestFile: changefeeds/table.yaml
-     TestNum: 11
-     Original: b'b3JkZXJlZCA9IHRibC5jaGFuZ2VzKCkub3JkZXJfYnkoJ2lkJyk='
-     Java: OrderBy ordered = (OrderBy) tbl.changes().orderBy("id");
-        
-
-   - TestType: JavaDef
-     TestFile: changefeeds/table.yaml
-     TestNum: 12
-     Original: b'dnRibCA9IHIuZGIoJ3JldGhpbmtkYicpLnRhYmxlKCdfZGVidWdfc2NyYXRjaCcp'
-     Java: Table vtbl = (Table) r.db("rethinkdb").table("_debug_scratch");
-        
-
-   - TestType: JavaDef
-     TestFile: changefeeds/table.yaml
-     TestNum: 13
-     Original: b'YWxsVmlydHVhbCA9IHZ0YmwuY2hhbmdlcygp'
-     Java: Changes allVirtual = (Changes) vtbl.changes();
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 14
-     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MCwgJ2luc2VydGVkJzoyfSk='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMCkud2l0aCgiaW5zZXJ0ZWQiLCAyKSk='
-     Obtained: vtbl.insert(Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 2)))
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 15
-     Original: b'YmFnKFt7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzoxfX0sIHsnb2xkX3ZhbCc6bnVsbCwgJ25ld192YWwnOnsnaWQnOjJ9fV0p'
-     ExpectedType: Bag
-     ExpectedJava: b'YmFnKEFycmF5cy5hc0xpc3QobmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMSkpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgib2xkX3ZhbCIsIG51bGwpLndpdGgoIm5ld192YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAyKSkpKQ=='
-     Obtained: fetch(allVirtual, 2)
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 16
-     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MCwgJ3JlcGxhY2VkJzoxfSk='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMCkud2l0aCgicmVwbGFjZWQiLCAxKSk='
-     Obtained: vtbl.get(1).update(new MapObject().with("version", 1))
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 17
-     Original: b'W3snbmV3X3ZhbCc6IHsnaWQnOiAxLCAndmVyc2lvbic6IDF9LCAnb2xkX3ZhbCc6IHsnaWQnOiAxfX1d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDEpLndpdGgoInZlcnNpb24iLCAxKSkud2l0aCgib2xkX3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDEpKSk='
-     Obtained: fetch(allVirtual, 1)
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 18
-     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MCwgJ2RlbGV0ZWQnOjF9KQ=='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMCkud2l0aCgiZGVsZXRlZCIsIDEpKQ=='
-     Obtained: vtbl.get(1).delete()
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 19
-     Original: b'W3snbmV3X3ZhbCc6IE5vbmUsICdvbGRfdmFsJzogeydpZCc6IDEsICd2ZXJzaW9uJzogMX19XQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgibmV3X3ZhbCIsIG51bGwpLndpdGgoIm9sZF92YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAxKS53aXRoKCJ2ZXJzaW9uIiwgMSkpKQ=='
-     Obtained: fetch(allVirtual, 1)
-        
-
-   - TestType: JavaDef
-     TestFile: changefeeds/table.yaml
-     TestNum: 20
-     Original: b'dnBsdWNrID0gdnRibC5jaGFuZ2VzKCkucGx1Y2soeyduZXdfdmFsJzpbJ3ZlcnNpb24nXX0p'
-     Java: Pluck vpluck = (Pluck) vtbl.changes().pluck(new MapObject().with("new_val", Arrays.asList("version")));
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 21
-     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MCwgJ2luc2VydGVkJzoxfSk='
-     ExpectedType: Partial
-     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMCkud2l0aCgiaW5zZXJ0ZWQiLCAxKSk='
-     Obtained: vtbl.insert(Arrays.asList(new MapObject().with("id", 5).with("version", 5)))
-   - TestType: JavaQuery
-     TestFile: changefeeds/table.yaml
-     TestNum: 22
-     Original: b'W3snbmV3X3ZhbCc6IHsndmVyc2lvbic6IDV9fV0='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJ2ZXJzaW9uIiwgNSkpKQ=='
-     Obtained: fetch(vpluck, 1)
-
+- TestType: JavaDef
+  TestFile: changefeeds/table.yaml
+  TestNum: 1
+  Original: all = tbl.changes()
+  Java: Changes all = (Changes) tbl.changes();
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 2
+  Original: partial({'errors':0, 'inserted':2})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("errors", 0).with("inserted", 2))
+  Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 2)))
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 3
+  Original: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])
+  ExpectedType: Bag
+  ExpectedJava: bag(Arrays.asList(new MapObject().with("old_val", null).with("new_val", new MapObject().with("id", 1)), new MapObject().with("old_val", null).with("new_val", new MapObject().with("id", 2))))
+  Obtained: fetch(all, 2)
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 4
+  Original: partial({'errors':0, 'replaced':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("errors", 0).with("replaced", 1))
+  Obtained: tbl.get(1).update(new MapObject().with("version", 1))
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 5
+  Original: '[{''new_val'': {''id'': 1, ''version'': 1}, ''old_val'': {''id'': 1}}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("new_val", new MapObject().with("id", 1).with("version", 1)).with("old_val", new MapObject().with("id", 1)))
+  Obtained: fetch(all, 1)
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 6
+  Original: partial({'errors':0, 'deleted':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("errors", 0).with("deleted", 1))
+  Obtained: tbl.get(1).delete()
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 7
+  Original: '[{''new_val'': None, ''old_val'': {''id'': 1, ''version'': 1}}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("new_val", null).with("old_val", new MapObject().with("id", 1).with("version", 1)))
+  Obtained: fetch(all, 1)
+- TestType: JavaDef
+  TestFile: changefeeds/table.yaml
+  TestNum: 8
+  Original: pluck = tbl.changes().pluck({'new_val':['version']})
+  Java: Pluck pluck = (Pluck) tbl.changes().pluck(new MapObject().with("new_val", Arrays.asList("version")));
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 9
+  Original: partial({'errors':0, 'inserted':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("errors", 0).with("inserted", 1))
+  Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 5).with("version", 5)))
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 10
+  Original: '[{''new_val'': {''version'': 5}}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("new_val", new MapObject().with("version", 5)))
+  Obtained: fetch(pluck, 1)
+- TestType: JavaDef
+  TestFile: changefeeds/table.yaml
+  TestNum: 11
+  Original: ordered = tbl.changes().order_by('id')
+  Java: OrderBy ordered = (OrderBy) tbl.changes().orderBy("id");
+- TestType: JavaDef
+  TestFile: changefeeds/table.yaml
+  TestNum: 12
+  Original: vtbl = r.db('rethinkdb').table('_debug_scratch')
+  Java: Table vtbl = (Table) r.db("rethinkdb").table("_debug_scratch");
+- TestType: JavaDef
+  TestFile: changefeeds/table.yaml
+  TestNum: 13
+  Original: allVirtual = vtbl.changes()
+  Java: Changes allVirtual = (Changes) vtbl.changes();
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 14
+  Original: partial({'errors':0, 'inserted':2})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("errors", 0).with("inserted", 2))
+  Obtained: vtbl.insert(Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 2)))
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 15
+  Original: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])
+  ExpectedType: Bag
+  ExpectedJava: bag(Arrays.asList(new MapObject().with("old_val", null).with("new_val", new MapObject().with("id", 1)), new MapObject().with("old_val", null).with("new_val", new MapObject().with("id", 2))))
+  Obtained: fetch(allVirtual, 2)
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 16
+  Original: partial({'errors':0, 'replaced':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("errors", 0).with("replaced", 1))
+  Obtained: vtbl.get(1).update(new MapObject().with("version", 1))
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 17
+  Original: '[{''new_val'': {''id'': 1, ''version'': 1}, ''old_val'': {''id'': 1}}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("new_val", new MapObject().with("id", 1).with("version", 1)).with("old_val", new MapObject().with("id", 1)))
+  Obtained: fetch(allVirtual, 1)
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 18
+  Original: partial({'errors':0, 'deleted':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("errors", 0).with("deleted", 1))
+  Obtained: vtbl.get(1).delete()
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 19
+  Original: '[{''new_val'': None, ''old_val'': {''id'': 1, ''version'': 1}}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("new_val", null).with("old_val", new MapObject().with("id", 1).with("version", 1)))
+  Obtained: fetch(allVirtual, 1)
+- TestType: JavaDef
+  TestFile: changefeeds/table.yaml
+  TestNum: 20
+  Original: vpluck = vtbl.changes().pluck({'new_val':['version']})
+  Java: Pluck vpluck = (Pluck) vtbl.changes().pluck(new MapObject().with("new_val", Arrays.asList("version")));
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 21
+  Original: partial({'errors':0, 'inserted':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(new MapObject().with("errors", 0).with("inserted", 1))
+  Obtained: vtbl.insert(Arrays.asList(new MapObject().with("id", 5).with("version", 5)))
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  TestNum: 22
+  Original: '[{''new_val'': {''version'': 5}}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("new_val", new MapObject().with("version", 5)))
+  Obtained: fetch(vpluck, 1)

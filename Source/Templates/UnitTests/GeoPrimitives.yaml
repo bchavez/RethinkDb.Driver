@@ -1,72 +1,65 @@
-
-ModuleName: "GeoPrimitives"
-TableVarNames:
-
+ModuleName: GeoPrimitives
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: geo/primitives.yaml
-     TestNum: 1
-     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1tbMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2XSwgWy03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDZdLCBbNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2XSwgWzAsIC05LjA0MzY5NDc3MDUwMzgyZS0wNl1dXSwgJ3R5cGUnOidQb2x5Z29uJ30p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdCgwLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDYpLCBBcnJheXMuYXNMaXN0KC03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDYpLCBBcnJheXMuYXNMaXN0KDcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNiksIEFycmF5cy5hc0xpc3QoMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2KSkpKS53aXRoKCJ0eXBlIiwgIlBvbHlnb24iKQ=='
-     Obtained: r.circle(Arrays.asList(0, 0), 1).optArg("num_vertices", 3)
-   - TestType: JavaQuery
-     TestFile: geo/primitives.yaml
-     TestNum: 2
-     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1tbMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2XSwgWy03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDZdLCBbNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2XSwgWzAsIC05LjA0MzY5NDc3MDUwMzgyZS0wNl1dXSwgJ3R5cGUnOidQb2x5Z29uJ30p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdCgwLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDYpLCBBcnJheXMuYXNMaXN0KC03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDYpLCBBcnJheXMuYXNMaXN0KDcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNiksIEFycmF5cy5hc0xpc3QoMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2KSkpKS53aXRoKCJ0eXBlIiwgIlBvbHlnb24iKQ=='
-     Obtained: r.circle(r.point(0, 0), 1).optArg("num_vertices", 3)
-   - TestType: JavaQuery
-     TestFile: geo/primitives.yaml
-     TestNum: 3
-     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1swLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDZdLCBbLTcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNl0sIFs3Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDZdLCBbMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2XV0sICd0eXBlJzonTGluZVN0cmluZyd9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2KSwgQXJyYXlzLmFzTGlzdCgtNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2KSwgQXJyYXlzLmFzTGlzdCg3Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDYpLCBBcnJheXMuYXNMaXN0KDAsIC05LjA0MzY5NDc3MDUwMzgyZS0wNikpKS53aXRoKCJ0eXBlIiwgIkxpbmVTdHJpbmciKQ=='
-     Obtained: r.circle(Arrays.asList(0, 0), 1).optArg("num_vertices", 3).optArg("fill", false)
-   - TestType: JavaQuery
-     TestFile: geo/primitives.yaml
-     TestNum: 4
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1JhZGl1cyBtdXN0IGJlIHNtYWxsZXIgdGhhbiBhIHF1YXJ0ZXIgb2YgdGhlIGNpcmN1bWZlcmVuY2UgYWxvbmcgdGhlIG1pbm9yIGF4aXMgb2YgdGhlIHJlZmVyZW5jZSBlbGxpcHNvaWQuICBHb3QgMTQwMDAwMDBtLCBidXQgbXVzdCBiZSBzbWFsbGVyIHRoYW4gOTk4NTE2My4xODU1NjEyODYyODU1bS4nLCBbMF0p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlJhZGl1cyBtdXN0IGJlIHNtYWxsZXIgdGhhbiBhIHF1YXJ0ZXIgb2YgdGhlIGNpcmN1bWZlcmVuY2UgYWxvbmcgdGhlIG1pbm9yIGF4aXMgb2YgdGhlIHJlZmVyZW5jZSBlbGxpcHNvaWQuICBHb3QgMTQwMDAwMDBtLCBidXQgbXVzdCBiZSBzbWFsbGVyIHRoYW4gOTk4NTE2My4xODU1NjEyODYyODU1bS4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
-     Obtained: r.circle(Arrays.asList(0, 0), 14000000).optArg("num_vertices", 3)
-   - TestType: JavaQuery
-     TestFile: geo/primitives.yaml
-     TestNum: 5
-     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1tbMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2XSwgWy03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDZdLCBbNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2XSwgWzAsIC05LjA0MzY5NDc3MDUwMzgyZS0wNl1dXSwgJ3R5cGUnOidQb2x5Z29uJ30p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdCgwLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDYpLCBBcnJheXMuYXNMaXN0KC03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDYpLCBBcnJheXMuYXNMaXN0KDcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNiksIEFycmF5cy5hc0xpc3QoMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2KSkpKS53aXRoKCJ0eXBlIiwgIlBvbHlnb24iKQ=='
-     Obtained: r.circle(Arrays.asList(0, 0), 1).optArg("num_vertices", 3).optArg("geo_system", "WGS84")
-   - TestType: JavaQuery
-     TestFile: geo/primitives.yaml
-     TestNum: 6
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1JhZGl1cyBtdXN0IGJlIHNtYWxsZXIgdGhhbiBhIHF1YXJ0ZXIgb2YgdGhlIGNpcmN1bWZlcmVuY2UgYWxvbmcgdGhlIG1pbm9yIGF4aXMgb2YgdGhlIHJlZmVyZW5jZSBlbGxpcHNvaWQuICBHb3QgMm0sIGJ1dCBtdXN0IGJlIHNtYWxsZXIgdGhhbiAxLjU3MDc5NjMyNjc5NDg5NjU1OG0uJywgWzBdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlJhZGl1cyBtdXN0IGJlIHNtYWxsZXIgdGhhbiBhIHF1YXJ0ZXIgb2YgdGhlIGNpcmN1bWZlcmVuY2UgYWxvbmcgdGhlIG1pbm9yIGF4aXMgb2YgdGhlIHJlZmVyZW5jZSBlbGxpcHNvaWQuICBHb3QgMm0sIGJ1dCBtdXN0IGJlIHNtYWxsZXIgdGhhbiAxLjU3MDc5NjMyNjc5NDg5NjU1OG0uIiwgQXJyYXlzLmFzTGlzdCgwKSk='
-     Obtained: r.circle(Arrays.asList(0, 0), 2).optArg("num_vertices", 3).optArg("geo_system", "unit_sphere")
-   - TestType: JavaQuery
-     TestFile: geo/primitives.yaml
-     TestNum: 7
-     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1tbMCwgLTUuNzI5NTc3OTUxMzA4MjMyXSwgWy00Ljk2NjA5Mjk0NzQ0NDg1NywgMi44NjEyMDU3NTQ0OTU3MDFdLCBbNC45NjYwOTI5NDc0NDQ4NTcsIDIuODYxMjA1NzU0NDk1NzAxXSwgWzAsIC01LjcyOTU3Nzk1MTMwODIzMl1dXSwgJ3R5cGUnOidQb2x5Z29uJ30p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdCgwLCAtNS43Mjk1Nzc5NTEzMDgyMzIpLCBBcnJheXMuYXNMaXN0KC00Ljk2NjA5Mjk0NzQ0NDg1NywgMi44NjEyMDU3NTQ0OTU3MDEpLCBBcnJheXMuYXNMaXN0KDQuOTY2MDkyOTQ3NDQ0ODU3LCAyLjg2MTIwNTc1NDQ5NTcwMSksIEFycmF5cy5hc0xpc3QoMCwgLTUuNzI5NTc3OTUxMzA4MjMyKSkpKS53aXRoKCJ0eXBlIiwgIlBvbHlnb24iKQ=='
-     Obtained: r.circle(Arrays.asList(0, 0), 0.1).optArg("num_vertices", 3).optArg("geo_system", "unit_sphere")
-   - TestType: JavaQuery
-     TestFile: geo/primitives.yaml
-     TestNum: 8
-     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1tbMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2XSwgWy03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDZdLCBbNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2XSwgWzAsIC05LjA0MzY5NDc3MDUwMzgyZS0wNl1dXSwgJ3R5cGUnOidQb2x5Z29uJ30p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdCgwLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDYpLCBBcnJheXMuYXNMaXN0KC03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDYpLCBBcnJheXMuYXNMaXN0KDcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNiksIEFycmF5cy5hc0xpc3QoMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2KSkpKS53aXRoKCJ0eXBlIiwgIlBvbHlnb24iKQ=='
-     Obtained: r.circle(Arrays.asList(0, 0), r.div(1.0, 1000.0)).optArg("num_vertices", 3).optArg("unit", "km")
-   - TestType: JavaQuery
-     TestFile: geo/primitives.yaml
-     TestNum: 9
-     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1tbMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2XSwgWy03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDZdLCBbNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2XSwgWzAsIC05LjA0MzY5NDc3MDUwMzgyZS0wNl1dXSwgJ3R5cGUnOidQb2x5Z29uJ30p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdCgwLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDYpLCBBcnJheXMuYXNMaXN0KC03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDYpLCBBcnJheXMuYXNMaXN0KDcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNiksIEFycmF5cy5hc0xpc3QoMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2KSkpKS53aXRoKCJ0eXBlIiwgIlBvbHlnb24iKQ=='
-     Obtained: r.circle(Arrays.asList(0, 0), r.div(1.0, 1609.344)).optArg("num_vertices", 3).optArg("unit", "mi")
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: geo/primitives.yaml
+  TestNum: 1
+  Original: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, -9.04369477050382e-06), Arrays.asList(-7.779638566553426e-06, 4.5218473852518965e-06), Arrays.asList(7.779638566553426e-06, 4.5218473852518965e-06), Arrays.asList(0, -9.04369477050382e-06)))).with("type", "Polygon")
+  Obtained: r.circle(Arrays.asList(0, 0), 1).optArg("num_vertices", 3)
+- TestType: JavaQuery
+  TestFile: geo/primitives.yaml
+  TestNum: 2
+  Original: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, -9.04369477050382e-06), Arrays.asList(-7.779638566553426e-06, 4.5218473852518965e-06), Arrays.asList(7.779638566553426e-06, 4.5218473852518965e-06), Arrays.asList(0, -9.04369477050382e-06)))).with("type", "Polygon")
+  Obtained: r.circle(r.point(0, 0), 1).optArg("num_vertices", 3)
+- TestType: JavaQuery
+  TestFile: geo/primitives.yaml
+  TestNum: 3
+  Original: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]], 'type':'LineString'})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(0, -9.04369477050382e-06), Arrays.asList(-7.779638566553426e-06, 4.5218473852518965e-06), Arrays.asList(7.779638566553426e-06, 4.5218473852518965e-06), Arrays.asList(0, -9.04369477050382e-06))).with("type", "LineString")
+  Obtained: r.circle(Arrays.asList(0, 0), 1).optArg("num_vertices", 3).optArg("fill", false)
+- TestType: JavaQuery
+  TestFile: geo/primitives.yaml
+  TestNum: 4
+  Original: err('ReqlQueryLogicError', 'Radius must be smaller than a quarter of the circumference along the minor axis of the reference ellipsoid.  Got 14000000m, but must be smaller than 9985163.1855612862855m.', [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Radius must be smaller than a quarter of the circumference along the minor axis of the reference ellipsoid.  Got 14000000m, but must be smaller than 9985163.1855612862855m.", Arrays.asList(0))
+  Obtained: r.circle(Arrays.asList(0, 0), 14000000).optArg("num_vertices", 3)
+- TestType: JavaQuery
+  TestFile: geo/primitives.yaml
+  TestNum: 5
+  Original: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, -9.04369477050382e-06), Arrays.asList(-7.779638566553426e-06, 4.5218473852518965e-06), Arrays.asList(7.779638566553426e-06, 4.5218473852518965e-06), Arrays.asList(0, -9.04369477050382e-06)))).with("type", "Polygon")
+  Obtained: r.circle(Arrays.asList(0, 0), 1).optArg("num_vertices", 3).optArg("geo_system", "WGS84")
+- TestType: JavaQuery
+  TestFile: geo/primitives.yaml
+  TestNum: 6
+  Original: err('ReqlQueryLogicError', 'Radius must be smaller than a quarter of the circumference along the minor axis of the reference ellipsoid.  Got 2m, but must be smaller than 1.570796326794896558m.', [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Radius must be smaller than a quarter of the circumference along the minor axis of the reference ellipsoid.  Got 2m, but must be smaller than 1.570796326794896558m.", Arrays.asList(0))
+  Obtained: r.circle(Arrays.asList(0, 0), 2).optArg("num_vertices", 3).optArg("geo_system", "unit_sphere")
+- TestType: JavaQuery
+  TestFile: geo/primitives.yaml
+  TestNum: 7
+  Original: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -5.729577951308232], [-4.966092947444857, 2.861205754495701], [4.966092947444857, 2.861205754495701], [0, -5.729577951308232]]], 'type':'Polygon'})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, -5.729577951308232), Arrays.asList(-4.966092947444857, 2.861205754495701), Arrays.asList(4.966092947444857, 2.861205754495701), Arrays.asList(0, -5.729577951308232)))).with("type", "Polygon")
+  Obtained: r.circle(Arrays.asList(0, 0), 0.1).optArg("num_vertices", 3).optArg("geo_system", "unit_sphere")
+- TestType: JavaQuery
+  TestFile: geo/primitives.yaml
+  TestNum: 8
+  Original: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, -9.04369477050382e-06), Arrays.asList(-7.779638566553426e-06, 4.5218473852518965e-06), Arrays.asList(7.779638566553426e-06, 4.5218473852518965e-06), Arrays.asList(0, -9.04369477050382e-06)))).with("type", "Polygon")
+  Obtained: r.circle(Arrays.asList(0, 0), r.div(1.0, 1000.0)).optArg("num_vertices", 3).optArg("unit", "km")
+- TestType: JavaQuery
+  TestFile: geo/primitives.yaml
+  TestNum: 9
+  Original: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, -9.04369477050382e-06), Arrays.asList(-7.779638566553426e-06, 4.5218473852518965e-06), Arrays.asList(7.779638566553426e-06, 4.5218473852518965e-06), Arrays.asList(0, -9.04369477050382e-06)))).with("type", "Polygon")
+  Obtained: r.circle(Arrays.asList(0, 0), r.div(1.0, 1609.344)).optArg("num_vertices", 3).optArg("unit", "mi")

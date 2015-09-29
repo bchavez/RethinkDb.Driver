@@ -1,128 +1,121 @@
-
-ModuleName: "Range"
-TableVarNames:
-
+ModuleName: Range
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 1
-     Original: b'J1NUUkVBTSc='
-     ExpectedType: String
-     ExpectedJava: b'IlNUUkVBTSI='
-     Obtained: r.range().typeOf()
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 2
-     Original: b'WzAsIDEsIDIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgwLCAxLCAyLCAzKQ=='
-     Obtained: r.range().limit(4)
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 3
-     Original: b'WzAsIDEsIDIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgwLCAxLCAyLCAzKQ=='
-     Obtained: r.range(4)
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 4
-     Original: b'WzIsIDMsIDRd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgyLCAzLCA0KQ=='
-     Obtained: r.range(2, 5)
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 5
-     Original: b'W10='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: r.range(0)
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 6
-     Original: b'W10='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: r.range(5, 2)
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 7
-     Original: b'Wy01LCAtNCwgLTNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgtNSwgLTQsIC0zKQ=='
-     Obtained: r.range(-5, -2)
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 8
-     Original: b'Wy01LCAtNCwgLTMsIC0yLCAtMSwgMCwgMV0='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgtNSwgLTQsIC0zLCAtMiwgLTEsIDAsIDEp'
-     Obtained: r.range(-5, 2)
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 9
-     Original: b'ZXJyKCJSZXFsQ29tcGlsZUVycm9yIiwgIkV4cGVjdGVkIGJldHdlZW4gMCBhbmQgMiBhcmd1bWVudHMgYnV0IGZvdW5kIDMuIiwgW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsQ29tcGlsZUVycm9yIiwgIkV4cGVjdGVkIGJldHdlZW4gMCBhbmQgMiBhcmd1bWVudHMgYnV0IGZvdW5kIDMuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.range(2, 5, 8)
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 10
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.range("foo")
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 11
-     Original: b'ZXJyX3JlZ2V4KCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk51bWJlciBub3QgYW4gaW50ZWdlciBcXCg+MlxcXjUzXFwpLiA5MDA3MTk5MjU0NzQwOTk0IiwgW10p'
-     ExpectedType: ErrRegex
-     ExpectedJava: b'ZXJyX3JlZ2V4KCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk51bWJlciBub3QgYW4gaW50ZWdlciBcXCg+MlxcXjUzXFwpLiA5MDA3MTk5MjU0NzQwOTk0IiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.range(9007199254740994.0)
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 12
-     Original: b'ZXJyX3JlZ2V4KCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk51bWJlciBub3QgYW4gaW50ZWdlciBcXCg8LTJcXF41M1xcKS4gLTkwMDcxOTkyNTQ3NDA5OTQiLCBbXSk='
-     ExpectedType: ErrRegex
-     ExpectedJava: b'ZXJyX3JlZ2V4KCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk51bWJlciBub3QgYW4gaW50ZWdlciBcXCg8LTJcXF41M1xcKS4gLTkwMDcxOTkyNTQ3NDA5OTQiLCBBcnJheXMuYXNMaXN0KCkp'
-     Obtained: r.range(-9007199254740994.0)
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 13
-     Original: b'ZXJyX3JlZ2V4KCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk51bWJlciBub3QgYW4gaW50ZWdlci4gMFxcLjUiLCBbXSk='
-     ExpectedType: ErrRegex
-     ExpectedJava: b'ZXJyX3JlZ2V4KCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk51bWJlciBub3QgYW4gaW50ZWdlci4gMFxcLjUiLCBBcnJheXMuYXNMaXN0KCkp'
-     Obtained: r.range(0.5)
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 14
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCB1c2UgYW4gaW5maW5pdGUgc3RyZWFtIHdpdGggYW4gYWdncmVnYXRpb24gZnVuY3Rpb24gKGByZWR1Y2VgLCBgY291bnRgLCBldGMuKSBvciBjb2VyY2UgaXQgdG8gYW4gYXJyYXkuIiwgW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCB1c2UgYW4gaW5maW5pdGUgc3RyZWFtIHdpdGggYW4gYWdncmVnYXRpb24gZnVuY3Rpb24gKGByZWR1Y2VgLCBgY291bnRgLCBldGMuKSBvciBjb2VyY2UgaXQgdG8gYW4gYXJyYXkuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.range().count()
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 15
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCB1c2UgYW4gaW5maW5pdGUgc3RyZWFtIHdpdGggYW4gYWdncmVnYXRpb24gZnVuY3Rpb24gKGByZWR1Y2VgLCBgY291bnRgLCBldGMuKSBvciBjb2VyY2UgaXQgdG8gYW4gYXJyYXkuIiwgW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCB1c2UgYW4gaW5maW5pdGUgc3RyZWFtIHdpdGggYW4gYWdncmVnYXRpb24gZnVuY3Rpb24gKGByZWR1Y2VgLCBgY291bnRgLCBldGMuKSBvciBjb2VyY2UgaXQgdG8gYW4gYXJyYXkuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.range().coerceTo("ARRAY")
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 16
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCB1c2UgYW4gaW5maW5pdGUgc3RyZWFtIHdpdGggYW4gYWdncmVnYXRpb24gZnVuY3Rpb24gKGByZWR1Y2VgLCBgY291bnRgLCBldGMuKSBvciBjb2VyY2UgaXQgdG8gYW4gYXJyYXkuIiwgW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCB1c2UgYW4gaW5maW5pdGUgc3RyZWFtIHdpdGggYW4gYWdncmVnYXRpb24gZnVuY3Rpb24gKGByZWR1Y2VgLCBgY291bnRgLCBldGMuKSBvciBjb2VyY2UgaXQgdG8gYW4gYXJyYXkuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.range().coerceTo("OBJECT")
-   - TestType: JavaQuery
-     TestFile: range.yaml
-     TestNum: 17
-     Original: b'NA=='
-     ExpectedType: Integer
-     ExpectedJava: b'NA=='
-     Obtained: r.range(4).count()
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 1
+  Original: 'STREAM'
+  ExpectedType: String
+  ExpectedJava: '"STREAM"'
+  Obtained: r.range().typeOf()
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 2
+  Original: '[0, 1, 2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(0, 1, 2, 3)
+  Obtained: r.range().limit(4)
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 3
+  Original: '[0, 1, 2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(0, 1, 2, 3)
+  Obtained: r.range(4)
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 4
+  Original: '[2, 3, 4]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(2, 3, 4)
+  Obtained: r.range(2, 5)
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 5
+  Original: '[]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: r.range(0)
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 6
+  Original: '[]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: r.range(5, 2)
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 7
+  Original: '[-5, -4, -3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(-5, -4, -3)
+  Obtained: r.range(-5, -2)
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 8
+  Original: '[-5, -4, -3, -2, -1, 0, 1]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(-5, -4, -3, -2, -1, 0, 1)
+  Obtained: r.range(-5, 2)
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 9
+  Original: err("ReqlCompileError", "Expected between 0 and 2 arguments but found 3.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlCompileError", "Expected between 0 and 2 arguments but found 3.", Arrays.asList())
+  Obtained: r.range(2, 5, 8)
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 10
+  Original: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList())
+  Obtained: r.range("foo")
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 11
+  Original: err_regex("ReqlQueryLogicError", "Number not an integer \\(>2\\^53\\). 9007199254740994", [])
+  ExpectedType: ErrRegex
+  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer \\(>2\\^53\\). 9007199254740994", Arrays.asList())
+  Obtained: r.range(9007199254740994.0)
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 12
+  Original: err_regex("ReqlQueryLogicError", "Number not an integer \\(<-2\\^53\\). -9007199254740994", [])
+  ExpectedType: ErrRegex
+  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer \\(<-2\\^53\\). -9007199254740994", Arrays.asList())
+  Obtained: r.range(-9007199254740994.0)
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 13
+  Original: err_regex("ReqlQueryLogicError", "Number not an integer. 0\\.5", [])
+  ExpectedType: ErrRegex
+  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer. 0\\.5", Arrays.asList())
+  Obtained: r.range(0.5)
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 14
+  Original: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", Arrays.asList())
+  Obtained: r.range().count()
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 15
+  Original: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", Arrays.asList())
+  Obtained: r.range().coerceTo("ARRAY")
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 16
+  Original: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", Arrays.asList())
+  Obtained: r.range().coerceTo("OBJECT")
+- TestType: JavaQuery
+  TestFile: range.yaml
+  TestNum: 17
+  Original: 4
+  ExpectedType: Integer
+  ExpectedJava: 4
+  Obtained: r.range(4).count()

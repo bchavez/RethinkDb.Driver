@@ -1,16 +1,9 @@
-
-ModuleName: "Regression4591"
-TableVarNames:
-
+ModuleName: Regression4591
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/4591.yaml
-     TestNum: 1
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnci5hcmdzIGlzIG5vdCBzdXBwb3J0ZWQgaW4gYW4gb3JkZXJfYnkgY29tbWFuZCB5ZXQuJyk='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgInIuYXJncyBpcyBub3Qgc3VwcG9ydGVkIGluIGFuIG9yZGVyX2J5IGNvbW1hbmQgeWV0LiIp'
-     Obtained: r.expr(Arrays.asList(new MapObject().with("x", 2), new MapObject().with("x", 1))).orderBy(r.args(Arrays.asList("x", "y")))
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/4591.yaml
+  TestNum: 1
+  Original: err('ReqlQueryLogicError','r.args is not supported in an order_by command yet.')
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "r.args is not supported in an order_by command yet.")
+  Obtained: r.expr(Arrays.asList(new MapObject().with("x", 2), new MapObject().with("x", 1))).orderBy(r.args(Arrays.asList("x", "y")))

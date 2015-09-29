@@ -1,37 +1,31 @@
-
-ModuleName: "Regression2838"
+ModuleName: Regression2838
 TableVarNames:
-    - tbl
-
+- tbl
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/2838.yaml
-     TestNum: 1
-     Original: b'KHsnaW5zZXJ0ZWQnOjk5fSk='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImluc2VydGVkIiwgOTkp'
-     Obtained: tbl.insert(IntStream.range(1, 100).boxed().map(i -> new MapObject().with("result", i)).collect(Collectors.toList())).pluck("first_error", "inserted")
-   - TestType: JavaQuery
-     TestFile: regression/2838.yaml
-     TestNum: 2
-     Original: b'KDQwKQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'NDA='
-     Obtained: tbl.update(new MapObject().with("foo", "bar")).optArg("return_changes", true).bracket("changes").count()
-     RunOpts:
-                - Key: array_limit
-                  Val: 40
-   - TestType: JavaQuery
-     TestFile: regression/2838.yaml
-     TestNum: 3
-     Original: b'KFsnVG9vIG1hbnkgY2hhbmdlcywgYXJyYXkgdHJ1bmNhdGVkIHRvIDQwLiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiVG9vIG1hbnkgY2hhbmdlcywgYXJyYXkgdHJ1bmNhdGVkIHRvIDQwLiIp'
-     Obtained: tbl.update(new MapObject().with("foo", "quux")).optArg("return_changes", true).bracket("warnings")
-     RunOpts:
-                - Key: array_limit
-                  Val: 40
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/2838.yaml
+  TestNum: 1
+  Original: ({'inserted':99})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("inserted", 99)
+  Obtained: tbl.insert(IntStream.range(1, 100).boxed().map(i -> new MapObject().with("result", i)).collect(Collectors.toList())).pluck("first_error", "inserted")
+- TestType: JavaQuery
+  TestFile: regression/2838.yaml
+  TestNum: 2
+  Original: (40)
+  ExpectedType: Integer
+  ExpectedJava: 40
+  Obtained: tbl.update(new MapObject().with("foo", "bar")).optArg("return_changes", true).bracket("changes").count()
+  RunOpts:
+  - Key: array_limit
+    Val: 40
+- TestType: JavaQuery
+  TestFile: regression/2838.yaml
+  TestNum: 3
+  Original: (['Too many changes, array truncated to 40.'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("Too many changes, array truncated to 40.")
+  Obtained: tbl.update(new MapObject().with("foo", "quux")).optArg("return_changes", true).bracket("warnings")
+  RunOpts:
+  - Key: array_limit
+    Val: 40

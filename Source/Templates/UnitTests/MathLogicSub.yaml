@@ -1,65 +1,58 @@
-
-ModuleName: "MathLogicSub"
-TableVarNames:
-
+ModuleName: MathLogicSub
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: math_logic/sub.yaml
-     TestNum: 1
-     Original: b'MA=='
-     ExpectedType: Integer
-     ExpectedJava: b'MA=='
-     Obtained: r.sub(r.expr(1), 1)
-   - TestType: JavaQuery
-     TestFile: math_logic/sub.yaml
-     TestNum: 1
-     Original: b'MA=='
-     ExpectedType: Integer
-     ExpectedJava: b'MA=='
-     Obtained: r.sub(1, r.expr(1))
-   - TestType: JavaQuery
-     TestFile: math_logic/sub.yaml
-     TestNum: 1
-     Original: b'MA=='
-     ExpectedType: Integer
-     ExpectedJava: b'MA=='
-     Obtained: r.expr(1).sub(1)
-   - TestType: JavaQuery
-     TestFile: math_logic/sub.yaml
-     TestNum: 2
-     Original: b'LTI='
-     ExpectedType: Integer
-     ExpectedJava: b'LTI='
-     Obtained: r.sub(r.expr(-1), 1)
-   - TestType: JavaQuery
-     TestFile: math_logic/sub.yaml
-     TestNum: 3
-     Original: b'LTYuNzU='
-     ExpectedType: Double
-     ExpectedJava: b'LTYuNzU='
-     Obtained: r.sub(r.expr(1.75), 8.5)
-   - TestType: JavaQuery
-     TestFile: math_logic/sub.yaml
-     TestNum: 5
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuJywgWzBdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
-     Obtained: r.sub(r.expr("a"), 0.8)
-   - TestType: JavaQuery
-     TestFile: math_logic/sub.yaml
-     TestNum: 6
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuJywgWzFdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgxKSk='
-     Obtained: r.sub(r.expr(1), "a")
-   - TestType: JavaQuery
-     TestFile: math_logic/sub.yaml
-     TestNum: 7
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuJywgWzBdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
-     Obtained: r.sub(r.expr("b"), "a")
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: math_logic/sub.yaml
+  TestNum: 1
+  Original: 0
+  ExpectedType: Integer
+  ExpectedJava: 0
+  Obtained: r.sub(r.expr(1), 1)
+- TestType: JavaQuery
+  TestFile: math_logic/sub.yaml
+  TestNum: 1
+  Original: 0
+  ExpectedType: Integer
+  ExpectedJava: 0
+  Obtained: r.sub(1, r.expr(1))
+- TestType: JavaQuery
+  TestFile: math_logic/sub.yaml
+  TestNum: 1
+  Original: 0
+  ExpectedType: Integer
+  ExpectedJava: 0
+  Obtained: r.expr(1).sub(1)
+- TestType: JavaQuery
+  TestFile: math_logic/sub.yaml
+  TestNum: 2
+  Original: -2
+  ExpectedType: Integer
+  ExpectedJava: -2
+  Obtained: r.sub(r.expr(-1), 1)
+- TestType: JavaQuery
+  TestFile: math_logic/sub.yaml
+  TestNum: 3
+  Original: -6.75
+  ExpectedType: Double
+  ExpectedJava: -6.75
+  Obtained: r.sub(r.expr(1.75), 8.5)
+- TestType: JavaQuery
+  TestFile: math_logic/sub.yaml
+  TestNum: 5
+  Original: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(0))
+  Obtained: r.sub(r.expr("a"), 0.8)
+- TestType: JavaQuery
+  TestFile: math_logic/sub.yaml
+  TestNum: 6
+  Original: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(1))
+  Obtained: r.sub(r.expr(1), "a")
+- TestType: JavaQuery
+  TestFile: math_logic/sub.yaml
+  TestNum: 7
+  Original: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(0))
+  Obtained: r.sub(r.expr("b"), "a")

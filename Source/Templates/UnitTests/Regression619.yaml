@@ -1,37 +1,30 @@
-
-ModuleName: "Regression619"
-TableVarNames:
-
+ModuleName: Regression619
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/619.yaml
-     TestNum: 1
-     Original: b'KHsnc2VsZic6J2Zvbyd9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInNlbGYiLCAiZm9vIik='
-     Obtained: r.expr(new MapObject().with("self", "foo"))
-   - TestType: JavaQuery
-     TestFile: regression/619.yaml
-     TestNum: 2
-     Original: b'KHsnc2VsZic6MX0p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInNlbGYiLCAxKQ=='
-     Obtained: r.expr(1).do_(x -> new MapObject().with("self", x))
-   - TestType: JavaQuery
-     TestFile: regression/619.yaml
-     TestNum: 3
-     Original: b'KHsiYSI6eyJzZWxmIjoxfX0p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImEiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgic2VsZiIsIDEpKQ=='
-     Obtained: r.expr(new MapObject().with("a", new MapObject().with("self", 1)))
-   - TestType: JavaQuery
-     TestFile: regression/619.yaml
-     TestNum: 4
-     Original: b'KHsic2VsZiI6eyJzZWxmIjp7InNlbGYiOjF9fX0p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInNlbGYiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgic2VsZiIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJzZWxmIiwgMSkpKQ=='
-     Obtained: r.expr(new MapObject().with("self", new MapObject().with("self", new MapObject().with("self", 1))))
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/619.yaml
+  TestNum: 1
+  Original: ({'self':'foo'})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("self", "foo")
+  Obtained: r.expr(new MapObject().with("self", "foo"))
+- TestType: JavaQuery
+  TestFile: regression/619.yaml
+  TestNum: 2
+  Original: ({'self':1})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("self", 1)
+  Obtained: r.expr(1).do_(x -> new MapObject().with("self", x))
+- TestType: JavaQuery
+  TestFile: regression/619.yaml
+  TestNum: 3
+  Original: ({"a":{"self":1}})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("a", new MapObject().with("self", 1))
+  Obtained: r.expr(new MapObject().with("a", new MapObject().with("self", 1)))
+- TestType: JavaQuery
+  TestFile: regression/619.yaml
+  TestNum: 4
+  Original: ({"self":{"self":{"self":1}}})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("self", new MapObject().with("self", new MapObject().with("self", 1)))
+  Obtained: r.expr(new MapObject().with("self", new MapObject().with("self", new MapObject().with("self", 1))))

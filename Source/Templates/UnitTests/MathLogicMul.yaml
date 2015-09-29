@@ -1,79 +1,72 @@
-
-ModuleName: "MathLogicMul"
-TableVarNames:
-
+ModuleName: MathLogicMul
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: math_logic/mul.yaml
-     TestNum: 1
-     Original: b'Mg=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mg=='
-     Obtained: r.mul(r.expr(1), 2)
-   - TestType: JavaQuery
-     TestFile: math_logic/mul.yaml
-     TestNum: 1
-     Original: b'Mg=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mg=='
-     Obtained: r.mul(1, r.expr(2))
-   - TestType: JavaQuery
-     TestFile: math_logic/mul.yaml
-     TestNum: 1
-     Original: b'Mg=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mg=='
-     Obtained: r.expr(1).mul(2)
-   - TestType: JavaQuery
-     TestFile: math_logic/mul.yaml
-     TestNum: 2
-     Original: b'MQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'MQ=='
-     Obtained: r.mul(r.expr(-1), -1)
-   - TestType: JavaQuery
-     TestFile: math_logic/mul.yaml
-     TestNum: 3
-     Original: b'Ni43NQ=='
-     ExpectedType: Double
-     ExpectedJava: b'Ni43NQ=='
-     Obtained: r.mul(r.expr(1.5), 4.5)
-   - TestType: JavaQuery
-     TestFile: math_logic/mul.yaml
-     TestNum: 4
-     Original: b'WzEsIDIsIDMsIDEsIDIsIDMsIDEsIDIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCAxLCAyLCAzLCAxLCAyLCAzKQ=='
-     Obtained: r.mul(r.expr(Arrays.asList(1, 2, 3)), 3)
-   - TestType: JavaQuery
-     TestFile: math_logic/mul.yaml
-     TestNum: 9
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuJywgWzBdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
-     Obtained: r.mul(r.expr("a"), 0.8)
-   - TestType: JavaQuery
-     TestFile: math_logic/mul.yaml
-     TestNum: 10
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuJywgWzFdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgxKSk='
-     Obtained: r.mul(r.expr(1), "a")
-   - TestType: JavaQuery
-     TestFile: math_logic/mul.yaml
-     TestNum: 11
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuJywgWzBdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
-     Obtained: r.mul(r.expr("b"), "a")
-   - TestType: JavaQuery
-     TestFile: math_logic/mul.yaml
-     TestNum: 12
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ051bWJlciBub3QgYW4gaW50ZWdlcjogMS41JywgWzBdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk51bWJlciBub3QgYW4gaW50ZWdlcjogMS41IiwgQXJyYXlzLmFzTGlzdCgwKSk='
-     Obtained: r.mul(r.expr(Arrays.asList()), 1.5)
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: math_logic/mul.yaml
+  TestNum: 1
+  Original: 2
+  ExpectedType: Integer
+  ExpectedJava: 2
+  Obtained: r.mul(r.expr(1), 2)
+- TestType: JavaQuery
+  TestFile: math_logic/mul.yaml
+  TestNum: 1
+  Original: 2
+  ExpectedType: Integer
+  ExpectedJava: 2
+  Obtained: r.mul(1, r.expr(2))
+- TestType: JavaQuery
+  TestFile: math_logic/mul.yaml
+  TestNum: 1
+  Original: 2
+  ExpectedType: Integer
+  ExpectedJava: 2
+  Obtained: r.expr(1).mul(2)
+- TestType: JavaQuery
+  TestFile: math_logic/mul.yaml
+  TestNum: 2
+  Original: 1
+  ExpectedType: Integer
+  ExpectedJava: 1
+  Obtained: r.mul(r.expr(-1), -1)
+- TestType: JavaQuery
+  TestFile: math_logic/mul.yaml
+  TestNum: 3
+  Original: 6.75
+  ExpectedType: Double
+  ExpectedJava: 6.75
+  Obtained: r.mul(r.expr(1.5), 4.5)
+- TestType: JavaQuery
+  TestFile: math_logic/mul.yaml
+  TestNum: 4
+  Original: '[1, 2, 3, 1, 2, 3, 1, 2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3, 1, 2, 3, 1, 2, 3)
+  Obtained: r.mul(r.expr(Arrays.asList(1, 2, 3)), 3)
+- TestType: JavaQuery
+  TestFile: math_logic/mul.yaml
+  TestNum: 9
+  Original: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(0))
+  Obtained: r.mul(r.expr("a"), 0.8)
+- TestType: JavaQuery
+  TestFile: math_logic/mul.yaml
+  TestNum: 10
+  Original: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(1))
+  Obtained: r.mul(r.expr(1), "a")
+- TestType: JavaQuery
+  TestFile: math_logic/mul.yaml
+  TestNum: 11
+  Original: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(0))
+  Obtained: r.mul(r.expr("b"), "a")
+- TestType: JavaQuery
+  TestFile: math_logic/mul.yaml
+  TestNum: 12
+  Original: 'err(''ReqlQueryLogicError'', ''Number not an integer: 1.5'', [0])'
+  ExpectedType: Err
+  ExpectedJava: 'err("ReqlQueryLogicError", "Number not an integer: 1.5", Arrays.asList(0))'
+  Obtained: r.mul(r.expr(Arrays.asList()), 1.5)

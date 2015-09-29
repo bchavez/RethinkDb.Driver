@@ -1,16 +1,9 @@
-
-ModuleName: "MathLogicMath"
-TableVarNames:
-
+ModuleName: MathLogicMath
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: math_logic/math.yaml
-     TestNum: 1
-     Original: b'MQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'MQ=='
-     Obtained: r.sub(r.div(r.add(4, r.mul(2, r.mod(r.expr(26), 18))), 5), 3)
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: math_logic/math.yaml
+  TestNum: 1
+  Original: 1
+  ExpectedType: Integer
+  ExpectedJava: 1
+  Obtained: r.sub(r.div(r.add(4, r.mul(2, r.mod(r.expr(26), 18))), 5), 3)

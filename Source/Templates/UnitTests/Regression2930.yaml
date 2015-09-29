@@ -1,47 +1,41 @@
-
-ModuleName: "Regression2930"
+ModuleName: Regression2930
 TableVarNames:
-    - tbl
-
+- tbl
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/2930.yaml
-     TestNum: 1
-     Original: b'KHsnaW5zZXJ0ZWQnOjk5OX0p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImluc2VydGVkIiwgOTk5KQ=='
-     Obtained: tbl.insert(IntStream.range(1, 1000).boxed().map(i -> new MapObject().with("id", i).with("mod", r.mod(i, 5)).with("foo", 5)).collect(Collectors.toList())).pluck("first_error", "inserted")
-   - TestType: JavaQuery
-     TestFile: regression/2930.yaml
-     TestNum: 2
-     Original: b'ZXJyKCJSZXFsUmVzb3VyY2VMaW1pdEVycm9yIiwgIkFycmF5IG92ZXIgc2l6ZSBsaW1pdCBgNTAwYC4iLCBbMF0p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUmVzb3VyY2VMaW1pdEVycm9yIiwgIkFycmF5IG92ZXIgc2l6ZSBsaW1pdCBgNTAwYC4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
-     Obtained: tbl.coerceTo("array")
-     RunOpts:
-                - Key: array_limit
-                  Val: 500
-   - TestType: JavaQuery
-     TestFile: regression/2930.yaml
-     TestNum: 3
-     Original: b'ZXJyKCJSZXFsUmVzb3VyY2VMaW1pdEVycm9yIiwgIkdyb3VwZWQgZGF0YSBvdmVyIHNpemUgbGltaXQgYDUwMGAuICBUcnkgcHV0dGluZyBhIHJlZHVjdGlvbiAobGlrZSBgLnJlZHVjZWAgb3IgYC5jb3VudGApIG9uIHRoZSBlbmQuIiwgWzBdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUmVzb3VyY2VMaW1pdEVycm9yIiwgIkdyb3VwZWQgZGF0YSBvdmVyIHNpemUgbGltaXQgYDUwMGAuICBUcnkgcHV0dGluZyBhIHJlZHVjdGlvbiAobGlrZSBgLnJlZHVjZWAgb3IgYC5jb3VudGApIG9uIHRoZSBlbmQuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
-     Obtained: tbl.group("mod").coerceTo("array")
-     RunOpts:
-                - Key: array_limit
-                  Val: 500
-   - TestType: JavaQuery
-     TestFile: regression/2930.yaml
-     TestNum: 4
-     Original: b'ZXJyKCJSZXFsUmVzb3VyY2VMaW1pdEVycm9yIiwgIkdyb3VwZWQgZGF0YSBvdmVyIHNpemUgbGltaXQgYDUwMGAuICBUcnkgcHV0dGluZyBhIHJlZHVjdGlvbiAobGlrZSBgLnJlZHVjZWAgb3IgYC5jb3VudGApIG9uIHRoZSBlbmQuIiwgWzBdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUmVzb3VyY2VMaW1pdEVycm9yIiwgIkdyb3VwZWQgZGF0YSBvdmVyIHNpemUgbGltaXQgYDUwMGAuICBUcnkgcHV0dGluZyBhIHJlZHVjdGlvbiAobGlrZSBgLnJlZHVjZWAgb3IgYC5jb3VudGApIG9uIHRoZSBlbmQuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
-     Obtained: tbl.group("foo").coerceTo("array")
-     RunOpts:
-                - Key: array_limit
-                  Val: 500
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/2930.yaml
+  TestNum: 1
+  Original: ({'inserted':999})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("inserted", 999)
+  Obtained: tbl.insert(IntStream.range(1, 1000).boxed().map(i -> new MapObject().with("id", i).with("mod", r.mod(i, 5)).with("foo", 5)).collect(Collectors.toList())).pluck("first_error", "inserted")
+- TestType: JavaQuery
+  TestFile: regression/2930.yaml
+  TestNum: 2
+  Original: err("ReqlResourceLimitError", "Array over size limit `500`.", [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlResourceLimitError", "Array over size limit `500`.", Arrays.asList(0))
+  Obtained: tbl.coerceTo("array")
+  RunOpts:
+  - Key: array_limit
+    Val: 500
+- TestType: JavaQuery
+  TestFile: regression/2930.yaml
+  TestNum: 3
+  Original: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", Arrays.asList(0))
+  Obtained: tbl.group("mod").coerceTo("array")
+  RunOpts:
+  - Key: array_limit
+    Val: 500
+- TestType: JavaQuery
+  TestFile: regression/2930.yaml
+  TestNum: 4
+  Original: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", Arrays.asList(0))
+  Obtained: tbl.group("foo").coerceTo("array")
+  RunOpts:
+  - Key: array_limit
+    Val: 500

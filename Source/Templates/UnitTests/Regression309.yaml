@@ -1,31 +1,25 @@
-
-ModuleName: "Regression309"
+ModuleName: Regression309
 TableVarNames:
-    - t
-
+- t
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/309.yaml
-     TestNum: 1
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: t.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1)))
-   - TestType: JavaQuery
-     TestFile: regression/309.yaml
-     TestNum: 2
-     Original: b'YmFnKFt7J2lkJzowfSwgeydpZCc6MX0sIDIsIDMsIDRdKQ=='
-     ExpectedType: Bag
-     ExpectedJava: b'YmFnKEFycmF5cy5hc0xpc3QobmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDEpLCAyLCAzLCA0KSk='
-     Obtained: t.union(Arrays.asList(2, 3, 4))
-   - TestType: JavaQuery
-     TestFile: regression/309.yaml
-     TestNum: 3
-     Original: b'YmFnKFt7J2lkJzowfSwgeydpZCc6MX0sIDIsIDMsIDRdKQ=='
-     ExpectedType: Bag
-     ExpectedJava: b'YmFnKEFycmF5cy5hc0xpc3QobmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDEpLCAyLCAzLCA0KSk='
-     Obtained: r.expr(Arrays.asList(2, 3, 4)).union(t)
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/309.yaml
+  TestNum: 1
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: t.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1)))
+- TestType: JavaQuery
+  TestFile: regression/309.yaml
+  TestNum: 2
+  Original: bag([{'id':0}, {'id':1}, 2, 3, 4])
+  ExpectedType: Bag
+  ExpectedJava: bag(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), 2, 3, 4))
+  Obtained: t.union(Arrays.asList(2, 3, 4))
+- TestType: JavaQuery
+  TestFile: regression/309.yaml
+  TestNum: 3
+  Original: bag([{'id':0}, {'id':1}, 2, 3, 4])
+  ExpectedType: Bag
+  ExpectedJava: bag(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), 2, 3, 4))
+  Obtained: r.expr(Arrays.asList(2, 3, 4)).union(t)

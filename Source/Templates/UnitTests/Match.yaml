@@ -1,80 +1,75 @@
-
-ModuleName: "Match"
+ModuleName: Match
 TableVarNames:
-    - tbl
-
+- tbl
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: match.yaml
-     TestNum: 1
-     Original: b'KHsnc3RyJzonYmNkZScsJ2dyb3Vwcyc6W251bGwseydzdGFydCc6Miwnc3RyJzonY2RlJywnZW5kJzo1fV0sJ3N0YXJ0JzoxLCdlbmQnOjV9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInN0ciIsICJiY2RlIikud2l0aCgiZ3JvdXBzIiwgQXJyYXlzLmFzTGlzdChudWxsLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgic3RhcnQiLCAyKS53aXRoKCJzdHIiLCAiY2RlIikud2l0aCgiZW5kIiwgNSkpKS53aXRoKCJzdGFydCIsIDEpLndpdGgoImVuZCIsIDUp'
-     Obtained: r.expr("abcdefg").match("a(b.e)|b(c.e)")
-   - TestType: JavaQuery
-     TestFile: match.yaml
-     TestNum: 2
-     Original: b'KG51bGwp'
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: r.expr("abcdefg").match("a(b.e)|B(c.e)")
-   - TestType: JavaQuery
-     TestFile: match.yaml
-     TestNum: 3
-     Original: b'KHsnc3RyJzonYmNkZScsJ2dyb3Vwcyc6W251bGwseydzdGFydCc6Miwnc3RyJzonY2RlJywnZW5kJzo1fV0sJ3N0YXJ0JzoxLCdlbmQnOjV9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInN0ciIsICJiY2RlIikud2l0aCgiZ3JvdXBzIiwgQXJyYXlzLmFzTGlzdChudWxsLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgic3RhcnQiLCAyKS53aXRoKCJzdHIiLCAiY2RlIikud2l0aCgiZW5kIiwgNSkpKS53aXRoKCJzdGFydCIsIDEpLndpdGgoImVuZCIsIDUp'
-     Obtained: r.expr("abcdefg").match("(?i)a(b.e)|B(c.e)")
-   - TestType: JavaQuery
-     TestFile: match.yaml
-     TestNum: 4
-     Original: b'KFsiYWNhIiwgImFkYSJdKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWNhIiwgImFkYSIp'
-     Obtained: r.expr(Arrays.asList("aba", "aca", "ada", "aea")).filter(row -> row.match("a(.)a").bracket("groups").bracket(0).bracket("str").match("[cd]"))
-   - TestType: JavaQuery
-     TestFile: match.yaml
-     TestNum: 5
-     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjN9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAzKQ=='
-     Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 0).with("a", "abc"), new MapObject().with("id", 1).with("a", "ab"), new MapObject().with("id", 2).with("a", "bc")))
-   - TestType: JavaQuery
-     TestFile: match.yaml
-     TestNum: 6
-     Original: b'KFt7J2lkJzowLCdhJzonYWJjJ30seydpZCc6MSwnYSc6J2FiJ30seydpZCc6MiwnYSc6J2JjJ31dKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAwKS53aXRoKCJhIiwgImFiYyIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAxKS53aXRoKCJhIiwgImFiIiksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDIpLndpdGgoImEiLCAiYmMiKSk='
-     Obtained: tbl.filter(row -> row.bracket("a").match("b")).orderBy("id")
-   - TestType: JavaQuery
-     TestFile: match.yaml
-     TestNum: 7
-     Original: b'KFt7J2lkJzowLCdhJzonYWJjJ30seydpZCc6MSwnYSc6J2FiJ31dKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAwKS53aXRoKCJhIiwgImFiYyIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAxKS53aXRoKCJhIiwgImFiIikp'
-     Obtained: tbl.filter(row -> row.bracket("a").match("ab")).orderBy("id")
-   - TestType: JavaQuery
-     TestFile: match.yaml
-     TestNum: 8
-     Original: b'KFt7J2lkJzoxLCdhJzonYWInfV0p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAxKS53aXRoKCJhIiwgImFiIikp'
-     Obtained: tbl.filter(row -> row.bracket("a").match("ab$")).orderBy("id")
-   - TestType: JavaQuery
-     TestFile: match.yaml
-     TestNum: 9
-     Original: b'KFtdKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: tbl.filter(row -> row.bracket("a").match("^b$")).orderBy("id")
-   - TestType: JavaQuery
-     TestFile: match.yaml
-     TestNum: 10
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkVycm9yIGluIHJlZ2V4cCBgYWJcXDlgIChwb3J0aW9uIGBcXDlgKTogaW52YWxpZCBlc2NhcGUgc2VxdWVuY2U6IFxcOSIsIFtdKQo='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkVycm9yIGluIHJlZ2V4cCBgYWJcXDlgIChwb3J0aW9uIGBcXDlgKTogaW52YWxpZCBlc2NhcGUgc2VxdWVuY2U6IFxcOSIsIEFycmF5cy5hc0xpc3QoKSk='
-     Obtained: r.expr("").match("ab\\9")
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: match.yaml
+  TestNum: 1
+  Original: ({'str':'bcde','groups':[null,{'start':2,'str':'cde','end':5}],'start':1,'end':5})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("str", "bcde").with("groups", Arrays.asList(null, new MapObject().with("start", 2).with("str", "cde").with("end", 5))).with("start", 1).with("end", 5)
+  Obtained: r.expr("abcdefg").match("a(b.e)|b(c.e)")
+- TestType: JavaQuery
+  TestFile: match.yaml
+  TestNum: 2
+  Original: (null)
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: r.expr("abcdefg").match("a(b.e)|B(c.e)")
+- TestType: JavaQuery
+  TestFile: match.yaml
+  TestNum: 3
+  Original: ({'str':'bcde','groups':[null,{'start':2,'str':'cde','end':5}],'start':1,'end':5})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("str", "bcde").with("groups", Arrays.asList(null, new MapObject().with("start", 2).with("str", "cde").with("end", 5))).with("start", 1).with("end", 5)
+  Obtained: r.expr("abcdefg").match("(?i)a(b.e)|B(c.e)")
+- TestType: JavaQuery
+  TestFile: match.yaml
+  TestNum: 4
+  Original: (["aca", "ada"])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aca", "ada")
+  Obtained: r.expr(Arrays.asList("aba", "aca", "ada", "aea")).filter(row -> row.match("a(.)a").bracket("groups").bracket(0).bracket("str").match("[cd]"))
+- TestType: JavaQuery
+  TestFile: match.yaml
+  TestNum: 5
+  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 3)
+  Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 0).with("a", "abc"), new MapObject().with("id", 1).with("a", "ab"), new MapObject().with("id", 2).with("a", "bc")))
+- TestType: JavaQuery
+  TestFile: match.yaml
+  TestNum: 6
+  Original: ([{'id':0,'a':'abc'},{'id':1,'a':'ab'},{'id':2,'a':'bc'}])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("id", 0).with("a", "abc"), new MapObject().with("id", 1).with("a", "ab"), new MapObject().with("id", 2).with("a", "bc"))
+  Obtained: tbl.filter(row -> row.bracket("a").match("b")).orderBy("id")
+- TestType: JavaQuery
+  TestFile: match.yaml
+  TestNum: 7
+  Original: ([{'id':0,'a':'abc'},{'id':1,'a':'ab'}])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("id", 0).with("a", "abc"), new MapObject().with("id", 1).with("a", "ab"))
+  Obtained: tbl.filter(row -> row.bracket("a").match("ab")).orderBy("id")
+- TestType: JavaQuery
+  TestFile: match.yaml
+  TestNum: 8
+  Original: ([{'id':1,'a':'ab'}])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("id", 1).with("a", "ab"))
+  Obtained: tbl.filter(row -> row.bracket("a").match("ab$")).orderBy("id")
+- TestType: JavaQuery
+  TestFile: match.yaml
+  TestNum: 9
+  Original: ([])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: tbl.filter(row -> row.bracket("a").match("^b$")).orderBy("id")
+- TestType: JavaQuery
+  TestFile: match.yaml
+  TestNum: 10
+  Original: >
+    err("ReqlQueryLogicError", "Error in regexp `ab\\9` (portion `\\9`): invalid escape sequence: \\9", [])
+  ExpectedType: Err
+  ExpectedJava: 'err("ReqlQueryLogicError", "Error in regexp `ab\\9` (portion `\\9`): invalid escape sequence: \\9", Arrays.asList())'
+  Obtained: r.expr("").match("ab\\9")

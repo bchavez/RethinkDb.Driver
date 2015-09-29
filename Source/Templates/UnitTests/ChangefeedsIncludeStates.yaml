@@ -1,121 +1,108 @@
-
-ModuleName: "ChangefeedsIncludeStates"
+ModuleName: ChangefeedsIncludeStates
 TableVarNames:
-    - tbl
-
+- tbl
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 1
-     Original: b'W3snc3RhdGUnOiAncmVhZHknfV0='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgic3RhdGUiLCAicmVhZHkiKSk='
-     Obtained: tbl.changes().optArg("squash", true).optArg("include_states", true).limit(1)
-   - TestType: JavaQuery
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 2
-     Original: b'W3snc3RhdGUnOiAnaW5pdGlhbGl6aW5nJ30sIHsnbmV3X3ZhbCc6IE5vbmV9LCB7J3N0YXRlJzogJ3JlYWR5J31d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgic3RhdGUiLCAiaW5pdGlhbGl6aW5nIiksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJuZXdfdmFsIiwgbnVsbCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJzdGF0ZSIsICJyZWFkeSIpKQ=='
-     Obtained: tbl.get(0).changes().optArg("squash", true).optArg("include_states", true).limit(3)
-   - TestType: JavaQuery
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 3
-     Original: b'W3snc3RhdGUnOiAnaW5pdGlhbGl6aW5nJ30sIHsnc3RhdGUnOiAncmVhZHknfV0='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgic3RhdGUiLCAiaW5pdGlhbGl6aW5nIiksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJzdGF0ZSIsICJyZWFkeSIpKQ=='
-     Obtained: tbl.orderBy().optArg("index", "id").limit(10).changes().optArg("squash", true).optArg("include_states", true).limit(2)
-   - TestType: JavaQuery
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 4
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: tbl.insert(new MapObject().with("id", 1))
-   - TestType: JavaQuery
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 5
-     Original: b'W3snc3RhdGUnOiAnaW5pdGlhbGl6aW5nJ30sIHsnbmV3X3ZhbCc6IHsnaWQnOiAxfX0sIHsnc3RhdGUnOiAncmVhZHknfV0='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgic3RhdGUiLCAiaW5pdGlhbGl6aW5nIiksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMSkpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgic3RhdGUiLCAicmVhZHkiKSk='
-     Obtained: tbl.orderBy().optArg("index", "id").limit(10).changes().optArg("squash", true).optArg("include_states", true).limit(3)
-        
-
-   - TestType: JavaDef
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 6
-     Original: b'dGJsY2hhbmdlcyA9IHRibC5jaGFuZ2VzKHNxdWFzaD10cnVlLCBpbmNsdWRlX3N0YXRlcz10cnVlKQ=='
-     Java: Changes tblchanges = (Changes) tbl.changes().optArg("squash", true).optArg("include_states", true);
-   - TestType: JavaQuery
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 7
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: tbl.insert(new MapObject().with("id", 2))
-   - TestType: JavaQuery
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 8
-     Original: b'W3snc3RhdGUnOiAncmVhZHknfSwgeyduZXdfdmFsJzogeydpZCc6IDJ9LCAnb2xkX3ZhbCc6IE5vbmV9XQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgic3RhdGUiLCAicmVhZHkiKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm5ld192YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAyKSkud2l0aCgib2xkX3ZhbCIsIG51bGwpKQ=='
-     Obtained: fetch(tblchanges, 2)
-        
-
-   - TestType: JavaDef
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 9
-     Original: b'Z2V0Y2hhbmdlcyA9IHRibC5nZXQoMikuY2hhbmdlcyhpbmNsdWRlX3N0YXRlcz10cnVlKQ=='
-     Java: Changes getchanges = (Changes) tbl.get(2).changes().optArg("include_states", true);
-   - TestType: JavaQuery
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 10
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: tbl.get(2).update(new MapObject().with("a", 1))
-   - TestType: JavaQuery
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 11
-     Original: b'W3snc3RhdGUnOiAnaW5pdGlhbGl6aW5nJ30sIHsnbmV3X3ZhbCc6IHsnaWQnOiAyfX0sIHsnc3RhdGUnOiAncmVhZHknfSwgeyduZXdfdmFsJzogeydpZCc6IDIsICdhJzogMX0sICdvbGRfdmFsJzogeydpZCc6IDJ9fV0='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgic3RhdGUiLCAiaW5pdGlhbGl6aW5nIiksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMikpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgic3RhdGUiLCAicmVhZHkiKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm5ld192YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAyKS53aXRoKCJhIiwgMSkpLndpdGgoIm9sZF92YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAyKSkp'
-     Obtained: fetch(getchanges, 4)
-        
-
-   - TestType: JavaDef
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 12
-     Original: b'bGltaXRjaGFuZ2VzID0gdGJsLm9yZGVyX2J5KGluZGV4PSdpZCcpLmxpbWl0KDEwKS5jaGFuZ2VzKGluY2x1ZGVfc3RhdGVzPXRydWUp'
-     Java: Changes limitchanges = (Changes) tbl.orderBy().optArg("index", "id").limit(10).changes().optArg("include_states", true);
-        
-
-   - TestType: JavaDef
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 13
-     Original: b'bGltaXRjaGFuZ2VzZGVzYyA9IHRibC5vcmRlcl9ieShpbmRleD1yLmRlc2MoJ2lkJykpLmxpbWl0KDEwKS5jaGFuZ2VzKGluY2x1ZGVfc3RhdGVzPXRydWUp'
-     Java: Changes limitchangesdesc = (Changes) tbl.orderBy().optArg("index", r.desc("id")).limit(10).changes().optArg("include_states", true);
-   - TestType: JavaQuery
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 14
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: tbl.insert(new MapObject().with("id", 3))
-   - TestType: JavaQuery
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 15
-     Original: b'W3snc3RhdGUnOiAnaW5pdGlhbGl6aW5nJ30sIHsnbmV3X3ZhbCc6IHsnaWQnOiAxfX0sIHsnbmV3X3ZhbCc6IHsnaWQnOiAyLCAnYSc6IDF9fSwgeydzdGF0ZSc6ICdyZWFkeSd9LCB7J25ld192YWwnOiB7J2lkJzogM30sICdvbGRfdmFsJzogTm9uZX1d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgic3RhdGUiLCAiaW5pdGlhbGl6aW5nIiksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMSkpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDIpLndpdGgoImEiLCAxKSksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJzdGF0ZSIsICJyZWFkeSIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDMpKS53aXRoKCJvbGRfdmFsIiwgbnVsbCkp'
-     Obtained: fetch(limitchanges, 5)
-   - TestType: JavaQuery
-     TestFile: changefeeds/include_states.yaml
-     TestNum: 16
-     Original: b'W3snc3RhdGUnOiAnaW5pdGlhbGl6aW5nJ30sIHsnbmV3X3ZhbCc6IHsnaWQnOiAyLCAnYSc6IDF9fSwgeyduZXdfdmFsJzogeydpZCc6IDF9fSwgeydzdGF0ZSc6ICdyZWFkeSd9LCB7J25ld192YWwnOiB7J2lkJzogM30sICdvbGRfdmFsJzogTm9uZX1d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgic3RhdGUiLCAiaW5pdGlhbGl6aW5nIiksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMikud2l0aCgiYSIsIDEpKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm5ld192YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAxKSksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJzdGF0ZSIsICJyZWFkeSIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDMpKS53aXRoKCJvbGRfdmFsIiwgbnVsbCkp'
-     Obtained: fetch(limitchangesdesc, 5)
-
+- TestType: JavaQuery
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 1
+  Original: '[{''state'': ''ready''}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("state", "ready"))
+  Obtained: tbl.changes().optArg("squash", true).optArg("include_states", true).limit(1)
+- TestType: JavaQuery
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 2
+  Original: '[{''state'': ''initializing''}, {''new_val'': None}, {''state'': ''ready''}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("state", "initializing"), new MapObject().with("new_val", null), new MapObject().with("state", "ready"))
+  Obtained: tbl.get(0).changes().optArg("squash", true).optArg("include_states", true).limit(3)
+- TestType: JavaQuery
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 3
+  Original: '[{''state'': ''initializing''}, {''state'': ''ready''}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("state", "initializing"), new MapObject().with("state", "ready"))
+  Obtained: tbl.orderBy().optArg("index", "id").limit(10).changes().optArg("squash", true).optArg("include_states", true).limit(2)
+- TestType: JavaQuery
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 4
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: tbl.insert(new MapObject().with("id", 1))
+- TestType: JavaQuery
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 5
+  Original: '[{''state'': ''initializing''}, {''new_val'': {''id'': 1}}, {''state'': ''ready''}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("state", "initializing"), new MapObject().with("new_val", new MapObject().with("id", 1)), new MapObject().with("state", "ready"))
+  Obtained: tbl.orderBy().optArg("index", "id").limit(10).changes().optArg("squash", true).optArg("include_states", true).limit(3)
+- TestType: JavaDef
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 6
+  Original: tblchanges = tbl.changes(squash=true, include_states=true)
+  Java: Changes tblchanges = (Changes) tbl.changes().optArg("squash", true).optArg("include_states", true);
+- TestType: JavaQuery
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 7
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: tbl.insert(new MapObject().with("id", 2))
+- TestType: JavaQuery
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 8
+  Original: '[{''state'': ''ready''}, {''new_val'': {''id'': 2}, ''old_val'': None}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("state", "ready"), new MapObject().with("new_val", new MapObject().with("id", 2)).with("old_val", null))
+  Obtained: fetch(tblchanges, 2)
+- TestType: JavaDef
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 9
+  Original: getchanges = tbl.get(2).changes(include_states=true)
+  Java: Changes getchanges = (Changes) tbl.get(2).changes().optArg("include_states", true);
+- TestType: JavaQuery
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 10
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: tbl.get(2).update(new MapObject().with("a", 1))
+- TestType: JavaQuery
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 11
+  Original: '[{''state'': ''initializing''}, {''new_val'': {''id'': 2}}, {''state'': ''ready''}, {''new_val'': {''id'': 2, ''a'': 1}, ''old_val'': {''id'': 2}}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("state", "initializing"), new MapObject().with("new_val", new MapObject().with("id", 2)), new MapObject().with("state", "ready"), new MapObject().with("new_val", new MapObject().with("id", 2).with("a", 1)).with("old_val", new MapObject().with("id", 2)))
+  Obtained: fetch(getchanges, 4)
+- TestType: JavaDef
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 12
+  Original: limitchanges = tbl.order_by(index='id').limit(10).changes(include_states=true)
+  Java: Changes limitchanges = (Changes) tbl.orderBy().optArg("index", "id").limit(10).changes().optArg("include_states", true);
+- TestType: JavaDef
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 13
+  Original: limitchangesdesc = tbl.order_by(index=r.desc('id')).limit(10).changes(include_states=true)
+  Java: Changes limitchangesdesc = (Changes) tbl.orderBy().optArg("index", r.desc("id")).limit(10).changes().optArg("include_states", true);
+- TestType: JavaQuery
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 14
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: tbl.insert(new MapObject().with("id", 3))
+- TestType: JavaQuery
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 15
+  Original: '[{''state'': ''initializing''}, {''new_val'': {''id'': 1}}, {''new_val'': {''id'': 2, ''a'': 1}}, {''state'': ''ready''}, {''new_val'': {''id'': 3}, ''old_val'': None}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("state", "initializing"), new MapObject().with("new_val", new MapObject().with("id", 1)), new MapObject().with("new_val", new MapObject().with("id", 2).with("a", 1)), new MapObject().with("state", "ready"), new MapObject().with("new_val", new MapObject().with("id", 3)).with("old_val", null))
+  Obtained: fetch(limitchanges, 5)
+- TestType: JavaQuery
+  TestFile: changefeeds/include_states.yaml
+  TestNum: 16
+  Original: '[{''state'': ''initializing''}, {''new_val'': {''id'': 2, ''a'': 1}}, {''new_val'': {''id'': 1}}, {''state'': ''ready''}, {''new_val'': {''id'': 3}, ''old_val'': None}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("state", "initializing"), new MapObject().with("new_val", new MapObject().with("id", 2).with("a", 1)), new MapObject().with("new_val", new MapObject().with("id", 1)), new MapObject().with("state", "ready"), new MapObject().with("new_val", new MapObject().with("id", 3)).with("old_val", null))
+  Obtained: fetch(limitchangesdesc, 5)

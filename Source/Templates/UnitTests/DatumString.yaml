@@ -1,716 +1,710 @@
-
-ModuleName: "DatumString"
-TableVarNames:
-
+ModuleName: DatumString
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 1
-     Original: b'J3N0cic='
-     ExpectedType: String
-     ExpectedJava: b'InN0ciI='
-     Obtained: r.expr("str")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 2
-     Original: b'InN0ciI='
-     ExpectedType: String
-     ExpectedJava: b'InN0ciI='
-     Obtained: r.expr("str")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 3
-     Original: b'J3N0cic='
-     ExpectedType: String
-     ExpectedJava: b'InN0ciI='
-     Obtained: r.expr("str")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 4
-     Original: b'J+OBk+OCk+OBq+OBoeOBryc='
-     ExpectedType: String
-     ExpectedJava: b'IuOBk+OCk+OBq+OBoeOBryI='
-     Obtained: r.expr("こんにちは")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 5
-     Original: b'J1NUUklORyc='
-     ExpectedType: String
-     ExpectedJava: b'IlNUUklORyI='
-     Obtained: r.expr("foo").typeOf()
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 6
-     Original: b'KCdmb28nKQ=='
-     ExpectedType: String
-     ExpectedJava: b'ImZvbyI='
-     Obtained: r.expr("foo").coerceTo("string")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 7
-     Original: b'LTEuMg=='
-     ExpectedType: Double
-     ExpectedJava: b'LTEuMg=='
-     Obtained: r.expr("-1.2").coerceTo("NUMBER")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 8
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNvdWxkIG5vdCBjb2VyY2UgYC0tMS4yYCB0byBOVU1CRVIuIiwgW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNvdWxkIG5vdCBjb2VyY2UgYC0tMS4yYCB0byBOVU1CRVIuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.expr("--1.2").coerceTo("NUMBER")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 9
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNvdWxkIG5vdCBjb2VyY2UgYC0xLjItYCB0byBOVU1CRVIuIiwgW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNvdWxkIG5vdCBjb2VyY2UgYC0xLjItYCB0byBOVU1CRVIuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.expr("-1.2-").coerceTo("NUMBER")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 10
-     Original: b'MTA='
-     ExpectedType: Integer
-     ExpectedJava: b'MTA='
-     Obtained: r.expr("0xa").coerceTo("NUMBER")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 11
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk5vbi1maW5pdGUgbnVtYmVyOiBpbmYiLCBbXSkK'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk5vbi1maW5pdGUgbnVtYmVyOiBpbmYiLCBBcnJheXMuYXNMaXN0KCkp'
-     Obtained: r.expr("inf").coerceTo("NUMBER")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 12
-     Original: b'KFtdKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: r.expr("").split()
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 13
-     Original: b'KFtdKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: r.expr("").split(null)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 14
-     Original: b'KFsnJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiIik='
-     Obtained: r.expr("").split(" ")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 15
-     Original: b'KFtdKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: r.expr("").split("")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 16
-     Original: b'KFtdKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: r.expr("").split(null, 5)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 17
-     Original: b'KFsnJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiIik='
-     Obtained: r.expr("").split(" ", 5)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 18
-     Original: b'KFtdKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: r.expr("").split("", 5)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 19
-     Original: b'KFsnYWFhYScsICdiYmJiJywgJ2NjY2MnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiIiwgImNjY2MiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc ").split()
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 20
-     Original: b'KFsnYWFhYScsICdiYmJiJywgJ2NjY2MnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiIiwgImNjY2MiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc ").split(null)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 21
-     Original: b'KFsnYWFhYScsICdiYmJiJywgJycsICdjY2NjJywgJyddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiIiwgIiIsICJjY2NjIiwgIiIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split(" ")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 22
-     Original: b'KFsnYScsICdhJywgJ2EnLCAnYScsICcgJywgJ2InLCAnYicsICdiJywgJ2InLCAnICcsICcgJywgJ2MnLCAnYycsICdjJywgJ2MnLCAnICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYSIsICJhIiwgImEiLCAiYSIsICIgIiwgImIiLCAiYiIsICJiIiwgImIiLCAiICIsICIgIiwgImMiLCAiYyIsICJjIiwgImMiLCAiICIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split("")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 23
-     Original: b'KFsnYWFhYSAnLCAnJywgJycsICcnLCAnICBjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSAiLCAiIiwgIiIsICIiLCAiICBjY2NjICIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split("b")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 24
-     Original: b'KFsnYWFhYSAnLCAnJywgJyAgY2NjYyAnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSAiLCAiIiwgIiAgY2NjYyAiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc ").split("bb")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 25
-     Original: b'KFsnYWFhYScsICdjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJjY2NjICIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split(" bbbb  ")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 26
-     Original: b'KFsnYWFhYSAnLCAnJywgJyAgY2NjYyBiIGQgJywgJyBlICcsICcnLCAnIGYnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSAiLCAiIiwgIiAgY2NjYyBiIGQgIiwgIiBlICIsICIiLCAiIGYiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 27
-     Original: b'KFsnYWFhYScsICdjY2NjIGIgZCBiYiBlIGJiYmIgZiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJjY2NjIGIgZCBiYiBlIGJiYmIgZiIp'
-     Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 28
-     Original: b'KFsnYWFhYScsICdjY2NjIGIgZCBiYiBlJywgJ2YnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJjY2NjIGIgZCBiYiBlIiwgImYiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 29
-     Original: b'KFsnYWFhYScsICdiYmJiJywgJ2NjY2MnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiIiwgImNjY2MiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc ").split(null, 3)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 30
-     Original: b'KFsnYWFhYScsICdiYmJiJywgJycsICdjY2NjJywgJyddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiIiwgIiIsICJjY2NjIiwgIiIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split(" ", 5)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 31
-     Original: b'KFsnYScsICdhJywgJ2EnLCAnYScsICcgJywgJ2JiYmIgIGNjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYSIsICJhIiwgImEiLCAiYSIsICIgIiwgImJiYmIgIGNjY2MgIik='
-     Obtained: r.expr("aaaa bbbb  cccc ").split("", 5)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 32
-     Original: b'KFsnYWFhYSAnLCAnJywgJycsICcnLCAnICBjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSAiLCAiIiwgIiIsICIiLCAiICBjY2NjICIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split("b", 5)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 33
-     Original: b'KFsnYWFhYSAnLCAnJywgJyAgY2NjYyAnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSAiLCAiIiwgIiAgY2NjYyAiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc ").split("bb", 3)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 34
-     Original: b'KFsnYWFhYScsICdjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJjY2NjICIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 35
-     Original: b'KFsnYWFhYSAnLCAnJywgJyAgY2NjYyBiIGQgJywgJyBlICcsICcnLCAnIGYnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSAiLCAiIiwgIiAgY2NjYyBiIGQgIiwgIiBlICIsICIiLCAiIGYiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 36
-     Original: b'KFsnYWFhYScsICdjY2NjIGIgZCBiYiBlIGJiYmIgZiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJjY2NjIGIgZCBiYiBlIGJiYmIgZiIp'
-     Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 37
-     Original: b'KFsnYWFhYScsICdjY2NjIGIgZCBiYiBlJywgJ2YnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJjY2NjIGIgZCBiYiBlIiwgImYiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 38
-     Original: b'KFsnYWFhYScsICdiYmJiJywgJ2NjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiIiwgImNjY2MgIik='
-     Obtained: r.expr("aaaa bbbb  cccc ").split(null, 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 39
-     Original: b'KFsiYSIsICJiIl0p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYSIsICJiIik='
-     Obtained: r.expr("a  b  ").split(null, 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 40
-     Original: b'KFsnYWFhYScsICdiYmJiJywgJycsICdjY2NjJywgJyddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiIiwgIiIsICJjY2NjIiwgIiIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split(" ", 4)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 41
-     Original: b'KFsnYScsICdhJywgJ2EnLCAnYScsICcgYmJiYiAgY2NjYyAnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYSIsICJhIiwgImEiLCAiYSIsICIgYmJiYiAgY2NjYyAiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc ").split("", 4)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 42
-     Original: b'KFsnYWFhYSAnLCAnJywgJycsICcnLCAnICBjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSAiLCAiIiwgIiIsICIiLCAiICBjY2NjICIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split("b", 4)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 43
-     Original: b'KFsnYWFhYSAnLCAnJywgJyAgY2NjYyAnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSAiLCAiIiwgIiAgY2NjYyAiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc ").split("bb", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 44
-     Original: b'KFsnYWFhYScsICdjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJjY2NjICIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 1)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 45
-     Original: b'KFsnYWFhYSAnLCAnJywgJyAgY2NjYyBiIGQgJywgJyBlICcsICcnLCAnIGYnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSAiLCAiIiwgIiAgY2NjYyBiIGQgIiwgIiBlICIsICIiLCAiIGYiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 46
-     Original: b'KFsnYWFhYScsICdjY2NjIGIgZCBiYiBlIGJiYmIgZiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJjY2NjIGIgZCBiYiBlIGJiYmIgZiIp'
-     Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 47
-     Original: b'KFsnYWFhYScsICdjY2NjIGIgZCBiYiBlJywgJ2YnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJjY2NjIGIgZCBiYiBlIiwgImYiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 48
-     Original: b'KFsnYWFhYScsICdiYmJiICBjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiICBjY2NjICIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split(null, 1)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 49
-     Original: b'KFsnYWFhYScsICdiYmJiJywgJyBjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiIiwgIiBjY2NjICIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split(" ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 50
-     Original: b'KFsnYScsICdhJywgJ2FhIGJiYmIgIGNjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYSIsICJhIiwgImFhIGJiYmIgIGNjY2MgIik='
-     Obtained: r.expr("aaaa bbbb  cccc ").split("", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 51
-     Original: b'KFsnYWFhYSAnLCAnJywgJ2JiICBjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSAiLCAiIiwgImJiICBjY2NjICIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split("b", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 52
-     Original: b'KFsnYWFhYSAnLCAnJywgJyAgY2NjYyAnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSAiLCAiIiwgIiAgY2NjYyAiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc ").split("bb", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 53
-     Original: b'KFsnYWFhYScsICdjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJjY2NjICIp'
-     Obtained: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 54
-     Original: b'KFsnYWFhYSAnLCAnJywgJyAgY2NjYyBiIGQgYmIgZSBiYmJiIGYnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSAiLCAiIiwgIiAgY2NjYyBiIGQgYmIgZSBiYmJiIGYiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 55
-     Original: b'KFsnYWFhYScsICdjY2NjIGIgZCBiYiBlIGJiYmIgZiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJjY2NjIGIgZCBiYiBlIGJiYmIgZiIp'
-     Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 56
-     Original: b'KFsnYWFhYScsICdjY2NjIGIgZCBiYiBlJywgJ2YnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJjY2NjIGIgZCBiYiBlIiwgImYiKQ=='
-     Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 57
-     Original: b'KFtdKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: r.expr("  ").split()
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 58
-     Original: b'KFtdKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: r.expr("  ").split(null)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 59
-     Original: b'KFsnJywgJycsICcnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiIiwgIiIsICIiKQ=='
-     Obtained: r.expr("  ").split(" ")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 60
-     Original: b'KFtdKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: r.expr("  ").split(null, 5)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 61
-     Original: b'KFsnJywgJycsICcnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiIiwgIiIsICIiKQ=='
-     Obtained: r.expr("  ").split(" ", 5)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 62
-     Original: b'KFsnYWFhYScsICdiYmJiJywgJ2NjY2MnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiIiwgImNjY2MiKQ=='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split()
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 63
-     Original: b'KFsnYWFhYScsICdiYmJiJywgJ2NjY2MnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiIiwgImNjY2MiKQ=='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split(null)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 64
-     Original: b'KFsnJywgJycsICdhYWFhJywgJ2JiYmInLCAnJywgJ2NjY2MnLCAnJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiIiwgIiIsICJhYWFhIiwgImJiYmIiLCAiIiwgImNjY2MiLCAiIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split(" ")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 65
-     Original: b'KFsnICBhYWFhICcsICcnLCAnJywgJycsICcgIGNjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhICIsICIiLCAiIiwgIiIsICIgIGNjY2MgIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split("b")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 66
-     Original: b'KFsnICBhYWFhICcsICcnLCAnICBjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhICIsICIiLCAiICBjY2NjICIp'
-     Obtained: r.expr("  aaaa bbbb  cccc ").split("bb")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 67
-     Original: b'KFsnICBhYWFhJywgJ2NjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhIiwgImNjY2MgIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 68
-     Original: b'KFsnICBhYWFhICcsICcnLCAnICBjY2NjIGIgZCAnLCAnIGUgJywgJycsICcgZiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhICIsICIiLCAiICBjY2NjIGIgZCAiLCAiIGUgIiwgIiIsICIgZiIp'
-     Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 69
-     Original: b'KFsnICBhYWFhJywgJ2NjY2MgYiBkIGJiIGUgYmJiYiBmJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhIiwgImNjY2MgYiBkIGJiIGUgYmJiYiBmIik='
-     Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 70
-     Original: b'KFsnICBhYWFhJywgJ2NjY2MgYiBkIGJiIGUnLCAnZiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhIiwgImNjY2MgYiBkIGJiIGUiLCAiZiIp'
-     Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 71
-     Original: b'KFsnYWFhYScsICdiYmJiJywgJ2NjY2MnXSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiIiwgImNjY2MiKQ=='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split(null, 3)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 72
-     Original: b'KFsnJywgJycsICdhYWFhJywgJ2JiYmInLCAnJywgJ2NjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiIiwgIiIsICJhYWFhIiwgImJiYmIiLCAiIiwgImNjY2MgIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split(" ", 5)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 73
-     Original: b'KFsnICBhYWFhICcsICcnLCAnJywgJycsICcgIGNjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhICIsICIiLCAiIiwgIiIsICIgIGNjY2MgIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split("b", 5)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 74
-     Original: b'KFsnICBhYWFhICcsICcnLCAnICBjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhICIsICIiLCAiICBjY2NjICIp'
-     Obtained: r.expr("  aaaa bbbb  cccc ").split("bb", 3)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 75
-     Original: b'KFsnICBhYWFhJywgJ2NjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhIiwgImNjY2MgIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 76
-     Original: b'KFsnICBhYWFhICcsICcnLCAnICBjY2NjIGIgZCAnLCAnIGUgJywgJycsICcgZiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhICIsICIiLCAiICBjY2NjIGIgZCAiLCAiIGUgIiwgIiIsICIgZiIp'
-     Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 77
-     Original: b'KFsnICBhYWFhJywgJ2NjY2MgYiBkIGJiIGUgYmJiYiBmJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhIiwgImNjY2MgYiBkIGJiIGUgYmJiYiBmIik='
-     Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 78
-     Original: b'KFsnICBhYWFhJywgJ2NjY2MgYiBkIGJiIGUnLCAnZiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhIiwgImNjY2MgYiBkIGJiIGUiLCAiZiIp'
-     Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 79
-     Original: b'KFsnYWFhYScsICdiYmJiJywgJ2NjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiIiwgImNjY2MgIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split(null, 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 80
-     Original: b'KFsiYSIsICJiIl0p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYSIsICJiIik='
-     Obtained: r.expr("a  b  ").split(null, 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 81
-     Original: b'KFsnJywgJycsICdhYWFhJywgJ2JiYmInLCAnIGNjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiIiwgIiIsICJhYWFhIiwgImJiYmIiLCAiIGNjY2MgIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split(" ", 4)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 82
-     Original: b'KFsnICBhYWFhICcsICcnLCAnJywgJycsICcgIGNjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhICIsICIiLCAiIiwgIiIsICIgIGNjY2MgIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split("b", 4)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 83
-     Original: b'KFsnICBhYWFhICcsICcnLCAnICBjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhICIsICIiLCAiICBjY2NjICIp'
-     Obtained: r.expr("  aaaa bbbb  cccc ").split("bb", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 84
-     Original: b'KFsnICBhYWFhJywgJ2NjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhIiwgImNjY2MgIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 1)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 85
-     Original: b'KFsnICBhYWFhICcsICcnLCAnICBjY2NjIGIgZCAnLCAnIGUgJywgJycsICcgZiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhICIsICIiLCAiICBjY2NjIGIgZCAiLCAiIGUgIiwgIiIsICIgZiIp'
-     Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 86
-     Original: b'KFsnICBhYWFhJywgJ2NjY2MgYiBkIGJiIGUgYmJiYiBmJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhIiwgImNjY2MgYiBkIGJiIGUgYmJiYiBmIik='
-     Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 87
-     Original: b'KFsnICBhYWFhJywgJ2NjY2MgYiBkIGJiIGUnLCAnZiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhIiwgImNjY2MgYiBkIGJiIGUiLCAiZiIp'
-     Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 88
-     Original: b'KFsnYWFhYScsICdiYmJiICBjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYWFhYSIsICJiYmJiICBjY2NjICIp'
-     Obtained: r.expr("  aaaa bbbb  cccc ").split(null, 1)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 89
-     Original: b'KFsnJywgJycsICdhYWFhIGJiYmIgIGNjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiIiwgIiIsICJhYWFhIGJiYmIgIGNjY2MgIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split(" ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 90
-     Original: b'KFsnICBhYWFhICcsICcnLCAnYmIgIGNjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhICIsICIiLCAiYmIgIGNjY2MgIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split("b", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 91
-     Original: b'KFsnICBhYWFhICcsICcnLCAnICBjY2NjICddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhICIsICIiLCAiICBjY2NjICIp'
-     Obtained: r.expr("  aaaa bbbb  cccc ").split("bb", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 92
-     Original: b'KFsnICBhYWFhJywgJ2NjY2MgJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhIiwgImNjY2MgIik='
-     Obtained: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 93
-     Original: b'KFsnICBhYWFhICcsICcnLCAnICBjY2NjIGIgZCBiYiBlIGJiYmIgZiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhICIsICIiLCAiICBjY2NjIGIgZCBiYiBlIGJiYmIgZiIp'
-     Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 94
-     Original: b'KFsnICBhYWFhJywgJ2NjY2MgYiBkIGJiIGUgYmJiYiBmJ10p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhIiwgImNjY2MgYiBkIGJiIGUgYmJiYiBmIik='
-     Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 95
-     Original: b'KFsnICBhYWFhJywgJ2NjY2MgYiBkIGJiIGUnLCAnZiddKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiICBhYWFhIiwgImNjY2MgYiBkIGJiIGUiLCAiZiIp'
-     Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 96
-     Original: b'KCJBQkMtREVGLUdISiIp'
-     ExpectedType: String
-     ExpectedJava: b'IkFCQy1ERUYtR0hKIg=='
-     Obtained: r.expr("abc-dEf-GHJ").upcase()
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 97
-     Original: b'KCJhYmMtZGVmLWdoaiIp'
-     ExpectedType: String
-     ExpectedJava: b'ImFiYy1kZWYtZ2hqIg=='
-     Obtained: r.expr("abc-dEf-GHJ").downcase()
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 98
-     Original: b'KFsiZiIsICJcdTAwZTkiLCAibyIsICJvIl0p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiZiIsICLDqSIsICJvIiwgIm8iKQ=='
-     Obtained: r.expr("féoo").split("")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 99
-     Original: b'KFsiZiIsICJlXHUwMzAxIiwgIm8iLCAibyJdKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiZiIsICJlzIEiLCAibyIsICJvIik='
-     Obtained: r.expr("féoo").split("")
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 100
-     Original: b'KFsiZm9vIiwgImJhciIsICJiYXoiLCAicXV1eCIsICJmcmVkIiwgImJhcm5leSIsICJ3aWxtYSJdKQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiZm9vIiwgImJhciIsICJiYXoiLCAicXV1eCIsICJmcmVkIiwgImJhcm5leSIsICJ3aWxtYSIp'
-     Obtained: r.expr("foo bar\tbaz\nquux\rfred\x0bbarney\x0cwilma").split()
-   - TestType: JavaQuery
-     TestFile: datum/string.yaml
-     TestNum: 101
-     Original: b'KFsiZm9vIiwgImJhciIsICJiYXpcdTIwNjBxdXV4IiwgImZyZWQiLCAiYmFybmV5IiwgIndpbG1hIiwgImJldHR5XHUyMDBiIl0p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiZm9vIiwgImJhciIsICJiYXpcdTIwNjBxdXV4IiwgImZyZWQiLCAiYmFybmV5IiwgIndpbG1hIiwgImJldHR5XHUyMDBiIik='
-     Obtained: r.expr("foo\xa0bar\u2001baz\u2060quux\u2028fred\u2028barney\u2029wilma\x85betty\u200b").split()
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 1
+  Original: 'str'
+  ExpectedType: String
+  ExpectedJava: '"str"'
+  Obtained: r.expr("str")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 2
+  Original: '"str"'
+  ExpectedType: String
+  ExpectedJava: '"str"'
+  Obtained: r.expr("str")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 3
+  Original: 'str'
+  ExpectedType: String
+  ExpectedJava: '"str"'
+  Obtained: r.expr("str")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 4
+  Original: "'こんにちは'"
+  ExpectedType: String
+  ExpectedJava: "\"こんにちは\""
+  Obtained: "r.expr(\"こんにちは\")"
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 5
+  Original: 'STRING'
+  ExpectedType: String
+  ExpectedJava: '"STRING"'
+  Obtained: r.expr("foo").typeOf()
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 6
+  Original: ('foo')
+  ExpectedType: String
+  ExpectedJava: '"foo"'
+  Obtained: r.expr("foo").coerceTo("string")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 7
+  Original: -1.2
+  ExpectedType: Double
+  ExpectedJava: -1.2
+  Obtained: r.expr("-1.2").coerceTo("NUMBER")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 8
+  Original: err("ReqlQueryLogicError", "Could not coerce `--1.2` to NUMBER.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Could not coerce `--1.2` to NUMBER.", Arrays.asList())
+  Obtained: r.expr("--1.2").coerceTo("NUMBER")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 9
+  Original: err("ReqlQueryLogicError", "Could not coerce `-1.2-` to NUMBER.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Could not coerce `-1.2-` to NUMBER.", Arrays.asList())
+  Obtained: r.expr("-1.2-").coerceTo("NUMBER")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 10
+  Original: 10
+  ExpectedType: Integer
+  ExpectedJava: 10
+  Obtained: r.expr("0xa").coerceTo("NUMBER")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 11
+  Original: >
+    err("ReqlQueryLogicError", "Non-finite number: inf", [])
+  ExpectedType: Err
+  ExpectedJava: 'err("ReqlQueryLogicError", "Non-finite number: inf", Arrays.asList())'
+  Obtained: r.expr("inf").coerceTo("NUMBER")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 12
+  Original: ([])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: r.expr("").split()
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 13
+  Original: ([])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: r.expr("").split(null)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 14
+  Original: ([''])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("")
+  Obtained: r.expr("").split(" ")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 15
+  Original: ([])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: r.expr("").split("")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 16
+  Original: ([])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: r.expr("").split(null, 5)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 17
+  Original: ([''])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("")
+  Obtained: r.expr("").split(" ", 5)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 18
+  Original: ([])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: r.expr("").split("", 5)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 19
+  Original: (['aaaa', 'bbbb', 'cccc'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc")
+  Obtained: r.expr("aaaa bbbb  cccc ").split()
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 20
+  Original: (['aaaa', 'bbbb', 'cccc'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc")
+  Obtained: r.expr("aaaa bbbb  cccc ").split(null)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 21
+  Original: (['aaaa', 'bbbb', '', 'cccc', ''])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb", "", "cccc", "")
+  Obtained: r.expr("aaaa bbbb  cccc ").split(" ")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 22
+  Original: (['a', 'a', 'a', 'a', ' ', 'b', 'b', 'b', 'b', ' ', ' ', 'c', 'c', 'c', 'c', ' '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("a", "a", "a", "a", " ", "b", "b", "b", "b", " ", " ", "c", "c", "c", "c", " ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split("")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 23
+  Original: (['aaaa ', '', '', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa ", "", "", "", "  cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split("b")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 24
+  Original: (['aaaa ', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa ", "", "  cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split("bb")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 25
+  Original: (['aaaa', 'cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split(" bbbb  ")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 26
+  Original: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa ", "", "  cccc b d ", " e ", "", " f")
+  Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 27
+  Original: (['aaaa', 'cccc b d bb e bbbb f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e bbbb f")
+  Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 28
+  Original: (['aaaa', 'cccc b d bb e', 'f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e", "f")
+  Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 29
+  Original: (['aaaa', 'bbbb', 'cccc'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc")
+  Obtained: r.expr("aaaa bbbb  cccc ").split(null, 3)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 30
+  Original: (['aaaa', 'bbbb', '', 'cccc', ''])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb", "", "cccc", "")
+  Obtained: r.expr("aaaa bbbb  cccc ").split(" ", 5)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 31
+  Original: (['a', 'a', 'a', 'a', ' ', 'bbbb  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("a", "a", "a", "a", " ", "bbbb  cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split("", 5)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 32
+  Original: (['aaaa ', '', '', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa ", "", "", "", "  cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split("b", 5)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 33
+  Original: (['aaaa ', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa ", "", "  cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split("bb", 3)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 34
+  Original: (['aaaa', 'cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 35
+  Original: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa ", "", "  cccc b d ", " e ", "", " f")
+  Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 36
+  Original: (['aaaa', 'cccc b d bb e bbbb f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e bbbb f")
+  Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 37
+  Original: (['aaaa', 'cccc b d bb e', 'f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e", "f")
+  Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 38
+  Original: (['aaaa', 'bbbb', 'cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split(null, 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 39
+  Original: (["a", "b"])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("a", "b")
+  Obtained: r.expr("a  b  ").split(null, 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 40
+  Original: (['aaaa', 'bbbb', '', 'cccc', ''])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb", "", "cccc", "")
+  Obtained: r.expr("aaaa bbbb  cccc ").split(" ", 4)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 41
+  Original: (['a', 'a', 'a', 'a', ' bbbb  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("a", "a", "a", "a", " bbbb  cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split("", 4)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 42
+  Original: (['aaaa ', '', '', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa ", "", "", "", "  cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split("b", 4)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 43
+  Original: (['aaaa ', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa ", "", "  cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split("bb", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 44
+  Original: (['aaaa', 'cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 1)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 45
+  Original: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa ", "", "  cccc b d ", " e ", "", " f")
+  Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 46
+  Original: (['aaaa', 'cccc b d bb e bbbb f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e bbbb f")
+  Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 47
+  Original: (['aaaa', 'cccc b d bb e', 'f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e", "f")
+  Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 48
+  Original: (['aaaa', 'bbbb  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb  cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split(null, 1)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 49
+  Original: (['aaaa', 'bbbb', ' cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb", " cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split(" ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 50
+  Original: (['a', 'a', 'aa bbbb  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("a", "a", "aa bbbb  cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split("", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 51
+  Original: (['aaaa ', '', 'bb  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa ", "", "bb  cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split("b", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 52
+  Original: (['aaaa ', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa ", "", "  cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split("bb", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 53
+  Original: (['aaaa', 'cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "cccc ")
+  Obtained: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 54
+  Original: (['aaaa ', '', '  cccc b d bb e bbbb f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa ", "", "  cccc b d bb e bbbb f")
+  Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 55
+  Original: (['aaaa', 'cccc b d bb e bbbb f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e bbbb f")
+  Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 56
+  Original: (['aaaa', 'cccc b d bb e', 'f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e", "f")
+  Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 57
+  Original: ([])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: r.expr("  ").split()
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 58
+  Original: ([])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: r.expr("  ").split(null)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 59
+  Original: (['', '', ''])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("", "", "")
+  Obtained: r.expr("  ").split(" ")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 60
+  Original: ([])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: r.expr("  ").split(null, 5)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 61
+  Original: (['', '', ''])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("", "", "")
+  Obtained: r.expr("  ").split(" ", 5)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 62
+  Original: (['aaaa', 'bbbb', 'cccc'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split()
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 63
+  Original: (['aaaa', 'bbbb', 'cccc'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split(null)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 64
+  Original: (['', '', 'aaaa', 'bbbb', '', 'cccc', ''])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("", "", "aaaa", "bbbb", "", "cccc", "")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split(" ")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 65
+  Original: (['  aaaa ', '', '', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa ", "", "", "", "  cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split("b")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 66
+  Original: (['  aaaa ', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split("bb")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 67
+  Original: (['  aaaa', 'cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa", "cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 68
+  Original: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc b d ", " e ", "", " f")
+  Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 69
+  Original: (['  aaaa', 'cccc b d bb e bbbb f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e bbbb f")
+  Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 70
+  Original: (['  aaaa', 'cccc b d bb e', 'f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e", "f")
+  Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ")
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 71
+  Original: (['aaaa', 'bbbb', 'cccc'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split(null, 3)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 72
+  Original: (['', '', 'aaaa', 'bbbb', '', 'cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("", "", "aaaa", "bbbb", "", "cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split(" ", 5)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 73
+  Original: (['  aaaa ', '', '', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa ", "", "", "", "  cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split("b", 5)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 74
+  Original: (['  aaaa ', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split("bb", 3)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 75
+  Original: (['  aaaa', 'cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa", "cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 76
+  Original: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc b d ", " e ", "", " f")
+  Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 77
+  Original: (['  aaaa', 'cccc b d bb e bbbb f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e bbbb f")
+  Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 78
+  Original: (['  aaaa', 'cccc b d bb e', 'f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e", "f")
+  Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 79
+  Original: (['aaaa', 'bbbb', 'cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split(null, 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 80
+  Original: (["a", "b"])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("a", "b")
+  Obtained: r.expr("a  b  ").split(null, 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 81
+  Original: (['', '', 'aaaa', 'bbbb', ' cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("", "", "aaaa", "bbbb", " cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split(" ", 4)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 82
+  Original: (['  aaaa ', '', '', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa ", "", "", "", "  cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split("b", 4)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 83
+  Original: (['  aaaa ', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split("bb", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 84
+  Original: (['  aaaa', 'cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa", "cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 1)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 85
+  Original: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc b d ", " e ", "", " f")
+  Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 86
+  Original: (['  aaaa', 'cccc b d bb e bbbb f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e bbbb f")
+  Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 87
+  Original: (['  aaaa', 'cccc b d bb e', 'f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e", "f")
+  Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 88
+  Original: (['aaaa', 'bbbb  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("aaaa", "bbbb  cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split(null, 1)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 89
+  Original: (['', '', 'aaaa bbbb  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("", "", "aaaa bbbb  cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split(" ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 90
+  Original: (['  aaaa ', '', 'bb  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa ", "", "bb  cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split("b", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 91
+  Original: (['  aaaa ', '', '  cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split("bb", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 92
+  Original: (['  aaaa', 'cccc '])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa", "cccc ")
+  Obtained: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 93
+  Original: (['  aaaa ', '', '  cccc b d bb e bbbb f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc b d bb e bbbb f")
+  Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 94
+  Original: (['  aaaa', 'cccc b d bb e bbbb f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e bbbb f")
+  Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 95
+  Original: (['  aaaa', 'cccc b d bb e', 'f'])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e", "f")
+  Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 96
+  Original: ("ABC-DEF-GHJ")
+  ExpectedType: String
+  ExpectedJava: '"ABC-DEF-GHJ"'
+  Obtained: r.expr("abc-dEf-GHJ").upcase()
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 97
+  Original: ("abc-def-ghj")
+  ExpectedType: String
+  ExpectedJava: '"abc-def-ghj"'
+  Obtained: r.expr("abc-dEf-GHJ").downcase()
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 98
+  Original: (["f", "\u00e9", "o", "o"])
+  ExpectedType: List
+  ExpectedJava: "Arrays.asList(\"f\", \"é\", \"o\", \"o\")"
+  Obtained: "r.expr(\"féoo\").split(\"\")"
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 99
+  Original: (["f", "e\u0301", "o", "o"])
+  ExpectedType: List
+  ExpectedJava: "Arrays.asList(\"f\", \"é\", \"o\", \"o\")"
+  Obtained: "r.expr(\"féoo\").split(\"\")"
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 100
+  Original: (["foo", "bar", "baz", "quux", "fred", "barney", "wilma"])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("foo", "bar", "baz", "quux", "fred", "barney", "wilma")
+  Obtained: r.expr("foo bar\tbaz\nquux\rfred\x0bbarney\x0cwilma").split()
+- TestType: JavaQuery
+  TestFile: datum/string.yaml
+  TestNum: 101
+  Original: (["foo", "bar", "baz\u2060quux", "fred", "barney", "wilma", "betty\u200b"])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("foo", "bar", "baz\u2060quux", "fred", "barney", "wilma", "betty\u200b")
+  Obtained: r.expr("foo\xa0bar\u2001baz\u2060quux\u2028fred\u2028barney\u2029wilma\x85betty\u200b").split()

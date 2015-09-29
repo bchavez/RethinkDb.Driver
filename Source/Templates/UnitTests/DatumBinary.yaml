@@ -1,840 +1,796 @@
-
-ModuleName: "DatumBinary"
-TableVarNames:
-
+ModuleName: DatumBinary
 DefsAndTests:
-
-        
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 1
-     Original: b'cyA9IGInJw=='
-     Java: byte[] s = (byte[]) "'".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 2
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 3
-     Original: b'MA=='
-     ExpectedType: Integer
-     ExpectedJava: b'MA=='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 4
-     Original: b'cyA9IGInXHgwMCc='
-     Java: byte[] s = (byte[]) "'\x00".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 5
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 6
-     Original: b'MQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'MQ=='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 7
-     Original: b'cyA9IGInXHgwMFx4NDIn'
-     Java: byte[] s = (byte[]) "'\x00B".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 8
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 9
-     Original: b'Mg=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mg=='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 10
-     Original: b'cyA9IGInXHgwMFx4ZmVceDdhJw=='
-     Java: byte[] s = (byte[]) "'\x00\xfez".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 11
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 12
-     Original: b'Mw=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mw=='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 13
-     Original: b'cyA9IGInXHhlZFx4ZmVceDAwXHhiYSc='
-     Java: byte[] s = (byte[]) "'\xed\xfe\x00\xba".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 14
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 15
-     Original: b'NA=='
-     ExpectedType: Integer
-     ExpectedJava: b'NA=='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 16
-     Original: b'cyA9IGInXHg1MFx4ZjlceDAwXHg3N1x4Zjkn'
-     Java: byte[] s = (byte[]) "'P\xf9\x00w\xf9".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 17
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 18
-     Original: b'NQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'NQ=='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 19
-     Original: b'cyA9IGInXHgyZlx4ZTNceGI1XHg1N1x4MDBceDkyJw=='
-     Java: byte[] s = (byte[]) "'/\xe3\xb5W\x00\x92".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 20
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 21
-     Original: b'Ng=='
-     ExpectedType: Integer
-     ExpectedJava: b'Ng=='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 22
-     Original: b'cyA9IGInXHhhOVx4NDNceDU0XHhlOVx4MDBceGY4XHhmYic='
-     Java: byte[] s = (byte[]) "'\xa9CT\xe9\x00\xf8\xfb".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 23
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 24
-     Original: b'Nw=='
-     ExpectedType: Integer
-     ExpectedJava: b'Nw=='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 25
-     Original: b'cyA9IGInXHg1N1x4YmJceGU1XHg4Mlx4OGJceGQzXHgwMFx4Zjkn'
-     Java: byte[] s = (byte[]) "'W\xbb\xe5\x82\x8b\xd3\x00\xf9".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 26
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 27
-     Original: b'OA=='
-     ExpectedType: Integer
-     ExpectedJava: b'OA=='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 28
-     Original: b'cyA9IGInXHg0NFx4MWJceDNlXHgwMFx4MTNceDE5XHgyOVx4MmFceGJmJw=='
-     Java: byte[] s = (byte[]) "'D\x1b>\x00\x13\x19)*\xbf".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 29
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 30
-     Original: b'OQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'OQ=='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 31
-     Original: b'cyA9IGInXHg4YVx4MWRceDA5XHgwMFx4NWRceDYwXHg2Ylx4MmVceDcwXHhkOSc='
-     Java: byte[] s = (byte[]) "'\x8a\x1d\t\x00]`k.p\xd9".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 32
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 33
-     Original: b'MTA='
-     ExpectedType: Integer
-     ExpectedJava: b'MTA='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 34
-     Original: b'cyA9IGInXHgwMFx4YWZceDQ3XHg0Ylx4MzhceDk5XHgxNFx4OGRceDhmXHgxMFx4NTEn'
-     Java: byte[] s = (byte[]) "'\x00\xafGK8\x99\x14\x8d\x8f\x10Q".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 35
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 36
-     Original: b'MTE='
-     ExpectedType: Integer
-     ExpectedJava: b'MTE='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 37
-     Original: b'cyA9IGInXHg0NVx4MzlceDAwXHhmN1x4YzJceDM3XHhmZFx4ZTBceDM4XHg4Mlx4NDBceGE5Jw=='
-     Java: byte[] s = (byte[]) "'E9\x00\xf7\xc27\xfd\xe08\x82@\xa9".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 38
-     Original: b'cw=='
-     ExpectedType: byte[]
-     ExpectedJava: b'cw=='
-     Obtained: r.binary(s)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 39
-     Original: b'MTI='
-     ExpectedType: Integer
-     ExpectedJava: b'MTI='
-     Obtained: r.binary(s).count()
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 40
-     Original: b'YSA9IGInXHgwMCc='
-     Java: byte[] a = (byte[]) "'\x00".getBytes(StandardCharsets.UTF_8);
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 41
-     Original: b'YiA9IGInXHgwMFx4MDEn'
-     Java: byte[] b = (byte[]) "'\x00\x01".getBytes(StandardCharsets.UTF_8);
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 42
-     Original: b'YyA9IGInXHgwMSc='
-     Java: byte[] c = (byte[]) "'\x01".getBytes(StandardCharsets.UTF_8);
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 43
-     Original: b'ZCA9IGInXHg3MFx4MjIn'
-     Java: byte[] d = (byte[]) "'p"".getBytes(StandardCharsets.UTF_8);
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 44
-     Original: b'ZSA9IGInXHg4MCc='
-     Java: byte[] e = (byte[]) "'\x80".getBytes(StandardCharsets.UTF_8);
-        
-
-   - TestType: JavaDef
-     TestFile: datum/binary.yaml
-     TestNum: 45
-     Original: b'ZiA9IGInXHhGRSc='
-     Java: byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 46
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(a).eq(r.binary(a))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 47
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(a).le(r.binary(a))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 48
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(a).ge(r.binary(a))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 49
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(a).ne(r.binary(a))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 50
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(a).lt(r.binary(a))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 51
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(a).gt(r.binary(a))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 52
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(a).ne(r.binary(b))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 53
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(a).lt(r.binary(b))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 54
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(a).le(r.binary(b))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 55
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(a).ge(r.binary(b))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 56
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(a).gt(r.binary(b))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 57
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(a).eq(r.binary(b))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 58
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(b).ne(r.binary(c))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 59
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(b).lt(r.binary(c))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 60
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(b).le(r.binary(c))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 61
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(b).ge(r.binary(c))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 62
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(b).gt(r.binary(c))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 63
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(b).eq(r.binary(c))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 64
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(c).ne(r.binary(d))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 65
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(c).lt(r.binary(d))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 66
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(c).le(r.binary(d))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 67
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(c).ge(r.binary(d))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 68
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(c).gt(r.binary(d))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 69
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(c).eq(r.binary(d))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 70
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(d).ne(r.binary(e))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 71
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(d).lt(r.binary(e))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 72
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(d).le(r.binary(e))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 73
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(d).ge(r.binary(e))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 74
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(d).gt(r.binary(e))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 75
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(d).eq(r.binary(e))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 76
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(e).ne(r.binary(f))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 77
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(e).lt(r.binary(f))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 78
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(e).le(r.binary(f))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 79
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(e).ge(r.binary(f))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 80
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(e).gt(r.binary(f))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 81
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(e).eq(r.binary(f))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 82
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(f).eq(r.binary(f))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 83
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(f).le(r.binary(f))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 84
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.binary(f).ge(r.binary(f))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 85
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(f).ne(r.binary(f))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 86
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(f).lt(r.binary(f))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 87
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.binary(f).gt(r.binary(f))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 88
-     Original: b'dSfjgqTjg63jg4/jg4vjg5vjg5jjg4gg44OB44Oq44OM44Or44OyIOODr+OCq+ODqOOCv+ODrOOCvSDjg4Tjg43jg4rjg6njg6AnLmVuY29kZSgndXRmLTgnKQ=='
-     ExpectedType: byte[]
-     ExpectedJava: b'LmVuY29kZSgidXRmLTgiKQ=='
-     Obtained: r.binary("イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム".encode("utf-8"))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 89
-     Original: b'dSfGgMaBxoLGg8aExoXGhsaHxojGicaKxovGjMaNxo7GjycuZW5jb2RlKCd1dGYtMTYnKQ=='
-     ExpectedType: byte[]
-     ExpectedJava: b'LmVuY29kZSgidXRmLTE2Iik='
-     Obtained: r.binary("ƀƁƂƃƄƅƆƇƈƉƊƋƌƍƎƏ".encode("utf-16"))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 90
-     Original: b'dSdsb3JlbSBpcHN1bScuZW5jb2RlKCdhc2NpaScp'
-     ExpectedType: byte[]
-     ExpectedJava: b'LmVuY29kZSgiYXNjaWkiKQ=='
-     Obtained: r.binary("lorem ipsum".encode("ascii"))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 91
-     Original: b'KCdmb28nKQ=='
-     ExpectedType: String
-     ExpectedJava: b'ImZvbyI='
-     Obtained: r.binary("'foo".getBytes(StandardCharsets.UTF_8)).coerceTo("string")
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 92
-     Original: b'dSfjgqTjg63jg4/jg4vjg5vjg5jjg4gg44OB44Oq44OM44Or44OyIOODr+OCq+ODqOOCv+ODrOOCvSDjg4Tjg43jg4rjg6njg6An'
-     ExpectedType: String
-     ExpectedJava: b'IuOCpOODreODj+ODi+ODm+ODmOODiCDjg4Hjg6rjg4zjg6vjg7Ig44Ov44Kr44Oo44K/44Os44K9IOODhOODjeODiuODqeODoCI='
-     Obtained: r.binary("イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム".encode("utf-8")).coerceTo("string")
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 93
-     Original: b'dSdsb3JlbSBpcHN1bSc='
-     ExpectedType: String
-     ExpectedJava: b'ImxvcmVtIGlwc3VtIg=='
-     Obtained: r.binary("lorem ipsum".encode("ascii")).coerceTo("string")
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 94
-     Original: b'Yidmb28n'
-     ExpectedType: byte[]
-     ExpectedJava: b'Iidmb28iLmdldEJ5dGVzKFN0YW5kYXJkQ2hhcnNldHMuVVRGXzgp'
-     Obtained: r.expr("foo").coerceTo("binary")
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 95
-     Original: b'Yidmb28n'
-     ExpectedType: byte[]
-     ExpectedJava: b'Iidmb28iLmdldEJ5dGVzKFN0YW5kYXJkQ2hhcnNldHMuVVRGXzgp'
-     Obtained: r.binary("'foo".getBytes(StandardCharsets.UTF_8)).coerceTo("binary")
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 96
-     Original: b'YidlZic='
-     ExpectedType: byte[]
-     ExpectedJava: b'IidlZiIuZ2V0Qnl0ZXMoU3RhbmRhcmRDaGFyc2V0cy5VVEZfOCk='
-     Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-3, -1)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 97
-     Original: b'YidhYic='
-     ExpectedType: byte[]
-     ExpectedJava: b'IidhYiIuZ2V0Qnl0ZXMoU3RhbmRhcmRDaGFyc2V0cy5VVEZfOCk='
-     Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(0, 2)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 98
-     Original: b'YidkZWYn'
-     ExpectedType: byte[]
-     ExpectedJava: b'IidkZWYiLmdldEJ5dGVzKFN0YW5kYXJkQ2hhcnNldHMuVVRGXzgp'
-     Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(3, -1)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 99
-     Original: b'YidjZGUn'
-     ExpectedType: byte[]
-     ExpectedJava: b'IidjZGUiLmdldEJ5dGVzKFN0YW5kYXJkQ2hhcnNldHMuVVRGXzgp'
-     Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-5, 5)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 100
-     Original: b'YidhYic='
-     ExpectedType: byte[]
-     ExpectedJava: b'IidhYiIuZ2V0Qnl0ZXMoU3RhbmRhcmRDaGFyc2V0cy5VVEZfOCk='
-     Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-8, 2)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 101
-     Original: b'YidmZyc='
-     ExpectedType: byte[]
-     ExpectedJava: b'IidmZyIuZ2V0Qnl0ZXMoU3RhbmRhcmRDaGFyc2V0cy5VVEZfOCk='
-     Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 7)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 102
-     Original: b'YidhYic='
-     ExpectedType: byte[]
-     ExpectedJava: b'IidhYiIuZ2V0Qnl0ZXMoU3RhbmRhcmRDaGFyc2V0cy5VVEZfOCk='
-     Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-9, 2)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 103
-     Original: b'YidmZyc='
-     ExpectedType: byte[]
-     ExpectedJava: b'IidmZyIuZ2V0Qnl0ZXMoU3RhbmRhcmRDaGFyc2V0cy5VVEZfOCk='
-     Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 9)
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 104
-     Original: b'Yg=='
-     ExpectedType: byte[]
-     ExpectedJava: b'Yg=='
-     Obtained: r.binary(b)
-     RunOpts:
-                - Key: binary_format
-                  Val: "native"
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 105
-     Original: b'KHsnJHJlcWxfdHlwZSQnOidCSU5BUlknLCdkYXRhJzonQUFFPSd9KQ=='
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkJJTkFSWSIpLndpdGgoImRhdGEiLCAiQUFFPSIp'
-     Obtained: r.binary(b)
-     RunOpts:
-                - Key: binary_format
-                  Val: "raw"
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 106
-     Original: b'KGIiZGF0YSIp'
-     ExpectedType: byte[]
-     ExpectedJava: b'IidkYXRhIi5nZXRCeXRlcyhTdGFuZGFyZENoYXJzZXRzLlVURl84KQ=='
-     Obtained: r.binary(r.expr("data"))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 107
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgU1RSSU5HIGJ1dCBmb3VuZCBPQkpFQ1QuJywgW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgU1RSSU5HIGJ1dCBmb3VuZCBPQkpFQ1QuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.binary(r.expr(new MapObject()))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 108
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgU1RSSU5HIGJ1dCBmb3VuZCBBUlJBWS4nLCBbXSk='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgU1RSSU5HIGJ1dCBmb3VuZCBBUlJBWS4iLCBBcnJheXMuYXNMaXN0KCkp'
-     Obtained: r.binary(r.expr(Arrays.asList()))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 109
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnSW52YWxpZCBiaW5hcnkgcHNldWRvdHlwZTonKycgbGFja2luZyBgZGF0YWAga2V5LicsW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkludmFsaWQgYmluYXJ5IHBzZXVkb3R5cGU6IiArICIgbGFja2luZyBgZGF0YWAga2V5LiIsIEFycmF5cy5hc0xpc3QoKSk='
-     Obtained: r.expr(new MapObject().with("$reql_type$", "BINARY"))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 110
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnSW52YWxpZCBiYXNlNjQgZm9ybWF0LCBkYXRhIGZvdW5kIGFmdGVyIHBhZGRpbmcgY2hhcmFjdGVyIFwnPVwnLicsW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkludmFsaWQgYmFzZTY0IGZvcm1hdCwgZGF0YSBmb3VuZCBhZnRlciBwYWRkaW5nIGNoYXJhY3RlciAnPScuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.expr(new MapObject().with("$reql_type$", "BINARY").with("data", "ABCDEFGH==AA"))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 111
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnSW52YWxpZCBiYXNlNjQgZm9ybWF0LCBkYXRhIGZvdW5kIGFmdGVyIHBhZGRpbmcgY2hhcmFjdGVyIFwnPVwnLicsW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkludmFsaWQgYmFzZTY0IGZvcm1hdCwgZGF0YSBmb3VuZCBhZnRlciBwYWRkaW5nIGNoYXJhY3RlciAnPScuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.expr(new MapObject().with("$reql_type$", "BINARY").with("data", "ABCDEF==$"))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 112
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnSW52YWxpZCBiYXNlNjQgY2hhcmFjdGVyIGZvdW5kOicrJyBcJ15cJy4nLFtdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkludmFsaWQgYmFzZTY0IGNoYXJhY3RlciBmb3VuZDoiICsgIiAnXicuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.expr(new MapObject().with("$reql_type$", "BINARY").with("data", "A^CDEFGH"))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 113
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnSW52YWxpZCBiYXNlNjQgbGVuZ3RoOicrJyAxIGNoYXJhY3RlciByZW1haW5pbmcsIGNhbm5vdCBkZWNvZGUgYSBmdWxsIGJ5dGUuJyxbXSk='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkludmFsaWQgYmFzZTY0IGxlbmd0aDoiICsgIiAxIGNoYXJhY3RlciByZW1haW5pbmcsIGNhbm5vdCBkZWNvZGUgYSBmdWxsIGJ5dGUuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.expr(new MapObject().with("$reql_type$", "BINARY").with("data", "ABCDE"))
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 114
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnQ2Fubm90IGNvZXJjZSBCSU5BUlkgdG8gQVJSQVkuJyxbXSk='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb2VyY2UgQklOQVJZIHRvIEFSUkFZLiIsIEFycmF5cy5hc0xpc3QoKSk='
-     Obtained: r.binary(a).coerceTo("array")
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 115
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnQ2Fubm90IGNvZXJjZSBCSU5BUlkgdG8gT0JKRUNULicsW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb2VyY2UgQklOQVJZIHRvIE9CSkVDVC4iLCBBcnJheXMuYXNMaXN0KCkp'
-     Obtained: r.binary(a).coerceTo("object")
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 116
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnQ2Fubm90IGNvZXJjZSBCSU5BUlkgdG8gQk9PTC4nLFtdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb2VyY2UgQklOQVJZIHRvIEJPT0wuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.binary(a).coerceTo("bool")
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 117
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnQ2Fubm90IGNvZXJjZSBCSU5BUlkgdG8gTlVNQkVSLicsW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb2VyY2UgQklOQVJZIHRvIE5VTUJFUi4iLCBBcnJheXMuYXNMaXN0KCkp'
-     Obtained: r.binary(a).coerceTo("number")
-   - TestType: JavaQuery
-     TestFile: datum/binary.yaml
-     TestNum: 118
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnQ2Fubm90IGNvZXJjZSBCSU5BUlkgdG8gTlVMTC4nLFtdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb2VyY2UgQklOQVJZIHRvIE5VTEwuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.binary(a).coerceTo(r.add("nu", "ll"))
-
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 1
+  Original: s = b''
+  Java: byte[] s = (byte[]) "'".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 2
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 3
+  Original: 0
+  ExpectedType: Integer
+  ExpectedJava: 0
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 4
+  Original: s = b'\x00'
+  Java: byte[] s = (byte[]) "'\x00".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 5
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 6
+  Original: 1
+  ExpectedType: Integer
+  ExpectedJava: 1
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 7
+  Original: s = b'\x00\x42'
+  Java: byte[] s = (byte[]) "'\x00B".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 8
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 9
+  Original: 2
+  ExpectedType: Integer
+  ExpectedJava: 2
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 10
+  Original: s = b'\x00\xfe\x7a'
+  Java: byte[] s = (byte[]) "'\x00\xfez".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 11
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 12
+  Original: 3
+  ExpectedType: Integer
+  ExpectedJava: 3
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 13
+  Original: s = b'\xed\xfe\x00\xba'
+  Java: byte[] s = (byte[]) "'\xed\xfe\x00\xba".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 14
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 15
+  Original: 4
+  ExpectedType: Integer
+  ExpectedJava: 4
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 16
+  Original: s = b'\x50\xf9\x00\x77\xf9'
+  Java: byte[] s = (byte[]) "'P\xf9\x00w\xf9".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 17
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 18
+  Original: 5
+  ExpectedType: Integer
+  ExpectedJava: 5
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 19
+  Original: s = b'\x2f\xe3\xb5\x57\x00\x92'
+  Java: byte[] s = (byte[]) "'/\xe3\xb5W\x00\x92".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 20
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 21
+  Original: 6
+  ExpectedType: Integer
+  ExpectedJava: 6
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 22
+  Original: s = b'\xa9\x43\x54\xe9\x00\xf8\xfb'
+  Java: byte[] s = (byte[]) "'\xa9CT\xe9\x00\xf8\xfb".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 23
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 24
+  Original: 7
+  ExpectedType: Integer
+  ExpectedJava: 7
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 25
+  Original: s = b'\x57\xbb\xe5\x82\x8b\xd3\x00\xf9'
+  Java: byte[] s = (byte[]) "'W\xbb\xe5\x82\x8b\xd3\x00\xf9".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 26
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 27
+  Original: 8
+  ExpectedType: Integer
+  ExpectedJava: 8
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 28
+  Original: s = b'\x44\x1b\x3e\x00\x13\x19\x29\x2a\xbf'
+  Java: byte[] s = (byte[]) "'D\x1b>\x00\x13\x19)*\xbf".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 29
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 30
+  Original: 9
+  ExpectedType: Integer
+  ExpectedJava: 9
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 31
+  Original: s = b'\x8a\x1d\x09\x00\x5d\x60\x6b\x2e\x70\xd9'
+  Java: byte[] s = (byte[]) "'\x8a\x1d\t\x00]`k.p\xd9".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 32
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 33
+  Original: 10
+  ExpectedType: Integer
+  ExpectedJava: 10
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 34
+  Original: s = b'\x00\xaf\x47\x4b\x38\x99\x14\x8d\x8f\x10\x51'
+  Java: byte[] s = (byte[]) "'\x00\xafGK8\x99\x14\x8d\x8f\x10Q".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 35
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 36
+  Original: 11
+  ExpectedType: Integer
+  ExpectedJava: 11
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 37
+  Original: s = b'\x45\x39\x00\xf7\xc2\x37\xfd\xe0\x38\x82\x40\xa9'
+  Java: byte[] s = (byte[]) "'E9\x00\xf7\xc27\xfd\xe08\x82@\xa9".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 38
+  Original: s
+  ExpectedType: byte[]
+  ExpectedJava: s
+  Obtained: r.binary(s)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 39
+  Original: 12
+  ExpectedType: Integer
+  ExpectedJava: 12
+  Obtained: r.binary(s).count()
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 40
+  Original: a = b'\x00'
+  Java: byte[] a = (byte[]) "'\x00".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 41
+  Original: b = b'\x00\x01'
+  Java: byte[] b = (byte[]) "'\x00\x01".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 42
+  Original: c = b'\x01'
+  Java: byte[] c = (byte[]) "'\x01".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 43
+  Original: d = b'\x70\x22'
+  Java: byte[] d = (byte[]) "'p"".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 44
+  Original: e = b'\x80'
+  Java: byte[] e = (byte[]) "'\x80".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaDef
+  TestFile: datum/binary.yaml
+  TestNum: 45
+  Original: f = b'\xFE'
+  Java: byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 46
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(a).eq(r.binary(a))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 47
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(a).le(r.binary(a))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 48
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(a).ge(r.binary(a))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 49
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(a).ne(r.binary(a))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 50
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(a).lt(r.binary(a))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 51
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(a).gt(r.binary(a))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 52
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(a).ne(r.binary(b))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 53
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(a).lt(r.binary(b))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 54
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(a).le(r.binary(b))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 55
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(a).ge(r.binary(b))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 56
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(a).gt(r.binary(b))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 57
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(a).eq(r.binary(b))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 58
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(b).ne(r.binary(c))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 59
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(b).lt(r.binary(c))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 60
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(b).le(r.binary(c))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 61
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(b).ge(r.binary(c))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 62
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(b).gt(r.binary(c))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 63
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(b).eq(r.binary(c))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 64
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(c).ne(r.binary(d))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 65
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(c).lt(r.binary(d))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 66
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(c).le(r.binary(d))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 67
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(c).ge(r.binary(d))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 68
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(c).gt(r.binary(d))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 69
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(c).eq(r.binary(d))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 70
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(d).ne(r.binary(e))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 71
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(d).lt(r.binary(e))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 72
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(d).le(r.binary(e))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 73
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(d).ge(r.binary(e))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 74
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(d).gt(r.binary(e))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 75
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(d).eq(r.binary(e))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 76
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(e).ne(r.binary(f))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 77
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(e).lt(r.binary(f))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 78
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(e).le(r.binary(f))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 79
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(e).ge(r.binary(f))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 80
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(e).gt(r.binary(f))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 81
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(e).eq(r.binary(f))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 82
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(f).eq(r.binary(f))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 83
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(f).le(r.binary(f))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 84
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.binary(f).ge(r.binary(f))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 85
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(f).ne(r.binary(f))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 86
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(f).lt(r.binary(f))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 87
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.binary(f).gt(r.binary(f))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 88
+  Original: "u'イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム'.encode('utf-8')"
+  ExpectedType: byte[]
+  ExpectedJava: .encode("utf-8")
+  Obtained: "r.binary(\"イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム\".encode(\"utf-8\"))"
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 89
+  Original: "u'ƀƁƂƃƄƅƆƇƈƉƊƋƌƍƎƏ'.encode('utf-16')"
+  ExpectedType: byte[]
+  ExpectedJava: .encode("utf-16")
+  Obtained: "r.binary(\"ƀƁƂƃƄƅƆƇƈƉƊƋƌƍƎƏ\".encode(\"utf-16\"))"
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 90
+  Original: u'lorem ipsum'.encode('ascii')
+  ExpectedType: byte[]
+  ExpectedJava: .encode("ascii")
+  Obtained: r.binary("lorem ipsum".encode("ascii"))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 91
+  Original: ('foo')
+  ExpectedType: String
+  ExpectedJava: '"foo"'
+  Obtained: r.binary("'foo".getBytes(StandardCharsets.UTF_8)).coerceTo("string")
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 92
+  Original: "u'イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム'"
+  ExpectedType: String
+  ExpectedJava: "\"イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム\""
+  Obtained: "r.binary(\"イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム\".encode(\"utf-8\")).coerceTo(\"string\")"
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 93
+  Original: u'lorem ipsum'
+  ExpectedType: String
+  ExpectedJava: '"lorem ipsum"'
+  Obtained: r.binary("lorem ipsum".encode("ascii")).coerceTo("string")
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 94
+  Original: b'foo'
+  ExpectedType: byte[]
+  ExpectedJava: '"''foo".getBytes(StandardCharsets.UTF_8)'
+  Obtained: r.expr("foo").coerceTo("binary")
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 95
+  Original: b'foo'
+  ExpectedType: byte[]
+  ExpectedJava: '"''foo".getBytes(StandardCharsets.UTF_8)'
+  Obtained: r.binary("'foo".getBytes(StandardCharsets.UTF_8)).coerceTo("binary")
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 96
+  Original: b'ef'
+  ExpectedType: byte[]
+  ExpectedJava: '"''ef".getBytes(StandardCharsets.UTF_8)'
+  Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-3, -1)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 97
+  Original: b'ab'
+  ExpectedType: byte[]
+  ExpectedJava: '"''ab".getBytes(StandardCharsets.UTF_8)'
+  Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(0, 2)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 98
+  Original: b'def'
+  ExpectedType: byte[]
+  ExpectedJava: '"''def".getBytes(StandardCharsets.UTF_8)'
+  Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(3, -1)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 99
+  Original: b'cde'
+  ExpectedType: byte[]
+  ExpectedJava: '"''cde".getBytes(StandardCharsets.UTF_8)'
+  Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-5, 5)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 100
+  Original: b'ab'
+  ExpectedType: byte[]
+  ExpectedJava: '"''ab".getBytes(StandardCharsets.UTF_8)'
+  Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-8, 2)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 101
+  Original: b'fg'
+  ExpectedType: byte[]
+  ExpectedJava: '"''fg".getBytes(StandardCharsets.UTF_8)'
+  Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 7)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 102
+  Original: b'ab'
+  ExpectedType: byte[]
+  ExpectedJava: '"''ab".getBytes(StandardCharsets.UTF_8)'
+  Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-9, 2)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 103
+  Original: b'fg'
+  ExpectedType: byte[]
+  ExpectedJava: '"''fg".getBytes(StandardCharsets.UTF_8)'
+  Obtained: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 9)
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 104
+  Original: b
+  ExpectedType: byte[]
+  ExpectedJava: b
+  Obtained: r.binary(b)
+  RunOpts:
+  - Key: binary_format
+    Val: native
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 105
+  Original: ({'$reql_type$':'BINARY','data':'AAE='})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("$reql_type$", "BINARY").with("data", "AAE=")
+  Obtained: r.binary(b)
+  RunOpts:
+  - Key: binary_format
+    Val: raw
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 106
+  Original: (b"data")
+  ExpectedType: byte[]
+  ExpectedJava: '"''data".getBytes(StandardCharsets.UTF_8)'
+  Obtained: r.binary(r.expr("data"))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 107
+  Original: err('ReqlQueryLogicError', 'Expected type STRING but found OBJECT.', [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found OBJECT.", Arrays.asList())
+  Obtained: r.binary(r.expr(new MapObject()))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 108
+  Original: err('ReqlQueryLogicError', 'Expected type STRING but found ARRAY.', [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found ARRAY.", Arrays.asList())
+  Obtained: r.binary(r.expr(Arrays.asList()))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 109
+  Original: err('ReqlQueryLogicError','Invalid binary pseudotype:'+' lacking `data` key.',[])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Invalid binary pseudotype:" + " lacking `data` key.", Arrays.asList())
+  Obtained: r.expr(new MapObject().with("$reql_type$", "BINARY"))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 110
+  Original: err('ReqlQueryLogicError','Invalid base64 format, data found after padding character \'=\'.',[])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Invalid base64 format, data found after padding character '='.", Arrays.asList())
+  Obtained: r.expr(new MapObject().with("$reql_type$", "BINARY").with("data", "ABCDEFGH==AA"))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 111
+  Original: err('ReqlQueryLogicError','Invalid base64 format, data found after padding character \'=\'.',[])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Invalid base64 format, data found after padding character '='.", Arrays.asList())
+  Obtained: r.expr(new MapObject().with("$reql_type$", "BINARY").with("data", "ABCDEF==$"))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 112
+  Original: err('ReqlQueryLogicError','Invalid base64 character found:'+' \'^\'.',[])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Invalid base64 character found:" + " '^'.", Arrays.asList())
+  Obtained: r.expr(new MapObject().with("$reql_type$", "BINARY").with("data", "A^CDEFGH"))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 113
+  Original: err('ReqlQueryLogicError','Invalid base64 length:'+' 1 character remaining, cannot decode a full byte.',[])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Invalid base64 length:" + " 1 character remaining, cannot decode a full byte.", Arrays.asList())
+  Obtained: r.expr(new MapObject().with("$reql_type$", "BINARY").with("data", "ABCDE"))
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 114
+  Original: err('ReqlQueryLogicError','Cannot coerce BINARY to ARRAY.',[])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to ARRAY.", Arrays.asList())
+  Obtained: r.binary(a).coerceTo("array")
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 115
+  Original: err('ReqlQueryLogicError','Cannot coerce BINARY to OBJECT.',[])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to OBJECT.", Arrays.asList())
+  Obtained: r.binary(a).coerceTo("object")
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 116
+  Original: err('ReqlQueryLogicError','Cannot coerce BINARY to BOOL.',[])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to BOOL.", Arrays.asList())
+  Obtained: r.binary(a).coerceTo("bool")
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 117
+  Original: err('ReqlQueryLogicError','Cannot coerce BINARY to NUMBER.',[])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to NUMBER.", Arrays.asList())
+  Obtained: r.binary(a).coerceTo("number")
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  TestNum: 118
+  Original: err('ReqlQueryLogicError','Cannot coerce BINARY to NULL.',[])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to NULL.", Arrays.asList())
+  Obtained: r.binary(a).coerceTo(r.add("nu", "ll"))

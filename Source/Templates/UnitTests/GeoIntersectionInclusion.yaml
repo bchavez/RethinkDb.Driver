@@ -1,373 +1,366 @@
-
-ModuleName: "GeoIntersectionInclusion"
-TableVarNames:
-
+ModuleName: GeoIntersectionInclusion
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 1
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(1.5, 1.5))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 2
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(2.5, 2.5))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 3
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.5, 1.5))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 4
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.05, 1.05))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 5
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(2, 2))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 6
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(2, 1.5))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 7
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 2)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 8
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 1.5)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 9
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.1, 1.1))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 10
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.5, 1.1))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 11
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(2, 2), Arrays.asList(3, 3)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 12
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(2, 1.5), Arrays.asList(3, 3)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 13
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(3, 3)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 14
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 15
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(1.5, 1.5), Arrays.asList(2.5, 1.5), Arrays.asList(2.5, 2.5), Arrays.asList(1.5, 2.5)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 16
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 17
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 18
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(2, 1.1), Arrays.asList(3, 1.1), Arrays.asList(3, 1.9), Arrays.asList(2, 1.9)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 19
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(2, 2), Arrays.asList(3, 2), Arrays.asList(3, 3), Arrays.asList(2, 3)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 20
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.point(1, 1).intersects(r.point(1.5, 1.5))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 21
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.point(1, 1).intersects(r.point(1, 1))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 22
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.line(Arrays.asList(1, 1), Arrays.asList(2, 1)).intersects(r.point(1, 1))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 23
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.line(Arrays.asList(1, 1), Arrays.asList(1, 2)).intersects(r.point(1, 1.8))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 24
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.line(Arrays.asList(1, 0), Arrays.asList(2, 0)).intersects(r.point(1.8, 0))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 25
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.line(Arrays.asList(1, 1), Arrays.asList(2, 1)).intersects(r.point(1.5, 1.5))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 26
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.line(Arrays.asList(1, 1), Arrays.asList(2, 1)).intersects(r.line(Arrays.asList(2, 1), Arrays.asList(3, 1)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 27
-     Original: b'Mg=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mg=='
-     Obtained: r.expr(Arrays.asList(r.point(1, 0), r.point(3, 0), r.point(2, 0))).intersects(r.line(Arrays.asList(0, 0), Arrays.asList(2, 0))).count()
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 28
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(1.5, 1.5))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 29
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(2.5, 2.5))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 30
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.5, 1.5))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 31
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.05, 1.05))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 32
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(2, 2))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 33
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(2, 1.5))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 34
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 2)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 35
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 1.5)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 36
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.1, 1.1))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 37
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.5, 1.1))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 38
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(2, 2), Arrays.asList(3, 3)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 39
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(2, 1.5), Arrays.asList(2, 2)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 40
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(2, 1), Arrays.asList(2, 2)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 41
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(3, 3)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 42
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 43
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 44
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1.5, 1.5), Arrays.asList(2, 1.5), Arrays.asList(2, 2), Arrays.asList(1.5, 2)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 45
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1.5, 1.5), Arrays.asList(2.5, 1.5), Arrays.asList(2.5, 2.5), Arrays.asList(1.5, 2.5)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 46
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 47
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(2, 1.1), Arrays.asList(2, 2), Arrays.asList(1.1, 2)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 48
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(2, 1.1), Arrays.asList(3, 1.1), Arrays.asList(3, 1.9), Arrays.asList(2, 1.9)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 49
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(2, 2), Arrays.asList(3, 2), Arrays.asList(3, 3), Arrays.asList(2, 3)))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 50
-     Original: b'MQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'MQ=='
-     Obtained: r.expr(Arrays.asList(r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 1), Arrays.asList(1, 0)), r.polygon(Arrays.asList(0, 1), Arrays.asList(1, 2), Arrays.asList(1, 1)))).includes(r.point(0, 0)).count()
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 51
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIGdlb21ldHJ5IG9mIHR5cGUgYFBvbHlnb25gIGJ1dCBmb3VuZCBgUG9pbnRgLicp'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIGdlb21ldHJ5IG9mIHR5cGUgYFBvbHlnb25gIGJ1dCBmb3VuZCBgUG9pbnRgLiIp'
-     Obtained: r.point(0, 0).includes(r.point(0, 0))
-   - TestType: JavaQuery
-     TestFile: geo/intersection_inclusion.yaml
-     TestNum: 52
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIGdlb21ldHJ5IG9mIHR5cGUgYFBvbHlnb25gIGJ1dCBmb3VuZCBgTGluZVN0cmluZ2AuJyk='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIGdlb21ldHJ5IG9mIHR5cGUgYFBvbHlnb25gIGJ1dCBmb3VuZCBgTGluZVN0cmluZ2AuIik='
-     Obtained: r.line(Arrays.asList(0, 0), Arrays.asList(0, 1)).includes(r.point(0, 0))
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 1
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(1.5, 1.5))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 2
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(2.5, 2.5))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 3
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.5, 1.5))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 4
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.05, 1.05))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 5
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(2, 2))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 6
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(2, 1.5))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 7
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 2)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 8
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 1.5)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 9
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.1, 1.1))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 10
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.5, 1.1))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 11
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(2, 2), Arrays.asList(3, 3)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 12
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(2, 1.5), Arrays.asList(3, 3)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 13
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(3, 3)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 14
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 15
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(1.5, 1.5), Arrays.asList(2.5, 1.5), Arrays.asList(2.5, 2.5), Arrays.asList(1.5, 2.5)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 16
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 17
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 18
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(2, 1.1), Arrays.asList(3, 1.1), Arrays.asList(3, 1.9), Arrays.asList(2, 1.9)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 19
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(2, 2), Arrays.asList(3, 2), Arrays.asList(3, 3), Arrays.asList(2, 3)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 20
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.point(1, 1).intersects(r.point(1.5, 1.5))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 21
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.point(1, 1).intersects(r.point(1, 1))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 22
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.line(Arrays.asList(1, 1), Arrays.asList(2, 1)).intersects(r.point(1, 1))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 23
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.line(Arrays.asList(1, 1), Arrays.asList(1, 2)).intersects(r.point(1, 1.8))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 24
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.line(Arrays.asList(1, 0), Arrays.asList(2, 0)).intersects(r.point(1.8, 0))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 25
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.line(Arrays.asList(1, 1), Arrays.asList(2, 1)).intersects(r.point(1.5, 1.5))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 26
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.line(Arrays.asList(1, 1), Arrays.asList(2, 1)).intersects(r.line(Arrays.asList(2, 1), Arrays.asList(3, 1)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 27
+  Original: 2
+  ExpectedType: Integer
+  ExpectedJava: 2
+  Obtained: r.expr(Arrays.asList(r.point(1, 0), r.point(3, 0), r.point(2, 0))).intersects(r.line(Arrays.asList(0, 0), Arrays.asList(2, 0))).count()
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 28
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(1.5, 1.5))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 29
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(2.5, 2.5))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 30
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.5, 1.5))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 31
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.05, 1.05))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 32
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(2, 2))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 33
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(2, 1.5))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 34
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 2)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 35
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 1.5)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 36
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.1, 1.1))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 37
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.5, 1.1))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 38
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(2, 2), Arrays.asList(3, 3)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 39
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(2, 1.5), Arrays.asList(2, 2)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 40
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(2, 1), Arrays.asList(2, 2)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 41
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(3, 3)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 42
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 43
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 44
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1.5, 1.5), Arrays.asList(2, 1.5), Arrays.asList(2, 2), Arrays.asList(1.5, 2)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 45
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1.5, 1.5), Arrays.asList(2.5, 1.5), Arrays.asList(2.5, 2.5), Arrays.asList(1.5, 2.5)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 46
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 47
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(2, 1.1), Arrays.asList(2, 2), Arrays.asList(1.1, 2)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 48
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(2, 1.1), Arrays.asList(3, 1.1), Arrays.asList(3, 1.9), Arrays.asList(2, 1.9)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 49
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(2, 2), Arrays.asList(3, 2), Arrays.asList(3, 3), Arrays.asList(2, 3)))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 50
+  Original: 1
+  ExpectedType: Integer
+  ExpectedJava: 1
+  Obtained: r.expr(Arrays.asList(r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 1), Arrays.asList(1, 0)), r.polygon(Arrays.asList(0, 1), Arrays.asList(1, 2), Arrays.asList(1, 1)))).includes(r.point(0, 0)).count()
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 51
+  Original: err('ReqlQueryLogicError', 'Expected geometry of type `Polygon` but found `Point`.')
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected geometry of type `Polygon` but found `Point`.")
+  Obtained: r.point(0, 0).includes(r.point(0, 0))
+- TestType: JavaQuery
+  TestFile: geo/intersection_inclusion.yaml
+  TestNum: 52
+  Original: err('ReqlQueryLogicError', 'Expected geometry of type `Polygon` but found `LineString`.')
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected geometry of type `Polygon` but found `LineString`.")
+  Obtained: r.line(Arrays.asList(0, 0), Arrays.asList(0, 1)).includes(r.point(0, 0))

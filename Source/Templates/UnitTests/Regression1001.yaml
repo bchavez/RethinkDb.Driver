@@ -1,59 +1,53 @@
-
-ModuleName: "Regression1001"
+ModuleName: Regression1001
 TableVarNames:
-    - tbl
-
+- tbl
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/1001.yaml
-     TestNum: 1
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: tbl.insert(new MapObject().with("a", null))
-   - TestType: JavaQuery
-     TestFile: regression/1001.yaml
-     TestNum: 2
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: tbl.indexCreate("a")
-   - TestType: JavaQuery
-     TestFile: regression/1001.yaml
-     TestNum: 3
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: tbl.indexCreate("b")
-   - TestType: JavaQuery
-     TestFile: regression/1001.yaml
-     TestNum: 4
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: tbl.indexWait().pluck("index", "ready")
-   - TestType: JavaQuery
-     TestFile: regression/1001.yaml
-     TestNum: 5
-     Original: b'MQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'MQ=='
-     Obtained: tbl.between(r.minval(), r.maxval()).count()
-   - TestType: JavaQuery
-     TestFile: regression/1001.yaml
-     TestNum: 6
-     Original: b'MA=='
-     ExpectedType: Integer
-     ExpectedJava: b'MA=='
-     Obtained: tbl.between(r.minval(), r.maxval()).optArg("index", "a").count()
-   - TestType: JavaQuery
-     TestFile: regression/1001.yaml
-     TestNum: 7
-     Original: b'MA=='
-     ExpectedType: Integer
-     ExpectedJava: b'MA=='
-     Obtained: tbl.between(r.minval(), r.maxval()).optArg("index", "b").count()
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/1001.yaml
+  TestNum: 1
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: tbl.insert(new MapObject().with("a", null))
+- TestType: JavaQuery
+  TestFile: regression/1001.yaml
+  TestNum: 2
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: tbl.indexCreate("a")
+- TestType: JavaQuery
+  TestFile: regression/1001.yaml
+  TestNum: 3
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: tbl.indexCreate("b")
+- TestType: JavaQuery
+  TestFile: regression/1001.yaml
+  TestNum: 4
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: tbl.indexWait().pluck("index", "ready")
+- TestType: JavaQuery
+  TestFile: regression/1001.yaml
+  TestNum: 5
+  Original: 1
+  ExpectedType: Integer
+  ExpectedJava: 1
+  Obtained: tbl.between(r.minval(), r.maxval()).count()
+- TestType: JavaQuery
+  TestFile: regression/1001.yaml
+  TestNum: 6
+  Original: 0
+  ExpectedType: Integer
+  ExpectedJava: 0
+  Obtained: tbl.between(r.minval(), r.maxval()).optArg("index", "a").count()
+- TestType: JavaQuery
+  TestFile: regression/1001.yaml
+  TestNum: 7
+  Original: 0
+  ExpectedType: Integer
+  ExpectedJava: 0
+  Obtained: tbl.between(r.minval(), r.maxval()).optArg("index", "b").count()

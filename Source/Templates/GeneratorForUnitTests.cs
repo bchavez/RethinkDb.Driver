@@ -81,14 +81,17 @@ namespace Templates
 
 
 	    [Test]
-	    public void clean_up_yaml_tests()
+        [Explicit]
+	    public void CleanUpYamlTests()
 	    {
-	        var files = GetAllYamlFiles();
+            var ser = new Serializer();
+	        var dser = new Deserializer();
+
+            var files = GetAllYamlFiles();
 	        foreach( var file in files )
 	        {
 	            var lines = File.ReadAllLines(file);
-	            var sb = new StringBuilder();
-	            var sw = new StringWriter(sb);
+	            var sw = new StringWriter(new StringBuilder());
 	            for( int i = 0; i < lines.Length; i++ )
 	            {
 	                var line = lines[i];
@@ -97,9 +100,18 @@ namespace Templates
 
 	                sw.WriteLine(line);
 	            }
-                
-	            File.WriteAllText(file, sb.ToString());
+
+	            var sr = new StringReader(sw.ToString());
+	            var yamltests = dser.Deserialize<YamlTest>(sr);
+	            yamltests.Decode();
+
+	            var sfile = new StringWriter(new StringBuilder());
+
+	            ser.Serialize(sfile, yamltests);
+
+	            File.WriteAllText(file, sfile.ToString());
 	        }
+
 	    }
 
 		[Test]
@@ -107,7 +119,7 @@ namespace Templates
 		public void ImportYamlTestsAndConvertToJson()
 		{
 			var files = GetAllYamlFiles();
-			var js = new Serializer(SerializationOptions.JsonCompatible);
+			var json = new Serializer(SerializationOptions.JsonCompatible);
 
 			foreach( var file in files )
 			{
@@ -121,7 +133,7 @@ namespace Templates
 
 			    yobj.Decode();
 
-			    OutputToJson(yobj, js, file);
+			    OutputToJson(yobj, json, file);
 			}
 		}
 

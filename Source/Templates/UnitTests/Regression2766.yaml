@@ -1,79 +1,72 @@
-
-ModuleName: "Regression2766"
-TableVarNames:
-
+ModuleName: Regression2766
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/2766.yaml
-     TestNum: 1
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBicmFja2V0YCBvbiBvYmplY3RzIG9mIHR5cGUgYFBUWVBFPFRJTUU+YC4iKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBicmFja2V0YCBvbiBvYmplY3RzIG9mIHR5cGUgYFBUWVBFPFRJTUU+YC4iKQ=='
-     Obtained: r.now().bracket("epoch_time")
-   - TestType: JavaQuery
-     TestFile: regression/2766.yaml
-     TestNum: 2
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBnZXRfZmllbGRgIG9uIG9iamVjdHMgb2YgdHlwZSBgUFRZUEU8VElNRT5gLiIp'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBnZXRfZmllbGRgIG9uIG9iamVjdHMgb2YgdHlwZSBgUFRZUEU8VElNRT5gLiIp'
-     Obtained: r.now().getField("epoch_time")
-   - TestType: JavaQuery
-     TestFile: regression/2766.yaml
-     TestNum: 3
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBrZXlzYCBvbiBvYmplY3RzIG9mIHR5cGUgYFBUWVBFPFRJTUU+YC4iKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBrZXlzYCBvbiBvYmplY3RzIG9mIHR5cGUgYFBUWVBFPFRJTUU+YC4iKQ=='
-     Obtained: r.now().keys()
-   - TestType: JavaQuery
-     TestFile: regression/2766.yaml
-     TestNum: 4
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBwbHVja2Agb24gb2JqZWN0cyBvZiB0eXBlIGBQVFlQRTxUSU1FPmAuIik='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBwbHVja2Agb24gb2JqZWN0cyBvZiB0eXBlIGBQVFlQRTxUSU1FPmAuIik='
-     Obtained: r.now().pluck("epoch_time")
-   - TestType: JavaQuery
-     TestFile: regression/2766.yaml
-     TestNum: 5
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGB3aXRob3V0YCBvbiBvYmplY3RzIG9mIHR5cGUgYFBUWVBFPFRJTUU+YC4iKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGB3aXRob3V0YCBvbiBvYmplY3RzIG9mIHR5cGUgYFBUWVBFPFRJTUU+YC4iKQ=='
-     Obtained: r.now().without("epoch_time")
-   - TestType: JavaQuery
-     TestFile: regression/2766.yaml
-     TestNum: 6
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBtZXJnZWAgb24gb2JqZWN0cyBvZiB0eXBlIGBQVFlQRTxUSU1FPmAuIik='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBtZXJnZWAgb24gb2JqZWN0cyBvZiB0eXBlIGBQVFlQRTxUSU1FPmAuIik='
-     Obtained: r.now().merge(new MapObject().with("foo", 4))
-   - TestType: JavaQuery
-     TestFile: regression/2766.yaml
-     TestNum: 7
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBtZXJnZSBvYmplY3RzIG9mIHR5cGUgYFBUWVBFPFRJTUU+YC4iKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBtZXJnZSBvYmplY3RzIG9mIHR5cGUgYFBUWVBFPFRJTUU+YC4iKQ=='
-     Obtained: r.expr(new MapObject().with("foo", 4)).merge(r.now())
-   - TestType: JavaQuery
-     TestFile: regression/2766.yaml
-     TestNum: 8
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBoYXNfZmllbGRzYCBvbiBvYmplY3RzIG9mIHR5cGUgYFBUWVBFPFRJTUU+YC4iKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBoYXNfZmllbGRzYCBvbiBvYmplY3RzIG9mIHR5cGUgYFBUWVBFPFRJTUU+YC4iKQ=='
-     Obtained: r.now().hasFields("epoch_time")
-   - TestType: JavaQuery
-     TestFile: regression/2766.yaml
-     TestNum: 9
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkludmFsaWQgcGF0aCBhcmd1bWVudCBgMTQwNDY5MTIwMGAuIik='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkludmFsaWQgcGF0aCBhcmd1bWVudCBgMTQwNDY5MTIwMGAuIik='
-     Obtained: r.object().hasFields(r.time(2014, 7, 7, "Z"))
-   - TestType: JavaQuery
-     TestFile: regression/2766.yaml
-     TestNum: 10
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBrZXlzYCBvbiBvYmplY3RzIG9mIHR5cGUgYE5VTUJFUmAuIik='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjYWxsIGBrZXlzYCBvbiBvYmplY3RzIG9mIHR5cGUgYE5VTUJFUmAuIik='
-     Obtained: r.expr(1).keys()
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/2766.yaml
+  TestNum: 1
+  Original: err("ReqlQueryLogicError", "Cannot call `bracket` on objects of type `PTYPE<TIME>`.")
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot call `bracket` on objects of type `PTYPE<TIME>`.")
+  Obtained: r.now().bracket("epoch_time")
+- TestType: JavaQuery
+  TestFile: regression/2766.yaml
+  TestNum: 2
+  Original: err("ReqlQueryLogicError", "Cannot call `get_field` on objects of type `PTYPE<TIME>`.")
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot call `get_field` on objects of type `PTYPE<TIME>`.")
+  Obtained: r.now().getField("epoch_time")
+- TestType: JavaQuery
+  TestFile: regression/2766.yaml
+  TestNum: 3
+  Original: err("ReqlQueryLogicError", "Cannot call `keys` on objects of type `PTYPE<TIME>`.")
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot call `keys` on objects of type `PTYPE<TIME>`.")
+  Obtained: r.now().keys()
+- TestType: JavaQuery
+  TestFile: regression/2766.yaml
+  TestNum: 4
+  Original: err("ReqlQueryLogicError", "Cannot call `pluck` on objects of type `PTYPE<TIME>`.")
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot call `pluck` on objects of type `PTYPE<TIME>`.")
+  Obtained: r.now().pluck("epoch_time")
+- TestType: JavaQuery
+  TestFile: regression/2766.yaml
+  TestNum: 5
+  Original: err("ReqlQueryLogicError", "Cannot call `without` on objects of type `PTYPE<TIME>`.")
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot call `without` on objects of type `PTYPE<TIME>`.")
+  Obtained: r.now().without("epoch_time")
+- TestType: JavaQuery
+  TestFile: regression/2766.yaml
+  TestNum: 6
+  Original: err("ReqlQueryLogicError", "Cannot call `merge` on objects of type `PTYPE<TIME>`.")
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot call `merge` on objects of type `PTYPE<TIME>`.")
+  Obtained: r.now().merge(new MapObject().with("foo", 4))
+- TestType: JavaQuery
+  TestFile: regression/2766.yaml
+  TestNum: 7
+  Original: err("ReqlQueryLogicError", "Cannot merge objects of type `PTYPE<TIME>`.")
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot merge objects of type `PTYPE<TIME>`.")
+  Obtained: r.expr(new MapObject().with("foo", 4)).merge(r.now())
+- TestType: JavaQuery
+  TestFile: regression/2766.yaml
+  TestNum: 8
+  Original: err("ReqlQueryLogicError", "Cannot call `has_fields` on objects of type `PTYPE<TIME>`.")
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot call `has_fields` on objects of type `PTYPE<TIME>`.")
+  Obtained: r.now().hasFields("epoch_time")
+- TestType: JavaQuery
+  TestFile: regression/2766.yaml
+  TestNum: 9
+  Original: err("ReqlQueryLogicError", "Invalid path argument `1404691200`.")
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Invalid path argument `1404691200`.")
+  Obtained: r.object().hasFields(r.time(2014, 7, 7, "Z"))
+- TestType: JavaQuery
+  TestFile: regression/2766.yaml
+  TestNum: 10
+  Original: err("ReqlQueryLogicError", "Cannot call `keys` on objects of type `NUMBER`.")
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot call `keys` on objects of type `NUMBER`.")
+  Obtained: r.expr(1).keys()

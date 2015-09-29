@@ -1,23 +1,16 @@
-
-ModuleName: "Regression2696"
-TableVarNames:
-
+ModuleName: Regression2696
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/2696.yaml
-     TestNum: 1
-     Original: b'WzEsIDIsIDMsIDRd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0KQ=='
-     Obtained: r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(4, 4)
-   - TestType: JavaQuery
-     TestFile: regression/2696.yaml
-     TestNum: 2
-     Original: b'W10='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: r.expr(Arrays.asList()).deleteAt(0, 0)
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/2696.yaml
+  TestNum: 1
+  Original: '[1, 2, 3, 4]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3, 4)
+  Obtained: r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(4, 4)
+- TestType: JavaQuery
+  TestFile: regression/2696.yaml
+  TestNum: 2
+  Original: '[]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: r.expr(Arrays.asList()).deleteAt(0, 0)

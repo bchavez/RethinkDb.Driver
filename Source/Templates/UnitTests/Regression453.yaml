@@ -1,31 +1,25 @@
-
-ModuleName: "Regression453"
+ModuleName: Regression453
 TableVarNames:
-    - tbl
-
+- tbl
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/453.yaml
-     TestNum: 1
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: tbl.insert(Arrays.asList(new MapObject().with("a", 1), new MapObject().with("a", 2)))
-   - TestType: JavaQuery
-     TestFile: regression/453.yaml
-     TestNum: 2
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgJ0V4cGVjdGVkIHR5cGUgREFUVU0gYnV0IGZvdW5kIFRBQkxFOicsIFswXSk='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgREFUVU0gYnV0IGZvdW5kIFRBQkxFOiIsIEFycmF5cy5hc0xpc3QoMCkp'
-     Obtained: tbl.map(x -> tbl)
-   - TestType: JavaQuery
-     TestFile: regression/453.yaml
-     TestNum: 3
-     Original: b'Mg=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mg=='
-     Obtained: tbl.map(x -> tbl.coerceTo("array")).count()
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/453.yaml
+  TestNum: 1
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: tbl.insert(Arrays.asList(new MapObject().with("a", 1), new MapObject().with("a", 2)))
+- TestType: JavaQuery
+  TestFile: regression/453.yaml
+  TestNum: 2
+  Original: err("ReqlQueryLogicError", 'Expected type DATUM but found TABLE:', [0])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", Arrays.asList(0))
+  Obtained: tbl.map(x -> tbl)
+- TestType: JavaQuery
+  TestFile: regression/453.yaml
+  TestNum: 3
+  Original: 2
+  ExpectedType: Integer
+  ExpectedJava: 2
+  Obtained: tbl.map(x -> tbl.coerceTo("array")).count()

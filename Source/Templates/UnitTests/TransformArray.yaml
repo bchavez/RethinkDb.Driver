@@ -1,575 +1,557 @@
-
-ModuleName: "TransformArray"
-TableVarNames:
-
+ModuleName: TransformArray
 DefsAndTests:
-
-        
-        
-
-   - TestType: JavaDef
-     TestFile: transform/array.yaml
-     TestNum: 1
-     Original: b'YXJyID0gci5leHByKFsxLCAyLCAzXSk='
-     Java: MakeArray arr = (MakeArray) r.expr(Arrays.asList(1, 2, 3));
-        
-
-   - TestType: JavaDef
-     TestFile: transform/array.yaml
-     TestNum: 2
-     Original: b'ZHVwZV9hcnIgPSByLmV4cHIoWzEsIDEsIDIsIDNdKQ=='
-     Java: MakeArray dupe_arr = (MakeArray) r.expr(Arrays.asList(1, 1, 2, 3));
-        
-
-   - TestType: JavaDef
-     TestFile: transform/array.yaml
-     TestNum: 3
-     Original: b'b2JqQXJyID0gci5leHByKFt7J2EnOjEsICdiJzonYSd9LCB7J2EnOjIsICdiJzonYid9LCB7J2EnOjMsICdiJzonYyd9XSk='
-     Java: MakeArray objArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c")));
-        
-
-   - TestType: JavaDef
-     TestFile: transform/array.yaml
-     TestNum: 4
-     Original: b'bmVzdGVkT2JqQXJyID0gci5leHByKFt7J2EnOjEsICdiJzp7J2MnOjF9fSwgeydhJzoyLCAnYic6eydjJzoyfX0sIHsnYSc6MywgJ2InOnsnYyc6M319XSk='
-     Java: MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("a", 1).with("b", new MapObject().with("c", 1)), new MapObject().with("a", 2).with("b", new MapObject().with("c", 2)), new MapObject().with("a", 3).with("b", new MapObject().with("c", 3))));
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 5
-     Original: b'WzEsIDIsIDMsIDRd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0KQ=='
-     Obtained: arr.append(4)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 6
-     Original: b'WzEsIDIsIDMsICdhJ10='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCAiYSIp'
-     Obtained: arr.append("a")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 7
-     Original: b'WzAsIDEsIDIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgwLCAxLCAyLCAzKQ=='
-     Obtained: arr.prepend(0)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 8
-     Original: b'WydhJywgMSwgMiwgM10='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiYSIsIDEsIDIsIDMp'
-     Obtained: arr.prepend("a")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 9
-     Original: b'WzNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgzKQ=='
-     Obtained: arr.difference(Arrays.asList(1, 2, 2))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 10
-     Original: b'WzEsIDIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzKQ=='
-     Obtained: arr.difference(Arrays.asList())
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 11
-     Original: b'WzEsIDIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzKQ=='
-     Obtained: arr.difference(Arrays.asList("foo", "bar"))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 12
-     Original: b'WzEsIDIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzKQ=='
-     Obtained: dupe_arr.setInsert(1)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 13
-     Original: b'WzEsIDIsIDMsIDRd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0KQ=='
-     Obtained: dupe_arr.setInsert(4)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 14
-     Original: b'WzEsIDIsIDMsIDQsIDVd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0LCA1KQ=='
-     Obtained: dupe_arr.setUnion(Arrays.asList(3, 4, 5, 5))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 15
-     Original: b'WzEsIDIsIDMsIDUsIDZd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA1LCA2KQ=='
-     Obtained: dupe_arr.setUnion(Arrays.asList(5, 6))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 16
-     Original: b'WzEsIDJd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyKQ=='
-     Obtained: dupe_arr.setIntersection(Arrays.asList(1, 1, 1, 2, 2))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 17
-     Original: b'W10='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: dupe_arr.setIntersection(Arrays.asList("foo"))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 18
-     Original: b'WzIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgyLCAzKQ=='
-     Obtained: dupe_arr.setDifference(Arrays.asList(1, 1, 1, 10))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 19
-     Original: b'WzEsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAzKQ=='
-     Obtained: dupe_arr.setDifference(Arrays.asList(2))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 20
-     Original: b'WzIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgyLCAzKQ=='
-     Obtained: arr.slice(1, 3)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 20
-     Original: b'WzIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgyLCAzKQ=='
-     Obtained: arr.slice(1, 3)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 20
-     Original: b'WzIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgyLCAzKQ=='
-     Obtained: arr.slice(1, 2).optArg("right_bound", "closed")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 21
-     Original: b'WzEsIDJd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyKQ=='
-     Obtained: arr.slice(0, 2)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 21
-     Original: b'WzEsIDJd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyKQ=='
-     Obtained: arr.slice(0, 2)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 22
-     Original: b'WzIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgyLCAzKQ=='
-     Obtained: arr.slice(1, -1)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 22
-     Original: b'WzIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgyLCAzKQ=='
-     Obtained: arr.slice(1)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 23
-     Original: b'WzJd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgyKQ=='
-     Obtained: arr.slice(-2, -1)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 24
-     Original: b'WzIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgyLCAzKQ=='
-     Obtained: arr.skip(1)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 25
-     Original: b'WzNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgzKQ=='
-     Obtained: arr.skip(2)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 26
-     Original: b'W10='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: arr.skip(12)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 27
-     Original: b'WzEsIDJd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyKQ=='
-     Obtained: arr.limit(2)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 28
-     Original: b'W10='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
-     Obtained: arr.limit(0)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 29
-     Original: b'WzEsIDIsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzKQ=='
-     Obtained: arr.limit(12)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 30
-     Original: b'W3snYSc6IDEsICdiJzogJ2EnfSwgeydhJzogMiwgJ2InOiAnYid9LCB7J2EnOiAzLCAnYic6ICdjJ31d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpLndpdGgoImIiLCAiYSIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDIpLndpdGgoImIiLCAiYiIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDMpLndpdGgoImIiLCAiYyIpKQ=='
-     Obtained: objArr.pluck("a", "b")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 31
-     Original: b'W3snYSc6IDF9LCB7J2EnOiAyfSwgeydhJzogM31d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDMpKQ=='
-     Obtained: objArr.pluck("a")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 32
-     Original: b'W3t9LCB7fSwge31d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKSwgbmV3IE1hcE9iamVjdCgpKQ=='
-     Obtained: objArr.pluck()
-        
-
-   - TestType: JavaDef
-     TestFile: transform/array.yaml
-     TestNum: 33
-     Original: b'd2Z0c3QgPSBvYmpBcnIudW5pb24ob2JqQXJyLnBsdWNrKCdhJykpLnVuaW9uKG9iakFyci5wbHVjaygnYicpKS51bmlvbihbeydhJzpudWxsfV0p'
-     Java: Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).union(Arrays.asList(new MapObject().with("a", null)));
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 34
-     Original: b'KFt7J2EnOjF9LHsnYSc6Mn0seydhJzozfSx7J2EnOjF9LHsnYSc6Mn0seydhJzozfV0p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDMpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDMpKQ=='
-     Obtained: wftst.withFields("a")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 35
-     Original: b'KFt7J2InOidhJ30seydiJzonYid9LHsnYic6J2MnfSx7J2InOidhJ30seydiJzonYid9LHsnYic6J2MnfV0p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYiIsICJhIiksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJiIiwgImIiKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoImIiLCAiYyIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYiIsICJhIiksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJiIiwgImIiKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoImIiLCAiYyIpKQ=='
-     Obtained: wftst.withFields("b")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 36
-     Original: b'KFt7J2EnOjEsJ2InOidhJ30seydhJzoyLCdiJzonYid9LHsnYSc6MywnYic6J2MnfV0p'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpLndpdGgoImIiLCAiYSIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDIpLndpdGgoImIiLCAiYiIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDMpLndpdGgoImIiLCAiYyIpKQ=='
-     Obtained: wftst.withFields("a", "b")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 37
-     Original: b'W3t9LCB7fSwge30sIHt9LCB7fSwge30sIHt9LCB7fSwge30sIHt9XQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKSwgbmV3IE1hcE9iamVjdCgpLCBuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKSwgbmV3IE1hcE9iamVjdCgpLCBuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKSwgbmV3IE1hcE9iamVjdCgpLCBuZXcgTWFwT2JqZWN0KCkp'
-     Obtained: wftst.withFields()
-        
-
-   - TestType: JavaDef
-     TestFile: transform/array.yaml
-     TestNum: 38
-     Original: b'd2Z0c3QyID0gbmVzdGVkT2JqQXJyLnVuaW9uKG9iakFyci5wbHVjayh7J2InOidtaXNzaW5nJ30pKS51bmlvbihuZXN0ZWRPYmpBcnIucGx1Y2soeydiJzonYyd9KSk='
-     Java: Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b", "missing"))).union(nestedObjArr.pluck(new MapObject().with("b", "c")));
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 39
-     Original: b'KFt7J2InOnsnYyc6MX19LCB7J2InOnsnYyc6Mn19LCB7J2InOnsnYyc6M319LCB7J2InOnsnYyc6MX19LCB7J2InOnsnYyc6Mn19LCB7J2InOnsnYyc6M319XSk='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYiIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJjIiwgMSkpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYiIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJjIiwgMikpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYiIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJjIiwgMykpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYiIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJjIiwgMSkpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYiIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJjIiwgMikpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYiIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJjIiwgMykpKQ=='
-     Obtained: wftst2.withFields(new MapObject().with("b", "c"))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 40
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkludmFsaWQgcGF0aCBhcmd1bWVudCBgMWAuIiwgW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkludmFsaWQgcGF0aCBhcmd1bWVudCBgMWAuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: wftst.withFields(1)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 41
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBwZXJmb3JtIGhhc19maWVsZHMgb24gYSBub24tb2JqZWN0IG5vbi1zZXF1ZW5jZSBgMWAuIiwgW10p'
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBwZXJmb3JtIGhhc19maWVsZHMgb24gYSBub24tb2JqZWN0IG5vbi1zZXF1ZW5jZSBgMWAuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
-     Obtained: r.expr(1).withFields()
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 42
-     Original: b'W3t9LCB7fSwge31d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKSwgbmV3IE1hcE9iamVjdCgpKQ=='
-     Obtained: objArr.without("a", "b")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 43
-     Original: b'W3snYic6ICdhJ30sIHsnYic6ICdiJ30sIHsnYic6ICdjJ31d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYiIsICJhIiksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJiIiwgImIiKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoImIiLCAiYyIpKQ=='
-     Obtained: objArr.without("a")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 44
-     Original: b'W3snYSc6IDEsICdiJzogJ2EnfSwgeydhJzogMiwgJ2InOiAnYid9LCB7J2EnOiAzLCAnYic6ICdjJ31d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpLndpdGgoImIiLCAiYSIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDIpLndpdGgoImIiLCAiYiIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDMpLndpdGgoImIiLCAiYyIpKQ=='
-     Obtained: objArr.without()
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 45
-     Original: b'WzIsIDMsIDRd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgyLCAzLCA0KQ=='
-     Obtained: arr.map(v -> r.add(v, 1))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 46
-     Original: b'Ng=='
-     ExpectedType: Integer
-     ExpectedJava: b'Ng=='
-     Obtained: arr.reduce((a, b) -> r.add(a, b))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 47
-     Original: b'Ng=='
-     ExpectedType: Integer
-     ExpectedJava: b'Ng=='
-     Obtained: arr.reduce((a, b) -> r.add(a, b))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 48
-     Original: b'MTI='
-     ExpectedType: Integer
-     ExpectedJava: b'MTI='
-     Obtained: arr.union(arr).reduce((a, b) -> r.add(a, b))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 49
-     Original: b'MTI='
-     ExpectedType: Integer
-     ExpectedJava: b'MTI='
-     Obtained: arr.union(arr).reduce((a, b) -> r.add(a, b))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 50
-     Original: b'W3snYSc6IDIsICdiJzogJ2InfV0='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDIpLndpdGgoImIiLCAiYiIpKQ=='
-     Obtained: objArr.filter(row -> r.eq(row.bracket("b"), "b"))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 51
-     Original: b'WzEsIDIsIDEsIDIsIDEsIDJd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAxLCAyLCAxLCAyKQ=='
-     Obtained: arr.concatMap(v -> Arrays.asList(1, 2))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 52
-     Original: b'W3sndic6IDF9LCB7J3YyJzogMn0sIHsndic6IDJ9LCB7J3YyJzogM30sIHsndic6IDN9LCB7J3YyJzogNH1d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgidiIsIDEpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgidjIiLCAyKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoInYiLCAyKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoInYyIiwgMyksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJ2IiwgMyksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJ2MiIsIDQpKQ=='
-     Obtained: arr.concatMap(v -> Arrays.asList(new MapObject().with("v", v), new MapObject().with("v2", r.add(v, 1))))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 53
-     Original: b'W3snYSc6IDEsICdiJzogJ2EnfSwgeydhJzogMiwgJ2InOiAnYid9LCB7J2EnOiAzLCAnYic6ICdjJ31d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpLndpdGgoImIiLCAiYSIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDIpLndpdGgoImIiLCAiYiIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDMpLndpdGgoImIiLCAiYyIpKQ=='
-     Obtained: objArr.orderBy("b")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 54
-     Original: b'W3snYSc6IDMsICdiJzogJ2MnfSwgeydhJzogMiwgJ2InOiAnYid9LCB7J2EnOiAxLCAnYic6ICdhJ31d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDMpLndpdGgoImIiLCAiYyIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDIpLndpdGgoImIiLCAiYiIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpLndpdGgoImIiLCAiYSIpKQ=='
-     Obtained: objArr.orderBy(r.desc("b"))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 55
-     Original: b'W3snLWEnOiAxfSwgeyctYSc6IDJ9XQ=='
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiLWEiLCAxKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIi1hIiwgMikp'
-     Obtained: r.expr(Arrays.asList(new MapObject().with("-a", 1), new MapObject().with("-a", 2))).orderBy("-a")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 56
-     Original: b'WzEsIDIsIDMsIDRd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0KQ=='
-     Obtained: r.expr(Arrays.asList(1, 1, 2, 2, 2, 3, 4)).distinct()
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 57
-     Original: b'Mw=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mw=='
-     Obtained: objArr.count()
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 58
-     Original: b'WzEsIDIsIDMsIHsnYSc6IDEsICdiJzogJ2EnfSwgeydhJzogMiwgJ2InOiAnYid9LCB7J2EnOiAzLCAnYic6ICdjJ31d'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpLndpdGgoImIiLCAiYSIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDIpLndpdGgoImIiLCAiYiIpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDMpLndpdGgoImIiLCAiYyIpKQ=='
-     Obtained: arr.union(objArr)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 59
-     Original: b'Mg=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mg=='
-     Obtained: arr.bracket(1)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 59
-     Original: b'Mg=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mg=='
-     Obtained: arr.nth(1)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 60
-     Original: b'MQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'MQ=='
-     Obtained: arr.bracket(0)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 61
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: r.expr(Arrays.asList()).isEmpty()
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 62
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: arr.isEmpty()
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 63
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: arr.contains(2)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 64
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: arr.contains(2, 3)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 65
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: arr.contains(4)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 66
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: arr.contains(2, 4)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 67
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: arr.contains(2, 2)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 68
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: arr.union(arr).contains(2, 2)
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 69
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: arr.contains(x -> r.eq(x, 2))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 70
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: arr.contains(x -> r.eq(x, 2), x -> r.eq(x, 3))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 71
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: arr.contains(x -> r.eq(x, 4))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 72
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: arr.contains(x -> r.eq(x, 2), x -> r.eq(x, 4))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 73
-     Original: b'RmFsc2U='
-     ExpectedType: Boolean
-     ExpectedJava: b'ZmFsc2U='
-     Obtained: arr.contains(x -> r.eq(x, 2), x -> r.eq(x, 2))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 74
-     Original: b'VHJ1ZQ=='
-     ExpectedType: Boolean
-     ExpectedJava: b'dHJ1ZQ=='
-     Obtained: arr.union(arr).contains(x -> r.eq(x, 2), x -> r.eq(x, 2))
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 75
-     Original: b'WzEsIDNd'
-     ExpectedType: List
-     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAzKQ=='
-     Obtained: r.expr(Arrays.asList(new MapObject().with("a", 1), new MapObject().with("b", 2), new MapObject().with("a", 3).with("c", 4))).bracket("a")
-   - TestType: JavaQuery
-     TestFile: transform/array.yaml
-     TestNum: 76
-     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBwZXJmb3JtIGJyYWNrZXQgb24gYSBub24tb2JqZWN0IG5vbi1zZXF1ZW5jZSBgXCJhXCJgLiIsIFtdKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBwZXJmb3JtIGJyYWNrZXQgb24gYSBub24tb2JqZWN0IG5vbi1zZXF1ZW5jZSBgImEiYC4iLCBBcnJheXMuYXNMaXN0KCkp'
-     Obtained: r.expr(Arrays.asList(new MapObject().with("a", 1), "a", new MapObject().with("b", 2), new MapObject().with("a", 3).with("c", 4))).bracket("a")
-
+- TestType: JavaDef
+  TestFile: transform/array.yaml
+  TestNum: 1
+  Original: arr = r.expr([1, 2, 3])
+  Java: MakeArray arr = (MakeArray) r.expr(Arrays.asList(1, 2, 3));
+- TestType: JavaDef
+  TestFile: transform/array.yaml
+  TestNum: 2
+  Original: dupe_arr = r.expr([1, 1, 2, 3])
+  Java: MakeArray dupe_arr = (MakeArray) r.expr(Arrays.asList(1, 1, 2, 3));
+- TestType: JavaDef
+  TestFile: transform/array.yaml
+  TestNum: 3
+  Original: objArr = r.expr([{'a':1, 'b':'a'}, {'a':2, 'b':'b'}, {'a':3, 'b':'c'}])
+  Java: MakeArray objArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c")));
+- TestType: JavaDef
+  TestFile: transform/array.yaml
+  TestNum: 4
+  Original: nestedObjArr = r.expr([{'a':1, 'b':{'c':1}}, {'a':2, 'b':{'c':2}}, {'a':3, 'b':{'c':3}}])
+  Java: MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("a", 1).with("b", new MapObject().with("c", 1)), new MapObject().with("a", 2).with("b", new MapObject().with("c", 2)), new MapObject().with("a", 3).with("b", new MapObject().with("c", 3))));
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 5
+  Original: '[1, 2, 3, 4]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3, 4)
+  Obtained: arr.append(4)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 6
+  Original: '[1, 2, 3, ''a'']'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3, "a")
+  Obtained: arr.append("a")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 7
+  Original: '[0, 1, 2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(0, 1, 2, 3)
+  Obtained: arr.prepend(0)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 8
+  Original: '[''a'', 1, 2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList("a", 1, 2, 3)
+  Obtained: arr.prepend("a")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 9
+  Original: '[3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(3)
+  Obtained: arr.difference(Arrays.asList(1, 2, 2))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 10
+  Original: '[1, 2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3)
+  Obtained: arr.difference(Arrays.asList())
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 11
+  Original: '[1, 2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3)
+  Obtained: arr.difference(Arrays.asList("foo", "bar"))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 12
+  Original: '[1, 2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3)
+  Obtained: dupe_arr.setInsert(1)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 13
+  Original: '[1, 2, 3, 4]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3, 4)
+  Obtained: dupe_arr.setInsert(4)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 14
+  Original: '[1, 2, 3, 4, 5]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3, 4, 5)
+  Obtained: dupe_arr.setUnion(Arrays.asList(3, 4, 5, 5))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 15
+  Original: '[1, 2, 3, 5, 6]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3, 5, 6)
+  Obtained: dupe_arr.setUnion(Arrays.asList(5, 6))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 16
+  Original: '[1, 2]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2)
+  Obtained: dupe_arr.setIntersection(Arrays.asList(1, 1, 1, 2, 2))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 17
+  Original: '[]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: dupe_arr.setIntersection(Arrays.asList("foo"))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 18
+  Original: '[2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(2, 3)
+  Obtained: dupe_arr.setDifference(Arrays.asList(1, 1, 1, 10))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 19
+  Original: '[1, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 3)
+  Obtained: dupe_arr.setDifference(Arrays.asList(2))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 20
+  Original: '[2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(2, 3)
+  Obtained: arr.slice(1, 3)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 20
+  Original: '[2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(2, 3)
+  Obtained: arr.slice(1, 3)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 20
+  Original: '[2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(2, 3)
+  Obtained: arr.slice(1, 2).optArg("right_bound", "closed")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 21
+  Original: '[1, 2]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2)
+  Obtained: arr.slice(0, 2)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 21
+  Original: '[1, 2]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2)
+  Obtained: arr.slice(0, 2)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 22
+  Original: '[2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(2, 3)
+  Obtained: arr.slice(1, -1)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 22
+  Original: '[2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(2, 3)
+  Obtained: arr.slice(1)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 23
+  Original: '[2]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(2)
+  Obtained: arr.slice(-2, -1)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 24
+  Original: '[2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(2, 3)
+  Obtained: arr.skip(1)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 25
+  Original: '[3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(3)
+  Obtained: arr.skip(2)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 26
+  Original: '[]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: arr.skip(12)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 27
+  Original: '[1, 2]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2)
+  Obtained: arr.limit(2)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 28
+  Original: '[]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList()
+  Obtained: arr.limit(0)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 29
+  Original: '[1, 2, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3)
+  Obtained: arr.limit(12)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 30
+  Original: '[{''a'': 1, ''b'': ''a''}, {''a'': 2, ''b'': ''b''}, {''a'': 3, ''b'': ''c''}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"))
+  Obtained: objArr.pluck("a", "b")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 31
+  Original: '[{''a'': 1}, {''a'': 2}, {''a'': 3}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 1), new MapObject().with("a", 2), new MapObject().with("a", 3))
+  Obtained: objArr.pluck("a")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 32
+  Original: '[{}, {}, {}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject(), new MapObject(), new MapObject())
+  Obtained: objArr.pluck()
+- TestType: JavaDef
+  TestFile: transform/array.yaml
+  TestNum: 33
+  Original: wftst = objArr.union(objArr.pluck('a')).union(objArr.pluck('b')).union([{'a':null}])
+  Java: Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).union(Arrays.asList(new MapObject().with("a", null)));
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 34
+  Original: ([{'a':1},{'a':2},{'a':3},{'a':1},{'a':2},{'a':3}])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 1), new MapObject().with("a", 2), new MapObject().with("a", 3), new MapObject().with("a", 1), new MapObject().with("a", 2), new MapObject().with("a", 3))
+  Obtained: wftst.withFields("a")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 35
+  Original: ([{'b':'a'},{'b':'b'},{'b':'c'},{'b':'a'},{'b':'b'},{'b':'c'}])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("b", "a"), new MapObject().with("b", "b"), new MapObject().with("b", "c"), new MapObject().with("b", "a"), new MapObject().with("b", "b"), new MapObject().with("b", "c"))
+  Obtained: wftst.withFields("b")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 36
+  Original: ([{'a':1,'b':'a'},{'a':2,'b':'b'},{'a':3,'b':'c'}])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"))
+  Obtained: wftst.withFields("a", "b")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 37
+  Original: '[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject(), new MapObject(), new MapObject(), new MapObject(), new MapObject(), new MapObject(), new MapObject(), new MapObject(), new MapObject(), new MapObject())
+  Obtained: wftst.withFields()
+- TestType: JavaDef
+  TestFile: transform/array.yaml
+  TestNum: 38
+  Original: wftst2 = nestedObjArr.union(objArr.pluck({'b':'missing'})).union(nestedObjArr.pluck({'b':'c'}))
+  Java: Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b", "missing"))).union(nestedObjArr.pluck(new MapObject().with("b", "c")));
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 39
+  Original: ([{'b':{'c':1}}, {'b':{'c':2}}, {'b':{'c':3}}, {'b':{'c':1}}, {'b':{'c':2}}, {'b':{'c':3}}])
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("b", new MapObject().with("c", 1)), new MapObject().with("b", new MapObject().with("c", 2)), new MapObject().with("b", new MapObject().with("c", 3)), new MapObject().with("b", new MapObject().with("c", 1)), new MapObject().with("b", new MapObject().with("c", 2)), new MapObject().with("b", new MapObject().with("c", 3)))
+  Obtained: wftst2.withFields(new MapObject().with("b", "c"))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 40
+  Original: err("ReqlQueryLogicError", "Invalid path argument `1`.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Invalid path argument `1`.", Arrays.asList())
+  Obtained: wftst.withFields(1)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 41
+  Original: err("ReqlQueryLogicError", "Cannot perform has_fields on a non-object non-sequence `1`.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot perform has_fields on a non-object non-sequence `1`.", Arrays.asList())
+  Obtained: r.expr(1).withFields()
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 42
+  Original: '[{}, {}, {}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject(), new MapObject(), new MapObject())
+  Obtained: objArr.without("a", "b")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 43
+  Original: '[{''b'': ''a''}, {''b'': ''b''}, {''b'': ''c''}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("b", "a"), new MapObject().with("b", "b"), new MapObject().with("b", "c"))
+  Obtained: objArr.without("a")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 44
+  Original: '[{''a'': 1, ''b'': ''a''}, {''a'': 2, ''b'': ''b''}, {''a'': 3, ''b'': ''c''}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"))
+  Obtained: objArr.without()
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 45
+  Original: '[2, 3, 4]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(2, 3, 4)
+  Obtained: arr.map(v -> r.add(v, 1))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 46
+  Original: 6
+  ExpectedType: Integer
+  ExpectedJava: 6
+  Obtained: arr.reduce((a, b) -> r.add(a, b))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 47
+  Original: 6
+  ExpectedType: Integer
+  ExpectedJava: 6
+  Obtained: arr.reduce((a, b) -> r.add(a, b))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 48
+  Original: 12
+  ExpectedType: Integer
+  ExpectedJava: 12
+  Obtained: arr.union(arr).reduce((a, b) -> r.add(a, b))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 49
+  Original: 12
+  ExpectedType: Integer
+  ExpectedJava: 12
+  Obtained: arr.union(arr).reduce((a, b) -> r.add(a, b))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 50
+  Original: '[{''a'': 2, ''b'': ''b''}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 2).with("b", "b"))
+  Obtained: objArr.filter(row -> r.eq(row.bracket("b"), "b"))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 51
+  Original: '[1, 2, 1, 2, 1, 2]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 1, 2, 1, 2)
+  Obtained: arr.concatMap(v -> Arrays.asList(1, 2))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 52
+  Original: '[{''v'': 1}, {''v2'': 2}, {''v'': 2}, {''v2'': 3}, {''v'': 3}, {''v2'': 4}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("v", 1), new MapObject().with("v2", 2), new MapObject().with("v", 2), new MapObject().with("v2", 3), new MapObject().with("v", 3), new MapObject().with("v2", 4))
+  Obtained: arr.concatMap(v -> Arrays.asList(new MapObject().with("v", v), new MapObject().with("v2", r.add(v, 1))))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 53
+  Original: '[{''a'': 1, ''b'': ''a''}, {''a'': 2, ''b'': ''b''}, {''a'': 3, ''b'': ''c''}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"))
+  Obtained: objArr.orderBy("b")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 54
+  Original: '[{''a'': 3, ''b'': ''c''}, {''a'': 2, ''b'': ''b''}, {''a'': 1, ''b'': ''a''}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 3).with("b", "c"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 1).with("b", "a"))
+  Obtained: objArr.orderBy(r.desc("b"))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 55
+  Original: '[{''-a'': 1}, {''-a'': 2}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(new MapObject().with("-a", 1), new MapObject().with("-a", 2))
+  Obtained: r.expr(Arrays.asList(new MapObject().with("-a", 1), new MapObject().with("-a", 2))).orderBy("-a")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 56
+  Original: '[1, 2, 3, 4]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3, 4)
+  Obtained: r.expr(Arrays.asList(1, 1, 2, 2, 2, 3, 4)).distinct()
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 57
+  Original: 3
+  ExpectedType: Integer
+  ExpectedJava: 3
+  Obtained: objArr.count()
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 58
+  Original: '[1, 2, 3, {''a'': 1, ''b'': ''a''}, {''a'': 2, ''b'': ''b''}, {''a'': 3, ''b'': ''c''}]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 2, 3, new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"))
+  Obtained: arr.union(objArr)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 59
+  Original: 2
+  ExpectedType: Integer
+  ExpectedJava: 2
+  Obtained: arr.bracket(1)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 59
+  Original: 2
+  ExpectedType: Integer
+  ExpectedJava: 2
+  Obtained: arr.nth(1)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 60
+  Original: 1
+  ExpectedType: Integer
+  ExpectedJava: 1
+  Obtained: arr.bracket(0)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 61
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: r.expr(Arrays.asList()).isEmpty()
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 62
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: arr.isEmpty()
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 63
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: arr.contains(2)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 64
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: arr.contains(2, 3)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 65
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: arr.contains(4)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 66
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: arr.contains(2, 4)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 67
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: arr.contains(2, 2)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 68
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: arr.union(arr).contains(2, 2)
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 69
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: arr.contains(x -> r.eq(x, 2))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 70
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: arr.contains(x -> r.eq(x, 2), x -> r.eq(x, 3))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 71
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: arr.contains(x -> r.eq(x, 4))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 72
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: arr.contains(x -> r.eq(x, 2), x -> r.eq(x, 4))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 73
+  Original: False
+  ExpectedType: Boolean
+  ExpectedJava: false
+  Obtained: arr.contains(x -> r.eq(x, 2), x -> r.eq(x, 2))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 74
+  Original: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  Obtained: arr.union(arr).contains(x -> r.eq(x, 2), x -> r.eq(x, 2))
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 75
+  Original: '[1, 3]'
+  ExpectedType: List
+  ExpectedJava: Arrays.asList(1, 3)
+  Obtained: r.expr(Arrays.asList(new MapObject().with("a", 1), new MapObject().with("b", 2), new MapObject().with("a", 3).with("c", 4))).bracket("a")
+- TestType: JavaQuery
+  TestFile: transform/array.yaml
+  TestNum: 76
+  Original: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", [])
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `"a"`.", Arrays.asList())
+  Obtained: r.expr(Arrays.asList(new MapObject().with("a", 1), "a", new MapObject().with("b", 2), new MapObject().with("a", 3).with("c", 4))).bracket("a")

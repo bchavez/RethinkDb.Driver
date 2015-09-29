@@ -1,30 +1,23 @@
-
-ModuleName: "Regression546"
-TableVarNames:
-
+ModuleName: Regression546
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/546.yaml
-     TestNum: 1
-     Original: b'MQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'MQ=='
-     Obtained: r.expr(1).do_(a -> a)
-   - TestType: JavaQuery
-     TestFile: regression/546.yaml
-     TestNum: 2
-     Original: b'Mg=='
-     ExpectedType: Integer
-     ExpectedJava: b'Mg=='
-     Obtained: r.expr(1).do_(a -> r.expr(2).do_(b -> b))
-   - TestType: JavaQuery
-     TestFile: regression/546.yaml
-     TestNum: 3
-     Original: b'MQ=='
-     ExpectedType: Integer
-     ExpectedJava: b'MQ=='
-     Obtained: r.expr(1).do_(a -> r.expr(2).do_(b -> a))
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/546.yaml
+  TestNum: 1
+  Original: 1
+  ExpectedType: Integer
+  ExpectedJava: 1
+  Obtained: r.expr(1).do_(a -> a)
+- TestType: JavaQuery
+  TestFile: regression/546.yaml
+  TestNum: 2
+  Original: 2
+  ExpectedType: Integer
+  ExpectedJava: 2
+  Obtained: r.expr(1).do_(a -> r.expr(2).do_(b -> b))
+- TestType: JavaQuery
+  TestFile: regression/546.yaml
+  TestNum: 3
+  Original: 1
+  ExpectedType: Integer
+  ExpectedJava: 1
+  Obtained: r.expr(1).do_(a -> r.expr(2).do_(b -> a))

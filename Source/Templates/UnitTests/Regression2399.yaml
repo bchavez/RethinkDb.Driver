@@ -1,10 +1,3 @@
-
-ModuleName: "Regression2399"
+ModuleName: Regression2399
 TableVarNames:
-    - t
-
-DefsAndTests:
-
-        
-render_something: false
-
+- t

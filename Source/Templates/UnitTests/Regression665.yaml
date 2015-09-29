@@ -1,36 +1,28 @@
-
-ModuleName: "Regression665"
-TableVarNames:
-
+ModuleName: Regression665
 DefsAndTests:
-
-        
-        
-
-   - TestType: JavaDef
-     TestFile: regression/665.yaml
-     TestNum: 1
-     Original: b'dCA9IHIuZGIoJ3Rlc3QnKS50YWJsZSgndDY2NScp'
-     Java: Table t = (Table) r.db("test").table("t665");
-   - TestType: JavaQuery
-     TestFile: regression/665.yaml
-     TestNum: 1
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: r.db("test").tableCreate("t665")
-   - TestType: JavaQuery
-     TestFile: regression/665.yaml
-     TestNum: 2
-     Original: b'KHsndW5jaGFuZ2VkJzowLCAnc2tpcHBlZCc6MCwgJ3JlcGxhY2VkJzowLCAnaW5zZXJ0ZWQnOjIsICdlcnJvcnMnOjAsICdkZWxldGVkJzowIH0p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInVuY2hhbmdlZCIsIDApLndpdGgoInNraXBwZWQiLCAwKS53aXRoKCJyZXBsYWNlZCIsIDApLndpdGgoImluc2VydGVkIiwgMikud2l0aCgiZXJyb3JzIiwgMCkud2l0aCgiZGVsZXRlZCIsIDAp'
-     Obtained: t.insert(Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 4)))
-   - TestType: JavaQuery
-     TestFile: regression/665.yaml
-     TestNum: 3
-     Original: b'Tm9uZQ=='
-     ExpectedType: Object
-     ExpectedJava: b'bnVsbA=='
-     Obtained: r.db("test").tableDrop("t665")
-
+- TestType: JavaDef
+  TestFile: regression/665.yaml
+  TestNum: 1
+  Original: t = r.db('test').table('t665')
+  Java: Table t = (Table) r.db("test").table("t665");
+- TestType: JavaQuery
+  TestFile: regression/665.yaml
+  TestNum: 1
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: r.db("test").tableCreate("t665")
+- TestType: JavaQuery
+  TestFile: regression/665.yaml
+  TestNum: 2
+  Original: ({'unchanged':0, 'skipped':0, 'replaced':0, 'inserted':2, 'errors':0, 'deleted':0 })
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("unchanged", 0).with("skipped", 0).with("replaced", 0).with("inserted", 2).with("errors", 0).with("deleted", 0)
+  Obtained: t.insert(Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 4)))
+- TestType: JavaQuery
+  TestFile: regression/665.yaml
+  TestNum: 3
+  Original: None
+  ExpectedType: Object
+  ExpectedJava: null
+  Obtained: r.db("test").tableDrop("t665")

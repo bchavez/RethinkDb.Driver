@@ -1,31 +1,25 @@
-
-ModuleName: "Regression4582"
+ModuleName: Regression4582
 TableVarNames:
-    - tbl
-
+- tbl
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/4582.yaml
-     TestNum: 1
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnQ291bGQgbm90IHByb3ZlIGFyZ3VtZW50IGRldGVybWluaXN0aWMuICBNYXliZSB5b3Ugd2FudCB0byB1c2UgdGhlIG5vbl9hdG9taWMgZmxhZz8nKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNvdWxkIG5vdCBwcm92ZSBhcmd1bWVudCBkZXRlcm1pbmlzdGljLiAgTWF5YmUgeW91IHdhbnQgdG8gdXNlIHRoZSBub25fYXRvbWljIGZsYWc/Iik='
-     Obtained: tbl.get(0).replace(tbl.get(0))
-   - TestType: JavaQuery
-     TestFile: regression/4582.yaml
-     TestNum: 2
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnQ291bGQgbm90IHByb3ZlIGFyZ3VtZW50IGRldGVybWluaXN0aWMuICBNYXliZSB5b3Ugd2FudCB0byB1c2UgdGhlIG5vbl9hdG9taWMgZmxhZz8nKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNvdWxkIG5vdCBwcm92ZSBhcmd1bWVudCBkZXRlcm1pbmlzdGljLiAgTWF5YmUgeW91IHdhbnQgdG8gdXNlIHRoZSBub25fYXRvbWljIGZsYWc/Iik='
-     Obtained: tbl.get(0).update(tbl.get(0))
-   - TestType: JavaQuery
-     TestFile: regression/4582.yaml
-     TestNum: 3
-     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywnQ291bGQgbm90IHByb3ZlIGFyZ3VtZW50IGRldGVybWluaXN0aWMuICBNYXliZSB5b3Ugd2FudCB0byB1c2UgdGhlIG5vbl9hdG9taWMgZmxhZz8nKQ=='
-     ExpectedType: Err
-     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNvdWxkIG5vdCBwcm92ZSBhcmd1bWVudCBkZXRlcm1pbmlzdGljLiAgTWF5YmUgeW91IHdhbnQgdG8gdXNlIHRoZSBub25fYXRvbWljIGZsYWc/Iik='
-     Obtained: tbl.replace(r.args(Arrays.asList(tbl.get(0))))
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/4582.yaml
+  TestNum: 1
+  Original: err('ReqlQueryLogicError','Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?')
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?")
+  Obtained: tbl.get(0).replace(tbl.get(0))
+- TestType: JavaQuery
+  TestFile: regression/4582.yaml
+  TestNum: 2
+  Original: err('ReqlQueryLogicError','Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?')
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?")
+  Obtained: tbl.get(0).update(tbl.get(0))
+- TestType: JavaQuery
+  TestFile: regression/4582.yaml
+  TestNum: 3
+  Original: err('ReqlQueryLogicError','Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?')
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?")
+  Obtained: tbl.replace(r.args(Arrays.asList(tbl.get(0))))

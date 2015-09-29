@@ -1,16 +1,9 @@
-
-ModuleName: "Regression2710"
-TableVarNames:
-
+ModuleName: Regression2710
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: regression/2710.yaml
-     TestNum: 1
-     Original: b'KHsnYSc6eydiJzoyfX0p'
-     ExpectedType: Map
-     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImEiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYiIsIDIpKQ=='
-     Obtained: r.expr(new MapObject().with("a", new MapObject().with("b", 1).with("c", 2))).merge(r.json("{"a":{"$reql_type$":"LITERAL", "value":{"b":2}}}"))
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: regression/2710.yaml
+  TestNum: 1
+  Original: ({'a':{'b':2}})
+  ExpectedType: Map
+  ExpectedJava: new MapObject().with("a", new MapObject().with("b", 2))
+  Obtained: r.expr(new MapObject().with("a", new MapObject().with("b", 1).with("c", 2))).merge(r.json("{"a":{"$reql_type$":"LITERAL", "value":{"b":2}}}"))

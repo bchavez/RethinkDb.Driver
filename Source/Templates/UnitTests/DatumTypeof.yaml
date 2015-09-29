@@ -1,23 +1,16 @@
-
-ModuleName: "DatumTypeof"
-TableVarNames:
-
+ModuleName: DatumTypeof
 DefsAndTests:
-
-        
-   - TestType: JavaQuery
-     TestFile: datum/typeof.yaml
-     TestNum: 1
-     Original: b'J05VTEwn'
-     ExpectedType: String
-     ExpectedJava: b'Ik5VTEwi'
-     Obtained: r.expr(null).typeOf()
-   - TestType: JavaQuery
-     TestFile: datum/typeof.yaml
-     TestNum: 2
-     Original: b'J05VTEwn'
-     ExpectedType: String
-     ExpectedJava: b'Ik5VTEwi'
-     Obtained: r.typeOf(null)
-render_something: false
-
+- TestType: JavaQuery
+  TestFile: datum/typeof.yaml
+  TestNum: 1
+  Original: 'NULL'
+  ExpectedType: String
+  ExpectedJava: '"NULL"'
+  Obtained: r.expr(null).typeOf()
+- TestType: JavaQuery
+  TestFile: datum/typeof.yaml
+  TestNum: 2
+  Original: 'NULL'
+  ExpectedType: String
+  ExpectedJava: '"NULL"'
+  Obtained: r.typeOf(null)

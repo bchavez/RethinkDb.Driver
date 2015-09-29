@@ -5,14 +5,20 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/522.yaml
   TestNum: 1
-  Original: None
+  Original: tbl.insert([{'id':0}, {'id':1}, {'id':2}])
+  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), new MapObject().with("id", 2)))
+  ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
   Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), new MapObject().with("id", 2)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/522.yaml
   TestNum: 2
-  Original: '[{''id'': 1}, {''id'': 2}]'
+  Original: tbl.order_by('id').skip(1)
+  Java: tbl.orderBy("id").skip(1)
+  ExpectedOriginal: '[{''id'': 1}, {''id'': 2}]'
   ExpectedType: List
   ExpectedJava: Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 2))
   Obtained: tbl.orderBy("id").skip(1)
+  RunOpts: []

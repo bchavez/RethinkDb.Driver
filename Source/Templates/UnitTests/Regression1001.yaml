@@ -5,49 +5,70 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
   TestNum: 1
-  Original: None
+  Original: tbl.insert({'a':null})
+  Java: tbl.insert(new MapObject().with("a", null))
+  ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
   Obtained: tbl.insert(new MapObject().with("a", null))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
   TestNum: 2
-  Original: None
+  Original: tbl.index_create('a')
+  Java: tbl.indexCreate("a")
+  ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
   Obtained: tbl.indexCreate("a")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
   TestNum: 3
-  Original: None
+  Original: tbl.index_create('b')
+  Java: tbl.indexCreate("b")
+  ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
   Obtained: tbl.indexCreate("b")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
   TestNum: 4
-  Original: None
+  Original: tbl.index_wait().pluck('index', 'ready')
+  Java: tbl.indexWait().pluck("index", "ready")
+  ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
   Obtained: tbl.indexWait().pluck("index", "ready")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
   TestNum: 5
-  Original: 1
+  Original: tbl.between(r.minval, r.maxval).count()
+  Java: tbl.between(r.minval(), r.maxval()).count()
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: tbl.between(r.minval(), r.maxval()).count()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
   TestNum: 6
-  Original: 0
+  Original: tbl.between(r.minval, r.maxval, index='a').count()
+  Java: tbl.between(r.minval(), r.maxval()).optArg("index", "a").count()
+  ExpectedOriginal: 0
   ExpectedType: Integer
   ExpectedJava: 0
   Obtained: tbl.between(r.minval(), r.maxval()).optArg("index", "a").count()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
   TestNum: 7
-  Original: 0
+  Original: tbl.between(r.minval, r.maxval, index='b').count()
+  Java: tbl.between(r.minval(), r.maxval()).optArg("index", "b").count()
+  ExpectedOriginal: 0
   ExpectedType: Integer
   ExpectedJava: 0
   Obtained: tbl.between(r.minval(), r.maxval()).optArg("index", "b").count()
+  RunOpts: []

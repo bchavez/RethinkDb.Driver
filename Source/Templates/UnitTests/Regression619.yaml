@@ -3,28 +3,40 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/619.yaml
   TestNum: 1
-  Original: ({'self':'foo'})
+  Original: r.expr({"self":"foo"})
+  Java: r.expr(new MapObject().with("self", "foo"))
+  ExpectedOriginal: ({'self':'foo'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("self", "foo")
   Obtained: r.expr(new MapObject().with("self", "foo"))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/619.yaml
   TestNum: 2
-  Original: ({'self':1})
+  Original: r.expr(1).do(lambda x:{'self':x})
+  Java: r.expr(1).do_(x -> new MapObject().with("self", x))
+  ExpectedOriginal: ({'self':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("self", 1)
   Obtained: r.expr(1).do_(x -> new MapObject().with("self", x))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/619.yaml
   TestNum: 3
-  Original: ({"a":{"self":1}})
+  Original: r.expr({"a":{"self":1}})
+  Java: r.expr(new MapObject().with("a", new MapObject().with("self", 1)))
+  ExpectedOriginal: ({"a":{"self":1}})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("a", new MapObject().with("self", 1))
   Obtained: r.expr(new MapObject().with("a", new MapObject().with("self", 1)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/619.yaml
   TestNum: 4
-  Original: ({"self":{"self":{"self":1}}})
+  Original: r.expr({"self":{"self":{"self":1}}})
+  Java: r.expr(new MapObject().with("self", new MapObject().with("self", new MapObject().with("self", 1))))
+  ExpectedOriginal: ({"self":{"self":{"self":1}}})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("self", new MapObject().with("self", new MapObject().with("self", 1)))
   Obtained: r.expr(new MapObject().with("self", new MapObject().with("self", new MapObject().with("self", 1))))
+  RunOpts: []

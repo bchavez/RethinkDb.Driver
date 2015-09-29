@@ -3,77 +3,110 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
   TestNum: 1
-  Original: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, 0], 'type':'Point'})
+  Original: r.geojson({'coordinates':[0, 0], 'type':'Point'})
+  Java: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "Point"))
+  ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, 0], 'type':'Point'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(0, 0)).with("type", "Point")
   Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "Point"))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
   TestNum: 2
-  Original: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0,0], [0,1]], 'type':'LineString'})
+  Original: r.geojson({'coordinates':[[0,0], [0,1]], 'type':'LineString'})
+  Java: r.geojson(new MapObject().with("coordinates", Arrays.asList(Arrays.asList(0, 0), Arrays.asList(0, 1))).with("type", "LineString"))
+  ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0,0], [0,1]], 'type':'LineString'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(0, 0), Arrays.asList(0, 1))).with("type", "LineString")
   Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(Arrays.asList(0, 0), Arrays.asList(0, 1))).with("type", "LineString"))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
   TestNum: 3
-  Original: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0,0], [0,1], [1,0], [0,0]]], 'type':'Polygon'})
+  Original: r.geojson({'coordinates':[[[0,0], [0,1], [1,0], [0,0]]], 'type':'Polygon'})
+  Java: r.geojson(new MapObject().with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, 0), Arrays.asList(0, 1), Arrays.asList(1, 0), Arrays.asList(0, 0)))).with("type", "Polygon"))
+  ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0,0], [0,1], [1,0], [0,0]]], 'type':'Polygon'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, 0), Arrays.asList(0, 1), Arrays.asList(1, 0), Arrays.asList(0, 0)))).with("type", "Polygon")
   Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, 0), Arrays.asList(0, 1), Arrays.asList(1, 0), Arrays.asList(0, 0)))).with("type", "Polygon"))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
   TestNum: 4
-  Original: err('ReqlQueryLogicError', 'Expected type NUMBER but found ARRAY.', [0])
+  Original: r.geojson({'coordinates':[[], 0], 'type':'Point'})
+  Java: r.geojson(new MapObject().with("coordinates", Arrays.asList(Arrays.asList(), 0)).with("type", "Point"))
+  ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found ARRAY.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found ARRAY.", Arrays.asList(0))
   Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(Arrays.asList(), 0)).with("type", "Point"))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
   TestNum: 5
-  Original: err('ReqlQueryLogicError', 'Expected type ARRAY but found BOOL.', [0])
+  Original: r.geojson({'coordinates':true, 'type':'Point'})
+  Java: r.geojson(new MapObject().with("coordinates", true).with("type", "Point"))
+  ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type ARRAY but found BOOL.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected type ARRAY but found BOOL.", Arrays.asList(0))
   Obtained: r.geojson(new MapObject().with("coordinates", true).with("type", "Point"))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
   TestNum: 6
-  Original: err('ReqlNonExistenceError', 'No attribute `coordinates` in object:', [0])
+  Original: r.geojson({'type':'Point'})
+  Java: r.geojson(new MapObject().with("type", "Point"))
+  ExpectedOriginal: err('ReqlNonExistenceError', 'No attribute `coordinates` in object:', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlNonExistenceError", "No attribute `coordinates` in object:", Arrays.asList(0))
   Obtained: r.geojson(new MapObject().with("type", "Point"))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
   TestNum: 7
-  Original: err('ReqlNonExistenceError', 'No attribute `type` in object:', [0])
+  Original: r.geojson({'coordinates':[0, 0]})
+  Java: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)))
+  ExpectedOriginal: err('ReqlNonExistenceError', 'No attribute `type` in object:', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlNonExistenceError", "No attribute `type` in object:", Arrays.asList(0))
   Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
   TestNum: 8
-  Original: err('ReqlQueryLogicError', 'Unrecognized GeoJSON type `foo`.', [0])
+  Original: r.geojson({'coordinates':[0, 0], 'type':'foo'})
+  Java: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "foo"))
+  ExpectedOriginal: err('ReqlQueryLogicError', 'Unrecognized GeoJSON type `foo`.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Unrecognized GeoJSON type `foo`.", Arrays.asList(0))
   Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "foo"))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
   TestNum: 9
-  Original: err('ReqlQueryLogicError', 'Unrecognized field `foo` found in geometry object.', [0])
+  Original: r.geojson({'coordinates':[0, 0], 'type':'Point', 'foo':'wrong'})
+  Java: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "Point").with("foo", "wrong"))
+  ExpectedOriginal: err('ReqlQueryLogicError', 'Unrecognized field `foo` found in geometry object.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Unrecognized field `foo` found in geometry object.", Arrays.asList(0))
   Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "Point").with("foo", "wrong"))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
   TestNum: 10
-  Original: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, 0], 'type':'Point', 'crs':null})
+  Original: r.geojson({'coordinates':[0, 0], 'type':'Point', 'crs':null})
+  Java: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "Point").with("crs", null))
+  ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, 0], 'type':'Point', 'crs':null})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(0, 0)).with("type", "Point").with("crs", null)
   Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "Point").with("crs", null))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
   TestNum: 12
-  Original: err('ReqlQueryLogicError', 'GeoJSON type `MultiPoint` is not supported.', [0])
+  Original: r.geojson({'coordinates':[0, 0], 'type':'MultiPoint'})
+  Java: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "MultiPoint"))
+  ExpectedOriginal: err('ReqlQueryLogicError', 'GeoJSON type `MultiPoint` is not supported.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "GeoJSON type `MultiPoint` is not supported.", Arrays.asList(0))
   Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "MultiPoint"))
+  RunOpts: []

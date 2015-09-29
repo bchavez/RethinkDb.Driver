@@ -5,14 +5,19 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/3759.yaml
   TestNum: 1
-  Original: '[1]'
+  Original: r.db('rethinkdb').table('jobs').map(lambda:1)
+  Java: r.db("rethinkdb").table("jobs").map(() -> 1)
+  ExpectedOriginal: '[1]'
   ExpectedType: List
   ExpectedJava: Arrays.asList(1)
   Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3759.yaml
   TestNum: 2
-  Original: None
+  Original: r.db('rethinkdb').table('jobs').map(lambda:1)
+  Java: r.db("rethinkdb").table("jobs").map(() -> 1)
+  ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
   Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
@@ -22,7 +27,9 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/3759.yaml
   TestNum: 3
-  Original: None
+  Original: r.db('rethinkdb').table('jobs').map(lambda:1)
+  Java: r.db("rethinkdb").table("jobs").map(() -> 1)
+  ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
   Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
@@ -32,7 +39,10 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/3759.yaml
   TestNum: 4
-  Original: '[1]'
+  Original: r.db('rethinkdb').table('jobs').map(lambda:1)
+  Java: r.db("rethinkdb").table("jobs").map(() -> 1)
+  ExpectedOriginal: '[1]'
   ExpectedType: List
   ExpectedJava: Arrays.asList(1)
   Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
+  RunOpts: []

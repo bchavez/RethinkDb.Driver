@@ -23,9 +23,11 @@ DefsAndTests:
    - TestType: JavaQuery
      TestFile: ${item.testfile}
      TestNum: ${item.test_num}
-     Original: ${base64.b64encode(bytes(item.expected_line.original, "utf-8"))}
+     Original: ${base64.b64encode(bytes(item.line.original,"utf-8"))}
+     ExpectedOriginal: ${base64.b64encode(bytes(item.expected_line.original, "utf-8"))}
      ExpectedType: ${item.expected_type}
      ExpectedJava: ${base64.b64encode(bytes(item.expected_line.java,"utf-8"))}
+     Java: ${item.line.java}
      Obtained: ${item.line.java}
             %if item.runopts:   
      RunOpts:

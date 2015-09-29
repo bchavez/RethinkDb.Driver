@@ -5,36 +5,42 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/2709.yaml
   TestNum: 1
-  Original: ({'inserted':999})
+  Original: tbl.insert([{'result':i} for i in range(1,1000)]).pluck('first_error', 'inserted')
+  Java: tbl.insert(IntStream.range(1, 1000).boxed().map(i -> new MapObject().with("result", i)).collect(Collectors.toList())).pluck("first_error", "inserted")
+  ExpectedOriginal: ({'inserted':999})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("inserted", 999)
   Obtained: tbl.insert(IntStream.range(1, 1000).boxed().map(i -> new MapObject().with("result", i)).collect(Collectors.toList())).pluck("first_error", "inserted")
   RunOpts:
-  - Key: min_batch_rows
-    Val: 10
   - Key: max_batch_rows
     Val: 13
+  - Key: min_batch_rows
+    Val: 10
 - TestType: JavaQuery
   TestFile: regression/2709.yaml
   TestNum: 2
-  Original: (999)
+  Original: tbl.map(lambda thing:'key').count()
+  Java: tbl.map(thing -> "key").count()
+  ExpectedOriginal: (999)
   ExpectedType: Integer
   ExpectedJava: 999
   Obtained: tbl.map(thing -> "key").count()
   RunOpts:
-  - Key: min_batch_rows
-    Val: 10
   - Key: max_batch_rows
     Val: 13
+  - Key: min_batch_rows
+    Val: 10
 - TestType: JavaQuery
   TestFile: regression/2709.yaml
   TestNum: 3
-  Original: (999)
+  Original: tbl.map(lambda thing:'key').count()
+  Java: tbl.map(thing -> "key").count()
+  ExpectedOriginal: (999)
   ExpectedType: Integer
   ExpectedJava: 999
   Obtained: tbl.map(thing -> "key").count()
   RunOpts:
-  - Key: min_batch_rows
-    Val: 10
   - Key: max_batch_rows
     Val: 13
+  - Key: min_batch_rows
+    Val: 10

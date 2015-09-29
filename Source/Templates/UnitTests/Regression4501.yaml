@@ -5,7 +5,10 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/4501.yaml
   TestNum: 1
-  Original: err_regex('ReqlOpFailedError', 'Index `missing` was not found on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]', [0])
+  Original: tbl.index_wait("missing")
+  Java: tbl.indexWait("missing")
+  ExpectedOriginal: err_regex('ReqlOpFailedError', 'Index `missing` was not found on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]', [0])
   ExpectedType: ErrRegex
   ExpectedJava: err_regex("ReqlOpFailedError", "Index `missing` was not found on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", Arrays.asList(0))
   Obtained: tbl.indexWait("missing")
+  RunOpts: []

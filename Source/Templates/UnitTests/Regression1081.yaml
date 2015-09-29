@@ -5,3 +5,4 @@ DefsAndTests:
   TestNum: 1
   Original: t = r.db('test').table('t1081')
   Java: Table t = (Table) r.db("test").table("t1081");
+  RunOpts: []

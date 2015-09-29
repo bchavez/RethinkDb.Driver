@@ -5,21 +5,30 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/309.yaml
   TestNum: 1
-  Original: None
+  Original: t.insert([{'id':0}, {'id':1}])
+  Java: t.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1)))
+  ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
   Obtained: t.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/309.yaml
   TestNum: 2
-  Original: bag([{'id':0}, {'id':1}, 2, 3, 4])
+  Original: t.union([2,3,4])
+  Java: t.union(Arrays.asList(2, 3, 4))
+  ExpectedOriginal: bag([{'id':0}, {'id':1}, 2, 3, 4])
   ExpectedType: Bag
   ExpectedJava: bag(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), 2, 3, 4))
   Obtained: t.union(Arrays.asList(2, 3, 4))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/309.yaml
   TestNum: 3
-  Original: bag([{'id':0}, {'id':1}, 2, 3, 4])
+  Original: r.expr([2,3,4]).union(t)
+  Java: r.expr(Arrays.asList(2, 3, 4)).union(t)
+  ExpectedOriginal: bag([{'id':0}, {'id':1}, 2, 3, 4])
   ExpectedType: Bag
   ExpectedJava: bag(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), 2, 3, 4))
   Obtained: r.expr(Arrays.asList(2, 3, 4)).union(t)
+  RunOpts: []

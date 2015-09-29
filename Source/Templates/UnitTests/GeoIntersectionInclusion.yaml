@@ -3,364 +3,520 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 1
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.point(1.5,1.5))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(1.5, 1.5))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(1.5, 1.5))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 2
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.point(2.5,2.5))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(2.5, 2.5))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(2.5, 2.5))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 3
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).intersects(r.point(1.5,1.5))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.5, 1.5))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.5, 1.5))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 4
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).intersects(r.point(1.05,1.05))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.05, 1.05))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.05, 1.05))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 5
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.point(2,2))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(2, 2))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(2, 2))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 6
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.point(2,1.5))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(2, 1.5))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.point(2, 1.5))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 7
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.line([1.5,1.5], [2,2]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 2)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 2)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 8
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.line([1.5,1.5], [2,1.5]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 1.5)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 1.5)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 9
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).intersects(r.point(1.1,1.1))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.1, 1.1))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.1, 1.1))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 10
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).intersects(r.point(1.5,1.1))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.5, 1.1))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.point(1.5, 1.1))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 11
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.line([2,2], [3,3]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(2, 2), Arrays.asList(3, 3)))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(2, 2), Arrays.asList(3, 3)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 12
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.line([2,1.5], [3,3]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(2, 1.5), Arrays.asList(3, 3)))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(2, 1.5), Arrays.asList(3, 3)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 13
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.line([1.5,1.5], [3,3]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(3, 3)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(3, 3)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 14
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.polygon([1.2,1.2], [1.8,1.2], [1.8,1.8], [1.2,1.8]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 15
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.polygon([1.5,1.5], [2.5,1.5], [2.5,2.5], [1.5,2.5]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(1.5, 1.5), Arrays.asList(2.5, 1.5), Arrays.asList(2.5, 2.5), Arrays.asList(1.5, 2.5)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(1.5, 1.5), Arrays.asList(2.5, 1.5), Arrays.asList(2.5, 2.5), Arrays.asList(1.5, 2.5)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 16
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).intersects(r.polygon([1.2,1.2], [1.8,1.2], [1.8,1.8], [1.2,1.8]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 17
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).intersects(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9)))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).intersects(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 18
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.polygon([2,1.1], [3,1.1], [3,1.9], [2,1.9]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(2, 1.1), Arrays.asList(3, 1.1), Arrays.asList(3, 1.9), Arrays.asList(2, 1.9)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(2, 1.1), Arrays.asList(3, 1.1), Arrays.asList(3, 1.9), Arrays.asList(2, 1.9)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 19
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.polygon([2,2], [3,2], [3,3], [2,3]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(2, 2), Arrays.asList(3, 2), Arrays.asList(3, 3), Arrays.asList(2, 3)))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).intersects(r.polygon(Arrays.asList(2, 2), Arrays.asList(3, 2), Arrays.asList(3, 3), Arrays.asList(2, 3)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 20
-  Original: False
+  Original: r.point(1,1).intersects(r.point(1.5,1.5))
+  Java: r.point(1, 1).intersects(r.point(1.5, 1.5))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.point(1, 1).intersects(r.point(1.5, 1.5))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 21
-  Original: True
+  Original: r.point(1,1).intersects(r.point(1,1))
+  Java: r.point(1, 1).intersects(r.point(1, 1))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.point(1, 1).intersects(r.point(1, 1))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 22
-  Original: True
+  Original: r.line([1,1], [2,1]).intersects(r.point(1,1))
+  Java: r.line(Arrays.asList(1, 1), Arrays.asList(2, 1)).intersects(r.point(1, 1))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.line(Arrays.asList(1, 1), Arrays.asList(2, 1)).intersects(r.point(1, 1))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 23
-  Original: True
+  Original: r.line([1,1], [1,2]).intersects(r.point(1,1.8))
+  Java: r.line(Arrays.asList(1, 1), Arrays.asList(1, 2)).intersects(r.point(1, 1.8))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.line(Arrays.asList(1, 1), Arrays.asList(1, 2)).intersects(r.point(1, 1.8))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 24
-  Original: True
+  Original: r.line([1,0], [2,0]).intersects(r.point(1.8,0))
+  Java: r.line(Arrays.asList(1, 0), Arrays.asList(2, 0)).intersects(r.point(1.8, 0))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.line(Arrays.asList(1, 0), Arrays.asList(2, 0)).intersects(r.point(1.8, 0))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 25
-  Original: False
+  Original: r.line([1,1], [2,1]).intersects(r.point(1.5,1.5))
+  Java: r.line(Arrays.asList(1, 1), Arrays.asList(2, 1)).intersects(r.point(1.5, 1.5))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.line(Arrays.asList(1, 1), Arrays.asList(2, 1)).intersects(r.point(1.5, 1.5))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 26
-  Original: True
+  Original: r.line([1,1], [2,1]).intersects(r.line([2,1], [3,1]))
+  Java: r.line(Arrays.asList(1, 1), Arrays.asList(2, 1)).intersects(r.line(Arrays.asList(2, 1), Arrays.asList(3, 1)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.line(Arrays.asList(1, 1), Arrays.asList(2, 1)).intersects(r.line(Arrays.asList(2, 1), Arrays.asList(3, 1)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 27
-  Original: 2
+  Original: r.expr([r.point(1, 0), r.point(3,0), r.point(2, 0)]).intersects(r.line([0,0], [2, 0])).count()
+  Java: r.expr(Arrays.asList(r.point(1, 0), r.point(3, 0), r.point(2, 0))).intersects(r.line(Arrays.asList(0, 0), Arrays.asList(2, 0))).count()
+  ExpectedOriginal: 2
   ExpectedType: Integer
   ExpectedJava: 2
   Obtained: r.expr(Arrays.asList(r.point(1, 0), r.point(3, 0), r.point(2, 0))).intersects(r.line(Arrays.asList(0, 0), Arrays.asList(2, 0))).count()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 28
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.point(1.5,1.5))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(1.5, 1.5))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(1.5, 1.5))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 29
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.point(2.5,2.5))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(2.5, 2.5))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(2.5, 2.5))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 30
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).includes(r.point(1.5,1.5))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.5, 1.5))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.5, 1.5))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 31
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).includes(r.point(1.05,1.05))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.05, 1.05))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.05, 1.05))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 32
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.point(2,2))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(2, 2))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(2, 2))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 33
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.point(2,1.5))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(2, 1.5))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.point(2, 1.5))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 34
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.line([1.5,1.5], [2,2]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 2)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 2)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 35
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.line([1.5,1.5], [2,1.5]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 1.5)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(2, 1.5)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 36
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).includes(r.point(1.1,1.1))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.1, 1.1))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.1, 1.1))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 37
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).includes(r.point(1.5,1.1))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.5, 1.1))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.point(1.5, 1.1))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 38
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.line([2,2], [3,3]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(2, 2), Arrays.asList(3, 3)))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(2, 2), Arrays.asList(3, 3)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 39
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.line([2,1.5], [2,2]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(2, 1.5), Arrays.asList(2, 2)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(2, 1.5), Arrays.asList(2, 2)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 40
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.line([2,1], [2,2]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(2, 1), Arrays.asList(2, 2)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(2, 1), Arrays.asList(2, 2)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 41
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.line([1.5,1.5], [3,3]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(3, 3)))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.line(Arrays.asList(1.5, 1.5), Arrays.asList(3, 3)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 42
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.polygon([1,1], [2,1], [2,2], [1,2]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 43
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.polygon([1.2,1.2], [1.8,1.2], [1.8,1.8], [1.2,1.8]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 44
-  Original: True
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.polygon([1.5,1.5], [2,1.5], [2,2], [1.5,2]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1.5, 1.5), Arrays.asList(2, 1.5), Arrays.asList(2, 2), Arrays.asList(1.5, 2)))
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1.5, 1.5), Arrays.asList(2, 1.5), Arrays.asList(2, 2), Arrays.asList(1.5, 2)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 45
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.polygon([1.5,1.5], [2.5,1.5], [2.5,2.5], [1.5,2.5]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1.5, 1.5), Arrays.asList(2.5, 1.5), Arrays.asList(2.5, 2.5), Arrays.asList(1.5, 2.5)))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(1.5, 1.5), Arrays.asList(2.5, 1.5), Arrays.asList(2.5, 2.5), Arrays.asList(1.5, 2.5)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 46
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).includes(r.polygon([1.2,1.2], [1.8,1.2], [1.8,1.8], [1.2,1.8]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.polygon(Arrays.asList(1.2, 1.2), Arrays.asList(1.8, 1.2), Arrays.asList(1.8, 1.8), Arrays.asList(1.2, 1.8)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 47
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).includes(r.polygon([1.1,1.1], [2,1.1], [2,2], [1.1,2]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(2, 1.1), Arrays.asList(2, 2), Arrays.asList(1.1, 2)))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).polygonSub(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(1.9, 1.1), Arrays.asList(1.9, 1.9), Arrays.asList(1.1, 1.9))).includes(r.polygon(Arrays.asList(1.1, 1.1), Arrays.asList(2, 1.1), Arrays.asList(2, 2), Arrays.asList(1.1, 2)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 48
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.polygon([2,1.1], [3,1.1], [3,1.9], [2,1.9]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(2, 1.1), Arrays.asList(3, 1.1), Arrays.asList(3, 1.9), Arrays.asList(2, 1.9)))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(2, 1.1), Arrays.asList(3, 1.1), Arrays.asList(3, 1.9), Arrays.asList(2, 1.9)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 49
-  Original: False
+  Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.polygon([2,2], [3,2], [3,3], [2,3]))
+  Java: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(2, 2), Arrays.asList(3, 2), Arrays.asList(3, 3), Arrays.asList(2, 3)))
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.polygon(Arrays.asList(1, 1), Arrays.asList(2, 1), Arrays.asList(2, 2), Arrays.asList(1, 2)).includes(r.polygon(Arrays.asList(2, 2), Arrays.asList(3, 2), Arrays.asList(3, 3), Arrays.asList(2, 3)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 50
-  Original: 1
+  Original: r.expr([r.polygon([0,0], [1,1], [1,0]), r.polygon([0,1], [1,2], [1,1])]).includes(r.point(0,0)).count()
+  Java: r.expr(Arrays.asList(r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 1), Arrays.asList(1, 0)), r.polygon(Arrays.asList(0, 1), Arrays.asList(1, 2), Arrays.asList(1, 1)))).includes(r.point(0, 0)).count()
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.expr(Arrays.asList(r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 1), Arrays.asList(1, 0)), r.polygon(Arrays.asList(0, 1), Arrays.asList(1, 2), Arrays.asList(1, 1)))).includes(r.point(0, 0)).count()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 51
-  Original: err('ReqlQueryLogicError', 'Expected geometry of type `Polygon` but found `Point`.')
+  Original: r.point(0,0).includes(r.point(0,0))
+  Java: r.point(0, 0).includes(r.point(0, 0))
+  ExpectedOriginal: err('ReqlQueryLogicError', 'Expected geometry of type `Polygon` but found `Point`.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected geometry of type `Polygon` but found `Point`.")
   Obtained: r.point(0, 0).includes(r.point(0, 0))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml
   TestNum: 52
-  Original: err('ReqlQueryLogicError', 'Expected geometry of type `Polygon` but found `LineString`.')
+  Original: r.line([0,0], [0,1]).includes(r.point(0,0))
+  Java: r.line(Arrays.asList(0, 0), Arrays.asList(0, 1)).includes(r.point(0, 0))
+  ExpectedOriginal: err('ReqlQueryLogicError', 'Expected geometry of type `Polygon` but found `LineString`.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected geometry of type `Polygon` but found `LineString`.")
   Obtained: r.line(Arrays.asList(0, 0), Arrays.asList(0, 1)).includes(r.point(0, 0))
+  RunOpts: []

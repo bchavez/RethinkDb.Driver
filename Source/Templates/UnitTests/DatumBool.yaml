@@ -3,35 +3,50 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
   TestNum: 1
-  Original: True
+  Original: r.expr(True)
+  Java: r.expr(true)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.expr(true)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
   TestNum: 2
-  Original: False
+  Original: r.expr(False)
+  Java: r.expr(false)
+  ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
   Obtained: r.expr(false)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
   TestNum: 3
-  Original: 'BOOL'
+  Original: r.expr(False).type_of()
+  Java: r.expr(false).typeOf()
+  ExpectedOriginal: 'BOOL'
   ExpectedType: String
   ExpectedJava: '"BOOL"'
   Obtained: r.expr(false).typeOf()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
   TestNum: 4
-  Original: 'true'
+  Original: r.expr(True).coerce_to('string')
+  Java: r.expr(true).coerceTo("string")
+  ExpectedOriginal: 'true'
   ExpectedType: String
   ExpectedJava: '"true"'
   Obtained: r.expr(true).coerceTo("string")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
   TestNum: 5
-  Original: True
+  Original: r.expr(True).coerce_to('bool')
+  Java: r.expr(true).coerceTo("bool")
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.expr(true).coerceTo("bool")
+  RunOpts: []

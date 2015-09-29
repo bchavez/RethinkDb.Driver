@@ -3,196 +3,280 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
-  Original: 1
+  Original: r.expr(0).add(1)
+  Java: r.expr(0).add(1)
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.expr(0).add(1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
-  Original: 1
+  Original: r.add(0, 1)
+  Java: r.add(0, 1)
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.add(0, 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
-  Original: 1
+  Original: r.expr(2).sub(1)
+  Java: r.expr(2).sub(1)
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.expr(2).sub(1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
-  Original: 1
+  Original: r.sub(2, 1)
+  Java: r.sub(2, 1)
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.sub(2, 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
-  Original: 1
+  Original: r.expr(2).div(2)
+  Java: r.expr(2).div(2)
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.expr(2).div(2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
-  Original: 1
+  Original: r.div(2, 2)
+  Java: r.div(2, 2)
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.div(2, 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
-  Original: 1
+  Original: r.expr(1).mul(1)
+  Java: r.expr(1).mul(1)
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.expr(1).mul(1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
-  Original: 1
+  Original: r.mul(1, 1)
+  Java: r.mul(1, 1)
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.mul(1, 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
-  Original: 1
+  Original: r.expr(1).mod(2)
+  Java: r.expr(1).mod(2)
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.expr(1).mod(2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
-  Original: 1
+  Original: r.mod(1, 2)
+  Java: r.mod(1, 2)
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.mod(1, 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 2
-  Original: True
+  Original: r.expr(True).and_(True)
+  Java: r.expr(true).and(true)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.expr(true).and(true)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 2
-  Original: True
+  Original: r.expr(True).or_(True)
+  Java: r.expr(true).or(true)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.expr(true).or(true)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 2
-  Original: True
+  Original: r.and_(True, True)
+  Java: r.and(true, true)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.and(true, true)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 2
-  Original: True
+  Original: r.or_(True, True)
+  Java: r.or(true, true)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.or(true, true)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 2
-  Original: True
+  Original: r.expr(False).not_()
+  Java: r.expr(false).not_()
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.expr(false).not_()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 2
-  Original: True
+  Original: r.not_(False)
+  Java: r.not_(false)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.not_(false)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 3
-  Original: True
+  Original: r.expr(1).eq(1)
+  Java: r.expr(1).eq(1)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.expr(1).eq(1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 3
-  Original: True
+  Original: r.expr(1).ne(2)
+  Java: r.expr(1).ne(2)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.expr(1).ne(2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 3
-  Original: True
+  Original: r.expr(1).lt(2)
+  Java: r.expr(1).lt(2)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.expr(1).lt(2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 3
-  Original: True
+  Original: r.expr(1).gt(0)
+  Java: r.expr(1).gt(0)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.expr(1).gt(0)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 3
-  Original: True
+  Original: r.expr(1).le(1)
+  Java: r.expr(1).le(1)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.expr(1).le(1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 3
-  Original: True
+  Original: r.expr(1).ge(1)
+  Java: r.expr(1).ge(1)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.expr(1).ge(1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 3
-  Original: True
+  Original: r.eq(1, 1)
+  Java: r.eq(1, 1)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.eq(1, 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 3
-  Original: True
+  Original: r.ne(1, 2)
+  Java: r.ne(1, 2)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.ne(1, 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 3
-  Original: True
+  Original: r.lt(1, 2)
+  Java: r.lt(1, 2)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.lt(1, 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 3
-  Original: True
+  Original: r.gt(1, 0)
+  Java: r.gt(1, 0)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.gt(1, 0)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 3
-  Original: True
+  Original: r.le(1, 1)
+  Java: r.le(1, 1)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.le(1, 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 3
-  Original: True
+  Original: r.ge(1, 1)
+  Java: r.ge(1, 1)
+  ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.ge(1, 1)
+  RunOpts: []

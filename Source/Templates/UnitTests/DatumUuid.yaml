@@ -3,35 +3,50 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml
   TestNum: 1
-  Original: None
+  Original: r.uuid()
+  Java: r.uuid()
+  ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
   Obtained: r.uuid()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml
   TestNum: 2
-  Original: None
+  Original: r.expr(r.uuid())
+  Java: r.expr(r.uuid())
+  ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
   Obtained: r.expr(r.uuid())
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml
   TestNum: 3
-  Original: ('STRING')
+  Original: r.type_of(r.uuid())
+  Java: r.typeOf(r.uuid())
+  ExpectedOriginal: ('STRING')
   ExpectedType: String
   ExpectedJava: '"STRING"'
   Obtained: r.typeOf(r.uuid())
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml
   TestNum: 4
-  Original: (true)
+  Original: r.uuid().ne(r.uuid())
+  Java: r.uuid().ne(r.uuid())
+  ExpectedOriginal: (true)
   ExpectedType: Boolean
   ExpectedJava: true
   Obtained: r.uuid().ne(r.uuid())
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml
   TestNum: 5
-  Original: (10)
+  Original: r.expr([1,2,3,4,5,6,7,8,9,10]).map(lambda u:r.uuid()).distinct().count()
+  Java: r.expr(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)).map(u -> r.uuid()).distinct().count()
+  ExpectedOriginal: (10)
   ExpectedType: Integer
   ExpectedJava: 10
   Obtained: r.expr(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)).map(u -> r.uuid()).distinct().count()
+  RunOpts: []

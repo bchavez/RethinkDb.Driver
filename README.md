@@ -102,7 +102,7 @@ These files reside inside [`Source/Templates/Metadata`](https://github.com/bchav
 `java_term_info.json` is a more refined output of `term_info.json` that includes extra metadata to support OOP language semantics when generating RethinkDB's AST. `java_term_info.json` generated 
 by running the following command in the Java driver's folder:
 
-`python metajava.py --term-info term_info.json --output-file java_term_info.json generate-java-terminfo`
+`python3 metajava.py --term-info term_info.json --output-file java_term_info.json generate-java-terminfo`
 
 The result of the command above will produce `java_term_info.json`. The **JSON** files inside the Java driver's folder can be copied to & overwritten inside the C# driver's folder `Source/Templates/Metadata`. The `build codegen` task will use the `*.json` files mentioned above to regenerate all AST C# classes, protocol enums, and various models.
 

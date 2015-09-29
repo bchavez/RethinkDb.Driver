@@ -7,36 +7,50 @@ DefsAndTests:
   TestNum: 1
   Original: data = [{'id':1}, {'id':2}, {'id':3}, {'id':4}, {'id':5}, {'id':6}]
   Java: List data = (List) Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 2), new MapObject().with("id", 3), new MapObject().with("id", 4), new MapObject().with("id", 5), new MapObject().with("id", 6));
+  RunOpts: []
 - TestType: JavaDef
   TestFile: regression/4030.yaml
   TestNum: 2
   Original: changes = [{'id':7}, {'id':8}, {'id':9}, {'id':10}]
   Java: List changes = (List) Arrays.asList(new MapObject().with("id", 7), new MapObject().with("id", 8), new MapObject().with("id", 9), new MapObject().with("id", 10));
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
   TestNum: 3
-  Original: partial({'errors':0, 'inserted':6})
+  Original: tbl.insert(data)
+  Java: tbl.insert(data)
+  ExpectedOriginal: partial({'errors':0, 'inserted':6})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 0).with("inserted", 6))
   Obtained: tbl.insert(data)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
   TestNum: 4
-  Original: (6)
+  Original: tbl.count()
+  Java: tbl.count()
+  ExpectedOriginal: (6)
   ExpectedType: Integer
   ExpectedJava: 6
   Obtained: tbl.count()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
   TestNum: 5
-  Original: bag(data * 2)
+  Original: tbl.union(tbl)
+  Java: tbl.union(tbl)
+  ExpectedOriginal: bag(data * 2)
   ExpectedType: Bag
   ExpectedJava: bag(data * 2)
   Obtained: tbl.union(tbl)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
   TestNum: 6
-  Original: bag(data * 2)
+  Original: r.union(tbl, tbl)
+  Java: r.union(tbl, tbl)
+  ExpectedOriginal: bag(data * 2)
   ExpectedType: Bag
   ExpectedJava: bag(data * 2)
   Obtained: r.union(tbl, tbl)
+  RunOpts: []

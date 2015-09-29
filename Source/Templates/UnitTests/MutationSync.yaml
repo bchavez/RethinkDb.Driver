@@ -3,66 +3,91 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 1
-  Original: partial({'tables_created':1})
+  Original: r.db('test').table_create('test1')
+  Java: r.db("test").tableCreate("test1")
+  ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_created", 1))
   Obtained: r.db("test").tableCreate("test1")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 2
-  Original: partial({'tables_created':1})
+  Original: r.db('test').table_create('test1soft')
+  Java: r.db("test").tableCreate("test1soft")
+  ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_created", 1))
   Obtained: r.db("test").tableCreate("test1soft")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 3
-  Original: ({'skipped':0, 'deleted':0, 'unchanged':0, 'errors':0, 'replaced':1, 'inserted':0})
+  Original: r.db('test').table('test1soft').config().update({'durability':'soft'})
+  Java: r.db("test").table("test1soft").config().update(new MapObject().with("durability", "soft"))
+  ExpectedOriginal: ({'skipped':0, 'deleted':0, 'unchanged':0, 'errors':0, 'replaced':1, 'inserted':0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("skipped", 0).with("deleted", 0).with("unchanged", 0).with("errors", 0).with("replaced", 1).with("inserted", 0)
   Obtained: r.db("test").table("test1soft").config().update(new MapObject().with("durability", "soft"))
+  RunOpts: []
 - TestType: JavaDef
   TestFile: mutation/sync.yaml
   TestNum: 4
   Original: tbl = r.db('test').table('test1')
   Java: Table tbl = (Table) r.db("test").table("test1");
+  RunOpts: []
 - TestType: JavaDef
   TestFile: mutation/sync.yaml
   TestNum: 5
   Original: tbl_soft = r.db('test').table('test1soft')
   Java: Table tbl_soft = (Table) r.db("test").table("test1soft");
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 6
-  Original: partial({'created':1})
+  Original: tbl.index_create('x')
+  Java: tbl.indexCreate("x")
+  ExpectedOriginal: partial({'created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("created", 1))
   Obtained: tbl.indexCreate("x")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 7
-  Original: ([{'ready':True, 'index':'x'}])
+  Original: tbl.index_wait('x').pluck('index', 'ready')
+  Java: tbl.indexWait("x").pluck("index", "ready")
+  ExpectedOriginal: ([{'ready':True, 'index':'x'}])
   ExpectedType: List
   ExpectedJava: Arrays.asList(new MapObject().with("ready", true).with("index", "x"))
   Obtained: tbl.indexWait("x").pluck("index", "ready")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 8
-  Original: ({'synced':1})
+  Original: tbl.sync()
+  Java: tbl.sync()
+  ExpectedOriginal: ({'synced':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("synced", 1)
   Obtained: tbl.sync()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 9
-  Original: ({'synced':1})
+  Original: tbl_soft.sync()
+  Java: tbl_soft.sync()
+  ExpectedOriginal: ({'synced':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("synced", 1)
   Obtained: tbl_soft.sync()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 10
-  Original: ({'synced':1})
+  Original: tbl.sync()
+  Java: tbl.sync()
+  ExpectedOriginal: ({'synced':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("synced", 1)
   Obtained: tbl.sync()
@@ -72,7 +97,9 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 11
-  Original: ({'synced':1})
+  Original: tbl.sync()
+  Java: tbl.sync()
+  ExpectedOriginal: ({'synced':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("synced", 1)
   Obtained: tbl.sync()
@@ -82,28 +109,40 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 12
-  Original: err('AttributeError', "'Between' object has no attribute 'sync'")
+  Original: tbl.between(1, 2).sync()
+  Java: tbl.between(1, 2).sync()
+  ExpectedOriginal: err('AttributeError', "'Between' object has no attribute 'sync'")
   ExpectedType: Err
   ExpectedJava: err("AttributeError", "'Between' object has no attribute 'sync'")
   Obtained: tbl.between(1, 2).sync()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 13
-  Original: err('AttributeError', "'Datum' object has no attribute 'sync'")
+  Original: r.expr(1).sync()
+  Java: r.expr(1).sync()
+  ExpectedOriginal: err('AttributeError', "'Datum' object has no attribute 'sync'")
   ExpectedType: Err
   ExpectedJava: err("AttributeError", "'Datum' object has no attribute 'sync'")
   Obtained: r.expr(1).sync()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 15
-  Original: partial({'tables_dropped':1})
+  Original: r.db('test').table_drop('test1')
+  Java: r.db("test").tableDrop("test1")
+  ExpectedOriginal: partial({'tables_dropped':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_dropped", 1))
   Obtained: r.db("test").tableDrop("test1")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
   TestNum: 16
-  Original: partial({'tables_dropped':1})
+  Original: r.db('test').table_drop('test1soft')
+  Java: r.db("test").tableDrop("test1soft")
+  ExpectedOriginal: partial({'tables_dropped':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_dropped", 1))
   Obtained: r.db("test").tableDrop("test1soft")
+  RunOpts: []

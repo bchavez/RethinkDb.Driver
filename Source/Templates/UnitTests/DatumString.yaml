@@ -3,708 +3,1011 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 1
-  Original: 'str'
+  Original: r.expr('str')
+  Java: r.expr("str")
+  ExpectedOriginal: 'str'
   ExpectedType: String
   ExpectedJava: '"str"'
   Obtained: r.expr("str")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 2
-  Original: '"str"'
+  Original: r.expr("str")
+  Java: r.expr("str")
+  ExpectedOriginal: '"str"'
   ExpectedType: String
   ExpectedJava: '"str"'
   Obtained: r.expr("str")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 3
-  Original: 'str'
+  Original: r.expr(u'str')
+  Java: r.expr("str")
+  ExpectedOriginal: 'str'
   ExpectedType: String
   ExpectedJava: '"str"'
   Obtained: r.expr("str")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 4
-  Original: "'こんにちは'"
+  Original: "r.expr(u'こんにちは')"
+  Java: "r.expr(\"こんにちは\")"
+  ExpectedOriginal: "'こんにちは'"
   ExpectedType: String
   ExpectedJava: "\"こんにちは\""
   Obtained: "r.expr(\"こんにちは\")"
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 5
-  Original: 'STRING'
+  Original: r.expr('foo').type_of()
+  Java: r.expr("foo").typeOf()
+  ExpectedOriginal: 'STRING'
   ExpectedType: String
   ExpectedJava: '"STRING"'
   Obtained: r.expr("foo").typeOf()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 6
-  Original: ('foo')
+  Original: r.expr('foo').coerce_to('string')
+  Java: r.expr("foo").coerceTo("string")
+  ExpectedOriginal: ('foo')
   ExpectedType: String
   ExpectedJava: '"foo"'
   Obtained: r.expr("foo").coerceTo("string")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 7
-  Original: -1.2
+  Original: r.expr('-1.2').coerce_to('NUMBER')
+  Java: r.expr("-1.2").coerceTo("NUMBER")
+  ExpectedOriginal: -1.2
   ExpectedType: Double
   ExpectedJava: -1.2
   Obtained: r.expr("-1.2").coerceTo("NUMBER")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 8
-  Original: err("ReqlQueryLogicError", "Could not coerce `--1.2` to NUMBER.", [])
+  Original: r.expr('--1.2').coerce_to('NUMBER')
+  Java: r.expr("--1.2").coerceTo("NUMBER")
+  ExpectedOriginal: err("ReqlQueryLogicError", "Could not coerce `--1.2` to NUMBER.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Could not coerce `--1.2` to NUMBER.", Arrays.asList())
   Obtained: r.expr("--1.2").coerceTo("NUMBER")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 9
-  Original: err("ReqlQueryLogicError", "Could not coerce `-1.2-` to NUMBER.", [])
+  Original: r.expr('-1.2-').coerce_to('NUMBER')
+  Java: r.expr("-1.2-").coerceTo("NUMBER")
+  ExpectedOriginal: err("ReqlQueryLogicError", "Could not coerce `-1.2-` to NUMBER.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Could not coerce `-1.2-` to NUMBER.", Arrays.asList())
   Obtained: r.expr("-1.2-").coerceTo("NUMBER")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 10
-  Original: 10
+  Original: r.expr('0xa').coerce_to('NUMBER')
+  Java: r.expr("0xa").coerceTo("NUMBER")
+  ExpectedOriginal: 10
   ExpectedType: Integer
   ExpectedJava: 10
   Obtained: r.expr("0xa").coerceTo("NUMBER")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 11
-  Original: >
+  Original: r.expr('inf').coerce_to('NUMBER')
+  Java: r.expr("inf").coerceTo("NUMBER")
+  ExpectedOriginal: >
     err("ReqlQueryLogicError", "Non-finite number: inf", [])
   ExpectedType: Err
   ExpectedJava: 'err("ReqlQueryLogicError", "Non-finite number: inf", Arrays.asList())'
   Obtained: r.expr("inf").coerceTo("NUMBER")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 12
-  Original: ([])
+  Original: r.expr('').split()
+  Java: r.expr("").split()
+  ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: Arrays.asList()
   Obtained: r.expr("").split()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 13
-  Original: ([])
+  Original: r.expr('').split(null)
+  Java: r.expr("").split(null)
+  ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: Arrays.asList()
   Obtained: r.expr("").split(null)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 14
-  Original: ([''])
+  Original: r.expr('').split(' ')
+  Java: r.expr("").split(" ")
+  ExpectedOriginal: ([''])
   ExpectedType: List
   ExpectedJava: Arrays.asList("")
   Obtained: r.expr("").split(" ")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 15
-  Original: ([])
+  Original: r.expr('').split('')
+  Java: r.expr("").split("")
+  ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: Arrays.asList()
   Obtained: r.expr("").split("")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 16
-  Original: ([])
+  Original: r.expr('').split(null, 5)
+  Java: r.expr("").split(null, 5)
+  ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: Arrays.asList()
   Obtained: r.expr("").split(null, 5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 17
-  Original: ([''])
+  Original: r.expr('').split(' ', 5)
+  Java: r.expr("").split(" ", 5)
+  ExpectedOriginal: ([''])
   ExpectedType: List
   ExpectedJava: Arrays.asList("")
   Obtained: r.expr("").split(" ", 5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 18
-  Original: ([])
+  Original: r.expr('').split('', 5)
+  Java: r.expr("").split("", 5)
+  ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: Arrays.asList()
   Obtained: r.expr("").split("", 5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 19
-  Original: (['aaaa', 'bbbb', 'cccc'])
+  Original: r.expr('aaaa bbbb  cccc ').split()
+  Java: r.expr("aaaa bbbb  cccc ").split()
+  ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc")
   Obtained: r.expr("aaaa bbbb  cccc ").split()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 20
-  Original: (['aaaa', 'bbbb', 'cccc'])
+  Original: r.expr('aaaa bbbb  cccc ').split(null)
+  Java: r.expr("aaaa bbbb  cccc ").split(null)
+  ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc")
   Obtained: r.expr("aaaa bbbb  cccc ").split(null)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 21
-  Original: (['aaaa', 'bbbb', '', 'cccc', ''])
+  Original: r.expr('aaaa bbbb  cccc ').split(' ')
+  Java: r.expr("aaaa bbbb  cccc ").split(" ")
+  ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', ''])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb", "", "cccc", "")
   Obtained: r.expr("aaaa bbbb  cccc ").split(" ")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 22
-  Original: (['a', 'a', 'a', 'a', ' ', 'b', 'b', 'b', 'b', ' ', ' ', 'c', 'c', 'c', 'c', ' '])
+  Original: r.expr('aaaa bbbb  cccc ').split('')
+  Java: r.expr("aaaa bbbb  cccc ").split("")
+  ExpectedOriginal: (['a', 'a', 'a', 'a', ' ', 'b', 'b', 'b', 'b', ' ', ' ', 'c', 'c', 'c', 'c', ' '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("a", "a", "a", "a", " ", "b", "b", "b", "b", " ", " ", "c", "c", "c", "c", " ")
   Obtained: r.expr("aaaa bbbb  cccc ").split("")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 23
-  Original: (['aaaa ', '', '', '', '  cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split('b')
+  Java: r.expr("aaaa bbbb  cccc ").split("b")
+  ExpectedOriginal: (['aaaa ', '', '', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa ", "", "", "", "  cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split("b")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 24
-  Original: (['aaaa ', '', '  cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split('bb')
+  Java: r.expr("aaaa bbbb  cccc ").split("bb")
+  ExpectedOriginal: (['aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa ", "", "  cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split("bb")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 25
-  Original: (['aaaa', 'cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ')
+  Java: r.expr("aaaa bbbb  cccc ").split(" bbbb  ")
+  ExpectedOriginal: (['aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split(" bbbb  ")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 26
-  Original: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+  Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb')
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb")
+  ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa ", "", "  cccc b d ", " e ", "", " f")
   Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 27
-  Original: (['aaaa', 'cccc b d bb e bbbb f'])
+  Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ')
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ")
+  ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e bbbb f")
   Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 28
-  Original: (['aaaa', 'cccc b d bb e', 'f'])
+  Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ')
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ")
+  ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e", "f")
   Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 29
-  Original: (['aaaa', 'bbbb', 'cccc'])
+  Original: r.expr('aaaa bbbb  cccc ').split(null, 3)
+  Java: r.expr("aaaa bbbb  cccc ").split(null, 3)
+  ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc")
   Obtained: r.expr("aaaa bbbb  cccc ").split(null, 3)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 30
-  Original: (['aaaa', 'bbbb', '', 'cccc', ''])
+  Original: r.expr('aaaa bbbb  cccc ').split(' ', 5)
+  Java: r.expr("aaaa bbbb  cccc ").split(" ", 5)
+  ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', ''])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb", "", "cccc", "")
   Obtained: r.expr("aaaa bbbb  cccc ").split(" ", 5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 31
-  Original: (['a', 'a', 'a', 'a', ' ', 'bbbb  cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split('', 5)
+  Java: r.expr("aaaa bbbb  cccc ").split("", 5)
+  ExpectedOriginal: (['a', 'a', 'a', 'a', ' ', 'bbbb  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("a", "a", "a", "a", " ", "bbbb  cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split("", 5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 32
-  Original: (['aaaa ', '', '', '', '  cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split('b', 5)
+  Java: r.expr("aaaa bbbb  cccc ").split("b", 5)
+  ExpectedOriginal: (['aaaa ', '', '', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa ", "", "", "", "  cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split("b", 5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 33
-  Original: (['aaaa ', '', '  cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split('bb', 3)
+  Java: r.expr("aaaa bbbb  cccc ").split("bb", 3)
+  ExpectedOriginal: (['aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa ", "", "  cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split("bb", 3)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 34
-  Original: (['aaaa', 'cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2)
+  Java: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2)
+  ExpectedOriginal: (['aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 35
-  Original: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+  Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6)
+  ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa ", "", "  cccc b d ", " e ", "", " f")
   Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 36
-  Original: (['aaaa', 'cccc b d bb e bbbb f'])
+  Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+  ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e bbbb f")
   Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 37
-  Original: (['aaaa', 'cccc b d bb e', 'f'])
+  Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3)
+  ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e", "f")
   Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 38
-  Original: (['aaaa', 'bbbb', 'cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split(null, 2)
+  Java: r.expr("aaaa bbbb  cccc ").split(null, 2)
+  ExpectedOriginal: (['aaaa', 'bbbb', 'cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split(null, 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 39
-  Original: (["a", "b"])
+  Original: r.expr("a  b  ").split(null, 2)
+  Java: r.expr("a  b  ").split(null, 2)
+  ExpectedOriginal: (["a", "b"])
   ExpectedType: List
   ExpectedJava: Arrays.asList("a", "b")
   Obtained: r.expr("a  b  ").split(null, 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 40
-  Original: (['aaaa', 'bbbb', '', 'cccc', ''])
+  Original: r.expr('aaaa bbbb  cccc ').split(' ', 4)
+  Java: r.expr("aaaa bbbb  cccc ").split(" ", 4)
+  ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', ''])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb", "", "cccc", "")
   Obtained: r.expr("aaaa bbbb  cccc ").split(" ", 4)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 41
-  Original: (['a', 'a', 'a', 'a', ' bbbb  cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split('', 4)
+  Java: r.expr("aaaa bbbb  cccc ").split("", 4)
+  ExpectedOriginal: (['a', 'a', 'a', 'a', ' bbbb  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("a", "a", "a", "a", " bbbb  cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split("", 4)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 42
-  Original: (['aaaa ', '', '', '', '  cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split('b', 4)
+  Java: r.expr("aaaa bbbb  cccc ").split("b", 4)
+  ExpectedOriginal: (['aaaa ', '', '', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa ", "", "", "", "  cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split("b", 4)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 43
-  Original: (['aaaa ', '', '  cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split('bb', 2)
+  Java: r.expr("aaaa bbbb  cccc ").split("bb", 2)
+  ExpectedOriginal: (['aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa ", "", "  cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split("bb", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 44
-  Original: (['aaaa', 'cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 1)
+  Java: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 1)
+  ExpectedOriginal: (['aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 45
-  Original: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+  Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5)
+  ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa ", "", "  cccc b d ", " e ", "", " f")
   Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 46
-  Original: (['aaaa', 'cccc b d bb e bbbb f'])
+  Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1)
+  ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e bbbb f")
   Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 47
-  Original: (['aaaa', 'cccc b d bb e', 'f'])
+  Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+  ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e", "f")
   Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 48
-  Original: (['aaaa', 'bbbb  cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split(null, 1)
+  Java: r.expr("aaaa bbbb  cccc ").split(null, 1)
+  ExpectedOriginal: (['aaaa', 'bbbb  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb  cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split(null, 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 49
-  Original: (['aaaa', 'bbbb', ' cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split(' ', 2)
+  Java: r.expr("aaaa bbbb  cccc ").split(" ", 2)
+  ExpectedOriginal: (['aaaa', 'bbbb', ' cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb", " cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split(" ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 50
-  Original: (['a', 'a', 'aa bbbb  cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split('', 2)
+  Java: r.expr("aaaa bbbb  cccc ").split("", 2)
+  ExpectedOriginal: (['a', 'a', 'aa bbbb  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("a", "a", "aa bbbb  cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split("", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 51
-  Original: (['aaaa ', '', 'bb  cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split('b', 2)
+  Java: r.expr("aaaa bbbb  cccc ").split("b", 2)
+  ExpectedOriginal: (['aaaa ', '', 'bb  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa ", "", "bb  cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split("b", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 52
-  Original: (['aaaa ', '', '  cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split('bb', 2)
+  Java: r.expr("aaaa bbbb  cccc ").split("bb", 2)
+  ExpectedOriginal: (['aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa ", "", "  cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split("bb", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 53
-  Original: (['aaaa', 'cccc '])
+  Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2)
+  Java: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2)
+  ExpectedOriginal: (['aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "cccc ")
   Obtained: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 54
-  Original: (['aaaa ', '', '  cccc b d bb e bbbb f'])
+  Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2)
+  ExpectedOriginal: (['aaaa ', '', '  cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa ", "", "  cccc b d bb e bbbb f")
   Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 55
-  Original: (['aaaa', 'cccc b d bb e bbbb f'])
+  Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+  ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e bbbb f")
   Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 56
-  Original: (['aaaa', 'cccc b d bb e', 'f'])
+  Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+  ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "cccc b d bb e", "f")
   Obtained: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 57
-  Original: ([])
+  Original: r.expr('  ').split()
+  Java: r.expr("  ").split()
+  ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: Arrays.asList()
   Obtained: r.expr("  ").split()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 58
-  Original: ([])
+  Original: r.expr('  ').split(null)
+  Java: r.expr("  ").split(null)
+  ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: Arrays.asList()
   Obtained: r.expr("  ").split(null)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 59
-  Original: (['', '', ''])
+  Original: r.expr('  ').split(' ')
+  Java: r.expr("  ").split(" ")
+  ExpectedOriginal: (['', '', ''])
   ExpectedType: List
   ExpectedJava: Arrays.asList("", "", "")
   Obtained: r.expr("  ").split(" ")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 60
-  Original: ([])
+  Original: r.expr('  ').split(null, 5)
+  Java: r.expr("  ").split(null, 5)
+  ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: Arrays.asList()
   Obtained: r.expr("  ").split(null, 5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 61
-  Original: (['', '', ''])
+  Original: r.expr('  ').split(' ', 5)
+  Java: r.expr("  ").split(" ", 5)
+  ExpectedOriginal: (['', '', ''])
   ExpectedType: List
   ExpectedJava: Arrays.asList("", "", "")
   Obtained: r.expr("  ").split(" ", 5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 62
-  Original: (['aaaa', 'bbbb', 'cccc'])
+  Original: r.expr('  aaaa bbbb  cccc ').split()
+  Java: r.expr("  aaaa bbbb  cccc ").split()
+  ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc")
   Obtained: r.expr("  aaaa bbbb  cccc ").split()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 63
-  Original: (['aaaa', 'bbbb', 'cccc'])
+  Original: r.expr('  aaaa bbbb  cccc ').split(null)
+  Java: r.expr("  aaaa bbbb  cccc ").split(null)
+  ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc")
   Obtained: r.expr("  aaaa bbbb  cccc ").split(null)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 64
-  Original: (['', '', 'aaaa', 'bbbb', '', 'cccc', ''])
+  Original: r.expr('  aaaa bbbb  cccc ').split(' ')
+  Java: r.expr("  aaaa bbbb  cccc ").split(" ")
+  ExpectedOriginal: (['', '', 'aaaa', 'bbbb', '', 'cccc', ''])
   ExpectedType: List
   ExpectedJava: Arrays.asList("", "", "aaaa", "bbbb", "", "cccc", "")
   Obtained: r.expr("  aaaa bbbb  cccc ").split(" ")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 65
-  Original: (['  aaaa ', '', '', '', '  cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split('b')
+  Java: r.expr("  aaaa bbbb  cccc ").split("b")
+  ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa ", "", "", "", "  cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split("b")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 66
-  Original: (['  aaaa ', '', '  cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split('bb')
+  Java: r.expr("  aaaa bbbb  cccc ").split("bb")
+  ExpectedOriginal: (['  aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split("bb")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 67
-  Original: (['  aaaa', 'cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ')
+  Java: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ")
+  ExpectedOriginal: (['  aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa", "cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 68
-  Original: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+  Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb')
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb")
+  ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc b d ", " e ", "", " f")
   Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 69
-  Original: (['  aaaa', 'cccc b d bb e bbbb f'])
+  Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ')
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ")
+  ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e bbbb f")
   Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 70
-  Original: (['  aaaa', 'cccc b d bb e', 'f'])
+  Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ')
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ")
+  ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e", "f")
   Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 71
-  Original: (['aaaa', 'bbbb', 'cccc'])
+  Original: r.expr('  aaaa bbbb  cccc ').split(null, 3)
+  Java: r.expr("  aaaa bbbb  cccc ").split(null, 3)
+  ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc")
   Obtained: r.expr("  aaaa bbbb  cccc ").split(null, 3)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 72
-  Original: (['', '', 'aaaa', 'bbbb', '', 'cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split(' ', 5)
+  Java: r.expr("  aaaa bbbb  cccc ").split(" ", 5)
+  ExpectedOriginal: (['', '', 'aaaa', 'bbbb', '', 'cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("", "", "aaaa", "bbbb", "", "cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split(" ", 5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 73
-  Original: (['  aaaa ', '', '', '', '  cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split('b', 5)
+  Java: r.expr("  aaaa bbbb  cccc ").split("b", 5)
+  ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa ", "", "", "", "  cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split("b", 5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 74
-  Original: (['  aaaa ', '', '  cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split('bb', 3)
+  Java: r.expr("  aaaa bbbb  cccc ").split("bb", 3)
+  ExpectedOriginal: (['  aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split("bb", 3)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 75
-  Original: (['  aaaa', 'cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2)
+  ExpectedOriginal: (['  aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa", "cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 76
-  Original: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+  Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6)
+  ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc b d ", " e ", "", " f")
   Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 77
-  Original: (['  aaaa', 'cccc b d bb e bbbb f'])
+  Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+  ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e bbbb f")
   Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 78
-  Original: (['  aaaa', 'cccc b d bb e', 'f'])
+  Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3)
+  ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e", "f")
   Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 79
-  Original: (['aaaa', 'bbbb', 'cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split(null, 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split(null, 2)
+  ExpectedOriginal: (['aaaa', 'bbbb', 'cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb", "cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split(null, 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 80
-  Original: (["a", "b"])
+  Original: r.expr("a  b  ").split(null, 2)
+  Java: r.expr("a  b  ").split(null, 2)
+  ExpectedOriginal: (["a", "b"])
   ExpectedType: List
   ExpectedJava: Arrays.asList("a", "b")
   Obtained: r.expr("a  b  ").split(null, 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 81
-  Original: (['', '', 'aaaa', 'bbbb', ' cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split(' ', 4)
+  Java: r.expr("  aaaa bbbb  cccc ").split(" ", 4)
+  ExpectedOriginal: (['', '', 'aaaa', 'bbbb', ' cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("", "", "aaaa", "bbbb", " cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split(" ", 4)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 82
-  Original: (['  aaaa ', '', '', '', '  cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split('b', 4)
+  Java: r.expr("  aaaa bbbb  cccc ").split("b", 4)
+  ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa ", "", "", "", "  cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split("b", 4)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 83
-  Original: (['  aaaa ', '', '  cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split("bb", 2)
+  ExpectedOriginal: (['  aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split("bb", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 84
-  Original: (['  aaaa', 'cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 1)
+  Java: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 1)
+  ExpectedOriginal: (['  aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa", "cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 85
-  Original: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+  Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5)
+  ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc b d ", " e ", "", " f")
   Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 86
-  Original: (['  aaaa', 'cccc b d bb e bbbb f'])
+  Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1)
+  ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e bbbb f")
   Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 87
-  Original: (['  aaaa', 'cccc b d bb e', 'f'])
+  Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+  ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e", "f")
   Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 88
-  Original: (['aaaa', 'bbbb  cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split(null, 1)
+  Java: r.expr("  aaaa bbbb  cccc ").split(null, 1)
+  ExpectedOriginal: (['aaaa', 'bbbb  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("aaaa", "bbbb  cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split(null, 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 89
-  Original: (['', '', 'aaaa bbbb  cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split(' ', 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split(" ", 2)
+  ExpectedOriginal: (['', '', 'aaaa bbbb  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("", "", "aaaa bbbb  cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split(" ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 90
-  Original: (['  aaaa ', '', 'bb  cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split('b', 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split("b", 2)
+  ExpectedOriginal: (['  aaaa ', '', 'bb  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa ", "", "bb  cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split("b", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 91
-  Original: (['  aaaa ', '', '  cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split("bb", 2)
+  ExpectedOriginal: (['  aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split("bb", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 92
-  Original: (['  aaaa', 'cccc '])
+  Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2)
+  ExpectedOriginal: (['  aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa", "cccc ")
   Obtained: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 93
-  Original: (['  aaaa ', '', '  cccc b d bb e bbbb f'])
+  Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2)
+  ExpectedOriginal: (['  aaaa ', '', '  cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa ", "", "  cccc b d bb e bbbb f")
   Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 94
-  Original: (['  aaaa', 'cccc b d bb e bbbb f'])
+  Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+  ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e bbbb f")
   Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 95
-  Original: (['  aaaa', 'cccc b d bb e', 'f'])
+  Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+  ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("  aaaa", "cccc b d bb e", "f")
   Obtained: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 96
-  Original: ("ABC-DEF-GHJ")
+  Original: r.expr("abc-dEf-GHJ").upcase()
+  Java: r.expr("abc-dEf-GHJ").upcase()
+  ExpectedOriginal: ("ABC-DEF-GHJ")
   ExpectedType: String
   ExpectedJava: '"ABC-DEF-GHJ"'
   Obtained: r.expr("abc-dEf-GHJ").upcase()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 97
-  Original: ("abc-def-ghj")
+  Original: r.expr("abc-dEf-GHJ").downcase()
+  Java: r.expr("abc-dEf-GHJ").downcase()
+  ExpectedOriginal: ("abc-def-ghj")
   ExpectedType: String
   ExpectedJava: '"abc-def-ghj"'
   Obtained: r.expr("abc-dEf-GHJ").downcase()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 98
-  Original: (["f", "\u00e9", "o", "o"])
+  Original: r.expr(u"f\u00e9oo").split("")
+  Java: "r.expr(\"féoo\").split(\"\")"
+  ExpectedOriginal: (["f", "\u00e9", "o", "o"])
   ExpectedType: List
   ExpectedJava: "Arrays.asList(\"f\", \"é\", \"o\", \"o\")"
   Obtained: "r.expr(\"féoo\").split(\"\")"
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 99
-  Original: (["f", "e\u0301", "o", "o"])
+  Original: r.expr(u"fe\u0301oo").split("")
+  Java: "r.expr(\"féoo\").split(\"\")"
+  ExpectedOriginal: (["f", "e\u0301", "o", "o"])
   ExpectedType: List
   ExpectedJava: "Arrays.asList(\"f\", \"é\", \"o\", \"o\")"
   Obtained: "r.expr(\"féoo\").split(\"\")"
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 100
-  Original: (["foo", "bar", "baz", "quux", "fred", "barney", "wilma"])
+  Original: r.expr(u"foo bar\tbaz\nquux\rfred\u000bbarney\u000cwilma").split()
+  Java: r.expr("foo bar\tbaz\nquux\rfred\x0bbarney\x0cwilma").split()
+  ExpectedOriginal: (["foo", "bar", "baz", "quux", "fred", "barney", "wilma"])
   ExpectedType: List
   ExpectedJava: Arrays.asList("foo", "bar", "baz", "quux", "fred", "barney", "wilma")
   Obtained: r.expr("foo bar\tbaz\nquux\rfred\x0bbarney\x0cwilma").split()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
   TestNum: 101
-  Original: (["foo", "bar", "baz\u2060quux", "fred", "barney", "wilma", "betty\u200b"])
+  Original: r.expr(u"foo\u00a0bar\u2001baz\u2060quux\u2028fred\u2028barney\u2029wilma\u0085betty\u200b").split()
+  Java: r.expr("foo\xa0bar\u2001baz\u2060quux\u2028fred\u2028barney\u2029wilma\x85betty\u200b").split()
+  ExpectedOriginal: (["foo", "bar", "baz\u2060quux", "fred", "barney", "wilma", "betty\u200b"])
   ExpectedType: List
   ExpectedJava: Arrays.asList("foo", "bar", "baz\u2060quux", "fred", "barney", "wilma", "betty\u200b")
   Obtained: r.expr("foo\xa0bar\u2001baz\u2060quux\u2028fred\u2028barney\u2029wilma\x85betty\u200b").split()
+  RunOpts: []

@@ -5,14 +5,19 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/2838.yaml
   TestNum: 1
-  Original: ({'inserted':99})
+  Original: tbl.insert([{'result':i} for i in range(1,100)]).pluck('first_error', 'inserted')
+  Java: tbl.insert(IntStream.range(1, 100).boxed().map(i -> new MapObject().with("result", i)).collect(Collectors.toList())).pluck("first_error", "inserted")
+  ExpectedOriginal: ({'inserted':99})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("inserted", 99)
   Obtained: tbl.insert(IntStream.range(1, 100).boxed().map(i -> new MapObject().with("result", i)).collect(Collectors.toList())).pluck("first_error", "inserted")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2838.yaml
   TestNum: 2
-  Original: (40)
+  Original: tbl.update({'foo':'bar'}, return_changes=True)['changes'].count()
+  Java: tbl.update(new MapObject().with("foo", "bar")).optArg("return_changes", true).bracket("changes").count()
+  ExpectedOriginal: (40)
   ExpectedType: Integer
   ExpectedJava: 40
   Obtained: tbl.update(new MapObject().with("foo", "bar")).optArg("return_changes", true).bracket("changes").count()
@@ -22,7 +27,9 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/2838.yaml
   TestNum: 3
-  Original: (['Too many changes, array truncated to 40.'])
+  Original: tbl.update({'foo':'quux'}, return_changes=True)['warnings']
+  Java: tbl.update(new MapObject().with("foo", "quux")).optArg("return_changes", true).bracket("warnings")
+  ExpectedOriginal: (['Too many changes, array truncated to 40.'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("Too many changes, array truncated to 40.")
   Obtained: tbl.update(new MapObject().with("foo", "quux")).optArg("return_changes", true).bracket("warnings")

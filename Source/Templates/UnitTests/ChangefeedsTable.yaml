@@ -7,140 +7,194 @@ DefsAndTests:
   TestNum: 1
   Original: all = tbl.changes()
   Java: Changes all = (Changes) tbl.changes();
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 2
-  Original: partial({'errors':0, 'inserted':2})
+  Original: tbl.insert([{'id':1}, {'id':2}])
+  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 2)))
+  ExpectedOriginal: partial({'errors':0, 'inserted':2})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 0).with("inserted", 2))
   Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 2)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 3
-  Original: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])
+  Original: fetch(all, 2)
+  Java: fetch(all, 2)
+  ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])
   ExpectedType: Bag
   ExpectedJava: bag(Arrays.asList(new MapObject().with("old_val", null).with("new_val", new MapObject().with("id", 1)), new MapObject().with("old_val", null).with("new_val", new MapObject().with("id", 2))))
   Obtained: fetch(all, 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 4
-  Original: partial({'errors':0, 'replaced':1})
+  Original: tbl.get(1).update({'version':1})
+  Java: tbl.get(1).update(new MapObject().with("version", 1))
+  ExpectedOriginal: partial({'errors':0, 'replaced':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 0).with("replaced", 1))
   Obtained: tbl.get(1).update(new MapObject().with("version", 1))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 5
-  Original: '[{''new_val'': {''id'': 1, ''version'': 1}, ''old_val'': {''id'': 1}}]'
+  Original: fetch(all, 1)
+  Java: fetch(all, 1)
+  ExpectedOriginal: '[{''new_val'': {''version'': 1, ''id'': 1}, ''old_val'': {''id'': 1}}]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(new MapObject().with("new_val", new MapObject().with("id", 1).with("version", 1)).with("old_val", new MapObject().with("id", 1)))
+  ExpectedJava: Arrays.asList(new MapObject().with("new_val", new MapObject().with("version", 1).with("id", 1)).with("old_val", new MapObject().with("id", 1)))
   Obtained: fetch(all, 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 6
-  Original: partial({'errors':0, 'deleted':1})
+  Original: tbl.get(1).delete()
+  Java: tbl.get(1).delete()
+  ExpectedOriginal: partial({'errors':0, 'deleted':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 0).with("deleted", 1))
   Obtained: tbl.get(1).delete()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 7
-  Original: '[{''new_val'': None, ''old_val'': {''id'': 1, ''version'': 1}}]'
+  Original: fetch(all, 1)
+  Java: fetch(all, 1)
+  ExpectedOriginal: '[{''new_val'': None, ''old_val'': {''version'': 1, ''id'': 1}}]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(new MapObject().with("new_val", null).with("old_val", new MapObject().with("id", 1).with("version", 1)))
+  ExpectedJava: Arrays.asList(new MapObject().with("new_val", null).with("old_val", new MapObject().with("version", 1).with("id", 1)))
   Obtained: fetch(all, 1)
+  RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
   TestNum: 8
   Original: pluck = tbl.changes().pluck({'new_val':['version']})
   Java: Pluck pluck = (Pluck) tbl.changes().pluck(new MapObject().with("new_val", Arrays.asList("version")));
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 9
-  Original: partial({'errors':0, 'inserted':1})
+  Original: tbl.insert([{'id':5, 'version':5}])
+  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 5).with("version", 5)))
+  ExpectedOriginal: partial({'errors':0, 'inserted':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 0).with("inserted", 1))
   Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 5).with("version", 5)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 10
-  Original: '[{''new_val'': {''version'': 5}}]'
+  Original: fetch(pluck, 1)
+  Java: fetch(pluck, 1)
+  ExpectedOriginal: '[{''new_val'': {''version'': 5}}]'
   ExpectedType: List
   ExpectedJava: Arrays.asList(new MapObject().with("new_val", new MapObject().with("version", 5)))
   Obtained: fetch(pluck, 1)
+  RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
   TestNum: 11
   Original: ordered = tbl.changes().order_by('id')
   Java: OrderBy ordered = (OrderBy) tbl.changes().orderBy("id");
+  RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
   TestNum: 12
   Original: vtbl = r.db('rethinkdb').table('_debug_scratch')
   Java: Table vtbl = (Table) r.db("rethinkdb").table("_debug_scratch");
+  RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
   TestNum: 13
   Original: allVirtual = vtbl.changes()
   Java: Changes allVirtual = (Changes) vtbl.changes();
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 14
-  Original: partial({'errors':0, 'inserted':2})
+  Original: vtbl.insert([{'id':1}, {'id':2}])
+  Java: vtbl.insert(Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 2)))
+  ExpectedOriginal: partial({'errors':0, 'inserted':2})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 0).with("inserted", 2))
   Obtained: vtbl.insert(Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 2)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 15
-  Original: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])
+  Original: fetch(allVirtual, 2)
+  Java: fetch(allVirtual, 2)
+  ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])
   ExpectedType: Bag
   ExpectedJava: bag(Arrays.asList(new MapObject().with("old_val", null).with("new_val", new MapObject().with("id", 1)), new MapObject().with("old_val", null).with("new_val", new MapObject().with("id", 2))))
   Obtained: fetch(allVirtual, 2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 16
-  Original: partial({'errors':0, 'replaced':1})
+  Original: vtbl.get(1).update({'version':1})
+  Java: vtbl.get(1).update(new MapObject().with("version", 1))
+  ExpectedOriginal: partial({'errors':0, 'replaced':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 0).with("replaced", 1))
   Obtained: vtbl.get(1).update(new MapObject().with("version", 1))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 17
-  Original: '[{''new_val'': {''id'': 1, ''version'': 1}, ''old_val'': {''id'': 1}}]'
+  Original: fetch(allVirtual, 1)
+  Java: fetch(allVirtual, 1)
+  ExpectedOriginal: '[{''new_val'': {''version'': 1, ''id'': 1}, ''old_val'': {''id'': 1}}]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(new MapObject().with("new_val", new MapObject().with("id", 1).with("version", 1)).with("old_val", new MapObject().with("id", 1)))
+  ExpectedJava: Arrays.asList(new MapObject().with("new_val", new MapObject().with("version", 1).with("id", 1)).with("old_val", new MapObject().with("id", 1)))
   Obtained: fetch(allVirtual, 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 18
-  Original: partial({'errors':0, 'deleted':1})
+  Original: vtbl.get(1).delete()
+  Java: vtbl.get(1).delete()
+  ExpectedOriginal: partial({'errors':0, 'deleted':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 0).with("deleted", 1))
   Obtained: vtbl.get(1).delete()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 19
-  Original: '[{''new_val'': None, ''old_val'': {''id'': 1, ''version'': 1}}]'
+  Original: fetch(allVirtual, 1)
+  Java: fetch(allVirtual, 1)
+  ExpectedOriginal: '[{''new_val'': None, ''old_val'': {''version'': 1, ''id'': 1}}]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(new MapObject().with("new_val", null).with("old_val", new MapObject().with("id", 1).with("version", 1)))
+  ExpectedJava: Arrays.asList(new MapObject().with("new_val", null).with("old_val", new MapObject().with("version", 1).with("id", 1)))
   Obtained: fetch(allVirtual, 1)
+  RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
   TestNum: 20
   Original: vpluck = vtbl.changes().pluck({'new_val':['version']})
   Java: Pluck vpluck = (Pluck) vtbl.changes().pluck(new MapObject().with("new_val", Arrays.asList("version")));
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 21
-  Original: partial({'errors':0, 'inserted':1})
+  Original: vtbl.insert([{'id':5, 'version':5}])
+  Java: vtbl.insert(Arrays.asList(new MapObject().with("id", 5).with("version", 5)))
+  ExpectedOriginal: partial({'errors':0, 'inserted':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 0).with("inserted", 1))
   Obtained: vtbl.insert(Arrays.asList(new MapObject().with("id", 5).with("version", 5)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 22
-  Original: '[{''new_val'': {''version'': 5}}]'
+  Original: fetch(vpluck, 1)
+  Java: fetch(vpluck, 1)
+  ExpectedOriginal: '[{''new_val'': {''version'': 5}}]'
   ExpectedType: List
   ExpectedJava: Arrays.asList(new MapObject().with("new_val", new MapObject().with("version", 5)))
   Obtained: fetch(vpluck, 1)
+  RunOpts: []

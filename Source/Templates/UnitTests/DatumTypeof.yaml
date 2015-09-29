@@ -3,14 +3,20 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/typeof.yaml
   TestNum: 1
-  Original: 'NULL'
+  Original: r.expr(null).type_of()
+  Java: r.expr(null).typeOf()
+  ExpectedOriginal: 'NULL'
   ExpectedType: String
   ExpectedJava: '"NULL"'
   Obtained: r.expr(null).typeOf()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/typeof.yaml
   TestNum: 2
-  Original: 'NULL'
+  Original: r.type_of(null)
+  Java: r.typeOf(null)
+  ExpectedOriginal: 'NULL'
   ExpectedType: String
   ExpectedJava: '"NULL"'
   Obtained: r.typeOf(null)
+  RunOpts: []

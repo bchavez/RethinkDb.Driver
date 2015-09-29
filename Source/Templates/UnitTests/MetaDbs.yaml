@@ -3,91 +3,130 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 1
-  Original: bag(['rethinkdb', 'test'])
+  Original: r.db_list()
+  Java: r.dbList()
+  ExpectedOriginal: bag(['rethinkdb', 'test'])
   ExpectedType: Bag
   ExpectedJava: bag(Arrays.asList("rethinkdb", "test"))
   Obtained: r.dbList()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 2
-  Original: partial({'dbs_created':1})
+  Original: r.db_create('a')
+  Java: r.dbCreate("a")
+  ExpectedOriginal: partial({'dbs_created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("dbs_created", 1))
   Obtained: r.dbCreate("a")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 3
-  Original: partial({'dbs_created':1})
+  Original: r.db_create('b')
+  Java: r.dbCreate("b")
+  ExpectedOriginal: partial({'dbs_created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("dbs_created", 1))
   Obtained: r.dbCreate("b")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 4
-  Original: bag(['rethinkdb', 'a', 'b', 'test'])
+  Original: r.db_list()
+  Java: r.dbList()
+  ExpectedOriginal: bag(['rethinkdb', 'a', 'b', 'test'])
   ExpectedType: Bag
   ExpectedJava: bag(Arrays.asList("rethinkdb", "a", "b", "test"))
   Obtained: r.dbList()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 5
-  Original: '{''name'': ''a'', ''uuid'': uuid()}'
+  Original: r.db('a').config()
+  Java: r.db("a").config()
+  ExpectedOriginal: '{''uuid'': uuid(), ''name'': ''a''}'
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("name", "a").with("uuid", uuid())
+  ExpectedJava: new MapObject().with("uuid", uuid()).with("name", "a")
   Obtained: r.db("a").config()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 6
-  Original: partial({'dbs_dropped':1})
+  Original: r.db_drop('b')
+  Java: r.dbDrop("b")
+  ExpectedOriginal: partial({'dbs_dropped':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("dbs_dropped", 1))
   Obtained: r.dbDrop("b")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 7
-  Original: bag(['rethinkdb', 'a', 'test'])
+  Original: r.db_list()
+  Java: r.dbList()
+  ExpectedOriginal: bag(['rethinkdb', 'a', 'test'])
   ExpectedType: Bag
   ExpectedJava: bag(Arrays.asList("rethinkdb", "a", "test"))
   Obtained: r.dbList()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 8
-  Original: partial({'dbs_dropped':1})
+  Original: r.db_drop('a')
+  Java: r.dbDrop("a")
+  ExpectedOriginal: partial({'dbs_dropped':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("dbs_dropped", 1))
   Obtained: r.dbDrop("a")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 9
-  Original: bag(['rethinkdb', 'test'])
+  Original: r.db_list()
+  Java: r.dbList()
+  ExpectedOriginal: bag(['rethinkdb', 'test'])
   ExpectedType: Bag
   ExpectedJava: bag(Arrays.asList("rethinkdb", "test"))
   Obtained: r.dbList()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 10
-  Original: partial({'dbs_created':1})
+  Original: r.db_create('bar')
+  Java: r.dbCreate("bar")
+  ExpectedOriginal: partial({'dbs_created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("dbs_created", 1))
   Obtained: r.dbCreate("bar")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 11
-  Original: err('ReqlOpFailedError', 'Database `bar` already exists.', [0])
+  Original: r.db_create('bar')
+  Java: r.dbCreate("bar")
+  ExpectedOriginal: err('ReqlOpFailedError', 'Database `bar` already exists.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlOpFailedError", "Database `bar` already exists.", Arrays.asList(0))
   Obtained: r.dbCreate("bar")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 12
-  Original: partial({'dbs_dropped':1})
+  Original: r.db_drop('bar')
+  Java: r.dbDrop("bar")
+  ExpectedOriginal: partial({'dbs_dropped':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("dbs_dropped", 1))
   Obtained: r.dbDrop("bar")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 13
-  Original: err('ReqlOpFailedError', 'Database `bar` does not exist.', [0])
+  Original: r.db_drop('bar')
+  Java: r.dbDrop("bar")
+  ExpectedOriginal: err('ReqlOpFailedError', 'Database `bar` does not exist.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlOpFailedError", "Database `bar` does not exist.", Arrays.asList(0))
   Obtained: r.dbDrop("bar")
+  RunOpts: []

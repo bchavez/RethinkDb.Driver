@@ -3,119 +3,170 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 1
-  Original: 1
+  Original: r.expr(1)
+  Java: r.expr(1)
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.expr(1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 2
-  Original: -1
+  Original: r.expr(-1)
+  Java: r.expr(-1)
+  ExpectedOriginal: -1
   ExpectedType: Integer
   ExpectedJava: -1
   Obtained: r.expr(-1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 3
-  Original: 0
+  Original: r.expr(0)
+  Java: r.expr(0)
+  ExpectedOriginal: 0
   ExpectedType: Integer
   ExpectedJava: 0
   Obtained: r.expr(0)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 4
-  Original: 1.0
+  Original: r.expr(1.0)
+  Java: r.expr(1.0)
+  ExpectedOriginal: 1.0
   ExpectedType: Double
   ExpectedJava: 1.0
   Obtained: r.expr(1.0)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 5
-  Original: 1.5
+  Original: r.expr(1.5)
+  Java: r.expr(1.5)
+  ExpectedOriginal: 1.5
   ExpectedType: Double
   ExpectedJava: 1.5
   Obtained: r.expr(1.5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 6
-  Original: -0.5
+  Original: r.expr(-0.5)
+  Java: r.expr(-0.5)
+  ExpectedOriginal: -0.5
   ExpectedType: Double
   ExpectedJava: -0.5
   Obtained: r.expr(-0.5)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 7
-  Original: 67498.89278
+  Original: r.expr(67498.89278)
+  Java: r.expr(67498.89278)
+  ExpectedOriginal: 67498.89278
   ExpectedType: Double
   ExpectedJava: 67498.89278
   Obtained: r.expr(67498.89278)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 8
-  Original: 1234567890
+  Original: r.expr(1234567890)
+  Java: r.expr(1234567890)
+  ExpectedOriginal: 1234567890
   ExpectedType: Integer
   ExpectedJava: 1234567890
   Obtained: r.expr(1234567890)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 9
-  Original: -73850380122423
+  Original: r.expr(-73850380122423)
+  Java: r.expr(-73850380122423.0)
+  ExpectedOriginal: -73850380122423
   ExpectedType: Integer
   ExpectedJava: -73850380122423.0
   Obtained: r.expr(-73850380122423.0)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 10
-  Original: float(1234567890123456789012345678901234567890)
+  Original: r.expr(1234567890123456789012345678901234567890)
+  Java: r.expr(1234567890123456789012345678901234567890.0)
+  ExpectedOriginal: float(1234567890123456789012345678901234567890)
   ExpectedType: Double
   ExpectedJava: float(1234567890123456789012345678901234567890.0)
   Obtained: r.expr(1234567890123456789012345678901234567890.0)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 11
-  Original: (123.4567890123456789012345678901234567890)
+  Original: r.expr(123.4567890123456789012345678901234567890)
+  Java: r.expr(123.45678901234568)
+  ExpectedOriginal: (123.4567890123456789012345678901234567890)
   ExpectedType: Double
   ExpectedJava: 123.45678901234568
   Obtained: r.expr(123.45678901234568)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 12
-  Original: 'NUMBER'
+  Original: r.expr(1).type_of()
+  Java: r.expr(1).typeOf()
+  ExpectedOriginal: 'NUMBER'
   ExpectedType: String
   ExpectedJava: '"NUMBER"'
   Obtained: r.expr(1).typeOf()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 13
-  Original: '1'
+  Original: r.expr(1).coerce_to('string')
+  Java: r.expr(1).coerceTo("string")
+  ExpectedOriginal: '1'
   ExpectedType: String
   ExpectedJava: '"1"'
   Obtained: r.expr(1).coerceTo("string")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 14
-  Original: 1
+  Original: r.expr(1).coerce_to('number')
+  Java: r.expr(1).coerceTo("number")
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.expr(1).coerceTo("number")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 15
-  Original: int_cmp(1)
+  Original: r.expr(1.0)
+  Java: r.expr(1.0)
+  ExpectedOriginal: int_cmp(1)
   ExpectedType: IntCmp
   ExpectedJava: int_cmp(1)
   Obtained: r.expr(1.0)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 16
-  Original: int_cmp(45)
+  Original: r.expr(45)
+  Java: r.expr(45)
+  ExpectedOriginal: int_cmp(45)
   ExpectedType: IntCmp
   ExpectedJava: int_cmp(45)
   Obtained: r.expr(45)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
   TestNum: 17
-  Original: float_cmp(1.2)
+  Original: r.expr(1.2)
+  Java: r.expr(1.2)
+  ExpectedOriginal: float_cmp(1.2)
   ExpectedType: FloatCmp
   ExpectedJava: float_cmp(1.2)
   Obtained: r.expr(1.2)
+  RunOpts: []

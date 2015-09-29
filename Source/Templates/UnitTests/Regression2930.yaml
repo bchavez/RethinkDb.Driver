@@ -5,14 +5,19 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/2930.yaml
   TestNum: 1
-  Original: ({'inserted':999})
+  Original: tbl.insert([{'id':i,'mod':i%5,'foo':5} for i in range(1,1000)]).pluck('first_error', 'inserted')
+  Java: tbl.insert(IntStream.range(1, 1000).boxed().map(i -> new MapObject().with("id", i).with("mod", r.mod(i, 5)).with("foo", 5)).collect(Collectors.toList())).pluck("first_error", "inserted")
+  ExpectedOriginal: ({'inserted':999})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("inserted", 999)
   Obtained: tbl.insert(IntStream.range(1, 1000).boxed().map(i -> new MapObject().with("id", i).with("mod", r.mod(i, 5)).with("foo", 5)).collect(Collectors.toList())).pluck("first_error", "inserted")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2930.yaml
   TestNum: 2
-  Original: err("ReqlResourceLimitError", "Array over size limit `500`.", [0])
+  Original: tbl.coerce_to('array')
+  Java: tbl.coerceTo("array")
+  ExpectedOriginal: err("ReqlResourceLimitError", "Array over size limit `500`.", [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlResourceLimitError", "Array over size limit `500`.", Arrays.asList(0))
   Obtained: tbl.coerceTo("array")
@@ -22,7 +27,9 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/2930.yaml
   TestNum: 3
-  Original: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", [0])
+  Original: tbl.group('mod').coerce_to('array')
+  Java: tbl.group("mod").coerceTo("array")
+  ExpectedOriginal: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", Arrays.asList(0))
   Obtained: tbl.group("mod").coerceTo("array")
@@ -32,7 +39,9 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/2930.yaml
   TestNum: 4
-  Original: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", [0])
+  Original: tbl.group('foo').coerce_to('array')
+  Java: tbl.group("foo").coerceTo("array")
+  ExpectedOriginal: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", Arrays.asList(0))
   Obtained: tbl.group("foo").coerceTo("array")

@@ -5,35 +5,50 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/578.yaml
   TestNum: 1
-  Original: ({'created':1})
+  Original: tbl.index_create("578", lambda rec:1)
+  Java: tbl.indexCreate("578", rec -> 1)
+  ExpectedOriginal: ({'created':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("created", 1)
   Obtained: tbl.indexCreate("578", rec -> 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/578.yaml
   TestNum: 2
-  Original: ([{'ready':True, 'index':'578'}])
+  Original: tbl.index_wait("578").pluck('index', 'ready')
+  Java: tbl.indexWait("578").pluck("index", "ready")
+  ExpectedOriginal: ([{'ready':True, 'index':'578'}])
   ExpectedType: List
   ExpectedJava: Arrays.asList(new MapObject().with("ready", true).with("index", "578"))
   Obtained: tbl.indexWait("578").pluck("index", "ready")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/578.yaml
   TestNum: 3
-  Original: err_regex("ReqlOpFailedError", "Index `578` already exists on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", [])
+  Original: tbl.index_create("578", lambda rec:1)
+  Java: tbl.indexCreate("578", rec -> 1)
+  ExpectedOriginal: err_regex("ReqlOpFailedError", "Index `578` already exists on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", [])
   ExpectedType: ErrRegex
   ExpectedJava: err_regex("ReqlOpFailedError", "Index `578` already exists on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", Arrays.asList())
   Obtained: tbl.indexCreate("578", rec -> 1)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/578.yaml
   TestNum: 4
-  Original: ({'dropped':1})
+  Original: tbl.index_drop("578")
+  Java: tbl.indexDrop("578")
+  ExpectedOriginal: ({'dropped':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("dropped", 1)
   Obtained: tbl.indexDrop("578")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/578.yaml
   TestNum: 5
-  Original: err_regex("ReqlOpFailedError", "Index `578` does not exist on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", [])
+  Original: tbl.index_drop("578")
+  Java: tbl.indexDrop("578")
+  ExpectedOriginal: err_regex("ReqlOpFailedError", "Index `578` does not exist on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", [])
   ExpectedType: ErrRegex
   ExpectedJava: err_regex("ReqlOpFailedError", "Index `578` does not exist on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", Arrays.asList())
   Obtained: tbl.indexDrop("578")
+  RunOpts: []

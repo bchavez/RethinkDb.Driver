@@ -3,14 +3,20 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/3059.yaml
   TestNum: 1
-  Original: ("PTYPE<GEOMETRY>")
+  Original: r.point(0, 1).type_of()
+  Java: r.point(0, 1).typeOf()
+  ExpectedOriginal: ("PTYPE<GEOMETRY>")
   ExpectedType: String
   ExpectedJava: '"PTYPE<GEOMETRY>"'
   Obtained: r.point(0, 1).typeOf()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3059.yaml
   TestNum: 2
-  Original: ("PTYPE<GEOMETRY>")
+  Original: r.point(0, 1).info()['type']
+  Java: r.point(0, 1).info().bracket("type")
+  ExpectedOriginal: ("PTYPE<GEOMETRY>")
   ExpectedType: String
   ExpectedJava: '"PTYPE<GEOMETRY>"'
   Obtained: r.point(0, 1).info().bracket("type")
+  RunOpts: []

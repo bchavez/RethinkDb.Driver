@@ -5,269 +5,382 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 1
-  Original: partial({'tables_created':1})
+  Original: r.db('test').table_create('test2')
+  Java: r.db("test").tableCreate("test2")
+  ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_created", 1))
   Obtained: r.db("test").tableCreate("test2")
+  RunOpts: []
 - TestType: JavaDef
   TestFile: mutation/insert.yaml
   TestNum: 2
   Original: tbl2 = r.db('test').table('test2')
   Java: Table tbl2 = (Table) r.db("test").table("test2");
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 3
-  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  Original: tbl.insert({'id':0,'a':0})
+  Java: tbl.insert(new MapObject().with("id", 0).with("a", 0))
+  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
   Obtained: tbl.insert(new MapObject().with("id", 0).with("a", 0))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 4
-  Original: 1
+  Original: tbl.count()
+  Java: tbl.count()
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: tbl.count()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 5
-  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  Original: tbl.insert({'id':1, 'a':1}, durability='hard')
+  Java: tbl.insert(new MapObject().with("id", 1).with("a", 1)).optArg("durability", "hard")
+  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
   Obtained: tbl.insert(new MapObject().with("id", 1).with("a", 1)).optArg("durability", "hard")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 6
-  Original: 2
+  Original: tbl.count()
+  Java: tbl.count()
+  ExpectedOriginal: 2
   ExpectedType: Integer
   ExpectedJava: 2
   Obtained: tbl.count()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 7
-  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  Original: tbl.insert({'id':2, 'a':2}, durability='soft')
+  Java: tbl.insert(new MapObject().with("id", 2).with("a", 2)).optArg("durability", "soft")
+  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
   Obtained: tbl.insert(new MapObject().with("id", 2).with("a", 2)).optArg("durability", "soft")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 8
-  Original: 3
+  Original: tbl.count()
+  Java: tbl.count()
+  ExpectedOriginal: 3
   ExpectedType: Integer
   ExpectedJava: 3
   Obtained: tbl.count()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 9
-  Original: err('ReqlQueryLogicError', 'Durability option `wrong` unrecognized (options are "hard" and "soft").', [0])
+  Original: tbl.insert({'id':3, 'a':3}, durability='wrong')
+  Java: tbl.insert(new MapObject().with("id", 3).with("a", 3)).optArg("durability", "wrong")
+  ExpectedOriginal: err('ReqlQueryLogicError', 'Durability option `wrong` unrecognized (options are "hard" and "soft").', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Durability option `wrong` unrecognized (options are "hard" and "soft").", Arrays.asList(0))
   Obtained: tbl.insert(new MapObject().with("id", 3).with("a", 3)).optArg("durability", "wrong")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 10
-  Original: 3
+  Original: tbl.count()
+  Java: tbl.count()
+  ExpectedOriginal: 3
   ExpectedType: Integer
   ExpectedJava: 3
   Obtained: tbl.count()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 11
-  Original: ({'deleted':1,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})
+  Original: tbl.get(2).delete()
+  Java: tbl.get(2).delete()
+  ExpectedOriginal: ({'deleted':1,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 1).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 0.0)
   Obtained: tbl.get(2).delete()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 12
-  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':2})
+  Original: tbl.insert([{'id':2,'a':2}, {'id':3,'a':3}])
+  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 2).with("a", 2), new MapObject().with("id", 3).with("a", 3)))
+  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':2})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 2)
   Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 2).with("a", 2), new MapObject().with("id", 3).with("a", 3)))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 13
-  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':4})
+  Original: tbl2.insert(tbl)
+  Java: tbl2.insert(tbl)
+  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':4})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 4)
   Obtained: tbl2.insert(tbl)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 14
-  Original: ({'first_error':"Duplicate primary key `id`:\n{\n\t\"a\":\t2,\n\t\"id\":\t2\n}\n{\n\t\"b\":\t20,\n\t\"id\":\t2\n}",'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':1,'skipped':0.0,'inserted':0.0})
+  Original: tbl.insert({'id':2,'b':20})
+  Java: tbl.insert(new MapObject().with("id", 2).with("b", 20))
+  ExpectedOriginal: ({'first_error':"Duplicate primary key `id`:\n{\n\t\"a\":\t2,\n\t\"id\":\t2\n}\n{\n\t\"b\":\t20,\n\t\"id\":\t2\n}",'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':1,'skipped':0.0,'inserted':0.0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("first_error", "Duplicate primary key `id`:\n{\n\t"a":\t2,\n\t"id":\t2\n}\n{\n\t"b":\t20,\n\t"id":\t2\n}").with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 1).with("skipped", 0.0).with("inserted", 0.0)
   Obtained: tbl.insert(new MapObject().with("id", 2).with("b", 20))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 15
-  Original: ({'first_error':"Duplicate primary key `id`:\n{\n\t\"a\":\t2,\n\t\"id\":\t2\n}\n{\n\t\"b\":\t20,\n\t\"id\":\t2\n}",'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':1,'skipped':0.0,'inserted':0.0})
+  Original: tbl.insert({'id':2,'b':20}, conflict='error')
+  Java: tbl.insert(new MapObject().with("id", 2).with("b", 20)).optArg("conflict", "error")
+  ExpectedOriginal: ({'first_error':"Duplicate primary key `id`:\n{\n\t\"a\":\t2,\n\t\"id\":\t2\n}\n{\n\t\"b\":\t20,\n\t\"id\":\t2\n}",'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':1,'skipped':0.0,'inserted':0.0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("first_error", "Duplicate primary key `id`:\n{\n\t"a":\t2,\n\t"id":\t2\n}\n{\n\t"b":\t20,\n\t"id":\t2\n}").with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 1).with("skipped", 0.0).with("inserted", 0.0)
   Obtained: tbl.insert(new MapObject().with("id", 2).with("b", 20)).optArg("conflict", "error")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 16
-  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  Original: tbl.insert({'id':15,'b':20}, conflict='error')
+  Java: tbl.insert(new MapObject().with("id", 15).with("b", 20)).optArg("conflict", "error")
+  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
   Obtained: tbl.insert(new MapObject().with("id", 15).with("b", 20)).optArg("conflict", "error")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 17
-  Original: ({'id':15,'b':20})
+  Original: tbl.get(15)
+  Java: tbl.get(15)
+  ExpectedOriginal: ({'id':15,'b':20})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("id", 15).with("b", 20)
   Obtained: tbl.get(15)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 18
-  Original: ({'deleted':0.0,'replaced':1,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})
+  Original: tbl.insert({'id':2,'b':20}, conflict='replace')
+  Java: tbl.insert(new MapObject().with("id", 2).with("b", 20)).optArg("conflict", "replace")
+  ExpectedOriginal: ({'deleted':0.0,'replaced':1,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 1).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 0.0)
   Obtained: tbl.insert(new MapObject().with("id", 2).with("b", 20)).optArg("conflict", "replace")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 19
-  Original: ({'id':2,'b':20})
+  Original: tbl.get(2)
+  Java: tbl.get(2)
+  ExpectedOriginal: ({'id':2,'b':20})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("id", 2).with("b", 20)
   Obtained: tbl.get(2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 20
-  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  Original: tbl.insert({'id':20,'b':20}, conflict='replace')
+  Java: tbl.insert(new MapObject().with("id", 20).with("b", 20)).optArg("conflict", "replace")
+  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
   Obtained: tbl.insert(new MapObject().with("id", 20).with("b", 20)).optArg("conflict", "replace")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 21
-  Original: ({'id':20,'b':20})
+  Original: tbl.get(20)
+  Java: tbl.get(20)
+  ExpectedOriginal: ({'id':20,'b':20})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("id", 20).with("b", 20)
   Obtained: tbl.get(20)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 22
-  Original: ({'deleted':0.0,'replaced':1,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})
+  Original: tbl.insert({'id':2,'c':30}, conflict='update')
+  Java: tbl.insert(new MapObject().with("id", 2).with("c", 30)).optArg("conflict", "update")
+  ExpectedOriginal: ({'deleted':0.0,'replaced':1,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 1).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 0.0)
   Obtained: tbl.insert(new MapObject().with("id", 2).with("c", 30)).optArg("conflict", "update")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 23
-  Original: ({'id':2, 'b':20, 'c':30})
+  Original: tbl.get(2)
+  Java: tbl.get(2)
+  ExpectedOriginal: ({'id':2, 'b':20, 'c':30})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("id", 2).with("b", 20).with("c", 30)
   Obtained: tbl.get(2)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 24
-  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  Original: tbl.insert({'id':30,'b':20}, conflict='update')
+  Java: tbl.insert(new MapObject().with("id", 30).with("b", 20)).optArg("conflict", "update")
+  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
   Obtained: tbl.insert(new MapObject().with("id", 30).with("b", 20)).optArg("conflict", "update")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 25
-  Original: ({'id':30,'b':20})
+  Original: tbl.get(30)
+  Java: tbl.get(30)
+  ExpectedOriginal: ({'id':30,'b':20})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("id", 30).with("b", 20)
   Obtained: tbl.get(30)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 26
-  Original: err('ReqlQueryLogicError', 'Conflict option `wrong` unrecognized (options are "error", "replace" and "update").', [0])
+  Original: tbl.insert({'id':3, 'a':3}, conflict='wrong')
+  Java: tbl.insert(new MapObject().with("id", 3).with("a", 3)).optArg("conflict", "wrong")
+  ExpectedOriginal: err('ReqlQueryLogicError', 'Conflict option `wrong` unrecognized (options are "error", "replace" and "update").', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Conflict option `wrong` unrecognized (options are "error", "replace" and "update").", Arrays.asList(0))
   Obtained: tbl.insert(new MapObject().with("id", 3).with("a", 3)).optArg("conflict", "wrong")
+  RunOpts: []
 - TestType: JavaDef
   TestFile: mutation/insert.yaml
   TestNum: 27
   Original: tblpkey = r.db('test').table('testpkey')
   Java: Table tblpkey = (Table) r.db("test").table("testpkey");
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 27
-  Original: partial({'tables_created':1})
+  Original: r.db('test').table_create('testpkey', primary_key='foo')
+  Java: r.db("test").tableCreate("testpkey").optArg("primary_key", "foo")
+  ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_created", 1))
   Obtained: r.db("test").tableCreate("testpkey").optArg("primary_key", "foo")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 28
-  Original: ({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(1,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  Original: tblpkey.insert({})
+  Java: tblpkey.insert(new MapObject())
+  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(1,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("generated_keys", arrlen(1, uuid())).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
   Obtained: tblpkey.insert(new MapObject())
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 29
-  Original: ([{'foo':uuid()}])
+  Original: tblpkey
+  Java: tblpkey
+  ExpectedOriginal: ([{'foo':uuid()}])
   ExpectedType: List
   ExpectedJava: Arrays.asList(new MapObject().with("foo", uuid()))
   Obtained: tblpkey
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 30
-  Original: ({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(1,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  Original: tblpkey.insert({'b':20}, conflict='replace')
+  Java: tblpkey.insert(new MapObject().with("b", 20)).optArg("conflict", "replace")
+  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(1,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("generated_keys", arrlen(1, uuid())).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
   Obtained: tblpkey.insert(new MapObject().with("b", 20)).optArg("conflict", "replace")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 31
-  Original: ({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(1,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
+  Original: tblpkey.insert({'b':20}, conflict='update')
+  Java: tblpkey.insert(new MapObject().with("b", 20)).optArg("conflict", "update")
+  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(1,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("generated_keys", arrlen(1, uuid())).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
   Obtained: tblpkey.insert(new MapObject().with("b", 20)).optArg("conflict", "update")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 32
-  Original: partial({'tables_dropped':1})
+  Original: r.db('test').table_drop('testpkey')
+  Java: r.db("test").tableDrop("testpkey")
+  ExpectedOriginal: partial({'tables_dropped':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_dropped", 1))
   Obtained: r.db("test").tableDrop("testpkey")
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 33
-  Original: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':7})
+  Original: 'tbl.for_each(lambda  row:          tbl2.insert(row.merge({''id'':row[''id'']  +  100 }))   )'
+  Java: tbl.forEach(row -> tbl2.insert(row.merge(new MapObject().with("id", r.add(row.bracket("id"), 100)))))
+  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':7})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 7)
   Obtained: tbl.forEach(row -> tbl2.insert(row.merge(new MapObject().with("id", r.add(row.bracket("id"), 100)))))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 34
-  Original: partial({'errors':1,'first_error':'`r.minval` and `r.maxval` cannot be written to disk.'})
+  Original: tbl.insert({'value':r.minval})
+  Java: tbl.insert(new MapObject().with("value", r.minval()))
+  ExpectedOriginal: partial({'errors':1,'first_error':'`r.minval` and `r.maxval` cannot be written to disk.'})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 1).with("first_error", "`r.minval` and `r.maxval` cannot be written to disk."))
   Obtained: tbl.insert(new MapObject().with("value", r.minval()))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 35
-  Original: partial({'errors':1,'first_error':'`r.minval` and `r.maxval` cannot be written to disk.'})
+  Original: tbl.insert({'value':r.maxval})
+  Java: tbl.insert(new MapObject().with("value", r.maxval()))
+  ExpectedOriginal: partial({'errors':1,'first_error':'`r.minval` and `r.maxval` cannot be written to disk.'})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 1).with("first_error", "`r.minval` and `r.maxval` cannot be written to disk."))
   Obtained: tbl.insert(new MapObject().with("value", r.maxval()))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 36
-  Original: err('ReqlQueryLogicError','Cannot convert `r.minval` to JSON.')
+  Original: r.minval
+  Java: r.minval()
+  ExpectedOriginal: err('ReqlQueryLogicError','Cannot convert `r.minval` to JSON.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot convert `r.minval` to JSON.")
   Obtained: r.minval()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 37
-  Original: err('ReqlQueryLogicError','Cannot convert `r.maxval` to JSON.')
+  Original: r.maxval
+  Java: r.maxval()
+  ExpectedOriginal: err('ReqlQueryLogicError','Cannot convert `r.maxval` to JSON.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot convert `r.maxval` to JSON.")
   Obtained: r.maxval()
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/insert.yaml
   TestNum: 38
-  Original: partial({'tables_dropped':1})
+  Original: r.db('test').table_drop('test2')
+  Java: r.db("test").tableDrop("test2")
+  ExpectedOriginal: partial({'tables_dropped':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_dropped", 1))
   Obtained: r.db("test").tableDrop("test2")
+  RunOpts: []

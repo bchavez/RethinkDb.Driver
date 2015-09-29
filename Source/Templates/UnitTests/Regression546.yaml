@@ -3,21 +3,30 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/546.yaml
   TestNum: 1
-  Original: 1
+  Original: r.expr(1).do(lambda a:a)
+  Java: r.expr(1).do_(a -> a)
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.expr(1).do_(a -> a)
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/546.yaml
   TestNum: 2
-  Original: 2
+  Original: r.expr(1).do(lambda a:r.expr(2).do(lambda b:b))
+  Java: r.expr(1).do_(a -> r.expr(2).do_(b -> b))
+  ExpectedOriginal: 2
   ExpectedType: Integer
   ExpectedJava: 2
   Obtained: r.expr(1).do_(a -> r.expr(2).do_(b -> b))
+  RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/546.yaml
   TestNum: 3
-  Original: 1
+  Original: r.expr(1).do(lambda a:r.expr(2).do(lambda b:a))
+  Java: r.expr(1).do_(a -> r.expr(2).do_(b -> a))
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.expr(1).do_(a -> r.expr(2).do_(b -> a))
+  RunOpts: []

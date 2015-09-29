@@ -5,7 +5,10 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: regression/1179.yaml
   TestNum: 1
-  Original: 1
+  Original: r.expr([1])[r.expr(0)]
+  Java: r.expr(Arrays.asList(1)).bracket(r.expr(0))
+  ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
   Obtained: r.expr(Arrays.asList(1)).bracket(r.expr(0))
+  RunOpts: []

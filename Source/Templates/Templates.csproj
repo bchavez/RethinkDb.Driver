@@ -75,6 +75,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="CodeGen\TestTemplate.generated.cs">
+      <DependentUpon>TestTemplate.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="CodeGen\TopLevelTemplate.generated.cs">
       <DependentUpon>TopLevelTemplate.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -125,6 +130,7 @@
     <Compile Include="CodeGen\Util\CSharpStyle.cs" />
     <Compile Include="CodeGen\Util\Signature.cs" />
     <Compile Include="CSharpTermInfoMutator.cs" />
+    <Compile Include="CSharpTestMutator.cs" />
     <Compile Include="GeneratorForAst.cs" />
     <Compile Include="GeneratorForUnitTests.cs" />
     <Compile Include="Metadata\MetaDb.cs" />
@@ -135,8 +141,8 @@
       <DependentUpon>EnumTemplate.cshtml</DependentUpon>
     </Compile>
     <Compile Include="TemplateTest.cs" />
-    <Compile Include="UnitTests\UnitTestDb.cs" />
     <Compile Include="Utils\ExtensionsForTesting.cs" />
+    <Compile Include="YamlTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CodeGen\EnumStringTemplate.cshtml">
@@ -152,6 +158,10 @@
       <LastGenOutput>Binary.generated.cs</LastGenOutput>
     </None>
     <None Include="CodeGen\Test.yaml" />
+    <None Include="CodeGen\TestTemplate.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>TestTemplate.generated.cs</LastGenOutput>
+    </None>
     <None Include="CodeGen\TopLevelTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>TopLevelTemplate.generated.cs</LastGenOutput>

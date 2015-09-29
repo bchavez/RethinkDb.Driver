@@ -1,34 +1,37 @@
-modulename: "${module_name}"
-table_var_names:
+<%!
+import base64
+%>
+ModuleName: "${module_name}"
+TableVarNames:
 %for var_name in table_var_names:
     - ${var_name}
 %endfor
 
-defs_and_test:
+DefsAndTests:
 
         <%rendered_something = False %>
         %for item in defs_and_test:
         %if type(item) == JavaDef:
         <%rendered_something = True %>
 
-   - type_item: JavaDef
-     test_file: ${item.testfile}
-     test_num: ${item.test_num}
-     original: ${item.line.original}
-     java: ${item.line.java}
+   - TestType: JavaDef
+     TestFile: ${item.testfile}
+     TestNum: ${item.test_num}
+     Original: ${base64.b64encode(bytes(item.line.original,"utf-8"))}
+     Java: ${item.line.java}
         %elif type(item) == JavaQuery:
-   - type_item: JavaQuery
-     test_file: ${item.testfile}
-     test_num: ${item.test_num}
-     original: ${item.expected_line.original}
-     expected_type: ${item.expected_type}
-     expected_java: ${item.expected_line.java}
-     obtained: ${item.line.java}
+   - TestType: JavaQuery
+     TestFile: ${item.testfile}
+     TestNum: ${item.test_num}
+     Original: ${base64.b64encode(bytes(item.expected_line.original, "utf-8"))}
+     ExpectedType: ${item.expected_type}
+     ExpectedJava: ${base64.b64encode(bytes(item.expected_line.java,"utf-8"))}
+     Obtained: ${item.line.java}
             %if item.runopts:   
-     runopts:
+     RunOpts:
               %for key, val in item.runopts.items():
-                - key: ${key}
-                  val: ${val}
+                - Key: ${key}
+                  Val: ${val}
               %endfor
             %else:
             %endif

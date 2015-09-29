@@ -1,0 +1,10 @@
+
+ModuleName: "SindexTruncation"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+render_something: false
+

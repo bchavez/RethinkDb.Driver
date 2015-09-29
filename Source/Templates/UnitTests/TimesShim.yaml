@@ -1,0 +1,43 @@
+
+ModuleName: "TimesShim"
+TableVarNames:
+
+DefsAndTests:
+
+        
+        
+
+   - TestType: JavaDef
+     TestFile: times/shim.yaml
+     TestNum: 1
+     Original: b'dCA9IDEzNzUxNDcyOTYuNjg='
+     Java: Double t = (Double) 1375147296.68;
+   - TestType: JavaQuery
+     TestFile: times/shim.yaml
+     TestNum: 2
+     Original: b'KCIyMDEzLTA3LTI5VDE4OjIxOjM2LjY4MC0wNzowMCIp'
+     ExpectedType: String
+     ExpectedJava: b'IjIwMTMtMDctMjlUMTg6MjE6MzYuNjgwLTA3OjAwIg=='
+     Obtained: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).toIso8601()
+   - TestType: JavaQuery
+     TestFile: times/shim.yaml
+     TestNum: 3
+     Original: b'KCIyMDEzLTA3LTMwVDAxOjIxOjM2LjY4MCswMDowMCIp'
+     ExpectedType: String
+     ExpectedJava: b'IjIwMTMtMDctMzBUMDE6MjE6MzYuNjgwKzAwOjAwIg=='
+     Obtained: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).toIso8601()
+   - TestType: JavaQuery
+     TestFile: times/shim.yaml
+     TestNum: 4
+     Original: b'KDEzNzUxNDcyOTYuNjgp'
+     ExpectedType: Double
+     ExpectedJava: b'MTM3NTE0NzI5Ni42OA=='
+     Obtained: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/shim.yaml
+     TestNum: 5
+     Original: b'KDEzNzUxNDcyOTYuNjgp'
+     ExpectedType: Double
+     ExpectedJava: b'MTM3NTE0NzI5Ni42OA=='
+     Obtained: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).toEpochTime()
+

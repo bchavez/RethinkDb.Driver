@@ -1,0 +1,17 @@
+
+ModuleName: "Regression1179"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/1179.yaml
+     TestNum: 1
+     Original: b'MQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MQ=='
+     Obtained: r.expr(Arrays.asList(1)).bracket(r.expr(0))
+render_something: false
+

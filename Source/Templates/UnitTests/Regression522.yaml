@@ -1,0 +1,24 @@
+
+ModuleName: "Regression522"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/522.yaml
+     TestNum: 1
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), new MapObject().with("id", 2)))
+   - TestType: JavaQuery
+     TestFile: regression/522.yaml
+     TestNum: 2
+     Original: b'W3snaWQnOiAxfSwgeydpZCc6IDJ9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAxKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMikp'
+     Obtained: tbl.orderBy("id").skip(1)
+render_something: false
+

@@ -1,0 +1,30 @@
+
+ModuleName: "Regression46"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/46.yaml
+     TestNum: 1
+     Original: b'cGFydGlhbCh7J3RhYmxlc19jcmVhdGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2NyZWF0ZWQiLCAxKSk='
+     Obtained: r.tableCreate("46")
+   - TestType: JavaQuery
+     TestFile: regression/46.yaml
+     TestNum: 2
+     Original: b'KFsnNDYnXSk='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgiNDYiKQ=='
+     Obtained: r.tableList()
+   - TestType: JavaQuery
+     TestFile: regression/46.yaml
+     TestNum: 3
+     Original: b'cGFydGlhbCh7J3RhYmxlc19kcm9wcGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2Ryb3BwZWQiLCAxKSk='
+     Obtained: r.tableDrop("46")
+render_something: false
+

@@ -1,0 +1,10 @@
+
+ModuleName: "Regression718"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+render_something: false
+

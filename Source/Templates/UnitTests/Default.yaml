@@ -1,0 +1,498 @@
+
+ModuleName: "Default"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 1
+     Original: b'MQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MQ=='
+     Obtained: r.expr(1).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 2
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.expr(null).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 3
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.expr(new MapObject()).bracket("b").default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 4
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBwZXJmb3JtIGJyYWNrZXQgb24gYSBub24tb2JqZWN0IG5vbi1zZXF1ZW5jZSBgXCJhXCJgLiIsIFtdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBwZXJmb3JtIGJyYWNrZXQgb24gYSBub24tb2JqZWN0IG5vbi1zZXF1ZW5jZSBgImEiYC4iLCBBcnJheXMuYXNMaXN0KCkp'
+     Obtained: r.expr(r.expr("a").bracket("b")).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 5
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.expr(Arrays.asList()).reduce((a, b) -> r.add(a, b)).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 6
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.expr(Arrays.asList()).union(Arrays.asList()).reduce((a, b) -> r.add(a, b)).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 7
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb252ZXJ0IFNUUklORyB0byBTRVFVRU5DRSIsIFtdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb252ZXJ0IFNUUklORyB0byBTRVFVRU5DRSIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: r.expr("a").reduce((a, b) -> r.add(a, b)).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 8
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.add(r.expr(null), 5).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 9
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.add(5, r.expr(null)).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 10
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.sub(5, r.expr(null)).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 11
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.sub(r.expr(null), 5).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 12
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgU1RSSU5HIGJ1dCBmb3VuZCBOVU1CRVIuIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgU1RSSU5HIGJ1dCBmb3VuZCBOVU1CRVIuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.add(r.expr("a"), 5).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 13
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.add(5, r.expr("a")).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 14
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.sub(r.expr("a"), 5).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 15
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.sub(5, r.expr("a")).default_(2)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 16
+     Original: b'MQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MQ=='
+     Obtained: r.expr(1).default_(r.error())
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 17
+     Original: b'KG51bGwp'
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.expr(null).default_(r.error())
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 18
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiTm8gYXR0cmlidXRlIGBiYCBpbiBvYmplY3Q6IiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiTm8gYXR0cmlidXRlIGBiYCBpbiBvYmplY3Q6IiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.expr(new MapObject()).bracket("b").default_(r.error())
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 19
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiQ2Fubm90IHJlZHVjZSBvdmVyIGFuIGVtcHR5IHN0cmVhbS4iLCBbXSk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiQ2Fubm90IHJlZHVjZSBvdmVyIGFuIGVtcHR5IHN0cmVhbS4iLCBBcnJheXMuYXNMaXN0KCkp'
+     Obtained: r.expr(Arrays.asList()).reduce((a, b) -> r.add(a, b)).default_(r.error)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 20
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiQ2Fubm90IHJlZHVjZSBvdmVyIGFuIGVtcHR5IHN0cmVhbS4iLCBbXSk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiQ2Fubm90IHJlZHVjZSBvdmVyIGFuIGVtcHR5IHN0cmVhbS4iLCBBcnJheXMuYXNMaXN0KCkp'
+     Obtained: r.expr(Arrays.asList()).union(Arrays.asList()).reduce((a, b) -> r.add(a, b)).default_(r.error)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 21
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.add(r.expr(null), 5).default_(r.error)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 22
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.add(5, r.expr(null)).default_(r.error)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 23
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.sub(5, r.expr(null)).default_(r.error)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 24
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.sub(r.expr(null), 5).default_(r.error)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 25
+     Original: b'MQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MQ=='
+     Obtained: r.expr(1).default_(e -> e)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 26
+     Original: b'KG51bGwp'
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.expr(null).default_(e -> e)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 27
+     Original: b'KCJObyBhdHRyaWJ1dGUgYGJgIGluIG9iamVjdDpcbnt9Iik='
+     ExpectedType: String
+     ExpectedJava: b'Ik5vIGF0dHJpYnV0ZSBgYmAgaW4gb2JqZWN0Olxue30i'
+     Obtained: r.expr(new MapObject()).bracket("b").default_(e -> e)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 28
+     Original: b'KCJDYW5ub3QgcmVkdWNlIG92ZXIgYW4gZW1wdHkgc3RyZWFtLiIp'
+     ExpectedType: String
+     ExpectedJava: b'IkNhbm5vdCByZWR1Y2Ugb3ZlciBhbiBlbXB0eSBzdHJlYW0uIg=='
+     Obtained: r.expr(Arrays.asList()).reduce((a, b) -> r.add(a, b)).default_(e -> e)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 29
+     Original: b'KCJDYW5ub3QgcmVkdWNlIG92ZXIgYW4gZW1wdHkgc3RyZWFtLiIp'
+     ExpectedType: String
+     ExpectedJava: b'IkNhbm5vdCByZWR1Y2Ugb3ZlciBhbiBlbXB0eSBzdHJlYW0uIg=='
+     Obtained: r.expr(Arrays.asList()).union(Arrays.asList()).reduce((a, b) -> r.add(a, b)).default_(e -> e)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 30
+     Original: b'KCJFeHBlY3RlZCB0eXBlIE5VTUJFUiBidXQgZm91bmQgTlVMTC4iKQ=='
+     ExpectedType: String
+     ExpectedJava: b'IkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBOVUxMLiI='
+     Obtained: r.add(r.expr(null), 5).default_(e -> e)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 31
+     Original: b'KCJFeHBlY3RlZCB0eXBlIE5VTUJFUiBidXQgZm91bmQgTlVMTC4iKQ=='
+     ExpectedType: String
+     ExpectedJava: b'IkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBOVUxMLiI='
+     Obtained: r.add(5, r.expr(null)).default_(e -> e)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 32
+     Original: b'KCJFeHBlY3RlZCB0eXBlIE5VTUJFUiBidXQgZm91bmQgTlVMTC4iKQ=='
+     ExpectedType: String
+     ExpectedJava: b'IkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBOVUxMLiI='
+     Obtained: r.sub(5, r.expr(null)).default_(e -> e)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 33
+     Original: b'KCJFeHBlY3RlZCB0eXBlIE5VTUJFUiBidXQgZm91bmQgTlVMTC4iKQ=='
+     ExpectedType: String
+     ExpectedJava: b'IkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBOVUxMLiI='
+     Obtained: r.sub(r.expr(null), 5).default_(e -> e)
+        
+
+   - TestType: JavaDef
+     TestFile: default.yaml
+     TestNum: 34
+     Original: b'YXJyID0gci5leHByKFt7J2EnOjF9LHsnYSc6bnVsbH0se31dKS5vcmRlcl9ieSgnYScp'
+     Java: OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new MapObject().with("a", null), new MapObject())).orderBy("a");
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 35
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: arr.filter(x -> x.bracket("a").eq(1))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 36
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: arr.filter(x -> x.bracket("a").eq(1)).optArg("default", false)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 37
+     Original: b'W3t9LCB7J2EnOiAxfV0='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgMSkp'
+     Obtained: arr.filter(x -> x.bracket("a").eq(1)).optArg("default", true)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 38
+     Original: b'W3t9LCB7J2EnOiAxfV0='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgMSkp'
+     Obtained: arr.filter(x -> x.bracket("a").eq(1)).optArg("default", r.js("true"))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 39
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: arr.filter(x -> x.bracket("a").eq(1)).optArg("default", r.js("false"))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 40
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiTm8gYXR0cmlidXRlIGBhYCBpbiBvYmplY3Q6IiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiTm8gYXR0cmlidXRlIGBhYCBpbiBvYmplY3Q6IiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: arr.filter(x -> x.bracket("a").eq(1)).optArg("default", r.error())
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 41
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: r.expr(false).do_(d -> arr.filter(x -> x.bracket("a").eq(1)).optArg("default", d))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 42
+     Original: b'W3t9LCB7J2EnOiAxfV0='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgMSkp'
+     Obtained: r.expr(true).do_(d -> arr.filter(x -> x.bracket("a").eq(1)).optArg("default", d)).orderBy("a")
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 43
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: arr.filter(x -> x.bracket("a").default_(0).eq(1))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 44
+     Original: b'KFt7fSwgeydhJzpudWxsfSwgeydhJzoxfV0p'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgbnVsbCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgMSkp'
+     Obtained: arr.filter(x -> x.bracket("a").default_(1).eq(1)).orderBy("a")
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 45
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: arr.filter(x -> x.bracket("a").default_(r.error()).eq(1))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 46
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: r.expr(0).do_(i -> arr.filter(x -> x.bracket("a").default_(i).eq(1)))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 47
+     Original: b'KFt7fSx7J2EnOm51bGx9LHsnYSc6MX1dKQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgbnVsbCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgMSkp'
+     Obtained: r.expr(1).do_(i -> arr.filter(x -> x.bracket("a").default_(i).eq(1))).orderBy("a")
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 48
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: arr.filter(x -> r.or(x.bracket("a").eq(1), x.bracket("a").bracket("b").eq(2)))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 49
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: arr.filter(x -> r.or(x.bracket("a").eq(1), x.bracket("a").bracket("b").eq(2))).optArg("default", false)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 50
+     Original: b'KFt7fSwgeydhJzpudWxsfSwgeydhJzoxfV0p'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgbnVsbCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgMSkp'
+     Obtained: arr.filter(x -> r.or(x.bracket("a").eq(1), x.bracket("a").bracket("b").eq(2))).optArg("default", true).orderBy("a")
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 51
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiTm8gYXR0cmlidXRlIGBhYCBpbiBvYmplY3Q6IiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiTm8gYXR0cmlidXRlIGBhYCBpbiBvYmplY3Q6IiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: arr.filter(x -> r.or(x.bracket("a").eq(1), x.bracket("a").bracket("b").eq(2))).optArg("default", r.error())
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 52
+     Original: b'cGFydGlhbCh7J3RhYmxlc19jcmVhdGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2NyZWF0ZWQiLCAxKSk='
+     Obtained: r.tableCreate("default_test")
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 53
+     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCdnZW5lcmF0ZWRfa2V5cyc6YXJybGVuKDMsdXVpZCgpKSwndW5jaGFuZ2VkJzowLjAsJ2Vycm9ycyc6MC4wLCdza2lwcGVkJzowLjAsJ2luc2VydGVkJzozfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJnZW5lcmF0ZWRfa2V5cyIsIGFycmxlbigzLCB1dWlkKCkpKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAzKQ=='
+     Obtained: r.table("default_test").insert(arr)
+        
+
+   - TestType: JavaDef
+     TestFile: default.yaml
+     TestNum: 54
+     Original: b'dGJsID0gci50YWJsZSgnZGVmYXVsdF90ZXN0Jykub3JkZXJfYnkoJ2EnKS5wbHVjaygnYScp'
+     Java: Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 55
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: tbl.filter(x -> x.bracket("a").eq(1))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 56
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: tbl.filter(x -> x.bracket("a").eq(1)).optArg("default", false)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 57
+     Original: b'W3t9LCB7J2EnOiAxfV0='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgMSkp'
+     Obtained: tbl.filter(x -> x.bracket("a").eq(1)).optArg("default", true)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 58
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiTm8gYXR0cmlidXRlIGBhYCBpbiBvYmplY3Q6IiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiTm8gYXR0cmlidXRlIGBhYCBpbiBvYmplY3Q6IiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: tbl.filter(x -> x.bracket("a").eq(1)).optArg("default", r.error())
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 59
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: r.expr(false).do_(d -> tbl.filter(x -> x.bracket("a").eq(1)).optArg("default", d))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 60
+     Original: b'W3t9LCB7J2EnOiAxfV0='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgMSkp'
+     Obtained: r.expr(true).do_(d -> tbl.filter(x -> x.bracket("a").eq(1)).optArg("default", d)).orderBy("a")
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 61
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: tbl.filter(x -> x.bracket("a").default_(0).eq(1))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 62
+     Original: b'KFt7fSwgeydhJzpudWxsfSwgeydhJzoxfV0p'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgbnVsbCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgMSkp'
+     Obtained: tbl.filter(x -> x.bracket("a").default_(1).eq(1)).orderBy("a")
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 63
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: tbl.filter(x -> x.bracket("a").default_(r.error()).eq(1))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 64
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: r.expr(0).do_(i -> tbl.filter(x -> x.bracket("a").default_(i).eq(1)))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 65
+     Original: b'KFt7fSx7J2EnOm51bGx9LHsnYSc6MX1dKQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgbnVsbCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgMSkp'
+     Obtained: r.expr(1).do_(i -> tbl.filter(x -> x.bracket("a").default_(i).eq(1))).orderBy("a")
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 66
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: tbl.filter(x -> r.or(x.bracket("a").eq(1), x.bracket("a").bracket("b").eq(2)))
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 67
+     Original: b'W3snYSc6IDF9XQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgiYSIsIDEpKQ=='
+     Obtained: tbl.filter(x -> r.or(x.bracket("a").eq(1), x.bracket("a").bracket("b").eq(2))).optArg("default", false)
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 68
+     Original: b'KFt7fSwgeydhJzpudWxsfSwgeydhJzoxfV0p'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgbnVsbCksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJhIiwgMSkp'
+     Obtained: tbl.filter(x -> r.or(x.bracket("a").eq(1), x.bracket("a").bracket("b").eq(2))).optArg("default", true).orderBy("a")
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 69
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiTm8gYXR0cmlidXRlIGBhYCBpbiBvYmplY3Q6IiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiTm8gYXR0cmlidXRlIGBhYCBpbiBvYmplY3Q6IiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: tbl.filter(x -> r.or(x.bracket("a").eq(1), x.bracket("a").bracket("b").eq(2))).optArg("default", r.error())
+   - TestType: JavaQuery
+     TestFile: default.yaml
+     TestNum: 70
+     Original: b'cGFydGlhbCh7J3RhYmxlc19kcm9wcGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2Ryb3BwZWQiLCAxKSk='
+     Obtained: r.tableDrop("default_test")
+

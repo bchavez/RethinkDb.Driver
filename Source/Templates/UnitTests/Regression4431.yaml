@@ -1,0 +1,26 @@
+
+ModuleName: "Regression4431"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/4431.yaml
+     TestNum: 1
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RoZSBgdXNlX291dGRhdGVkYCBvcHRhcmcgaXMgbm8gbG9uZ2VyIHN1cHBvcnRlZC4gIFVzZSB0aGUgYHJlYWRfbW9kZWAgb3B0YXJnIGluc3RlYWQuJyk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlRoZSBgdXNlX291dGRhdGVkYCBvcHRhcmcgaXMgbm8gbG9uZ2VyIHN1cHBvcnRlZC4gIFVzZSB0aGUgYHJlYWRfbW9kZWAgb3B0YXJnIGluc3RlYWQuIik='
+     Obtained: r.table("test")
+     RunOpts:
+                - Key: use_outdated
+                  Val: true
+   - TestType: JavaQuery
+     TestFile: regression/4431.yaml
+     TestNum: 2
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RoZSBgdXNlX291dGRhdGVkYCBvcHRhcmcgaXMgbm8gbG9uZ2VyIHN1cHBvcnRlZC4gIFVzZSB0aGUgYHJlYWRfbW9kZWAgb3B0YXJnIGluc3RlYWQuJyk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlRoZSBgdXNlX291dGRhdGVkYCBvcHRhcmcgaXMgbm8gbG9uZ2VyIHN1cHBvcnRlZC4gIFVzZSB0aGUgYHJlYWRfbW9kZWAgb3B0YXJnIGluc3RlYWQuIik='
+     Obtained: r.table("test").optArg("use_outdated", true)
+render_something: false
+

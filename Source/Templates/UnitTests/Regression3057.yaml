@@ -1,0 +1,37 @@
+
+ModuleName: "Regression3057"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/3057.yaml
+     TestNum: 1
+     Original: b'KGZhbHNlKQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(0, 10), Arrays.asList(10, 10), Arrays.asList(10, 0)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(0, 10), Arrays.asList(10, 10), Arrays.asList(10, 0))).intersects(r.point(0, 0))
+   - TestType: JavaQuery
+     TestFile: regression/3057.yaml
+     TestNum: 2
+     Original: b'KGZhbHNlKQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(0, 10), Arrays.asList(10, 10), Arrays.asList(10, 0)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(0, 10), Arrays.asList(10, 10), Arrays.asList(10, 0))).intersects(r.polygon(Arrays.asList(0, 0), Arrays.asList(0, 10), Arrays.asList(10, 10), Arrays.asList(10, 0)))
+   - TestType: JavaQuery
+     TestFile: regression/3057.yaml
+     TestNum: 3
+     Original: b'KGZhbHNlKQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(0, 10), Arrays.asList(10, 10), Arrays.asList(10, 0)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(0, 10), Arrays.asList(10, 10), Arrays.asList(10, 0))).intersects(r.line(Arrays.asList(0, 0), Arrays.asList(0, 10)))
+   - TestType: JavaQuery
+     TestFile: regression/3057.yaml
+     TestNum: 4
+     Original: b'KGZhbHNlKQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(0, 10), Arrays.asList(10, 10), Arrays.asList(10, 0)).intersects(r.polygon(Arrays.asList(0, 0), Arrays.asList(0, 10), Arrays.asList(10, 10), Arrays.asList(10, 0)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(0, 10), Arrays.asList(10, 10), Arrays.asList(10, 0))))
+render_something: false
+

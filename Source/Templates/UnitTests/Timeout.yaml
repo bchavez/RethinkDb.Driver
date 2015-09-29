@@ -1,0 +1,65 @@
+
+ModuleName: "Timeout"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: timeout.yaml
+     TestNum: 1
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkphdmFTY3JpcHQgcXVlcnkgYHdoaWxlKHRydWUpIHt9YCB0aW1lZCBvdXQgYWZ0ZXIgNS4wMDAgc2Vjb25kcy4iLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkphdmFTY3JpcHQgcXVlcnkgYHdoaWxlKHRydWUpIHt9YCB0aW1lZCBvdXQgYWZ0ZXIgNS4wMDAgc2Vjb25kcy4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.js("while(true) {}")
+   - TestType: JavaQuery
+     TestFile: timeout.yaml
+     TestNum: 2
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkphdmFTY3JpcHQgcXVlcnkgYHdoaWxlKHRydWUpIHt9YCB0aW1lZCBvdXQgYWZ0ZXIgMS4zMDAgc2Vjb25kcy4iLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkphdmFTY3JpcHQgcXVlcnkgYHdoaWxlKHRydWUpIHt9YCB0aW1lZCBvdXQgYWZ0ZXIgMS4zMDAgc2Vjb25kcy4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.js("while(true) {}").optArg("timeout", 1.3)
+   - TestType: JavaQuery
+     TestFile: timeout.yaml
+     TestNum: 3
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkphdmFTY3JpcHQgcXVlcnkgYHdoaWxlKHRydWUpIHt9YCB0aW1lZCBvdXQgYWZ0ZXIgOC4wMDAgc2Vjb25kcy4iLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkphdmFTY3JpcHQgcXVlcnkgYHdoaWxlKHRydWUpIHt9YCB0aW1lZCBvdXQgYWZ0ZXIgOC4wMDAgc2Vjb25kcy4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.js("while(true) {}").optArg("timeout", 8)
+   - TestType: JavaQuery
+     TestFile: timeout.yaml
+     TestNum: 4
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkphdmFTY3JpcHQgcXVlcnkgYChmdW5jdGlvbih4KSB7IHdoaWxlKHRydWUpIHt9IH0pYCB0aW1lZCBvdXQgYWZ0ZXIgNS4wMDAgc2Vjb25kcy4iLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkphdmFTY3JpcHQgcXVlcnkgYChmdW5jdGlvbih4KSB7IHdoaWxlKHRydWUpIHt9IH0pYCB0aW1lZCBvdXQgYWZ0ZXIgNS4wMDAgc2Vjb25kcy4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr("foo").do_(r.js("(function(x) { while(true) {} })"))
+   - TestType: JavaQuery
+     TestFile: timeout.yaml
+     TestNum: 5
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkphdmFTY3JpcHQgcXVlcnkgYChmdW5jdGlvbih4KSB7IHdoaWxlKHRydWUpIHt9IH0pYCB0aW1lZCBvdXQgYWZ0ZXIgMS4zMDAgc2Vjb25kcy4iLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkphdmFTY3JpcHQgcXVlcnkgYChmdW5jdGlvbih4KSB7IHdoaWxlKHRydWUpIHt9IH0pYCB0aW1lZCBvdXQgYWZ0ZXIgMS4zMDAgc2Vjb25kcy4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr("foo").do_(r.js("(function(x) { while(true) {} })").optArg("timeout", 1.3))
+   - TestType: JavaQuery
+     TestFile: timeout.yaml
+     TestNum: 6
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkphdmFTY3JpcHQgcXVlcnkgYChmdW5jdGlvbih4KSB7IHdoaWxlKHRydWUpIHt9IH0pYCB0aW1lZCBvdXQgYWZ0ZXIgOC4wMDAgc2Vjb25kcy4iLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkphdmFTY3JpcHQgcXVlcnkgYChmdW5jdGlvbih4KSB7IHdoaWxlKHRydWUpIHt9IH0pYCB0aW1lZCBvdXQgYWZ0ZXIgOC4wMDAgc2Vjb25kcy4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr("foo").do_(r.js("(function(x) { while(true) {} })").optArg("timeout", 8))
+   - TestType: JavaQuery
+     TestFile: timeout.yaml
+     TestNum: 7
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXJyb3IgaW4gSFRUUCBHRVQgb2YgYGh0dHBiaW4ub3JnL2RlbGF5LzEwYDoiICsgIiB0aW1lZCBvdXQgYWZ0ZXIgMC44MDAgc2Vjb25kcy4iLCBbXSk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXJyb3IgaW4gSFRUUCBHRVQgb2YgYGh0dHBiaW4ub3JnL2RlbGF5LzEwYDoiICsgIiB0aW1lZCBvdXQgYWZ0ZXIgMC44MDAgc2Vjb25kcy4iLCBBcnJheXMuYXNMaXN0KCkp'
+     Obtained: r.http("httpbin.org/delay/10").optArg("timeout", 0.8)
+   - TestType: JavaQuery
+     TestFile: timeout.yaml
+     TestNum: 8
+     Original: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXJyb3IgaW4gSFRUUCBQVVQgb2YgYGh0dHBiaW4ub3JnL2RlbGF5LzEwYDoiICsgIiB0aW1lZCBvdXQgYWZ0ZXIgMC4wMDAgc2Vjb25kcy4iLCBbXSk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXJyb3IgaW4gSFRUUCBQVVQgb2YgYGh0dHBiaW4ub3JnL2RlbGF5LzEwYDoiICsgIiB0aW1lZCBvdXQgYWZ0ZXIgMC4wMDAgc2Vjb25kcy4iLCBBcnJheXMuYXNMaXN0KCkp'
+     Obtained: r.http("httpbin.org/delay/10").optArg("method", "PUT").optArg("timeout", 0.0)
+render_something: false
+

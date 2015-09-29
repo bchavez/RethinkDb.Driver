@@ -1,0 +1,45 @@
+
+ModuleName: "Regression578"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/578.yaml
+     TestNum: 1
+     Original: b'KHsnY3JlYXRlZCc6MX0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImNyZWF0ZWQiLCAxKQ=='
+     Obtained: tbl.indexCreate("578", rec -> 1)
+   - TestType: JavaQuery
+     TestFile: regression/578.yaml
+     TestNum: 2
+     Original: b'KFt7J3JlYWR5JzpUcnVlLCAnaW5kZXgnOic1NzgnfV0p'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgicmVhZHkiLCB0cnVlKS53aXRoKCJpbmRleCIsICI1NzgiKSk='
+     Obtained: tbl.indexWait("578").pluck("index", "ready")
+   - TestType: JavaQuery
+     TestFile: regression/578.yaml
+     TestNum: 3
+     Original: b'ZXJyX3JlZ2V4KCJSZXFsT3BGYWlsZWRFcnJvciIsICJJbmRleCBgNTc4YCBhbHJlYWR5IGV4aXN0cyBvbiB0YWJsZSBgW2EtekEtWjAtOV9dKy5bYS16QS1aMC05X10rYFsuXSIsIFtdKQ=='
+     ExpectedType: ErrRegex
+     ExpectedJava: b'ZXJyX3JlZ2V4KCJSZXFsT3BGYWlsZWRFcnJvciIsICJJbmRleCBgNTc4YCBhbHJlYWR5IGV4aXN0cyBvbiB0YWJsZSBgW2EtekEtWjAtOV9dKy5bYS16QS1aMC05X10rYFsuXSIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: tbl.indexCreate("578", rec -> 1)
+   - TestType: JavaQuery
+     TestFile: regression/578.yaml
+     TestNum: 4
+     Original: b'KHsnZHJvcHBlZCc6MX0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRyb3BwZWQiLCAxKQ=='
+     Obtained: tbl.indexDrop("578")
+   - TestType: JavaQuery
+     TestFile: regression/578.yaml
+     TestNum: 5
+     Original: b'ZXJyX3JlZ2V4KCJSZXFsT3BGYWlsZWRFcnJvciIsICJJbmRleCBgNTc4YCBkb2VzIG5vdCBleGlzdCBvbiB0YWJsZSBgW2EtekEtWjAtOV9dKy5bYS16QS1aMC05X10rYFsuXSIsIFtdKQ=='
+     ExpectedType: ErrRegex
+     ExpectedJava: b'ZXJyX3JlZ2V4KCJSZXFsT3BGYWlsZWRFcnJvciIsICJJbmRleCBgNTc4YCBkb2VzIG5vdCBleGlzdCBvbiB0YWJsZSBgW2EtekEtWjAtOV9dKy5bYS16QS1aMC05X10rYFsuXSIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: tbl.indexDrop("578")
+render_something: false
+

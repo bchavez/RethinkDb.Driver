@@ -1,0 +1,23 @@
+
+ModuleName: "Regression3059"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/3059.yaml
+     TestNum: 1
+     Original: b'KCJQVFlQRTxHRU9NRVRSWT4iKQ=='
+     ExpectedType: String
+     ExpectedJava: b'IlBUWVBFPEdFT01FVFJZPiI='
+     Obtained: r.point(0, 1).typeOf()
+   - TestType: JavaQuery
+     TestFile: regression/3059.yaml
+     TestNum: 2
+     Original: b'KCJQVFlQRTxHRU9NRVRSWT4iKQ=='
+     ExpectedType: String
+     ExpectedJava: b'IlBUWVBFPEdFT01FVFJZPiI='
+     Obtained: r.point(0, 1).info().bracket("type")
+render_something: false
+

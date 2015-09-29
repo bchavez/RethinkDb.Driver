@@ -1,0 +1,197 @@
+
+ModuleName: "TimesConstructors"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 1
+     Original: b'ZGF0ZXRpbWUuZnJvbXRpbWVzdGFtcCg4OTY1NzEyNDAsIHIuYXN0LlJxbFR6aW5mbygnMDA6MDAnKSk='
+     ExpectedType: java.util.Date
+     ExpectedJava: b'LmZyb210aW1lc3RhbXAoODk2NTcxMjQwLCAuUnFsVHppbmZvKCIwMDowMCIpKQ=='
+     Obtained: r.expr(r.epochTime(896571240))
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 2
+     Original: b'KHsnc3R1ZmYnOmRhdGV0aW1lLmZyb210aW1lc3RhbXAoODk2NTcxMjQwLCByLmFzdC5ScWxUemluZm8oJzAwOjAwJykpLCAnbW9yZSc6W2RhdGV0aW1lLmZyb210aW1lc3RhbXAoOTk2NTcxMjQwLCByLmFzdC5ScWxUemluZm8oJzAwOjAwJykpXX0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInN0dWZmIiwgLmZyb210aW1lc3RhbXAoODk2NTcxMjQwLCAuUnFsVHppbmZvKCIwMDowMCIpKSkud2l0aCgibW9yZSIsIEFycmF5cy5hc0xpc3QoLmZyb210aW1lc3RhbXAoOTk2NTcxMjQwLCAuUnFsVHppbmZvKCIwMDowMCIpKSkp'
+     Obtained: r.expr(new MapObject().with("stuff", r.epochTime(896571240)).with("more", Arrays.asList(r.epochTime(996571240))))
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 3
+     Original: b'KFtkYXRldGltZS5mcm9tdGltZXN0YW1wKDc5NjU3MTI0MCwgci5hc3QuUnFsVHppbmZvKCcwMDowMCcpKSwgZGF0ZXRpbWUuZnJvbXRpbWVzdGFtcCg4OTY1NzEyNDAsIHIuYXN0LlJxbFR6aW5mbygnMDA6MDAnKSksIHsnc3R1ZmYnOmRhdGV0aW1lLmZyb210aW1lc3RhbXAoOTk2NTcxMjQwLCByLmFzdC5ScWxUemluZm8oJzAwOjAwJykpfV0p'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCguZnJvbXRpbWVzdGFtcCg3OTY1NzEyNDAsIC5ScWxUemluZm8oIjAwOjAwIikpLCAuZnJvbXRpbWVzdGFtcCg4OTY1NzEyNDAsIC5ScWxUemluZm8oIjAwOjAwIikpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgic3R1ZmYiLCAuZnJvbXRpbWVzdGFtcCg5OTY1NzEyNDAsIC5ScWxUemluZm8oIjAwOjAwIikpKSk='
+     Obtained: r.expr(Arrays.asList(r.epochTime(796571240), r.epochTime(896571240), new MapObject().with("stuff", r.epochTime(996571240))))
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 4
+     Original: b'KHsnbmVzdGVkJzp7J3RpbWUnOmRhdGV0aW1lLmZyb210aW1lc3RhbXAoODk2NTcxMjQwLCByLmFzdC5ScWxUemluZm8oJzAwOjAwJykpfX0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIm5lc3RlZCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJ0aW1lIiwgLmZyb210aW1lc3RhbXAoODk2NTcxMjQwLCAuUnFsVHppbmZvKCIwMDowMCIpKSkp'
+     Obtained: r.expr(new MapObject().with("nested", new MapObject().with("time", r.epochTime(896571240))))
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 5
+     Original: b'KFsxLCAidHdvIiwgWyJhIiwgZGF0ZXRpbWUuZnJvbXRpbWVzdGFtcCg4OTY1NzEyNDAsIHIuYXN0LlJxbFR6aW5mbygnMDA6MDAnKSksIDNdXSk='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAidHdvIiwgQXJyYXlzLmFzTGlzdCgiYSIsIC5mcm9tdGltZXN0YW1wKDg5NjU3MTI0MCwgLlJxbFR6aW5mbygiMDA6MDAiKSksIDMpKQ=='
+     Obtained: r.expr(Arrays.asList(1, "two", Arrays.asList("a", r.epochTime(896571240), 3)))
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 6
+     Original: b'MQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MQ=='
+     Obtained: r.epochTime(1).toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 7
+     Original: b'LTE='
+     ExpectedType: Integer
+     ExpectedJava: b'LTE='
+     Obtained: r.epochTime(-1).toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 8
+     Original: b'KDEuNDQ0KQ=='
+     ExpectedType: Double
+     ExpectedJava: b'MS40NDQ='
+     Obtained: r.epochTime(1.4444445).toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 9
+     Original: b'KCIxOTcwLTAxLTAxVDAwOjAwOjAxLjQ0NCswMDowMCIp'
+     ExpectedType: String
+     ExpectedJava: b'IjE5NzAtMDEtMDFUMDA6MDA6MDEuNDQ0KzAwOjAwIg=='
+     Obtained: r.epochTime(1.4444445).toIso8601()
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 10
+     Original: b'KDEuNDQ0ICAgICAgICAgICk='
+     ExpectedType: Double
+     ExpectedJava: b'MS40NDQ='
+     Obtained: r.epochTime(1.4444445).seconds()
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 11
+     Original: b'KDEwMDAwKQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MTAwMDA='
+     Obtained: r.epochTime(253430000000.0).year()
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 12
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlllYXIgYDEwMDAwYCBvdXQgb2YgdmFsaWQgSVNPIDg2MDEgcmFuZ2UgWzAsIDk5OTldLiIsIFtdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlllYXIgYDEwMDAwYCBvdXQgb2YgdmFsaWQgSVNPIDg2MDEgcmFuZ2UgWzAsIDk5OTldLiIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: r.epochTime(253430000000.0).toIso8601()
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 13
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkVycm9yIGluIHRpbWUgbG9naWM6IFllYXIgaXMgb3V0IG9mIHZhbGlkIHJhbmdlOiAxNDAwLi4xMDAwMC4iLCBbXSk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkVycm9yIGluIHRpbWUgbG9naWM6IFllYXIgaXMgb3V0IG9mIHZhbGlkIHJhbmdlOiAxNDAwLi4xMDAwMC4iLCBBcnJheXMuYXNMaXN0KCkp'
+     Obtained: r.epochTime(253440000000.0).year()
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 14
+     Original: b'KDI1MzQ0MDAwMDAwMCk='
+     ExpectedType: Integer
+     ExpectedJava: b'MjUzNDQwMDAwMDAwLjA='
+     Obtained: r.epochTime(253440000000.0).toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 15
+     Original: b'KDE0MDAp'
+     ExpectedType: Integer
+     ExpectedJava: b'MTQwMA=='
+     Obtained: r.epochTime(-17980000000.0).year()
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 16
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkVycm9yIGluIHRpbWUgbG9naWM6IFllYXIgaXMgb3V0IG9mIHZhbGlkIHJhbmdlOiAxNDAwLi4xMDAwMC4iLCBbXSk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkVycm9yIGluIHRpbWUgbG9naWM6IFllYXIgaXMgb3V0IG9mIHZhbGlkIHJhbmdlOiAxNDAwLi4xMDAwMC4iLCBBcnJheXMuYXNMaXN0KCkp'
+     Obtained: r.epochTime(-17990000000.0).year()
+   - TestType: JavaQuery
+     TestFile: times/constructors.yaml
+     TestNum: 17
+     Original: b'KC0xNzk5MDAwMDAwMCk='
+     ExpectedType: Integer
+     ExpectedJava: b'LTE3OTkwMDAwMDAwLjA='
+     Obtained: r.epochTime(-17990000000.0).toEpochTime()
+        
+
+   - TestType: JavaDef
+     TestFile: times/constructors.yaml
+     TestNum: 18
+     Original: b'Y2RhdGUgPSAiMjAxMy0wMS0wMSI='
+     Java: String cdate = (String) "2013-01-01";
+        
+
+   - TestType: JavaDef
+     TestFile: times/constructors.yaml
+     TestNum: 19
+     Original: b'ZGF0ZXMgPSBbIjIwMTMiLCAiMjAxMy0wMSIsICIyMDEzLTAxLTAxIiwgIjIwMTMwMTAxIiwgIjIwMTMtMDAxIiwgIjIwMTMwMDEiXQ=='
+     Java: List dates = (List) Arrays.asList("2013", "2013-01", "2013-01-01", "20130101", "2013-001", "2013001");
+        
+
+   - TestType: JavaDef
+     TestFile: times/constructors.yaml
+     TestNum: 20
+     Original: b'Y3RpbWUgPSAiMTM6MDA6MDAi'
+     Java: String ctime = (String) "13:00:00";
+        
+
+   - TestType: JavaDef
+     TestFile: times/constructors.yaml
+     TestNum: 21
+     Original: b'dGltZXMgPSBbIjEzIiwgIjEzOjAwIiwgIjEzMDAiLCAiMTM6MDA6MDAiLCAiMTM6MDA6MDAuMDAwMDAwIiwgIjEzMDAwMC4wMDAwMDAiXQ=='
+     Java: List times = (List) Arrays.asList("13", "13:00", "1300", "13:00:00", "13:00:00.000000", "130000.000000");
+        
+
+   - TestType: JavaDef
+     TestFile: times/constructors.yaml
+     TestNum: 22
+     Original: b'Y3R6ID0gIiswMDowMCI='
+     Java: String ctz = (String) "+00:00";
+        
+
+   - TestType: JavaDef
+     TestFile: times/constructors.yaml
+     TestNum: 23
+     Original: b'dHpzID0gWyJaIiwgIiswMCIsICIrMDAwMCIsICIrMDA6MDAiXQ=='
+     Java: List tzs = (List) Arrays.asList("Z", "+00", "+0000", "+00:00");
+        
+
+   - TestType: JavaDef
+     TestFile: times/constructors.yaml
+     TestNum: 24
+     Original: b'Y2R0ID0gW2NkYXRlKyJUIitjdGltZStjdHpd'
+     Java: List cdt = (List) Arrays.asList(cdate + "T" + ctime + ctz);
+        
+
+   - TestType: JavaDef
+     TestFile: times/constructors.yaml
+     TestNum: 28
+     Original: b'YmFkX2RhdGVzID0gWyIyMDEzMDEiLCAiMjAxMy0wMTAxIiwgIjJhMTMiLCAiMjAxMyswMSIsICIyMDEzLTAxLTAxLjEiXQ=='
+     Java: List bad_dates = (List) Arrays.asList("201301", "2013-0101", "2a13", "2013+01", "2013-01-01.1");
+        
+
+   - TestType: JavaDef
+     TestFile: times/constructors.yaml
+     TestNum: 29
+     Original: b'YmFkX3RpbWVzID0gWyJhMyIsICIxMzowMDAwIiwgIjEzOjAwMCIsICIxMzowMC4wMCIsICIxMzAwMDAuMDAwMDAwMDBhIl0='
+     Java: List bad_times = (List) Arrays.asList("a3", "13:0000", "13:000", "13:00.00", "130000.00000000a");
+        
+
+   - TestType: JavaDef
+     TestFile: times/constructors.yaml
+     TestNum: 30
+     Original: b'YmFkX3R6cyA9IFsiWCIsICItNyIsICItMDc6LTEiLCAiKzA3KzAxIiwgIlBTVCIsICJVVEMiLCAiWiswMCJd'
+     Java: List bad_tzs = (List) Arrays.asList("X", "-7", "-07:-1", "+07+01", "PST", "UTC", "Z+00");
+

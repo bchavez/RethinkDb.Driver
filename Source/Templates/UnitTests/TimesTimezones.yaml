@@ -1,0 +1,232 @@
+
+ModuleName: "TimesTimezones"
+TableVarNames:
+
+DefsAndTests:
+
+        
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 1
+     Original: b'dDEgPSByLnRpbWUoMjAxMywgci5qdWx5LCAyOSwgMjMsIDMwLCAwLCAiKzAwOjAwIik='
+     Java: Time t1 = (Time) r.time(2013, r.july(), 29, 23, 30, 0, "+00:00");
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 2
+     Original: b'dHV0YzEgPSB0MS5pbl90aW1lem9uZSgiWiIp'
+     Java: InTimezone tutc1 = (InTimezone) t1.inTimezone("Z");
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 3
+     Original: b'dHV0YzIgPSB0MS5pbl90aW1lem9uZSgiKzAwOjAwIik='
+     Java: InTimezone tutc2 = (InTimezone) t1.inTimezone("+00:00");
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 4
+     Original: b'dHV0YzMgPSB0MS5pbl90aW1lem9uZSgiKzAwIik='
+     Java: InTimezone tutc3 = (InTimezone) t1.inTimezone("+00");
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 5
+     Original: b'dHV0Y3MgPSByLmV4cHIoW3R1dGMxLCB0dXRjMiwgdHV0YzNdKQ=='
+     Java: MakeArray tutcs = (MakeArray) r.expr(Arrays.asList(tutc1, tutc2, tutc3));
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 6
+     Original: b'dG0xID0gdDEuaW5fdGltZXpvbmUoIi0wMDo1OSIp'
+     Java: InTimezone tm1 = (InTimezone) t1.inTimezone("-00:59");
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 7
+     Original: b'dG0yID0gdDEuaW5fdGltZXpvbmUoIi0wMTowMCIp'
+     Java: InTimezone tm2 = (InTimezone) t1.inTimezone("-01:00");
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 8
+     Original: b'dG0zID0gdDEuaW5fdGltZXpvbmUoIi0wMTowMSIp'
+     Java: InTimezone tm3 = (InTimezone) t1.inTimezone("-01:01");
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 9
+     Original: b'dG1zID0gci5leHByKFt0bTEsIHRtMiwgdG0zXSk='
+     Java: MakeArray tms = (MakeArray) r.expr(Arrays.asList(tm1, tm2, tm3));
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 10
+     Original: b'dHAxID0gdDEuaW5fdGltZXpvbmUoIiswMDo1OSIp'
+     Java: InTimezone tp1 = (InTimezone) t1.inTimezone("+00:59");
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 11
+     Original: b'dHAyID0gdDEuaW5fdGltZXpvbmUoIiswMTowMCIp'
+     Java: InTimezone tp2 = (InTimezone) t1.inTimezone("+01:00");
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 12
+     Original: b'dHAzID0gdDEuaW5fdGltZXpvbmUoIiswMTowMSIp'
+     Java: InTimezone tp3 = (InTimezone) t1.inTimezone("+01:01");
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 13
+     Original: b'dHBzID0gci5leHByKFt0cDEsIHRwMiwgdHAzXSk='
+     Java: MakeArray tps = (MakeArray) r.expr(Arrays.asList(tp1, tp2, tp3));
+        
+
+   - TestType: JavaDef
+     TestFile: times/timezones.yaml
+     TestNum: 14
+     Original: b'dHMgPSB0dXRjcy51bmlvbih0bXMpLnVuaW9uKHRwcykudW5pb24oW3QxXSk='
+     Java: Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 15
+     Original: b'KFtbIiswMDowMCIsIDI5XSwgWyIrMDA6MDAiLCAyOV0sIFsiKzAwOjAwIiwgMjldXSk='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KCIrMDA6MDAiLCAyOSksIEFycmF5cy5hc0xpc3QoIiswMDowMCIsIDI5KSwgQXJyYXlzLmFzTGlzdCgiKzAwOjAwIiwgMjkpKQ=='
+     Obtained: tutcs.map(x -> Arrays.asList(x.timezone(), x.day()))
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 16
+     Original: b'KFtbIi0wMDo1OSIsIDI5XSwgWyItMDE6MDAiLCAyOV0sIFsiLTAxOjAxIiwgMjldXSk='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KCItMDA6NTkiLCAyOSksIEFycmF5cy5hc0xpc3QoIi0wMTowMCIsIDI5KSwgQXJyYXlzLmFzTGlzdCgiLTAxOjAxIiwgMjkpKQ=='
+     Obtained: tms.map(x -> Arrays.asList(x.timezone(), x.day()))
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 17
+     Original: b'KFtbIiswMDo1OSIsIDMwXSwgWyIrMDE6MDAiLCAzMF0sIFsiKzAxOjAxIiwgMzBdXSk='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KCIrMDA6NTkiLCAzMCksIEFycmF5cy5hc0xpc3QoIiswMTowMCIsIDMwKSwgQXJyYXlzLmFzTGlzdCgiKzAxOjAxIiwgMzApKQ=='
+     Obtained: tps.map(x -> Arrays.asList(x.timezone(), x.day()))
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 18
+     Original: b'KFswXSk='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgwKQ=='
+     Obtained: ts.concatMap(x -> ts.map(y -> r.sub(x, y))).distinct()
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 19
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RpbWV6b25lIGBgIGRvZXMgbm90IHN0YXJ0IHdpdGggYC1gIG9yIGArYC4nKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlRpbWV6b25lIGBgIGRvZXMgbm90IHN0YXJ0IHdpdGggYC1gIG9yIGArYC4iKQ=='
+     Obtained: r.now().inTimezone("")
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 20
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ2AtMDBgIGlzIG5vdCBhIHZhbGlkIHRpbWUgb2Zmc2V0Licp'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgImAtMDBgIGlzIG5vdCBhIHZhbGlkIHRpbWUgb2Zmc2V0LiIp'
+     Obtained: r.now().inTimezone("-00")
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 21
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ2AtMDA6MDBgIGlzIG5vdCBhIHZhbGlkIHRpbWUgb2Zmc2V0Licp'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgImAtMDA6MDBgIGlzIG5vdCBhIHZhbGlkIHRpbWUgb2Zmc2V0LiIp'
+     Obtained: r.now().inTimezone("-00:00")
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 22
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RpbWV6b25lIGBVVEMrMDBgIGRvZXMgbm90IHN0YXJ0IHdpdGggYC1gIG9yIGArYC4nKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlRpbWV6b25lIGBVVEMrMDBgIGRvZXMgbm90IHN0YXJ0IHdpdGggYC1gIG9yIGArYC4iKQ=='
+     Obtained: r.now().inTimezone("UTC+00")
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 23
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ01pbnV0ZXMgb3V0IG9mIHJhbmdlIGluIGArMDA6NjBgLicp'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk1pbnV0ZXMgb3V0IG9mIHJhbmdlIGluIGArMDA6NjBgLiIp'
+     Obtained: r.now().inTimezone("+00:60")
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 24
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0hvdXJzIG91dCBvZiByYW5nZSBpbiBgKzI1OjAwYC4nKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkhvdXJzIG91dCBvZiByYW5nZSBpbiBgKzI1OjAwYC4iKQ=='
+     Obtained: r.now().inTimezone("+25:00")
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 25
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RpbWV6b25lIGBgIGRvZXMgbm90IHN0YXJ0IHdpdGggYC1gIG9yIGArYC4nKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlRpbWV6b25lIGBgIGRvZXMgbm90IHN0YXJ0IHdpdGggYC1gIG9yIGArYC4iKQ=='
+     Obtained: r.time(2013, 1, 1, "")
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 26
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ2AtMDBgIGlzIG5vdCBhIHZhbGlkIHRpbWUgb2Zmc2V0Licp'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgImAtMDBgIGlzIG5vdCBhIHZhbGlkIHRpbWUgb2Zmc2V0LiIp'
+     Obtained: r.time(2013, 1, 1, "-00")
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 27
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ2AtMDA6MDBgIGlzIG5vdCBhIHZhbGlkIHRpbWUgb2Zmc2V0Licp'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgImAtMDA6MDBgIGlzIG5vdCBhIHZhbGlkIHRpbWUgb2Zmc2V0LiIp'
+     Obtained: r.time(2013, 1, 1, "-00:00")
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 28
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RpbWV6b25lIGBVVEMrMDBgIGRvZXMgbm90IHN0YXJ0IHdpdGggYC1gIG9yIGArYC4nKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlRpbWV6b25lIGBVVEMrMDBgIGRvZXMgbm90IHN0YXJ0IHdpdGggYC1gIG9yIGArYC4iKQ=='
+     Obtained: r.time(2013, 1, 1, "UTC+00")
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 29
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ01pbnV0ZXMgb3V0IG9mIHJhbmdlIGluIGArMDA6NjBgLicp'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk1pbnV0ZXMgb3V0IG9mIHJhbmdlIGluIGArMDA6NjBgLiIp'
+     Obtained: r.time(2013, 1, 1, "+00:60")
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 30
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0hvdXJzIG91dCBvZiByYW5nZSBpbiBgKzI1OjAwYC4nKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkhvdXJzIG91dCBvZiByYW5nZSBpbiBgKzI1OjAwYC4iKQ=='
+     Obtained: r.time(2013, 1, 1, "+25:00")
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 31
+     Original: b'KCIyMDE1LTA3LTA4VDAwOjAwOjAwLTA4OjAwIik='
+     ExpectedType: String
+     ExpectedJava: b'IjIwMTUtMDctMDhUMDA6MDA6MDAtMDg6MDAi'
+     Obtained: r.epochTime(1436428422.339).inTimezone("-08:00").date().toIso8601()
+   - TestType: JavaQuery
+     TestFile: times/timezones.yaml
+     TestNum: 32
+     Original: b'KCIyMDE1LTA3LTA5VDAwOjAwOjAwLTA3OjAwIik='
+     ExpectedType: String
+     ExpectedJava: b'IjIwMTUtMDctMDlUMDA6MDA6MDAtMDc6MDAi'
+     Obtained: r.epochTime(1436428422.339).inTimezone("-07:00").date().toIso8601()
+

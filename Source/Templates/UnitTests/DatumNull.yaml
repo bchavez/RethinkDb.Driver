@@ -1,0 +1,37 @@
+
+ModuleName: "DatumNull"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: datum/null.yaml
+     TestNum: 1
+     Original: b'KG51bGwp'
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.expr(null)
+   - TestType: JavaQuery
+     TestFile: datum/null.yaml
+     TestNum: 2
+     Original: b'J05VTEwn'
+     ExpectedType: String
+     ExpectedJava: b'Ik5VTEwi'
+     Obtained: r.expr(null).typeOf()
+   - TestType: JavaQuery
+     TestFile: datum/null.yaml
+     TestNum: 3
+     Original: b'J251bGwn'
+     ExpectedType: String
+     ExpectedJava: b'Im51bGwi'
+     Obtained: r.expr(null).coerceTo("string")
+   - TestType: JavaQuery
+     TestFile: datum/null.yaml
+     TestNum: 4
+     Original: b'KG51bGwp'
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.expr(null).coerceTo("null")
+render_something: false
+

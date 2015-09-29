@@ -1,0 +1,51 @@
+
+ModuleName: "Regression4030"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+        
+
+   - TestType: JavaDef
+     TestFile: regression/4030.yaml
+     TestNum: 1
+     Original: b'ZGF0YSA9IFt7J2lkJzoxfSwgeydpZCc6Mn0sIHsnaWQnOjN9LCB7J2lkJzo0fSwgeydpZCc6NX0sIHsnaWQnOjZ9XQ=='
+     Java: List data = (List) Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 2), new MapObject().with("id", 3), new MapObject().with("id", 4), new MapObject().with("id", 5), new MapObject().with("id", 6));
+        
+
+   - TestType: JavaDef
+     TestFile: regression/4030.yaml
+     TestNum: 2
+     Original: b'Y2hhbmdlcyA9IFt7J2lkJzo3fSwgeydpZCc6OH0sIHsnaWQnOjl9LCB7J2lkJzoxMH1d'
+     Java: List changes = (List) Arrays.asList(new MapObject().with("id", 7), new MapObject().with("id", 8), new MapObject().with("id", 9), new MapObject().with("id", 10));
+   - TestType: JavaQuery
+     TestFile: regression/4030.yaml
+     TestNum: 3
+     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MCwgJ2luc2VydGVkJzo2fSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMCkud2l0aCgiaW5zZXJ0ZWQiLCA2KSk='
+     Obtained: tbl.insert(data)
+   - TestType: JavaQuery
+     TestFile: regression/4030.yaml
+     TestNum: 4
+     Original: b'KDYp'
+     ExpectedType: Integer
+     ExpectedJava: b'Ng=='
+     Obtained: tbl.count()
+   - TestType: JavaQuery
+     TestFile: regression/4030.yaml
+     TestNum: 5
+     Original: b'YmFnKGRhdGEgKiAyKQ=='
+     ExpectedType: Bag
+     ExpectedJava: b'YmFnKGRhdGEgKiAyKQ=='
+     Obtained: tbl.union(tbl)
+   - TestType: JavaQuery
+     TestFile: regression/4030.yaml
+     TestNum: 6
+     Original: b'YmFnKGRhdGEgKiAyKQ=='
+     ExpectedType: Bag
+     ExpectedJava: b'YmFnKGRhdGEgKiAyKQ=='
+     Obtained: r.union(tbl, tbl)
+

@@ -1,0 +1,204 @@
+
+ModuleName: "Limits"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 1
+     Original: b'WzEsIDEsIDEsIDEsIDEsIDEsIDEsIDFd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAxLCAxLCAxLCAxLCAxLCAxLCAxKQ=='
+     Obtained: r.expr(Arrays.asList(1, 1, 1, 1)).union(Arrays.asList(1, 1, 1, 1))
+     RunOpts:
+                - Key: array_limit
+                  Val: 8
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 2
+     Original: b'ZXJyKCJSZXFsUmVzb3VyY2VMaW1pdEVycm9yIiwgIkFycmF5IG92ZXIgc2l6ZSBsaW1pdCBgNGAuIiwgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUmVzb3VyY2VMaW1pdEVycm9yIiwgIkFycmF5IG92ZXIgc2l6ZSBsaW1pdCBgNGAuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4)).union(Arrays.asList(5, 6, 7, 8))
+     RunOpts:
+                - Key: array_limit
+                  Val: 4
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 3
+     Original: b'ZXJyKCJSZXFsUmVzb3VyY2VMaW1pdEVycm9yIiwgIkFycmF5IG92ZXIgc2l6ZSBsaW1pdCBgNGAuIiwgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUmVzb3VyY2VMaW1pdEVycm9yIiwgIkFycmF5IG92ZXIgc2l6ZSBsaW1pdCBgNGAuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8))
+     RunOpts:
+                - Key: array_limit
+                  Val: 4
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 4
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIklsbGVnYWwgYXJyYXkgc2l6ZSBsaW1pdCBgLTFgLiAgKE11c3QgYmUgPj0gMS4pIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIklsbGVnYWwgYXJyYXkgc2l6ZSBsaW1pdCBgLTFgLiAgKE11c3QgYmUgPj0gMS4pIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8))
+     RunOpts:
+                - Key: array_limit
+                  Val: -1
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 5
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIklsbGVnYWwgYXJyYXkgc2l6ZSBsaW1pdCBgMGAuICAoTXVzdCBiZSA+PSAxLikiLCBbXSk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIklsbGVnYWwgYXJyYXkgc2l6ZSBsaW1pdCBgMGAuICAoTXVzdCBiZSA+PSAxLikiLCBBcnJheXMuYXNMaXN0KCkp'
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8))
+     RunOpts:
+                - Key: array_limit
+                  Val: 0
+        
+
+   - TestType: JavaDef
+     TestFile: limits.yaml
+     TestNum: 6
+     Original: b'dGVuX2wgPSByLmV4cHIoWzEsIDIsIDMsIDQsIDUsIDYsIDcsIDgsIDksIDEwXSk='
+     Java: MakeArray ten_l = (MakeArray) r.expr(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        
+
+   - TestType: JavaDef
+     TestFile: limits.yaml
+     TestNum: 8
+     Original: b'aHVnZV9sID0gci5leHByKHRlbl9sKS5jb25jYXRfbWFwKHRlbl9mKS5jb25jYXRfbWFwKHRlbl9mKS5jb25jYXRfbWFwKHRlbl9mKS5jb25jYXRfbWFwKHRlbl9mKQ=='
+     Java: ConcatMap huge_l = (ConcatMap) r.expr(ten_l).concatMap(ten_f).concatMap(ten_f).concatMap(ten_f).concatMap(ten_f);
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 9
+     Original: b'MTAwMDAx'
+     ExpectedType: Integer
+     ExpectedJava: b'MTAwMDAx'
+     Obtained: huge_l.append(1).count()
+     RunOpts:
+                - Key: array_limit
+                  Val: 100001
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 10
+     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MSwgJ2ZpcnN0X2Vycm9yJzoiQXJyYXkgdG9vIGxhcmdlIGZvciBkaXNrIHdyaXRlcyAobGltaXQgMTAwLDAwMCBlbGVtZW50cykuIn0p'
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMSkud2l0aCgiZmlyc3RfZXJyb3IiLCAiQXJyYXkgdG9vIGxhcmdlIGZvciBkaXNrIHdyaXRlcyAobGltaXQgMTAwLDAwMCBlbGVtZW50cykuIikp'
+     Obtained: tbl.insert(new MapObject().with("id", 0).with("array", huge_l.append(1)))
+     RunOpts:
+                - Key: array_limit
+                  Val: 100001
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 11
+     Original: b'KG51bGwp'
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: tbl.get(0)
+     RunOpts:
+                - Key: array_limit
+                  Val: 100001
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 12
+     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjF9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAxKQ=='
+     Obtained: tbl.insert(new MapObject().with("id", 1).with("array", ten_l))
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 13
+     Original: b'KHsnYXJyYXknOlsxLDIsMyw0LDUsNiw3LDgsOSwxMF0sJ2lkJzoxfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImFycmF5IiwgQXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0LCA1LCA2LCA3LCA4LCA5LCAxMCkpLndpdGgoImlkIiwgMSk='
+     Obtained: tbl.get(1)
+     RunOpts:
+                - Key: array_limit
+                  Val: 4
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 14
+     Original: b'MQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MQ=='
+     Obtained: tbl.delete().getField("deleted")
+        
+
+   - TestType: JavaDef
+     TestFile: limits.yaml
+     TestNum: 15
+     Original: b'YyA9IHRibC5jaGFuZ2VzKHNxdWFzaD0xMDAwMDAwLCBjaGFuZ2VmZWVkX3F1ZXVlX3NpemU9MTAp'
+     Java: Changes c = (Changes) tbl.changes().optArg("squash", 1000000).optArg("changefeed_queue_size", 10);
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 16
+     Original: b'Nw=='
+     ExpectedType: Integer
+     ExpectedJava: b'Nw=='
+     Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), new MapObject().with("id", 2), new MapObject().with("id", 3), new MapObject().with("id", 4), new MapObject().with("id", 5), new MapObject().with("id", 6))).getField("inserted")
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 17
+     Original: b'YmFnKFt7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzowfX0sIHsnb2xkX3ZhbCc6bnVsbCwgJ25ld192YWwnOnsnaWQnOjF9fSwgeydvbGRfdmFsJzpudWxsLCAnbmV3X3ZhbCc6eydpZCc6Mn19LCB7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzozfX0sIHsnb2xkX3ZhbCc6bnVsbCwgJ25ld192YWwnOnsnaWQnOjR9fSwgeydvbGRfdmFsJzpudWxsLCAnbmV3X3ZhbCc6eydpZCc6NX19LCB7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzo2fX1dKQ=='
+     ExpectedType: Bag
+     ExpectedJava: b'YmFnKEFycmF5cy5hc0xpc3QobmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMCkpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgib2xkX3ZhbCIsIG51bGwpLndpdGgoIm5ld192YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAxKSksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJvbGRfdmFsIiwgbnVsbCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDIpKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMykpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgib2xkX3ZhbCIsIG51bGwpLndpdGgoIm5ld192YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCA0KSksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJvbGRfdmFsIiwgbnVsbCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDUpKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgNikpKSk='
+     Obtained: fetch(c, 7)
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 18
+     Original: b'Nw=='
+     ExpectedType: Integer
+     ExpectedJava: b'Nw=='
+     Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 7), new MapObject().with("id", 8), new MapObject().with("id", 9), new MapObject().with("id", 10), new MapObject().with("id", 11), new MapObject().with("id", 12), new MapObject().with("id", 13))).getField("inserted")
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 19
+     Original: b'YmFnKFt7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzo3fX0sIHsnb2xkX3ZhbCc6bnVsbCwgJ25ld192YWwnOnsnaWQnOjh9fSwgeydvbGRfdmFsJzpudWxsLCAnbmV3X3ZhbCc6eydpZCc6OX19LCB7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzoxMH19LCB7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzoxMX19LCB7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzoxMn19LCB7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzoxM319XSk='
+     ExpectedType: Bag
+     ExpectedJava: b'YmFnKEFycmF5cy5hc0xpc3QobmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgNykpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgib2xkX3ZhbCIsIG51bGwpLndpdGgoIm5ld192YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCA4KSksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJvbGRfdmFsIiwgbnVsbCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDkpKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMTApKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMTEpKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMTIpKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMTMpKSkp'
+     Obtained: fetch(c, 7)
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 20
+     Original: b'MTQ='
+     ExpectedType: Integer
+     ExpectedJava: b'MTQ='
+     Obtained: tbl.delete().getField("deleted")
+        
+
+   - TestType: JavaDef
+     TestFile: limits.yaml
+     TestNum: 21
+     Original: b'YzIgPSB0YmwuY2hhbmdlcyhzcXVhc2g9MTAwMDAwMCk='
+     Java: Changes c2 = (Changes) tbl.changes().optArg("squash", 1000000);
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 22
+     Original: b'Nw=='
+     ExpectedType: Integer
+     ExpectedJava: b'Nw=='
+     Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), new MapObject().with("id", 2), new MapObject().with("id", 3), new MapObject().with("id", 4), new MapObject().with("id", 5), new MapObject().with("id", 6))).getField("inserted")
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 23
+     Original: b'YmFnKFt7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzowfX0sIHsnb2xkX3ZhbCc6bnVsbCwgJ25ld192YWwnOnsnaWQnOjF9fSwgeydvbGRfdmFsJzpudWxsLCAnbmV3X3ZhbCc6eydpZCc6Mn19LCB7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzozfX0sIHsnb2xkX3ZhbCc6bnVsbCwgJ25ld192YWwnOnsnaWQnOjR9fSwgeydvbGRfdmFsJzpudWxsLCAnbmV3X3ZhbCc6eydpZCc6NX19LCB7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzo2fX1dKQ=='
+     ExpectedType: Bag
+     ExpectedJava: b'YmFnKEFycmF5cy5hc0xpc3QobmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMCkpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgib2xkX3ZhbCIsIG51bGwpLndpdGgoIm5ld192YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCAxKSksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJvbGRfdmFsIiwgbnVsbCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDIpKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMykpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgib2xkX3ZhbCIsIG51bGwpLndpdGgoIm5ld192YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCA0KSksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJvbGRfdmFsIiwgbnVsbCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDUpKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgNikpKSk='
+     Obtained: fetch(c2, 7)
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 24
+     Original: b'Nw=='
+     ExpectedType: Integer
+     ExpectedJava: b'Nw=='
+     Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 7), new MapObject().with("id", 8), new MapObject().with("id", 9), new MapObject().with("id", 10), new MapObject().with("id", 11), new MapObject().with("id", 12), new MapObject().with("id", 13))).getField("inserted")
+   - TestType: JavaQuery
+     TestFile: limits.yaml
+     TestNum: 25
+     Original: b'YmFnKFt7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzo3fX0sIHsnb2xkX3ZhbCc6bnVsbCwgJ25ld192YWwnOnsnaWQnOjh9fSwgeydvbGRfdmFsJzpudWxsLCAnbmV3X3ZhbCc6eydpZCc6OX19LCB7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzoxMH19LCB7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzoxMX19LCB7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzoxMn19LCB7J29sZF92YWwnOm51bGwsICduZXdfdmFsJzp7J2lkJzoxM319XSk='
+     ExpectedType: Bag
+     ExpectedJava: b'YmFnKEFycmF5cy5hc0xpc3QobmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgNykpLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgib2xkX3ZhbCIsIG51bGwpLndpdGgoIm5ld192YWwiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCA4KSksIG5ldyBNYXBPYmplY3QoKS53aXRoKCJvbGRfdmFsIiwgbnVsbCkud2l0aCgibmV3X3ZhbCIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIDkpKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMTApKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMTEpKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMTIpKSwgbmV3IE1hcE9iamVjdCgpLndpdGgoIm9sZF92YWwiLCBudWxsKS53aXRoKCJuZXdfdmFsIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMTMpKSkp'
+     Obtained: fetch(c2, 7)
+

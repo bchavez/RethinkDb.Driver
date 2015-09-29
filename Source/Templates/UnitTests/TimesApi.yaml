@@ -1,0 +1,358 @@
+
+ModuleName: "TimesApi"
+TableVarNames:
+
+DefsAndTests:
+
+        
+        
+
+   - TestType: JavaDef
+     TestFile: times/api.yaml
+     TestNum: 1
+     Original: b'cnQxID0gMTM3NTE0NzI5Ni42ODEy'
+     Java: Double rt1 = (Double) 1375147296.6812;
+        
+
+   - TestType: JavaDef
+     TestFile: times/api.yaml
+     TestNum: 2
+     Original: b'dDEgPSByLmVwb2NoX3RpbWUocnQxKQ=='
+     Java: EpochTime t1 = (EpochTime) r.epochTime(rt1);
+        
+
+   - TestType: JavaDef
+     TestFile: times/api.yaml
+     TestNum: 3
+     Original: b'dDIgPSByLmVwb2NoX3RpbWUocnQxICsgMTAwMCk='
+     Java: EpochTime t2 = (EpochTime) r.epochTime(r.add(rt1, 1000));
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 4
+     Original: b'KDEzNzUxNDgyOTYuNjgxKQ=='
+     ExpectedType: Double
+     ExpectedJava: b'MTM3NTE0ODI5Ni42ODE='
+     Obtained: r.add(t1, 1000).toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 5
+     Original: b'KDEzNzUxNDYyOTYuNjgxKQ=='
+     ExpectedType: Double
+     ExpectedJava: b'MTM3NTE0NjI5Ni42ODE='
+     Obtained: r.sub(t1, 1000).toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 6
+     Original: b'MTAwMA=='
+     ExpectedType: Integer
+     ExpectedJava: b'MTAwMA=='
+     Obtained: r.sub(t1, r.sub(t1, 1000))
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 7
+     Original: b'RmFsc2U='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: r.lt(t1, t1)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 8
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.le(t1, t1)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 9
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.eq(t1, t1)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 10
+     Original: b'RmFsc2U='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: r.ne(t1, t1)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 11
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.ge(t1, t1)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 12
+     Original: b'RmFsc2U='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: r.gt(t1, t1)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 13
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.lt(t1, t2)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 14
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.le(t1, t2)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 15
+     Original: b'RmFsc2U='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: r.eq(t1, t2)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 16
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.ne(t1, t2)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 17
+     Original: b'RmFsc2U='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: r.ge(t1, t2)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 18
+     Original: b'RmFsc2U='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: r.gt(t1, t2)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 19
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: t1.during(t1, r.add(t1, 1000))
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 20
+     Original: b'RmFsc2U='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: t1.during(t1, r.add(t1, 1000)).optArg("left_bound", "open")
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 21
+     Original: b'RmFsc2U='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: t1.during(t1, t1)
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 22
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: t1.during(t1, t1).optArg("right_bound", "closed")
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 23
+     Original: b'MTM3NTE0MjQwMA=='
+     ExpectedType: Integer
+     ExpectedJava: b'MTM3NTE0MjQwMA=='
+     Obtained: t1.date().toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 24
+     Original: b'KDQ4OTYuNjgxKQ=='
+     ExpectedType: Double
+     ExpectedJava: b'NDg5Ni42ODE='
+     Obtained: t1.timeOfDay()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 25
+     Original: b'MjAxMw=='
+     ExpectedType: Integer
+     ExpectedJava: b'MjAxMw=='
+     Obtained: t1.year()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 26
+     Original: b'Nw=='
+     ExpectedType: Integer
+     ExpectedJava: b'Nw=='
+     Obtained: t1.month()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 27
+     Original: b'MzA='
+     ExpectedType: Integer
+     ExpectedJava: b'MzA='
+     Obtained: t1.day()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 28
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: t1.dayOfWeek()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 29
+     Original: b'MjEx'
+     ExpectedType: Integer
+     ExpectedJava: b'MjEx'
+     Obtained: t1.dayOfYear()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 30
+     Original: b'MQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MQ=='
+     Obtained: t1.hours()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 31
+     Original: b'MjE='
+     ExpectedType: Integer
+     ExpectedJava: b'MjE='
+     Obtained: t1.minutes()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 32
+     Original: b'MzYuNjgx'
+     ExpectedType: Double
+     ExpectedJava: b'MzYuNjgx'
+     Obtained: t1.seconds()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 33
+     Original: b'KDEzNzUxNjU4MDAuMSk='
+     ExpectedType: Double
+     ExpectedJava: b'MTM3NTE2NTgwMC4x'
+     Obtained: r.time(2013, r.july(), 29, 23, 30, 0.1, "-07:00").toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 34
+     Original: b'KCItMDc6MDAiKQ=='
+     ExpectedType: String
+     ExpectedJava: b'Ii0wNzowMCI='
+     Obtained: r.time(2013, r.july(), 29, 23, 30, 0.1, "-07:00").timezone()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 35
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkdvdCA2IGFyZ3VtZW50cyB0byBUSU1FIChleHBlY3RlZCA0IG9yIDcpLiIsIFtdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkdvdCA2IGFyZ3VtZW50cyB0byBUSU1FIChleHBlY3RlZCA0IG9yIDcpLiIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: r.time(2013, r.july(), 29, 23, 30, 0.1).toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 36
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkdvdCA2IGFyZ3VtZW50cyB0byBUSU1FIChleHBlY3RlZCA0IG9yIDcpLiIsIFtdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkdvdCA2IGFyZ3VtZW50cyB0byBUSU1FIChleHBlY3RlZCA0IG9yIDcpLiIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: r.time(2013, r.july(), 29, 23, 30, 0.1).timezone()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 37
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkdvdCA1IGFyZ3VtZW50cyB0byBUSU1FIChleHBlY3RlZCA0IG9yIDcpLiIsIFtdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkdvdCA1IGFyZ3VtZW50cyB0byBUSU1FIChleHBlY3RlZCA0IG9yIDcpLiIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: r.time(2013, r.july(), 29, 23, 30).toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 38
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgU1RSSU5HIGJ1dCBmb3VuZCBOVU1CRVIuIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgU1RSSU5HIGJ1dCBmb3VuZCBOVU1CRVIuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.time(2013, r.july(), 29, 23).toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 39
+     Original: b'MTM3NTA4MTIwMA=='
+     ExpectedType: Integer
+     ExpectedJava: b'MTM3NTA4MTIwMA=='
+     Obtained: r.time(2013, r.july(), 29, "-07:00").toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 40
+     Original: b'KCItMDc6MDAiKQ=='
+     ExpectedType: String
+     ExpectedJava: b'Ii0wNzowMCI='
+     Obtained: r.time(2013, r.july(), 29, "-07:00").timezone()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 41
+     Original: b'ZXJyKCJSZXFsQ29tcGlsZUVycm9yIiwgIkV4cGVjdGVkIGJldHdlZW4gNCBhbmQgNyBhcmd1bWVudHMgYnV0IGZvdW5kIDMuIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsQ29tcGlsZUVycm9yIiwgIkV4cGVjdGVkIGJldHdlZW4gNCBhbmQgNyBhcmd1bWVudHMgYnV0IGZvdW5kIDMuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.time(2013, r.july(), 29).toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 42
+     Original: b'ZXJyKCJSZXFsQ29tcGlsZUVycm9yIiwgIkV4cGVjdGVkIGJldHdlZW4gNCBhbmQgNyBhcmd1bWVudHMgYnV0IGZvdW5kIDMuIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsQ29tcGlsZUVycm9yIiwgIkV4cGVjdGVkIGJldHdlZW4gNCBhbmQgNyBhcmd1bWVudHMgYnV0IGZvdW5kIDMuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.time(2013, r.july(), 29).timezone()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 43
+     Original: b'MTM3NTI0Mjk2NQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MTM3NTI0Mjk2NQ=='
+     Obtained: r.iso8601("2013-07-30T20:56:05-07:00").toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 44
+     Original: b'KCIyMDEzLTA3LTMwVDIwOjU2OjA1LTA3OjAwIik='
+     ExpectedType: String
+     ExpectedJava: b'IjIwMTMtMDctMzBUMjA6NTY6MDUtMDc6MDAi'
+     Obtained: r.epochTime(1375242965).inTimezone("-07:00").toIso8601()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 45
+     Original: b'KCJQVFlQRTxUSU1FPiIp'
+     ExpectedType: String
+     ExpectedJava: b'IlBUWVBFPFRJTUU+Ig=='
+     Obtained: r.now().typeOf()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 46
+     Original: b'MA=='
+     ExpectedType: Integer
+     ExpectedJava: b'MA=='
+     Obtained: r.sub(r.now(), r.now())
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 47
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIklTTyA4NjAxIHN0cmluZyBoYXMgbm8gdGltZSB6b25lLCBhbmQgbm8gZGVmYXVsdCB0aW1lIHpvbmUgd2FzIHByb3ZpZGVkLiIsIFtdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIklTTyA4NjAxIHN0cmluZyBoYXMgbm8gdGltZSB6b25lLCBhbmQgbm8gZGVmYXVsdCB0aW1lIHpvbmUgd2FzIHByb3ZpZGVkLiIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: r.iso8601("2013-07-30T20:56:05").toIso8601()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 48
+     Original: b'KCIyMDEzLTA3LTMwVDIwOjU2OjA1LTA3OjAwIik='
+     ExpectedType: String
+     ExpectedJava: b'IjIwMTMtMDctMzBUMjA6NTY6MDUtMDc6MDAi'
+     Obtained: r.iso8601("2013-07-30T20:56:05").optArg("default_timezone", "-07").toIso8601()
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 49
+     Original: b'KFsxLCAyLCAzLCA0LCA1LCA2LCA3XSk='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0LCA1LCA2LCA3KQ=='
+     Obtained: r.expr(Arrays.asList(r.monday(), r.tuesday(), r.wednesday(), r.thursday(), r.friday(), r.saturday(), r.sunday()))
+   - TestType: JavaQuery
+     TestFile: times/api.yaml
+     TestNum: 50
+     Original: b'KFsxLCAyLCAzLCA0LCA1LCA2LCA3LCA4LCA5LCAxMCwgMTEsIDEyXSk='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0LCA1LCA2LCA3LCA4LCA5LCAxMCwgMTEsIDEyKQ=='
+     Obtained: r.expr(Arrays.asList(r.january(), r.february(), r.march(), r.april(), r.may(), r.june(), r.july(), r.august(), r.september(), r.october(), r.november(), r.december()))
+

@@ -1,0 +1,246 @@
+
+ModuleName: "GeoOperations"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 1
+     Original: b'KCI4OTAxMS4yNjI1MzgzNTMzMiIp'
+     ExpectedType: String
+     ExpectedJava: b'Ijg5MDExLjI2MjUzODM1MzMyIg=='
+     Obtained: r.distance(r.point(-122, 37), r.point(-123, 37)).coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 2
+     Original: b'KCIxMTA5NjguMzA0NDM5OTU0OTQiKQ=='
+     ExpectedType: String
+     ExpectedJava: b'IjExMDk2OC4zMDQ0Mzk5NTQ5NCI='
+     Obtained: r.distance(r.point(-122, 37), r.point(-122, 36)).coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 3
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.distance(r.point(-122, 37), r.point(-122, 36)).eq(r.distance(r.point(-122, 36), r.point(-122, 37)))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 4
+     Original: b'KCI4OTAxMS4yNjI1MzgzNTMzMiIp'
+     ExpectedType: String
+     ExpectedJava: b'Ijg5MDExLjI2MjUzODM1MzMyIg=='
+     Obtained: r.point(-122, 37).distance(r.point(-123, 37)).coerceTo("STRING")
+        
+
+   - TestType: JavaDef
+     TestFile: geo/operations.yaml
+     TestNum: 5
+     Original: b'c29tZURpc3QgPSByLmRpc3RhbmNlKHIucG9pbnQoLTEyMiwgMzcpLCByLnBvaW50KC0xMjMsIDM3KSk='
+     Java: Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 5
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: someDist.eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "m"))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 6
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: someDist.mul(r.div(1.0, 1000.0)).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "km"))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 7
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: someDist.mul(r.div(1.0, 1609.344)).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "mi"))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 8
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: someDist.mul(r.div(1.0, 0.3048)).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "ft"))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 9
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: someDist.mul(r.div(1.0, 1852.0)).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "nm"))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 10
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: someDist.eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("geo_system", "WGS84"))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 11
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: someDist.div(10).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("geo_system", new MapObject().with("a", 637813.7).with("f", r.div(1.0, 298.257223563))))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 12
+     Original: b'KCIwLjAxMzkzODc1NTA5NjQ5MzI3Iik='
+     ExpectedType: String
+     ExpectedJava: b'IjAuMDEzOTM4NzU1MDk2NDkzMjci'
+     Obtained: r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("geo_system", "unit_sphere").coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 13
+     Original: b'KCIwIik='
+     ExpectedType: String
+     ExpectedJava: b'IjAi'
+     Obtained: r.distance(r.point(0, 0), r.point(0, 0)).coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 14
+     Original: b'KCI0MDAwNzg2Mi45MTcyNTA4OTciKQ=='
+     ExpectedType: String
+     ExpectedJava: b'IjQwMDA3ODYyLjkxNzI1MDg5NyI='
+     Obtained: r.distance(r.point(0, 0), r.point(180, 0)).mul(2).coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 15
+     Original: b'KCI0MDAwNzg2Mi45MTcyNTA4OTciKQ=='
+     ExpectedType: String
+     ExpectedJava: b'IjQwMDA3ODYyLjkxNzI1MDg5NyI='
+     Obtained: r.distance(r.point(0, -90), r.point(0, 90)).mul(2).coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 16
+     Original: b'KCIwIik='
+     ExpectedType: String
+     ExpectedJava: b'IjAi'
+     Obtained: r.distance(r.point(0, 0), r.line(Arrays.asList(0, 0), Arrays.asList(0, 1))).coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 17
+     Original: b'KCIwIik='
+     ExpectedType: String
+     ExpectedJava: b'IjAi'
+     Obtained: r.distance(r.line(Arrays.asList(0, 0), Arrays.asList(0, 1)), r.point(0, 0)).coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 18
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.distance(r.point(0, 0), r.line(Arrays.asList(0.1, 0), Arrays.asList(1, 0))).eq(r.distance(r.point(0, 0), r.point(0.1, 0)))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 19
+     Original: b'KCI0OTI0NzEuNDk5MDA1NTI1NSIp'
+     ExpectedType: String
+     ExpectedJava: b'IjQ5MjQ3MS40OTkwMDU1MjU1Ig=='
+     Obtained: r.distance(r.point(0, 0), r.line(Arrays.asList(5, -1), Arrays.asList(4, 2))).coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 20
+     Original: b'KCI0OTI0NzEuNDk5MDA1NTI1NSIp'
+     ExpectedType: String
+     ExpectedJava: b'IjQ5MjQ3MS40OTkwMDU1MjU1Ig=='
+     Obtained: r.distance(r.point(0, 0), r.polygon(Arrays.asList(5, -1), Arrays.asList(4, 2), Arrays.asList(10, 10))).coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 21
+     Original: b'KCIwIik='
+     ExpectedType: String
+     ExpectedJava: b'IjAi'
+     Obtained: r.distance(r.point(0, 0), r.polygon(Arrays.asList(0, -1), Arrays.asList(0, 1), Arrays.asList(10, 10))).coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 22
+     Original: b'KCIwIik='
+     ExpectedType: String
+     ExpectedJava: b'IjAi'
+     Obtained: r.distance(r.point(0.5, 0.5), r.polygon(Arrays.asList(0, -1), Arrays.asList(0, 1), Arrays.asList(10, 10))).coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 23
+     Original: b'RmFsc2U='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: r.circle(Arrays.asList(0, 0), 1).optArg("fill", false).eq(r.circle(Arrays.asList(0, 0), 1).optArg("fill", true))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 24
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.circle(Arrays.asList(0, 0), 1).optArg("fill", false).fill().eq(r.circle(Arrays.asList(0, 0), 1).optArg("fill", true))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 25
+     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1tbMCwwXSxbMSwwXSxbMSwxXSxbMCwxXSxbMCwwXV0sW1swLjEsMC4xXSxbMC45LDAuMV0sWzAuOSwwLjldLFswLjEsMC45XSxbMC4xLDAuMV1dXSwgJ3R5cGUnOidQb2x5Z29uJ30p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdCgwLCAwKSwgQXJyYXlzLmFzTGlzdCgxLCAwKSwgQXJyYXlzLmFzTGlzdCgxLCAxKSwgQXJyYXlzLmFzTGlzdCgwLCAxKSwgQXJyYXlzLmFzTGlzdCgwLCAwKSksIEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdCgwLjEsIDAuMSksIEFycmF5cy5hc0xpc3QoMC45LCAwLjEpLCBBcnJheXMuYXNMaXN0KDAuOSwgMC45KSwgQXJyYXlzLmFzTGlzdCgwLjEsIDAuOSksIEFycmF5cy5hc0xpc3QoMC4xLCAwLjEpKSkpLndpdGgoInR5cGUiLCAiUG9seWdvbiIp'
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0.1, 0.1), Arrays.asList(0.9, 0.1), Arrays.asList(0.9, 0.9), Arrays.asList(0.1, 0.9)))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 26
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RoZSBzZWNvbmQgYXJndW1lbnQgdG8gYHBvbHlnb25fc3ViYCBpcyBub3QgY29udGFpbmVkIGluIHRoZSBmaXJzdCBvbmUuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlRoZSBzZWNvbmQgYXJndW1lbnQgdG8gYHBvbHlnb25fc3ViYCBpcyBub3QgY29udGFpbmVkIGluIHRoZSBmaXJzdCBvbmUuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0.1, 0.9), Arrays.asList(0.9, 0.0), Arrays.asList(0.9, 0.9), Arrays.asList(0.1, 0.9)))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 27
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RoZSBzZWNvbmQgYXJndW1lbnQgdG8gYHBvbHlnb25fc3ViYCBpcyBub3QgY29udGFpbmVkIGluIHRoZSBmaXJzdCBvbmUuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlRoZSBzZWNvbmQgYXJndW1lbnQgdG8gYHBvbHlnb25fc3ViYCBpcyBub3QgY29udGFpbmVkIGluIHRoZSBmaXJzdCBvbmUuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(2, 0), Arrays.asList(2, 2), Arrays.asList(0, 2)))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 28
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RoZSBzZWNvbmQgYXJndW1lbnQgdG8gYHBvbHlnb25fc3ViYCBpcyBub3QgY29udGFpbmVkIGluIHRoZSBmaXJzdCBvbmUuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlRoZSBzZWNvbmQgYXJndW1lbnQgdG8gYHBvbHlnb25fc3ViYCBpcyBub3QgY29udGFpbmVkIGluIHRoZSBmaXJzdCBvbmUuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, -2), Arrays.asList(1, -2), Arrays.asList(-1, 1), Arrays.asList(0, -1)))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 29
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RoZSBzZWNvbmQgYXJndW1lbnQgdG8gYHBvbHlnb25fc3ViYCBpcyBub3QgY29udGFpbmVkIGluIHRoZSBmaXJzdCBvbmUuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlRoZSBzZWNvbmQgYXJndW1lbnQgdG8gYHBvbHlnb25fc3ViYCBpcyBub3QgY29udGFpbmVkIGluIHRoZSBmaXJzdCBvbmUuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, -1), Arrays.asList(1, -1), Arrays.asList(1, 0), Arrays.asList(0, 0)))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 30
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RoZSBzZWNvbmQgYXJndW1lbnQgdG8gYHBvbHlnb25fc3ViYCBpcyBub3QgY29udGFpbmVkIGluIHRoZSBmaXJzdCBvbmUuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlRoZSBzZWNvbmQgYXJndW1lbnQgdG8gYHBvbHlnb25fc3ViYCBpcyBub3QgY29udGFpbmVkIGluIHRoZSBmaXJzdCBvbmUuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0.1, -1), Arrays.asList(0.9, -1), Arrays.asList(0.9, 0.5), Arrays.asList(0.1, 0.5)))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 31
+     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1tbMCwwXSxbMSwwXSxbMSwxXSxbMCwxXSxbMCwwXV0sW1swLDBdLFswLjEsMC45XSxbMC45LDAuOV0sWzAuOSwwLjFdLFswLDBdXV0sICd0eXBlJzonUG9seWdvbid9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdCgwLCAwKSwgQXJyYXlzLmFzTGlzdCgxLCAwKSwgQXJyYXlzLmFzTGlzdCgxLCAxKSwgQXJyYXlzLmFzTGlzdCgwLCAxKSwgQXJyYXlzLmFzTGlzdCgwLCAwKSksIEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdCgwLCAwKSwgQXJyYXlzLmFzTGlzdCgwLjEsIDAuOSksIEFycmF5cy5hc0xpc3QoMC45LCAwLjkpLCBBcnJheXMuYXNMaXN0KDAuOSwgMC4xKSwgQXJyYXlzLmFzTGlzdCgwLCAwKSkpKS53aXRoKCJ0eXBlIiwgIlBvbHlnb24iKQ=='
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(0.1, 0.9), Arrays.asList(0.9, 0.9), Arrays.asList(0.9, 0.1)))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 32
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIGEgUG9seWdvbiB3aXRoIG9ubHkgYW4gb3V0ZXIgc2hlbGwuICBUaGlzIG9uZSBoYXMgaG9sZXMuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIGEgUG9seWdvbiB3aXRoIG9ubHkgYW4gb3V0ZXIgc2hlbGwuICBUaGlzIG9uZSBoYXMgaG9sZXMuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(0.1, 0.9), Arrays.asList(0.9, 0.9), Arrays.asList(0.9, 0.1)).polygonSub(r.polygon(Arrays.asList(0.2, 0.2), Arrays.asList(0.5, 0.8), Arrays.asList(0.8, 0.2))))
+   - TestType: JavaQuery
+     TestFile: geo/operations.yaml
+     TestNum: 33
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIGEgUG9seWdvbiBidXQgZm91bmQgYSBMaW5lU3RyaW5nLicsIFtdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIGEgUG9seWdvbiBidXQgZm91bmQgYSBMaW5lU3RyaW5nLiIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.line(Arrays.asList(0, 0), Arrays.asList(0.9, 0.1), Arrays.asList(0.9, 0.9), Arrays.asList(0.1, 0.9)))
+

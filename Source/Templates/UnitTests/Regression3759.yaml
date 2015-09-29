@@ -1,0 +1,44 @@
+
+ModuleName: "Regression3759"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/3759.yaml
+     TestNum: 1
+     Original: b'WzFd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxKQ=='
+     Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
+   - TestType: JavaQuery
+     TestFile: regression/3759.yaml
+     TestNum: 2
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
+     RunOpts:
+                - Key: noreply
+                  Val: true
+   - TestType: JavaQuery
+     TestFile: regression/3759.yaml
+     TestNum: 3
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
+     RunOpts:
+                - Key: noreply
+                  Val: true
+   - TestType: JavaQuery
+     TestFile: regression/3759.yaml
+     TestNum: 4
+     Original: b'WzFd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxKQ=='
+     Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
+render_something: false
+

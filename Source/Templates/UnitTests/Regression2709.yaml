@@ -1,0 +1,46 @@
+
+ModuleName: "Regression2709"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/2709.yaml
+     TestNum: 1
+     Original: b'KHsnaW5zZXJ0ZWQnOjk5OX0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImluc2VydGVkIiwgOTk5KQ=='
+     Obtained: tbl.insert(IntStream.range(1, 1000).boxed().map(i -> new MapObject().with("result", i)).collect(Collectors.toList())).pluck("first_error", "inserted")
+     RunOpts:
+                - Key: min_batch_rows
+                  Val: 10
+                - Key: max_batch_rows
+                  Val: 13
+   - TestType: JavaQuery
+     TestFile: regression/2709.yaml
+     TestNum: 2
+     Original: b'KDk5OSk='
+     ExpectedType: Integer
+     ExpectedJava: b'OTk5'
+     Obtained: tbl.map(thing -> "key").count()
+     RunOpts:
+                - Key: min_batch_rows
+                  Val: 10
+                - Key: max_batch_rows
+                  Val: 13
+   - TestType: JavaQuery
+     TestFile: regression/2709.yaml
+     TestNum: 3
+     Original: b'KDk5OSk='
+     ExpectedType: Integer
+     ExpectedJava: b'OTk5'
+     Obtained: tbl.map(thing -> "key").count()
+     RunOpts:
+                - Key: min_batch_rows
+                  Val: 10
+                - Key: max_batch_rows
+                  Val: 13
+render_something: false
+

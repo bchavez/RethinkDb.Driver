@@ -1,0 +1,65 @@
+
+ModuleName: "Polymorphism"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+        
+
+   - TestType: JavaDef
+     TestFile: polymorphism.yaml
+     TestNum: 1
+     Original: b'b2JqID0gci5leHByKHsnaWQnOjAsJ2EnOjB9KQ=='
+     Java: MakeObj obj = (MakeObj) r.expr(new MapObject().with("id", 0).with("a", 0));
+   - TestType: JavaQuery
+     TestFile: polymorphism.yaml
+     TestNum: 2
+     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjN9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAzKQ=='
+     Obtained: tbl.insert(IntStream.range(0, 3).boxed().map(i -> new MapObject().with("id", i).with("a", i)).collect(Collectors.toList()))
+   - TestType: JavaQuery
+     TestFile: polymorphism.yaml
+     TestNum: 3
+     Original: b'KHsnaWQnOjAsJ2MnOjEsJ2EnOjB9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMCkud2l0aCgiYyIsIDEpLndpdGgoImEiLCAwKQ=='
+     Obtained: tbl.merge(new MapObject().with("c", 1)).nth(0)
+   - TestType: JavaQuery
+     TestFile: polymorphism.yaml
+     TestNum: 3
+     Original: b'KHsnaWQnOjAsJ2MnOjEsJ2EnOjB9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMCkud2l0aCgiYyIsIDEpLndpdGgoImEiLCAwKQ=='
+     Obtained: obj.merge(new MapObject().with("c", 1))
+   - TestType: JavaQuery
+     TestFile: polymorphism.yaml
+     TestNum: 4
+     Original: b'KHsnaWQnOjB9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMCk='
+     Obtained: tbl.without("a").nth(0)
+   - TestType: JavaQuery
+     TestFile: polymorphism.yaml
+     TestNum: 4
+     Original: b'KHsnaWQnOjB9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMCk='
+     Obtained: obj.without("a")
+   - TestType: JavaQuery
+     TestFile: polymorphism.yaml
+     TestNum: 5
+     Original: b'KHsnYSc6MH0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImEiLCAwKQ=='
+     Obtained: tbl.pluck("a").nth(0)
+   - TestType: JavaQuery
+     TestFile: polymorphism.yaml
+     TestNum: 5
+     Original: b'KHsnYSc6MH0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImEiLCAwKQ=='
+     Obtained: obj.pluck("a")
+

@@ -1,0 +1,163 @@
+
+ModuleName: "Regression469"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 1
+     Original: b'cGFydGlhbCh7J2Ric19jcmVhdGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZGJzX2NyZWF0ZWQiLCAxKSk='
+     Obtained: r.dbCreate("d469")
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 2
+     Original: b'cGFydGlhbCh7J3RhYmxlc19jcmVhdGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2NyZWF0ZWQiLCAxKSk='
+     Obtained: r.db("d469").tableCreate("t469")
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 3
+     Original: b'KHsnY3JlYXRlZCc6MX0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImNyZWF0ZWQiLCAxKQ=='
+     Obtained: r.db("d469").table("t469").indexCreate("x")
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 4
+     Original: b'KFt7J3JlYWR5JzpUcnVlLCAnaW5kZXgnOid4J31dKQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgicmVhZHkiLCB0cnVlKS53aXRoKCJpbmRleCIsICJ4Iikp'
+     Obtained: r.db("d469").table("t469").indexWait("x").pluck("index", "ready")
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 5
+     Original: b'eyd0eXBlJzogJ01JTlZBTCd9'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInR5cGUiLCAiTUlOVkFMIik='
+     Obtained: r.minval().info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 6
+     Original: b'eyd0eXBlJzogJ01BWFZBTCd9'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInR5cGUiLCAiTUFYVkFMIik='
+     Obtained: r.maxval().info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 7
+     Original: b'KHsndHlwZSc6J05VTEwnfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInR5cGUiLCAiTlVMTCIp'
+     Obtained: r.expr(null).info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 8
+     Original: b'KHsndHlwZSc6J0JPT0wnLCd2YWx1ZSc6J3RydWUnfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInR5cGUiLCAiQk9PTCIpLndpdGgoInZhbHVlIiwgInRydWUiKQ=='
+     Obtained: r.expr(true).info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 9
+     Original: b'KHsndHlwZSc6J05VTUJFUicsJ3ZhbHVlJzonMSd9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInR5cGUiLCAiTlVNQkVSIikud2l0aCgidmFsdWUiLCAiMSIp'
+     Obtained: r.expr(1).info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 10
+     Original: b'KHsndHlwZSc6J1NUUklORycsJ3ZhbHVlJzooJyIxIicpfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInR5cGUiLCAiU1RSSU5HIikud2l0aCgidmFsdWUiLCAiIjEiIik='
+     Obtained: r.expr("1").info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 11
+     Original: b'KHsndHlwZSc6J0FSUkFZJywndmFsdWUnOiJbXG5cdDFcbl0ifSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInR5cGUiLCAiQVJSQVkiKS53aXRoKCJ2YWx1ZSIsICJbXG5cdDFcbl0iKQ=='
+     Obtained: r.expr(Arrays.asList(1)).info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 12
+     Original: b'KHsndHlwZSc6J09CSkVDVCcsJ3ZhbHVlJzoie1xuXHRcImFcIjpcdDFcbn0ifSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInR5cGUiLCAiT0JKRUNUIikud2l0aCgidmFsdWUiLCAie1xuXHQiYSI6XHQxXG59Iik='
+     Obtained: r.expr(new MapObject().with("a", 1)).info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 13
+     Original: b'cGFydGlhbCh7J3R5cGUnOidEQicsJ25hbWUnOidkNDY5J30p'
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidHlwZSIsICJEQiIpLndpdGgoIm5hbWUiLCAiZDQ2OSIpKQ=='
+     Obtained: r.db("d469").info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 14
+     Original: b'KHsndHlwZSc6J1RBQkxFJywnbmFtZSc6J3Q0NjknLCdpZCc6dXVpZCgpLCAnZGInOnsndHlwZSc6J0RCJywnbmFtZSc6J2Q0NjknLCdpZCc6dXVpZCgpfSwgJ3ByaW1hcnlfa2V5JzonaWQnLCAnaW5kZXhlcyc6Wyd4J10sICdkb2NfY291bnRfZXN0aW1hdGVzJzpbMF19KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInR5cGUiLCAiVEFCTEUiKS53aXRoKCJuYW1lIiwgInQ0NjkiKS53aXRoKCJpZCIsIHV1aWQoKSkud2l0aCgiZGIiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgidHlwZSIsICJEQiIpLndpdGgoIm5hbWUiLCAiZDQ2OSIpLndpdGgoImlkIiwgdXVpZCgpKSkud2l0aCgicHJpbWFyeV9rZXkiLCAiaWQiKS53aXRoKCJpbmRleGVzIiwgQXJyYXlzLmFzTGlzdCgieCIpKS53aXRoKCJkb2NfY291bnRfZXN0aW1hdGVzIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.db("d469").table("t469").info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 15
+     Original: b'KHsndHlwZSc6J1NFTEVDVElPTjxTVFJFQU0+JywgJ3RhYmxlJzp7J3R5cGUnOidUQUJMRScsJ25hbWUnOid0NDY5JywnaWQnOnV1aWQoKSwgJ2RiJzp7J3R5cGUnOidEQicsJ25hbWUnOidkNDY5JywnaWQnOnV1aWQoKX0sICdwcmltYXJ5X2tleSc6J2lkJywgJ2luZGV4ZXMnOlsneCddLCAnZG9jX2NvdW50X2VzdGltYXRlcyc6WzBdfX0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInR5cGUiLCAiU0VMRUNUSU9OPFNUUkVBTT4iKS53aXRoKCJ0YWJsZSIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJ0eXBlIiwgIlRBQkxFIikud2l0aCgibmFtZSIsICJ0NDY5Iikud2l0aCgiaWQiLCB1dWlkKCkpLndpdGgoImRiIiwgbmV3IE1hcE9iamVjdCgpLndpdGgoInR5cGUiLCAiREIiKS53aXRoKCJuYW1lIiwgImQ0NjkiKS53aXRoKCJpZCIsIHV1aWQoKSkpLndpdGgoInByaW1hcnlfa2V5IiwgImlkIikud2l0aCgiaW5kZXhlcyIsIEFycmF5cy5hc0xpc3QoIngiKSkud2l0aCgiZG9jX2NvdW50X2VzdGltYXRlcyIsIEFycmF5cy5hc0xpc3QoMCkpKQ=='
+     Obtained: r.db("d469").table("t469").filter(x -> true).info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 16
+     Original: b'KHsndHlwZSc6J1NUUkVBTSd9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInR5cGUiLCAiU1RSRUFNIik='
+     Obtained: r.db("d469").table("t469").map(x -> 1).info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 17
+     Original: b'KHsnaW5kZXgnOidpZCcsICdsZWZ0X2JvdW5kJzowLCAnbGVmdF9ib3VuZF90eXBlJzonY2xvc2VkJywgJ3JpZ2h0X2JvdW5kJzoxLCAncmlnaHRfYm91bmRfdHlwZSc6J29wZW4nLCAnc29ydGluZyc6J1VOT1JERVJFRCcsICd0YWJsZSc6eydkYic6eydpZCc6dXVpZCgpLCAnbmFtZSc6J2Q0NjknLCAndHlwZSc6J0RCJ30sICdkb2NfY291bnRfZXN0aW1hdGVzJzpbMF0sICdpZCc6dXVpZCgpLCAnaW5kZXhlcyc6Wyd4J10sICduYW1lJzondDQ2OScsICdwcmltYXJ5X2tleSc6J2lkJywgJ3R5cGUnOidUQUJMRSd9LCAndHlwZSc6J1RBQkxFX1NMSUNFJ30p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImluZGV4IiwgImlkIikud2l0aCgibGVmdF9ib3VuZCIsIDApLndpdGgoImxlZnRfYm91bmRfdHlwZSIsICJjbG9zZWQiKS53aXRoKCJyaWdodF9ib3VuZCIsIDEpLndpdGgoInJpZ2h0X2JvdW5kX3R5cGUiLCAib3BlbiIpLndpdGgoInNvcnRpbmciLCAiVU5PUkRFUkVEIikud2l0aCgidGFibGUiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiZGIiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiaWQiLCB1dWlkKCkpLndpdGgoIm5hbWUiLCAiZDQ2OSIpLndpdGgoInR5cGUiLCAiREIiKSkud2l0aCgiZG9jX2NvdW50X2VzdGltYXRlcyIsIEFycmF5cy5hc0xpc3QoMCkpLndpdGgoImlkIiwgdXVpZCgpKS53aXRoKCJpbmRleGVzIiwgQXJyYXlzLmFzTGlzdCgieCIpKS53aXRoKCJuYW1lIiwgInQ0NjkiKS53aXRoKCJwcmltYXJ5X2tleSIsICJpZCIpLndpdGgoInR5cGUiLCAiVEFCTEUiKSkud2l0aCgidHlwZSIsICJUQUJMRV9TTElDRSIp'
+     Obtained: r.db("d469").table("t469").between(0, 1).info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 18
+     Original: b'KHsnaW5kZXgnOidhJywgJ2xlZnRfYm91bmQnOjAsICdsZWZ0X2JvdW5kX3R5cGUnOidjbG9zZWQnLCAncmlnaHRfYm91bmQnOjEsICdyaWdodF9ib3VuZF90eXBlJzonb3BlbicsICdzb3J0aW5nJzonVU5PUkRFUkVEJywgJ3RhYmxlJzp7J2RiJzp7J2lkJzp1dWlkKCksICduYW1lJzonZDQ2OScsICd0eXBlJzonREInfSwgJ2RvY19jb3VudF9lc3RpbWF0ZXMnOlswXSwgJ2lkJzp1dWlkKCksICdpbmRleGVzJzpbJ3gnXSwgJ25hbWUnOid0NDY5JywgJ3ByaW1hcnlfa2V5JzonaWQnLCAndHlwZSc6J1RBQkxFJ30sICd0eXBlJzonVEFCTEVfU0xJQ0UnfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImluZGV4IiwgImEiKS53aXRoKCJsZWZ0X2JvdW5kIiwgMCkud2l0aCgibGVmdF9ib3VuZF90eXBlIiwgImNsb3NlZCIpLndpdGgoInJpZ2h0X2JvdW5kIiwgMSkud2l0aCgicmlnaHRfYm91bmRfdHlwZSIsICJvcGVuIikud2l0aCgic29ydGluZyIsICJVTk9SREVSRUQiKS53aXRoKCJ0YWJsZSIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJkYiIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIHV1aWQoKSkud2l0aCgibmFtZSIsICJkNDY5Iikud2l0aCgidHlwZSIsICJEQiIpKS53aXRoKCJkb2NfY291bnRfZXN0aW1hdGVzIiwgQXJyYXlzLmFzTGlzdCgwKSkud2l0aCgiaWQiLCB1dWlkKCkpLndpdGgoImluZGV4ZXMiLCBBcnJheXMuYXNMaXN0KCJ4IikpLndpdGgoIm5hbWUiLCAidDQ2OSIpLndpdGgoInByaW1hcnlfa2V5IiwgImlkIikud2l0aCgidHlwZSIsICJUQUJMRSIpKS53aXRoKCJ0eXBlIiwgIlRBQkxFX1NMSUNFIik='
+     Obtained: r.db("d469").table("t469").between(0, 1).optArg("index", "a").info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 19
+     Original: b'KHsnaW5kZXgnOidhJywgJ2xlZnRfYm91bmQnOjAsICdsZWZ0X2JvdW5kX3R5cGUnOidjbG9zZWQnLCAncmlnaHRfYm91bmQnOjEsICdyaWdodF9ib3VuZF90eXBlJzonb3BlbicsICdzb3J0aW5nJzonQVNDRU5ESU5HJywgJ3RhYmxlJzp7J2RiJzp7J2lkJzp1dWlkKCksICduYW1lJzonZDQ2OScsICd0eXBlJzonREInfSwgJ2RvY19jb3VudF9lc3RpbWF0ZXMnOlswXSwgJ2lkJzp1dWlkKCksICdpbmRleGVzJzpbJ3gnXSwgJ25hbWUnOid0NDY5JywgJ3ByaW1hcnlfa2V5JzonaWQnLCAndHlwZSc6J1RBQkxFJ30sICd0eXBlJzonVEFCTEVfU0xJQ0UnfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImluZGV4IiwgImEiKS53aXRoKCJsZWZ0X2JvdW5kIiwgMCkud2l0aCgibGVmdF9ib3VuZF90eXBlIiwgImNsb3NlZCIpLndpdGgoInJpZ2h0X2JvdW5kIiwgMSkud2l0aCgicmlnaHRfYm91bmRfdHlwZSIsICJvcGVuIikud2l0aCgic29ydGluZyIsICJBU0NFTkRJTkciKS53aXRoKCJ0YWJsZSIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJkYiIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIHV1aWQoKSkud2l0aCgibmFtZSIsICJkNDY5Iikud2l0aCgidHlwZSIsICJEQiIpKS53aXRoKCJkb2NfY291bnRfZXN0aW1hdGVzIiwgQXJyYXlzLmFzTGlzdCgwKSkud2l0aCgiaWQiLCB1dWlkKCkpLndpdGgoImluZGV4ZXMiLCBBcnJheXMuYXNMaXN0KCJ4IikpLndpdGgoIm5hbWUiLCAidDQ2OSIpLndpdGgoInByaW1hcnlfa2V5IiwgImlkIikud2l0aCgidHlwZSIsICJUQUJMRSIpKS53aXRoKCJ0eXBlIiwgIlRBQkxFX1NMSUNFIik='
+     Obtained: r.db("d469").table("t469").orderBy().optArg("index", "a").between(0, 1).optArg("index", "a").info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 20
+     Original: b'KHsnaW5kZXgnOidpZCcsICdsZWZ0X2JvdW5kX3R5cGUnOid1bmJvdW5kZWQnLCAncmlnaHRfYm91bmRfdHlwZSc6J3VuYm91bmRlZCcsICdzb3J0aW5nJzonVU5PUkRFUkVEJywgJ3RhYmxlJzp7J2RiJzp7J2lkJzp1dWlkKCksICduYW1lJzonZDQ2OScsICd0eXBlJzonREInfSwgJ2RvY19jb3VudF9lc3RpbWF0ZXMnOlswXSwgJ2lkJzp1dWlkKCksICdpbmRleGVzJzpbJ3gnXSwgJ25hbWUnOid0NDY5JywgJ3ByaW1hcnlfa2V5JzonaWQnLCAndHlwZSc6J1RBQkxFJ30sICd0eXBlJzonVEFCTEVfU0xJQ0UnfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImluZGV4IiwgImlkIikud2l0aCgibGVmdF9ib3VuZF90eXBlIiwgInVuYm91bmRlZCIpLndpdGgoInJpZ2h0X2JvdW5kX3R5cGUiLCAidW5ib3VuZGVkIikud2l0aCgic29ydGluZyIsICJVTk9SREVSRUQiKS53aXRoKCJ0YWJsZSIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJkYiIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIHV1aWQoKSkud2l0aCgibmFtZSIsICJkNDY5Iikud2l0aCgidHlwZSIsICJEQiIpKS53aXRoKCJkb2NfY291bnRfZXN0aW1hdGVzIiwgQXJyYXlzLmFzTGlzdCgwKSkud2l0aCgiaWQiLCB1dWlkKCkpLndpdGgoImluZGV4ZXMiLCBBcnJheXMuYXNMaXN0KCJ4IikpLndpdGgoIm5hbWUiLCAidDQ2OSIpLndpdGgoInByaW1hcnlfa2V5IiwgImlkIikud2l0aCgidHlwZSIsICJUQUJMRSIpKS53aXRoKCJ0eXBlIiwgIlRBQkxFX1NMSUNFIik='
+     Obtained: r.db("d469").table("t469").between(r.minval(), r.maxval()).info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 21
+     Original: b'KHsnaW5kZXgnOidpZCcsICdsZWZ0X2JvdW5kX3R5cGUnOid1bmFjaGlldmFibGUnLCAncmlnaHRfYm91bmRfdHlwZSc6J3VuYWNoaWV2YWJsZScsICdzb3J0aW5nJzonVU5PUkRFUkVEJywgJ3RhYmxlJzp7J2RiJzp7J2lkJzp1dWlkKCksICduYW1lJzonZDQ2OScsICd0eXBlJzonREInfSwgJ2RvY19jb3VudF9lc3RpbWF0ZXMnOlswXSwgJ2lkJzp1dWlkKCksICdpbmRleGVzJzpbJ3gnXSwgJ25hbWUnOid0NDY5JywgJ3ByaW1hcnlfa2V5JzonaWQnLCAndHlwZSc6J1RBQkxFJ30sICd0eXBlJzonVEFCTEVfU0xJQ0UnfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImluZGV4IiwgImlkIikud2l0aCgibGVmdF9ib3VuZF90eXBlIiwgInVuYWNoaWV2YWJsZSIpLndpdGgoInJpZ2h0X2JvdW5kX3R5cGUiLCAidW5hY2hpZXZhYmxlIikud2l0aCgic29ydGluZyIsICJVTk9SREVSRUQiKS53aXRoKCJ0YWJsZSIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJkYiIsIG5ldyBNYXBPYmplY3QoKS53aXRoKCJpZCIsIHV1aWQoKSkud2l0aCgibmFtZSIsICJkNDY5Iikud2l0aCgidHlwZSIsICJEQiIpKS53aXRoKCJkb2NfY291bnRfZXN0aW1hdGVzIiwgQXJyYXlzLmFzTGlzdCgwKSkud2l0aCgiaWQiLCB1dWlkKCkpLndpdGgoImluZGV4ZXMiLCBBcnJheXMuYXNMaXN0KCJ4IikpLndpdGgoIm5hbWUiLCAidDQ2OSIpLndpdGgoInByaW1hcnlfa2V5IiwgImlkIikud2l0aCgidHlwZSIsICJUQUJMRSIpKS53aXRoKCJ0eXBlIiwgIlRBQkxFX1NMSUNFIik='
+     Obtained: r.db("d469").table("t469").between(r.maxval(), r.minval()).info()
+   - TestType: JavaQuery
+     TestFile: regression/469.yaml
+     TestNum: 22
+     Original: b'cGFydGlhbCh7J2Ric19kcm9wcGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZGJzX2Ryb3BwZWQiLCAxKSk='
+     Obtained: r.dbDrop("d469")
+render_something: false
+

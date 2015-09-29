@@ -1,0 +1,16 @@
+
+ModuleName: "Regression1132"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/1132.yaml
+     TestNum: 1
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkR1cGxpY2F0ZSBrZXkgYGFgIGluIEpTT04uIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkR1cGxpY2F0ZSBrZXkgYGFgIGluIEpTT04uIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.json("{"a":1,"a":2}")
+render_something: false
+

@@ -1,0 +1,359 @@
+
+ModuleName: "DatumArray"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 1
+     Original: b'W10='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
+     Obtained: r.expr(Arrays.asList())
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 2
+     Original: b'WzFd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxKQ=='
+     Obtained: r.expr(Arrays.asList(1))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 3
+     Original: b'WzEsIDIsIDMsIDQsIDVd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0LCA1KQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4, 5))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 4
+     Original: b'J0FSUkFZJw=='
+     ExpectedType: String
+     ExpectedJava: b'IkFSUkFZIg=='
+     Obtained: r.expr(Arrays.asList()).typeOf()
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 5
+     Original: b'J1sxLDJdJw=='
+     ExpectedType: String
+     ExpectedJava: b'IlsxLDJdIg=='
+     Obtained: r.expr(Arrays.asList(1, 2)).coerceTo("string")
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 5
+     Original: b'J1sxLDJdJw=='
+     ExpectedType: String
+     ExpectedJava: b'IlsxLDJdIg=='
+     Obtained: r.expr(Arrays.asList(1, 2)).coerceTo("STRING")
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 6
+     Original: b'WzEsIDJd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2)).coerceTo("array")
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 7
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0Nhbm5vdCBjb2VyY2UgQVJSQVkgdG8gTlVNQkVSLicsIFswXSk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb2VyY2UgQVJSQVkgdG8gTlVNQkVSLiIsIEFycmF5cy5hc0xpc3QoMCkp'
+     Obtained: r.expr(Arrays.asList(1, 2)).coerceTo("number")
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 8
+     Original: b'KHsnYSc6MSwnYic6Mn0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImEiLCAxKS53aXRoKCJiIiwgMik='
+     Obtained: r.expr(Arrays.asList(Arrays.asList("a", 1), Arrays.asList("b", 2))).coerceTo("object")
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 9
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIGFycmF5IG9mIHNpemUgMiwgYnV0IGdvdCBzaXplIDAuJyk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIGFycmF5IG9mIHNpemUgMiwgYnV0IGdvdCBzaXplIDAuIik='
+     Obtained: r.expr(Arrays.asList(Arrays.asList())).coerceTo("object")
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 10
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIGFycmF5IG9mIHNpemUgMiwgYnV0IGdvdCBzaXplIDMuJyk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIGFycmF5IG9mIHNpemUgMiwgYnV0IGdvdCBzaXplIDMuIik='
+     Obtained: r.expr(Arrays.asList(Arrays.asList("1", 2, 3))).coerceTo("object")
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 11
+     Original: b'WzFd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxKQ=='
+     Obtained: r.expr(Arrays.asList(r.expr(1)))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 12
+     Original: b'WzEsIDIsIDMsIDRd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0KQ=='
+     Obtained: r.expr(Arrays.asList(1, 3, 4)).insertAt(1, 2)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 13
+     Original: b'WzEsIDIsIDNd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzKQ=='
+     Obtained: r.expr(Arrays.asList(2, 3)).insertAt(0, 1)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 14
+     Original: b'WzEsIDIsIDMsIDRd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0KQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).insertAt(-1, 4)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 15
+     Original: b'WzEsIDIsIDMsIDRd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0KQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).insertAt(3, 4)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 16
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.expr(3).do_(x -> r.expr(Arrays.asList(1, 2, 3)).insertAt(x, 4))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 19
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnSW5kZXggYDRgIG91dCBvZiBib3VuZHMgZm9yIGFycmF5IG9mIHNpemU6IGAzYC4nLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiSW5kZXggYDRgIG91dCBvZiBib3VuZHMgZm9yIGFycmF5IG9mIHNpemU6IGAzYC4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).insertAt(4, 5)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 20
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnSW5kZXggb3V0IG9mIGJvdW5kczogLTUnLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiSW5kZXggb3V0IG9mIGJvdW5kczogLTUiLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).insertAt(-5, -1)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 21
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ051bWJlciBub3QgYW4gaW50ZWdlcjogMS41JywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk51bWJlciBub3QgYW4gaW50ZWdlcjogMS41IiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).insertAt(1.5, 1)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 22
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).insertAt(null, 1)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 23
+     Original: b'WzEsIDIsIDMsIDRd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0KQ=='
+     Obtained: r.expr(Arrays.asList(1, 4)).spliceAt(1, Arrays.asList(2, 3))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 24
+     Original: b'WzEsIDIsIDMsIDRd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0KQ=='
+     Obtained: r.expr(Arrays.asList(3, 4)).spliceAt(0, Arrays.asList(1, 2))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 25
+     Original: b'WzEsIDIsIDMsIDRd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0KQ=='
+     Obtained: r.expr(Arrays.asList(1, 2)).spliceAt(2, Arrays.asList(3, 4))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 26
+     Original: b'WzEsIDIsIDMsIDRd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0KQ=='
+     Obtained: r.expr(Arrays.asList(1, 2)).spliceAt(-1, Arrays.asList(3, 4))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 27
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.expr(2).do_(x -> r.expr(Arrays.asList(1, 2)).spliceAt(x, Arrays.asList(3, 4)))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 30
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnSW5kZXggYDNgIG91dCBvZiBib3VuZHMgZm9yIGFycmF5IG9mIHNpemU6IGAyYC4nLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiSW5kZXggYDNgIG91dCBvZiBib3VuZHMgZm9yIGFycmF5IG9mIHNpemU6IGAyYC4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2)).spliceAt(3, Arrays.asList(3, 4))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 31
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnSW5kZXggb3V0IG9mIGJvdW5kczogLTQnLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiSW5kZXggb3V0IG9mIGJvdW5kczogLTQiLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2)).spliceAt(-4, Arrays.asList(3, 4))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 32
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ051bWJlciBub3QgYW4gaW50ZWdlcjogMS41JywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk51bWJlciBub3QgYW4gaW50ZWdlcjogMS41IiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).spliceAt(1.5, Arrays.asList(1))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 33
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).spliceAt(null, Arrays.asList(1))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 34
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgQVJSQVkgYnV0IGZvdW5kIE5VTUJFUi4nLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgQVJSQVkgYnV0IGZvdW5kIE5VTUJFUi4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr(Arrays.asList(1, 4)).spliceAt(1, 2)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 35
+     Original: b'WzIsIDMsIDRd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgyLCAzLCA0KQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(0)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 36
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.expr(0).do_(x -> r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(x))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 39
+     Original: b'WzEsIDIsIDNd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(-1)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 40
+     Original: b'WzEsIDRd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCA0KQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(1, 3)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 41
+     Original: b'WzEsIDIsIDMsIDRd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0KQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(4, 4)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 42
+     Original: b'W10='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgp'
+     Obtained: r.expr(Arrays.asList()).deleteAt(0, 0)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 43
+     Original: b'WzEsIDRd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCA0KQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(1, -1)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 44
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnSW5kZXggYDRgIG91dCBvZiBib3VuZHMgZm9yIGFycmF5IG9mIHNpemU6IGA0YC4nLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiSW5kZXggYDRgIG91dCBvZiBib3VuZHMgZm9yIGFycmF5IG9mIHNpemU6IGA0YC4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(4)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 45
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnSW5kZXggb3V0IG9mIGJvdW5kczogLTUnLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiSW5kZXggb3V0IG9mIGJvdW5kczogLTUiLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(-5)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 46
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ051bWJlciBub3QgYW4gaW50ZWdlcjogMS41JywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk51bWJlciBub3QgYW4gaW50ZWdlcjogMS41IiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).deleteAt(1.5)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 47
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).deleteAt(null)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 48
+     Original: b'WzEsIDIsIDNd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzKQ=='
+     Obtained: r.expr(Arrays.asList(0, 2, 3)).changeAt(0, 1)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 49
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.expr(1).do_(x -> r.expr(Arrays.asList(0, 2, 3)).changeAt(0, x))
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 52
+     Original: b'WzEsIDIsIDNd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzKQ=='
+     Obtained: r.expr(Arrays.asList(1, 0, 3)).changeAt(1, 2)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 53
+     Original: b'WzEsIDIsIDNd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 0)).changeAt(2, 3)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 54
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnSW5kZXggYDNgIG91dCBvZiBib3VuZHMgZm9yIGFycmF5IG9mIHNpemU6IGAzYC4nLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiSW5kZXggYDNgIG91dCBvZiBib3VuZHMgZm9yIGFycmF5IG9mIHNpemU6IGAzYC4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).changeAt(3, 4)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 55
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnSW5kZXggb3V0IG9mIGJvdW5kczogLTUnLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiSW5kZXggb3V0IG9mIGJvdW5kczogLTUiLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4)).changeAt(-5, 1)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 56
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ051bWJlciBub3QgYW4gaW50ZWdlcjogMS41JywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk51bWJlciBub3QgYW4gaW50ZWdlcjogMS41IiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).changeAt(1.5, 1)
+   - TestType: JavaQuery
+     TestFile: datum/array.yaml
+     TestNum: 57
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIE5VTEwuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.expr(Arrays.asList(1, 2, 3)).changeAt(null, 1)
+render_something: false
+

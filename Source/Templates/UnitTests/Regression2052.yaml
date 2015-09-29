@@ -1,0 +1,29 @@
+
+ModuleName: "Regression2052"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/2052.yaml
+     TestNum: 1
+     Original: b'MQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MQ=='
+     Obtained: r.expr(1)
+     RunOpts:
+                - Key: array_limit
+                  Val: 16
+   - TestType: JavaQuery
+     TestFile: regression/2052.yaml
+     TestNum: 2
+     Original: b'ZXJyKCJSZXFsQ29tcGlsZUVycm9yIiwgIlVucmVjb2duaXplZCBnbG9iYWwgb3B0aW9uYWwgYXJndW1lbnQgYG9idmlvdXNseV9ib2d1c2AuIiwgW10p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsQ29tcGlsZUVycm9yIiwgIlVucmVjb2duaXplZCBnbG9iYWwgb3B0aW9uYWwgYXJndW1lbnQgYG9idmlvdXNseV9ib2d1c2AuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.expr(1)
+     RunOpts:
+                - Key: obviously_bogus
+                  Val: 16
+render_something: false
+

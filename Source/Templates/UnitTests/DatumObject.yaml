@@ -1,0 +1,142 @@
+
+ModuleName: "DatumObject"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 1
+     Original: b'KHt9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgp'
+     Obtained: r.expr(new MapObject())
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 2
+     Original: b'eydhJzoxfQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImEiLCAxKQ=='
+     Obtained: r.expr(new MapObject().with("a", 1))
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 3
+     Original: b'eydhJzoxLCAnYic6J3R3bycsICdjJzpUcnVlfQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImEiLCAxKS53aXRoKCJiIiwgInR3byIpLndpdGgoImMiLCB0cnVlKQ=='
+     Obtained: r.expr(new MapObject().with("a", 1).with("b", "two").with("c", true))
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 4
+     Original: b'KHsnYSc6MX0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImEiLCAxKQ=='
+     Obtained: r.expr(new MapObject().with("a", r.expr(1)))
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 5
+     Original: b'KHsnYSc6eydiJzpbeydjJzoyfSwgJ2EnLCA0XX19KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImEiLCBuZXcgTWFwT2JqZWN0KCkud2l0aCgiYiIsIEFycmF5cy5hc0xpc3QobmV3IE1hcE9iamVjdCgpLndpdGgoImMiLCAyKSwgImEiLCA0KSkp'
+     Obtained: r.expr(new MapObject().with("a", new MapObject().with("b", Arrays.asList(new MapObject().with("c", 2), "a", 4))))
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 6
+     Original: b'J09CSkVDVCc='
+     ExpectedType: String
+     ExpectedJava: b'Ik9CSkVDVCI='
+     Obtained: r.expr(new MapObject().with("a", 1)).typeOf()
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 7
+     Original: b'KCd7ImEiOjF9Jyk='
+     ExpectedType: String
+     ExpectedJava: b'InsiYSI6MX0i'
+     Obtained: r.expr(new MapObject().with("a", 1)).coerceTo("string")
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 8
+     Original: b'KHsnYSc6MX0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImEiLCAxKQ=='
+     Obtained: r.expr(new MapObject().with("a", 1)).coerceTo("object")
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 9
+     Original: b'W1snYScsIDFdXQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KCJhIiwgMSkp'
+     Obtained: r.expr(new MapObject().with("a", 1)).coerceTo("array")
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 10
+     Original: b'ZXJyX3JlZ2V4KCJSZXFsRHJpdmVyRXJyb3IiLCAiT2JqZWN0IGtleXMgbXVzdCBiZSBzdHJpbmdzLioiKQ=='
+     ExpectedType: ErrRegex
+     ExpectedJava: b'ZXJyX3JlZ2V4KCJSZXFsRHJpdmVyRXJyb3IiLCAiT2JqZWN0IGtleXMgbXVzdCBiZSBzdHJpbmdzLioiKQ=='
+     Obtained: r.expr(new MapObject().with(12, "a"))
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 11
+     Original: b'ZXJyX3JlZ2V4KCJSZXFsRHJpdmVyRXJyb3IiLCAiT2JqZWN0IGtleXMgbXVzdCBiZSBzdHJpbmdzLioiKQ=='
+     ExpectedType: ErrRegex
+     ExpectedJava: b'ZXJyX3JlZ2V4KCJSZXFsRHJpdmVyRXJyb3IiLCAiT2JqZWN0IGtleXMgbXVzdCBiZSBzdHJpbmdzLioiKQ=='
+     Obtained: r.expr(new MapObject().with("a", new MapObject().with(12, "b")))
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 14
+     Original: b'ZXJyKCJSZXFsRHJpdmVyRXJyb3IiLCAiU2Vjb25kIGFyZ3VtZW50IHRvIGByLmV4cHJgIG11c3QgYmUgYSBudW1iZXIuIik='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsRHJpdmVyRXJyb3IiLCAiU2Vjb25kIGFyZ3VtZW50IHRvIGByLmV4cHJgIG11c3QgYmUgYSBudW1iZXIuIik='
+     Obtained: r.expr(new MapObject(), "foo")
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 16
+     Original: b'KHt9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgp'
+     Obtained: r.object()
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 17
+     Original: b'KHsnYSc6MSwnYic6Mn0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImEiLCAxKS53aXRoKCJiIiwgMik='
+     Obtained: r.object("a", 1, "b", 2)
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 18
+     Original: b'KHsnY2QnOjN9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImNkIiwgMyk='
+     Obtained: r.object(r.add("c", "d"), 3)
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 19
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk9CSkVDVCBleHBlY3RzIGFuIGV2ZW4gbnVtYmVyIG9mIGFyZ3VtZW50cyAoYnV0IGZvdW5kIDMpLiIsIFtdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIk9CSkVDVCBleHBlY3RzIGFuIGV2ZW4gbnVtYmVyIG9mIGFyZ3VtZW50cyAoYnV0IGZvdW5kIDMpLiIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: r.object("o", "d", "d")
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 20
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwiRXhwZWN0ZWQgdHlwZSBTVFJJTkcgYnV0IGZvdW5kIE5VTUJFUi4iLFtdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgU1RSSU5HIGJ1dCBmb3VuZCBOVU1CRVIuIiwgQXJyYXlzLmFzTGlzdCgpKQ=='
+     Obtained: r.object(1, 1)
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 21
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwiRHVwbGljYXRlIGtleSBgZWAgaW4gb2JqZWN0LiAgKGdvdCBgNGAgYW5kIGA1YCBhcyB2YWx1ZXMpIixbXSk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkR1cGxpY2F0ZSBrZXkgYGVgIGluIG9iamVjdC4gIChnb3QgYDRgIGFuZCBgNWAgYXMgdmFsdWVzKSIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: r.object("e", 4, "e", 5)
+   - TestType: JavaQuery
+     TestFile: datum/object.yaml
+     TestNum: 22
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwiRXhwZWN0ZWQgdHlwZSBEQVRVTSBidXQgZm91bmQgREFUQUJBU0U6IixbXSk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgREFUVU0gYnV0IGZvdW5kIERBVEFCQVNFOiIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: r.object("g", r.db("test"))
+render_something: false
+

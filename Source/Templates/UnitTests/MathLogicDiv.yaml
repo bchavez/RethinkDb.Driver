@@ -1,0 +1,100 @@
+
+ModuleName: "MathLogicDiv"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 1
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.div(r.expr(4), 2)
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 1
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.div(4, r.expr(2))
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 1
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.expr(4).div(2)
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 2
+     Original: b'MC41'
+     ExpectedType: Double
+     ExpectedJava: b'MC41'
+     Obtained: r.div(r.expr(-1), -2)
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 3
+     Original: b'NC45IC8gMC43'
+     ExpectedType: Double
+     ExpectedJava: b'NC45IC8gMC43'
+     Obtained: r.div(r.expr(4.9), 0.7)
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 5
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0Nhbm5vdCBkaXZpZGUgYnkgemVyby4nLCBbMV0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBkaXZpZGUgYnkgemVyby4iLCBBcnJheXMuYXNMaXN0KDEpKQ=='
+     Obtained: r.div(r.expr(1), 0)
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 5
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0Nhbm5vdCBkaXZpZGUgYnkgemVyby4nLCBbMV0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBkaXZpZGUgYnkgemVyby4iLCBBcnJheXMuYXNMaXN0KDEpKQ=='
+     Obtained: r.div(r.expr(2.0), 0)
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 5
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0Nhbm5vdCBkaXZpZGUgYnkgemVyby4nLCBbMV0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBkaXZpZGUgYnkgemVyby4iLCBBcnJheXMuYXNMaXN0KDEpKQ=='
+     Obtained: r.div(r.expr(3), 0.0)
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 5
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0Nhbm5vdCBkaXZpZGUgYnkgemVyby4nLCBbMV0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBkaXZpZGUgYnkgemVyby4iLCBBcnJheXMuYXNMaXN0KDEpKQ=='
+     Obtained: r.div(r.expr(4.0), 0.0)
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 5
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0Nhbm5vdCBkaXZpZGUgYnkgemVyby4nLCBbMV0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBkaXZpZGUgYnkgemVyby4iLCBBcnJheXMuYXNMaXN0KDEpKQ=='
+     Obtained: r.div(r.expr(0), 0)
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 5
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0Nhbm5vdCBkaXZpZGUgYnkgemVyby4nLCBbMV0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBkaXZpZGUgYnkgemVyby4iLCBBcnJheXMuYXNMaXN0KDEpKQ=='
+     Obtained: r.div(r.expr(0.0), 0.0)
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 6
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.div(r.expr("a"), 0.8)
+   - TestType: JavaQuery
+     TestFile: math_logic/div.yaml
+     TestNum: 7
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuJywgWzFdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgxKSk='
+     Obtained: r.div(r.expr(1), "a")
+render_something: false
+

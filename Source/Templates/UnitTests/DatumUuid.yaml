@@ -1,0 +1,44 @@
+
+ModuleName: "DatumUuid"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: datum/uuid.yaml
+     TestNum: 1
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.uuid()
+   - TestType: JavaQuery
+     TestFile: datum/uuid.yaml
+     TestNum: 2
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.expr(r.uuid())
+   - TestType: JavaQuery
+     TestFile: datum/uuid.yaml
+     TestNum: 3
+     Original: b'KCdTVFJJTkcnKQ=='
+     ExpectedType: String
+     ExpectedJava: b'IlNUUklORyI='
+     Obtained: r.typeOf(r.uuid())
+   - TestType: JavaQuery
+     TestFile: datum/uuid.yaml
+     TestNum: 4
+     Original: b'KHRydWUp'
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.uuid().ne(r.uuid())
+   - TestType: JavaQuery
+     TestFile: datum/uuid.yaml
+     TestNum: 5
+     Original: b'KDEwKQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MTA='
+     Obtained: r.expr(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)).map(u -> r.uuid()).distinct().count()
+render_something: false
+

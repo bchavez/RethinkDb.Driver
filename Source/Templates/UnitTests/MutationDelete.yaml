@@ -1,0 +1,59 @@
+
+ModuleName: "MutationDelete"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: mutation/delete.yaml
+     TestNum: 1
+     Original: b'KHsnZGVsZXRlZCc6MC4wLCdyZXBsYWNlZCc6MC4wLCd1bmNoYW5nZWQnOjAuMCwnZXJyb3JzJzowLjAsJ3NraXBwZWQnOjAuMCwnaW5zZXJ0ZWQnOjEwMH0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAwLjApLndpdGgoInJlcGxhY2VkIiwgMC4wKS53aXRoKCJ1bmNoYW5nZWQiLCAwLjApLndpdGgoImVycm9ycyIsIDAuMCkud2l0aCgic2tpcHBlZCIsIDAuMCkud2l0aCgiaW5zZXJ0ZWQiLCAxMDAp'
+     Obtained: tbl.insert(IntStream.range(0, 100).boxed().map(i -> new MapObject().with("id", i)).collect(Collectors.toList()))
+   - TestType: JavaQuery
+     TestFile: mutation/delete.yaml
+     TestNum: 2
+     Original: b'MTAw'
+     ExpectedType: Integer
+     ExpectedJava: b'MTAw'
+     Obtained: tbl.count()
+   - TestType: JavaQuery
+     TestFile: mutation/delete.yaml
+     TestNum: 3
+     Original: b'KHsnZGVsZXRlZCc6MSwncmVwbGFjZWQnOjAuMCwndW5jaGFuZ2VkJzowLjAsJ2Vycm9ycyc6MC4wLCdza2lwcGVkJzowLjAsJ2luc2VydGVkJzowLjB9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCAxKS53aXRoKCJyZXBsYWNlZCIsIDAuMCkud2l0aCgidW5jaGFuZ2VkIiwgMC4wKS53aXRoKCJlcnJvcnMiLCAwLjApLndpdGgoInNraXBwZWQiLCAwLjApLndpdGgoImluc2VydGVkIiwgMC4wKQ=='
+     Obtained: tbl.get(12).delete()
+   - TestType: JavaQuery
+     TestFile: mutation/delete.yaml
+     TestNum: 4
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0R1cmFiaWxpdHkgb3B0aW9uIGB3cm9uZ2AgdW5yZWNvZ25pemVkIChvcHRpb25zIGFyZSAiaGFyZCIgYW5kICJzb2Z0IikuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkR1cmFiaWxpdHkgb3B0aW9uIGB3cm9uZ2AgdW5yZWNvZ25pemVkIChvcHRpb25zIGFyZSAiaGFyZCIgYW5kICJzb2Z0IikuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: tbl.skip(50).delete().optArg("durability", "wrong")
+   - TestType: JavaQuery
+     TestFile: mutation/delete.yaml
+     TestNum: 5
+     Original: b'KHsnZGVsZXRlZCc6NDksJ3JlcGxhY2VkJzowLjAsJ3VuY2hhbmdlZCc6MC4wLCdlcnJvcnMnOjAuMCwnc2tpcHBlZCc6MC4wLCdpbnNlcnRlZCc6MC4wfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCA0OSkud2l0aCgicmVwbGFjZWQiLCAwLjApLndpdGgoInVuY2hhbmdlZCIsIDAuMCkud2l0aCgiZXJyb3JzIiwgMC4wKS53aXRoKCJza2lwcGVkIiwgMC4wKS53aXRoKCJpbnNlcnRlZCIsIDAuMCk='
+     Obtained: tbl.skip(50).delete().optArg("durability", "soft")
+   - TestType: JavaQuery
+     TestFile: mutation/delete.yaml
+     TestNum: 6
+     Original: b'KHsnZGVsZXRlZCc6NTAsJ3JlcGxhY2VkJzowLjAsJ3VuY2hhbmdlZCc6MC4wLCdlcnJvcnMnOjAuMCwnc2tpcHBlZCc6MC4wLCdpbnNlcnRlZCc6MC4wfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImRlbGV0ZWQiLCA1MCkud2l0aCgicmVwbGFjZWQiLCAwLjApLndpdGgoInVuY2hhbmdlZCIsIDAuMCkud2l0aCgiZXJyb3JzIiwgMC4wKS53aXRoKCJza2lwcGVkIiwgMC4wKS53aXRoKCJpbnNlcnRlZCIsIDAuMCk='
+     Obtained: tbl.delete().optArg("durability", "hard")
+   - TestType: JavaQuery
+     TestFile: mutation/delete.yaml
+     TestNum: 7
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgU0VMRUNUSU9OIGJ1dCBmb3VuZCBEQVRVTTonLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgU0VMRUNUSU9OIGJ1dCBmb3VuZCBEQVRVTToiLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.expr(Arrays.asList(1, 2)).delete()
+render_something: false
+

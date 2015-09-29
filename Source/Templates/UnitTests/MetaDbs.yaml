@@ -1,0 +1,100 @@
+
+ModuleName: "MetaDbs"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 1
+     Original: b'YmFnKFsncmV0aGlua2RiJywgJ3Rlc3QnXSk='
+     ExpectedType: Bag
+     ExpectedJava: b'YmFnKEFycmF5cy5hc0xpc3QoInJldGhpbmtkYiIsICJ0ZXN0Iikp'
+     Obtained: r.dbList()
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 2
+     Original: b'cGFydGlhbCh7J2Ric19jcmVhdGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZGJzX2NyZWF0ZWQiLCAxKSk='
+     Obtained: r.dbCreate("a")
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 3
+     Original: b'cGFydGlhbCh7J2Ric19jcmVhdGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZGJzX2NyZWF0ZWQiLCAxKSk='
+     Obtained: r.dbCreate("b")
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 4
+     Original: b'YmFnKFsncmV0aGlua2RiJywgJ2EnLCAnYicsICd0ZXN0J10p'
+     ExpectedType: Bag
+     ExpectedJava: b'YmFnKEFycmF5cy5hc0xpc3QoInJldGhpbmtkYiIsICJhIiwgImIiLCAidGVzdCIpKQ=='
+     Obtained: r.dbList()
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 5
+     Original: b'eyduYW1lJzogJ2EnLCAndXVpZCc6IHV1aWQoKX0='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIm5hbWUiLCAiYSIpLndpdGgoInV1aWQiLCB1dWlkKCkp'
+     Obtained: r.db("a").config()
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 6
+     Original: b'cGFydGlhbCh7J2Ric19kcm9wcGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZGJzX2Ryb3BwZWQiLCAxKSk='
+     Obtained: r.dbDrop("b")
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 7
+     Original: b'YmFnKFsncmV0aGlua2RiJywgJ2EnLCAndGVzdCddKQ=='
+     ExpectedType: Bag
+     ExpectedJava: b'YmFnKEFycmF5cy5hc0xpc3QoInJldGhpbmtkYiIsICJhIiwgInRlc3QiKSk='
+     Obtained: r.dbList()
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 8
+     Original: b'cGFydGlhbCh7J2Ric19kcm9wcGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZGJzX2Ryb3BwZWQiLCAxKSk='
+     Obtained: r.dbDrop("a")
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 9
+     Original: b'YmFnKFsncmV0aGlua2RiJywgJ3Rlc3QnXSk='
+     ExpectedType: Bag
+     ExpectedJava: b'YmFnKEFycmF5cy5hc0xpc3QoInJldGhpbmtkYiIsICJ0ZXN0Iikp'
+     Obtained: r.dbList()
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 10
+     Original: b'cGFydGlhbCh7J2Ric19jcmVhdGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZGJzX2NyZWF0ZWQiLCAxKSk='
+     Obtained: r.dbCreate("bar")
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 11
+     Original: b'ZXJyKCdSZXFsT3BGYWlsZWRFcnJvcicsICdEYXRhYmFzZSBgYmFyYCBhbHJlYWR5IGV4aXN0cy4nLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsT3BGYWlsZWRFcnJvciIsICJEYXRhYmFzZSBgYmFyYCBhbHJlYWR5IGV4aXN0cy4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.dbCreate("bar")
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 12
+     Original: b'cGFydGlhbCh7J2Ric19kcm9wcGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZGJzX2Ryb3BwZWQiLCAxKSk='
+     Obtained: r.dbDrop("bar")
+   - TestType: JavaQuery
+     TestFile: meta/dbs.yaml
+     TestNum: 13
+     Original: b'ZXJyKCdSZXFsT3BGYWlsZWRFcnJvcicsICdEYXRhYmFzZSBgYmFyYCBkb2VzIG5vdCBleGlzdC4nLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsT3BGYWlsZWRFcnJvciIsICJEYXRhYmFzZSBgYmFyYCBkb2VzIG5vdCBleGlzdC4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.dbDrop("bar")
+render_something: false
+

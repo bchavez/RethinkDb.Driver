@@ -1,0 +1,44 @@
+
+ModuleName: "DatumBool"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: datum/bool.yaml
+     TestNum: 1
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.expr(true)
+   - TestType: JavaQuery
+     TestFile: datum/bool.yaml
+     TestNum: 2
+     Original: b'RmFsc2U='
+     ExpectedType: Boolean
+     ExpectedJava: b'ZmFsc2U='
+     Obtained: r.expr(false)
+   - TestType: JavaQuery
+     TestFile: datum/bool.yaml
+     TestNum: 3
+     Original: b'J0JPT0wn'
+     ExpectedType: String
+     ExpectedJava: b'IkJPT0wi'
+     Obtained: r.expr(false).typeOf()
+   - TestType: JavaQuery
+     TestFile: datum/bool.yaml
+     TestNum: 4
+     Original: b'J3RydWUn'
+     ExpectedType: String
+     ExpectedJava: b'InRydWUi'
+     Obtained: r.expr(true).coerceTo("string")
+   - TestType: JavaQuery
+     TestFile: datum/bool.yaml
+     TestNum: 5
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.expr(true).coerceTo("bool")
+render_something: false
+

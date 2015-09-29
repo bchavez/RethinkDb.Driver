@@ -1,0 +1,15 @@
+
+ModuleName: "Regression1081"
+TableVarNames:
+
+DefsAndTests:
+
+        
+        
+
+   - TestType: JavaDef
+     TestFile: regression/1081.yaml
+     TestNum: 1
+     Original: b'dCA9IHIuZGIoJ3Rlc3QnKS50YWJsZSgndDEwODEnKQ=='
+     Java: Table t = (Table) r.db("test").table("t1081");
+

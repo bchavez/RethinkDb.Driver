@@ -1,0 +1,36 @@
+
+ModuleName: "Regression665"
+TableVarNames:
+
+DefsAndTests:
+
+        
+        
+
+   - TestType: JavaDef
+     TestFile: regression/665.yaml
+     TestNum: 1
+     Original: b'dCA9IHIuZGIoJ3Rlc3QnKS50YWJsZSgndDY2NScp'
+     Java: Table t = (Table) r.db("test").table("t665");
+   - TestType: JavaQuery
+     TestFile: regression/665.yaml
+     TestNum: 1
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.db("test").tableCreate("t665")
+   - TestType: JavaQuery
+     TestFile: regression/665.yaml
+     TestNum: 2
+     Original: b'KHsndW5jaGFuZ2VkJzowLCAnc2tpcHBlZCc6MCwgJ3JlcGxhY2VkJzowLCAnaW5zZXJ0ZWQnOjIsICdlcnJvcnMnOjAsICdkZWxldGVkJzowIH0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInVuY2hhbmdlZCIsIDApLndpdGgoInNraXBwZWQiLCAwKS53aXRoKCJyZXBsYWNlZCIsIDApLndpdGgoImluc2VydGVkIiwgMikud2l0aCgiZXJyb3JzIiwgMCkud2l0aCgiZGVsZXRlZCIsIDAp'
+     Obtained: t.insert(Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 4)))
+   - TestType: JavaQuery
+     TestFile: regression/665.yaml
+     TestNum: 3
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: r.db("test").tableDrop("t665")
+

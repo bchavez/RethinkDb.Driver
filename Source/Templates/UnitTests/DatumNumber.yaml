@@ -1,0 +1,128 @@
+
+ModuleName: "DatumNumber"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 1
+     Original: b'MQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MQ=='
+     Obtained: r.expr(1)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 2
+     Original: b'LTE='
+     ExpectedType: Integer
+     ExpectedJava: b'LTE='
+     Obtained: r.expr(-1)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 3
+     Original: b'MA=='
+     ExpectedType: Integer
+     ExpectedJava: b'MA=='
+     Obtained: r.expr(0)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 4
+     Original: b'MS4w'
+     ExpectedType: Double
+     ExpectedJava: b'MS4w'
+     Obtained: r.expr(1.0)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 5
+     Original: b'MS41'
+     ExpectedType: Double
+     ExpectedJava: b'MS41'
+     Obtained: r.expr(1.5)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 6
+     Original: b'LTAuNQ=='
+     ExpectedType: Double
+     ExpectedJava: b'LTAuNQ=='
+     Obtained: r.expr(-0.5)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 7
+     Original: b'Njc0OTguODkyNzg='
+     ExpectedType: Double
+     ExpectedJava: b'Njc0OTguODkyNzg='
+     Obtained: r.expr(67498.89278)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 8
+     Original: b'MTIzNDU2Nzg5MA=='
+     ExpectedType: Integer
+     ExpectedJava: b'MTIzNDU2Nzg5MA=='
+     Obtained: r.expr(1234567890)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 9
+     Original: b'LTczODUwMzgwMTIyNDIz'
+     ExpectedType: Integer
+     ExpectedJava: b'LTczODUwMzgwMTIyNDIzLjA='
+     Obtained: r.expr(-73850380122423.0)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 10
+     Original: b'ZmxvYXQoMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MCk='
+     ExpectedType: Double
+     ExpectedJava: b'ZmxvYXQoMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MC4wKQ=='
+     Obtained: r.expr(1234567890123456789012345678901234567890.0)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 11
+     Original: b'KDEyMy40NTY3ODkwMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwKQ=='
+     ExpectedType: Double
+     ExpectedJava: b'MTIzLjQ1Njc4OTAxMjM0NTY4'
+     Obtained: r.expr(123.45678901234568)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 12
+     Original: b'J05VTUJFUic='
+     ExpectedType: String
+     ExpectedJava: b'Ik5VTUJFUiI='
+     Obtained: r.expr(1).typeOf()
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 13
+     Original: b'JzEn'
+     ExpectedType: String
+     ExpectedJava: b'IjEi'
+     Obtained: r.expr(1).coerceTo("string")
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 14
+     Original: b'MQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MQ=='
+     Obtained: r.expr(1).coerceTo("number")
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 15
+     Original: b'aW50X2NtcCgxKQ=='
+     ExpectedType: IntCmp
+     ExpectedJava: b'aW50X2NtcCgxKQ=='
+     Obtained: r.expr(1.0)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 16
+     Original: b'aW50X2NtcCg0NSk='
+     ExpectedType: IntCmp
+     ExpectedJava: b'aW50X2NtcCg0NSk='
+     Obtained: r.expr(45)
+   - TestType: JavaQuery
+     TestFile: datum/number.yaml
+     TestNum: 17
+     Original: b'ZmxvYXRfY21wKDEuMik='
+     ExpectedType: FloatCmp
+     ExpectedJava: b'ZmxvYXRfY21wKDEuMik='
+     Obtained: r.expr(1.2)
+render_something: false
+

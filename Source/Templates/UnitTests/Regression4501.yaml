@@ -1,0 +1,17 @@
+
+ModuleName: "Regression4501"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/4501.yaml
+     TestNum: 1
+     Original: b'ZXJyX3JlZ2V4KCdSZXFsT3BGYWlsZWRFcnJvcicsICdJbmRleCBgbWlzc2luZ2Agd2FzIG5vdCBmb3VuZCBvbiB0YWJsZSBgW2EtekEtWjAtOV9dKy5bYS16QS1aMC05X10rYFsuXScsIFswXSk='
+     ExpectedType: ErrRegex
+     ExpectedJava: b'ZXJyX3JlZ2V4KCJSZXFsT3BGYWlsZWRFcnJvciIsICJJbmRleCBgbWlzc2luZ2Agd2FzIG5vdCBmb3VuZCBvbiB0YWJsZSBgW2EtekEtWjAtOV9dKy5bYS16QS1aMC05X10rYFsuXSIsIEFycmF5cy5hc0xpc3QoMCkp'
+     Obtained: tbl.indexWait("missing")
+render_something: false
+

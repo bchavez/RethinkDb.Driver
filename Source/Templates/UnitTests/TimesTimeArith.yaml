@@ -1,0 +1,218 @@
+
+ModuleName: "TimesTimeArith"
+TableVarNames:
+
+DefsAndTests:
+
+        
+        
+
+   - TestType: JavaDef
+     TestFile: times/time_arith.yaml
+     TestNum: 1
+     Original: b'cnQxID0gMTM3NTE0NzI5Ni42ODE='
+     Java: Double rt1 = (Double) 1375147296.681;
+        
+
+   - TestType: JavaDef
+     TestFile: times/time_arith.yaml
+     TestNum: 2
+     Original: b'cnQyID0gMTM3NTE0NzI5Ni42ODI='
+     Java: Double rt2 = (Double) 1375147296.682;
+        
+
+   - TestType: JavaDef
+     TestFile: times/time_arith.yaml
+     TestNum: 3
+     Original: b'cnQzID0gMTM3NTE0NzI5Ny42ODE='
+     Java: Double rt3 = (Double) 1375147297.681;
+        
+
+   - TestType: JavaDef
+     TestFile: times/time_arith.yaml
+     TestNum: 4
+     Original: b'cnQ0ID0gMjM3NTE0NzI5Ni42ODE='
+     Java: Double rt4 = (Double) 2375147296.681;
+        
+
+   - TestType: JavaDef
+     TestFile: times/time_arith.yaml
+     TestNum: 5
+     Original: b'cnRzID0gW3J0MSwgcnQyLCBydDMsIHJ0NF0='
+     Java: List rts = (List) Arrays.asList(rt1, rt2, rt3, rt4);
+        
+
+   - TestType: JavaDef
+     TestFile: times/time_arith.yaml
+     TestNum: 6
+     Original: b'dDEgPSByLmVwb2NoX3RpbWUocnQxKQ=='
+     Java: EpochTime t1 = (EpochTime) r.epochTime(rt1);
+        
+
+   - TestType: JavaDef
+     TestFile: times/time_arith.yaml
+     TestNum: 7
+     Original: b'dDIgPSByLmVwb2NoX3RpbWUocnQyKQ=='
+     Java: EpochTime t2 = (EpochTime) r.epochTime(rt2);
+        
+
+   - TestType: JavaDef
+     TestFile: times/time_arith.yaml
+     TestNum: 8
+     Original: b'dDMgPSByLmVwb2NoX3RpbWUocnQzKQ=='
+     Java: EpochTime t3 = (EpochTime) r.epochTime(rt3);
+        
+
+   - TestType: JavaDef
+     TestFile: times/time_arith.yaml
+     TestNum: 9
+     Original: b'dDQgPSByLmVwb2NoX3RpbWUocnQ0KQ=='
+     Java: EpochTime t4 = (EpochTime) r.epochTime(rt4);
+        
+
+   - TestType: JavaDef
+     TestFile: times/time_arith.yaml
+     TestNum: 10
+     Original: b'dHMgPSByLmV4cHIoW3QxLCB0MiwgdDMsIHQ0XSk='
+     Java: MakeArray ts = (MakeArray) r.expr(Arrays.asList(t1, t2, t3, t4));
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 11
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.mul(r.sub(t2, t1), 1000).do_(x -> r.and(r.gt(x, 0.99), r.lt(x, 1.01)))
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 12
+     Original: b'MQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MQ=='
+     Obtained: r.sub(t3, t1)
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 13
+     Original: b'MTAwMDAwMDAwMA=='
+     ExpectedType: Integer
+     ExpectedJava: b'MTAwMDAwMDAwMA=='
+     Obtained: r.sub(t4, t1)
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 14
+     Original: b'VHJ1ZQ=='
+     ExpectedType: Boolean
+     ExpectedJava: b'dHJ1ZQ=='
+     Obtained: r.mul(r.sub(t1, t2), 1000).do_(x -> r.and(r.lt(x, -0.99), r.gt(x, -1.01)))
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 15
+     Original: b'LTE='
+     ExpectedType: Integer
+     ExpectedJava: b'LTE='
+     Obtained: r.sub(t1, t3)
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 16
+     Original: b'LTEwMDAwMDAwMDA='
+     ExpectedType: Integer
+     ExpectedJava: b'LTEwMDAwMDAwMDA='
+     Obtained: r.sub(t1, t4)
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 17
+     Original: b'KFtydDEsIHJ0MiwgcnQzLCBydDRdKQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChydDEsIHJ0MiwgcnQzLCBydDQp'
+     Obtained: ts.map(x -> r.add(t1, r.sub(x, t1))).map(x -> x.toEpochTime())
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 18
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBQVFlQRTxUSU1FPi4iLCBbXSk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBQVFlQRTxUSU1FPi4iLCBBcnJheXMuYXNMaXN0KCkp'
+     Obtained: ts.map(x -> r.sub(r.add(t1, x), t1)).map(x -> x.toEpochTime())
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 19
+     Original: b'KFtydDEsIHJ0MiwgcnQzLCBydDRdKQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChydDEsIHJ0MiwgcnQzLCBydDQp'
+     Obtained: ts.map(x -> r.sub(t1, r.sub(t1, x))).map(x -> x.toEpochTime())
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 20
+     Original: b'KFtbW2ZhbHNlLCB0cnVlLCAgdHJ1ZSwgIGZhbHNlLCB0cnVlLCAgZmFsc2VdLCBbdHJ1ZSwgIHRydWUsICBmYWxzZSwgdHJ1ZSwgIGZhbHNlLCBmYWxzZV0sIFt0cnVlLCAgdHJ1ZSwgIGZhbHNlLCB0cnVlLCAgZmFsc2UsIGZhbHNlXSwgW3RydWUsICB0cnVlLCAgZmFsc2UsIHRydWUsICBmYWxzZSwgZmFsc2VdXSwgW1tmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlLCAgdHJ1ZSwgIHRydWVdLCBbZmFsc2UsIHRydWUsICB0cnVlLCAgZmFsc2UsIHRydWUsICBmYWxzZV0sIFt0cnVlLCAgdHJ1ZSwgIGZhbHNlLCB0cnVlLCAgZmFsc2UsIGZhbHNlXSwgW3RydWUsICB0cnVlLCAgZmFsc2UsIHRydWUsICBmYWxzZSwgZmFsc2VdXSwgW1tmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlLCAgdHJ1ZSwgIHRydWVdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgIHRydWUsICB0cnVlXSwgW2ZhbHNlLCB0cnVlLCAgdHJ1ZSwgIGZhbHNlLCB0cnVlLCAgZmFsc2VdLCBbdHJ1ZSwgIHRydWUsICBmYWxzZSwgdHJ1ZSwgIGZhbHNlLCBmYWxzZV1dLCBbW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIHRydWUsICB0cnVlLCAgdHJ1ZV0sIFtmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlLCAgdHJ1ZSwgIHRydWVdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgIHRydWUsICB0cnVlXSwgW2ZhbHNlLCB0cnVlLCAgdHJ1ZSwgIGZhbHNlLCB0cnVlLCAgZmFsc2VdXV0p'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoZmFsc2UsIHRydWUsIHRydWUsIGZhbHNlLCB0cnVlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSkpLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIHRydWUsIHRydWUsIGZhbHNlLCB0cnVlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSkpLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIHRydWUsIHRydWUsIGZhbHNlLCB0cnVlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSkpLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIHRydWUsIHRydWUsIGZhbHNlLCB0cnVlLCBmYWxzZSkpKQ=='
+     Obtained: ts.map(x -> ts.map(y -> Arrays.asList(r.lt(x, y), r.le(x, y), r.eq(x, y), r.ne(x, y), r.ge(x, y), r.gt(x, y))))
+        
+
+   - TestType: JavaDef
+     TestFile: times/time_arith.yaml
+     TestNum: 21
+     Original: b'ZGF0dW1fdHlwZXMgPSByLmV4cHIoW251bGwsIHRydWUsIGZhbHNlLCAxLCAiMSIsIFsxXSwgeyIxIjoxfSwgci5iaW5hcnkoYicnKV0p'
+     Java: MakeArray datum_types = (MakeArray) r.expr(Arrays.asList(null, true, false, 1, "1", Arrays.asList(1), new MapObject().with("1", 1), r.binary("'".getBytes(StandardCharsets.UTF_8))));
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 22
+     Original: b'KFtbW3RydWUsICB0cnVlLCAgZmFsc2UsIHRydWUsICBmYWxzZSwgZmFsc2VdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgIHRydWUsICB0cnVlXV0sIFtbdHJ1ZSwgIHRydWUsICBmYWxzZSwgdHJ1ZSwgIGZhbHNlLCBmYWxzZV0sIFtmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlLCAgdHJ1ZSwgIHRydWVdXSwgW1t0cnVlLCAgdHJ1ZSwgIGZhbHNlLCB0cnVlLCAgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIHRydWUsICB0cnVlLCAgdHJ1ZV1dLCBbW3RydWUsICB0cnVlLCAgZmFsc2UsIHRydWUsICBmYWxzZSwgZmFsc2VdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgIHRydWUsICB0cnVlXV0sIFtbZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgIHRydWUsICB0cnVlXSwgW3RydWUsICB0cnVlLCAgZmFsc2UsIHRydWUsICBmYWxzZSwgZmFsc2VdXSwgW1t0cnVlLCAgdHJ1ZSwgIGZhbHNlLCB0cnVlLCAgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIHRydWUsICB0cnVlLCAgdHJ1ZV1dLCBbW3RydWUsICB0cnVlLCAgZmFsc2UsIHRydWUsICBmYWxzZSwgZmFsc2VdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgIHRydWUsICB0cnVlXV0sIFtbdHJ1ZSwgIHRydWUsICBmYWxzZSwgdHJ1ZSwgIGZhbHNlLCBmYWxzZV0sIFtmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlLCAgdHJ1ZSwgIHRydWVdXV0p'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSkpLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSkpLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSkpLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSkpLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSkpLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSkpLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSkpLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgZmFsc2UsIHRydWUsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSkpKQ=='
+     Obtained: datum_types.map(x -> r.expr(Arrays.asList(Arrays.asList(x, t1), Arrays.asList(t1, x))).map(xy -> xy.bracket(0).do_(x -> xy.bracket(1).do_(y -> Arrays.asList(r.lt(x, y), r.le(x, y), r.eq(x, y), r.ne(x, y), r.ge(x, y), r.gt(x, y))))))
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 23
+     Original: b'KFtbW2ZhbHNlLCB0cnVlLCAgdHJ1ZSwgIHRydWVdLCBbZmFsc2UsIGZhbHNlLCB0cnVlLCAgdHJ1ZV0sIFtmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXV0sIFtbZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2VdLCBbZmFsc2UsIGZhbHNlLCB0cnVlLCAgdHJ1ZV0sIFtmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXV0sIFtbZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2VdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2VdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZV0sIFtmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZV1dLCBbW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXV1dKQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoZmFsc2UsIHRydWUsIHRydWUsIHRydWUpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpKSwgQXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIHRydWUsIHRydWUpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIHRydWUpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSksIEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIHRydWUpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSksIEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSkpKQ=='
+     Obtained: ts.map(a -> ts.map(b -> ts.map(c -> b.during(a, c))))
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 24
+     Original: b'KFtbW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgdHJ1ZSwgIHRydWVdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZV0sIFtmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZV1dLCBbW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIHRydWVdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2VdXSwgW1tmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZV0sIFtmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZV0sIFtmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZV0sIFtmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZV1dLCBbW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXV1dKQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpKSwgQXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpKSwgQXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSksIEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSkpKQ=='
+     Obtained: ts.map(a -> ts.map(b -> ts.map(c -> b.during(a, c).optArg("left_bound", "open"))))
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 25
+     Original: b'KFtbW3RydWUsICB0cnVlLCAgdHJ1ZSwgIHRydWVdLCBbZmFsc2UsIHRydWUsICB0cnVlLCAgdHJ1ZV0sIFtmYWxzZSwgZmFsc2UsIHRydWUsICB0cnVlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIHRydWVdXSwgW1tmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZV0sIFtmYWxzZSwgdHJ1ZSwgIHRydWUsICB0cnVlXSwgW2ZhbHNlLCBmYWxzZSwgdHJ1ZSwgIHRydWVdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZV1dLCBbW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgdHJ1ZSwgIHRydWVdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZV1dLCBbW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIHRydWVdXV0p'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QodHJ1ZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIHRydWUsIHRydWUsIHRydWUpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgdHJ1ZSwgdHJ1ZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZSkpLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCB0cnVlLCB0cnVlLCB0cnVlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIHRydWUsIHRydWUpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIHRydWUpKSwgQXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCB0cnVlLCB0cnVlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlKSksIEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlKSkp'
+     Obtained: ts.map(a -> ts.map(b -> ts.map(c -> b.during(a, c).optArg("right_bound", "closed"))))
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 26
+     Original: b'KFtbW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCB0cnVlLCAgdHJ1ZSwgIHRydWVdLCBbZmFsc2UsIGZhbHNlLCB0cnVlLCAgdHJ1ZV0sIFtmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlXV0sIFtbZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2VdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2VdLCBbZmFsc2UsIGZhbHNlLCB0cnVlLCAgdHJ1ZV0sIFtmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlXV0sIFtbZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2VdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2VdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2VdLCBbZmFsc2UsIGZhbHNlLCBmYWxzZSwgdHJ1ZV1dLCBbW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXSwgW2ZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlXV1dKQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCB0cnVlLCB0cnVlLCB0cnVlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIHRydWUsIHRydWUpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIHRydWUpKSwgQXJyYXlzLmFzTGlzdChBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCB0cnVlLCB0cnVlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlKSksIEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCB0cnVlKSksIEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSksIEFycmF5cy5hc0xpc3QoZmFsc2UsIGZhbHNlLCBmYWxzZSwgZmFsc2UpLCBBcnJheXMuYXNMaXN0KGZhbHNlLCBmYWxzZSwgZmFsc2UsIGZhbHNlKSwgQXJyYXlzLmFzTGlzdChmYWxzZSwgZmFsc2UsIGZhbHNlLCBmYWxzZSkpKQ=='
+     Obtained: ts.map(a -> ts.map(b -> ts.map(c -> b.during(a, c).optArg("left_bound", "open").optArg("right_bound", "closed"))))
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 27
+     Original: b'cnRz'
+     ExpectedType: List
+     ExpectedJava: b'cnRz'
+     Obtained: ts.map(x -> r.add(x.date(), x.timeOfDay())).map(x -> x.toEpochTime())
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 28
+     Original: b'cnQx'
+     ExpectedType: Double
+     ExpectedJava: b'cnQx'
+     Obtained: r.epochTime(rt1).do_(r.js("(function(data){return data})")).toEpochTime()
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 29
+     Original: b'KCIyMDEyLTA4LTAxVDAwOjAwOjAwKzAwOjAwIik='
+     ExpectedType: String
+     ExpectedJava: b'IjIwMTItMDgtMDFUMDA6MDA6MDArMDA6MDAi'
+     Obtained: r.do_(r.js("new Date('2012-08-01')")).toIso8601()
+   - TestType: JavaQuery
+     TestFile: times/time_arith.yaml
+     TestNum: 30
+     Original: b'KCIyMDEyLTA4LTAxVDAwOjAwOjAwKzAwOjAwIik='
+     ExpectedType: String
+     ExpectedJava: b'IjIwMTItMDgtMDFUMDA6MDA6MDArMDA6MDAi'
+     Obtained: r.do_(r.js("(function(x){doc = new Object(); doc.date = new Date('2012-08-01'); return doc;})")).bracket("date").toIso8601()
+

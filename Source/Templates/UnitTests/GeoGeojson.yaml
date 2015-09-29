@@ -1,0 +1,86 @@
+
+ModuleName: "GeoGeojson"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: geo/geojson.yaml
+     TestNum: 1
+     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6WzAsIDBdLCAndHlwZSc6J1BvaW50J30p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KDAsIDApKS53aXRoKCJ0eXBlIiwgIlBvaW50Iik='
+     Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "Point"))
+   - TestType: JavaQuery
+     TestFile: geo/geojson.yaml
+     TestNum: 2
+     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1swLDBdLCBbMCwxXV0sICd0eXBlJzonTGluZVN0cmluZyd9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoMCwgMCksIEFycmF5cy5hc0xpc3QoMCwgMSkpKS53aXRoKCJ0eXBlIiwgIkxpbmVTdHJpbmciKQ=='
+     Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(Arrays.asList(0, 0), Arrays.asList(0, 1))).with("type", "LineString"))
+   - TestType: JavaQuery
+     TestFile: geo/geojson.yaml
+     TestNum: 3
+     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1tbMCwwXSwgWzAsMV0sIFsxLDBdLCBbMCwwXV1dLCAndHlwZSc6J1BvbHlnb24nfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KEFycmF5cy5hc0xpc3QoQXJyYXlzLmFzTGlzdCgwLCAwKSwgQXJyYXlzLmFzTGlzdCgwLCAxKSwgQXJyYXlzLmFzTGlzdCgxLCAwKSwgQXJyYXlzLmFzTGlzdCgwLCAwKSkpKS53aXRoKCJ0eXBlIiwgIlBvbHlnb24iKQ=='
+     Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, 0), Arrays.asList(0, 1), Arrays.asList(1, 0), Arrays.asList(0, 0)))).with("type", "Polygon"))
+   - TestType: JavaQuery
+     TestFile: geo/geojson.yaml
+     TestNum: 4
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBBUlJBWS4nLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBBUlJBWS4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(Arrays.asList(), 0)).with("type", "Point"))
+   - TestType: JavaQuery
+     TestFile: geo/geojson.yaml
+     TestNum: 5
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgQVJSQVkgYnV0IGZvdW5kIEJPT0wuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgQVJSQVkgYnV0IGZvdW5kIEJPT0wuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.geojson(new MapObject().with("coordinates", true).with("type", "Point"))
+   - TestType: JavaQuery
+     TestFile: geo/geojson.yaml
+     TestNum: 6
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnTm8gYXR0cmlidXRlIGBjb29yZGluYXRlc2AgaW4gb2JqZWN0OicsIFswXSk='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiTm8gYXR0cmlidXRlIGBjb29yZGluYXRlc2AgaW4gb2JqZWN0OiIsIEFycmF5cy5hc0xpc3QoMCkp'
+     Obtained: r.geojson(new MapObject().with("type", "Point"))
+   - TestType: JavaQuery
+     TestFile: geo/geojson.yaml
+     TestNum: 7
+     Original: b'ZXJyKCdSZXFsTm9uRXhpc3RlbmNlRXJyb3InLCAnTm8gYXR0cmlidXRlIGB0eXBlYCBpbiBvYmplY3Q6JywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsTm9uRXhpc3RlbmNlRXJyb3IiLCAiTm8gYXR0cmlidXRlIGB0eXBlYCBpbiBvYmplY3Q6IiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)))
+   - TestType: JavaQuery
+     TestFile: geo/geojson.yaml
+     TestNum: 8
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1VucmVjb2duaXplZCBHZW9KU09OIHR5cGUgYGZvb2AuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlVucmVjb2duaXplZCBHZW9KU09OIHR5cGUgYGZvb2AuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "foo"))
+   - TestType: JavaQuery
+     TestFile: geo/geojson.yaml
+     TestNum: 9
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1VucmVjb2duaXplZCBmaWVsZCBgZm9vYCBmb3VuZCBpbiBnZW9tZXRyeSBvYmplY3QuJywgWzBdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIlVucmVjb2duaXplZCBmaWVsZCBgZm9vYCBmb3VuZCBpbiBnZW9tZXRyeSBvYmplY3QuIiwgQXJyYXlzLmFzTGlzdCgwKSk='
+     Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "Point").with("foo", "wrong"))
+   - TestType: JavaQuery
+     TestFile: geo/geojson.yaml
+     TestNum: 10
+     Original: b'KHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6WzAsIDBdLCAndHlwZSc6J1BvaW50JywgJ2Nycyc6bnVsbH0p'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoIiRyZXFsX3R5cGUkIiwgIkdFT01FVFJZIikud2l0aCgiY29vcmRpbmF0ZXMiLCBBcnJheXMuYXNMaXN0KDAsIDApKS53aXRoKCJ0eXBlIiwgIlBvaW50Iikud2l0aCgiY3JzIiwgbnVsbCk='
+     Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "Point").with("crs", null))
+   - TestType: JavaQuery
+     TestFile: geo/geojson.yaml
+     TestNum: 12
+     Original: b'ZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0dlb0pTT04gdHlwZSBgTXVsdGlQb2ludGAgaXMgbm90IHN1cHBvcnRlZC4nLCBbMF0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkdlb0pTT04gdHlwZSBgTXVsdGlQb2ludGAgaXMgbm90IHN1cHBvcnRlZC4iLCBBcnJheXMuYXNMaXN0KDApKQ=='
+     Obtained: r.geojson(new MapObject().with("coordinates", Arrays.asList(0, 0)).with("type", "MultiPoint"))
+render_something: false
+

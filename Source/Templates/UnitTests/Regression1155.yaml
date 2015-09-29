@@ -1,0 +1,10 @@
+
+ModuleName: "Regression1155"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+render_something: false
+

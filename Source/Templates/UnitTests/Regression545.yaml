@@ -1,0 +1,31 @@
+
+ModuleName: "Regression545"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/545.yaml
+     TestNum: 1
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), new MapObject().with("id", 2)))
+   - TestType: JavaQuery
+     TestFile: regression/545.yaml
+     TestNum: 2
+     Original: b'MQ=='
+     ExpectedType: Integer
+     ExpectedJava: b'MQ=='
+     Obtained: tbl.reduce(r.js("(function(x,y){return 1;})"))
+   - TestType: JavaQuery
+     TestFile: regression/545.yaml
+     TestNum: 3
+     Original: b'KHsnaWQnOjN9KQ=='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMyk='
+     Obtained: tbl.reduce(r.js("(function(x,y){return {id:x["id"] + y["id"]};})"))
+render_something: false
+

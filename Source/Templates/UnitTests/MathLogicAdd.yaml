@@ -1,0 +1,86 @@
+
+ModuleName: "MathLogicAdd"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: math_logic/add.yaml
+     TestNum: 1
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.add(r.expr(1), 1)
+   - TestType: JavaQuery
+     TestFile: math_logic/add.yaml
+     TestNum: 1
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.add(1, r.expr(1))
+   - TestType: JavaQuery
+     TestFile: math_logic/add.yaml
+     TestNum: 1
+     Original: b'Mg=='
+     ExpectedType: Integer
+     ExpectedJava: b'Mg=='
+     Obtained: r.expr(1).add(1)
+   - TestType: JavaQuery
+     TestFile: math_logic/add.yaml
+     TestNum: 2
+     Original: b'MA=='
+     ExpectedType: Integer
+     ExpectedJava: b'MA=='
+     Obtained: r.add(r.expr(-1), 1)
+   - TestType: JavaQuery
+     TestFile: math_logic/add.yaml
+     TestNum: 3
+     Original: b'MTAuMjU='
+     ExpectedType: Double
+     ExpectedJava: b'MTAuMjU='
+     Obtained: r.add(r.expr(1.75), 8.5)
+   - TestType: JavaQuery
+     TestFile: math_logic/add.yaml
+     TestNum: 4
+     Original: b'Jyc='
+     ExpectedType: String
+     ExpectedJava: b'IiI='
+     Obtained: r.add(r.expr(""), "")
+   - TestType: JavaQuery
+     TestFile: math_logic/add.yaml
+     TestNum: 5
+     Original: b'J2FiY2RlZic='
+     ExpectedType: String
+     ExpectedJava: b'ImFiY2RlZiI='
+     Obtained: r.add(r.expr("abc"), "def")
+   - TestType: JavaQuery
+     TestFile: math_logic/add.yaml
+     TestNum: 6
+     Original: b'WzEsIDIsIDMsIDQsIDUsIDYsIDcsIDhd'
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdCgxLCAyLCAzLCA0LCA1LCA2LCA3LCA4KQ=='
+     Obtained: r.add(r.add(r.add(r.expr(Arrays.asList(1, 2)), Arrays.asList(3)), Arrays.asList(4, 5)), Arrays.asList(6, 7, 8))
+   - TestType: JavaQuery
+     TestFile: math_logic/add.yaml
+     TestNum: 9
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgWzFdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuIiwgQXJyYXlzLmFzTGlzdCgxKSk='
+     Obtained: r.add(r.expr(1), "a")
+   - TestType: JavaQuery
+     TestFile: math_logic/add.yaml
+     TestNum: 10
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgU1RSSU5HIGJ1dCBmb3VuZCBOVU1CRVIuIiwgWzFdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgU1RSSU5HIGJ1dCBmb3VuZCBOVU1CRVIuIiwgQXJyYXlzLmFzTGlzdCgxKSk='
+     Obtained: r.add(r.expr("a"), 1)
+   - TestType: JavaQuery
+     TestFile: math_logic/add.yaml
+     TestNum: 11
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgQVJSQVkgYnV0IGZvdW5kIE5VTUJFUi4iLCBbMV0p'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgQVJSQVkgYnV0IGZvdW5kIE5VTUJFUi4iLCBBcnJheXMuYXNMaXN0KDEpKQ=='
+     Obtained: r.add(r.expr(Arrays.asList()), 1)
+render_something: false
+

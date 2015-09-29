@@ -1,0 +1,101 @@
+
+ModuleName: "Regression3637"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 1
+     Original: b'cGFydGlhbCh7J2luc2VydGVkJzoyfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiaW5zZXJ0ZWQiLCAyKSk='
+     Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 0.0).with("value", "abc"), new MapObject().with("id", Arrays.asList(1, -0.0)).with("value", "def")))
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 2
+     Original: b'eydpZCc6IDAuMCwgJ3ZhbHVlJzogJ2FiYyd9'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMC4wKS53aXRoKCJ2YWx1ZSIsICJhYmMiKQ=='
+     Obtained: tbl.get(0.0)
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 3
+     Original: b'eydpZCc6IDAuMCwgJ3ZhbHVlJzogJ2FiYyd9'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgMC4wKS53aXRoKCJ2YWx1ZSIsICJhYmMiKQ=='
+     Obtained: tbl.get(-0.0)
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 4
+     Original: b'eydpZCc6IFsxLCAtMC4wXSwgJ3ZhbHVlJzogJ2RlZid9'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgQXJyYXlzLmFzTGlzdCgxLCAtMC4wKSkud2l0aCgidmFsdWUiLCAiZGVmIik='
+     Obtained: tbl.get(Arrays.asList(1, 0.0))
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 5
+     Original: b'eydpZCc6IFsxLCAtMC4wXSwgJ3ZhbHVlJzogJ2RlZid9'
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImlkIiwgQXJyYXlzLmFzTGlzdCgxLCAtMC4wKSkud2l0aCgidmFsdWUiLCAiZGVmIik='
+     Obtained: tbl.get(Arrays.asList(1, -0.0))
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 6
+     Original: b'J3siaWQiOjB9Jw=='
+     ExpectedType: String
+     ExpectedJava: b'InsiaWQiOjB9Ig=='
+     Obtained: tbl.get(0.0).pluck("id").toJsonString()
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 7
+     Original: b'J3siaWQiOjB9Jw=='
+     ExpectedType: String
+     ExpectedJava: b'InsiaWQiOjB9Ig=='
+     Obtained: tbl.get(-0.0).pluck("id").toJsonString()
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 8
+     Original: b'J3siaWQiOlsxLC0wLjBdfSc='
+     ExpectedType: String
+     ExpectedJava: b'InsiaWQiOlsxLC0wLjBdfSI='
+     Obtained: tbl.get(Arrays.asList(1, 0.0)).pluck("id").toJsonString()
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 9
+     Original: b'J3siaWQiOlsxLC0wLjBdfSc='
+     ExpectedType: String
+     ExpectedJava: b'InsiaWQiOlsxLC0wLjBdfSI='
+     Obtained: tbl.get(Arrays.asList(1, -0.0)).pluck("id").toJsonString()
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 10
+     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MX0p'
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMSkp'
+     Obtained: tbl.insert(new MapObject().with("id", 0.0))
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 10
+     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MX0p'
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMSkp'
+     Obtained: tbl.insert(new MapObject().with("id", Arrays.asList(1, 0.0)))
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 11
+     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MX0p'
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMSkp'
+     Obtained: tbl.insert(new MapObject().with("id", -0.0))
+   - TestType: JavaQuery
+     TestFile: regression/3637.yaml
+     TestNum: 11
+     Original: b'cGFydGlhbCh7J2Vycm9ycyc6MX0p'
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiZXJyb3JzIiwgMSkp'
+     Obtained: tbl.insert(new MapObject().with("id", Arrays.asList(1, -0.0)))
+render_something: false
+

@@ -1,0 +1,24 @@
+
+ModuleName: "Regression568"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/568.yaml
+     TestNum: 1
+     Original: b'Tm9uZQ=='
+     ExpectedType: Object
+     ExpectedJava: b'bnVsbA=='
+     Obtained: tbl.insert(new MapObject().with("name", "Jim Brown"))
+   - TestType: JavaQuery
+     TestFile: regression/568.yaml
+     TestNum: 2
+     Original: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb252ZXJ0IFNUUklORyB0byBTRVFVRU5DRSIsIFtdKQ=='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJSZXFsUXVlcnlMb2dpY0Vycm9yIiwgIkNhbm5vdCBjb252ZXJ0IFNUUklORyB0byBTRVFVRU5DRSIsIEFycmF5cy5hc0xpc3QoKSk='
+     Obtained: tbl.concatMap(rec -> rec.bracket("name"))
+render_something: false
+

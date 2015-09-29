@@ -1,0 +1,119 @@
+
+ModuleName: "MutationSync"
+TableVarNames:
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 1
+     Original: b'cGFydGlhbCh7J3RhYmxlc19jcmVhdGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2NyZWF0ZWQiLCAxKSk='
+     Obtained: r.db("test").tableCreate("test1")
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 2
+     Original: b'cGFydGlhbCh7J3RhYmxlc19jcmVhdGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2NyZWF0ZWQiLCAxKSk='
+     Obtained: r.db("test").tableCreate("test1soft")
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 3
+     Original: b'KHsnc2tpcHBlZCc6MCwgJ2RlbGV0ZWQnOjAsICd1bmNoYW5nZWQnOjAsICdlcnJvcnMnOjAsICdyZXBsYWNlZCc6MSwgJ2luc2VydGVkJzowfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInNraXBwZWQiLCAwKS53aXRoKCJkZWxldGVkIiwgMCkud2l0aCgidW5jaGFuZ2VkIiwgMCkud2l0aCgiZXJyb3JzIiwgMCkud2l0aCgicmVwbGFjZWQiLCAxKS53aXRoKCJpbnNlcnRlZCIsIDAp'
+     Obtained: r.db("test").table("test1soft").config().update(new MapObject().with("durability", "soft"))
+        
+
+   - TestType: JavaDef
+     TestFile: mutation/sync.yaml
+     TestNum: 4
+     Original: b'dGJsID0gci5kYigndGVzdCcpLnRhYmxlKCd0ZXN0MScp'
+     Java: Table tbl = (Table) r.db("test").table("test1");
+        
+
+   - TestType: JavaDef
+     TestFile: mutation/sync.yaml
+     TestNum: 5
+     Original: b'dGJsX3NvZnQgPSByLmRiKCd0ZXN0JykudGFibGUoJ3Rlc3Qxc29mdCcp'
+     Java: Table tbl_soft = (Table) r.db("test").table("test1soft");
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 6
+     Original: b'cGFydGlhbCh7J2NyZWF0ZWQnOjF9KQ=='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgiY3JlYXRlZCIsIDEpKQ=='
+     Obtained: tbl.indexCreate("x")
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 7
+     Original: b'KFt7J3JlYWR5JzpUcnVlLCAnaW5kZXgnOid4J31dKQ=='
+     ExpectedType: List
+     ExpectedJava: b'QXJyYXlzLmFzTGlzdChuZXcgTWFwT2JqZWN0KCkud2l0aCgicmVhZHkiLCB0cnVlKS53aXRoKCJpbmRleCIsICJ4Iikp'
+     Obtained: tbl.indexWait("x").pluck("index", "ready")
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 8
+     Original: b'KHsnc3luY2VkJzoxfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInN5bmNlZCIsIDEp'
+     Obtained: tbl.sync()
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 9
+     Original: b'KHsnc3luY2VkJzoxfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInN5bmNlZCIsIDEp'
+     Obtained: tbl_soft.sync()
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 10
+     Original: b'KHsnc3luY2VkJzoxfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInN5bmNlZCIsIDEp'
+     Obtained: tbl.sync()
+     RunOpts:
+                - Key: durability
+                  Val: "soft"
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 11
+     Original: b'KHsnc3luY2VkJzoxfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoInN5bmNlZCIsIDEp'
+     Obtained: tbl.sync()
+     RunOpts:
+                - Key: durability
+                  Val: "hard"
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 12
+     Original: b'ZXJyKCdBdHRyaWJ1dGVFcnJvcicsICInQmV0d2Vlbicgb2JqZWN0IGhhcyBubyBhdHRyaWJ1dGUgJ3N5bmMnIik='
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJBdHRyaWJ1dGVFcnJvciIsICInQmV0d2Vlbicgb2JqZWN0IGhhcyBubyBhdHRyaWJ1dGUgJ3N5bmMnIik='
+     Obtained: tbl.between(1, 2).sync()
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 13
+     Original: b'ZXJyKCdBdHRyaWJ1dGVFcnJvcicsICInRGF0dW0nIG9iamVjdCBoYXMgbm8gYXR0cmlidXRlICdzeW5jJyIp'
+     ExpectedType: Err
+     ExpectedJava: b'ZXJyKCJBdHRyaWJ1dGVFcnJvciIsICInRGF0dW0nIG9iamVjdCBoYXMgbm8gYXR0cmlidXRlICdzeW5jJyIp'
+     Obtained: r.expr(1).sync()
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 15
+     Original: b'cGFydGlhbCh7J3RhYmxlc19kcm9wcGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2Ryb3BwZWQiLCAxKSk='
+     Obtained: r.db("test").tableDrop("test1")
+   - TestType: JavaQuery
+     TestFile: mutation/sync.yaml
+     TestNum: 16
+     Original: b'cGFydGlhbCh7J3RhYmxlc19kcm9wcGVkJzoxfSk='
+     ExpectedType: Partial
+     ExpectedJava: b'cGFydGlhbChuZXcgTWFwT2JqZWN0KCkud2l0aCgidGFibGVzX2Ryb3BwZWQiLCAxKSk='
+     Obtained: r.db("test").tableDrop("test1soft")
+

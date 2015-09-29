@@ -1,0 +1,17 @@
+
+ModuleName: "Regression831"
+TableVarNames:
+    - tbl
+
+DefsAndTests:
+
+        
+   - TestType: JavaQuery
+     TestFile: regression/831.yaml
+     TestNum: 1
+     Original: b'KHsnZmlyc3RfZXJyb3InOidFeHBlY3RlZCB0eXBlIE9CSkVDVCBidXQgZm91bmQgQk9PTC4nLCAnc2tpcHBlZCc6MCwgJ2RlbGV0ZWQnOjAsICd1bmNoYW5nZWQnOjAsICdlcnJvcnMnOjIsICdyZXBsYWNlZCc6MCwgJ2luc2VydGVkJzowfSk='
+     ExpectedType: Map
+     ExpectedJava: b'bmV3IE1hcE9iamVjdCgpLndpdGgoImZpcnN0X2Vycm9yIiwgIkV4cGVjdGVkIHR5cGUgT0JKRUNUIGJ1dCBmb3VuZCBCT09MLiIpLndpdGgoInNraXBwZWQiLCAwKS53aXRoKCJkZWxldGVkIiwgMCkud2l0aCgidW5jaGFuZ2VkIiwgMCkud2l0aCgiZXJyb3JzIiwgMikud2l0aCgicmVwbGFjZWQiLCAwKS53aXRoKCJpbnNlcnRlZCIsIDAp'
+     Obtained: tbl.insert(Arrays.asList(true, true))
+render_something: false
+

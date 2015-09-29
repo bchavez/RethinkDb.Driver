@@ -1830,10 +1830,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Hulk decides to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).insertAt(1, "Hulk").run(conn, callback)
 /// </code></example>
-                    public InsertAt insertAt ( Object exprA )
+                    public InsertAt insertAt ( Object exprA, Object exprB )
                     {
                         Arguments arguments = new Arguments(this);
                         arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
                         return new InsertAt (arguments);
                     }
 /// <summary>

@@ -87,9 +87,9 @@ DefsAndTests:
   TestFile: match.yaml
   TestNum: 10
   Original: r.expr("").match("ab\\9")
-  Java: r.expr("").match("ab\9")
+  Java: r.expr("").match("ab\\9")
   ExpectedOriginal: >
     err("ReqlQueryLogicError", "Error in regexp `ab\\9` (portion `\\9`): invalid escape sequence: \\9", [])
   ExpectedType: Err
-  ExpectedJava: 'err("ReqlQueryLogicError", "Error in regexp `ab\9` (portion `\9`): invalid escape sequence: \9", Arrays.asList())'
+  ExpectedJava: 'err("ReqlQueryLogicError", "Error in regexp `ab\\9` (portion `\\9`): invalid escape sequence: \\9", Arrays.asList())'
   RunOpts: []

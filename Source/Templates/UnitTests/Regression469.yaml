@@ -97,10 +97,7 @@ DefsAndTests:
   Java: r.expr(Arrays.asList(1)).info()
   ExpectedOriginal: ({'type':'ARRAY','value':"[\n\t1\n]"})
   ExpectedType: Map
-  ExpectedJava: >-
-    new MapObject().with("type", "ARRAY").with("value", "[
-    	1
-    ]")
+  ExpectedJava: new MapObject().with("type", "ARRAY").with("value", "[\n	1\n]")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -109,10 +106,7 @@ DefsAndTests:
   Java: r.expr(new MapObject().with("a", 1)).info()
   ExpectedOriginal: ({'type':'OBJECT','value':"{\n\t\"a\":\t1\n}"})
   ExpectedType: Map
-  ExpectedJava: >-
-    new MapObject().with("type", "OBJECT").with("value", "{
-    	\"a\":	1
-    }")
+  ExpectedJava: 'new MapObject().with("type", "OBJECT").with("value", "{\n	\"a\":	1\n}")'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml

@@ -13,7 +13,7 @@ DefsAndTests:
   TestFile: regression/2766.yaml
   TestNum: 2
   Original: r.now().get_field('epoch_time')
-  Java: r.now().getField("epoch_time")
+  Java: r.now().g("epoch_time")
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot call `get_field` on objects of type `PTYPE<TIME>`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot call `get_field` on objects of type `PTYPE<TIME>`.")

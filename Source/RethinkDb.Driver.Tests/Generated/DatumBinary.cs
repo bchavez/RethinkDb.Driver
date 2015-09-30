@@ -31,7 +31,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b''
              
-byte[] s = (byte[]) "'".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #2
@@ -62,7 +62,7 @@ byte[] s = (byte[]) "'".getBytes(StandardCharsets.UTF_8);
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x00'
              
-byte[] s = (byte[]) "'\x00".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "\x00".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #5
@@ -93,7 +93,7 @@ byte[] s = (byte[]) "'\x00".getBytes(StandardCharsets.UTF_8);
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x00\x42'
              
-byte[] s = (byte[]) "'\x00B".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "\x00\x42".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #8
@@ -124,7 +124,7 @@ byte[] s = (byte[]) "'\x00B".getBytes(StandardCharsets.UTF_8);
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x00\xfe\x7a'
              
-byte[] s = (byte[]) "'\x00\xfez".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "\x00\xfez".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #11
@@ -155,7 +155,7 @@ byte[] s = (byte[]) "'\x00\xfez".getBytes(StandardCharsets.UTF_8);
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\xed\xfe\x00\xba'
              
-byte[] s = (byte[]) "'\xed\xfe\x00\xba".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "\xed\xfe\x00\xba".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #14
@@ -186,7 +186,7 @@ byte[] s = (byte[]) "'\xed\xfe\x00\xba".getBytes(StandardCharsets.UTF_8);
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x50\xf9\x00\x77\xf9'
              
-byte[] s = (byte[]) "'P\xf9\x00w\xf9".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "P\xf9\x00w\xf9".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #17
@@ -217,7 +217,7 @@ byte[] s = (byte[]) "'P\xf9\x00w\xf9".getBytes(StandardCharsets.UTF_8);
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x2f\xe3\xb5\x57\x00\x92'
              
-byte[] s = (byte[]) "'/\xe3\xb5W\x00\x92".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "/\xe3\xb5W\x00\x92".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #20
@@ -248,7 +248,7 @@ byte[] s = (byte[]) "'/\xe3\xb5W\x00\x92".getBytes(StandardCharsets.UTF_8);
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\xa9\x43\x54\xe9\x00\xf8\xfb'
              
-byte[] s = (byte[]) "'\xa9CT\xe9\x00\xf8\xfb".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "\xa9\x43T\xe9\x00\xf8\xfb".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #23
@@ -279,7 +279,7 @@ byte[] s = (byte[]) "'\xa9CT\xe9\x00\xf8\xfb".getBytes(StandardCharsets.UTF_8);
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x57\xbb\xe5\x82\x8b\xd3\x00\xf9'
              
-byte[] s = (byte[]) "'W\xbb\xe5\x82\x8b\xd3\x00\xf9".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "W\xbb\xe5\x82\x8b\xd3\x00\xf9".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #26
@@ -310,7 +310,7 @@ byte[] s = (byte[]) "'W\xbb\xe5\x82\x8b\xd3\x00\xf9".getBytes(StandardCharsets.U
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x44\x1b\x3e\x00\x13\x19\x29\x2a\xbf'
              
-byte[] s = (byte[]) "'D\x1b>\x00\x13\x19)*\xbf".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "D\x1b>\x00\x13\x19)*\xbf".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #29
@@ -341,7 +341,7 @@ byte[] s = (byte[]) "'D\x1b>\x00\x13\x19)*\xbf".getBytes(StandardCharsets.UTF_8)
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x8a\x1d\x09\x00\x5d\x60\x6b\x2e\x70\xd9'
              
-byte[] s = (byte[]) "'\x8a\x1d\t\x00]`k.p\xd9".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "\x8a\x1d\x09\x00]`k.p\xd9".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #32
@@ -372,7 +372,7 @@ byte[] s = (byte[]) "'\x8a\x1d\t\x00]`k.p\xd9".getBytes(StandardCharsets.UTF_8);
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x00\xaf\x47\x4b\x38\x99\x14\x8d\x8f\x10\x51'
              
-byte[] s = (byte[]) "'\x00\xafGK8\x99\x14\x8d\x8f\x10Q".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "\x00\xafGK8\x99\x14\x8d\x8f\x10Q".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #35
@@ -403,7 +403,7 @@ byte[] s = (byte[]) "'\x00\xafGK8\x99\x14\x8d\x8f\x10Q".getBytes(StandardCharset
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x45\x39\x00\xf7\xc2\x37\xfd\xe0\x38\x82\x40\xa9'
              
-byte[] s = (byte[]) "'E9\x00\xf7\xc27\xfd\xe08\x82@\xa9".getBytes(StandardCharsets.UTF_8);             
+byte[] s = (byte[]) "E9\x00\xf7\xc2\x37\xfd\xe0\x38\x82@\xa9".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #38
@@ -434,32 +434,32 @@ byte[] s = (byte[]) "'E9\x00\xf7\xc27\xfd\xe08\x82@\xa9".getBytes(StandardCharse
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: a = b'\x00'
              
-byte[] a = (byte[]) "'\x00".getBytes(StandardCharsets.UTF_8);             
+byte[] a = (byte[]) "\x00".getBytes(StandardCharsets.UTF_8);             
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: b = b'\x00\x01'
              
-byte[] b = (byte[]) "'\x00\x01".getBytes(StandardCharsets.UTF_8);             
+byte[] b = (byte[]) "\x00\x01".getBytes(StandardCharsets.UTF_8);             
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: c = b'\x01'
              
-byte[] c = (byte[]) "'\x01".getBytes(StandardCharsets.UTF_8);             
+byte[] c = (byte[]) "\x01".getBytes(StandardCharsets.UTF_8);             
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: d = b'\x70\x22'
              
-byte[] d = (byte[]) "'p"".getBytes(StandardCharsets.UTF_8);             
+byte[] d = (byte[]) "p\"".getBytes(StandardCharsets.UTF_8);             
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: e = b'\x80'
              
-byte[] e = (byte[]) "'\x80".getBytes(StandardCharsets.UTF_8);             
+byte[] e = (byte[]) "\x80".getBytes(StandardCharsets.UTF_8);             
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: f = b'\xFE'
              
-byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);             
+byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);             
              
              {
                  //JavaQuery, datum/binary.yaml, #46
@@ -1052,7 +1052,7 @@ byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
                  var expected = "foo";
                  
                  //Original: r.binary(b'foo').coerce_to('string')
-                 var obtained = runOrCatch( r.binary("'foo".getBytes(StandardCharsets.UTF_8)).coerceTo("string") ,
+                 var obtained = runOrCatch( r.binary("foo".getBytes(StandardCharsets.UTF_8)).coerceTo("string") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1088,7 +1088,7 @@ byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
              {
                  //JavaQuery, datum/binary.yaml, #94
                  //ExpectedOriginal: b'foo'
-                 var expected = "'foo".getBytes(StandardCharsets.UTF_8);
+                 var expected = "foo".getBytes(StandardCharsets.UTF_8);
                  
                  //Original: r.expr('foo').coerce_to('binary')
                  var obtained = runOrCatch( r.expr("foo").coerceTo("binary") ,
@@ -1101,10 +1101,10 @@ byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
              {
                  //JavaQuery, datum/binary.yaml, #95
                  //ExpectedOriginal: b'foo'
-                 var expected = "'foo".getBytes(StandardCharsets.UTF_8);
+                 var expected = "foo".getBytes(StandardCharsets.UTF_8);
                  
                  //Original: r.binary(b'foo').coerce_to('binary')
-                 var obtained = runOrCatch( r.binary("'foo".getBytes(StandardCharsets.UTF_8)).coerceTo("binary") ,
+                 var obtained = runOrCatch( r.binary("foo".getBytes(StandardCharsets.UTF_8)).coerceTo("binary") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1114,10 +1114,10 @@ byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
              {
                  //JavaQuery, datum/binary.yaml, #96
                  //ExpectedOriginal: b'ef'
-                 var expected = "'ef".getBytes(StandardCharsets.UTF_8);
+                 var expected = "ef".getBytes(StandardCharsets.UTF_8);
                  
                  //Original: r.binary(b'abcdefg').slice(-3,-1)
-                 var obtained = runOrCatch( r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-3, -1) ,
+                 var obtained = runOrCatch( r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-3, -1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1127,10 +1127,10 @@ byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
              {
                  //JavaQuery, datum/binary.yaml, #97
                  //ExpectedOriginal: b'ab'
-                 var expected = "'ab".getBytes(StandardCharsets.UTF_8);
+                 var expected = "ab".getBytes(StandardCharsets.UTF_8);
                  
                  //Original: r.binary(b'abcdefg').slice(0, 2)
-                 var obtained = runOrCatch( r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(0, 2) ,
+                 var obtained = runOrCatch( r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(0, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1140,10 +1140,10 @@ byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
              {
                  //JavaQuery, datum/binary.yaml, #98
                  //ExpectedOriginal: b'def'
-                 var expected = "'def".getBytes(StandardCharsets.UTF_8);
+                 var expected = "def".getBytes(StandardCharsets.UTF_8);
                  
                  //Original: r.binary(b'abcdefg').slice(3, -1)
-                 var obtained = runOrCatch( r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(3, -1) ,
+                 var obtained = runOrCatch( r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(3, -1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1153,10 +1153,10 @@ byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
              {
                  //JavaQuery, datum/binary.yaml, #99
                  //ExpectedOriginal: b'cde'
-                 var expected = "'cde".getBytes(StandardCharsets.UTF_8);
+                 var expected = "cde".getBytes(StandardCharsets.UTF_8);
                  
                  //Original: r.binary(b'abcdefg').slice(-5, 5)
-                 var obtained = runOrCatch( r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-5, 5) ,
+                 var obtained = runOrCatch( r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-5, 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1166,10 +1166,10 @@ byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
              {
                  //JavaQuery, datum/binary.yaml, #100
                  //ExpectedOriginal: b'ab'
-                 var expected = "'ab".getBytes(StandardCharsets.UTF_8);
+                 var expected = "ab".getBytes(StandardCharsets.UTF_8);
                  
                  //Original: r.binary(b'abcdefg').slice(-8, 2)
-                 var obtained = runOrCatch( r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-8, 2) ,
+                 var obtained = runOrCatch( r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-8, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1179,10 +1179,10 @@ byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
              {
                  //JavaQuery, datum/binary.yaml, #101
                  //ExpectedOriginal: b'fg'
-                 var expected = "'fg".getBytes(StandardCharsets.UTF_8);
+                 var expected = "fg".getBytes(StandardCharsets.UTF_8);
                  
                  //Original: r.binary(b'abcdefg').slice(5, 7)
-                 var obtained = runOrCatch( r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 7) ,
+                 var obtained = runOrCatch( r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 7) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1192,10 +1192,10 @@ byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
              {
                  //JavaQuery, datum/binary.yaml, #102
                  //ExpectedOriginal: b'ab'
-                 var expected = "'ab".getBytes(StandardCharsets.UTF_8);
+                 var expected = "ab".getBytes(StandardCharsets.UTF_8);
                  
                  //Original: r.binary(b'abcdefg').slice(-9, 2)
-                 var obtained = runOrCatch( r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-9, 2) ,
+                 var obtained = runOrCatch( r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-9, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1205,10 +1205,10 @@ byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
              {
                  //JavaQuery, datum/binary.yaml, #103
                  //ExpectedOriginal: b'fg'
-                 var expected = "'fg".getBytes(StandardCharsets.UTF_8);
+                 var expected = "fg".getBytes(StandardCharsets.UTF_8);
                  
                  //Original: r.binary(b'abcdefg').slice(5, 9)
-                 var obtained = runOrCatch( r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 9) ,
+                 var obtained = runOrCatch( r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 9) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1246,7 +1246,7 @@ byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
              {
                  //JavaQuery, datum/binary.yaml, #106
                  //ExpectedOriginal: (b"data")
-                 var expected = "'data".getBytes(StandardCharsets.UTF_8);
+                 var expected = "data".getBytes(StandardCharsets.UTF_8);
                  
                  //Original: r.binary(r.expr("data"))
                  var obtained = runOrCatch( r.binary(r.expr("data")) ,

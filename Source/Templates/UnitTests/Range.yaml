@@ -88,7 +88,7 @@ DefsAndTests:
   Java: r.range(9007199254740994.0)
   ExpectedOriginal: err_regex("ReqlQueryLogicError", "Number not an integer \\(>2\\^53\\). 9007199254740994", [])
   ExpectedType: ErrRegex
-  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer \(>2\^53\). 9007199254740994", Arrays.asList())
+  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer \\(>2\\^53\\). 9007199254740994", Arrays.asList())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
@@ -97,7 +97,7 @@ DefsAndTests:
   Java: r.range(-9007199254740994.0)
   ExpectedOriginal: err_regex("ReqlQueryLogicError", "Number not an integer \\(<-2\\^53\\). -9007199254740994", [])
   ExpectedType: ErrRegex
-  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer \(<-2\^53\). -9007199254740994", Arrays.asList())
+  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer \\(<-2\\^53\\). -9007199254740994", Arrays.asList())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
@@ -106,7 +106,7 @@ DefsAndTests:
   Java: r.range(0.5)
   ExpectedOriginal: err_regex("ReqlQueryLogicError", "Number not an integer. 0\\.5", [])
   ExpectedType: ErrRegex
-  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer. 0\.5", Arrays.asList())
+  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer. 0\\.5", Arrays.asList())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml

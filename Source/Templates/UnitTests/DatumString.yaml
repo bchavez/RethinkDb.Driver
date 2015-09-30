@@ -896,7 +896,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 100
   Original: r.expr(u"foo bar\tbaz\nquux\rfred\u000bbarney\u000cwilma").split()
-  Java: "r.expr(\"foo bar	baz\nquux\rfred\vbarney\fwilma\").split()"
+  Java: "r.expr(\"foo bar	baz\\nquux\rfred\vbarney\fwilma\").split()"
   ExpectedOriginal: (["foo", "bar", "baz", "quux", "fred", "barney", "wilma"])
   ExpectedType: List
   ExpectedJava: Arrays.asList("foo", "bar", "baz", "quux", "fred", "barney", "wilma")

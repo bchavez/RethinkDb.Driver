@@ -241,10 +241,7 @@ DefsAndTests:
   Java: r.expr(new MapObject()).bracket("b").default_(e -> e)
   ExpectedOriginal: ("No attribute `b` in object:\n{}")
   ExpectedType: String
-  ExpectedJava: >-
-    "No attribute `b` in object:
-
-    {}"
+  ExpectedJava: '"No attribute `b` in object:\n{}"'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml

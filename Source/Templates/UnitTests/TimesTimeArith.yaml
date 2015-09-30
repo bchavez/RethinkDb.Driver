@@ -154,7 +154,7 @@ DefsAndTests:
   TestFile: times/time_arith.yaml
   TestNum: 21
   Original: datum_types = r.expr([null, true, false, 1, "1", [1], {"1":1}, r.binary(b'')])
-  Java: MakeArray datum_types = (MakeArray) r.expr(Arrays.asList(null, true, false, 1, "1", Arrays.asList(1), new MapObject().with("1", 1), r.binary("'".getBytes(StandardCharsets.UTF_8))));
+  Java: MakeArray datum_types = (MakeArray) r.expr(Arrays.asList(null, true, false, 1, "1", Arrays.asList(1), new MapObject().with("1", 1), r.binary("".getBytes(StandardCharsets.UTF_8))));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml

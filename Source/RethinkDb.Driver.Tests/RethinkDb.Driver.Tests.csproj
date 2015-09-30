@@ -74,6 +74,7 @@
     <Compile Include="Generated\GeoIntersectionInclusion.cs" />
     <Compile Include="Generated\GeoOperations.cs" />
     <Compile Include="Generated\GeoPrimitives.cs" />
+    <Compile Include="Generated\Match.cs" />
     <Compile Include="Generated\MathLogicAdd.cs" />
     <Compile Include="Generated\MathLogicDiv.cs" />
     <Compile Include="Generated\MathLogicMath.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Generated\MathLogicSub.cs" />
     <Compile Include="Generated\MetaDbs.cs" />
     <Compile Include="Generated\MutationInsert.cs" />
+    <Compile Include="Generated\Range.cs" />
     <Compile Include="Generated\Timeout.cs" />
     <Compile Include="Generated\TimesTimezones.cs" />
     <Compile Include="Generated\TransformArray.cs" />

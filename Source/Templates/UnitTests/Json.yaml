@@ -180,7 +180,7 @@ DefsAndTests:
   TestFile: json.yaml
   TestNum: 21
   Original: s = b'\x66\x6f\x6f'
-  Java: byte[] s = (byte[]) "'foo".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "foo".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml

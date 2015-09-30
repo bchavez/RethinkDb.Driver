@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
@@ -318,6 +319,40 @@ namespace RethinkDb.Driver.Tests
             return new FloatCmp(nbr);
         }
 
-       
+
+        public class ErrRegex
+        {
+            public string clazz;
+            public String message_rgx;
+
+            public ErrRegex(String classname, String message_rgx)
+            {
+                this.clazz = classname;
+                this.message_rgx = message_rgx;
+            }
+
+            public override bool Equals(Object other)
+            {
+                if (!(other is ErrRegex))
+                {
+                    return false;
+                }
+                var errRegex = other as ErrRegex;
+                if( errRegex.clazz != this.clazz )
+                    return false;
+
+                return Regex.Match(message_rgx, errRegex.message_rgx).Success;
+            }
+        }
+
+        protected ErrRegex err_regex(String classname, String message_rgx, object extra)
+        {
+            return new ErrRegex(classname, message_rgx);
+        }
+
+        protected ArrayList fetch(ReqlAst query, int values)
+        {
+            throw new NotImplementedException("Not implemented!");
+        }
     }
 }

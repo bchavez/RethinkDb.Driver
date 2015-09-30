@@ -290,9 +290,9 @@ DefsAndTests:
   TestNum: 30
   Original: objArr.pluck('a', 'b')
   Java: objArr.pluck("a", "b")
-  ExpectedOriginal: '[{''b'': ''a'', ''a'': 1}, {''b'': ''b'', ''a'': 2}, {''b'': ''c'', ''a'': 3}]'
+  ExpectedOriginal: '[{''a'': 1, ''b'': ''a''}, {''a'': 2, ''b'': ''b''}, {''a'': 3, ''b'': ''c''}]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(new MapObject().with("b", "a").with("a", 1), new MapObject().with("b", "b").with("a", 2), new MapObject().with("b", "c").with("a", 3))
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
@@ -410,9 +410,9 @@ DefsAndTests:
   TestNum: 44
   Original: objArr.without()
   Java: objArr.without()
-  ExpectedOriginal: '[{''b'': ''a'', ''a'': 1}, {''b'': ''b'', ''a'': 2}, {''b'': ''c'', ''a'': 3}]'
+  ExpectedOriginal: '[{''a'': 1, ''b'': ''a''}, {''a'': 2, ''b'': ''b''}, {''a'': 3, ''b'': ''c''}]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(new MapObject().with("b", "a").with("a", 1), new MapObject().with("b", "b").with("a", 2), new MapObject().with("b", "c").with("a", 3))
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
@@ -464,9 +464,9 @@ DefsAndTests:
   TestNum: 50
   Original: 'objArr.filter(lambda row: row[''b''] == ''b'')'
   Java: objArr.filter(row -> r.eq(row.bracket("b"), "b"))
-  ExpectedOriginal: '[{''b'': ''b'', ''a'': 2}]'
+  ExpectedOriginal: '[{''a'': 2, ''b'': ''b''}]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(new MapObject().with("b", "b").with("a", 2))
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 2).with("b", "b"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
@@ -491,18 +491,18 @@ DefsAndTests:
   TestNum: 53
   Original: objArr.order_by('b')
   Java: objArr.orderBy("b")
-  ExpectedOriginal: '[{''b'': ''a'', ''a'': 1}, {''b'': ''b'', ''a'': 2}, {''b'': ''c'', ''a'': 3}]'
+  ExpectedOriginal: '[{''a'': 1, ''b'': ''a''}, {''a'': 2, ''b'': ''b''}, {''a'': 3, ''b'': ''c''}]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(new MapObject().with("b", "a").with("a", 1), new MapObject().with("b", "b").with("a", 2), new MapObject().with("b", "c").with("a", 3))
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
   TestNum: 54
   Original: objArr.order_by(r.desc('b'))
   Java: objArr.orderBy(r.desc("b"))
-  ExpectedOriginal: '[{''b'': ''c'', ''a'': 3}, {''b'': ''b'', ''a'': 2}, {''b'': ''a'', ''a'': 1}]'
+  ExpectedOriginal: '[{''a'': 3, ''b'': ''c''}, {''a'': 2, ''b'': ''b''}, {''a'': 1, ''b'': ''a''}]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(new MapObject().with("b", "c").with("a", 3), new MapObject().with("b", "b").with("a", 2), new MapObject().with("b", "a").with("a", 1))
+  ExpectedJava: Arrays.asList(new MapObject().with("a", 3).with("b", "c"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 1).with("b", "a"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
@@ -536,9 +536,9 @@ DefsAndTests:
   TestNum: 58
   Original: arr.union(objArr)
   Java: arr.union(objArr)
-  ExpectedOriginal: '[1, 2, 3, {''b'': ''a'', ''a'': 1}, {''b'': ''b'', ''a'': 2}, {''b'': ''c'', ''a'': 3}]'
+  ExpectedOriginal: '[1, 2, 3, {''a'': 1, ''b'': ''a''}, {''a'': 2, ''b'': ''b''}, {''a'': 3, ''b'': ''c''}]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(1, 2, 3, new MapObject().with("b", "a").with("a", 1), new MapObject().with("b", "b").with("a", 2), new MapObject().with("b", "c").with("a", 3))
+  ExpectedJava: Arrays.asList(1, 2, 3, new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml

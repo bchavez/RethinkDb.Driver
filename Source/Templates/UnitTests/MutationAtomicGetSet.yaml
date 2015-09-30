@@ -27,16 +27,7 @@ DefsAndTests:
   Java: tbl.insert(new MapObject().with("id", 0)).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[], 'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}"})
   ExpectedType: Map
-  ExpectedJava: >-
-    new MapObject().with("changes", Arrays.asList()).with("first_error", "Duplicate primary key `id`:
-
-    {
-    	\"id\":	0
-    }
-
-    {
-    	\"id\":	0
-    }")
+  ExpectedJava: 'new MapObject().with("changes", Arrays.asList()).with("first_error", "Duplicate primary key `id`:\n{\n	\"id\":	0\n}\n{\n	\"id\":	0\n}")'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
@@ -45,16 +36,7 @@ DefsAndTests:
   Java: tbl.insert(new MapObject().with("id", 0)).optArg("return_changes", "always").pluck("changes", "first_error")
   ExpectedOriginal: ({'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}",'changes':[{'old_val':{'id':0},'new_val':{'id':0}}]})
   ExpectedType: Map
-  ExpectedJava: >-
-    new MapObject().with("first_error", "Duplicate primary key `id`:
-
-    {
-    	\"id\":	0
-    }
-
-    {
-    	\"id\":	0
-    }").with("changes", Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 0)).with("new_val", new MapObject().with("id", 0))))
+  ExpectedJava: 'new MapObject().with("first_error", "Duplicate primary key `id`:\n{\n	\"id\":	0\n}\n{\n	\"id\":	0\n}").with("changes", Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 0)).with("new_val", new MapObject().with("id", 0))))'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
@@ -72,16 +54,7 @@ DefsAndTests:
   Java: tbl.insert(Arrays.asList(new MapObject().with("id", 0))).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[],'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}"})
   ExpectedType: Map
-  ExpectedJava: >-
-    new MapObject().with("changes", Arrays.asList()).with("first_error", "Duplicate primary key `id`:
-
-    {
-    	\"id\":	0
-    }
-
-    {
-    	\"id\":	0
-    }")
+  ExpectedJava: 'new MapObject().with("changes", Arrays.asList()).with("first_error", "Duplicate primary key `id`:\n{\n	\"id\":	0\n}\n{\n	\"id\":	0\n}")'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
@@ -153,12 +126,7 @@ DefsAndTests:
   Java: tbl.replace(new MapObject().with("x", 1)).optArg("return_changes", "always").pluck("changes", "first_error").do_(d -> d.merge(new MapObject().with("changes", d.bracket("changes").orderBy(a -> a.bracket("old_val").bracket("id")))))
   ExpectedOriginal: ({'first_error':"Inserted object must have primary key `id`:\n{\n\t\"x\":\t1\n}", 'changes':[{'new_val':{'id':0},'old_val':{'id':0}}, {'new_val':{'id':1},'old_val':{'id':1}}]})
   ExpectedType: Map
-  ExpectedJava: >-
-    new MapObject().with("first_error", "Inserted object must have primary key `id`:
-
-    {
-    	\"x\":	1
-    }").with("changes", Arrays.asList(new MapObject().with("new_val", new MapObject().with("id", 0)).with("old_val", new MapObject().with("id", 0)), new MapObject().with("new_val", new MapObject().with("id", 1)).with("old_val", new MapObject().with("id", 1))))
+  ExpectedJava: 'new MapObject().with("first_error", "Inserted object must have primary key `id`:\n{\n	\"x\":	1\n}").with("changes", Arrays.asList(new MapObject().with("new_val", new MapObject().with("id", 0)).with("old_val", new MapObject().with("id", 0)), new MapObject().with("new_val", new MapObject().with("id", 1)).with("old_val", new MapObject().with("id", 1))))'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml

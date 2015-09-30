@@ -75,8 +75,8 @@ Changes all = (Changes) tbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #5
-                 //ExpectedOriginal: [{'old_val': {'id': 1}, 'new_val': {'version': 1, 'id': 1}}]
-                 var expected = Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 1)).with("new_val", new MapObject().with("version", 1).with("id", 1)));
+                 //ExpectedOriginal: [{'old_val': {'id': 1}, 'new_val': {'id': 1, 'version': 1}}]
+                 var expected = Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 1)).with("new_val", new MapObject().with("id", 1).with("version", 1)));
                  
                  //Original: fetch(all, 1)
                  var obtained = runOrCatch( fetch(all, 1) ,
@@ -101,8 +101,8 @@ Changes all = (Changes) tbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #7
-                 //ExpectedOriginal: [{'old_val': {'version': 1, 'id': 1}, 'new_val': None}]
-                 var expected = Arrays.asList(new MapObject().with("old_val", new MapObject().with("version", 1).with("id", 1)).with("new_val", null));
+                 //ExpectedOriginal: [{'old_val': {'id': 1, 'version': 1}, 'new_val': None}]
+                 var expected = Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 1).with("version", 1)).with("new_val", null));
                  
                  //Original: fetch(all, 1)
                  var obtained = runOrCatch( fetch(all, 1) ,
@@ -199,8 +199,8 @@ Changes allVirtual = (Changes) vtbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #17
-                 //ExpectedOriginal: [{'old_val': {'id': 1}, 'new_val': {'version': 1, 'id': 1}}]
-                 var expected = Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 1)).with("new_val", new MapObject().with("version", 1).with("id", 1)));
+                 //ExpectedOriginal: [{'old_val': {'id': 1}, 'new_val': {'id': 1, 'version': 1}}]
+                 var expected = Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 1)).with("new_val", new MapObject().with("id", 1).with("version", 1)));
                  
                  //Original: fetch(allVirtual, 1)
                  var obtained = runOrCatch( fetch(allVirtual, 1) ,
@@ -225,8 +225,8 @@ Changes allVirtual = (Changes) vtbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #19
-                 //ExpectedOriginal: [{'old_val': {'version': 1, 'id': 1}, 'new_val': None}]
-                 var expected = Arrays.asList(new MapObject().with("old_val", new MapObject().with("version", 1).with("id", 1)).with("new_val", null));
+                 //ExpectedOriginal: [{'old_val': {'id': 1, 'version': 1}, 'new_val': None}]
+                 var expected = Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 1).with("version", 1)).with("new_val", null));
                  
                  //Original: fetch(allVirtual, 1)
                  var obtained = runOrCatch( fetch(allVirtual, 1) ,

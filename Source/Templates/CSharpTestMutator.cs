@@ -58,6 +58,7 @@ namespace Templates
                 }
             }
             return ScanLiteral(javaLine);
+            //return javaLine;
         }
 
 

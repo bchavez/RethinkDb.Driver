@@ -72,24 +72,7 @@ DefsAndTests:
   Java: tbl.insert(bad_insert).bracket("first_error")
   ExpectedOriginal: ("Duplicate primary key `id`:\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"-07:00\"\n\t}\n}\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"+00:00\"\n\t}\n}")
   ExpectedType: String
-  ExpectedJava: >-
-    "Duplicate primary key `id`:
-
-    {
-    	\"id\":	{
-    		\"$reql_type$\":	\"TIME\",
-    		\"epoch_time\":	1375445163.087,
-    		\"timezone\":	\"-07:00\"
-    	}
-    }
-
-    {
-    	\"id\":	{
-    		\"$reql_type$\":	\"TIME\",
-    		\"epoch_time\":	1375445163.087,
-    		\"timezone\":	\"+00:00\"
-    	}
-    }"
+  ExpectedJava: '"Duplicate primary key `id`:\n{\n	\"id\":	{\n		\"$reql_type$\":	\"TIME\",\n		\"epoch_time\":	1375445163.087,\n		\"timezone\":	\"-07:00\"\n	}\n}\n{\n	\"id\":	{\n		\"$reql_type$\":	\"TIME\",\n		\"epoch_time\":	1375445163.087,\n		\"timezone\":	\"+00:00\"\n	}\n}"'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml

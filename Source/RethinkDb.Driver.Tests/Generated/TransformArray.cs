@@ -427,8 +427,8 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              
              {
                  //JavaQuery, transform/array.yaml, #30
-                 //ExpectedOriginal: [{'b': 'a', 'a': 1}, {'b': 'b', 'a': 2}, {'b': 'c', 'a': 3}]
-                 var expected = Arrays.asList(new MapObject().with("b", "a").with("a", 1), new MapObject().with("b", "b").with("a", 2), new MapObject().with("b", "c").with("a", 3));
+                 //ExpectedOriginal: [{'a': 1, 'b': 'a'}, {'a': 2, 'b': 'b'}, {'a': 3, 'b': 'c'}]
+                 var expected = Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"));
                  
                  //Original: objArr.pluck('a', 'b')
                  var obtained = runOrCatch( objArr.pluck("a", "b") ,
@@ -593,8 +593,8 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              
              {
                  //JavaQuery, transform/array.yaml, #44
-                 //ExpectedOriginal: [{'b': 'a', 'a': 1}, {'b': 'b', 'a': 2}, {'b': 'c', 'a': 3}]
-                 var expected = Arrays.asList(new MapObject().with("b", "a").with("a", 1), new MapObject().with("b", "b").with("a", 2), new MapObject().with("b", "c").with("a", 3));
+                 //ExpectedOriginal: [{'a': 1, 'b': 'a'}, {'a': 2, 'b': 'b'}, {'a': 3, 'b': 'c'}]
+                 var expected = Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"));
                  
                  //Original: objArr.without()
                  var obtained = runOrCatch( objArr.without() ,
@@ -671,8 +671,8 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              
              {
                  //JavaQuery, transform/array.yaml, #50
-                 //ExpectedOriginal: [{'b': 'b', 'a': 2}]
-                 var expected = Arrays.asList(new MapObject().with("b", "b").with("a", 2));
+                 //ExpectedOriginal: [{'a': 2, 'b': 'b'}]
+                 var expected = Arrays.asList(new MapObject().with("a", 2).with("b", "b"));
                  
                  //Original: objArr.filter(lambda row: row['b'] == 'b')
                  var obtained = runOrCatch( objArr.filter(row => r.eq(row.bracket("b"), "b")) ,
@@ -710,8 +710,8 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              
              {
                  //JavaQuery, transform/array.yaml, #53
-                 //ExpectedOriginal: [{'b': 'a', 'a': 1}, {'b': 'b', 'a': 2}, {'b': 'c', 'a': 3}]
-                 var expected = Arrays.asList(new MapObject().with("b", "a").with("a", 1), new MapObject().with("b", "b").with("a", 2), new MapObject().with("b", "c").with("a", 3));
+                 //ExpectedOriginal: [{'a': 1, 'b': 'a'}, {'a': 2, 'b': 'b'}, {'a': 3, 'b': 'c'}]
+                 var expected = Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"));
                  
                  //Original: objArr.order_by('b')
                  var obtained = runOrCatch( objArr.orderBy("b") ,
@@ -723,8 +723,8 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              
              {
                  //JavaQuery, transform/array.yaml, #54
-                 //ExpectedOriginal: [{'b': 'c', 'a': 3}, {'b': 'b', 'a': 2}, {'b': 'a', 'a': 1}]
-                 var expected = Arrays.asList(new MapObject().with("b", "c").with("a", 3), new MapObject().with("b", "b").with("a", 2), new MapObject().with("b", "a").with("a", 1));
+                 //ExpectedOriginal: [{'a': 3, 'b': 'c'}, {'a': 2, 'b': 'b'}, {'a': 1, 'b': 'a'}]
+                 var expected = Arrays.asList(new MapObject().with("a", 3).with("b", "c"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 1).with("b", "a"));
                  
                  //Original: objArr.order_by(r.desc('b'))
                  var obtained = runOrCatch( objArr.orderBy(r.desc("b")) ,
@@ -775,8 +775,8 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              
              {
                  //JavaQuery, transform/array.yaml, #58
-                 //ExpectedOriginal: [1, 2, 3, {'b': 'a', 'a': 1}, {'b': 'b', 'a': 2}, {'b': 'c', 'a': 3}]
-                 var expected = Arrays.asList(1, 2, 3, new MapObject().with("b", "a").with("a", 1), new MapObject().with("b", "b").with("a", 2), new MapObject().with("b", "c").with("a", 3));
+                 //ExpectedOriginal: [1, 2, 3, {'a': 1, 'b': 'a'}, {'a': 2, 'b': 'b'}, {'a': 3, 'b': 'c'}]
+                 var expected = Arrays.asList(1, 2, 3, new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"));
                  
                  //Original: arr.union(objArr)
                  var obtained = runOrCatch( arr.union(objArr) ,

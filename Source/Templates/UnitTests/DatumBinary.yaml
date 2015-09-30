@@ -4,7 +4,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 1
   Original: s = b''
-  Java: byte[] s = (byte[]) "'".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -28,7 +28,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 4
   Original: s = b'\x00'
-  Java: byte[] s = (byte[]) "'\x00".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "\x00".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -52,7 +52,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 7
   Original: s = b'\x00\x42'
-  Java: byte[] s = (byte[]) "'\x00B".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "\x00\x42".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -76,7 +76,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 10
   Original: s = b'\x00\xfe\x7a'
-  Java: byte[] s = (byte[]) "'\x00\xfez".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "\x00\xfez".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -100,7 +100,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 13
   Original: s = b'\xed\xfe\x00\xba'
-  Java: byte[] s = (byte[]) "'\xed\xfe\x00\xba".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "\xed\xfe\x00\xba".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -124,7 +124,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 16
   Original: s = b'\x50\xf9\x00\x77\xf9'
-  Java: byte[] s = (byte[]) "'P\xf9\x00w\xf9".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "P\xf9\x00w\xf9".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -148,7 +148,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 19
   Original: s = b'\x2f\xe3\xb5\x57\x00\x92'
-  Java: byte[] s = (byte[]) "'/\xe3\xb5W\x00\x92".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "/\xe3\xb5W\x00\x92".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -172,7 +172,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 22
   Original: s = b'\xa9\x43\x54\xe9\x00\xf8\xfb'
-  Java: byte[] s = (byte[]) "'\xa9CT\xe9\x00\xf8\xfb".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "\xa9\x43T\xe9\x00\xf8\xfb".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -196,7 +196,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 25
   Original: s = b'\x57\xbb\xe5\x82\x8b\xd3\x00\xf9'
-  Java: byte[] s = (byte[]) "'W\xbb\xe5\x82\x8b\xd3\x00\xf9".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "W\xbb\xe5\x82\x8b\xd3\x00\xf9".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -220,7 +220,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 28
   Original: s = b'\x44\x1b\x3e\x00\x13\x19\x29\x2a\xbf'
-  Java: byte[] s = (byte[]) "'D\x1b>\x00\x13\x19)*\xbf".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "D\x1b>\x00\x13\x19)*\xbf".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -244,7 +244,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 31
   Original: s = b'\x8a\x1d\x09\x00\x5d\x60\x6b\x2e\x70\xd9'
-  Java: byte[] s = (byte[]) "'\x8a\x1d\t\x00]`k.p\xd9".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "\x8a\x1d\x09\x00]`k.p\xd9".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -268,7 +268,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 34
   Original: s = b'\x00\xaf\x47\x4b\x38\x99\x14\x8d\x8f\x10\x51'
-  Java: byte[] s = (byte[]) "'\x00\xafGK8\x99\x14\x8d\x8f\x10Q".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "\x00\xafGK8\x99\x14\x8d\x8f\x10Q".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -292,7 +292,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 37
   Original: s = b'\x45\x39\x00\xf7\xc2\x37\xfd\xe0\x38\x82\x40\xa9'
-  Java: byte[] s = (byte[]) "'E9\x00\xf7\xc27\xfd\xe08\x82@\xa9".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) "E9\x00\xf7\xc2\x37\xfd\xe0\x38\x82@\xa9".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -316,37 +316,37 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 40
   Original: a = b'\x00'
-  Java: byte[] a = (byte[]) "'\x00".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] a = (byte[]) "\x00".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
   TestNum: 41
   Original: b = b'\x00\x01'
-  Java: byte[] b = (byte[]) "'\x00\x01".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] b = (byte[]) "\x00\x01".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
   TestNum: 42
   Original: c = b'\x01'
-  Java: byte[] c = (byte[]) "'\x01".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] c = (byte[]) "\x01".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
   TestNum: 43
   Original: d = b'\x70\x22'
-  Java: byte[] d = (byte[]) "'p"".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] d = (byte[]) "p\"".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
   TestNum: 44
   Original: e = b'\x80'
-  Java: byte[] e = (byte[]) "'\x80".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] e = (byte[]) "\x80".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
   TestNum: 45
   Original: f = b'\xFE'
-  Java: byte[] f = (byte[]) "'\xfe".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -757,7 +757,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 91
   Original: r.binary(b'foo').coerce_to('string')
-  Java: r.binary("'foo".getBytes(StandardCharsets.UTF_8)).coerceTo("string")
+  Java: r.binary("foo".getBytes(StandardCharsets.UTF_8)).coerceTo("string")
   ExpectedOriginal: ('foo')
   ExpectedType: String
   ExpectedJava: '"foo"'
@@ -787,88 +787,88 @@ DefsAndTests:
   Java: r.expr("foo").coerceTo("binary")
   ExpectedOriginal: b'foo'
   ExpectedType: byte[]
-  ExpectedJava: '"''foo".getBytes(StandardCharsets.UTF_8)'
+  ExpectedJava: '"foo".getBytes(StandardCharsets.UTF_8)'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 95
   Original: r.binary(b'foo').coerce_to('binary')
-  Java: r.binary("'foo".getBytes(StandardCharsets.UTF_8)).coerceTo("binary")
+  Java: r.binary("foo".getBytes(StandardCharsets.UTF_8)).coerceTo("binary")
   ExpectedOriginal: b'foo'
   ExpectedType: byte[]
-  ExpectedJava: '"''foo".getBytes(StandardCharsets.UTF_8)'
+  ExpectedJava: '"foo".getBytes(StandardCharsets.UTF_8)'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 96
   Original: r.binary(b'abcdefg').slice(-3,-1)
-  Java: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-3, -1)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-3, -1)
   ExpectedOriginal: b'ef'
   ExpectedType: byte[]
-  ExpectedJava: '"''ef".getBytes(StandardCharsets.UTF_8)'
+  ExpectedJava: '"ef".getBytes(StandardCharsets.UTF_8)'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 97
   Original: r.binary(b'abcdefg').slice(0, 2)
-  Java: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(0, 2)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(0, 2)
   ExpectedOriginal: b'ab'
   ExpectedType: byte[]
-  ExpectedJava: '"''ab".getBytes(StandardCharsets.UTF_8)'
+  ExpectedJava: '"ab".getBytes(StandardCharsets.UTF_8)'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 98
   Original: r.binary(b'abcdefg').slice(3, -1)
-  Java: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(3, -1)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(3, -1)
   ExpectedOriginal: b'def'
   ExpectedType: byte[]
-  ExpectedJava: '"''def".getBytes(StandardCharsets.UTF_8)'
+  ExpectedJava: '"def".getBytes(StandardCharsets.UTF_8)'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 99
   Original: r.binary(b'abcdefg').slice(-5, 5)
-  Java: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-5, 5)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-5, 5)
   ExpectedOriginal: b'cde'
   ExpectedType: byte[]
-  ExpectedJava: '"''cde".getBytes(StandardCharsets.UTF_8)'
+  ExpectedJava: '"cde".getBytes(StandardCharsets.UTF_8)'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 100
   Original: r.binary(b'abcdefg').slice(-8, 2)
-  Java: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-8, 2)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-8, 2)
   ExpectedOriginal: b'ab'
   ExpectedType: byte[]
-  ExpectedJava: '"''ab".getBytes(StandardCharsets.UTF_8)'
+  ExpectedJava: '"ab".getBytes(StandardCharsets.UTF_8)'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 101
   Original: r.binary(b'abcdefg').slice(5, 7)
-  Java: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 7)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 7)
   ExpectedOriginal: b'fg'
   ExpectedType: byte[]
-  ExpectedJava: '"''fg".getBytes(StandardCharsets.UTF_8)'
+  ExpectedJava: '"fg".getBytes(StandardCharsets.UTF_8)'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 102
   Original: r.binary(b'abcdefg').slice(-9, 2)
-  Java: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-9, 2)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-9, 2)
   ExpectedOriginal: b'ab'
   ExpectedType: byte[]
-  ExpectedJava: '"''ab".getBytes(StandardCharsets.UTF_8)'
+  ExpectedJava: '"ab".getBytes(StandardCharsets.UTF_8)'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 103
   Original: r.binary(b'abcdefg').slice(5, 9)
-  Java: r.binary("'abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 9)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 9)
   ExpectedOriginal: b'fg'
   ExpectedType: byte[]
-  ExpectedJava: '"''fg".getBytes(StandardCharsets.UTF_8)'
+  ExpectedJava: '"fg".getBytes(StandardCharsets.UTF_8)'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -899,7 +899,7 @@ DefsAndTests:
   Java: r.binary(r.expr("data"))
   ExpectedOriginal: (b"data")
   ExpectedType: byte[]
-  ExpectedJava: '"''data".getBytes(StandardCharsets.UTF_8)'
+  ExpectedJava: '"data".getBytes(StandardCharsets.UTF_8)'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml

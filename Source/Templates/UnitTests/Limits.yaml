@@ -126,7 +126,7 @@ DefsAndTests:
   TestFile: limits.yaml
   TestNum: 14
   Original: tbl.delete().get_field('deleted')
-  Java: tbl.delete().getField("deleted")
+  Java: tbl.delete().g("deleted")
   ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
@@ -141,7 +141,7 @@ DefsAndTests:
   TestFile: limits.yaml
   TestNum: 16
   Original: tbl.insert([{'id':0}, {'id':1}, {'id':2}, {'id':3}, {'id':4}, {'id':5}, {'id':6}]).get_field('inserted')
-  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), new MapObject().with("id", 2), new MapObject().with("id", 3), new MapObject().with("id", 4), new MapObject().with("id", 5), new MapObject().with("id", 6))).getField("inserted")
+  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), new MapObject().with("id", 2), new MapObject().with("id", 3), new MapObject().with("id", 4), new MapObject().with("id", 5), new MapObject().with("id", 6))).g("inserted")
   ExpectedOriginal: 7
   ExpectedType: Integer
   ExpectedJava: 7
@@ -159,7 +159,7 @@ DefsAndTests:
   TestFile: limits.yaml
   TestNum: 18
   Original: tbl.insert([{'id':7}, {'id':8}, {'id':9}, {'id':10}, {'id':11}, {'id':12}, {'id':13}]).get_field('inserted')
-  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 7), new MapObject().with("id", 8), new MapObject().with("id", 9), new MapObject().with("id", 10), new MapObject().with("id", 11), new MapObject().with("id", 12), new MapObject().with("id", 13))).getField("inserted")
+  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 7), new MapObject().with("id", 8), new MapObject().with("id", 9), new MapObject().with("id", 10), new MapObject().with("id", 11), new MapObject().with("id", 12), new MapObject().with("id", 13))).g("inserted")
   ExpectedOriginal: 7
   ExpectedType: Integer
   ExpectedJava: 7
@@ -177,7 +177,7 @@ DefsAndTests:
   TestFile: limits.yaml
   TestNum: 20
   Original: tbl.delete().get_field('deleted')
-  Java: tbl.delete().getField("deleted")
+  Java: tbl.delete().g("deleted")
   ExpectedOriginal: 14
   ExpectedType: Integer
   ExpectedJava: 14
@@ -192,7 +192,7 @@ DefsAndTests:
   TestFile: limits.yaml
   TestNum: 22
   Original: tbl.insert([{'id':0}, {'id':1}, {'id':2}, {'id':3}, {'id':4}, {'id':5}, {'id':6}]).get_field('inserted')
-  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), new MapObject().with("id", 2), new MapObject().with("id", 3), new MapObject().with("id", 4), new MapObject().with("id", 5), new MapObject().with("id", 6))).getField("inserted")
+  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), new MapObject().with("id", 2), new MapObject().with("id", 3), new MapObject().with("id", 4), new MapObject().with("id", 5), new MapObject().with("id", 6))).g("inserted")
   ExpectedOriginal: 7
   ExpectedType: Integer
   ExpectedJava: 7
@@ -210,7 +210,7 @@ DefsAndTests:
   TestFile: limits.yaml
   TestNum: 24
   Original: tbl.insert([{'id':7}, {'id':8}, {'id':9}, {'id':10}, {'id':11}, {'id':12}, {'id':13}]).get_field('inserted')
-  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 7), new MapObject().with("id", 8), new MapObject().with("id", 9), new MapObject().with("id", 10), new MapObject().with("id", 11), new MapObject().with("id", 12), new MapObject().with("id", 13))).getField("inserted")
+  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 7), new MapObject().with("id", 8), new MapObject().with("id", 9), new MapObject().with("id", 10), new MapObject().with("id", 11), new MapObject().with("id", 12), new MapObject().with("id", 13))).g("inserted")
   ExpectedOriginal: 7
   ExpectedType: Integer
   ExpectedJava: 7

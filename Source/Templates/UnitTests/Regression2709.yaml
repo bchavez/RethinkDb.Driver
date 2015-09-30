@@ -11,10 +11,10 @@ DefsAndTests:
   ExpectedType: Map
   ExpectedJava: new MapObject().with("inserted", 999)
   RunOpts:
-  - Key: min_batch_rows
-    Val: 10
   - Key: max_batch_rows
     Val: 13
+  - Key: min_batch_rows
+    Val: 10
 - TestType: JavaQuery
   TestFile: regression/2709.yaml
   TestNum: 2
@@ -24,10 +24,10 @@ DefsAndTests:
   ExpectedType: Integer
   ExpectedJava: 999
   RunOpts:
-  - Key: min_batch_rows
-    Val: 10
   - Key: max_batch_rows
     Val: 13
+  - Key: min_batch_rows
+    Val: 10
 - TestType: JavaQuery
   TestFile: regression/2709.yaml
   TestNum: 3
@@ -37,7 +37,7 @@ DefsAndTests:
   ExpectedType: Integer
   ExpectedJava: 999
   RunOpts:
-  - Key: min_batch_rows
-    Val: 10
   - Key: max_batch_rows
     Val: 13
+  - Key: min_batch_rows
+    Val: 10

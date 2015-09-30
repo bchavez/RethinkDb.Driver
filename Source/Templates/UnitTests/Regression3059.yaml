@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: ("PTYPE<GEOMETRY>")
   ExpectedType: String
   ExpectedJava: '"PTYPE<GEOMETRY>"'
-  Obtained: r.point(0, 1).typeOf()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3059.yaml
@@ -18,5 +17,4 @@ DefsAndTests:
   ExpectedOriginal: ("PTYPE<GEOMETRY>")
   ExpectedType: String
   ExpectedJava: '"PTYPE<GEOMETRY>"'
-  Obtained: r.point(0, 1).info().bracket("type")
   RunOpts: []

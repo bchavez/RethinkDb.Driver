@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
-  Obtained: r.expr(1)
   RunOpts:
   - Key: array_limit
     Val: 16
@@ -20,7 +19,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlCompileError", "Unrecognized global optional argument `obviously_bogus`.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlCompileError", "Unrecognized global optional argument `obviously_bogus`.", Arrays.asList())
-  Obtained: r.expr(1)
   RunOpts:
   - Key: obviously_bogus
     Val: 16

@@ -10,7 +10,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: tbl.insert(new MapObject().with("name", "Jim Brown"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/579.yaml
@@ -20,7 +19,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Could not prove function deterministic.  Index functions must be deterministic.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Could not prove function deterministic.  Index functions must be deterministic.", Arrays.asList())
-  Obtained: tbl.indexCreate("579", rec -> r.js("1"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/579.yaml
@@ -30,5 +28,4 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Could not prove function deterministic.  Index functions must be deterministic.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Could not prove function deterministic.  Index functions must be deterministic.", Arrays.asList())
-  Obtained: tbl.indexCreate("579", rec -> tbl.get(0))
   RunOpts: []

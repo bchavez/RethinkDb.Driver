@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
-  Obtained: r.expr(1).do_(a -> a)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/546.yaml
@@ -18,7 +17,6 @@ DefsAndTests:
   ExpectedOriginal: 2
   ExpectedType: Integer
   ExpectedJava: 2
-  Obtained: r.expr(1).do_(a -> r.expr(2).do_(b -> b))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/546.yaml
@@ -28,5 +26,4 @@ DefsAndTests:
   ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
-  Obtained: r.expr(1).do_(a -> r.expr(2).do_(b -> a))
   RunOpts: []

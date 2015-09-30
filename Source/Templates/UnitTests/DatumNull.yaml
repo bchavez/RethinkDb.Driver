@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: (null)
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: r.expr(null)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/null.yaml
@@ -18,7 +17,6 @@ DefsAndTests:
   ExpectedOriginal: 'NULL'
   ExpectedType: String
   ExpectedJava: '"NULL"'
-  Obtained: r.expr(null).typeOf()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/null.yaml
@@ -28,7 +26,6 @@ DefsAndTests:
   ExpectedOriginal: 'null'
   ExpectedType: String
   ExpectedJava: '"null"'
-  Obtained: r.expr(null).coerceTo("string")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/null.yaml
@@ -38,5 +35,4 @@ DefsAndTests:
   ExpectedOriginal: (null)
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: r.expr(null).coerceTo("null")
   RunOpts: []

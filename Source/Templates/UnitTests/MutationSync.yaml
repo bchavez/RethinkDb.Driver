@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_created", 1))
-  Obtained: r.db("test").tableCreate("test1")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
@@ -18,7 +17,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_created", 1))
-  Obtained: r.db("test").tableCreate("test1soft")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
@@ -28,7 +26,6 @@ DefsAndTests:
   ExpectedOriginal: ({'skipped':0, 'deleted':0, 'unchanged':0, 'errors':0, 'replaced':1, 'inserted':0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("skipped", 0).with("deleted", 0).with("unchanged", 0).with("errors", 0).with("replaced", 1).with("inserted", 0)
-  Obtained: r.db("test").table("test1soft").config().update(new MapObject().with("durability", "soft"))
   RunOpts: []
 - TestType: JavaDef
   TestFile: mutation/sync.yaml
@@ -50,7 +47,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("created", 1))
-  Obtained: tbl.indexCreate("x")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
@@ -60,7 +56,6 @@ DefsAndTests:
   ExpectedOriginal: ([{'ready':True, 'index':'x'}])
   ExpectedType: List
   ExpectedJava: Arrays.asList(new MapObject().with("ready", true).with("index", "x"))
-  Obtained: tbl.indexWait("x").pluck("index", "ready")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
@@ -70,7 +65,6 @@ DefsAndTests:
   ExpectedOriginal: ({'synced':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("synced", 1)
-  Obtained: tbl.sync()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
@@ -80,7 +74,6 @@ DefsAndTests:
   ExpectedOriginal: ({'synced':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("synced", 1)
-  Obtained: tbl_soft.sync()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
@@ -90,7 +83,6 @@ DefsAndTests:
   ExpectedOriginal: ({'synced':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("synced", 1)
-  Obtained: tbl.sync()
   RunOpts:
   - Key: durability
     Val: soft
@@ -102,7 +94,6 @@ DefsAndTests:
   ExpectedOriginal: ({'synced':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("synced", 1)
-  Obtained: tbl.sync()
   RunOpts:
   - Key: durability
     Val: hard
@@ -114,7 +105,6 @@ DefsAndTests:
   ExpectedOriginal: err('AttributeError', "'Between' object has no attribute 'sync'")
   ExpectedType: Err
   ExpectedJava: err("AttributeError", "'Between' object has no attribute 'sync'")
-  Obtained: tbl.between(1, 2).sync()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
@@ -124,7 +114,6 @@ DefsAndTests:
   ExpectedOriginal: err('AttributeError', "'Datum' object has no attribute 'sync'")
   ExpectedType: Err
   ExpectedJava: err("AttributeError", "'Datum' object has no attribute 'sync'")
-  Obtained: r.expr(1).sync()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
@@ -134,7 +123,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'tables_dropped':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_dropped", 1))
-  Obtained: r.db("test").tableDrop("test1")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml
@@ -144,5 +132,4 @@ DefsAndTests:
   ExpectedOriginal: partial({'tables_dropped':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_dropped", 1))
-  Obtained: r.db("test").tableDrop("test1soft")
   RunOpts: []

@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.expr(true)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
@@ -18,7 +17,6 @@ DefsAndTests:
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
-  Obtained: r.expr(false)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
@@ -28,7 +26,6 @@ DefsAndTests:
   ExpectedOriginal: 'BOOL'
   ExpectedType: String
   ExpectedJava: '"BOOL"'
-  Obtained: r.expr(false).typeOf()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
@@ -38,7 +35,6 @@ DefsAndTests:
   ExpectedOriginal: 'true'
   ExpectedType: String
   ExpectedJava: '"true"'
-  Obtained: r.expr(true).coerceTo("string")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
@@ -48,5 +44,4 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.expr(true).coerceTo("bool")
   RunOpts: []

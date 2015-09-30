@@ -1912,7 +1912,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get the type of a string.</para>
 /// <code>r.expr("foo").typeOf().run(conn, callback)
 /// </code></example>
-                    public TypeOf typeOf_ (  )
+                    public TypeOf typeOf (  )
                     {
                         Arguments arguments = new Arguments(this);
                         return new TypeOf (arguments);
@@ -2162,6 +2162,29 @@ namespace RethinkDb.Driver.Ast {
                     {
                         Arguments arguments = new Arguments(this);
                         arguments.CoerceAndAdd(exprA);
+                        return new Default (arguments);
+                    }
+/// <summary>
+/// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
+/// error related to the absence of a value is thrown in the process, or if its first
+/// argument returns <code>null</code>, returns its second argument. (Alternatively, the second argument
+/// may be a function which will be called with either the text of the non-existence error
+/// or <code>null</code>.)</para>
+/// </summary>
+/// <example><para>Example: Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
+/// In the case where the author field is missing or <code>null</code>, we want to retrieve the string
+/// <code>Anonymous</code>.</para>
+/// <code>r.table("posts").map( function(post) {
+///     return {
+///         title: post("title"),
+///         author: post("author").default("Anonymous")
+///     }
+/// }).run(conn, callback)
+/// </code></example>
+                    public Default default_ ( ReqlFunction1 func1 )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(func1);
                         return new Default (arguments);
                     }
 /// <summary>

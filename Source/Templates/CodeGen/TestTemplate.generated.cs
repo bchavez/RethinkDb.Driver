@@ -96,6 +96,7 @@ WriteLiteral(@"
 using System;
 using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
@@ -107,7 +108,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
             
-            #line 33 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 34 "..\..\CodeGen\TestTemplate.cshtml"
             Write(YamlTest.ModuleName);
 
             
@@ -117,7 +118,7 @@ WriteLiteral(" : GeneratedTest {\r\n\r\n");
 
 
             
-            #line 35 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 36 "..\..\CodeGen\TestTemplate.cshtml"
          foreach( var table in this.YamlTest.TableVarNames )
         {
 
@@ -130,7 +131,7 @@ WriteLiteral("public static Table ");
 
 
             
-            #line 37 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 38 "..\..\CodeGen\TestTemplate.cshtml"
                              Write(table);
 
             
@@ -140,7 +141,7 @@ WriteLiteral(" = r.db(DbName).table(\"");
 
 
             
-            #line 37 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 38 "..\..\CodeGen\TestTemplate.cshtml"
                                                           Write(table);
 
             
@@ -150,7 +151,7 @@ WriteLiteral("\");\r\n");
 
 
             
-            #line 38 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 39 "..\..\CodeGen\TestTemplate.cshtml"
         }
 
             
@@ -160,7 +161,7 @@ WriteLiteral("\r\n\r\n        [Test]\r\n        public void YamlTest(){\r\n\r\n"
 
 
             
-            #line 44 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 45 "..\..\CodeGen\TestTemplate.cshtml"
       foreach( var test in this.YamlTest.DefsAndTests )
      {
          if( test.TestType == "JavaDef" )
@@ -181,7 +182,7 @@ WriteLiteral("//JavaDef, ");
 
 
             
-            #line 49 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 50 "..\..\CodeGen\TestTemplate.cshtml"
                      Write(test.TestFile);
 
             
@@ -191,7 +192,7 @@ WriteLiteral(", #");
 
 
             
-            #line 49 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 50 "..\..\CodeGen\TestTemplate.cshtml"
                                       Write(test);
 
             
@@ -207,7 +208,7 @@ WriteLiteral("//Original: ");
 
 
             
-            #line 50 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 51 "..\..\CodeGen\TestTemplate.cshtml"
                       Write(test.Original);
 
             
@@ -223,20 +224,20 @@ WriteLiteral("\r\n");
 
 
             
-            #line 52 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 53 "..\..\CodeGen\TestTemplate.cshtml"
              
             
             #line default
             #line hidden
             
-            #line 52 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 53 "..\..\CodeGen\TestTemplate.cshtml"
         Write(test.Java);
 
             
             #line default
             #line hidden
             
-            #line 52 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 53 "..\..\CodeGen\TestTemplate.cshtml"
                        
 
             
@@ -248,7 +249,7 @@ WriteLiteral("\r\n");
 
 
             
-            #line 54 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 55 "..\..\CodeGen\TestTemplate.cshtml"
          }
          else if( test.TestType == "JavaQuery" )
          {
@@ -274,7 +275,7 @@ WriteLiteral("//JavaQuery, ");
 
 
             
-            #line 59 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 60 "..\..\CodeGen\TestTemplate.cshtml"
                            Write(test.TestFile);
 
             
@@ -284,7 +285,7 @@ WriteLiteral(", #");
 
 
             
-            #line 59 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 60 "..\..\CodeGen\TestTemplate.cshtml"
                                             Write(test.TestNum);
 
             
@@ -300,7 +301,7 @@ WriteLiteral("//ExpectedOriginal: ");
 
 
             
-            #line 60 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 61 "..\..\CodeGen\TestTemplate.cshtml"
                                   Write(test.ExpectedOriginal);
 
             
@@ -312,20 +313,12 @@ WriteLiteral("\r\n");
 
 WriteLiteral("                 ");
 
-
-            
-            #line 61 "..\..\CodeGen\TestTemplate.cshtml"
-              Write(test.ExpectedType);
-
-            
-            #line default
-            #line hidden
-WriteLiteral(" expected = ");
+WriteLiteral("var expected = ");
 
 
             
-            #line 61 "..\..\CodeGen\TestTemplate.cshtml"
-                                             Write(test.ExpectedJava ?? "null");
+            #line 62 "..\..\CodeGen\TestTemplate.cshtml"
+                              Write(test.ExpectedJava ?? "null as object");
 
             
             #line default
@@ -346,7 +339,7 @@ WriteLiteral("//Original: ");
 
 
             
-            #line 63 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 64 "..\..\CodeGen\TestTemplate.cshtml"
                           Write(test.Original);
 
             
@@ -358,21 +351,27 @@ WriteLiteral("\r\n");
 
 WriteLiteral("                 ");
 
-WriteLiteral("var obtained = ");
-
-
-            
-            #line 64 "..\..\CodeGen\TestTemplate.cshtml"
-                             Write(test.Java);
-
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n");
+WriteLiteral("var obtained = runOrCatch( ");
 
 
             
             #line 65 "..\..\CodeGen\TestTemplate.cshtml"
+                                         Write(test.Java);
+
+            
+            #line default
+            #line hidden
+WriteLiteral(" ,\r\n");
+
+
+
+WriteLiteral("                 ");
+
+WriteLiteral("                           new OptArgs()\r\n");
+
+
+            
+            #line 67 "..\..\CodeGen\TestTemplate.cshtml"
                  foreach( var opt in test.RunOpts )
                  {
 
@@ -381,17 +380,11 @@ WriteLiteral("\r\n");
             #line hidden
 WriteLiteral("                     ");
 
-WriteLiteral(".run(conn,new OptArgs()\r\n");
-
-
-
-WriteLiteral("                     ");
-
 WriteLiteral(".with(\"");
 
 
             
-            #line 68 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 69 "..\..\CodeGen\TestTemplate.cshtml"
                          Write(opt.Key);
 
             
@@ -401,19 +394,13 @@ WriteLiteral("\", ");
 
 
             
-            #line 68 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 69 "..\..\CodeGen\TestTemplate.cshtml"
                                     Write(opt.Val);
 
             
             #line default
             #line hidden
-WriteLiteral(");\r\n");
-
-
-
-WriteLiteral("                     ");
-
-WriteLiteral(");\r\n");
+WriteLiteral(")\r\n");
 
 
             
@@ -425,7 +412,7 @@ WriteLiteral(");\r\n");
             #line hidden
 WriteLiteral("                 ");
 
-WriteLiteral(".run(conn);\r\n");
+WriteLiteral("   );\r\n");
 
 
             

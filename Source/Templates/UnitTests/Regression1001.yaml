@@ -10,7 +10,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: tbl.insert(new MapObject().with("a", null))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
@@ -20,7 +19,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: tbl.indexCreate("a")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
@@ -30,7 +28,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: tbl.indexCreate("b")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
@@ -40,7 +37,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: tbl.indexWait().pluck("index", "ready")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
@@ -50,7 +46,6 @@ DefsAndTests:
   ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
-  Obtained: tbl.between(r.minval(), r.maxval()).count()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
@@ -60,7 +55,6 @@ DefsAndTests:
   ExpectedOriginal: 0
   ExpectedType: Integer
   ExpectedJava: 0
-  Obtained: tbl.between(r.minval(), r.maxval()).optArg("index", "a").count()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
@@ -70,5 +64,4 @@ DefsAndTests:
   ExpectedOriginal: 0
   ExpectedType: Integer
   ExpectedJava: 0
-  Obtained: tbl.between(r.minval(), r.maxval()).optArg("index", "b").count()
   RunOpts: []

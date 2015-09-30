@@ -68,7 +68,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.mul(r.sub(t2, t1), 1000).do_(x -> r.and(r.gt(x, 0.99), r.lt(x, 1.01)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -78,7 +77,6 @@ DefsAndTests:
   ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
-  Obtained: r.sub(t3, t1)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -88,7 +86,6 @@ DefsAndTests:
   ExpectedOriginal: 1000000000
   ExpectedType: Integer
   ExpectedJava: 1000000000
-  Obtained: r.sub(t4, t1)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -98,7 +95,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.mul(r.sub(t1, t2), 1000).do_(x -> r.and(r.lt(x, -0.99), r.gt(x, -1.01)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -108,7 +104,6 @@ DefsAndTests:
   ExpectedOriginal: -1
   ExpectedType: Integer
   ExpectedJava: -1
-  Obtained: r.sub(t1, t3)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -118,7 +113,6 @@ DefsAndTests:
   ExpectedOriginal: -1000000000
   ExpectedType: Integer
   ExpectedJava: -1000000000
-  Obtained: r.sub(t1, t4)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -128,7 +122,6 @@ DefsAndTests:
   ExpectedOriginal: ([rt1, rt2, rt3, rt4])
   ExpectedType: List
   ExpectedJava: Arrays.asList(rt1, rt2, rt3, rt4)
-  Obtained: ts.map(x -> r.add(t1, r.sub(x, t1))).map(x -> x.toEpochTime())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -138,7 +131,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found PTYPE<TIME>.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found PTYPE<TIME>.", Arrays.asList())
-  Obtained: ts.map(x -> r.sub(r.add(t1, x), t1)).map(x -> x.toEpochTime())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -148,7 +140,6 @@ DefsAndTests:
   ExpectedOriginal: ([rt1, rt2, rt3, rt4])
   ExpectedType: List
   ExpectedJava: Arrays.asList(rt1, rt2, rt3, rt4)
-  Obtained: ts.map(x -> r.sub(t1, r.sub(t1, x))).map(x -> x.toEpochTime())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -158,7 +149,6 @@ DefsAndTests:
   ExpectedOriginal: ([[[false, true,  true,  false, true,  false], [true,  true,  false, true,  false, false], [true,  true,  false, true,  false, false], [true,  true,  false, true,  false, false]], [[false, false, false, true,  true,  true], [false, true,  true,  false, true,  false], [true,  true,  false, true,  false, false], [true,  true,  false, true,  false, false]], [[false, false, false, true,  true,  true], [false, false, false, true,  true,  true], [false, true,  true,  false, true,  false], [true,  true,  false, true,  false, false]], [[false, false, false, true,  true,  true], [false, false, false, true,  true,  true], [false, false, false, true,  true,  true], [false, true,  true,  false, true,  false]]])
   ExpectedType: List
   ExpectedJava: Arrays.asList(Arrays.asList(Arrays.asList(false, true, true, false, true, false), Arrays.asList(true, true, false, true, false, false), Arrays.asList(true, true, false, true, false, false), Arrays.asList(true, true, false, true, false, false)), Arrays.asList(Arrays.asList(false, false, false, true, true, true), Arrays.asList(false, true, true, false, true, false), Arrays.asList(true, true, false, true, false, false), Arrays.asList(true, true, false, true, false, false)), Arrays.asList(Arrays.asList(false, false, false, true, true, true), Arrays.asList(false, false, false, true, true, true), Arrays.asList(false, true, true, false, true, false), Arrays.asList(true, true, false, true, false, false)), Arrays.asList(Arrays.asList(false, false, false, true, true, true), Arrays.asList(false, false, false, true, true, true), Arrays.asList(false, false, false, true, true, true), Arrays.asList(false, true, true, false, true, false)))
-  Obtained: ts.map(x -> ts.map(y -> Arrays.asList(r.lt(x, y), r.le(x, y), r.eq(x, y), r.ne(x, y), r.ge(x, y), r.gt(x, y))))
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/time_arith.yaml
@@ -174,7 +164,6 @@ DefsAndTests:
   ExpectedOriginal: ([[[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[false, false, false, true,  true,  true], [true,  true,  false, true,  false, false]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]]])
   ExpectedType: List
   ExpectedJava: Arrays.asList(Arrays.asList(Arrays.asList(true, true, false, true, false, false), Arrays.asList(false, false, false, true, true, true)), Arrays.asList(Arrays.asList(true, true, false, true, false, false), Arrays.asList(false, false, false, true, true, true)), Arrays.asList(Arrays.asList(true, true, false, true, false, false), Arrays.asList(false, false, false, true, true, true)), Arrays.asList(Arrays.asList(true, true, false, true, false, false), Arrays.asList(false, false, false, true, true, true)), Arrays.asList(Arrays.asList(false, false, false, true, true, true), Arrays.asList(true, true, false, true, false, false)), Arrays.asList(Arrays.asList(true, true, false, true, false, false), Arrays.asList(false, false, false, true, true, true)), Arrays.asList(Arrays.asList(true, true, false, true, false, false), Arrays.asList(false, false, false, true, true, true)), Arrays.asList(Arrays.asList(true, true, false, true, false, false), Arrays.asList(false, false, false, true, true, true)))
-  Obtained: datum_types.map(x -> r.expr(Arrays.asList(Arrays.asList(x, t1), Arrays.asList(t1, x))).map(xy -> xy.bracket(0).do_(x -> xy.bracket(1).do_(y -> Arrays.asList(r.lt(x, y), r.le(x, y), r.eq(x, y), r.ne(x, y), r.ge(x, y), r.gt(x, y))))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -184,7 +173,6 @@ DefsAndTests:
   ExpectedOriginal: ([[[false, true,  true,  true], [false, false, true,  true], [false, false, false, true], [false, false, false, false]], [[false, false, false, false], [false, false, true,  true], [false, false, false, true], [false, false, false, false]], [[false, false, false, false], [false, false, false, false], [false, false, false, true], [false, false, false, false]], [[false, false, false, false], [false, false, false, false], [false, false, false, false], [false, false, false, false]]])
   ExpectedType: List
   ExpectedJava: Arrays.asList(Arrays.asList(Arrays.asList(false, true, true, true), Arrays.asList(false, false, true, true), Arrays.asList(false, false, false, true), Arrays.asList(false, false, false, false)), Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, false, true, true), Arrays.asList(false, false, false, true), Arrays.asList(false, false, false, false)), Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, true), Arrays.asList(false, false, false, false)), Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false)))
-  Obtained: ts.map(a -> ts.map(b -> ts.map(c -> b.during(a, c))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -194,7 +182,6 @@ DefsAndTests:
   ExpectedOriginal: ([[[false, false, false, false], [false, false, true,  true], [false, false, false, true], [false, false, false, false]], [[false, false, false, false], [false, false, false, false], [false, false, false, true], [false, false, false, false]], [[false, false, false, false], [false, false, false, false], [false, false, false, false], [false, false, false, false]], [[false, false, false, false], [false, false, false, false], [false, false, false, false], [false, false, false, false]]])
   ExpectedType: List
   ExpectedJava: Arrays.asList(Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, false, true, true), Arrays.asList(false, false, false, true), Arrays.asList(false, false, false, false)), Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, true), Arrays.asList(false, false, false, false)), Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false)), Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false)))
-  Obtained: ts.map(a -> ts.map(b -> ts.map(c -> b.during(a, c).optArg("left_bound", "open"))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -204,7 +191,6 @@ DefsAndTests:
   ExpectedOriginal: ([[[true,  true,  true,  true], [false, true,  true,  true], [false, false, true,  true], [false, false, false, true]], [[false, false, false, false], [false, true,  true,  true], [false, false, true,  true], [false, false, false, true]], [[false, false, false, false], [false, false, false, false], [false, false, true,  true], [false, false, false, true]], [[false, false, false, false], [false, false, false, false], [false, false, false, false], [false, false, false, true]]])
   ExpectedType: List
   ExpectedJava: Arrays.asList(Arrays.asList(Arrays.asList(true, true, true, true), Arrays.asList(false, true, true, true), Arrays.asList(false, false, true, true), Arrays.asList(false, false, false, true)), Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, true, true, true), Arrays.asList(false, false, true, true), Arrays.asList(false, false, false, true)), Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, true, true), Arrays.asList(false, false, false, true)), Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, true)))
-  Obtained: ts.map(a -> ts.map(b -> ts.map(c -> b.during(a, c).optArg("right_bound", "closed"))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -214,7 +200,6 @@ DefsAndTests:
   ExpectedOriginal: ([[[false, false, false, false], [false, true,  true,  true], [false, false, true,  true], [false, false, false, true]], [[false, false, false, false], [false, false, false, false], [false, false, true,  true], [false, false, false, true]], [[false, false, false, false], [false, false, false, false], [false, false, false, false], [false, false, false, true]], [[false, false, false, false], [false, false, false, false], [false, false, false, false], [false, false, false, false]]])
   ExpectedType: List
   ExpectedJava: Arrays.asList(Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, true, true, true), Arrays.asList(false, false, true, true), Arrays.asList(false, false, false, true)), Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, true, true), Arrays.asList(false, false, false, true)), Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, true)), Arrays.asList(Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false), Arrays.asList(false, false, false, false)))
-  Obtained: ts.map(a -> ts.map(b -> ts.map(c -> b.during(a, c).optArg("left_bound", "open").optArg("right_bound", "closed"))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -224,7 +209,6 @@ DefsAndTests:
   ExpectedOriginal: rts
   ExpectedType: List
   ExpectedJava: rts
-  Obtained: ts.map(x -> r.add(x.date(), x.timeOfDay())).map(x -> x.toEpochTime())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -234,7 +218,6 @@ DefsAndTests:
   ExpectedOriginal: rt1
   ExpectedType: Double
   ExpectedJava: rt1
-  Obtained: r.epochTime(rt1).do_(r.js("(function(data){return data})")).toEpochTime()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -244,7 +227,6 @@ DefsAndTests:
   ExpectedOriginal: ("2012-08-01T00:00:00+00:00")
   ExpectedType: String
   ExpectedJava: '"2012-08-01T00:00:00+00:00"'
-  Obtained: r.do_(r.js("new Date('2012-08-01')")).toIso8601()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -254,5 +236,4 @@ DefsAndTests:
   ExpectedOriginal: ("2012-08-01T00:00:00+00:00")
   ExpectedType: String
   ExpectedJava: '"2012-08-01T00:00:00+00:00"'
-  Obtained: r.do_(r.js("(function(x){doc = new Object(); doc.date = new Date('2012-08-01'); return doc;})")).bracket("date").toIso8601()
   RunOpts: []

@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: '[1, 2, 3, 4]'
   ExpectedType: List
   ExpectedJava: Arrays.asList(1, 2, 3, 4)
-  Obtained: r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(4, 4)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2696.yaml
@@ -18,5 +17,4 @@ DefsAndTests:
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: Arrays.asList()
-  Obtained: r.expr(Arrays.asList()).deleteAt(0, 0)
   RunOpts: []

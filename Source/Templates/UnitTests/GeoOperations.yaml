@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: ("89011.26253835332")
   ExpectedType: String
   ExpectedJava: '"89011.26253835332"'
-  Obtained: r.distance(r.point(-122, 37), r.point(-123, 37)).coerceTo("STRING")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -18,7 +17,6 @@ DefsAndTests:
   ExpectedOriginal: ("110968.30443995494")
   ExpectedType: String
   ExpectedJava: '"110968.30443995494"'
-  Obtained: r.distance(r.point(-122, 37), r.point(-122, 36)).coerceTo("STRING")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -28,7 +26,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.distance(r.point(-122, 37), r.point(-122, 36)).eq(r.distance(r.point(-122, 36), r.point(-122, 37)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -38,7 +35,6 @@ DefsAndTests:
   ExpectedOriginal: ("89011.26253835332")
   ExpectedType: String
   ExpectedJava: '"89011.26253835332"'
-  Obtained: r.point(-122, 37).distance(r.point(-123, 37)).coerceTo("STRING")
   RunOpts: []
 - TestType: JavaDef
   TestFile: geo/operations.yaml
@@ -54,7 +50,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: someDist.eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "m"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -64,7 +59,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: someDist.mul(r.div(1.0, 1000.0)).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "km"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -74,7 +68,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: someDist.mul(r.div(1.0, 1609.344)).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "mi"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -84,7 +77,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: someDist.mul(r.div(1.0, 0.3048)).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "ft"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -94,7 +86,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: someDist.mul(r.div(1.0, 1852.0)).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "nm"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -104,7 +95,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: someDist.eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("geo_system", "WGS84"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -114,7 +104,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: someDist.div(10).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("geo_system", new MapObject().with("a", 637813.7).with("f", r.div(1.0, 298.257223563))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -124,7 +113,6 @@ DefsAndTests:
   ExpectedOriginal: ("0.01393875509649327")
   ExpectedType: String
   ExpectedJava: '"0.01393875509649327"'
-  Obtained: r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("geo_system", "unit_sphere").coerceTo("STRING")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -134,7 +122,6 @@ DefsAndTests:
   ExpectedOriginal: ("0")
   ExpectedType: String
   ExpectedJava: '"0"'
-  Obtained: r.distance(r.point(0, 0), r.point(0, 0)).coerceTo("STRING")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -144,7 +131,6 @@ DefsAndTests:
   ExpectedOriginal: ("40007862.917250897")
   ExpectedType: String
   ExpectedJava: '"40007862.917250897"'
-  Obtained: r.distance(r.point(0, 0), r.point(180, 0)).mul(2).coerceTo("STRING")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -154,7 +140,6 @@ DefsAndTests:
   ExpectedOriginal: ("40007862.917250897")
   ExpectedType: String
   ExpectedJava: '"40007862.917250897"'
-  Obtained: r.distance(r.point(0, -90), r.point(0, 90)).mul(2).coerceTo("STRING")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -164,7 +149,6 @@ DefsAndTests:
   ExpectedOriginal: ("0")
   ExpectedType: String
   ExpectedJava: '"0"'
-  Obtained: r.distance(r.point(0, 0), r.line(Arrays.asList(0, 0), Arrays.asList(0, 1))).coerceTo("STRING")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -174,7 +158,6 @@ DefsAndTests:
   ExpectedOriginal: ("0")
   ExpectedType: String
   ExpectedJava: '"0"'
-  Obtained: r.distance(r.line(Arrays.asList(0, 0), Arrays.asList(0, 1)), r.point(0, 0)).coerceTo("STRING")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -184,7 +167,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.distance(r.point(0, 0), r.line(Arrays.asList(0.1, 0), Arrays.asList(1, 0))).eq(r.distance(r.point(0, 0), r.point(0.1, 0)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -194,7 +176,6 @@ DefsAndTests:
   ExpectedOriginal: ("492471.4990055255")
   ExpectedType: String
   ExpectedJava: '"492471.4990055255"'
-  Obtained: r.distance(r.point(0, 0), r.line(Arrays.asList(5, -1), Arrays.asList(4, 2))).coerceTo("STRING")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -204,7 +185,6 @@ DefsAndTests:
   ExpectedOriginal: ("492471.4990055255")
   ExpectedType: String
   ExpectedJava: '"492471.4990055255"'
-  Obtained: r.distance(r.point(0, 0), r.polygon(Arrays.asList(5, -1), Arrays.asList(4, 2), Arrays.asList(10, 10))).coerceTo("STRING")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -214,7 +194,6 @@ DefsAndTests:
   ExpectedOriginal: ("0")
   ExpectedType: String
   ExpectedJava: '"0"'
-  Obtained: r.distance(r.point(0, 0), r.polygon(Arrays.asList(0, -1), Arrays.asList(0, 1), Arrays.asList(10, 10))).coerceTo("STRING")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -224,7 +203,6 @@ DefsAndTests:
   ExpectedOriginal: ("0")
   ExpectedType: String
   ExpectedJava: '"0"'
-  Obtained: r.distance(r.point(0.5, 0.5), r.polygon(Arrays.asList(0, -1), Arrays.asList(0, 1), Arrays.asList(10, 10))).coerceTo("STRING")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -234,7 +212,6 @@ DefsAndTests:
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
-  Obtained: r.circle(Arrays.asList(0, 0), 1).optArg("fill", false).eq(r.circle(Arrays.asList(0, 0), 1).optArg("fill", true))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -244,7 +221,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.circle(Arrays.asList(0, 0), 1).optArg("fill", false).fill().eq(r.circle(Arrays.asList(0, 0), 1).optArg("fill", true))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -254,7 +230,6 @@ DefsAndTests:
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0,0],[1,0],[1,1],[0,1],[0,0]],[[0.1,0.1],[0.9,0.1],[0.9,0.9],[0.1,0.9],[0.1,0.1]]], 'type':'Polygon'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1), Arrays.asList(0, 0)), Arrays.asList(Arrays.asList(0.1, 0.1), Arrays.asList(0.9, 0.1), Arrays.asList(0.9, 0.9), Arrays.asList(0.1, 0.9), Arrays.asList(0.1, 0.1)))).with("type", "Polygon")
-  Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0.1, 0.1), Arrays.asList(0.9, 0.1), Arrays.asList(0.9, 0.9), Arrays.asList(0.1, 0.9)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -264,7 +239,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'The second argument to `polygon_sub` is not contained in the first one.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", Arrays.asList(0))
-  Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0.1, 0.9), Arrays.asList(0.9, 0.0), Arrays.asList(0.9, 0.9), Arrays.asList(0.1, 0.9)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -274,7 +248,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'The second argument to `polygon_sub` is not contained in the first one.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", Arrays.asList(0))
-  Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(2, 0), Arrays.asList(2, 2), Arrays.asList(0, 2)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -284,7 +257,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'The second argument to `polygon_sub` is not contained in the first one.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", Arrays.asList(0))
-  Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, -2), Arrays.asList(1, -2), Arrays.asList(-1, 1), Arrays.asList(0, -1)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -294,7 +266,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'The second argument to `polygon_sub` is not contained in the first one.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", Arrays.asList(0))
-  Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, -1), Arrays.asList(1, -1), Arrays.asList(1, 0), Arrays.asList(0, 0)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -304,7 +275,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'The second argument to `polygon_sub` is not contained in the first one.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", Arrays.asList(0))
-  Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0.1, -1), Arrays.asList(0.9, -1), Arrays.asList(0.9, 0.5), Arrays.asList(0.1, 0.5)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -314,7 +284,6 @@ DefsAndTests:
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0,0],[1,0],[1,1],[0,1],[0,0]],[[0,0],[0.1,0.9],[0.9,0.9],[0.9,0.1],[0,0]]], 'type':'Polygon'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1), Arrays.asList(0, 0)), Arrays.asList(Arrays.asList(0, 0), Arrays.asList(0.1, 0.9), Arrays.asList(0.9, 0.9), Arrays.asList(0.9, 0.1), Arrays.asList(0, 0)))).with("type", "Polygon")
-  Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(0.1, 0.9), Arrays.asList(0.9, 0.9), Arrays.asList(0.9, 0.1)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -324,7 +293,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected a Polygon with only an outer shell.  This one has holes.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected a Polygon with only an outer shell.  This one has holes.", Arrays.asList(0))
-  Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(0.1, 0.9), Arrays.asList(0.9, 0.9), Arrays.asList(0.9, 0.1)).polygonSub(r.polygon(Arrays.asList(0.2, 0.2), Arrays.asList(0.5, 0.8), Arrays.asList(0.8, 0.2))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/operations.yaml
@@ -334,5 +302,4 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected a Polygon but found a LineString.', [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected a Polygon but found a LineString.", Arrays.asList())
-  Obtained: r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.line(Arrays.asList(0, 0), Arrays.asList(0.9, 0.1), Arrays.asList(0.9, 0.9), Arrays.asList(0.1, 0.9)))
   RunOpts: []

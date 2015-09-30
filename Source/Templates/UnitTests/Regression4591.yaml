@@ -8,5 +8,4 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError','r.args is not supported in an order_by command yet.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "r.args is not supported in an order_by command yet.")
-  Obtained: r.expr(Arrays.asList(new MapObject().with("x", 2), new MapObject().with("x", 1))).orderBy(r.args(Arrays.asList("x", "y")))
   RunOpts: []

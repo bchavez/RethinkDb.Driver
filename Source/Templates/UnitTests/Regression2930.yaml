@@ -10,7 +10,6 @@ DefsAndTests:
   ExpectedOriginal: ({'inserted':999})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("inserted", 999)
-  Obtained: tbl.insert(IntStream.range(1, 1000).boxed().map(i -> new MapObject().with("id", i).with("mod", r.mod(i, 5)).with("foo", 5)).collect(Collectors.toList())).pluck("first_error", "inserted")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2930.yaml
@@ -20,7 +19,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlResourceLimitError", "Array over size limit `500`.", [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlResourceLimitError", "Array over size limit `500`.", Arrays.asList(0))
-  Obtained: tbl.coerceTo("array")
   RunOpts:
   - Key: array_limit
     Val: 500
@@ -32,7 +30,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", Arrays.asList(0))
-  Obtained: tbl.group("mod").coerceTo("array")
   RunOpts:
   - Key: array_limit
     Val: 500
@@ -44,7 +41,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", Arrays.asList(0))
-  Obtained: tbl.group("foo").coerceTo("array")
   RunOpts:
   - Key: array_limit
     Val: 500

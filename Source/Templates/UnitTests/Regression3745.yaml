@@ -10,7 +10,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'inserted':2})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("inserted", 2))
-  Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 0).with("a", 5), new MapObject().with("id", 1).with("a", 6)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3745.yaml
@@ -20,7 +19,6 @@ DefsAndTests:
   ExpectedOriginal: ({'a':11})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("a", 11)
-  Obtained: tbl.reduce((x, y) -> r.object("a", r.add(x.bracket("a"), y.bracket("a"))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3745.yaml
@@ -30,5 +28,4 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError','Cannot convert NUMBER to SEQUENCE')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot convert NUMBER to SEQUENCE")
-  Obtained: tbl.reduce((x, y) -> r.expr(0).bracket(0))
   RunOpts: []

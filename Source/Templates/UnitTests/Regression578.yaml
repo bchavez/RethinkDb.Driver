@@ -10,7 +10,6 @@ DefsAndTests:
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("created", 1)
-  Obtained: tbl.indexCreate("578", rec -> 1)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/578.yaml
@@ -20,7 +19,6 @@ DefsAndTests:
   ExpectedOriginal: ([{'ready':True, 'index':'578'}])
   ExpectedType: List
   ExpectedJava: Arrays.asList(new MapObject().with("ready", true).with("index", "578"))
-  Obtained: tbl.indexWait("578").pluck("index", "ready")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/578.yaml
@@ -30,7 +28,6 @@ DefsAndTests:
   ExpectedOriginal: err_regex("ReqlOpFailedError", "Index `578` already exists on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", [])
   ExpectedType: ErrRegex
   ExpectedJava: err_regex("ReqlOpFailedError", "Index `578` already exists on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", Arrays.asList())
-  Obtained: tbl.indexCreate("578", rec -> 1)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/578.yaml
@@ -40,7 +37,6 @@ DefsAndTests:
   ExpectedOriginal: ({'dropped':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("dropped", 1)
-  Obtained: tbl.indexDrop("578")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/578.yaml
@@ -50,5 +46,4 @@ DefsAndTests:
   ExpectedOriginal: err_regex("ReqlOpFailedError", "Index `578` does not exist on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", [])
   ExpectedType: ErrRegex
   ExpectedJava: err_regex("ReqlOpFailedError", "Index `578` does not exist on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", Arrays.asList())
-  Obtained: tbl.indexDrop("578")
   RunOpts: []

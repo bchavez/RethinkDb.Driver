@@ -1,99 +1,13 @@
 ﻿using System;
-using System.Collections;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
-using System.Linq;
+using System.Text;
 using Templates.Utils;
 
 namespace RethinkDb.Driver.Tests
 {
-    [TestFixture]
-    public class GeneratedTest
-    {
-        protected const string DbName = "CSharpDriverTests";
-        protected const string Hostname = "192.168.0.11";
-        protected const int Port = 31157;
-
-        protected static RethinkDB r = RethinkDB.r;
-        protected Connection conn;
-
-        [TestFixtureSetUp]
-        public void BeforeRunningTestSession()
-        {
-
-        }
-
-        [TestFixtureTearDown]
-        public void AfterRunningTestSession()
-        {
-
-        }
-
-
-        [SetUp]
-        public void BeforeEachTest()
-        {
-            conn = r.connection()
-                .hostname(Hostname)
-                .port(Port)
-                .connect();
-        }
-
-        [TearDown]
-        public void AfterEachTest()
-        {
-
-        }
-
-
-        [Test]
-        public void Test()
-        {
-            
-        }
-
-        public class Arrays
-        {
-            public static ArrayList asList(params object[] p)
-            {
-                var list = new ArrayList();
-                foreach( var o in p )
-                {
-                    list.Add(o);
-                }
-                return list;
-            }
-        }
-
-        public class Err
-        {
-            private string errorMessage;
-            private string errorType;
-            private object obj;
-
-            public Err(string errorType, string errorMessage, object obj)
-            {
-                this.errorType = errorType;
-                this.errorMessage = errorMessage;
-                this.obj = obj;
-            }
-        }
-
-        protected Err err(string errorType, string errorMessage, object obj)
-        {
-            return new Err(errorType, errorMessage, obj);
-        }
-
-        protected void assertEquals(object expected, object obtained)
-        {
-            
-        }
-    }
-
-
-
     [TestFixture]
     public class ConnectionTest
     {

@@ -23,6 +23,7 @@
 using System;
 using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
@@ -58,17 +59,16 @@ namespace RethinkDb.Driver.Test.Generated {
              @:{
                  @://JavaQuery, @test.TestFile, #@test.TestNum
                  @://ExpectedOriginal: @test.ExpectedOriginal
-                 @:@test.ExpectedType expected = @(test.ExpectedJava ?? "null");
+                 @:var expected = @(test.ExpectedJava ?? "null as object");
                  @:
                  @://Original: @test.Original
-                 @:var obtained = @test.Java
+                 @:var obtained = runOrCatch( @test.Java ,
+                 @:                           new OptArgs()
                  foreach( var opt in test.RunOpts )
                  {
-                     @:.run(conn,new OptArgs()
-                     @:.with("@opt.Key", @opt.Val);
-                     @:);
+                     @:.with("@opt.Key", @opt.Val)
                  }
-                 @:.run(conn);
+                 @:   );
                  
                  @:assertEquals(expected, obtained);
              @:}

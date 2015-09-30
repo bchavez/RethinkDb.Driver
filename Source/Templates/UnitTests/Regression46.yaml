@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_created", 1))
-  Obtained: r.tableCreate("46")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/46.yaml
@@ -18,7 +17,6 @@ DefsAndTests:
   ExpectedOriginal: (['46'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("46")
-  Obtained: r.tableList()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/46.yaml
@@ -28,5 +26,4 @@ DefsAndTests:
   ExpectedOriginal: partial({'tables_dropped':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_dropped", 1))
-  Obtained: r.tableDrop("46")
   RunOpts: []

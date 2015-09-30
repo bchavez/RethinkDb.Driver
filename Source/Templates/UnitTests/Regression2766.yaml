@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot call `bracket` on objects of type `PTYPE<TIME>`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot call `bracket` on objects of type `PTYPE<TIME>`.")
-  Obtained: r.now().bracket("epoch_time")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2766.yaml
@@ -18,7 +17,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot call `get_field` on objects of type `PTYPE<TIME>`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot call `get_field` on objects of type `PTYPE<TIME>`.")
-  Obtained: r.now().getField("epoch_time")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2766.yaml
@@ -28,7 +26,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot call `keys` on objects of type `PTYPE<TIME>`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot call `keys` on objects of type `PTYPE<TIME>`.")
-  Obtained: r.now().keys()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2766.yaml
@@ -38,7 +35,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot call `pluck` on objects of type `PTYPE<TIME>`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot call `pluck` on objects of type `PTYPE<TIME>`.")
-  Obtained: r.now().pluck("epoch_time")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2766.yaml
@@ -48,7 +44,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot call `without` on objects of type `PTYPE<TIME>`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot call `without` on objects of type `PTYPE<TIME>`.")
-  Obtained: r.now().without("epoch_time")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2766.yaml
@@ -58,7 +53,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot call `merge` on objects of type `PTYPE<TIME>`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot call `merge` on objects of type `PTYPE<TIME>`.")
-  Obtained: r.now().merge(new MapObject().with("foo", 4))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2766.yaml
@@ -68,7 +62,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot merge objects of type `PTYPE<TIME>`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot merge objects of type `PTYPE<TIME>`.")
-  Obtained: r.expr(new MapObject().with("foo", 4)).merge(r.now())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2766.yaml
@@ -78,7 +71,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot call `has_fields` on objects of type `PTYPE<TIME>`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot call `has_fields` on objects of type `PTYPE<TIME>`.")
-  Obtained: r.now().hasFields("epoch_time")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2766.yaml
@@ -88,7 +80,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Invalid path argument `1404691200`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Invalid path argument `1404691200`.")
-  Obtained: r.object().hasFields(r.time(2014, 7, 7, "Z"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2766.yaml
@@ -98,5 +89,4 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot call `keys` on objects of type `NUMBER`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot call `keys` on objects of type `NUMBER`.")
-  Obtained: r.expr(1).keys()
   RunOpts: []

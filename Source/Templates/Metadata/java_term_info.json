@@ -40,8 +40,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -78,8 +78,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -118,10 +118,14 @@
     ],
     "signatures": [
       {
+        "args": [],
+        "first_arg": null
+      },
+      {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -140,8 +144,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -161,8 +165,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -170,12 +174,12 @@
       {
         "args": [
           {
-            "type": "Db",
-            "var": "db"
+            "var": "db",
+            "type": "Db"
           },
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "Db"
@@ -198,12 +202,12 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           },
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "Table"
@@ -222,12 +226,12 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "Table"
@@ -252,16 +256,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -283,16 +287,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -314,16 +318,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -345,16 +349,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -376,16 +380,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -407,16 +411,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -436,8 +440,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -458,12 +462,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -484,12 +488,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -510,12 +514,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -536,12 +540,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -562,12 +566,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -586,8 +590,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -606,8 +610,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -626,8 +630,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -646,12 +650,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -670,12 +674,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -694,12 +698,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -718,12 +722,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -742,12 +746,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -766,12 +770,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -790,12 +794,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -814,12 +818,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -827,16 +831,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -859,12 +863,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -883,12 +887,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -907,12 +911,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -920,12 +924,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -944,8 +948,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -953,12 +957,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -966,12 +970,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -979,16 +983,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -996,16 +1000,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1013,16 +1017,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1030,16 +1034,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1047,20 +1051,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1068,20 +1072,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1089,20 +1093,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1110,20 +1114,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1131,20 +1135,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1152,20 +1156,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1173,20 +1177,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1194,20 +1198,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1215,24 +1219,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprD"
+            "var": "exprD",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1240,24 +1244,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1265,24 +1269,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1290,24 +1294,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1315,24 +1319,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1340,24 +1344,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1365,24 +1369,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1390,24 +1394,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1415,24 +1419,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1440,24 +1444,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1465,24 +1469,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1490,24 +1494,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1515,24 +1519,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1540,24 +1544,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1565,24 +1569,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1590,24 +1594,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1C"
+            "var": "func1C",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1626,12 +1630,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1650,8 +1654,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1670,8 +1674,8 @@
       {
         "args": [
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1690,12 +1694,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1714,12 +1718,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1738,12 +1742,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1762,12 +1766,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1786,8 +1790,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1795,12 +1799,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1808,12 +1812,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1821,16 +1825,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1838,16 +1842,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1855,16 +1859,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1872,16 +1876,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1889,20 +1893,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1910,20 +1914,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1931,20 +1935,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1952,20 +1956,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1973,20 +1977,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -1994,20 +1998,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2015,20 +2019,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2036,20 +2040,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2057,24 +2061,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprD"
+            "var": "exprD",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2082,24 +2086,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2107,24 +2111,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2132,24 +2136,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2157,24 +2161,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2182,24 +2186,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2207,24 +2211,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2232,24 +2236,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2257,24 +2261,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2282,24 +2286,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2307,24 +2311,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2332,24 +2336,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2357,24 +2361,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2382,24 +2386,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2407,24 +2411,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2432,24 +2436,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1C"
+            "var": "func1C",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2477,16 +2481,16 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           },
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "Table"
@@ -2510,12 +2514,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction2",
-            "var": "func2"
+            "var": "func2",
+            "type": "ReqlFunction2"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2535,12 +2539,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2548,16 +2552,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction2",
-            "var": "func2"
+            "var": "func2",
+            "type": "ReqlFunction2"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2565,20 +2569,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction3",
-            "var": "func3"
+            "var": "func3",
+            "type": "ReqlFunction3"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2586,24 +2590,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction4",
-            "var": "func4"
+            "var": "func4",
+            "type": "ReqlFunction4"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2622,12 +2626,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2649,12 +2653,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2673,12 +2677,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2700,8 +2704,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2723,8 +2727,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2732,12 +2736,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2745,12 +2749,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2769,8 +2773,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2790,12 +2794,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2814,12 +2818,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2838,12 +2842,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2862,16 +2866,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction2",
-            "var": "func2"
+            "var": "func2",
+            "type": "ReqlFunction2"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2890,16 +2894,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction2",
-            "var": "func2"
+            "var": "func2",
+            "type": "ReqlFunction2"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2918,16 +2922,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2935,16 +2939,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2966,8 +2970,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2990,8 +2994,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -2999,12 +3003,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3023,16 +3027,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3051,12 +3055,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3064,16 +3068,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3092,16 +3096,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3120,16 +3124,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3148,12 +3152,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3173,8 +3177,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3193,12 +3197,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3206,12 +3210,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3238,8 +3242,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3265,12 +3269,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3278,12 +3282,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3310,12 +3314,12 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           },
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "Table"
@@ -3342,8 +3346,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3362,8 +3366,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3398,12 +3402,12 @@
       {
         "args": [
           {
-            "type": "Db",
-            "var": "db"
+            "var": "db",
+            "type": "Db"
           },
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "Db"
@@ -3433,8 +3437,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3442,12 +3446,12 @@
       {
         "args": [
           {
-            "type": "Db",
-            "var": "db"
+            "var": "db",
+            "type": "Db"
           },
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "Db"
@@ -3467,8 +3471,8 @@
       {
         "args": [
           {
-            "type": "Db",
-            "var": "db"
+            "var": "db",
+            "type": "Db"
           }
         ],
         "first_arg": "Db"
@@ -3488,8 +3492,8 @@
       {
         "args": [
           {
-            "type": "Db",
-            "var": "db"
+            "var": "db",
+            "type": "Db"
           }
         ],
         "first_arg": "Db"
@@ -3497,8 +3501,8 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           }
         ],
         "first_arg": "Table"
@@ -3517,8 +3521,8 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           }
         ],
         "first_arg": "Table"
@@ -3543,8 +3547,8 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           }
         ],
         "first_arg": "Table"
@@ -3552,8 +3556,8 @@
       {
         "args": [
           {
-            "type": "Db",
-            "var": "db"
+            "var": "db",
+            "type": "Db"
           }
         ],
         "first_arg": "Db"
@@ -3582,8 +3586,8 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           }
         ],
         "first_arg": "Table"
@@ -3591,8 +3595,8 @@
       {
         "args": [
           {
-            "type": "Db",
-            "var": "db"
+            "var": "db",
+            "type": "Db"
           }
         ],
         "first_arg": "Db"
@@ -3628,8 +3632,8 @@
       {
         "args": [
           {
-            "type": "Db",
-            "var": "db"
+            "var": "db",
+            "type": "Db"
           }
         ],
         "first_arg": "Db"
@@ -3637,8 +3641,8 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           }
         ],
         "first_arg": "Table"
@@ -3657,8 +3661,8 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           }
         ],
         "first_arg": "Table"
@@ -3677,12 +3681,12 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           },
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "Table"
@@ -3690,16 +3694,16 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           },
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "Table"
@@ -3722,12 +3726,12 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           },
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "Table"
@@ -3746,8 +3750,8 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           }
         ],
         "first_arg": "Table"
@@ -3766,12 +3770,12 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "Table"
@@ -3790,12 +3794,12 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "Table"
@@ -3814,16 +3818,16 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           },
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "Table"
@@ -3847,12 +3851,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3860,12 +3864,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3873,16 +3877,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction2",
-            "var": "func2"
+            "var": "func2",
+            "type": "ReqlFunction2"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3890,20 +3894,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction3",
-            "var": "func3"
+            "var": "func3",
+            "type": "ReqlFunction3"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3911,24 +3915,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction4",
-            "var": "func4"
+            "var": "func4",
+            "type": "ReqlFunction4"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3947,16 +3951,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -3976,16 +3980,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4005,12 +4009,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4029,12 +4033,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4061,8 +4065,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4081,8 +4085,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4102,8 +4106,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4122,12 +4126,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4146,8 +4150,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4166,8 +4170,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4186,12 +4190,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4210,12 +4214,25 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
+          }
+        ],
+        "first_arg": "ReqlExpr"
+      },
+      {
+        "args": [
+          {
+            "var": "expr",
+            "type": "Object"
+          },
+          {
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4234,8 +4251,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4255,8 +4272,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4275,8 +4292,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4298,8 +4315,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4318,8 +4335,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4338,8 +4355,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4373,12 +4390,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4397,16 +4414,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4429,8 +4446,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4449,8 +4466,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4469,8 +4486,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4489,8 +4506,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4509,8 +4526,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4529,8 +4546,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4549,8 +4566,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4569,8 +4586,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4589,8 +4606,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4609,8 +4626,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4629,8 +4646,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4649,20 +4666,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -4670,32 +4687,32 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprD"
+            "var": "exprD",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprE"
+            "var": "exprE",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprF"
+            "var": "exprF",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5003,8 +5020,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5023,8 +5040,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5032,12 +5049,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5045,12 +5062,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5058,16 +5075,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5075,16 +5092,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5092,16 +5109,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5109,16 +5126,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5126,20 +5143,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5147,20 +5164,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5168,20 +5185,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5189,20 +5206,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5210,20 +5227,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5231,20 +5248,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5252,20 +5269,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5273,20 +5290,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5294,24 +5311,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprD"
+            "var": "exprD",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5319,24 +5336,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5344,24 +5361,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5369,24 +5386,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5394,24 +5411,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5419,24 +5436,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5444,24 +5461,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5469,24 +5486,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5494,24 +5511,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprC"
+            "var": "exprC",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5519,24 +5536,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5544,24 +5561,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5569,24 +5586,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5594,24 +5611,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5619,24 +5636,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5644,24 +5661,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5669,24 +5686,24 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1A"
+            "var": "func1A",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1B"
+            "var": "func1B",
+            "type": "ReqlFunction1"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1C"
+            "var": "func1C",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5709,8 +5726,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5718,12 +5735,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5731,12 +5748,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5755,8 +5772,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5764,12 +5781,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5777,12 +5794,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5801,8 +5818,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5810,12 +5827,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5823,12 +5840,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5850,8 +5867,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5859,12 +5876,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5872,12 +5889,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "ReqlFunction1",
-            "var": "func1"
+            "var": "func1",
+            "type": "ReqlFunction1"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5899,8 +5916,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5908,12 +5925,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5921,16 +5938,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5949,8 +5966,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5973,8 +5990,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -5982,12 +5999,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6009,8 +6026,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6033,8 +6050,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6053,8 +6070,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6073,8 +6090,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6093,8 +6110,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6113,12 +6130,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6137,16 +6154,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6165,20 +6182,20 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           },
           {
-            "type": "Object...",
-            "var": "exprs"
+            "var": "exprs",
+            "type": "Object..."
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6198,12 +6215,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6227,12 +6244,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6251,12 +6268,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6275,8 +6292,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6284,12 +6301,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6297,16 +6314,16 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprB"
+            "var": "exprB",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6331,12 +6348,12 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           },
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "Table"
@@ -6358,8 +6375,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6378,12 +6395,12 @@
       {
         "args": [
           {
-            "type": "Table",
-            "var": "table"
+            "var": "table",
+            "type": "Table"
           },
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "Table"
@@ -6409,12 +6426,12 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           },
           {
-            "type": "Object",
-            "var": "exprA"
+            "var": "exprA",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"
@@ -6463,8 +6480,8 @@
       {
         "args": [
           {
-            "type": "Object",
-            "var": "expr"
+            "var": "expr",
+            "type": "Object"
           }
         ],
         "first_arg": "ReqlExpr"

@@ -61,6 +61,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionTest.cs" />
+    <Compile Include="GeneratedTest.cs" />
+    <Compile Include="Generated\ChangefeedsSindex.cs" />
+    <Compile Include="Generated\DatumArray.cs" />
+    <Compile Include="Generated\DatumBool.cs" />
+    <Compile Include="Generated\DatumNull.cs" />
+    <Compile Include="Generated\DatumString.cs" />
+    <Compile Include="Generated\DatumTypeof.cs" />
+    <Compile Include="Generated\DatumUuid.cs" />
+    <Compile Include="Generated\GeoConstructors.cs" />
+    <Compile Include="Generated\GeoGeojson.cs" />
+    <Compile Include="Generated\GeoIntersectionInclusion.cs" />
+    <Compile Include="Generated\GeoOperations.cs" />
+    <Compile Include="Generated\GeoPrimitives.cs" />
+    <Compile Include="Generated\MathLogicAdd.cs" />
+    <Compile Include="Generated\MathLogicDiv.cs" />
+    <Compile Include="Generated\MathLogicMath.cs" />
+    <Compile Include="Generated\MathLogicMod.cs" />
+    <Compile Include="Generated\MathLogicMul.cs" />
+    <Compile Include="Generated\MathLogicSub.cs" />
+    <Compile Include="Generated\MetaDbs.cs" />
+    <Compile Include="Generated\MutationInsert.cs" />
+    <Compile Include="Generated\Timeout.cs" />
+    <Compile Include="Generated\TimesTimezones.cs" />
+    <Compile Include="Generated\TransformArray.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,9 +103,7 @@
       <Name>Templates</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Generated\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

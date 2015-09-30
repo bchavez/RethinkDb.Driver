@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: 3
   ExpectedType: Integer
   ExpectedJava: 3
-  Obtained: r.expr(Arrays.asList(1, 2, 3)).sample(3).distinct().count()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -18,7 +17,6 @@ DefsAndTests:
   ExpectedOriginal: 3
   ExpectedType: Integer
   ExpectedJava: 3
-  Obtained: r.expr(Arrays.asList(1, 2, 3)).sample(3).count()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -28,7 +26,6 @@ DefsAndTests:
   ExpectedOriginal: 3
   ExpectedType: Integer
   ExpectedJava: 3
-  Obtained: r.expr(Arrays.asList(1, 2, 3, 4, 5, 6)).sample(3).distinct().count()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -38,7 +35,6 @@ DefsAndTests:
   ExpectedOriginal: 3
   ExpectedType: Integer
   ExpectedJava: 3
-  Obtained: r.expr(Arrays.asList(1, 2, 3)).sample(4).distinct().count()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -48,7 +44,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Number of items to sample must be non-negative, got `-1`.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Number of items to sample must be non-negative, got `-1`.", Arrays.asList(0))
-  Obtained: r.expr(Arrays.asList(1, 2, 3)).sample(-1)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -58,7 +53,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert NUMBER to SEQUENCE', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot convert NUMBER to SEQUENCE", Arrays.asList(0))
-  Obtained: r.expr(1).sample(1)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -68,7 +62,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert OBJECT to SEQUENCE', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot convert OBJECT to SEQUENCE", Arrays.asList(0))
-  Obtained: r.expr(new MapObject()).sample(1)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -78,7 +71,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random().do_(x -> r.and(x.ge(0), x.lt(1)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -88,7 +80,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(1).optArg("float", true).do_(x -> r.and(x.ge(0), x.lt(1)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -98,7 +89,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(0, 1).optArg("float", true).do_(x -> r.and(x.ge(0), x.lt(1)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -108,7 +98,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(1, 0).optArg("float", true).do_(x -> r.and(x.le(1), x.gt(0)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -118,7 +107,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(r.expr(0), 1).optArg("float", true).do_(x -> r.and(x.ge(0), x.lt(1)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -128,7 +116,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(1, r.expr(0)).optArg("float", true).do_(x -> r.and(x.le(1), x.gt(0)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -138,7 +125,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(r.expr(1), r.expr(0)).optArg("float", true).do_(x -> r.and(x.le(1), x.gt(0)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -148,7 +134,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: r.random(0.495).optArg("float", true).do_(x -> r.and(x.ge(0), x.lt(0.495)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -158,7 +143,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: r.random(-0.495).optArg("float", true).do_(x -> r.and(x.le(0), x.gt(-0.495)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -168,7 +152,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: r.random(1823756.24).optArg("float", true).do_(x -> r.and(x.ge(0), x.lt(1823756.24)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -178,7 +161,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: r.random(-1823756.24).optArg("float", true).do_(x -> r.and(x.le(0), x.gt(-1823756.24)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -188,7 +170,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(10.5, 20.153).optArg("float", true).do_(x -> r.and(x.ge(10.5), x.lt(20.153)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -198,7 +179,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(20.153, 10.5).optArg("float", true).do_(x -> r.and(x.le(20.153), x.gt(10.5)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -208,7 +188,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(31415926.1, 31415926).optArg("float", true).do_(x -> r.and(x.le(31415926.1), x.gt(31415926)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -218,7 +197,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(-10.5, 20.153).optArg("float", true).do_(x -> r.and(x.ge(-10.5), x.lt(20.153)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -228,7 +206,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(-20.153, -10.5).optArg("float", true).do_(x -> r.and(x.ge(-20.153), x.lt(-10.5)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -238,7 +215,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(-31415926, -31415926.1).optArg("float", true).do_(x -> r.and(x.le(-31415926), x.gt(-31415926.1)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -248,7 +224,6 @@ DefsAndTests:
   ExpectedOriginal: 2
   ExpectedType: Integer
   ExpectedJava: 2
-  Obtained: r.expr(Arrays.asList(r.random(), r.random())).distinct().count()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -258,7 +233,6 @@ DefsAndTests:
   ExpectedOriginal: 2
   ExpectedType: Integer
   ExpectedJava: 2
-  Obtained: r.expr(Arrays.asList(r.random(1).optArg("float", true), r.random(1).optArg("float", true))).distinct().count()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -268,7 +242,6 @@ DefsAndTests:
   ExpectedOriginal: 2
   ExpectedType: Integer
   ExpectedJava: 2
-  Obtained: r.expr(Arrays.asList(r.random(0, 1).optArg("float", true), r.random(0, 1).optArg("float", true))).distinct().count()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -278,7 +251,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(0).optArg("float", true).eq(0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -288,7 +260,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(5, 5).optArg("float", true).eq(5)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -298,7 +269,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(-499384756758.0, -499384756758.0).optArg("float", true).eq(-499384756758.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -308,7 +278,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(-93.94757, -93.94757).optArg("float", true).eq(-93.94757)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -318,7 +287,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(294.69148, 294.69148).optArg("float", true).eq(294.69148)
   RunOpts: []
 - TestType: JavaDef
   TestFile: random.yaml
@@ -340,7 +308,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(-float_max, float_max).optArg("float", true).do_(x -> r.and(x.ge(-float_max), x.lt(float_max)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -350,7 +317,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(float_max, -float_max).optArg("float", true).do_(x -> r.and(x.le(float_max), x.gt(-float_max)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -360,7 +326,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(float_min, float_max).optArg("float", true).do_(x -> r.and(x.ge(float_min), x.lt(float_max)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -370,7 +335,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(float_min, -float_max).optArg("float", true).do_(x -> r.and(x.le(float_min), x.gt(-float_max)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -380,7 +344,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(-float_min, float_max).optArg("float", true).do_(x -> r.and(x.ge(-float_min), x.lt(float_max)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -390,7 +353,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(-float_min, -float_max).optArg("float", true).do_(x -> r.and(x.le(-float_min), x.gt(-float_max)))
   RunOpts: []
 - TestType: JavaDef
   TestFile: random.yaml
@@ -412,7 +374,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(256).do_(x -> r.and(x.ge(0), x.lt(256)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -422,7 +383,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(0, 256).do_(x -> r.and(x.ge(0), x.lt(256)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -432,7 +392,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(r.expr(256)).do_(x -> r.and(x.ge(0), x.lt(256)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -442,7 +401,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(r.expr(0), 256).do_(x -> r.and(x.ge(0), x.lt(256)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -452,7 +410,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(0, r.expr(256)).do_(x -> r.and(x.ge(0), x.lt(256)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -462,7 +419,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(r.expr(0), r.expr(256)).do_(x -> r.and(x.ge(0), x.lt(256)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -472,7 +428,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(10, 20).do_(x -> r.and(x.ge(10), x.lt(20)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -482,7 +437,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(9347849, 120937493).do_(x -> r.and(x.ge(9347849), x.lt(120937493)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -492,7 +446,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(-10, 20).do_(x -> r.and(x.ge(-10), x.lt(20)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -502,7 +455,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(-20, -10).do_(x -> r.and(x.ge(-20), x.lt(-10)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -512,7 +464,6 @@ DefsAndTests:
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
-  Obtained: r.random(-120937493, -9347849).do_(x -> r.and(x.ge(-120937493), x.lt(-9347849)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -522,7 +473,6 @@ DefsAndTests:
   ExpectedOriginal: 2
   ExpectedType: Integer
   ExpectedJava: 2
-  Obtained: r.expr(Arrays.asList(r.random(upper_limit), r.random(upper_limit))).distinct().count()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -532,7 +482,6 @@ DefsAndTests:
   ExpectedOriginal: 2
   ExpectedType: Integer
   ExpectedJava: 2
-  Obtained: r.expr(Arrays.asList(upper_limit, upper_limit)).map(x -> r.random(x)).distinct().count()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -542,7 +491,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Upper bound (-0.5) could not be safely converted to an integer.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Upper bound (-0.5) could not be safely converted to an integer.", Arrays.asList())
-  Obtained: r.random(-0.5)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -552,7 +500,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Upper bound (0.25) could not be safely converted to an integer.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Upper bound (0.25) could not be safely converted to an integer.", Arrays.asList())
-  Obtained: r.random(0.25)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -562,7 +509,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Upper bound (0.75) could not be safely converted to an integer.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Upper bound (0.75) could not be safely converted to an integer.", Arrays.asList())
-  Obtained: r.random(-10, 0.75)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -572,7 +518,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (-120549.25) could not be safely converted to an integer.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Lower bound (-120549.25) could not be safely converted to an integer.", Arrays.asList())
-  Obtained: r.random(-120549.25, 39458)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -582,7 +527,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (-6.5) could not be safely converted to an integer.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Lower bound (-6.5) could not be safely converted to an integer.", Arrays.asList())
-  Obtained: r.random(-6.5, 8.125)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -592,7 +536,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Generating a random integer requires one or two bounds.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Generating a random integer requires one or two bounds.", Arrays.asList())
-  Obtained: r.random().optArg("float", false)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -602,7 +545,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (0).", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (0).", Arrays.asList())
-  Obtained: r.random(0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -612,7 +554,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (0).", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (0).", Arrays.asList())
-  Obtained: r.random(0, 0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -622,7 +563,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (515) is not less than upper bound (515).", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Lower bound (515) is not less than upper bound (515).", Arrays.asList())
-  Obtained: r.random(515, 515)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -632,7 +572,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (-956) is not less than upper bound (-956).", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Lower bound (-956) is not less than upper bound (-956).", Arrays.asList())
-  Obtained: r.random(-956, -956)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -642,7 +581,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (-10).", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (-10).", Arrays.asList())
-  Obtained: r.random(-10)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -652,7 +590,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (20) is not less than upper bound (2).", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Lower bound (20) is not less than upper bound (2).", Arrays.asList())
-  Obtained: r.random(20, 2)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -662,7 +599,6 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (2) is not less than upper bound (-20).", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Lower bound (2) is not less than upper bound (-20).", Arrays.asList())
-  Obtained: r.random(2, -20)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
@@ -672,5 +608,4 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (1456) is not less than upper bound (0).", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Lower bound (1456) is not less than upper bound (0).", Arrays.asList())
-  Obtained: r.random(1456, 0)
   RunOpts: []

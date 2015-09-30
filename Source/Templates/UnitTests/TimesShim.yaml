@@ -14,7 +14,6 @@ DefsAndTests:
   ExpectedOriginal: ("2013-07-29T18:21:36.680-07:00")
   ExpectedType: String
   ExpectedJava: '"2013-07-29T18:21:36.680-07:00"'
-  Obtained: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).toIso8601()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/shim.yaml
@@ -24,7 +23,6 @@ DefsAndTests:
   ExpectedOriginal: ("2013-07-30T01:21:36.680+00:00")
   ExpectedType: String
   ExpectedJava: '"2013-07-30T01:21:36.680+00:00"'
-  Obtained: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).toIso8601()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/shim.yaml
@@ -34,7 +32,6 @@ DefsAndTests:
   ExpectedOriginal: (1375147296.68)
   ExpectedType: Double
   ExpectedJava: 1375147296.68
-  Obtained: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).toEpochTime()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/shim.yaml
@@ -44,5 +41,4 @@ DefsAndTests:
   ExpectedOriginal: (1375147296.68)
   ExpectedType: Double
   ExpectedJava: 1375147296.68
-  Obtained: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).toEpochTime()
   RunOpts: []

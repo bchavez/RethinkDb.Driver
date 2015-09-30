@@ -10,7 +10,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: tbl.insert(new MapObject().with("name", "Jim Brown"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/568.yaml
@@ -20,5 +19,4 @@ DefsAndTests:
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot convert STRING to SEQUENCE", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot convert STRING to SEQUENCE", Arrays.asList())
-  Obtained: tbl.concatMap(rec -> rec.bracket("name"))
   RunOpts: []

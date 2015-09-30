@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: 'NULL'
   ExpectedType: String
   ExpectedJava: '"NULL"'
-  Obtained: r.expr(null).typeOf()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/typeof.yaml
@@ -18,5 +17,4 @@ DefsAndTests:
   ExpectedOriginal: 'NULL'
   ExpectedType: String
   ExpectedJava: '"NULL"'
-  Obtained: r.typeOf(null)
   RunOpts: []

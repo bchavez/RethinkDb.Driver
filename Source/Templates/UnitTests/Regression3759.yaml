@@ -10,7 +10,6 @@ DefsAndTests:
   ExpectedOriginal: '[1]'
   ExpectedType: List
   ExpectedJava: Arrays.asList(1)
-  Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3759.yaml
@@ -20,7 +19,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
   RunOpts:
   - Key: noreply
     Val: true
@@ -32,7 +30,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
   RunOpts:
   - Key: noreply
     Val: true
@@ -44,5 +41,4 @@ DefsAndTests:
   ExpectedOriginal: '[1]'
   ExpectedType: List
   ExpectedJava: Arrays.asList(1)
-  Obtained: r.db("rethinkdb").table("jobs").map(() -> 1)
   RunOpts: []

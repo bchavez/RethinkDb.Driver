@@ -4,9 +4,8 @@ DefsAndTests:
   TestFile: regression/1132.yaml
   TestNum: 1
   Original: r.json('{"a":1,"a":2}')
-  Java: r.json("{"a":1,"a":2}")
+  Java: r.json("{\"a\":1,\"a\":2}")
   ExpectedOriginal: err("ReqlQueryLogicError", "Duplicate key `a` in JSON.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Duplicate key `a` in JSON.", Arrays.asList())
-  Obtained: r.json("{"a":1,"a":2}")
   RunOpts: []

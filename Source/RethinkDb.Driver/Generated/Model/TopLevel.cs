@@ -79,6 +79,21 @@ namespace RethinkDb.Driver.Ast {
 ///         ironman)
 /// }).run(conn, callback)
 /// </code></example>
+                    public Error error (  )
+                    {
+                        Arguments arguments = new Arguments();
+                        return new Error (arguments);
+                    }
+/// <summary>
+/// <para>Throw a runtime error. If called with no arguments inside the second argument to <code>default</code>, re-throw the current error.</para>
+///</summary>
+/// <example><para>Example: Iron Man can't possibly have lost a battle:</para>
+/// <code>r.table('marvel').get('IronMan').do(function(ironman) {
+///     return r.branch(ironman('victories').lt(ironman('battles')),
+///         r.error('impossible code path'),
+///         ironman)
+/// }).run(conn, callback)
+/// </code></example>
                     public Error error ( Object expr )
                     {
                         Arguments arguments = new Arguments();
@@ -436,7 +451,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get the type of a string.</para>
 /// <code>r.expr("foo").typeOf().run(conn, callback)
 /// </code></example>
-                    public TypeOf typeOf_ ( Object expr )
+                    public TypeOf typeOf ( Object expr )
                     {
                         Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);

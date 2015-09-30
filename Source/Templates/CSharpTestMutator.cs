@@ -1,4 +1,6 @@
 using System.Collections.Specialized;
+using System.Text;
+using Z.ExtensionMethods;
 
 namespace Templates
 {
@@ -10,7 +12,7 @@ namespace Templates
             {
                 {"Boolean", "bool"},
                 {"Integer", "int"},
-                {"Double", "double"}
+                {"Double", "double"},
             };
 
         public static NameValueCollection JavaLineReplacements = new NameValueCollection
@@ -32,6 +34,9 @@ namespace Templates
                     test.ExpectedType = TypeRenames[test.ExpectedType];
 
                 test.Java = FixUpJava(test.Java);
+
+                if( test.ExpectedJava.IsNotNullOrWhiteSpace() )
+                test.ExpectedJava = ScanLiteral(test.ExpectedJava);
             }
         }
 
@@ -52,7 +57,41 @@ namespace Templates
                     javaLine = javaLine.Replace(typeRename, TypeRenames[typeRename]);
                 }
             }
-            return javaLine;
+            return ScanLiteral(javaLine);
+        }
+
+
+        public string ScanLiteral(string input)
+        {
+            var literal = new StringBuilder(input.Length + 2);
+            foreach (var c in input)
+            {
+                switch (c)
+                {
+                    case '\0': literal.Append(@"\0"); break;
+                    case '\a': literal.Append(@"\a"); break;
+                    case '\b': literal.Append(@"\b"); break;
+                    case '\f': literal.Append(@"\f"); break;
+                    case '\n': literal.Append(@"\n"); break;
+                    case '\r': literal.Append(@"\r"); break;
+                    case '\t': literal.Append(@"\t"); break;
+                    case '\v': literal.Append(@"\v"); break;
+                    default:
+                        // ASCII printable character
+                        if (c >= 0x20 && c <= 0x7e)
+                        {
+                            literal.Append(c);
+                            // As UTF16 escaped character
+                        }
+                        else
+                        {
+                            literal.Append(@"\u");
+                            literal.Append(((int)c).ToString("x4"));
+                        }
+                        break;
+                }
+            }
+            return literal.ToString();
         }
     }
 }

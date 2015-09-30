@@ -10,5 +10,4 @@ DefsAndTests:
   ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
-  Obtained: r.expr(Arrays.asList(1)).bracket(r.expr(0))
   RunOpts: []

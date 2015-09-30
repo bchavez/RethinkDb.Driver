@@ -10,47 +10,42 @@ DefsAndTests:
   ExpectedOriginal: partial({'inserted':2})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("inserted", 2))
-  Obtained: tbl.insert(Arrays.asList(new MapObject().with("id", 0.0).with("value", "abc"), new MapObject().with("id", Arrays.asList(1, -0.0)).with("value", "def")))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3637.yaml
   TestNum: 2
   Original: tbl.get(0.0)
   Java: tbl.get(0.0)
-  ExpectedOriginal: '{''value'': ''abc'', ''id'': 0.0}'
+  ExpectedOriginal: '{''id'': 0.0, ''value'': ''abc''}'
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("value", "abc").with("id", 0.0)
-  Obtained: tbl.get(0.0)
+  ExpectedJava: new MapObject().with("id", 0.0).with("value", "abc")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3637.yaml
   TestNum: 3
   Original: tbl.get(-0.0)
   Java: tbl.get(-0.0)
-  ExpectedOriginal: '{''value'': ''abc'', ''id'': 0.0}'
+  ExpectedOriginal: '{''id'': 0.0, ''value'': ''abc''}'
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("value", "abc").with("id", 0.0)
-  Obtained: tbl.get(-0.0)
+  ExpectedJava: new MapObject().with("id", 0.0).with("value", "abc")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3637.yaml
   TestNum: 4
   Original: tbl.get([1, 0.0])
   Java: tbl.get(Arrays.asList(1, 0.0))
-  ExpectedOriginal: '{''value'': ''def'', ''id'': [1, -0.0]}'
+  ExpectedOriginal: '{''id'': [1, -0.0], ''value'': ''def''}'
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("value", "def").with("id", Arrays.asList(1, -0.0))
-  Obtained: tbl.get(Arrays.asList(1, 0.0))
+  ExpectedJava: new MapObject().with("id", Arrays.asList(1, -0.0)).with("value", "def")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3637.yaml
   TestNum: 5
   Original: tbl.get([1, -0.0])
   Java: tbl.get(Arrays.asList(1, -0.0))
-  ExpectedOriginal: '{''value'': ''def'', ''id'': [1, -0.0]}'
+  ExpectedOriginal: '{''id'': [1, -0.0], ''value'': ''def''}'
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("value", "def").with("id", Arrays.asList(1, -0.0))
-  Obtained: tbl.get(Arrays.asList(1, -0.0))
+  ExpectedJava: new MapObject().with("id", Arrays.asList(1, -0.0)).with("value", "def")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3637.yaml
@@ -59,8 +54,7 @@ DefsAndTests:
   Java: tbl.get(0.0).pluck("id").toJsonString()
   ExpectedOriginal: '{"id":0}'
   ExpectedType: String
-  ExpectedJava: '"{"id":0}"'
-  Obtained: tbl.get(0.0).pluck("id").toJsonString()
+  ExpectedJava: '"{\"id\":0}"'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3637.yaml
@@ -69,8 +63,7 @@ DefsAndTests:
   Java: tbl.get(-0.0).pluck("id").toJsonString()
   ExpectedOriginal: '{"id":0}'
   ExpectedType: String
-  ExpectedJava: '"{"id":0}"'
-  Obtained: tbl.get(-0.0).pluck("id").toJsonString()
+  ExpectedJava: '"{\"id\":0}"'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3637.yaml
@@ -79,8 +72,7 @@ DefsAndTests:
   Java: tbl.get(Arrays.asList(1, 0.0)).pluck("id").toJsonString()
   ExpectedOriginal: '{"id":[1,-0.0]}'
   ExpectedType: String
-  ExpectedJava: '"{"id":[1,-0.0]}"'
-  Obtained: tbl.get(Arrays.asList(1, 0.0)).pluck("id").toJsonString()
+  ExpectedJava: '"{\"id\":[1,-0.0]}"'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3637.yaml
@@ -89,8 +81,7 @@ DefsAndTests:
   Java: tbl.get(Arrays.asList(1, -0.0)).pluck("id").toJsonString()
   ExpectedOriginal: '{"id":[1,-0.0]}'
   ExpectedType: String
-  ExpectedJava: '"{"id":[1,-0.0]}"'
-  Obtained: tbl.get(Arrays.asList(1, -0.0)).pluck("id").toJsonString()
+  ExpectedJava: '"{\"id\":[1,-0.0]}"'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3637.yaml
@@ -100,7 +91,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'errors':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 1))
-  Obtained: tbl.insert(new MapObject().with("id", 0.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3637.yaml
@@ -110,7 +100,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'errors':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 1))
-  Obtained: tbl.insert(new MapObject().with("id", Arrays.asList(1, 0.0)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3637.yaml
@@ -120,7 +109,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'errors':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 1))
-  Obtained: tbl.insert(new MapObject().with("id", -0.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3637.yaml
@@ -130,5 +118,4 @@ DefsAndTests:
   ExpectedOriginal: partial({'errors':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 1))
-  Obtained: tbl.insert(new MapObject().with("id", Arrays.asList(1, -0.0)))
   RunOpts: []

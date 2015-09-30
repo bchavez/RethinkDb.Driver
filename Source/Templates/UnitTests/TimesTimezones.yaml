@@ -92,7 +92,6 @@ DefsAndTests:
   ExpectedOriginal: ([["+00:00", 29], ["+00:00", 29], ["+00:00", 29]])
   ExpectedType: List
   ExpectedJava: Arrays.asList(Arrays.asList("+00:00", 29), Arrays.asList("+00:00", 29), Arrays.asList("+00:00", 29))
-  Obtained: tutcs.map(x -> Arrays.asList(x.timezone(), x.day()))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -102,7 +101,6 @@ DefsAndTests:
   ExpectedOriginal: ([["-00:59", 29], ["-01:00", 29], ["-01:01", 29]])
   ExpectedType: List
   ExpectedJava: Arrays.asList(Arrays.asList("-00:59", 29), Arrays.asList("-01:00", 29), Arrays.asList("-01:01", 29))
-  Obtained: tms.map(x -> Arrays.asList(x.timezone(), x.day()))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -112,7 +110,6 @@ DefsAndTests:
   ExpectedOriginal: ([["+00:59", 30], ["+01:00", 30], ["+01:01", 30]])
   ExpectedType: List
   ExpectedJava: Arrays.asList(Arrays.asList("+00:59", 30), Arrays.asList("+01:00", 30), Arrays.asList("+01:01", 30))
-  Obtained: tps.map(x -> Arrays.asList(x.timezone(), x.day()))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -122,7 +119,6 @@ DefsAndTests:
   ExpectedOriginal: ([0])
   ExpectedType: List
   ExpectedJava: Arrays.asList(0)
-  Obtained: ts.concatMap(x -> ts.map(y -> r.sub(x, y))).distinct()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -132,7 +128,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `` does not start with `-` or `+`.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Timezone `` does not start with `-` or `+`.")
-  Obtained: r.now().inTimezone("")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -142,7 +137,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', '`-00` is not a valid time offset.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "`-00` is not a valid time offset.")
-  Obtained: r.now().inTimezone("-00")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -152,7 +146,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', '`-00:00` is not a valid time offset.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "`-00:00` is not a valid time offset.")
-  Obtained: r.now().inTimezone("-00:00")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -162,7 +155,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `UTC+00` does not start with `-` or `+`.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Timezone `UTC+00` does not start with `-` or `+`.")
-  Obtained: r.now().inTimezone("UTC+00")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -172,7 +164,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Minutes out of range in `+00:60`.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Minutes out of range in `+00:60`.")
-  Obtained: r.now().inTimezone("+00:60")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -182,7 +173,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Hours out of range in `+25:00`.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Hours out of range in `+25:00`.")
-  Obtained: r.now().inTimezone("+25:00")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -192,7 +182,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `` does not start with `-` or `+`.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Timezone `` does not start with `-` or `+`.")
-  Obtained: r.time(2013, 1, 1, "")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -202,7 +191,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', '`-00` is not a valid time offset.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "`-00` is not a valid time offset.")
-  Obtained: r.time(2013, 1, 1, "-00")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -212,7 +200,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', '`-00:00` is not a valid time offset.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "`-00:00` is not a valid time offset.")
-  Obtained: r.time(2013, 1, 1, "-00:00")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -222,7 +209,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `UTC+00` does not start with `-` or `+`.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Timezone `UTC+00` does not start with `-` or `+`.")
-  Obtained: r.time(2013, 1, 1, "UTC+00")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -232,7 +218,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Minutes out of range in `+00:60`.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Minutes out of range in `+00:60`.")
-  Obtained: r.time(2013, 1, 1, "+00:60")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -242,7 +227,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Hours out of range in `+25:00`.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Hours out of range in `+25:00`.")
-  Obtained: r.time(2013, 1, 1, "+25:00")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -252,7 +236,6 @@ DefsAndTests:
   ExpectedOriginal: ("2015-07-08T00:00:00-08:00")
   ExpectedType: String
   ExpectedJava: '"2015-07-08T00:00:00-08:00"'
-  Obtained: r.epochTime(1436428422.339).inTimezone("-08:00").date().toIso8601()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
@@ -262,5 +245,4 @@ DefsAndTests:
   ExpectedOriginal: ("2015-07-09T00:00:00-07:00")
   ExpectedType: String
   ExpectedJava: '"2015-07-09T00:00:00-07:00"'
-  Obtained: r.epochTime(1436428422.339).inTimezone("-07:00").date().toIso8601()
   RunOpts: []

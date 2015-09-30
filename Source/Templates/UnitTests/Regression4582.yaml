@@ -10,7 +10,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError','Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?")
-  Obtained: tbl.get(0).replace(tbl.get(0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4582.yaml
@@ -20,7 +19,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError','Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?")
-  Obtained: tbl.get(0).update(tbl.get(0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4582.yaml
@@ -30,5 +28,4 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError','Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?")
-  Obtained: tbl.replace(r.args(Arrays.asList(tbl.get(0))))
   RunOpts: []

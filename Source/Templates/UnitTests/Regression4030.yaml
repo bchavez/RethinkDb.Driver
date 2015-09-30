@@ -22,7 +22,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'errors':0, 'inserted':6})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("errors", 0).with("inserted", 6))
-  Obtained: tbl.insert(data)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
@@ -32,7 +31,6 @@ DefsAndTests:
   ExpectedOriginal: (6)
   ExpectedType: Integer
   ExpectedJava: 6
-  Obtained: tbl.count()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
@@ -42,7 +40,6 @@ DefsAndTests:
   ExpectedOriginal: bag(data * 2)
   ExpectedType: Bag
   ExpectedJava: bag(data * 2)
-  Obtained: tbl.union(tbl)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
@@ -52,5 +49,4 @@ DefsAndTests:
   ExpectedOriginal: bag(data * 2)
   ExpectedType: Bag
   ExpectedJava: bag(data * 2)
-  Obtained: r.union(tbl, tbl)
   RunOpts: []

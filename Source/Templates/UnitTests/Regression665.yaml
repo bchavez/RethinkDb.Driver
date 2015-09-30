@@ -14,7 +14,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: r.db("test").tableCreate("t665")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/665.yaml
@@ -24,7 +23,6 @@ DefsAndTests:
   ExpectedOriginal: ({'unchanged':0, 'skipped':0, 'replaced':0, 'inserted':2, 'errors':0, 'deleted':0 })
   ExpectedType: Map
   ExpectedJava: new MapObject().with("unchanged", 0).with("skipped", 0).with("replaced", 0).with("inserted", 2).with("errors", 0).with("deleted", 0)
-  Obtained: t.insert(Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 4)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/665.yaml
@@ -34,5 +32,4 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: r.db("test").tableDrop("t665")
   RunOpts: []

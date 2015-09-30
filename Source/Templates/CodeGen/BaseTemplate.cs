@@ -1,3 +1,4 @@
+using System.Text;
 using RazorGenerator.Templating;
 using Templates.CodeGen.Util;
 
@@ -58,5 +59,7 @@ namespace Templates.CodeGen
         {
             return null;
         }
+
+      
     }
 }

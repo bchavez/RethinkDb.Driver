@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'dbs_created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("dbs_created", 1))
-  Obtained: r.dbCreate("d469")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -18,7 +17,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("tables_created", 1))
-  Obtained: r.db("d469").tableCreate("t469")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -28,7 +26,6 @@ DefsAndTests:
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("created", 1)
-  Obtained: r.db("d469").table("t469").indexCreate("x")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -38,7 +35,6 @@ DefsAndTests:
   ExpectedOriginal: ([{'ready':True, 'index':'x'}])
   ExpectedType: List
   ExpectedJava: Arrays.asList(new MapObject().with("ready", true).with("index", "x"))
-  Obtained: r.db("d469").table("t469").indexWait("x").pluck("index", "ready")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -48,7 +44,6 @@ DefsAndTests:
   ExpectedOriginal: '{''type'': ''MINVAL''}'
   ExpectedType: Map
   ExpectedJava: new MapObject().with("type", "MINVAL")
-  Obtained: r.minval().info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -58,7 +53,6 @@ DefsAndTests:
   ExpectedOriginal: '{''type'': ''MAXVAL''}'
   ExpectedType: Map
   ExpectedJava: new MapObject().with("type", "MAXVAL")
-  Obtained: r.maxval().info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -68,7 +62,6 @@ DefsAndTests:
   ExpectedOriginal: ({'type':'NULL'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("type", "NULL")
-  Obtained: r.expr(null).info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -78,7 +71,6 @@ DefsAndTests:
   ExpectedOriginal: ({'type':'BOOL','value':'true'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("type", "BOOL").with("value", "true")
-  Obtained: r.expr(true).info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -88,7 +80,6 @@ DefsAndTests:
   ExpectedOriginal: ({'type':'NUMBER','value':'1'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("type", "NUMBER").with("value", "1")
-  Obtained: r.expr(1).info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -97,8 +88,7 @@ DefsAndTests:
   Java: r.expr("1").info()
   ExpectedOriginal: ({'type':'STRING','value':('"1"')})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("type", "STRING").with("value", ""1"")
-  Obtained: r.expr("1").info()
+  ExpectedJava: new MapObject().with("type", "STRING").with("value", "\"1\"")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -107,8 +97,10 @@ DefsAndTests:
   Java: r.expr(Arrays.asList(1)).info()
   ExpectedOriginal: ({'type':'ARRAY','value':"[\n\t1\n]"})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("type", "ARRAY").with("value", "[\n\t1\n]")
-  Obtained: r.expr(Arrays.asList(1)).info()
+  ExpectedJava: >-
+    new MapObject().with("type", "ARRAY").with("value", "[
+    	1
+    ]")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -117,8 +109,10 @@ DefsAndTests:
   Java: r.expr(new MapObject().with("a", 1)).info()
   ExpectedOriginal: ({'type':'OBJECT','value':"{\n\t\"a\":\t1\n}"})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("type", "OBJECT").with("value", "{\n\t"a":\t1\n}")
-  Obtained: r.expr(new MapObject().with("a", 1)).info()
+  ExpectedJava: >-
+    new MapObject().with("type", "OBJECT").with("value", "{
+    	\"a\":	1
+    }")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -128,7 +122,6 @@ DefsAndTests:
   ExpectedOriginal: partial({'type':'DB','name':'d469'})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("type", "DB").with("name", "d469"))
-  Obtained: r.db("d469").info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -138,7 +131,6 @@ DefsAndTests:
   ExpectedOriginal: ({'type':'TABLE','name':'t469','id':uuid(), 'db':{'type':'DB','name':'d469','id':uuid()}, 'primary_key':'id', 'indexes':['x'], 'doc_count_estimates':[0]})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("type", "TABLE").with("name", "t469").with("id", uuid()).with("db", new MapObject().with("type", "DB").with("name", "d469").with("id", uuid())).with("primary_key", "id").with("indexes", Arrays.asList("x")).with("doc_count_estimates", Arrays.asList(0))
-  Obtained: r.db("d469").table("t469").info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -148,7 +140,6 @@ DefsAndTests:
   ExpectedOriginal: ({'type':'SELECTION<STREAM>', 'table':{'type':'TABLE','name':'t469','id':uuid(), 'db':{'type':'DB','name':'d469','id':uuid()}, 'primary_key':'id', 'indexes':['x'], 'doc_count_estimates':[0]}})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("type", "SELECTION<STREAM>").with("table", new MapObject().with("type", "TABLE").with("name", "t469").with("id", uuid()).with("db", new MapObject().with("type", "DB").with("name", "d469").with("id", uuid())).with("primary_key", "id").with("indexes", Arrays.asList("x")).with("doc_count_estimates", Arrays.asList(0)))
-  Obtained: r.db("d469").table("t469").filter(x -> true).info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -158,7 +149,6 @@ DefsAndTests:
   ExpectedOriginal: ({'type':'STREAM'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("type", "STREAM")
-  Obtained: r.db("d469").table("t469").map(x -> 1).info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -168,7 +158,6 @@ DefsAndTests:
   ExpectedOriginal: ({'index':'id', 'left_bound':0, 'left_bound_type':'closed', 'right_bound':1, 'right_bound_type':'open', 'sorting':'UNORDERED', 'table':{'db':{'id':uuid(), 'name':'d469', 'type':'DB'}, 'doc_count_estimates':[0], 'id':uuid(), 'indexes':['x'], 'name':'t469', 'primary_key':'id', 'type':'TABLE'}, 'type':'TABLE_SLICE'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("index", "id").with("left_bound", 0).with("left_bound_type", "closed").with("right_bound", 1).with("right_bound_type", "open").with("sorting", "UNORDERED").with("table", new MapObject().with("db", new MapObject().with("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", Arrays.asList(0)).with("id", uuid()).with("indexes", Arrays.asList("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE")
-  Obtained: r.db("d469").table("t469").between(0, 1).info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -178,7 +167,6 @@ DefsAndTests:
   ExpectedOriginal: ({'index':'a', 'left_bound':0, 'left_bound_type':'closed', 'right_bound':1, 'right_bound_type':'open', 'sorting':'UNORDERED', 'table':{'db':{'id':uuid(), 'name':'d469', 'type':'DB'}, 'doc_count_estimates':[0], 'id':uuid(), 'indexes':['x'], 'name':'t469', 'primary_key':'id', 'type':'TABLE'}, 'type':'TABLE_SLICE'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("index", "a").with("left_bound", 0).with("left_bound_type", "closed").with("right_bound", 1).with("right_bound_type", "open").with("sorting", "UNORDERED").with("table", new MapObject().with("db", new MapObject().with("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", Arrays.asList(0)).with("id", uuid()).with("indexes", Arrays.asList("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE")
-  Obtained: r.db("d469").table("t469").between(0, 1).optArg("index", "a").info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -188,7 +176,6 @@ DefsAndTests:
   ExpectedOriginal: ({'index':'a', 'left_bound':0, 'left_bound_type':'closed', 'right_bound':1, 'right_bound_type':'open', 'sorting':'ASCENDING', 'table':{'db':{'id':uuid(), 'name':'d469', 'type':'DB'}, 'doc_count_estimates':[0], 'id':uuid(), 'indexes':['x'], 'name':'t469', 'primary_key':'id', 'type':'TABLE'}, 'type':'TABLE_SLICE'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("index", "a").with("left_bound", 0).with("left_bound_type", "closed").with("right_bound", 1).with("right_bound_type", "open").with("sorting", "ASCENDING").with("table", new MapObject().with("db", new MapObject().with("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", Arrays.asList(0)).with("id", uuid()).with("indexes", Arrays.asList("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE")
-  Obtained: r.db("d469").table("t469").orderBy().optArg("index", "a").between(0, 1).optArg("index", "a").info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -198,7 +185,6 @@ DefsAndTests:
   ExpectedOriginal: ({'index':'id', 'left_bound_type':'unbounded', 'right_bound_type':'unbounded', 'sorting':'UNORDERED', 'table':{'db':{'id':uuid(), 'name':'d469', 'type':'DB'}, 'doc_count_estimates':[0], 'id':uuid(), 'indexes':['x'], 'name':'t469', 'primary_key':'id', 'type':'TABLE'}, 'type':'TABLE_SLICE'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("index", "id").with("left_bound_type", "unbounded").with("right_bound_type", "unbounded").with("sorting", "UNORDERED").with("table", new MapObject().with("db", new MapObject().with("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", Arrays.asList(0)).with("id", uuid()).with("indexes", Arrays.asList("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE")
-  Obtained: r.db("d469").table("t469").between(r.minval(), r.maxval()).info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -208,7 +194,6 @@ DefsAndTests:
   ExpectedOriginal: ({'index':'id', 'left_bound_type':'unachievable', 'right_bound_type':'unachievable', 'sorting':'UNORDERED', 'table':{'db':{'id':uuid(), 'name':'d469', 'type':'DB'}, 'doc_count_estimates':[0], 'id':uuid(), 'indexes':['x'], 'name':'t469', 'primary_key':'id', 'type':'TABLE'}, 'type':'TABLE_SLICE'})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("index", "id").with("left_bound_type", "unachievable").with("right_bound_type", "unachievable").with("sorting", "UNORDERED").with("table", new MapObject().with("db", new MapObject().with("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", Arrays.asList(0)).with("id", uuid()).with("indexes", Arrays.asList("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE")
-  Obtained: r.db("d469").table("t469").between(r.maxval(), r.minval()).info()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/469.yaml
@@ -218,5 +203,4 @@ DefsAndTests:
   ExpectedOriginal: partial({'dbs_dropped':1})
   ExpectedType: Partial
   ExpectedJava: partial(new MapObject().with("dbs_dropped", 1))
-  Obtained: r.dbDrop("d469")
   RunOpts: []

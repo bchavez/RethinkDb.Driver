@@ -10,7 +10,6 @@ DefsAndTests:
   ExpectedOriginal: ({'inserted':99})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("inserted", 99)
-  Obtained: tbl.insert(IntStream.range(1, 100).boxed().map(i -> new MapObject().with("result", i)).collect(Collectors.toList())).pluck("first_error", "inserted")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2838.yaml
@@ -20,7 +19,6 @@ DefsAndTests:
   ExpectedOriginal: (40)
   ExpectedType: Integer
   ExpectedJava: 40
-  Obtained: tbl.update(new MapObject().with("foo", "bar")).optArg("return_changes", true).bracket("changes").count()
   RunOpts:
   - Key: array_limit
     Val: 40
@@ -32,7 +30,6 @@ DefsAndTests:
   ExpectedOriginal: (['Too many changes, array truncated to 40.'])
   ExpectedType: List
   ExpectedJava: Arrays.asList("Too many changes, array truncated to 40.")
-  Obtained: tbl.update(new MapObject().with("foo", "quux")).optArg("return_changes", true).bracket("warnings")
   RunOpts:
   - Key: array_limit
     Val: 40

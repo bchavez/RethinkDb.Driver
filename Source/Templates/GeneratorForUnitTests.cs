@@ -60,8 +60,8 @@ namespace Templates
 
             foreach( var file in files )
             {
-                if( !file.Contains("random", StringComparison.OrdinalIgnoreCase) )
-                    continue;//just deal with random for now.
+                //if( !file.Contains("random", StringComparison.OrdinalIgnoreCase) )
+                //    continue;//just deal with random for now.
 
                 var sr = new StringReader(File.ReadAllText(file));
                 var yamlTest = deser.Deserialize<YamlTest>(sr);
@@ -95,6 +95,7 @@ namespace Templates
             var files = GetAllYamlFiles();
 	        foreach( var file in files )
 	        {
+	            Console.WriteLine("READING: " + file);
 	            var lines = File.ReadAllLines(file);
 	            var sw = new StringWriter(new StringBuilder());
 	            for( int i = 0; i < lines.Length; i++ )

@@ -16,7 +16,6 @@ DefsAndTests:
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 3)
-  Obtained: tbl.insert(IntStream.range(0, 3).boxed().map(i -> new MapObject().with("id", i).with("a", i)).collect(Collectors.toList()))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
@@ -26,7 +25,6 @@ DefsAndTests:
   ExpectedOriginal: ({'id':0,'c':1,'a':0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("id", 0).with("c", 1).with("a", 0)
-  Obtained: tbl.merge(new MapObject().with("c", 1)).nth(0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
@@ -36,7 +34,6 @@ DefsAndTests:
   ExpectedOriginal: ({'id':0,'c':1,'a':0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("id", 0).with("c", 1).with("a", 0)
-  Obtained: obj.merge(new MapObject().with("c", 1))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
@@ -46,7 +43,6 @@ DefsAndTests:
   ExpectedOriginal: ({'id':0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("id", 0)
-  Obtained: tbl.without("a").nth(0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
@@ -56,7 +52,6 @@ DefsAndTests:
   ExpectedOriginal: ({'id':0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("id", 0)
-  Obtained: obj.without("a")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
@@ -66,7 +61,6 @@ DefsAndTests:
   ExpectedOriginal: ({'a':0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("a", 0)
-  Obtained: tbl.pluck("a").nth(0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
@@ -76,5 +70,4 @@ DefsAndTests:
   ExpectedOriginal: ({'a':0})
   ExpectedType: Map
   ExpectedJava: new MapObject().with("a", 0)
-  Obtained: obj.pluck("a")
   RunOpts: []

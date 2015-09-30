@@ -67,6 +67,13 @@ namespace Templates
                     test.ExpectedOriginal =
                         Encoding.UTF8.GetString(Convert.FromBase64String(value.Substring(1).Trim('\'')));
                 }
+
+                value = test.Java;
+                if (value.IsNotNullOrWhiteSpace())
+                {
+                    test.Java =
+                        Encoding.UTF8.GetString(Convert.FromBase64String(value.Substring(1).Trim('\'')));
+                }
             }
         }
     }

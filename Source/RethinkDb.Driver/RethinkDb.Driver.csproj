@@ -283,7 +283,6 @@
     <Compile Include="Model\OptArgs.cs" />
     <Compile Include="Model\PathSpec.cs" />
     <Compile Include="Model\Profile.cs" />
-    <Compile Include="Model\ReqlLambda.cs" />
     <Compile Include="Net\Connection.cs" />
     <Compile Include="Net\ConnectionInstance.cs" />
     <Compile Include="Net\Converter.cs" />

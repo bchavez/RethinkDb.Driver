@@ -10,7 +10,6 @@ DefsAndTests:
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
-  Obtained: t.insert(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/309.yaml
@@ -20,7 +19,6 @@ DefsAndTests:
   ExpectedOriginal: bag([{'id':0}, {'id':1}, 2, 3, 4])
   ExpectedType: Bag
   ExpectedJava: bag(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), 2, 3, 4))
-  Obtained: t.union(Arrays.asList(2, 3, 4))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/309.yaml
@@ -30,5 +28,4 @@ DefsAndTests:
   ExpectedOriginal: bag([{'id':0}, {'id':1}, 2, 3, 4])
   ExpectedType: Bag
   ExpectedJava: bag(Arrays.asList(new MapObject().with("id", 0), new MapObject().with("id", 1), 2, 3, 4))
-  Obtained: r.expr(Arrays.asList(2, 3, 4)).union(t)
   RunOpts: []

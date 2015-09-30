@@ -8,7 +8,6 @@ DefsAndTests:
   ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
-  Obtained: r.mod(r.expr(10), 3)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mod.yaml
@@ -18,7 +17,6 @@ DefsAndTests:
   ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
-  Obtained: r.mod(10, r.expr(3))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mod.yaml
@@ -28,7 +26,6 @@ DefsAndTests:
   ExpectedOriginal: 1
   ExpectedType: Integer
   ExpectedJava: 1
-  Obtained: r.expr(10).mod(3)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mod.yaml
@@ -38,7 +35,6 @@ DefsAndTests:
   ExpectedOriginal: -1
   ExpectedType: Integer
   ExpectedJava: -1
-  Obtained: r.mod(r.expr(-10), -3)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mod.yaml
@@ -48,7 +44,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(1))
-  Obtained: r.mod(r.expr(4), "a")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mod.yaml
@@ -58,7 +53,6 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(0))
-  Obtained: r.mod(r.expr("a"), 1)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mod.yaml
@@ -68,5 +62,4 @@ DefsAndTests:
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(0))
-  Obtained: r.mod(r.expr("a"), "b")
   RunOpts: []

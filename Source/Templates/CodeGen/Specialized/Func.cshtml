@@ -37,7 +37,7 @@
 @section StaticFactories{
     
     
-    public static Func FromLambda(ReqlLambda function){
+    public static Func FromLambda(Delegate function){
     
         @foreach( var n in Enumerable.Range(1, GeneratorForAst.GetMaxArity()) )
         {
@@ -55,7 +55,7 @@
                 }
                 @:};
 
-                @:var appliedFunction = @("func"+n).apply(
+                @:var appliedFunction = @("func"+n)(
                     for (int v = 1; v <= n; v++)
                 {
                     @:new Var(var@(v)) @(v == n ? "" : ",")

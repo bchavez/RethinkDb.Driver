@@ -136,7 +136,7 @@ WriteLiteral("\r\n\r\n");
 
 DefineSection("StaticFactories", () => {
 
-WriteLiteral("\r\n    \r\n    \r\n    public static Func FromLambda(ReqlLambda function){\r\n    \r\n");
+WriteLiteral("\r\n    \r\n    \r\n    public static Func FromLambda(Delegate function){\r\n    \r\n");
 
 
             
@@ -293,7 +293,7 @@ WriteLiteral("var appliedFunction = ");
             
             #line default
             #line hidden
-WriteLiteral(".apply(\r\n");
+WriteLiteral("(\r\n");
 
 
             

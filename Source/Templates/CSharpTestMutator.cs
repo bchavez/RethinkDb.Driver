@@ -15,7 +15,8 @@ namespace Templates
 
         public static NameValueCollection JavaLineReplacements = new NameValueCollection
             {
-                {"Math.pow(", "Math.Pow("}
+                {"Math.pow(", "Math.Pow("},
+                {"->", "=>"}
             };
 
         public CSharpTestMutator(YamlTest yamlTest)
@@ -30,10 +31,7 @@ namespace Templates
                 if( TypeRenames[test.ExpectedType] != null )
                     test.ExpectedType = TypeRenames[test.ExpectedType];
 
-                if( test.TestType == "JavaDef" )
-                {
-                    test.Java = FixUpJava(test.Java);
-                }
+                test.Java = FixUpJava(test.Java);
             }
         }
 

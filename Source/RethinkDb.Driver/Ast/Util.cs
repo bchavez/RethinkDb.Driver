@@ -59,9 +59,9 @@ namespace RethinkDb.Driver.Ast
 				return MakeObj.fromMap(obj);
 			}
 
-			if (val is ReqlLambda)
+			if (val is Delegate)
 			{
-			    return Func.FromLambda((ReqlLambda)val);
+			    return Func.FromLambda((Delegate)val);
 			}
 			
 			if (val is DateTime)

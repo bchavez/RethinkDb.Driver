@@ -45,7 +45,7 @@ namespace RethinkDb.Driver.Ast {
     
     
     
-    public static Func FromLambda(ReqlLambda function){
+    public static Func FromLambda(Delegate function){
     
             //Function 1
             var func1 = function as ReqlFunction1;
@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
                 var varIds = new List<int>{ 
                     var1,
                 };
-                var appliedFunction = func1.apply(
+                var appliedFunction = func1(
                     new Var(var1) 
                 );
                 return new Func(Arguments.Make(
@@ -71,7 +71,7 @@ namespace RethinkDb.Driver.Ast {
                     var1,
                     var2,
                 };
-                var appliedFunction = func2.apply(
+                var appliedFunction = func2(
                     new Var(var1) ,
                     new Var(var2) 
                 );
@@ -91,7 +91,7 @@ namespace RethinkDb.Driver.Ast {
                     var2,
                     var3,
                 };
-                var appliedFunction = func3.apply(
+                var appliedFunction = func3(
                     new Var(var1) ,
                     new Var(var2) ,
                     new Var(var3) 
@@ -114,7 +114,7 @@ namespace RethinkDb.Driver.Ast {
                     var3,
                     var4,
                 };
-                var appliedFunction = func4.apply(
+                var appliedFunction = func4(
                     new Var(var1) ,
                     new Var(var2) ,
                     new Var(var3) ,

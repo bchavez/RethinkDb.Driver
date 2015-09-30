@@ -13,7 +13,5 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Ast {
-    public interface ReqlFunction1 : ReqlLambda{
-         object apply( ReqlExpr arg1 );
-    }
+    public delegate object ReqlFunction1 ( ReqlExpr arg1 );
 }

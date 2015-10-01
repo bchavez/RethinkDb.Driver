@@ -303,6 +303,48 @@ namespace RethinkDb.Driver.Ast {
                         return new Mod (arguments);
                     }
 /// <summary>
+/// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
+///</summary>
+/// <example><para>Example: Return the floor of 12.345.</para>
+/// <code>&gt; r.floor(12.345).run(conn, callback);
+/// 
+/// 12.0
+/// </code></example>
+                    public Floor floor ( Object expr )
+                    {
+                        Arguments arguments = new Arguments();
+                        arguments.CoerceAndAdd(expr);
+                        return new Floor (arguments);
+                    }
+/// <summary>
+/// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
+///</summary>
+/// <example><para>Example: Return the ceiling of 12.345.</para>
+/// <code>&gt; r.ceil(12.345).run(conn, callback);
+/// 
+/// 13.0
+/// </code></example>
+                    public Ceil ceil ( Object expr )
+                    {
+                        Arguments arguments = new Arguments();
+                        arguments.CoerceAndAdd(expr);
+                        return new Ceil (arguments);
+                    }
+/// <summary>
+/// <para>Rounds the given value to the nearest whole integer.</para>
+///</summary>
+/// <example><para>Example: Round 12.345 to the nearest integer.</para>
+/// <code>&gt; r.round(12.345).run(conn, callback);
+/// 
+/// 12.0
+/// </code></example>
+                    public Round round ( Object expr )
+                    {
+                        Arguments arguments = new Arguments();
+                        arguments.CoerceAndAdd(expr);
+                        return new Round (arguments);
+                    }
+/// <summary>
 /// <para>Creates an object from a list of key-value pairs, where the keys must
 /// be strings.  <code>r.object(A, B, C, D)</code> is equivalent to
 /// <code>r.expr([[A, B], [C, D]]).coerce_to('OBJECT')</code>.</para>
@@ -772,6 +814,18 @@ namespace RethinkDb.Driver.Ast {
                     {
                         Arguments arguments = new Arguments();
                         arguments.CoerceAndAdd(expr);
+                        return new Info (arguments);
+                    }
+/// <summary>
+/// <para>Get information about a ReQL value.</para>
+///</summary>
+/// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
+/// <code>r.table('marvel').info().run(conn, callback)
+/// </code></example>
+                    public Info info ( Db db )
+                    {
+                        Arguments arguments = new Arguments();
+                        arguments.CoerceAndAdd(db);
                         return new Info (arguments);
                     }
 /// <summary>

@@ -165,6 +165,17 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                         return new Rebalance (arguments);
                     }
+/// <summary>
+/// <para>Get information about a ReQL value.</para>
+/// </summary>
+/// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
+/// <code>r.table('marvel').info().run(conn, callback)
+/// </code></example>
+                    public Info info (  )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        return new Info (arguments);
+                    }
 
     
     }

@@ -111,24 +111,6 @@ namespace RethinkDb.Driver.Ast {
                         return new GetAll (arguments);
                     }
 /// <summary>
-/// <para>Get all documents between two keys. Accepts three optional arguments: <code>index</code>,
-/// <code>left_bound</code>, and <code>right_bound</code>. If <code>index</code> is set to the name of a secondary index,
-/// <code>between</code> will return all documents where that index's value is in the specified range
-/// (it uses the primary key by default). <code>left_bound</code> or <code>right_bound</code> may be set to <code>open</code>
-/// or <code>closed</code> to indicate whether or not to include that endpoint of the range (by default,
-/// <code>left_bound</code> is closed and <code>right_bound</code> is open).</para>
-/// </summary>
-/// <example><para>Example: Find all users with primary key &gt;= 10 and &lt; 20 (a normal half-open interval).</para>
-/// <code>r.table('marvel').between(10, 20).run(conn, callback)
-/// </code></example>
-                    public Between between ( Object expr, Object exprA )
-                    {
-                        Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(expr);
-                        arguments.CoerceAndAdd(exprA);
-                        return new Between (arguments);
-                    }
-/// <summary>
 /// <para>Insert JSON documents into a table. Accepts a single JSON document or an array of
 /// documents.</para>
 /// </summary>

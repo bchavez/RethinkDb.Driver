@@ -227,17 +227,26 @@
         "id": 28
     },
     "FLOOR": {
-        "include_in": ["T_EXPR"],
+        "include_in": [
+            "T_TOP_LEVEL",
+            "T_EXPR"
+        ],
         "signatures": [["T_EXPR"]],
         "id": 183
     },
     "CEIL": {
-        "include_in": ["T_EXPR"],
+        "include_in": [
+            "T_TOP_LEVEL",
+            "T_EXPR"
+        ],
         "signatures": [["T_EXPR"]],
         "id": 184
     },
     "ROUND": {
-        "include_in": ["T_EXPR"],
+        "include_in": [
+            "T_TOP_LEVEL",
+            "T_EXPR"
+        ],
         "signatures": [["T_EXPR"]],
         "id": 185
     },
@@ -363,8 +372,8 @@
         "id": 36
     },
     "BETWEEN": {
-        "include_in": ["T_TABLE"],
-        "signatures": [["T_TABLE", "T_EXPR", "T_EXPR"]],
+        "include_in": ["T_EXPR"],
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR"]],
         "optargs": {
             "index": "T_STR",
             "left_bound": "E_BOUND",
@@ -389,7 +398,10 @@
     },
     "FILTER": {
         "include_in": ["T_EXPR"],
-        "signatures": [["T_EXPR", "T_FUNC1"]],
+        "signatures": [
+            ["T_EXPR", "T_FUNC1"],
+            ["T_EXPR", "T_EXPR"]
+        ],
         "optargs": {
             "default": "T_EXPR"
         },
@@ -812,9 +824,13 @@
     "INFO": {
         "include_in": [
             "T_TOP_LEVEL",
-            "T_EXPR"
+            "T_EXPR",
+            "T_DB"
         ],
-        "signatures": [["T_EXPR"]],
+        "signatures": [
+            ["T_EXPR"],
+            ["T_DB"]
+        ],
         "id": 79
     },
     "MATCH": {

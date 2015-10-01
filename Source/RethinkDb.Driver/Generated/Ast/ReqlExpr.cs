@@ -1509,6 +1509,24 @@ namespace RethinkDb.Driver.Ast {
                         return new Merge (arguments);
                     }
 /// <summary>
+/// <para>Get all documents between two keys. Accepts three optional arguments: <code>index</code>,
+/// <code>left_bound</code>, and <code>right_bound</code>. If <code>index</code> is set to the name of a secondary index,
+/// <code>between</code> will return all documents where that index's value is in the specified range
+/// (it uses the primary key by default). <code>left_bound</code> or <code>right_bound</code> may be set to <code>open</code>
+/// or <code>closed</code> to indicate whether or not to include that endpoint of the range (by default,
+/// <code>left_bound</code> is closed and <code>right_bound</code> is open).</para>
+/// </summary>
+/// <example><para>Example: Find all users with primary key &gt;= 10 and &lt; 20 (a normal half-open interval).</para>
+/// <code>r.table('marvel').between(10, 20).run(conn, callback)
+/// </code></example>
+                    public Between between ( Object exprA, Object exprB )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
+                        arguments.CoerceAndAdd(exprB);
+                        return new Between (arguments);
+                    }
+/// <summary>
 /// <para>Produce a single value from a sequence through repeated application of a reduction
 /// function.</para>
 /// </summary>
@@ -1613,6 +1631,26 @@ namespace RethinkDb.Driver.Ast {
                     {
                         Arguments arguments = new Arguments(this);
                         arguments.CoerceAndAdd(func1);
+                        return new Filter (arguments);
+                    }
+/// <summary>
+/// <para>Get all the documents for which the given predicate is true.</para>
+/// <para><code>filter</code> can be called on a sequence, selection, or a field containing an array of
+/// elements. The return type is the same as the type on which the function was called on.</para>
+/// <para>The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
+/// if a non-existence errors is thrown (when you try to access a field that does not exist
+/// in a document), RethinkDB will just ignore the document.
+/// The <code>default</code> value can be changed by passing an object with a <code>default</code> field.
+/// Setting this optional argument to <code>r.error()</code> will cause any non-existence errors to
+/// return a <code>RqlRuntimeError</code>.</para>
+/// </summary>
+/// <example><para>Example: Get all the users that are 30 years old.</para>
+/// <code>r.table('users').filter({age: 30}).run(conn, callback)
+/// </code></example>
+                    public Filter filter ( Object exprA )
+                    {
+                        Arguments arguments = new Arguments(this);
+                        arguments.CoerceAndAdd(exprA);
                         return new Filter (arguments);
                     }
 /// <summary>

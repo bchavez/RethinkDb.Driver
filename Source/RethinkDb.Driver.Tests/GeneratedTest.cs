@@ -348,7 +348,7 @@ namespace RethinkDb.Driver.Tests
             return new ErrRegex(classname, message_rgx);
         }
 
-        protected ArrayList fetch(ReqlAst query, int values)
+        protected ArrayList fetch(ReqlAst query, double values)
         {
             throw new NotImplementedException("Not implemented!");
         }
@@ -356,6 +356,10 @@ namespace RethinkDb.Driver.Tests
         public IEnumerable<int> range(int start, int stop)
         {
             return Enumerable.Range(start, stop);
+        }
+        public IEnumerable<int> range(double start, double stop)
+        {
+            return range((int)start, (int)stop);
         }
 
         protected ArrayList list(object str)

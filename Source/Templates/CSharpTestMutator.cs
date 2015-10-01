@@ -18,7 +18,10 @@ namespace Templates
         public static NameValueCollection JavaLineReplacements = new NameValueCollection
             {
                 {"Math.pow(", "Math.Pow("},
-                {"->", "=>"}
+                {"->", "=>"},
+                {"(ReqlFunction1)", ""},
+                {"sys.floatInfo.max", "double.MaxValue"},
+                {"sys.floatInfo.min", "double.MinValue"}
             };
 
         public CSharpTestMutator(YamlTest yamlTest)

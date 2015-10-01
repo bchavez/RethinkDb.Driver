@@ -7,7 +7,7 @@ DefsAndTests:
   Java: r.json("[1,2,3]")
   ExpectedOriginal: '[1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(1, 2, 3)
+  ExpectedJava: r.array(1.0, 2.0, 3.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
@@ -15,8 +15,8 @@ DefsAndTests:
   Original: r.json("1")
   Java: r.json("1")
   ExpectedOriginal: 1
-  ExpectedType: Integer
-  ExpectedJava: 1
+  ExpectedType: Double
+  ExpectedJava: 1.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
@@ -25,7 +25,7 @@ DefsAndTests:
   Java: r.json("{}")
   ExpectedOriginal: '{}'
   ExpectedType: Map
-  ExpectedJava: new MapObject()
+  ExpectedJava: r.hashMap()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
@@ -43,7 +43,7 @@ DefsAndTests:
   Java: r.json("[1,2")
   ExpectedOriginal: err("ReqlQueryLogicError", 'Failed to parse "[1,2" as JSON:' + ' Missing a comma or \']\' after an array element.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Failed to parse \"[1,2\" as JSON:" + " Missing a comma or ']' after an array element.", Arrays.asList(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Failed to parse \"[1,2\" as JSON:" + " Missing a comma or ']' after an array element.", r.array(0.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
@@ -142,10 +142,10 @@ DefsAndTests:
   TestFile: json.yaml
   TestNum: 17
   Original: r.time(2014,9,11, 'Z')
-  Java: r.time(2014, 9, 11, "Z")
+  Java: r.time(2014.0, 9.0, 11.0, "Z")
   ExpectedOriginal: ({'timezone':'+00:00','$reql_type$':'TIME','epoch_time':1410393600})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("timezone", "+00:00").with("$reql_type$", "TIME").with("epoch_time", 1410393600)
+  ExpectedJava: r.hashMap("timezone", "+00:00").with("$reql_type$", "TIME").with("epoch_time", 1410393600.0)
   RunOpts:
   - Key: time_format
     Val: raw
@@ -153,7 +153,7 @@ DefsAndTests:
   TestFile: json.yaml
   TestNum: 18
   Original: r.time(2014,9,11, 'Z').to_json_string()
-  Java: r.time(2014, 9, 11, "Z").toJsonString()
+  Java: r.time(2014.0, 9.0, 11.0, "Z").toJsonString()
   ExpectedOriginal: ('{"$reql_type$":"TIME","epoch_time":1410393600,"timezone":"+00:00"}')
   ExpectedType: String
   ExpectedJava: '"{\"$reql_type$\":\"TIME\",\"epoch_time\":1410393600,\"timezone\":\"+00:00\"}"'
@@ -162,16 +162,16 @@ DefsAndTests:
   TestFile: json.yaml
   TestNum: 19
   Original: r.point(0,0)
-  Java: r.point(0, 0)
+  Java: r.point(0.0, 0.0)
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY','coordinates':[0,0],'type':'Point'})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(0, 0)).with("type", "Point")
+  ExpectedJava: r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0.0, 0.0)).with("type", "Point")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
   TestNum: 20
   Original: r.point(0,0).to_json_string()
-  Java: r.point(0, 0).toJsonString()
+  Java: r.point(0.0, 0.0).toJsonString()
   ExpectedOriginal: ('{"$reql_type$":"GEOMETRY","coordinates":[0,0],"type":"Point"}')
   ExpectedType: String
   ExpectedJava: '"{\"$reql_type$\":\"GEOMETRY\",\"coordinates\":[0,0],\"type\":\"Point\"}"'

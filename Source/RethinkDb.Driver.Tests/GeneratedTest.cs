@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using FluentAssertions;
+using FluentAssertions.Common;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
@@ -51,14 +53,9 @@ namespace RethinkDb.Driver.Tests
 
         public class Arrays
         {
-            public static ArrayList asList(params object[] p)
+            public static IList asList(params object[] p)
             {
-                var list = new ArrayList();
-                foreach( var o in p )
-                {
-                    list.Add(o);
-                }
-                return list;
+                return p.ToList();
             }
         }
 
@@ -102,15 +99,15 @@ namespace RethinkDb.Driver.Tests
             }
         }
 
-        public int len(ArrayList array)
+        public int len(IList array)
         {
             return array.Count;
         }
 
         public class Lst
         {
-            ArrayList lst;
-            public Lst(ArrayList lst)
+            IList lst;
+            public Lst(IList lst)
             {
                 this.lst = lst;
             }
@@ -125,24 +122,25 @@ namespace RethinkDb.Driver.Tests
         {
             IList lst;
 
-            public Bag(ArrayList lst)
+            public Bag(IList lst)
             {
-                lst.Sort();
-                this.lst = lst;
+                var newlist = lst.OfType<object>().ToList();
+                newlist.Sort();
+                this.lst = newlist;
             }
 
             public override bool Equals(object other)
             {
-                if (!(other is List)) {
+                if (!(other is IList)) {
                     return false;
                 }
-                ArrayList otherList = (ArrayList)other;
+                var otherList = ((IList)other).OfType<object>().ToList();
                 otherList.Sort();
                 return lst.Equals(otherList);
             }
         }
 
-        protected Bag bag(ArrayList lst)
+        protected Bag bag(IList lst)
         {
             return new Bag(lst);
         }
@@ -159,10 +157,10 @@ namespace RethinkDb.Driver.Tests
             }
 
             public override bool Equals(Object other) {
-                if (!(other is ArrayList)) {
+                if (!(other is IList)) {
                     return false;
                 }
-                ArrayList otherList = (ArrayList)other;
+                var otherList = (IList)other;
                 if (lst.Count > otherList.Count)
                 {
                     return false;
@@ -177,7 +175,7 @@ namespace RethinkDb.Driver.Tests
                 return true;
             }
         }
-        protected PartialLst partial(ArrayList lst)
+        protected PartialLst partial(IList lst)
         {
             return new PartialLst(lst);
         }
@@ -246,6 +244,11 @@ namespace RethinkDb.Driver.Tests
                 }
                 return true;
             }
+        }
+
+        protected ArrLen arrlen(double length, object thing)
+        {
+            return arrlen((int)length, thing);
         }
 
         protected ArrLen arrlen(int length, Object thing)
@@ -348,6 +351,16 @@ namespace RethinkDb.Driver.Tests
         protected ArrayList fetch(ReqlAst query, int values)
         {
             throw new NotImplementedException("Not implemented!");
+        }
+
+        public IEnumerable<int> range(int start, int stop)
+        {
+            return Enumerable.Range(start, stop);
+        }
+
+        protected ArrayList list(object str)
+        {
+            return null;
         }
     }
 }

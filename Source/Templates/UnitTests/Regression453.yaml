@@ -6,7 +6,7 @@ DefsAndTests:
   TestFile: regression/453.yaml
   TestNum: 1
   Original: tbl.insert([{'a':1},{'a':2}])
-  Java: tbl.insert(Arrays.asList(new MapObject().with("a", 1), new MapObject().with("a", 2)))
+  Java: tbl.insert(r.array(r.hashMap("a", 1.0), r.hashMap("a", 2.0)))
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
@@ -18,7 +18,7 @@ DefsAndTests:
   Java: tbl.map(x -> tbl)
   ExpectedOriginal: err("ReqlQueryLogicError", 'Expected type DATUM but found TABLE:', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", Arrays.asList(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", r.array(0.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/453.yaml
@@ -26,6 +26,6 @@ DefsAndTests:
   Original: 'tbl.map(lambda x: tbl.coerce_to(''array'')).count()'
   Java: tbl.map(x -> tbl.coerceTo("array")).count()
   ExpectedOriginal: 2
-  ExpectedType: Integer
-  ExpectedJava: 2
+  ExpectedType: Double
+  ExpectedJava: 2.0
   RunOpts: []

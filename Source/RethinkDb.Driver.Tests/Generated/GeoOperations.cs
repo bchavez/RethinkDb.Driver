@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = "89011.26253835332";
                  
                  //Original: r.distance(r.point(-122, 37), r.point(-123, 37)).coerce_to('STRING')
-                 var obtained = runOrCatch( r.distance(r.point(-122, 37), r.point(-123, 37)).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.distance(r.point(-122.0, 37.0), r.point(-123.0, 37.0)).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -49,7 +49,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = "110968.30443995494";
                  
                  //Original: r.distance(r.point(-122, 37), r.point(-122, 36)).coerce_to('STRING')
-                 var obtained = runOrCatch( r.distance(r.point(-122, 37), r.point(-122, 36)).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.distance(r.point(-122.0, 37.0), r.point(-122.0, 36.0)).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -63,7 +63,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = true;
                  
                  //Original: r.distance(r.point(-122, 37), r.point(-122, 36)).eq(r.distance(r.point(-122, 36), r.point(-122, 37)))
-                 var obtained = runOrCatch( r.distance(r.point(-122, 37), r.point(-122, 36)).eq(r.distance(r.point(-122, 36), r.point(-122, 37))) ,
+                 var obtained = runOrCatch( r.distance(r.point(-122.0, 37.0), r.point(-122.0, 36.0)).eq(r.distance(r.point(-122.0, 36.0), r.point(-122.0, 37.0))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -77,7 +77,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = "89011.26253835332";
                  
                  //Original: r.point(-122, 37).distance(r.point(-123, 37)).coerce_to('STRING')
-                 var obtained = runOrCatch( r.point(-122, 37).distance(r.point(-123, 37)).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.point(-122.0, 37.0).distance(r.point(-123.0, 37.0)).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -87,7 +87,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, geo/operations.yaml, #Templates.YamlTest+DefTest.
              //Original: someDist = r.distance(r.point(-122, 37), r.point(-123, 37))
              
-Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));             
+Distance someDist = (Distance) r.distance(r.point(-122.0, 37.0), r.point(-123.0, 37.0));             
              TestCounter++;
              
              {
@@ -96,7 +96,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = true;
                  
                  //Original: someDist.eq(r.distance(r.point(-122, 37), r.point(-123, 37), unit='m'))
-                 var obtained = runOrCatch( someDist.eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "m")) ,
+                 var obtained = runOrCatch( someDist.eq(r.distance(r.point(-122.0, 37.0), r.point(-123.0, 37.0)).optArg("unit", "m")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -110,7 +110,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = true;
                  
                  //Original: someDist.mul(1.0/1000.0).eq(r.distance(r.point(-122, 37), r.point(-123, 37), unit='km'))
-                 var obtained = runOrCatch( someDist.mul(r.div(1.0, 1000.0)).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "km")) ,
+                 var obtained = runOrCatch( someDist.mul(r.div(1.0, 1000.0)).eq(r.distance(r.point(-122.0, 37.0), r.point(-123.0, 37.0)).optArg("unit", "km")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -124,7 +124,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = true;
                  
                  //Original: someDist.mul(1.0/1609.344).eq(r.distance(r.point(-122, 37), r.point(-123, 37), unit='mi'))
-                 var obtained = runOrCatch( someDist.mul(r.div(1.0, 1609.344)).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "mi")) ,
+                 var obtained = runOrCatch( someDist.mul(r.div(1.0, 1609.344)).eq(r.distance(r.point(-122.0, 37.0), r.point(-123.0, 37.0)).optArg("unit", "mi")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -138,7 +138,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = true;
                  
                  //Original: someDist.mul(1.0/0.3048).eq(r.distance(r.point(-122, 37), r.point(-123, 37), unit='ft'))
-                 var obtained = runOrCatch( someDist.mul(r.div(1.0, 0.3048)).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "ft")) ,
+                 var obtained = runOrCatch( someDist.mul(r.div(1.0, 0.3048)).eq(r.distance(r.point(-122.0, 37.0), r.point(-123.0, 37.0)).optArg("unit", "ft")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -152,7 +152,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = true;
                  
                  //Original: someDist.mul(1.0/1852.0).eq(r.distance(r.point(-122, 37), r.point(-123, 37), unit='nm'))
-                 var obtained = runOrCatch( someDist.mul(r.div(1.0, 1852.0)).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("unit", "nm")) ,
+                 var obtained = runOrCatch( someDist.mul(r.div(1.0, 1852.0)).eq(r.distance(r.point(-122.0, 37.0), r.point(-123.0, 37.0)).optArg("unit", "nm")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -166,7 +166,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = true;
                  
                  //Original: someDist.eq(r.distance(r.point(-122, 37), r.point(-123, 37), geo_system='WGS84'))
-                 var obtained = runOrCatch( someDist.eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("geo_system", "WGS84")) ,
+                 var obtained = runOrCatch( someDist.eq(r.distance(r.point(-122.0, 37.0), r.point(-123.0, 37.0)).optArg("geo_system", "WGS84")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -180,7 +180,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = true;
                  
                  //Original: someDist.div(10).eq(r.distance(r.point(-122, 37), r.point(-123, 37), geo_system={'a':637813.7, 'f':(1.0/298.257223563)}))
-                 var obtained = runOrCatch( someDist.div(10).eq(r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("geo_system", new MapObject().with("a", 637813.7).with("f", r.div(1.0, 298.257223563)))) ,
+                 var obtained = runOrCatch( someDist.div(10.0).eq(r.distance(r.point(-122.0, 37.0), r.point(-123.0, 37.0)).optArg("geo_system", r.hashMap("a", 637813.7).with("f", r.div(1.0, 298.257223563)))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -194,7 +194,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = "0.01393875509649327";
                  
                  //Original: r.distance(r.point(-122, 37), r.point(-123, 37), geo_system='unit_sphere').coerce_to('STRING')
-                 var obtained = runOrCatch( r.distance(r.point(-122, 37), r.point(-123, 37)).optArg("geo_system", "unit_sphere").coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.distance(r.point(-122.0, 37.0), r.point(-123.0, 37.0)).optArg("geo_system", "unit_sphere").coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -208,7 +208,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = "0";
                  
                  //Original: r.distance(r.point(0, 0), r.point(0, 0)).coerce_to('STRING')
-                 var obtained = runOrCatch( r.distance(r.point(0, 0), r.point(0, 0)).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.distance(r.point(0.0, 0.0), r.point(0.0, 0.0)).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -222,7 +222,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = "40007862.917250897";
                  
                  //Original: r.distance(r.point(0, 0), r.point(180, 0)).mul(2).coerce_to('STRING')
-                 var obtained = runOrCatch( r.distance(r.point(0, 0), r.point(180, 0)).mul(2).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.distance(r.point(0.0, 0.0), r.point(180.0, 0.0)).mul(2.0).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -236,7 +236,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = "40007862.917250897";
                  
                  //Original: r.distance(r.point(0, -90), r.point(0, 90)).mul(2).coerce_to('STRING')
-                 var obtained = runOrCatch( r.distance(r.point(0, -90), r.point(0, 90)).mul(2).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.distance(r.point(0.0, -90.0), r.point(0.0, 90.0)).mul(2.0).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -250,7 +250,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = "0";
                  
                  //Original: r.distance(r.point(0, 0), r.line([0,0], [0,1])).coerce_to('STRING')
-                 var obtained = runOrCatch( r.distance(r.point(0, 0), r.line(Arrays.asList(0, 0), Arrays.asList(0, 1))).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.distance(r.point(0.0, 0.0), r.line(r.array(0.0, 0.0), r.array(0.0, 1.0))).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -264,7 +264,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = "0";
                  
                  //Original: r.distance(r.line([0,0], [0,1]), r.point(0, 0)).coerce_to('STRING')
-                 var obtained = runOrCatch( r.distance(r.line(Arrays.asList(0, 0), Arrays.asList(0, 1)), r.point(0, 0)).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.distance(r.line(r.array(0.0, 0.0), r.array(0.0, 1.0)), r.point(0.0, 0.0)).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -278,7 +278,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = true;
                  
                  //Original: r.distance(r.point(0, 0), r.line([0.1,0], [1,0])).eq(r.distance(r.point(0, 0), r.point(0.1, 0)))
-                 var obtained = runOrCatch( r.distance(r.point(0, 0), r.line(Arrays.asList(0.1, 0), Arrays.asList(1, 0))).eq(r.distance(r.point(0, 0), r.point(0.1, 0))) ,
+                 var obtained = runOrCatch( r.distance(r.point(0.0, 0.0), r.line(r.array(0.1, 0.0), r.array(1.0, 0.0))).eq(r.distance(r.point(0.0, 0.0), r.point(0.1, 0.0))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -292,7 +292,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = "492471.4990055255";
                  
                  //Original: r.distance(r.point(0, 0), r.line([5,-1], [4,2])).coerce_to('STRING')
-                 var obtained = runOrCatch( r.distance(r.point(0, 0), r.line(Arrays.asList(5, -1), Arrays.asList(4, 2))).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.distance(r.point(0.0, 0.0), r.line(r.array(5.0, -1.0), r.array(4.0, 2.0))).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -306,7 +306,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = "492471.4990055255";
                  
                  //Original: r.distance(r.point(0, 0), r.polygon([5,-1], [4,2], [10,10])).coerce_to('STRING')
-                 var obtained = runOrCatch( r.distance(r.point(0, 0), r.polygon(Arrays.asList(5, -1), Arrays.asList(4, 2), Arrays.asList(10, 10))).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.distance(r.point(0.0, 0.0), r.polygon(r.array(5.0, -1.0), r.array(4.0, 2.0), r.array(10.0, 10.0))).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -320,7 +320,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = "0";
                  
                  //Original: r.distance(r.point(0, 0), r.polygon([0,-1], [0,1], [10,10])).coerce_to('STRING')
-                 var obtained = runOrCatch( r.distance(r.point(0, 0), r.polygon(Arrays.asList(0, -1), Arrays.asList(0, 1), Arrays.asList(10, 10))).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.distance(r.point(0.0, 0.0), r.polygon(r.array(0.0, -1.0), r.array(0.0, 1.0), r.array(10.0, 10.0))).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -334,7 +334,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = "0";
                  
                  //Original: r.distance(r.point(0.5, 0.5), r.polygon([0,-1], [0,1], [10,10])).coerce_to('STRING')
-                 var obtained = runOrCatch( r.distance(r.point(0.5, 0.5), r.polygon(Arrays.asList(0, -1), Arrays.asList(0, 1), Arrays.asList(10, 10))).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.distance(r.point(0.5, 0.5), r.polygon(r.array(0.0, -1.0), r.array(0.0, 1.0), r.array(10.0, 10.0))).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -348,7 +348,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = false;
                  
                  //Original: r.circle([0,0], 1, fill=false).eq(r.circle([0,0], 1, fill=true))
-                 var obtained = runOrCatch( r.circle(Arrays.asList(0, 0), 1).optArg("fill", false).eq(r.circle(Arrays.asList(0, 0), 1).optArg("fill", true)) ,
+                 var obtained = runOrCatch( r.circle(r.array(0.0, 0.0), 1.0).optArg("fill", false).eq(r.circle(r.array(0.0, 0.0), 1.0).optArg("fill", true)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -362,7 +362,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  var expected = true;
                  
                  //Original: r.circle([0,0], 1, fill=false).fill().eq(r.circle([0,0], 1, fill=true))
-                 var obtained = runOrCatch( r.circle(Arrays.asList(0, 0), 1).optArg("fill", false).fill().eq(r.circle(Arrays.asList(0, 0), 1).optArg("fill", true)) ,
+                 var obtained = runOrCatch( r.circle(r.array(0.0, 0.0), 1.0).optArg("fill", false).fill().eq(r.circle(r.array(0.0, 0.0), 1.0).optArg("fill", true)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -373,10 +373,10 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
              {
                  //JavaQuery, geo/operations.yaml, #25
                  //ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0,0],[1,0],[1,1],[0,1],[0,0]],[[0.1,0.1],[0.9,0.1],[0.9,0.9],[0.1,0.9],[0.1,0.1]]], 'type':'Polygon'})
-                 var expected = new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1), Arrays.asList(0, 0)), Arrays.asList(Arrays.asList(0.1, 0.1), Arrays.asList(0.9, 0.1), Arrays.asList(0.9, 0.9), Arrays.asList(0.1, 0.9), Arrays.asList(0.1, 0.1)))).with("type", "Polygon");
+                 var expected = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0.0, 0.0), r.array(1.0, 0.0), r.array(1.0, 1.0), r.array(0.0, 1.0), r.array(0.0, 0.0)), r.array(r.array(0.1, 0.1), r.array(0.9, 0.1), r.array(0.9, 0.9), r.array(0.1, 0.9), r.array(0.1, 0.1)))).with("type", "Polygon");
                  
                  //Original: r.polygon([0,0], [1,0], [1,1], [0,1]).polygon_sub(r.polygon([0.1,0.1], [0.9,0.1], [0.9,0.9], [0.1,0.9]))
-                 var obtained = runOrCatch( r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0.1, 0.1), Arrays.asList(0.9, 0.1), Arrays.asList(0.9, 0.9), Arrays.asList(0.1, 0.9))) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0.0, 0.0), r.array(1.0, 0.0), r.array(1.0, 1.0), r.array(0.0, 1.0)).polygonSub(r.polygon(r.array(0.1, 0.1), r.array(0.9, 0.1), r.array(0.9, 0.9), r.array(0.1, 0.9))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -387,10 +387,10 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
              {
                  //JavaQuery, geo/operations.yaml, #26
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'The second argument to `polygon_sub` is not contained in the first one.', [0])
-                 var expected = err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", Arrays.asList(0));
+                 var expected = err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", r.array(0.0));
                  
                  //Original: r.polygon([0,0], [1,0], [1,1], [0,1]).polygon_sub(r.polygon([0.1,0.9], [0.9,0.0], [0.9,0.9], [0.1,0.9]))
-                 var obtained = runOrCatch( r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0.1, 0.9), Arrays.asList(0.9, 0.0), Arrays.asList(0.9, 0.9), Arrays.asList(0.1, 0.9))) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0.0, 0.0), r.array(1.0, 0.0), r.array(1.0, 1.0), r.array(0.0, 1.0)).polygonSub(r.polygon(r.array(0.1, 0.9), r.array(0.9, 0.0), r.array(0.9, 0.9), r.array(0.1, 0.9))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -401,10 +401,10 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
              {
                  //JavaQuery, geo/operations.yaml, #27
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'The second argument to `polygon_sub` is not contained in the first one.', [0])
-                 var expected = err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", Arrays.asList(0));
+                 var expected = err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", r.array(0.0));
                  
                  //Original: r.polygon([0,0], [1,0], [1,1], [0,1]).polygon_sub(r.polygon([0,0], [2,0], [2,2], [0,2]))
-                 var obtained = runOrCatch( r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(2, 0), Arrays.asList(2, 2), Arrays.asList(0, 2))) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0.0, 0.0), r.array(1.0, 0.0), r.array(1.0, 1.0), r.array(0.0, 1.0)).polygonSub(r.polygon(r.array(0.0, 0.0), r.array(2.0, 0.0), r.array(2.0, 2.0), r.array(0.0, 2.0))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -415,10 +415,10 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
              {
                  //JavaQuery, geo/operations.yaml, #28
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'The second argument to `polygon_sub` is not contained in the first one.', [0])
-                 var expected = err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", Arrays.asList(0));
+                 var expected = err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", r.array(0.0));
                  
                  //Original: r.polygon([0,0], [1,0], [1,1], [0,1]).polygon_sub(r.polygon([0,-2], [1,-2], [-1,1], [0,-1]))
-                 var obtained = runOrCatch( r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, -2), Arrays.asList(1, -2), Arrays.asList(-1, 1), Arrays.asList(0, -1))) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0.0, 0.0), r.array(1.0, 0.0), r.array(1.0, 1.0), r.array(0.0, 1.0)).polygonSub(r.polygon(r.array(0.0, -2.0), r.array(1.0, -2.0), r.array(-1.0, 1.0), r.array(0.0, -1.0))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -429,10 +429,10 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
              {
                  //JavaQuery, geo/operations.yaml, #29
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'The second argument to `polygon_sub` is not contained in the first one.', [0])
-                 var expected = err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", Arrays.asList(0));
+                 var expected = err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", r.array(0.0));
                  
                  //Original: r.polygon([0,0], [1,0], [1,1], [0,1]).polygon_sub(r.polygon([0,-1], [1,-1], [1,0], [0,0]))
-                 var obtained = runOrCatch( r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, -1), Arrays.asList(1, -1), Arrays.asList(1, 0), Arrays.asList(0, 0))) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0.0, 0.0), r.array(1.0, 0.0), r.array(1.0, 1.0), r.array(0.0, 1.0)).polygonSub(r.polygon(r.array(0.0, -1.0), r.array(1.0, -1.0), r.array(1.0, 0.0), r.array(0.0, 0.0))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -443,10 +443,10 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
              {
                  //JavaQuery, geo/operations.yaml, #30
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'The second argument to `polygon_sub` is not contained in the first one.', [0])
-                 var expected = err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", Arrays.asList(0));
+                 var expected = err("ReqlQueryLogicError", "The second argument to `polygon_sub` is not contained in the first one.", r.array(0.0));
                  
                  //Original: r.polygon([0,0], [1,0], [1,1], [0,1]).polygon_sub(r.polygon([0.1,-1], [0.9,-1], [0.9,0.5], [0.1,0.5]))
-                 var obtained = runOrCatch( r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0.1, -1), Arrays.asList(0.9, -1), Arrays.asList(0.9, 0.5), Arrays.asList(0.1, 0.5))) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0.0, 0.0), r.array(1.0, 0.0), r.array(1.0, 1.0), r.array(0.0, 1.0)).polygonSub(r.polygon(r.array(0.1, -1.0), r.array(0.9, -1.0), r.array(0.9, 0.5), r.array(0.1, 0.5))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -457,10 +457,10 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
              {
                  //JavaQuery, geo/operations.yaml, #31
                  //ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0,0],[1,0],[1,1],[0,1],[0,0]],[[0,0],[0.1,0.9],[0.9,0.9],[0.9,0.1],[0,0]]], 'type':'Polygon'})
-                 var expected = new MapObject().with("$reql_type$", "GEOMETRY").with("coordinates", Arrays.asList(Arrays.asList(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1), Arrays.asList(0, 0)), Arrays.asList(Arrays.asList(0, 0), Arrays.asList(0.1, 0.9), Arrays.asList(0.9, 0.9), Arrays.asList(0.9, 0.1), Arrays.asList(0, 0)))).with("type", "Polygon");
+                 var expected = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0.0, 0.0), r.array(1.0, 0.0), r.array(1.0, 1.0), r.array(0.0, 1.0), r.array(0.0, 0.0)), r.array(r.array(0.0, 0.0), r.array(0.1, 0.9), r.array(0.9, 0.9), r.array(0.9, 0.1), r.array(0.0, 0.0)))).with("type", "Polygon");
                  
                  //Original: r.polygon([0,0], [1,0], [1,1], [0,1]).polygon_sub(r.polygon([0,0],[0.1,0.9],[0.9,0.9],[0.9,0.1]))
-                 var obtained = runOrCatch( r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(0.1, 0.9), Arrays.asList(0.9, 0.9), Arrays.asList(0.9, 0.1))) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0.0, 0.0), r.array(1.0, 0.0), r.array(1.0, 1.0), r.array(0.0, 1.0)).polygonSub(r.polygon(r.array(0.0, 0.0), r.array(0.1, 0.9), r.array(0.9, 0.9), r.array(0.9, 0.1))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -471,10 +471,10 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
              {
                  //JavaQuery, geo/operations.yaml, #32
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'Expected a Polygon with only an outer shell.  This one has holes.', [0])
-                 var expected = err("ReqlQueryLogicError", "Expected a Polygon with only an outer shell.  This one has holes.", Arrays.asList(0));
+                 var expected = err("ReqlQueryLogicError", "Expected a Polygon with only an outer shell.  This one has holes.", r.array(0.0));
                  
                  //Original: r.polygon([0,0], [1,0], [1,1], [0,1]).polygon_sub(r.polygon([0,0],[0.1,0.9],[0.9,0.9],[0.9,0.1]).polygon_sub(r.polygon([0.2,0.2],[0.5,0.8],[0.8,0.2])))
-                 var obtained = runOrCatch( r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.polygon(Arrays.asList(0, 0), Arrays.asList(0.1, 0.9), Arrays.asList(0.9, 0.9), Arrays.asList(0.9, 0.1)).polygonSub(r.polygon(Arrays.asList(0.2, 0.2), Arrays.asList(0.5, 0.8), Arrays.asList(0.8, 0.2)))) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0.0, 0.0), r.array(1.0, 0.0), r.array(1.0, 1.0), r.array(0.0, 1.0)).polygonSub(r.polygon(r.array(0.0, 0.0), r.array(0.1, 0.9), r.array(0.9, 0.9), r.array(0.9, 0.1)).polygonSub(r.polygon(r.array(0.2, 0.2), r.array(0.5, 0.8), r.array(0.8, 0.2)))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -485,10 +485,10 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
              {
                  //JavaQuery, geo/operations.yaml, #33
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'Expected a Polygon but found a LineString.', [])
-                 var expected = err("ReqlQueryLogicError", "Expected a Polygon but found a LineString.", Arrays.asList());
+                 var expected = err("ReqlQueryLogicError", "Expected a Polygon but found a LineString.", r.array());
                  
                  //Original: r.polygon([0,0], [1,0], [1,1], [0,1]).polygon_sub(r.line([0,0],[0.9,0.1],[0.9,0.9],[0.1,0.9]))
-                 var obtained = runOrCatch( r.polygon(Arrays.asList(0, 0), Arrays.asList(1, 0), Arrays.asList(1, 1), Arrays.asList(0, 1)).polygonSub(r.line(Arrays.asList(0, 0), Arrays.asList(0.9, 0.1), Arrays.asList(0.9, 0.9), Arrays.asList(0.1, 0.9))) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0.0, 0.0), r.array(1.0, 0.0), r.array(1.0, 1.0), r.array(0.0, 1.0)).polygonSub(r.line(r.array(0.0, 0.0), r.array(0.9, 0.1), r.array(0.9, 0.9), r.array(0.1, 0.9))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);

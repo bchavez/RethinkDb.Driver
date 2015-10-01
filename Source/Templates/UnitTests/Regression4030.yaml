@@ -6,13 +6,13 @@ DefsAndTests:
   TestFile: regression/4030.yaml
   TestNum: 1
   Original: data = [{'id':1}, {'id':2}, {'id':3}, {'id':4}, {'id':5}, {'id':6}]
-  Java: List data = (List) Arrays.asList(new MapObject().with("id", 1), new MapObject().with("id", 2), new MapObject().with("id", 3), new MapObject().with("id", 4), new MapObject().with("id", 5), new MapObject().with("id", 6));
+  Java: List data = (List) r.array(r.hashMap("id", 1.0), r.hashMap("id", 2.0), r.hashMap("id", 3.0), r.hashMap("id", 4.0), r.hashMap("id", 5.0), r.hashMap("id", 6.0));
   RunOpts: []
 - TestType: JavaDef
   TestFile: regression/4030.yaml
   TestNum: 2
   Original: changes = [{'id':7}, {'id':8}, {'id':9}, {'id':10}]
-  Java: List changes = (List) Arrays.asList(new MapObject().with("id", 7), new MapObject().with("id", 8), new MapObject().with("id", 9), new MapObject().with("id", 10));
+  Java: List changes = (List) r.array(r.hashMap("id", 7.0), r.hashMap("id", 8.0), r.hashMap("id", 9.0), r.hashMap("id", 10.0));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
@@ -21,7 +21,7 @@ DefsAndTests:
   Java: tbl.insert(data)
   ExpectedOriginal: partial({'errors':0, 'inserted':6})
   ExpectedType: Partial
-  ExpectedJava: partial(new MapObject().with("errors", 0).with("inserted", 6))
+  ExpectedJava: partial(r.hashMap("errors", 0.0).with("inserted", 6.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
@@ -29,8 +29,8 @@ DefsAndTests:
   Original: tbl.count()
   Java: tbl.count()
   ExpectedOriginal: (6)
-  ExpectedType: Integer
-  ExpectedJava: 6
+  ExpectedType: Double
+  ExpectedJava: 6.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
@@ -39,7 +39,7 @@ DefsAndTests:
   Java: tbl.union(tbl)
   ExpectedOriginal: bag(data * 2)
   ExpectedType: Bag
-  ExpectedJava: bag(data * 2)
+  ExpectedJava: bag(data * 2.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
@@ -48,5 +48,5 @@ DefsAndTests:
   Java: r.union(tbl, tbl)
   ExpectedOriginal: bag(data * 2)
   ExpectedType: Bag
-  ExpectedJava: bag(data * 2)
+  ExpectedJava: bag(data * 2.0)
   RunOpts: []

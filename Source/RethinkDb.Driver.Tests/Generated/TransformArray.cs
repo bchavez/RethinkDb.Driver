@@ -31,31 +31,31 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, transform/array.yaml, #Templates.YamlTest+DefTest.
              //Original: arr = r.expr([1, 2, 3])
              
-MakeArray arr = (MakeArray) r.expr(Arrays.asList(1, 2, 3));             
+MakeArray arr = (MakeArray) r.expr(r.array(1.0, 2.0, 3.0));             
              
              //JavaDef, transform/array.yaml, #Templates.YamlTest+DefTest.
              //Original: dupe_arr = r.expr([1, 1, 2, 3])
              
-MakeArray dupe_arr = (MakeArray) r.expr(Arrays.asList(1, 1, 2, 3));             
+MakeArray dupe_arr = (MakeArray) r.expr(r.array(1.0, 1.0, 2.0, 3.0));             
              
              //JavaDef, transform/array.yaml, #Templates.YamlTest+DefTest.
              //Original: objArr = r.expr([{'a':1, 'b':'a'}, {'a':2, 'b':'b'}, {'a':3, 'b':'c'}])
              
-MakeArray objArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c")));             
+MakeArray objArr = (MakeArray) r.expr(r.array(r.hashMap("a", 1.0).with("b", "a"), r.hashMap("a", 2.0).with("b", "b"), r.hashMap("a", 3.0).with("b", "c")));             
              
              //JavaDef, transform/array.yaml, #Templates.YamlTest+DefTest.
              //Original: nestedObjArr = r.expr([{'a':1, 'b':{'c':1}}, {'a':2, 'b':{'c':2}}, {'a':3, 'b':{'c':3}}])
              
-MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("a", 1).with("b", new MapObject().with("c", 1)), new MapObject().with("a", 2).with("b", new MapObject().with("c", 2)), new MapObject().with("a", 3).with("b", new MapObject().with("c", 3))));             
+MakeArray nestedObjArr = (MakeArray) r.expr(r.array(r.hashMap("a", 1.0).with("b", r.hashMap("c", 1.0)), r.hashMap("a", 2.0).with("b", r.hashMap("c", 2.0)), r.hashMap("a", 3.0).with("b", r.hashMap("c", 3.0))));             
              TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #5
                  //ExpectedOriginal: [1, 2, 3, 4]
-                 var expected = Arrays.asList(1, 2, 3, 4);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0);
                  
                  //Original: arr.append(4)
-                 var obtained = runOrCatch( arr.append(4) ,
+                 var obtained = runOrCatch( arr.append(4.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -66,7 +66,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #6
                  //ExpectedOriginal: [1, 2, 3, 'a']
-                 var expected = Arrays.asList(1, 2, 3, "a");
+                 var expected = r.array(1.0, 2.0, 3.0, "a");
                  
                  //Original: arr.append('a')
                  var obtained = runOrCatch( arr.append("a") ,
@@ -80,10 +80,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #7
                  //ExpectedOriginal: [0, 1, 2, 3]
-                 var expected = Arrays.asList(0, 1, 2, 3);
+                 var expected = r.array(0.0, 1.0, 2.0, 3.0);
                  
                  //Original: arr.prepend(0)
-                 var obtained = runOrCatch( arr.prepend(0) ,
+                 var obtained = runOrCatch( arr.prepend(0.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -94,7 +94,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #8
                  //ExpectedOriginal: ['a', 1, 2, 3]
-                 var expected = Arrays.asList("a", 1, 2, 3);
+                 var expected = r.array("a", 1.0, 2.0, 3.0);
                  
                  //Original: arr.prepend('a')
                  var obtained = runOrCatch( arr.prepend("a") ,
@@ -108,10 +108,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #9
                  //ExpectedOriginal: [3]
-                 var expected = Arrays.asList(3);
+                 var expected = r.array(3.0);
                  
                  //Original: arr.difference([1,2,2])
-                 var obtained = runOrCatch( arr.difference(Arrays.asList(1, 2, 2)) ,
+                 var obtained = runOrCatch( arr.difference(r.array(1.0, 2.0, 2.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -122,10 +122,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #10
                  //ExpectedOriginal: [1, 2, 3]
-                 var expected = Arrays.asList(1, 2, 3);
+                 var expected = r.array(1.0, 2.0, 3.0);
                  
                  //Original: arr.difference([])
-                 var obtained = runOrCatch( arr.difference(Arrays.asList()) ,
+                 var obtained = runOrCatch( arr.difference(r.array()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -136,10 +136,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #11
                  //ExpectedOriginal: [1, 2, 3]
-                 var expected = Arrays.asList(1, 2, 3);
+                 var expected = r.array(1.0, 2.0, 3.0);
                  
                  //Original: arr.difference(["foo", "bar"])
-                 var obtained = runOrCatch( arr.difference(Arrays.asList("foo", "bar")) ,
+                 var obtained = runOrCatch( arr.difference(r.array("foo", "bar")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -150,10 +150,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #12
                  //ExpectedOriginal: [1, 2, 3]
-                 var expected = Arrays.asList(1, 2, 3);
+                 var expected = r.array(1.0, 2.0, 3.0);
                  
                  //Original: dupe_arr.set_insert(1)
-                 var obtained = runOrCatch( dupe_arr.setInsert(1) ,
+                 var obtained = runOrCatch( dupe_arr.setInsert(1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -164,10 +164,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #13
                  //ExpectedOriginal: [1, 2, 3, 4]
-                 var expected = Arrays.asList(1, 2, 3, 4);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0);
                  
                  //Original: dupe_arr.set_insert(4)
-                 var obtained = runOrCatch( dupe_arr.setInsert(4) ,
+                 var obtained = runOrCatch( dupe_arr.setInsert(4.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -178,10 +178,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #14
                  //ExpectedOriginal: [1, 2, 3, 4, 5]
-                 var expected = Arrays.asList(1, 2, 3, 4, 5);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0, 5.0);
                  
                  //Original: dupe_arr.set_union([3,4,5,5])
-                 var obtained = runOrCatch( dupe_arr.setUnion(Arrays.asList(3, 4, 5, 5)) ,
+                 var obtained = runOrCatch( dupe_arr.setUnion(r.array(3.0, 4.0, 5.0, 5.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -192,10 +192,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #15
                  //ExpectedOriginal: [1, 2, 3, 5, 6]
-                 var expected = Arrays.asList(1, 2, 3, 5, 6);
+                 var expected = r.array(1.0, 2.0, 3.0, 5.0, 6.0);
                  
                  //Original: dupe_arr.set_union([5,6])
-                 var obtained = runOrCatch( dupe_arr.setUnion(Arrays.asList(5, 6)) ,
+                 var obtained = runOrCatch( dupe_arr.setUnion(r.array(5.0, 6.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -206,10 +206,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #16
                  //ExpectedOriginal: [1, 2]
-                 var expected = Arrays.asList(1, 2);
+                 var expected = r.array(1.0, 2.0);
                  
                  //Original: dupe_arr.set_intersection([1,1,1,2,2])
-                 var obtained = runOrCatch( dupe_arr.setIntersection(Arrays.asList(1, 1, 1, 2, 2)) ,
+                 var obtained = runOrCatch( dupe_arr.setIntersection(r.array(1.0, 1.0, 1.0, 2.0, 2.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -220,10 +220,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #17
                  //ExpectedOriginal: []
-                 var expected = Arrays.asList();
+                 var expected = r.array();
                  
                  //Original: dupe_arr.set_intersection(["foo"])
-                 var obtained = runOrCatch( dupe_arr.setIntersection(Arrays.asList("foo")) ,
+                 var obtained = runOrCatch( dupe_arr.setIntersection(r.array("foo")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -234,10 +234,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #18
                  //ExpectedOriginal: [2, 3]
-                 var expected = Arrays.asList(2, 3);
+                 var expected = r.array(2.0, 3.0);
                  
                  //Original: dupe_arr.set_difference([1,1,1,10])
-                 var obtained = runOrCatch( dupe_arr.setDifference(Arrays.asList(1, 1, 1, 10)) ,
+                 var obtained = runOrCatch( dupe_arr.setDifference(r.array(1.0, 1.0, 1.0, 10.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -248,10 +248,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #19
                  //ExpectedOriginal: [1, 3]
-                 var expected = Arrays.asList(1, 3);
+                 var expected = r.array(1.0, 3.0);
                  
                  //Original: dupe_arr.set_difference([2])
-                 var obtained = runOrCatch( dupe_arr.setDifference(Arrays.asList(2)) ,
+                 var obtained = runOrCatch( dupe_arr.setDifference(r.array(2.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -262,7 +262,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #20
                  //ExpectedOriginal: [2, 3]
-                 var expected = Arrays.asList(2, 3);
+                 var expected = r.array(2.0, 3.0);
                  
                  //Original: arr[1:3]
                  var obtained = runOrCatch( arr.slice(1, 3) ,
@@ -276,10 +276,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #20
                  //ExpectedOriginal: [2, 3]
-                 var expected = Arrays.asList(2, 3);
+                 var expected = r.array(2.0, 3.0);
                  
                  //Original: arr.slice(1, 3)
-                 var obtained = runOrCatch( arr.slice(1, 3) ,
+                 var obtained = runOrCatch( arr.slice(1.0, 3.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -290,10 +290,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #20
                  //ExpectedOriginal: [2, 3]
-                 var expected = Arrays.asList(2, 3);
+                 var expected = r.array(2.0, 3.0);
                  
                  //Original: arr.slice(1, 2, right_bound='closed')
-                 var obtained = runOrCatch( arr.slice(1, 2).optArg("right_bound", "closed") ,
+                 var obtained = runOrCatch( arr.slice(1.0, 2.0).optArg("right_bound", "closed") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -304,7 +304,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #21
                  //ExpectedOriginal: [1, 2]
-                 var expected = Arrays.asList(1, 2);
+                 var expected = r.array(1.0, 2.0);
                  
                  //Original: arr[:2]
                  var obtained = runOrCatch( arr.slice(0, 2) ,
@@ -318,10 +318,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #21
                  //ExpectedOriginal: [1, 2]
-                 var expected = Arrays.asList(1, 2);
+                 var expected = r.array(1.0, 2.0);
                  
                  //Original: arr.slice(0,2)
-                 var obtained = runOrCatch( arr.slice(0, 2) ,
+                 var obtained = runOrCatch( arr.slice(0.0, 2.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -332,7 +332,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #22
                  //ExpectedOriginal: [2, 3]
-                 var expected = Arrays.asList(2, 3);
+                 var expected = r.array(2.0, 3.0);
                  
                  //Original: arr[1:]
                  var obtained = runOrCatch( arr.slice(1, -1) ,
@@ -346,10 +346,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #22
                  //ExpectedOriginal: [2, 3]
-                 var expected = Arrays.asList(2, 3);
+                 var expected = r.array(2.0, 3.0);
                  
                  //Original: arr.slice(1)
-                 var obtained = runOrCatch( arr.slice(1) ,
+                 var obtained = runOrCatch( arr.slice(1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -360,10 +360,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #23
                  //ExpectedOriginal: [2]
-                 var expected = Arrays.asList(2);
+                 var expected = r.array(2.0);
                  
                  //Original: arr.slice(-2, -1)
-                 var obtained = runOrCatch( arr.slice(-2, -1) ,
+                 var obtained = runOrCatch( arr.slice(-2.0, -1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -374,10 +374,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #24
                  //ExpectedOriginal: [2, 3]
-                 var expected = Arrays.asList(2, 3);
+                 var expected = r.array(2.0, 3.0);
                  
                  //Original: arr.skip(1)
-                 var obtained = runOrCatch( arr.skip(1) ,
+                 var obtained = runOrCatch( arr.skip(1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -388,10 +388,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #25
                  //ExpectedOriginal: [3]
-                 var expected = Arrays.asList(3);
+                 var expected = r.array(3.0);
                  
                  //Original: arr.skip(2)
-                 var obtained = runOrCatch( arr.skip(2) ,
+                 var obtained = runOrCatch( arr.skip(2.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -402,10 +402,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #26
                  //ExpectedOriginal: []
-                 var expected = Arrays.asList();
+                 var expected = r.array();
                  
                  //Original: arr.skip(12)
-                 var obtained = runOrCatch( arr.skip(12) ,
+                 var obtained = runOrCatch( arr.skip(12.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -416,10 +416,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #27
                  //ExpectedOriginal: [1, 2]
-                 var expected = Arrays.asList(1, 2);
+                 var expected = r.array(1.0, 2.0);
                  
                  //Original: arr.limit(2)
-                 var obtained = runOrCatch( arr.limit(2) ,
+                 var obtained = runOrCatch( arr.limit(2.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -430,10 +430,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #28
                  //ExpectedOriginal: []
-                 var expected = Arrays.asList();
+                 var expected = r.array();
                  
                  //Original: arr.limit(0)
-                 var obtained = runOrCatch( arr.limit(0) ,
+                 var obtained = runOrCatch( arr.limit(0.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -444,10 +444,10 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #29
                  //ExpectedOriginal: [1, 2, 3]
-                 var expected = Arrays.asList(1, 2, 3);
+                 var expected = r.array(1.0, 2.0, 3.0);
                  
                  //Original: arr.limit(12)
-                 var obtained = runOrCatch( arr.limit(12) ,
+                 var obtained = runOrCatch( arr.limit(12.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -457,8 +457,8 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              
              {
                  //JavaQuery, transform/array.yaml, #30
-                 //ExpectedOriginal: [{'a': 1, 'b': 'a'}, {'a': 2, 'b': 'b'}, {'a': 3, 'b': 'c'}]
-                 var expected = Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"));
+                 //ExpectedOriginal: [{'b': 'a', 'a': 1}, {'b': 'b', 'a': 2}, {'b': 'c', 'a': 3}]
+                 var expected = r.array(r.hashMap("b", "a").with("a", 1.0), r.hashMap("b", "b").with("a", 2.0), r.hashMap("b", "c").with("a", 3.0));
                  
                  //Original: objArr.pluck('a', 'b')
                  var obtained = runOrCatch( objArr.pluck("a", "b") ,
@@ -472,7 +472,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #31
                  //ExpectedOriginal: [{'a': 1}, {'a': 2}, {'a': 3}]
-                 var expected = Arrays.asList(new MapObject().with("a", 1), new MapObject().with("a", 2), new MapObject().with("a", 3));
+                 var expected = r.array(r.hashMap("a", 1.0), r.hashMap("a", 2.0), r.hashMap("a", 3.0));
                  
                  //Original: objArr.pluck('a')
                  var obtained = runOrCatch( objArr.pluck("a") ,
@@ -486,7 +486,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              {
                  //JavaQuery, transform/array.yaml, #32
                  //ExpectedOriginal: [{}, {}, {}]
-                 var expected = Arrays.asList(new MapObject(), new MapObject(), new MapObject());
+                 var expected = r.array(r.hashMap(), r.hashMap(), r.hashMap());
                  
                  //Original: objArr.pluck()
                  var obtained = runOrCatch( objArr.pluck() ,
@@ -499,13 +499,13 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              //JavaDef, transform/array.yaml, #Templates.YamlTest+DefTest.
              //Original: wftst = objArr.union(objArr.pluck('a')).union(objArr.pluck('b')).union([{'a':null}])
              
-Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).union(Arrays.asList(new MapObject().with("a", null)));             
+Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).union(r.array(r.hashMap("a", null)));             
              TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #34
                  //ExpectedOriginal: ([{'a':1},{'a':2},{'a':3},{'a':1},{'a':2},{'a':3}])
-                 var expected = Arrays.asList(new MapObject().with("a", 1), new MapObject().with("a", 2), new MapObject().with("a", 3), new MapObject().with("a", 1), new MapObject().with("a", 2), new MapObject().with("a", 3));
+                 var expected = r.array(r.hashMap("a", 1.0), r.hashMap("a", 2.0), r.hashMap("a", 3.0), r.hashMap("a", 1.0), r.hashMap("a", 2.0), r.hashMap("a", 3.0));
                  
                  //Original: wftst.with_fields('a')
                  var obtained = runOrCatch( wftst.withFields("a") ,
@@ -519,7 +519,7 @@ Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).u
              {
                  //JavaQuery, transform/array.yaml, #35
                  //ExpectedOriginal: ([{'b':'a'},{'b':'b'},{'b':'c'},{'b':'a'},{'b':'b'},{'b':'c'}])
-                 var expected = Arrays.asList(new MapObject().with("b", "a"), new MapObject().with("b", "b"), new MapObject().with("b", "c"), new MapObject().with("b", "a"), new MapObject().with("b", "b"), new MapObject().with("b", "c"));
+                 var expected = r.array(r.hashMap("b", "a"), r.hashMap("b", "b"), r.hashMap("b", "c"), r.hashMap("b", "a"), r.hashMap("b", "b"), r.hashMap("b", "c"));
                  
                  //Original: wftst.with_fields('b')
                  var obtained = runOrCatch( wftst.withFields("b") ,
@@ -533,7 +533,7 @@ Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).u
              {
                  //JavaQuery, transform/array.yaml, #36
                  //ExpectedOriginal: ([{'a':1,'b':'a'},{'a':2,'b':'b'},{'a':3,'b':'c'}])
-                 var expected = Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"));
+                 var expected = r.array(r.hashMap("a", 1.0).with("b", "a"), r.hashMap("a", 2.0).with("b", "b"), r.hashMap("a", 3.0).with("b", "c"));
                  
                  //Original: wftst.with_fields('a', 'b')
                  var obtained = runOrCatch( wftst.withFields("a", "b") ,
@@ -547,7 +547,7 @@ Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).u
              {
                  //JavaQuery, transform/array.yaml, #37
                  //ExpectedOriginal: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-                 var expected = Arrays.asList(new MapObject(), new MapObject(), new MapObject(), new MapObject(), new MapObject(), new MapObject(), new MapObject(), new MapObject(), new MapObject(), new MapObject());
+                 var expected = r.array(r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap());
                  
                  //Original: wftst.with_fields()
                  var obtained = runOrCatch( wftst.withFields() ,
@@ -560,16 +560,16 @@ Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).u
              //JavaDef, transform/array.yaml, #Templates.YamlTest+DefTest.
              //Original: wftst2 = nestedObjArr.union(objArr.pluck({'b':'missing'})).union(nestedObjArr.pluck({'b':'c'}))
              
-Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b", "missing"))).union(nestedObjArr.pluck(new MapObject().with("b", "c")));             
+Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(r.hashMap("b", "missing"))).union(nestedObjArr.pluck(r.hashMap("b", "c")));             
              TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #39
                  //ExpectedOriginal: ([{'b':{'c':1}}, {'b':{'c':2}}, {'b':{'c':3}}, {'b':{'c':1}}, {'b':{'c':2}}, {'b':{'c':3}}])
-                 var expected = Arrays.asList(new MapObject().with("b", new MapObject().with("c", 1)), new MapObject().with("b", new MapObject().with("c", 2)), new MapObject().with("b", new MapObject().with("c", 3)), new MapObject().with("b", new MapObject().with("c", 1)), new MapObject().with("b", new MapObject().with("c", 2)), new MapObject().with("b", new MapObject().with("c", 3)));
+                 var expected = r.array(r.hashMap("b", r.hashMap("c", 1.0)), r.hashMap("b", r.hashMap("c", 2.0)), r.hashMap("b", r.hashMap("c", 3.0)), r.hashMap("b", r.hashMap("c", 1.0)), r.hashMap("b", r.hashMap("c", 2.0)), r.hashMap("b", r.hashMap("c", 3.0)));
                  
                  //Original: wftst2.with_fields({'b':'c'})
-                 var obtained = runOrCatch( wftst2.withFields(new MapObject().with("b", "c")) ,
+                 var obtained = runOrCatch( wftst2.withFields(r.hashMap("b", "c")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -580,10 +580,10 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #40
                  //ExpectedOriginal: err("ReqlQueryLogicError", "Invalid path argument `1`.", [])
-                 var expected = err("ReqlQueryLogicError", "Invalid path argument `1`.", Arrays.asList());
+                 var expected = err("ReqlQueryLogicError", "Invalid path argument `1`.", r.array());
                  
                  //Original: wftst.with_fields(1)
-                 var obtained = runOrCatch( wftst.withFields(1) ,
+                 var obtained = runOrCatch( wftst.withFields(1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -594,10 +594,10 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #41
                  //ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform has_fields on a non-object non-sequence `1`.", [])
-                 var expected = err("ReqlQueryLogicError", "Cannot perform has_fields on a non-object non-sequence `1`.", Arrays.asList());
+                 var expected = err("ReqlQueryLogicError", "Cannot perform has_fields on a non-object non-sequence `1`.", r.array());
                  
                  //Original: r.expr(1).with_fields()
-                 var obtained = runOrCatch( r.expr(1).withFields() ,
+                 var obtained = runOrCatch( r.expr(1.0).withFields() ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -608,7 +608,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #42
                  //ExpectedOriginal: [{}, {}, {}]
-                 var expected = Arrays.asList(new MapObject(), new MapObject(), new MapObject());
+                 var expected = r.array(r.hashMap(), r.hashMap(), r.hashMap());
                  
                  //Original: objArr.without('a', 'b')
                  var obtained = runOrCatch( objArr.without("a", "b") ,
@@ -622,7 +622,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #43
                  //ExpectedOriginal: [{'b': 'a'}, {'b': 'b'}, {'b': 'c'}]
-                 var expected = Arrays.asList(new MapObject().with("b", "a"), new MapObject().with("b", "b"), new MapObject().with("b", "c"));
+                 var expected = r.array(r.hashMap("b", "a"), r.hashMap("b", "b"), r.hashMap("b", "c"));
                  
                  //Original: objArr.without('a')
                  var obtained = runOrCatch( objArr.without("a") ,
@@ -635,8 +635,8 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              
              {
                  //JavaQuery, transform/array.yaml, #44
-                 //ExpectedOriginal: [{'a': 1, 'b': 'a'}, {'a': 2, 'b': 'b'}, {'a': 3, 'b': 'c'}]
-                 var expected = Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"));
+                 //ExpectedOriginal: [{'b': 'a', 'a': 1}, {'b': 'b', 'a': 2}, {'b': 'c', 'a': 3}]
+                 var expected = r.array(r.hashMap("b", "a").with("a", 1.0), r.hashMap("b", "b").with("a", 2.0), r.hashMap("b", "c").with("a", 3.0));
                  
                  //Original: objArr.without()
                  var obtained = runOrCatch( objArr.without() ,
@@ -650,10 +650,10 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #45
                  //ExpectedOriginal: [2, 3, 4]
-                 var expected = Arrays.asList(2, 3, 4);
+                 var expected = r.array(2.0, 3.0, 4.0);
                  
                  //Original: arr.map(lambda v: v + 1)
-                 var obtained = runOrCatch( arr.map(v => r.add(v, 1)) ,
+                 var obtained = runOrCatch( arr.map(v => r.add(v, 1.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -664,7 +664,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #46
                  //ExpectedOriginal: 6
-                 var expected = 6;
+                 var expected = 6.0;
                  
                  //Original: arr.reduce(lambda a, b: a + b)
                  var obtained = runOrCatch( arr.reduce((a, b) => r.add(a, b)) ,
@@ -678,7 +678,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #47
                  //ExpectedOriginal: 6
-                 var expected = 6;
+                 var expected = 6.0;
                  
                  //Original: arr.reduce(lambda a, b:a + b)
                  var obtained = runOrCatch( arr.reduce((a, b) => r.add(a, b)) ,
@@ -692,7 +692,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #48
                  //ExpectedOriginal: 12
-                 var expected = 12;
+                 var expected = 12.0;
                  
                  //Original: arr.union(arr).reduce(lambda a, b: a + b)
                  var obtained = runOrCatch( arr.union(arr).reduce((a, b) => r.add(a, b)) ,
@@ -706,7 +706,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #49
                  //ExpectedOriginal: 12
-                 var expected = 12;
+                 var expected = 12.0;
                  
                  //Original: arr.union(arr).reduce(lambda a, b:a + b)
                  var obtained = runOrCatch( arr.union(arr).reduce((a, b) => r.add(a, b)) ,
@@ -719,8 +719,8 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              
              {
                  //JavaQuery, transform/array.yaml, #50
-                 //ExpectedOriginal: [{'a': 2, 'b': 'b'}]
-                 var expected = Arrays.asList(new MapObject().with("a", 2).with("b", "b"));
+                 //ExpectedOriginal: [{'b': 'b', 'a': 2}]
+                 var expected = r.array(r.hashMap("b", "b").with("a", 2.0));
                  
                  //Original: objArr.filter(lambda row: row['b'] == 'b')
                  var obtained = runOrCatch( objArr.filter(row => r.eq(row.bracket("b"), "b")) ,
@@ -734,10 +734,10 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #51
                  //ExpectedOriginal: [1, 2, 1, 2, 1, 2]
-                 var expected = Arrays.asList(1, 2, 1, 2, 1, 2);
+                 var expected = r.array(1.0, 2.0, 1.0, 2.0, 1.0, 2.0);
                  
                  //Original: arr.concat_map(lambda v: [1,2])
-                 var obtained = runOrCatch( arr.concatMap(v => Arrays.asList(1, 2)) ,
+                 var obtained = runOrCatch( arr.concatMap(v => r.array(1.0, 2.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -748,10 +748,10 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #52
                  //ExpectedOriginal: [{'v': 1}, {'v2': 2}, {'v': 2}, {'v2': 3}, {'v': 3}, {'v2': 4}]
-                 var expected = Arrays.asList(new MapObject().with("v", 1), new MapObject().with("v2", 2), new MapObject().with("v", 2), new MapObject().with("v2", 3), new MapObject().with("v", 3), new MapObject().with("v2", 4));
+                 var expected = r.array(r.hashMap("v", 1.0), r.hashMap("v2", 2.0), r.hashMap("v", 2.0), r.hashMap("v2", 3.0), r.hashMap("v", 3.0), r.hashMap("v2", 4.0));
                  
                  //Original: arr.concat_map(lambda v: [{'v':v}, {'v2':v + 1}])
-                 var obtained = runOrCatch( arr.concatMap(v => Arrays.asList(new MapObject().with("v", v), new MapObject().with("v2", r.add(v, 1)))) ,
+                 var obtained = runOrCatch( arr.concatMap(v => r.array(r.hashMap("v", v), r.hashMap("v2", r.add(v, 1.0)))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -761,8 +761,8 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              
              {
                  //JavaQuery, transform/array.yaml, #53
-                 //ExpectedOriginal: [{'a': 1, 'b': 'a'}, {'a': 2, 'b': 'b'}, {'a': 3, 'b': 'c'}]
-                 var expected = Arrays.asList(new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"));
+                 //ExpectedOriginal: [{'b': 'a', 'a': 1}, {'b': 'b', 'a': 2}, {'b': 'c', 'a': 3}]
+                 var expected = r.array(r.hashMap("b", "a").with("a", 1.0), r.hashMap("b", "b").with("a", 2.0), r.hashMap("b", "c").with("a", 3.0));
                  
                  //Original: objArr.order_by('b')
                  var obtained = runOrCatch( objArr.orderBy("b") ,
@@ -775,8 +775,8 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              
              {
                  //JavaQuery, transform/array.yaml, #54
-                 //ExpectedOriginal: [{'a': 3, 'b': 'c'}, {'a': 2, 'b': 'b'}, {'a': 1, 'b': 'a'}]
-                 var expected = Arrays.asList(new MapObject().with("a", 3).with("b", "c"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 1).with("b", "a"));
+                 //ExpectedOriginal: [{'b': 'c', 'a': 3}, {'b': 'b', 'a': 2}, {'b': 'a', 'a': 1}]
+                 var expected = r.array(r.hashMap("b", "c").with("a", 3.0), r.hashMap("b", "b").with("a", 2.0), r.hashMap("b", "a").with("a", 1.0));
                  
                  //Original: objArr.order_by(r.desc('b'))
                  var obtained = runOrCatch( objArr.orderBy(r.desc("b")) ,
@@ -790,10 +790,10 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #55
                  //ExpectedOriginal: [{'-a': 1}, {'-a': 2}]
-                 var expected = Arrays.asList(new MapObject().with("-a", 1), new MapObject().with("-a", 2));
+                 var expected = r.array(r.hashMap("-a", 1.0), r.hashMap("-a", 2.0));
                  
                  //Original: r.expr([{'-a':1},{'-a':2}]).order_by('-a')
-                 var obtained = runOrCatch( r.expr(Arrays.asList(new MapObject().with("-a", 1), new MapObject().with("-a", 2))).orderBy("-a") ,
+                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("-a", 1.0), r.hashMap("-a", 2.0))).orderBy("-a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -804,10 +804,10 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #56
                  //ExpectedOriginal: [1, 2, 3, 4]
-                 var expected = Arrays.asList(1, 2, 3, 4);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0);
                  
                  //Original: r.expr([1,1,2,2,2,3,4]).distinct()
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 1, 2, 2, 2, 3, 4)).distinct() ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 1.0, 2.0, 2.0, 2.0, 3.0, 4.0)).distinct() ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -818,7 +818,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #57
                  //ExpectedOriginal: 3
-                 var expected = 3;
+                 var expected = 3.0;
                  
                  //Original: objArr.count()
                  var obtained = runOrCatch( objArr.count() ,
@@ -831,8 +831,8 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              
              {
                  //JavaQuery, transform/array.yaml, #58
-                 //ExpectedOriginal: [1, 2, 3, {'a': 1, 'b': 'a'}, {'a': 2, 'b': 'b'}, {'a': 3, 'b': 'c'}]
-                 var expected = Arrays.asList(1, 2, 3, new MapObject().with("a", 1).with("b", "a"), new MapObject().with("a", 2).with("b", "b"), new MapObject().with("a", 3).with("b", "c"));
+                 //ExpectedOriginal: [1, 2, 3, {'b': 'a', 'a': 1}, {'b': 'b', 'a': 2}, {'b': 'c', 'a': 3}]
+                 var expected = r.array(1.0, 2.0, 3.0, r.hashMap("b", "a").with("a", 1.0), r.hashMap("b", "b").with("a", 2.0), r.hashMap("b", "c").with("a", 3.0));
                  
                  //Original: arr.union(objArr)
                  var obtained = runOrCatch( arr.union(objArr) ,
@@ -846,10 +846,10 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #59
                  //ExpectedOriginal: 2
-                 var expected = 2;
+                 var expected = 2.0;
                  
                  //Original: arr[1]
-                 var obtained = runOrCatch( arr.bracket(1) ,
+                 var obtained = runOrCatch( arr.bracket(1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -860,10 +860,10 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #59
                  //ExpectedOriginal: 2
-                 var expected = 2;
+                 var expected = 2.0;
                  
                  //Original: arr.nth(1)
-                 var obtained = runOrCatch( arr.nth(1) ,
+                 var obtained = runOrCatch( arr.nth(1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -874,10 +874,10 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #60
                  //ExpectedOriginal: 1
-                 var expected = 1;
+                 var expected = 1.0;
                  
                  //Original: arr[0]
-                 var obtained = runOrCatch( arr.bracket(0) ,
+                 var obtained = runOrCatch( arr.bracket(0.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -891,7 +891,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = true;
                  
                  //Original: r.expr([]).is_empty()
-                 var obtained = runOrCatch( r.expr(Arrays.asList()).isEmpty() ,
+                 var obtained = runOrCatch( r.expr(r.array()).isEmpty() ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -919,7 +919,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = true;
                  
                  //Original: arr.contains(2)
-                 var obtained = runOrCatch( arr.contains(2) ,
+                 var obtained = runOrCatch( arr.contains(2.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -933,7 +933,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = true;
                  
                  //Original: arr.contains(2, 3)
-                 var obtained = runOrCatch( arr.contains(2, 3) ,
+                 var obtained = runOrCatch( arr.contains(2.0, 3.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -947,7 +947,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = false;
                  
                  //Original: arr.contains(4)
-                 var obtained = runOrCatch( arr.contains(4) ,
+                 var obtained = runOrCatch( arr.contains(4.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -961,7 +961,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = false;
                  
                  //Original: arr.contains(2, 4)
-                 var obtained = runOrCatch( arr.contains(2, 4) ,
+                 var obtained = runOrCatch( arr.contains(2.0, 4.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -975,7 +975,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = false;
                  
                  //Original: arr.contains(2, 2)
-                 var obtained = runOrCatch( arr.contains(2, 2) ,
+                 var obtained = runOrCatch( arr.contains(2.0, 2.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -989,7 +989,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = true;
                  
                  //Original: arr.union(arr).contains(2, 2)
-                 var obtained = runOrCatch( arr.union(arr).contains(2, 2) ,
+                 var obtained = runOrCatch( arr.union(arr).contains(2.0, 2.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1003,7 +1003,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = true;
                  
                  //Original: arr.contains(lambda x:x == 2)
-                 var obtained = runOrCatch( arr.contains(x => r.eq(x, 2)) ,
+                 var obtained = runOrCatch( arr.contains(x => r.eq(x, 2.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1017,7 +1017,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = true;
                  
                  //Original: arr.contains(lambda x:x == 2, lambda x:x==3)
-                 var obtained = runOrCatch( arr.contains(x => r.eq(x, 2), x => r.eq(x, 3)) ,
+                 var obtained = runOrCatch( arr.contains(x => r.eq(x, 2.0), x => r.eq(x, 3.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1031,7 +1031,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = false;
                  
                  //Original: arr.contains(lambda x:x == 4)
-                 var obtained = runOrCatch( arr.contains(x => r.eq(x, 4)) ,
+                 var obtained = runOrCatch( arr.contains(x => r.eq(x, 4.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1045,7 +1045,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = false;
                  
                  //Original: arr.contains(lambda x:x == 2, lambda x:x==4)
-                 var obtained = runOrCatch( arr.contains(x => r.eq(x, 2), x => r.eq(x, 4)) ,
+                 var obtained = runOrCatch( arr.contains(x => r.eq(x, 2.0), x => r.eq(x, 4.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1059,7 +1059,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = false;
                  
                  //Original: arr.contains(lambda x:x == 2, lambda x:x==2)
-                 var obtained = runOrCatch( arr.contains(x => r.eq(x, 2), x => r.eq(x, 2)) ,
+                 var obtained = runOrCatch( arr.contains(x => r.eq(x, 2.0), x => r.eq(x, 2.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1073,7 +1073,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  var expected = true;
                  
                  //Original: arr.union(arr).contains(lambda x:x == 2, lambda x:x==2)
-                 var obtained = runOrCatch( arr.union(arr).contains(x => r.eq(x, 2), x => r.eq(x, 2)) ,
+                 var obtained = runOrCatch( arr.union(arr).contains(x => r.eq(x, 2.0), x => r.eq(x, 2.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1084,10 +1084,10 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #75
                  //ExpectedOriginal: [1, 3]
-                 var expected = Arrays.asList(1, 3);
+                 var expected = r.array(1.0, 3.0);
                  
                  //Original: r.expr([{'a':1},{'b':2},{'a':3,'c':4}])['a']
-                 var obtained = runOrCatch( r.expr(Arrays.asList(new MapObject().with("a", 1), new MapObject().with("b", 2), new MapObject().with("a", 3).with("c", 4))).bracket("a") ,
+                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1.0), r.hashMap("b", 2.0), r.hashMap("a", 3.0).with("c", 4.0))).bracket("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1098,10 +1098,10 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
              {
                  //JavaQuery, transform/array.yaml, #76
                  //ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", [])
-                 var expected = err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", Arrays.asList());
+                 var expected = err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", r.array());
                  
                  //Original: r.expr([{'a':1},'a',{'b':2},{'a':3,'c':4}])['a']
-                 var obtained = runOrCatch( r.expr(Arrays.asList(new MapObject().with("a", 1), "a", new MapObject().with("b", 2), new MapObject().with("a", 3).with("c", 4))).bracket("a") ,
+                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1.0), "a", r.hashMap("b", 2.0), r.hashMap("a", 3.0).with("c", 4.0))).bracket("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);

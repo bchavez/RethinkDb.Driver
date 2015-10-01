@@ -4,16 +4,16 @@ DefsAndTests:
   TestFile: regression/354.yaml
   TestNum: 1
   Original: arr = r.expr([1,2,3,4,5])
-  Java: MakeArray arr = (MakeArray) r.expr(Arrays.asList(1, 2, 3, 4, 5));
+  Java: MakeArray arr = (MakeArray) r.expr(r.array(1.0, 2.0, 3.0, 4.0, 5.0));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/354.yaml
   TestNum: 2
   Original: arr.skip(2)
-  Java: arr.skip(2)
+  Java: arr.skip(2.0)
   ExpectedOriginal: '[3, 4, 5]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(3, 4, 5)
+  ExpectedJava: r.array(3.0, 4.0, 5.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/354.yaml
@@ -22,25 +22,25 @@ DefsAndTests:
   Java: arr.skip("a")
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList(1))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/354.yaml
   TestNum: 4
   Original: arr.skip([1,2,3])
-  Java: arr.skip(Arrays.asList(1, 2, 3))
+  Java: arr.skip(r.array(1.0, 2.0, 3.0))
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found ARRAY.", [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found ARRAY.", Arrays.asList(1))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found ARRAY.", r.array(1.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/354.yaml
   TestNum: 5
   Original: arr.skip({}).count()
-  Java: arr.skip(new MapObject()).count()
+  Java: arr.skip(r.hashMap()).count()
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found OBJECT.", [0, 1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found OBJECT.", Arrays.asList(0, 1))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found OBJECT.", r.array(0.0, 1.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/354.yaml
@@ -49,5 +49,5 @@ DefsAndTests:
   Java: arr.skip(null)
   ExpectedOriginal: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", Arrays.asList(1))
+  ExpectedJava: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(1.0))
   RunOpts: []

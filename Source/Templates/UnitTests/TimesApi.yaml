@@ -16,13 +16,13 @@ DefsAndTests:
   TestFile: times/api.yaml
   TestNum: 3
   Original: t2 = r.epoch_time(rt1 + 1000)
-  Java: EpochTime t2 = (EpochTime) r.epochTime(r.add(rt1, 1000));
+  Java: EpochTime t2 = (EpochTime) r.epochTime(r.add(rt1, 1000.0));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
   TestNum: 4
   Original: (t1 + 1000).to_epoch_time()
-  Java: r.add(t1, 1000).toEpochTime()
+  Java: r.add(t1, 1000.0).toEpochTime()
   ExpectedOriginal: (1375148296.681)
   ExpectedType: Double
   ExpectedJava: 1375148296.681
@@ -31,7 +31,7 @@ DefsAndTests:
   TestFile: times/api.yaml
   TestNum: 5
   Original: (t1 - 1000).to_epoch_time()
-  Java: r.sub(t1, 1000).toEpochTime()
+  Java: r.sub(t1, 1000.0).toEpochTime()
   ExpectedOriginal: (1375146296.681)
   ExpectedType: Double
   ExpectedJava: 1375146296.681
@@ -40,10 +40,10 @@ DefsAndTests:
   TestFile: times/api.yaml
   TestNum: 6
   Original: (t1 - (t1 - 1000))
-  Java: r.sub(t1, r.sub(t1, 1000))
+  Java: r.sub(t1, r.sub(t1, 1000.0))
   ExpectedOriginal: 1000
-  ExpectedType: Integer
-  ExpectedJava: 1000
+  ExpectedType: Double
+  ExpectedJava: 1000.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
@@ -157,7 +157,7 @@ DefsAndTests:
   TestFile: times/api.yaml
   TestNum: 19
   Original: t1.during(t1, t1 + 1000)
-  Java: t1.during(t1, r.add(t1, 1000))
+  Java: t1.during(t1, r.add(t1, 1000.0))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -166,7 +166,7 @@ DefsAndTests:
   TestFile: times/api.yaml
   TestNum: 20
   Original: t1.during(t1, t1 + 1000, left_bound='open')
-  Java: t1.during(t1, r.add(t1, 1000)).optArg("left_bound", "open")
+  Java: t1.during(t1, r.add(t1, 1000.0)).optArg("left_bound", "open")
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -195,8 +195,8 @@ DefsAndTests:
   Original: t1.date().to_epoch_time()
   Java: t1.date().toEpochTime()
   ExpectedOriginal: 1375142400
-  ExpectedType: Integer
-  ExpectedJava: 1375142400
+  ExpectedType: Double
+  ExpectedJava: 1375142400.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
@@ -213,8 +213,8 @@ DefsAndTests:
   Original: t1.year()
   Java: t1.year()
   ExpectedOriginal: 2013
-  ExpectedType: Integer
-  ExpectedJava: 2013
+  ExpectedType: Double
+  ExpectedJava: 2013.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
@@ -222,8 +222,8 @@ DefsAndTests:
   Original: t1.month()
   Java: t1.month()
   ExpectedOriginal: 7
-  ExpectedType: Integer
-  ExpectedJava: 7
+  ExpectedType: Double
+  ExpectedJava: 7.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
@@ -231,8 +231,8 @@ DefsAndTests:
   Original: t1.day()
   Java: t1.day()
   ExpectedOriginal: 30
-  ExpectedType: Integer
-  ExpectedJava: 30
+  ExpectedType: Double
+  ExpectedJava: 30.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
@@ -240,8 +240,8 @@ DefsAndTests:
   Original: t1.day_of_week()
   Java: t1.dayOfWeek()
   ExpectedOriginal: 2
-  ExpectedType: Integer
-  ExpectedJava: 2
+  ExpectedType: Double
+  ExpectedJava: 2.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
@@ -249,8 +249,8 @@ DefsAndTests:
   Original: t1.day_of_year()
   Java: t1.dayOfYear()
   ExpectedOriginal: 211
-  ExpectedType: Integer
-  ExpectedJava: 211
+  ExpectedType: Double
+  ExpectedJava: 211.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
@@ -258,8 +258,8 @@ DefsAndTests:
   Original: t1.hours()
   Java: t1.hours()
   ExpectedOriginal: 1
-  ExpectedType: Integer
-  ExpectedJava: 1
+  ExpectedType: Double
+  ExpectedJava: 1.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
@@ -267,8 +267,8 @@ DefsAndTests:
   Original: t1.minutes()
   Java: t1.minutes()
   ExpectedOriginal: 21
-  ExpectedType: Integer
-  ExpectedJava: 21
+  ExpectedType: Double
+  ExpectedJava: 21.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
@@ -283,7 +283,7 @@ DefsAndTests:
   TestFile: times/api.yaml
   TestNum: 33
   Original: r.time(2013, r.july, 29, 23, 30, 0.1, "-07:00").to_epoch_time()
-  Java: r.time(2013, r.july(), 29, 23, 30, 0.1, "-07:00").toEpochTime()
+  Java: r.time(2013.0, r.july(), 29.0, 23.0, 30.0, 0.1, "-07:00").toEpochTime()
   ExpectedOriginal: (1375165800.1)
   ExpectedType: Double
   ExpectedJava: 1375165800.1
@@ -292,7 +292,7 @@ DefsAndTests:
   TestFile: times/api.yaml
   TestNum: 34
   Original: r.time(2013, r.july, 29, 23, 30, 0.1, "-07:00").timezone()
-  Java: r.time(2013, r.july(), 29, 23, 30, 0.1, "-07:00").timezone()
+  Java: r.time(2013.0, r.july(), 29.0, 23.0, 30.0, 0.1, "-07:00").timezone()
   ExpectedOriginal: ("-07:00")
   ExpectedType: String
   ExpectedJava: '"-07:00"'
@@ -301,52 +301,52 @@ DefsAndTests:
   TestFile: times/api.yaml
   TestNum: 35
   Original: r.time(2013, r.july, 29, 23, 30, 0.1).to_epoch_time()
-  Java: r.time(2013, r.july(), 29, 23, 30, 0.1).toEpochTime()
+  Java: r.time(2013.0, r.july(), 29.0, 23.0, 30.0, 0.1).toEpochTime()
   ExpectedOriginal: err("ReqlQueryLogicError", "Got 6 arguments to TIME (expected 4 or 7).", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Got 6 arguments to TIME (expected 4 or 7).", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Got 6 arguments to TIME (expected 4 or 7).", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
   TestNum: 36
   Original: r.time(2013, r.july, 29, 23, 30, 0.1).timezone()
-  Java: r.time(2013, r.july(), 29, 23, 30, 0.1).timezone()
+  Java: r.time(2013.0, r.july(), 29.0, 23.0, 30.0, 0.1).timezone()
   ExpectedOriginal: err("ReqlQueryLogicError", "Got 6 arguments to TIME (expected 4 or 7).", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Got 6 arguments to TIME (expected 4 or 7).", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Got 6 arguments to TIME (expected 4 or 7).", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
   TestNum: 37
   Original: r.time(2013, r.july, 29, 23, 30).to_epoch_time()
-  Java: r.time(2013, r.july(), 29, 23, 30).toEpochTime()
+  Java: r.time(2013.0, r.july(), 29.0, 23.0, 30.0).toEpochTime()
   ExpectedOriginal: err("ReqlQueryLogicError", "Got 5 arguments to TIME (expected 4 or 7).", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Got 5 arguments to TIME (expected 4 or 7).", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Got 5 arguments to TIME (expected 4 or 7).", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
   TestNum: 38
   Original: r.time(2013, r.july, 29, 23).to_epoch_time()
-  Java: r.time(2013, r.july(), 29, 23).toEpochTime()
+  Java: r.time(2013.0, r.july(), 29.0, 23.0).toEpochTime()
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
   TestNum: 39
   Original: r.time(2013, r.july, 29, "-07:00").to_epoch_time()
-  Java: r.time(2013, r.july(), 29, "-07:00").toEpochTime()
+  Java: r.time(2013.0, r.july(), 29.0, "-07:00").toEpochTime()
   ExpectedOriginal: 1375081200
-  ExpectedType: Integer
-  ExpectedJava: 1375081200
+  ExpectedType: Double
+  ExpectedJava: 1375081200.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
   TestNum: 40
   Original: r.time(2013, r.july, 29, "-07:00").timezone()
-  Java: r.time(2013, r.july(), 29, "-07:00").timezone()
+  Java: r.time(2013.0, r.july(), 29.0, "-07:00").timezone()
   ExpectedOriginal: ("-07:00")
   ExpectedType: String
   ExpectedJava: '"-07:00"'
@@ -357,14 +357,14 @@ DefsAndTests:
   Original: r.iso8601("2013-07-30T20:56:05-07:00").to_epoch_time()
   Java: r.iso8601("2013-07-30T20:56:05-07:00").toEpochTime()
   ExpectedOriginal: 1375242965
-  ExpectedType: Integer
-  ExpectedJava: 1375242965
+  ExpectedType: Double
+  ExpectedJava: 1375242965.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
   TestNum: 44
   Original: r.epoch_time(1375242965).in_timezone("-07:00").to_iso8601()
-  Java: r.epochTime(1375242965).inTimezone("-07:00").toIso8601()
+  Java: r.epochTime(1375242965.0).inTimezone("-07:00").toIso8601()
   ExpectedOriginal: ("2013-07-30T20:56:05-07:00")
   ExpectedType: String
   ExpectedJava: '"2013-07-30T20:56:05-07:00"'
@@ -384,8 +384,8 @@ DefsAndTests:
   Original: (r.now() - r.now())
   Java: r.sub(r.now(), r.now())
   ExpectedOriginal: 0
-  ExpectedType: Integer
-  ExpectedJava: 0
+  ExpectedType: Double
+  ExpectedJava: 0.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
@@ -394,7 +394,7 @@ DefsAndTests:
   Java: r.iso8601("2013-07-30T20:56:05").toIso8601()
   ExpectedOriginal: err("ReqlQueryLogicError", "ISO 8601 string has no time zone, and no default time zone was provided.", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "ISO 8601 string has no time zone, and no default time zone was provided.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "ISO 8601 string has no time zone, and no default time zone was provided.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
@@ -409,17 +409,17 @@ DefsAndTests:
   TestFile: times/api.yaml
   TestNum: 49
   Original: r.expr([r.monday, r.tuesday, r.wednesday, r.thursday, r.friday, r.saturday, r.sunday])
-  Java: r.expr(Arrays.asList(r.monday(), r.tuesday(), r.wednesday(), r.thursday(), r.friday(), r.saturday(), r.sunday()))
+  Java: r.expr(r.array(r.monday(), r.tuesday(), r.wednesday(), r.thursday(), r.friday(), r.saturday(), r.sunday()))
   ExpectedOriginal: ([1, 2, 3, 4, 5, 6, 7])
   ExpectedType: List
-  ExpectedJava: Arrays.asList(1, 2, 3, 4, 5, 6, 7)
+  ExpectedJava: r.array(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
   TestNum: 50
   Original: r.expr([r.january, r.february, r.march, r.april, r.may, r.june, r.july, r.august, r.september, r.october, r.november, r.december])
-  Java: r.expr(Arrays.asList(r.january(), r.february(), r.march(), r.april(), r.may(), r.june(), r.july(), r.august(), r.september(), r.october(), r.november(), r.december()))
+  Java: r.expr(r.array(r.january(), r.february(), r.march(), r.april(), r.may(), r.june(), r.july(), r.august(), r.september(), r.october(), r.november(), r.december()))
   ExpectedOriginal: ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
   ExpectedType: List
-  ExpectedJava: Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+  ExpectedJava: r.array(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0)
   RunOpts: []

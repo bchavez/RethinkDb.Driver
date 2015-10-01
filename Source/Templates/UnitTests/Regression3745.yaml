@@ -6,10 +6,10 @@ DefsAndTests:
   TestFile: regression/3745.yaml
   TestNum: 1
   Original: tbl.insert([ {'id':0, 'a':5}, {'id':1, 'a':6} ])
-  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 0).with("a", 5), new MapObject().with("id", 1).with("a", 6)))
+  Java: tbl.insert(r.array(r.hashMap("id", 0.0).with("a", 5.0), r.hashMap("id", 1.0).with("a", 6.0)))
   ExpectedOriginal: partial({'inserted':2})
   ExpectedType: Partial
-  ExpectedJava: partial(new MapObject().with("inserted", 2))
+  ExpectedJava: partial(r.hashMap("inserted", 2.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3745.yaml
@@ -18,13 +18,13 @@ DefsAndTests:
   Java: tbl.reduce((x, y) -> r.object("a", r.add(x.bracket("a"), y.bracket("a"))))
   ExpectedOriginal: ({'a':11})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("a", 11)
+  ExpectedJava: r.hashMap("a", 11.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/3745.yaml
   TestNum: 3
   Original: tbl.reduce(lambda x,y:r.expr(0)[0])
-  Java: tbl.reduce((x, y) -> r.expr(0).bracket(0))
+  Java: tbl.reduce((x, y) -> r.expr(0.0).bracket(0.0))
   ExpectedOriginal: err('ReqlQueryLogicError','Cannot convert NUMBER to SEQUENCE')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot convert NUMBER to SEQUENCE")

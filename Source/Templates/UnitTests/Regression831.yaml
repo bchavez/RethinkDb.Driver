@@ -6,8 +6,8 @@ DefsAndTests:
   TestFile: regression/831.yaml
   TestNum: 1
   Original: tbl.insert([True, True])
-  Java: tbl.insert(Arrays.asList(true, true))
+  Java: tbl.insert(r.array(true, true))
   ExpectedOriginal: ({'first_error':'Expected type OBJECT but found BOOL.', 'skipped':0, 'deleted':0, 'unchanged':0, 'errors':2, 'replaced':0, 'inserted':0})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("first_error", "Expected type OBJECT but found BOOL.").with("skipped", 0).with("deleted", 0).with("unchanged", 0).with("errors", 2).with("replaced", 0).with("inserted", 0)
+  ExpectedJava: r.hashMap("first_error", "Expected type OBJECT but found BOOL.").with("skipped", 0.0).with("deleted", 0.0).with("unchanged", 0.0).with("errors", 2.0).with("replaced", 0.0).with("inserted", 0.0)
   RunOpts: []

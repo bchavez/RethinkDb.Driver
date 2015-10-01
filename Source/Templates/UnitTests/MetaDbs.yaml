@@ -7,7 +7,7 @@ DefsAndTests:
   Java: r.dbList()
   ExpectedOriginal: bag(['rethinkdb', 'test'])
   ExpectedType: Bag
-  ExpectedJava: bag(Arrays.asList("rethinkdb", "test"))
+  ExpectedJava: bag(r.array("rethinkdb", "test"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -16,7 +16,7 @@ DefsAndTests:
   Java: r.dbCreate("a")
   ExpectedOriginal: partial({'dbs_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(new MapObject().with("dbs_created", 1))
+  ExpectedJava: partial(r.hashMap("dbs_created", 1.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -25,7 +25,7 @@ DefsAndTests:
   Java: r.dbCreate("b")
   ExpectedOriginal: partial({'dbs_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(new MapObject().with("dbs_created", 1))
+  ExpectedJava: partial(r.hashMap("dbs_created", 1.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -34,16 +34,16 @@ DefsAndTests:
   Java: r.dbList()
   ExpectedOriginal: bag(['rethinkdb', 'a', 'b', 'test'])
   ExpectedType: Bag
-  ExpectedJava: bag(Arrays.asList("rethinkdb", "a", "b", "test"))
+  ExpectedJava: bag(r.array("rethinkdb", "a", "b", "test"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
   TestNum: 5
   Original: r.db('a').config()
   Java: r.db("a").config()
-  ExpectedOriginal: '{''name'': ''a'', ''uuid'': uuid()}'
+  ExpectedOriginal: '{''uuid'': uuid(), ''name'': ''a''}'
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("name", "a").with("uuid", uuid())
+  ExpectedJava: r.hashMap("uuid", uuid()).with("name", "a")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -52,7 +52,7 @@ DefsAndTests:
   Java: r.dbDrop("b")
   ExpectedOriginal: partial({'dbs_dropped':1})
   ExpectedType: Partial
-  ExpectedJava: partial(new MapObject().with("dbs_dropped", 1))
+  ExpectedJava: partial(r.hashMap("dbs_dropped", 1.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -61,7 +61,7 @@ DefsAndTests:
   Java: r.dbList()
   ExpectedOriginal: bag(['rethinkdb', 'a', 'test'])
   ExpectedType: Bag
-  ExpectedJava: bag(Arrays.asList("rethinkdb", "a", "test"))
+  ExpectedJava: bag(r.array("rethinkdb", "a", "test"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -70,7 +70,7 @@ DefsAndTests:
   Java: r.dbDrop("a")
   ExpectedOriginal: partial({'dbs_dropped':1})
   ExpectedType: Partial
-  ExpectedJava: partial(new MapObject().with("dbs_dropped", 1))
+  ExpectedJava: partial(r.hashMap("dbs_dropped", 1.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -79,7 +79,7 @@ DefsAndTests:
   Java: r.dbList()
   ExpectedOriginal: bag(['rethinkdb', 'test'])
   ExpectedType: Bag
-  ExpectedJava: bag(Arrays.asList("rethinkdb", "test"))
+  ExpectedJava: bag(r.array("rethinkdb", "test"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -88,7 +88,7 @@ DefsAndTests:
   Java: r.dbCreate("bar")
   ExpectedOriginal: partial({'dbs_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(new MapObject().with("dbs_created", 1))
+  ExpectedJava: partial(r.hashMap("dbs_created", 1.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -97,7 +97,7 @@ DefsAndTests:
   Java: r.dbCreate("bar")
   ExpectedOriginal: err('ReqlOpFailedError', 'Database `bar` already exists.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlOpFailedError", "Database `bar` already exists.", Arrays.asList(0))
+  ExpectedJava: err("ReqlOpFailedError", "Database `bar` already exists.", r.array(0.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -106,7 +106,7 @@ DefsAndTests:
   Java: r.dbDrop("bar")
   ExpectedOriginal: partial({'dbs_dropped':1})
   ExpectedType: Partial
-  ExpectedJava: partial(new MapObject().with("dbs_dropped", 1))
+  ExpectedJava: partial(r.hashMap("dbs_dropped", 1.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -115,5 +115,5 @@ DefsAndTests:
   Java: r.dbDrop("bar")
   ExpectedOriginal: err('ReqlOpFailedError', 'Database `bar` does not exist.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlOpFailedError", "Database `bar` does not exist.", Arrays.asList(0))
+  ExpectedJava: err("ReqlOpFailedError", "Database `bar` does not exist.", r.array(0.0))
   RunOpts: []

@@ -6,136 +6,136 @@ DefsAndTests:
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 1
   Original: tbl.insert({'id':0}, return_vals=True).pluck('changes', 'first_error')
-  Java: tbl.insert(new MapObject().with("id", 0)).optArg("return_vals", true).pluck("changes", "first_error")
+  Java: tbl.insert(r.hashMap("id", 0.0)).optArg("return_vals", true).pluck("changes", "first_error")
   ExpectedOriginal: err("ReqlQueryLogicError", "Error:"+" encountered obsolete optarg `return_vals`.  Use `return_changes` instead.", [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Error:" + " encountered obsolete optarg `return_vals`.  Use `return_changes` instead.", Arrays.asList(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Error:" + " encountered obsolete optarg `return_vals`.  Use `return_changes` instead.", r.array(0.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 2
   Original: tbl.insert({'id':0}, return_changes=True).pluck('changes', 'first_error')
-  Java: tbl.insert(new MapObject().with("id", 0)).optArg("return_changes", true).pluck("changes", "first_error")
+  Java: tbl.insert(r.hashMap("id", 0.0)).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[{'old_val':null,'new_val':{'id':0}}]})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("changes", Arrays.asList(new MapObject().with("old_val", null).with("new_val", new MapObject().with("id", 0))))
+  ExpectedJava: r.hashMap("changes", r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 0.0))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 3
   Original: tbl.insert({'id':0}, return_changes=True).pluck('changes', 'first_error')
-  Java: tbl.insert(new MapObject().with("id", 0)).optArg("return_changes", true).pluck("changes", "first_error")
+  Java: tbl.insert(r.hashMap("id", 0.0)).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[], 'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}"})
   ExpectedType: Map
-  ExpectedJava: 'new MapObject().with("changes", Arrays.asList()).with("first_error", "Duplicate primary key `id`:\n{\n	\"id\":	0\n}\n{\n	\"id\":	0\n}")'
+  ExpectedJava: 'r.hashMap("changes", r.array()).with("first_error", "Duplicate primary key `id`:\n{\n	\"id\":	0\n}\n{\n	\"id\":	0\n}")'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 4
   Original: tbl.insert({'id':0}, return_changes='always').pluck('changes', 'first_error')
-  Java: tbl.insert(new MapObject().with("id", 0)).optArg("return_changes", "always").pluck("changes", "first_error")
+  Java: tbl.insert(r.hashMap("id", 0.0)).optArg("return_changes", "always").pluck("changes", "first_error")
   ExpectedOriginal: ({'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}",'changes':[{'old_val':{'id':0},'new_val':{'id':0}}]})
   ExpectedType: Map
-  ExpectedJava: 'new MapObject().with("first_error", "Duplicate primary key `id`:\n{\n	\"id\":	0\n}\n{\n	\"id\":	0\n}").with("changes", Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 0)).with("new_val", new MapObject().with("id", 0))))'
+  ExpectedJava: 'r.hashMap("first_error", "Duplicate primary key `id`:\n{\n	\"id\":	0\n}\n{\n	\"id\":	0\n}").with("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0.0)).with("new_val", r.hashMap("id", 0.0))))'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 5
   Original: tbl.insert([{'id':1}], return_changes=True)
-  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 1))).optArg("return_changes", true)
+  Java: tbl.insert(r.array(r.hashMap("id", 1.0))).optArg("return_changes", true)
   ExpectedOriginal: ({'changes':[{'new_val':{'id':1},'old_val':null}], 'errors':0, 'deleted':0, 'unchanged':0, 'skipped':0, 'replaced':0, 'inserted':1})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("changes", Arrays.asList(new MapObject().with("new_val", new MapObject().with("id", 1)).with("old_val", null))).with("errors", 0).with("deleted", 0).with("unchanged", 0).with("skipped", 0).with("replaced", 0).with("inserted", 1)
+  ExpectedJava: r.hashMap("changes", r.array(r.hashMap("new_val", r.hashMap("id", 1.0)).with("old_val", null))).with("errors", 0.0).with("deleted", 0.0).with("unchanged", 0.0).with("skipped", 0.0).with("replaced", 0.0).with("inserted", 1.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 6
   Original: tbl.insert([{'id':0}], return_changes=True).pluck('changes', 'first_error')
-  Java: tbl.insert(Arrays.asList(new MapObject().with("id", 0))).optArg("return_changes", true).pluck("changes", "first_error")
+  Java: tbl.insert(r.array(r.hashMap("id", 0.0))).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[],'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}"})
   ExpectedType: Map
-  ExpectedJava: 'new MapObject().with("changes", Arrays.asList()).with("first_error", "Duplicate primary key `id`:\n{\n	\"id\":	0\n}\n{\n	\"id\":	0\n}")'
+  ExpectedJava: 'r.hashMap("changes", r.array()).with("first_error", "Duplicate primary key `id`:\n{\n	\"id\":	0\n}\n{\n	\"id\":	0\n}")'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 7
   Original: tbl.get(0).update({'x':1}, return_changes=True).pluck('changes', 'first_error')
-  Java: tbl.get(0).update(new MapObject().with("x", 1)).optArg("return_changes", true).pluck("changes", "first_error")
+  Java: tbl.get(0.0).update(r.hashMap("x", 1.0)).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[{'old_val':{'id':0},'new_val':{'id':0,'x':1}}]})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("changes", Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 0)).with("new_val", new MapObject().with("id", 0).with("x", 1))))
+  ExpectedJava: r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0.0)).with("new_val", r.hashMap("id", 0.0).with("x", 1.0))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 8
   Original: tbl.get(0).update({'x':r.error("a")}, return_changes=True).pluck('changes', 'first_error')
-  Java: tbl.get(0).update(new MapObject().with("x", r.error())).optArg("return_changes", true).pluck("changes", "first_error")
+  Java: tbl.get(0.0).update(r.hashMap("x", r.error())).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[],'first_error':'a'})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("changes", Arrays.asList()).with("first_error", "a")
+  ExpectedJava: r.hashMap("changes", r.array()).with("first_error", "a")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 9
   Original: tbl.update({'x':3}, return_changes=True).pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])}))
-  Java: tbl.update(new MapObject().with("x", 3)).optArg("return_changes", true).pluck("changes", "first_error").do_(d -> d.merge(new MapObject().with("changes", d.bracket("changes").orderBy(a -> a.bracket("old_val").bracket("id")))))
+  Java: tbl.update(r.hashMap("x", 3.0)).optArg("return_changes", true).pluck("changes", "first_error").do_(d -> d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a -> a.bracket("old_val").bracket("id")))))
   ExpectedOriginal: ({'changes':[{'old_val':{'id':0, 'x':1},'new_val':{'id':0, 'x':3}}, {'old_val':{'id':1},'new_val':{'id':1, 'x':3}}]})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("changes", Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 0).with("x", 1)).with("new_val", new MapObject().with("id", 0).with("x", 3)), new MapObject().with("old_val", new MapObject().with("id", 1)).with("new_val", new MapObject().with("id", 1).with("x", 3))))
+  ExpectedJava: r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0.0).with("x", 1.0)).with("new_val", r.hashMap("id", 0.0).with("x", 3.0)), r.hashMap("old_val", r.hashMap("id", 1.0)).with("new_val", r.hashMap("id", 1.0).with("x", 3.0))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 10
   Original: tbl.get(0).replace({'id':0,'x':2}, return_changes=True).pluck('changes', 'first_error')
-  Java: tbl.get(0).replace(new MapObject().with("id", 0).with("x", 2)).optArg("return_changes", true).pluck("changes", "first_error")
+  Java: tbl.get(0.0).replace(r.hashMap("id", 0.0).with("x", 2.0)).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[{'old_val':{'id':0,'x':3},'new_val':{'id':0,'x':2}}]})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("changes", Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 0).with("x", 3)).with("new_val", new MapObject().with("id", 0).with("x", 2))))
+  ExpectedJava: r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0.0).with("x", 3.0)).with("new_val", r.hashMap("id", 0.0).with("x", 2.0))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 11
   Original: tbl.get(0).replace(lambda y:{'x':r.error('a')}, return_changes=True).pluck('changes', 'first_error')
-  Java: tbl.get(0).replace(y -> new MapObject().with("x", r.error())).optArg("return_changes", true).pluck("changes", "first_error")
+  Java: tbl.get(0.0).replace(y -> r.hashMap("x", r.error())).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[],'first_error':'a'})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("changes", Arrays.asList()).with("first_error", "a")
+  ExpectedJava: r.hashMap("changes", r.array()).with("first_error", "a")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 12
   Original: tbl.get(0).replace(lambda y:{'x':r.error('a')}, return_changes='always').pluck('changes', 'first_error')
-  Java: tbl.get(0).replace(y -> new MapObject().with("x", r.error())).optArg("return_changes", "always").pluck("changes", "first_error")
+  Java: tbl.get(0.0).replace(y -> r.hashMap("x", r.error())).optArg("return_changes", "always").pluck("changes", "first_error")
   ExpectedOriginal: ({'first_error':'a','changes':[{'old_val':{'id':0,'x':2},'new_val':{'id':0,'x':2}}]})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("first_error", "a").with("changes", Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 0).with("x", 2)).with("new_val", new MapObject().with("id", 0).with("x", 2))))
+  ExpectedJava: r.hashMap("first_error", "a").with("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0.0).with("x", 2.0)).with("new_val", r.hashMap("id", 0.0).with("x", 2.0))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 13
   Original: tbl.replace(lambda y:y.without('x'), return_changes=True).pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])}))
-  Java: tbl.replace(y -> y.without("x")).optArg("return_changes", true).pluck("changes", "first_error").do_(d -> d.merge(new MapObject().with("changes", d.bracket("changes").orderBy(a -> a.bracket("old_val").bracket("id")))))
+  Java: tbl.replace(y -> y.without("x")).optArg("return_changes", true).pluck("changes", "first_error").do_(d -> d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a -> a.bracket("old_val").bracket("id")))))
   ExpectedOriginal: ({'changes':[{'new_val':{'id':0},'old_val':{'id':0, 'x':2}}, {'new_val':{'id':1},'old_val':{'id':1,'x':3}}]})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("changes", Arrays.asList(new MapObject().with("new_val", new MapObject().with("id", 0)).with("old_val", new MapObject().with("id", 0).with("x", 2)), new MapObject().with("new_val", new MapObject().with("id", 1)).with("old_val", new MapObject().with("id", 1).with("x", 3))))
+  ExpectedJava: r.hashMap("changes", r.array(r.hashMap("new_val", r.hashMap("id", 0.0)).with("old_val", r.hashMap("id", 0.0).with("x", 2.0)), r.hashMap("new_val", r.hashMap("id", 1.0)).with("old_val", r.hashMap("id", 1.0).with("x", 3.0))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 14
   Original: tbl.replace({'x':1}, return_changes='always').pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])}))
-  Java: tbl.replace(new MapObject().with("x", 1)).optArg("return_changes", "always").pluck("changes", "first_error").do_(d -> d.merge(new MapObject().with("changes", d.bracket("changes").orderBy(a -> a.bracket("old_val").bracket("id")))))
+  Java: tbl.replace(r.hashMap("x", 1.0)).optArg("return_changes", "always").pluck("changes", "first_error").do_(d -> d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a -> a.bracket("old_val").bracket("id")))))
   ExpectedOriginal: ({'first_error':"Inserted object must have primary key `id`:\n{\n\t\"x\":\t1\n}", 'changes':[{'new_val':{'id':0},'old_val':{'id':0}}, {'new_val':{'id':1},'old_val':{'id':1}}]})
   ExpectedType: Map
-  ExpectedJava: 'new MapObject().with("first_error", "Inserted object must have primary key `id`:\n{\n	\"x\":	1\n}").with("changes", Arrays.asList(new MapObject().with("new_val", new MapObject().with("id", 0)).with("old_val", new MapObject().with("id", 0)), new MapObject().with("new_val", new MapObject().with("id", 1)).with("old_val", new MapObject().with("id", 1))))'
+  ExpectedJava: 'r.hashMap("first_error", "Inserted object must have primary key `id`:\n{\n	\"x\":	1\n}").with("changes", r.array(r.hashMap("new_val", r.hashMap("id", 0.0)).with("old_val", r.hashMap("id", 0.0)), r.hashMap("new_val", r.hashMap("id", 1.0)).with("old_val", r.hashMap("id", 1.0))))'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
   TestNum: 23
   Original: tbl.get(0).delete(return_changes=True).pluck('changes', 'first_error')
-  Java: tbl.get(0).delete().optArg("return_changes", true).pluck("changes", "first_error")
+  Java: tbl.get(0.0).delete().optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[{'old_val':{'id':0},'new_val':null}]})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("changes", Arrays.asList(new MapObject().with("old_val", new MapObject().with("id", 0)).with("new_val", null)))
+  ExpectedJava: r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0.0)).with("new_val", null)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
@@ -144,5 +144,5 @@ DefsAndTests:
   Java: tbl.delete().optArg("return_changes", true)
   ExpectedOriginal: ({'deleted':1,'errors':0,'inserted':0,'replaced':0,'skipped':0,'unchanged':0,'changes':[{'new_val':null, 'old_val':{'id':1}}]})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("deleted", 1).with("errors", 0).with("inserted", 0).with("replaced", 0).with("skipped", 0).with("unchanged", 0).with("changes", Arrays.asList(new MapObject().with("new_val", null).with("old_val", new MapObject().with("id", 1))))
+  ExpectedJava: r.hashMap("deleted", 1.0).with("errors", 0.0).with("inserted", 0.0).with("replaced", 0.0).with("skipped", 0.0).with("unchanged", 0.0).with("changes", r.array(r.hashMap("new_val", null).with("old_val", r.hashMap("id", 1.0))))
   RunOpts: []

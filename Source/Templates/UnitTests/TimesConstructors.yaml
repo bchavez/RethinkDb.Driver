@@ -4,64 +4,64 @@ DefsAndTests:
   TestFile: times/constructors.yaml
   TestNum: 1
   Original: r.expr(r.epoch_time(896571240))
-  Java: r.expr(r.epochTime(896571240))
+  Java: r.expr(r.epochTime(896571240.0))
   ExpectedOriginal: datetime.fromtimestamp(896571240, r.ast.RqlTzinfo('00:00'))
   ExpectedType: java.util.Date
-  ExpectedJava: .fromtimestamp(896571240, .RqlTzinfo("00:00"))
+  ExpectedJava: datetime.fromtimestamp(896571240.0, r.ast.rqlTzinfo("00:00"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/constructors.yaml
   TestNum: 2
   Original: r.expr({'stuff':r.epoch_time(896571240), 'more':[r.epoch_time(996571240)]})
-  Java: r.expr(new MapObject().with("stuff", r.epochTime(896571240)).with("more", Arrays.asList(r.epochTime(996571240))))
+  Java: r.expr(r.hashMap("stuff", r.epochTime(896571240.0)).with("more", r.array(r.epochTime(996571240.0))))
   ExpectedOriginal: ({'stuff':datetime.fromtimestamp(896571240, r.ast.RqlTzinfo('00:00')), 'more':[datetime.fromtimestamp(996571240, r.ast.RqlTzinfo('00:00'))]})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("stuff", .fromtimestamp(896571240, .RqlTzinfo("00:00"))).with("more", Arrays.asList(.fromtimestamp(996571240, .RqlTzinfo("00:00"))))
+  ExpectedJava: r.hashMap("stuff", datetime.fromtimestamp(896571240.0, r.ast.rqlTzinfo("00:00"))).with("more", r.array(datetime.fromtimestamp(996571240.0, r.ast.rqlTzinfo("00:00"))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/constructors.yaml
   TestNum: 3
   Original: r.expr([r.epoch_time(796571240), r.epoch_time(896571240), {'stuff':r.epoch_time(996571240)}])
-  Java: r.expr(Arrays.asList(r.epochTime(796571240), r.epochTime(896571240), new MapObject().with("stuff", r.epochTime(996571240))))
+  Java: r.expr(r.array(r.epochTime(796571240.0), r.epochTime(896571240.0), r.hashMap("stuff", r.epochTime(996571240.0))))
   ExpectedOriginal: ([datetime.fromtimestamp(796571240, r.ast.RqlTzinfo('00:00')), datetime.fromtimestamp(896571240, r.ast.RqlTzinfo('00:00')), {'stuff':datetime.fromtimestamp(996571240, r.ast.RqlTzinfo('00:00'))}])
   ExpectedType: List
-  ExpectedJava: Arrays.asList(.fromtimestamp(796571240, .RqlTzinfo("00:00")), .fromtimestamp(896571240, .RqlTzinfo("00:00")), new MapObject().with("stuff", .fromtimestamp(996571240, .RqlTzinfo("00:00"))))
+  ExpectedJava: r.array(datetime.fromtimestamp(796571240.0, r.ast.rqlTzinfo("00:00")), datetime.fromtimestamp(896571240.0, r.ast.rqlTzinfo("00:00")), r.hashMap("stuff", datetime.fromtimestamp(996571240.0, r.ast.rqlTzinfo("00:00"))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/constructors.yaml
   TestNum: 4
   Original: r.expr({'nested':{'time':r.epoch_time(896571240)}})
-  Java: r.expr(new MapObject().with("nested", new MapObject().with("time", r.epochTime(896571240))))
+  Java: r.expr(r.hashMap("nested", r.hashMap("time", r.epochTime(896571240.0))))
   ExpectedOriginal: ({'nested':{'time':datetime.fromtimestamp(896571240, r.ast.RqlTzinfo('00:00'))}})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("nested", new MapObject().with("time", .fromtimestamp(896571240, .RqlTzinfo("00:00"))))
+  ExpectedJava: r.hashMap("nested", r.hashMap("time", datetime.fromtimestamp(896571240.0, r.ast.rqlTzinfo("00:00"))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/constructors.yaml
   TestNum: 5
   Original: r.expr([1, "two", ["a", r.epoch_time(896571240), 3]])
-  Java: r.expr(Arrays.asList(1, "two", Arrays.asList("a", r.epochTime(896571240), 3)))
+  Java: r.expr(r.array(1.0, "two", r.array("a", r.epochTime(896571240.0), 3.0)))
   ExpectedOriginal: ([1, "two", ["a", datetime.fromtimestamp(896571240, r.ast.RqlTzinfo('00:00')), 3]])
   ExpectedType: List
-  ExpectedJava: Arrays.asList(1, "two", Arrays.asList("a", .fromtimestamp(896571240, .RqlTzinfo("00:00")), 3))
+  ExpectedJava: r.array(1.0, "two", r.array("a", datetime.fromtimestamp(896571240.0, r.ast.rqlTzinfo("00:00")), 3.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/constructors.yaml
   TestNum: 6
   Original: r.epoch_time(1).to_epoch_time()
-  Java: r.epochTime(1).toEpochTime()
+  Java: r.epochTime(1.0).toEpochTime()
   ExpectedOriginal: 1
-  ExpectedType: Integer
-  ExpectedJava: 1
+  ExpectedType: Double
+  ExpectedJava: 1.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/constructors.yaml
   TestNum: 7
   Original: r.epoch_time(-1).to_epoch_time()
-  Java: r.epochTime(-1).toEpochTime()
+  Java: r.epochTime(-1.0).toEpochTime()
   ExpectedOriginal: -1
-  ExpectedType: Integer
-  ExpectedJava: -1
+  ExpectedType: Double
+  ExpectedJava: -1.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/constructors.yaml
@@ -96,8 +96,8 @@ DefsAndTests:
   Original: r.epoch_time(253430000000).year()
   Java: r.epochTime(253430000000.0).year()
   ExpectedOriginal: (10000)
-  ExpectedType: Integer
-  ExpectedJava: 10000
+  ExpectedType: Double
+  ExpectedJava: 10000.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/constructors.yaml
@@ -106,7 +106,7 @@ DefsAndTests:
   Java: r.epochTime(253430000000.0).toIso8601()
   ExpectedOriginal: err("ReqlQueryLogicError", "Year `10000` out of valid ISO 8601 range [0, 9999].", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Year `10000` out of valid ISO 8601 range [0, 9999].", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Year `10000` out of valid ISO 8601 range [0, 9999].", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/constructors.yaml
@@ -115,7 +115,7 @@ DefsAndTests:
   Java: r.epochTime(253440000000.0).year()
   ExpectedOriginal: 'err("ReqlQueryLogicError", "Error in time logic: Year is out of valid range: 1400..10000.", [])'
   ExpectedType: Err
-  ExpectedJava: 'err("ReqlQueryLogicError", "Error in time logic: Year is out of valid range: 1400..10000.", Arrays.asList())'
+  ExpectedJava: 'err("ReqlQueryLogicError", "Error in time logic: Year is out of valid range: 1400..10000.", r.array())'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/constructors.yaml
@@ -123,7 +123,7 @@ DefsAndTests:
   Original: r.epoch_time(253440000000).to_epoch_time()
   Java: r.epochTime(253440000000.0).toEpochTime()
   ExpectedOriginal: (253440000000)
-  ExpectedType: Integer
+  ExpectedType: Double
   ExpectedJava: 253440000000.0
   RunOpts: []
 - TestType: JavaQuery
@@ -132,8 +132,8 @@ DefsAndTests:
   Original: r.epoch_time(-17980000000).year()
   Java: r.epochTime(-17980000000.0).year()
   ExpectedOriginal: (1400)
-  ExpectedType: Integer
-  ExpectedJava: 1400
+  ExpectedType: Double
+  ExpectedJava: 1400.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/constructors.yaml
@@ -142,7 +142,7 @@ DefsAndTests:
   Java: r.epochTime(-17990000000.0).year()
   ExpectedOriginal: 'err("ReqlQueryLogicError", "Error in time logic: Year is out of valid range: 1400..10000.", [])'
   ExpectedType: Err
-  ExpectedJava: 'err("ReqlQueryLogicError", "Error in time logic: Year is out of valid range: 1400..10000.", Arrays.asList())'
+  ExpectedJava: 'err("ReqlQueryLogicError", "Error in time logic: Year is out of valid range: 1400..10000.", r.array())'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/constructors.yaml
@@ -150,7 +150,7 @@ DefsAndTests:
   Original: r.epoch_time(-17990000000).to_epoch_time()
   Java: r.epochTime(-17990000000.0).toEpochTime()
   ExpectedOriginal: (-17990000000)
-  ExpectedType: Integer
+  ExpectedType: Double
   ExpectedJava: -17990000000.0
   RunOpts: []
 - TestType: JavaDef
@@ -163,7 +163,7 @@ DefsAndTests:
   TestFile: times/constructors.yaml
   TestNum: 19
   Original: dates = ["2013", "2013-01", "2013-01-01", "20130101", "2013-001", "2013001"]
-  Java: List dates = (List) Arrays.asList("2013", "2013-01", "2013-01-01", "20130101", "2013-001", "2013001");
+  Java: List dates = (List) r.array("2013", "2013-01", "2013-01-01", "20130101", "2013-001", "2013001");
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/constructors.yaml
@@ -175,7 +175,7 @@ DefsAndTests:
   TestFile: times/constructors.yaml
   TestNum: 21
   Original: times = ["13", "13:00", "1300", "13:00:00", "13:00:00.000000", "130000.000000"]
-  Java: List times = (List) Arrays.asList("13", "13:00", "1300", "13:00:00", "13:00:00.000000", "130000.000000");
+  Java: List times = (List) r.array("13", "13:00", "1300", "13:00:00", "13:00:00.000000", "130000.000000");
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/constructors.yaml
@@ -187,29 +187,29 @@ DefsAndTests:
   TestFile: times/constructors.yaml
   TestNum: 23
   Original: tzs = ["Z", "+00", "+0000", "+00:00"]
-  Java: List tzs = (List) Arrays.asList("Z", "+00", "+0000", "+00:00");
+  Java: List tzs = (List) r.array("Z", "+00", "+0000", "+00:00");
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/constructors.yaml
   TestNum: 24
   Original: cdt = [cdate+"T"+ctime+ctz]
-  Java: List cdt = (List) Arrays.asList(cdate + "T" + ctime + ctz);
+  Java: List cdt = (List) r.array(cdate + "T" + ctime + ctz);
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/constructors.yaml
   TestNum: 28
   Original: bad_dates = ["201301", "2013-0101", "2a13", "2013+01", "2013-01-01.1"]
-  Java: List bad_dates = (List) Arrays.asList("201301", "2013-0101", "2a13", "2013+01", "2013-01-01.1");
+  Java: List bad_dates = (List) r.array("201301", "2013-0101", "2a13", "2013+01", "2013-01-01.1");
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/constructors.yaml
   TestNum: 29
   Original: bad_times = ["a3", "13:0000", "13:000", "13:00.00", "130000.00000000a"]
-  Java: List bad_times = (List) Arrays.asList("a3", "13:0000", "13:000", "13:00.00", "130000.00000000a");
+  Java: List bad_times = (List) r.array("a3", "13:0000", "13:000", "13:00.00", "130000.00000000a");
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/constructors.yaml
   TestNum: 30
   Original: bad_tzs = ["X", "-7", "-07:-1", "+07+01", "PST", "UTC", "Z+00"]
-  Java: List bad_tzs = (List) Arrays.asList("X", "-7", "-07:-1", "+07+01", "PST", "UTC", "Z+00");
+  Java: List bad_tzs = (List) r.array("X", "-7", "-07:-1", "+07+01", "PST", "UTC", "Z+00");
   RunOpts: []

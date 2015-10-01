@@ -88,7 +88,7 @@ DefsAndTests:
   Java: r.expr("X").floor()
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/floor_ceil_round.yaml
@@ -178,7 +178,7 @@ DefsAndTests:
   Java: r.expr("X").ceil()
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/floor_ceil_round.yaml
@@ -430,5 +430,5 @@ DefsAndTests:
   Java: r.expr("X").round()
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array())
   RunOpts: []

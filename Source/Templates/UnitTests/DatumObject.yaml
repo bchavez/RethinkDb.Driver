@@ -4,52 +4,52 @@ DefsAndTests:
   TestFile: datum/object.yaml
   TestNum: 1
   Original: r.expr({})
-  Java: r.expr(new MapObject())
+  Java: r.expr(r.hashMap())
   ExpectedOriginal: ({})
   ExpectedType: Map
-  ExpectedJava: new MapObject()
+  ExpectedJava: r.hashMap()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 2
   Original: r.expr({'a':1})
-  Java: r.expr(new MapObject().with("a", 1))
+  Java: r.expr(r.hashMap("a", 1.0))
   ExpectedOriginal: '{''a'':1}'
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("a", 1)
+  ExpectedJava: r.hashMap("a", 1.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 3
   Original: r.expr({'a':1, 'b':'two', 'c':True})
-  Java: r.expr(new MapObject().with("a", 1).with("b", "two").with("c", true))
+  Java: r.expr(r.hashMap("a", 1.0).with("b", "two").with("c", true))
   ExpectedOriginal: '{''a'':1, ''b'':''two'', ''c'':True}'
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("a", 1).with("b", "two").with("c", true)
+  ExpectedJava: r.hashMap("a", 1.0).with("b", "two").with("c", true)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 4
   Original: r.expr({'a':r.expr(1)})
-  Java: r.expr(new MapObject().with("a", r.expr(1)))
+  Java: r.expr(r.hashMap("a", r.expr(1.0)))
   ExpectedOriginal: ({'a':1})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("a", 1)
+  ExpectedJava: r.hashMap("a", 1.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 5
   Original: r.expr({'a':{'b':[{'c':2}, 'a', 4]}})
-  Java: r.expr(new MapObject().with("a", new MapObject().with("b", Arrays.asList(new MapObject().with("c", 2), "a", 4))))
+  Java: r.expr(r.hashMap("a", r.hashMap("b", r.array(r.hashMap("c", 2.0), "a", 4.0))))
   ExpectedOriginal: ({'a':{'b':[{'c':2}, 'a', 4]}})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("a", new MapObject().with("b", Arrays.asList(new MapObject().with("c", 2), "a", 4)))
+  ExpectedJava: r.hashMap("a", r.hashMap("b", r.array(r.hashMap("c", 2.0), "a", 4.0)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 6
   Original: r.expr({'a':1}).type_of()
-  Java: r.expr(new MapObject().with("a", 1)).typeOf()
+  Java: r.expr(r.hashMap("a", 1.0)).typeOf()
   ExpectedOriginal: 'OBJECT'
   ExpectedType: String
   ExpectedJava: '"OBJECT"'
@@ -58,7 +58,7 @@ DefsAndTests:
   TestFile: datum/object.yaml
   TestNum: 7
   Original: r.expr({'a':1}).coerce_to('string')
-  Java: r.expr(new MapObject().with("a", 1)).coerceTo("string")
+  Java: r.expr(r.hashMap("a", 1.0)).coerceTo("string")
   ExpectedOriginal: ('{"a":1}')
   ExpectedType: String
   ExpectedJava: '"{\"a\":1}"'
@@ -67,46 +67,19 @@ DefsAndTests:
   TestFile: datum/object.yaml
   TestNum: 8
   Original: r.expr({'a':1}).coerce_to('object')
-  Java: r.expr(new MapObject().with("a", 1)).coerceTo("object")
+  Java: r.expr(r.hashMap("a", 1.0)).coerceTo("object")
   ExpectedOriginal: ({'a':1})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("a", 1)
+  ExpectedJava: r.hashMap("a", 1.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 9
   Original: r.expr({'a':1}).coerce_to('array')
-  Java: r.expr(new MapObject().with("a", 1)).coerceTo("array")
+  Java: r.expr(r.hashMap("a", 1.0)).coerceTo("array")
   ExpectedOriginal: '[[''a'', 1]]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(Arrays.asList("a", 1))
-  RunOpts: []
-- TestType: JavaQuery
-  TestFile: datum/object.yaml
-  TestNum: 10
-  Original: r.expr({12:'a'})
-  Java: r.expr(new MapObject().with(12, "a"))
-  ExpectedOriginal: err_regex("ReqlDriverError", "Object keys must be strings.*")
-  ExpectedType: ErrRegex
-  ExpectedJava: err_regex("ReqlDriverError", "Object keys must be strings.*")
-  RunOpts: []
-- TestType: JavaQuery
-  TestFile: datum/object.yaml
-  TestNum: 11
-  Original: r.expr({'a':{12:'b'}})
-  Java: r.expr(new MapObject().with("a", new MapObject().with(12, "b")))
-  ExpectedOriginal: err_regex("ReqlDriverError", "Object keys must be strings.*")
-  ExpectedType: ErrRegex
-  ExpectedJava: err_regex("ReqlDriverError", "Object keys must be strings.*")
-  RunOpts: []
-- TestType: JavaQuery
-  TestFile: datum/object.yaml
-  TestNum: 14
-  Original: r.expr({}, "foo")
-  Java: r.expr(new MapObject(), "foo")
-  ExpectedOriginal: err("ReqlDriverError", "Second argument to `r.expr` must be a number.")
-  ExpectedType: Err
-  ExpectedJava: err("ReqlDriverError", "Second argument to `r.expr` must be a number.")
+  ExpectedJava: r.array(r.array("a", 1.0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
@@ -115,25 +88,25 @@ DefsAndTests:
   Java: r.object()
   ExpectedOriginal: ({})
   ExpectedType: Map
-  ExpectedJava: new MapObject()
+  ExpectedJava: r.hashMap()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 17
   Original: r.object('a', 1, 'b', 2)
-  Java: r.object("a", 1, "b", 2)
+  Java: r.object("a", 1.0, "b", 2.0)
   ExpectedOriginal: ({'a':1,'b':2})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("a", 1).with("b", 2)
+  ExpectedJava: r.hashMap("a", 1.0).with("b", 2.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 18
   Original: r.object('c'+'d', 3)
-  Java: r.object(r.add("c", "d"), 3)
+  Java: r.object(r.add("c", "d"), 3.0)
   ExpectedOriginal: ({'cd':3})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("cd", 3)
+  ExpectedJava: r.hashMap("cd", 3.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
@@ -142,25 +115,25 @@ DefsAndTests:
   Java: r.object("o", "d", "d")
   ExpectedOriginal: err("ReqlQueryLogicError", "OBJECT expects an even number of arguments (but found 3).", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "OBJECT expects an even number of arguments (but found 3).", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "OBJECT expects an even number of arguments (but found 3).", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 20
   Original: r.object(1, 1)
-  Java: r.object(1, 1)
+  Java: r.object(1.0, 1.0)
   ExpectedOriginal: err("ReqlQueryLogicError","Expected type STRING but found NUMBER.",[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 21
   Original: r.object('e', 4, 'e', 5)
-  Java: r.object("e", 4, "e", 5)
+  Java: r.object("e", 4.0, "e", 5.0)
   ExpectedOriginal: err("ReqlQueryLogicError","Duplicate key `e` in object.  (got `4` and `5` as values)",[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Duplicate key `e` in object.  (got `4` and `5` as values)", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Duplicate key `e` in object.  (got `4` and `5` as values)", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
@@ -169,5 +142,5 @@ DefsAndTests:
   Java: r.object("g", r.db("test"))
   ExpectedOriginal: err("ReqlQueryLogicError","Expected type DATUM but found DATABASE:",[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type DATUM but found DATABASE:", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type DATUM but found DATABASE:", r.array())
   RunOpts: []

@@ -21,8 +21,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 0
-  ExpectedType: Integer
-  ExpectedJava: 0
+  ExpectedType: Double
+  ExpectedJava: 0.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -45,8 +45,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 1
-  ExpectedType: Integer
-  ExpectedJava: 1
+  ExpectedType: Double
+  ExpectedJava: 1.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -69,8 +69,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 2
-  ExpectedType: Integer
-  ExpectedJava: 2
+  ExpectedType: Double
+  ExpectedJava: 2.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -93,8 +93,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 3
-  ExpectedType: Integer
-  ExpectedJava: 3
+  ExpectedType: Double
+  ExpectedJava: 3.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -117,8 +117,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 4
-  ExpectedType: Integer
-  ExpectedJava: 4
+  ExpectedType: Double
+  ExpectedJava: 4.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -141,8 +141,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 5
-  ExpectedType: Integer
-  ExpectedJava: 5
+  ExpectedType: Double
+  ExpectedJava: 5.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -165,8 +165,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 6
-  ExpectedType: Integer
-  ExpectedJava: 6
+  ExpectedType: Double
+  ExpectedJava: 6.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -189,8 +189,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 7
-  ExpectedType: Integer
-  ExpectedJava: 7
+  ExpectedType: Double
+  ExpectedJava: 7.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -213,8 +213,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 8
-  ExpectedType: Integer
-  ExpectedJava: 8
+  ExpectedType: Double
+  ExpectedJava: 8.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -237,8 +237,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 9
-  ExpectedType: Integer
-  ExpectedJava: 9
+  ExpectedType: Double
+  ExpectedJava: 9.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -261,8 +261,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 10
-  ExpectedType: Integer
-  ExpectedJava: 10
+  ExpectedType: Double
+  ExpectedJava: 10.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -285,8 +285,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 11
-  ExpectedType: Integer
-  ExpectedJava: 11
+  ExpectedType: Double
+  ExpectedJava: 11.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -309,8 +309,8 @@ DefsAndTests:
   Original: r.binary(s).count()
   Java: r.binary(s).count()
   ExpectedOriginal: 12
-  ExpectedType: Integer
-  ExpectedJava: 12
+  ExpectedType: Double
+  ExpectedJava: 12.0
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -733,7 +733,7 @@ DefsAndTests:
   Java: "r.binary(\"イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム\".encode(\"utf-8\"))"
   ExpectedOriginal: "u'イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム'.encode('utf-8')"
   ExpectedType: byte[]
-  ExpectedJava: .encode("utf-8")
+  ExpectedJava: "\"イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム\".encode(\"utf-8\")"
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -742,7 +742,7 @@ DefsAndTests:
   Java: "r.binary(\"ƀƁƂƃƄƅƆƇƈƉƊƋƌƍƎƏ\".encode(\"utf-16\"))"
   ExpectedOriginal: "u'ƀƁƂƃƄƅƆƇƈƉƊƋƌƍƎƏ'.encode('utf-16')"
   ExpectedType: byte[]
-  ExpectedJava: .encode("utf-16")
+  ExpectedJava: "\"ƀƁƂƃƄƅƆƇƈƉƊƋƌƍƎƏ\".encode(\"utf-16\")"
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -751,7 +751,7 @@ DefsAndTests:
   Java: r.binary("lorem ipsum".encode("ascii"))
   ExpectedOriginal: u'lorem ipsum'.encode('ascii')
   ExpectedType: byte[]
-  ExpectedJava: .encode("ascii")
+  ExpectedJava: '"lorem ipsum".encode("ascii")'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -802,7 +802,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 96
   Original: r.binary(b'abcdefg').slice(-3,-1)
-  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-3, -1)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-3.0, -1.0)
   ExpectedOriginal: b'ef'
   ExpectedType: byte[]
   ExpectedJava: '"ef".getBytes(StandardCharsets.UTF_8)'
@@ -811,7 +811,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 97
   Original: r.binary(b'abcdefg').slice(0, 2)
-  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(0, 2)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(0.0, 2.0)
   ExpectedOriginal: b'ab'
   ExpectedType: byte[]
   ExpectedJava: '"ab".getBytes(StandardCharsets.UTF_8)'
@@ -820,7 +820,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 98
   Original: r.binary(b'abcdefg').slice(3, -1)
-  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(3, -1)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(3.0, -1.0)
   ExpectedOriginal: b'def'
   ExpectedType: byte[]
   ExpectedJava: '"def".getBytes(StandardCharsets.UTF_8)'
@@ -829,7 +829,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 99
   Original: r.binary(b'abcdefg').slice(-5, 5)
-  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-5, 5)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-5.0, 5.0)
   ExpectedOriginal: b'cde'
   ExpectedType: byte[]
   ExpectedJava: '"cde".getBytes(StandardCharsets.UTF_8)'
@@ -838,7 +838,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 100
   Original: r.binary(b'abcdefg').slice(-8, 2)
-  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-8, 2)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-8.0, 2.0)
   ExpectedOriginal: b'ab'
   ExpectedType: byte[]
   ExpectedJava: '"ab".getBytes(StandardCharsets.UTF_8)'
@@ -847,7 +847,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 101
   Original: r.binary(b'abcdefg').slice(5, 7)
-  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 7)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5.0, 7.0)
   ExpectedOriginal: b'fg'
   ExpectedType: byte[]
   ExpectedJava: '"fg".getBytes(StandardCharsets.UTF_8)'
@@ -856,7 +856,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 102
   Original: r.binary(b'abcdefg').slice(-9, 2)
-  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-9, 2)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(-9.0, 2.0)
   ExpectedOriginal: b'ab'
   ExpectedType: byte[]
   ExpectedJava: '"ab".getBytes(StandardCharsets.UTF_8)'
@@ -865,7 +865,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 103
   Original: r.binary(b'abcdefg').slice(5, 9)
-  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5, 9)
+  Java: r.binary("abcdefg".getBytes(StandardCharsets.UTF_8)).slice(5.0, 9.0)
   ExpectedOriginal: b'fg'
   ExpectedType: byte[]
   ExpectedJava: '"fg".getBytes(StandardCharsets.UTF_8)'
@@ -888,7 +888,7 @@ DefsAndTests:
   Java: r.binary(b)
   ExpectedOriginal: ({'$reql_type$':'BINARY','data':'AAE='})
   ExpectedType: Map
-  ExpectedJava: new MapObject().with("$reql_type$", "BINARY").with("data", "AAE=")
+  ExpectedJava: r.hashMap("$reql_type$", "BINARY").with("data", "AAE=")
   RunOpts:
   - Key: binary_format
     Val: raw
@@ -905,64 +905,64 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 107
   Original: r.binary(r.expr({}))
-  Java: r.binary(r.expr(new MapObject()))
+  Java: r.binary(r.expr(r.hashMap()))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type STRING but found OBJECT.', [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found OBJECT.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found OBJECT.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 108
   Original: r.binary(r.expr([]))
-  Java: r.binary(r.expr(Arrays.asList()))
+  Java: r.binary(r.expr(r.array()))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type STRING but found ARRAY.', [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found ARRAY.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found ARRAY.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 109
   Original: r.expr({'$reql_type$':'BINARY'})
-  Java: r.expr(new MapObject().with("$reql_type$", "BINARY"))
+  Java: r.expr(r.hashMap("$reql_type$", "BINARY"))
   ExpectedOriginal: err('ReqlQueryLogicError','Invalid binary pseudotype:'+' lacking `data` key.',[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Invalid binary pseudotype:" + " lacking `data` key.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Invalid binary pseudotype:" + " lacking `data` key.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 110
   Original: r.expr({'$reql_type$':'BINARY','data':'ABCDEFGH==AA'})
-  Java: r.expr(new MapObject().with("$reql_type$", "BINARY").with("data", "ABCDEFGH==AA"))
+  Java: r.expr(r.hashMap("$reql_type$", "BINARY").with("data", "ABCDEFGH==AA"))
   ExpectedOriginal: err('ReqlQueryLogicError','Invalid base64 format, data found after padding character \'=\'.',[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Invalid base64 format, data found after padding character '='.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Invalid base64 format, data found after padding character '='.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 111
   Original: r.expr({'$reql_type$':'BINARY','data':'ABCDEF==$'})
-  Java: r.expr(new MapObject().with("$reql_type$", "BINARY").with("data", "ABCDEF==$"))
+  Java: r.expr(r.hashMap("$reql_type$", "BINARY").with("data", "ABCDEF==$"))
   ExpectedOriginal: err('ReqlQueryLogicError','Invalid base64 format, data found after padding character \'=\'.',[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Invalid base64 format, data found after padding character '='.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Invalid base64 format, data found after padding character '='.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 112
   Original: r.expr({'$reql_type$':'BINARY','data':'A^CDEFGH'})
-  Java: r.expr(new MapObject().with("$reql_type$", "BINARY").with("data", "A^CDEFGH"))
+  Java: r.expr(r.hashMap("$reql_type$", "BINARY").with("data", "A^CDEFGH"))
   ExpectedOriginal: err('ReqlQueryLogicError','Invalid base64 character found:'+' \'^\'.',[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Invalid base64 character found:" + " '^'.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Invalid base64 character found:" + " '^'.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   TestNum: 113
   Original: r.expr({'$reql_type$':'BINARY','data':'ABCDE'})
-  Java: r.expr(new MapObject().with("$reql_type$", "BINARY").with("data", "ABCDE"))
+  Java: r.expr(r.hashMap("$reql_type$", "BINARY").with("data", "ABCDE"))
   ExpectedOriginal: err('ReqlQueryLogicError','Invalid base64 length:'+' 1 character remaining, cannot decode a full byte.',[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Invalid base64 length:" + " 1 character remaining, cannot decode a full byte.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Invalid base64 length:" + " 1 character remaining, cannot decode a full byte.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -971,7 +971,7 @@ DefsAndTests:
   Java: r.binary(a).coerceTo("array")
   ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to ARRAY.',[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to ARRAY.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to ARRAY.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -980,7 +980,7 @@ DefsAndTests:
   Java: r.binary(a).coerceTo("object")
   ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to OBJECT.',[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to OBJECT.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to OBJECT.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -989,7 +989,7 @@ DefsAndTests:
   Java: r.binary(a).coerceTo("bool")
   ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to BOOL.',[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to BOOL.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to BOOL.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -998,7 +998,7 @@ DefsAndTests:
   Java: r.binary(a).coerceTo("number")
   ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to NUMBER.',[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to NUMBER.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to NUMBER.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
@@ -1007,5 +1007,5 @@ DefsAndTests:
   Java: r.binary(a).coerceTo(r.add("nu", "ll"))
   ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to NULL.',[])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to NULL.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to NULL.", r.array())
   RunOpts: []

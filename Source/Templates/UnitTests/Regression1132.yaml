@@ -7,5 +7,5 @@ DefsAndTests:
   Java: r.json("{\"a\":1,\"a\":2}")
   ExpectedOriginal: err("ReqlQueryLogicError", "Duplicate key `a` in JSON.", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Duplicate key `a` in JSON.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Duplicate key `a` in JSON.", r.array())
   RunOpts: []

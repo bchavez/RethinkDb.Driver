@@ -32,10 +32,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #1
                  //ExpectedOriginal: []
-                 var expected = Arrays.asList();
+                 var expected = r.array();
                  
                  //Original: r.expr([])
-                 var obtained = runOrCatch( r.expr(Arrays.asList()) ,
+                 var obtained = runOrCatch( r.expr(r.array()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -46,10 +46,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #2
                  //ExpectedOriginal: [1]
-                 var expected = Arrays.asList(1);
+                 var expected = r.array(1.0);
                  
                  //Original: r.expr([1])
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -60,10 +60,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #3
                  //ExpectedOriginal: [1, 2, 3, 4, 5]
-                 var expected = Arrays.asList(1, 2, 3, 4, 5);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0, 5.0);
                  
                  //Original: r.expr([1,2,3,4,5])
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3, 4, 5)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0, 4.0, 5.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -77,7 +77,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = "ARRAY";
                  
                  //Original: r.expr([]).type_of()
-                 var obtained = runOrCatch( r.expr(Arrays.asList()).typeOf() ,
+                 var obtained = runOrCatch( r.expr(r.array()).typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -91,7 +91,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = "[1,2]";
                  
                  //Original: r.expr([1, 2]).coerce_to('string')
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2)).coerceTo("string") ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0)).coerceTo("string") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -105,7 +105,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = "[1,2]";
                  
                  //Original: r.expr([1, 2]).coerce_to('STRING')
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2)).coerceTo("STRING") ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0)).coerceTo("STRING") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -116,10 +116,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #6
                  //ExpectedOriginal: [1, 2]
-                 var expected = Arrays.asList(1, 2);
+                 var expected = r.array(1.0, 2.0);
                  
                  //Original: r.expr([1, 2]).coerce_to('array')
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2)).coerceTo("array") ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0)).coerceTo("array") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -130,10 +130,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #7
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot coerce ARRAY to NUMBER.', [0])
-                 var expected = err("ReqlQueryLogicError", "Cannot coerce ARRAY to NUMBER.", Arrays.asList(0));
+                 var expected = err("ReqlQueryLogicError", "Cannot coerce ARRAY to NUMBER.", r.array(0.0));
                  
                  //Original: r.expr([1, 2]).coerce_to('number')
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2)).coerceTo("number") ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0)).coerceTo("number") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -144,10 +144,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #8
                  //ExpectedOriginal: ({'a':1,'b':2})
-                 var expected = new MapObject().with("a", 1).with("b", 2);
+                 var expected = r.hashMap("a", 1.0).with("b", 2.0);
                  
                  //Original: r.expr([['a', 1], ['b', 2]]).coerce_to('object')
-                 var obtained = runOrCatch( r.expr(Arrays.asList(Arrays.asList("a", 1), Arrays.asList("b", 2))).coerceTo("object") ,
+                 var obtained = runOrCatch( r.expr(r.array(r.array("a", 1.0), r.array("b", 2.0))).coerceTo("object") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -161,7 +161,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = err("ReqlQueryLogicError", "Expected array of size 2, but got size 0.");
                  
                  //Original: r.expr([[]]).coerce_to('object')
-                 var obtained = runOrCatch( r.expr(Arrays.asList(Arrays.asList())).coerceTo("object") ,
+                 var obtained = runOrCatch( r.expr(r.array(r.array())).coerceTo("object") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -175,7 +175,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = err("ReqlQueryLogicError", "Expected array of size 2, but got size 3.");
                  
                  //Original: r.expr([['1',2,3]]).coerce_to('object')
-                 var obtained = runOrCatch( r.expr(Arrays.asList(Arrays.asList("1", 2, 3))).coerceTo("object") ,
+                 var obtained = runOrCatch( r.expr(r.array(r.array("1", 2.0, 3.0))).coerceTo("object") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -186,10 +186,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #11
                  //ExpectedOriginal: [1]
-                 var expected = Arrays.asList(1);
+                 var expected = r.array(1.0);
                  
                  //Original: r.expr([r.expr(1)])
-                 var obtained = runOrCatch( r.expr(Arrays.asList(r.expr(1))) ,
+                 var obtained = runOrCatch( r.expr(r.array(r.expr(1.0))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -200,10 +200,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #12
                  //ExpectedOriginal: [1, 2, 3, 4]
-                 var expected = Arrays.asList(1, 2, 3, 4);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0);
                  
                  //Original: r.expr([1,3,4]).insert_at(1, 2)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 3, 4)).insertAt(1, 2) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 3.0, 4.0)).insertAt(1.0, 2.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -214,10 +214,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #13
                  //ExpectedOriginal: [1, 2, 3]
-                 var expected = Arrays.asList(1, 2, 3);
+                 var expected = r.array(1.0, 2.0, 3.0);
                  
                  //Original: r.expr([2,3]).insert_at(0, 1)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(2, 3)).insertAt(0, 1) ,
+                 var obtained = runOrCatch( r.expr(r.array(2.0, 3.0)).insertAt(0.0, 1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -228,10 +228,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #14
                  //ExpectedOriginal: [1, 2, 3, 4]
-                 var expected = Arrays.asList(1, 2, 3, 4);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0);
                  
                  //Original: r.expr([1,2,3]).insert_at(-1, 4)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).insertAt(-1, 4) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).insertAt(-1.0, 4.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -242,10 +242,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #15
                  //ExpectedOriginal: [1, 2, 3, 4]
-                 var expected = Arrays.asList(1, 2, 3, 4);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0);
                  
                  //Original: r.expr([1,2,3]).insert_at(3, 4)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).insertAt(3, 4) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).insertAt(3.0, 4.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -259,7 +259,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = null as object;
                  
                  //Original: r.expr(3).do(lambda x: r.expr([1,2,3]).insert_at(x, 4))
-                 var obtained = runOrCatch( r.expr(3).do_(x => r.expr(Arrays.asList(1, 2, 3)).insertAt(x, 4)) ,
+                 var obtained = runOrCatch( r.expr(3.0).do_(x => r.expr(r.array(1.0, 2.0, 3.0)).insertAt(x, 4.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -270,10 +270,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #19
                  //ExpectedOriginal: err('ReqlNonExistenceError', 'Index `4` out of bounds for array of size: `3`.', [0])
-                 var expected = err("ReqlNonExistenceError", "Index `4` out of bounds for array of size: `3`.", Arrays.asList(0));
+                 var expected = err("ReqlNonExistenceError", "Index `4` out of bounds for array of size: `3`.", r.array(0.0));
                  
                  //Original: r.expr([1,2,3]).insert_at(4, 5)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).insertAt(4, 5) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).insertAt(4.0, 5.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -284,10 +284,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #20
                  //ExpectedOriginal: err('ReqlNonExistenceError', 'Index out of bounds: -5', [0])
-                 var expected = err("ReqlNonExistenceError", "Index out of bounds: -5", Arrays.asList(0));
+                 var expected = err("ReqlNonExistenceError", "Index out of bounds: -5", r.array(0.0));
                  
                  //Original: r.expr([1,2,3]).insert_at(-5, -1)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).insertAt(-5, -1) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).insertAt(-5.0, -1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -298,10 +298,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #21
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'Number not an integer: 1.5', [0])
-                 var expected = err("ReqlQueryLogicError", "Number not an integer: 1.5", Arrays.asList(0));
+                 var expected = err("ReqlQueryLogicError", "Number not an integer: 1.5", r.array(0.0));
                  
                  //Original: r.expr([1,2,3]).insert_at(1.5, 1)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).insertAt(1.5, 1) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).insertAt(1.5, 1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -312,10 +312,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #22
                  //ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0])
-                 var expected = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", Arrays.asList(0));
+                 var expected = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0.0));
                  
                  //Original: r.expr([1,2,3]).insert_at(null, 1)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).insertAt(null, 1) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).insertAt(null, 1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -326,10 +326,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #23
                  //ExpectedOriginal: [1, 2, 3, 4]
-                 var expected = Arrays.asList(1, 2, 3, 4);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0);
                  
                  //Original: r.expr([1,4]).splice_at(1, [2,3])
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 4)).spliceAt(1, Arrays.asList(2, 3)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 4.0)).spliceAt(1.0, r.array(2.0, 3.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -340,10 +340,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #24
                  //ExpectedOriginal: [1, 2, 3, 4]
-                 var expected = Arrays.asList(1, 2, 3, 4);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0);
                  
                  //Original: r.expr([3,4]).splice_at(0, [1,2])
-                 var obtained = runOrCatch( r.expr(Arrays.asList(3, 4)).spliceAt(0, Arrays.asList(1, 2)) ,
+                 var obtained = runOrCatch( r.expr(r.array(3.0, 4.0)).spliceAt(0.0, r.array(1.0, 2.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -354,10 +354,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #25
                  //ExpectedOriginal: [1, 2, 3, 4]
-                 var expected = Arrays.asList(1, 2, 3, 4);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0);
                  
                  //Original: r.expr([1,2]).splice_at(2, [3,4])
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2)).spliceAt(2, Arrays.asList(3, 4)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0)).spliceAt(2.0, r.array(3.0, 4.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -368,10 +368,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #26
                  //ExpectedOriginal: [1, 2, 3, 4]
-                 var expected = Arrays.asList(1, 2, 3, 4);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0);
                  
                  //Original: r.expr([1,2]).splice_at(-1, [3,4])
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2)).spliceAt(-1, Arrays.asList(3, 4)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0)).spliceAt(-1.0, r.array(3.0, 4.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -385,7 +385,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = null as object;
                  
                  //Original: r.expr(2).do(lambda x: r.expr([1,2]).splice_at(x, [3,4]))
-                 var obtained = runOrCatch( r.expr(2).do_(x => r.expr(Arrays.asList(1, 2)).spliceAt(x, Arrays.asList(3, 4))) ,
+                 var obtained = runOrCatch( r.expr(2.0).do_(x => r.expr(r.array(1.0, 2.0)).spliceAt(x, r.array(3.0, 4.0))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -396,10 +396,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #30
                  //ExpectedOriginal: err('ReqlNonExistenceError', 'Index `3` out of bounds for array of size: `2`.', [0])
-                 var expected = err("ReqlNonExistenceError", "Index `3` out of bounds for array of size: `2`.", Arrays.asList(0));
+                 var expected = err("ReqlNonExistenceError", "Index `3` out of bounds for array of size: `2`.", r.array(0.0));
                  
                  //Original: r.expr([1,2]).splice_at(3, [3,4])
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2)).spliceAt(3, Arrays.asList(3, 4)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0)).spliceAt(3.0, r.array(3.0, 4.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -410,10 +410,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #31
                  //ExpectedOriginal: err('ReqlNonExistenceError', 'Index out of bounds: -4', [0])
-                 var expected = err("ReqlNonExistenceError", "Index out of bounds: -4", Arrays.asList(0));
+                 var expected = err("ReqlNonExistenceError", "Index out of bounds: -4", r.array(0.0));
                  
                  //Original: r.expr([1,2]).splice_at(-4, [3,4])
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2)).spliceAt(-4, Arrays.asList(3, 4)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0)).spliceAt(-4.0, r.array(3.0, 4.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -424,10 +424,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #32
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'Number not an integer: 1.5', [0])
-                 var expected = err("ReqlQueryLogicError", "Number not an integer: 1.5", Arrays.asList(0));
+                 var expected = err("ReqlQueryLogicError", "Number not an integer: 1.5", r.array(0.0));
                  
                  //Original: r.expr([1,2,3]).splice_at(1.5, [1])
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).spliceAt(1.5, Arrays.asList(1)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).spliceAt(1.5, r.array(1.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -438,10 +438,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #33
                  //ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0])
-                 var expected = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", Arrays.asList(0));
+                 var expected = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0.0));
                  
                  //Original: r.expr([1,2,3]).splice_at(null, [1])
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).spliceAt(null, Arrays.asList(1)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).spliceAt(null, r.array(1.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -452,10 +452,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #34
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type ARRAY but found NUMBER.', [0])
-                 var expected = err("ReqlQueryLogicError", "Expected type ARRAY but found NUMBER.", Arrays.asList(0));
+                 var expected = err("ReqlQueryLogicError", "Expected type ARRAY but found NUMBER.", r.array(0.0));
                  
                  //Original: r.expr([1,4]).splice_at(1, 2)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 4)).spliceAt(1, 2) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 4.0)).spliceAt(1.0, 2.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -466,10 +466,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #35
                  //ExpectedOriginal: [2, 3, 4]
-                 var expected = Arrays.asList(2, 3, 4);
+                 var expected = r.array(2.0, 3.0, 4.0);
                  
                  //Original: r.expr([1,2,3,4]).delete_at(0)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(0) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0, 4.0)).deleteAt(0.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -483,7 +483,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = null as object;
                  
                  //Original: r.expr(0).do(lambda x: r.expr([1,2,3,4]).delete_at(x))
-                 var obtained = runOrCatch( r.expr(0).do_(x => r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(x)) ,
+                 var obtained = runOrCatch( r.expr(0.0).do_(x => r.expr(r.array(1.0, 2.0, 3.0, 4.0)).deleteAt(x)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -494,10 +494,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #39
                  //ExpectedOriginal: [1, 2, 3]
-                 var expected = Arrays.asList(1, 2, 3);
+                 var expected = r.array(1.0, 2.0, 3.0);
                  
                  //Original: r.expr([1,2,3,4]).delete_at(-1)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(-1) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0, 4.0)).deleteAt(-1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -508,10 +508,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #40
                  //ExpectedOriginal: [1, 4]
-                 var expected = Arrays.asList(1, 4);
+                 var expected = r.array(1.0, 4.0);
                  
                  //Original: r.expr([1,2,3,4]).delete_at(1,3)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(1, 3) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0, 4.0)).deleteAt(1.0, 3.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -522,10 +522,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #41
                  //ExpectedOriginal: [1, 2, 3, 4]
-                 var expected = Arrays.asList(1, 2, 3, 4);
+                 var expected = r.array(1.0, 2.0, 3.0, 4.0);
                  
                  //Original: r.expr([1,2,3,4]).delete_at(4,4)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(4, 4) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0, 4.0)).deleteAt(4.0, 4.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -536,10 +536,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #42
                  //ExpectedOriginal: []
-                 var expected = Arrays.asList();
+                 var expected = r.array();
                  
                  //Original: r.expr([]).delete_at(0,0)
-                 var obtained = runOrCatch( r.expr(Arrays.asList()).deleteAt(0, 0) ,
+                 var obtained = runOrCatch( r.expr(r.array()).deleteAt(0.0, 0.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -550,10 +550,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #43
                  //ExpectedOriginal: [1, 4]
-                 var expected = Arrays.asList(1, 4);
+                 var expected = r.array(1.0, 4.0);
                  
                  //Original: r.expr([1,2,3,4]).delete_at(1,-1)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(1, -1) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0, 4.0)).deleteAt(1.0, -1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -564,10 +564,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #44
                  //ExpectedOriginal: err('ReqlNonExistenceError', 'Index `4` out of bounds for array of size: `4`.', [0])
-                 var expected = err("ReqlNonExistenceError", "Index `4` out of bounds for array of size: `4`.", Arrays.asList(0));
+                 var expected = err("ReqlNonExistenceError", "Index `4` out of bounds for array of size: `4`.", r.array(0.0));
                  
                  //Original: r.expr([1,2,3,4]).delete_at(4)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(4) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0, 4.0)).deleteAt(4.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -578,10 +578,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #45
                  //ExpectedOriginal: err('ReqlNonExistenceError', 'Index out of bounds: -5', [0])
-                 var expected = err("ReqlNonExistenceError", "Index out of bounds: -5", Arrays.asList(0));
+                 var expected = err("ReqlNonExistenceError", "Index out of bounds: -5", r.array(0.0));
                  
                  //Original: r.expr([1,2,3,4]).delete_at(-5)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(-5) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0, 4.0)).deleteAt(-5.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -592,10 +592,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #46
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'Number not an integer: 1.5', [0])
-                 var expected = err("ReqlQueryLogicError", "Number not an integer: 1.5", Arrays.asList(0));
+                 var expected = err("ReqlQueryLogicError", "Number not an integer: 1.5", r.array(0.0));
                  
                  //Original: r.expr([1,2,3]).delete_at(1.5)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).deleteAt(1.5) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).deleteAt(1.5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -606,10 +606,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #47
                  //ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0])
-                 var expected = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", Arrays.asList(0));
+                 var expected = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0.0));
                  
                  //Original: r.expr([1,2,3]).delete_at(null)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).deleteAt(null) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).deleteAt(null) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -620,10 +620,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #48
                  //ExpectedOriginal: [1, 2, 3]
-                 var expected = Arrays.asList(1, 2, 3);
+                 var expected = r.array(1.0, 2.0, 3.0);
                  
                  //Original: r.expr([0,2,3]).change_at(0, 1)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(0, 2, 3)).changeAt(0, 1) ,
+                 var obtained = runOrCatch( r.expr(r.array(0.0, 2.0, 3.0)).changeAt(0.0, 1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -637,7 +637,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected = null as object;
                  
                  //Original: r.expr(1).do(lambda x: r.expr([0,2,3]).change_at(0,x))
-                 var obtained = runOrCatch( r.expr(1).do_(x => r.expr(Arrays.asList(0, 2, 3)).changeAt(0, x)) ,
+                 var obtained = runOrCatch( r.expr(1.0).do_(x => r.expr(r.array(0.0, 2.0, 3.0)).changeAt(0.0, x)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -648,10 +648,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #52
                  //ExpectedOriginal: [1, 2, 3]
-                 var expected = Arrays.asList(1, 2, 3);
+                 var expected = r.array(1.0, 2.0, 3.0);
                  
                  //Original: r.expr([1,0,3]).change_at(1, 2)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 0, 3)).changeAt(1, 2) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 0.0, 3.0)).changeAt(1.0, 2.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -662,10 +662,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #53
                  //ExpectedOriginal: [1, 2, 3]
-                 var expected = Arrays.asList(1, 2, 3);
+                 var expected = r.array(1.0, 2.0, 3.0);
                  
                  //Original: r.expr([1,2,0]).change_at(2, 3)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 0)).changeAt(2, 3) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 0.0)).changeAt(2.0, 3.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -676,10 +676,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #54
                  //ExpectedOriginal: err('ReqlNonExistenceError', 'Index `3` out of bounds for array of size: `3`.', [0])
-                 var expected = err("ReqlNonExistenceError", "Index `3` out of bounds for array of size: `3`.", Arrays.asList(0));
+                 var expected = err("ReqlNonExistenceError", "Index `3` out of bounds for array of size: `3`.", r.array(0.0));
                  
                  //Original: r.expr([1,2,3]).change_at(3, 4)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).changeAt(3, 4) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).changeAt(3.0, 4.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -690,10 +690,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #55
                  //ExpectedOriginal: err('ReqlNonExistenceError', 'Index out of bounds: -5', [0])
-                 var expected = err("ReqlNonExistenceError", "Index out of bounds: -5", Arrays.asList(0));
+                 var expected = err("ReqlNonExistenceError", "Index out of bounds: -5", r.array(0.0));
                  
                  //Original: r.expr([1,2,3,4]).change_at(-5, 1)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3, 4)).changeAt(-5, 1) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0, 4.0)).changeAt(-5.0, 1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -704,10 +704,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #56
                  //ExpectedOriginal: err('ReqlQueryLogicError', 'Number not an integer: 1.5', [0])
-                 var expected = err("ReqlQueryLogicError", "Number not an integer: 1.5", Arrays.asList(0));
+                 var expected = err("ReqlQueryLogicError", "Number not an integer: 1.5", r.array(0.0));
                  
                  //Original: r.expr([1,2,3]).change_at(1.5, 1)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).changeAt(1.5, 1) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).changeAt(1.5, 1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -718,10 +718,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/array.yaml, #57
                  //ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0])
-                 var expected = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", Arrays.asList(0));
+                 var expected = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0.0));
                  
                  //Original: r.expr([1,2,3]).change_at(null, 1)
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3)).changeAt(null, 1) ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0)).changeAt(null, 1.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);

@@ -88,10 +88,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/uuid.yaml, #5
                  //ExpectedOriginal: (10)
-                 var expected = 10;
+                 var expected = 10.0;
                  
                  //Original: r.expr([1,2,3,4,5,6,7,8,9,10]).map(lambda u:r.uuid()).distinct().count()
-                 var obtained = runOrCatch( r.expr(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)).map(u => r.uuid()).distinct().count() ,
+                 var obtained = runOrCatch( r.expr(r.array(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0)).map(u => r.uuid()).distinct().count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);

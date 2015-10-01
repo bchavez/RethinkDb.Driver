@@ -34,6 +34,11 @@ namespace RethinkDb.Driver.Ast {
             return new MapObject().with(key, val);
         }
 
+        public MapObject hashMap()
+        {
+            return new MapObject();
+        }
+
         public IList array(params object[] values){
             return values.ToList();
         }

@@ -220,7 +220,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 5
   Original: ~r.expr(True)
-  Java: ~r.expr(true)
+  Java: r.expr(true).not()
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -229,7 +229,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 5
   Original: r.not_(True)
-  Java: r.not_(true)
+  Java: r.not(true)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -238,7 +238,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 6
   Original: ~r.expr(False)
-  Java: ~r.expr(false)
+  Java: r.expr(false).not()
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -247,7 +247,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 6
   Original: r.not_(False)
-  Java: r.not_(false)
+  Java: r.not(false)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -256,7 +256,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 7
   Original: r.expr(True).not_()
-  Java: r.expr(true).not_()
+  Java: r.expr(true).not()
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -265,7 +265,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 8
   Original: r.expr(False).not_()
-  Java: r.expr(false).not_()
+  Java: r.expr(false).not()
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -274,7 +274,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 9
   Original: ~r.and_(True, True) == r.or_(~r.expr(True), ~r.expr(True))
-  Java: r.eq(~r.and(true, true), r.or(~r.expr(true), ~r.expr(true)))
+  Java: r.eq(r.and(true, true).not(), r.or(r.expr(true).not(), r.expr(true).not()))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -283,7 +283,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 9
   Original: ~r.and_(True, False) == r.or_(~r.expr(True), ~r.expr(False))
-  Java: r.eq(~r.and(true, false), r.or(~r.expr(true), ~r.expr(false)))
+  Java: r.eq(r.and(true, false).not(), r.or(r.expr(true).not(), r.expr(false).not()))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -292,7 +292,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 9
   Original: ~r.and_(False, False) == r.or_(~r.expr(False), ~r.expr(False))
-  Java: r.eq(~r.and(false, false), r.or(~r.expr(false), ~r.expr(false)))
+  Java: r.eq(r.and(false, false).not(), r.or(r.expr(false).not(), r.expr(false).not()))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -301,7 +301,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 9
   Original: ~r.and_(False, True) == r.or_(~r.expr(False), ~r.expr(True))
-  Java: r.eq(~r.and(false, true), r.or(~r.expr(false), ~r.expr(true)))
+  Java: r.eq(r.and(false, true).not(), r.or(r.expr(false).not(), r.expr(true).not()))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -364,19 +364,10 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 16
   Original: r.expr(r.expr('a')['b']).default(2)
-  Java: r.expr(r.expr("a").bracket("b")).default_(2)
+  Java: r.expr(r.expr("a").bracket("b")).default_(2.0)
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", Arrays.asList())
-  RunOpts: []
-- TestType: JavaQuery
-  TestFile: math_logic/logic.yaml
-  TestNum: 17
-  Original: r.expr(r.expr(True) & r.expr(False) == r.expr(False) | r.expr(True))
-  Java: r.expr(r.eq(r.and(r.expr(true), r.expr(false)), r.or(r.expr(false), r.expr(true))))
-  ExpectedOriginal: err("ReqlDriverError", "Calling '==' on result of infix bitwise operator:", [])
-  ExpectedType: Err
-  ExpectedJava: err("ReqlDriverError", "Calling '==' on result of infix bitwise operator:", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
@@ -386,15 +377,6 @@ DefsAndTests:
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
-  RunOpts: []
-- TestType: JavaQuery
-  TestFile: math_logic/logic.yaml
-  TestNum: 19
-  Original: r.expr(r.expr(True) & r.expr(False) >= r.expr(False) | r.expr(True))
-  Java: r.expr(r.ge(r.and(r.expr(true), r.expr(false)), r.or(r.expr(false), r.expr(true))))
-  ExpectedOriginal: err("ReqlDriverError", "Calling '>=' on result of infix bitwise operator:", [])
-  ExpectedType: Err
-  ExpectedJava: err("ReqlDriverError", "Calling '>=' on result of infix bitwise operator:", Arrays.asList())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
@@ -409,7 +391,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 21
   Original: r.expr(1) & True
-  Java: r.and(r.expr(1), true)
+  Java: r.and(r.expr(1.0), true)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -427,7 +409,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 23
   Original: ~r.expr(1)
-  Java: ~r.expr(1)
+  Java: r.expr(1.0).not()
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -436,7 +418,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 24
   Original: ~r.expr(null)
-  Java: ~r.expr(null)
+  Java: r.expr(null).not()
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true

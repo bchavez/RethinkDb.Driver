@@ -4,21 +4,21 @@ DefsAndTests:
   TestFile: regression/2052.yaml
   TestNum: 1
   Original: r.expr(1)
-  Java: r.expr(1)
+  Java: r.expr(1.0)
   ExpectedOriginal: 1
-  ExpectedType: Integer
-  ExpectedJava: 1
+  ExpectedType: Double
+  ExpectedJava: 1.0
   RunOpts:
   - Key: array_limit
-    Val: 16
+    Val: 16.0
 - TestType: JavaQuery
   TestFile: regression/2052.yaml
   TestNum: 2
   Original: r.expr(1)
-  Java: r.expr(1)
+  Java: r.expr(1.0)
   ExpectedOriginal: err("ReqlCompileError", "Unrecognized global optional argument `obviously_bogus`.", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlCompileError", "Unrecognized global optional argument `obviously_bogus`.", Arrays.asList())
+  ExpectedJava: err("ReqlCompileError", "Unrecognized global optional argument `obviously_bogus`.", r.array())
   RunOpts:
   - Key: obviously_bogus
-    Val: 16
+    Val: 16.0

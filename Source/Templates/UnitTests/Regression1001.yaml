@@ -6,7 +6,7 @@ DefsAndTests:
   TestFile: regression/1001.yaml
   TestNum: 1
   Original: tbl.insert({'a':null})
-  Java: tbl.insert(new MapObject().with("a", null))
+  Java: tbl.insert(r.hashMap("a", null))
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
@@ -44,8 +44,8 @@ DefsAndTests:
   Original: tbl.between(r.minval, r.maxval).count()
   Java: tbl.between(r.minval(), r.maxval()).count()
   ExpectedOriginal: 1
-  ExpectedType: Integer
-  ExpectedJava: 1
+  ExpectedType: Double
+  ExpectedJava: 1.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
@@ -53,8 +53,8 @@ DefsAndTests:
   Original: tbl.between(r.minval, r.maxval, index='a').count()
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "a").count()
   ExpectedOriginal: 0
-  ExpectedType: Integer
-  ExpectedJava: 0
+  ExpectedType: Double
+  ExpectedJava: 0.0
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
@@ -62,6 +62,6 @@ DefsAndTests:
   Original: tbl.between(r.minval, r.maxval, index='b').count()
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "b").count()
   ExpectedOriginal: 0
-  ExpectedType: Integer
-  ExpectedJava: 0
+  ExpectedType: Double
+  ExpectedJava: 0.0
   RunOpts: []

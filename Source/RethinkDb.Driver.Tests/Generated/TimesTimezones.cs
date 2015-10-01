@@ -31,7 +31,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
              //Original: t1 = r.time(2013, r.july, 29, 23, 30, 0, "+00:00")
              
-Time t1 = (Time) r.time(2013, r.july(), 29, 23, 30, 0, "+00:00");             
+Time t1 = (Time) r.time(2013.0, r.july(), 29.0, 23.0, 30.0, 0.0, "+00:00");             
              
              //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
              //Original: tutc1 = t1.in_timezone("Z")
@@ -51,7 +51,7 @@ InTimezone tutc3 = (InTimezone) t1.inTimezone("+00");
              //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
              //Original: tutcs = r.expr([tutc1, tutc2, tutc3])
              
-MakeArray tutcs = (MakeArray) r.expr(Arrays.asList(tutc1, tutc2, tutc3));             
+MakeArray tutcs = (MakeArray) r.expr(r.array(tutc1, tutc2, tutc3));             
              
              //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
              //Original: tm1 = t1.in_timezone("-00:59")
@@ -71,7 +71,7 @@ InTimezone tm3 = (InTimezone) t1.inTimezone("-01:01");
              //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
              //Original: tms = r.expr([tm1, tm2, tm3])
              
-MakeArray tms = (MakeArray) r.expr(Arrays.asList(tm1, tm2, tm3));             
+MakeArray tms = (MakeArray) r.expr(r.array(tm1, tm2, tm3));             
              
              //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
              //Original: tp1 = t1.in_timezone("+00:59")
@@ -91,21 +91,21 @@ InTimezone tp3 = (InTimezone) t1.inTimezone("+01:01");
              //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
              //Original: tps = r.expr([tp1, tp2, tp3])
              
-MakeArray tps = (MakeArray) r.expr(Arrays.asList(tp1, tp2, tp3));             
+MakeArray tps = (MakeArray) r.expr(r.array(tp1, tp2, tp3));             
              
              //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
              //Original: ts = tutcs.union(tms).union(tps).union([t1])
              
-Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));             
+Union ts = (Union) tutcs.union(tms).union(tps).union(r.array(t1));             
              TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #15
                  //ExpectedOriginal: ([["+00:00", 29], ["+00:00", 29], ["+00:00", 29]])
-                 var expected = Arrays.asList(Arrays.asList("+00:00", 29), Arrays.asList("+00:00", 29), Arrays.asList("+00:00", 29));
+                 var expected = r.array(r.array("+00:00", 29.0), r.array("+00:00", 29.0), r.array("+00:00", 29.0));
                  
                  //Original: tutcs.map(lambda x:[x.timezone(), x.day()])
-                 var obtained = runOrCatch( tutcs.map(x => Arrays.asList(x.timezone(), x.day())) ,
+                 var obtained = runOrCatch( tutcs.map(x => r.array(x.timezone(), x.day())) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -116,10 +116,10 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
              {
                  //JavaQuery, times/timezones.yaml, #16
                  //ExpectedOriginal: ([["-00:59", 29], ["-01:00", 29], ["-01:01", 29]])
-                 var expected = Arrays.asList(Arrays.asList("-00:59", 29), Arrays.asList("-01:00", 29), Arrays.asList("-01:01", 29));
+                 var expected = r.array(r.array("-00:59", 29.0), r.array("-01:00", 29.0), r.array("-01:01", 29.0));
                  
                  //Original: tms.map(lambda x:[x.timezone(), x.day()])
-                 var obtained = runOrCatch( tms.map(x => Arrays.asList(x.timezone(), x.day())) ,
+                 var obtained = runOrCatch( tms.map(x => r.array(x.timezone(), x.day())) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -130,10 +130,10 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
              {
                  //JavaQuery, times/timezones.yaml, #17
                  //ExpectedOriginal: ([["+00:59", 30], ["+01:00", 30], ["+01:01", 30]])
-                 var expected = Arrays.asList(Arrays.asList("+00:59", 30), Arrays.asList("+01:00", 30), Arrays.asList("+01:01", 30));
+                 var expected = r.array(r.array("+00:59", 30.0), r.array("+01:00", 30.0), r.array("+01:01", 30.0));
                  
                  //Original: tps.map(lambda x:[x.timezone(), x.day()])
-                 var obtained = runOrCatch( tps.map(x => Arrays.asList(x.timezone(), x.day())) ,
+                 var obtained = runOrCatch( tps.map(x => r.array(x.timezone(), x.day())) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -144,7 +144,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
              {
                  //JavaQuery, times/timezones.yaml, #18
                  //ExpectedOriginal: ([0])
-                 var expected = Arrays.asList(0);
+                 var expected = r.array(0.0);
                  
                  //Original: ts.concat_map(lambda x:ts.map(lambda y:x - y)).distinct()
                  var obtained = runOrCatch( ts.concatMap(x => ts.map(y => r.sub(x, y))).distinct() ,
@@ -245,7 +245,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  var expected = err("ReqlQueryLogicError", "Timezone `` does not start with `-` or `+`.");
                  
                  //Original: r.time(2013, 1, 1, "")
-                 var obtained = runOrCatch( r.time(2013, 1, 1, "") ,
+                 var obtained = runOrCatch( r.time(2013.0, 1.0, 1.0, "") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -259,7 +259,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  var expected = err("ReqlQueryLogicError", "`-00` is not a valid time offset.");
                  
                  //Original: r.time(2013, 1, 1, "-00")
-                 var obtained = runOrCatch( r.time(2013, 1, 1, "-00") ,
+                 var obtained = runOrCatch( r.time(2013.0, 1.0, 1.0, "-00") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -273,7 +273,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  var expected = err("ReqlQueryLogicError", "`-00:00` is not a valid time offset.");
                  
                  //Original: r.time(2013, 1, 1, "-00:00")
-                 var obtained = runOrCatch( r.time(2013, 1, 1, "-00:00") ,
+                 var obtained = runOrCatch( r.time(2013.0, 1.0, 1.0, "-00:00") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -287,7 +287,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  var expected = err("ReqlQueryLogicError", "Timezone `UTC+00` does not start with `-` or `+`.");
                  
                  //Original: r.time(2013, 1, 1, "UTC+00")
-                 var obtained = runOrCatch( r.time(2013, 1, 1, "UTC+00") ,
+                 var obtained = runOrCatch( r.time(2013.0, 1.0, 1.0, "UTC+00") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -301,7 +301,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  var expected = err("ReqlQueryLogicError", "Minutes out of range in `+00:60`.");
                  
                  //Original: r.time(2013, 1, 1, "+00:60")
-                 var obtained = runOrCatch( r.time(2013, 1, 1, "+00:60") ,
+                 var obtained = runOrCatch( r.time(2013.0, 1.0, 1.0, "+00:60") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -315,7 +315,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  var expected = err("ReqlQueryLogicError", "Hours out of range in `+25:00`.");
                  
                  //Original: r.time(2013, 1, 1, "+25:00")
-                 var obtained = runOrCatch( r.time(2013, 1, 1, "+25:00") ,
+                 var obtained = runOrCatch( r.time(2013.0, 1.0, 1.0, "+25:00") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);

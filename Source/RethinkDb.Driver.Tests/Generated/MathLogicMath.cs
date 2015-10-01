@@ -32,10 +32,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/math.yaml, #1
                  //ExpectedOriginal: 1
-                 var expected = 1;
+                 var expected = 1.0;
                  
                  //Original: (((4 + 2 * (r.expr(26) % 18)) / 5) - 3)
-                 var obtained = runOrCatch( r.sub(r.div(r.add(4, r.mul(2, r.mod(r.expr(26), 18))), 5), 3) ,
+                 var obtained = runOrCatch( r.sub(r.div(r.add(4.0, r.mul(2.0, r.mod(r.expr(26.0), 18.0))), 5.0), 3.0) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);

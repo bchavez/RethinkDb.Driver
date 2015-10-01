@@ -13,64 +13,64 @@ DefsAndTests:
   TestFile: range.yaml
   TestNum: 2
   Original: r.range().limit(4)
-  Java: r.range().limit(4)
+  Java: r.range().limit(4.0)
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(0, 1, 2, 3)
+  ExpectedJava: r.array(0.0, 1.0, 2.0, 3.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
   TestNum: 3
   Original: r.range(4)
-  Java: r.range(4)
+  Java: r.range(4.0)
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(0, 1, 2, 3)
+  ExpectedJava: r.array(0.0, 1.0, 2.0, 3.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
   TestNum: 4
   Original: r.range(2, 5)
-  Java: r.range(2, 5)
+  Java: r.range(2.0, 5.0)
   ExpectedOriginal: '[2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(2, 3, 4)
+  ExpectedJava: r.array(2.0, 3.0, 4.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
   TestNum: 5
   Original: r.range(0)
-  Java: r.range(0)
+  Java: r.range(0.0)
   ExpectedOriginal: '[]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList()
+  ExpectedJava: r.array()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
   TestNum: 6
   Original: r.range(5, 2)
-  Java: r.range(5, 2)
+  Java: r.range(5.0, 2.0)
   ExpectedOriginal: '[]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList()
+  ExpectedJava: r.array()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
   TestNum: 7
   Original: r.range(-5, -2)
-  Java: r.range(-5, -2)
+  Java: r.range(-5.0, -2.0)
   ExpectedOriginal: '[-5, -4, -3]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(-5, -4, -3)
+  ExpectedJava: r.array(-5.0, -4.0, -3.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
   TestNum: 8
   Original: r.range(-5, 2)
-  Java: r.range(-5, 2)
+  Java: r.range(-5.0, 2.0)
   ExpectedOriginal: '[-5, -4, -3, -2, -1, 0, 1]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(-5, -4, -3, -2, -1, 0, 1)
+  ExpectedJava: r.array(-5.0, -4.0, -3.0, -2.0, -1.0, 0.0, 1.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
@@ -79,7 +79,7 @@ DefsAndTests:
   Java: r.range("foo")
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
@@ -88,7 +88,7 @@ DefsAndTests:
   Java: r.range(9007199254740994.0)
   ExpectedOriginal: err_regex("ReqlQueryLogicError", "Number not an integer \\(>2\\^53\\). 9007199254740994", [])
   ExpectedType: ErrRegex
-  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer \\(>2\\^53\\). 9007199254740994", Arrays.asList())
+  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer \\(>2\\^53\\). 9007199254740994", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
@@ -97,7 +97,7 @@ DefsAndTests:
   Java: r.range(-9007199254740994.0)
   ExpectedOriginal: err_regex("ReqlQueryLogicError", "Number not an integer \\(<-2\\^53\\). -9007199254740994", [])
   ExpectedType: ErrRegex
-  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer \\(<-2\\^53\\). -9007199254740994", Arrays.asList())
+  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer \\(<-2\\^53\\). -9007199254740994", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
@@ -106,7 +106,7 @@ DefsAndTests:
   Java: r.range(0.5)
   ExpectedOriginal: err_regex("ReqlQueryLogicError", "Number not an integer. 0\\.5", [])
   ExpectedType: ErrRegex
-  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer. 0\\.5", Arrays.asList())
+  ExpectedJava: err_regex("ReqlQueryLogicError", "Number not an integer. 0\\.5", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
@@ -115,7 +115,7 @@ DefsAndTests:
   Java: r.range().count()
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
@@ -124,7 +124,7 @@ DefsAndTests:
   Java: r.range().coerceTo("ARRAY")
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
@@ -133,14 +133,14 @@ DefsAndTests:
   Java: r.range().coerceTo("OBJECT")
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
   TestNum: 17
   Original: r.range(4).count()
-  Java: r.range(4).count()
+  Java: r.range(4.0).count()
   ExpectedOriginal: 4
-  ExpectedType: Integer
-  ExpectedJava: 4
+  ExpectedType: Double
+  ExpectedJava: 4.0
   RunOpts: []

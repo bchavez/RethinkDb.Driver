@@ -4,17 +4,17 @@ DefsAndTests:
   TestFile: regression/2696.yaml
   TestNum: 1
   Original: r.expr([1,2,3,4]).delete_at(4,4)
-  Java: r.expr(Arrays.asList(1, 2, 3, 4)).deleteAt(4, 4)
+  Java: r.expr(r.array(1.0, 2.0, 3.0, 4.0)).deleteAt(4.0, 4.0)
   ExpectedOriginal: '[1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList(1, 2, 3, 4)
+  ExpectedJava: r.array(1.0, 2.0, 3.0, 4.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2696.yaml
   TestNum: 2
   Original: r.expr([]).delete_at(0,0)
-  Java: r.expr(Arrays.asList()).deleteAt(0, 0)
+  Java: r.expr(r.array()).deleteAt(0.0, 0.0)
   ExpectedOriginal: '[]'
   ExpectedType: List
-  ExpectedJava: Arrays.asList()
+  ExpectedJava: r.array()
   RunOpts: []

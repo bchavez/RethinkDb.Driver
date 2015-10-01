@@ -6,7 +6,7 @@ DefsAndTests:
   TestFile: regression/568.yaml
   TestNum: 1
   Original: tbl.insert({'name':'Jim Brown'})
-  Java: tbl.insert(new MapObject().with("name", "Jim Brown"))
+  Java: tbl.insert(r.hashMap("name", "Jim Brown"))
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
@@ -18,5 +18,5 @@ DefsAndTests:
   Java: tbl.concatMap(rec -> rec.bracket("name"))
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot convert STRING to SEQUENCE", [])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot convert STRING to SEQUENCE", Arrays.asList())
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot convert STRING to SEQUENCE", r.array())
   RunOpts: []

@@ -27,6 +27,7 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
+             TestCounter++;
              
              {
                  //JavaQuery, math_logic/sub.yaml, #1
@@ -40,6 +41,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, math_logic/sub.yaml, #1
@@ -53,6 +55,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, math_logic/sub.yaml, #1
@@ -66,6 +69,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, math_logic/sub.yaml, #2
@@ -79,6 +83,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, math_logic/sub.yaml, #3
@@ -92,6 +97,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, math_logic/sub.yaml, #5
@@ -105,6 +111,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, math_logic/sub.yaml, #6
@@ -118,6 +125,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, math_logic/sub.yaml, #7

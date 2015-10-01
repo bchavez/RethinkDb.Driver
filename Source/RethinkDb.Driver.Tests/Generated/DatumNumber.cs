@@ -27,6 +27,7 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #1
@@ -40,6 +41,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #2
@@ -53,6 +55,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #3
@@ -66,6 +69,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #4
@@ -79,6 +83,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #5
@@ -92,6 +97,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #6
@@ -105,6 +111,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #7
@@ -118,6 +125,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #8
@@ -131,6 +139,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #9
@@ -144,6 +153,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #10
@@ -157,6 +167,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #11
@@ -170,6 +181,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #12
@@ -183,6 +195,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #13
@@ -196,6 +209,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #14
@@ -209,6 +223,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #15
@@ -222,6 +237,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #16
@@ -235,6 +251,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/number.yaml, #17

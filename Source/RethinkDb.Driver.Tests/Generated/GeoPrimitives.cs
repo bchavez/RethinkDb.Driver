@@ -27,6 +27,7 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
+             TestCounter++;
              
              {
                  //JavaQuery, geo/primitives.yaml, #1
@@ -40,6 +41,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/primitives.yaml, #2
@@ -53,6 +55,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/primitives.yaml, #3
@@ -66,6 +69,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/primitives.yaml, #4
@@ -79,6 +83,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/primitives.yaml, #5
@@ -92,6 +97,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/primitives.yaml, #6
@@ -105,6 +111,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/primitives.yaml, #7
@@ -118,6 +125,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/primitives.yaml, #8
@@ -131,6 +139,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/primitives.yaml, #9

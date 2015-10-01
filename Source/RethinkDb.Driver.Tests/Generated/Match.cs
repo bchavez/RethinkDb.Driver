@@ -28,6 +28,7 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
+             TestCounter++;
              
              {
                  //JavaQuery, match.yaml, #1
@@ -41,6 +42,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, match.yaml, #2
@@ -54,6 +56,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, match.yaml, #3
@@ -67,6 +70,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, match.yaml, #4
@@ -80,6 +84,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, match.yaml, #5
@@ -93,6 +98,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, match.yaml, #6
@@ -106,6 +112,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, match.yaml, #7
@@ -119,6 +126,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, match.yaml, #8
@@ -132,6 +140,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, match.yaml, #9
@@ -145,6 +154,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, match.yaml, #10

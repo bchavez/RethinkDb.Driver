@@ -97,6 +97,7 @@ MakeArray tps = (MakeArray) r.expr(Arrays.asList(tp1, tp2, tp3));
              //Original: ts = tutcs.union(tms).union(tps).union([t1])
              
 Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));             
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #15
@@ -110,6 +111,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #16
@@ -123,6 +125,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #17
@@ -136,6 +139,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #18
@@ -149,6 +153,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #19
@@ -162,6 +167,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #20
@@ -175,6 +181,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #21
@@ -188,6 +195,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #22
@@ -201,6 +209,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #23
@@ -214,6 +223,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #24
@@ -227,6 +237,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #25
@@ -240,6 +251,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #26
@@ -253,6 +265,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #27
@@ -266,6 +279,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #28
@@ -279,6 +293,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #29
@@ -292,6 +307,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #30
@@ -305,6 +321,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #31
@@ -318,6 +335,7 @@ Union ts = (Union) tutcs.union(tms).union(tps).union(Arrays.asList(t1));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, times/timezones.yaml, #32

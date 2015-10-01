@@ -259,6 +259,12 @@ WriteLiteral("\r\n");
             #line hidden
 WriteLiteral("             ");
 
+WriteLiteral("TestCounter++;\r\n");
+
+
+
+WriteLiteral("             ");
+
 WriteLiteral("\r\n");
 
 
@@ -275,7 +281,7 @@ WriteLiteral("//JavaQuery, ");
 
 
             
-            #line 60 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 61 "..\..\CodeGen\TestTemplate.cshtml"
                            Write(test.TestFile);
 
             
@@ -285,7 +291,7 @@ WriteLiteral(", #");
 
 
             
-            #line 60 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 61 "..\..\CodeGen\TestTemplate.cshtml"
                                             Write(test.TestNum);
 
             
@@ -301,7 +307,7 @@ WriteLiteral("//ExpectedOriginal: ");
 
 
             
-            #line 61 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 62 "..\..\CodeGen\TestTemplate.cshtml"
                                   Write(test.ExpectedOriginal);
 
             
@@ -317,7 +323,7 @@ WriteLiteral("var expected = ");
 
 
             
-            #line 62 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 63 "..\..\CodeGen\TestTemplate.cshtml"
                               Write(test.ExpectedJava ?? "null as object");
 
             
@@ -339,7 +345,7 @@ WriteLiteral("//Original: ");
 
 
             
-            #line 64 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 65 "..\..\CodeGen\TestTemplate.cshtml"
                           Write(test.Original);
 
             
@@ -355,7 +361,7 @@ WriteLiteral("var obtained = runOrCatch( ");
 
 
             
-            #line 65 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 66 "..\..\CodeGen\TestTemplate.cshtml"
                                          Write(test.Java);
 
             
@@ -371,7 +377,7 @@ WriteLiteral("                           new OptArgs()\r\n");
 
 
             
-            #line 67 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 68 "..\..\CodeGen\TestTemplate.cshtml"
                  foreach( var opt in test.RunOpts )
                  {
 
@@ -384,7 +390,7 @@ WriteLiteral(".with(\"");
 
 
             
-            #line 69 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 70 "..\..\CodeGen\TestTemplate.cshtml"
                          Write(opt.Key);
 
             
@@ -394,7 +400,7 @@ WriteLiteral("\", ");
 
 
             
-            #line 69 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 70 "..\..\CodeGen\TestTemplate.cshtml"
                                     Write(opt.Val);
 
             
@@ -404,7 +410,7 @@ WriteLiteral(")\r\n");
 
 
             
-            #line 70 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 71 "..\..\CodeGen\TestTemplate.cshtml"
                  }
 
             
@@ -416,7 +422,7 @@ WriteLiteral("   );\r\n");
 
 
             
-            #line 72 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 73 "..\..\CodeGen\TestTemplate.cshtml"
                  
 
             
@@ -440,7 +446,7 @@ WriteLiteral("\r\n");
 
 
             
-            #line 76 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 77 "..\..\CodeGen\TestTemplate.cshtml"
          }
      }
 

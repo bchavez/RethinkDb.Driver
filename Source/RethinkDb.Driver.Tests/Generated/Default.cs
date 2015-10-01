@@ -27,6 +27,7 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #1
@@ -40,6 +41,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #2
@@ -53,6 +55,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #3
@@ -66,6 +69,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #4
@@ -79,6 +83,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #5
@@ -92,6 +97,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #6
@@ -105,6 +111,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #7
@@ -118,6 +125,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #8
@@ -131,6 +139,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #9
@@ -144,6 +153,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #10
@@ -157,6 +167,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #11
@@ -170,6 +181,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #12
@@ -183,6 +195,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #13
@@ -196,6 +209,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #14
@@ -209,6 +223,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #15
@@ -222,6 +237,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #16
@@ -235,6 +251,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #17
@@ -248,6 +265,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #18
@@ -261,6 +279,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #19
@@ -274,6 +293,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #20
@@ -287,6 +307,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #21
@@ -300,6 +321,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #22
@@ -313,6 +335,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #23
@@ -326,6 +349,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #24
@@ -339,6 +363,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #25
@@ -352,6 +377,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #26
@@ -365,6 +391,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #27
@@ -378,6 +405,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #28
@@ -391,6 +419,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #29
@@ -404,6 +433,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #30
@@ -417,6 +447,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #31
@@ -430,6 +461,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #32
@@ -443,6 +475,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #33
@@ -461,6 +494,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //Original: arr = r.expr([{'a':1},{'a':null},{}]).order_by('a')
              
 OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new MapObject().with("a", null), new MapObject())).orderBy("a");             
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #35
@@ -474,6 +508,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #36
@@ -487,6 +522,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #37
@@ -500,6 +536,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #38
@@ -513,6 +550,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #39
@@ -526,6 +564,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #40
@@ -539,6 +578,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #41
@@ -552,6 +592,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #42
@@ -565,6 +606,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #43
@@ -578,6 +620,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #44
@@ -591,6 +634,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #45
@@ -604,6 +648,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #46
@@ -617,6 +662,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #47
@@ -630,6 +676,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #48
@@ -643,6 +690,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #49
@@ -656,6 +704,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #50
@@ -669,6 +718,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #51
@@ -682,6 +732,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #52
@@ -695,6 +746,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #53
@@ -713,6 +765,7 @@ OrderBy arr = (OrderBy) r.expr(Arrays.asList(new MapObject().with("a", 1), new M
              //Original: tbl = r.table('default_test').order_by('a').pluck('a')
              
 Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");             
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #55
@@ -726,6 +779,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #56
@@ -739,6 +793,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #57
@@ -752,6 +807,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #58
@@ -765,6 +821,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #59
@@ -778,6 +835,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #60
@@ -791,6 +849,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #61
@@ -804,6 +863,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #62
@@ -817,6 +877,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #63
@@ -830,6 +891,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #64
@@ -843,6 +905,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #65
@@ -856,6 +919,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #66
@@ -869,6 +933,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #67
@@ -882,6 +947,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #68
@@ -895,6 +961,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #69
@@ -908,6 +975,7 @@ Pluck tbl = (Pluck) r.table("default_test").orderBy("a").pluck("a");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #70

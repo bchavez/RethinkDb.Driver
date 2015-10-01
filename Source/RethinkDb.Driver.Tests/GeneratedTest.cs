@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Text.RegularExpressions;
+using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
@@ -12,9 +13,10 @@ namespace RethinkDb.Driver.Tests
     [TestFixture]
     public class GeneratedTest
     {
+        protected static int TestCounter = 0;
         protected const string DbName = "CSharpDriverTests";
         protected const string Hostname = "192.168.0.11";
-        protected const int Port = 31157;
+        protected const int Port = RethinkDb.Driver.RethinkDBConstants.DEFAULT_PORT;
 
         protected static RethinkDB r = RethinkDB.r;
         protected Connection conn;
@@ -28,7 +30,7 @@ namespace RethinkDb.Driver.Tests
         [TestFixtureTearDown]
         public void AfterRunningTestSession()
         {
-
+            Console.WriteLine($"TOTAL TESTS: {TestCounter}");
         }
 
 
@@ -45,13 +47,6 @@ namespace RethinkDb.Driver.Tests
         public void AfterEachTest()
         {
 
-        }
-
-
-        [Test]
-        public void Test()
-        {
-            
         }
 
         public class Arrays
@@ -92,7 +87,7 @@ namespace RethinkDb.Driver.Tests
 
         protected void assertEquals(object expected, object obtained)
         {
-            
+            //expected.Equals(obtained).Should().BeTrue();
         }
 
         protected object runOrCatch(object query, OptArgs runopts)

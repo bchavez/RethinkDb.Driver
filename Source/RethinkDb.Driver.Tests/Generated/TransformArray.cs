@@ -47,6 +47,7 @@ MakeArray objArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("a", 1)
              //Original: nestedObjArr = r.expr([{'a':1, 'b':{'c':1}}, {'a':2, 'b':{'c':2}}, {'a':3, 'b':{'c':3}}])
              
 MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("a", 1).with("b", new MapObject().with("c", 1)), new MapObject().with("a", 2).with("b", new MapObject().with("c", 2)), new MapObject().with("a", 3).with("b", new MapObject().with("c", 3))));             
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #5
@@ -60,6 +61,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #6
@@ -73,6 +75,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #7
@@ -86,6 +89,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #8
@@ -99,6 +103,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #9
@@ -112,6 +117,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #10
@@ -125,6 +131,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #11
@@ -138,6 +145,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #12
@@ -151,6 +159,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #13
@@ -164,6 +173,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #14
@@ -177,6 +187,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #15
@@ -190,6 +201,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #16
@@ -203,6 +215,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #17
@@ -216,6 +229,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #18
@@ -229,6 +243,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #19
@@ -242,6 +257,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #20
@@ -255,6 +271,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #20
@@ -268,6 +285,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #20
@@ -281,6 +299,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #21
@@ -294,6 +313,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #21
@@ -307,6 +327,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #22
@@ -320,6 +341,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #22
@@ -333,6 +355,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #23
@@ -346,6 +369,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #24
@@ -359,6 +383,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #25
@@ -372,6 +397,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #26
@@ -385,6 +411,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #27
@@ -398,6 +425,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #28
@@ -411,6 +439,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #29
@@ -424,6 +453,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #30
@@ -437,6 +467,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #31
@@ -450,6 +481,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #32
@@ -468,6 +500,7 @@ MakeArray nestedObjArr = (MakeArray) r.expr(Arrays.asList(new MapObject().with("
              //Original: wftst = objArr.union(objArr.pluck('a')).union(objArr.pluck('b')).union([{'a':null}])
              
 Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).union(Arrays.asList(new MapObject().with("a", null)));             
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #34
@@ -481,6 +514,7 @@ Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).u
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #35
@@ -494,6 +528,7 @@ Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).u
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #36
@@ -507,6 +542,7 @@ Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).u
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #37
@@ -525,6 +561,7 @@ Union wftst = (Union) objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).u
              //Original: wftst2 = nestedObjArr.union(objArr.pluck({'b':'missing'})).union(nestedObjArr.pluck({'b':'c'}))
              
 Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b", "missing"))).union(nestedObjArr.pluck(new MapObject().with("b", "c")));             
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #39
@@ -538,6 +575,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #40
@@ -551,6 +589,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #41
@@ -564,6 +603,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #42
@@ -577,6 +617,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #43
@@ -590,6 +631,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #44
@@ -603,6 +645,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #45
@@ -616,6 +659,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #46
@@ -629,6 +673,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #47
@@ -642,6 +687,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #48
@@ -655,6 +701,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #49
@@ -668,6 +715,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #50
@@ -681,6 +729,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #51
@@ -694,6 +743,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #52
@@ -707,6 +757,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #53
@@ -720,6 +771,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #54
@@ -733,6 +785,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #55
@@ -746,6 +799,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #56
@@ -759,6 +813,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #57
@@ -772,6 +827,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #58
@@ -785,6 +841,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #59
@@ -798,6 +855,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #59
@@ -811,6 +869,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #60
@@ -824,6 +883,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #61
@@ -837,6 +897,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #62
@@ -850,6 +911,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #63
@@ -863,6 +925,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #64
@@ -876,6 +939,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #65
@@ -889,6 +953,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #66
@@ -902,6 +967,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #67
@@ -915,6 +981,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #68
@@ -928,6 +995,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #69
@@ -941,6 +1009,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #70
@@ -954,6 +1023,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #71
@@ -967,6 +1037,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #72
@@ -980,6 +1051,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #73
@@ -993,6 +1065,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #74
@@ -1006,6 +1079,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #75
@@ -1019,6 +1093,7 @@ Union wftst2 = (Union) nestedObjArr.union(objArr.pluck(new MapObject().with("b",
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #76

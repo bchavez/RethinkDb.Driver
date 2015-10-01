@@ -27,6 +27,7 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #1
@@ -40,6 +41,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #2
@@ -53,6 +55,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #3
@@ -66,6 +69,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #4
@@ -84,6 +88,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //Original: someDist = r.distance(r.point(-122, 37), r.point(-123, 37))
              
 Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));             
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #5
@@ -97,6 +102,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #6
@@ -110,6 +116,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #7
@@ -123,6 +130,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #8
@@ -136,6 +144,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #9
@@ -149,6 +158,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #10
@@ -162,6 +172,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #11
@@ -175,6 +186,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #12
@@ -188,6 +200,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #13
@@ -201,6 +214,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #14
@@ -214,6 +228,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #15
@@ -227,6 +242,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #16
@@ -240,6 +256,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #17
@@ -253,6 +270,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #18
@@ -266,6 +284,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #19
@@ -279,6 +298,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #20
@@ -292,6 +312,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #21
@@ -305,6 +326,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #22
@@ -318,6 +340,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #23
@@ -331,6 +354,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #24
@@ -344,6 +368,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #25
@@ -357,6 +382,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #26
@@ -370,6 +396,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #27
@@ -383,6 +410,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #28
@@ -396,6 +424,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #29
@@ -409,6 +438,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #30
@@ -422,6 +452,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #31
@@ -435,6 +466,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #32
@@ -448,6 +480,7 @@ Distance someDist = (Distance) r.distance(r.point(-122, 37), r.point(-123, 37));
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, geo/operations.yaml, #33

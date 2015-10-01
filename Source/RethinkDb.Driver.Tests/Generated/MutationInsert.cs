@@ -28,6 +28,7 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #1
@@ -46,6 +47,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //Original: tbl2 = r.db('test').table('test2')
              
 Table tbl2 = (Table) r.db("test").table("test2");             
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #3
@@ -59,6 +61,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #4
@@ -72,6 +75,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #5
@@ -85,6 +89,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #6
@@ -98,6 +103,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #7
@@ -111,6 +117,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #8
@@ -124,6 +131,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #9
@@ -137,6 +145,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #10
@@ -150,6 +159,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #11
@@ -163,6 +173,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #12
@@ -176,6 +187,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #13
@@ -189,6 +201,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #14
@@ -202,6 +215,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #15
@@ -215,6 +229,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #16
@@ -228,6 +243,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #17
@@ -241,6 +257,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #18
@@ -254,6 +271,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #19
@@ -267,6 +285,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #20
@@ -280,6 +299,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #21
@@ -293,6 +313,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #22
@@ -306,6 +327,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #23
@@ -319,6 +341,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #24
@@ -332,6 +355,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #25
@@ -345,6 +369,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #26
@@ -363,6 +388,7 @@ Table tbl2 = (Table) r.db("test").table("test2");
              //Original: tblpkey = r.db('test').table('testpkey')
              
 Table tblpkey = (Table) r.db("test").table("testpkey");             
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #27
@@ -376,6 +402,7 @@ Table tblpkey = (Table) r.db("test").table("testpkey");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #28
@@ -389,6 +416,7 @@ Table tblpkey = (Table) r.db("test").table("testpkey");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #29
@@ -402,6 +430,7 @@ Table tblpkey = (Table) r.db("test").table("testpkey");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #30
@@ -415,6 +444,7 @@ Table tblpkey = (Table) r.db("test").table("testpkey");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #31
@@ -428,6 +458,7 @@ Table tblpkey = (Table) r.db("test").table("testpkey");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #32
@@ -441,6 +472,7 @@ Table tblpkey = (Table) r.db("test").table("testpkey");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #33
@@ -454,6 +486,7 @@ Table tblpkey = (Table) r.db("test").table("testpkey");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #34
@@ -467,6 +500,7 @@ Table tblpkey = (Table) r.db("test").table("testpkey");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #35
@@ -480,6 +514,7 @@ Table tblpkey = (Table) r.db("test").table("testpkey");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #36
@@ -493,6 +528,7 @@ Table tblpkey = (Table) r.db("test").table("testpkey");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #37
@@ -506,6 +542,7 @@ Table tblpkey = (Table) r.db("test").table("testpkey");
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, mutation/insert.yaml, #38

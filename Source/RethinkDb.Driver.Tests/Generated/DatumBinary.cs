@@ -32,6 +32,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //Original: s = b''
              
 byte[] s = (byte[]) "".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #2
@@ -45,6 +46,7 @@ byte[] s = (byte[]) "".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #3
@@ -63,6 +65,7 @@ byte[] s = (byte[]) "".getBytes(StandardCharsets.UTF_8);
              //Original: s = b'\x00'
              
 byte[] s = (byte[]) "\x00".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #5
@@ -76,6 +79,7 @@ byte[] s = (byte[]) "\x00".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #6
@@ -94,6 +98,7 @@ byte[] s = (byte[]) "\x00".getBytes(StandardCharsets.UTF_8);
              //Original: s = b'\x00\x42'
              
 byte[] s = (byte[]) "\x00\x42".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #8
@@ -107,6 +112,7 @@ byte[] s = (byte[]) "\x00\x42".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #9
@@ -125,6 +131,7 @@ byte[] s = (byte[]) "\x00\x42".getBytes(StandardCharsets.UTF_8);
              //Original: s = b'\x00\xfe\x7a'
              
 byte[] s = (byte[]) "\x00\xfez".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #11
@@ -138,6 +145,7 @@ byte[] s = (byte[]) "\x00\xfez".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #12
@@ -156,6 +164,7 @@ byte[] s = (byte[]) "\x00\xfez".getBytes(StandardCharsets.UTF_8);
              //Original: s = b'\xed\xfe\x00\xba'
              
 byte[] s = (byte[]) "\xed\xfe\x00\xba".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #14
@@ -169,6 +178,7 @@ byte[] s = (byte[]) "\xed\xfe\x00\xba".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #15
@@ -187,6 +197,7 @@ byte[] s = (byte[]) "\xed\xfe\x00\xba".getBytes(StandardCharsets.UTF_8);
              //Original: s = b'\x50\xf9\x00\x77\xf9'
              
 byte[] s = (byte[]) "P\xf9\x00w\xf9".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #17
@@ -200,6 +211,7 @@ byte[] s = (byte[]) "P\xf9\x00w\xf9".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #18
@@ -218,6 +230,7 @@ byte[] s = (byte[]) "P\xf9\x00w\xf9".getBytes(StandardCharsets.UTF_8);
              //Original: s = b'\x2f\xe3\xb5\x57\x00\x92'
              
 byte[] s = (byte[]) "/\xe3\xb5W\x00\x92".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #20
@@ -231,6 +244,7 @@ byte[] s = (byte[]) "/\xe3\xb5W\x00\x92".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #21
@@ -249,6 +263,7 @@ byte[] s = (byte[]) "/\xe3\xb5W\x00\x92".getBytes(StandardCharsets.UTF_8);
              //Original: s = b'\xa9\x43\x54\xe9\x00\xf8\xfb'
              
 byte[] s = (byte[]) "\xa9\x43T\xe9\x00\xf8\xfb".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #23
@@ -262,6 +277,7 @@ byte[] s = (byte[]) "\xa9\x43T\xe9\x00\xf8\xfb".getBytes(StandardCharsets.UTF_8)
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #24
@@ -280,6 +296,7 @@ byte[] s = (byte[]) "\xa9\x43T\xe9\x00\xf8\xfb".getBytes(StandardCharsets.UTF_8)
              //Original: s = b'\x57\xbb\xe5\x82\x8b\xd3\x00\xf9'
              
 byte[] s = (byte[]) "W\xbb\xe5\x82\x8b\xd3\x00\xf9".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #26
@@ -293,6 +310,7 @@ byte[] s = (byte[]) "W\xbb\xe5\x82\x8b\xd3\x00\xf9".getBytes(StandardCharsets.UT
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #27
@@ -311,6 +329,7 @@ byte[] s = (byte[]) "W\xbb\xe5\x82\x8b\xd3\x00\xf9".getBytes(StandardCharsets.UT
              //Original: s = b'\x44\x1b\x3e\x00\x13\x19\x29\x2a\xbf'
              
 byte[] s = (byte[]) "D\x1b>\x00\x13\x19)*\xbf".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #29
@@ -324,6 +343,7 @@ byte[] s = (byte[]) "D\x1b>\x00\x13\x19)*\xbf".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #30
@@ -342,6 +362,7 @@ byte[] s = (byte[]) "D\x1b>\x00\x13\x19)*\xbf".getBytes(StandardCharsets.UTF_8);
              //Original: s = b'\x8a\x1d\x09\x00\x5d\x60\x6b\x2e\x70\xd9'
              
 byte[] s = (byte[]) "\x8a\x1d\x09\x00]`k.p\xd9".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #32
@@ -355,6 +376,7 @@ byte[] s = (byte[]) "\x8a\x1d\x09\x00]`k.p\xd9".getBytes(StandardCharsets.UTF_8)
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #33
@@ -373,6 +395,7 @@ byte[] s = (byte[]) "\x8a\x1d\x09\x00]`k.p\xd9".getBytes(StandardCharsets.UTF_8)
              //Original: s = b'\x00\xaf\x47\x4b\x38\x99\x14\x8d\x8f\x10\x51'
              
 byte[] s = (byte[]) "\x00\xafGK8\x99\x14\x8d\x8f\x10Q".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #35
@@ -386,6 +409,7 @@ byte[] s = (byte[]) "\x00\xafGK8\x99\x14\x8d\x8f\x10Q".getBytes(StandardCharsets
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #36
@@ -404,6 +428,7 @@ byte[] s = (byte[]) "\x00\xafGK8\x99\x14\x8d\x8f\x10Q".getBytes(StandardCharsets
              //Original: s = b'\x45\x39\x00\xf7\xc2\x37\xfd\xe0\x38\x82\x40\xa9'
              
 byte[] s = (byte[]) "E9\x00\xf7\xc2\x37\xfd\xe0\x38\x82@\xa9".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #38
@@ -417,6 +442,7 @@ byte[] s = (byte[]) "E9\x00\xf7\xc2\x37\xfd\xe0\x38\x82@\xa9".getBytes(StandardC
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #39
@@ -460,6 +486,7 @@ byte[] e = (byte[]) "\x80".getBytes(StandardCharsets.UTF_8);
              //Original: f = b'\xFE'
              
 byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);             
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #46
@@ -473,6 +500,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #47
@@ -486,6 +514,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #48
@@ -499,6 +528,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #49
@@ -512,6 +542,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #50
@@ -525,6 +556,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #51
@@ -538,6 +570,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #52
@@ -551,6 +584,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #53
@@ -564,6 +598,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #54
@@ -577,6 +612,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #55
@@ -590,6 +626,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #56
@@ -603,6 +640,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #57
@@ -616,6 +654,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #58
@@ -629,6 +668,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #59
@@ -642,6 +682,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #60
@@ -655,6 +696,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #61
@@ -668,6 +710,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #62
@@ -681,6 +724,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #63
@@ -694,6 +738,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #64
@@ -707,6 +752,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #65
@@ -720,6 +766,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #66
@@ -733,6 +780,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #67
@@ -746,6 +794,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #68
@@ -759,6 +808,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #69
@@ -772,6 +822,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #70
@@ -785,6 +836,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #71
@@ -798,6 +850,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #72
@@ -811,6 +864,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #73
@@ -824,6 +878,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #74
@@ -837,6 +892,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #75
@@ -850,6 +906,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #76
@@ -863,6 +920,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #77
@@ -876,6 +934,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #78
@@ -889,6 +948,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #79
@@ -902,6 +962,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #80
@@ -915,6 +976,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #81
@@ -928,6 +990,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #82
@@ -941,6 +1004,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #83
@@ -954,6 +1018,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #84
@@ -967,6 +1032,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #85
@@ -980,6 +1046,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #86
@@ -993,6 +1060,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #87
@@ -1006,6 +1074,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #88
@@ -1019,6 +1088,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #89
@@ -1032,6 +1102,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #90
@@ -1045,6 +1116,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #91
@@ -1058,6 +1130,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #92
@@ -1071,6 +1144,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #93
@@ -1084,6 +1158,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #94
@@ -1097,6 +1172,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #95
@@ -1110,6 +1186,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #96
@@ -1123,6 +1200,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #97
@@ -1136,6 +1214,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #98
@@ -1149,6 +1228,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #99
@@ -1162,6 +1242,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #100
@@ -1175,6 +1256,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #101
@@ -1188,6 +1270,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #102
@@ -1201,6 +1284,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #103
@@ -1214,6 +1298,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #104
@@ -1228,6 +1313,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #105
@@ -1242,6 +1328,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #106
@@ -1255,6 +1342,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #107
@@ -1268,6 +1356,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #108
@@ -1281,6 +1370,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #109
@@ -1294,6 +1384,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #110
@@ -1307,6 +1398,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #111
@@ -1320,6 +1412,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #112
@@ -1333,6 +1426,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #113
@@ -1346,6 +1440,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #114
@@ -1359,6 +1454,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #115
@@ -1372,6 +1468,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #116
@@ -1385,6 +1482,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #117
@@ -1398,6 +1496,7 @@ byte[] f = (byte[]) "\xfe".getBytes(StandardCharsets.UTF_8);
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #118

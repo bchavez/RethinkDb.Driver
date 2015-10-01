@@ -28,6 +28,7 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #1
@@ -41,6 +42,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #2
@@ -54,6 +56,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #3
@@ -67,6 +70,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #4
@@ -80,6 +84,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #5
@@ -98,6 +103,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //Original: tblchanges = tbl.changes(squash=true, include_states=true)
              
 Changes tblchanges = (Changes) tbl.changes().optArg("squash", true).optArg("include_states", true);             
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #7
@@ -111,6 +117,7 @@ Changes tblchanges = (Changes) tbl.changes().optArg("squash", true).optArg("incl
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #8
@@ -129,6 +136,7 @@ Changes tblchanges = (Changes) tbl.changes().optArg("squash", true).optArg("incl
              //Original: getchanges = tbl.get(2).changes(include_states=true)
              
 Changes getchanges = (Changes) tbl.get(2).changes().optArg("include_states", true);             
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #10
@@ -142,6 +150,7 @@ Changes getchanges = (Changes) tbl.get(2).changes().optArg("include_states", tru
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #11
@@ -165,6 +174,7 @@ Changes limitchanges = (Changes) tbl.orderBy().optArg("index", "id").limit(10).c
              //Original: limitchangesdesc = tbl.order_by(index=r.desc('id')).limit(10).changes(include_states=true)
              
 Changes limitchangesdesc = (Changes) tbl.orderBy().optArg("index", r.desc("id")).limit(10).changes().optArg("include_states", true);             
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #14
@@ -178,6 +188,7 @@ Changes limitchangesdesc = (Changes) tbl.orderBy().optArg("index", r.desc("id"))
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #15
@@ -191,6 +202,7 @@ Changes limitchangesdesc = (Changes) tbl.orderBy().optArg("index", r.desc("id"))
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #16

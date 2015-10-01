@@ -33,6 +33,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //Original: all = tbl.changes()
              
 Changes all = (Changes) tbl.changes();             
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #2
@@ -46,6 +47,7 @@ Changes all = (Changes) tbl.changes();
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #3
@@ -59,6 +61,7 @@ Changes all = (Changes) tbl.changes();
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #4
@@ -72,6 +75,7 @@ Changes all = (Changes) tbl.changes();
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #5
@@ -85,6 +89,7 @@ Changes all = (Changes) tbl.changes();
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #6
@@ -98,6 +103,7 @@ Changes all = (Changes) tbl.changes();
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #7
@@ -116,6 +122,7 @@ Changes all = (Changes) tbl.changes();
              //Original: pluck = tbl.changes().pluck({'new_val':['version']})
              
 Pluck pluck = (Pluck) tbl.changes().pluck(new MapObject().with("new_val", Arrays.asList("version")));             
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #9
@@ -129,6 +136,7 @@ Pluck pluck = (Pluck) tbl.changes().pluck(new MapObject().with("new_val", Arrays
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #10
@@ -157,6 +165,7 @@ Table vtbl = (Table) r.db("rethinkdb").table("_debug_scratch");
              //Original: allVirtual = vtbl.changes()
              
 Changes allVirtual = (Changes) vtbl.changes();             
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #14
@@ -170,6 +179,7 @@ Changes allVirtual = (Changes) vtbl.changes();
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #15
@@ -183,6 +193,7 @@ Changes allVirtual = (Changes) vtbl.changes();
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #16
@@ -196,6 +207,7 @@ Changes allVirtual = (Changes) vtbl.changes();
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #17
@@ -209,6 +221,7 @@ Changes allVirtual = (Changes) vtbl.changes();
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #18
@@ -222,6 +235,7 @@ Changes allVirtual = (Changes) vtbl.changes();
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #19
@@ -240,6 +254,7 @@ Changes allVirtual = (Changes) vtbl.changes();
              //Original: vpluck = vtbl.changes().pluck({'new_val':['version']})
              
 Pluck vpluck = (Pluck) vtbl.changes().pluck(new MapObject().with("new_val", Arrays.asList("version")));             
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #21
@@ -253,6 +268,7 @@ Pluck vpluck = (Pluck) vtbl.changes().pluck(new MapObject().with("new_val", Arra
                  assertEquals(expected, obtained);
              }
              
+             TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #22

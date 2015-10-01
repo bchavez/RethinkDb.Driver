@@ -46,15 +46,17 @@ namespace RethinkDb.Driver.Ast
 
 			if (val is IDictionary)
 			{
+			    var dict = val as IDictionary;
 				var obj = new Dictionary<string, ReqlAst>();
-				foreach (var entry in val as IDictionary<string, object>)
+				foreach (var keyObj in dict.Keys)
 				{
-					if (!(entry.Key is string))
+                    var key = keyObj as string;
+                    if( key == null)
 					{
 						throw new ReqlError("Object key can only be strings");
 					}
 
-					obj[(string) entry.Key] = ToReqlAst(entry.Value);
+					obj[key] = ToReqlAst(dict[keyObj]);
 				}
 				return MakeObj.fromMap(obj);
 			}

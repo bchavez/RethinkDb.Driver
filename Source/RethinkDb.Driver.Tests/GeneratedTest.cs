@@ -51,6 +51,8 @@ namespace RethinkDb.Driver.Tests
 
         }
 
+        // Python test conversion compatibility definitions
+
         public class Arrays
         {
             public static IList asList(params object[] p)
@@ -368,5 +370,20 @@ namespace RethinkDb.Driver.Tests
         {
             return null;
         }
+
+
+        public class FloatInfo
+        {
+            public double min = double.MinValue;
+            public double max = double.MaxValue;
+        }
+
+        public class Sys
+        {
+            public static FloatInfo floatInfo = new FloatInfo();
+        }
+
+        public static Sys sys = new Sys();
+
     }
 }

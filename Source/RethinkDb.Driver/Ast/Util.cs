@@ -72,8 +72,14 @@ namespace RethinkDb.Driver.Ast
 			    var isoStr = dt.ToUniversalTime().ToString("o");
 				return Iso8601.FromString(isoStr);
 			}
+            if (val is DateTimeOffset)
+            {
+                var dt = (DateTimeOffset)val;
+                var isoStr = dt.ToUniversalTime().ToString("o");
+                return Iso8601.FromString(isoStr);
+            }
 
-			if (val is int?)
+            if (val is int?)
 			{
 				return new Datum((int?) val);
 			}

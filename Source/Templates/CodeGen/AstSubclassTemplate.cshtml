@@ -127,31 +127,33 @@ namespace RethinkDb.Driver.Ast {
 
         if( info["include_in"].ToObject<string[]>().Any(inc => string.Equals(inc, ClassName, StringComparison.OrdinalIgnoreCase)) )
         { // is the current term included in this class we're generating?
-
-            foreach(var signature in info["signatures"].ToObject<Signature[]>() )
+            foreach( var methodname in info["methodnames"].ToObject<string[]>() )
             {
-                if( signature.FirstArg == ClassName )
+                foreach( var signature in info["signatures"].ToObject<Signature[]>() )
                 {
-                    var parameters = signature.Args.Skip(1).Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
-                    @RenderCtorXmlDoc(term)
-                    @:public @Class(info["classname"].ToString()) @Method(info["methodname"].ToString()) ( @string.Join(", ", parameters.ToArray()) )
-                    @:{
+                    if( signature.FirstArg == ClassName )
+                    {
+                        var parameters = signature.Args.Skip(1).Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
+                        @RenderCtorXmlDoc(term)
+                        @:public @Class(info["classname"].ToString()) @Method(methodname) ( @string.Join(", ", parameters.ToArray()) )
+                        @:{
 
                         @:Arguments arguments = new Arguments(this);
-                    foreach( var param in signature.Args.Skip(1) )
-                    {
-                        if( param.Type.EndsWith("...") )
+                        foreach( var param in signature.Args.Skip(1) )
                         {
-                        @:arguments.CoerceAndAddAll(@ArgumentVariable(param.Var));
+                            if( param.Type.EndsWith("...") )
+                            {
+                                @:arguments.CoerceAndAddAll(@ArgumentVariable(param.Var));
+                            }
+                            else
+                            {
+                                @:arguments.CoerceAndAdd(@ArgumentVariable(param.Var));
+                            }
                         }
-                        else
-                        {
-                        @:arguments.CoerceAndAdd(@ArgumentVariable(param.Var));
-                        }
-                    }
                         @:return new @Class(info["classname"].ToString()) (arguments);
 
-                    @:}
+                        @:}
+                    }
                 }
             }
 

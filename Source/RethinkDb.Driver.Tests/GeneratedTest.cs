@@ -85,6 +85,8 @@ namespace RethinkDb.Driver.Tests
         protected void assertEquals(object expected, object obtained)
         {
             //expected.Equals(obtained).Should().BeTrue();
+
+
         }
 
         protected object runOrCatch(object query, OptArgs runopts)

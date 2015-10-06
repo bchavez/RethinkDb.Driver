@@ -54,78 +54,78 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Does 2 equal 2?</para>
 /// <code>r.expr(2).eq(2).run(conn, callback)
 /// </code></example>
-                    public Eq eq ( Object exprA, params object[] exprs )
-                    {
+                        public Eq eq ( Object exprA, params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Eq (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Test if two values are not equal.</para>
 /// </summary>
 /// <example><para>Example: Does 2 not equal 2?</para>
 /// <code>r.expr(2).ne(2).run(conn, callback)
 /// </code></example>
-                    public Ne ne ( Object exprA, params object[] exprs )
-                    {
+                        public Ne ne ( Object exprA, params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Ne (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Test if the first value is less than other.</para>
 /// </summary>
 /// <example><para>Example: Is 2 less than 2?</para>
 /// <code>r.expr(2).lt(2).run(conn, callback)
 /// </code></example>
-                    public Lt lt ( Object exprA, params object[] exprs )
-                    {
+                        public Lt lt ( Object exprA, params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Lt (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Test if the first value is less than or equal to other.</para>
 /// </summary>
 /// <example><para>Example: Is 2 less than or equal to 2?</para>
 /// <code>r.expr(2).le(2).run(conn, callback)
 /// </code></example>
-                    public Le le ( Object exprA, params object[] exprs )
-                    {
+                        public Le le ( Object exprA, params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Le (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Test if the first value is greater than other.</para>
 /// </summary>
 /// <example><para>Example: Is 2 greater than 2?</para>
 /// <code>r.expr(2).gt(2).run(conn, callback)
 /// </code></example>
-                    public Gt gt ( Object exprA, params object[] exprs )
-                    {
+                        public Gt gt ( Object exprA, params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Gt (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Test if the first value is greater than or equal to other.</para>
 /// </summary>
 /// <example><para>Example: Is 2 greater than or equal to 2?</para>
 /// <code>r.expr(2).ge(2).run(conn, callback)
 /// </code></example>
-                    public Ge ge ( Object exprA, params object[] exprs )
-                    {
+                        public Ge ge ( Object exprA, params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Ge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Compute the logical inverse (not) of an expression.</para>
 /// <para><code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.</para>
@@ -134,71 +134,71 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
 /// </code></example>
-                    public Not not (  )
-                    {
+                        public Not not (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Not (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Sum two numbers, concatenate two strings, or concatenate 2 arrays.</para>
 /// </summary>
 /// <example><para>Example: It's as easy as 2 + 2 = 4.</para>
 /// <code>r.expr(2).add(2).run(conn, callback)
 /// </code></example>
-                    public Add add ( params object[] exprs )
-                    {
+                        public Add add ( params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Add (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Subtract two numbers.</para>
 /// </summary>
 /// <example><para>Example: It's as easy as 2 - 2 = 0.</para>
 /// <code>r.expr(2).sub(2).run(conn, callback)
 /// </code></example>
-                    public Sub sub ( params object[] exprs )
-                    {
+                        public Sub sub ( params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Sub (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Multiply two numbers, or make a periodic array.</para>
 /// </summary>
 /// <example><para>Example: It's as easy as 2 * 2 = 4.</para>
 /// <code>r.expr(2).mul(2).run(conn, callback)
 /// </code></example>
-                    public Mul mul ( params object[] exprs )
-                    {
+                        public Mul mul ( params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Mul (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Divide two numbers.</para>
 /// </summary>
 /// <example><para>Example: It's as easy as 2 / 2 = 1.</para>
 /// <code>r.expr(2).div(2).run(conn, callback)
 /// </code></example>
-                    public Div div ( params object[] exprs )
-                    {
+                        public Div div ( params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Div (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Find the remainder when dividing two numbers.</para>
 /// </summary>
 /// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)
 /// </code></example>
-                    public Mod mod ( Object exprA )
-                    {
+                        public Mod mod ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Mod (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
 /// </summary>
@@ -207,11 +207,11 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 12.0
 /// </code></example>
-                    public Floor floor (  )
-                    {
+                        public Floor floor (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Floor (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
 /// </summary>
@@ -220,11 +220,11 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 13.0
 /// </code></example>
-                    public Ceil ceil (  )
-                    {
+                        public Ceil ceil (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Ceil (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Rounds the given value to the nearest whole integer.</para>
 /// </summary>
@@ -233,59 +233,59 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 12.0
 /// </code></example>
-                    public Round round (  )
-                    {
+                        public Round round (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Round (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Append a value to an array.</para>
 /// </summary>
 /// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').append('newBoots').run(conn, callback)
 /// </code></example>
-                    public Append append ( Object exprA )
-                    {
+                        public Append append ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Append (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Prepend a value to an array.</para>
 /// </summary>
 /// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').prepend('newBoots').run(conn, callback)
 /// </code></example>
-                    public Prepend prepend ( Object exprA )
-                    {
+                        public Prepend prepend ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Prepend (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Remove the elements of one array from another array.</para>
 /// </summary>
 /// <example><para>Example: Retrieve Iron Man's equipment list without boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').difference(['Boots']).run(conn, callback)
 /// </code></example>
-                    public Difference difference ( Object exprA )
-                    {
+                        public Difference difference ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Difference (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Add a value to an array and return it as a set (an array with distinct values).</para>
 /// </summary>
 /// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setInsert('newBoots').run(conn, callback)
 /// </code></example>
-                    public SetInsert setInsert ( Object exprA )
-                    {
+                        public SetInsert setInsert ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new SetInsert (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Intersect two arrays returning values that occur in both of them as a set (an array with
 /// distinct values).</para>
@@ -293,24 +293,24 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Check which pieces of equipment Iron Man has from a fixed list.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setIntersection(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
-                    public SetIntersection setIntersection ( Object exprA )
-                    {
+                        public SetIntersection setIntersection ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new SetIntersection (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Add a several values to an array and return it as a set (an array with distinct values).</para>
 /// </summary>
 /// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots and an arc reactor.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setUnion(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
-                    public SetUnion setUnion ( Object exprA )
-                    {
+                        public SetUnion setUnion ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new SetUnion (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Remove the elements of one array from another and return them as a set (an array with
 /// distinct values).</para>
@@ -318,12 +318,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Check which pieces of equipment Iron Man has, excluding a fixed list.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setDifference(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
-                    public SetDifference setDifference ( Object exprA )
-                    {
+                        public SetDifference setDifference ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new SetDifference (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return the elements of a sequence within the specified range.</para>
 /// <para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3&ndash;5.)</para>
@@ -331,12 +331,12 @@ namespace RethinkDb.Driver.Ast {
 /// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
-                    public Slice slice ( Object exprA )
-                    {
+                        public Slice slice ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Slice (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return the elements of a sequence within the specified range.</para>
 /// <para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3&ndash;5.)</para>
@@ -344,61 +344,61 @@ namespace RethinkDb.Driver.Ast {
 /// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
-                    public Slice slice ( Object exprA, Object exprB )
-                    {
+                        public Slice slice ( Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new Slice (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Skip a number of elements from the head of the sequence.</para>
 /// </summary>
 /// <example><para>Example: Here in conjunction with <code>orderBy</code> we choose to ignore the most successful heroes.</para>
 /// <code>r.table('marvel').orderBy('successMetric').skip(10).run(conn, callback)
 /// </code></example>
-                    public Skip skip ( Object exprA )
-                    {
+                        public Skip skip ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Skip (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>End the sequence after the given number of elements.</para>
 /// </summary>
 /// <example><para>Example: Only so many can fit in our Pantheon of heroes.</para>
 /// <code>r.table('marvel').orderBy('belovedness').limit(10).run(conn, callback)
 /// </code></example>
-                    public Limit limit ( Object exprA )
-                    {
+                        public Limit limit ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Limit (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.</para>
 /// </summary>
 /// <example><para>Example: Find the position of the letter 'c'.</para>
 /// <code>r.expr(['a','b','c']).offsetsOf('c').run(conn, callback)
 /// </code></example>
-                    public OffsetsOf offsetsOf ( Object exprA )
-                    {
+                        public OffsetsOf offsetsOf ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new OffsetsOf (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.</para>
 /// </summary>
 /// <example><para>Example: Find the position of the letter 'c'.</para>
 /// <code>r.expr(['a','b','c']).offsetsOf('c').run(conn, callback)
 /// </code></example>
-                    public OffsetsOf offsetsOf ( ReqlFunction1 func1 )
-                    {
+                        public OffsetsOf offsetsOf ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new OffsetsOf (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -407,11 +407,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains (  )
-                    {
+                        public Contains contains (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -420,12 +420,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA )
-                    {
+                        public Contains contains ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -434,12 +434,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1 )
-                    {
+                        public Contains contains ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -448,13 +448,13 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, Object exprB )
-                    {
+                        public Contains contains ( Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -463,13 +463,13 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, ReqlFunction1 func1 )
-                    {
+                        public Contains contains ( Object exprA, ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -478,13 +478,13 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, Object exprA )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -493,13 +493,13 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -508,14 +508,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, Object exprB, Object exprC )
-                    {
+                        public Contains contains ( Object exprA, Object exprB, Object exprC )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -524,14 +524,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1 )
-                    {
+                        public Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -540,14 +540,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB )
-                    {
+                        public Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -556,14 +556,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
-                    {
+                        public Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -572,14 +572,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -588,14 +588,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -604,14 +604,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -620,14 +620,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -636,15 +636,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, Object exprB, Object exprC, Object exprD )
-                    {
+                        public Contains contains ( Object exprA, Object exprB, Object exprC, Object exprD )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
-                        arguments.CoerceAndAdd(exprD);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprD);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -653,15 +653,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
-                    {
+                        public Contains contains ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(func1);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -670,15 +670,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
-                    {
+                        public Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprC);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -687,15 +687,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
-                    {
+                        public Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -704,15 +704,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
-                    {
+                        public Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -721,15 +721,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
-                    {
+                        public Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -738,15 +738,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
-                    {
+                        public Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -755,15 +755,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                    {
+                        public Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -772,15 +772,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -789,15 +789,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -806,15 +806,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -823,15 +823,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -840,15 +840,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -857,15 +857,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1B);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -874,15 +874,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(exprA);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
 /// provided instead, returns whether or not a sequence contains values matching all the
@@ -891,15 +891,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                    public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
-                    {
+                        public Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
-                        arguments.CoerceAndAdd(func1C);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1C);
                         return new Contains (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Get a single field from an object. If called on a sequence, gets that field from every
 /// object in the sequence, skipping objects that lack it.</para>
@@ -907,47 +907,60 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan').getField('firstAppearance').run(conn, callback)
 /// </code></example>
-                    public GetField g ( Object exprA )
-                    {
+                        public GetField getField ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new GetField (arguments);
-                    }
+                        }
+/// <summary>
+/// <para>Get a single field from an object. If called on a sequence, gets that field from every
+/// object in the sequence, skipping objects that lack it.</para>
+/// </summary>
+/// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
+/// <code>r.table('marvel').get('IronMan').getField('firstAppearance').run(conn, callback)
+/// </code></example>
+                        public GetField g ( Object exprA )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                        return new GetField (arguments);
+                        }
 /// <summary>
 /// <para>Return an array containing all of the object's keys.</para>
 /// </summary>
 /// <example><para>Example: Get all the keys of a row.</para>
 /// <code>r.table('marvel').get('ironman').keys().run(conn, callback)
 /// </code></example>
-                    public Keys keys (  )
-                    {
+                        public Keys keys (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Keys (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Test if an object has one or more fields. An object has a field if it has that key and the key has a non-null value. For instance, the object <code>{'a': 1,'b': 2,'c': null}</code> has the fields <code>a</code> and <code>b</code>.</para>
 /// </summary>
 /// <example><para>Example: Return the players who have won games.</para>
 /// <code>r.table('players').hasFields('games_won').run(conn, callback)
 /// </code></example>
-                    public HasFields hasFields ( params object[] exprs )
-                    {
+                        public HasFields hasFields ( params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAddAll(exprs);
                         return new HasFields (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.</para>
 /// </summary>
 /// <example><para>Example: Get a list of users and their posts, excluding any users who have not made any posts.</para>
 /// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
 /// </code></example>
-                    public WithFields withFields ( params object[] exprs )
-                    {
+                        public WithFields withFields ( params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAddAll(exprs);
                         return new WithFields (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Plucks out one or more attributes from either an object or a sequence of objects
 /// (projection).</para>
@@ -956,12 +969,12 @@ namespace RethinkDb.Driver.Ast {
 /// document.</para>
 /// <code>r.table('marvel').get('IronMan').pluck('reactorState', 'reactorPower').run(conn, callback)
 /// </code></example>
-                    public Pluck pluck ( params object[] exprs )
-                    {
+                        public Pluck pluck ( params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Pluck (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>The opposite of pluck; takes an object or a sequence of objects, and returns them with
 /// the specified paths removed.</para>
@@ -970,12 +983,12 @@ namespace RethinkDb.Driver.Ast {
 /// out the list of IronMan's romantic conquests.</para>
 /// <code>r.table('marvel').get('IronMan').without('personalVictoriesList').run(conn, callback)
 /// </code></example>
-                    public Without without ( params object[] exprs )
-                    {
+                        public Without without ( params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Without (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -985,11 +998,11 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge (  )
-                    {
+                        public Merge merge (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -999,12 +1012,12 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA )
-                    {
+                        public Merge merge ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1014,12 +1027,12 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1 )
-                    {
+                        public Merge merge ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1029,13 +1042,13 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, Object exprB )
-                    {
+                        public Merge merge ( Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1045,13 +1058,13 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, ReqlFunction1 func1 )
-                    {
+                        public Merge merge ( Object exprA, ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1061,13 +1074,13 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, Object exprA )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1077,13 +1090,13 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1093,14 +1106,14 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, Object exprB, Object exprC )
-                    {
+                        public Merge merge ( Object exprA, Object exprB, Object exprC )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1110,14 +1123,14 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1 )
-                    {
+                        public Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1127,14 +1140,14 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB )
-                    {
+                        public Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1144,14 +1157,14 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
-                    {
+                        public Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1161,14 +1174,14 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1178,14 +1191,14 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1195,14 +1208,14 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1212,14 +1225,14 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1229,15 +1242,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, Object exprB, Object exprC, Object exprD )
-                    {
+                        public Merge merge ( Object exprA, Object exprB, Object exprC, Object exprD )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
-                        arguments.CoerceAndAdd(exprD);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprD);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1247,15 +1260,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
-                    {
+                        public Merge merge ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(func1);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1265,15 +1278,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
-                    {
+                        public Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprC);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1283,15 +1296,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
-                    {
+                        public Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1301,15 +1314,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
-                    {
+                        public Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1319,15 +1332,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
-                    {
+                        public Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1337,15 +1350,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
-                    {
+                        public Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1355,15 +1368,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                    {
+                        public Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1373,15 +1386,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1391,15 +1404,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1409,15 +1422,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1427,15 +1440,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1445,15 +1458,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1463,15 +1476,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1B);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1481,15 +1494,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(exprA);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
 /// </summary>
@@ -1499,15 +1512,15 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-                    public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
-                    {
+                        public Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
-                        arguments.CoerceAndAdd(func1C);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1C);
                         return new Merge (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Get all documents between two keys. Accepts three optional arguments: <code>index</code>,
 /// <code>left_bound</code>, and <code>right_bound</code>. If <code>index</code> is set to the name of a secondary index,
@@ -1519,13 +1532,13 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Find all users with primary key &gt;= 10 and &lt; 20 (a normal half-open interval).</para>
 /// <code>r.table('marvel').between(10, 20).run(conn, callback)
 /// </code></example>
-                    public Between between ( Object exprA, Object exprB )
-                    {
+                        public Between between ( Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new Between (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Produce a single value from a sequence through repeated application of a reduction
 /// function.</para>
@@ -1537,12 +1550,12 @@ namespace RethinkDb.Driver.Ast {
 ///     return left.add(right)
 /// }).run(conn, callback);
 /// </code></example>
-                    public Reduce reduce ( ReqlFunction2 func2 )
-                    {
+                        public Reduce reduce ( ReqlFunction2 func2 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func2);
+                                arguments.CoerceAndAdd(func2);
                         return new Reduce (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 /// </summary>
@@ -1553,12 +1566,12 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                    public Map map ( ReqlFunction1 func1 )
-                    {
+                        public Map map ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Map (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 /// </summary>
@@ -1569,13 +1582,13 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                    public Map map ( Object exprA, ReqlFunction2 func2 )
-                    {
+                        public Map map ( Object exprA, ReqlFunction2 func2 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func2);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func2);
                         return new Map (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 /// </summary>
@@ -1586,14 +1599,14 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                    public Map map ( Object exprA, Object exprB, ReqlFunction3 func3 )
-                    {
+                        public Map map ( Object exprA, Object exprB, ReqlFunction3 func3 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func3);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func3);
                         return new Map (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 /// </summary>
@@ -1604,15 +1617,15 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                    public Map map ( Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
-                    {
+                        public Map map ( Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
-                        arguments.CoerceAndAdd(func4);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(func4);
                         return new Map (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Get all the documents for which the given predicate is true.</para>
 /// <para><code>filter</code> can be called on a sequence, selection, or a field containing an array of
@@ -1627,12 +1640,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get all the users that are 30 years old.</para>
 /// <code>r.table('users').filter({age: 30}).run(conn, callback)
 /// </code></example>
-                    public Filter filter ( ReqlFunction1 func1 )
-                    {
+                        public Filter filter ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Filter (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Get all the documents for which the given predicate is true.</para>
 /// <para><code>filter</code> can be called on a sequence, selection, or a field containing an array of
@@ -1647,12 +1660,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get all the users that are 30 years old.</para>
 /// <code>r.table('users').filter({age: 30}).run(conn, callback)
 /// </code></example>
-                    public Filter filter ( Object exprA )
-                    {
+                        public Filter filter ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Filter (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Concatenate one or more elements into a single sequence using a mapping function.</para>
 /// </summary>
@@ -1661,12 +1674,12 @@ namespace RethinkDb.Driver.Ast {
 ///     return hero('defeatedMonsters')
 /// }).run(conn, callback)
 /// </code></example>
-                    public ConcatMap concatMap ( ReqlFunction1 func1 )
-                    {
+                        public ConcatMap concatMap ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new ConcatMap (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
@@ -1685,12 +1698,799 @@ namespace RethinkDb.Driver.Ast {
 /// <para>You can also select a descending ordering:</para>
 /// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
 /// </code></example>
-                    public OrderBy orderBy ( params object[] exprs )
-                    {
+                        public OrderBy orderBy (  )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAddAll(exprs);
                         return new OrderBy (arguments);
-                    }
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1 )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, Object exprB )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, ReqlFunction1 func1 )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, Object exprA )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, Object exprB, Object exprC )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, Object exprB, ReqlFunction1 func1 )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, ReqlFunction1 func1, Object exprB )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, Object exprA, Object exprB )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, Object exprB, Object exprC, Object exprD )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprD);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(func1);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprC);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1B);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(exprA);
+                        return new OrderBy (arguments);
+                        }
+/// <summary>
+/// <para>Sort the sequence by document values of the given key(s). To specify
+/// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
+/// (defaults to ascending).</para>
+/// <para>Sorting without an index requires the server to hold the sequence in
+/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
+/// be done on arbitrarily large tables, or after a <code>between</code> command
+/// using the same index.</para>
+/// </summary>
+/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
+/// </code>
+/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
+/// <code>r.table('posts').indexCreate('date').run(conn, callback)
+/// </code>
+/// <para>You can also select a descending ordering:</para>
+/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// </code></example>
+                        public OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                        {
+                        Arguments arguments = new Arguments(this);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1C);
+                        return new OrderBy (arguments);
+                        }
 /// <summary>
 /// <para>Remove duplicate elements from the sequence.</para>
 /// </summary>
@@ -1699,11 +2499,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return hero('villainList')
 /// }).distinct().run(conn, callback)
 /// </code></example>
-                    public Distinct distinct (  )
-                    {
+                        public Distinct distinct (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Distinct (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Count the number of elements in the sequence. With a single argument, count the number
 /// of elements equal to it. If the argument is a function, it is equivalent to calling
@@ -1712,11 +2512,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Just how many super heroes are there?</para>
 /// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
 /// </code></example>
-                    public Count count (  )
-                    {
+                        public Count count (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Count (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Count the number of elements in the sequence. With a single argument, count the number
 /// of elements equal to it. If the argument is a function, it is equivalent to calling
@@ -1725,12 +2525,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Just how many super heroes are there?</para>
 /// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
 /// </code></example>
-                    public Count count ( Object exprA )
-                    {
+                        public Count count ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Count (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Count the number of elements in the sequence. With a single argument, count the number
 /// of elements equal to it. If the argument is a function, it is equivalent to calling
@@ -1739,59 +2539,59 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Just how many super heroes are there?</para>
 /// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
 /// </code></example>
-                    public Count count ( ReqlFunction1 func1 )
-                    {
+                        public Count count ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Count (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Test if a sequence is empty.</para>
 /// </summary>
 /// <example><para>Example: Are there any documents in the marvel table?</para>
 /// <code>r.table('marvel').isEmpty().run(conn, callback)
 /// </code></example>
-                    public IsEmpty isEmpty (  )
-                    {
+                        public IsEmpty isEmpty (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new IsEmpty (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Concatenate two or more sequences.</para>
 /// </summary>
 /// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
 /// </code></example>
-                    public Union union ( params object[] exprs )
-                    {
+                        public Union union ( params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Union (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Get the <em>nth</em> element of a sequence, counting from zero. If the argument is negative, count from the last element.</para>
 /// </summary>
 /// <example><para>Example: Select the second element in the array.</para>
 /// <code>r.expr([1,2,3]).nth(1).run(conn, callback)
 /// </code></example>
-                    public Nth nth ( Object exprA )
-                    {
+                        public Nth nth ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Nth (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Get a single field from an object or a single element from a sequence.</para>
 /// </summary>
 /// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan')('firstAppearance').run(conn, callback)
 /// </code></example>
-                    public Bracket bracket ( Object exprA )
-                    {
+                        public Bracket bracket ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Bracket (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns an inner join of two sequences.</para>
 /// </summary>
@@ -1800,13 +2600,13 @@ namespace RethinkDb.Driver.Ast {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).zip().run(conn, callback)
 /// </code></example>
-                    public InnerJoin innerJoin ( Object exprA, ReqlFunction2 func2 )
-                    {
+                        public InnerJoin innerJoin ( Object exprA, ReqlFunction2 func2 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func2);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func2);
                         return new InnerJoin (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Returns a left outer join of two sequences.</para>
 /// </summary>
@@ -1815,13 +2615,13 @@ namespace RethinkDb.Driver.Ast {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).run(conn, callback)
 /// </code></example>
-                    public OuterJoin outerJoin ( Object exprA, ReqlFunction2 func2 )
-                    {
+                        public OuterJoin outerJoin ( Object exprA, ReqlFunction2 func2 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func2);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func2);
                         return new OuterJoin (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
 /// <para>Example: Match players with the games they've played against one another.</para>
@@ -1829,13 +2629,13 @@ namespace RethinkDb.Driver.Ast {
 /// r.table('players').eqJoin('gameId', r.table('games')).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
-                    public EqJoin eqJoin ( Object exprA, Object exprB )
-                    {
+                        public EqJoin eqJoin ( Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new EqJoin (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
 /// <para>Example: Match players with the games they've played against one another.</para>
@@ -1843,13 +2643,13 @@ namespace RethinkDb.Driver.Ast {
 /// r.table('players').eqJoin('gameId', r.table('games')).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
-                    public EqJoin eqJoin ( ReqlFunction1 func1, Object exprA )
-                    {
+                        public EqJoin eqJoin ( ReqlFunction1 func1, Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
                         return new EqJoin (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Used to 'zip' up the result of a join by merging the 'right' fields into 'left' fields of each member of the sequence.</para>
 /// </summary>
@@ -1857,24 +2657,24 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').eqJoin('main_dc_collaborator', r.table('dc'))
 ///     .zip().run(conn, callback)
 /// </code></example>
-                    public Zip zip (  )
-                    {
+                        public Zip zip (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Zip (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Insert a value in to an array at a given index. Returns the modified array.</para>
 /// </summary>
 /// <example><para>Example: Hulk decides to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).insertAt(1, "Hulk").run(conn, callback)
 /// </code></example>
-                    public InsertAt insertAt ( Object exprA, Object exprB )
-                    {
+                        public InsertAt insertAt ( Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new InsertAt (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Remove one or more elements from an array at a given index. Returns the modified array.</para>
 /// </summary>
@@ -1883,12 +2683,12 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// ['a', 'c', 'd', 'e', 'f']
 /// </code></example>
-                    public DeleteAt deleteAt ( Object exprA )
-                    {
+                        public DeleteAt deleteAt ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new DeleteAt (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Remove one or more elements from an array at a given index. Returns the modified array.</para>
 /// </summary>
@@ -1897,39 +2697,39 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// ['a', 'c', 'd', 'e', 'f']
 /// </code></example>
-                    public DeleteAt deleteAt ( Object exprA, Object exprB )
-                    {
+                        public DeleteAt deleteAt ( Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new DeleteAt (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Change a value in an array at a given index. Returns the modified array.</para>
 /// </summary>
 /// <example><para>Example: Bruce Banner hulks out.</para>
 /// <code>r.expr(["Iron Man", "Bruce", "Spider-Man"]).changeAt(1, "Hulk").run(conn, callback)
 /// </code></example>
-                    public ChangeAt changeAt ( Object exprA, Object exprB )
-                    {
+                        public ChangeAt changeAt ( Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new ChangeAt (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Insert several values in to an array at a given index. Returns the modified array.</para>
 /// </summary>
 /// <example><para>Example: Hulk and Thor decide to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).spliceAt(1, ["Hulk", "Thor"]).run(conn, callback)
 /// </code></example>
-                    public SpliceAt spliceAt ( Object exprA, Object exprB )
-                    {
+                        public SpliceAt spliceAt ( Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new SpliceAt (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Convert a value of one type into another.</para>
 /// </summary>
@@ -1938,23 +2738,23 @@ namespace RethinkDb.Driver.Ast {
 ///     post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
 /// }).run(conn, callback)
 /// </code></example>
-                    public CoerceTo coerceTo ( Object exprA )
-                    {
+                        public CoerceTo coerceTo ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new CoerceTo (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Gets the type of a value.</para>
 /// </summary>
 /// <example><para>Example: Get the type of a string.</para>
 /// <code>r.expr("foo").typeOf().run(conn, callback)
 /// </code></example>
-                    public TypeOf typeOf (  )
-                    {
+                        public TypeOf typeOf (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new TypeOf (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
 /// combination of the two. You can pass options like <code>returnChanges</code> that will return the old
@@ -1963,12 +2763,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
 /// </code></example>
-                    public Update update ( Object exprA )
-                    {
+                        public Update update ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Update (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
 /// combination of the two. You can pass options like <code>returnChanges</code> that will return the old
@@ -1977,23 +2777,23 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
 /// </code></example>
-                    public Update update ( ReqlFunction1 func1 )
-                    {
+                        public Update update ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Update (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Delete one or more documents from a table.</para>
 /// </summary>
 /// <example><para>Example: Delete a single document from the table <code>comments</code>.</para>
 /// <code>r.table("comments").get("7eab9e63-73f1-4f33-8ce4-95cbea626f59").delete().run(conn, callback)
 /// </code></example>
-                    public Delete delete (  )
-                    {
+                        public Delete delete (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Delete (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
 /// the original document with the new one. The new document must have the same primary key
@@ -2007,12 +2807,12 @@ namespace RethinkDb.Driver.Ast {
 ///     status: "draft"
 /// }).run(conn, callback)
 /// </code></example>
-                    public Replace replace ( Object exprA )
-                    {
+                        public Replace replace ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Replace (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
 /// the original document with the new one. The new document must have the same primary key
@@ -2026,48 +2826,48 @@ namespace RethinkDb.Driver.Ast {
 ///     status: "draft"
 /// }).run(conn, callback)
 /// </code></example>
-                    public Replace replace ( ReqlFunction1 func1 )
-                    {
+                        public Replace replace ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Replace (arguments);
-                    }
-                    public Funcall do_ ( params object[] exprs )
-                    {
+                        }
+                        public Funcall do_ ( params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Funcall (arguments);
-                    }
-                    public Funcall do_ ( ReqlFunction1 func1 )
-                    {
+                        }
+                        public Funcall do_ ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Funcall (arguments);
-                    }
-                    public Funcall do_ ( Object exprA, ReqlFunction2 func2 )
-                    {
+                        }
+                        public Funcall do_ ( Object exprA, ReqlFunction2 func2 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func2);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func2);
                         return new Funcall (arguments);
-                    }
-                    public Funcall do_ ( Object exprA, Object exprB, ReqlFunction3 func3 )
-                    {
+                        }
+                        public Funcall do_ ( Object exprA, Object exprB, ReqlFunction3 func3 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func3);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func3);
                         return new Funcall (arguments);
-                    }
-                    public Funcall do_ ( Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
-                    {
+                        }
+                        public Funcall do_ ( Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
-                        arguments.CoerceAndAdd(func4);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(func4);
                         return new Funcall (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Compute the logical "or" of two or more values.</para>
 /// </summary>
@@ -2077,13 +2877,13 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// true
 /// </code></example>
-                    public Or or ( Object exprA, params object[] exprs )
-                    {
+                        public Or or ( Object exprA, params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Or (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Compute the logical "and" of two or more values.</para>
 /// </summary>
@@ -2093,12 +2893,12 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// false
 /// </code></example>
-                    public And and ( params object[] exprs )
-                    {
+                        public And and ( params object[] exprs )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAddAll(exprs);
+                                arguments.CoerceAndAddAll(exprs);
                         return new And (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Loop over a sequence, evaluating the given write query for each element.</para>
 /// </summary>
@@ -2107,23 +2907,23 @@ namespace RethinkDb.Driver.Ast {
 ///     return r.table('villains').get(hero('villainDefeated')).delete()
 /// }).run(conn, callback)
 /// </code></example>
-                    public ForEach forEach ( ReqlFunction1 func1 )
-                    {
+                        public ForEach forEach ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new ForEach (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Get information about a ReQL value.</para>
 /// </summary>
 /// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
 /// <code>r.table('marvel').info().run(conn, callback)
 /// </code></example>
-                    public Info info (  )
-                    {
+                        public Info info (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Info (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Matches against a regular expression. If there is a match, returns an object with the fields:</para>
 /// <ul>
@@ -2139,46 +2939,46 @@ namespace RethinkDb.Driver.Ast {
 ///     return doc('name').match("^A")
 /// }).run(conn, callback)
 /// </code></example>
-                    public Match match ( Object exprA )
-                    {
+                        public Match match ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Match (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Uppercases a string.</para>
 /// </summary>
 /// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").upcase().run(conn, callback)
 /// </code></example>
-                    public Upcase upcase (  )
-                    {
+                        public Upcase upcase (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Upcase (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Lowercases a string.</para>
 /// </summary>
 /// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").downcase().run(conn, callback)
 /// </code></example>
-                    public Downcase downcase (  )
-                    {
+                        public Downcase downcase (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Downcase (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Select a given number of elements from a sequence with uniform random distribution. Selection is done without replacement.</para>
 /// </summary>
 /// <example><para>Example: Select 3 random heroes.</para>
 /// <code>r.table('marvel').sample(3).run(conn, callback)
 /// </code></example>
-                    public Sample sample ( Object exprA )
-                    {
+                        public Sample sample ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Sample (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
 /// error related to the absence of a value is thrown in the process, or if its first
@@ -2196,12 +2996,12 @@ namespace RethinkDb.Driver.Ast {
 ///     }
 /// }).run(conn, callback)
 /// </code></example>
-                    public Default default_ ( Object exprA )
-                    {
+                        public Default default_ ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Default (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
 /// error related to the absence of a value is thrown in the process, or if its first
@@ -2219,12 +3019,12 @@ namespace RethinkDb.Driver.Ast {
 ///     }
 /// }).run(conn, callback)
 /// </code></example>
-                    public Default default_ ( ReqlFunction1 func1 )
-                    {
+                        public Default default_ ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Default (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Convert a ReQL value or object to a JSON string. You may use either <code>toJsonString</code> or <code>toJSON</code>.</para>
 /// </summary>
@@ -2233,11 +3033,24 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback
 /// '{"id": 1, "name": "Batman", "city": "Gotham", "powers": ["martial arts", "cinematic entrances"]}'
 /// </code></example>
-                    public ToJsonString toJson (  )
-                    {
+                        public ToJsonString toJsonString (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new ToJsonString (arguments);
-                    }
+                        }
+/// <summary>
+/// <para>Convert a ReQL value or object to a JSON string. You may use either <code>toJsonString</code> or <code>toJSON</code>.</para>
+/// </summary>
+/// <example><para>Example: Get a ReQL document as a JSON string.</para>
+/// <code>&gt; r.table('hero').get(1).toJSON()
+/// // result returned to callback
+/// '{"id": 1, "name": "Batman", "city": "Gotham", "powers": ["martial arts", "cinematic entrances"]}'
+/// </code></example>
+                        public ToJsonString toJson (  )
+                        {
+                        Arguments arguments = new Arguments(this);
+                        return new ToJsonString (arguments);
+                        }
 /// <summary>
 /// <para>Convert a time object to a string in ISO 8601 format.</para>
 /// </summary>
@@ -2246,34 +3059,34 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// "2015-04-20T18:37:52.690+00:00"
 /// </code></example>
-                    public ToIso8601 toIso8601 (  )
-                    {
+                        public ToIso8601 toIso8601 (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new ToIso8601 (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Convert a time object to its epoch time.</para>
 /// </summary>
 /// <example><para>Example: Return the current time in seconds since the Unix Epoch with millisecond-precision.</para>
 /// <code>r.now().toEpochTime()
 /// </code></example>
-                    public ToEpochTime toEpochTime (  )
-                    {
+                        public ToEpochTime toEpochTime (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new ToEpochTime (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return a new time object with a different timezone. While the time stays the same, the results returned by methods such as hours() will change since they take the timezone into account. The timezone argument has to be of the ISO 8601 format.</para>
 /// </summary>
 /// <example><para>Example: Hour of the day in San Francisco (UTC/GMT -8, without daylight saving time).</para>
 /// <code>r.now().inTimezone('-08:00').hours().run(conn, callback)
 /// </code></example>
-                    public InTimezone inTimezone ( Object exprA )
-                    {
+                        public InTimezone inTimezone ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new InTimezone (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return if a time is between two other times (by default, inclusive for the start, exclusive for the end).</para>
 /// </summary>
@@ -2282,13 +3095,13 @@ namespace RethinkDb.Driver.Ast {
 ///     r.row('date').during(r.time(2013, 12, 1), r.time(2013, 12, 10))
 /// ).run(conn, callback)
 /// </code></example>
-                    public During during ( Object exprA, Object exprB )
-                    {
+                        public During during ( Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new During (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return a new time object only based on the day, month and year (ie. the same day at 00:00).</para>
 /// </summary>
@@ -2297,11 +3110,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return user("birthdate").date().eq(r.now().date())
 /// }).run(conn, callback)
 /// </code></example>
-                    public Date date (  )
-                    {
+                        public Date date (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Date (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return the number of seconds elapsed since the beginning of the day stored in the time object.</para>
 /// </summary>
@@ -2310,11 +3123,11 @@ namespace RethinkDb.Driver.Ast {
 ///     r.row("date").timeOfDay().le(12*60*60)
 /// ).run(conn, callback)
 /// </code></example>
-                    public TimeOfDay timeOfDay (  )
-                    {
+                        public TimeOfDay timeOfDay (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new TimeOfDay (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return the timezone of the time object.</para>
 /// </summary>
@@ -2323,11 +3136,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return user("subscriptionDate").timezone().eq("-07:00")
 /// })
 /// </code></example>
-                    public Timezone timezone (  )
-                    {
+                        public Timezone timezone (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Timezone (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return the year of a time object.</para>
 /// </summary>
@@ -2336,11 +3149,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return user("birthdate").year().eq(1986)
 /// }).run(conn, callback)
 /// </code></example>
-                    public Year year (  )
-                    {
+                        public Year year (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Year (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return the month of a time object as a number between 1 and 12. For your convenience, the terms r.january, r.february etc. are defined and map to the appropriate integer.</para>
 /// </summary>
@@ -2349,11 +3162,11 @@ namespace RethinkDb.Driver.Ast {
 ///     r.row("birthdate").month().eq(11)
 /// )
 /// </code></example>
-                    public Month month (  )
-                    {
+                        public Month month (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Month (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return the day of a time object as a number between 1 and 31.</para>
 /// </summary>
@@ -2362,22 +3175,22 @@ namespace RethinkDb.Driver.Ast {
 ///     r.row("birthdate").day().eq(24)
 /// ).run(conn, callback)
 /// </code></example>
-                    public Day day (  )
-                    {
+                        public Day day (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Day (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return the day of week of a time object as a number between 1 and 7 (following ISO 8601 standard). For your convenience, the terms r.monday, r.tuesday etc. are defined and map to the appropriate integer.</para>
 /// </summary>
 /// <example><para>Example: Return today's day of week.</para>
 /// <code>r.now().dayOfWeek().run(conn, callback)
 /// </code></example>
-                    public DayOfWeek dayOfWeek (  )
-                    {
+                        public DayOfWeek dayOfWeek (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new DayOfWeek (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return the day of the year of a time object as a number between 1 and 366 (following ISO 8601 standard).</para>
 /// </summary>
@@ -2386,11 +3199,11 @@ namespace RethinkDb.Driver.Ast {
 ///     r.row("birthdate").dayOfYear().eq(1)
 /// )
 /// </code></example>
-                    public DayOfYear dayOfYear (  )
-                    {
+                        public DayOfYear dayOfYear (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new DayOfYear (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return the hour in a time object as a number between 0 and 23.</para>
 /// </summary>
@@ -2399,11 +3212,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return post("date").hours().lt(4)
 /// })
 /// </code></example>
-                    public Hours hours (  )
-                    {
+                        public Hours hours (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Hours (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return the minute in a time object as a number between 0 and 59.</para>
 /// </summary>
@@ -2412,11 +3225,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return post("date").minutes().lt(10)
 /// })
 /// </code></example>
-                    public Minutes minutes (  )
-                    {
+                        public Minutes minutes (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Minutes (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return the seconds in a time object as a number between 0 and 59.999 (double precision).</para>
 /// </summary>
@@ -2425,11 +3238,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return post("date").seconds().lt(30)
 /// })
 /// </code></example>
-                    public Seconds seconds (  )
-                    {
+                        public Seconds seconds (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Seconds (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2438,11 +3251,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group (  )
-                    {
+                        public Group group (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2451,12 +3264,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA )
-                    {
+                        public Group group ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2465,12 +3278,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1 )
-                    {
+                        public Group group ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2479,13 +3292,13 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, Object exprB )
-                    {
+                        public Group group ( Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2494,13 +3307,13 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, ReqlFunction1 func1 )
-                    {
+                        public Group group ( Object exprA, ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2509,13 +3322,13 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, Object exprA )
-                    {
+                        public Group group ( ReqlFunction1 func1, Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2524,13 +3337,13 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A )
-                    {
+                        public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2539,14 +3352,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, Object exprB, Object exprC )
-                    {
+                        public Group group ( Object exprA, Object exprB, Object exprC )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2555,14 +3368,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, Object exprB, ReqlFunction1 func1 )
-                    {
+                        public Group group ( Object exprA, Object exprB, ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2571,14 +3384,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, ReqlFunction1 func1, Object exprB )
-                    {
+                        public Group group ( Object exprA, ReqlFunction1 func1, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2587,14 +3400,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
-                    {
+                        public Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2603,14 +3416,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, Object exprA, Object exprB )
-                    {
+                        public Group group ( ReqlFunction1 func1, Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2619,14 +3432,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
-                    {
+                        public Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2635,14 +3448,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
-                    {
+                        public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2651,14 +3464,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                    {
+                        public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2667,15 +3480,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, Object exprB, Object exprC, Object exprD )
-                    {
+                        public Group group ( Object exprA, Object exprB, Object exprC, Object exprD )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
-                        arguments.CoerceAndAdd(exprD);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprD);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2684,15 +3497,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
-                    {
+                        public Group group ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(func1);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2701,15 +3514,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
-                    {
+                        public Group group ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprC);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2718,15 +3531,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
-                    {
+                        public Group group ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2735,15 +3548,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
-                    {
+                        public Group group ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2752,15 +3565,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
-                    {
+                        public Group group ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2769,15 +3582,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
-                    {
+                        public Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2786,15 +3599,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                    {
+                        public Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2803,15 +3616,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
-                    {
+                        public Group group ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2820,15 +3633,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
-                    {
+                        public Group group ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
-                        arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2837,15 +3650,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
-                    {
+                        public Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2854,15 +3667,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                    {
+                        public Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2871,15 +3684,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
-                    {
+                        public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2888,15 +3701,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
-                    {
+                        public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1B);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2905,15 +3718,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
-                    {
+                        public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(exprA);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
 /// fields or functions provided.  Commands chained after <code>group</code> will be
@@ -2922,15 +3735,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                    public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
-                    {
+                        public Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
-                        arguments.CoerceAndAdd(func1A);
-                        arguments.CoerceAndAdd(func1B);
-                        arguments.CoerceAndAdd(func1C);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1C);
                         return new Group (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Sums all the elements of a sequence.  If called with a field name,
 /// sums all the values of that field in the sequence, skipping elements
@@ -2942,11 +3755,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's 3 + 5 + 7?</para>
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
-                    public Sum sum (  )
-                    {
+                        public Sum sum (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Sum (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Sums all the elements of a sequence.  If called with a field name,
 /// sums all the values of that field in the sequence, skipping elements
@@ -2958,12 +3771,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's 3 + 5 + 7?</para>
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
-                    public Sum sum ( Object exprA )
-                    {
+                        public Sum sum ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Sum (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Sums all the elements of a sequence.  If called with a field name,
 /// sums all the values of that field in the sequence, skipping elements
@@ -2975,12 +3788,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's 3 + 5 + 7?</para>
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
-                    public Sum sum ( ReqlFunction1 func1 )
-                    {
+                        public Sum sum ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Sum (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Averages all the elements of a sequence.  If called with a field name,
 /// averages all the values of that field in the sequence, skipping
@@ -2992,11 +3805,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's the average of 3, 5, and 7?</para>
 /// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
 /// </code></example>
-                    public Avg avg (  )
-                    {
+                        public Avg avg (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Avg (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Averages all the elements of a sequence.  If called with a field name,
 /// averages all the values of that field in the sequence, skipping
@@ -3008,12 +3821,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's the average of 3, 5, and 7?</para>
 /// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
 /// </code></example>
-                    public Avg avg ( Object exprA )
-                    {
+                        public Avg avg ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Avg (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Averages all the elements of a sequence.  If called with a field name,
 /// averages all the values of that field in the sequence, skipping
@@ -3025,82 +3838,82 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's the average of 3, 5, and 7?</para>
 /// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
 /// </code></example>
-                    public Avg avg ( ReqlFunction1 func1 )
-                    {
+                        public Avg avg ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Avg (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Finds the minimum element of a sequence.</para>
 /// </summary>
 /// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).min().run(conn, callback);
 /// </code></example>
-                    public Min min (  )
-                    {
+                        public Min min (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Min (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Finds the minimum element of a sequence.</para>
 /// </summary>
 /// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).min().run(conn, callback);
 /// </code></example>
-                    public Min min ( Object exprA )
-                    {
+                        public Min min ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Min (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Finds the minimum element of a sequence.</para>
 /// </summary>
 /// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).min().run(conn, callback);
 /// </code></example>
-                    public Min min ( ReqlFunction1 func1 )
-                    {
+                        public Min min ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Min (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Finds the maximum element of a sequence.</para>
 /// </summary>
 /// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).max().run(conn, callback);
 /// </code></example>
-                    public Max max (  )
-                    {
+                        public Max max (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Max (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Finds the maximum element of a sequence.</para>
 /// </summary>
 /// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).max().run(conn, callback);
 /// </code></example>
-                    public Max max ( Object exprA )
-                    {
+                        public Max max ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Max (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Finds the maximum element of a sequence.</para>
 /// </summary>
 /// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).max().run(conn, callback);
 /// </code></example>
-                    public Max max ( ReqlFunction1 func1 )
-                    {
+                        public Max max ( ReqlFunction1 func1 )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1);
                         return new Max (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Splits a string into substrings.  Splits on whitespace when called
 /// with no arguments.  When called with a separator, splits on that
@@ -3115,11 +3928,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Split on whitespace.</para>
 /// <code>r.expr("foo  bar bax").split().run(conn, callback)
 /// </code></example>
-                    public Split split (  )
-                    {
+                        public Split split (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Split (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Splits a string into substrings.  Splits on whitespace when called
 /// with no arguments.  When called with a separator, splits on that
@@ -3134,12 +3947,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Split on whitespace.</para>
 /// <code>r.expr("foo  bar bax").split().run(conn, callback)
 /// </code></example>
-                    public Split split ( Object exprA )
-                    {
+                        public Split split ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Split (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Splits a string into substrings.  Splits on whitespace when called
 /// with no arguments.  When called with a separator, splits on that
@@ -3154,13 +3967,13 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Split on whitespace.</para>
 /// <code>r.expr("foo  bar bax").split().run(conn, callback)
 /// </code></example>
-                    public Split split ( Object exprA, Object exprB )
-                    {
+                        public Split split ( Object exprA, Object exprB )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
-                        arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
                         return new Split (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Takes a grouped stream or grouped data and turns it into an array of
 /// objects representing the groups.  Any commands chained after <code>ungroup</code>
@@ -3174,11 +3987,11 @@ namespace RethinkDb.Driver.Ast {
 ///     .group('player').max('points')['points']
 ///     .ungroup().orderBy(r.desc('reduction')).run(conn)
 /// </code></example>
-                    public Ungroup ungroup (  )
-                    {
+                        public Ungroup ungroup (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Ungroup (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.</para>
 /// </summary>
@@ -3187,11 +4000,11 @@ namespace RethinkDb.Driver.Ast {
 ///   cursor.each(console.log)
 /// })
 /// </code></example>
-                    public Changes changes (  )
-                    {
+                        public Changes changes (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Changes (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Convert a ReQL geometry object to a [GeoJSON][] object.</para>
 /// </summary>
@@ -3203,11 +4016,11 @@ namespace RethinkDb.Driver.Ast {
 ///     'coordinates': [ -122.423246, 37.779388 ]
 /// }
 /// </code></example>
-                    public ToGeojson toGeojson (  )
-                    {
+                        public ToGeojson toGeojson (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new ToGeojson (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Compute the distance between a point and another geometry object. At least one of the geometry objects specified must be a point.</para>
 /// </summary>
@@ -3218,12 +4031,12 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback 
 /// 734.1252496021841
 /// </code></example>
-                    public Distance distance ( Object exprA )
-                    {
+                        public Distance distance ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Distance (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Tests whether two geometry objects intersect with one another. When applied to a sequence of geometry objects, <code>intersects</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that intersect with the argument.</para>
 /// </summary>
@@ -3234,12 +4047,12 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback 
 /// true
 /// </code></example>
-                    public Intersects intersects ( Object exprA )
-                    {
+                        public Intersects intersects ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Intersects (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Tests whether a geometry object is completely contained within another. When applied to a sequence of geometry objects, <code>includes</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that include the argument.</para>
 /// </summary>
@@ -3250,12 +4063,12 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback 
 /// true
 /// </code></example>
-                    public Includes includes ( Object exprA )
-                    {
+                        public Includes includes ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new Includes (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Convert a Line object into a Polygon object. If the last point does not specify the same coordinates as the first point, <code>polygon</code> will close the polygon by connecting them.</para>
 /// </summary>
@@ -3274,11 +4087,11 @@ namespace RethinkDb.Driver.Ast {
 ///     rectangle: r.row('rectangle').fill()
 /// }).run(conn, callback);
 /// </code></example>
-                    public Fill fill (  )
-                    {
+                        public Fill fill (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Fill (arguments);
-                    }
+                        }
 /// <summary>
 /// <para>Use <code>polygon2</code> to "punch out" a hole in <code>polygon1</code>. <code>polygon2</code> must be completely contained within <code>polygon1</code> and must have no holes itself (it must not be the output of <code>polygonSub</code> itself).</para>
 /// </summary>
@@ -3297,17 +4110,17 @@ namespace RethinkDb.Driver.Ast {
 /// );
 /// outerPolygon.polygonSub(innerpolygon).run(conn, callback);
 /// </code></example>
-                    public PolygonSub polygonSub ( Object exprA )
-                    {
+                        public PolygonSub polygonSub ( Object exprA )
+                        {
                         Arguments arguments = new Arguments(this);
-                        arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprA);
                         return new PolygonSub (arguments);
-                    }
-                    public Values values (  )
-                    {
+                        }
+                        public Values values (  )
+                        {
                         Arguments arguments = new Arguments(this);
                         return new Values (arguments);
-                    }
+                        }
 
     
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using Templates.CodeGen.Util;
@@ -32,6 +33,21 @@ namespace Templates
                 "row"
             };
 
+        public static NameValueCollection TokenMutate = new NameValueCollection()
+            {
+                {"TIME.signatures[0].args[0].type", "int"},
+                {"TIME.signatures[0].args[1].type", "int"},
+                {"TIME.signatures[0].args[2].type", "int"},
+                {"TIME.signatures[0].args[3].type", "int"},
+                {"TIME.signatures[1].args[0].type", "int"},
+                {"TIME.signatures[1].args[1].type", "int"},
+                {"TIME.signatures[1].args[2].type", "int"},
+                {"TIME.signatures[1].args[3].type", "int"},
+                {"TIME.signatures[1].args[4].type", "int"},
+                {"TIME.signatures[1].args[5].type", "int"},
+                {"TIME.signatures[1].args[6].type", "int"},
+            };
+
         private readonly Dictionary<string, JObject> allTerms;
 
         public CSharpTermInfoMutator(Dictionary<string, JObject> allTerms)
@@ -43,6 +59,17 @@ namespace Templates
         {
             DeleteIfBlackListed();
             MutateMethodName();
+            MutateParameterArguments();
+        }
+
+        private void MutateParameterArguments()
+        {
+            foreach( var termInfo in allTerms )
+            {
+                var term = termInfo.Key;
+                var info = termInfo.Value;
+
+            }
         }
 
         private void MutateClassName()
@@ -57,17 +84,22 @@ namespace Templates
                 var term = termInfo.Key;
                 var info = termInfo.Value;
 
-                var proposedName = info["methodname"].ToString();
-
-                if( Keywords.Any(k => string.Equals(k, proposedName, StringComparison.OrdinalIgnoreCase)) )
+                var proposedNames = info["methodnames"].ToObject<string[]>();
+                var lst = new List<string>();
+                foreach( var proposedName in proposedNames )
                 {
-                    proposedName += "_";
+                    var finalName = proposedName;
+                    if( Keywords.Any(k => string.Equals(k, proposedName, StringComparison.OrdinalIgnoreCase)) )
+                    {
+                        finalName += "_";
+                    }
+                    else if( ObjectMethods.Any(m => string.Equals(m, proposedName, StringComparison.OrdinalIgnoreCase)) )
+                    {
+                        finalName += "_";
+                    }
+                    lst.Add(finalName);
                 }
-                else if( ObjectMethods.Any(m => string.Equals(m, proposedName, StringComparison.OrdinalIgnoreCase)) )
-                {
-                    proposedName += "_";
-                }
-                info["methodname"] = proposedName;
+                info["methodnames"] = JArray.FromObject(lst);
             }
         }
 

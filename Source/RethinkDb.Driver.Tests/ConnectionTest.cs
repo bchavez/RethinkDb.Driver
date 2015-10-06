@@ -108,6 +108,15 @@ namespace RethinkDb.Driver.Tests
         }
 
         [Test]
+        public void test_datetime()
+        {
+            var date = DateTime.Now;
+            var result = r.expr(date).run<DateTime>(conn);
+
+            date.Should().Be(result);
+        }
+
+        [Test]
         public void test_jvalue()
         {
             var t = r.now().run<JValue>(conn);

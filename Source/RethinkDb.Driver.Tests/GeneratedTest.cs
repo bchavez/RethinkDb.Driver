@@ -285,9 +285,9 @@ namespace RethinkDb.Driver.Tests
         {
             private int nbr;
 
-            public IntCmp(int nbr)
+            public IntCmp(double nbr)
             {
-                this.nbr = nbr;
+                this.nbr = (int)nbr;
             }
 
             public override bool Equals(Object other)
@@ -296,7 +296,7 @@ namespace RethinkDb.Driver.Tests
             }
         }
 
-        protected IntCmp int_cmp(int nbr)
+        protected IntCmp int_cmp(double nbr)
         {
             return new IntCmp(nbr);
         }
@@ -314,6 +314,11 @@ namespace RethinkDb.Driver.Tests
             {
                 return nbr.Equals(other);
             }
+        }
+
+        protected double float_(double nbr)
+        {
+            return nbr;
         }
 
         protected FloatCmp float_cmp(Double nbr)

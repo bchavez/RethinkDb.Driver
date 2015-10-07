@@ -14,4 +14,6 @@ using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Ast {
     public delegate object ReqlFunction3 ( ReqlExpr arg1, ReqlExpr arg2, ReqlExpr arg3 );
+    //marker interface for marking some terms (like javascript) as lambdas.
+    public interface IReqlFunction3Expr : ReqlLambda { }
 }

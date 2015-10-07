@@ -15,5 +15,4 @@ namespace RethinkDb.Driver.Model
 			throw new Exception("fromJSONArray not implemented");
 		}
 	}
-
 }

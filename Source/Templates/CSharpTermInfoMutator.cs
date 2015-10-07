@@ -60,6 +60,74 @@ namespace Templates
             DeleteIfBlackListed();
             MutateMethodName();
             MutateParameterArguments();
+            MutateImpelments();
+            MutateSignatures();
+        }
+
+        private void MutateSignatures()
+        {
+            foreach( var termInfo in allTerms )
+            {
+                var term = termInfo.Key;
+                var info = termInfo.Value;
+
+
+                //if there are any Reql Function 1 arguments in signatures,
+                //this usually means we can also use JavaScript as a
+                //ReqlFuction1 alternative. So, an alternate signature with
+                //IHasReqlFunction1 to allow the use of JavaScript as a 
+                //ReqlFunction1 argument since Java and C# don't 
+                //have compatible lambda interfaces.
+                var sigs = info["signatures"].ToObject<Signature[]>();
+
+                var newSigs = new List<Signature>();
+                var addSig = false;
+                foreach( var sig in sigs )
+                {
+                    foreach( var sigArg in sig.Args )
+                    {
+                        if( sigArg.Type == "ReqlFunction1" )
+                        {
+                            sigArg.Type = "IReqlFunction1Expr";
+                            addSig = true;
+                        }
+                    }
+                    if( addSig )
+                    {
+                        newSigs.Add(sig);
+                        addSig = false;
+                    }
+                }
+                if( newSigs.Count > 0 )
+                {
+                    var sigsArray = info["signatures"] as JArray;
+                    foreach( var newSig in newSigs )
+                    {
+                        sigsArray.Add(JObject.FromObject(newSig));
+                    }
+                }
+
+            }
+        }
+
+        private void MutateImpelments()
+        {
+            foreach (var termInfo in allTerms)
+            {
+                var term = termInfo.Key;
+                var info = termInfo.Value;
+
+                var implements = info["implements"] as JArray;
+                for (var i = 0; i < implements.Count; i++)
+                {
+                    var termInterface = implements[i] as JValue;
+                    var iface = termInterface.ToString();
+                    if (iface.StartsWith("ReqlFunction"))
+                    {
+                        termInterface.Value = "I" + iface + "Expr";
+                    }
+                }
+            }
         }
 
         private void MutateParameterArguments()
@@ -68,7 +136,6 @@ namespace Templates
             {
                 var term = termInfo.Key;
                 var info = termInfo.Value;
-
             }
         }
 

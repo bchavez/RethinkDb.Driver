@@ -48,6 +48,19 @@
 @:/// <example>@doc.Example</example>
     };
 }
+@helper RenderAnyImplements()
+{
+    if( TermMeta == null || TermMeta["implements"] == null )
+    {
+        return;
+    }
+    var implements = TermMeta["implements"].ToObject<string[]>();
+    if( implements.Length > 0 )
+    {
+        var allInterfaces = string.Join(", ", implements);
+@: , @allInterfaces
+    }
+}
 
 @section Ctors{
     @if( this.TermName != null )
@@ -105,7 +118,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class @Class(ClassName) : @Superclass {
+    public class @Class(ClassName) : @Superclass @RenderAnyImplements() {
 
     @RenderSection("MemberVars")
     

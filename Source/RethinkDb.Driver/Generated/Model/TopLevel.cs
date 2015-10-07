@@ -30,7 +30,7 @@ namespace RethinkDb.Driver.Ast {
             throw new ReqlDriverError("r.row is not implemented in the C# driver. Use lambda syntax instead.");
         }
 
-        public MapObject hashMap(string key, object val) {
+        public MapObject hashMap(object key, object val) {
             return new MapObject().with(key, val);
         }
 
@@ -373,6 +373,23 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
+                        public Map map ( Object expr, ReqlFunction0 func0 )
+                        {
+                        Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func0);
+                        return new Map (arguments);
+                        }
+/// <summary>
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
+///</summary>
+/// <example><para>Example: Return the first five squares.</para>
+/// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
+///     return val.mul(val);
+/// }).run(conn, callback);
+/// // Result passed to callback
+/// [1, 4, 9, 16, 25]
+/// </code></example>
                         public Map map ( Object expr, ReqlFunction1 func1 )
                         {
                         Arguments arguments = new Arguments();
@@ -435,6 +452,23 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(func4);
+                        return new Map (arguments);
+                        }
+/// <summary>
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
+///</summary>
+/// <example><para>Example: Return the first five squares.</para>
+/// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
+///     return val.mul(val);
+/// }).run(conn, callback);
+/// // Result passed to callback
+/// [1, 4, 9, 16, 25]
+/// </code></example>
+                        public Map map ( Object expr, IReqlFunction1Expr func1 )
+                        {
+                        Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
                         return new Map (arguments);
                         }
 /// <summary>
@@ -707,6 +741,12 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAddAll(exprs);
                         return new Funcall (arguments);
                         }
+                        public Funcall do_ ( ReqlFunction0 func0 )
+                        {
+                        Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(func0);
+                        return new Funcall (arguments);
+                        }
                         public Funcall do_ ( Object expr, ReqlFunction1 func1 )
                         {
                         Arguments arguments = new Arguments();
@@ -731,14 +771,11 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func3);
                         return new Funcall (arguments);
                         }
-                        public Funcall do_ ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
+                        public Funcall do_ ( Object expr, IReqlFunction1Expr func1 )
                         {
                         Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(exprB);
-                                arguments.CoerceAndAdd(exprC);
-                                arguments.CoerceAndAdd(func4);
+                                arguments.CoerceAndAdd(func1);
                         return new Funcall (arguments);
                         }
 /// <summary>
@@ -756,12 +793,13 @@ namespace RethinkDb.Driver.Ast {
 ///     )
 /// ).run(conn, callback)
 /// </code></example>
-                        public Branch branch ( Object expr, Object exprA, Object exprB )
+                        public Branch branch ( Object expr, Object exprA, Object exprB, params object[] exprs )
                         {
                         Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAddAll(exprs);
                         return new Branch (arguments);
                         }
 /// <summary>

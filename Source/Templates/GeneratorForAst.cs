@@ -70,9 +70,9 @@ namespace Templates
 		public void Render_Funtion_Interfaces()
 		{
 			//Determines the maximum reql lambda arity that shows up in any signature
-			var maxArity = GetMaxArity();
+			var maxArity = GetMaxArity() + 1;
 
-			foreach( var n in Enumerable.Range(1, maxArity) )
+			foreach( var n in Enumerable.Range(0, maxArity) )
 			{
 				var tmpl = new ReqlFunctionTemplate()
 					{

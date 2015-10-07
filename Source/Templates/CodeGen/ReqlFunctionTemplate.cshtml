@@ -23,7 +23,10 @@ using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Ast {
     @{
-                var param = Enumerable.Range(1, Arity).Select(n => $"ReqlExpr arg{n}");
+        var param = Enumerable.Range(1, Arity).Select(n => $"ReqlExpr arg{n}");
+        var funcName = "ReqlFunction" + Arity;
     }
-    public delegate object @("ReqlFunction" + Arity) ( @string.Join(", ", param) );
+    public delegate object @(funcName) ( @string.Join(", ", param) );
+    //marker interface for marking some terms (like javascript) as lambdas.
+    public interface @("I"+funcName+"Expr") : ReqlLambda { }
 }

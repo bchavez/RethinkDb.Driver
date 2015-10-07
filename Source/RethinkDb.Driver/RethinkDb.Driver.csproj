@@ -244,6 +244,7 @@
     <Compile Include="Generated\Model\HttpMethod.cs" />
     <Compile Include="Generated\Model\IdentifierFormat.cs" />
     <Compile Include="Generated\Model\ReadMode.cs" />
+    <Compile Include="Generated\Model\ReqlFunction0.cs" />
     <Compile Include="Generated\Model\ReqlFunction1.cs" />
     <Compile Include="Generated\Model\ReqlFunction2.cs" />
     <Compile Include="Generated\Model\ReqlFunction3.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Model\OptArgs.cs" />
     <Compile Include="Model\PathSpec.cs" />
     <Compile Include="Model\Profile.cs" />
+    <Compile Include="Model\ReqlLambda.cs" />
     <Compile Include="Net\Connection.cs" />
     <Compile Include="Net\ConnectionInstance.cs" />
     <Compile Include="Net\Converter.cs" />

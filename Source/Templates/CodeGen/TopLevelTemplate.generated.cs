@@ -171,7 +171,7 @@ namespace RethinkDb.Driver.Ast {
             throw new ReqlDriverError(""r.row is not implemented in the C# driver. Use lambda syntax instead."");
         }
 
-        public MapObject hashMap(string key, object val) {
+        public MapObject hashMap(object key, object val) {
             return new MapObject().with(key, val);
         }
 

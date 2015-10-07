@@ -392,6 +392,7 @@
             "T_EXPR"
         ],
         "signatures": [
+            ["T_EXPR", "T_FUNC0"],
             ["T_EXPR", "T_EXPR", "*", "T_FUNCX"]
         ],
         "id": 38
@@ -534,6 +535,7 @@
         "id": 52
     },
     "UPDATE": {
+        "side_effect": true,
         "include_in": ["T_EXPR"],
         "signatures": [
             ["T_EXPR", "T_EXPR"],
@@ -547,6 +549,7 @@
         "id": 53
     },
     "DELETE": {
+        "side_effect": true,
         "include_in": ["T_EXPR"],
         "signatures": [["T_EXPR"]],
         "optargs": {
@@ -556,6 +559,7 @@
         "id": 54
     },
     "REPLACE": {
+        "side_effect": true,
         "include_in": ["T_EXPR"],
         "signatures": [
             ["T_EXPR", "T_EXPR"],
@@ -569,6 +573,7 @@
         "id": 55
     },
     "INSERT": {
+        "side_effect": true,
         "include_in": [
             "T_TABLE"
         ],
@@ -581,6 +586,7 @@
         "id": 56
     },
     "DB_CREATE": {
+        "side_effect": true,
         "include_in": [
             "T_TOP_LEVEL"
         ],
@@ -588,6 +594,7 @@
         "id": 57
     },
     "DB_DROP": {
+        "side_effect": true,
         "include_in": [
             "T_TOP_LEVEL"
         ],
@@ -595,6 +602,7 @@
         "id": 58
     },
     "DB_LIST": {
+        "side_effect": true,
         "include_in": [
             "T_TOP_LEVEL"
         ],
@@ -602,6 +610,7 @@
         "id": 59
     },
     "TABLE_CREATE": {
+        "side_effect": true,
         "include_in": [
             "T_TOP_LEVEL",
             "T_DB"
@@ -617,6 +626,7 @@
         "id": 60
     },
     "TABLE_DROP": {
+        "side_effect": true,
         "include_in": [
             "T_TOP_LEVEL",
             "T_DB"
@@ -654,6 +664,7 @@
         "id": 175
     },
     "WAIT": {
+        "side_effect": true,
         "include_in": [
             "T_TOP_LEVEL",
             "T_DB",
@@ -671,6 +682,7 @@
         "id": 177
     },
     "RECONFIGURE": {
+        "side_effect": true,
         "include_in": [
             "T_TOP_LEVEL",
             "T_DB",
@@ -692,6 +704,7 @@
         "id": 176
     },
     "REBALANCE": {
+        "side_effect": true,
         "include_in": [
             "T_TOP_LEVEL",
             "T_DB",
@@ -705,6 +718,7 @@
         "id": 179
     },
     "SYNC": {
+        "side_effect": true,
         "include_in": [
             "T_TABLE"
         ],
@@ -712,6 +726,7 @@
         "id": 138
     },
     "INDEX_CREATE": {
+        "side_effect": true,
         "include_in": [
             "T_TABLE"
         ],
@@ -726,6 +741,7 @@
         "id": 75
     },
     "INDEX_DROP": {
+        "side_effect": true,
         "include_in": [
             "T_TABLE"
         ],
@@ -747,6 +763,7 @@
         "id": 139
     },
     "INDEX_WAIT": {
+        "side_effect": true,
         "include_in": [
             "T_TABLE"
         ],
@@ -754,6 +771,7 @@
         "id": 140
     },
     "INDEX_RENAME": {
+        "side_effect": true,
         "include_in": [
             "T_TABLE"
         ],
@@ -771,7 +789,7 @@
         ],
         "signatures": [
             ["T_EXPR", "T_EXPR", "*"],
-            ["T_FUNCX", "T_EXPR", "T_EXPR", "*"]
+            ["T_FUNCX", "T_EXPR", "*"]
         ],
         "id": 64
     },
@@ -779,7 +797,7 @@
         "include_in": [
             "T_TOP_LEVEL"
         ],
-        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR"]],
+        "signatures": [["T_EXPR", "T_EXPR", "T_EXPR", "T_EXPR", "*"]],
         "id": 65
     },
     "OR": {
@@ -800,7 +818,10 @@
     },
     "FOR_EACH": {
         "include_in": ["T_EXPR"],
-        "signatures": [["T_EXPR", "T_FUNC1"]],
+        "signatures": [
+            ["T_EXPR", "T_FUNC0"],
+            ["T_EXPR", "T_FUNC1"]
+        ],
         "id": 68
     },
     "FUNC": {

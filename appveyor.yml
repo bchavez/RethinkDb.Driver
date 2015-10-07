@@ -16,8 +16,10 @@ test: off
 #    - __compile\RethinkDb.Driver.Tests.dll
 
 after_build:
-    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver.*
+    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver.dll
+    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver.xml
     - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\Newtonsoft.Json.*
+    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\Common.Logging.*
 
 artifacts:
     - path: __package\*.nupkg
@@ -30,7 +32,7 @@ nuget:
 
 deploy:
     - provider: GitHub
-      release: 'Release $(APPVEYOR_BUILD_VERSION)'
+      release: 'Release $(APPVEYOR_REPO_TAG_NAME) build $(APPVEYOR_BUILD_VERSION)'
       tag: $(APPVEYOR_REPO_TAG_NAME)
       description: $(APPVEYOR_REPO_COMMIT_MESSAGE)
       prerelease: $(IsPreRelease)

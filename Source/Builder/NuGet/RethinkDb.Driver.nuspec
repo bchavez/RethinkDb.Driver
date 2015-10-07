@@ -15,10 +15,15 @@
     <description>A RethinkDB database driver written in C# striving for 100% ReQL API compatibility and completeness. Architecturally, this driver is a one-to-one port of the official Java driver.</description>
     
     <releaseNotes>
-      History:
+      History
+      v0.0.4-alpha6
+      * Removed unnecessary dependency on extension methods utility.
+      
       v0.0.4-alpha5
       * Added a toplevel r.array and r.hashMap utility
-      
+      * AST now using proper C# lambdas
+      * More refined AST signatures.
+
       v0.0.4-alpha4
       * PR#2: Fix null reference exception: JObject.FromObject before objects to JArray list. -cadabloom
 

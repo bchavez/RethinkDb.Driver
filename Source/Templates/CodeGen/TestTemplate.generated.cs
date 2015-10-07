@@ -303,17 +303,17 @@ WriteLiteral("\r\n");
 
 WriteLiteral("                 ");
 
-WriteLiteral("//ExpectedOriginal: ");
+WriteLiteral("/* ExpectedOriginal: ");
 
 
             
             #line 62 "..\..\CodeGen\TestTemplate.cshtml"
-                                  Write(test.ExpectedOriginal);
+                                   Write(test.ExpectedOriginal);
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n");
+WriteLiteral(" */\r\n");
 
 
 
@@ -341,17 +341,17 @@ WriteLiteral("\r\n");
 
 WriteLiteral("                 ");
 
-WriteLiteral("//Original: ");
+WriteLiteral("/* Original: ");
 
 
             
             #line 65 "..\..\CodeGen\TestTemplate.cshtml"
-                          Write(test.Original);
+                           Write(test.Original);
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n");
+WriteLiteral(" */\r\n");
 
 
 

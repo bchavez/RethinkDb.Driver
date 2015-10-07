@@ -16,6 +16,12 @@
     
     <releaseNotes>
       History
+      v0.0.4-alpha8
+      * 
+      
+      v0.0.4-alpha7
+      * Ensure latest Common.Logging is used.
+      
       v0.0.4-alpha6
       * Removed unnecessary dependency on extension methods utility.
       

@@ -13,6 +13,7 @@ namespace Templates
                 {"Boolean", "bool"},
                 {"Integer", "int"},
                 {"Double", "double"},
+                {"Long", "long"}
             };
 
         public static NameValueCollection JavaLineReplacements = new NameValueCollection
@@ -21,7 +22,8 @@ namespace Templates
                 {"->", "=>"},
                 {"(ReqlFunction1)", ""},
                 {"sys.floatInfo.max", "double.MaxValue"},
-                {"sys.floatInfo.min", "double.MinValue"}
+                {"sys.floatInfo.min", "double.MinValue"},
+                {"<< 53L", "<< 53"}
             };
 
         public CSharpTestMutator(YamlTest yamlTest)

@@ -4,7 +4,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 1
   Original: r.expr(true) & true
-  Java: r.and(r.expr(true), true)
+  Java: r.expr(true).and(true)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -40,7 +40,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 2
   Original: r.expr(true) & false
-  Java: r.and(r.expr(true), false)
+  Java: r.expr(true).and(false)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -49,7 +49,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 2
   Original: r.expr(false) & false
-  Java: r.and(r.expr(false), false)
+  Java: r.expr(false).and(false)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -112,7 +112,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 3
   Original: r.expr(true) | true
-  Java: r.or(r.expr(true), true)
+  Java: r.expr(true).or(true)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -121,7 +121,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 3
   Original: r.expr(true) | false
-  Java: r.or(r.expr(true), false)
+  Java: r.expr(true).or(false)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -184,7 +184,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 4
   Original: r.expr(false) | false
-  Java: r.or(r.expr(false), false)
+  Java: r.expr(false).or(false)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -274,7 +274,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 9
   Original: ~r.and_(True, True) == r.or_(~r.expr(True), ~r.expr(True))
-  Java: r.eq(r.and(true, true).not(), r.or(r.expr(true).not(), r.expr(true).not()))
+  Java: r.and(true, true).not().eq(r.or(r.expr(true).not(), r.expr(true).not()))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -283,7 +283,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 9
   Original: ~r.and_(True, False) == r.or_(~r.expr(True), ~r.expr(False))
-  Java: r.eq(r.and(true, false).not(), r.or(r.expr(true).not(), r.expr(false).not()))
+  Java: r.and(true, false).not().eq(r.or(r.expr(true).not(), r.expr(false).not()))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -292,7 +292,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 9
   Original: ~r.and_(False, False) == r.or_(~r.expr(False), ~r.expr(False))
-  Java: r.eq(r.and(false, false).not(), r.or(r.expr(false).not(), r.expr(false).not()))
+  Java: r.and(false, false).not().eq(r.or(r.expr(false).not(), r.expr(false).not()))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -301,7 +301,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 9
   Original: ~r.and_(False, True) == r.or_(~r.expr(False), ~r.expr(True))
-  Java: r.eq(r.and(false, true).not(), r.or(r.expr(false).not(), r.expr(true).not()))
+  Java: r.and(false, true).not().eq(r.or(r.expr(false).not(), r.expr(true).not()))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -364,7 +364,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 16
   Original: r.expr(r.expr('a')['b']).default(2)
-  Java: r.expr(r.expr("a").bracket("b")).default_(2.0)
+  Java: r.expr(r.expr("a").g("b")).default_(2)
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", r.array())
@@ -373,7 +373,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 18
   Original: r.expr(r.and_(True, False) == r.or_(False, True))
-  Java: r.expr(r.eq(r.and(true, false), r.or(false, true)))
+  Java: r.expr(r.and(true, false).eq(r.or(false, true)))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -382,7 +382,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 20
   Original: r.expr(r.and_(True, False) >= r.or_(False, True))
-  Java: r.expr(r.ge(r.and(true, false), r.or(false, true)))
+  Java: r.expr(r.and(true, false).ge(r.or(false, true)))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -391,7 +391,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 21
   Original: r.expr(1) & True
-  Java: r.and(r.expr(1.0), true)
+  Java: r.expr(1).and(true)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -400,7 +400,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 22
   Original: r.expr(False) | 'str'
-  Java: r.or(r.expr(false), "str")
+  Java: r.expr(false).or("str")
   ExpectedOriginal: ("str")
   ExpectedType: String
   ExpectedJava: '"str"'
@@ -409,7 +409,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 23
   Original: ~r.expr(1)
-  Java: r.expr(1.0).not()
+  Java: r.expr(1).not()
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -418,7 +418,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 24
   Original: ~r.expr(null)
-  Java: r.expr(null).not()
+  Java: r.expr((ReqlExpr) null).not()
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true

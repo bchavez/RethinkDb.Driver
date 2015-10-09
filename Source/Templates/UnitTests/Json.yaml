@@ -7,7 +7,7 @@ DefsAndTests:
   Java: r.json("[1,2,3]")
   ExpectedOriginal: '[1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(1.0, 2.0, 3.0)
+  ExpectedJava: r.array(1, 2, 3)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
@@ -15,8 +15,8 @@ DefsAndTests:
   Original: r.json("1")
   Java: r.json("1")
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
@@ -43,7 +43,7 @@ DefsAndTests:
   Java: r.json("[1,2")
   ExpectedOriginal: err("ReqlQueryLogicError", 'Failed to parse "[1,2" as JSON:' + ' Missing a comma or \']\' after an array element.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Failed to parse \"[1,2\" as JSON:" + " Missing a comma or ']' after an array element.", r.array(0.0))
+  ExpectedJava: err("ReqlQueryLogicError", "Failed to parse \"[1,2\" as JSON:" + " Missing a comma or ']' after an array element.", r.array(0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
@@ -85,13 +85,13 @@ DefsAndTests:
   TestFile: json.yaml
   TestNum: 10
   Original: text = '[{"id":1,"first_name":"Harry","last_name":"Riley","email":"hriley0@usgs.gov","country":"Andorra","ip_address":"221.25.65.136"},{"id":2,"first_name":"Bonnie","last_name":"Anderson","email":"banderson1@list-manage.com","country":"Tuvalu","ip_address":"116.162.43.150"},{"id":3,"first_name":"Marie","last_name":"Schmidt","email":"mschmidt2@diigo.com","country":"Iraq","ip_address":"181.105.59.57"},{"id":4,"first_name":"Phillip","last_name":"Willis","email":"pwillis3@com.com","country":"Montenegro","ip_address":"24.223.139.156"}]'
-  Java: String text = (String) "[{\"id\":1,\"first_name\":\"Harry\",\"last_name\":\"Riley\",\"email\":\"hriley0@usgs.gov\",\"country\":\"Andorra\",\"ip_address\":\"221.25.65.136\"},{\"id\":2,\"first_name\":\"Bonnie\",\"last_name\":\"Anderson\",\"email\":\"banderson1@list-manage.com\",\"country\":\"Tuvalu\",\"ip_address\":\"116.162.43.150\"},{\"id\":3,\"first_name\":\"Marie\",\"last_name\":\"Schmidt\",\"email\":\"mschmidt2@diigo.com\",\"country\":\"Iraq\",\"ip_address\":\"181.105.59.57\"},{\"id\":4,\"first_name\":\"Phillip\",\"last_name\":\"Willis\",\"email\":\"pwillis3@com.com\",\"country\":\"Montenegro\",\"ip_address\":\"24.223.139.156\"}]";
+  Java: String text = (String) ("[{\"id\":1,\"first_name\":\"Harry\",\"last_name\":\"Riley\",\"email\":\"hriley0@usgs.gov\",\"country\":\"Andorra\",\"ip_address\":\"221.25.65.136\"},{\"id\":2,\"first_name\":\"Bonnie\",\"last_name\":\"Anderson\",\"email\":\"banderson1@list-manage.com\",\"country\":\"Tuvalu\",\"ip_address\":\"116.162.43.150\"},{\"id\":3,\"first_name\":\"Marie\",\"last_name\":\"Schmidt\",\"email\":\"mschmidt2@diigo.com\",\"country\":\"Iraq\",\"ip_address\":\"181.105.59.57\"},{\"id\":4,\"first_name\":\"Phillip\",\"last_name\":\"Willis\",\"email\":\"pwillis3@com.com\",\"country\":\"Montenegro\",\"ip_address\":\"24.223.139.156\"}]");
   RunOpts: []
 - TestType: JavaDef
   TestFile: json.yaml
   TestNum: 11
   Original: sorted = '[{"country":"Andorra","email":"hriley0@usgs.gov","first_name":"Harry","id":1,"ip_address":"221.25.65.136","last_name":"Riley"},{"country":"Tuvalu","email":"banderson1@list-manage.com","first_name":"Bonnie","id":2,"ip_address":"116.162.43.150","last_name":"Anderson"},{"country":"Iraq","email":"mschmidt2@diigo.com","first_name":"Marie","id":3,"ip_address":"181.105.59.57","last_name":"Schmidt"},{"country":"Montenegro","email":"pwillis3@com.com","first_name":"Phillip","id":4,"ip_address":"24.223.139.156","last_name":"Willis"}]'
-  Java: String sorted = (String) "[{\"country\":\"Andorra\",\"email\":\"hriley0@usgs.gov\",\"first_name\":\"Harry\",\"id\":1,\"ip_address\":\"221.25.65.136\",\"last_name\":\"Riley\"},{\"country\":\"Tuvalu\",\"email\":\"banderson1@list-manage.com\",\"first_name\":\"Bonnie\",\"id\":2,\"ip_address\":\"116.162.43.150\",\"last_name\":\"Anderson\"},{\"country\":\"Iraq\",\"email\":\"mschmidt2@diigo.com\",\"first_name\":\"Marie\",\"id\":3,\"ip_address\":\"181.105.59.57\",\"last_name\":\"Schmidt\"},{\"country\":\"Montenegro\",\"email\":\"pwillis3@com.com\",\"first_name\":\"Phillip\",\"id\":4,\"ip_address\":\"24.223.139.156\",\"last_name\":\"Willis\"}]";
+  Java: String sorted = (String) ("[{\"country\":\"Andorra\",\"email\":\"hriley0@usgs.gov\",\"first_name\":\"Harry\",\"id\":1,\"ip_address\":\"221.25.65.136\",\"last_name\":\"Riley\"},{\"country\":\"Tuvalu\",\"email\":\"banderson1@list-manage.com\",\"first_name\":\"Bonnie\",\"id\":2,\"ip_address\":\"116.162.43.150\",\"last_name\":\"Anderson\"},{\"country\":\"Iraq\",\"email\":\"mschmidt2@diigo.com\",\"first_name\":\"Marie\",\"id\":3,\"ip_address\":\"181.105.59.57\",\"last_name\":\"Schmidt\"},{\"country\":\"Montenegro\",\"email\":\"pwillis3@com.com\",\"first_name\":\"Phillip\",\"id\":4,\"ip_address\":\"24.223.139.156\",\"last_name\":\"Willis\"}]");
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
@@ -142,10 +142,10 @@ DefsAndTests:
   TestFile: json.yaml
   TestNum: 17
   Original: r.time(2014,9,11, 'Z')
-  Java: r.time(2014.0, 9.0, 11.0, "Z")
+  Java: r.time(2014, 9, 11, "Z")
   ExpectedOriginal: ({'timezone':'+00:00','$reql_type$':'TIME','epoch_time':1410393600})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("timezone", "+00:00").with("$reql_type$", "TIME").with("epoch_time", 1410393600.0)
+  ExpectedJava: r.hashMap("timezone", "+00:00").with("$reql_type$", "TIME").with("epoch_time", 1410393600)
   RunOpts:
   - Key: time_format
     Val: raw
@@ -153,7 +153,7 @@ DefsAndTests:
   TestFile: json.yaml
   TestNum: 18
   Original: r.time(2014,9,11, 'Z').to_json_string()
-  Java: r.time(2014.0, 9.0, 11.0, "Z").toJsonString()
+  Java: r.time(2014, 9, 11, "Z").toJsonString()
   ExpectedOriginal: ('{"$reql_type$":"TIME","epoch_time":1410393600,"timezone":"+00:00"}')
   ExpectedType: String
   ExpectedJava: '"{\"$reql_type$\":\"TIME\",\"epoch_time\":1410393600,\"timezone\":\"+00:00\"}"'
@@ -162,16 +162,16 @@ DefsAndTests:
   TestFile: json.yaml
   TestNum: 19
   Original: r.point(0,0)
-  Java: r.point(0.0, 0.0)
+  Java: r.point(0, 0)
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY','coordinates':[0,0],'type':'Point'})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0.0, 0.0)).with("type", "Point")
+  ExpectedJava: r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0, 0)).with("type", "Point")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
   TestNum: 20
   Original: r.point(0,0).to_json_string()
-  Java: r.point(0.0, 0.0).toJsonString()
+  Java: r.point(0, 0).toJsonString()
   ExpectedOriginal: ('{"$reql_type$":"GEOMETRY","coordinates":[0,0],"type":"Point"}')
   ExpectedType: String
   ExpectedJava: '"{\"$reql_type$\":\"GEOMETRY\",\"coordinates\":[0,0],\"type\":\"Point\"}"'
@@ -180,7 +180,7 @@ DefsAndTests:
   TestFile: json.yaml
   TestNum: 21
   Original: s = b'\x66\x6f\x6f'
-  Java: byte[] s = (byte[]) "foo".getBytes(StandardCharsets.UTF_8);
+  Java: byte[] s = (byte[]) (new byte[]{102, 111, 111});
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml

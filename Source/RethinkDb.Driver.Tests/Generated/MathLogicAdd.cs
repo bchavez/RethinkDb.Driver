@@ -31,11 +31,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, math_logic/add.yaml, #1
-                 //ExpectedOriginal: 2
-                 var expected = 2.0;
+                 /* ExpectedOriginal: 2 */
+                 var expected = 2;
                  
-                 //Original: (r.expr(1) + 1)
-                 var obtained = runOrCatch( r.add(r.expr(1.0), 1.0) ,
+                 /* Original: (r.expr(1) + 1) */
+                 var obtained = runOrCatch( r.expr(1).add(1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -45,11 +45,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, math_logic/add.yaml, #1
-                 //ExpectedOriginal: 2
-                 var expected = 2.0;
+                 /* ExpectedOriginal: 2 */
+                 var expected = 2;
                  
-                 //Original: (1 + r.expr(1))
-                 var obtained = runOrCatch( r.add(1.0, r.expr(1.0)) ,
+                 /* Original: (1 + r.expr(1)) */
+                 var obtained = runOrCatch( r.add(1, r.expr(1)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -59,11 +59,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, math_logic/add.yaml, #1
-                 //ExpectedOriginal: 2
-                 var expected = 2.0;
+                 /* ExpectedOriginal: 2 */
+                 var expected = 2;
                  
-                 //Original: (r.expr(1).add(1))
-                 var obtained = runOrCatch( r.expr(1.0).add(1.0) ,
+                 /* Original: (r.expr(1).add(1)) */
+                 var obtained = runOrCatch( r.expr(1).add(1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -73,11 +73,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, math_logic/add.yaml, #2
-                 //ExpectedOriginal: 0
-                 var expected = 0.0;
+                 /* ExpectedOriginal: 0 */
+                 var expected = 0;
                  
-                 //Original: r.expr(-1) + 1
-                 var obtained = runOrCatch( r.add(r.expr(-1.0), 1.0) ,
+                 /* Original: r.expr(-1) + 1 */
+                 var obtained = runOrCatch( r.expr(-1).add(1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -87,11 +87,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, math_logic/add.yaml, #3
-                 //ExpectedOriginal: 10.25
+                 /* ExpectedOriginal: 10.25 */
                  var expected = 10.25;
                  
-                 //Original: r.expr(1.75) + 8.5
-                 var obtained = runOrCatch( r.add(r.expr(1.75), 8.5) ,
+                 /* Original: r.expr(1.75) + 8.5 */
+                 var obtained = runOrCatch( r.expr(1.75).add(8.5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -101,11 +101,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, math_logic/add.yaml, #4
-                 //ExpectedOriginal: 
+                 /* ExpectedOriginal:  */
                  var expected = "";
                  
-                 //Original: r.expr('') + ''
-                 var obtained = runOrCatch( r.add(r.expr(""), "") ,
+                 /* Original: r.expr('') + '' */
+                 var obtained = runOrCatch( r.expr("").add("") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -115,11 +115,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, math_logic/add.yaml, #5
-                 //ExpectedOriginal: abcdef
+                 /* ExpectedOriginal: abcdef */
                  var expected = "abcdef";
                  
-                 //Original: r.expr('abc') + 'def'
-                 var obtained = runOrCatch( r.add(r.expr("abc"), "def") ,
+                 /* Original: r.expr('abc') + 'def' */
+                 var obtained = runOrCatch( r.expr("abc").add("def") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -129,11 +129,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, math_logic/add.yaml, #6
-                 //ExpectedOriginal: [1, 2, 3, 4, 5, 6, 7, 8]
-                 var expected = r.array(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0);
+                 /* ExpectedOriginal: [1, 2, 3, 4, 5, 6, 7, 8] */
+                 var expected = r.array(1, 2, 3, 4, 5, 6, 7, 8);
                  
-                 //Original: r.expr([1,2]) + [3] + [4,5] + [6,7,8]
-                 var obtained = runOrCatch( r.add(r.add(r.add(r.expr(r.array(1.0, 2.0)), r.array(3.0)), r.array(4.0, 5.0)), r.array(6.0, 7.0, 8.0)) ,
+                 /* Original: r.expr([1,2]) + [3] + [4,5] + [6,7,8] */
+                 var obtained = runOrCatch( r.expr(r.array(1, 2)).add(r.array(3)).add(r.array(4, 5)).add(r.array(6, 7, 8)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -143,11 +143,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, math_logic/add.yaml, #9
-                 //ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [1])
-                 var expected = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1.0));
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [1]) */
+                 var expected = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1));
                  
-                 //Original: r.expr(1) + 'a'
-                 var obtained = runOrCatch( r.add(r.expr(1.0), "a") ,
+                 /* Original: r.expr(1) + 'a' */
+                 var obtained = runOrCatch( r.expr(1).add("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -157,11 +157,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, math_logic/add.yaml, #10
-                 //ExpectedOriginal: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", [1])
-                 var expected = err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array(1.0));
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", [1]) */
+                 var expected = err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array(1));
                  
-                 //Original: r.expr('a') + 1
-                 var obtained = runOrCatch( r.add(r.expr("a"), 1.0) ,
+                 /* Original: r.expr('a') + 1 */
+                 var obtained = runOrCatch( r.expr("a").add(1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -171,11 +171,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, math_logic/add.yaml, #11
-                 //ExpectedOriginal: err("ReqlQueryLogicError", "Expected type ARRAY but found NUMBER.", [1])
-                 var expected = err("ReqlQueryLogicError", "Expected type ARRAY but found NUMBER.", r.array(1.0));
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type ARRAY but found NUMBER.", [1]) */
+                 var expected = err("ReqlQueryLogicError", "Expected type ARRAY but found NUMBER.", r.array(1));
                  
-                 //Original: r.expr([]) + 1
-                 var obtained = runOrCatch( r.add(r.expr(r.array()), 1.0) ,
+                 /* Original: r.expr([]) + 1 */
+                 var obtained = runOrCatch( r.expr(r.array()).add(1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);

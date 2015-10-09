@@ -31,15 +31,15 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, meta/table.yaml, #Templates.YamlTest+DefTest.
              //Original: db = r.db('test')
              
-Db db = (Db) r.db("test");             
+Db db = (Db) (r.db("test"));             
              TestCounter++;
              
              {
                  //JavaQuery, meta/table.yaml, #2
-                 //ExpectedOriginal: []
+                 /* ExpectedOriginal: [] */
                  var expected = r.array();
                  
-                 //Original: db.table_list()
+                 /* Original: db.table_list() */
                  var obtained = runOrCatch( db.tableList() ,
                                             new OptArgs()
                     );
@@ -50,10 +50,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #3
-                 //ExpectedOriginal: ({'type':'DB','name':'rethinkdb','id':null})
+                 /* ExpectedOriginal: ({'type':'DB','name':'rethinkdb','id':null}) */
                  var expected = r.hashMap("type", "DB").with("name", "rethinkdb").with("id", null);
                  
-                 //Original: r.db('rethinkdb').info()
+                 /* Original: r.db('rethinkdb').info() */
                  var obtained = runOrCatch( r.db("rethinkdb").info() ,
                                             new OptArgs()
                     );
@@ -64,10 +64,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #4
-                 //ExpectedOriginal: partial({'db':{'type':'DB','name':'rethinkdb','id':null}, 'type':'TABLE','id':null,'name':'stats', 'indexes':[],'primary_key':'id'})
+                 /* ExpectedOriginal: partial({'db':{'type':'DB','name':'rethinkdb','id':null}, 'type':'TABLE','id':null,'name':'stats', 'indexes':[],'primary_key':'id'}) */
                  var expected = partial(r.hashMap("db", r.hashMap("type", "DB").with("name", "rethinkdb").with("id", null)).with("type", "TABLE").with("id", null).with("name", "stats").with("indexes", r.array()).with("primary_key", "id"));
                  
-                 //Original: r.db('rethinkdb').table('stats').info()
+                 /* Original: r.db('rethinkdb').table('stats').info() */
                  var obtained = runOrCatch( r.db("rethinkdb").table("stats").info() ,
                                             new OptArgs()
                     );
@@ -78,10 +78,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #5
-                 //ExpectedOriginal: partial({'tables_created':1})
-                 var expected = partial(r.hashMap("tables_created", 1.0));
+                 /* ExpectedOriginal: partial({'tables_created':1}) */
+                 var expected = partial(r.hashMap("tables_created", 1));
                  
-                 //Original: db.table_create('a')
+                 /* Original: db.table_create('a') */
                  var obtained = runOrCatch( db.tableCreate("a") ,
                                             new OptArgs()
                     );
@@ -92,10 +92,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #6
-                 //ExpectedOriginal: ['a']
+                 /* ExpectedOriginal: ['a'] */
                  var expected = r.array("a");
                  
-                 //Original: db.table_list()
+                 /* Original: db.table_list() */
                  var obtained = runOrCatch( db.tableList() ,
                                             new OptArgs()
                     );
@@ -106,10 +106,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #7
-                 //ExpectedOriginal: partial({'tables_created':1})
-                 var expected = partial(r.hashMap("tables_created", 1.0));
+                 /* ExpectedOriginal: partial({'tables_created':1}) */
+                 var expected = partial(r.hashMap("tables_created", 1));
                  
-                 //Original: db.table_create('b')
+                 /* Original: db.table_create('b') */
                  var obtained = runOrCatch( db.tableCreate("b") ,
                                             new OptArgs()
                     );
@@ -120,10 +120,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #8
-                 //ExpectedOriginal: bag(['a', 'b'])
+                 /* ExpectedOriginal: bag(['a', 'b']) */
                  var expected = bag(r.array("a", "b"));
                  
-                 //Original: db.table_list()
+                 /* Original: db.table_list() */
                  var obtained = runOrCatch( db.tableList() ,
                                             new OptArgs()
                     );
@@ -134,10 +134,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #9
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('a')
+                 /* Original: db.table_drop('a') */
                  var obtained = runOrCatch( db.tableDrop("a") ,
                                             new OptArgs()
                     );
@@ -148,10 +148,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #10
-                 //ExpectedOriginal: ['b']
+                 /* ExpectedOriginal: ['b'] */
                  var expected = r.array("b");
                  
-                 //Original: db.table_list()
+                 /* Original: db.table_list() */
                  var obtained = runOrCatch( db.tableList() ,
                                             new OptArgs()
                     );
@@ -162,10 +162,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #11
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('b')
+                 /* Original: db.table_drop('b') */
                  var obtained = runOrCatch( db.tableDrop("b") ,
                                             new OptArgs()
                     );
@@ -176,10 +176,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #12
-                 //ExpectedOriginal: []
+                 /* ExpectedOriginal: [] */
                  var expected = r.array();
                  
-                 //Original: db.table_list()
+                 /* Original: db.table_list() */
                  var obtained = runOrCatch( db.tableList() ,
                                             new OptArgs()
                     );
@@ -190,10 +190,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #13
-                 //ExpectedOriginal: partial({'tables_created':1,'config_changes':[partial({'new_val':partial({'durability':'soft'})})]})
-                 var expected = partial(r.hashMap("tables_created", 1.0).with("config_changes", r.array(partial(r.hashMap("new_val", partial(r.hashMap("durability", "soft")))))));
+                 /* ExpectedOriginal: partial({'tables_created':1,'config_changes':[partial({'new_val':partial({'durability':'soft'})})]}) */
+                 var expected = partial(r.hashMap("tables_created", 1).with("config_changes", r.array(partial(r.hashMap("new_val", partial(r.hashMap("durability", "soft")))))));
                  
-                 //Original: db.table_create('ab', durability='soft')
+                 /* Original: db.table_create('ab', durability='soft') */
                  var obtained = runOrCatch( db.tableCreate("ab").optArg("durability", "soft") ,
                                             new OptArgs()
                     );
@@ -204,10 +204,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #14
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('ab')
+                 /* Original: db.table_drop('ab') */
                  var obtained = runOrCatch( db.tableDrop("ab") ,
                                             new OptArgs()
                     );
@@ -218,10 +218,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #15
-                 //ExpectedOriginal: partial({'tables_created':1,'config_changes':[partial({'new_val':partial({'durability':'hard'})})]})
-                 var expected = partial(r.hashMap("tables_created", 1.0).with("config_changes", r.array(partial(r.hashMap("new_val", partial(r.hashMap("durability", "hard")))))));
+                 /* ExpectedOriginal: partial({'tables_created':1,'config_changes':[partial({'new_val':partial({'durability':'hard'})})]}) */
+                 var expected = partial(r.hashMap("tables_created", 1).with("config_changes", r.array(partial(r.hashMap("new_val", partial(r.hashMap("durability", "hard")))))));
                  
-                 //Original: db.table_create('ab', durability='hard')
+                 /* Original: db.table_create('ab', durability='hard') */
                  var obtained = runOrCatch( db.tableCreate("ab").optArg("durability", "hard") ,
                                             new OptArgs()
                     );
@@ -232,10 +232,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #16
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('ab')
+                 /* Original: db.table_drop('ab') */
                  var obtained = runOrCatch( db.tableDrop("ab") ,
                                             new OptArgs()
                     );
@@ -246,10 +246,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #17
-                 //ExpectedOriginal: err('ReqlQueryLogicError', 'Durability option `fake` unrecognized (options are "hard" and "soft").')
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', 'Durability option `fake` unrecognized (options are "hard" and "soft").') */
                  var expected = err("ReqlQueryLogicError", "Durability option `fake` unrecognized (options are \"hard\" and \"soft\").");
                  
-                 //Original: db.table_create('ab', durability='fake')
+                 /* Original: db.table_create('ab', durability='fake') */
                  var obtained = runOrCatch( db.tableCreate("ab").optArg("durability", "fake") ,
                                             new OptArgs()
                     );
@@ -260,11 +260,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #18
-                 //ExpectedOriginal: partial({'tables_created':1})
-                 var expected = partial(r.hashMap("tables_created", 1.0));
+                 /* ExpectedOriginal: partial({'tables_created':1}) */
+                 var expected = partial(r.hashMap("tables_created", 1));
                  
-                 //Original: db.table_create('ab', primary_key='bar', shards=2, replicas=1)
-                 var obtained = runOrCatch( db.tableCreate("ab").optArg("primary_key", "bar").optArg("shards", 2.0).optArg("replicas", 1.0) ,
+                 /* Original: db.table_create('ab', primary_key='bar', shards=2, replicas=1) */
+                 var obtained = runOrCatch( db.tableCreate("ab").optArg("primary_key", "bar").optArg("shards", 2).optArg("replicas", 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -274,10 +274,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #19
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('ab')
+                 /* Original: db.table_drop('ab') */
                  var obtained = runOrCatch( db.tableDrop("ab") ,
                                             new OptArgs()
                     );
@@ -288,10 +288,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #20
-                 //ExpectedOriginal: partial({'tables_created':1})
-                 var expected = partial(r.hashMap("tables_created", 1.0));
+                 /* ExpectedOriginal: partial({'tables_created':1}) */
+                 var expected = partial(r.hashMap("tables_created", 1));
                  
-                 //Original: db.table_create('ab', primary_key='bar', primary_replica_tag='default')
+                 /* Original: db.table_create('ab', primary_key='bar', primary_replica_tag='default') */
                  var obtained = runOrCatch( db.tableCreate("ab").optArg("primary_key", "bar").optArg("primary_replica_tag", "default") ,
                                             new OptArgs()
                     );
@@ -302,10 +302,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #21
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('ab')
+                 /* Original: db.table_drop('ab') */
                  var obtained = runOrCatch( db.tableDrop("ab") ,
                                             new OptArgs()
                     );
@@ -316,10 +316,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #22
-                 //ExpectedOriginal: partial({'tables_created':1})
-                 var expected = partial(r.hashMap("tables_created", 1.0));
+                 /* ExpectedOriginal: partial({'tables_created':1}) */
+                 var expected = partial(r.hashMap("tables_created", 1));
                  
-                 //Original: db.table_create('ab', nonvoting_replica_tags=['default'])
+                 /* Original: db.table_create('ab', nonvoting_replica_tags=['default']) */
                  var obtained = runOrCatch( db.tableCreate("ab").optArg("nonvoting_replica_tags", r.array("default")) ,
                                             new OptArgs()
                     );
@@ -330,10 +330,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #23
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('ab')
+                 /* Original: db.table_drop('ab') */
                  var obtained = runOrCatch( db.tableDrop("ab") ,
                                             new OptArgs()
                     );
@@ -344,10 +344,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #24
-                 //ExpectedOriginal: partial({'tables_created':1})
-                 var expected = partial(r.hashMap("tables_created", 1.0));
+                 /* ExpectedOriginal: partial({'tables_created':1}) */
+                 var expected = partial(r.hashMap("tables_created", 1));
                  
-                 //Original: db.table_create('a')
+                 /* Original: db.table_create('a') */
                  var obtained = runOrCatch( db.tableCreate("a") ,
                                             new OptArgs()
                     );
@@ -358,11 +358,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #25
-                 //ExpectedOriginal: partial({'reconfigured':1})
-                 var expected = partial(r.hashMap("reconfigured", 1.0));
+                 /* ExpectedOriginal: partial({'reconfigured':1}) */
+                 var expected = partial(r.hashMap("reconfigured", 1));
                  
-                 //Original: db.table('a').reconfigure(shards=1, replicas=1)
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1.0).optArg("replicas", 1.0) ,
+                 /* Original: db.table('a').reconfigure(shards=1, replicas=1) */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1).optArg("replicas", 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -372,11 +372,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #26
-                 //ExpectedOriginal: partial({'reconfigured':1})
-                 var expected = partial(r.hashMap("reconfigured", 1.0));
+                 /* ExpectedOriginal: partial({'reconfigured':1}) */
+                 var expected = partial(r.hashMap("reconfigured", 1));
                  
-                 //Original: db.table('a').reconfigure(shards=1, replicas={"default":1}, nonvoting_replica_tags=['default'], primary_replica_tag='default')
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1.0).optArg("replicas", r.hashMap("default", 1.0)).optArg("nonvoting_replica_tags", r.array("default")).optArg("primary_replica_tag", "default") ,
+                 /* Original: db.table('a').reconfigure(shards=1, replicas={"default":1}, nonvoting_replica_tags=['default'], primary_replica_tag='default') */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1).optArg("replicas", r.hashMap("default", 1)).optArg("nonvoting_replica_tags", r.array("default")).optArg("primary_replica_tag", "default") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -386,11 +386,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #27
-                 //ExpectedOriginal: partial({'reconfigured':0})
-                 var expected = partial(r.hashMap("reconfigured", 0.0));
+                 /* ExpectedOriginal: partial({'reconfigured':0}) */
+                 var expected = partial(r.hashMap("reconfigured", 0));
                  
-                 //Original: db.table('a').reconfigure(shards=1, replicas=1, dry_run=True)
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1.0).optArg("replicas", 1.0).optArg("dry_run", true) ,
+                 /* Original: db.table('a').reconfigure(shards=1, replicas=1, dry_run=True) */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1).optArg("replicas", 1).optArg("dry_run", true) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -400,10 +400,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #28
-                 //ExpectedOriginal: err('ReqlOpFailedError', 'This table doesn\'t need to be repaired.', [])
+                 /* ExpectedOriginal: err('ReqlOpFailedError', 'This table doesn\'t need to be repaired.', []) */
                  var expected = err("ReqlOpFailedError", "This table doesn't need to be repaired.", r.array());
                  
-                 //Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback")
+                 /* Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback") */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback") ,
                                             new OptArgs()
                     );
@@ -414,10 +414,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #29
-                 //ExpectedOriginal: err('ReqlOpFailedError', 'This table doesn\'t need to be repaired.', [])
+                 /* ExpectedOriginal: err('ReqlOpFailedError', 'This table doesn\'t need to be repaired.', []) */
                  var expected = err("ReqlOpFailedError", "This table doesn't need to be repaired.", r.array());
                  
-                 //Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback", dry_run=True)
+                 /* Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback", dry_run=True) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback").optArg("dry_run", true) ,
                                             new OptArgs()
                     );
@@ -428,10 +428,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #30
-                 //ExpectedOriginal: err('ReqlOpFailedError', 'This table doesn\'t need to be repaired.', [])
+                 /* ExpectedOriginal: err('ReqlOpFailedError', 'This table doesn\'t need to be repaired.', []) */
                  var expected = err("ReqlOpFailedError", "This table doesn't need to be repaired.", r.array());
                  
-                 //Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback_or_erase")
+                 /* Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback_or_erase") */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback_or_erase") ,
                                             new OptArgs()
                     );
@@ -442,11 +442,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #31
-                 //ExpectedOriginal: partial({'reconfigured':0})
-                 var expected = partial(r.hashMap("reconfigured", 0.0));
+                 /* ExpectedOriginal: partial({'reconfigured':0}) */
+                 var expected = partial(r.hashMap("reconfigured", 0));
                  
-                 //Original: db.table('a').reconfigure(emergency_repair=None, shards=1, replicas=1, dry_run=True)
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", null).optArg("shards", 1.0).optArg("replicas", 1.0).optArg("dry_run", true) ,
+                 /* Original: db.table('a').reconfigure(emergency_repair=None, shards=1, replicas=1, dry_run=True) */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", null).optArg("shards", 1).optArg("replicas", 1).optArg("dry_run", true) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -456,10 +456,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #32
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('a')
+                 /* Original: db.table_drop('a') */
                  var obtained = runOrCatch( db.tableDrop("a") ,
                                             new OptArgs()
                     );
@@ -470,10 +470,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #33
-                 //ExpectedOriginal: partial({'tables_created':1})
-                 var expected = partial(r.hashMap("tables_created", 1.0));
+                 /* ExpectedOriginal: partial({'tables_created':1}) */
+                 var expected = partial(r.hashMap("tables_created", 1));
                  
-                 //Original: db.table_create('foo')
+                 /* Original: db.table_create('foo') */
                  var obtained = runOrCatch( db.tableCreate("foo") ,
                                             new OptArgs()
                     );
@@ -484,10 +484,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #34
-                 //ExpectedOriginal: err('ReqlOpFailedError', 'Table `test.foo` already exists.', [0])
-                 var expected = err("ReqlOpFailedError", "Table `test.foo` already exists.", r.array(0.0));
+                 /* ExpectedOriginal: err('ReqlOpFailedError', 'Table `test.foo` already exists.', [0]) */
+                 var expected = err("ReqlOpFailedError", "Table `test.foo` already exists.", r.array(0));
                  
-                 //Original: db.table_create('foo')
+                 /* Original: db.table_create('foo') */
                  var obtained = runOrCatch( db.tableCreate("foo") ,
                                             new OptArgs()
                     );
@@ -498,10 +498,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #35
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('foo')
+                 /* Original: db.table_drop('foo') */
                  var obtained = runOrCatch( db.tableDrop("foo") ,
                                             new OptArgs()
                     );
@@ -512,10 +512,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #36
-                 //ExpectedOriginal: err('ReqlOpFailedError', 'Table `test.foo` does not exist.', [0])
-                 var expected = err("ReqlOpFailedError", "Table `test.foo` does not exist.", r.array(0.0));
+                 /* ExpectedOriginal: err('ReqlOpFailedError', 'Table `test.foo` does not exist.', [0]) */
+                 var expected = err("ReqlOpFailedError", "Table `test.foo` does not exist.", r.array(0));
                  
-                 //Original: db.table_drop('foo')
+                 /* Original: db.table_drop('foo') */
                  var obtained = runOrCatch( db.tableDrop("foo") ,
                                             new OptArgs()
                     );
@@ -526,10 +526,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #38
-                 //ExpectedOriginal: err('ReqlCompileError', "Unrecognized optional argument `foo`.", [])
+                 /* ExpectedOriginal: err('ReqlCompileError', "Unrecognized optional argument `foo`.", []) */
                  var expected = err("ReqlCompileError", "Unrecognized optional argument `foo`.", r.array());
                  
-                 //Original: db.table_create('nonsense', foo='bar')
+                 /* Original: db.table_create('nonsense', foo='bar') */
                  var obtained = runOrCatch( db.tableCreate("nonsense").optArg("foo", "bar") ,
                                             new OptArgs()
                     );
@@ -540,10 +540,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #39
-                 //ExpectedOriginal: partial({'tables_created':1})
-                 var expected = partial(r.hashMap("tables_created", 1.0));
+                 /* ExpectedOriginal: partial({'tables_created':1}) */
+                 var expected = partial(r.hashMap("tables_created", 1));
                  
-                 //Original: db.table_create('a')
+                 /* Original: db.table_create('a') */
                  var obtained = runOrCatch( db.tableCreate("a") ,
                                             new OptArgs()
                     );
@@ -554,11 +554,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #40
-                 //ExpectedOriginal: err('ReqlQueryLogicError', 'Every table must have at least one shard.', [])
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', 'Every table must have at least one shard.', []) */
                  var expected = err("ReqlQueryLogicError", "Every table must have at least one shard.", r.array());
                  
-                 //Original: db.table('a').reconfigure(shards=0, replicas=1)
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 0.0).optArg("replicas", 1.0) ,
+                 /* Original: db.table('a').reconfigure(shards=0, replicas=1) */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 0).optArg("replicas", 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -568,12 +568,12 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #41
-                 //ExpectedOriginal: err('ReqlOpFailedError', 'Can\'t use server tag `foo` for primary replicas because you specified no replicas in server tag `foo`.', [])
-
+                 /* ExpectedOriginal: err('ReqlOpFailedError', 'Can\'t use server tag `foo` for primary replicas because you specified no replicas in server tag `foo`.', [])
+ */
                  var expected = err("ReqlOpFailedError", "Can't use server tag `foo` for primary replicas because you specified no replicas in server tag `foo`.", r.array());
                  
-                 //Original: db.table('a').reconfigure(shards=1, replicas={"default":1}, primary_replica_tag="foo")
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1.0).optArg("replicas", r.hashMap("default", 1.0)).optArg("primary_replica_tag", "foo") ,
+                 /* Original: db.table('a').reconfigure(shards=1, replicas={"default":1}, primary_replica_tag="foo") */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1).optArg("replicas", r.hashMap("default", 1)).optArg("primary_replica_tag", "foo") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -583,12 +583,12 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #42
-                 //ExpectedOriginal: err('ReqlOpFailedError', 'You specified that the replicas in server tag `foo` should be non-voting, but you didn\'t specify a number of replicas in server tag `foo`.', [])
-
+                 /* ExpectedOriginal: err('ReqlOpFailedError', 'You specified that the replicas in server tag `foo` should be non-voting, but you didn\'t specify a number of replicas in server tag `foo`.', [])
+ */
                  var expected = err("ReqlOpFailedError", "You specified that the replicas in server tag `foo` should be non-voting, but you didn't specify a number of replicas in server tag `foo`.", r.array());
                  
-                 //Original: db.table('a').reconfigure(shards=1, replicas={"default":1}, primary_replica_tag="default", nonvoting_replica_tags=["foo"])
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1.0).optArg("replicas", r.hashMap("default", 1.0)).optArg("primary_replica_tag", "default").optArg("nonvoting_replica_tags", r.array("foo")) ,
+                 /* Original: db.table('a').reconfigure(shards=1, replicas={"default":1}, primary_replica_tag="default", nonvoting_replica_tags=["foo"]) */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1).optArg("replicas", r.hashMap("default", 1)).optArg("primary_replica_tag", "default").optArg("nonvoting_replica_tags", r.array("foo")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -598,12 +598,12 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #43
-                 //ExpectedOriginal: err('ReqlOpFailedError', 'You must set `replicas` to at least one. `replicas` includes the primary replica; if there are zero replicas, there is nowhere to put the data.', [])
-
+                 /* ExpectedOriginal: err('ReqlOpFailedError', 'You must set `replicas` to at least one. `replicas` includes the primary replica; if there are zero replicas, there is nowhere to put the data.', [])
+ */
                  var expected = err("ReqlOpFailedError", "You must set `replicas` to at least one. `replicas` includes the primary replica; if there are zero replicas, there is nowhere to put the data.", r.array());
                  
-                 //Original: db.table('a').reconfigure(shards=1, replicas={"foo":0}, primary_replica_tag="foo")
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1.0).optArg("replicas", r.hashMap("foo", 0.0)).optArg("primary_replica_tag", "foo") ,
+                 /* Original: db.table('a').reconfigure(shards=1, replicas={"foo":0}, primary_replica_tag="foo") */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1).optArg("replicas", r.hashMap("foo", 0)).optArg("primary_replica_tag", "foo") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -613,11 +613,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #44
-                 //ExpectedOriginal: err('ReqlQueryLogicError', '`primary_replica_tag` must be specified when `replicas` is an OBJECT.', [])
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', '`primary_replica_tag` must be specified when `replicas` is an OBJECT.', []) */
                  var expected = err("ReqlQueryLogicError", "`primary_replica_tag` must be specified when `replicas` is an OBJECT.", r.array());
                  
-                 //Original: db.table('a').reconfigure(shards=1, replicas={"default":0})
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1.0).optArg("replicas", r.hashMap("default", 0.0)) ,
+                 /* Original: db.table('a').reconfigure(shards=1, replicas={"default":0}) */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1).optArg("replicas", r.hashMap("default", 0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -627,11 +627,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #45
-                 //ExpectedOriginal: err('ReqlQueryLogicError', 'Can\'t have a negative number of replicas', [])
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', 'Can\'t have a negative number of replicas', []) */
                  var expected = err("ReqlQueryLogicError", "Can't have a negative number of replicas", r.array());
                  
-                 //Original: db.table('a').reconfigure(shards=1, replicas={"default":-3}, primary_replica_tag='default')
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1.0).optArg("replicas", r.hashMap("default", -3.0)).optArg("primary_replica_tag", "default") ,
+                 /* Original: db.table('a').reconfigure(shards=1, replicas={"default":-3}, primary_replica_tag='default') */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1).optArg("replicas", r.hashMap("default", -3)).optArg("primary_replica_tag", "default") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -641,11 +641,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #46
-                 //ExpectedOriginal: err('ReqlQueryLogicError', '`replicas` must be an OBJECT if `primary_replica_tag` is specified.', [])
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', '`replicas` must be an OBJECT if `primary_replica_tag` is specified.', []) */
                  var expected = err("ReqlQueryLogicError", "`replicas` must be an OBJECT if `primary_replica_tag` is specified.", r.array());
                  
-                 //Original: db.table('a').reconfigure(shards=1, replicas=3, primary_replica_tag='foo')
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1.0).optArg("replicas", 3.0).optArg("primary_replica_tag", "foo") ,
+                 /* Original: db.table('a').reconfigure(shards=1, replicas=3, primary_replica_tag='foo') */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1).optArg("replicas", 3).optArg("primary_replica_tag", "foo") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -655,12 +655,12 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #47
-                 //ExpectedOriginal: err('ReqlQueryLogicError', '`replicas` must be an OBJECT if `nonvoting_replica_tags` is specified.', [])
-
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', '`replicas` must be an OBJECT if `nonvoting_replica_tags` is specified.', [])
+ */
                  var expected = err("ReqlQueryLogicError", "`replicas` must be an OBJECT if `nonvoting_replica_tags` is specified.", r.array());
                  
-                 //Original: db.table('a').reconfigure(shards=1, replicas=3, nonvoting_replica_tags=['foo'])
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1.0).optArg("replicas", 3.0).optArg("nonvoting_replica_tags", r.array("foo")) ,
+                 /* Original: db.table('a').reconfigure(shards=1, replicas=3, nonvoting_replica_tags=['foo']) */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1).optArg("replicas", 3).optArg("nonvoting_replica_tags", r.array("foo")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -670,11 +670,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #48
-                 //ExpectedOriginal: err('ReqlQueryLogicError', 'Can\'t emergency repair an entire database at once; instead you should run `reconfigure()` on each table individually.')
-
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', 'Can\'t emergency repair an entire database at once; instead you should run `reconfigure()` on each table individually.')
+ */
                  var expected = err("ReqlQueryLogicError", "Can't emergency repair an entire database at once; instead you should run `reconfigure()` on each table individually.");
                  
-                 //Original: db.reconfigure(emergency_repair="unsafe_rollback")
+                 /* Original: db.reconfigure(emergency_repair="unsafe_rollback") */
                  var obtained = runOrCatch( db.reconfigure().optArg("emergency_repair", "unsafe_rollback") ,
                                             new OptArgs()
                     );
@@ -685,10 +685,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #49
-                 //ExpectedOriginal: err('ReqlQueryLogicError', '`emergency_repair` should be "unsafe_rollback" or "unsafe_rollback_or_erase"', [])
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', '`emergency_repair` should be "unsafe_rollback" or "unsafe_rollback_or_erase"', []) */
                  var expected = err("ReqlQueryLogicError", "`emergency_repair` should be \"unsafe_rollback\" or \"unsafe_rollback_or_erase\"", r.array());
                  
-                 //Original: db.table('a').reconfigure(emergency_repair="foo")
+                 /* Original: db.table('a').reconfigure(emergency_repair="foo") */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", "foo") ,
                                             new OptArgs()
                     );
@@ -699,11 +699,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #50
-                 //ExpectedOriginal: err('ReqlQueryLogicError', 'In emergency repair mode, you can\'t specify shards, replicas, etc.')
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', 'In emergency repair mode, you can\'t specify shards, replicas, etc.') */
                  var expected = err("ReqlQueryLogicError", "In emergency repair mode, you can't specify shards, replicas, etc.");
                  
-                 //Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback", shards=1, replicas=1)
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback").optArg("shards", 1.0).optArg("replicas", 1.0) ,
+                 /* Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback", shards=1, replicas=1) */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback").optArg("shards", 1).optArg("replicas", 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -713,11 +713,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #51
-                 //ExpectedOriginal: partial({'reconfigured':1})
-                 var expected = partial(r.hashMap("reconfigured", 1.0));
+                 /* ExpectedOriginal: partial({'reconfigured':1}) */
+                 var expected = partial(r.hashMap("reconfigured", 1));
                  
-                 //Original: db.table('a').reconfigure(shards=2, replicas=1)
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 2.0).optArg("replicas", 1.0) ,
+                 /* Original: db.table('a').reconfigure(shards=2, replicas=1) */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 2).optArg("replicas", 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -727,10 +727,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #52
-                 //ExpectedOriginal: None
+                 /* ExpectedOriginal: None */
                  var expected = null as object;
                  
-                 //Original: db.table('a').wait()
+                 /* Original: db.table('a').wait() */
                  var obtained = runOrCatch( db.table("a").wait_() ,
                                             new OptArgs()
                     );
@@ -741,11 +741,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #53
-                 //ExpectedOriginal: {'inserted': 4}
-                 var expected = r.hashMap("inserted", 4.0);
+                 /* ExpectedOriginal: {'inserted': 4} */
+                 var expected = r.hashMap("inserted", 4);
                  
-                 //Original: db.table('a').insert([{"id":1}, {"id":2}, {"id":3}, {"id":4}])
-                 var obtained = runOrCatch( db.table("a").insert(r.array(r.hashMap("id", 1.0), r.hashMap("id", 2.0), r.hashMap("id", 3.0), r.hashMap("id", 4.0))) ,
+                 /* Original: db.table('a').insert([{"id":1}, {"id":2}, {"id":3}, {"id":4}]) */
+                 var obtained = runOrCatch( db.table("a").insert(r.array(r.hashMap("id", 1), r.hashMap("id", 2), r.hashMap("id", 3), r.hashMap("id", 4))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -755,11 +755,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #54
-                 //ExpectedOriginal: partial({'reconfigured':1})
-                 var expected = partial(r.hashMap("reconfigured", 1.0));
+                 /* ExpectedOriginal: partial({'reconfigured':1}) */
+                 var expected = partial(r.hashMap("reconfigured", 1));
                  
-                 //Original: db.table('a').reconfigure(shards=2, replicas=1)
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 2.0).optArg("replicas", 1.0) ,
+                 /* Original: db.table('a').reconfigure(shards=2, replicas=1) */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 2).optArg("replicas", 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -769,12 +769,12 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #55
-                 //ExpectedOriginal: err('ReqlOpFailedError', 'Can\'t put 2 replicas on servers with the tag `default` because there are only 1 servers with the tag `default`. It\'s impossible to have more replicas of the data than there are servers.', [])
-
+                 /* ExpectedOriginal: err('ReqlOpFailedError', 'Can\'t put 2 replicas on servers with the tag `default` because there are only 1 servers with the tag `default`. It\'s impossible to have more replicas of the data than there are servers.', [])
+ */
                  var expected = err("ReqlOpFailedError", "Can't put 2 replicas on servers with the tag `default` because there are only 1 servers with the tag `default`. It's impossible to have more replicas of the data than there are servers.", r.array());
                  
-                 //Original: db.table('a').reconfigure(shards=1, replicas=2)
-                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1.0).optArg("replicas", 2.0) ,
+                 /* Original: db.table('a').reconfigure(shards=1, replicas=2) */
+                 var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1).optArg("replicas", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -784,10 +784,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #56
-                 //ExpectedOriginal: partial({'ready':1})
-                 var expected = partial(r.hashMap("ready", 1.0));
+                 /* ExpectedOriginal: partial({'ready':1}) */
+                 var expected = partial(r.hashMap("ready", 1));
                  
-                 //Original: db.table('a').wait()
+                 /* Original: db.table('a').wait() */
                  var obtained = runOrCatch( db.table("a").wait_() ,
                                             new OptArgs()
                     );
@@ -798,10 +798,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #57
-                 //ExpectedOriginal: partial({'rebalanced':1})
-                 var expected = partial(r.hashMap("rebalanced", 1.0));
+                 /* ExpectedOriginal: partial({'rebalanced':1}) */
+                 var expected = partial(r.hashMap("rebalanced", 1));
                  
-                 //Original: db.table('a').rebalance()
+                 /* Original: db.table('a').rebalance() */
                  var obtained = runOrCatch( db.table("a").rebalance() ,
                                             new OptArgs()
                     );
@@ -812,10 +812,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #58
-                 //ExpectedOriginal: partial({'ready':1})
-                 var expected = partial(r.hashMap("ready", 1.0));
+                 /* ExpectedOriginal: partial({'ready':1}) */
+                 var expected = partial(r.hashMap("ready", 1));
                  
-                 //Original: db.wait()
+                 /* Original: db.wait() */
                  var obtained = runOrCatch( db.wait_() ,
                                             new OptArgs()
                     );
@@ -826,10 +826,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #59
-                 //ExpectedOriginal: partial({'rebalanced':1})
-                 var expected = partial(r.hashMap("rebalanced", 1.0));
+                 /* ExpectedOriginal: partial({'rebalanced':1}) */
+                 var expected = partial(r.hashMap("rebalanced", 1));
                  
-                 //Original: db.rebalance()
+                 /* Original: db.rebalance() */
                  var obtained = runOrCatch( db.rebalance() ,
                                             new OptArgs()
                     );
@@ -840,10 +840,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #60
-                 //ExpectedOriginal: partial({'ready':1})
-                 var expected = partial(r.hashMap("ready", 1.0));
+                 /* ExpectedOriginal: partial({'ready':1}) */
+                 var expected = partial(r.hashMap("ready", 1));
                  
-                 //Original: r.wait()
+                 /* Original: r.wait() */
                  var obtained = runOrCatch( r.wait_() ,
                                             new OptArgs()
                     );
@@ -854,10 +854,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #61
-                 //ExpectedOriginal: partial({'rebalanced':1})
-                 var expected = partial(r.hashMap("rebalanced", 1.0));
+                 /* ExpectedOriginal: partial({'rebalanced':1}) */
+                 var expected = partial(r.hashMap("rebalanced", 1));
                  
-                 //Original: r.rebalance()
+                 /* Original: r.rebalance() */
                  var obtained = runOrCatch( r.rebalance() ,
                                             new OptArgs()
                     );
@@ -868,10 +868,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #62
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('a')
+                 /* Original: db.table_drop('a') */
                  var obtained = runOrCatch( db.tableDrop("a") ,
                                             new OptArgs()
                     );
@@ -882,10 +882,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #63
-                 //ExpectedOriginal: None
+                 /* ExpectedOriginal: None */
                  var expected = null as object;
                  
-                 //Original: db.table_create('a')
+                 /* Original: db.table_create('a') */
                  var obtained = runOrCatch( db.tableCreate("a") ,
                                             new OptArgs()
                     );
@@ -896,10 +896,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #64
-                 //ExpectedOriginal: None
+                 /* ExpectedOriginal: None */
                  var expected = null as object;
                  
-                 //Original: db.table_create('b')
+                 /* Original: db.table_create('b') */
                  var obtained = runOrCatch( db.tableCreate("b") ,
                                             new OptArgs()
                     );
@@ -910,10 +910,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #65
-                 //ExpectedOriginal: None
+                 /* ExpectedOriginal: None */
                  var expected = null as object;
                  
-                 //Original: db.table_create('c')
+                 /* Original: db.table_create('c') */
                  var obtained = runOrCatch( db.tableCreate("c") ,
                                             new OptArgs()
                     );
@@ -924,11 +924,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #66
-                 //ExpectedOriginal: err('ReqlQueryLogicError', 'Every table must have at least one shard.', [])
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', 'Every table must have at least one shard.', []) */
                  var expected = err("ReqlQueryLogicError", "Every table must have at least one shard.", r.array());
                  
-                 //Original: db.reconfigure(shards=0, replicas=1)
-                 var obtained = runOrCatch( db.reconfigure().optArg("shards", 0.0).optArg("replicas", 1.0) ,
+                 /* Original: db.reconfigure(shards=0, replicas=1) */
+                 var obtained = runOrCatch( db.reconfigure().optArg("shards", 0).optArg("replicas", 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -938,11 +938,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #67
-                 //ExpectedOriginal: err('ReqlQueryLogicError', '`primary_replica_tag` must be specified when `replicas` is an OBJECT.', [])
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', '`primary_replica_tag` must be specified when `replicas` is an OBJECT.', []) */
                  var expected = err("ReqlQueryLogicError", "`primary_replica_tag` must be specified when `replicas` is an OBJECT.", r.array());
                  
-                 //Original: db.reconfigure(shards=1, replicas={"default":0})
-                 var obtained = runOrCatch( db.reconfigure().optArg("shards", 1.0).optArg("replicas", r.hashMap("default", 0.0)) ,
+                 /* Original: db.reconfigure(shards=1, replicas={"default":0}) */
+                 var obtained = runOrCatch( db.reconfigure().optArg("shards", 1).optArg("replicas", r.hashMap("default", 0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -952,11 +952,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #68
-                 //ExpectedOriginal: err('ReqlQueryLogicError', 'Can\'t have a negative number of replicas', [])
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', 'Can\'t have a negative number of replicas', []) */
                  var expected = err("ReqlQueryLogicError", "Can't have a negative number of replicas", r.array());
                  
-                 //Original: db.reconfigure(shards=1, replicas={"default":-3}, primary_replica_tag='default')
-                 var obtained = runOrCatch( db.reconfigure().optArg("shards", 1.0).optArg("replicas", r.hashMap("default", -3.0)).optArg("primary_replica_tag", "default") ,
+                 /* Original: db.reconfigure(shards=1, replicas={"default":-3}, primary_replica_tag='default') */
+                 var obtained = runOrCatch( db.reconfigure().optArg("shards", 1).optArg("replicas", r.hashMap("default", -3)).optArg("primary_replica_tag", "default") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -966,11 +966,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #69
-                 //ExpectedOriginal: err('ReqlQueryLogicError', '`replicas` must be an OBJECT if `primary_replica_tag` is specified.', [])
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', '`replicas` must be an OBJECT if `primary_replica_tag` is specified.', []) */
                  var expected = err("ReqlQueryLogicError", "`replicas` must be an OBJECT if `primary_replica_tag` is specified.", r.array());
                  
-                 //Original: db.reconfigure(shards=1, replicas=3, primary_replica_tag='foo')
-                 var obtained = runOrCatch( db.reconfigure().optArg("shards", 1.0).optArg("replicas", 3.0).optArg("primary_replica_tag", "foo") ,
+                 /* Original: db.reconfigure(shards=1, replicas=3, primary_replica_tag='foo') */
+                 var obtained = runOrCatch( db.reconfigure().optArg("shards", 1).optArg("replicas", 3).optArg("primary_replica_tag", "foo") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -980,11 +980,11 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #70
-                 //ExpectedOriginal: partial({'reconfigured':3})
-                 var expected = partial(r.hashMap("reconfigured", 3.0));
+                 /* ExpectedOriginal: partial({'reconfigured':3}) */
+                 var expected = partial(r.hashMap("reconfigured", 3));
                  
-                 //Original: db.reconfigure(shards=2, replicas=1)
-                 var obtained = runOrCatch( db.reconfigure().optArg("shards", 2.0).optArg("replicas", 1.0) ,
+                 /* Original: db.reconfigure(shards=2, replicas=1) */
+                 var obtained = runOrCatch( db.reconfigure().optArg("shards", 2).optArg("replicas", 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -994,10 +994,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #71
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('a')
+                 /* Original: db.table_drop('a') */
                  var obtained = runOrCatch( db.tableDrop("a") ,
                                             new OptArgs()
                     );
@@ -1008,10 +1008,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #72
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('b')
+                 /* Original: db.table_drop('b') */
                  var obtained = runOrCatch( db.tableDrop("b") ,
                                             new OptArgs()
                     );
@@ -1022,10 +1022,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #73
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('c')
+                 /* Original: db.table_drop('c') */
                  var obtained = runOrCatch( db.tableDrop("c") ,
                                             new OptArgs()
                     );
@@ -1036,10 +1036,10 @@ Db db = (Db) r.db("test");
              
              {
                  //JavaQuery, meta/table.yaml, #74
-                 //ExpectedOriginal: partial({'dbs_created':1})
-                 var expected = partial(r.hashMap("dbs_created", 1.0));
+                 /* ExpectedOriginal: partial({'dbs_created':1}) */
+                 var expected = partial(r.hashMap("dbs_created", 1));
                  
-                 //Original: r.db_create("test2")
+                 /* Original: r.db_create("test2") */
                  var obtained = runOrCatch( r.dbCreate("test2") ,
                                             new OptArgs()
                     );
@@ -1050,15 +1050,15 @@ Db db = (Db) r.db("test");
              //JavaDef, meta/table.yaml, #Templates.YamlTest+DefTest.
              //Original: db2 = r.db("test2")
              
-Db db2 = (Db) r.db("test2");             
+Db db2 = (Db) (r.db("test2"));             
              TestCounter++;
              
              {
                  //JavaQuery, meta/table.yaml, #76
-                 //ExpectedOriginal: partial({'tables_created':1})
-                 var expected = partial(r.hashMap("tables_created", 1.0));
+                 /* ExpectedOriginal: partial({'tables_created':1}) */
+                 var expected = partial(r.hashMap("tables_created", 1));
                  
-                 //Original: db.table_create("testA")
+                 /* Original: db.table_create("testA") */
                  var obtained = runOrCatch( db.tableCreate("testA") ,
                                             new OptArgs()
                     );
@@ -1069,10 +1069,10 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #77
-                 //ExpectedOriginal: partial({'tables_created':1})
-                 var expected = partial(r.hashMap("tables_created", 1.0));
+                 /* ExpectedOriginal: partial({'tables_created':1}) */
+                 var expected = partial(r.hashMap("tables_created", 1));
                  
-                 //Original: db.table_create("testB")
+                 /* Original: db.table_create("testB") */
                  var obtained = runOrCatch( db.tableCreate("testB") ,
                                             new OptArgs()
                     );
@@ -1083,10 +1083,10 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #78
-                 //ExpectedOriginal: partial({'tables_created':1})
-                 var expected = partial(r.hashMap("tables_created", 1.0));
+                 /* ExpectedOriginal: partial({'tables_created':1}) */
+                 var expected = partial(r.hashMap("tables_created", 1));
                  
-                 //Original: db2.table_create("test2B")
+                 /* Original: db2.table_create("test2B") */
                  var obtained = runOrCatch( db2.tableCreate("test2B") ,
                                             new OptArgs()
                     );
@@ -1097,10 +1097,10 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #79
-                 //ExpectedOriginal: {'db': 'test', 'name': 'testA'}
+                 /* ExpectedOriginal: {'db': 'test', 'name': 'testA'} */
                  var expected = r.hashMap("db", "test").with("name", "testA");
                  
-                 //Original: r.table('testA').config().pluck('db','name')
+                 /* Original: r.table('testA').config().pluck('db','name') */
                  var obtained = runOrCatch( r.table("testA").config().pluck("db", "name") ,
                                             new OptArgs()
                     );
@@ -1111,10 +1111,10 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #80
-                 //ExpectedOriginal: err('ReqlOpFailedError', 'Table `test.doesntexist` does not exist.', [])
+                 /* ExpectedOriginal: err('ReqlOpFailedError', 'Table `test.doesntexist` does not exist.', []) */
                  var expected = err("ReqlOpFailedError", "Table `test.doesntexist` does not exist.", r.array());
                  
-                 //Original: r.table('doesntexist').config()
+                 /* Original: r.table('doesntexist').config() */
                  var obtained = runOrCatch( r.table("doesntexist").config() ,
                                             new OptArgs()
                     );
@@ -1125,10 +1125,10 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #81
-                 //ExpectedOriginal: err('ReqlOpFailedError', 'Table `test.test2B` does not exist.', [])
+                 /* ExpectedOriginal: err('ReqlOpFailedError', 'Table `test.test2B` does not exist.', []) */
                  var expected = err("ReqlOpFailedError", "Table `test.test2B` does not exist.", r.array());
                  
-                 //Original: r.table('test2B').config()
+                 /* Original: r.table('test2B').config() */
                  var obtained = runOrCatch( r.table("test2B").config() ,
                                             new OptArgs()
                     );
@@ -1139,11 +1139,11 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #82
-                 //ExpectedOriginal: True
+                 /* ExpectedOriginal: True */
                  var expected = true;
                  
-                 //Original: r.db('rethinkdb').table('table_config').filter({'name':'testA'}).nth(0).eq(r.table('testA').config())
-                 var obtained = runOrCatch( r.db("rethinkdb").table("table_config").filter(r.hashMap("name", "testA")).nth(0.0).eq(r.table("testA").config()) ,
+                 /* Original: r.db('rethinkdb').table('table_config').filter({'name':'testA'}).nth(0).eq(r.table('testA').config()) */
+                 var obtained = runOrCatch( r.db("rethinkdb").table("table_config").filter(r.hashMap("name", "testA")).nth(0).eq(r.table("testA").config()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1153,11 +1153,11 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #83
-                 //ExpectedOriginal: True
+                 /* ExpectedOriginal: True */
                  var expected = true;
                  
-                 //Original: r.db('rethinkdb').table('table_status').filter({'name':'testA'}).nth(0).eq(r.table('testA').status())
-                 var obtained = runOrCatch( r.db("rethinkdb").table("table_status").filter(r.hashMap("name", "testA")).nth(0.0).eq(r.table("testA").status()) ,
+                 /* Original: r.db('rethinkdb').table('table_status').filter({'name':'testA'}).nth(0).eq(r.table('testA').status()) */
+                 var obtained = runOrCatch( r.db("rethinkdb").table("table_status").filter(r.hashMap("name", "testA")).nth(0).eq(r.table("testA").status()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1167,11 +1167,11 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #84
-                 //ExpectedOriginal: uuid()
+                 /* ExpectedOriginal: uuid() */
                  var expected = uuid();
                  
-                 //Original: r.db('rethinkdb').table('table_config', identifier_format='uuid').nth(0)["db"]
-                 var obtained = runOrCatch( r.db("rethinkdb").table("table_config").optArg("identifier_format", "uuid").nth(0.0).bracket("db") ,
+                 /* Original: r.db('rethinkdb').table('table_config', identifier_format='uuid').nth(0)["db"] */
+                 var obtained = runOrCatch( r.db("rethinkdb").table("table_config").optArg("identifier_format", "uuid").nth(0).g("db") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1181,10 +1181,10 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #85
-                 //ExpectedOriginal: 0
-                 var expected = 0.0;
+                 /* ExpectedOriginal: 0 */
+                 var expected = 0;
                  
-                 //Original: r.table('testA', identifier_format='uuid').count()
+                 /* Original: r.table('testA', identifier_format='uuid').count() */
                  var obtained = runOrCatch( r.table("testA").optArg("identifier_format", "uuid").count() ,
                                             new OptArgs()
                     );
@@ -1195,11 +1195,11 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #86
-                 //ExpectedOriginal: partial({'ready':2})
-                 var expected = partial(r.hashMap("ready", 2.0));
+                 /* ExpectedOriginal: partial({'ready':2}) */
+                 var expected = partial(r.hashMap("ready", 2));
                  
-                 //Original: r.wait(wait_for='all_replicas_ready', timeout=5)
-                 var obtained = runOrCatch( r.wait_().optArg("wait_for", "all_replicas_ready").optArg("timeout", 5.0) ,
+                 /* Original: r.wait(wait_for='all_replicas_ready', timeout=5) */
+                 var obtained = runOrCatch( r.wait_().optArg("wait_for", "all_replicas_ready").optArg("timeout", 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1209,10 +1209,10 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #87
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('testA')
+                 /* Original: db.table_drop('testA') */
                  var obtained = runOrCatch( db.tableDrop("testA") ,
                                             new OptArgs()
                     );
@@ -1223,10 +1223,10 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #88
-                 //ExpectedOriginal: partial({'tables_dropped':1})
-                 var expected = partial(r.hashMap("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("tables_dropped", 1));
                  
-                 //Original: db.table_drop('testB')
+                 /* Original: db.table_drop('testB') */
                  var obtained = runOrCatch( db.tableDrop("testB") ,
                                             new OptArgs()
                     );
@@ -1237,10 +1237,10 @@ Db db2 = (Db) r.db("test2");
              
              {
                  //JavaQuery, meta/table.yaml, #89
-                 //ExpectedOriginal: partial({'dbs_dropped':1,'tables_dropped':1})
-                 var expected = partial(r.hashMap("dbs_dropped", 1.0).with("tables_dropped", 1.0));
+                 /* ExpectedOriginal: partial({'dbs_dropped':1,'tables_dropped':1}) */
+                 var expected = partial(r.hashMap("dbs_dropped", 1).with("tables_dropped", 1));
                  
-                 //Original: r.db_drop('test2')
+                 /* Original: r.db_drop('test2') */
                  var obtained = runOrCatch( r.dbDrop("test2") ,
                                             new OptArgs()
                     );

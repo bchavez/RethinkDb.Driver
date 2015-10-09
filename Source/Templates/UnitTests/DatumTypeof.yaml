@@ -4,7 +4,7 @@ DefsAndTests:
   TestFile: datum/typeof.yaml
   TestNum: 1
   Original: r.expr(null).type_of()
-  Java: r.expr(null).typeOf()
+  Java: r.expr((ReqlExpr) null).typeOf()
   ExpectedOriginal: 'NULL'
   ExpectedType: String
   ExpectedJava: '"NULL"'
@@ -13,7 +13,7 @@ DefsAndTests:
   TestFile: datum/typeof.yaml
   TestNum: 2
   Original: r.type_of(null)
-  Java: r.typeOf(null)
+  Java: r.typeOf((ReqlExpr) null)
   ExpectedOriginal: 'NULL'
   ExpectedType: String
   ExpectedJava: '"NULL"'

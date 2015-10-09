@@ -32,16 +32,16 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, changefeeds/table.yaml, #Templates.YamlTest+DefTest.
              //Original: all = tbl.changes()
              
-Changes all = (Changes) tbl.changes();             
+Changes all = (Changes) (tbl.changes());             
              TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #2
-                 //ExpectedOriginal: partial({'errors':0, 'inserted':2})
-                 var expected = partial(r.hashMap("errors", 0.0).with("inserted", 2.0));
+                 /* ExpectedOriginal: partial({'errors':0, 'inserted':2}) */
+                 var expected = partial(r.hashMap("errors", 0).with("inserted", 2));
                  
-                 //Original: tbl.insert([{'id':1}, {'id':2}])
-                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 1.0), r.hashMap("id", 2.0))) ,
+                 /* Original: tbl.insert([{'id':1}, {'id':2}]) */
+                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 1), r.hashMap("id", 2))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -51,11 +51,11 @@ Changes all = (Changes) tbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #3
-                 //ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])
-                 var expected = bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1.0)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2.0))));
+                 /* ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}]) */
+                 var expected = bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2))));
                  
-                 //Original: fetch(all, 2)
-                 var obtained = runOrCatch( fetch(all, 2.0) ,
+                 /* Original: fetch(all, 2) */
+                 var obtained = runOrCatch( fetch(all, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -65,11 +65,11 @@ Changes all = (Changes) tbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #4
-                 //ExpectedOriginal: partial({'errors':0, 'replaced':1})
-                 var expected = partial(r.hashMap("errors", 0.0).with("replaced", 1.0));
+                 /* ExpectedOriginal: partial({'errors':0, 'replaced':1}) */
+                 var expected = partial(r.hashMap("errors", 0).with("replaced", 1));
                  
-                 //Original: tbl.get(1).update({'version':1})
-                 var obtained = runOrCatch( tbl.get(1.0).update(r.hashMap("version", 1.0)) ,
+                 /* Original: tbl.get(1).update({'version':1}) */
+                 var obtained = runOrCatch( tbl.get(1).update(r.hashMap("version", 1)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -79,11 +79,11 @@ Changes all = (Changes) tbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #5
-                 //ExpectedOriginal: [{'old_val': {'id': 1}, 'new_val': {'version': 1, 'id': 1}}]
-                 var expected = r.array(r.hashMap("old_val", r.hashMap("id", 1.0)).with("new_val", r.hashMap("version", 1.0).with("id", 1.0)));
+                 /* ExpectedOriginal: [{'new_val': {'id': 1, 'version': 1}, 'old_val': {'id': 1}}] */
+                 var expected = r.array(r.hashMap("new_val", r.hashMap("id", 1).with("version", 1)).with("old_val", r.hashMap("id", 1)));
                  
-                 //Original: fetch(all, 1)
-                 var obtained = runOrCatch( fetch(all, 1.0) ,
+                 /* Original: fetch(all, 1) */
+                 var obtained = runOrCatch( fetch(all, 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -93,11 +93,11 @@ Changes all = (Changes) tbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #6
-                 //ExpectedOriginal: partial({'errors':0, 'deleted':1})
-                 var expected = partial(r.hashMap("errors", 0.0).with("deleted", 1.0));
+                 /* ExpectedOriginal: partial({'errors':0, 'deleted':1}) */
+                 var expected = partial(r.hashMap("errors", 0).with("deleted", 1));
                  
-                 //Original: tbl.get(1).delete()
-                 var obtained = runOrCatch( tbl.get(1.0).delete() ,
+                 /* Original: tbl.get(1).delete() */
+                 var obtained = runOrCatch( tbl.get(1).delete() ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -107,11 +107,11 @@ Changes all = (Changes) tbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #7
-                 //ExpectedOriginal: [{'old_val': {'version': 1, 'id': 1}, 'new_val': None}]
-                 var expected = r.array(r.hashMap("old_val", r.hashMap("version", 1.0).with("id", 1.0)).with("new_val", null));
+                 /* ExpectedOriginal: [{'new_val': None, 'old_val': {'id': 1, 'version': 1}}] */
+                 var expected = r.array(r.hashMap("new_val", null).with("old_val", r.hashMap("id", 1).with("version", 1)));
                  
-                 //Original: fetch(all, 1)
-                 var obtained = runOrCatch( fetch(all, 1.0) ,
+                 /* Original: fetch(all, 1) */
+                 var obtained = runOrCatch( fetch(all, 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -121,16 +121,16 @@ Changes all = (Changes) tbl.changes();
              //JavaDef, changefeeds/table.yaml, #Templates.YamlTest+DefTest.
              //Original: pluck = tbl.changes().pluck({'new_val':['version']})
              
-Pluck pluck = (Pluck) tbl.changes().pluck(r.hashMap("new_val", r.array("version")));             
+Pluck pluck = (Pluck) (tbl.changes().pluck(r.hashMap("new_val", r.array("version"))));             
              TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #9
-                 //ExpectedOriginal: partial({'errors':0, 'inserted':1})
-                 var expected = partial(r.hashMap("errors", 0.0).with("inserted", 1.0));
+                 /* ExpectedOriginal: partial({'errors':0, 'inserted':1}) */
+                 var expected = partial(r.hashMap("errors", 0).with("inserted", 1));
                  
-                 //Original: tbl.insert([{'id':5, 'version':5}])
-                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 5.0).with("version", 5.0))) ,
+                 /* Original: tbl.insert([{'id':5, 'version':5}]) */
+                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 5).with("version", 5))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -140,11 +140,11 @@ Pluck pluck = (Pluck) tbl.changes().pluck(r.hashMap("new_val", r.array("version"
              
              {
                  //JavaQuery, changefeeds/table.yaml, #10
-                 //ExpectedOriginal: [{'new_val': {'version': 5}}]
-                 var expected = r.array(r.hashMap("new_val", r.hashMap("version", 5.0)));
+                 /* ExpectedOriginal: [{'new_val': {'version': 5}}] */
+                 var expected = r.array(r.hashMap("new_val", r.hashMap("version", 5)));
                  
-                 //Original: fetch(pluck, 1)
-                 var obtained = runOrCatch( fetch(pluck, 1.0) ,
+                 /* Original: fetch(pluck, 1) */
+                 var obtained = runOrCatch( fetch(pluck, 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -154,26 +154,26 @@ Pluck pluck = (Pluck) tbl.changes().pluck(r.hashMap("new_val", r.array("version"
              //JavaDef, changefeeds/table.yaml, #Templates.YamlTest+DefTest.
              //Original: ordered = tbl.changes().order_by('id')
              
-OrderBy ordered = (OrderBy) tbl.changes().orderBy("id");             
+OrderBy ordered = (OrderBy) (tbl.changes().orderBy("id"));             
              
              //JavaDef, changefeeds/table.yaml, #Templates.YamlTest+DefTest.
              //Original: vtbl = r.db('rethinkdb').table('_debug_scratch')
              
-Table vtbl = (Table) r.db("rethinkdb").table("_debug_scratch");             
+Table vtbl = (Table) (r.db("rethinkdb").table("_debug_scratch"));             
              
              //JavaDef, changefeeds/table.yaml, #Templates.YamlTest+DefTest.
              //Original: allVirtual = vtbl.changes()
              
-Changes allVirtual = (Changes) vtbl.changes();             
+Changes allVirtual = (Changes) (vtbl.changes());             
              TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #14
-                 //ExpectedOriginal: partial({'errors':0, 'inserted':2})
-                 var expected = partial(r.hashMap("errors", 0.0).with("inserted", 2.0));
+                 /* ExpectedOriginal: partial({'errors':0, 'inserted':2}) */
+                 var expected = partial(r.hashMap("errors", 0).with("inserted", 2));
                  
-                 //Original: vtbl.insert([{'id':1}, {'id':2}])
-                 var obtained = runOrCatch( vtbl.insert(r.array(r.hashMap("id", 1.0), r.hashMap("id", 2.0))) ,
+                 /* Original: vtbl.insert([{'id':1}, {'id':2}]) */
+                 var obtained = runOrCatch( vtbl.insert(r.array(r.hashMap("id", 1), r.hashMap("id", 2))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -183,11 +183,11 @@ Changes allVirtual = (Changes) vtbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #15
-                 //ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])
-                 var expected = bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1.0)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2.0))));
+                 /* ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}]) */
+                 var expected = bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2))));
                  
-                 //Original: fetch(allVirtual, 2)
-                 var obtained = runOrCatch( fetch(allVirtual, 2.0) ,
+                 /* Original: fetch(allVirtual, 2) */
+                 var obtained = runOrCatch( fetch(allVirtual, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -197,11 +197,11 @@ Changes allVirtual = (Changes) vtbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #16
-                 //ExpectedOriginal: partial({'errors':0, 'replaced':1})
-                 var expected = partial(r.hashMap("errors", 0.0).with("replaced", 1.0));
+                 /* ExpectedOriginal: partial({'errors':0, 'replaced':1}) */
+                 var expected = partial(r.hashMap("errors", 0).with("replaced", 1));
                  
-                 //Original: vtbl.get(1).update({'version':1})
-                 var obtained = runOrCatch( vtbl.get(1.0).update(r.hashMap("version", 1.0)) ,
+                 /* Original: vtbl.get(1).update({'version':1}) */
+                 var obtained = runOrCatch( vtbl.get(1).update(r.hashMap("version", 1)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -211,11 +211,11 @@ Changes allVirtual = (Changes) vtbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #17
-                 //ExpectedOriginal: [{'old_val': {'id': 1}, 'new_val': {'version': 1, 'id': 1}}]
-                 var expected = r.array(r.hashMap("old_val", r.hashMap("id", 1.0)).with("new_val", r.hashMap("version", 1.0).with("id", 1.0)));
+                 /* ExpectedOriginal: [{'new_val': {'id': 1, 'version': 1}, 'old_val': {'id': 1}}] */
+                 var expected = r.array(r.hashMap("new_val", r.hashMap("id", 1).with("version", 1)).with("old_val", r.hashMap("id", 1)));
                  
-                 //Original: fetch(allVirtual, 1)
-                 var obtained = runOrCatch( fetch(allVirtual, 1.0) ,
+                 /* Original: fetch(allVirtual, 1) */
+                 var obtained = runOrCatch( fetch(allVirtual, 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -225,11 +225,11 @@ Changes allVirtual = (Changes) vtbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #18
-                 //ExpectedOriginal: partial({'errors':0, 'deleted':1})
-                 var expected = partial(r.hashMap("errors", 0.0).with("deleted", 1.0));
+                 /* ExpectedOriginal: partial({'errors':0, 'deleted':1}) */
+                 var expected = partial(r.hashMap("errors", 0).with("deleted", 1));
                  
-                 //Original: vtbl.get(1).delete()
-                 var obtained = runOrCatch( vtbl.get(1.0).delete() ,
+                 /* Original: vtbl.get(1).delete() */
+                 var obtained = runOrCatch( vtbl.get(1).delete() ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -239,11 +239,11 @@ Changes allVirtual = (Changes) vtbl.changes();
              
              {
                  //JavaQuery, changefeeds/table.yaml, #19
-                 //ExpectedOriginal: [{'old_val': {'version': 1, 'id': 1}, 'new_val': None}]
-                 var expected = r.array(r.hashMap("old_val", r.hashMap("version", 1.0).with("id", 1.0)).with("new_val", null));
+                 /* ExpectedOriginal: [{'new_val': None, 'old_val': {'id': 1, 'version': 1}}] */
+                 var expected = r.array(r.hashMap("new_val", null).with("old_val", r.hashMap("id", 1).with("version", 1)));
                  
-                 //Original: fetch(allVirtual, 1)
-                 var obtained = runOrCatch( fetch(allVirtual, 1.0) ,
+                 /* Original: fetch(allVirtual, 1) */
+                 var obtained = runOrCatch( fetch(allVirtual, 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -253,16 +253,16 @@ Changes allVirtual = (Changes) vtbl.changes();
              //JavaDef, changefeeds/table.yaml, #Templates.YamlTest+DefTest.
              //Original: vpluck = vtbl.changes().pluck({'new_val':['version']})
              
-Pluck vpluck = (Pluck) vtbl.changes().pluck(r.hashMap("new_val", r.array("version")));             
+Pluck vpluck = (Pluck) (vtbl.changes().pluck(r.hashMap("new_val", r.array("version"))));             
              TestCounter++;
              
              {
                  //JavaQuery, changefeeds/table.yaml, #21
-                 //ExpectedOriginal: partial({'errors':0, 'inserted':1})
-                 var expected = partial(r.hashMap("errors", 0.0).with("inserted", 1.0));
+                 /* ExpectedOriginal: partial({'errors':0, 'inserted':1}) */
+                 var expected = partial(r.hashMap("errors", 0).with("inserted", 1));
                  
-                 //Original: vtbl.insert([{'id':5, 'version':5}])
-                 var obtained = runOrCatch( vtbl.insert(r.array(r.hashMap("id", 5.0).with("version", 5.0))) ,
+                 /* Original: vtbl.insert([{'id':5, 'version':5}]) */
+                 var obtained = runOrCatch( vtbl.insert(r.array(r.hashMap("id", 5).with("version", 5))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -272,11 +272,11 @@ Pluck vpluck = (Pluck) vtbl.changes().pluck(r.hashMap("new_val", r.array("versio
              
              {
                  //JavaQuery, changefeeds/table.yaml, #22
-                 //ExpectedOriginal: [{'new_val': {'version': 5}}]
-                 var expected = r.array(r.hashMap("new_val", r.hashMap("version", 5.0)));
+                 /* ExpectedOriginal: [{'new_val': {'version': 5}}] */
+                 var expected = r.array(r.hashMap("new_val", r.hashMap("version", 5)));
                  
-                 //Original: fetch(vpluck, 1)
-                 var obtained = runOrCatch( fetch(vpluck, 1.0) ,
+                 /* Original: fetch(vpluck, 1) */
+                 var obtained = runOrCatch( fetch(vpluck, 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);

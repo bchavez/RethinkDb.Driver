@@ -4,34 +4,34 @@ DefsAndTests:
   TestFile: math_logic/div.yaml
   TestNum: 1
   Original: (r.expr(4) / 2)
-  Java: r.div(r.expr(4.0), 2.0)
+  Java: r.expr(4).div(2)
   ExpectedOriginal: 2
-  ExpectedType: Double
-  ExpectedJava: 2.0
+  ExpectedType: Long
+  ExpectedJava: 2
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
   TestNum: 1
   Original: (4 / r.expr(2))
-  Java: r.div(4.0, r.expr(2.0))
+  Java: r.div(4, r.expr(2))
   ExpectedOriginal: 2
-  ExpectedType: Double
-  ExpectedJava: 2.0
+  ExpectedType: Long
+  ExpectedJava: 2
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
   TestNum: 1
   Original: r.expr(4).div(2)
-  Java: r.expr(4.0).div(2.0)
+  Java: r.expr(4).div(2)
   ExpectedOriginal: 2
-  ExpectedType: Double
-  ExpectedJava: 2.0
+  ExpectedType: Long
+  ExpectedJava: 2
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
   TestNum: 2
   Original: r.expr(-1) / -2
-  Java: r.div(r.expr(-1.0), -2.0)
+  Java: r.expr(-1).div(-2)
   ExpectedOriginal: 0.5
   ExpectedType: Double
   ExpectedJava: 0.5
@@ -40,7 +40,7 @@ DefsAndTests:
   TestFile: math_logic/div.yaml
   TestNum: 3
   Original: r.expr(4.9) / 0.7
-  Java: r.div(r.expr(4.9), 0.7)
+  Java: r.expr(4.9).div(0.7)
   ExpectedOriginal: 4.9 / 0.7
   ExpectedType: Double
   ExpectedJava: 4.9 / 0.7
@@ -49,71 +49,71 @@ DefsAndTests:
   TestFile: math_logic/div.yaml
   TestNum: 5
   Original: r.expr(1) / 0
-  Java: r.div(r.expr(1.0), 0.0)
+  Java: r.expr(1).div(0)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1.0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
   TestNum: 5
   Original: r.expr(2.0) / 0
-  Java: r.div(r.expr(2.0), 0.0)
+  Java: r.expr(2.0).div(0)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1.0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
   TestNum: 5
   Original: r.expr(3) / 0.0
-  Java: r.div(r.expr(3.0), 0.0)
+  Java: r.expr(3).div(0.0)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1.0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
   TestNum: 5
   Original: r.expr(4.0) / 0.0
-  Java: r.div(r.expr(4.0), 0.0)
+  Java: r.expr(4.0).div(0.0)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1.0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
   TestNum: 5
   Original: r.expr(0) / 0
-  Java: r.div(r.expr(0.0), 0.0)
+  Java: r.expr(0).div(0)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1.0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
   TestNum: 5
   Original: r.expr(0.0) / 0.0
-  Java: r.div(r.expr(0.0), 0.0)
+  Java: r.expr(0.0).div(0.0)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1.0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
   TestNum: 6
   Original: r.expr('a') / 0.8
-  Java: r.div(r.expr("a"), 0.8)
+  Java: r.expr("a").div(0.8)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0.0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
   TestNum: 7
   Original: r.expr(1) / 'a'
-  Java: r.div(r.expr(1.0), "a")
+  Java: r.expr(1).div("a")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1.0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1))
   RunOpts: []

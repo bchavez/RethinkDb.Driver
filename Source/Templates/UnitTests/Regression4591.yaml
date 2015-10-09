@@ -4,7 +4,7 @@ DefsAndTests:
   TestFile: regression/4591.yaml
   TestNum: 1
   Original: r.expr([{"x":2},{"x":1}]).order_by(r.args(["x","y"]))
-  Java: r.expr(r.array(r.hashMap("x", 2.0), r.hashMap("x", 1.0))).orderBy(r.args(r.array("x", "y")))
+  Java: r.expr(r.array(r.hashMap("x", 2), r.hashMap("x", 1))).orderBy(r.args(r.array("x", "y")))
   ExpectedOriginal: err('ReqlQueryLogicError','r.args is not supported in an order_by command yet.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "r.args is not supported in an order_by command yet.")

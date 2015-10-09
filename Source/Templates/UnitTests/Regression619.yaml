@@ -13,26 +13,26 @@ DefsAndTests:
   TestFile: regression/619.yaml
   TestNum: 2
   Original: r.expr(1).do(lambda x:{'self':x})
-  Java: r.expr(1.0).do_(x -> r.hashMap("self", x))
+  Java: r.expr(1).do_(x -> r.hashMap("self", x))
   ExpectedOriginal: ({'self':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("self", 1.0)
+  ExpectedJava: r.hashMap("self", 1)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/619.yaml
   TestNum: 3
   Original: r.expr({"a":{"self":1}})
-  Java: r.expr(r.hashMap("a", r.hashMap("self", 1.0)))
+  Java: r.expr(r.hashMap("a", r.hashMap("self", 1)))
   ExpectedOriginal: ({"a":{"self":1}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", r.hashMap("self", 1.0))
+  ExpectedJava: r.hashMap("a", r.hashMap("self", 1))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/619.yaml
   TestNum: 4
   Original: r.expr({"self":{"self":{"self":1}}})
-  Java: r.expr(r.hashMap("self", r.hashMap("self", r.hashMap("self", 1.0))))
+  Java: r.expr(r.hashMap("self", r.hashMap("self", r.hashMap("self", 1))))
   ExpectedOriginal: ({"self":{"self":{"self":1}}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("self", r.hashMap("self", r.hashMap("self", 1.0)))
+  ExpectedJava: r.hashMap("self", r.hashMap("self", r.hashMap("self", 1)))
   RunOpts: []

@@ -4,91 +4,91 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 1
   Original: r.expr(0).add(1)
-  Java: r.expr(0.0).add(1.0)
+  Java: r.expr(0).add(1)
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
   Original: r.add(0, 1)
-  Java: r.add(0.0, 1.0)
+  Java: r.add(0, 1)
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
   Original: r.expr(2).sub(1)
-  Java: r.expr(2.0).sub(1.0)
+  Java: r.expr(2).sub(1)
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
   Original: r.sub(2, 1)
-  Java: r.sub(2.0, 1.0)
+  Java: r.sub(2, 1)
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
   Original: r.expr(2).div(2)
-  Java: r.expr(2.0).div(2.0)
+  Java: r.expr(2).div(2)
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
   Original: r.div(2, 2)
-  Java: r.div(2.0, 2.0)
+  Java: r.div(2, 2)
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
   Original: r.expr(1).mul(1)
-  Java: r.expr(1.0).mul(1.0)
+  Java: r.expr(1).mul(1)
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
   Original: r.mul(1, 1)
-  Java: r.mul(1.0, 1.0)
+  Java: r.mul(1, 1)
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
   Original: r.expr(1).mod(2)
-  Java: r.expr(1.0).mod(2.0)
+  Java: r.expr(1).mod(2)
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
   TestNum: 1
   Original: r.mod(1, 2)
-  Java: r.mod(1.0, 2.0)
+  Java: r.mod(1, 2)
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
@@ -148,7 +148,7 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 3
   Original: r.expr(1).eq(1)
-  Java: r.expr(1.0).eq(1.0)
+  Java: r.expr(1).eq(1)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -157,7 +157,7 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 3
   Original: r.expr(1).ne(2)
-  Java: r.expr(1.0).ne(2.0)
+  Java: r.expr(1).ne(2)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -166,7 +166,7 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 3
   Original: r.expr(1).lt(2)
-  Java: r.expr(1.0).lt(2.0)
+  Java: r.expr(1).lt(2)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -175,7 +175,7 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 3
   Original: r.expr(1).gt(0)
-  Java: r.expr(1.0).gt(0.0)
+  Java: r.expr(1).gt(0)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -184,7 +184,7 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 3
   Original: r.expr(1).le(1)
-  Java: r.expr(1.0).le(1.0)
+  Java: r.expr(1).le(1)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -193,7 +193,7 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 3
   Original: r.expr(1).ge(1)
-  Java: r.expr(1.0).ge(1.0)
+  Java: r.expr(1).ge(1)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -202,7 +202,7 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 3
   Original: r.eq(1, 1)
-  Java: r.eq(1.0, 1.0)
+  Java: r.eq(1, 1)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -211,7 +211,7 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 3
   Original: r.ne(1, 2)
-  Java: r.ne(1.0, 2.0)
+  Java: r.ne(1, 2)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -220,7 +220,7 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 3
   Original: r.lt(1, 2)
-  Java: r.lt(1.0, 2.0)
+  Java: r.lt(1, 2)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -229,7 +229,7 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 3
   Original: r.gt(1, 0)
-  Java: r.gt(1.0, 0.0)
+  Java: r.gt(1, 0)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -238,7 +238,7 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 3
   Original: r.le(1, 1)
-  Java: r.le(1.0, 1.0)
+  Java: r.le(1, 1)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -247,7 +247,7 @@ DefsAndTests:
   TestFile: math_logic/aliases.yaml
   TestNum: 3
   Original: r.ge(1, 1)
-  Java: r.ge(1.0, 1.0)
+  Java: r.ge(1, 1)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true

@@ -32,11 +32,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #1
-                 //ExpectedOriginal: [{'state': 'ready'}]
+                 /* ExpectedOriginal: [{'state': 'ready'}] */
                  var expected = r.array(r.hashMap("state", "ready"));
                  
-                 //Original: tbl.changes(squash=true, include_states=true).limit(1)
-                 var obtained = runOrCatch( tbl.changes().optArg("squash", true).optArg("include_states", true).limit(1.0) ,
+                 /* Original: tbl.changes(squash=true, include_states=true).limit(1) */
+                 var obtained = runOrCatch( tbl.changes().optArg("squash", true).optArg("include_states", true).limit(1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -46,11 +46,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #2
-                 //ExpectedOriginal: [{'state': 'initializing'}, {'new_val': None}, {'state': 'ready'}]
+                 /* ExpectedOriginal: [{'state': 'initializing'}, {'new_val': None}, {'state': 'ready'}] */
                  var expected = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", null), r.hashMap("state", "ready"));
                  
-                 //Original: tbl.get(0).changes(squash=true, include_states=true).limit(3)
-                 var obtained = runOrCatch( tbl.get(0.0).changes().optArg("squash", true).optArg("include_states", true).limit(3.0) ,
+                 /* Original: tbl.get(0).changes(squash=true, include_states=true).limit(3) */
+                 var obtained = runOrCatch( tbl.get(0).changes().optArg("squash", true).optArg("include_states", true).limit(3) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -60,11 +60,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #3
-                 //ExpectedOriginal: [{'state': 'initializing'}, {'state': 'ready'}]
+                 /* ExpectedOriginal: [{'state': 'initializing'}, {'state': 'ready'}] */
                  var expected = r.array(r.hashMap("state", "initializing"), r.hashMap("state", "ready"));
                  
-                 //Original: tbl.order_by(index='id').limit(10).changes(squash=true, include_states=true).limit(2)
-                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").limit(10.0).changes().optArg("squash", true).optArg("include_states", true).limit(2.0) ,
+                 /* Original: tbl.order_by(index='id').limit(10).changes(squash=true, include_states=true).limit(2) */
+                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").limit(10).changes().optArg("squash", true).optArg("include_states", true).limit(2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -74,11 +74,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #4
-                 //ExpectedOriginal: None
+                 /* ExpectedOriginal: None */
                  var expected = null as object;
                  
-                 //Original: tbl.insert({'id':1})
-                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 1.0)) ,
+                 /* Original: tbl.insert({'id':1}) */
+                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 1)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -88,11 +88,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #5
-                 //ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 1}}, {'state': 'ready'}]
-                 var expected = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 1.0)), r.hashMap("state", "ready"));
+                 /* ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 1}}, {'state': 'ready'}] */
+                 var expected = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 1)), r.hashMap("state", "ready"));
                  
-                 //Original: tbl.order_by(index='id').limit(10).changes(squash=true, include_states=true).limit(3)
-                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").limit(10.0).changes().optArg("squash", true).optArg("include_states", true).limit(3.0) ,
+                 /* Original: tbl.order_by(index='id').limit(10).changes(squash=true, include_states=true).limit(3) */
+                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").limit(10).changes().optArg("squash", true).optArg("include_states", true).limit(3) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -102,16 +102,16 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, changefeeds/include_states.yaml, #Templates.YamlTest+DefTest.
              //Original: tblchanges = tbl.changes(squash=true, include_states=true)
              
-Changes tblchanges = (Changes) tbl.changes().optArg("squash", true).optArg("include_states", true);             
+Changes tblchanges = (Changes) (tbl.changes().optArg("squash", true).optArg("include_states", true));             
              TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #7
-                 //ExpectedOriginal: None
+                 /* ExpectedOriginal: None */
                  var expected = null as object;
                  
-                 //Original: tbl.insert({'id':2})
-                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 2.0)) ,
+                 /* Original: tbl.insert({'id':2}) */
+                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 2)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -121,11 +121,11 @@ Changes tblchanges = (Changes) tbl.changes().optArg("squash", true).optArg("incl
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #8
-                 //ExpectedOriginal: [{'state': 'ready'}, {'old_val': None, 'new_val': {'id': 2}}]
-                 var expected = r.array(r.hashMap("state", "ready"), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2.0)));
+                 /* ExpectedOriginal: [{'state': 'ready'}, {'new_val': {'id': 2}, 'old_val': None}] */
+                 var expected = r.array(r.hashMap("state", "ready"), r.hashMap("new_val", r.hashMap("id", 2)).with("old_val", null));
                  
-                 //Original: fetch(tblchanges, 2)
-                 var obtained = runOrCatch( fetch(tblchanges, 2.0) ,
+                 /* Original: fetch(tblchanges, 2) */
+                 var obtained = runOrCatch( fetch(tblchanges, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -135,16 +135,16 @@ Changes tblchanges = (Changes) tbl.changes().optArg("squash", true).optArg("incl
              //JavaDef, changefeeds/include_states.yaml, #Templates.YamlTest+DefTest.
              //Original: getchanges = tbl.get(2).changes(include_states=true)
              
-Changes getchanges = (Changes) tbl.get(2.0).changes().optArg("include_states", true);             
+Changes getchanges = (Changes) (tbl.get(2).changes().optArg("include_states", true));             
              TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #10
-                 //ExpectedOriginal: None
+                 /* ExpectedOriginal: None */
                  var expected = null as object;
                  
-                 //Original: tbl.get(2).update({'a':1})
-                 var obtained = runOrCatch( tbl.get(2.0).update(r.hashMap("a", 1.0)) ,
+                 /* Original: tbl.get(2).update({'a':1}) */
+                 var obtained = runOrCatch( tbl.get(2).update(r.hashMap("a", 1)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -154,11 +154,11 @@ Changes getchanges = (Changes) tbl.get(2.0).changes().optArg("include_states", t
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #11
-                 //ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 2}}, {'state': 'ready'}, {'old_val': {'id': 2}, 'new_val': {'id': 2, 'a': 1}}]
-                 var expected = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 2.0)), r.hashMap("state", "ready"), r.hashMap("old_val", r.hashMap("id", 2.0)).with("new_val", r.hashMap("id", 2.0).with("a", 1.0)));
+                 /* ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 2}}, {'state': 'ready'}, {'new_val': {'id': 2, 'a': 1}, 'old_val': {'id': 2}}] */
+                 var expected = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 2)), r.hashMap("state", "ready"), r.hashMap("new_val", r.hashMap("id", 2).with("a", 1)).with("old_val", r.hashMap("id", 2)));
                  
-                 //Original: fetch(getchanges, 4)
-                 var obtained = runOrCatch( fetch(getchanges, 4.0) ,
+                 /* Original: fetch(getchanges, 4) */
+                 var obtained = runOrCatch( fetch(getchanges, 4) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -168,21 +168,21 @@ Changes getchanges = (Changes) tbl.get(2.0).changes().optArg("include_states", t
              //JavaDef, changefeeds/include_states.yaml, #Templates.YamlTest+DefTest.
              //Original: limitchanges = tbl.order_by(index='id').limit(10).changes(include_states=true)
              
-Changes limitchanges = (Changes) tbl.orderBy().optArg("index", "id").limit(10.0).changes().optArg("include_states", true);             
+Changes limitchanges = (Changes) (tbl.orderBy().optArg("index", "id").limit(10).changes().optArg("include_states", true));             
              
              //JavaDef, changefeeds/include_states.yaml, #Templates.YamlTest+DefTest.
              //Original: limitchangesdesc = tbl.order_by(index=r.desc('id')).limit(10).changes(include_states=true)
              
-Changes limitchangesdesc = (Changes) tbl.orderBy().optArg("index", r.desc("id")).limit(10.0).changes().optArg("include_states", true);             
+Changes limitchangesdesc = (Changes) (tbl.orderBy().optArg("index", r.desc("id")).limit(10).changes().optArg("include_states", true));             
              TestCounter++;
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #14
-                 //ExpectedOriginal: None
+                 /* ExpectedOriginal: None */
                  var expected = null as object;
                  
-                 //Original: tbl.insert({'id':3})
-                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 3.0)) ,
+                 /* Original: tbl.insert({'id':3}) */
+                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 3)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -192,11 +192,11 @@ Changes limitchangesdesc = (Changes) tbl.orderBy().optArg("index", r.desc("id"))
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #15
-                 //ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 1}}, {'new_val': {'id': 2, 'a': 1}}, {'state': 'ready'}, {'old_val': None, 'new_val': {'id': 3}}]
-                 var expected = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 1.0)), r.hashMap("new_val", r.hashMap("id", 2.0).with("a", 1.0)), r.hashMap("state", "ready"), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3.0)));
+                 /* ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 1}}, {'new_val': {'id': 2, 'a': 1}}, {'state': 'ready'}, {'new_val': {'id': 3}, 'old_val': None}] */
+                 var expected = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 1)), r.hashMap("new_val", r.hashMap("id", 2).with("a", 1)), r.hashMap("state", "ready"), r.hashMap("new_val", r.hashMap("id", 3)).with("old_val", null));
                  
-                 //Original: fetch(limitchanges, 5)
-                 var obtained = runOrCatch( fetch(limitchanges, 5.0) ,
+                 /* Original: fetch(limitchanges, 5) */
+                 var obtained = runOrCatch( fetch(limitchanges, 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -206,11 +206,11 @@ Changes limitchangesdesc = (Changes) tbl.orderBy().optArg("index", r.desc("id"))
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #16
-                 //ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 2, 'a': 1}}, {'new_val': {'id': 1}}, {'state': 'ready'}, {'old_val': None, 'new_val': {'id': 3}}]
-                 var expected = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 2.0).with("a", 1.0)), r.hashMap("new_val", r.hashMap("id", 1.0)), r.hashMap("state", "ready"), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3.0)));
+                 /* ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 2, 'a': 1}}, {'new_val': {'id': 1}}, {'state': 'ready'}, {'new_val': {'id': 3}, 'old_val': None}] */
+                 var expected = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 2).with("a", 1)), r.hashMap("new_val", r.hashMap("id", 1)), r.hashMap("state", "ready"), r.hashMap("new_val", r.hashMap("id", 3)).with("old_val", null));
                  
-                 //Original: fetch(limitchangesdesc, 5)
-                 var obtained = runOrCatch( fetch(limitchangesdesc, 5.0) ,
+                 /* Original: fetch(limitchangesdesc, 5) */
+                 var obtained = runOrCatch( fetch(limitchangesdesc, 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);

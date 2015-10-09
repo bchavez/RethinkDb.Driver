@@ -4,8 +4,8 @@ DefsAndTests:
   TestFile: math_logic/math.yaml
   TestNum: 1
   Original: (((4 + 2 * (r.expr(26) % 18)) / 5) - 3)
-  Java: r.sub(r.div(r.add(4.0, r.mul(2.0, r.mod(r.expr(26.0), 18.0))), 5.0), 3.0)
+  Java: r.add(4, r.mul(2, r.expr(26).mod(18))).div(5).sub(3)
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []

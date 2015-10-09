@@ -6,10 +6,10 @@ DefsAndTests:
   TestFile: regression/578.yaml
   TestNum: 1
   Original: tbl.index_create("578", lambda rec:1)
-  Java: tbl.indexCreate("578", rec -> 1.0)
+  Java: tbl.indexCreate("578", rec -> 1)
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1.0)
+  ExpectedJava: r.hashMap("created", 1)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/578.yaml
@@ -24,7 +24,7 @@ DefsAndTests:
   TestFile: regression/578.yaml
   TestNum: 3
   Original: tbl.index_create("578", lambda rec:1)
-  Java: tbl.indexCreate("578", rec -> 1.0)
+  Java: tbl.indexCreate("578", rec -> 1)
   ExpectedOriginal: err_regex("ReqlOpFailedError", "Index `578` already exists on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", [])
   ExpectedType: ErrRegex
   ExpectedJava: err_regex("ReqlOpFailedError", "Index `578` already exists on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", r.array())
@@ -36,7 +36,7 @@ DefsAndTests:
   Java: tbl.indexDrop("578")
   ExpectedOriginal: ({'dropped':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("dropped", 1.0)
+  ExpectedJava: r.hashMap("dropped", 1)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/578.yaml

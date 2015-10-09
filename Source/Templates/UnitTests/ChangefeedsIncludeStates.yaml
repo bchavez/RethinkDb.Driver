@@ -6,7 +6,7 @@ DefsAndTests:
   TestFile: changefeeds/include_states.yaml
   TestNum: 1
   Original: tbl.changes(squash=true, include_states=true).limit(1)
-  Java: tbl.changes().optArg("squash", true).optArg("include_states", true).limit(1.0)
+  Java: tbl.changes().optArg("squash", true).optArg("include_states", true).limit(1)
   ExpectedOriginal: '[{''state'': ''ready''}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("state", "ready"))
@@ -15,7 +15,7 @@ DefsAndTests:
   TestFile: changefeeds/include_states.yaml
   TestNum: 2
   Original: tbl.get(0).changes(squash=true, include_states=true).limit(3)
-  Java: tbl.get(0.0).changes().optArg("squash", true).optArg("include_states", true).limit(3.0)
+  Java: tbl.get(0).changes().optArg("squash", true).optArg("include_states", true).limit(3)
   ExpectedOriginal: '[{''state'': ''initializing''}, {''new_val'': None}, {''state'': ''ready''}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", null), r.hashMap("state", "ready"))
@@ -24,7 +24,7 @@ DefsAndTests:
   TestFile: changefeeds/include_states.yaml
   TestNum: 3
   Original: tbl.order_by(index='id').limit(10).changes(squash=true, include_states=true).limit(2)
-  Java: tbl.orderBy().optArg("index", "id").limit(10.0).changes().optArg("squash", true).optArg("include_states", true).limit(2.0)
+  Java: tbl.orderBy().optArg("index", "id").limit(10).changes().optArg("squash", true).optArg("include_states", true).limit(2)
   ExpectedOriginal: '[{''state'': ''initializing''}, {''state'': ''ready''}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("state", "initializing"), r.hashMap("state", "ready"))
@@ -33,7 +33,7 @@ DefsAndTests:
   TestFile: changefeeds/include_states.yaml
   TestNum: 4
   Original: tbl.insert({'id':1})
-  Java: tbl.insert(r.hashMap("id", 1.0))
+  Java: tbl.insert(r.hashMap("id", 1))
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
@@ -42,22 +42,22 @@ DefsAndTests:
   TestFile: changefeeds/include_states.yaml
   TestNum: 5
   Original: tbl.order_by(index='id').limit(10).changes(squash=true, include_states=true).limit(3)
-  Java: tbl.orderBy().optArg("index", "id").limit(10.0).changes().optArg("squash", true).optArg("include_states", true).limit(3.0)
+  Java: tbl.orderBy().optArg("index", "id").limit(10).changes().optArg("squash", true).optArg("include_states", true).limit(3)
   ExpectedOriginal: '[{''state'': ''initializing''}, {''new_val'': {''id'': 1}}, {''state'': ''ready''}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 1.0)), r.hashMap("state", "ready"))
+  ExpectedJava: r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 1)), r.hashMap("state", "ready"))
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/include_states.yaml
   TestNum: 6
   Original: tblchanges = tbl.changes(squash=true, include_states=true)
-  Java: Changes tblchanges = (Changes) tbl.changes().optArg("squash", true).optArg("include_states", true);
+  Java: Changes tblchanges = (Changes) (tbl.changes().optArg("squash", true).optArg("include_states", true));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/include_states.yaml
   TestNum: 7
   Original: tbl.insert({'id':2})
-  Java: tbl.insert(r.hashMap("id", 2.0))
+  Java: tbl.insert(r.hashMap("id", 2))
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
@@ -66,22 +66,22 @@ DefsAndTests:
   TestFile: changefeeds/include_states.yaml
   TestNum: 8
   Original: fetch(tblchanges, 2)
-  Java: fetch(tblchanges, 2.0)
-  ExpectedOriginal: '[{''state'': ''ready''}, {''old_val'': None, ''new_val'': {''id'': 2}}]'
+  Java: fetch(tblchanges, 2)
+  ExpectedOriginal: '[{''state'': ''ready''}, {''new_val'': {''id'': 2}, ''old_val'': None}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("state", "ready"), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2.0)))
+  ExpectedJava: r.array(r.hashMap("state", "ready"), r.hashMap("new_val", r.hashMap("id", 2)).with("old_val", null))
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/include_states.yaml
   TestNum: 9
   Original: getchanges = tbl.get(2).changes(include_states=true)
-  Java: Changes getchanges = (Changes) tbl.get(2.0).changes().optArg("include_states", true);
+  Java: Changes getchanges = (Changes) (tbl.get(2).changes().optArg("include_states", true));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/include_states.yaml
   TestNum: 10
   Original: tbl.get(2).update({'a':1})
-  Java: tbl.get(2.0).update(r.hashMap("a", 1.0))
+  Java: tbl.get(2).update(r.hashMap("a", 1))
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
@@ -90,28 +90,28 @@ DefsAndTests:
   TestFile: changefeeds/include_states.yaml
   TestNum: 11
   Original: fetch(getchanges, 4)
-  Java: fetch(getchanges, 4.0)
-  ExpectedOriginal: '[{''state'': ''initializing''}, {''new_val'': {''id'': 2}}, {''state'': ''ready''}, {''old_val'': {''id'': 2}, ''new_val'': {''id'': 2, ''a'': 1}}]'
+  Java: fetch(getchanges, 4)
+  ExpectedOriginal: '[{''state'': ''initializing''}, {''new_val'': {''id'': 2}}, {''state'': ''ready''}, {''new_val'': {''id'': 2, ''a'': 1}, ''old_val'': {''id'': 2}}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 2.0)), r.hashMap("state", "ready"), r.hashMap("old_val", r.hashMap("id", 2.0)).with("new_val", r.hashMap("id", 2.0).with("a", 1.0)))
+  ExpectedJava: r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 2)), r.hashMap("state", "ready"), r.hashMap("new_val", r.hashMap("id", 2).with("a", 1)).with("old_val", r.hashMap("id", 2)))
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/include_states.yaml
   TestNum: 12
   Original: limitchanges = tbl.order_by(index='id').limit(10).changes(include_states=true)
-  Java: Changes limitchanges = (Changes) tbl.orderBy().optArg("index", "id").limit(10.0).changes().optArg("include_states", true);
+  Java: Changes limitchanges = (Changes) (tbl.orderBy().optArg("index", "id").limit(10).changes().optArg("include_states", true));
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/include_states.yaml
   TestNum: 13
   Original: limitchangesdesc = tbl.order_by(index=r.desc('id')).limit(10).changes(include_states=true)
-  Java: Changes limitchangesdesc = (Changes) tbl.orderBy().optArg("index", r.desc("id")).limit(10.0).changes().optArg("include_states", true);
+  Java: Changes limitchangesdesc = (Changes) (tbl.orderBy().optArg("index", r.desc("id")).limit(10).changes().optArg("include_states", true));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/include_states.yaml
   TestNum: 14
   Original: tbl.insert({'id':3})
-  Java: tbl.insert(r.hashMap("id", 3.0))
+  Java: tbl.insert(r.hashMap("id", 3))
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
@@ -120,17 +120,17 @@ DefsAndTests:
   TestFile: changefeeds/include_states.yaml
   TestNum: 15
   Original: fetch(limitchanges, 5)
-  Java: fetch(limitchanges, 5.0)
-  ExpectedOriginal: '[{''state'': ''initializing''}, {''new_val'': {''id'': 1}}, {''new_val'': {''id'': 2, ''a'': 1}}, {''state'': ''ready''}, {''old_val'': None, ''new_val'': {''id'': 3}}]'
+  Java: fetch(limitchanges, 5)
+  ExpectedOriginal: '[{''state'': ''initializing''}, {''new_val'': {''id'': 1}}, {''new_val'': {''id'': 2, ''a'': 1}}, {''state'': ''ready''}, {''new_val'': {''id'': 3}, ''old_val'': None}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 1.0)), r.hashMap("new_val", r.hashMap("id", 2.0).with("a", 1.0)), r.hashMap("state", "ready"), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3.0)))
+  ExpectedJava: r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 1)), r.hashMap("new_val", r.hashMap("id", 2).with("a", 1)), r.hashMap("state", "ready"), r.hashMap("new_val", r.hashMap("id", 3)).with("old_val", null))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/include_states.yaml
   TestNum: 16
   Original: fetch(limitchangesdesc, 5)
-  Java: fetch(limitchangesdesc, 5.0)
-  ExpectedOriginal: '[{''state'': ''initializing''}, {''new_val'': {''id'': 2, ''a'': 1}}, {''new_val'': {''id'': 1}}, {''state'': ''ready''}, {''old_val'': None, ''new_val'': {''id'': 3}}]'
+  Java: fetch(limitchangesdesc, 5)
+  ExpectedOriginal: '[{''state'': ''initializing''}, {''new_val'': {''id'': 2, ''a'': 1}}, {''new_val'': {''id'': 1}}, {''state'': ''ready''}, {''new_val'': {''id'': 3}, ''old_val'': None}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 2.0).with("a", 1.0)), r.hashMap("new_val", r.hashMap("id", 1.0)), r.hashMap("state", "ready"), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3.0)))
+  ExpectedJava: r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 2).with("a", 1)), r.hashMap("new_val", r.hashMap("id", 1)), r.hashMap("state", "ready"), r.hashMap("new_val", r.hashMap("id", 3)).with("old_val", null))
   RunOpts: []

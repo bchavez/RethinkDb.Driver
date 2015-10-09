@@ -4,7 +4,7 @@ DefsAndTests:
   TestFile: regression/665.yaml
   TestNum: 1
   Original: t = r.db('test').table('t665')
-  Java: Table t = (Table) r.db("test").table("t665");
+  Java: Table t = (Table) (r.db("test").table("t665"));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/665.yaml
@@ -19,10 +19,10 @@ DefsAndTests:
   TestFile: regression/665.yaml
   TestNum: 2
   Original: t.insert([{'id':1}, {'id':4}])
-  Java: t.insert(r.array(r.hashMap("id", 1.0), r.hashMap("id", 4.0)))
+  Java: t.insert(r.array(r.hashMap("id", 1), r.hashMap("id", 4)))
   ExpectedOriginal: ({'unchanged':0, 'skipped':0, 'replaced':0, 'inserted':2, 'errors':0, 'deleted':0 })
   ExpectedType: Map
-  ExpectedJava: r.hashMap("unchanged", 0.0).with("skipped", 0.0).with("replaced", 0.0).with("inserted", 2.0).with("errors", 0.0).with("deleted", 0.0)
+  ExpectedJava: r.hashMap("unchanged", 0).with("skipped", 0).with("replaced", 0).with("inserted", 2).with("errors", 0).with("deleted", 0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/665.yaml

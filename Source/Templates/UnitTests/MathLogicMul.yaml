@@ -4,43 +4,43 @@ DefsAndTests:
   TestFile: math_logic/mul.yaml
   TestNum: 1
   Original: (r.expr(1) * 2)
-  Java: r.mul(r.expr(1.0), 2.0)
+  Java: r.expr(1).mul(2)
   ExpectedOriginal: 2
-  ExpectedType: Double
-  ExpectedJava: 2.0
+  ExpectedType: Long
+  ExpectedJava: 2
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mul.yaml
   TestNum: 1
   Original: (1 * r.expr(2))
-  Java: r.mul(1.0, r.expr(2.0))
+  Java: r.mul(1, r.expr(2))
   ExpectedOriginal: 2
-  ExpectedType: Double
-  ExpectedJava: 2.0
+  ExpectedType: Long
+  ExpectedJava: 2
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mul.yaml
   TestNum: 1
   Original: (r.expr(1).mul(2))
-  Java: r.expr(1.0).mul(2.0)
+  Java: r.expr(1).mul(2)
   ExpectedOriginal: 2
-  ExpectedType: Double
-  ExpectedJava: 2.0
+  ExpectedType: Long
+  ExpectedJava: 2
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mul.yaml
   TestNum: 2
   Original: r.expr(-1) * -1
-  Java: r.mul(r.expr(-1.0), -1.0)
+  Java: r.expr(-1).mul(-1)
   ExpectedOriginal: 1
-  ExpectedType: Double
-  ExpectedJava: 1.0
+  ExpectedType: Long
+  ExpectedJava: 1
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mul.yaml
   TestNum: 3
   Original: r.expr(1.5) * 4.5
-  Java: r.mul(r.expr(1.5), 4.5)
+  Java: r.expr(1.5).mul(4.5)
   ExpectedOriginal: 6.75
   ExpectedType: Double
   ExpectedJava: 6.75
@@ -49,44 +49,44 @@ DefsAndTests:
   TestFile: math_logic/mul.yaml
   TestNum: 4
   Original: r.expr([1,2,3]) * 3
-  Java: r.mul(r.expr(r.array(1.0, 2.0, 3.0)), 3.0)
+  Java: r.expr(r.array(1, 2, 3)).mul(3)
   ExpectedOriginal: '[1, 2, 3, 1, 2, 3, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 1.0, 2.0, 3.0)
+  ExpectedJava: r.array(1, 2, 3, 1, 2, 3, 1, 2, 3)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mul.yaml
   TestNum: 9
   Original: r.expr('a') * 0.8
-  Java: r.mul(r.expr("a"), 0.8)
+  Java: r.expr("a").mul(0.8)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0.0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mul.yaml
   TestNum: 10
   Original: r.expr(1) * 'a'
-  Java: r.mul(r.expr(1.0), "a")
+  Java: r.expr(1).mul("a")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1.0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mul.yaml
   TestNum: 11
   Original: r.expr('b') * 'a'
-  Java: r.mul(r.expr("b"), "a")
+  Java: r.expr("b").mul("a")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0.0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mul.yaml
   TestNum: 12
   Original: r.expr([]) * 1.5
-  Java: r.mul(r.expr(r.array()), 1.5)
+  Java: r.expr(r.array()).mul(1.5)
   ExpectedOriginal: 'err(''ReqlQueryLogicError'', ''Number not an integer: 1.5'', [0])'
   ExpectedType: Err
-  ExpectedJava: 'err("ReqlQueryLogicError", "Number not an integer: 1.5", r.array(0.0))'
+  ExpectedJava: 'err("ReqlQueryLogicError", "Number not an integer: 1.5", r.array(0))'
   RunOpts: []

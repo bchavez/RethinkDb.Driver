@@ -4,7 +4,7 @@ DefsAndTests:
   TestFile: regression/3059.yaml
   TestNum: 1
   Original: r.point(0, 1).type_of()
-  Java: r.point(0.0, 1.0).typeOf()
+  Java: r.point(0, 1).typeOf()
   ExpectedOriginal: ("PTYPE<GEOMETRY>")
   ExpectedType: String
   ExpectedJava: '"PTYPE<GEOMETRY>"'
@@ -13,7 +13,7 @@ DefsAndTests:
   TestFile: regression/3059.yaml
   TestNum: 2
   Original: r.point(0, 1).info()['type']
-  Java: r.point(0.0, 1.0).info().bracket("type")
+  Java: r.point(0, 1).info().g("type")
   ExpectedOriginal: ("PTYPE<GEOMETRY>")
   ExpectedType: String
   ExpectedJava: '"PTYPE<GEOMETRY>"'

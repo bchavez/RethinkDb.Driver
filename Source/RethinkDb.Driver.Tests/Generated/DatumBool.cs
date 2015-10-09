@@ -31,10 +31,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/bool.yaml, #1
-                 //ExpectedOriginal: True
+                 /* ExpectedOriginal: True */
                  var expected = true;
                  
-                 //Original: r.expr(True)
+                 /* Original: r.expr(True) */
                  var obtained = runOrCatch( r.expr(true) ,
                                             new OptArgs()
                     );
@@ -45,10 +45,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/bool.yaml, #2
-                 //ExpectedOriginal: False
+                 /* ExpectedOriginal: False */
                  var expected = false;
                  
-                 //Original: r.expr(False)
+                 /* Original: r.expr(False) */
                  var obtained = runOrCatch( r.expr(false) ,
                                             new OptArgs()
                     );
@@ -59,10 +59,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/bool.yaml, #3
-                 //ExpectedOriginal: BOOL
+                 /* ExpectedOriginal: BOOL */
                  var expected = "BOOL";
                  
-                 //Original: r.expr(False).type_of()
+                 /* Original: r.expr(False).type_of() */
                  var obtained = runOrCatch( r.expr(false).typeOf() ,
                                             new OptArgs()
                     );
@@ -73,10 +73,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/bool.yaml, #4
-                 //ExpectedOriginal: true
+                 /* ExpectedOriginal: true */
                  var expected = "true";
                  
-                 //Original: r.expr(True).coerce_to('string')
+                 /* Original: r.expr(True).coerce_to('string') */
                  var obtained = runOrCatch( r.expr(true).coerceTo("string") ,
                                             new OptArgs()
                     );
@@ -87,10 +87,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/bool.yaml, #5
-                 //ExpectedOriginal: True
+                 /* ExpectedOriginal: True */
                  var expected = true;
                  
-                 //Original: r.expr(True).coerce_to('bool')
+                 /* Original: r.expr(True).coerce_to('bool') */
                  var obtained = runOrCatch( r.expr(true).coerceTo("bool") ,
                                             new OptArgs()
                     );

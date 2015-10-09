@@ -52,6 +52,11 @@ namespace Templates
                 {
                     test.Original =
                         Encoding.UTF8.GetString(Convert.FromBase64String(value.Substring(1).Trim('\'')));
+
+                    if (test.Original.StartsWith("'") && test.Original.Contains(">"))
+                    {
+                        test.Original = "\"" + test.Original + "\"";
+                    }
                 }
 
                 value = test.ExpectedJava;

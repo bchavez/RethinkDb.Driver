@@ -31,10 +31,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #1
-                 //ExpectedOriginal: str
+                 /* ExpectedOriginal: str */
                  var expected = "str";
                  
-                 //Original: r.expr('str')
+                 /* Original: r.expr('str') */
                  var obtained = runOrCatch( r.expr("str") ,
                                             new OptArgs()
                     );
@@ -45,10 +45,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #2
-                 //ExpectedOriginal: "str"
+                 /* ExpectedOriginal: "str" */
                  var expected = "str";
                  
-                 //Original: r.expr("str")
+                 /* Original: r.expr("str") */
                  var obtained = runOrCatch( r.expr("str") ,
                                             new OptArgs()
                     );
@@ -59,10 +59,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #3
-                 //ExpectedOriginal: str
+                 /* ExpectedOriginal: str */
                  var expected = "str";
                  
-                 //Original: r.expr(u'str')
+                 /* Original: r.expr(u'str') */
                  var obtained = runOrCatch( r.expr("str") ,
                                             new OptArgs()
                     );
@@ -73,10 +73,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #4
-                 //ExpectedOriginal: 'こんにちは'
+                 /* ExpectedOriginal: 'こんにちは' */
                  var expected = "\u3053\u3093\u306b\u3061\u306f";
                  
-                 //Original: r.expr(u'こんにちは')
+                 /* Original: r.expr(u'こんにちは') */
                  var obtained = runOrCatch( r.expr("\u3053\u3093\u306b\u3061\u306f") ,
                                             new OptArgs()
                     );
@@ -87,10 +87,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #5
-                 //ExpectedOriginal: STRING
+                 /* ExpectedOriginal: STRING */
                  var expected = "STRING";
                  
-                 //Original: r.expr('foo').type_of()
+                 /* Original: r.expr('foo').type_of() */
                  var obtained = runOrCatch( r.expr("foo").typeOf() ,
                                             new OptArgs()
                     );
@@ -101,10 +101,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #6
-                 //ExpectedOriginal: ('foo')
+                 /* ExpectedOriginal: ('foo') */
                  var expected = "foo";
                  
-                 //Original: r.expr('foo').coerce_to('string')
+                 /* Original: r.expr('foo').coerce_to('string') */
                  var obtained = runOrCatch( r.expr("foo").coerceTo("string") ,
                                             new OptArgs()
                     );
@@ -115,10 +115,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #7
-                 //ExpectedOriginal: -1.2
+                 /* ExpectedOriginal: -1.2 */
                  var expected = -1.2;
                  
-                 //Original: r.expr('-1.2').coerce_to('NUMBER')
+                 /* Original: r.expr('-1.2').coerce_to('NUMBER') */
                  var obtained = runOrCatch( r.expr("-1.2").coerceTo("NUMBER") ,
                                             new OptArgs()
                     );
@@ -129,10 +129,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #8
-                 //ExpectedOriginal: err("ReqlQueryLogicError", "Could not coerce `--1.2` to NUMBER.", [])
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Could not coerce `--1.2` to NUMBER.", []) */
                  var expected = err("ReqlQueryLogicError", "Could not coerce `--1.2` to NUMBER.", r.array());
                  
-                 //Original: r.expr('--1.2').coerce_to('NUMBER')
+                 /* Original: r.expr('--1.2').coerce_to('NUMBER') */
                  var obtained = runOrCatch( r.expr("--1.2").coerceTo("NUMBER") ,
                                             new OptArgs()
                     );
@@ -143,10 +143,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #9
-                 //ExpectedOriginal: err("ReqlQueryLogicError", "Could not coerce `-1.2-` to NUMBER.", [])
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Could not coerce `-1.2-` to NUMBER.", []) */
                  var expected = err("ReqlQueryLogicError", "Could not coerce `-1.2-` to NUMBER.", r.array());
                  
-                 //Original: r.expr('-1.2-').coerce_to('NUMBER')
+                 /* Original: r.expr('-1.2-').coerce_to('NUMBER') */
                  var obtained = runOrCatch( r.expr("-1.2-").coerceTo("NUMBER") ,
                                             new OptArgs()
                     );
@@ -157,10 +157,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #10
-                 //ExpectedOriginal: 10
-                 var expected = 10.0;
+                 /* ExpectedOriginal: 10 */
+                 var expected = 10;
                  
-                 //Original: r.expr('0xa').coerce_to('NUMBER')
+                 /* Original: r.expr('0xa').coerce_to('NUMBER') */
                  var obtained = runOrCatch( r.expr("0xa").coerceTo("NUMBER") ,
                                             new OptArgs()
                     );
@@ -171,11 +171,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #11
-                 //ExpectedOriginal: err("ReqlQueryLogicError", "Non-finite number: inf", [])
-
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Non-finite number: inf", [])
+ */
                  var expected = err("ReqlQueryLogicError", "Non-finite number: inf", r.array());
                  
-                 //Original: r.expr('inf').coerce_to('NUMBER')
+                 /* Original: r.expr('inf').coerce_to('NUMBER') */
                  var obtained = runOrCatch( r.expr("inf").coerceTo("NUMBER") ,
                                             new OptArgs()
                     );
@@ -186,10 +186,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #12
-                 //ExpectedOriginal: ([])
+                 /* ExpectedOriginal: ([]) */
                  var expected = r.array();
                  
-                 //Original: r.expr('').split()
+                 /* Original: r.expr('').split() */
                  var obtained = runOrCatch( r.expr("").split() ,
                                             new OptArgs()
                     );
@@ -200,11 +200,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #13
-                 //ExpectedOriginal: ([])
+                 /* ExpectedOriginal: ([]) */
                  var expected = r.array();
                  
-                 //Original: r.expr('').split(null)
-                 var obtained = runOrCatch( r.expr("").split(null) ,
+                 /* Original: r.expr('').split(null) */
+                 var obtained = runOrCatch( r.expr("").split((ReqlExpr) null) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -214,10 +214,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #14
-                 //ExpectedOriginal: ([''])
+                 /* ExpectedOriginal: (['']) */
                  var expected = r.array("");
                  
-                 //Original: r.expr('').split(' ')
+                 /* Original: r.expr('').split(' ') */
                  var obtained = runOrCatch( r.expr("").split(" ") ,
                                             new OptArgs()
                     );
@@ -228,10 +228,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #15
-                 //ExpectedOriginal: ([])
+                 /* ExpectedOriginal: ([]) */
                  var expected = r.array();
                  
-                 //Original: r.expr('').split('')
+                 /* Original: r.expr('').split('') */
                  var obtained = runOrCatch( r.expr("").split("") ,
                                             new OptArgs()
                     );
@@ -242,11 +242,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #16
-                 //ExpectedOriginal: ([])
+                 /* ExpectedOriginal: ([]) */
                  var expected = r.array();
                  
-                 //Original: r.expr('').split(null, 5)
-                 var obtained = runOrCatch( r.expr("").split(null, 5.0) ,
+                 /* Original: r.expr('').split(null, 5) */
+                 var obtained = runOrCatch( r.expr("").split((ReqlExpr) null, 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -256,11 +256,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #17
-                 //ExpectedOriginal: ([''])
+                 /* ExpectedOriginal: (['']) */
                  var expected = r.array("");
                  
-                 //Original: r.expr('').split(' ', 5)
-                 var obtained = runOrCatch( r.expr("").split(" ", 5.0) ,
+                 /* Original: r.expr('').split(' ', 5) */
+                 var obtained = runOrCatch( r.expr("").split(" ", 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -270,11 +270,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #18
-                 //ExpectedOriginal: ([])
+                 /* ExpectedOriginal: ([]) */
                  var expected = r.array();
                  
-                 //Original: r.expr('').split('', 5)
-                 var obtained = runOrCatch( r.expr("").split("", 5.0) ,
+                 /* Original: r.expr('').split('', 5) */
+                 var obtained = runOrCatch( r.expr("").split("", 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -284,10 +284,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #19
-                 //ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc']) */
                  var expected = r.array("aaaa", "bbbb", "cccc");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split()
+                 /* Original: r.expr('aaaa bbbb  cccc ').split() */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split() ,
                                             new OptArgs()
                     );
@@ -298,11 +298,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #20
-                 //ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc']) */
                  var expected = r.array("aaaa", "bbbb", "cccc");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split(null)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(null) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(null) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -312,10 +312,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #21
-                 //ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', ''])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', '']) */
                  var expected = r.array("aaaa", "bbbb", "", "cccc", "");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split(' ')
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' ') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ") ,
                                             new OptArgs()
                     );
@@ -326,10 +326,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #22
-                 //ExpectedOriginal: (['a', 'a', 'a', 'a', ' ', 'b', 'b', 'b', 'b', ' ', ' ', 'c', 'c', 'c', 'c', ' '])
+                 /* ExpectedOriginal: (['a', 'a', 'a', 'a', ' ', 'b', 'b', 'b', 'b', ' ', ' ', 'c', 'c', 'c', 'c', ' ']) */
                  var expected = r.array("a", "a", "a", "a", " ", "b", "b", "b", "b", " ", " ", "c", "c", "c", "c", " ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split('')
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("") ,
                                             new OptArgs()
                     );
@@ -340,10 +340,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #23
-                 //ExpectedOriginal: (['aaaa ', '', '', '', '  cccc '])
+                 /* ExpectedOriginal: (['aaaa ', '', '', '', '  cccc ']) */
                  var expected = r.array("aaaa ", "", "", "", "  cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split('b')
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('b') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b") ,
                                             new OptArgs()
                     );
@@ -354,10 +354,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #24
-                 //ExpectedOriginal: (['aaaa ', '', '  cccc '])
+                 /* ExpectedOriginal: (['aaaa ', '', '  cccc ']) */
                  var expected = r.array("aaaa ", "", "  cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split('bb')
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('bb') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb") ,
                                             new OptArgs()
                     );
@@ -368,10 +368,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #25
-                 //ExpectedOriginal: (['aaaa', 'cccc '])
+                 /* ExpectedOriginal: (['aaaa', 'cccc ']) */
                  var expected = r.array("aaaa", "cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ')
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ") ,
                                             new OptArgs()
                     );
@@ -382,10 +382,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #26
-                 //ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+                 /* ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f']) */
                  var expected = r.array("aaaa ", "", "  cccc b d ", " e ", "", " f");
                  
-                 //Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb')
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb") ,
                                             new OptArgs()
                     );
@@ -396,10 +396,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #27
-                 //ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f'])
+                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f']) */
                  var expected = r.array("aaaa", "cccc b d bb e bbbb f");
                  
-                 //Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ')
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ") ,
                                             new OptArgs()
                     );
@@ -410,10 +410,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #28
-                 //ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f'])
+                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f']) */
                  var expected = r.array("aaaa", "cccc b d bb e", "f");
                  
-                 //Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ')
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ") ,
                                             new OptArgs()
                     );
@@ -424,11 +424,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #29
-                 //ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc']) */
                  var expected = r.array("aaaa", "bbbb", "cccc");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split(null, 3)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(null, 3.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(null, 3) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 3) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -438,11 +438,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #30
-                 //ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', ''])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', '']) */
                  var expected = r.array("aaaa", "bbbb", "", "cccc", "");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split(' ', 5)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 5.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' ', 5) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -452,11 +452,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #31
-                 //ExpectedOriginal: (['a', 'a', 'a', 'a', ' ', 'bbbb  cccc '])
+                 /* ExpectedOriginal: (['a', 'a', 'a', 'a', ' ', 'bbbb  cccc ']) */
                  var expected = r.array("a", "a", "a", "a", " ", "bbbb  cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split('', 5)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 5.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('', 5) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -466,11 +466,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #32
-                 //ExpectedOriginal: (['aaaa ', '', '', '', '  cccc '])
+                 /* ExpectedOriginal: (['aaaa ', '', '', '', '  cccc ']) */
                  var expected = r.array("aaaa ", "", "", "", "  cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split('b', 5)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 5.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('b', 5) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -480,11 +480,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #33
-                 //ExpectedOriginal: (['aaaa ', '', '  cccc '])
+                 /* ExpectedOriginal: (['aaaa ', '', '  cccc ']) */
                  var expected = r.array("aaaa ", "", "  cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split('bb', 3)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 3.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('bb', 3) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 3) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -494,11 +494,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #34
-                 //ExpectedOriginal: (['aaaa', 'cccc '])
+                 /* ExpectedOriginal: (['aaaa', 'cccc ']) */
                  var expected = r.array("aaaa", "cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -508,11 +508,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #35
-                 //ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+                 /* ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f']) */
                  var expected = r.array("aaaa ", "", "  cccc b d ", " e ", "", " f");
                  
-                 //Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -522,11 +522,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #36
-                 //ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f'])
+                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f']) */
                  var expected = r.array("aaaa", "cccc b d bb e bbbb f");
                  
-                 //Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -536,11 +536,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #37
-                 //ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f'])
+                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f']) */
                  var expected = r.array("aaaa", "cccc b d bb e", "f");
                  
-                 //Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -550,11 +550,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #38
-                 //ExpectedOriginal: (['aaaa', 'bbbb', 'cccc '])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc ']) */
                  var expected = r.array("aaaa", "bbbb", "cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split(null, 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(null, 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(null, 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -564,11 +564,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #39
-                 //ExpectedOriginal: (["a", "b"])
+                 /* ExpectedOriginal: (["a", "b"]) */
                  var expected = r.array("a", "b");
                  
-                 //Original: r.expr("a  b  ").split(null, 2)
-                 var obtained = runOrCatch( r.expr("a  b  ").split(null, 2.0) ,
+                 /* Original: r.expr("a  b  ").split(null, 2) */
+                 var obtained = runOrCatch( r.expr("a  b  ").split((ReqlExpr) null, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -578,11 +578,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #40
-                 //ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', ''])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', '']) */
                  var expected = r.array("aaaa", "bbbb", "", "cccc", "");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split(' ', 4)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 4.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' ', 4) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 4) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -592,11 +592,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #41
-                 //ExpectedOriginal: (['a', 'a', 'a', 'a', ' bbbb  cccc '])
+                 /* ExpectedOriginal: (['a', 'a', 'a', 'a', ' bbbb  cccc ']) */
                  var expected = r.array("a", "a", "a", "a", " bbbb  cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split('', 4)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 4.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('', 4) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 4) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -606,11 +606,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #42
-                 //ExpectedOriginal: (['aaaa ', '', '', '', '  cccc '])
+                 /* ExpectedOriginal: (['aaaa ', '', '', '', '  cccc ']) */
                  var expected = r.array("aaaa ", "", "", "", "  cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split('b', 4)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 4.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('b', 4) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 4) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -620,11 +620,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #43
-                 //ExpectedOriginal: (['aaaa ', '', '  cccc '])
+                 /* ExpectedOriginal: (['aaaa ', '', '  cccc ']) */
                  var expected = r.array("aaaa ", "", "  cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split('bb', 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('bb', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -634,11 +634,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #44
-                 //ExpectedOriginal: (['aaaa', 'cccc '])
+                 /* ExpectedOriginal: (['aaaa', 'cccc ']) */
                  var expected = r.array("aaaa", "cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 1)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 1.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 1) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -648,11 +648,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #45
-                 //ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+                 /* ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f']) */
                  var expected = r.array("aaaa ", "", "  cccc b d ", " e ", "", " f");
                  
-                 //Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -662,11 +662,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #46
-                 //ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f'])
+                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f']) */
                  var expected = r.array("aaaa", "cccc b d bb e bbbb f");
                  
-                 //Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -676,11 +676,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #47
-                 //ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f'])
+                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f']) */
                  var expected = r.array("aaaa", "cccc b d bb e", "f");
                  
-                 //Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -690,11 +690,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #48
-                 //ExpectedOriginal: (['aaaa', 'bbbb  cccc '])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb  cccc ']) */
                  var expected = r.array("aaaa", "bbbb  cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split(null, 1)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(null, 1.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(null, 1) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -704,11 +704,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #49
-                 //ExpectedOriginal: (['aaaa', 'bbbb', ' cccc '])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb', ' cccc ']) */
                  var expected = r.array("aaaa", "bbbb", " cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split(' ', 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -718,11 +718,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #50
-                 //ExpectedOriginal: (['a', 'a', 'aa bbbb  cccc '])
+                 /* ExpectedOriginal: (['a', 'a', 'aa bbbb  cccc ']) */
                  var expected = r.array("a", "a", "aa bbbb  cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split('', 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -732,11 +732,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #51
-                 //ExpectedOriginal: (['aaaa ', '', 'bb  cccc '])
+                 /* ExpectedOriginal: (['aaaa ', '', 'bb  cccc ']) */
                  var expected = r.array("aaaa ", "", "bb  cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split('b', 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('b', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -746,11 +746,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #52
-                 //ExpectedOriginal: (['aaaa ', '', '  cccc '])
+                 /* ExpectedOriginal: (['aaaa ', '', '  cccc ']) */
                  var expected = r.array("aaaa ", "", "  cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split('bb', 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('bb', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -760,11 +760,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #53
-                 //ExpectedOriginal: (['aaaa', 'cccc '])
+                 /* ExpectedOriginal: (['aaaa', 'cccc ']) */
                  var expected = r.array("aaaa", "cccc ");
                  
-                 //Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -774,11 +774,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #54
-                 //ExpectedOriginal: (['aaaa ', '', '  cccc b d bb e bbbb f'])
+                 /* ExpectedOriginal: (['aaaa ', '', '  cccc b d bb e bbbb f']) */
                  var expected = r.array("aaaa ", "", "  cccc b d bb e bbbb f");
                  
-                 //Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -788,11 +788,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #55
-                 //ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f'])
+                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f']) */
                  var expected = r.array("aaaa", "cccc b d bb e bbbb f");
                  
-                 //Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -802,11 +802,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #56
-                 //ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f'])
+                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f']) */
                  var expected = r.array("aaaa", "cccc b d bb e", "f");
                  
-                 //Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2)
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2.0) ,
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -816,10 +816,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #57
-                 //ExpectedOriginal: ([])
+                 /* ExpectedOriginal: ([]) */
                  var expected = r.array();
                  
-                 //Original: r.expr('  ').split()
+                 /* Original: r.expr('  ').split() */
                  var obtained = runOrCatch( r.expr("  ").split() ,
                                             new OptArgs()
                     );
@@ -830,11 +830,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #58
-                 //ExpectedOriginal: ([])
+                 /* ExpectedOriginal: ([]) */
                  var expected = r.array();
                  
-                 //Original: r.expr('  ').split(null)
-                 var obtained = runOrCatch( r.expr("  ").split(null) ,
+                 /* Original: r.expr('  ').split(null) */
+                 var obtained = runOrCatch( r.expr("  ").split((ReqlExpr) null) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -844,10 +844,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #59
-                 //ExpectedOriginal: (['', '', ''])
+                 /* ExpectedOriginal: (['', '', '']) */
                  var expected = r.array("", "", "");
                  
-                 //Original: r.expr('  ').split(' ')
+                 /* Original: r.expr('  ').split(' ') */
                  var obtained = runOrCatch( r.expr("  ").split(" ") ,
                                             new OptArgs()
                     );
@@ -858,11 +858,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #60
-                 //ExpectedOriginal: ([])
+                 /* ExpectedOriginal: ([]) */
                  var expected = r.array();
                  
-                 //Original: r.expr('  ').split(null, 5)
-                 var obtained = runOrCatch( r.expr("  ").split(null, 5.0) ,
+                 /* Original: r.expr('  ').split(null, 5) */
+                 var obtained = runOrCatch( r.expr("  ").split((ReqlExpr) null, 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -872,11 +872,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #61
-                 //ExpectedOriginal: (['', '', ''])
+                 /* ExpectedOriginal: (['', '', '']) */
                  var expected = r.array("", "", "");
                  
-                 //Original: r.expr('  ').split(' ', 5)
-                 var obtained = runOrCatch( r.expr("  ").split(" ", 5.0) ,
+                 /* Original: r.expr('  ').split(' ', 5) */
+                 var obtained = runOrCatch( r.expr("  ").split(" ", 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -886,10 +886,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #62
-                 //ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc']) */
                  var expected = r.array("aaaa", "bbbb", "cccc");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split()
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split() */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split() ,
                                             new OptArgs()
                     );
@@ -900,11 +900,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #63
-                 //ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc']) */
                  var expected = r.array("aaaa", "bbbb", "cccc");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split(null)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(null) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(null) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -914,10 +914,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #64
-                 //ExpectedOriginal: (['', '', 'aaaa', 'bbbb', '', 'cccc', ''])
+                 /* ExpectedOriginal: (['', '', 'aaaa', 'bbbb', '', 'cccc', '']) */
                  var expected = r.array("", "", "aaaa", "bbbb", "", "cccc", "");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split(' ')
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' ') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ") ,
                                             new OptArgs()
                     );
@@ -928,10 +928,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #65
-                 //ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc '])
+                 /* ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc ']) */
                  var expected = r.array("  aaaa ", "", "", "", "  cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split('b')
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('b') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b") ,
                                             new OptArgs()
                     );
@@ -942,10 +942,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #66
-                 //ExpectedOriginal: (['  aaaa ', '', '  cccc '])
+                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc ']) */
                  var expected = r.array("  aaaa ", "", "  cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split('bb')
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('bb') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb") ,
                                             new OptArgs()
                     );
@@ -956,10 +956,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #67
-                 //ExpectedOriginal: (['  aaaa', 'cccc '])
+                 /* ExpectedOriginal: (['  aaaa', 'cccc ']) */
                  var expected = r.array("  aaaa", "cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ')
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ") ,
                                             new OptArgs()
                     );
@@ -970,10 +970,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #68
-                 //ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f']) */
                  var expected = r.array("  aaaa ", "", "  cccc b d ", " e ", "", " f");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb')
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb") ,
                                             new OptArgs()
                     );
@@ -984,10 +984,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #69
-                 //ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f'])
+                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f']) */
                  var expected = r.array("  aaaa", "cccc b d bb e bbbb f");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ')
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ") ,
                                             new OptArgs()
                     );
@@ -998,10 +998,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #70
-                 //ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f'])
+                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f']) */
                  var expected = r.array("  aaaa", "cccc b d bb e", "f");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ')
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ") ,
                                             new OptArgs()
                     );
@@ -1012,11 +1012,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #71
-                 //ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc']) */
                  var expected = r.array("aaaa", "bbbb", "cccc");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split(null, 3)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(null, 3.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(null, 3) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 3) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1026,11 +1026,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #72
-                 //ExpectedOriginal: (['', '', 'aaaa', 'bbbb', '', 'cccc '])
+                 /* ExpectedOriginal: (['', '', 'aaaa', 'bbbb', '', 'cccc ']) */
                  var expected = r.array("", "", "aaaa", "bbbb", "", "cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split(' ', 5)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 5.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' ', 5) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1040,11 +1040,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #73
-                 //ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc '])
+                 /* ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc ']) */
                  var expected = r.array("  aaaa ", "", "", "", "  cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split('b', 5)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 5.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('b', 5) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1054,11 +1054,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #74
-                 //ExpectedOriginal: (['  aaaa ', '', '  cccc '])
+                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc ']) */
                  var expected = r.array("  aaaa ", "", "  cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split('bb', 3)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 3.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('bb', 3) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 3) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1068,11 +1068,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #75
-                 //ExpectedOriginal: (['  aaaa', 'cccc '])
+                 /* ExpectedOriginal: (['  aaaa', 'cccc ']) */
                  var expected = r.array("  aaaa", "cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1082,11 +1082,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #76
-                 //ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f']) */
                  var expected = r.array("  aaaa ", "", "  cccc b d ", " e ", "", " f");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1096,11 +1096,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #77
-                 //ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f'])
+                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f']) */
                  var expected = r.array("  aaaa", "cccc b d bb e bbbb f");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1110,11 +1110,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #78
-                 //ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f'])
+                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f']) */
                  var expected = r.array("  aaaa", "cccc b d bb e", "f");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1124,11 +1124,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #79
-                 //ExpectedOriginal: (['aaaa', 'bbbb', 'cccc '])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc ']) */
                  var expected = r.array("aaaa", "bbbb", "cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split(null, 2)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(null, 2.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(null, 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1138,11 +1138,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #80
-                 //ExpectedOriginal: (["a", "b"])
+                 /* ExpectedOriginal: (["a", "b"]) */
                  var expected = r.array("a", "b");
                  
-                 //Original: r.expr("a  b  ").split(null, 2)
-                 var obtained = runOrCatch( r.expr("a  b  ").split(null, 2.0) ,
+                 /* Original: r.expr("a  b  ").split(null, 2) */
+                 var obtained = runOrCatch( r.expr("a  b  ").split((ReqlExpr) null, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1152,11 +1152,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #81
-                 //ExpectedOriginal: (['', '', 'aaaa', 'bbbb', ' cccc '])
+                 /* ExpectedOriginal: (['', '', 'aaaa', 'bbbb', ' cccc ']) */
                  var expected = r.array("", "", "aaaa", "bbbb", " cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split(' ', 4)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 4.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' ', 4) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 4) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1166,11 +1166,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #82
-                 //ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc '])
+                 /* ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc ']) */
                  var expected = r.array("  aaaa ", "", "", "", "  cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split('b', 4)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 4.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('b', 4) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 4) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1180,11 +1180,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #83
-                 //ExpectedOriginal: (['  aaaa ', '', '  cccc '])
+                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc ']) */
                  var expected = r.array("  aaaa ", "", "  cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 2.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1194,11 +1194,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #84
-                 //ExpectedOriginal: (['  aaaa', 'cccc '])
+                 /* ExpectedOriginal: (['  aaaa', 'cccc ']) */
                  var expected = r.array("  aaaa", "cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 1)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 1.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 1) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1208,11 +1208,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #85
-                 //ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
+                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f']) */
                  var expected = r.array("  aaaa ", "", "  cccc b d ", " e ", "", " f");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1222,11 +1222,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #86
-                 //ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f'])
+                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f']) */
                  var expected = r.array("  aaaa", "cccc b d bb e bbbb f");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1236,11 +1236,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #87
-                 //ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f'])
+                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f']) */
                  var expected = r.array("  aaaa", "cccc b d bb e", "f");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1250,11 +1250,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #88
-                 //ExpectedOriginal: (['aaaa', 'bbbb  cccc '])
+                 /* ExpectedOriginal: (['aaaa', 'bbbb  cccc ']) */
                  var expected = r.array("aaaa", "bbbb  cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split(null, 1)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(null, 1.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(null, 1) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1264,11 +1264,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #89
-                 //ExpectedOriginal: (['', '', 'aaaa bbbb  cccc '])
+                 /* ExpectedOriginal: (['', '', 'aaaa bbbb  cccc ']) */
                  var expected = r.array("", "", "aaaa bbbb  cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split(' ', 2)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 2.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1278,11 +1278,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #90
-                 //ExpectedOriginal: (['  aaaa ', '', 'bb  cccc '])
+                 /* ExpectedOriginal: (['  aaaa ', '', 'bb  cccc ']) */
                  var expected = r.array("  aaaa ", "", "bb  cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split('b', 2)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 2.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('b', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1292,11 +1292,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #91
-                 //ExpectedOriginal: (['  aaaa ', '', '  cccc '])
+                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc ']) */
                  var expected = r.array("  aaaa ", "", "  cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 2.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1306,11 +1306,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #92
-                 //ExpectedOriginal: (['  aaaa', 'cccc '])
+                 /* ExpectedOriginal: (['  aaaa', 'cccc ']) */
                  var expected = r.array("  aaaa", "cccc ");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1320,11 +1320,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #93
-                 //ExpectedOriginal: (['  aaaa ', '', '  cccc b d bb e bbbb f'])
+                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc b d bb e bbbb f']) */
                  var expected = r.array("  aaaa ", "", "  cccc b d bb e bbbb f");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1334,11 +1334,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #94
-                 //ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f'])
+                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f']) */
                  var expected = r.array("  aaaa", "cccc b d bb e bbbb f");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1348,11 +1348,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #95
-                 //ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f'])
+                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f']) */
                  var expected = r.array("  aaaa", "cccc b d bb e", "f");
                  
-                 //Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2)
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2.0) ,
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1362,10 +1362,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #96
-                 //ExpectedOriginal: ("ABC-DEF-GHJ")
+                 /* ExpectedOriginal: ("ABC-DEF-GHJ") */
                  var expected = "ABC-DEF-GHJ";
                  
-                 //Original: r.expr("abc-dEf-GHJ").upcase()
+                 /* Original: r.expr("abc-dEf-GHJ").upcase() */
                  var obtained = runOrCatch( r.expr("abc-dEf-GHJ").upcase() ,
                                             new OptArgs()
                     );
@@ -1376,10 +1376,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #97
-                 //ExpectedOriginal: ("abc-def-ghj")
+                 /* ExpectedOriginal: ("abc-def-ghj") */
                  var expected = "abc-def-ghj";
                  
-                 //Original: r.expr("abc-dEf-GHJ").downcase()
+                 /* Original: r.expr("abc-dEf-GHJ").downcase() */
                  var obtained = runOrCatch( r.expr("abc-dEf-GHJ").downcase() ,
                                             new OptArgs()
                     );
@@ -1390,10 +1390,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #98
-                 //ExpectedOriginal: (["f", "\u00e9", "o", "o"])
+                 /* ExpectedOriginal: (["f", "\u00e9", "o", "o"]) */
                  var expected = r.array("f", "\u00e9", "o", "o");
                  
-                 //Original: r.expr(u"f\u00e9oo").split("")
+                 /* Original: r.expr(u"f\u00e9oo").split("") */
                  var obtained = runOrCatch( r.expr("f\u00e9oo").split("") ,
                                             new OptArgs()
                     );
@@ -1404,10 +1404,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #99
-                 //ExpectedOriginal: (["f", "e\u0301", "o", "o"])
+                 /* ExpectedOriginal: (["f", "e\u0301", "o", "o"]) */
                  var expected = r.array("f", "e\u0301", "o", "o");
                  
-                 //Original: r.expr(u"fe\u0301oo").split("")
+                 /* Original: r.expr(u"fe\u0301oo").split("") */
                  var obtained = runOrCatch( r.expr("fe\u0301oo").split("") ,
                                             new OptArgs()
                     );
@@ -1418,11 +1418,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #100
-                 //ExpectedOriginal: (["foo", "bar", "baz", "quux", "fred", "barney", "wilma"])
+                 /* ExpectedOriginal: (["foo", "bar", "baz", "quux", "fred", "barney", "wilma"]) */
                  var expected = r.array("foo", "bar", "baz", "quux", "fred", "barney", "wilma");
                  
-                 //Original: r.expr(u"foo bar\tbaz\nquux\rfred\u000bbarney\u000cwilma").split()
-                 var obtained = runOrCatch( r.expr("foo bar\tbaz\nquux\rfred\vbarney\fwilma").split() ,
+                 /* Original: r.expr(u"foo bar\tbaz\nquux\rfred\u000bbarney\u000cwilma").split() */
+                 var obtained = runOrCatch( r.expr("foo bar\tbaz\nquux\rfred\u000bbarney\u000cwilma").split() ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1432,10 +1432,10 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/string.yaml, #101
-                 //ExpectedOriginal: (["foo", "bar", "baz\u2060quux", "fred", "barney", "wilma", "betty\u200b"])
+                 /* ExpectedOriginal: (["foo", "bar", "baz\u2060quux", "fred", "barney", "wilma", "betty\u200b"]) */
                  var expected = r.array("foo", "bar", "baz\u2060quux", "fred", "barney", "wilma", "betty\u200b");
                  
-                 //Original: r.expr(u"foo\u00a0bar\u2001baz\u2060quux\u2028fred\u2028barney\u2029wilma\u0085betty\u200b").split()
+                 /* Original: r.expr(u"foo\u00a0bar\u2001baz\u2060quux\u2028fred\u2028barney\u2029wilma\u0085betty\u200b").split() */
                  var obtained = runOrCatch( r.expr("foo\u00a0bar\u2001baz\u2060quux\u2028fred\u2028barney\u2029wilma\u0085betty\u200b").split() ,
                                             new OptArgs()
                     );

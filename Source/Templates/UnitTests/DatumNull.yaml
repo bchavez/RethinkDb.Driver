@@ -4,7 +4,7 @@ DefsAndTests:
   TestFile: datum/null.yaml
   TestNum: 1
   Original: r.expr(null)
-  Java: r.expr(null)
+  Java: r.expr((ReqlExpr) null)
   ExpectedOriginal: (null)
   ExpectedType: Object
   ExpectedJava: null
@@ -13,7 +13,7 @@ DefsAndTests:
   TestFile: datum/null.yaml
   TestNum: 2
   Original: r.expr(null).type_of()
-  Java: r.expr(null).typeOf()
+  Java: r.expr((ReqlExpr) null).typeOf()
   ExpectedOriginal: 'NULL'
   ExpectedType: String
   ExpectedJava: '"NULL"'
@@ -22,7 +22,7 @@ DefsAndTests:
   TestFile: datum/null.yaml
   TestNum: 3
   Original: r.expr(null).coerce_to('string')
-  Java: r.expr(null).coerceTo("string")
+  Java: r.expr((ReqlExpr) null).coerceTo("string")
   ExpectedOriginal: 'null'
   ExpectedType: String
   ExpectedJava: '"null"'
@@ -31,7 +31,7 @@ DefsAndTests:
   TestFile: datum/null.yaml
   TestNum: 4
   Original: r.expr(null).coerce_to('null')
-  Java: r.expr(null).coerceTo("null")
+  Java: r.expr((ReqlExpr) null).coerceTo("null")
   ExpectedOriginal: (null)
   ExpectedType: Object
   ExpectedJava: null

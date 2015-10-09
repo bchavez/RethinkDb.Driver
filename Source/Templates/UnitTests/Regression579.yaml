@@ -24,7 +24,7 @@ DefsAndTests:
   TestFile: regression/579.yaml
   TestNum: 3
   Original: tbl.index_create("579", lambda rec:tbl.get(0))
-  Java: tbl.indexCreate("579", rec -> tbl.get(0.0))
+  Java: tbl.indexCreate("579", rec -> tbl.get(0))
   ExpectedOriginal: err("ReqlQueryLogicError", "Could not prove function deterministic.  Index functions must be deterministic.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Could not prove function deterministic.  Index functions must be deterministic.", r.array())

@@ -7,7 +7,7 @@ DefsAndTests:
   Java: r.tableCreate("46")
   ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_created", 1.0))
+  ExpectedJava: partial(r.hashMap("tables_created", 1))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/46.yaml
@@ -25,5 +25,5 @@ DefsAndTests:
   Java: r.tableDrop("46")
   ExpectedOriginal: partial({'tables_dropped':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_dropped", 1.0))
+  ExpectedJava: partial(r.hashMap("tables_dropped", 1))
   RunOpts: []

@@ -6,30 +6,30 @@ DefsAndTests:
   TestFile: regression/2838.yaml
   TestNum: 1
   Original: tbl.insert([{'result':i} for i in range(1,100)]).pluck('first_error', 'inserted')
-  Java: tbl.insert(IntStream.range(1.0, 100.0).boxed().map(i -> r.hashMap("result", i)).collect(Collectors.toList())).pluck("first_error", "inserted")
+  Java: tbl.insert(IntStream.range(1, 100).boxed().map(i -> r.hashMap("result", i)).collect(Collectors.toList())).pluck("first_error", "inserted")
   ExpectedOriginal: ({'inserted':99})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("inserted", 99.0)
+  ExpectedJava: r.hashMap("inserted", 99)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2838.yaml
   TestNum: 2
   Original: tbl.update({'foo':'bar'}, return_changes=True)['changes'].count()
-  Java: tbl.update(r.hashMap("foo", "bar")).optArg("return_changes", true).bracket("changes").count()
+  Java: tbl.update(r.hashMap("foo", "bar")).optArg("return_changes", true).g("changes").count()
   ExpectedOriginal: (40)
-  ExpectedType: Double
-  ExpectedJava: 40.0
+  ExpectedType: Long
+  ExpectedJava: 40
   RunOpts:
   - Key: array_limit
-    Val: 40.0
+    Val: 40
 - TestType: JavaQuery
   TestFile: regression/2838.yaml
   TestNum: 3
   Original: tbl.update({'foo':'quux'}, return_changes=True)['warnings']
-  Java: tbl.update(r.hashMap("foo", "quux")).optArg("return_changes", true).bracket("warnings")
+  Java: tbl.update(r.hashMap("foo", "quux")).optArg("return_changes", true).g("warnings")
   ExpectedOriginal: (['Too many changes, array truncated to 40.'])
   ExpectedType: List
   ExpectedJava: r.array("Too many changes, array truncated to 40.")
   RunOpts:
   - Key: array_limit
-    Val: 40.0
+    Val: 40

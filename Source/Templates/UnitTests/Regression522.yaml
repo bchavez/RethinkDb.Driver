@@ -6,7 +6,7 @@ DefsAndTests:
   TestFile: regression/522.yaml
   TestNum: 1
   Original: tbl.insert([{'id':0}, {'id':1}, {'id':2}])
-  Java: tbl.insert(r.array(r.hashMap("id", 0.0), r.hashMap("id", 1.0), r.hashMap("id", 2.0)))
+  Java: tbl.insert(r.array(r.hashMap("id", 0), r.hashMap("id", 1), r.hashMap("id", 2)))
   ExpectedOriginal: None
   ExpectedType: Object
   ExpectedJava: null
@@ -15,8 +15,8 @@ DefsAndTests:
   TestFile: regression/522.yaml
   TestNum: 2
   Original: tbl.order_by('id').skip(1)
-  Java: tbl.orderBy("id").skip(1.0)
+  Java: tbl.orderBy("id").skip(1)
   ExpectedOriginal: '[{''id'': 1}, {''id'': 2}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("id", 1.0), r.hashMap("id", 2.0))
+  ExpectedJava: r.array(r.hashMap("id", 1), r.hashMap("id", 2))
   RunOpts: []

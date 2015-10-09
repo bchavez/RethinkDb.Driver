@@ -17,7 +17,10 @@
     <releaseNotes>
       History
       v0.0.4-alpha8
-      * 
+      * AST Update
+      * More signatures for table.indexCreate
+      * Allow JavaScript in places for ReqlFunction1.
+      * r.desc and r.desc can accept functions
       
       v0.0.4-alpha7
       * Ensure latest Common.Logging is used.

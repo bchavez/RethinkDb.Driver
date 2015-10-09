@@ -28,5 +28,5 @@ namespace RethinkDb.Driver.Ast {
     }
     public delegate object @(funcName) ( @string.Join(", ", param) );
     //marker interface for marking some terms (like javascript) as lambdas.
-    public interface @("I"+funcName+"Expr") : ReqlLambda { }
+    //public interface @("I"+funcName+"Expr") : ReqlLambda { }
 }

@@ -107,12 +107,12 @@ WriteLiteral(" ( ");
             #line default
             #line hidden
 WriteLiteral(" );\r\n    //marker interface for marking some terms (like javascript) as lambdas.\r" +
-"\n    public interface ");
+"\n    //public interface ");
 
 
             
             #line 31 "..\..\CodeGen\ReqlFunctionTemplate.cshtml"
-                 Write("I"+funcName+"Expr");
+                   Write("I"+funcName+"Expr");
 
             
             #line default

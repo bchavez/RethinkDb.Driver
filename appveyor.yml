@@ -18,6 +18,7 @@ test: off
 after_build:
     - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver.dll
     - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver.xml
+    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver.pdb
     - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\Newtonsoft.Json.*
     - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\Common.Logging.*
 

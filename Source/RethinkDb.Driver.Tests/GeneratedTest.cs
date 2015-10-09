@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using FluentAssertions;
 using FluentAssertions.Common;
 using NUnit.Framework;
@@ -93,6 +94,9 @@ namespace RethinkDb.Driver.Tests
 
         protected object runOrCatch(object query, OptArgs runopts)
         {
+            if( query == null )
+                return null;
+
             try
             {
                 return ((ReqlAst)query).run(conn, runopts);
@@ -101,6 +105,12 @@ namespace RethinkDb.Driver.Tests
             {
                 return e;
             }
+        }
+
+        protected object wait_(int length)
+        {
+            Thread.Sleep(length * 1000);
+            return null;
         }
 
         public int len(IList array)

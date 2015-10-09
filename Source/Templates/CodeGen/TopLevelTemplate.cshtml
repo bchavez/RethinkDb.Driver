@@ -70,37 +70,40 @@ namespace RethinkDb.Driver.Ast {
             {
                 foreach( var methodname in term["methodnames"].ToObject<string[]>() )
                 {
-                    foreach( var signature in term["signatures"].ToObject<Signature[]>() )
+                    foreach( var sig in term["signatures"].ToObject<Signature[]>() )
                     {
-                        var parameters = signature.Args.Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
-
-                        @RenderMethodXmlDoc(termInfo.Key)
-                        @:public @Class(term["classname"].ToString()) @Method(methodname) ( @string.Join(", ", parameters.ToArray()) )
-                        @:{
-
-                        if( methodname == "binary" )
+                        if( sig.FirstArg != "Db" )
                         {
-                            var firstArg = signature.Args[0].Var;
-                            @:var byteArray = @firstArg as byte[];
-                            @:if( @firstArg != null ){
-                            @:return new Binary(byteArray);
-                            @:}
-                        }
-                        @:Arguments arguments = new Arguments();
-                        foreach( var param in signature.Args )
-                        {
-                            if( param.Type == "Object..." )
+                            var parameters = sig.Args.Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
+
+                            @RenderMethodXmlDoc(termInfo.Key)
+                            @:public @Class(term["classname"].ToString()) @Method(methodname) ( @string.Join(", ", parameters.ToArray()) )
+                            @:{
+
+                            if (methodname == "binary")
                             {
+                                var firstArg = sig.Args[0].Var;
+                                @:   var byteArray = @firstArg as byte[];
+                                @:   if( @firstArg != null ){
+                                @:     return new Binary(byteArray);
+                                @:   }
+                            }
+                            @:    Arguments arguments = new Arguments();
+                            foreach( var param in sig.Args )
+                            {
+                                if( param.Type == "Object..." )
+                                {
                                 @:arguments.CoerceAndAddAll(@ArgumentVariable(param.Var));
-                            }
-                            else
-                            {
+                                }
+                                else
+                                {
                                 @:arguments.CoerceAndAdd(@ArgumentVariable(param.Var));
+                                }
                             }
-                        }
-                        @:return new @Class(term["classname"].ToString()) (arguments);
-                        @:}
+                            @:    return new @Class(term["classname"].ToString()) (arguments);
+                            @:}
 
+                        }
                     }
                 }
             }

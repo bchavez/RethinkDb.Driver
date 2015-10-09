@@ -43,12 +43,12 @@ namespace RethinkDb.Driver.Ast {
             return values.ToList();
         }
 
-                        public Javascript js ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Javascript js ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Javascript (arguments);
-                        }
+                                return new Javascript (arguments);
+                            }
 /// <summary>
 /// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID.</para>
 ///</summary>
@@ -57,23 +57,23 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback
 /// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
 /// </code></example>
-                        public Uuid uuid (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Uuid (arguments);
-                        }
+                            public Uuid uuid (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Uuid (arguments);
+                            }
 /// <summary>
 /// <para>Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.</para>
 ///</summary>
 /// <example><para>Example: Perform a simple HTTP <code>GET</code> request, and store the result in a table.</para>
 /// <code>r.table('posts').insert(r.http('http://httpbin.org/get')).run(conn, callback)
 /// </code></example>
-                        public Http http ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Http http ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Http (arguments);
-                        }
+                                return new Http (arguments);
+                            }
 /// <summary>
 /// <para>Throw a runtime error. If called with no arguments inside the second argument to <code>default</code>, re-throw the current error.</para>
 ///</summary>
@@ -84,11 +84,11 @@ namespace RethinkDb.Driver.Ast {
 ///         ironman)
 /// }).run(conn, callback)
 /// </code></example>
-                        public Error error (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Error (arguments);
-                        }
+                            public Error error (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Error (arguments);
+                            }
 /// <summary>
 /// <para>Throw a runtime error. If called with no arguments inside the second argument to <code>default</code>, re-throw the current error.</para>
 ///</summary>
@@ -99,24 +99,24 @@ namespace RethinkDb.Driver.Ast {
 ///         ironman)
 /// }).run(conn, callback)
 /// </code></example>
-                        public Error error ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Error error ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Error (arguments);
-                        }
+                                return new Error (arguments);
+                            }
 /// <summary>
 /// <para>Reference a database.</para>
 ///</summary>
 /// <example><para>Example: Explicitly specify a database for a query.</para>
 /// <code>r.db('heroes').table('marvel').run(conn, callback)
 /// </code></example>
-                        public Db db ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Db db ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Db (arguments);
-                        }
+                                return new Db (arguments);
+                            }
 /// <summary>
 /// <para>Select all documents in a table. This command can be chained with other commands to do
 /// further processing on the data.</para>
@@ -124,110 +124,96 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
 /// </code></example>
-                        public Table table ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Table table ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Table (arguments);
-                        }
-/// <summary>
-/// <para>Select all documents in a table. This command can be chained with other commands to do
-/// further processing on the data.</para>
-///</summary>
-/// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
-/// <code>r.table('marvel').run(conn, callback)
-/// </code></example>
-                        public Table table ( Db db, Object expr )
-                        {
-                        Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(db);
-                                arguments.CoerceAndAdd(expr);
-                        return new Table (arguments);
-                        }
+                                return new Table (arguments);
+                            }
 /// <summary>
 /// <para>Test if two values are equal.</para>
 ///</summary>
 /// <example><para>Example: Does 2 equal 2?</para>
 /// <code>r.expr(2).eq(2).run(conn, callback)
 /// </code></example>
-                        public Eq eq ( Object expr, Object exprA, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Eq eq ( Object expr, Object exprA, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Eq (arguments);
-                        }
+                                return new Eq (arguments);
+                            }
 /// <summary>
 /// <para>Test if two values are not equal.</para>
 ///</summary>
 /// <example><para>Example: Does 2 not equal 2?</para>
 /// <code>r.expr(2).ne(2).run(conn, callback)
 /// </code></example>
-                        public Ne ne ( Object expr, Object exprA, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Ne ne ( Object expr, Object exprA, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Ne (arguments);
-                        }
+                                return new Ne (arguments);
+                            }
 /// <summary>
 /// <para>Test if the first value is less than other.</para>
 ///</summary>
 /// <example><para>Example: Is 2 less than 2?</para>
 /// <code>r.expr(2).lt(2).run(conn, callback)
 /// </code></example>
-                        public Lt lt ( Object expr, Object exprA, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Lt lt ( Object expr, Object exprA, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Lt (arguments);
-                        }
+                                return new Lt (arguments);
+                            }
 /// <summary>
 /// <para>Test if the first value is less than or equal to other.</para>
 ///</summary>
 /// <example><para>Example: Is 2 less than or equal to 2?</para>
 /// <code>r.expr(2).le(2).run(conn, callback)
 /// </code></example>
-                        public Le le ( Object expr, Object exprA, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Le le ( Object expr, Object exprA, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Le (arguments);
-                        }
+                                return new Le (arguments);
+                            }
 /// <summary>
 /// <para>Test if the first value is greater than other.</para>
 ///</summary>
 /// <example><para>Example: Is 2 greater than 2?</para>
 /// <code>r.expr(2).gt(2).run(conn, callback)
 /// </code></example>
-                        public Gt gt ( Object expr, Object exprA, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Gt gt ( Object expr, Object exprA, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Gt (arguments);
-                        }
+                                return new Gt (arguments);
+                            }
 /// <summary>
 /// <para>Test if the first value is greater than or equal to other.</para>
 ///</summary>
 /// <example><para>Example: Is 2 greater than or equal to 2?</para>
 /// <code>r.expr(2).ge(2).run(conn, callback)
 /// </code></example>
-                        public Ge ge ( Object expr, Object exprA, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Ge ge ( Object expr, Object exprA, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Ge (arguments);
-                        }
+                                return new Ge (arguments);
+                            }
 /// <summary>
 /// <para>Compute the logical inverse (not) of an expression.</para>
 /// <para><code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.</para>
@@ -236,77 +222,77 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
 /// </code></example>
-                        public Not not ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Not not ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Not (arguments);
-                        }
+                                return new Not (arguments);
+                            }
 /// <summary>
 /// <para>Sum two numbers, concatenate two strings, or concatenate 2 arrays.</para>
 ///</summary>
 /// <example><para>Example: It's as easy as 2 + 2 = 4.</para>
 /// <code>r.expr(2).add(2).run(conn, callback)
 /// </code></example>
-                        public Add add ( Object expr, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Add add ( Object expr, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Add (arguments);
-                        }
+                                return new Add (arguments);
+                            }
 /// <summary>
 /// <para>Subtract two numbers.</para>
 ///</summary>
 /// <example><para>Example: It's as easy as 2 - 2 = 0.</para>
 /// <code>r.expr(2).sub(2).run(conn, callback)
 /// </code></example>
-                        public Sub sub ( Object expr, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Sub sub ( Object expr, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Sub (arguments);
-                        }
+                                return new Sub (arguments);
+                            }
 /// <summary>
 /// <para>Multiply two numbers, or make a periodic array.</para>
 ///</summary>
 /// <example><para>Example: It's as easy as 2 * 2 = 4.</para>
 /// <code>r.expr(2).mul(2).run(conn, callback)
 /// </code></example>
-                        public Mul mul ( Object expr, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Mul mul ( Object expr, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Mul (arguments);
-                        }
+                                return new Mul (arguments);
+                            }
 /// <summary>
 /// <para>Divide two numbers.</para>
 ///</summary>
 /// <example><para>Example: It's as easy as 2 / 2 = 1.</para>
 /// <code>r.expr(2).div(2).run(conn, callback)
 /// </code></example>
-                        public Div div ( Object expr, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Div div ( Object expr, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Div (arguments);
-                        }
+                                return new Div (arguments);
+                            }
 /// <summary>
 /// <para>Find the remainder when dividing two numbers.</para>
 ///</summary>
 /// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)
 /// </code></example>
-                        public Mod mod ( Object expr, Object exprA )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Mod mod ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Mod (arguments);
-                        }
+                                return new Mod (arguments);
+                            }
 /// <summary>
 /// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
 ///</summary>
@@ -315,12 +301,12 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 12.0
 /// </code></example>
-                        public Floor floor ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Floor floor ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Floor (arguments);
-                        }
+                                return new Floor (arguments);
+                            }
 /// <summary>
 /// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
 ///</summary>
@@ -329,12 +315,12 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 13.0
 /// </code></example>
-                        public Ceil ceil ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Ceil ceil ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Ceil (arguments);
-                        }
+                                return new Ceil (arguments);
+                            }
 /// <summary>
 /// <para>Rounds the given value to the nearest whole integer.</para>
 ///</summary>
@@ -343,12 +329,12 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 12.0
 /// </code></example>
-                        public Round round ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Round round ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Round (arguments);
-                        }
+                                return new Round (arguments);
+                            }
 /// <summary>
 /// <para>Creates an object from a list of key-value pairs, where the keys must
 /// be strings.  <code>r.object(A, B, C, D)</code> is equivalent to
@@ -357,12 +343,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a simple object.</para>
 /// <code>r.object('id', 5, 'data', ['foo', 'bar']).run(conn, callback)
 /// </code></example>
-                        public ReqlObject object_ ( params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public ReqlObject object_ ( params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAddAll(exprs);
-                        return new ReqlObject (arguments);
-                        }
+                                return new ReqlObject (arguments);
+                            }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 ///</summary>
@@ -373,13 +359,13 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                        public Map map ( Object expr, ReqlFunction0 func0 )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Map map ( Object expr, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func0);
-                        return new Map (arguments);
-                        }
+                                arguments.CoerceAndAdd(js);
+                                return new Map (arguments);
+                            }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 ///</summary>
@@ -390,31 +376,14 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                        public Map map ( Object expr, ReqlFunction1 func1 )
-                        {
-                        Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func1);
-                        return new Map (arguments);
-                        }
-/// <summary>
-/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
-///</summary>
-/// <example><para>Example: Return the first five squares.</para>
-/// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
-///     return val.mul(val);
-/// }).run(conn, callback);
-/// // Result passed to callback
-/// [1, 4, 9, 16, 25]
-/// </code></example>
-                        public Map map ( Object expr, Object exprA, ReqlFunction2 func2 )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Map map ( Object expr, Object exprA, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(func2);
-                        return new Map (arguments);
-                        }
+                                arguments.CoerceAndAdd(js);
+                                return new Map (arguments);
+                            }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 ///</summary>
@@ -425,15 +394,15 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                        public Map map ( Object expr, Object exprA, Object exprB, ReqlFunction3 func3 )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Map map ( Object expr, Object exprA, Object exprB, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                                arguments.CoerceAndAdd(func3);
-                        return new Map (arguments);
-                        }
+                                arguments.CoerceAndAdd(js);
+                                return new Map (arguments);
+                            }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 ///</summary>
@@ -444,16 +413,36 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                        public Map map ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Map map ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(js);
+                                return new Map (arguments);
+                            }
+/// <summary>
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
+///</summary>
+/// <example><para>Example: Return the first five squares.</para>
+/// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
+///     return val.mul(val);
+/// }).run(conn, callback);
+/// // Result passed to callback
+/// [1, 4, 9, 16, 25]
+/// </code></example>
+                            public Map map ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(func4);
-                        return new Map (arguments);
-                        }
+                                return new Map (arguments);
+                            }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 ///</summary>
@@ -464,26 +453,80 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                        public Map map ( Object expr, IReqlFunction1Expr func1 )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Map map ( Object expr, Object exprA, Object exprB, ReqlFunction3 func3 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func3);
+                                return new Map (arguments);
+                            }
+/// <summary>
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
+///</summary>
+/// <example><para>Example: Return the first five squares.</para>
+/// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
+///     return val.mul(val);
+/// }).run(conn, callback);
+/// // Result passed to callback
+/// [1, 4, 9, 16, 25]
+/// </code></example>
+                            public Map map ( Object expr, Object exprA, ReqlFunction2 func2 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func2);
+                                return new Map (arguments);
+                            }
+/// <summary>
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
+///</summary>
+/// <example><para>Example: Return the first five squares.</para>
+/// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
+///     return val.mul(val);
+/// }).run(conn, callback);
+/// // Result passed to callback
+/// [1, 4, 9, 16, 25]
+/// </code></example>
+                            public Map map ( Object expr, ReqlFunction0 func0 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func0);
+                                return new Map (arguments);
+                            }
+/// <summary>
+/// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
+///</summary>
+/// <example><para>Example: Return the first five squares.</para>
+/// <code>r.expr([1, 2, 3, 4, 5]).map(function (val) {
+///     return val.mul(val);
+/// }).run(conn, callback);
+/// // Result passed to callback
+/// [1, 4, 9, 16, 25]
+/// </code></example>
+                            public Map map ( Object expr, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(func1);
-                        return new Map (arguments);
-                        }
+                                return new Map (arguments);
+                            }
 /// <summary>
 /// <para>Concatenate two or more sequences.</para>
 ///</summary>
 /// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
 /// </code></example>
-                        public Union union ( Object expr, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Union union ( Object expr, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Union (arguments);
-                        }
+                                return new Union (arguments);
+                            }
 /// <summary>
 /// <para>Generate a stream of sequential integers in a specified range.</para>
 ///</summary>
@@ -492,11 +535,11 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// [0, 1, 2, 3]
 /// </code></example>
-                        public Range range (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Range (arguments);
-                        }
+                            public Range range (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Range (arguments);
+                            }
 /// <summary>
 /// <para>Generate a stream of sequential integers in a specified range.</para>
 ///</summary>
@@ -505,12 +548,12 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// [0, 1, 2, 3]
 /// </code></example>
-                        public Range range ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Range range ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Range (arguments);
-                        }
+                                return new Range (arguments);
+                            }
 /// <summary>
 /// <para>Generate a stream of sequential integers in a specified range.</para>
 ///</summary>
@@ -519,25 +562,25 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// [0, 1, 2, 3]
 /// </code></example>
-                        public Range range ( Object expr, Object exprA )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Range range ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Range (arguments);
-                        }
+                                return new Range (arguments);
+                            }
 /// <summary>
 /// <para>Gets the type of a value.</para>
 ///</summary>
 /// <example><para>Example: Get the type of a string.</para>
 /// <code>r.expr("foo").typeOf().run(conn, callback)
 /// </code></example>
-                        public TypeOf typeOf ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public TypeOf typeOf ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new TypeOf (arguments);
-                        }
+                                return new TypeOf (arguments);
+                            }
 /// <summary>
 /// <para>Create a database. A RethinkDB database is a collection of tables, similar to
 /// relational databases.</para>
@@ -548,12 +591,12 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a database named 'superheroes'.</para>
 /// <code>r.dbCreate('superheroes').run(conn, callback)
 /// </code></example>
-                        public DbCreate dbCreate ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public DbCreate dbCreate ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new DbCreate (arguments);
-                        }
+                                return new DbCreate (arguments);
+                            }
 /// <summary>
 /// <para>Drop a database. The database, all its tables, and corresponding data will be deleted.</para>
 /// <para>If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
@@ -562,222 +605,194 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Drop a database named 'superheroes'.</para>
 /// <code>r.dbDrop('superheroes').run(conn, callback)
 /// </code></example>
-                        public DbDrop dbDrop ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public DbDrop dbDrop ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new DbDrop (arguments);
-                        }
+                                return new DbDrop (arguments);
+                            }
 /// <summary>
 /// <para>List all database names in the system. The result is a list of strings.</para>
 ///</summary>
 /// <example><para>Example: List all databases.</para>
 /// <code>r.dbList().run(conn, callback)
 /// </code></example>
-                        public DbList dbList (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new DbList (arguments);
-                        }
+                            public DbList dbList (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new DbList (arguments);
+                            }
 /// <summary>
 /// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
 ///</summary>
 /// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
 /// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
 /// </code></example>
-                        public TableCreate tableCreate ( Db db, Object expr )
-                        {
-                        Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(db);
+                            public TableCreate tableCreate ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new TableCreate (arguments);
-                        }
+                                return new TableCreate (arguments);
+                            }
 /// <summary>
 /// <para>Drop a table. The table and all its data will be deleted.</para>
 ///</summary>
 /// <example><para>Example: Drop a table named 'dc_universe'.</para>
 /// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
 /// </code></example>
-                        public TableDrop tableDrop ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public TableDrop tableDrop ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new TableDrop (arguments);
-                        }
-/// <summary>
-/// <para>Drop a table. The table and all its data will be deleted.</para>
-///</summary>
-/// <example><para>Example: Drop a table named 'dc_universe'.</para>
-/// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
-/// </code></example>
-                        public TableDrop tableDrop ( Db db, Object expr )
-                        {
-                        Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(db);
-                                arguments.CoerceAndAdd(expr);
-                        return new TableDrop (arguments);
-                        }
+                                return new TableDrop (arguments);
+                            }
 /// <summary>
 /// <para>List all table names in a database. The result is a list of strings.</para>
 ///</summary>
 /// <example><para>Example: List all tables of the 'test' database.</para>
 /// <code>r.db('test').tableList().run(conn, callback)
 /// </code></example>
-                        public TableList tableList ( Db db )
-                        {
-                        Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(db);
-                        return new TableList (arguments);
-                        }
+                            public TableList tableList (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new TableList (arguments);
+                            }
 /// <summary>
 /// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
 ///</summary>
 /// <example><para>Example: Wait for a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
 /// </code></example>
-                        public Wait wait_ (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Wait (arguments);
-                        }
+                            public Wait wait_ (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Wait (arguments);
+                            }
 /// <summary>
 /// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
 ///</summary>
 /// <example><para>Example: Wait for a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
 /// </code></example>
-                        public Wait wait_ ( Table table )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Wait wait_ ( Table table )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(table);
-                        return new Wait (arguments);
-                        }
-/// <summary>
-/// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
-///</summary>
-/// <example><para>Example: Wait for a table to be ready.</para>
-/// <code>&gt; r.table('superheroes').wait().run(conn, callback);
-/// </code></example>
-                        public Wait wait_ ( Db db )
-                        {
-                        Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(db);
-                        return new Wait (arguments);
-                        }
+                                return new Wait (arguments);
+                            }
 /// <summary>
 /// <para>Reconfigure a table's sharding and replication.</para>
 ///</summary>
 /// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
-                        public Reconfigure reconfigure (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Reconfigure (arguments);
-                        }
+                            public Reconfigure reconfigure (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Reconfigure (arguments);
+                            }
 /// <summary>
 /// <para>Reconfigure a table's sharding and replication.</para>
 ///</summary>
 /// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
-                        public Reconfigure reconfigure ( Table table )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Reconfigure reconfigure ( Table table )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(table);
-                        return new Reconfigure (arguments);
-                        }
-/// <summary>
-/// <para>Reconfigure a table's sharding and replication.</para>
-///</summary>
-/// <example><para>Example: Reconfigure a table.</para>
-/// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
-/// </code></example>
-                        public Reconfigure reconfigure ( Db db )
-                        {
-                        Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(db);
-                        return new Reconfigure (arguments);
-                        }
+                                return new Reconfigure (arguments);
+                            }
 /// <summary>
 /// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
 ///</summary>
 /// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
-                        public Rebalance rebalance (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Rebalance (arguments);
-                        }
+                            public Rebalance rebalance (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Rebalance (arguments);
+                            }
 /// <summary>
 /// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
 ///</summary>
 /// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
-                        public Rebalance rebalance ( Db db )
-                        {
-                        Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(db);
-                        return new Rebalance (arguments);
-                        }
-/// <summary>
-/// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
-///</summary>
-/// <example><para>Example: Rebalance a table.</para>
-/// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
-/// </code></example>
-                        public Rebalance rebalance ( Table table )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Rebalance rebalance ( Table table )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(table);
-                        return new Rebalance (arguments);
-                        }
-                        public Funcall do_ ( Object expr, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                                return new Rebalance (arguments);
+                            }
+                            public Funcall do_ ( Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(js);
+                                return new Funcall (arguments);
+                            }
+                            public Funcall do_ ( Object expr, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAddAll(exprs);
-                        return new Funcall (arguments);
-                        }
-                        public Funcall do_ ( ReqlFunction0 func0 )
-                        {
-                        Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(func0);
-                        return new Funcall (arguments);
-                        }
-                        public Funcall do_ ( Object expr, ReqlFunction1 func1 )
-                        {
-                        Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func1);
-                        return new Funcall (arguments);
-                        }
-                        public Funcall do_ ( Object expr, Object exprA, ReqlFunction2 func2 )
-                        {
-                        Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(js);
+                                return new Funcall (arguments);
+                            }
+                            public Funcall do_ ( Object expr, Object exprA, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(func2);
-                        return new Funcall (arguments);
-                        }
-                        public Funcall do_ ( Object expr, Object exprA, Object exprB, ReqlFunction3 func3 )
-                        {
-                        Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(js);
+                                return new Funcall (arguments);
+                            }
+                            public Funcall do_ ( Object expr, Object exprA, Object exprB, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(js);
+                                return new Funcall (arguments);
+                            }
+                            public Funcall do_ ( Object expr, Object exprA, Object exprB, ReqlFunction3 func3 )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func3);
-                        return new Funcall (arguments);
-                        }
-                        public Funcall do_ ( Object expr, IReqlFunction1Expr func1 )
-                        {
-                        Arguments arguments = new Arguments();
+                                return new Funcall (arguments);
+                            }
+                            public Funcall do_ ( Object expr, Object exprA, ReqlFunction2 func2 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func2);
+                                return new Funcall (arguments);
+                            }
+                            public Funcall do_ ( Object expr, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAddAll(exprs);
+                                return new Funcall (arguments);
+                            }
+                            public Funcall do_ ( Object expr, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(func1);
-                        return new Funcall (arguments);
-                        }
+                                return new Funcall (arguments);
+                            }
+                            public Funcall do_ ( ReqlFunction0 func0 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(func0);
+                                return new Funcall (arguments);
+                            }
 /// <summary>
 /// <para>If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
 /// Otherwise, the <code>true_branch</code> will be evaluated.</para>
@@ -793,15 +808,15 @@ namespace RethinkDb.Driver.Ast {
 ///     )
 /// ).run(conn, callback)
 /// </code></example>
-                        public Branch branch ( Object expr, Object exprA, Object exprB, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Branch branch ( Object expr, Object exprA, Object exprB, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Branch (arguments);
-                        }
+                                return new Branch (arguments);
+                            }
 /// <summary>
 /// <para>Compute the logical "or" of two or more values.</para>
 ///</summary>
@@ -811,14 +826,14 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// true
 /// </code></example>
-                        public Or or ( Object expr, Object exprA, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Or or ( Object expr, Object exprA, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Or (arguments);
-                        }
+                                return new Or (arguments);
+                            }
 /// <summary>
 /// <para>Compute the logical "and" of two or more values.</para>
 ///</summary>
@@ -828,73 +843,85 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// false
 /// </code></example>
-                        public And and ( Object expr, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public And and ( Object expr, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new And (arguments);
-                        }
-                        public Asc asc ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                                return new And (arguments);
+                            }
+                            public Asc asc ( Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(js);
+                                return new Asc (arguments);
+                            }
+                            public Asc asc ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Asc (arguments);
-                        }
-                        public Desc desc ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                                return new Asc (arguments);
+                            }
+                            public Asc asc ( ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(func1);
+                                return new Asc (arguments);
+                            }
+                            public Desc desc ( Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(js);
+                                return new Desc (arguments);
+                            }
+                            public Desc desc ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Desc (arguments);
-                        }
+                                return new Desc (arguments);
+                            }
+                            public Desc desc ( ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(func1);
+                                return new Desc (arguments);
+                            }
 /// <summary>
 /// <para>Get information about a ReQL value.</para>
 ///</summary>
 /// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
 /// <code>r.table('marvel').info().run(conn, callback)
 /// </code></example>
-                        public Info info ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Info info ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Info (arguments);
-                        }
-/// <summary>
-/// <para>Get information about a ReQL value.</para>
-///</summary>
-/// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
-/// <code>r.table('marvel').info().run(conn, callback)
-/// </code></example>
-                        public Info info ( Db db )
-                        {
-                        Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(db);
-                        return new Info (arguments);
-                        }
+                                return new Info (arguments);
+                            }
 /// <summary>
 /// <para>Parse a JSON string on the server.</para>
 ///</summary>
 /// <example><para>Example: Send an array to the server.</para>
 /// <code>r.json("[1,2,3]").run(conn, callback)
 /// </code></example>
-                        public Json json ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Json json ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Json (arguments);
-                        }
+                                return new Json (arguments);
+                            }
 /// <summary>
 /// <para>Create a time object based on an ISO 8601 date-time string (e.g. '2013-01-01T01:01:01+00:00'). We support all valid ISO 8601 formats except for week dates. If you pass an ISO 8601 date-time without a time zone, you must specify the time zone with the <code>defaultTimezone</code> argument. Read more about the ISO 8601 format at <a href="http://en.wikipedia.org/wiki/ISO_8601">Wikipedia</a>.</para>
 ///</summary>
 /// <example><para>Example: Update the time of John's birth.</para>
 /// <code>r.table("user").get("John").update({birth: r.ISO8601('1986-11-03T08:30:00-07:00')}).run(conn, callback)
 /// </code></example>
-                        public Iso8601 iso8601 ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Iso8601 iso8601 ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Iso8601 (arguments);
-                        }
+                                return new Iso8601 (arguments);
+                            }
 /// <summary>
 /// <para>Create a time object based on seconds since epoch. The first argument is a double and
 /// will be rounded to three decimal places (millisecond-precision).</para>
@@ -903,12 +930,12 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("user").get("John").update({birthdate: r.epochTime(531360000)})
 ///     .run(conn, callback)
 /// </code></example>
-                        public EpochTime epochTime ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public EpochTime epochTime ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new EpochTime (arguments);
-                        }
+                                return new EpochTime (arguments);
+                            }
 /// <summary>
 /// <para>Return a time object representing the current time in UTC. The command now() is computed once when the server receives the query, so multiple instances of r.now() will always return the same time inside a query.</para>
 ///</summary>
@@ -918,11 +945,11 @@ namespace RethinkDb.Driver.Ast {
 ///     subscription_date: r.now()
 /// }).run(conn, callback)
 /// </code></example>
-                        public Now now (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Now (arguments);
-                        }
+                            public Now now (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Now (arguments);
+                            }
 /// <summary>
 /// <para>Create a time object for a specific time.</para>
 /// <para>A few restrictions exist on the arguments:</para>
@@ -941,15 +968,15 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
 ///     .run(conn, callback)
 /// </code></example>
-                        public Time time ( Object expr, Object exprA, Object exprB, Object exprC )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Time time ( Object expr, Object exprA, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Time (arguments);
-                        }
+                                return new Time (arguments);
+                            }
 /// <summary>
 /// <para>Create a time object for a specific time.</para>
 /// <para>A few restrictions exist on the arguments:</para>
@@ -968,9 +995,9 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
 ///     .run(conn, callback)
 /// </code></example>
-                        public Time time ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD, Object exprE, Object exprF )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Time time ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD, Object exprE, Object exprF )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
@@ -978,162 +1005,162 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprD);
                                 arguments.CoerceAndAdd(exprE);
                                 arguments.CoerceAndAdd(exprF);
-                        return new Time (arguments);
-                        }
-                        public Monday monday (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Monday (arguments);
-                        }
-                        public Tuesday tuesday (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Tuesday (arguments);
-                        }
-                        public Wednesday wednesday (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Wednesday (arguments);
-                        }
-                        public Thursday thursday (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Thursday (arguments);
-                        }
-                        public Friday friday (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Friday (arguments);
-                        }
-                        public Saturday saturday (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Saturday (arguments);
-                        }
-                        public Sunday sunday (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Sunday (arguments);
-                        }
-                        public January january (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new January (arguments);
-                        }
-                        public February february (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new February (arguments);
-                        }
-                        public March march (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new March (arguments);
-                        }
-                        public April april (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new April (arguments);
-                        }
-                        public May may (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new May (arguments);
-                        }
-                        public June june (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new June (arguments);
-                        }
-                        public July july (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new July (arguments);
-                        }
-                        public August august (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new August (arguments);
-                        }
-                        public September september (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new September (arguments);
-                        }
-                        public October october (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new October (arguments);
-                        }
-                        public November november (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new November (arguments);
-                        }
-                        public December december (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new December (arguments);
-                        }
+                                return new Time (arguments);
+                            }
+                            public Monday monday (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Monday (arguments);
+                            }
+                            public Tuesday tuesday (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Tuesday (arguments);
+                            }
+                            public Wednesday wednesday (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Wednesday (arguments);
+                            }
+                            public Thursday thursday (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Thursday (arguments);
+                            }
+                            public Friday friday (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Friday (arguments);
+                            }
+                            public Saturday saturday (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Saturday (arguments);
+                            }
+                            public Sunday sunday (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Sunday (arguments);
+                            }
+                            public January january (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new January (arguments);
+                            }
+                            public February february (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new February (arguments);
+                            }
+                            public March march (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new March (arguments);
+                            }
+                            public April april (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new April (arguments);
+                            }
+                            public May may (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new May (arguments);
+                            }
+                            public June june (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new June (arguments);
+                            }
+                            public July july (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new July (arguments);
+                            }
+                            public August august (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new August (arguments);
+                            }
+                            public September september (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new September (arguments);
+                            }
+                            public October october (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new October (arguments);
+                            }
+                            public November november (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new November (arguments);
+                            }
+                            public December december (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new December (arguments);
+                            }
 /// <summary>
 /// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.</para>
 /// <para><code>js
 /// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
 ///</summary>
 /// <example></example>
-                        public Literal literal (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Literal (arguments);
-                        }
+                            public Literal literal (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Literal (arguments);
+                            }
 /// <summary>
 /// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.</para>
 /// <para><code>js
 /// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
 ///</summary>
 /// <example></example>
-                        public Literal literal ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Literal literal ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Literal (arguments);
-                        }
+                                return new Literal (arguments);
+                            }
 /// <summary>
 /// <para>Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.</para>
 ///</summary>
 /// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
-                        public Random random (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Random (arguments);
-                        }
+                            public Random random (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Random (arguments);
+                            }
 /// <summary>
 /// <para>Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.</para>
 ///</summary>
 /// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
-                        public Random random ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Random random ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Random (arguments);
-                        }
+                                return new Random (arguments);
+                            }
 /// <summary>
 /// <para>Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.</para>
 ///</summary>
 /// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
-                        public Random random ( Object expr, Object exprA )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Random random ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Random (arguments);
-                        }
+                                return new Random (arguments);
+                            }
 /// <summary>
 /// <para><code>r.args</code> is a special term that's used to splice an array of arguments
 /// into another term.  This is useful when you want to call a variadic
@@ -1145,12 +1172,12 @@ namespace RethinkDb.Driver.Ast {
 /// // or
 /// r.table('people').getAll(r.args(['Alice', 'Bob'])).run(conn, callback)
 /// </code></example>
-                        public Args args ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Args args ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Args (arguments);
-                        }
+                                return new Args (arguments);
+                            }
 /// <summary>
 /// <para>Encapsulate binary data within a query.</para>
 ///</summary>
@@ -1167,16 +1194,16 @@ namespace RethinkDb.Driver.Ast {
 ///     }
 /// });
 /// </code></example>
-                        public Binary binary ( Object expr )
-                        {
-                            var byteArray = expr as byte[];
-                            if( expr != null ){
-                            return new Binary(byteArray);
-                            }
-                        Arguments arguments = new Arguments();
+                            public Binary binary ( Object expr )
+                            {
+                                   var byteArray = expr as byte[];
+                                   if( expr != null ){
+                                     return new Binary(byteArray);
+                                   }
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Binary (arguments);
-                        }
+                                return new Binary (arguments);
+                            }
 /// <summary>
 /// <para>Convert a <a href="http://geojson.org">GeoJSON</a> object to a ReQL geometry object.</para>
 ///</summary>
@@ -1191,12 +1218,12 @@ namespace RethinkDb.Driver.Ast {
 ///     location: r.geojson(geoJson)
 /// }).run(conn, callback);
 /// </code></example>
-                        public Geojson geojson ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Geojson geojson ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Geojson (arguments);
-                        }
+                                return new Geojson (arguments);
+                            }
 /// <summary>
 /// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (&minus;180 to 180) and the latitude (&minus;90 to 90) of the point on a perfect sphere.</para>
 ///</summary>
@@ -1207,13 +1234,13 @@ namespace RethinkDb.Driver.Ast {
 ///     location: r.point(-122.423246,37.779388)
 /// }).run(conn, callback);
 /// </code></example>
-                        public Point point ( Object expr, Object exprA )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Point point ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Point (arguments);
-                        }
+                                return new Point (arguments);
+                            }
 /// <summary>
 /// <para>Construct a geometry object of type Line. The line can be specified in one of two ways:</para>
 /// <ul>
@@ -1227,14 +1254,14 @@ namespace RethinkDb.Driver.Ast {
 ///     route: r.line([-122.423246,37.779388], [-121.886420,37.329898])
 /// }).run(conn, callback);
 /// </code></example>
-                        public Line line ( Object expr, Object exprA, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Line line ( Object expr, Object exprA, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Line (arguments);
-                        }
+                                return new Line (arguments);
+                            }
 /// <summary>
 /// <para>Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:</para>
 /// <ul>
@@ -1253,15 +1280,15 @@ namespace RethinkDb.Driver.Ast {
 ///     )
 /// }).run(conn, callback);
 /// </code></example>
-                        public Polygon polygon ( Object expr, Object exprA, Object exprB, params object[] exprs )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Polygon polygon ( Object expr, Object exprA, Object exprB, params object[] exprs )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Polygon (arguments);
-                        }
+                                return new Polygon (arguments);
+                            }
 /// <summary>
 /// <para>Compute the distance between a point and another geometry object. At least one of the geometry objects specified must be a point.</para>
 ///</summary>
@@ -1272,13 +1299,13 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback 
 /// 734.1252496021841
 /// </code></example>
-                        public Distance distance ( Object expr, Object exprA )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Distance distance ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Distance (arguments);
-                        }
+                                return new Distance (arguments);
+                            }
 /// <summary>
 /// <para>Tests whether two geometry objects intersect with one another. When applied to a sequence of geometry objects, <code>intersects</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that intersect with the argument.</para>
 ///</summary>
@@ -1289,13 +1316,13 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback 
 /// true
 /// </code></example>
-                        public Intersects intersects ( Object expr, Object exprA )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Intersects intersects ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Intersects (arguments);
-                        }
+                                return new Intersects (arguments);
+                            }
 /// <summary>
 /// <para>Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).</para>
 ///</summary>
@@ -1306,12 +1333,12 @@ namespace RethinkDb.Driver.Ast {
 ///     neighborhood: r.circle([-122.423246,37.779388], 1000)
 /// }).run(conn, callback);
 /// </code></example>
-                        public Circle circle ( Object expr )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Circle circle ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
-                        return new Circle (arguments);
-                        }
+                                return new Circle (arguments);
+                            }
 /// <summary>
 /// <para>Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).</para>
 ///</summary>
@@ -1322,13 +1349,13 @@ namespace RethinkDb.Driver.Ast {
 ///     neighborhood: r.circle([-122.423246,37.779388], 1000)
 /// }).run(conn, callback);
 /// </code></example>
-                        public Circle circle ( Object expr, Object exprA )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Circle circle ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Circle (arguments);
-                        }
+                                return new Circle (arguments);
+                            }
 /// <summary>
 /// <para>Construct a circular line or polygon. A circle in RethinkDB is a polygon or line <em>approximating</em> a circle of a given radius around a given center, consisting of a specified number of vertices (default 32).</para>
 ///</summary>
@@ -1339,24 +1366,24 @@ namespace RethinkDb.Driver.Ast {
 ///     neighborhood: r.circle([-122.423246,37.779388], 1000)
 /// }).run(conn, callback);
 /// </code></example>
-                        public Circle circle ( Object expr, Object exprA, Object exprB )
-                        {
-                        Arguments arguments = new Arguments();
+                            public Circle circle ( Object expr, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Circle (arguments);
-                        }
-                        public Minval minval (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Minval (arguments);
-                        }
-                        public Maxval maxval (  )
-                        {
-                        Arguments arguments = new Arguments();
-                        return new Maxval (arguments);
-                        }
+                                return new Circle (arguments);
+                            }
+                            public Minval minval (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Minval (arguments);
+                            }
+                            public Maxval maxval (  )
+                            {
+                                Arguments arguments = new Arguments();
+                                return new Maxval (arguments);
+                            }
 
 
 

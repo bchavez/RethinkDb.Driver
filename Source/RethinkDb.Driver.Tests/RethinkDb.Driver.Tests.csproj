@@ -79,6 +79,7 @@
     <Compile Include="Generated\GeoOperations.cs" />
     <Compile Include="Generated\GeoPrimitives.cs" />
     <Compile Include="Generated\Joins.cs" />
+    <Compile Include="Generated\Json.cs" />
     <Compile Include="Generated\Limits.cs" />
     <Compile Include="Generated\Match.cs" />
     <Compile Include="Generated\MathLogicAdd.cs" />

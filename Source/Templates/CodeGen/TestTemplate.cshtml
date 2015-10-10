@@ -5,6 +5,7 @@
 @using Templates
 @using Templates.CodeGen.Util
 @using Templates.Metadata
+@using Z.ExtensionMethods
 
 @inherits Templates.CodeGen.BaseTemplate
 
@@ -67,7 +68,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  @:                           new OptArgs()
                  foreach( var opt in test.RunOpts )
                  {
-                     @:.with("@opt.Key", @opt.Val)
+                     @:.with("@opt.Key", @(opt.Val.IsNumber(0) || opt.Val.IsNumber(1) ?  opt.Val : "\"" + opt.Val + "\"" ))
                  }
                  @:   );
                  

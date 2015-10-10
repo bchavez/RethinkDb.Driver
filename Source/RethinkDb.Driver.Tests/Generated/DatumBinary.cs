@@ -1308,7 +1308,7 @@ byte[] f = (byte[]) (new byte[]{-2});
                  /* Original: r.binary(b) */
                  var obtained = runOrCatch( r.binary(b) ,
                                             new OptArgs()
-                     .with("binary_format", native)
+                     .with("binary_format", "native")
                     );
                  assertEquals(expected, obtained);
              }
@@ -1323,7 +1323,7 @@ byte[] f = (byte[]) (new byte[]{-2});
                  /* Original: r.binary(b) */
                  var obtained = runOrCatch( r.binary(b) ,
                                             new OptArgs()
-                     .with("binary_format", raw)
+                     .with("binary_format", "raw")
                     );
                  assertEquals(expected, obtained);
              }

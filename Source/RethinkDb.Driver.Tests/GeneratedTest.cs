@@ -10,6 +10,7 @@ using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
+using Z.ExtensionMethods;
 
 namespace RethinkDb.Driver.Tests
 {
@@ -387,18 +388,46 @@ namespace RethinkDb.Driver.Tests
         }
 
 
-        public class FloatInfo
-        {
-            public double min = double.MinValue;
-            public double max = double.MaxValue;
-        }
-
-        public class Sys
-        {
-            public static FloatInfo floatInfo = new FloatInfo();
-        }
-
-        public static Sys sys = new Sys();
+       
 
     }
+
+
+    //Oh Java, ugly Java... j/k.
+    /*public class IntStream
+    {
+        public static IEnumerable<int> range(int start, int end)
+        {
+            return Enumerable.Range(start, end);
+        }
+    }
+
+    public static class JavaExtensionHelpers
+    {
+        public static IEnumerable<int> boxed(this IEnumerable<int> sequence)
+        {
+            //yeah yeah java, what's inside the box?
+            return sequence;
+        }
+
+        public static IEnumerable<object> map(this IEnumerable<int> sequence, Func<int, object> mapper)
+        {
+            return sequence.Select(mapper);
+        }
+
+        public static IEnumerable<object> collect(this IEnumerable<object> sequence, Func<IEnumerable<object>,IEnumerable<object>> collectStrategy)
+        {
+            return collectStrategy(sequence);
+        }
+    }
+
+    public static class Collectors
+    {
+        public static Func<IEnumerable<object>,List<object>> toList()
+        {
+            return sequence => sequence.ToList();
+        }
+    }*/
+
+
 }

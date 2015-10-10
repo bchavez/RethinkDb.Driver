@@ -21,9 +21,12 @@ namespace Templates
                 {"Math.pow(", "Math.Pow("},
                 {"->", "=>"},
                 {"(ReqlFunction1)", ""},
+                {"<< 53L", "<< 53"},
+                {"IntStream.range(", "Enumerable.Range("},
+                {".boxed().map(", ".Select("},
+                {".collect(Collectors.toList())", ".ToList()"},
                 {"sys.floatInfo.max", "double.MaxValue"},
-                {"sys.floatInfo.min", "double.MinValue"},
-                {"<< 53L", "<< 53"}
+                {"sys.floatInfo.min", "double.MinValue"}
             };
 
         public CSharpTestMutator(YamlTest yamlTest)

@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="ConnectionTest.cs" />
     <Compile Include="GeneratedTest.cs" />
+    <Compile Include="Generated\Aggregation.cs" />
+    <Compile Include="Generated\ChangefeedsIdxcopy.cs" />
     <Compile Include="Generated\ChangefeedsSindex.cs" />
     <Compile Include="Generated\DatumArray.cs" />
     <Compile Include="Generated\DatumBool.cs" />

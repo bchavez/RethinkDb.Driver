@@ -1,0 +1,116 @@
+ModuleName: TimesPortions
+DefsAndTests:
+- TestType: JavaDef
+  TestFile: times/portions.yaml
+  TestNum: 1
+  Original: rt1 = 1375147296.681
+  Java: Double rt1 = (Double) (1375147296.681);
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: times/portions.yaml
+  TestNum: 2
+  Original: rt2 = 1375147296.682
+  Java: Double rt2 = (Double) (1375147296.682);
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: times/portions.yaml
+  TestNum: 3
+  Original: rt3 = 1375147297.681
+  Java: Double rt3 = (Double) (1375147297.681);
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: times/portions.yaml
+  TestNum: 4
+  Original: rt4 = 2375147296.681
+  Java: Double rt4 = (Double) (2375147296.681);
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: times/portions.yaml
+  TestNum: 5
+  Original: rts = [rt1, rt2, rt3, rt4]
+  Java: List rts = (List) (r.array(rt1, rt2, rt3, rt4));
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: times/portions.yaml
+  TestNum: 6
+  Original: t1 = r.epoch_time(rt1)
+  Java: EpochTime t1 = (EpochTime) (r.epochTime(rt1));
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: times/portions.yaml
+  TestNum: 7
+  Original: t2 = r.epoch_time(rt2)
+  Java: EpochTime t2 = (EpochTime) (r.epochTime(rt2));
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: times/portions.yaml
+  TestNum: 8
+  Original: t3 = r.epoch_time(rt3)
+  Java: EpochTime t3 = (EpochTime) (r.epochTime(rt3));
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: times/portions.yaml
+  TestNum: 9
+  Original: t4 = r.epoch_time(rt4)
+  Java: EpochTime t4 = (EpochTime) (r.epochTime(rt4));
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: times/portions.yaml
+  TestNum: 10
+  Original: ts = r.expr([t1, t2, t3, t4])
+  Java: MakeArray ts = (MakeArray) (r.expr(r.array(t1, t2, t3, t4)));
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: times/portions.yaml
+  TestNum: 11
+  Original: ts.map(lambda x:x.date()).map(lambda x:x.to_epoch_time())
+  Java: ts.map(x -> x.date()).map(x -> x.toEpochTime())
+  ExpectedOriginal: ([1375142400, 1375142400, 1375142400, 2375136000])
+  ExpectedType: List
+  ExpectedJava: r.array(1375142400, 1375142400, 1375142400, 2375136000L)
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: times/portions.yaml
+  TestNum: 12
+  Original: ts.map(lambda x:x.date().time_of_day())
+  Java: ts.map(x -> x.date().timeOfDay())
+  ExpectedOriginal: ([0, 0, 0, 0])
+  ExpectedType: List
+  ExpectedJava: r.array(0, 0, 0, 0)
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: times/portions.yaml
+  TestNum: 13
+  Original: ts.map(lambda x:x.time_of_day())
+  Java: ts.map(x -> x.timeOfDay())
+  ExpectedOriginal: ([4896.681, 4896.682, 4897.681, 11296.681])
+  ExpectedType: List
+  ExpectedJava: r.array(4896.681, 4896.682, 4897.681, 11296.681)
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: times/portions.yaml
+  TestNum: 14
+  Original: ts.map(lambda x:[x.year(), x.month(), x.day(), x.hours(), x.minutes(), x.seconds()])
+  Java: ts.map(x -> r.array(x.year(), x.month(), x.day(), x.hours(), x.minutes(), x.seconds()))
+  ExpectedOriginal: ([[2013, 7, 30, 1, 21, 36.681], [2013, 7, 30, 1, 21, 36.682], [2013, 7, 30, 1, 21, 37.681], [2045, 4, 7, 3, 8, 16.681]])
+  ExpectedType: List
+  ExpectedJava: r.array(r.array(2013, 7, 30, 1, 21, 36.681), r.array(2013, 7, 30, 1, 21, 36.682), r.array(2013, 7, 30, 1, 21, 37.681), r.array(2045, 4, 7, 3, 8, 16.681))
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: times/portions.yaml
+  TestNum: 15
+  Original: ts.map(lambda x:r.time(x.year(), x.month(), x.day(), x.hours(), x.minutes(), x.seconds(), x.timezone())).map(lambda x:x.to_epoch_time())
+  Java: ts.map(x -> r.time(x.year(), x.month(), x.day(), x.hours(), x.minutes(), x.seconds(), x.timezone())).map(x -> x.toEpochTime())
+  ExpectedOriginal: rts
+  ExpectedType: List
+  ExpectedJava: rts
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: times/portions.yaml
+  TestNum: 16
+  Original: ts.map(lambda x:r.time(x.year(), x.month(), x.day(), x.hours(), x.minutes(), x.seconds(), x.timezone())).union(ts).map(lambda x:x.to_iso8601()).distinct().count().sub(ts.count())
+  Java: ts.map(x -> r.time(x.year(), x.month(), x.day(), x.hours(), x.minutes(), x.seconds(), x.timezone())).union(ts).map(x -> x.toIso8601()).distinct().count().sub(ts.count())
+  ExpectedOriginal: 0
+  ExpectedType: Long
+  ExpectedJava: 0
+  RunOpts: []

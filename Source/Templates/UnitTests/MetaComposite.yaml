@@ -1,0 +1,32 @@
+ModuleName: MetaComposite
+DefsAndTests:
+- TestType: JavaQuery
+  TestFile: meta/composite.yaml
+  TestNum: 1
+  Original: r.db_drop('test')
+  Java: r.dbDrop("test")
+  ExpectedOriginal: partial({'dbs_dropped':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(r.hashMap("dbs_dropped", 1))
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: meta/composite.yaml
+  TestNum: 3
+  Original: >
+    r.db_list().set_difference(["rethinkdb"]).for_each(lambda db_name:
+        r.expr([1,2,3]).for_each(lambda i:
+            r.db(db_name).table_create('tbl_' + i.coerce_to('string'))))
+  Java: r.dbList().setDifference(r.array("rethinkdb")).forEach(db_name -> r.expr(r.array(1, 2, 3)).forEach(i -> r.db(db_name).tableCreate(r.add("tbl_", i.coerceTo("string")))))
+  ExpectedOriginal: partial({'tables_created':9})
+  ExpectedType: Partial
+  ExpectedJava: partial(r.hashMap("tables_created", 9))
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: meta/composite.yaml
+  TestNum: 5
+  Original: r.db_create('test')
+  Java: r.dbCreate("test")
+  ExpectedOriginal: partial({'dbs_created':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(r.hashMap("dbs_created", 1))
+  RunOpts: []

@@ -1,0 +1,26 @@
+ModuleName: Regression370
+DefsAndTests:
+- TestType: JavaDef
+  TestFile: regression/370.yaml
+  TestNum: 1
+  Original: d = r.db('test')
+  Java: Db d = (Db) (r.db("test"));
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: regression/370.yaml
+  TestNum: 1
+  Original: r.db('test').table_create('t370')
+  Java: r.db("test").tableCreate("t370")
+  ExpectedOriginal: None
+  ExpectedType: Object
+  ExpectedJava: null
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: regression/370.yaml
+  TestNum: 4
+  Original: r.db('test').table_drop('t370')
+  Java: r.db("test").tableDrop("t370")
+  ExpectedOriginal: None
+  ExpectedType: Object
+  ExpectedJava: null
+  RunOpts: []

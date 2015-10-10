@@ -1,0 +1,182 @@
+ModuleName: Joins
+TableVarNames:
+- messages
+- receivers
+- senders
+- tbl
+- tbl2
+DefsAndTests:
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 1
+  Original: r.db('test').table_create('test3', primary_key='foo')
+  Java: r.db("test").tableCreate("test3").optArg("primary_key", "foo")
+  ExpectedOriginal: partial({'tables_created':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(r.hashMap("tables_created", 1))
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: joins.yaml
+  TestNum: 2
+  Original: tbl3 = r.db('test').table('test3')
+  Java: Table tbl3 = (Table) (r.db("test").table("test3"));
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: joins.yaml
+  TestNum: 6
+  Original: ij = tbl.inner_join(tbl2, lambda x,y:x['a'] == y['b']).zip()
+  Java: Zip ij = (Zip) (tbl.innerJoin(tbl2, (x, y) -> x.g("a").eq(y.g("b"))).zip());
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 7
+  Original: ij.count()
+  Java: ij.count()
+  ExpectedOriginal: 2500
+  ExpectedType: Long
+  ExpectedJava: 2500
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 8
+  Original: ij.filter(lambda row:row['a'] != row['b']).count()
+  Java: ij.filter(row -> row.g("a").ne(row.g("b"))).count()
+  ExpectedOriginal: 0
+  ExpectedType: Long
+  ExpectedJava: 0
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: joins.yaml
+  TestNum: 9
+  Original: oj = tbl.outer_join(tbl2, lambda x,y:x['a'] == y['b']).zip()
+  Java: Zip oj = (Zip) (tbl.outerJoin(tbl2, (x, y) -> x.g("a").eq(y.g("b"))).zip());
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 10
+  Original: oj.count()
+  Java: oj.count()
+  ExpectedOriginal: 2500
+  ExpectedType: Long
+  ExpectedJava: 2500
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 11
+  Original: oj.filter(lambda row:row['a'] != row['b']).count()
+  Java: oj.filter(row -> row.g("a").ne(row.g("b"))).count()
+  ExpectedOriginal: 0
+  ExpectedType: Long
+  ExpectedJava: 0
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 12
+  Original: tbl.eq_join('a', tbl2).zip().count()
+  Java: tbl.eqJoin("a", tbl2).zip().count()
+  ExpectedOriginal: 100
+  ExpectedType: Long
+  ExpectedJava: 100
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 13
+  Original: tbl.eq_join('fake', tbl2).zip().count()
+  Java: tbl.eqJoin("fake", tbl2).zip().count()
+  ExpectedOriginal: 0
+  ExpectedType: Long
+  ExpectedJava: 0
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 14
+  Original: tbl.eq_join(lambda x:x['a'], tbl2).zip().count()
+  Java: tbl.eqJoin(x -> x.g("a"), tbl2).zip().count()
+  ExpectedOriginal: 100
+  ExpectedType: Long
+  ExpectedJava: 100
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 15
+  Original: tbl.eq_join(lambda x:x['fake'], tbl2).zip().count()
+  Java: tbl.eqJoin(x -> x.g("fake"), tbl2).zip().count()
+  ExpectedOriginal: 0
+  ExpectedType: Long
+  ExpectedJava: 0
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 16
+  Original: tbl.eq_join(lambda x:null, tbl2).zip().count()
+  Java: tbl.eqJoin(x -> null, tbl2).zip().count()
+  ExpectedOriginal: 0
+  ExpectedType: Long
+  ExpectedJava: 0
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 17
+  Original: tbl.eq_join(lambda x:x['a'], tbl2).count()
+  Java: tbl.eqJoin(x -> x.g("a"), tbl2).count()
+  ExpectedOriginal: 100
+  ExpectedType: Long
+  ExpectedJava: 100
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 18
+  Original: tbl.eq_join('a', tbl3).zip().count()
+  Java: tbl.eqJoin("a", tbl3).zip().count()
+  ExpectedOriginal: 100
+  ExpectedType: Long
+  ExpectedJava: 100
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 19
+  Original: tbl.eq_join(lambda x:x['a'], tbl3).count()
+  Java: tbl.eqJoin(x -> x.g("a"), tbl3).count()
+  ExpectedOriginal: 100
+  ExpectedType: Long
+  ExpectedJava: 100
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: joins.yaml
+  TestNum: 21
+  Original: left = r.expr([{'a':1},{'a':2},{'a':3}])
+  Java: MakeArray left = (MakeArray) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", 2), r.hashMap("a", 3))));
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: joins.yaml
+  TestNum: 22
+  Original: right = r.expr([{'b':2},{'b':3}])
+  Java: MakeArray right = (MakeArray) (r.expr(r.array(r.hashMap("b", 2), r.hashMap("b", 3))));
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 23
+  Original: left.inner_join(right, lambda l, r:l['a'] == r['b']).zip()
+  Java: left.innerJoin(right, (l, r) -> l.g("a").eq(r.g("b"))).zip()
+  ExpectedOriginal: '[{''a'': 2, ''b'': 2}, {''a'': 3, ''b'': 3}]'
+  ExpectedType: List
+  ExpectedJava: r.array(r.hashMap("a", 2).with("b", 2), r.hashMap("a", 3).with("b", 3))
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 24
+  Original: left.outer_join(right, lambda l, r:l['a'] == r['b']).zip()
+  Java: left.outerJoin(right, (l, r) -> l.g("a").eq(r.g("b"))).zip()
+  ExpectedOriginal: '[{''a'': 1}, {''a'': 2, ''b'': 2}, {''a'': 3, ''b'': 3}]'
+  ExpectedType: List
+  ExpectedJava: r.array(r.hashMap("a", 1), r.hashMap("a", 2).with("b", 2), r.hashMap("a", 3).with("b", 3))
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: joins.yaml
+  TestNum: 29
+  Original: r.db('test').table_drop('test3')
+  Java: r.db("test").tableDrop("test3")
+  ExpectedOriginal: partial({'tables_dropped':1})
+  ExpectedType: Partial
+  ExpectedJava: partial(r.hashMap("tables_dropped", 1))
+  RunOpts: []

@@ -1,0 +1,31 @@
+ModuleName: TransformTable
+TableVarNames:
+- tbl
+DefsAndTests:
+- TestType: JavaQuery
+  TestFile: transform/table.yaml
+  TestNum: 1
+  Original: tbl.insert([{"a":["k1","v1"]},{"a":["k2","v2"]}])
+  Java: tbl.insert(r.array(r.hashMap("a", r.array("k1", "v1")), r.hashMap("a", r.array("k2", "v2"))))
+  ExpectedOriginal: None
+  ExpectedType: Object
+  ExpectedJava: null
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: transform/table.yaml
+  TestNum: 3
+  Original: tbl.limit(1).type_of()
+  Java: tbl.limit(1).typeOf()
+  ExpectedOriginal: '"SELECTION<STREAM>"'
+  ExpectedType: String
+  ExpectedJava: '"SELECTION<STREAM>"'
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: transform/table.yaml
+  TestNum: 4
+  Original: tbl.limit(1).coerce_to('array').type_of()
+  Java: tbl.limit(1).coerceTo("array").typeOf()
+  ExpectedOriginal: '"ARRAY"'
+  ExpectedType: String
+  ExpectedJava: '"ARRAY"'
+  RunOpts: []

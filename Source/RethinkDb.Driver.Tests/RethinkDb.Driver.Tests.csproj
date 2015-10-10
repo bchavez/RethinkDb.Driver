@@ -65,6 +65,7 @@
     <Compile Include="Generated\Aggregation.cs" />
     <Compile Include="Generated\ChangefeedsIdxcopy.cs" />
     <Compile Include="Generated\ChangefeedsSindex.cs" />
+    <Compile Include="Generated\Control.cs" />
     <Compile Include="Generated\DatumArray.cs" />
     <Compile Include="Generated\DatumBool.cs" />
     <Compile Include="Generated\DatumNull.cs" />

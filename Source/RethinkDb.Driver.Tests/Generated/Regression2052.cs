@@ -32,12 +32,12 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2052.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: r.expr(1) */
-                 var obtained = runOrCatch( r.expr(1) ,
+                 var obtained = runOrCatch( r.expr(1L) ,
                                             new OptArgs()
-                     .with("array_limit", 16)
+                     .with("array_limit", 16L)
                     );
                  assertEquals(expected_, obtained);
              }
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlCompileError", "Unrecognized global optional argument `obviously_bogus`.", r.array());
                  
                  /* Original: r.expr(1) */
-                 var obtained = runOrCatch( r.expr(1) ,
+                 var obtained = runOrCatch( r.expr(1L) ,
                                             new OptArgs()
-                     .with("obviously_bogus", 16)
+                     .with("obviously_bogus", 16L)
                     );
                  assertEquals(expected_, obtained);
              }

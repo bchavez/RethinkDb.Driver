@@ -33,7 +33,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, sindex/status.yaml, #2
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl2.index_create("foo") */
                  var obtained = runOrCatch( tbl2.indexCreate("foo") ,
@@ -47,7 +47,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, sindex/status.yaml, #3
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl2.index_create("bar", multi=True) */
                  var obtained = runOrCatch( tbl2.indexCreate("bar").optArg("multi", true) ,
@@ -131,7 +131,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, sindex/status.yaml, #9
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl2.index_create("quux") */
                  var obtained = runOrCatch( tbl2.indexCreate("quux") ,
@@ -148,7 +148,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: tbl2.index_status("quux").do(lambda x:(x[0]["index"] == "quux") & (x[0]["blocks_processed"] < x[0]["blocks_total"])) */
-                 var obtained = runOrCatch( tbl2.indexStatus("quux").do_(x => x.nth(0).g("index").eq("quux").and(x.nth(0).g("blocks_processed").lt(x.nth(0).g("blocks_total")))) ,
+                 var obtained = runOrCatch( tbl2.indexStatus("quux").do_(x => x.nth(0L).g("index").eq("quux").and(x.nth(0L).g("blocks_processed").lt(x.nth(0L).g("blocks_total")))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -176,7 +176,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "PTYPE<BINARY>";
                  
                  /* Original: tbl2.index_wait("quux").nth(0).get_field('function').type_of() */
-                 var obtained = runOrCatch( tbl2.indexWait("quux").nth(0).g("function").typeOf() ,
+                 var obtained = runOrCatch( tbl2.indexWait("quux").nth(0L).g("function").typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

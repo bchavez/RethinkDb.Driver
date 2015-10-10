@@ -33,10 +33,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/3745.yaml, #1
                  /* ExpectedOriginal: partial({'inserted':2}) */
-                 var expected_ = partial(r.hashMap("inserted", 2));
+                 var expected_ = partial(r.hashMap("inserted", 2L));
                  
                  /* Original: tbl.insert([ {'id':0, 'a':5}, {'id':1, 'a':6} ]) */
-                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0).with("a", 5), r.hashMap("id", 1).with("a", 6))) ,
+                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0L).with("a", 5L), r.hashMap("id", 1L).with("a", 6L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -47,7 +47,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/3745.yaml, #2
                  /* ExpectedOriginal: ({'a':11}) */
-                 var expected_ = r.hashMap("a", 11);
+                 var expected_ = r.hashMap("a", 11L);
                  
                  /* Original: tbl.reduce(lambda x,y:r.object('a', r.add(x['a'], y['a']))) */
                  var obtained = runOrCatch( tbl.reduce((x, y) => r.object_("a", r.add(x.g("a"), y.g("a")))) ,
@@ -64,7 +64,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Cannot convert NUMBER to SEQUENCE");
                  
                  /* Original: tbl.reduce(lambda x,y:r.expr(0)[0]) */
-                 var obtained = runOrCatch( tbl.reduce((x, y) => r.expr(0).nth(0)) ,
+                 var obtained = runOrCatch( tbl.reduce((x, y) => r.expr(0L).nth(0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

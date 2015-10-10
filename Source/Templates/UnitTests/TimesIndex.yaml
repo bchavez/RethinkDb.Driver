@@ -57,7 +57,7 @@ DefsAndTests:
   Java: tbl.insert(trows).g("inserted")
   ExpectedOriginal: 5
   ExpectedType: Long
-  ExpectedJava: 5
+  ExpectedJava: 5L
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
@@ -81,7 +81,7 @@ DefsAndTests:
   Java: tbl.between(ts, te).count()
   ExpectedOriginal: 5
   ExpectedType: Long
-  ExpectedJava: 5
+  ExpectedJava: 5L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -90,7 +90,7 @@ DefsAndTests:
   Java: tbl.between(t1, t4).count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -99,7 +99,7 @@ DefsAndTests:
   Java: tbl.between(t1, t4).optArg("right_bound", "closed").count()
   ExpectedOriginal: 4
   ExpectedType: Long
-  ExpectedJava: 4
+  ExpectedJava: 4L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -108,7 +108,7 @@ DefsAndTests:
   Java: tbl.between(r.expr(ts).inTimezone("+06:00"), te).count()
   ExpectedOriginal: 5
   ExpectedType: Long
-  ExpectedJava: 5
+  ExpectedJava: 5L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -117,7 +117,7 @@ DefsAndTests:
   Java: tbl.between(t1, r.expr(t4).inTimezone("+08:00")).count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -126,7 +126,7 @@ DefsAndTests:
   Java: tbl.between(r.expr(t1).inTimezone("Z"), t4).optArg("right_bound", "closed").count()
   ExpectedOriginal: 4
   ExpectedType: Long
-  ExpectedJava: 4
+  ExpectedJava: 4L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -135,7 +135,7 @@ DefsAndTests:
   Java: tbl.update(row -> r.hashMap("a", row.g("id"))).g("replaced")
   ExpectedOriginal: 5
   ExpectedType: Long
-  ExpectedJava: 5
+  ExpectedJava: 5L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -144,7 +144,7 @@ DefsAndTests:
   Java: tbl.indexCreate("a")
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -153,7 +153,7 @@ DefsAndTests:
   Java: tbl.indexWait("a").count()
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -162,7 +162,7 @@ DefsAndTests:
   Java: tbl.between(ts, te).optArg("index", "a").count()
   ExpectedOriginal: 5
   ExpectedType: Long
-  ExpectedJava: 5
+  ExpectedJava: 5L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -171,7 +171,7 @@ DefsAndTests:
   Java: tbl.between(t1, t4).optArg("index", "a").count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -180,7 +180,7 @@ DefsAndTests:
   Java: tbl.between(t1, t4).optArg("right_bound", "closed").optArg("index", "a").count()
   ExpectedOriginal: 4
   ExpectedType: Long
-  ExpectedJava: 4
+  ExpectedJava: 4L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -189,7 +189,7 @@ DefsAndTests:
   Java: tbl.between(r.expr(ts).inTimezone("+06:00"), te).optArg("index", "a").count()
   ExpectedOriginal: 5
   ExpectedType: Long
-  ExpectedJava: 5
+  ExpectedJava: 5L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -198,7 +198,7 @@ DefsAndTests:
   Java: tbl.between(t1, r.expr(t4).inTimezone("+08:00")).optArg("index", "a").count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -207,7 +207,7 @@ DefsAndTests:
   Java: tbl.between(r.expr(t1).inTimezone("Z"), t4).optArg("right_bound", "closed").optArg("index", "a").count()
   ExpectedOriginal: 4
   ExpectedType: Long
-  ExpectedJava: 4
+  ExpectedJava: 4L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -216,7 +216,7 @@ DefsAndTests:
   Java: tbl.indexCreate("b", row -> r.branch(row.g("id").lt(t4), row.g("a"), (ReqlExpr) null))
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -225,7 +225,7 @@ DefsAndTests:
   Java: tbl.indexWait("b").count()
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -234,7 +234,7 @@ DefsAndTests:
   Java: tbl.indexWait("b").count()
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -243,7 +243,7 @@ DefsAndTests:
   Java: tbl.between(ts, te).optArg("index", "b").count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -252,7 +252,7 @@ DefsAndTests:
   Java: tbl.between(t1, t4).optArg("index", "b").count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -261,7 +261,7 @@ DefsAndTests:
   Java: tbl.between(t1, t4).optArg("right_bound", "closed").optArg("index", "b").count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -270,7 +270,7 @@ DefsAndTests:
   Java: tbl.between(r.expr(ts).inTimezone("+06:00"), te).optArg("index", "b").count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -279,7 +279,7 @@ DefsAndTests:
   Java: tbl.between(t1, r.expr(t4).inTimezone("+08:00")).optArg("index", "b").count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
@@ -288,7 +288,7 @@ DefsAndTests:
   Java: tbl.between(r.expr(t1).inTimezone("Z"), t4).optArg("right_bound", "closed").optArg("index", "b").count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
@@ -309,7 +309,7 @@ DefsAndTests:
   Java: tbl.insert(r.array(r.hashMap("id", oldtime))).g("inserted")
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml

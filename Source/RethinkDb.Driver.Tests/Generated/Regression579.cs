@@ -64,7 +64,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Could not prove function deterministic.  Index functions must be deterministic.", r.array());
                  
                  /* Original: tbl.index_create("579", lambda rec:tbl.get(0)) */
-                 var obtained = runOrCatch( tbl.indexCreate("579", rec => tbl.get(0)) ,
+                 var obtained = runOrCatch( tbl.indexCreate("579", rec => tbl.get(0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

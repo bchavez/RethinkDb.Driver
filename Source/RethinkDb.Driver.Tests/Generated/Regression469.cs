@@ -32,7 +32,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/469.yaml, #1
                  /* ExpectedOriginal: partial({'dbs_created':1}) */
-                 var expected_ = partial(r.hashMap("dbs_created", 1));
+                 var expected_ = partial(r.hashMap("dbs_created", 1L));
                  
                  /* Original: r.db_create('d469') */
                  var obtained = runOrCatch( r.dbCreate("d469") ,
@@ -46,7 +46,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/469.yaml, #2
                  /* ExpectedOriginal: partial({'tables_created':1}) */
-                 var expected_ = partial(r.hashMap("tables_created", 1));
+                 var expected_ = partial(r.hashMap("tables_created", 1L));
                  
                  /* Original: r.db('d469').table_create('t469') */
                  var obtained = runOrCatch( r.db("d469").tableCreate("t469") ,
@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/469.yaml, #3
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: r.db('d469').table('t469').index_create('x') */
                  var obtained = runOrCatch( r.db("d469").table("t469").indexCreate("x") ,
@@ -147,7 +147,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.hashMap("type", "NUMBER").with("value", "1");
                  
                  /* Original: r.expr(1).info() */
-                 var obtained = runOrCatch( r.expr(1).info() ,
+                 var obtained = runOrCatch( r.expr(1L).info() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -175,7 +175,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.hashMap("type", "ARRAY").with("value", "[\n\t1\n]");
                  
                  /* Original: r.expr([1]).info() */
-                 var obtained = runOrCatch( r.expr(r.array(1)).info() ,
+                 var obtained = runOrCatch( r.expr(r.array(1L)).info() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -189,7 +189,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.hashMap("type", "OBJECT").with("value", "{\n\t\"a\":\t1\n}");
                  
                  /* Original: r.expr({'a':1}).info() */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1)).info() ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1L)).info() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -214,7 +214,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/469.yaml, #14
                  /* ExpectedOriginal: ({'type':'TABLE','name':'t469','id':uuid(), 'db':{'type':'DB','name':'d469','id':uuid()}, 'primary_key':'id', 'indexes':['x'], 'doc_count_estimates':[0]}) */
-                 var expected_ = r.hashMap("type", "TABLE").with("name", "t469").with("id", uuid()).with("db", r.hashMap("type", "DB").with("name", "d469").with("id", uuid())).with("primary_key", "id").with("indexes", r.array("x")).with("doc_count_estimates", r.array(0));
+                 var expected_ = r.hashMap("type", "TABLE").with("name", "t469").with("id", uuid()).with("db", r.hashMap("type", "DB").with("name", "d469").with("id", uuid())).with("primary_key", "id").with("indexes", r.array("x")).with("doc_count_estimates", r.array(0L));
                  
                  /* Original: r.db('d469').table('t469').info() */
                  var obtained = runOrCatch( r.db("d469").table("t469").info() ,
@@ -228,7 +228,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/469.yaml, #15
                  /* ExpectedOriginal: ({'type':'SELECTION<STREAM>', 'table':{'type':'TABLE','name':'t469','id':uuid(), 'db':{'type':'DB','name':'d469','id':uuid()}, 'primary_key':'id', 'indexes':['x'], 'doc_count_estimates':[0]}}) */
-                 var expected_ = r.hashMap("type", "SELECTION<STREAM>").with("table", r.hashMap("type", "TABLE").with("name", "t469").with("id", uuid()).with("db", r.hashMap("type", "DB").with("name", "d469").with("id", uuid())).with("primary_key", "id").with("indexes", r.array("x")).with("doc_count_estimates", r.array(0)));
+                 var expected_ = r.hashMap("type", "SELECTION<STREAM>").with("table", r.hashMap("type", "TABLE").with("name", "t469").with("id", uuid()).with("db", r.hashMap("type", "DB").with("name", "d469").with("id", uuid())).with("primary_key", "id").with("indexes", r.array("x")).with("doc_count_estimates", r.array(0L)));
                  
                  /* Original: r.db('d469').table('t469').filter(lambda x:True).info() */
                  var obtained = runOrCatch( r.db("d469").table("t469").filter(x => true).info() ,
@@ -245,7 +245,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.hashMap("type", "STREAM");
                  
                  /* Original: r.db('d469').table('t469').map(lambda x:1).info() */
-                 var obtained = runOrCatch( r.db("d469").table("t469").map(x => 1).info() ,
+                 var obtained = runOrCatch( r.db("d469").table("t469").map(x => 1L).info() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -256,10 +256,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/469.yaml, #17
                  /* ExpectedOriginal: ({'index':'id', 'left_bound':0, 'left_bound_type':'closed', 'right_bound':1, 'right_bound_type':'open', 'sorting':'UNORDERED', 'table':{'db':{'id':uuid(), 'name':'d469', 'type':'DB'}, 'doc_count_estimates':[0], 'id':uuid(), 'indexes':['x'], 'name':'t469', 'primary_key':'id', 'type':'TABLE'}, 'type':'TABLE_SLICE'}) */
-                 var expected_ = r.hashMap("index", "id").with("left_bound", 0).with("left_bound_type", "closed").with("right_bound", 1).with("right_bound_type", "open").with("sorting", "UNORDERED").with("table", r.hashMap("db", r.hashMap("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", r.array(0)).with("id", uuid()).with("indexes", r.array("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE");
+                 var expected_ = r.hashMap("index", "id").with("left_bound", 0L).with("left_bound_type", "closed").with("right_bound", 1L).with("right_bound_type", "open").with("sorting", "UNORDERED").with("table", r.hashMap("db", r.hashMap("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", r.array(0L)).with("id", uuid()).with("indexes", r.array("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE");
                  
                  /* Original: r.db('d469').table('t469').between(0, 1).info() */
-                 var obtained = runOrCatch( r.db("d469").table("t469").between(0, 1).info() ,
+                 var obtained = runOrCatch( r.db("d469").table("t469").between(0L, 1L).info() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -270,10 +270,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/469.yaml, #18
                  /* ExpectedOriginal: ({'index':'a', 'left_bound':0, 'left_bound_type':'closed', 'right_bound':1, 'right_bound_type':'open', 'sorting':'UNORDERED', 'table':{'db':{'id':uuid(), 'name':'d469', 'type':'DB'}, 'doc_count_estimates':[0], 'id':uuid(), 'indexes':['x'], 'name':'t469', 'primary_key':'id', 'type':'TABLE'}, 'type':'TABLE_SLICE'}) */
-                 var expected_ = r.hashMap("index", "a").with("left_bound", 0).with("left_bound_type", "closed").with("right_bound", 1).with("right_bound_type", "open").with("sorting", "UNORDERED").with("table", r.hashMap("db", r.hashMap("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", r.array(0)).with("id", uuid()).with("indexes", r.array("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE");
+                 var expected_ = r.hashMap("index", "a").with("left_bound", 0L).with("left_bound_type", "closed").with("right_bound", 1L).with("right_bound_type", "open").with("sorting", "UNORDERED").with("table", r.hashMap("db", r.hashMap("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", r.array(0L)).with("id", uuid()).with("indexes", r.array("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE");
                  
                  /* Original: r.db('d469').table('t469').between(0, 1, index='a').info() */
-                 var obtained = runOrCatch( r.db("d469").table("t469").between(0, 1).optArg("index", "a").info() ,
+                 var obtained = runOrCatch( r.db("d469").table("t469").between(0L, 1L).optArg("index", "a").info() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -284,10 +284,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/469.yaml, #19
                  /* ExpectedOriginal: ({'index':'a', 'left_bound':0, 'left_bound_type':'closed', 'right_bound':1, 'right_bound_type':'open', 'sorting':'ASCENDING', 'table':{'db':{'id':uuid(), 'name':'d469', 'type':'DB'}, 'doc_count_estimates':[0], 'id':uuid(), 'indexes':['x'], 'name':'t469', 'primary_key':'id', 'type':'TABLE'}, 'type':'TABLE_SLICE'}) */
-                 var expected_ = r.hashMap("index", "a").with("left_bound", 0).with("left_bound_type", "closed").with("right_bound", 1).with("right_bound_type", "open").with("sorting", "ASCENDING").with("table", r.hashMap("db", r.hashMap("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", r.array(0)).with("id", uuid()).with("indexes", r.array("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE");
+                 var expected_ = r.hashMap("index", "a").with("left_bound", 0L).with("left_bound_type", "closed").with("right_bound", 1L).with("right_bound_type", "open").with("sorting", "ASCENDING").with("table", r.hashMap("db", r.hashMap("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", r.array(0L)).with("id", uuid()).with("indexes", r.array("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE");
                  
                  /* Original: r.db('d469').table('t469').order_by(index='a').between(0, 1, index='a').info() */
-                 var obtained = runOrCatch( r.db("d469").table("t469").orderBy().optArg("index", "a").between(0, 1).optArg("index", "a").info() ,
+                 var obtained = runOrCatch( r.db("d469").table("t469").orderBy().optArg("index", "a").between(0L, 1L).optArg("index", "a").info() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -298,7 +298,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/469.yaml, #20
                  /* ExpectedOriginal: ({'index':'id', 'left_bound_type':'unbounded', 'right_bound_type':'unbounded', 'sorting':'UNORDERED', 'table':{'db':{'id':uuid(), 'name':'d469', 'type':'DB'}, 'doc_count_estimates':[0], 'id':uuid(), 'indexes':['x'], 'name':'t469', 'primary_key':'id', 'type':'TABLE'}, 'type':'TABLE_SLICE'}) */
-                 var expected_ = r.hashMap("index", "id").with("left_bound_type", "unbounded").with("right_bound_type", "unbounded").with("sorting", "UNORDERED").with("table", r.hashMap("db", r.hashMap("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", r.array(0)).with("id", uuid()).with("indexes", r.array("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE");
+                 var expected_ = r.hashMap("index", "id").with("left_bound_type", "unbounded").with("right_bound_type", "unbounded").with("sorting", "UNORDERED").with("table", r.hashMap("db", r.hashMap("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", r.array(0L)).with("id", uuid()).with("indexes", r.array("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE");
                  
                  /* Original: r.db('d469').table('t469').between(r.minval, r.maxval).info() */
                  var obtained = runOrCatch( r.db("d469").table("t469").between(r.minval(), r.maxval()).info() ,
@@ -312,7 +312,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/469.yaml, #21
                  /* ExpectedOriginal: ({'index':'id', 'left_bound_type':'unachievable', 'right_bound_type':'unachievable', 'sorting':'UNORDERED', 'table':{'db':{'id':uuid(), 'name':'d469', 'type':'DB'}, 'doc_count_estimates':[0], 'id':uuid(), 'indexes':['x'], 'name':'t469', 'primary_key':'id', 'type':'TABLE'}, 'type':'TABLE_SLICE'}) */
-                 var expected_ = r.hashMap("index", "id").with("left_bound_type", "unachievable").with("right_bound_type", "unachievable").with("sorting", "UNORDERED").with("table", r.hashMap("db", r.hashMap("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", r.array(0)).with("id", uuid()).with("indexes", r.array("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE");
+                 var expected_ = r.hashMap("index", "id").with("left_bound_type", "unachievable").with("right_bound_type", "unachievable").with("sorting", "UNORDERED").with("table", r.hashMap("db", r.hashMap("id", uuid()).with("name", "d469").with("type", "DB")).with("doc_count_estimates", r.array(0L)).with("id", uuid()).with("indexes", r.array("x")).with("name", "t469").with("primary_key", "id").with("type", "TABLE")).with("type", "TABLE_SLICE");
                  
                  /* Original: r.db('d469').table('t469').between(r.maxval, r.minval).info() */
                  var obtained = runOrCatch( r.db("d469").table("t469").between(r.maxval(), r.minval()).info() ,
@@ -326,7 +326,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/469.yaml, #22
                  /* ExpectedOriginal: partial({'dbs_dropped':1}) */
-                 var expected_ = partial(r.hashMap("dbs_dropped", 1));
+                 var expected_ = partial(r.hashMap("dbs_dropped", 1L));
                  
                  /* Original: r.db_drop('d469') */
                  var obtained = runOrCatch( r.dbDrop("d469") ,

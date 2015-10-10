@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?");
                  
                  /* Original: tbl.get(0).replace(tbl.get(0)) */
-                 var obtained = runOrCatch( tbl.get(0).replace(tbl.get(0)) ,
+                 var obtained = runOrCatch( tbl.get(0L).replace(tbl.get(0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?");
                  
                  /* Original: tbl.get(0).update(tbl.get(0)) */
-                 var obtained = runOrCatch( tbl.get(0).update(tbl.get(0)) ,
+                 var obtained = runOrCatch( tbl.get(0L).update(tbl.get(0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -64,7 +64,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Could not prove argument deterministic.  Maybe you want to use the non_atomic flag?");
                  
                  /* Original: tbl.replace(r.args([tbl.get(0)])) */
-                 var obtained = runOrCatch( tbl.replace(r.args(r.array(tbl.get(0)))) ,
+                 var obtained = runOrCatch( tbl.replace(r.args(r.array(tbl.get(0L)))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

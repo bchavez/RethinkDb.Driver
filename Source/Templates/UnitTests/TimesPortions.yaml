@@ -67,7 +67,7 @@ DefsAndTests:
   Java: ts.map(x -> x.date()).map(x -> x.toEpochTime())
   ExpectedOriginal: ([1375142400, 1375142400, 1375142400, 2375136000])
   ExpectedType: List
-  ExpectedJava: r.array(1375142400, 1375142400, 1375142400, 2375136000L)
+  ExpectedJava: r.array(1375142400L, 1375142400L, 1375142400L, 2375136000L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/portions.yaml
@@ -76,7 +76,7 @@ DefsAndTests:
   Java: ts.map(x -> x.date().timeOfDay())
   ExpectedOriginal: ([0, 0, 0, 0])
   ExpectedType: List
-  ExpectedJava: r.array(0, 0, 0, 0)
+  ExpectedJava: r.array(0L, 0L, 0L, 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/portions.yaml
@@ -94,7 +94,7 @@ DefsAndTests:
   Java: ts.map(x -> r.array(x.year(), x.month(), x.day(), x.hours(), x.minutes(), x.seconds()))
   ExpectedOriginal: ([[2013, 7, 30, 1, 21, 36.681], [2013, 7, 30, 1, 21, 36.682], [2013, 7, 30, 1, 21, 37.681], [2045, 4, 7, 3, 8, 16.681]])
   ExpectedType: List
-  ExpectedJava: r.array(r.array(2013, 7, 30, 1, 21, 36.681), r.array(2013, 7, 30, 1, 21, 36.682), r.array(2013, 7, 30, 1, 21, 37.681), r.array(2045, 4, 7, 3, 8, 16.681))
+  ExpectedJava: r.array(r.array(2013L, 7L, 30L, 1L, 21L, 36.681), r.array(2013L, 7L, 30L, 1L, 21L, 36.682), r.array(2013L, 7L, 30L, 1L, 21L, 37.681), r.array(2045L, 4L, 7L, 3L, 8L, 16.681))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/portions.yaml
@@ -112,5 +112,5 @@ DefsAndTests:
   Java: ts.map(x -> r.time(x.year(), x.month(), x.day(), x.hours(), x.minutes(), x.seconds(), x.timezone())).union(ts).map(x -> x.toIso8601()).distinct().count().sub(ts.count())
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []

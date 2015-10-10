@@ -13,34 +13,34 @@ DefsAndTests:
   TestFile: range.yaml
   TestNum: 2
   Original: r.range().limit(4)
-  Java: r.range().limit(4)
+  Java: r.range().limit(4L)
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
   TestNum: 3
   Original: r.range(4)
-  Java: r.range(4)
+  Java: r.range(4L)
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
   TestNum: 4
   Original: r.range(2, 5)
-  Java: r.range(2, 5)
+  Java: r.range(2L, 5L)
   ExpectedOriginal: '[2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3, 4)
+  ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
   TestNum: 5
   Original: r.range(0)
-  Java: r.range(0)
+  Java: r.range(0L)
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -49,7 +49,7 @@ DefsAndTests:
   TestFile: range.yaml
   TestNum: 6
   Original: r.range(5, 2)
-  Java: r.range(5, 2)
+  Java: r.range(5L, 2L)
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -58,19 +58,19 @@ DefsAndTests:
   TestFile: range.yaml
   TestNum: 7
   Original: r.range(-5, -2)
-  Java: r.range(-5, -2)
+  Java: r.range(-5L, -2L)
   ExpectedOriginal: '[-5, -4, -3]'
   ExpectedType: List
-  ExpectedJava: r.array(-5, -4, -3)
+  ExpectedJava: r.array(-5L, -4L, -3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
   TestNum: 8
   Original: r.range(-5, 2)
-  Java: r.range(-5, 2)
+  Java: r.range(-5L, 2L)
   ExpectedOriginal: '[-5, -4, -3, -2, -1, 0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(-5, -4, -3, -2, -1, 0, 1)
+  ExpectedJava: r.array(-5L, -4L, -3L, -2L, -1L, 0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
@@ -139,8 +139,8 @@ DefsAndTests:
   TestFile: range.yaml
   TestNum: 17
   Original: r.range(4).count()
-  Java: r.range(4).count()
+  Java: r.range(4L).count()
   ExpectedOriginal: 4
   ExpectedType: Long
-  ExpectedJava: 4
+  ExpectedJava: 4L
   RunOpts: []

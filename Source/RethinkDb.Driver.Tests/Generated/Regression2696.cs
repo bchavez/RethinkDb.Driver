@@ -32,10 +32,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2696.yaml, #1
                  /* ExpectedOriginal: [1, 2, 3, 4] */
-                 var expected_ = r.array(1, 2, 3, 4);
+                 var expected_ = r.array(1L, 2L, 3L, 4L);
                  
                  /* Original: r.expr([1,2,3,4]).delete_at(4,4) */
-                 var obtained = runOrCatch( r.expr(r.array(1, 2, 3, 4)).deleteAt(4, 4) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L, 4L)).deleteAt(4L, 4L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -49,7 +49,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.array();
                  
                  /* Original: r.expr([]).delete_at(0,0) */
-                 var obtained = runOrCatch( r.expr(r.array()).deleteAt(0, 0) ,
+                 var obtained = runOrCatch( r.expr(r.array()).deleteAt(0L, 0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

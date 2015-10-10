@@ -18,7 +18,8 @@ namespace Templates
                 {"List ", "IList "},
                 {"(List)", "(IList)"},
                 {" Map ", " MapObject "},
-                {"(Map)", "(MapObject)"}
+                {"(Map)", "(MapObject)"},
+                {"(OffsetDateTime)", "(DateTimeOffset)" }
             };
 
         public static NameValueCollection JavaLineReplacements = new NameValueCollection
@@ -27,14 +28,17 @@ namespace Templates
                 {"->", "=>"},
                 {"(ReqlFunction1)", ""},
                 {"<< 53L", "<< 53"},
-                {"IntStream.range(", "Enumerable.Range("},
+                {"<< 53 - 1L", "<< 53 - 1"},
+                {"LongStream.range(", "EnumerableLRange("},
                 {".boxed().map(", ".Select("},
                 {".collect(Collectors.toList())", ".ToList()"},
                 {"sys.floatInfo.max", "double.MaxValue"},
                 {"sys.floatInfo.min", "double.MinValue"},
                 {"r.object(", "r.object_("},
-                {"Stream.concat(","Enumerable.Concat(" },
-                {".stream()",".OfType<object>().ToList()" },
+                {"Stream.concat(", "Enumerable.Concat("},
+                {".stream()", ".OfType<object>().ToList()"},
+                {"PacificTimeZone()", @"TimeSpan.Parse(""-07:00:00"")"},
+                {"UTCTimeZone()", @"TimeSpan.Parse(""00:00:00"")"}
             };
 
         public CSharpTestMutator(YamlTest yamlTest)
@@ -49,11 +53,17 @@ namespace Templates
                 if( TypeRenames[test.ExpectedType] != null )
                     test.ExpectedType = TypeRenames[test.ExpectedType];
 
+                if ( test.TestType == "JavaDef" && !test.Java.StartsWith("ReqlFunction") )
+                {
+                    test.Java = "var " + test.Java.GetAfter(" ");
+                }
+
                 test.Java = FixUpJava(test.Java);
 
                 if( test.ExpectedJava.IsNotNullOrWhiteSpace() )
-                    //test.ExpectedJava = ScanLiteral(test.ExpectedJava);
+                {
                     test.ExpectedJava = FixUpJava(test.ExpectedJava);
+                }
             }
         }
 

@@ -88,7 +88,7 @@ DefsAndTests:
   Java: r.expr("0xa").coerceTo("NUMBER")
   ExpectedOriginal: 10
   ExpectedType: Long
-  ExpectedJava: 10
+  ExpectedJava: 10L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/string.yaml
@@ -140,7 +140,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 16
   Original: r.expr('').split(null, 5)
-  Java: r.expr("").split((ReqlExpr) null, 5)
+  Java: r.expr("").split((ReqlExpr) null, 5L)
   ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: r.array()
@@ -149,7 +149,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 17
   Original: r.expr('').split(' ', 5)
-  Java: r.expr("").split(" ", 5)
+  Java: r.expr("").split(" ", 5L)
   ExpectedOriginal: ([''])
   ExpectedType: List
   ExpectedJava: r.array("")
@@ -158,7 +158,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 18
   Original: r.expr('').split('', 5)
-  Java: r.expr("").split("", 5)
+  Java: r.expr("").split("", 5L)
   ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: r.array()
@@ -257,7 +257,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 29
   Original: r.expr('aaaa bbbb  cccc ').split(null, 3)
-  Java: r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 3)
+  Java: r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 3L)
   ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "bbbb", "cccc")
@@ -266,7 +266,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 30
   Original: r.expr('aaaa bbbb  cccc ').split(' ', 5)
-  Java: r.expr("aaaa bbbb  cccc ").split(" ", 5)
+  Java: r.expr("aaaa bbbb  cccc ").split(" ", 5L)
   ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', ''])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "bbbb", "", "cccc", "")
@@ -275,7 +275,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 31
   Original: r.expr('aaaa bbbb  cccc ').split('', 5)
-  Java: r.expr("aaaa bbbb  cccc ").split("", 5)
+  Java: r.expr("aaaa bbbb  cccc ").split("", 5L)
   ExpectedOriginal: (['a', 'a', 'a', 'a', ' ', 'bbbb  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("a", "a", "a", "a", " ", "bbbb  cccc ")
@@ -284,7 +284,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 32
   Original: r.expr('aaaa bbbb  cccc ').split('b', 5)
-  Java: r.expr("aaaa bbbb  cccc ").split("b", 5)
+  Java: r.expr("aaaa bbbb  cccc ").split("b", 5L)
   ExpectedOriginal: (['aaaa ', '', '', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa ", "", "", "", "  cccc ")
@@ -293,7 +293,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 33
   Original: r.expr('aaaa bbbb  cccc ').split('bb', 3)
-  Java: r.expr("aaaa bbbb  cccc ").split("bb", 3)
+  Java: r.expr("aaaa bbbb  cccc ").split("bb", 3L)
   ExpectedOriginal: (['aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa ", "", "  cccc ")
@@ -302,7 +302,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 34
   Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2)
-  Java: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2)
+  Java: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2L)
   ExpectedOriginal: (['aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "cccc ")
@@ -311,7 +311,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 35
   Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6)
-  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6L)
   ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
   ExpectedType: List
   ExpectedJava: r.array("aaaa ", "", "  cccc b d ", " e ", "", " f")
@@ -320,7 +320,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 36
   Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2)
-  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L)
   ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "cccc b d bb e bbbb f")
@@ -329,7 +329,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 37
   Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3)
-  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3L)
   ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "cccc b d bb e", "f")
@@ -338,7 +338,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 38
   Original: r.expr('aaaa bbbb  cccc ').split(null, 2)
-  Java: r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 2)
+  Java: r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 2L)
   ExpectedOriginal: (['aaaa', 'bbbb', 'cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "bbbb", "cccc ")
@@ -347,7 +347,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 39
   Original: r.expr("a  b  ").split(null, 2)
-  Java: r.expr("a  b  ").split((ReqlExpr) null, 2)
+  Java: r.expr("a  b  ").split((ReqlExpr) null, 2L)
   ExpectedOriginal: (["a", "b"])
   ExpectedType: List
   ExpectedJava: r.array("a", "b")
@@ -356,7 +356,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 40
   Original: r.expr('aaaa bbbb  cccc ').split(' ', 4)
-  Java: r.expr("aaaa bbbb  cccc ").split(" ", 4)
+  Java: r.expr("aaaa bbbb  cccc ").split(" ", 4L)
   ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', ''])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "bbbb", "", "cccc", "")
@@ -365,7 +365,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 41
   Original: r.expr('aaaa bbbb  cccc ').split('', 4)
-  Java: r.expr("aaaa bbbb  cccc ").split("", 4)
+  Java: r.expr("aaaa bbbb  cccc ").split("", 4L)
   ExpectedOriginal: (['a', 'a', 'a', 'a', ' bbbb  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("a", "a", "a", "a", " bbbb  cccc ")
@@ -374,7 +374,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 42
   Original: r.expr('aaaa bbbb  cccc ').split('b', 4)
-  Java: r.expr("aaaa bbbb  cccc ").split("b", 4)
+  Java: r.expr("aaaa bbbb  cccc ").split("b", 4L)
   ExpectedOriginal: (['aaaa ', '', '', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa ", "", "", "", "  cccc ")
@@ -383,7 +383,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 43
   Original: r.expr('aaaa bbbb  cccc ').split('bb', 2)
-  Java: r.expr("aaaa bbbb  cccc ").split("bb", 2)
+  Java: r.expr("aaaa bbbb  cccc ").split("bb", 2L)
   ExpectedOriginal: (['aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa ", "", "  cccc ")
@@ -392,7 +392,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 44
   Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 1)
-  Java: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 1)
+  Java: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 1L)
   ExpectedOriginal: (['aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "cccc ")
@@ -401,7 +401,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 45
   Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5)
-  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5L)
   ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
   ExpectedType: List
   ExpectedJava: r.array("aaaa ", "", "  cccc b d ", " e ", "", " f")
@@ -410,7 +410,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 46
   Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1)
-  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1L)
   ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "cccc b d bb e bbbb f")
@@ -419,7 +419,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 47
   Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2)
-  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L)
   ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "cccc b d bb e", "f")
@@ -428,7 +428,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 48
   Original: r.expr('aaaa bbbb  cccc ').split(null, 1)
-  Java: r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 1)
+  Java: r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 1L)
   ExpectedOriginal: (['aaaa', 'bbbb  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "bbbb  cccc ")
@@ -437,7 +437,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 49
   Original: r.expr('aaaa bbbb  cccc ').split(' ', 2)
-  Java: r.expr("aaaa bbbb  cccc ").split(" ", 2)
+  Java: r.expr("aaaa bbbb  cccc ").split(" ", 2L)
   ExpectedOriginal: (['aaaa', 'bbbb', ' cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "bbbb", " cccc ")
@@ -446,7 +446,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 50
   Original: r.expr('aaaa bbbb  cccc ').split('', 2)
-  Java: r.expr("aaaa bbbb  cccc ").split("", 2)
+  Java: r.expr("aaaa bbbb  cccc ").split("", 2L)
   ExpectedOriginal: (['a', 'a', 'aa bbbb  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("a", "a", "aa bbbb  cccc ")
@@ -455,7 +455,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 51
   Original: r.expr('aaaa bbbb  cccc ').split('b', 2)
-  Java: r.expr("aaaa bbbb  cccc ").split("b", 2)
+  Java: r.expr("aaaa bbbb  cccc ").split("b", 2L)
   ExpectedOriginal: (['aaaa ', '', 'bb  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa ", "", "bb  cccc ")
@@ -464,7 +464,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 52
   Original: r.expr('aaaa bbbb  cccc ').split('bb', 2)
-  Java: r.expr("aaaa bbbb  cccc ").split("bb", 2)
+  Java: r.expr("aaaa bbbb  cccc ").split("bb", 2L)
   ExpectedOriginal: (['aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa ", "", "  cccc ")
@@ -473,7 +473,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 53
   Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2)
-  Java: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2)
+  Java: r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2L)
   ExpectedOriginal: (['aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "cccc ")
@@ -482,7 +482,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 54
   Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2)
-  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2L)
   ExpectedOriginal: (['aaaa ', '', '  cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: r.array("aaaa ", "", "  cccc b d bb e bbbb f")
@@ -491,7 +491,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 55
   Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2)
-  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L)
   ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "cccc b d bb e bbbb f")
@@ -500,7 +500,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 56
   Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2)
-  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+  Java: r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L)
   ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "cccc b d bb e", "f")
@@ -536,7 +536,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 60
   Original: r.expr('  ').split(null, 5)
-  Java: r.expr("  ").split((ReqlExpr) null, 5)
+  Java: r.expr("  ").split((ReqlExpr) null, 5L)
   ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: r.array()
@@ -545,7 +545,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 61
   Original: r.expr('  ').split(' ', 5)
-  Java: r.expr("  ").split(" ", 5)
+  Java: r.expr("  ").split(" ", 5L)
   ExpectedOriginal: (['', '', ''])
   ExpectedType: List
   ExpectedJava: r.array("", "", "")
@@ -635,7 +635,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 71
   Original: r.expr('  aaaa bbbb  cccc ').split(null, 3)
-  Java: r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 3)
+  Java: r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 3L)
   ExpectedOriginal: (['aaaa', 'bbbb', 'cccc'])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "bbbb", "cccc")
@@ -644,7 +644,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 72
   Original: r.expr('  aaaa bbbb  cccc ').split(' ', 5)
-  Java: r.expr("  aaaa bbbb  cccc ").split(" ", 5)
+  Java: r.expr("  aaaa bbbb  cccc ").split(" ", 5L)
   ExpectedOriginal: (['', '', 'aaaa', 'bbbb', '', 'cccc '])
   ExpectedType: List
   ExpectedJava: r.array("", "", "aaaa", "bbbb", "", "cccc ")
@@ -653,7 +653,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 73
   Original: r.expr('  aaaa bbbb  cccc ').split('b', 5)
-  Java: r.expr("  aaaa bbbb  cccc ").split("b", 5)
+  Java: r.expr("  aaaa bbbb  cccc ").split("b", 5L)
   ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa ", "", "", "", "  cccc ")
@@ -662,7 +662,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 74
   Original: r.expr('  aaaa bbbb  cccc ').split('bb', 3)
-  Java: r.expr("  aaaa bbbb  cccc ").split("bb", 3)
+  Java: r.expr("  aaaa bbbb  cccc ").split("bb", 3L)
   ExpectedOriginal: (['  aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa ", "", "  cccc ")
@@ -671,7 +671,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 75
   Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2)
-  Java: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2L)
   ExpectedOriginal: (['  aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa", "cccc ")
@@ -680,7 +680,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 76
   Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6)
-  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6L)
   ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa ", "", "  cccc b d ", " e ", "", " f")
@@ -689,7 +689,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 77
   Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2)
-  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L)
   ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa", "cccc b d bb e bbbb f")
@@ -698,7 +698,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 78
   Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3)
-  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3L)
   ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa", "cccc b d bb e", "f")
@@ -707,7 +707,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 79
   Original: r.expr('  aaaa bbbb  cccc ').split(null, 2)
-  Java: r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 2L)
   ExpectedOriginal: (['aaaa', 'bbbb', 'cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "bbbb", "cccc ")
@@ -716,7 +716,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 80
   Original: r.expr("a  b  ").split(null, 2)
-  Java: r.expr("a  b  ").split((ReqlExpr) null, 2)
+  Java: r.expr("a  b  ").split((ReqlExpr) null, 2L)
   ExpectedOriginal: (["a", "b"])
   ExpectedType: List
   ExpectedJava: r.array("a", "b")
@@ -725,7 +725,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 81
   Original: r.expr('  aaaa bbbb  cccc ').split(' ', 4)
-  Java: r.expr("  aaaa bbbb  cccc ").split(" ", 4)
+  Java: r.expr("  aaaa bbbb  cccc ").split(" ", 4L)
   ExpectedOriginal: (['', '', 'aaaa', 'bbbb', ' cccc '])
   ExpectedType: List
   ExpectedJava: r.array("", "", "aaaa", "bbbb", " cccc ")
@@ -734,7 +734,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 82
   Original: r.expr('  aaaa bbbb  cccc ').split('b', 4)
-  Java: r.expr("  aaaa bbbb  cccc ").split("b", 4)
+  Java: r.expr("  aaaa bbbb  cccc ").split("b", 4L)
   ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa ", "", "", "", "  cccc ")
@@ -743,7 +743,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 83
   Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2)
-  Java: r.expr("  aaaa bbbb  cccc ").split("bb", 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split("bb", 2L)
   ExpectedOriginal: (['  aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa ", "", "  cccc ")
@@ -752,7 +752,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 84
   Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 1)
-  Java: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 1)
+  Java: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 1L)
   ExpectedOriginal: (['  aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa", "cccc ")
@@ -761,7 +761,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 85
   Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5)
-  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5L)
   ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa ", "", "  cccc b d ", " e ", "", " f")
@@ -770,7 +770,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 86
   Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1)
-  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1L)
   ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa", "cccc b d bb e bbbb f")
@@ -779,7 +779,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 87
   Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2)
-  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L)
   ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa", "cccc b d bb e", "f")
@@ -788,7 +788,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 88
   Original: r.expr('  aaaa bbbb  cccc ').split(null, 1)
-  Java: r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 1)
+  Java: r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 1L)
   ExpectedOriginal: (['aaaa', 'bbbb  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("aaaa", "bbbb  cccc ")
@@ -797,7 +797,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 89
   Original: r.expr('  aaaa bbbb  cccc ').split(' ', 2)
-  Java: r.expr("  aaaa bbbb  cccc ").split(" ", 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split(" ", 2L)
   ExpectedOriginal: (['', '', 'aaaa bbbb  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("", "", "aaaa bbbb  cccc ")
@@ -806,7 +806,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 90
   Original: r.expr('  aaaa bbbb  cccc ').split('b', 2)
-  Java: r.expr("  aaaa bbbb  cccc ").split("b", 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split("b", 2L)
   ExpectedOriginal: (['  aaaa ', '', 'bb  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa ", "", "bb  cccc ")
@@ -815,7 +815,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 91
   Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2)
-  Java: r.expr("  aaaa bbbb  cccc ").split("bb", 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split("bb", 2L)
   ExpectedOriginal: (['  aaaa ', '', '  cccc '])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa ", "", "  cccc ")
@@ -824,7 +824,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 92
   Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2)
-  Java: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2)
+  Java: r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2L)
   ExpectedOriginal: (['  aaaa', 'cccc '])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa", "cccc ")
@@ -833,7 +833,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 93
   Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2)
-  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2L)
   ExpectedOriginal: (['  aaaa ', '', '  cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa ", "", "  cccc b d bb e bbbb f")
@@ -842,7 +842,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 94
   Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2)
-  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L)
   ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f'])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa", "cccc b d bb e bbbb f")
@@ -851,7 +851,7 @@ DefsAndTests:
   TestFile: datum/string.yaml
   TestNum: 95
   Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2)
-  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2)
+  Java: r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L)
   ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f'])
   ExpectedType: List
   ExpectedJava: r.array("  aaaa", "cccc b d bb e", "f")

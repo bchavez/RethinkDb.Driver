@@ -33,7 +33,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, match.yaml, #1
                  /* ExpectedOriginal: ({'str':'bcde','groups':[null,{'start':2,'str':'cde','end':5}],'start':1,'end':5}) */
-                 var expected_ = r.hashMap("str", "bcde").with("groups", r.array(null, r.hashMap("start", 2).with("str", "cde").with("end", 5))).with("start", 1).with("end", 5);
+                 var expected_ = r.hashMap("str", "bcde").with("groups", r.array(null, r.hashMap("start", 2L).with("str", "cde").with("end", 5L))).with("start", 1L).with("end", 5L);
                  
                  /* Original: r.expr("abcdefg").match("a(b.e)|b(c.e)") */
                  var obtained = runOrCatch( r.expr("abcdefg").match("a(b.e)|b(c.e)") ,
@@ -61,7 +61,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, match.yaml, #3
                  /* ExpectedOriginal: ({'str':'bcde','groups':[null,{'start':2,'str':'cde','end':5}],'start':1,'end':5}) */
-                 var expected_ = r.hashMap("str", "bcde").with("groups", r.array(null, r.hashMap("start", 2).with("str", "cde").with("end", 5))).with("start", 1).with("end", 5);
+                 var expected_ = r.hashMap("str", "bcde").with("groups", r.array(null, r.hashMap("start", 2L).with("str", "cde").with("end", 5L))).with("start", 1L).with("end", 5L);
                  
                  /* Original: r.expr("abcdefg").match("(?i)a(b.e)|B(c.e)") */
                  var obtained = runOrCatch( r.expr("abcdefg").match("(?i)a(b.e)|B(c.e)") ,
@@ -78,7 +78,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.array("aca", "ada");
                  
                  /* Original: r.expr(["aba", "aca", "ada", "aea"]).filter(lambda row:row.match("a(.)a")['groups'][0]['str'].match("[cd]")) */
-                 var obtained = runOrCatch( r.expr(r.array("aba", "aca", "ada", "aea")).filter(row => row.match("a(.)a").g("groups").nth(0).g("str").match("[cd]")) ,
+                 var obtained = runOrCatch( r.expr(r.array("aba", "aca", "ada", "aea")).filter(row => row.match("a(.)a").g("groups").nth(0L).g("str").match("[cd]")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -89,10 +89,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, match.yaml, #5
                  /* ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3}) */
-                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 3);
+                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 3L);
                  
                  /* Original: tbl.insert([{'id':0,'a':'abc'},{'id':1,'a':'ab'},{'id':2,'a':'bc'}]) */
-                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0).with("a", "abc"), r.hashMap("id", 1).with("a", "ab"), r.hashMap("id", 2).with("a", "bc"))) ,
+                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0L).with("a", "abc"), r.hashMap("id", 1L).with("a", "ab"), r.hashMap("id", 2L).with("a", "bc"))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -103,7 +103,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, match.yaml, #6
                  /* ExpectedOriginal: ([{'id':0,'a':'abc'},{'id':1,'a':'ab'},{'id':2,'a':'bc'}]) */
-                 var expected_ = r.array(r.hashMap("id", 0).with("a", "abc"), r.hashMap("id", 1).with("a", "ab"), r.hashMap("id", 2).with("a", "bc"));
+                 var expected_ = r.array(r.hashMap("id", 0L).with("a", "abc"), r.hashMap("id", 1L).with("a", "ab"), r.hashMap("id", 2L).with("a", "bc"));
                  
                  /* Original: tbl.filter(lambda row:row['a'].match('b')).order_by('id') */
                  var obtained = runOrCatch( tbl.filter(row => row.g("a").match("b")).orderBy("id") ,
@@ -117,7 +117,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, match.yaml, #7
                  /* ExpectedOriginal: ([{'id':0,'a':'abc'},{'id':1,'a':'ab'}]) */
-                 var expected_ = r.array(r.hashMap("id", 0).with("a", "abc"), r.hashMap("id", 1).with("a", "ab"));
+                 var expected_ = r.array(r.hashMap("id", 0L).with("a", "abc"), r.hashMap("id", 1L).with("a", "ab"));
                  
                  /* Original: tbl.filter(lambda row:row['a'].match('ab')).order_by('id') */
                  var obtained = runOrCatch( tbl.filter(row => row.g("a").match("ab")).orderBy("id") ,
@@ -131,7 +131,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, match.yaml, #8
                  /* ExpectedOriginal: ([{'id':1,'a':'ab'}]) */
-                 var expected_ = r.array(r.hashMap("id", 1).with("a", "ab"));
+                 var expected_ = r.array(r.hashMap("id", 1L).with("a", "ab"));
                  
                  /* Original: tbl.filter(lambda row:row['a'].match('ab$')).order_by('id') */
                  var obtained = runOrCatch( tbl.filter(row => row.g("a").match("ab$")).orderBy("id") ,

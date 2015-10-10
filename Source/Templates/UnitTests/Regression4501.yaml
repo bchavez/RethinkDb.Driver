@@ -9,5 +9,5 @@ DefsAndTests:
   Java: tbl.indexWait("missing")
   ExpectedOriginal: err_regex('ReqlOpFailedError', 'Index `missing` was not found on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]', [0])
   ExpectedType: ErrRegex
-  ExpectedJava: err_regex("ReqlOpFailedError", "Index `missing` was not found on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", r.array(0))
+  ExpectedJava: err_regex("ReqlOpFailedError", "Index `missing` was not found on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", r.array(0L))
   RunOpts: []

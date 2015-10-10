@@ -33,10 +33,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2930.yaml, #1
                  /* ExpectedOriginal: ({'inserted':999}) */
-                 var expected_ = r.hashMap("inserted", 999);
+                 var expected_ = r.hashMap("inserted", 999L);
                  
                  /* Original: tbl.insert([{'id':i,'mod':i%5,'foo':5} for i in range(1,1000)]).pluck('first_error', 'inserted') */
-                 var obtained = runOrCatch( tbl.insert(Enumerable.Range(1, 1000).Select(i => r.hashMap("id", i).with("mod", r.mod(i, 5)).with("foo", 5)).ToList()).pluck("first_error", "inserted") ,
+                 var obtained = runOrCatch( tbl.insert(EnumerableLRange(1L, 1000L).Select(i => r.hashMap("id", i).with("mod", r.mod(i, 5L)).with("foo", 5L)).ToList()).pluck("first_error", "inserted") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -47,12 +47,12 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2930.yaml, #2
                  /* ExpectedOriginal: err("ReqlResourceLimitError", "Array over size limit `500`.", [0]) */
-                 var expected_ = err("ReqlResourceLimitError", "Array over size limit `500`.", r.array(0));
+                 var expected_ = err("ReqlResourceLimitError", "Array over size limit `500`.", r.array(0L));
                  
                  /* Original: tbl.coerce_to('array') */
                  var obtained = runOrCatch( tbl.coerceTo("array") ,
                                             new OptArgs()
-                     .with("array_limit", 500)
+                     .with("array_limit", 500L)
                     );
                  assertEquals(expected_, obtained);
              }
@@ -62,12 +62,12 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2930.yaml, #3
                  /* ExpectedOriginal: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", [0]) */
-                 var expected_ = err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", r.array(0));
+                 var expected_ = err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", r.array(0L));
                  
                  /* Original: tbl.group('mod').coerce_to('array') */
                  var obtained = runOrCatch( tbl.group("mod").coerceTo("array") ,
                                             new OptArgs()
-                     .with("array_limit", 500)
+                     .with("array_limit", 500L)
                     );
                  assertEquals(expected_, obtained);
              }
@@ -77,12 +77,12 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2930.yaml, #4
                  /* ExpectedOriginal: err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", [0]) */
-                 var expected_ = err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", r.array(0));
+                 var expected_ = err("ReqlResourceLimitError", "Grouped data over size limit `500`.  Try putting a reduction (like `.reduce` or `.count`) on the end.", r.array(0L));
                  
                  /* Original: tbl.group('foo').coerce_to('array') */
                  var obtained = runOrCatch( tbl.group("foo").coerceTo("array") ,
                                             new OptArgs()
-                     .with("array_limit", 500)
+                     .with("array_limit", 500L)
                     );
                  assertEquals(expected_, obtained);
              }

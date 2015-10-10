@@ -108,9 +108,9 @@ namespace RethinkDb.Driver.Tests
             }
         }
 
-        protected object wait_(int length)
+        protected object wait_(long length)
         {
-            Thread.Sleep(length * 1000);
+            Thread.Sleep((int)length * 1000);
             return null;
         }
 
@@ -385,6 +385,36 @@ namespace RethinkDb.Driver.Tests
         protected ArrayList list(object str)
         {
             return null;
+        }
+
+        protected IEnumerable<long> EnumerableLRange(long start, long end)
+        {
+            for( var i = start; i < end ; i++)
+            {
+                yield return i;
+            }
+        }
+
+        public static class datetime
+        {
+            public static DateTimeOffset now()
+            {
+                return DateTimeOffset.Now;
+            }
+
+            public static DateTimeOffset fromtimestamp(double seconds, TimeSpan offset )
+            {
+                var dt = DateTimeOffset.FromUnixTimeMilliseconds((long)(seconds * 1000));
+                return dt.ToOffset(offset);
+            }
+        }
+
+        public static class ast
+        {
+            public static TimeSpan rqlTzinfo(string offset)
+            {
+                return TimeSpan.Parse(offset);
+            }
         }
         
     }

@@ -31,16 +31,16 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, regression/354.yaml, #Templates.YamlTest+DefTest.
              //Original: arr = r.expr([1,2,3,4,5])
              
-MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));             
+var arr = (MakeArray) (r.expr(r.array(1L, 2L, 3L, 4L, 5L)));             
              TestCounter++;
              
              {
                  //JavaQuery, regression/354.yaml, #2
                  /* ExpectedOriginal: [3, 4, 5] */
-                 var expected_ = r.array(3, 4, 5);
+                 var expected_ = r.array(3L, 4L, 5L);
                  
                  /* Original: arr.skip(2) */
-                 var obtained = runOrCatch( arr.skip(2) ,
+                 var obtained = runOrCatch( arr.skip(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -51,7 +51,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, regression/354.yaml, #3
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [1]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1L));
                  
                  /* Original: arr.skip('a') */
                  var obtained = runOrCatch( arr.skip("a") ,
@@ -65,10 +65,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, regression/354.yaml, #4
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found ARRAY.", [1]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found ARRAY.", r.array(1));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found ARRAY.", r.array(1L));
                  
                  /* Original: arr.skip([1,2,3]) */
-                 var obtained = runOrCatch( arr.skip(r.array(1, 2, 3)) ,
+                 var obtained = runOrCatch( arr.skip(r.array(1L, 2L, 3L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -79,7 +79,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, regression/354.yaml, #5
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found OBJECT.", [0, 1]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found OBJECT.", r.array(0, 1));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found OBJECT.", r.array(0L, 1L));
                  
                  /* Original: arr.skip({}).count() */
                  var obtained = runOrCatch( arr.skip(r.hashMap()).count() ,
@@ -93,7 +93,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, regression/354.yaml, #6
                  /* ExpectedOriginal: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", [1]) */
-                 var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(1));
+                 var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(1L));
                  
                  /* Original: arr.skip(null) */
                  var obtained = runOrCatch( arr.skip((ReqlExpr) null) ,

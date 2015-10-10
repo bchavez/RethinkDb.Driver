@@ -13,43 +13,43 @@ DefsAndTests:
   TestFile: datum/object.yaml
   TestNum: 2
   Original: r.expr({'a':1})
-  Java: r.expr(r.hashMap("a", 1))
+  Java: r.expr(r.hashMap("a", 1L))
   ExpectedOriginal: '{''a'':1}'
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1)
+  ExpectedJava: r.hashMap("a", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 3
   Original: r.expr({'a':1, 'b':'two', 'c':True})
-  Java: r.expr(r.hashMap("a", 1).with("b", "two").with("c", true))
+  Java: r.expr(r.hashMap("a", 1L).with("b", "two").with("c", true))
   ExpectedOriginal: '{''a'':1, ''b'':''two'', ''c'':True}'
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1).with("b", "two").with("c", true)
+  ExpectedJava: r.hashMap("a", 1L).with("b", "two").with("c", true)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 4
   Original: r.expr({'a':r.expr(1)})
-  Java: r.expr(r.hashMap("a", r.expr(1)))
+  Java: r.expr(r.hashMap("a", r.expr(1L)))
   ExpectedOriginal: ({'a':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1)
+  ExpectedJava: r.hashMap("a", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 5
   Original: r.expr({'a':{'b':[{'c':2}, 'a', 4]}})
-  Java: r.expr(r.hashMap("a", r.hashMap("b", r.array(r.hashMap("c", 2), "a", 4))))
+  Java: r.expr(r.hashMap("a", r.hashMap("b", r.array(r.hashMap("c", 2L), "a", 4L))))
   ExpectedOriginal: ({'a':{'b':[{'c':2}, 'a', 4]}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", r.hashMap("b", r.array(r.hashMap("c", 2), "a", 4)))
+  ExpectedJava: r.hashMap("a", r.hashMap("b", r.array(r.hashMap("c", 2L), "a", 4L)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 6
   Original: r.expr({'a':1}).type_of()
-  Java: r.expr(r.hashMap("a", 1)).typeOf()
+  Java: r.expr(r.hashMap("a", 1L)).typeOf()
   ExpectedOriginal: 'OBJECT'
   ExpectedType: String
   ExpectedJava: '"OBJECT"'
@@ -58,7 +58,7 @@ DefsAndTests:
   TestFile: datum/object.yaml
   TestNum: 7
   Original: r.expr({'a':1}).coerce_to('string')
-  Java: r.expr(r.hashMap("a", 1)).coerceTo("string")
+  Java: r.expr(r.hashMap("a", 1L)).coerceTo("string")
   ExpectedOriginal: ('{"a":1}')
   ExpectedType: String
   ExpectedJava: '"{\"a\":1}"'
@@ -67,19 +67,19 @@ DefsAndTests:
   TestFile: datum/object.yaml
   TestNum: 8
   Original: r.expr({'a':1}).coerce_to('object')
-  Java: r.expr(r.hashMap("a", 1)).coerceTo("object")
+  Java: r.expr(r.hashMap("a", 1L)).coerceTo("object")
   ExpectedOriginal: ({'a':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1)
+  ExpectedJava: r.hashMap("a", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 9
   Original: r.expr({'a':1}).coerce_to('array')
-  Java: r.expr(r.hashMap("a", 1)).coerceTo("array")
+  Java: r.expr(r.hashMap("a", 1L)).coerceTo("array")
   ExpectedOriginal: '[[''a'', 1]]'
   ExpectedType: List
-  ExpectedJava: r.array(r.array("a", 1))
+  ExpectedJava: r.array(r.array("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
@@ -94,25 +94,25 @@ DefsAndTests:
   TestFile: datum/object.yaml
   TestNum: 17
   Original: r.object('a', 1, 'b', 2)
-  Java: r.object("a", 1, "b", 2)
+  Java: r.object("a", 1L, "b", 2L)
   ExpectedOriginal: ({'a':1,'b':2})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1).with("b", 2)
+  ExpectedJava: r.hashMap("a", 1L).with("b", 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 18
   Original: r.object('c'+'d', 3)
-  Java: r.object(r.add("c", "d"), 3)
+  Java: r.object(r.add("c", "d"), 3L)
   ExpectedOriginal: ({'cd':3})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("cd", 3)
+  ExpectedJava: r.hashMap("cd", 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/object.yaml
   TestNum: 20
   Original: r.object(1, 1)
-  Java: r.object(1, 1)
+  Java: r.object(1L, 1L)
   ExpectedOriginal: err("ReqlQueryLogicError","Expected type STRING but found NUMBER.",[])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array())
@@ -121,7 +121,7 @@ DefsAndTests:
   TestFile: datum/object.yaml
   TestNum: 21
   Original: r.object('e', 4, 'e', 5)
-  Java: r.object("e", 4, "e", 5)
+  Java: r.object("e", 4L, "e", 5L)
   ExpectedOriginal: err("ReqlQueryLogicError","Duplicate key `e` in object.  (got `4` and `5` as values)",[])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Duplicate key `e` in object.  (got `4` and `5` as values)", r.array())

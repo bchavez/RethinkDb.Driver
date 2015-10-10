@@ -31,7 +31,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, regression/370.yaml, #Templates.YamlTest+DefTest.
              //Original: d = r.db('test')
              
-Db d = (Db) (r.db("test"));             
+var d = (Db) (r.db("test"));             
              TestCounter++;
              
              {

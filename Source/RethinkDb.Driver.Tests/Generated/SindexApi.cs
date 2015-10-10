@@ -32,16 +32,16 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, sindex/api.yaml, #Templates.YamlTest+DefTest.
              //Original: rows = [{'id':0, 'a':0, 'b':0, 'c':0, 'm':[1,2,3]}, {'id':1, 'a':0, 'b':0, 'c':0, 'm':[4,5,6]}, {'id':2, 'a':0, 'b':0, 'c':1, 'm':7}, {'id':3, 'a':0, 'b':1, 'c':1, 'm':[10,11,12]}, {'id':4, 'a':4, 'b':4, 'c':4, 'm':[14,15,16]}]
              
-IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with("c", 0).with("m", r.array(1, 2, 3)), r.hashMap("id", 1).with("a", 0).with("b", 0).with("c", 0).with("m", r.array(4, 5, 6)), r.hashMap("id", 2).with("a", 0).with("b", 0).with("c", 1).with("m", 7), r.hashMap("id", 3).with("a", 0).with("b", 1).with("c", 1).with("m", r.array(10, 11, 12)), r.hashMap("id", 4).with("a", 4).with("b", 4).with("c", 4).with("m", r.array(14, 15, 16))));             
+var rows = (IList) (r.array(r.hashMap("id", 0L).with("a", 0L).with("b", 0L).with("c", 0L).with("m", r.array(1L, 2L, 3L)), r.hashMap("id", 1L).with("a", 0L).with("b", 0L).with("c", 0L).with("m", r.array(4L, 5L, 6L)), r.hashMap("id", 2L).with("a", 0L).with("b", 0L).with("c", 1L).with("m", 7L), r.hashMap("id", 3L).with("a", 0L).with("b", 1L).with("c", 1L).with("m", r.array(10L, 11L, 12L)), r.hashMap("id", 4L).with("a", 4L).with("b", 4L).with("c", 4L).with("m", r.array(14L, 15L, 16L))));             
              TestCounter++;
              
              {
                  //JavaQuery, sindex/api.yaml, #2
                  /* ExpectedOriginal: ({'deleted':0,'inserted':4,'skipped':0,'errors':0,'replaced':0,'unchanged':0}) */
-                 var expected_ = r.hashMap("deleted", 0).with("inserted", 4).with("skipped", 0).with("errors", 0).with("replaced", 0).with("unchanged", 0);
+                 var expected_ = r.hashMap("deleted", 0L).with("inserted", 4L).with("skipped", 0L).with("errors", 0L).with("replaced", 0L).with("unchanged", 0L);
                  
                  /* Original: tbl.insert([{'id':0, 'a':0, 'b':0, 'c':0, 'm':[1,2,3]}, {'id':1, 'a':0, 'b':0, 'c':0, 'm':[4,5,6]}, {'id':2, 'a':0, 'b':0, 'c':1, 'm':7}, {'id':3, 'a':0, 'b':1, 'c':1, 'm':[10,11,12]}]) */
-                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with("c", 0).with("m", r.array(1, 2, 3)), r.hashMap("id", 1).with("a", 0).with("b", 0).with("c", 0).with("m", r.array(4, 5, 6)), r.hashMap("id", 2).with("a", 0).with("b", 0).with("c", 1).with("m", 7), r.hashMap("id", 3).with("a", 0).with("b", 1).with("c", 1).with("m", r.array(10, 11, 12)))) ,
+                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0L).with("a", 0L).with("b", 0L).with("c", 0L).with("m", r.array(1L, 2L, 3L)), r.hashMap("id", 1L).with("a", 0L).with("b", 0L).with("c", 0L).with("m", r.array(4L, 5L, 6L)), r.hashMap("id", 2L).with("a", 0L).with("b", 0L).with("c", 1L).with("m", 7L), r.hashMap("id", 3L).with("a", 0L).with("b", 1L).with("c", 1L).with("m", r.array(10L, 11L, 12L)))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -108,7 +108,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #9
                  /* ExpectedOriginal: ({'renamed':0}) */
-                 var expected_ = r.hashMap("renamed", 0);
+                 var expected_ = r.hashMap("renamed", 0L);
                  
                  /* Original: tbl.index_rename('rename-foo','rename-foo') */
                  var obtained = runOrCatch( tbl.indexRename("rename-foo", "rename-foo") ,
@@ -122,7 +122,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #10
                  /* ExpectedOriginal: ({'renamed':0}) */
-                 var expected_ = r.hashMap("renamed", 0);
+                 var expected_ = r.hashMap("renamed", 0L);
                  
                  /* Original: tbl.index_rename('rename-foo','rename-foo',overwrite=True) */
                  var obtained = runOrCatch( tbl.indexRename("rename-foo", "rename-foo").optArg("overwrite", true) ,
@@ -136,7 +136,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #11
                  /* ExpectedOriginal: ({'renamed':1}) */
-                 var expected_ = r.hashMap("renamed", 1);
+                 var expected_ = r.hashMap("renamed", 1L);
                  
                  /* Original: tbl.index_rename('rename-foo','rename-bar',overwrite=True) */
                  var obtained = runOrCatch( tbl.indexRename("rename-foo", "rename-bar").optArg("overwrite", true) ,
@@ -150,7 +150,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #12
                  /* ExpectedOriginal: ({'renamed':1}) */
-                 var expected_ = r.hashMap("renamed", 1);
+                 var expected_ = r.hashMap("renamed", 1L);
                  
                  /* Original: tbl.index_rename('rename-bar','rename-stuff',overwrite=True) */
                  var obtained = runOrCatch( tbl.indexRename("rename-bar", "rename-stuff").optArg("overwrite", true) ,
@@ -164,7 +164,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #13
                  /* ExpectedOriginal: ({'renamed':1}) */
-                 var expected_ = r.hashMap("renamed", 1);
+                 var expected_ = r.hashMap("renamed", 1L);
                  
                  /* Original: tbl.index_rename('rename-stuff','rename-last') */
                  var obtained = runOrCatch( tbl.indexRename("rename-stuff", "rename-last") ,
@@ -178,7 +178,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #14
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('minval', lambda:r.minval) */
                  var obtained = runOrCatch( tbl.indexCreate("minval", () => r.minval()) ,
@@ -192,7 +192,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #15
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('maxval', lambda:r.maxval) */
                  var obtained = runOrCatch( tbl.indexCreate("maxval", () => r.maxval()) ,
@@ -220,10 +220,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #17
                  /* ExpectedOriginal: 3 */
-                 var expected_ = 3;
+                 var expected_ = 3L;
                  
                  /* Original: tbl.get_all(0, index='rename-last').count() */
-                 var obtained = runOrCatch( tbl.getAll(0).optArg("index", "rename-last").count() ,
+                 var obtained = runOrCatch( tbl.getAll(0L).optArg("index", "rename-last").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -234,7 +234,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #18
                  /* ExpectedOriginal: 0 */
-                 var expected_ = 0;
+                 var expected_ = 0L;
                  
                  /* Original: tbl.get_all(r.minval, index='minval').count() */
                  var obtained = runOrCatch( tbl.getAll(r.minval()).optArg("index", "minval").count() ,
@@ -248,7 +248,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #19
                  /* ExpectedOriginal: 0 */
-                 var expected_ = 0;
+                 var expected_ = 0L;
                  
                  /* Original: tbl.get_all(r.maxval, index='maxval').count() */
                  var obtained = runOrCatch( tbl.getAll(r.maxval()).optArg("index", "maxval").count() ,
@@ -262,7 +262,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #20
                  /* ExpectedOriginal: 0 */
-                 var expected_ = 0;
+                 var expected_ = 0L;
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='minval').count() */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "minval").count() ,
@@ -276,10 +276,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #21
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('rename-last-dup', tbl.index_status('rename-last').nth(0).get_field('function')) */
-                 var obtained = runOrCatch( tbl.indexCreate("rename-last-dup", tbl.indexStatus("rename-last").nth(0).g("function")) ,
+                 var obtained = runOrCatch( tbl.indexCreate("rename-last-dup", tbl.indexStatus("rename-last").nth(0L).g("function")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -289,8 +289,8 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              
              {
                  //JavaQuery, sindex/api.yaml, #22
-                 /* ExpectedOriginal: [{'ready': True, 'index': 'rename-last-dup'}] */
-                 var expected_ = r.array(r.hashMap("ready", true).with("index", "rename-last-dup"));
+                 /* ExpectedOriginal: [{'index': 'rename-last-dup', 'ready': True}] */
+                 var expected_ = r.array(r.hashMap("index", "rename-last-dup").with("ready", true));
                  
                  /* Original: tbl.index_wait('rename-last-dup').pluck('index', 'ready') */
                  var obtained = runOrCatch( tbl.indexWait("rename-last-dup").pluck("index", "ready") ,
@@ -304,10 +304,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #23
                  /* ExpectedOriginal: 3 */
-                 var expected_ = 3;
+                 var expected_ = 3L;
                  
                  /* Original: tbl.get_all(0, index='rename-last-dup').count() */
-                 var obtained = runOrCatch( tbl.getAll(0).optArg("index", "rename-last-dup").count() ,
+                 var obtained = runOrCatch( tbl.getAll(0L).optArg("index", "rename-last-dup").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -318,7 +318,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #24
                  /* ExpectedOriginal: ({'dropped':1}) */
-                 var expected_ = r.hashMap("dropped", 1);
+                 var expected_ = r.hashMap("dropped", 1L);
                  
                  /* Original: tbl.index_drop('rename-last-dup') */
                  var obtained = runOrCatch( tbl.indexDrop("rename-last-dup") ,
@@ -332,7 +332,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #24
                  /* ExpectedOriginal: ({'dropped':1}) */
-                 var expected_ = r.hashMap("dropped", 1);
+                 var expected_ = r.hashMap("dropped", 1L);
                  
                  /* Original: tbl.index_drop('minval') */
                  var obtained = runOrCatch( tbl.indexDrop("minval") ,
@@ -346,7 +346,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #24
                  /* ExpectedOriginal: ({'dropped':1}) */
-                 var expected_ = r.hashMap("dropped", 1);
+                 var expected_ = r.hashMap("dropped", 1L);
                  
                  /* Original: tbl.index_drop('maxval') */
                  var obtained = runOrCatch( tbl.indexDrop("maxval") ,
@@ -374,7 +374,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #26
                  /* ExpectedOriginal: ({'dropped':1}) */
-                 var expected_ = r.hashMap("dropped", 1);
+                 var expected_ = r.hashMap("dropped", 1L);
                  
                  /* Original: tbl.index_drop('rename-last') */
                  var obtained = runOrCatch( tbl.indexDrop("rename-last") ,
@@ -433,7 +433,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = null as object;
                  
                  /* Original: tbl.get(-1) */
-                 var obtained = runOrCatch( tbl.get(-1) ,
+                 var obtained = runOrCatch( tbl.get(-1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -444,10 +444,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #39
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: tbl.get(1)['id'] */
-                 var obtained = runOrCatch( tbl.get(1).g("id") ,
+                 var obtained = runOrCatch( tbl.get(1L).g("id") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -461,7 +461,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = "SELECTION<OBJECT>";
                  
                  /* Original: tbl.get(1).type_of() */
-                 var obtained = runOrCatch( tbl.get(1).typeOf() ,
+                 var obtained = runOrCatch( tbl.get(1L).typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -472,10 +472,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #41
                  /* ExpectedOriginal: ({'replaced':0,'skipped':0,'deleted':0,'unchanged':1,'errors':0,'inserted':0}) */
-                 var expected_ = r.hashMap("replaced", 0).with("skipped", 0).with("deleted", 0).with("unchanged", 1).with("errors", 0).with("inserted", 0);
+                 var expected_ = r.hashMap("replaced", 0L).with("skipped", 0L).with("deleted", 0L).with("unchanged", 1L).with("errors", 0L).with("inserted", 0L);
                  
                  /* Original: tbl.get(1).update(lambda x:null) */
-                 var obtained = runOrCatch( tbl.get(1).update(x => null) ,
+                 var obtained = runOrCatch( tbl.get(1L).update(x => null) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -503,7 +503,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.get_all(-1, index='id') */
-                 var obtained = runOrCatch( tbl.getAll(-1).optArg("index", "id") ,
+                 var obtained = runOrCatch( tbl.getAll(-1L).optArg("index", "id") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -517,7 +517,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.get_all(-1) */
-                 var obtained = runOrCatch( tbl.getAll(-1) ,
+                 var obtained = runOrCatch( tbl.getAll(-1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -531,7 +531,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.get_all([-1]) */
-                 var obtained = runOrCatch( tbl.getAll(r.array(-1)) ,
+                 var obtained = runOrCatch( tbl.getAll(r.array(-1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -542,10 +542,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #47
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: tbl.get_all(1, index='id')[0]['id'] */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "id").nth(0).g("id") ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "id").nth(0L).g("id") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -556,10 +556,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #48
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: tbl.get_all(1)[0]['id'] */
-                 var obtained = runOrCatch( tbl.getAll(1).nth(0).g("id") ,
+                 var obtained = runOrCatch( tbl.getAll(1L).nth(0L).g("id") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -570,10 +570,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #49
                  /* ExpectedOriginal: [1, 2, 3] */
-                 var expected_ = r.array(1, 2, 3);
+                 var expected_ = r.array(1L, 2L, 3L);
                  
                  /* Original: tbl.get_all(1,2,3, index='id').map(lambda x:x["id"]).coerce_to("ARRAY") */
-                 var obtained = runOrCatch( tbl.getAll(1, 2, 3).optArg("index", "id").map(x => x.g("id")).coerceTo("ARRAY") ,
+                 var obtained = runOrCatch( tbl.getAll(1L, 2L, 3L).optArg("index", "id").map(x => x.g("id")).coerceTo("ARRAY") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -584,10 +584,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #50
                  /* ExpectedOriginal: [1, 2, 3] */
-                 var expected_ = r.array(1, 2, 3);
+                 var expected_ = r.array(1L, 2L, 3L);
                  
                  /* Original: tbl.get_all(1,2,3).map(lambda x:x["id"]).coerce_to("ARRAY") */
-                 var obtained = runOrCatch( tbl.getAll(1, 2, 3).map(x => x.g("id")).coerceTo("ARRAY") ,
+                 var obtained = runOrCatch( tbl.getAll(1L, 2L, 3L).map(x => x.g("id")).coerceTo("ARRAY") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -601,7 +601,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = "SELECTION<STREAM>";
                  
                  /* Original: tbl.get_all(1, index='id').type_of() */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "id").typeOf() ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "id").typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -615,7 +615,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = "SELECTION<STREAM>";
                  
                  /* Original: tbl.get_all(1).type_of() */
-                 var obtained = runOrCatch( tbl.getAll(1).typeOf() ,
+                 var obtained = runOrCatch( tbl.getAll(1L).typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -626,10 +626,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #53
                  /* ExpectedOriginal: ({'replaced':0,'skipped':0,'deleted':0,'unchanged':1,'errors':0,'inserted':0}) */
-                 var expected_ = r.hashMap("replaced", 0).with("skipped", 0).with("deleted", 0).with("unchanged", 1).with("errors", 0).with("inserted", 0);
+                 var expected_ = r.hashMap("replaced", 0L).with("skipped", 0L).with("deleted", 0L).with("unchanged", 1L).with("errors", 0L).with("inserted", 0L);
                  
                  /* Original: tbl.get_all(1, index='id').update(lambda x:null) */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "id").update(x => null) ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "id").update(x => null) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -640,10 +640,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #54
                  /* ExpectedOriginal: ({'replaced':0,'skipped':0,'deleted':0,'unchanged':1,'errors':0,'inserted':0}) */
-                 var expected_ = r.hashMap("replaced", 0).with("skipped", 0).with("deleted", 0).with("unchanged", 1).with("errors", 0).with("inserted", 0);
+                 var expected_ = r.hashMap("replaced", 0L).with("skipped", 0L).with("deleted", 0L).with("unchanged", 1L).with("errors", 0L).with("inserted", 0L);
                  
                  /* Original: tbl.get_all(1).update(lambda x:null) */
-                 var obtained = runOrCatch( tbl.getAll(1).update(x => null) ,
+                 var obtained = runOrCatch( tbl.getAll(1L).update(x => null) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -654,10 +654,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #55
                  /* ExpectedOriginal: ({'replaced':0,'skipped':0,'deleted':0,'unchanged':3,'errors':0,'inserted':0}) */
-                 var expected_ = r.hashMap("replaced", 0).with("skipped", 0).with("deleted", 0).with("unchanged", 3).with("errors", 0).with("inserted", 0);
+                 var expected_ = r.hashMap("replaced", 0L).with("skipped", 0L).with("deleted", 0L).with("unchanged", 3L).with("errors", 0L).with("inserted", 0L);
                  
                  /* Original: tbl.get_all(1,2,3, index='id').update(lambda x:null) */
-                 var obtained = runOrCatch( tbl.getAll(1, 2, 3).optArg("index", "id").update(x => null) ,
+                 var obtained = runOrCatch( tbl.getAll(1L, 2L, 3L).optArg("index", "id").update(x => null) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -668,10 +668,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #56
                  /* ExpectedOriginal: ({'replaced':0,'skipped':0,'deleted':0,'unchanged':3,'errors':0,'inserted':0}) */
-                 var expected_ = r.hashMap("replaced", 0).with("skipped", 0).with("deleted", 0).with("unchanged", 3).with("errors", 0).with("inserted", 0);
+                 var expected_ = r.hashMap("replaced", 0L).with("skipped", 0L).with("deleted", 0L).with("unchanged", 3L).with("errors", 0L).with("inserted", 0L);
                  
                  /* Original: tbl.get_all(1,2,3).update(lambda x:null) */
-                 var obtained = runOrCatch( tbl.getAll(1, 2, 3).update(x => null) ,
+                 var obtained = runOrCatch( tbl.getAll(1L, 2L, 3L).update(x => null) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -685,7 +685,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = err_regex("ReqlOpFailedError", "Index `fake` was not found on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", r.array());
                  
                  /* Original: tbl.get_all(0, index='fake') */
-                 var obtained = runOrCatch( tbl.getAll(0).optArg("index", "fake") ,
+                 var obtained = runOrCatch( tbl.getAll(0L).optArg("index", "fake") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -699,7 +699,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = err("ReqlQueryLogicError", "Cannot use a geospatial index with `get_all`. Use `get_intersecting` instead.", r.array());
                  
                  /* Original: tbl.get_all(r.point(0, 0)) */
-                 var obtained = runOrCatch( tbl.getAll(r.point(0, 0)) ,
+                 var obtained = runOrCatch( tbl.getAll(r.point(0L, 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -713,7 +713,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = err("ReqlQueryLogicError", "Expected type STRING but found BOOL.", r.array());
                  
                  /* Original: tbl.get_all(0, index=False) */
-                 var obtained = runOrCatch( tbl.getAll(0).optArg("index", false) ,
+                 var obtained = runOrCatch( tbl.getAll(0L).optArg("index", false) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -780,10 +780,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #64
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: tbl.get_all(1, index='id')[0]['id'] */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "id").nth(0).g("id") ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "id").nth(0L).g("id") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -794,10 +794,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #65
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: tbl.get_all(1, index='idi')[0]['id'] */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "idi").nth(0).g("id") ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "idi").nth(0L).g("id") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -811,7 +811,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.get_all(1, index='ai') */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "ai") ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "ai") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -822,10 +822,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #67
                  /* ExpectedOriginal: [3] */
-                 var expected_ = r.array(3);
+                 var expected_ = r.array(3L);
                  
                  /* Original: tbl.get_all(1, index='bi').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "bi").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "bi").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -836,10 +836,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #68
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Indexed order_by can only be performed on a TABLE or TABLE_SLICE.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0L));
                  
                  /* Original: tbl.get_all(1, index='bi').order_by(index='id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "bi").orderBy().optArg("index", "id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "bi").orderBy().optArg("index", "id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -850,10 +850,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #69
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type TABLE_SLICE but found SELECTION:', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type TABLE_SLICE but found SELECTION:", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type TABLE_SLICE but found SELECTION:", r.array(0L));
                  
                  /* Original: tbl.get_all(1, index='bi').between(1, 1, index='id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "bi").between(1, 1).optArg("index", "id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "bi").between(1L, 1L).optArg("index", "id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -864,10 +864,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #70
                  /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2, 3);
+                 var expected_ = r.array(2L, 3L);
                  
                  /* Original: tbl.get_all(1, index='ci').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "ci").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "ci").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -881,7 +881,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = "SELECTION<STREAM>";
                  
                  /* Original: tbl.get_all(1, index='ci').type_of() */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "ci").typeOf() ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "ci").typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -892,10 +892,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #72
                  /* ExpectedOriginal: ({'replaced':0,'skipped':0,'deleted':0,'unchanged':2,'errors':0,'inserted':0}) */
-                 var expected_ = r.hashMap("replaced", 0).with("skipped", 0).with("deleted", 0).with("unchanged", 2).with("errors", 0).with("inserted", 0);
+                 var expected_ = r.hashMap("replaced", 0L).with("skipped", 0L).with("deleted", 0L).with("unchanged", 2L).with("errors", 0L).with("inserted", 0L);
                  
                  /* Original: tbl.get_all(1, index='ci').update(lambda x:null) */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "ci").update(x => null) ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "ci").update(x => null) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -909,7 +909,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.get_all(1, index='brokeni') */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "brokeni") ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "brokeni") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -923,7 +923,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(rows.get(0));
                  
                  /* Original: tbl.get_all(1, index='mi') */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "mi") ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "mi") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -937,7 +937,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(rows.get(0));
                  
                  /* Original: tbl.get_all(2, index='mi') */
-                 var obtained = runOrCatch( tbl.getAll(2).optArg("index", "mi") ,
+                 var obtained = runOrCatch( tbl.getAll(2L).optArg("index", "mi") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -951,7 +951,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(rows.get(1));
                  
                  /* Original: tbl.get_all(5, index='mi') */
-                 var obtained = runOrCatch( tbl.getAll(5).optArg("index", "mi") ,
+                 var obtained = runOrCatch( tbl.getAll(5L).optArg("index", "mi") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -965,7 +965,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(rows.get(2));
                  
                  /* Original: tbl.get_all(7, index='mi') */
-                 var obtained = runOrCatch( tbl.getAll(7).optArg("index", "mi") ,
+                 var obtained = runOrCatch( tbl.getAll(7L).optArg("index", "mi") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1007,7 +1007,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(r.hashMap("left", rows.get(1)).with("right", rows.get(0)));
                  
                  /* Original: tbl.filter({'id':1}).eq_join('id', tbl, index='mi') */
-                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 1)).eqJoin("id", tbl).optArg("index", "mi") ,
+                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 1L)).eqJoin("id", tbl).optArg("index", "mi") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1021,7 +1021,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(r.hashMap("left", rows.get(0)).with("right", rows.get(0)));
                  
                  /* Original: tbl.filter({'id':0}).eq_join('id', tbl) */
-                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl) ,
+                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1035,7 +1035,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(r.hashMap("left", rows.get(0)).with("right", rows.get(0)));
                  
                  /* Original: tbl.filter({'id':0}).eq_join(lambda x:x['id'], tbl) */
-                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0)).eqJoin(x => x.g("id"), tbl) ,
+                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0L)).eqJoin(x => x.g("id"), tbl) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1049,7 +1049,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(r.hashMap("left", rows.get(0)).with("right", rows.get(0)));
                  
                  /* Original: tbl.filter({'id':0}).eq_join('id', tbl, index='id') */
-                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl).optArg("index", "id") ,
+                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl).optArg("index", "id") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1063,7 +1063,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(r.hashMap("left", rows.get(0)).with("right", rows.get(0)));
                  
                  /* Original: tbl.filter({'id':0}).eq_join(lambda x:x['id'], tbl, index='id') */
-                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0)).eqJoin(x => x.g("id"), tbl).optArg("index", "id") ,
+                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0L)).eqJoin(x => x.g("id"), tbl).optArg("index", "id") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1077,7 +1077,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(r.hashMap("left", rows.get(0)).with("right", rows.get(0)));
                  
                  /* Original: tbl.filter({'id':0}).eq_join('id', tbl, index='idi') */
-                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl).optArg("index", "idi") ,
+                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl).optArg("index", "idi") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1091,7 +1091,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(r.hashMap("left", rows.get(0)).with("right", rows.get(0)));
                  
                  /* Original: tbl.filter({'id':0}).eq_join(lambda x:x['id'], tbl, index='idi') */
-                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0)).eqJoin(x => x.g("id"), tbl).optArg("index", "idi") ,
+                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0L)).eqJoin(x => x.g("id"), tbl).optArg("index", "idi") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1105,7 +1105,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(r.hashMap("right", rows.get(0)).with("left", rows.get(0)), r.hashMap("right", rows.get(1)).with("left", rows.get(0)), r.hashMap("right", rows.get(2)).with("left", rows.get(0)), r.hashMap("right", rows.get(3)).with("left", rows.get(0)));
                  
                  /* Original: tbl.filter({'id':0}).eq_join('id', tbl, index='ai').order_by('right') */
-                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl).optArg("index", "ai").orderBy("right") ,
+                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl).optArg("index", "ai").orderBy("right") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1119,7 +1119,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(r.hashMap("right", rows.get(0)).with("left", rows.get(0)), r.hashMap("right", rows.get(1)).with("left", rows.get(0)), r.hashMap("right", rows.get(2)).with("left", rows.get(0)));
                  
                  /* Original: tbl.filter({'id':0}).eq_join('id', tbl, index='bi').order_by('right') */
-                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl).optArg("index", "bi").orderBy("right") ,
+                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl).optArg("index", "bi").orderBy("right") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1133,7 +1133,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array(r.hashMap("right", rows.get(0)).with("left", rows.get(0)), r.hashMap("right", rows.get(1)).with("left", rows.get(0)));
                  
                  /* Original: tbl.filter({'id':0}).eq_join('id', tbl, index='ci').order_by('right') */
-                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl).optArg("index", "ci").orderBy("right") ,
+                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl).optArg("index", "ci").orderBy("right") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1147,7 +1147,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.filter({'id':0}).eq_join('id', tbl, index='brokeni') */
-                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl).optArg("index", "brokeni") ,
+                 var obtained = runOrCatch( tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl).optArg("index", "brokeni") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1186,7 +1186,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #93
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('c') */
                  var obtained = runOrCatch( tbl.indexCreate("c") ,
@@ -1200,7 +1200,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #94
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('broken') */
                  var obtained = runOrCatch( tbl.indexCreate("broken") ,
@@ -1228,10 +1228,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #96
                  /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2, 3);
+                 var expected_ = r.array(2L, 3L);
                  
                  /* Original: tbl.get_all(1, index='c').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1245,7 +1245,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.get_all(1, index='broken').order_by('broken').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.getAll(1).optArg("index", "broken").orderBy("broken").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.getAll(1L).optArg("index", "broken").orderBy("broken").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1256,7 +1256,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #98
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('nil', lambda x:null) */
                  var obtained = runOrCatch( tbl.indexCreate("nil", x => null) ,
@@ -1298,10 +1298,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #101
                  /* ExpectedOriginal: ({'deleted':0,'inserted':1,'skipped':0,'errors':0,'replaced':0,'unchanged':0}) */
-                 var expected_ = r.hashMap("deleted", 0).with("inserted", 1).with("skipped", 0).with("errors", 0).with("replaced", 0).with("unchanged", 0);
+                 var expected_ = r.hashMap("deleted", 0L).with("inserted", 1L).with("skipped", 0L).with("errors", 0L).with("replaced", 0L).with("unchanged", 0L);
                  
                  /* Original: tbl.insert({'id':4, 'a':4, 'b':4, 'c':4, 'm':[14,15,16]}) */
-                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 4).with("a", 4).with("b", 4).with("c", 4).with("m", r.array(14, 15, 16))) ,
+                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 4L).with("a", 4L).with("b", 4L).with("c", 4L).with("m", r.array(14L, 15L, 16L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1343,7 +1343,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = err("ReqlQueryLogicError", "Cannot use `nu" + "ll` in BETWEEN, use `r.minval` or `r.maxval` to denote unboundedness.");
                  
                  /* Original: tbl.between(null, 2, index='id').count() */
-                 var obtained = runOrCatch( tbl.between((ReqlExpr) null, 2).optArg("index", "id").count() ,
+                 var obtained = runOrCatch( tbl.between((ReqlExpr) null, 2L).optArg("index", "id").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1357,7 +1357,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = err("ReqlQueryLogicError", "Cannot use `nu" + "ll` in BETWEEN, use `r.minval` or `r.maxval` to denote unboundedness.");
                  
                  /* Original: tbl.between(2, null, index='id').count() */
-                 var obtained = runOrCatch( tbl.between(2, (ReqlExpr) null).optArg("index", "id").count() ,
+                 var obtained = runOrCatch( tbl.between(2L, (ReqlExpr) null).optArg("index", "id").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1382,7 +1382,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #106
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval).order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).orderBy("id").map(x => x.g("id")) ,
@@ -1396,7 +1396,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #107
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval).order_by(index='id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).orderBy().optArg("index", "id").map(x => x.g("id")) ,
@@ -1410,7 +1410,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #108
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot perform multiple BETWEENs on the same table.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Cannot perform multiple BETWEENs on the same table.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Cannot perform multiple BETWEENs on the same table.", r.array(0L));
                  
                  /* Original: tbl.between(r.minval, r.maxval).between(r.minval, r.maxval).map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).between(r.minval(), r.maxval()).map(x => x.g("id")) ,
@@ -1424,10 +1424,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #109
                  /* ExpectedOriginal: ([0, 1, 2]) */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.order_by(index='id').between(r.minval, 3).map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").between(r.minval(), 3).map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").between(r.minval(), 3L).map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1438,10 +1438,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #110
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, r.maxval).order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, r.maxval()).orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, r.maxval()).orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1452,10 +1452,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #111
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(r.minval, 4).order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 4).orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 4L).orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1466,10 +1466,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #112
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(0, 4).order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 4).orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 4L).orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1480,10 +1480,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #113
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(-1, 5).order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, 5).orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, 5L).orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1497,7 +1497,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, 5).order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, 5).orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, 5L).orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1511,7 +1511,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, r.maxval).order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, r.maxval()).orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, r.maxval()).orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1525,7 +1525,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(-1, -1).order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, -1).orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, -1L).orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1539,7 +1539,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(r.minval, -1).order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), -1).orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), -1L).orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1550,7 +1550,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #118
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, right_bound='closed').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
@@ -1564,10 +1564,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #119
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, r.maxval, right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, r.maxval()).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, r.maxval()).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1578,10 +1578,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #120
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, 4, right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 4).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 4L).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1592,10 +1592,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #121
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, 4, right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 4).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 4L).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1606,10 +1606,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #122
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(-1, 5, right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, 5).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, 5L).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1623,7 +1623,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, 5, right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, 5).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, 5L).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1637,7 +1637,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, r.maxval, right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, r.maxval()).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, r.maxval()).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1651,7 +1651,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(-1, -1, right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, -1).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, -1L).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1665,7 +1665,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(r.minval, -1, right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), -1).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), -1L).optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1676,7 +1676,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #127
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='id').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
@@ -1690,10 +1690,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #128
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, r.maxval, index='id').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, r.maxval()).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, r.maxval()).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1704,10 +1704,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #129
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(r.minval, 4, index='id').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 4).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 4L).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1718,10 +1718,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #130
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(0, 4, index='id').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 4).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 4L).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1732,10 +1732,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #131
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(-1, 5, index='id').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, 5).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, 5L).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1749,7 +1749,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, 5, index='id').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, 5).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, 5L).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1763,7 +1763,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, r.maxval, index='id').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, r.maxval()).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, r.maxval()).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1777,7 +1777,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(-1, -1, index='id').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, -1).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, -1L).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1791,7 +1791,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(r.minval, -1, index='id').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), -1).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), -1L).optArg("index", "id").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1802,7 +1802,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #136
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='id', right_bound='closed').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
@@ -1816,10 +1816,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #137
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, r.maxval, index='id', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, r.maxval()).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, r.maxval()).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1830,10 +1830,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #138
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, 4, index='id', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 4).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 4L).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1844,10 +1844,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #139
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, 4, index='id', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 4).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 4L).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1858,10 +1858,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #140
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(-1, 5, index='id', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, 5).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, 5L).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1875,7 +1875,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, 5, index='id', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, 5).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, 5L).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1889,7 +1889,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, r.maxval, index='id', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, r.maxval()).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, r.maxval()).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1903,7 +1903,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(-1, -1, index='id', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, -1).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, -1L).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1917,7 +1917,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(r.minval, -1, index='id', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), -1).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), -1L).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1928,7 +1928,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #145
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='idi').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
@@ -1942,10 +1942,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #146
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, r.maxval, index='idi').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, r.maxval()).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, r.maxval()).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1956,10 +1956,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #147
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(r.minval, 4, index='idi').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 4).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 4L).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1970,10 +1970,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #148
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(0, 4, index='idi').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 4).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 4L).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1984,10 +1984,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #149
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(-1, 5, index='idi').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, 5).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, 5L).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2001,7 +2001,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, 5, index='idi').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, 5).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, 5L).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2015,7 +2015,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, r.maxval, index='idi').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, r.maxval()).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, r.maxval()).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2029,7 +2029,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(-1, -1, index='idi').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, -1).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, -1L).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2043,7 +2043,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(r.minval, -1, index='idi').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), -1).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), -1L).optArg("index", "idi").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2054,7 +2054,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #154
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
@@ -2068,10 +2068,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #155
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, r.maxval, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, r.maxval()).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, r.maxval()).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2082,10 +2082,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #156
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, 4, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 4).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 4L).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2096,10 +2096,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #157
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, 4, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 4).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 4L).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2110,10 +2110,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #158
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(-1, 5, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, 5).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, 5L).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2127,7 +2127,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, 5, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, 5).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, 5L).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2141,7 +2141,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, r.maxval, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, r.maxval()).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, r.maxval()).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2155,7 +2155,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(-1, -1, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, -1).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, -1L).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2169,7 +2169,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(r.minval, -1, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), -1).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), -1L).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2180,7 +2180,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #163
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='ai').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
@@ -2194,10 +2194,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #164
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, r.maxval, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, r.maxval()).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, r.maxval()).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2208,10 +2208,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #165
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(r.minval, 4, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 4).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 4L).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2222,10 +2222,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #166
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(0, 4, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 4).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 4L).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2236,10 +2236,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #167
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, 5, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 5).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 5L).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2250,7 +2250,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #168
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
@@ -2264,10 +2264,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #169
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, r.maxval, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2278,10 +2278,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #170
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, 4, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 4).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 4L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2292,10 +2292,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #171
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, 4, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 4).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 4L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2306,10 +2306,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #172
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, 5, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 5).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 5L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2320,10 +2320,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #173
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(0, 3, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 3).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 3L).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2334,10 +2334,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #174
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(0, 1, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 1).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 1L).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2351,7 +2351,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(0, 0, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 0).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 0L).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2362,10 +2362,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #176
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(-1, 2, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, 2).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, 2L).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2376,10 +2376,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #177
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(0, 3, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 3).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 3L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2390,10 +2390,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #178
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(0, 1, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 1).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 1L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2404,10 +2404,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #179
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(0, 0, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 0).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 0L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2418,10 +2418,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #180
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(-1, 2, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, 2).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, 2L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2435,7 +2435,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(1, 1, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(1, 1).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(1L, 1L).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2446,10 +2446,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #182
                  /* ExpectedOriginal: [4] */
-                 var expected_ = r.array(4);
+                 var expected_ = r.array(4L);
                  
                  /* Original: tbl.between(1, r.maxval, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(1, r.maxval()).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(1L, r.maxval()).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2463,7 +2463,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, r.maxval, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, r.maxval()).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, r.maxval()).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2477,7 +2477,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(r.minval, 0, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 0).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 0L).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2491,7 +2491,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(-1, -1, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, -1).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, -1L).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2505,7 +2505,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(r.minval, -1, index='ai').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), -1).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), -1L).optArg("index", "ai").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2519,7 +2519,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(1, 1, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(1, 1).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(1L, 1L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2530,10 +2530,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #188
                  /* ExpectedOriginal: [4] */
-                 var expected_ = r.array(4);
+                 var expected_ = r.array(4L);
                  
                  /* Original: tbl.between(1, r.maxval, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(1, r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(1L, r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2547,7 +2547,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(5, r.maxval, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(5, r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(5L, r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2558,10 +2558,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #190
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(r.minval, 0, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 0).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 0L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2575,7 +2575,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(-1, -1, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, -1).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, -1L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2589,7 +2589,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(r.minval, -1, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), -1).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), -1L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2600,10 +2600,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #193
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between(0, 1, index='c').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 1).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 1L).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2614,10 +2614,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #194
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between(-1, 1, index='c').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, 1).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, 1L).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2628,10 +2628,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #195
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between(r.minval, 1, index='c').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 1).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 1L).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2642,10 +2642,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #196
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, r.maxval, index='c').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, r.maxval()).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, r.maxval()).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2656,10 +2656,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #197
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(-1, r.maxval, index='c').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, r.maxval()).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, r.maxval()).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2670,7 +2670,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #198
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='c').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
@@ -2684,10 +2684,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #199
                  /* ExpectedOriginal: [2, 3, 4] */
-                 var expected_ = r.array(2, 3, 4);
+                 var expected_ = r.array(2L, 3L, 4L);
                  
                  /* Original: tbl.between(1, r.maxval, index='c').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(1, r.maxval()).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(1L, r.maxval()).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2701,7 +2701,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(1, 1, index='c').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(1, 1).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(1L, 1L).optArg("index", "c").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2712,10 +2712,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #201
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(0, 1, index='c', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, 1).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, 1L).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2726,10 +2726,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #202
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(-1, 1, index='c', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, 1).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, 1L).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2740,10 +2740,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #203
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(r.minval, 1, index='c', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 1).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 1L).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2754,10 +2754,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #204
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(0, r.maxval, index='c', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(0, r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(0L, r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2768,10 +2768,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #205
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(-1, r.maxval, index='c', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(-1, r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(-1L, r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2782,7 +2782,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #206
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='c', right_bound='closed').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
@@ -2796,10 +2796,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #207
                  /* ExpectedOriginal: [2, 3, 4] */
-                 var expected_ = r.array(2, 3, 4);
+                 var expected_ = r.array(2L, 3L, 4L);
                  
                  /* Original: tbl.between(1, r.maxval, index='c', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(1, r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(1L, r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2810,10 +2810,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #208
                  /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2, 3);
+                 var expected_ = r.array(2L, 3L);
                  
                  /* Original: tbl.between(1, 1, index='c', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(1, 1).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(1L, 1L).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2824,7 +2824,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #209
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('bc', lambda row:[row['b'], row['c']]) */
                  var obtained = runOrCatch( tbl.indexCreate("bc", row => r.array(row.g("b"), row.g("c"))) ,
@@ -2838,7 +2838,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #210
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('cb', lambda row:[row['c'], row['b']]) */
                  var obtained = runOrCatch( tbl.indexCreate("cb", row => r.array(row.g("c"), row.g("b"))) ,
@@ -2869,7 +2869,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(r.minval, [0, 0], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0, 0)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0L, 0L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2883,7 +2883,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between(r.minval, [0, 0], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0, 0)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0L, 0L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2894,10 +2894,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #214
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between(r.minval, [0, 1], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0, 1)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0L, 1L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2908,10 +2908,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #215
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between(r.minval, [0, 1], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0, 1)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0L, 1L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2922,10 +2922,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #216
                  /* ExpectedOriginal: [0, 1, 2] */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.between(r.minval, [1, 0], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1, 0)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1L, 0L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2936,10 +2936,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #217
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between(r.minval, [1, 0], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1, 0)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1L, 0L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2950,10 +2950,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #218
                  /* ExpectedOriginal: [0, 1, 2] */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.between(r.minval, [1, 1], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1, 1)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1L, 1L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2964,10 +2964,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #219
                  /* ExpectedOriginal: [0, 1, 2] */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.between(r.minval, [1, 1], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1, 1)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1L, 1L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -2978,7 +2978,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #220
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='bc').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
@@ -2992,7 +2992,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #221
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='cb').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
@@ -3006,10 +3006,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #222
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between(r.minval, [0, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3020,10 +3020,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #223
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between(r.minval, [0, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3034,10 +3034,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #224
                  /* ExpectedOriginal: [0, 1, 2] */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.between(r.minval, [0, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3048,10 +3048,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #225
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between(r.minval, [0, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(0L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3062,10 +3062,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #226
                  /* ExpectedOriginal: [0, 1, 2] */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.between(r.minval, [1, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3076,10 +3076,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #227
                  /* ExpectedOriginal: [0, 1, 2] */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.between(r.minval, [1, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3090,10 +3090,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #228
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(r.minval, [1, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3104,10 +3104,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #229
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between(r.minval, [1, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), r.array(1L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3118,7 +3118,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #230
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
@@ -3132,7 +3132,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #231
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
@@ -3149,7 +3149,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([0, 0], [0, 0], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(0, 0)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(0L, 0L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3163,7 +3163,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([0, 0], [0, 0], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(0, 0)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(0L, 0L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3174,10 +3174,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #234
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between([0, 0], [0, 1], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(0, 1)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(0L, 1L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3188,10 +3188,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #235
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between([0, 0], [0, 1], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(0, 1)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(0L, 1L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3202,10 +3202,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #236
                  /* ExpectedOriginal: [0, 1, 2] */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.between([0, 0], [1, 0], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(1, 0)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(1L, 0L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3216,10 +3216,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #237
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between([0, 0], [1, 0], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(1, 0)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(1L, 0L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3230,10 +3230,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #238
                  /* ExpectedOriginal: [0, 1, 2] */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.between([0, 0], [1, 1], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(1, 1)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(1L, 1L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3244,10 +3244,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #239
                  /* ExpectedOriginal: [0, 1, 2] */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.between([0, 0], [1, 1], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(1, 1)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(1L, 1L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3258,10 +3258,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #240
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between([0, 0], r.maxval, index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.maxval()).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.maxval()).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3272,10 +3272,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #241
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between([0, 0], r.maxval, index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.maxval()).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.maxval()).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3286,10 +3286,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #242
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between([0, 0], [0, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(0, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(0L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3300,10 +3300,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #243
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between([0, 0], [0, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(0, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(0L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3314,10 +3314,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #244
                  /* ExpectedOriginal: [0, 1, 2] */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.between([0, 0], [0, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(0, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(0L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3328,10 +3328,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #245
                  /* ExpectedOriginal: [0, 1] */
-                 var expected_ = r.array(0, 1);
+                 var expected_ = r.array(0L, 1L);
                  
                  /* Original: tbl.between([0, 0], [0, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(0, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(0L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3342,10 +3342,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #246
                  /* ExpectedOriginal: [0, 1, 2] */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.between([0, 0], [1, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(1, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(1L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3356,10 +3356,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #247
                  /* ExpectedOriginal: [0, 1, 2] */
-                 var expected_ = r.array(0, 1, 2);
+                 var expected_ = r.array(0L, 1L, 2L);
                  
                  /* Original: tbl.between([0, 0], [1, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(1, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(1L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3370,10 +3370,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #248
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between([0, 0], [1, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(1, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(1L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3384,10 +3384,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #249
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: tbl.between([0, 0], [1, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.array(1, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.array(1L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3398,10 +3398,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #250
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between([0, 0], r.maxval, index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3412,10 +3412,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #251
                  /* ExpectedOriginal: [0, 1, 2, 3, 4] */
-                 var expected_ = r.array(0, 1, 2, 3, 4);
+                 var expected_ = r.array(0L, 1L, 2L, 3L, 4L);
                  
                  /* Original: tbl.between([0, 0], r.maxval, index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 0), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 0L), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3429,7 +3429,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([0, 1], [0, 0], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(0, 0)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(0L, 0L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3443,7 +3443,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([0, 1], [0, 0], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(0, 0)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(0L, 0L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3457,7 +3457,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([0, 1], [0, 1], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(0, 1)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(0L, 1L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3471,7 +3471,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([0, 1], [0, 1], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(0, 1)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(0L, 1L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3482,10 +3482,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #256
                  /* ExpectedOriginal: [2] */
-                 var expected_ = r.array(2);
+                 var expected_ = r.array(2L);
                  
                  /* Original: tbl.between([0, 1], [1, 0], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(1, 0)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(1L, 0L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3499,7 +3499,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([0, 1], [1, 0], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(1, 0)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(1L, 0L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3510,10 +3510,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #258
                  /* ExpectedOriginal: [2] */
-                 var expected_ = r.array(2);
+                 var expected_ = r.array(2L);
                  
                  /* Original: tbl.between([0, 1], [1, 1], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(1, 1)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(1L, 1L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3524,10 +3524,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #259
                  /* ExpectedOriginal: [2] */
-                 var expected_ = r.array(2);
+                 var expected_ = r.array(2L);
                  
                  /* Original: tbl.between([0, 1], [1, 1], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(1, 1)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(1L, 1L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3538,10 +3538,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #260
                  /* ExpectedOriginal: [2, 3, 4] */
-                 var expected_ = r.array(2, 3, 4);
+                 var expected_ = r.array(2L, 3L, 4L);
                  
                  /* Original: tbl.between([0, 1], r.maxval, index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.maxval()).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.maxval()).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3552,10 +3552,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #261
                  /* ExpectedOriginal: [2, 3, 4] */
-                 var expected_ = r.array(2, 3, 4);
+                 var expected_ = r.array(2L, 3L, 4L);
                  
                  /* Original: tbl.between([0, 1], r.maxval, index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.maxval()).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.maxval()).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3569,7 +3569,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([0, 1], [0, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(0, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(0L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3583,7 +3583,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([0, 1], [0, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(0, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(0L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3594,10 +3594,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #264
                  /* ExpectedOriginal: [2] */
-                 var expected_ = r.array(2);
+                 var expected_ = r.array(2L);
                  
                  /* Original: tbl.between([0, 1], [0, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(0, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(0L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3611,7 +3611,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([0, 1], [0, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(0, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(0L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3622,10 +3622,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #266
                  /* ExpectedOriginal: [2] */
-                 var expected_ = r.array(2);
+                 var expected_ = r.array(2L);
                  
                  /* Original: tbl.between([0, 1], [1, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(1, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(1L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3636,10 +3636,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #267
                  /* ExpectedOriginal: [2] */
-                 var expected_ = r.array(2);
+                 var expected_ = r.array(2L);
                  
                  /* Original: tbl.between([0, 1], [1, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(1, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(1L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3650,10 +3650,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #268
                  /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2, 3);
+                 var expected_ = r.array(2L, 3L);
                  
                  /* Original: tbl.between([0, 1], [1, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(1, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(1L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3664,10 +3664,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #269
                  /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2, 3);
+                 var expected_ = r.array(2L, 3L);
                  
                  /* Original: tbl.between([0, 1], [1, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.array(1, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.array(1L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3678,10 +3678,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #270
                  /* ExpectedOriginal: [2, 3, 4] */
-                 var expected_ = r.array(2, 3, 4);
+                 var expected_ = r.array(2L, 3L, 4L);
                  
                  /* Original: tbl.between([0, 1], r.maxval, index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3692,10 +3692,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #271
                  /* ExpectedOriginal: [2, 3, 4] */
-                 var expected_ = r.array(2, 3, 4);
+                 var expected_ = r.array(2L, 3L, 4L);
                  
                  /* Original: tbl.between([0, 1], r.maxval, index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(0, 1), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(0L, 1L), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3709,7 +3709,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 0], [0, 0], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(0, 0)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(0L, 0L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3723,7 +3723,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 0], [0, 0], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(0, 0)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(0L, 0L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3737,7 +3737,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 0], [0, 1], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(0, 1)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(0L, 1L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3751,7 +3751,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 0], [0, 1], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(0, 1)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(0L, 1L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3765,7 +3765,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 0], [1, 0], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(1, 0)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(1L, 0L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3779,7 +3779,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 0], [1, 0], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(1, 0)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(1L, 0L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3793,7 +3793,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 0], [1, 1], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(1, 1)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(1L, 1L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3804,10 +3804,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #279
                  /* ExpectedOriginal: [2] */
-                 var expected_ = r.array(2);
+                 var expected_ = r.array(2L);
                  
                  /* Original: tbl.between([1, 0], [1, 1], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(1, 1)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(1L, 1L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3818,10 +3818,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #280
                  /* ExpectedOriginal: [3, 4] */
-                 var expected_ = r.array(3, 4);
+                 var expected_ = r.array(3L, 4L);
                  
                  /* Original: tbl.between([1, 0], r.maxval, index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.maxval()).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.maxval()).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3832,10 +3832,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #281
                  /* ExpectedOriginal: [2, 3, 4] */
-                 var expected_ = r.array(2, 3, 4);
+                 var expected_ = r.array(2L, 3L, 4L);
                  
                  /* Original: tbl.between([1, 0], r.maxval, index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.maxval()).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.maxval()).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3849,7 +3849,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 0], [0, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(0, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(0L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3863,7 +3863,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 0], [0, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(0, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(0L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3877,7 +3877,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 0], [0, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(0, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(0L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3891,7 +3891,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 0], [0, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(0, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(0L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3905,7 +3905,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 0], [1, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(1, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(1L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3916,10 +3916,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #287
                  /* ExpectedOriginal: [2] */
-                 var expected_ = r.array(2);
+                 var expected_ = r.array(2L);
                  
                  /* Original: tbl.between([1, 0], [1, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(1, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(1L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3930,10 +3930,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #288
                  /* ExpectedOriginal: [3] */
-                 var expected_ = r.array(3);
+                 var expected_ = r.array(3L);
                  
                  /* Original: tbl.between([1, 0], [1, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(1, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(1L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3944,10 +3944,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #289
                  /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2, 3);
+                 var expected_ = r.array(2L, 3L);
                  
                  /* Original: tbl.between([1, 0], [1, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.array(1, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.array(1L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3958,10 +3958,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #290
                  /* ExpectedOriginal: [3, 4] */
-                 var expected_ = r.array(3, 4);
+                 var expected_ = r.array(3L, 4L);
                  
                  /* Original: tbl.between([1, 0], r.maxval, index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3972,10 +3972,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #291
                  /* ExpectedOriginal: [2, 3, 4] */
-                 var expected_ = r.array(2, 3, 4);
+                 var expected_ = r.array(2L, 3L, 4L);
                  
                  /* Original: tbl.between([1, 0], r.maxval, index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 0), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 0L), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -3989,7 +3989,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [0, 0], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(0, 0)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(0L, 0L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4003,7 +4003,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [0, 0], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(0, 0)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(0L, 0L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4017,7 +4017,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [0, 1], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(0, 1)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(0L, 1L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4031,7 +4031,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [0, 1], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(0, 1)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(0L, 1L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4045,7 +4045,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [1, 0], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(1, 0)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(1L, 0L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4059,7 +4059,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [1, 0], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(1, 0)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(1L, 0L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4073,7 +4073,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [1, 1], index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(1, 1)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(1L, 1L)).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4087,7 +4087,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [1, 1], index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(1, 1)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(1L, 1L)).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4098,10 +4098,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #300
                  /* ExpectedOriginal: [3, 4] */
-                 var expected_ = r.array(3, 4);
+                 var expected_ = r.array(3L, 4L);
                  
                  /* Original: tbl.between([1, 1], r.maxval, index='bc').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.maxval()).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.maxval()).optArg("index", "bc").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4112,10 +4112,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #301
                  /* ExpectedOriginal: [3, 4] */
-                 var expected_ = r.array(3, 4);
+                 var expected_ = r.array(3L, 4L);
                  
                  /* Original: tbl.between([1, 1], r.maxval, index='cb').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.maxval()).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.maxval()).optArg("index", "cb").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4129,7 +4129,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [0, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(0, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(0L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4143,7 +4143,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [0, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(0, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(0L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4157,7 +4157,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [0, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(0, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(0L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4171,7 +4171,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [0, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(0, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(0L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4185,7 +4185,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [1, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(1, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(1L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4199,7 +4199,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
                  var expected_ = r.array();
                  
                  /* Original: tbl.between([1, 1], [1, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(1, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(1L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4210,10 +4210,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #308
                  /* ExpectedOriginal: [3] */
-                 var expected_ = r.array(3);
+                 var expected_ = r.array(3L);
                  
                  /* Original: tbl.between([1, 1], [1, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(1, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(1L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4224,10 +4224,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #309
                  /* ExpectedOriginal: [3] */
-                 var expected_ = r.array(3);
+                 var expected_ = r.array(3L);
                  
                  /* Original: tbl.between([1, 1], [1, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.array(1, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.array(1L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4238,10 +4238,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #310
                  /* ExpectedOriginal: [3, 4] */
-                 var expected_ = r.array(3, 4);
+                 var expected_ = r.array(3L, 4L);
                  
                  /* Original: tbl.between([1, 1], r.maxval, index='bc', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4252,10 +4252,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #311
                  /* ExpectedOriginal: [3, 4] */
-                 var expected_ = r.array(3, 4);
+                 var expected_ = r.array(3L, 4L);
                  
                  /* Original: tbl.between([1, 1], r.maxval, index='cb', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(r.array(1, 1), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(r.array(1L, 1L), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4266,10 +4266,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #312
                  /* ExpectedOriginal: ([0,0,0]) */
-                 var expected_ = r.array(0, 0, 0);
+                 var expected_ = r.array(0L, 0L, 0L);
                  
                  /* Original: tbl.between(1, 3, index='mi', right_bound='closed').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(1, 3).optArg("index", "mi").optArg("right_bound", "closed").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(1L, 3L).optArg("index", "mi").optArg("right_bound", "closed").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4280,10 +4280,10 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #313
                  /* ExpectedOriginal: ([0,0,0,1,1,1,2,3,3,3,4,4,4]) */
-                 var expected_ = r.array(0, 0, 0, 1, 1, 1, 2, 3, 3, 3, 4, 4, 4);
+                 var expected_ = r.array(0L, 0L, 0L, 1L, 1L, 1L, 2L, 3L, 3L, 3L, 4L, 4L, 4L);
                  
                  /* Original: tbl.between(1, 16, index='mi', right_bound='closed').order_by('id').map(lambda x:x['id']) */
-                 var obtained = runOrCatch( tbl.between(1, 16).optArg("index", "mi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
+                 var obtained = runOrCatch( tbl.between(1L, 16L).optArg("index", "mi").optArg("right_bound", "closed").orderBy("id").map(x => x.g("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -4294,7 +4294,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #314
                  /* ExpectedOriginal: ([0,0,0,1,1,1,2,3,3,3,4,4,4]) */
-                 var expected_ = r.array(0, 0, 0, 1, 1, 1, 2, 3, 3, 3, 4, 4, 4);
+                 var expected_ = r.array(0L, 0L, 0L, 1L, 1L, 1L, 2L, 3L, 3L, 3L, 4L, 4L, 4L);
                  
                  /* Original: tbl.order_by(index='mi').map(lambda x:x['id']) */
                  var obtained = runOrCatch( tbl.orderBy().optArg("index", "mi").map(x => x.g("id")) ,

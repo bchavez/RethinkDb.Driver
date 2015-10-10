@@ -32,10 +32,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, default.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: r.expr(1).default(2) */
-                 var obtained = runOrCatch( r.expr(1).default_(2) ,
+                 var obtained = runOrCatch( r.expr(1L).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -46,10 +46,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, default.yaml, #2
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: r.expr(null).default(2) */
-                 var obtained = runOrCatch( r.expr((ReqlExpr) null).default_(2) ,
+                 var obtained = runOrCatch( r.expr((ReqlExpr) null).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -60,10 +60,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, default.yaml, #3
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: r.expr({})['b'].default(2) */
-                 var obtained = runOrCatch( r.expr(r.hashMap()).g("b").default_(2) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap()).g("b").default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -77,7 +77,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", r.array());
                  
                  /* Original: r.expr(r.expr('a')['b']).default(2) */
-                 var obtained = runOrCatch( r.expr(r.expr("a").g("b")).default_(2) ,
+                 var obtained = runOrCatch( r.expr(r.expr("a").g("b")).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -88,10 +88,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, default.yaml, #5
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: r.expr([]).reduce(lambda a,b:a+b).default(2) */
-                 var obtained = runOrCatch( r.expr(r.array()).reduce((a, b) => r.add(a, b)).default_(2) ,
+                 var obtained = runOrCatch( r.expr(r.array()).reduce((a, b) => r.add(a, b)).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -102,10 +102,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, default.yaml, #6
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: r.expr([]).union([]).reduce(lambda a,b:a+b).default(2) */
-                 var obtained = runOrCatch( r.expr(r.array()).union(r.array()).reduce((a, b) => r.add(a, b)).default_(2) ,
+                 var obtained = runOrCatch( r.expr(r.array()).union(r.array()).reduce((a, b) => r.add(a, b)).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -119,7 +119,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Cannot convert STRING to SEQUENCE", r.array());
                  
                  /* Original: r.expr('a').reduce(lambda a,b:a+b).default(2) */
-                 var obtained = runOrCatch( r.expr("a").reduce((a, b) => r.add(a, b)).default_(2) ,
+                 var obtained = runOrCatch( r.expr("a").reduce((a, b) => r.add(a, b)).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -130,10 +130,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, default.yaml, #8
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: (r.expr(null) + 5).default(2) */
-                 var obtained = runOrCatch( r.expr((ReqlExpr) null).add(5).default_(2) ,
+                 var obtained = runOrCatch( r.expr((ReqlExpr) null).add(5L).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -144,10 +144,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, default.yaml, #9
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: (5 + r.expr(null)).default(2) */
-                 var obtained = runOrCatch( r.add(5, r.expr((ReqlExpr) null)).default_(2) ,
+                 var obtained = runOrCatch( r.add(5L, r.expr((ReqlExpr) null)).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -158,10 +158,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, default.yaml, #10
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: (5 - r.expr(null)).default(2) */
-                 var obtained = runOrCatch( r.sub(5, r.expr((ReqlExpr) null)).default_(2) ,
+                 var obtained = runOrCatch( r.sub(5L, r.expr((ReqlExpr) null)).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -172,10 +172,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, default.yaml, #11
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: (r.expr(null) - 5).default(2) */
-                 var obtained = runOrCatch( r.expr((ReqlExpr) null).sub(5).default_(2) ,
+                 var obtained = runOrCatch( r.expr((ReqlExpr) null).sub(5L).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -189,7 +189,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array());
                  
                  /* Original: (r.expr('a') + 5).default(2) */
-                 var obtained = runOrCatch( r.expr("a").add(5).default_(2) ,
+                 var obtained = runOrCatch( r.expr("a").add(5L).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -203,7 +203,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
                  
                  /* Original: (5 + r.expr('a')).default(2) */
-                 var obtained = runOrCatch( r.add(5, r.expr("a")).default_(2) ,
+                 var obtained = runOrCatch( r.add(5L, r.expr("a")).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -217,7 +217,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
                  
                  /* Original: (r.expr('a') - 5).default(2) */
-                 var obtained = runOrCatch( r.expr("a").sub(5).default_(2) ,
+                 var obtained = runOrCatch( r.expr("a").sub(5L).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -231,7 +231,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
                  
                  /* Original: (5 - r.expr('a')).default(2) */
-                 var obtained = runOrCatch( r.sub(5, r.expr("a")).default_(2) ,
+                 var obtained = runOrCatch( r.sub(5L, r.expr("a")).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -242,10 +242,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, default.yaml, #16
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: r.expr(1).default(r.error()) */
-                 var obtained = runOrCatch( r.expr(1).default_(r.error()) ,
+                 var obtained = runOrCatch( r.expr(1L).default_(r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -315,7 +315,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array());
                  
                  /* Original: (r.expr(null) + 5).default(r.error) */
-                 var obtained = runOrCatch( r.expr((ReqlExpr) null).add(5).default_(r.error()) ,
+                 var obtained = runOrCatch( r.expr((ReqlExpr) null).add(5L).default_(r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -329,7 +329,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array());
                  
                  /* Original: (5 + r.expr(null)).default(r.error) */
-                 var obtained = runOrCatch( r.add(5, r.expr((ReqlExpr) null)).default_(r.error()) ,
+                 var obtained = runOrCatch( r.add(5L, r.expr((ReqlExpr) null)).default_(r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -343,7 +343,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array());
                  
                  /* Original: (5 - r.expr(null)).default(r.error) */
-                 var obtained = runOrCatch( r.sub(5, r.expr((ReqlExpr) null)).default_(r.error()) ,
+                 var obtained = runOrCatch( r.sub(5L, r.expr((ReqlExpr) null)).default_(r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -357,7 +357,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array());
                  
                  /* Original: (r.expr(null) - 5).default(r.error) */
-                 var obtained = runOrCatch( r.expr((ReqlExpr) null).sub(5).default_(r.error()) ,
+                 var obtained = runOrCatch( r.expr((ReqlExpr) null).sub(5L).default_(r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -368,10 +368,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, default.yaml, #25
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: r.expr(1).default(lambda e:e) */
-                 var obtained = runOrCatch( r.expr(1).default_(e => e) ,
+                 var obtained = runOrCatch( r.expr(1L).default_(e => e) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -441,7 +441,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "Expected type NUMBER but found NULL.";
                  
                  /* Original: (r.expr(null) + 5).default(lambda e:e) */
-                 var obtained = runOrCatch( r.expr((ReqlExpr) null).add(5).default_(e => e) ,
+                 var obtained = runOrCatch( r.expr((ReqlExpr) null).add(5L).default_(e => e) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -455,7 +455,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "Expected type NUMBER but found NULL.";
                  
                  /* Original: (5 + r.expr(null)).default(lambda e:e) */
-                 var obtained = runOrCatch( r.add(5, r.expr((ReqlExpr) null)).default_(e => e) ,
+                 var obtained = runOrCatch( r.add(5L, r.expr((ReqlExpr) null)).default_(e => e) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -469,7 +469,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "Expected type NUMBER but found NULL.";
                  
                  /* Original: (5 - r.expr(null)).default(lambda e:e) */
-                 var obtained = runOrCatch( r.sub(5, r.expr((ReqlExpr) null)).default_(e => e) ,
+                 var obtained = runOrCatch( r.sub(5L, r.expr((ReqlExpr) null)).default_(e => e) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -483,7 +483,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "Expected type NUMBER but found NULL.";
                  
                  /* Original: (r.expr(null) - 5).default(lambda e:e) */
-                 var obtained = runOrCatch( r.expr((ReqlExpr) null).sub(5).default_(e => e) ,
+                 var obtained = runOrCatch( r.expr((ReqlExpr) null).sub(5L).default_(e => e) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -493,16 +493,16 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, default.yaml, #Templates.YamlTest+DefTest.
              //Original: arr = r.expr([{'a':1},{'a':null},{}]).order_by('a')
              
-OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null), r.hashMap())).orderBy("a"));             
+var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.hashMap())).orderBy("a"));             
              TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #35
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1)) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1)) ,
+                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -513,10 +513,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #36
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=False) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1)).optArg("default", false) ,
+                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1L)).optArg("default", false) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -527,10 +527,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #37
                  /* ExpectedOriginal: [{}, {'a': 1}] */
-                 var expected_ = r.array(r.hashMap(), r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap(), r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=True) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1)).optArg("default", true) ,
+                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1L)).optArg("default", true) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -541,10 +541,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #38
                  /* ExpectedOriginal: [{}, {'a': 1}] */
-                 var expected_ = r.array(r.hashMap(), r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap(), r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=r.js('true')) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1)).optArg("default", r.js("true")) ,
+                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1L)).optArg("default", r.js("true")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -555,10 +555,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #39
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=r.js('false')) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1)).optArg("default", r.js("false")) ,
+                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1L)).optArg("default", r.js("false")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -572,7 +572,7 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
                  var expected_ = err("ReqlNonExistenceError", "No attribute `a` in object:", r.array());
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=r.error()) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1)).optArg("default", r.error()) ,
+                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1L)).optArg("default", r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -583,10 +583,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #41
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: r.expr(False).do(lambda d:arr.filter(lambda x:x['a'].eq(1), default=d)) */
-                 var obtained = runOrCatch( r.expr(false).do_(d => arr.filter(x => x.g("a").eq(1)).optArg("default", d)) ,
+                 var obtained = runOrCatch( r.expr(false).do_(d => arr.filter(x => x.g("a").eq(1L)).optArg("default", d)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -597,10 +597,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #42
                  /* ExpectedOriginal: [{}, {'a': 1}] */
-                 var expected_ = r.array(r.hashMap(), r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap(), r.hashMap("a", 1L));
                  
                  /* Original: r.expr(True).do(lambda d:arr.filter(lambda x:x['a'].eq(1), default=d)).order_by('a') */
-                 var obtained = runOrCatch( r.expr(true).do_(d => arr.filter(x => x.g("a").eq(1)).optArg("default", d)).orderBy("a") ,
+                 var obtained = runOrCatch( r.expr(true).do_(d => arr.filter(x => x.g("a").eq(1L)).optArg("default", d)).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -611,10 +611,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #43
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].default(0).eq(1)) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").default_(0).eq(1)) ,
+                 var obtained = runOrCatch( arr.filter(x => x.g("a").default_(0L).eq(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -625,10 +625,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #44
                  /* ExpectedOriginal: ([{}, {'a':null}, {'a':1}]) */
-                 var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].default(1).eq(1)).order_by('a') */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").default_(1).eq(1)).orderBy("a") ,
+                 var obtained = runOrCatch( arr.filter(x => x.g("a").default_(1L).eq(1L)).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -639,10 +639,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #45
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].default(r.error()).eq(1)) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").default_(r.error()).eq(1)) ,
+                 var obtained = runOrCatch( arr.filter(x => x.g("a").default_(r.error()).eq(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -653,10 +653,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #46
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: r.expr(0).do(lambda i:arr.filter(lambda x:x['a'].default(i).eq(1))) */
-                 var obtained = runOrCatch( r.expr(0).do_(i => arr.filter(x => x.g("a").default_(i).eq(1))) ,
+                 var obtained = runOrCatch( r.expr(0L).do_(i => arr.filter(x => x.g("a").default_(i).eq(1L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -667,10 +667,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #47
                  /* ExpectedOriginal: ([{},{'a':null},{'a':1}]) */
-                 var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L));
                  
                  /* Original: r.expr(1).do(lambda i:arr.filter(lambda x:x['a'].default(i).eq(1))).order_by('a') */
-                 var obtained = runOrCatch( r.expr(1).do_(i => arr.filter(x => x.g("a").default_(i).eq(1))).orderBy("a") ,
+                 var obtained = runOrCatch( r.expr(1L).do_(i => arr.filter(x => x.g("a").default_(i).eq(1L))).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -681,10 +681,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #48
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2))) */
-                 var obtained = runOrCatch( arr.filter(x => r.or(x.g("a").eq(1), x.g("a").g("b").eq(2))) ,
+                 var obtained = runOrCatch( arr.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -695,10 +695,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #49
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=False) */
-                 var obtained = runOrCatch( arr.filter(x => r.or(x.g("a").eq(1), x.g("a").g("b").eq(2))).optArg("default", false) ,
+                 var obtained = runOrCatch( arr.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", false) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -709,10 +709,10 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #50
                  /* ExpectedOriginal: ([{}, {'a':null}, {'a':1}]) */
-                 var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=True).order_by('a') */
-                 var obtained = runOrCatch( arr.filter(x => r.or(x.g("a").eq(1), x.g("a").g("b").eq(2))).optArg("default", true).orderBy("a") ,
+                 var obtained = runOrCatch( arr.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", true).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -726,7 +726,7 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
                  var expected_ = err("ReqlNonExistenceError", "No attribute `a` in object:", r.array());
                  
                  /* Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=r.error()) */
-                 var obtained = runOrCatch( arr.filter(x => r.or(x.g("a").eq(1), x.g("a").g("b").eq(2))).optArg("default", r.error()) ,
+                 var obtained = runOrCatch( arr.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -737,7 +737,7 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #52
                  /* ExpectedOriginal: partial({'tables_created':1}) */
-                 var expected_ = partial(r.hashMap("tables_created", 1));
+                 var expected_ = partial(r.hashMap("tables_created", 1L));
                  
                  /* Original: r.table_create('default_test') */
                  var obtained = runOrCatch( r.tableCreate("default_test") ,
@@ -751,7 +751,7 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              {
                  //JavaQuery, default.yaml, #53
                  /* ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(3,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3}) */
-                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("generated_keys", arrlen(3, uuid())).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 3);
+                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("generated_keys", arrlen(3L, uuid())).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 3L);
                  
                  /* Original: r.table('default_test').insert(arr) */
                  var obtained = runOrCatch( r.table("default_test").insert(arr) ,
@@ -764,16 +764,16 @@ OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", null),
              //JavaDef, default.yaml, #Templates.YamlTest+DefTest.
              //Original: tbl = r.table('default_test').order_by('a').pluck('a')
              
-Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));             
+var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));             
              TestCounter++;
              
              {
                  //JavaQuery, default.yaml, #55
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:x['a'].eq(1)) */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").eq(1)) ,
+                 var obtained = runOrCatch( tbl.filter(x => x.g("a").eq(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -784,10 +784,10 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #56
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:x['a'].eq(1), default=False) */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").eq(1)).optArg("default", false) ,
+                 var obtained = runOrCatch( tbl.filter(x => x.g("a").eq(1L)).optArg("default", false) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -798,10 +798,10 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #57
                  /* ExpectedOriginal: [{}, {'a': 1}] */
-                 var expected_ = r.array(r.hashMap(), r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap(), r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:x['a'].eq(1), default=True) */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").eq(1)).optArg("default", true) ,
+                 var obtained = runOrCatch( tbl.filter(x => x.g("a").eq(1L)).optArg("default", true) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -815,7 +815,7 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = err("ReqlNonExistenceError", "No attribute `a` in object:", r.array());
                  
                  /* Original: tbl.filter(lambda x:x['a'].eq(1), default=r.error()) */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").eq(1)).optArg("default", r.error()) ,
+                 var obtained = runOrCatch( tbl.filter(x => x.g("a").eq(1L)).optArg("default", r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -826,10 +826,10 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #59
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: r.expr(False).do(lambda d:tbl.filter(lambda x:x['a'].eq(1), default=d)) */
-                 var obtained = runOrCatch( r.expr(false).do_(d => tbl.filter(x => x.g("a").eq(1)).optArg("default", d)) ,
+                 var obtained = runOrCatch( r.expr(false).do_(d => tbl.filter(x => x.g("a").eq(1L)).optArg("default", d)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -840,10 +840,10 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #60
                  /* ExpectedOriginal: [{}, {'a': 1}] */
-                 var expected_ = r.array(r.hashMap(), r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap(), r.hashMap("a", 1L));
                  
                  /* Original: r.expr(True).do(lambda d:tbl.filter(lambda x:x['a'].eq(1), default=d)).order_by('a') */
-                 var obtained = runOrCatch( r.expr(true).do_(d => tbl.filter(x => x.g("a").eq(1)).optArg("default", d)).orderBy("a") ,
+                 var obtained = runOrCatch( r.expr(true).do_(d => tbl.filter(x => x.g("a").eq(1L)).optArg("default", d)).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -854,10 +854,10 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #61
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:x['a'].default(0).eq(1)) */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").default_(0).eq(1)) ,
+                 var obtained = runOrCatch( tbl.filter(x => x.g("a").default_(0L).eq(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -868,10 +868,10 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #62
                  /* ExpectedOriginal: ([{}, {'a':null}, {'a':1}]) */
-                 var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:x['a'].default(1).eq(1)).order_by('a') */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").default_(1).eq(1)).orderBy("a") ,
+                 var obtained = runOrCatch( tbl.filter(x => x.g("a").default_(1L).eq(1L)).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -882,10 +882,10 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #63
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:x['a'].default(r.error()).eq(1)) */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").default_(r.error()).eq(1)) ,
+                 var obtained = runOrCatch( tbl.filter(x => x.g("a").default_(r.error()).eq(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -896,10 +896,10 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #64
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: r.expr(0).do(lambda i:tbl.filter(lambda x:x['a'].default(i).eq(1))) */
-                 var obtained = runOrCatch( r.expr(0).do_(i => tbl.filter(x => x.g("a").default_(i).eq(1))) ,
+                 var obtained = runOrCatch( r.expr(0L).do_(i => tbl.filter(x => x.g("a").default_(i).eq(1L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -910,10 +910,10 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #65
                  /* ExpectedOriginal: ([{},{'a':null},{'a':1}]) */
-                 var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L));
                  
                  /* Original: r.expr(1).do(lambda i:tbl.filter(lambda x:x['a'].default(i).eq(1))).order_by('a') */
-                 var obtained = runOrCatch( r.expr(1).do_(i => tbl.filter(x => x.g("a").default_(i).eq(1))).orderBy("a") ,
+                 var obtained = runOrCatch( r.expr(1L).do_(i => tbl.filter(x => x.g("a").default_(i).eq(1L))).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -924,10 +924,10 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #66
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2))) */
-                 var obtained = runOrCatch( tbl.filter(x => r.or(x.g("a").eq(1), x.g("a").g("b").eq(2))) ,
+                 var obtained = runOrCatch( tbl.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -938,10 +938,10 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #67
                  /* ExpectedOriginal: [{'a': 1}] */
-                 var expected_ = r.array(r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=False) */
-                 var obtained = runOrCatch( tbl.filter(x => r.or(x.g("a").eq(1), x.g("a").g("b").eq(2))).optArg("default", false) ,
+                 var obtained = runOrCatch( tbl.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", false) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -952,10 +952,10 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #68
                  /* ExpectedOriginal: ([{}, {'a':null}, {'a':1}]) */
-                 var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1));
+                 var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=True).order_by('a') */
-                 var obtained = runOrCatch( tbl.filter(x => r.or(x.g("a").eq(1), x.g("a").g("b").eq(2))).optArg("default", true).orderBy("a") ,
+                 var obtained = runOrCatch( tbl.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", true).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -969,7 +969,7 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = err("ReqlNonExistenceError", "No attribute `a` in object:", r.array());
                  
                  /* Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=r.error()) */
-                 var obtained = runOrCatch( tbl.filter(x => r.or(x.g("a").eq(1), x.g("a").g("b").eq(2))).optArg("default", r.error()) ,
+                 var obtained = runOrCatch( tbl.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -980,7 +980,7 @@ Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
              {
                  //JavaQuery, default.yaml, #70
                  /* ExpectedOriginal: partial({'tables_dropped':1}) */
-                 var expected_ = partial(r.hashMap("tables_dropped", 1));
+                 var expected_ = partial(r.hashMap("tables_dropped", 1L));
                  
                  /* Original: r.table_drop('default_test') */
                  var obtained = runOrCatch( r.tableDrop("default_test") ,

@@ -9,7 +9,7 @@ DefsAndTests:
   Java: tbl2.indexCreate("foo")
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/status.yaml
@@ -18,7 +18,7 @@ DefsAndTests:
   Java: tbl2.indexCreate("bar").optArg("multi", true)
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/status.yaml
@@ -72,13 +72,13 @@ DefsAndTests:
   Java: tbl2.indexCreate("quux")
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/status.yaml
   TestNum: 10
   Original: tbl2.index_status("quux").do(lambda x:(x[0]["index"] == "quux") & (x[0]["blocks_processed"] < x[0]["blocks_total"]))
-  Java: tbl2.indexStatus("quux").do_(x -> x.nth(0).g("index").eq("quux").and(x.nth(0).g("blocks_processed").lt(x.nth(0).g("blocks_total"))))
+  Java: tbl2.indexStatus("quux").do_(x -> x.nth(0L).g("index").eq("quux").and(x.nth(0L).g("blocks_processed").lt(x.nth(0L).g("blocks_total"))))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -96,7 +96,7 @@ DefsAndTests:
   TestFile: sindex/status.yaml
   TestNum: 12
   Original: tbl2.index_wait("quux").nth(0).get_field('function').type_of()
-  Java: tbl2.indexWait("quux").nth(0).g("function").typeOf()
+  Java: tbl2.indexWait("quux").nth(0L).g("function").typeOf()
   ExpectedOriginal: ("PTYPE<BINARY>")
   ExpectedType: String
   ExpectedJava: '"PTYPE<BINARY>"'

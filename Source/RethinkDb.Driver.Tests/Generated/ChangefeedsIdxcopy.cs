@@ -33,7 +33,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, changefeeds/idxcopy.yaml, #1
                  /* ExpectedOriginal: partial({'created':1}) */
-                 var expected_ = partial(r.hashMap("created", 1));
+                 var expected_ = partial(r.hashMap("created", 1L));
                  
                  /* Original: tbl.index_create('a') */
                  var obtained = runOrCatch( tbl.indexCreate("a") ,
@@ -60,16 +60,16 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, changefeeds/idxcopy.yaml, #Templates.YamlTest+DefTest.
              //Original: feed = tbl.order_by(index='a').limit(10).changes(squash=2).limit(9)
              
-Limit feed = (Limit) (tbl.orderBy().optArg("index", "a").limit(10).changes().optArg("squash", 2).limit(9));             
+var feed = (Limit) (tbl.orderBy().optArg("index", "a").limit(10L).changes().optArg("squash", 2L).limit(9L));             
              TestCounter++;
              
              {
                  //JavaQuery, changefeeds/idxcopy.yaml, #5
                  /* ExpectedOriginal: partial({'deleted':3, 'errors':0}) */
-                 var expected_ = partial(r.hashMap("deleted", 3).with("errors", 0));
+                 var expected_ = partial(r.hashMap("deleted", 3L).with("errors", 0L));
                  
                  /* Original: tbl.get_all(0, 1, 8, index='id').delete() */
-                 var obtained = runOrCatch( tbl.getAll(0, 1, 8).optArg("index", "id").delete() ,
+                 var obtained = runOrCatch( tbl.getAll(0L, 1L, 8L).optArg("index", "id").delete() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -83,7 +83,7 @@ Limit feed = (Limit) (tbl.orderBy().optArg("index", "a").limit(10).changes().opt
                  var expected_ = null as object;
                  
                  /* Original: wait(2) */
-                 var obtained = runOrCatch( wait_(2) ,
+                 var obtained = runOrCatch( wait_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -94,7 +94,7 @@ Limit feed = (Limit) (tbl.orderBy().optArg("index", "a").limit(10).changes().opt
              {
                  //JavaQuery, changefeeds/idxcopy.yaml, #7
                  /* ExpectedOriginal: bag([ {"new_val":{"a":5, "id":2}, "old_val":nil}, {"new_val":{"a":5, "id":3}, "old_val":nil}, {"new_val":{"a":5, "id":4}, "old_val":nil}, {"new_val":{"a":5, "id":5}, "old_val":nil}, {"new_val":{"a":5, "id":6}, "old_val":nil}, {"new_val":{"a":5, "id":7}, "old_val":nil}, {"new_val":{"a":5, "id":9}, "old_val":nil}, {"new_val":{"a":5, "id":10}, "old_val":nil}, {"new_val":{"a":5, "id":11}, "old_val":nil}]) */
-                 var expected_ = bag(r.array(r.hashMap("new_val", r.hashMap("a", 5).with("id", 2)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 3)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 4)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 5)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 6)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 7)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 9)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 10)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 11)).with("old_val", null)));
+                 var expected_ = bag(r.array(r.hashMap("new_val", r.hashMap("a", 5L).with("id", 2L)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5L).with("id", 3L)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5L).with("id", 4L)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5L).with("id", 5L)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5L).with("id", 6L)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5L).with("id", 7L)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5L).with("id", 9L)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5L).with("id", 10L)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5L).with("id", 11L)).with("old_val", null)));
                  
                  /* Original: feed */
                  var obtained = runOrCatch( feed ,

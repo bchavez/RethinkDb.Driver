@@ -4,37 +4,37 @@ DefsAndTests:
   TestFile: math_logic/sub.yaml
   TestNum: 1
   Original: (r.expr(1) - 1)
-  Java: r.expr(1).sub(1)
+  Java: r.expr(1L).sub(1L)
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/sub.yaml
   TestNum: 1
   Original: (1 - r.expr(1))
-  Java: r.sub(1, r.expr(1))
+  Java: r.sub(1L, r.expr(1L))
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/sub.yaml
   TestNum: 1
   Original: (r.expr(1).sub(1))
-  Java: r.expr(1).sub(1)
+  Java: r.expr(1L).sub(1L)
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/sub.yaml
   TestNum: 2
   Original: r.expr(-1) - 1
-  Java: r.expr(-1).sub(1)
+  Java: r.expr(-1L).sub(1L)
   ExpectedOriginal: -2
   ExpectedType: Long
-  ExpectedJava: -2
+  ExpectedJava: -2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/sub.yaml
@@ -52,16 +52,16 @@ DefsAndTests:
   Java: r.expr("a").sub(0.8)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/sub.yaml
   TestNum: 6
   Original: r.expr(1) - 'a'
-  Java: r.expr(1).sub("a")
+  Java: r.expr(1L).sub("a")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/sub.yaml
@@ -70,5 +70,5 @@ DefsAndTests:
   Java: r.expr("b").sub("a")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L))
   RunOpts: []

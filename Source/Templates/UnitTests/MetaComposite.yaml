@@ -7,7 +7,7 @@ DefsAndTests:
   Java: r.dbDrop("test")
   ExpectedOriginal: partial({'dbs_dropped':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("dbs_dropped", 1))
+  ExpectedJava: partial(r.hashMap("dbs_dropped", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/composite.yaml
@@ -16,10 +16,10 @@ DefsAndTests:
     r.db_list().set_difference(["rethinkdb"]).for_each(lambda db_name:
         r.expr([1,2,3]).for_each(lambda i:
             r.db(db_name).table_create('tbl_' + i.coerce_to('string'))))
-  Java: r.dbList().setDifference(r.array("rethinkdb")).forEach(db_name -> r.expr(r.array(1, 2, 3)).forEach(i -> r.db(db_name).tableCreate(r.add("tbl_", i.coerceTo("string")))))
+  Java: r.dbList().setDifference(r.array("rethinkdb")).forEach(db_name -> r.expr(r.array(1L, 2L, 3L)).forEach(i -> r.db(db_name).tableCreate(r.add("tbl_", i.coerceTo("string")))))
   ExpectedOriginal: partial({'tables_created':9})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_created", 9))
+  ExpectedJava: partial(r.hashMap("tables_created", 9L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/composite.yaml
@@ -28,5 +28,5 @@ DefsAndTests:
   Java: r.dbCreate("test")
   ExpectedOriginal: partial({'dbs_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("dbs_created", 1))
+  ExpectedJava: partial(r.hashMap("dbs_created", 1L))
   RunOpts: []

@@ -46,10 +46,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/619.yaml, #2
                  /* ExpectedOriginal: ({'self':1}) */
-                 var expected_ = r.hashMap("self", 1);
+                 var expected_ = r.hashMap("self", 1L);
                  
                  /* Original: r.expr(1).do(lambda x:{'self':x}) */
-                 var obtained = runOrCatch( r.expr(1).do_(x => r.hashMap("self", x)) ,
+                 var obtained = runOrCatch( r.expr(1L).do_(x => r.hashMap("self", x)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -60,10 +60,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/619.yaml, #3
                  /* ExpectedOriginal: ({"a":{"self":1}}) */
-                 var expected_ = r.hashMap("a", r.hashMap("self", 1));
+                 var expected_ = r.hashMap("a", r.hashMap("self", 1L));
                  
                  /* Original: r.expr({"a":{"self":1}}) */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", r.hashMap("self", 1))) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", r.hashMap("self", 1L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -74,10 +74,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/619.yaml, #4
                  /* ExpectedOriginal: ({"self":{"self":{"self":1}}}) */
-                 var expected_ = r.hashMap("self", r.hashMap("self", r.hashMap("self", 1)));
+                 var expected_ = r.hashMap("self", r.hashMap("self", r.hashMap("self", 1L)));
                  
                  /* Original: r.expr({"self":{"self":{"self":1}}}) */
-                 var obtained = runOrCatch( r.expr(r.hashMap("self", r.hashMap("self", r.hashMap("self", 1)))) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("self", r.hashMap("self", r.hashMap("self", 1L)))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

@@ -33,12 +33,12 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2767.yaml, #1
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('foo', lambda x:(x['a']+[1,2,3,4,5]+[6,7,8,9,10]).count()) */
-                 var obtained = runOrCatch( tbl.indexCreate("foo", x => x.g("a").add(r.array(1, 2, 3, 4, 5)).add(r.array(6, 7, 8, 9, 10)).count()) ,
+                 var obtained = runOrCatch( tbl.indexCreate("foo", x => x.g("a").add(r.array(1L, 2L, 3L, 4L, 5L)).add(r.array(6L, 7L, 8L, 9L, 10L)).count()) ,
                                             new OptArgs()
-                     .with("array_limit", 6)
+                     .with("array_limit", 6L)
                     );
                  assertEquals(expected_, obtained);
              }
@@ -62,12 +62,12 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2767.yaml, #3
                  /* ExpectedOriginal: ({'deleted':0,'replaced':0,'unchanged':0,'errors':0,'skipped':0,'inserted':1}) */
-                 var expected_ = r.hashMap("deleted", 0).with("replaced", 0).with("unchanged", 0).with("errors", 0).with("skipped", 0).with("inserted", 1);
+                 var expected_ = r.hashMap("deleted", 0L).with("replaced", 0L).with("unchanged", 0L).with("errors", 0L).with("skipped", 0L).with("inserted", 1L);
                  
                  /* Original: tbl.insert({'id':1,'a':[1,2,3,4,5]}) */
-                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 1).with("a", r.array(1, 2, 3, 4, 5))) ,
+                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 1L).with("a", r.array(1L, 2L, 3L, 4L, 5L))) ,
                                             new OptArgs()
-                     .with("array_limit", 6)
+                     .with("array_limit", 6L)
                     );
                  assertEquals(expected_, obtained);
              }
@@ -77,7 +77,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2767.yaml, #4
                  /* ExpectedOriginal: ([{'id':1,'a':[1,2,3,4,5]}]) */
-                 var expected_ = r.array(r.hashMap("id", 1).with("a", r.array(1, 2, 3, 4, 5)));
+                 var expected_ = r.array(r.hashMap("id", 1L).with("a", r.array(1L, 2L, 3L, 4L, 5L)));
                  
                  /* Original: tbl.coerce_to('array') */
                  var obtained = runOrCatch( tbl.coerceTo("array") ,
@@ -91,10 +91,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2767.yaml, #5
                  /* ExpectedOriginal: ([{'id':1,'a':[1,2,3,4,5]}]) */
-                 var expected_ = r.array(r.hashMap("id", 1).with("a", r.array(1, 2, 3, 4, 5)));
+                 var expected_ = r.array(r.hashMap("id", 1L).with("a", r.array(1L, 2L, 3L, 4L, 5L)));
                  
                  /* Original: tbl.get_all(15, index='foo').coerce_to('array') */
-                 var obtained = runOrCatch( tbl.getAll(15).optArg("index", "foo").coerceTo("array") ,
+                 var obtained = runOrCatch( tbl.getAll(15L).optArg("index", "foo").coerceTo("array") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -105,12 +105,12 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2767.yaml, #6
                  /* ExpectedOriginal: ([{'id':1,'a':[1,2,3,4,5]}]) */
-                 var expected_ = r.array(r.hashMap("id", 1).with("a", r.array(1, 2, 3, 4, 5)));
+                 var expected_ = r.array(r.hashMap("id", 1L).with("a", r.array(1L, 2L, 3L, 4L, 5L)));
                  
                  /* Original: tbl.get_all(15, index='foo').coerce_to('array') */
-                 var obtained = runOrCatch( tbl.getAll(15).optArg("index", "foo").coerceTo("array") ,
+                 var obtained = runOrCatch( tbl.getAll(15L).optArg("index", "foo").coerceTo("array") ,
                                             new OptArgs()
-                     .with("array_limit", 6)
+                     .with("array_limit", 6L)
                     );
                  assertEquals(expected_, obtained);
              }

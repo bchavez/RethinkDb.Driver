@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "r.args is not supported in an order_by command yet.");
                  
                  /* Original: r.expr([{"x":2},{"x":1}]).order_by(r.args(["x","y"])) */
-                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("x", 2), r.hashMap("x", 1))).orderBy(r.args(r.array("x", "y"))) ,
+                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("x", 2L), r.hashMap("x", 1L))).orderBy(r.args(r.array("x", "y"))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

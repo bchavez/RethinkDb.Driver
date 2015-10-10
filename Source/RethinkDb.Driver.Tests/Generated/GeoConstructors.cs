@@ -32,10 +32,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #1
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, 0], 'type':'Point'}) */
-                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0, 0)).with("type", "Point");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0L, 0L)).with("type", "Point");
                  
                  /* Original: r.point(0, 0) */
-                 var obtained = runOrCatch( r.point(0, 0) ,
+                 var obtained = runOrCatch( r.point(0L, 0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -46,10 +46,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #2
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, -90], 'type':'Point'}) */
-                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0, -90)).with("type", "Point");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0L, -90L)).with("type", "Point");
                  
                  /* Original: r.point(0, -90) */
-                 var obtained = runOrCatch( r.point(0, -90) ,
+                 var obtained = runOrCatch( r.point(0L, -90L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -60,10 +60,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #3
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, 90], 'type':'Point'}) */
-                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0, 90)).with("type", "Point");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0L, 90L)).with("type", "Point");
                  
                  /* Original: r.point(0, 90) */
-                 var obtained = runOrCatch( r.point(0, 90) ,
+                 var obtained = runOrCatch( r.point(0L, 90L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -74,10 +74,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #4
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[-180, 0], 'type':'Point'}) */
-                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(-180, 0)).with("type", "Point");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(-180L, 0L)).with("type", "Point");
                  
                  /* Original: r.point(-180, 0) */
-                 var obtained = runOrCatch( r.point(-180, 0) ,
+                 var obtained = runOrCatch( r.point(-180L, 0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -88,10 +88,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #5
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[180, 0], 'type':'Point'}) */
-                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(180, 0)).with("type", "Point");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(180L, 0L)).with("type", "Point");
                  
                  /* Original: r.point(180, 0) */
-                 var obtained = runOrCatch( r.point(180, 0) ,
+                 var obtained = runOrCatch( r.point(180L, 0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -102,10 +102,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #6
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Latitude must be between -90 and 90.  Got -91.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Latitude must be between -90 and 90.  Got -91.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Latitude must be between -90 and 90.  Got -91.", r.array(0L));
                  
                  /* Original: r.point(0, -91) */
-                 var obtained = runOrCatch( r.point(0, -91) ,
+                 var obtained = runOrCatch( r.point(0L, -91L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -116,10 +116,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #7
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Latitude must be between -90 and 90.  Got 91.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Latitude must be between -90 and 90.  Got 91.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Latitude must be between -90 and 90.  Got 91.", r.array(0L));
                  
                  /* Original: r.point(0, 91) */
-                 var obtained = runOrCatch( r.point(0, 91) ,
+                 var obtained = runOrCatch( r.point(0L, 91L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -130,10 +130,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #8
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Longitude must be between -180 and 180.  Got -181.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "longitude must be between -180 and 180.  Got -181.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "longitude must be between -180 and 180.  Got -181.", r.array(0L));
                  
                  /* Original: r.point(-181, 0) */
-                 var obtained = runOrCatch( r.point(-181, 0) ,
+                 var obtained = runOrCatch( r.point(-181L, 0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -144,10 +144,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #9
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Longitude must be between -180 and 180.  Got 181.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "longitude must be between -180 and 180.  Got 181.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "longitude must be between -180 and 180.  Got 181.", r.array(0L));
                  
                  /* Original: r.point(181, 0) */
-                 var obtained = runOrCatch( r.point(181, 0) ,
+                 var obtained = runOrCatch( r.point(181L, 0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -158,10 +158,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #12
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Invalid LineString.  Are there antipodal or duplicate vertices?', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Invalid LineString.  Are there antipodal or duplicate vertices?", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Invalid LineString.  Are there antipodal or duplicate vertices?", r.array(0L));
                  
                  /* Original: r.line([0,0], [0,0]) */
-                 var obtained = runOrCatch( r.line(r.array(0, 0), r.array(0, 0)) ,
+                 var obtained = runOrCatch( r.line(r.array(0L, 0L), r.array(0L, 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -172,10 +172,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #13
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0,0], [0,1]], 'type':'LineString'}) */
-                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(0, 0), r.array(0, 1))).with("type", "LineString");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(0L, 0L), r.array(0L, 1L))).with("type", "LineString");
                  
                  /* Original: r.line([0,0], [0,1]) */
-                 var obtained = runOrCatch( r.line(r.array(0, 0), r.array(0, 1)) ,
+                 var obtained = runOrCatch( r.line(r.array(0L, 0L), r.array(0L, 1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -186,10 +186,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #14
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected point coordinate pair.  Got 1 element array instead of a 2 element one.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected point coordinate pair.  Got 1 element array instead of a 2 element one.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected point coordinate pair.  Got 1 element array instead of a 2 element one.", r.array(0L));
                  
                  /* Original: r.line([0,0], [1]) */
-                 var obtained = runOrCatch( r.line(r.array(0, 0), r.array(1)) ,
+                 var obtained = runOrCatch( r.line(r.array(0L, 0L), r.array(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -200,10 +200,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #15
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected point coordinate pair.  Got 3 element array instead of a 2 element one.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected point coordinate pair.  Got 3 element array instead of a 2 element one.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected point coordinate pair.  Got 3 element array instead of a 2 element one.", r.array(0L));
                  
                  /* Original: r.line([0,0], [1,0,0]) */
-                 var obtained = runOrCatch( r.line(r.array(0, 0), r.array(1, 0, 0)) ,
+                 var obtained = runOrCatch( r.line(r.array(0L, 0L), r.array(1L, 0L, 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -214,10 +214,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #16
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0,0], [0,1], [0,0]], 'type':'LineString'}) */
-                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(0, 0), r.array(0, 1), r.array(0, 0))).with("type", "LineString");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(0L, 0L), r.array(0L, 1L), r.array(0L, 0L))).with("type", "LineString");
                  
                  /* Original: r.line([0,0], [0,1], [0,0]) */
-                 var obtained = runOrCatch( r.line(r.array(0, 0), r.array(0, 1), r.array(0, 0)) ,
+                 var obtained = runOrCatch( r.line(r.array(0L, 0L), r.array(0L, 1L), r.array(0L, 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -228,10 +228,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #17
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0,0], [0,1], [0,0]], 'type':'LineString'}) */
-                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(0, 0), r.array(0, 1), r.array(0, 0))).with("type", "LineString");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(0L, 0L), r.array(0L, 1L), r.array(0L, 0L))).with("type", "LineString");
                  
                  /* Original: r.line(r.point(0,0), r.point(0,1), r.point(0,0)) */
-                 var obtained = runOrCatch( r.line(r.point(0, 0), r.point(0, 1), r.point(0, 0)) ,
+                 var obtained = runOrCatch( r.line(r.point(0L, 0L), r.point(0L, 1L), r.point(0L, 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -242,10 +242,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #18
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected geometry of type `Point` but found `LineString`.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected geometry of type `Point` but found `LineString`.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected geometry of type `Point` but found `LineString`.", r.array(0L));
                  
                  /* Original: r.line(r.point(0,0), r.point(1,0), r.line([0,0], [1,0])) */
-                 var obtained = runOrCatch( r.line(r.point(0, 0), r.point(1, 0), r.line(r.array(0, 0), r.array(1, 0))) ,
+                 var obtained = runOrCatch( r.line(r.point(0L, 0L), r.point(1L, 0L), r.line(r.array(0L, 0L), r.array(1L, 0L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -256,10 +256,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #22
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Invalid LinearRing.  Are there antipodal or duplicate vertices? Is it self-intersecting?', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Invalid LinearRing.  Are there antipodal or duplicate vertices? Is it self-intersecting?", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Invalid LinearRing.  Are there antipodal or duplicate vertices? Is it self-intersecting?", r.array(0L));
                  
                  /* Original: r.polygon([0,0], [0,0], [0,0], [0,0]) */
-                 var obtained = runOrCatch( r.polygon(r.array(0, 0), r.array(0, 0), r.array(0, 0), r.array(0, 0)) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 0L), r.array(0L, 0L), r.array(0L, 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -270,10 +270,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #23
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0,0], [0,1], [1,0], [0,0]]], 'type':'Polygon'}) */
-                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0, 0), r.array(0, 1), r.array(1, 0), r.array(0, 0)))).with("type", "Polygon");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L), r.array(0L, 0L)))).with("type", "Polygon");
                  
                  /* Original: r.polygon([0,0], [0,1], [1,0]) */
-                 var obtained = runOrCatch( r.polygon(r.array(0, 0), r.array(0, 1), r.array(1, 0)) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -284,10 +284,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #24
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0,0], [0,1], [1,0], [0,0]]], 'type':'Polygon'}) */
-                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0, 0), r.array(0, 1), r.array(1, 0), r.array(0, 0)))).with("type", "Polygon");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L), r.array(0L, 0L)))).with("type", "Polygon");
                  
                  /* Original: r.polygon([0,0], [0,1], [1,0], [0,0]) */
-                 var obtained = runOrCatch( r.polygon(r.array(0, 0), r.array(0, 1), r.array(1, 0), r.array(0, 0)) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L), r.array(0L, 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -298,10 +298,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #25
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Invalid LinearRing.  Are there antipodal or duplicate vertices? Is it self-intersecting?', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Invalid LinearRing.  Are there antipodal or duplicate vertices? Is it self-intersecting?", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Invalid LinearRing.  Are there antipodal or duplicate vertices? Is it self-intersecting?", r.array(0L));
                  
                  /* Original: r.polygon([0,0], [0,1], [1,0], [-1,0.5]) */
-                 var obtained = runOrCatch( r.polygon(r.array(0, 0), r.array(0, 1), r.array(1, 0), r.array(-1, 0.5)) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L), r.array(-1L, 0.5)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -312,10 +312,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #26
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected point coordinate pair.  Got 1 element array instead of a 2 element one.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected point coordinate pair.  Got 1 element array instead of a 2 element one.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected point coordinate pair.  Got 1 element array instead of a 2 element one.", r.array(0L));
                  
                  /* Original: r.polygon([0,0], [0,1], [0]) */
-                 var obtained = runOrCatch( r.polygon(r.array(0, 0), r.array(0, 1), r.array(0)) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -326,10 +326,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #27
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected point coordinate pair.  Got 3 element array instead of a 2 element one.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected point coordinate pair.  Got 3 element array instead of a 2 element one.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected point coordinate pair.  Got 3 element array instead of a 2 element one.", r.array(0L));
                  
                  /* Original: r.polygon([0,0], [0,1], [0,1,0]) */
-                 var obtained = runOrCatch( r.polygon(r.array(0, 0), r.array(0, 1), r.array(0, 1, 0)) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(0L, 1L, 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -340,10 +340,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/constructors.yaml, #28
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected geometry of type `Point` but found `LineString`.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected geometry of type `Point` but found `LineString`.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected geometry of type `Point` but found `LineString`.", r.array(0L));
                  
                  /* Original: r.polygon(r.point(0,0), r.point(0,1), r.line([0,0], [0,1])) */
-                 var obtained = runOrCatch( r.polygon(r.point(0, 0), r.point(0, 1), r.line(r.array(0, 0), r.array(0, 1))) ,
+                 var obtained = runOrCatch( r.polygon(r.point(0L, 0L), r.point(0L, 1L), r.line(r.array(0L, 0L), r.array(0L, 1L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

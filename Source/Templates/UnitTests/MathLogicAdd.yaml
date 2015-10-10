@@ -4,37 +4,37 @@ DefsAndTests:
   TestFile: math_logic/add.yaml
   TestNum: 1
   Original: (r.expr(1) + 1)
-  Java: r.expr(1).add(1)
+  Java: r.expr(1L).add(1L)
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
   TestNum: 1
   Original: (1 + r.expr(1))
-  Java: r.add(1, r.expr(1))
+  Java: r.add(1L, r.expr(1L))
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
   TestNum: 1
   Original: (r.expr(1).add(1))
-  Java: r.expr(1).add(1)
+  Java: r.expr(1L).add(1L)
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
   TestNum: 2
   Original: r.expr(-1) + 1
-  Java: r.expr(-1).add(1)
+  Java: r.expr(-1L).add(1L)
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
@@ -67,35 +67,35 @@ DefsAndTests:
   TestFile: math_logic/add.yaml
   TestNum: 6
   Original: r.expr([1,2]) + [3] + [4,5] + [6,7,8]
-  Java: r.expr(r.array(1, 2)).add(r.array(3)).add(r.array(4, 5)).add(r.array(6, 7, 8))
+  Java: r.expr(r.array(1L, 2L)).add(r.array(3L)).add(r.array(4L, 5L)).add(r.array(6L, 7L, 8L))
   ExpectedOriginal: '[1, 2, 3, 4, 5, 6, 7, 8]'
   ExpectedType: List
-  ExpectedJava: r.array(1, 2, 3, 4, 5, 6, 7, 8)
+  ExpectedJava: r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
   TestNum: 9
   Original: r.expr(1) + 'a'
-  Java: r.expr(1).add("a")
+  Java: r.expr(1L).add("a")
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
   TestNum: 10
   Original: r.expr('a') + 1
-  Java: r.expr("a").add(1)
+  Java: r.expr("a").add(1L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array(1))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array(1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
   TestNum: 11
   Original: r.expr([]) + 1
-  Java: r.expr(r.array()).add(1)
+  Java: r.expr(r.array()).add(1L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type ARRAY but found NUMBER.", [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type ARRAY but found NUMBER.", r.array(1))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type ARRAY but found NUMBER.", r.array(1L))
   RunOpts: []

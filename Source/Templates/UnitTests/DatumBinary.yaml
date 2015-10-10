@@ -22,7 +22,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -46,7 +46,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -70,7 +70,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -94,7 +94,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -118,7 +118,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 4
   ExpectedType: Long
-  ExpectedJava: 4
+  ExpectedJava: 4L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -142,7 +142,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 5
   ExpectedType: Long
-  ExpectedJava: 5
+  ExpectedJava: 5L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -166,7 +166,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 6
   ExpectedType: Long
-  ExpectedJava: 6
+  ExpectedJava: 6L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -190,7 +190,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 7
   ExpectedType: Long
-  ExpectedJava: 7
+  ExpectedJava: 7L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -214,7 +214,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 8
   ExpectedType: Long
-  ExpectedJava: 8
+  ExpectedJava: 8L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -238,7 +238,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 9
   ExpectedType: Long
-  ExpectedJava: 9
+  ExpectedJava: 9L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -262,7 +262,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 10
   ExpectedType: Long
-  ExpectedJava: 10
+  ExpectedJava: 10L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -286,7 +286,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 11
   ExpectedType: Long
-  ExpectedJava: 11
+  ExpectedJava: 11L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -310,7 +310,7 @@ DefsAndTests:
   Java: r.binary(s).count()
   ExpectedOriginal: 12
   ExpectedType: Long
-  ExpectedJava: 12
+  ExpectedJava: 12L
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
@@ -802,7 +802,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 96
   Original: r.binary(b'abcdefg').slice(-3,-1)
-  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-3, -1)
+  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-3L, -1L)
   ExpectedOriginal: b'ef'
   ExpectedType: byte[]
   ExpectedJava: new byte[]{101, 102}
@@ -811,7 +811,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 97
   Original: r.binary(b'abcdefg').slice(0, 2)
-  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(0, 2)
+  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(0L, 2L)
   ExpectedOriginal: b'ab'
   ExpectedType: byte[]
   ExpectedJava: new byte[]{97, 98}
@@ -820,7 +820,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 98
   Original: r.binary(b'abcdefg').slice(3, -1)
-  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(3, -1)
+  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(3L, -1L)
   ExpectedOriginal: b'def'
   ExpectedType: byte[]
   ExpectedJava: new byte[]{100, 101, 102}
@@ -829,7 +829,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 99
   Original: r.binary(b'abcdefg').slice(-5, 5)
-  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-5, 5)
+  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-5L, 5L)
   ExpectedOriginal: b'cde'
   ExpectedType: byte[]
   ExpectedJava: new byte[]{99, 100, 101}
@@ -838,7 +838,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 100
   Original: r.binary(b'abcdefg').slice(-8, 2)
-  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-8, 2)
+  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-8L, 2L)
   ExpectedOriginal: b'ab'
   ExpectedType: byte[]
   ExpectedJava: new byte[]{97, 98}
@@ -847,7 +847,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 101
   Original: r.binary(b'abcdefg').slice(5, 7)
-  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(5, 7)
+  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(5L, 7L)
   ExpectedOriginal: b'fg'
   ExpectedType: byte[]
   ExpectedJava: new byte[]{102, 103}
@@ -856,7 +856,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 102
   Original: r.binary(b'abcdefg').slice(-9, 2)
-  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-9, 2)
+  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-9L, 2L)
   ExpectedOriginal: b'ab'
   ExpectedType: byte[]
   ExpectedJava: new byte[]{97, 98}
@@ -865,7 +865,7 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 103
   Original: r.binary(b'abcdefg').slice(5, 9)
-  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(5, 9)
+  Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(5L, 9L)
   ExpectedOriginal: b'fg'
   ExpectedType: byte[]
   ExpectedJava: new byte[]{102, 103}

@@ -123,6 +123,16 @@ namespace RethinkDb.Driver.Tests
             //ten minute limit for clock drift.
             t.Dump();
         }
+
+        [Test]
+        public void test_date_time_conversion()
+        {
+            var dt = GeneratedTest.datetime.fromtimestamp(896571240L, GeneratedTest.ast.rqlTzinfo("00:00"));
+            dt.Dump();
+
+            var dt2 = GeneratedTest.datetime.fromtimestamp(1375147296.681, GeneratedTest.ast.rqlTzinfo("-07:00"));
+            dt2.Dump();
+        }
         
     }
 

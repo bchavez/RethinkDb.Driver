@@ -4,8 +4,8 @@ DefsAndTests:
   TestFile: regression/2710.yaml
   TestNum: 1
   Original: r.expr({"a":{"b":1, "c":2}}).merge(r.json('{"a":{"$reql_type$":"LITERAL", "value":{"b":2}}}'))
-  Java: r.expr(r.hashMap("a", r.hashMap("b", 1).with("c", 2))).merge(r.json("{\"a\":{\"$reql_type$\":\"LITERAL\", \"value\":{\"b\":2}}}"))
+  Java: r.expr(r.hashMap("a", r.hashMap("b", 1L).with("c", 2L))).merge(r.json("{\"a\":{\"$reql_type$\":\"LITERAL\", \"value\":{\"b\":2}}}"))
   ExpectedOriginal: ({'a':{'b':2}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", r.hashMap("b", 2))
+  ExpectedJava: r.hashMap("a", r.hashMap("b", 2L))
   RunOpts: []

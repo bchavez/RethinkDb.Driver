@@ -33,13 +33,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2709.yaml, #1
                  /* ExpectedOriginal: ({'inserted':999}) */
-                 var expected_ = r.hashMap("inserted", 999);
+                 var expected_ = r.hashMap("inserted", 999L);
                  
                  /* Original: tbl.insert([{'result':i} for i in range(1,1000)]).pluck('first_error', 'inserted') */
-                 var obtained = runOrCatch( tbl.insert(Enumerable.Range(1, 1000).Select(i => r.hashMap("result", i)).ToList()).pluck("first_error", "inserted") ,
+                 var obtained = runOrCatch( tbl.insert(EnumerableLRange(1L, 1000L).Select(i => r.hashMap("result", i)).ToList()).pluck("first_error", "inserted") ,
                                             new OptArgs()
-                     .with("min_batch_rows", 10)
-                     .with("max_batch_rows", 13)
+                     .with("min_batch_rows", 10L)
+                     .with("max_batch_rows", 13L)
                     );
                  assertEquals(expected_, obtained);
              }
@@ -49,13 +49,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2709.yaml, #2
                  /* ExpectedOriginal: (999) */
-                 var expected_ = 999;
+                 var expected_ = 999L;
                  
                  /* Original: tbl.map(lambda thing:'key').count() */
                  var obtained = runOrCatch( tbl.map(thing => "key").count() ,
                                             new OptArgs()
-                     .with("min_batch_rows", 10)
-                     .with("max_batch_rows", 13)
+                     .with("min_batch_rows", 10L)
+                     .with("max_batch_rows", 13L)
                     );
                  assertEquals(expected_, obtained);
              }
@@ -65,13 +65,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2709.yaml, #3
                  /* ExpectedOriginal: (999) */
-                 var expected_ = 999;
+                 var expected_ = 999L;
                  
                  /* Original: tbl.map(lambda thing:'key').count() */
                  var obtained = runOrCatch( tbl.map(thing => "key").count() ,
                                             new OptArgs()
-                     .with("min_batch_rows", 10)
-                     .with("max_batch_rows", 13)
+                     .with("min_batch_rows", 10L)
+                     .with("max_batch_rows", 13L)
                     );
                  assertEquals(expected_, obtained);
              }

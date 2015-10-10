@@ -165,6 +165,11 @@
     <Compile Include="Generated\SindexTruncation.cs" />
     <Compile Include="Generated\Timeout.cs" />
     <Compile Include="Generated\TimesApi.cs" />
+    <Compile Include="Generated\TimesConstructors.cs" />
+    <Compile Include="Generated\TimesIndex.cs" />
+    <Compile Include="Generated\TimesPortions.cs" />
+    <Compile Include="Generated\TimesShim.cs" />
+    <Compile Include="Generated\TimesTimeArith.cs" />
     <Compile Include="Generated\TimesTimezones.cs" />
     <Compile Include="Generated\TransformArray.cs" />
     <Compile Include="Generated\Transformation.cs" />

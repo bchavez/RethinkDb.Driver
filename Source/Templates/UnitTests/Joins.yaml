@@ -13,7 +13,7 @@ DefsAndTests:
   Java: r.db("test").tableCreate("test3").optArg("primary_key", "foo")
   ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_created", 1))
+  ExpectedJava: partial(r.hashMap("tables_created", 1L))
   RunOpts: []
 - TestType: JavaDef
   TestFile: joins.yaml
@@ -34,7 +34,7 @@ DefsAndTests:
   Java: ij.count()
   ExpectedOriginal: 2500
   ExpectedType: Long
-  ExpectedJava: 2500
+  ExpectedJava: 2500L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
@@ -43,7 +43,7 @@ DefsAndTests:
   Java: ij.filter(row -> row.g("a").ne(row.g("b"))).count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaDef
   TestFile: joins.yaml
@@ -58,7 +58,7 @@ DefsAndTests:
   Java: oj.count()
   ExpectedOriginal: 2500
   ExpectedType: Long
-  ExpectedJava: 2500
+  ExpectedJava: 2500L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
@@ -67,7 +67,7 @@ DefsAndTests:
   Java: oj.filter(row -> row.g("a").ne(row.g("b"))).count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
@@ -76,7 +76,7 @@ DefsAndTests:
   Java: tbl.eqJoin("a", tbl2).zip().count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
@@ -85,7 +85,7 @@ DefsAndTests:
   Java: tbl.eqJoin("fake", tbl2).zip().count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
@@ -94,7 +94,7 @@ DefsAndTests:
   Java: tbl.eqJoin(x -> x.g("a"), tbl2).zip().count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
@@ -103,7 +103,7 @@ DefsAndTests:
   Java: tbl.eqJoin(x -> x.g("fake"), tbl2).zip().count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
@@ -112,7 +112,7 @@ DefsAndTests:
   Java: tbl.eqJoin(x -> null, tbl2).zip().count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
@@ -121,7 +121,7 @@ DefsAndTests:
   Java: tbl.eqJoin(x -> x.g("a"), tbl2).count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
@@ -130,7 +130,7 @@ DefsAndTests:
   Java: tbl.eqJoin("a", tbl3).zip().count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
@@ -139,37 +139,37 @@ DefsAndTests:
   Java: tbl.eqJoin(x -> x.g("a"), tbl3).count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaDef
   TestFile: joins.yaml
   TestNum: 21
   Original: left = r.expr([{'a':1},{'a':2},{'a':3}])
-  Java: MakeArray left = (MakeArray) (r.expr(r.array(r.hashMap("a", 1), r.hashMap("a", 2), r.hashMap("a", 3))));
+  Java: MakeArray left = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", 2L), r.hashMap("a", 3L))));
   RunOpts: []
 - TestType: JavaDef
   TestFile: joins.yaml
   TestNum: 22
   Original: right = r.expr([{'b':2},{'b':3}])
-  Java: MakeArray right = (MakeArray) (r.expr(r.array(r.hashMap("b", 2), r.hashMap("b", 3))));
+  Java: MakeArray right = (MakeArray) (r.expr(r.array(r.hashMap("b", 2L), r.hashMap("b", 3L))));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
   TestNum: 23
   Original: left.inner_join(right, lambda l, r:l['a'] == r['b']).zip()
   Java: left.innerJoin(right, (l, r) -> l.g("a").eq(r.g("b"))).zip()
-  ExpectedOriginal: '[{''a'': 2, ''b'': 2}, {''a'': 3, ''b'': 3}]'
+  ExpectedOriginal: '[{''b'': 2, ''a'': 2}, {''b'': 3, ''a'': 3}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("a", 2).with("b", 2), r.hashMap("a", 3).with("b", 3))
+  ExpectedJava: r.array(r.hashMap("b", 2L).with("a", 2L), r.hashMap("b", 3L).with("a", 3L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
   TestNum: 24
   Original: left.outer_join(right, lambda l, r:l['a'] == r['b']).zip()
   Java: left.outerJoin(right, (l, r) -> l.g("a").eq(r.g("b"))).zip()
-  ExpectedOriginal: '[{''a'': 1}, {''a'': 2, ''b'': 2}, {''a'': 3, ''b'': 3}]'
+  ExpectedOriginal: '[{''a'': 1}, {''b'': 2, ''a'': 2}, {''b'': 3, ''a'': 3}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("a", 1), r.hashMap("a", 2).with("b", 2), r.hashMap("a", 3).with("b", 3))
+  ExpectedJava: r.array(r.hashMap("a", 1L), r.hashMap("b", 2L).with("a", 2L), r.hashMap("b", 3L).with("a", 3L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: joins.yaml
@@ -178,5 +178,5 @@ DefsAndTests:
   Java: r.db("test").tableDrop("test3")
   ExpectedOriginal: partial({'tables_dropped':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_dropped", 1))
+  ExpectedJava: partial(r.hashMap("tables_dropped", 1L))
   RunOpts: []

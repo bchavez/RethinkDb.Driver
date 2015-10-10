@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "PTYPE<GEOMETRY>";
                  
                  /* Original: r.point(0, 1).type_of() */
-                 var obtained = runOrCatch( r.point(0, 1).typeOf() ,
+                 var obtained = runOrCatch( r.point(0L, 1L).typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -49,7 +49,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "PTYPE<GEOMETRY>";
                  
                  /* Original: r.point(0, 1).info()['type'] */
-                 var obtained = runOrCatch( r.point(0, 1).info().g("type") ,
+                 var obtained = runOrCatch( r.point(0L, 1L).info().g("type") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

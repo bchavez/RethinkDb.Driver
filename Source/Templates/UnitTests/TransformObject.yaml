@@ -4,7 +4,7 @@ DefsAndTests:
   TestFile: transform/object.yaml
   TestNum: 1
   Original: obj = r.expr({'a':1, 'b':2,'c':"str",'d':null,'e':{'f':'buzz'}})
-  Java: MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"))));
+  Java: MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"))));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -13,7 +13,7 @@ DefsAndTests:
   Java: obj.g("a")
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -121,7 +121,7 @@ DefsAndTests:
   Java: r.expr(r.array(obj, obj.pluck("a", "b"))).hasFields("a", "b").count()
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -130,7 +130,7 @@ DefsAndTests:
   Java: r.expr(r.array(obj, obj.pluck("a", "b"))).hasFields("a", "c").count()
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -139,7 +139,7 @@ DefsAndTests:
   Java: r.expr(r.array(obj, obj.pluck("a", "e"))).hasFields("a", r.hashMap("e", "f")).count()
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -148,7 +148,7 @@ DefsAndTests:
   Java: obj.pluck("a")
   ExpectedOriginal: ({'a':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1)
+  ExpectedJava: r.hashMap("a", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -157,7 +157,7 @@ DefsAndTests:
   Java: obj.pluck("a", "b")
   ExpectedOriginal: ({'a':1, 'b':2})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1).with("b", 2)
+  ExpectedJava: r.hashMap("a", 1L).with("b", 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -166,7 +166,7 @@ DefsAndTests:
   Java: obj.without("a")
   ExpectedOriginal: ({'b':2, 'c':'str', 'd':null, 'e':{'f':'buzz'}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"))
+  ExpectedJava: r.hashMap("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -193,7 +193,7 @@ DefsAndTests:
   Java: obj.without(r.hashMap("e", "f"))
   ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null, 'e':{}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap())
+  ExpectedJava: r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -202,25 +202,25 @@ DefsAndTests:
   Java: obj.without(r.hashMap("e", "buzz"))
   ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null, 'e':{'f':'buzz'}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"))
+  ExpectedJava: r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
   TestNum: 24
   Original: obj.merge(1)
-  Java: obj.merge(1)
+  Java: obj.merge(1L)
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
   TestNum: 25
   Original: obj.merge({'e':-2})
-  Java: obj.merge(r.hashMap("e", -2))
+  Java: obj.merge(r.hashMap("e", -2L))
   ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null, 'e':-2})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", -2)
+  ExpectedJava: r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", -2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -229,7 +229,7 @@ DefsAndTests:
   Java: obj.merge(r.hashMap("e", r.literal()))
   ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null)
+  ExpectedJava: r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -238,7 +238,7 @@ DefsAndTests:
   Java: obj.merge(r.hashMap("e", r.hashMap("f", "quux")))
   ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null, 'e':{'f':'quux'}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("f", "quux"))
+  ExpectedJava: r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("f", "quux"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -247,7 +247,7 @@ DefsAndTests:
   Java: obj.merge(r.hashMap("e", r.hashMap("g", "quux")))
   ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null, 'e':{'f':'buzz', 'g':'quux'}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz").with("g", "quux"))
+  ExpectedJava: r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz").with("g", "quux"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -256,16 +256,16 @@ DefsAndTests:
   Java: obj.merge(r.hashMap("e", r.literal(r.hashMap("g", "quux"))))
   ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null, 'e':{'g':'quux'}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("g", "quux"))
+  ExpectedJava: r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("g", "quux"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
   TestNum: 30
   Original: obj.merge({'a':-1})
-  Java: obj.merge(r.hashMap("a", -1))
+  Java: obj.merge(r.hashMap("a", -1L))
   ExpectedOriginal: ({'a':-1, 'b':2, 'c':'str', 'd':null, 'e':{'f':'buzz'}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", -1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"))
+  ExpectedJava: r.hashMap("a", -1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"))
   RunOpts: []
 - TestType: JavaDef
   TestFile: transform/object.yaml
@@ -304,43 +304,43 @@ DefsAndTests:
   TestFile: transform/object.yaml
   TestNum: 35
   Original: o = r.expr({'a':{'b':1, 'c':2}, 'd':3})
-  Java: MakeObj o = (MakeObj) (r.expr(r.hashMap("a", r.hashMap("b", 1).with("c", 2)).with("d", 3)));
+  Java: MakeObj o = (MakeObj) (r.expr(r.hashMap("a", r.hashMap("b", 1L).with("c", 2L)).with("d", 3L)));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
   TestNum: 36
   Original: o.merge({'e':4}, {'f':5})
-  Java: o.merge(r.hashMap("e", 4), r.hashMap("f", 5))
+  Java: o.merge(r.hashMap("e", 4L), r.hashMap("f", 5L))
   ExpectedOriginal: ({'a':{'b':1, 'c':2}, 'd':3, 'e':4, 'f':5})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", r.hashMap("b", 1).with("c", 2)).with("d", 3).with("e", 4).with("f", 5)
+  ExpectedJava: r.hashMap("a", r.hashMap("b", 1L).with("c", 2L)).with("d", 3L).with("e", 4L).with("f", 5L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
   TestNum: 37
   Original: r.expr([o, o.merge({'d':4})]).merge(lambda row:{'e':row['d']})
-  Java: r.expr(r.array(o, o.merge(r.hashMap("d", 4)))).merge(row -> r.hashMap("e", row.g("d")))
+  Java: r.expr(r.array(o, o.merge(r.hashMap("d", 4L)))).merge(row -> r.hashMap("e", row.g("d")))
   ExpectedOriginal: ([{'a':{'b':1, 'c':2}, 'd':3, 'e':3}, {'a':{'b':1, 'c':2}, 'd':4, 'e':4}])
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("a", r.hashMap("b", 1).with("c", 2)).with("d", 3).with("e", 3), r.hashMap("a", r.hashMap("b", 1).with("c", 2)).with("d", 4).with("e", 4))
+  ExpectedJava: r.array(r.hashMap("a", r.hashMap("b", 1L).with("c", 2L)).with("d", 3L).with("e", 3L), r.hashMap("a", r.hashMap("b", 1L).with("c", 2L)).with("d", 4L).with("e", 4L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
   TestNum: 39
   Original: r.expr([o, o.merge({'d':4})]).merge(lambda row:{'a':{'b':2}})
-  Java: r.expr(r.array(o, o.merge(r.hashMap("d", 4)))).merge(row -> r.hashMap("a", r.hashMap("b", 2)))
+  Java: r.expr(r.array(o, o.merge(r.hashMap("d", 4L)))).merge(row -> r.hashMap("a", r.hashMap("b", 2L)))
   ExpectedOriginal: ([{'a':{'b':2, 'c':2}, 'd':3}, {'a':{'b':2, 'c':2}, 'd':4}])
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("a", r.hashMap("b", 2).with("c", 2)).with("d", 3), r.hashMap("a", r.hashMap("b", 2).with("c", 2)).with("d", 4))
+  ExpectedJava: r.array(r.hashMap("a", r.hashMap("b", 2L).with("c", 2L)).with("d", 3L), r.hashMap("a", r.hashMap("b", 2L).with("c", 2L)).with("d", 4L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
   TestNum: 40
   Original: r.expr([o, o.merge({'d':4})]).merge(lambda row:{'a':r.literal({'b':2})})
-  Java: r.expr(r.array(o, o.merge(r.hashMap("d", 4)))).merge(row -> r.hashMap("a", r.literal(r.hashMap("b", 2))))
+  Java: r.expr(r.array(o, o.merge(r.hashMap("d", 4L)))).merge(row -> r.hashMap("a", r.literal(r.hashMap("b", 2L))))
   ExpectedOriginal: ([{'a':{'b':2}, 'd':3}, {'a':{'b':2}, 'd':4}])
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("a", r.hashMap("b", 2)).with("d", 3), r.hashMap("a", r.hashMap("b", 2)).with("d", 4))
+  ExpectedJava: r.array(r.hashMap("a", r.hashMap("b", 2L)).with("d", 3L), r.hashMap("a", r.hashMap("b", 2L)).with("d", 4L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/object.yaml
@@ -358,5 +358,5 @@ DefsAndTests:
   Java: obj.values()
   ExpectedOriginal: ([1, 2, 'str', null, {'f':'buzz'}])
   ExpectedType: List
-  ExpectedJava: r.array(1, 2, "str", null, r.hashMap("f", "buzz"))
+  ExpectedJava: r.array(1L, 2L, "str", null, r.hashMap("f", "buzz"))
   RunOpts: []

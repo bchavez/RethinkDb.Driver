@@ -32,16 +32,16 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, regression/2697.yaml, #Templates.YamlTest+DefTest.
              //Original: ten_l = r.expr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
              
-MakeArray ten_l = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)));             
+var ten_l = (MakeArray) (r.expr(r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L)));             
              TestCounter++;
              
              {
                  //JavaQuery, regression/2697.yaml, #2
                  /* ExpectedOriginal: ({'inserted':1}) */
-                 var expected_ = r.hashMap("inserted", 1);
+                 var expected_ = r.hashMap("inserted", 1L);
                  
                  /* Original: tbl.insert({'id':1, 'a':r.expr(ten_l).concat_map(lambda l:list(range(1,11))).concat_map(lambda l:list(range(1,11))).concat_map(lambda l:list(range(1,11))).concat_map(lambda l:list(range(1,11)))}).pluck('first_error', 'inserted') */
-                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 1).with("a", r.expr(ten_l).concatMap(l => list(range(1, 11))).concatMap(l => list(range(1, 11))).concatMap(l => list(range(1, 11))).concatMap(l => list(range(1, 11))))).pluck("first_error", "inserted") ,
+                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 1L).with("a", r.expr(ten_l).concatMap(l => list(range(1L, 11L))).concatMap(l => list(range(1L, 11L))).concatMap(l => list(range(1L, 11L))).concatMap(l => list(range(1L, 11L))))).pluck("first_error", "inserted") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -52,10 +52,10 @@ MakeArray ten_l = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)));
              {
                  //JavaQuery, regression/2697.yaml, #4
                  /* ExpectedOriginal: 100000 */
-                 var expected_ = 100000;
+                 var expected_ = 100000L;
                  
                  /* Original: tbl.get(1)['a'].count() */
-                 var obtained = runOrCatch( tbl.get(1).g("a").count() ,
+                 var obtained = runOrCatch( tbl.get(1L).g("a").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -66,10 +66,10 @@ MakeArray ten_l = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)));
              {
                  //JavaQuery, regression/2697.yaml, #6
                  /* ExpectedOriginal: 100000 */
-                 var expected_ = 100000;
+                 var expected_ = 100000L;
                  
                  /* Original: tbl.get(1)['a'].count() */
-                 var obtained = runOrCatch( tbl.get(1).g("a").count() ,
+                 var obtained = runOrCatch( tbl.get(1L).g("a").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -83,7 +83,7 @@ MakeArray ten_l = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)));
                  var expected_ = err("ReqlResourceLimitError", "Array over size limit `100000`.", r.array());
                  
                  /* Original: r.expr(ten_l).concat_map(lambda l:list(range(1,11))).concat_map(lambda l:list(range(1,11))).concat_map(lambda l:list(range(1,11))).concat_map(lambda l:list(range(1,11))).splice_at(0, [1]).count() */
-                 var obtained = runOrCatch( r.expr(ten_l).concatMap(l => list(range(1, 11))).concatMap(l => list(range(1, 11))).concatMap(l => list(range(1, 11))).concatMap(l => list(range(1, 11))).spliceAt(0, r.array(1)).count() ,
+                 var obtained = runOrCatch( r.expr(ten_l).concatMap(l => list(range(1L, 11L))).concatMap(l => list(range(1L, 11L))).concatMap(l => list(range(1L, 11L))).concatMap(l => list(range(1L, 11L))).spliceAt(0L, r.array(1L)).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -97,7 +97,7 @@ MakeArray ten_l = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)));
                  var expected_ = err("ReqlResourceLimitError", "Array over size limit `100000`.", r.array());
                  
                  /* Original: r.expr(ten_l).concat_map(lambda l:list(range(1,11))).concat_map(lambda l:list(range(1,11))).concat_map(lambda l:list(range(1,11))).concat_map(lambda l:list(range(1,11))).insert_at(0, [1]).count() */
-                 var obtained = runOrCatch( r.expr(ten_l).concatMap(l => list(range(1, 11))).concatMap(l => list(range(1, 11))).concatMap(l => list(range(1, 11))).concatMap(l => list(range(1, 11))).insertAt(0, r.array(1)).count() ,
+                 var obtained = runOrCatch( r.expr(ten_l).concatMap(l => list(range(1L, 11L))).concatMap(l => list(range(1L, 11L))).concatMap(l => list(range(1L, 11L))).concatMap(l => list(range(1L, 11L))).insertAt(0L, r.array(1L)).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

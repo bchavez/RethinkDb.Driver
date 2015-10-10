@@ -4,7 +4,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 1
   Original: r.expr(1) < 2
-  Java: r.expr(1).lt(2)
+  Java: r.expr(1L).lt(2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -13,7 +13,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 1
   Original: 1 < r.expr(2)
-  Java: r.lt(1, r.expr(2))
+  Java: r.lt(1L, r.expr(2L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -22,7 +22,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 1
   Original: r.expr(1).lt(2)
-  Java: r.expr(1).lt(2)
+  Java: r.expr(1L).lt(2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -31,7 +31,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 2
   Original: r.expr(3) < 2
-  Java: r.expr(3).lt(2)
+  Java: r.expr(3L).lt(2L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -40,7 +40,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 3
   Original: r.expr(2) < 2
-  Java: r.expr(2).lt(2)
+  Java: r.expr(2L).lt(2L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -49,7 +49,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 6
   Original: r.expr(1) > 2
-  Java: r.expr(1).gt(2)
+  Java: r.expr(1L).gt(2L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -58,7 +58,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 6
   Original: 1 > r.expr(2)
-  Java: r.gt(1, r.expr(2))
+  Java: r.gt(1L, r.expr(2L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -67,7 +67,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 6
   Original: r.expr(1).gt(2)
-  Java: r.expr(1).gt(2)
+  Java: r.expr(1L).gt(2L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -76,7 +76,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 7
   Original: r.expr(3) > 2
-  Java: r.expr(3).gt(2)
+  Java: r.expr(3L).gt(2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -85,7 +85,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 8
   Original: r.expr(2) > 2
-  Java: r.expr(2).gt(2)
+  Java: r.expr(2L).gt(2L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -94,7 +94,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 11
   Original: r.expr(1) == 2
-  Java: r.expr(1).eq(2)
+  Java: r.expr(1L).eq(2L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -103,7 +103,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 11
   Original: 1 == r.expr(2)
-  Java: r.eq(1, r.expr(2))
+  Java: r.eq(1L, r.expr(2L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -112,7 +112,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 11
   Original: r.expr(1).eq(2)
-  Java: r.expr(1).eq(2)
+  Java: r.expr(1L).eq(2L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -121,7 +121,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 12
   Original: r.expr(3) == 2
-  Java: r.expr(3).eq(2)
+  Java: r.expr(3L).eq(2L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -130,7 +130,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 13
   Original: r.expr(2) == 2
-  Java: r.expr(2).eq(2)
+  Java: r.expr(2L).eq(2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -139,7 +139,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 16
   Original: r.expr(1) != 2
-  Java: r.expr(1).ne(2)
+  Java: r.expr(1L).ne(2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -148,7 +148,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 16
   Original: 1 != r.expr(2)
-  Java: r.ne(1, r.expr(2))
+  Java: r.ne(1L, r.expr(2L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -157,7 +157,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 16
   Original: r.expr(1).ne(2)
-  Java: r.expr(1).ne(2)
+  Java: r.expr(1L).ne(2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -166,7 +166,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 17
   Original: r.expr(3) != 2
-  Java: r.expr(3).ne(2)
+  Java: r.expr(3L).ne(2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -175,7 +175,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 18
   Original: r.expr(2) != 2
-  Java: r.expr(2).ne(2)
+  Java: r.expr(2L).ne(2L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -184,7 +184,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 21
   Original: r.expr(1) <= 2
-  Java: r.expr(1).le(2)
+  Java: r.expr(1L).le(2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -193,7 +193,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 21
   Original: 1 <= r.expr(2)
-  Java: r.le(1, r.expr(2))
+  Java: r.le(1L, r.expr(2L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -202,7 +202,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 21
   Original: r.expr(1).le(2)
-  Java: r.expr(1).le(2)
+  Java: r.expr(1L).le(2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -211,7 +211,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 22
   Original: r.expr(3) <= 2
-  Java: r.expr(3).le(2)
+  Java: r.expr(3L).le(2L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -220,7 +220,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 23
   Original: r.expr(2) <= 2
-  Java: r.expr(2).le(2)
+  Java: r.expr(2L).le(2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -229,7 +229,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 26
   Original: r.expr(1) >= 2
-  Java: r.expr(1).ge(2)
+  Java: r.expr(1L).ge(2L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -238,7 +238,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 26
   Original: 1 >= r.expr(2)
-  Java: r.ge(1, r.expr(2))
+  Java: r.ge(1L, r.expr(2L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -247,7 +247,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 26
   Original: r.expr(1).ge(2)
-  Java: r.expr(1).ge(2)
+  Java: r.expr(1L).ge(2L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -256,7 +256,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 27
   Original: r.expr(3) >= 2
-  Java: r.expr(3).ge(2)
+  Java: r.expr(3L).ge(2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -265,7 +265,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 28
   Original: r.expr(2) >= 2
-  Java: r.expr(2).ge(2)
+  Java: r.expr(2L).ge(2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -418,7 +418,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 42
   Original: r.expr([1]) < [2]
-  Java: r.expr(r.array(1)).lt(r.array(2))
+  Java: r.expr(r.array(1L)).lt(r.array(2L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -427,7 +427,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 43
   Original: r.expr([1]) > [2]
-  Java: r.expr(r.array(1)).gt(r.array(2))
+  Java: r.expr(r.array(1L)).gt(r.array(2L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -436,7 +436,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 44
   Original: r.expr([1, 0]) < [2]
-  Java: r.expr(r.array(1, 0)).lt(r.array(2))
+  Java: r.expr(r.array(1L, 0L)).lt(r.array(2L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -445,7 +445,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 45
   Original: r.expr([1, 0]) < [1]
-  Java: r.expr(r.array(1, 0)).lt(r.array(1))
+  Java: r.expr(r.array(1L, 0L)).lt(r.array(1L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -454,7 +454,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 46
   Original: r.expr([1, 0]) > [0]
-  Java: r.expr(r.array(1, 0)).gt(r.array(0))
+  Java: r.expr(r.array(1L, 0L)).gt(r.array(0L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -463,7 +463,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 47
   Original: r.expr([1, 'a']) < [1, 'b']
-  Java: r.expr(r.array(1, "a")).lt(r.array(1, "b"))
+  Java: r.expr(r.array(1L, "a")).lt(r.array(1L, "b"))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -472,7 +472,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 48
   Original: r.expr([0, 'z']) < [1, 'b']
-  Java: r.expr(r.array(0, "z")).lt(r.array(1, "b"))
+  Java: r.expr(r.array(0L, "z")).lt(r.array(1L, "b"))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -481,7 +481,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 49
   Original: r.expr([1, 1, 1]) < [1, 0, 2]
-  Java: r.expr(r.array(1, 1, 1)).lt(r.array(1, 0, 2))
+  Java: r.expr(r.array(1L, 1L, 1L)).lt(r.array(1L, 0L, 2L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -490,7 +490,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 50
   Original: r.expr([1, 0, 2]) < [1, 1, 1]
-  Java: r.expr(r.array(1, 0, 2)).lt(r.array(1, 1, 1))
+  Java: r.expr(r.array(1L, 0L, 2L)).lt(r.array(1L, 1L, 1L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -499,7 +499,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 51
   Original: r.expr({'a':0}) == {'a':0}
-  Java: r.expr(r.hashMap("a", 0)).eq(r.hashMap("a", 0))
+  Java: r.expr(r.hashMap("a", 0L)).eq(r.hashMap("a", 0L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -508,7 +508,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 52
   Original: r.expr({'a':0, 'b':1}) == {'b':1, 'a':0}
-  Java: r.expr(r.hashMap("a", 0).with("b", 1)).eq(r.hashMap("b", 1).with("a", 0))
+  Java: r.expr(r.hashMap("a", 0L).with("b", 1L)).eq(r.hashMap("b", 1L).with("a", 0L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -517,7 +517,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 53
   Original: r.expr({'a':0, 'b':1, 'c':2}) == {'b':1, 'a':0}
-  Java: r.expr(r.hashMap("a", 0).with("b", 1).with("c", 2)).eq(r.hashMap("b", 1).with("a", 0))
+  Java: r.expr(r.hashMap("a", 0L).with("b", 1L).with("c", 2L)).eq(r.hashMap("b", 1L).with("a", 0L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -526,7 +526,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 54
   Original: r.expr({'a':0, 'b':1}) == {'b':1, 'a':0, 'c':2}
-  Java: r.expr(r.hashMap("a", 0).with("b", 1)).eq(r.hashMap("b", 1).with("a", 0).with("c", 2))
+  Java: r.expr(r.hashMap("a", 0L).with("b", 1L)).eq(r.hashMap("b", 1L).with("a", 0L).with("c", 2L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -535,7 +535,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 55
   Original: r.expr({'a':0, 'b':1, 'd':2}) == {'b':1, 'a':0, 'c':2}
-  Java: r.expr(r.hashMap("a", 0).with("b", 1).with("d", 2)).eq(r.hashMap("b", 1).with("a", 0).with("c", 2))
+  Java: r.expr(r.hashMap("a", 0L).with("b", 1L).with("d", 2L)).eq(r.hashMap("b", 1L).with("a", 0L).with("c", 2L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -544,7 +544,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 56
   Original: r.expr({'a':0}) < {'b':0}
-  Java: r.expr(r.hashMap("a", 0)).lt(r.hashMap("b", 0))
+  Java: r.expr(r.hashMap("a", 0L)).lt(r.hashMap("b", 0L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -553,7 +553,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 57
   Original: r.expr({'a':1}) < {'b':0}
-  Java: r.expr(r.hashMap("a", 1)).lt(r.hashMap("b", 0))
+  Java: r.expr(r.hashMap("a", 1L)).lt(r.hashMap("b", 0L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -562,7 +562,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 58
   Original: r.expr({'b':1}) < {'b':0}
-  Java: r.expr(r.hashMap("b", 1)).lt(r.hashMap("b", 0))
+  Java: r.expr(r.hashMap("b", 1L)).lt(r.hashMap("b", 0L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -571,7 +571,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 59
   Original: r.expr({'b':1}) < {'a':0}
-  Java: r.expr(r.hashMap("b", 1)).lt(r.hashMap("a", 0))
+  Java: r.expr(r.hashMap("b", 1L)).lt(r.hashMap("a", 0L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -580,7 +580,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 60
   Original: r.expr({'a':0, 'b':1, 'c':2}) < {'a':0, 'b':1, 'c':2}
-  Java: r.expr(r.hashMap("a", 0).with("b", 1).with("c", 2)).lt(r.hashMap("a", 0).with("b", 1).with("c", 2))
+  Java: r.expr(r.hashMap("a", 0L).with("b", 1L).with("c", 2L)).lt(r.hashMap("a", 0L).with("b", 1L).with("c", 2L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -589,7 +589,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 61
   Original: r.expr({'a':0, 'b':1, 'c':2, 'd':3}) < {'a':0, 'b':1, 'c':2}
-  Java: r.expr(r.hashMap("a", 0).with("b", 1).with("c", 2).with("d", 3)).lt(r.hashMap("a", 0).with("b", 1).with("c", 2))
+  Java: r.expr(r.hashMap("a", 0L).with("b", 1L).with("c", 2L).with("d", 3L)).lt(r.hashMap("a", 0L).with("b", 1L).with("c", 2L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -598,7 +598,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 62
   Original: r.expr({'a':0, 'b':1, 'c':2}) < {'a':0, 'b':1, 'c':2, 'd':3}
-  Java: r.expr(r.hashMap("a", 0).with("b", 1).with("c", 2)).lt(r.hashMap("a", 0).with("b", 1).with("c", 2).with("d", 3))
+  Java: r.expr(r.hashMap("a", 0L).with("b", 1L).with("c", 2L)).lt(r.hashMap("a", 0L).with("b", 1L).with("c", 2L).with("d", 3L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -607,7 +607,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 63
   Original: r.expr({'a':0, 'c':2}) < {'a':0, 'b':1, 'c':2}
-  Java: r.expr(r.hashMap("a", 0).with("c", 2)).lt(r.hashMap("a", 0).with("b", 1).with("c", 2))
+  Java: r.expr(r.hashMap("a", 0L).with("c", 2L)).lt(r.hashMap("a", 0L).with("b", 1L).with("c", 2L))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -616,7 +616,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 64
   Original: r.expr({'a':0, 'c':2}) > {'a':0, 'b':1, 'c':2}
-  Java: r.expr(r.hashMap("a", 0).with("c", 2)).gt(r.hashMap("a", 0).with("b", 1).with("c", 2))
+  Java: r.expr(r.hashMap("a", 0L).with("c", 2L)).gt(r.hashMap("a", 0L).with("b", 1L).with("c", 2L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -625,7 +625,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 65
   Original: everything = r.expr([[],r.now(),r.binary(b"\x00"),false,null,-5,{},"a",r.maxval])
-  Java: MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(new byte[]{0}), false, null, -5, r.hashMap(), "a", r.maxval())));
+  Java: MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(new byte[]{0}), false, null, -5L, r.hashMap(), "a", r.maxval())));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/comparison.yaml
@@ -649,7 +649,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 70
   Original: r.expr([1,2]) < False
-  Java: r.expr(r.array(1, 2)).lt(false)
+  Java: r.expr(r.array(1L, 2L)).lt(false)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -676,7 +676,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 73
   Original: r.expr([1,2]) < r.binary(b"\xAE")
-  Java: r.expr(r.array(1, 2)).lt(r.binary(new byte[]{-82}))
+  Java: r.expr(r.array(1L, 2L)).lt(r.binary(new byte[]{-82}))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -703,7 +703,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 76
   Original: r.expr(null) < 12
-  Java: r.expr((ReqlExpr) null).lt(12)
+  Java: r.expr((ReqlExpr) null).lt(12L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -712,7 +712,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 77
   Original: r.expr(null) < -2
-  Java: r.expr((ReqlExpr) null).lt(-2)
+  Java: r.expr((ReqlExpr) null).lt(-2L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -721,7 +721,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 78
   Original: r.expr(-12) < {}
-  Java: r.expr(-12).lt(r.hashMap())
+  Java: r.expr(-12L).lt(r.hashMap())
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -730,7 +730,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 79
   Original: r.expr(100) < {'a':-12}
-  Java: r.expr(100).lt(r.hashMap("a", -12))
+  Java: r.expr(100L).lt(r.hashMap("a", -12L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -739,7 +739,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 80
   Original: r.expr(r.binary(b"\xAE")) < 12
-  Java: r.expr(r.binary(new byte[]{-82})).lt(12)
+  Java: r.expr(r.binary(new byte[]{-82})).lt(12L)
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -766,7 +766,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 83
   Original: r.now() > 12
-  Java: r.now().gt(12)
+  Java: r.now().gt(12L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -784,7 +784,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 85
   Original: r.expr("abc") > {'a':-12}
-  Java: r.expr("abc").gt(r.hashMap("a", -12))
+  Java: r.expr("abc").gt(r.hashMap("a", -12L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -802,7 +802,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 87
   Original: r.expr('zzz') > 128
-  Java: r.expr("zzz").gt(128)
+  Java: r.expr("zzz").gt(128L)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -820,7 +820,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 89
   Original: '"''zzz'' > r.expr(-152)"'
-  Java: r.gt("zzz", r.expr(-152))
+  Java: r.gt("zzz", r.expr(-152L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -847,7 +847,7 @@ DefsAndTests:
   TestFile: math_logic/comparison.yaml
   TestNum: 92
   Original: everything2 = r.expr([r.minval,[],r.now(),r.binary(b"\x00"),false,null,-5,{},"a"])
-  Java: MakeArray everything2 = (MakeArray) (r.expr(r.array(r.minval(), r.array(), r.now(), r.binary(new byte[]{0}), false, null, -5, r.hashMap(), "a")));
+  Java: MakeArray everything2 = (MakeArray) (r.expr(r.array(r.minval(), r.array(), r.now(), r.binary(new byte[]{0}), false, null, -5L, r.hashMap(), "a")));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/comparison.yaml

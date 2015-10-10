@@ -6,16 +6,16 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 1
   Original: rows = [{'id':0, 'a':0, 'b':0, 'c':0, 'm':[1,2,3]}, {'id':1, 'a':0, 'b':0, 'c':0, 'm':[4,5,6]}, {'id':2, 'a':0, 'b':0, 'c':1, 'm':7}, {'id':3, 'a':0, 'b':1, 'c':1, 'm':[10,11,12]}, {'id':4, 'a':4, 'b':4, 'c':4, 'm':[14,15,16]}]
-  Java: List rows = (List) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with("c", 0).with("m", r.array(1, 2, 3)), r.hashMap("id", 1).with("a", 0).with("b", 0).with("c", 0).with("m", r.array(4, 5, 6)), r.hashMap("id", 2).with("a", 0).with("b", 0).with("c", 1).with("m", 7), r.hashMap("id", 3).with("a", 0).with("b", 1).with("c", 1).with("m", r.array(10, 11, 12)), r.hashMap("id", 4).with("a", 4).with("b", 4).with("c", 4).with("m", r.array(14, 15, 16))));
+  Java: List rows = (List) (r.array(r.hashMap("id", 0L).with("a", 0L).with("b", 0L).with("c", 0L).with("m", r.array(1L, 2L, 3L)), r.hashMap("id", 1L).with("a", 0L).with("b", 0L).with("c", 0L).with("m", r.array(4L, 5L, 6L)), r.hashMap("id", 2L).with("a", 0L).with("b", 0L).with("c", 1L).with("m", 7L), r.hashMap("id", 3L).with("a", 0L).with("b", 1L).with("c", 1L).with("m", r.array(10L, 11L, 12L)), r.hashMap("id", 4L).with("a", 4L).with("b", 4L).with("c", 4L).with("m", r.array(14L, 15L, 16L))));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 2
   Original: tbl.insert([{'id':0, 'a':0, 'b':0, 'c':0, 'm':[1,2,3]}, {'id':1, 'a':0, 'b':0, 'c':0, 'm':[4,5,6]}, {'id':2, 'a':0, 'b':0, 'c':1, 'm':7}, {'id':3, 'a':0, 'b':1, 'c':1, 'm':[10,11,12]}])
-  Java: tbl.insert(r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with("c", 0).with("m", r.array(1, 2, 3)), r.hashMap("id", 1).with("a", 0).with("b", 0).with("c", 0).with("m", r.array(4, 5, 6)), r.hashMap("id", 2).with("a", 0).with("b", 0).with("c", 1).with("m", 7), r.hashMap("id", 3).with("a", 0).with("b", 1).with("c", 1).with("m", r.array(10, 11, 12))))
+  Java: tbl.insert(r.array(r.hashMap("id", 0L).with("a", 0L).with("b", 0L).with("c", 0L).with("m", r.array(1L, 2L, 3L)), r.hashMap("id", 1L).with("a", 0L).with("b", 0L).with("c", 0L).with("m", r.array(4L, 5L, 6L)), r.hashMap("id", 2L).with("a", 0L).with("b", 0L).with("c", 1L).with("m", 7L), r.hashMap("id", 3L).with("a", 0L).with("b", 1L).with("c", 1L).with("m", r.array(10L, 11L, 12L))))
   ExpectedOriginal: ({'deleted':0,'inserted':4,'skipped':0,'errors':0,'replaced':0,'unchanged':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0).with("inserted", 4).with("skipped", 0).with("errors", 0).with("replaced", 0).with("unchanged", 0)
+  ExpectedJava: r.hashMap("deleted", 0L).with("inserted", 4L).with("skipped", 0L).with("errors", 0L).with("replaced", 0L).with("unchanged", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -60,7 +60,7 @@ DefsAndTests:
   Java: tbl.indexRename("rename-foo", "rename-foo")
   ExpectedOriginal: ({'renamed':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("renamed", 0)
+  ExpectedJava: r.hashMap("renamed", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -69,7 +69,7 @@ DefsAndTests:
   Java: tbl.indexRename("rename-foo", "rename-foo").optArg("overwrite", true)
   ExpectedOriginal: ({'renamed':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("renamed", 0)
+  ExpectedJava: r.hashMap("renamed", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -78,7 +78,7 @@ DefsAndTests:
   Java: tbl.indexRename("rename-foo", "rename-bar").optArg("overwrite", true)
   ExpectedOriginal: ({'renamed':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("renamed", 1)
+  ExpectedJava: r.hashMap("renamed", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -87,7 +87,7 @@ DefsAndTests:
   Java: tbl.indexRename("rename-bar", "rename-stuff").optArg("overwrite", true)
   ExpectedOriginal: ({'renamed':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("renamed", 1)
+  ExpectedJava: r.hashMap("renamed", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -96,7 +96,7 @@ DefsAndTests:
   Java: tbl.indexRename("rename-stuff", "rename-last")
   ExpectedOriginal: ({'renamed':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("renamed", 1)
+  ExpectedJava: r.hashMap("renamed", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -105,7 +105,7 @@ DefsAndTests:
   Java: tbl.indexCreate("minval", () -> r.minval())
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -114,7 +114,7 @@ DefsAndTests:
   Java: tbl.indexCreate("maxval", () -> r.maxval())
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -129,10 +129,10 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 17
   Original: tbl.get_all(0, index='rename-last').count()
-  Java: tbl.getAll(0).optArg("index", "rename-last").count()
+  Java: tbl.getAll(0L).optArg("index", "rename-last").count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -141,7 +141,7 @@ DefsAndTests:
   Java: tbl.getAll(r.minval()).optArg("index", "minval").count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -150,7 +150,7 @@ DefsAndTests:
   Java: tbl.getAll(r.maxval()).optArg("index", "maxval").count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -159,34 +159,34 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "minval").count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 21
   Original: tbl.index_create('rename-last-dup', tbl.index_status('rename-last').nth(0).get_field('function'))
-  Java: tbl.indexCreate("rename-last-dup", tbl.indexStatus("rename-last").nth(0).g("function"))
+  Java: tbl.indexCreate("rename-last-dup", tbl.indexStatus("rename-last").nth(0L).g("function"))
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 22
   Original: tbl.index_wait('rename-last-dup').pluck('index', 'ready')
   Java: tbl.indexWait("rename-last-dup").pluck("index", "ready")
-  ExpectedOriginal: '[{''ready'': True, ''index'': ''rename-last-dup''}]'
+  ExpectedOriginal: '[{''index'': ''rename-last-dup'', ''ready'': True}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("ready", true).with("index", "rename-last-dup"))
+  ExpectedJava: r.array(r.hashMap("index", "rename-last-dup").with("ready", true))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 23
   Original: tbl.get_all(0, index='rename-last-dup').count()
-  Java: tbl.getAll(0).optArg("index", "rename-last-dup").count()
+  Java: tbl.getAll(0L).optArg("index", "rename-last-dup").count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -195,7 +195,7 @@ DefsAndTests:
   Java: tbl.indexDrop("rename-last-dup")
   ExpectedOriginal: ({'dropped':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("dropped", 1)
+  ExpectedJava: r.hashMap("dropped", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -204,7 +204,7 @@ DefsAndTests:
   Java: tbl.indexDrop("minval")
   ExpectedOriginal: ({'dropped':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("dropped", 1)
+  ExpectedJava: r.hashMap("dropped", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -213,7 +213,7 @@ DefsAndTests:
   Java: tbl.indexDrop("maxval")
   ExpectedOriginal: ({'dropped':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("dropped", 1)
+  ExpectedJava: r.hashMap("dropped", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -231,7 +231,7 @@ DefsAndTests:
   Java: tbl.indexDrop("rename-last")
   ExpectedOriginal: ({'dropped':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("dropped", 1)
+  ExpectedJava: r.hashMap("dropped", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -264,7 +264,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 38
   Original: tbl.get(-1)
-  Java: tbl.get(-1)
+  Java: tbl.get(-1L)
   ExpectedOriginal: (null)
   ExpectedType: Object
   ExpectedJava: null
@@ -273,16 +273,16 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 39
   Original: tbl.get(1)['id']
-  Java: tbl.get(1).g("id")
+  Java: tbl.get(1L).g("id")
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 40
   Original: tbl.get(1).type_of()
-  Java: tbl.get(1).typeOf()
+  Java: tbl.get(1L).typeOf()
   ExpectedOriginal: ('SELECTION<OBJECT>')
   ExpectedType: String
   ExpectedJava: '"SELECTION<OBJECT>"'
@@ -291,10 +291,10 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 41
   Original: tbl.get(1).update(lambda x:null)
-  Java: tbl.get(1).update(x -> null)
+  Java: tbl.get(1L).update(x -> null)
   ExpectedOriginal: ({'replaced':0,'skipped':0,'deleted':0,'unchanged':1,'errors':0,'inserted':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("replaced", 0).with("skipped", 0).with("deleted", 0).with("unchanged", 1).with("errors", 0).with("inserted", 0)
+  ExpectedJava: r.hashMap("replaced", 0L).with("skipped", 0L).with("deleted", 0L).with("unchanged", 1L).with("errors", 0L).with("inserted", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -309,7 +309,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 44
   Original: tbl.get_all(-1, index='id')
-  Java: tbl.getAll(-1).optArg("index", "id")
+  Java: tbl.getAll(-1L).optArg("index", "id")
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -318,7 +318,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 45
   Original: tbl.get_all(-1)
-  Java: tbl.getAll(-1)
+  Java: tbl.getAll(-1L)
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -327,7 +327,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 46
   Original: tbl.get_all([-1])
-  Java: tbl.getAll(r.array(-1))
+  Java: tbl.getAll(r.array(-1L))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -336,43 +336,43 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 47
   Original: tbl.get_all(1, index='id')[0]['id']
-  Java: tbl.getAll(1).optArg("index", "id").nth(0).g("id")
+  Java: tbl.getAll(1L).optArg("index", "id").nth(0L).g("id")
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 48
   Original: tbl.get_all(1)[0]['id']
-  Java: tbl.getAll(1).nth(0).g("id")
+  Java: tbl.getAll(1L).nth(0L).g("id")
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 49
   Original: tbl.get_all(1,2,3, index='id').map(lambda x:x["id"]).coerce_to("ARRAY")
-  Java: tbl.getAll(1, 2, 3).optArg("index", "id").map(x -> x.g("id")).coerceTo("ARRAY")
+  Java: tbl.getAll(1L, 2L, 3L).optArg("index", "id").map(x -> x.g("id")).coerceTo("ARRAY")
   ExpectedOriginal: '[1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(1, 2, 3)
+  ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 50
   Original: tbl.get_all(1,2,3).map(lambda x:x["id"]).coerce_to("ARRAY")
-  Java: tbl.getAll(1, 2, 3).map(x -> x.g("id")).coerceTo("ARRAY")
+  Java: tbl.getAll(1L, 2L, 3L).map(x -> x.g("id")).coerceTo("ARRAY")
   ExpectedOriginal: '[1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(1, 2, 3)
+  ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 51
   Original: tbl.get_all(1, index='id').type_of()
-  Java: tbl.getAll(1).optArg("index", "id").typeOf()
+  Java: tbl.getAll(1L).optArg("index", "id").typeOf()
   ExpectedOriginal: ('SELECTION<STREAM>')
   ExpectedType: String
   ExpectedJava: '"SELECTION<STREAM>"'
@@ -381,7 +381,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 52
   Original: tbl.get_all(1).type_of()
-  Java: tbl.getAll(1).typeOf()
+  Java: tbl.getAll(1L).typeOf()
   ExpectedOriginal: ('SELECTION<STREAM>')
   ExpectedType: String
   ExpectedJava: '"SELECTION<STREAM>"'
@@ -390,43 +390,43 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 53
   Original: tbl.get_all(1, index='id').update(lambda x:null)
-  Java: tbl.getAll(1).optArg("index", "id").update(x -> null)
+  Java: tbl.getAll(1L).optArg("index", "id").update(x -> null)
   ExpectedOriginal: ({'replaced':0,'skipped':0,'deleted':0,'unchanged':1,'errors':0,'inserted':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("replaced", 0).with("skipped", 0).with("deleted", 0).with("unchanged", 1).with("errors", 0).with("inserted", 0)
+  ExpectedJava: r.hashMap("replaced", 0L).with("skipped", 0L).with("deleted", 0L).with("unchanged", 1L).with("errors", 0L).with("inserted", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 54
   Original: tbl.get_all(1).update(lambda x:null)
-  Java: tbl.getAll(1).update(x -> null)
+  Java: tbl.getAll(1L).update(x -> null)
   ExpectedOriginal: ({'replaced':0,'skipped':0,'deleted':0,'unchanged':1,'errors':0,'inserted':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("replaced", 0).with("skipped", 0).with("deleted", 0).with("unchanged", 1).with("errors", 0).with("inserted", 0)
+  ExpectedJava: r.hashMap("replaced", 0L).with("skipped", 0L).with("deleted", 0L).with("unchanged", 1L).with("errors", 0L).with("inserted", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 55
   Original: tbl.get_all(1,2,3, index='id').update(lambda x:null)
-  Java: tbl.getAll(1, 2, 3).optArg("index", "id").update(x -> null)
+  Java: tbl.getAll(1L, 2L, 3L).optArg("index", "id").update(x -> null)
   ExpectedOriginal: ({'replaced':0,'skipped':0,'deleted':0,'unchanged':3,'errors':0,'inserted':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("replaced", 0).with("skipped", 0).with("deleted", 0).with("unchanged", 3).with("errors", 0).with("inserted", 0)
+  ExpectedJava: r.hashMap("replaced", 0L).with("skipped", 0L).with("deleted", 0L).with("unchanged", 3L).with("errors", 0L).with("inserted", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 56
   Original: tbl.get_all(1,2,3).update(lambda x:null)
-  Java: tbl.getAll(1, 2, 3).update(x -> null)
+  Java: tbl.getAll(1L, 2L, 3L).update(x -> null)
   ExpectedOriginal: ({'replaced':0,'skipped':0,'deleted':0,'unchanged':3,'errors':0,'inserted':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("replaced", 0).with("skipped", 0).with("deleted", 0).with("unchanged", 3).with("errors", 0).with("inserted", 0)
+  ExpectedJava: r.hashMap("replaced", 0L).with("skipped", 0L).with("deleted", 0L).with("unchanged", 3L).with("errors", 0L).with("inserted", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 57
   Original: tbl.get_all(0, index='fake')
-  Java: tbl.getAll(0).optArg("index", "fake")
+  Java: tbl.getAll(0L).optArg("index", "fake")
   ExpectedOriginal: err_regex("ReqlOpFailedError", "Index `fake` was not found on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", [])
   ExpectedType: ErrRegex
   ExpectedJava: err_regex("ReqlOpFailedError", "Index `fake` was not found on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", r.array())
@@ -435,7 +435,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 58
   Original: tbl.get_all(r.point(0, 0))
-  Java: tbl.getAll(r.point(0, 0))
+  Java: tbl.getAll(r.point(0L, 0L))
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot use a geospatial index with `get_all`. Use `get_intersecting` instead.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot use a geospatial index with `get_all`. Use `get_intersecting` instead.", r.array())
@@ -444,7 +444,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 59
   Original: tbl.get_all(0, index=False)
-  Java: tbl.getAll(0).optArg("index", false)
+  Java: tbl.getAll(0L).optArg("index", false)
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type STRING but found BOOL.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found BOOL.", r.array())
@@ -489,25 +489,25 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 64
   Original: tbl.get_all(1, index='id')[0]['id']
-  Java: tbl.getAll(1).optArg("index", "id").nth(0).g("id")
+  Java: tbl.getAll(1L).optArg("index", "id").nth(0L).g("id")
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 65
   Original: tbl.get_all(1, index='idi')[0]['id']
-  Java: tbl.getAll(1).optArg("index", "idi").nth(0).g("id")
+  Java: tbl.getAll(1L).optArg("index", "idi").nth(0L).g("id")
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 66
   Original: tbl.get_all(1, index='ai')
-  Java: tbl.getAll(1).optArg("index", "ai")
+  Java: tbl.getAll(1L).optArg("index", "ai")
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -516,43 +516,43 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 67
   Original: tbl.get_all(1, index='bi').order_by('id').map(lambda x:x['id'])
-  Java: tbl.getAll(1).optArg("index", "bi").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.getAll(1L).optArg("index", "bi").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[3]'
   ExpectedType: List
-  ExpectedJava: r.array(3)
+  ExpectedJava: r.array(3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 68
   Original: tbl.get_all(1, index='bi').order_by(index='id').map(lambda x:x['id'])
-  Java: tbl.getAll(1).optArg("index", "bi").orderBy().optArg("index", "id").map(x -> x.g("id"))
+  Java: tbl.getAll(1L).optArg("index", "bi").orderBy().optArg("index", "id").map(x -> x.g("id"))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Indexed order_by can only be performed on a TABLE or TABLE_SLICE.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 69
   Original: tbl.get_all(1, index='bi').between(1, 1, index='id').map(lambda x:x['id'])
-  Java: tbl.getAll(1).optArg("index", "bi").between(1, 1).optArg("index", "id").map(x -> x.g("id"))
+  Java: tbl.getAll(1L).optArg("index", "bi").between(1L, 1L).optArg("index", "id").map(x -> x.g("id"))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type TABLE_SLICE but found SELECTION:', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type TABLE_SLICE but found SELECTION:", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type TABLE_SLICE but found SELECTION:", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 70
   Original: tbl.get_all(1, index='ci').order_by('id').map(lambda x:x['id'])
-  Java: tbl.getAll(1).optArg("index", "ci").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.getAll(1L).optArg("index", "ci").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3)
+  ExpectedJava: r.array(2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 71
   Original: tbl.get_all(1, index='ci').type_of()
-  Java: tbl.getAll(1).optArg("index", "ci").typeOf()
+  Java: tbl.getAll(1L).optArg("index", "ci").typeOf()
   ExpectedOriginal: ('SELECTION<STREAM>')
   ExpectedType: String
   ExpectedJava: '"SELECTION<STREAM>"'
@@ -561,16 +561,16 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 72
   Original: tbl.get_all(1, index='ci').update(lambda x:null)
-  Java: tbl.getAll(1).optArg("index", "ci").update(x -> null)
+  Java: tbl.getAll(1L).optArg("index", "ci").update(x -> null)
   ExpectedOriginal: ({'replaced':0,'skipped':0,'deleted':0,'unchanged':2,'errors':0,'inserted':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("replaced", 0).with("skipped", 0).with("deleted", 0).with("unchanged", 2).with("errors", 0).with("inserted", 0)
+  ExpectedJava: r.hashMap("replaced", 0L).with("skipped", 0L).with("deleted", 0L).with("unchanged", 2L).with("errors", 0L).with("inserted", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 73
   Original: tbl.get_all(1, index='brokeni')
-  Java: tbl.getAll(1).optArg("index", "brokeni")
+  Java: tbl.getAll(1L).optArg("index", "brokeni")
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -579,7 +579,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 74
   Original: tbl.get_all(1, index='mi')
-  Java: tbl.getAll(1).optArg("index", "mi")
+  Java: tbl.getAll(1L).optArg("index", "mi")
   ExpectedOriginal: ([rows[0]])
   ExpectedType: List
   ExpectedJava: r.array(rows.get(0))
@@ -588,7 +588,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 75
   Original: tbl.get_all(2, index='mi')
-  Java: tbl.getAll(2).optArg("index", "mi")
+  Java: tbl.getAll(2L).optArg("index", "mi")
   ExpectedOriginal: ([rows[0]])
   ExpectedType: List
   ExpectedJava: r.array(rows.get(0))
@@ -597,7 +597,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 76
   Original: tbl.get_all(5, index='mi')
-  Java: tbl.getAll(5).optArg("index", "mi")
+  Java: tbl.getAll(5L).optArg("index", "mi")
   ExpectedOriginal: ([rows[1]])
   ExpectedType: List
   ExpectedJava: r.array(rows.get(1))
@@ -606,7 +606,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 77
   Original: tbl.get_all(7, index='mi')
-  Java: tbl.getAll(7).optArg("index", "mi")
+  Java: tbl.getAll(7L).optArg("index", "mi")
   ExpectedOriginal: ([rows[2]])
   ExpectedType: List
   ExpectedJava: r.array(rows.get(2))
@@ -633,7 +633,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 80
   Original: tbl.filter({'id':1}).eq_join('id', tbl, index='mi')
-  Java: tbl.filter(r.hashMap("id", 1)).eqJoin("id", tbl).optArg("index", "mi")
+  Java: tbl.filter(r.hashMap("id", 1L)).eqJoin("id", tbl).optArg("index", "mi")
   ExpectedOriginal: ([{'left':rows[1],'right':rows[0]}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("left", rows.get(1)).with("right", rows.get(0)))
@@ -642,7 +642,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 81
   Original: tbl.filter({'id':0}).eq_join('id', tbl)
-  Java: tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl)
+  Java: tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl)
   ExpectedOriginal: ([{'left':rows[0],'right':rows[0]}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("left", rows.get(0)).with("right", rows.get(0)))
@@ -651,7 +651,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 82
   Original: tbl.filter({'id':0}).eq_join(lambda x:x['id'], tbl)
-  Java: tbl.filter(r.hashMap("id", 0)).eqJoin(x -> x.g("id"), tbl)
+  Java: tbl.filter(r.hashMap("id", 0L)).eqJoin(x -> x.g("id"), tbl)
   ExpectedOriginal: ([{'left':rows[0],'right':rows[0]}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("left", rows.get(0)).with("right", rows.get(0)))
@@ -660,7 +660,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 83
   Original: tbl.filter({'id':0}).eq_join('id', tbl, index='id')
-  Java: tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl).optArg("index", "id")
+  Java: tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl).optArg("index", "id")
   ExpectedOriginal: ([{'left':rows[0],'right':rows[0]}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("left", rows.get(0)).with("right", rows.get(0)))
@@ -669,7 +669,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 84
   Original: tbl.filter({'id':0}).eq_join(lambda x:x['id'], tbl, index='id')
-  Java: tbl.filter(r.hashMap("id", 0)).eqJoin(x -> x.g("id"), tbl).optArg("index", "id")
+  Java: tbl.filter(r.hashMap("id", 0L)).eqJoin(x -> x.g("id"), tbl).optArg("index", "id")
   ExpectedOriginal: ([{'left':rows[0],'right':rows[0]}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("left", rows.get(0)).with("right", rows.get(0)))
@@ -678,7 +678,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 85
   Original: tbl.filter({'id':0}).eq_join('id', tbl, index='idi')
-  Java: tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl).optArg("index", "idi")
+  Java: tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl).optArg("index", "idi")
   ExpectedOriginal: ([{'left':rows[0],'right':rows[0]}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("left", rows.get(0)).with("right", rows.get(0)))
@@ -687,7 +687,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 86
   Original: tbl.filter({'id':0}).eq_join(lambda x:x['id'], tbl, index='idi')
-  Java: tbl.filter(r.hashMap("id", 0)).eqJoin(x -> x.g("id"), tbl).optArg("index", "idi")
+  Java: tbl.filter(r.hashMap("id", 0L)).eqJoin(x -> x.g("id"), tbl).optArg("index", "idi")
   ExpectedOriginal: ([{'left':rows[0],'right':rows[0]}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("left", rows.get(0)).with("right", rows.get(0)))
@@ -696,7 +696,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 87
   Original: tbl.filter({'id':0}).eq_join('id', tbl, index='ai').order_by('right')
-  Java: tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl).optArg("index", "ai").orderBy("right")
+  Java: tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl).optArg("index", "ai").orderBy("right")
   ExpectedOriginal: ([{'right':rows[0],'left':rows[0]}, {'right':rows[1],'left':rows[0]}, {'right':rows[2],'left':rows[0]}, {'right':rows[3],'left':rows[0]}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("right", rows.get(0)).with("left", rows.get(0)), r.hashMap("right", rows.get(1)).with("left", rows.get(0)), r.hashMap("right", rows.get(2)).with("left", rows.get(0)), r.hashMap("right", rows.get(3)).with("left", rows.get(0)))
@@ -705,7 +705,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 88
   Original: tbl.filter({'id':0}).eq_join('id', tbl, index='bi').order_by('right')
-  Java: tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl).optArg("index", "bi").orderBy("right")
+  Java: tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl).optArg("index", "bi").orderBy("right")
   ExpectedOriginal: ([{'right':rows[0],'left':rows[0]}, {'right':rows[1],'left':rows[0]}, {'right':rows[2],'left':rows[0]}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("right", rows.get(0)).with("left", rows.get(0)), r.hashMap("right", rows.get(1)).with("left", rows.get(0)), r.hashMap("right", rows.get(2)).with("left", rows.get(0)))
@@ -714,7 +714,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 89
   Original: tbl.filter({'id':0}).eq_join('id', tbl, index='ci').order_by('right')
-  Java: tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl).optArg("index", "ci").orderBy("right")
+  Java: tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl).optArg("index", "ci").orderBy("right")
   ExpectedOriginal: ([{'right':rows[0],'left':rows[0]}, {'right':rows[1],'left':rows[0]}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("right", rows.get(0)).with("left", rows.get(0)), r.hashMap("right", rows.get(1)).with("left", rows.get(0)))
@@ -723,7 +723,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 90
   Original: tbl.filter({'id':0}).eq_join('id', tbl, index='brokeni')
-  Java: tbl.filter(r.hashMap("id", 0)).eqJoin("id", tbl).optArg("index", "brokeni")
+  Java: tbl.filter(r.hashMap("id", 0L)).eqJoin("id", tbl).optArg("index", "brokeni")
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -753,7 +753,7 @@ DefsAndTests:
   Java: tbl.indexCreate("c")
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -762,7 +762,7 @@ DefsAndTests:
   Java: tbl.indexCreate("broken")
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -777,16 +777,16 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 96
   Original: tbl.get_all(1, index='c').order_by('id').map(lambda x:x['id'])
-  Java: tbl.getAll(1).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.getAll(1L).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3)
+  ExpectedJava: r.array(2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 97
   Original: tbl.get_all(1, index='broken').order_by('broken').map(lambda x:x['id'])
-  Java: tbl.getAll(1).optArg("index", "broken").orderBy("broken").map(x -> x.g("id"))
+  Java: tbl.getAll(1L).optArg("index", "broken").orderBy("broken").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -798,7 +798,7 @@ DefsAndTests:
   Java: tbl.indexCreate("nil", x -> null)
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -822,10 +822,10 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 101
   Original: tbl.insert({'id':4, 'a':4, 'b':4, 'c':4, 'm':[14,15,16]})
-  Java: tbl.insert(r.hashMap("id", 4).with("a", 4).with("b", 4).with("c", 4).with("m", r.array(14, 15, 16)))
+  Java: tbl.insert(r.hashMap("id", 4L).with("a", 4L).with("b", 4L).with("c", 4L).with("m", r.array(14L, 15L, 16L)))
   ExpectedOriginal: ({'deleted':0,'inserted':1,'skipped':0,'errors':0,'replaced':0,'unchanged':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0).with("inserted", 1).with("skipped", 0).with("errors", 0).with("replaced", 0).with("unchanged", 0)
+  ExpectedJava: r.hashMap("deleted", 0L).with("inserted", 1L).with("skipped", 0L).with("errors", 0L).with("replaced", 0L).with("unchanged", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -849,7 +849,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 105
   Original: tbl.between(null, 2, index='id').count()
-  Java: tbl.between((ReqlExpr) null, 2).optArg("index", "id").count()
+  Java: tbl.between((ReqlExpr) null, 2L).optArg("index", "id").count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot use `nu' + 'll` in BETWEEN, use `r.minval` or `r.maxval` to denote unboundedness.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot use `nu" + "ll` in BETWEEN, use `r.minval` or `r.maxval` to denote unboundedness.")
@@ -858,7 +858,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 105
   Original: tbl.between(2, null, index='id').count()
-  Java: tbl.between(2, (ReqlExpr) null).optArg("index", "id").count()
+  Java: tbl.between(2L, (ReqlExpr) null).optArg("index", "id").count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot use `nu' + 'll` in BETWEEN, use `r.minval` or `r.maxval` to denote unboundedness.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot use `nu" + "ll` in BETWEEN, use `r.minval` or `r.maxval` to denote unboundedness.")
@@ -879,7 +879,7 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -888,7 +888,7 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).orderBy().optArg("index", "id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -897,58 +897,58 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).between(r.minval(), r.maxval()).map(x -> x.g("id"))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot perform multiple BETWEENs on the same table.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot perform multiple BETWEENs on the same table.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot perform multiple BETWEENs on the same table.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 109
   Original: tbl.order_by(index='id').between(r.minval, 3).map(lambda x:x['id'])
-  Java: tbl.orderBy().optArg("index", "id").between(r.minval(), 3).map(x -> x.g("id"))
+  Java: tbl.orderBy().optArg("index", "id").between(r.minval(), 3L).map(x -> x.g("id"))
   ExpectedOriginal: ([0, 1, 2])
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 110
   Original: tbl.between(0, r.maxval).order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, r.maxval()).orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, r.maxval()).orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 111
   Original: tbl.between(r.minval, 4).order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), 4).orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), 4L).orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 112
   Original: tbl.between(0, 4).order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 4).orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 4L).orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 113
   Original: tbl.between(-1, 5).order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, 5).orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, 5L).orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 114
   Original: tbl.between(5, 5).order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, 5).orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, 5L).orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -957,7 +957,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 115
   Original: tbl.between(5, r.maxval).order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, r.maxval()).orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, r.maxval()).orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -966,7 +966,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 116
   Original: tbl.between(-1, -1).order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, -1).orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, -1L).orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -975,7 +975,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 117
   Original: tbl.between(r.minval, -1).order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), -1).orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), -1L).orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -987,49 +987,49 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 119
   Original: tbl.between(0, r.maxval, right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, r.maxval()).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, r.maxval()).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 120
   Original: tbl.between(r.minval, 4, right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), 4).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), 4L).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 121
   Original: tbl.between(0, 4, right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 4).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 4L).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 122
   Original: tbl.between(-1, 5, right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, 5).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, 5L).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 123
   Original: tbl.between(5, 5, right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, 5).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, 5L).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1038,7 +1038,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 124
   Original: tbl.between(5, r.maxval, right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, r.maxval()).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, r.maxval()).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1047,7 +1047,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 125
   Original: tbl.between(-1, -1, right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, -1).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, -1L).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1056,7 +1056,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 126
   Original: tbl.between(r.minval, -1, right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), -1).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), -1L).optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1068,49 +1068,49 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 128
   Original: tbl.between(0, r.maxval, index='id').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, r.maxval()).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, r.maxval()).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 129
   Original: tbl.between(r.minval, 4, index='id').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), 4).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), 4L).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 130
   Original: tbl.between(0, 4, index='id').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 4).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 4L).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 131
   Original: tbl.between(-1, 5, index='id').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, 5).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, 5L).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 132
   Original: tbl.between(5, 5, index='id').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, 5).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, 5L).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1119,7 +1119,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 133
   Original: tbl.between(5, r.maxval, index='id').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, r.maxval()).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, r.maxval()).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1128,7 +1128,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 134
   Original: tbl.between(-1, -1, index='id').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, -1).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, -1L).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1137,7 +1137,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 135
   Original: tbl.between(r.minval, -1, index='id').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), -1).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), -1L).optArg("index", "id").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1149,49 +1149,49 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 137
   Original: tbl.between(0, r.maxval, index='id', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, r.maxval()).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, r.maxval()).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 138
   Original: tbl.between(r.minval, 4, index='id', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), 4).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), 4L).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 139
   Original: tbl.between(0, 4, index='id', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 4).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 4L).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 140
   Original: tbl.between(-1, 5, index='id', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, 5).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, 5L).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 141
   Original: tbl.between(5, 5, index='id', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, 5).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, 5L).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1200,7 +1200,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 142
   Original: tbl.between(5, r.maxval, index='id', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, r.maxval()).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, r.maxval()).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1209,7 +1209,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 143
   Original: tbl.between(-1, -1, index='id', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, -1).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, -1L).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1218,7 +1218,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 144
   Original: tbl.between(r.minval, -1, index='id', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), -1).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), -1L).optArg("index", "id").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1230,49 +1230,49 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 146
   Original: tbl.between(0, r.maxval, index='idi').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, r.maxval()).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, r.maxval()).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 147
   Original: tbl.between(r.minval, 4, index='idi').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), 4).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), 4L).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 148
   Original: tbl.between(0, 4, index='idi').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 4).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 4L).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 149
   Original: tbl.between(-1, 5, index='idi').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, 5).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, 5L).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 150
   Original: tbl.between(5, 5, index='idi').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, 5).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, 5L).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1281,7 +1281,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 151
   Original: tbl.between(5, r.maxval, index='idi').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, r.maxval()).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, r.maxval()).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1290,7 +1290,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 152
   Original: tbl.between(-1, -1, index='idi').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, -1).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, -1L).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1299,7 +1299,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 153
   Original: tbl.between(r.minval, -1, index='idi').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), -1).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), -1L).optArg("index", "idi").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1311,49 +1311,49 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 155
   Original: tbl.between(0, r.maxval, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, r.maxval()).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, r.maxval()).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 156
   Original: tbl.between(r.minval, 4, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), 4).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), 4L).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 157
   Original: tbl.between(0, 4, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 4).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 4L).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 158
   Original: tbl.between(-1, 5, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, 5).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, 5L).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 159
   Original: tbl.between(5, 5, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, 5).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, 5L).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1362,7 +1362,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 160
   Original: tbl.between(5, r.maxval, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, r.maxval()).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, r.maxval()).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1371,7 +1371,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 161
   Original: tbl.between(-1, -1, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, -1).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, -1L).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1380,7 +1380,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 162
   Original: tbl.between(r.minval, -1, index='idi', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), -1).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), -1L).optArg("index", "idi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1392,43 +1392,43 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 164
   Original: tbl.between(0, r.maxval, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, r.maxval()).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, r.maxval()).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 165
   Original: tbl.between(r.minval, 4, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), 4).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), 4L).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 166
   Original: tbl.between(0, 4, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 4).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 4L).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 167
   Original: tbl.between(0, 5, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 5).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 5L).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -1437,67 +1437,67 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 169
   Original: tbl.between(0, r.maxval, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 170
   Original: tbl.between(r.minval, 4, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), 4).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), 4L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 171
   Original: tbl.between(0, 4, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 4).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 4L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 172
   Original: tbl.between(0, 5, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 5).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 5L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 173
   Original: tbl.between(0, 3, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 3).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 3L).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 174
   Original: tbl.between(0, 1, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 1).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 1L).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 175
   Original: tbl.between(0, 0, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 0).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 0L).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1506,52 +1506,52 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 176
   Original: tbl.between(-1, 2, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, 2).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, 2L).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 177
   Original: tbl.between(0, 3, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 3).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 3L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 178
   Original: tbl.between(0, 1, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 1).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 1L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 179
   Original: tbl.between(0, 0, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 0).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 0L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 180
   Original: tbl.between(-1, 2, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, 2).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, 2L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 181
   Original: tbl.between(1, 1, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(1, 1).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(1L, 1L).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1560,16 +1560,16 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 182
   Original: tbl.between(1, r.maxval, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(1, r.maxval()).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(1L, r.maxval()).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[4]'
   ExpectedType: List
-  ExpectedJava: r.array(4)
+  ExpectedJava: r.array(4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 183
   Original: tbl.between(5, r.maxval, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, r.maxval()).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, r.maxval()).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1578,7 +1578,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 184
   Original: tbl.between(r.minval, 0, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), 0).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), 0L).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1587,7 +1587,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 185
   Original: tbl.between(-1, -1, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, -1).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, -1L).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1596,7 +1596,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 186
   Original: tbl.between(r.minval, -1, index='ai').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), -1).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), -1L).optArg("index", "ai").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1605,7 +1605,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 187
   Original: tbl.between(1, 1, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(1, 1).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(1L, 1L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1614,16 +1614,16 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 188
   Original: tbl.between(1, r.maxval, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(1, r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(1L, r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[4]'
   ExpectedType: List
-  ExpectedJava: r.array(4)
+  ExpectedJava: r.array(4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 189
   Original: tbl.between(5, r.maxval, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(5, r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(5L, r.maxval()).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1632,16 +1632,16 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 190
   Original: tbl.between(r.minval, 0, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), 0).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), 0L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 191
   Original: tbl.between(-1, -1, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, -1).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, -1L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1650,7 +1650,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 192
   Original: tbl.between(r.minval, -1, index='ai', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), -1).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), -1L).optArg("index", "ai").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1659,46 +1659,46 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 193
   Original: tbl.between(0, 1, index='c').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 1).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 1L).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 194
   Original: tbl.between(-1, 1, index='c').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, 1).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, 1L).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 195
   Original: tbl.between(r.minval, 1, index='c').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), 1).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), 1L).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 196
   Original: tbl.between(0, r.maxval, index='c').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, r.maxval()).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, r.maxval()).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 197
   Original: tbl.between(-1, r.maxval, index='c').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, r.maxval()).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, r.maxval()).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -1707,22 +1707,22 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 199
   Original: tbl.between(1, r.maxval, index='c').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(1, r.maxval()).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(1L, r.maxval()).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3, 4)
+  ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 200
   Original: tbl.between(1, 1, index='c').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(1, 1).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(1L, 1L).optArg("index", "c").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1731,46 +1731,46 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 201
   Original: tbl.between(0, 1, index='c', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, 1).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, 1L).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 202
   Original: tbl.between(-1, 1, index='c', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, 1).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, 1L).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 203
   Original: tbl.between(r.minval, 1, index='c', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), 1).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), 1L).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 204
   Original: tbl.between(0, r.maxval, index='c', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(0, r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(0L, r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 205
   Original: tbl.between(-1, r.maxval, index='c', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(-1, r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(-1L, r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -1779,25 +1779,25 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 207
   Original: tbl.between(1, r.maxval, index='c', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(1, r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(1L, r.maxval()).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3, 4)
+  ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 208
   Original: tbl.between(1, 1, index='c', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(1, 1).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(1L, 1L).optArg("index", "c").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3)
+  ExpectedJava: r.array(2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -1806,7 +1806,7 @@ DefsAndTests:
   Java: tbl.indexCreate("bc", row -> r.array(row.g("b"), row.g("c")))
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -1815,7 +1815,7 @@ DefsAndTests:
   Java: tbl.indexCreate("cb", row -> r.array(row.g("c"), row.g("b")))
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -1830,7 +1830,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 212
   Original: tbl.between(r.minval, [0, 0], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(0, 0)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(0L, 0L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1839,7 +1839,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 213
   Original: tbl.between(r.minval, [0, 0], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(0, 0)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(0L, 0L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1848,55 +1848,55 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 214
   Original: tbl.between(r.minval, [0, 1], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(0, 1)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(0L, 1L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 215
   Original: tbl.between(r.minval, [0, 1], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(0, 1)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(0L, 1L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 216
   Original: tbl.between(r.minval, [1, 0], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(1, 0)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(1L, 0L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 217
   Original: tbl.between(r.minval, [1, 0], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(1, 0)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(1L, 0L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 218
   Original: tbl.between(r.minval, [1, 1], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(1, 1)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(1L, 1L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 219
   Original: tbl.between(r.minval, [1, 1], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(1, 1)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(1L, 1L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -1905,7 +1905,7 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -1914,79 +1914,79 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 222
   Original: tbl.between(r.minval, [0, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(0, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(0L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 223
   Original: tbl.between(r.minval, [0, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(0, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(0L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 224
   Original: tbl.between(r.minval, [0, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(0, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(0L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 225
   Original: tbl.between(r.minval, [0, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(0, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(0L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 226
   Original: tbl.between(r.minval, [1, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(1, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(1L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 227
   Original: tbl.between(r.minval, [1, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(1, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(1L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 228
   Original: tbl.between(r.minval, [1, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(1, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(1L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 229
   Original: tbl.between(r.minval, [1, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.minval(), r.array(1, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.minval(), r.array(1L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -1995,7 +1995,7 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -2004,13 +2004,13 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 232
   Original: tbl.between([0, 0], [0, 0], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(0, 0)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(0L, 0L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2019,7 +2019,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 233
   Original: tbl.between([0, 0], [0, 0], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(0, 0)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(0L, 0L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2028,169 +2028,169 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 234
   Original: tbl.between([0, 0], [0, 1], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(0, 1)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(0L, 1L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 235
   Original: tbl.between([0, 0], [0, 1], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(0, 1)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(0L, 1L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 236
   Original: tbl.between([0, 0], [1, 0], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(1, 0)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(1L, 0L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 237
   Original: tbl.between([0, 0], [1, 0], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(1, 0)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(1L, 0L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 238
   Original: tbl.between([0, 0], [1, 1], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(1, 1)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(1L, 1L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 239
   Original: tbl.between([0, 0], [1, 1], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(1, 1)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(1L, 1L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 240
   Original: tbl.between([0, 0], r.maxval, index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.maxval()).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.maxval()).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 241
   Original: tbl.between([0, 0], r.maxval, index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.maxval()).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.maxval()).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 242
   Original: tbl.between([0, 0], [0, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(0, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(0L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 243
   Original: tbl.between([0, 0], [0, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(0, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(0L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 244
   Original: tbl.between([0, 0], [0, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(0, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(0L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 245
   Original: tbl.between([0, 0], [0, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(0, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(0L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1)
+  ExpectedJava: r.array(0L, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 246
   Original: tbl.between([0, 0], [1, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(1, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(1L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 247
   Original: tbl.between([0, 0], [1, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(1, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(1L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2)
+  ExpectedJava: r.array(0L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 248
   Original: tbl.between([0, 0], [1, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(1, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(1L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 249
   Original: tbl.between([0, 0], [1, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.array(1, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.array(1L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 250
   Original: tbl.between([0, 0], r.maxval, index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 251
   Original: tbl.between([0, 0], r.maxval, index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 0), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 0L), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[0, 1, 2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3, 4)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 252
   Original: tbl.between([0, 1], [0, 0], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(0, 0)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(0L, 0L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2199,7 +2199,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 253
   Original: tbl.between([0, 1], [0, 0], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(0, 0)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(0L, 0L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2208,7 +2208,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 254
   Original: tbl.between([0, 1], [0, 1], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(0, 1)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(0L, 1L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2217,7 +2217,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 255
   Original: tbl.between([0, 1], [0, 1], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(0, 1)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(0L, 1L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2226,16 +2226,16 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 256
   Original: tbl.between([0, 1], [1, 0], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(1, 0)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(1L, 0L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2]'
   ExpectedType: List
-  ExpectedJava: r.array(2)
+  ExpectedJava: r.array(2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 257
   Original: tbl.between([0, 1], [1, 0], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(1, 0)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(1L, 0L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2244,43 +2244,43 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 258
   Original: tbl.between([0, 1], [1, 1], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(1, 1)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(1L, 1L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2]'
   ExpectedType: List
-  ExpectedJava: r.array(2)
+  ExpectedJava: r.array(2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 259
   Original: tbl.between([0, 1], [1, 1], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(1, 1)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(1L, 1L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2]'
   ExpectedType: List
-  ExpectedJava: r.array(2)
+  ExpectedJava: r.array(2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 260
   Original: tbl.between([0, 1], r.maxval, index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.maxval()).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.maxval()).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3, 4)
+  ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 261
   Original: tbl.between([0, 1], r.maxval, index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.maxval()).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.maxval()).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3, 4)
+  ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 262
   Original: tbl.between([0, 1], [0, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(0, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(0L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2289,7 +2289,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 263
   Original: tbl.between([0, 1], [0, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(0, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(0L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2298,16 +2298,16 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 264
   Original: tbl.between([0, 1], [0, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(0, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(0L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2]'
   ExpectedType: List
-  ExpectedJava: r.array(2)
+  ExpectedJava: r.array(2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 265
   Original: tbl.between([0, 1], [0, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(0, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(0L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2316,61 +2316,61 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 266
   Original: tbl.between([0, 1], [1, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(1, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(1L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2]'
   ExpectedType: List
-  ExpectedJava: r.array(2)
+  ExpectedJava: r.array(2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 267
   Original: tbl.between([0, 1], [1, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(1, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(1L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2]'
   ExpectedType: List
-  ExpectedJava: r.array(2)
+  ExpectedJava: r.array(2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 268
   Original: tbl.between([0, 1], [1, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(1, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(1L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3)
+  ExpectedJava: r.array(2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 269
   Original: tbl.between([0, 1], [1, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.array(1, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.array(1L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3)
+  ExpectedJava: r.array(2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 270
   Original: tbl.between([0, 1], r.maxval, index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3, 4)
+  ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 271
   Original: tbl.between([0, 1], r.maxval, index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(0, 1), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(0L, 1L), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3, 4)
+  ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 272
   Original: tbl.between([1, 0], [0, 0], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(0, 0)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(0L, 0L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2379,7 +2379,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 273
   Original: tbl.between([1, 0], [0, 0], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(0, 0)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(0L, 0L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2388,7 +2388,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 274
   Original: tbl.between([1, 0], [0, 1], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(0, 1)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(0L, 1L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2397,7 +2397,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 275
   Original: tbl.between([1, 0], [0, 1], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(0, 1)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(0L, 1L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2406,7 +2406,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 276
   Original: tbl.between([1, 0], [1, 0], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(1, 0)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(1L, 0L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2415,7 +2415,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 277
   Original: tbl.between([1, 0], [1, 0], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(1, 0)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(1L, 0L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2424,7 +2424,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 278
   Original: tbl.between([1, 0], [1, 1], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(1, 1)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(1L, 1L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2433,34 +2433,34 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 279
   Original: tbl.between([1, 0], [1, 1], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(1, 1)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(1L, 1L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2]'
   ExpectedType: List
-  ExpectedJava: r.array(2)
+  ExpectedJava: r.array(2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 280
   Original: tbl.between([1, 0], r.maxval, index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.maxval()).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.maxval()).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(3, 4)
+  ExpectedJava: r.array(3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 281
   Original: tbl.between([1, 0], r.maxval, index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.maxval()).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.maxval()).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3, 4)
+  ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 282
   Original: tbl.between([1, 0], [0, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(0, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(0L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2469,7 +2469,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 283
   Original: tbl.between([1, 0], [0, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(0, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(0L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2478,7 +2478,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 284
   Original: tbl.between([1, 0], [0, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(0, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(0L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2487,7 +2487,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 285
   Original: tbl.between([1, 0], [0, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(0, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(0L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2496,7 +2496,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 286
   Original: tbl.between([1, 0], [1, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(1, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(1L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2505,52 +2505,52 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 287
   Original: tbl.between([1, 0], [1, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(1, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(1L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2]'
   ExpectedType: List
-  ExpectedJava: r.array(2)
+  ExpectedJava: r.array(2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 288
   Original: tbl.between([1, 0], [1, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(1, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(1L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[3]'
   ExpectedType: List
-  ExpectedJava: r.array(3)
+  ExpectedJava: r.array(3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 289
   Original: tbl.between([1, 0], [1, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.array(1, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.array(1L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3)
+  ExpectedJava: r.array(2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 290
   Original: tbl.between([1, 0], r.maxval, index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(3, 4)
+  ExpectedJava: r.array(3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 291
   Original: tbl.between([1, 0], r.maxval, index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 0), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 0L), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[2, 3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(2, 3, 4)
+  ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 292
   Original: tbl.between([1, 1], [0, 0], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(0, 0)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(0L, 0L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2559,7 +2559,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 293
   Original: tbl.between([1, 1], [0, 0], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(0, 0)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(0L, 0L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2568,7 +2568,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 294
   Original: tbl.between([1, 1], [0, 1], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(0, 1)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(0L, 1L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2577,7 +2577,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 295
   Original: tbl.between([1, 1], [0, 1], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(0, 1)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(0L, 1L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2586,7 +2586,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 296
   Original: tbl.between([1, 1], [1, 0], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(1, 0)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(1L, 0L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2595,7 +2595,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 297
   Original: tbl.between([1, 1], [1, 0], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(1, 0)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(1L, 0L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2604,7 +2604,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 298
   Original: tbl.between([1, 1], [1, 1], index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(1, 1)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(1L, 1L)).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2613,7 +2613,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 299
   Original: tbl.between([1, 1], [1, 1], index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(1, 1)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(1L, 1L)).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2622,25 +2622,25 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 300
   Original: tbl.between([1, 1], r.maxval, index='bc').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.maxval()).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.maxval()).optArg("index", "bc").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(3, 4)
+  ExpectedJava: r.array(3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 301
   Original: tbl.between([1, 1], r.maxval, index='cb').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.maxval()).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.maxval()).optArg("index", "cb").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(3, 4)
+  ExpectedJava: r.array(3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 302
   Original: tbl.between([1, 1], [0, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(0, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(0L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2649,7 +2649,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 303
   Original: tbl.between([1, 1], [0, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(0, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(0L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2658,7 +2658,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 304
   Original: tbl.between([1, 1], [0, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(0, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(0L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2667,7 +2667,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 305
   Original: tbl.between([1, 1], [0, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(0, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(0L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2676,7 +2676,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 306
   Original: tbl.between([1, 1], [1, 0], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(1, 0)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(1L, 0L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2685,7 +2685,7 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 307
   Original: tbl.between([1, 1], [1, 0], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(1, 0)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(1L, 0L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -2694,55 +2694,55 @@ DefsAndTests:
   TestFile: sindex/api.yaml
   TestNum: 308
   Original: tbl.between([1, 1], [1, 1], index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(1, 1)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(1L, 1L)).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[3]'
   ExpectedType: List
-  ExpectedJava: r.array(3)
+  ExpectedJava: r.array(3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 309
   Original: tbl.between([1, 1], [1, 1], index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.array(1, 1)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.array(1L, 1L)).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[3]'
   ExpectedType: List
-  ExpectedJava: r.array(3)
+  ExpectedJava: r.array(3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 310
   Original: tbl.between([1, 1], r.maxval, index='bc', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.maxval()).optArg("index", "bc").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(3, 4)
+  ExpectedJava: r.array(3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 311
   Original: tbl.between([1, 1], r.maxval, index='cb', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(r.array(1, 1), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(r.array(1L, 1L), r.maxval()).optArg("index", "cb").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: '[3, 4]'
   ExpectedType: List
-  ExpectedJava: r.array(3, 4)
+  ExpectedJava: r.array(3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 312
   Original: tbl.between(1, 3, index='mi', right_bound='closed').map(lambda x:x['id'])
-  Java: tbl.between(1, 3).optArg("index", "mi").optArg("right_bound", "closed").map(x -> x.g("id"))
+  Java: tbl.between(1L, 3L).optArg("index", "mi").optArg("right_bound", "closed").map(x -> x.g("id"))
   ExpectedOriginal: ([0,0,0])
   ExpectedType: List
-  ExpectedJava: r.array(0, 0, 0)
+  ExpectedJava: r.array(0L, 0L, 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
   TestNum: 313
   Original: tbl.between(1, 16, index='mi', right_bound='closed').order_by('id').map(lambda x:x['id'])
-  Java: tbl.between(1, 16).optArg("index", "mi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
+  Java: tbl.between(1L, 16L).optArg("index", "mi").optArg("right_bound", "closed").orderBy("id").map(x -> x.g("id"))
   ExpectedOriginal: ([0,0,0,1,1,1,2,3,3,3,4,4,4])
   ExpectedType: List
-  ExpectedJava: r.array(0, 0, 0, 1, 1, 1, 2, 3, 3, 3, 4, 4, 4)
+  ExpectedJava: r.array(0L, 0L, 0L, 1L, 1L, 1L, 2L, 3L, 3L, 3L, 4L, 4L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: sindex/api.yaml
@@ -2751,5 +2751,5 @@ DefsAndTests:
   Java: tbl.orderBy().optArg("index", "mi").map(x -> x.g("id"))
   ExpectedOriginal: ([0,0,0,1,1,1,2,3,3,3,4,4,4])
   ExpectedType: List
-  ExpectedJava: r.array(0, 0, 0, 1, 1, 1, 2, 3, 3, 3, 4, 4, 4)
+  ExpectedJava: r.array(0L, 0L, 0L, 1L, 1L, 1L, 2L, 3L, 3L, 3L, 4L, 4L, 4L)
   RunOpts: []

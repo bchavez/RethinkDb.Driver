@@ -364,7 +364,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 16
   Original: r.expr(r.expr('a')['b']).default(2)
-  Java: r.expr(r.expr("a").g("b")).default_(2)
+  Java: r.expr(r.expr("a").g("b")).default_(2L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", r.array())
@@ -391,7 +391,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 21
   Original: r.expr(1) & True
-  Java: r.expr(1).and(true)
+  Java: r.expr(1L).and(true)
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -409,7 +409,7 @@ DefsAndTests:
   TestFile: math_logic/logic.yaml
   TestNum: 23
   Original: ~r.expr(1)
-  Java: r.expr(1).not()
+  Java: r.expr(1L).not()
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false

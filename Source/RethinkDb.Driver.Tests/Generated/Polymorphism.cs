@@ -32,16 +32,16 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, polymorphism.yaml, #Templates.YamlTest+DefTest.
              //Original: obj = r.expr({'id':0,'a':0})
              
-MakeObj obj = (MakeObj) (r.expr(r.hashMap("id", 0).with("a", 0)));             
+var obj = (MakeObj) (r.expr(r.hashMap("id", 0L).with("a", 0L)));             
              TestCounter++;
              
              {
                  //JavaQuery, polymorphism.yaml, #2
                  /* ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3}) */
-                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 3);
+                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 3L);
                  
                  /* Original: tbl.insert([{'id':i, 'a':i} for i in xrange(3)]) */
-                 var obtained = runOrCatch( tbl.insert(Enumerable.Range(0, 3).Select(i => r.hashMap("id", i).with("a", i)).ToList()) ,
+                 var obtained = runOrCatch( tbl.insert(EnumerableLRange(0, 3L).Select(i => r.hashMap("id", i).with("a", i)).ToList()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -52,10 +52,10 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("id", 0).with("a", 0)));
              {
                  //JavaQuery, polymorphism.yaml, #3
                  /* ExpectedOriginal: ({'id':0,'c':1,'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("c", 1).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("c", 1L).with("a", 0L);
                  
                  /* Original: tbl.merge({'c':1}).nth(0) */
-                 var obtained = runOrCatch( tbl.merge(r.hashMap("c", 1)).nth(0) ,
+                 var obtained = runOrCatch( tbl.merge(r.hashMap("c", 1L)).nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -66,10 +66,10 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("id", 0).with("a", 0)));
              {
                  //JavaQuery, polymorphism.yaml, #3
                  /* ExpectedOriginal: ({'id':0,'c':1,'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("c", 1).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("c", 1L).with("a", 0L);
                  
                  /* Original: obj.merge({'c':1}) */
-                 var obtained = runOrCatch( obj.merge(r.hashMap("c", 1)) ,
+                 var obtained = runOrCatch( obj.merge(r.hashMap("c", 1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -80,10 +80,10 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("id", 0).with("a", 0)));
              {
                  //JavaQuery, polymorphism.yaml, #4
                  /* ExpectedOriginal: ({'id':0}) */
-                 var expected_ = r.hashMap("id", 0);
+                 var expected_ = r.hashMap("id", 0L);
                  
                  /* Original: tbl.without('a').nth(0) */
-                 var obtained = runOrCatch( tbl.without("a").nth(0) ,
+                 var obtained = runOrCatch( tbl.without("a").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -94,7 +94,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("id", 0).with("a", 0)));
              {
                  //JavaQuery, polymorphism.yaml, #4
                  /* ExpectedOriginal: ({'id':0}) */
-                 var expected_ = r.hashMap("id", 0);
+                 var expected_ = r.hashMap("id", 0L);
                  
                  /* Original: obj.without('a') */
                  var obtained = runOrCatch( obj.without("a") ,
@@ -108,10 +108,10 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("id", 0).with("a", 0)));
              {
                  //JavaQuery, polymorphism.yaml, #5
                  /* ExpectedOriginal: ({'a':0}) */
-                 var expected_ = r.hashMap("a", 0);
+                 var expected_ = r.hashMap("a", 0L);
                  
                  /* Original: tbl.pluck('a').nth(0) */
-                 var obtained = runOrCatch( tbl.pluck("a").nth(0) ,
+                 var obtained = runOrCatch( tbl.pluck("a").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -122,7 +122,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("id", 0).with("a", 0)));
              {
                  //JavaQuery, polymorphism.yaml, #5
                  /* ExpectedOriginal: ({'a':0}) */
-                 var expected_ = r.hashMap("a", 0);
+                 var expected_ = r.hashMap("a", 0L);
                  
                  /* Original: obj.pluck('a') */
                  var obtained = runOrCatch( obj.pluck("a") ,

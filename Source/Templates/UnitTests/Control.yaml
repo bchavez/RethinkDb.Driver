@@ -7,97 +7,97 @@ DefsAndTests:
   TestFile: control.yaml
   TestNum: 1
   Original: 'r.expr(1).do(lambda v: v * 2)'
-  Java: r.expr(1).do_(v -> r.mul(v, 2))
+  Java: r.expr(1L).do_(v -> r.mul(v, 2L))
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 2
   Original: 'r.expr([0, 1, 2]).do(lambda v: v.append(3))'
-  Java: r.expr(r.array(0, 1, 2)).do_(v -> v.append(3))
+  Java: r.expr(r.array(0L, 1L, 2L)).do_(v -> v.append(3L))
   ExpectedOriginal: '[0, 1, 2, 3]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 3
   Original: 'r.do(1, 2, lambda x, y: x + y)'
-  Java: r.do_(1, 2, (x, y) -> r.add(x, y))
+  Java: r.do_(1L, 2L, (x, y) -> r.add(x, y))
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 4
   Original: 'r.do(lambda: 1)'
-  Java: r.do_(() -> 1)
+  Java: r.do_(() -> 1L)
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 7
   Original: r.do(1)
-  Java: r.do_(1)
+  Java: r.do_(1L)
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 11
   Original: 'r.expr(''abc'').do(lambda v: v.append(3))'
-  Java: r.expr("abc").do_(v -> v.append(3))
+  Java: r.expr("abc").do_(v -> v.append(3L))
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type ARRAY but found STRING.", [1, 0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type ARRAY but found STRING.", r.array(1, 0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type ARRAY but found STRING.", r.array(1L, 0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 12
   Original: 'r.expr(''abc'').do(lambda v: v + 3)'
-  Java: r.expr("abc").do_(v -> r.add(v, 3))
+  Java: r.expr("abc").do_(v -> r.add(v, 3L))
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", [1, 1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array(1, 1))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array(1L, 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 13
   Original: 'r.expr(''abc'').do(lambda v: v + ''def'') + 3'
-  Java: r.expr("abc").do_(v -> r.add(v, "def")).add(3)
+  Java: r.expr("abc").do_(v -> r.add(v, "def")).add(3L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", [1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array(1))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array(1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 17
   Original: r.branch(True, 1, 2)
-  Java: r.branch(true, 1, 2)
+  Java: r.branch(true, 1L, 2L)
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 18
   Original: r.branch(False, 1, 2)
-  Java: r.branch(false, 1, 2)
+  Java: r.branch(false, 1L, 2L)
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 19
   Original: r.branch(1, 'c', False)
-  Java: r.branch(1, "c", false)
+  Java: r.branch(1L, "c", false)
   ExpectedOriginal: ("c")
   ExpectedType: String
   ExpectedJava: '"c"'
@@ -115,7 +115,7 @@ DefsAndTests:
   TestFile: control.yaml
   TestNum: 21
   Original: r.branch(r.db('test'), 1, 2)
-  Java: r.branch(r.db("test"), 1, 2)
+  Java: r.branch(r.db("test"), 1L, 2L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type DATUM but found DATABASE:", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected type DATUM but found DATABASE:", r.array())
@@ -124,7 +124,7 @@ DefsAndTests:
   TestFile: control.yaml
   TestNum: 22
   Original: r.branch(tbl, 1, 2)
-  Java: r.branch(tbl, 1, 2)
+  Java: r.branch(tbl, 1L, 2L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", r.array())
@@ -133,7 +133,7 @@ DefsAndTests:
   TestFile: control.yaml
   TestNum: 23
   Original: r.branch(r.error("a"), 1, 2)
-  Java: r.branch(r.error(), 1, 2)
+  Java: r.branch(r.error(), 1L, 2L)
   ExpectedOriginal: err("ReqlUserError", "a", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlUserError", "a", r.array())
@@ -142,79 +142,79 @@ DefsAndTests:
   TestFile: control.yaml
   TestNum: 24
   Original: r.branch([], 1, 2)
-  Java: r.branch(r.array(), 1, 2)
+  Java: r.branch(r.array(), 1L, 2L)
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 25
   Original: r.branch({}, 1, 2)
-  Java: r.branch(r.hashMap(), 1, 2)
+  Java: r.branch(r.hashMap(), 1L, 2L)
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 26
   Original: r.branch("a", 1, 2)
-  Java: r.branch("a", 1, 2)
+  Java: r.branch("a", 1L, 2L)
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 27
   Original: r.branch(1.2, 1, 2)
-  Java: r.branch(1.2, 1, 2)
+  Java: r.branch(1.2, 1L, 2L)
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 28
   Original: r.branch(True, 1, True, 2, 3)
-  Java: r.branch(true, 1, true, 2, 3)
+  Java: r.branch(true, 1L, true, 2L, 3L)
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 29
   Original: r.branch(True, 1, False, 2, 3)
-  Java: r.branch(true, 1, false, 2, 3)
+  Java: r.branch(true, 1L, false, 2L, 3L)
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 30
   Original: r.branch(False, 1, True, 2, 3)
-  Java: r.branch(false, 1, true, 2, 3)
+  Java: r.branch(false, 1L, true, 2L, 3L)
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 31
   Original: r.branch(False, 1, False, 2, 3)
-  Java: r.branch(false, 1, false, 2, 3)
+  Java: r.branch(false, 1L, false, 2L, 3L)
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 32
   Original: r.branch(True, 1, True, 2)
-  Java: r.branch(true, 1, true, 2)
+  Java: r.branch(true, 1L, true, 2L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot call `branch` term with an even number of arguments.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot call `branch` term with an even number of arguments.")
@@ -226,7 +226,7 @@ DefsAndTests:
   Java: r.error()
   ExpectedOriginal: err("ReqlUserError", "Hello World", [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlUserError", "Hello World", r.array(0))
+  ExpectedJava: err("ReqlUserError", "Hello World", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
@@ -235,7 +235,7 @@ DefsAndTests:
   Java: r.error()
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
@@ -244,7 +244,7 @@ DefsAndTests:
   Java: r.js("1 + 1")
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
@@ -253,25 +253,25 @@ DefsAndTests:
   Java: r.js("1 + 1; 2 + 2")
   ExpectedOriginal: 4
   ExpectedType: Long
-  ExpectedJava: 4
+  ExpectedJava: 4L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 39
   Original: r.do(1, 2, r.js('(function(a, b) { return a + b; })'))
-  Java: r.do_(1, 2, r.js("(function(a, b) { return a + b; })"))
+  Java: r.do_(1L, 2L, r.js("(function(a, b) { return a + b; })"))
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 40
   Original: r.expr(1).do(r.js('(function(x) { return x + 1; })'))
-  Java: r.expr(1).do_(r.js("(function(x) { return x + 1; })"))
+  Java: r.expr(1L).do_(r.js("(function(x) { return x + 1; })"))
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
@@ -289,7 +289,7 @@ DefsAndTests:
   Java: r.js("1 + 2").optArg("timeout", 1.2)
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
@@ -298,7 +298,7 @@ DefsAndTests:
   Java: r.js("(function() { return 1; })")
   ExpectedOriginal: err("ReqlQueryLogicError", "Query result must be of type DATUM, GROUPED_DATA, or STREAM (got FUNCTION).", [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Query result must be of type DATUM, GROUPED_DATA, or STREAM (got FUNCTION).", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Query result must be of type DATUM, GROUPED_DATA, or STREAM (got FUNCTION).", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
@@ -307,94 +307,94 @@ DefsAndTests:
   Java: r.js("function() { return 1; }")
   ExpectedOriginal: 'err("ReqlQueryLogicError", "SyntaxError: Unexpected token (", [0])'
   ExpectedType: Err
-  ExpectedJava: 'err("ReqlQueryLogicError", "SyntaxError: Unexpected token (", r.array(0))'
+  ExpectedJava: 'err("ReqlQueryLogicError", "SyntaxError: Unexpected token (", r.array(0L))'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 45
   Original: r.do(1, 2, r.js('(function(a) { return a; })'))
-  Java: r.do_(1, 2, r.js("(function(a) { return a; })"))
+  Java: r.do_(1L, 2L, r.js("(function(a) { return a; })"))
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 46
   Original: r.do(1, 2, r.js('(function(a, b, c) { return a; })'))
-  Java: r.do_(1, 2, r.js("(function(a, b, c) { return a; })"))
+  Java: r.do_(1L, 2L, r.js("(function(a, b, c) { return a; })"))
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 47
   Original: r.do(1, 2, r.js('(function(a, b, c) { return c; })'))
-  Java: r.do_(1, 2, r.js("(function(a, b, c) { return c; })"))
+  Java: r.do_(1L, 2L, r.js("(function(a, b, c) { return c; })"))
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot convert javascript `undefined` to ql::datum_t.", [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot convert javascript `undefined` to ql::datum_t.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot convert javascript `undefined` to ql::datum_t.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 48
   Original: r.expr([1, 2, 3]).filter(r.js('(function(a) { return a >= 2; })'))
-  Java: r.expr(r.array(1, 2, 3)).filter(r.js("(function(a) { return a >= 2; })"))
+  Java: r.expr(r.array(1L, 2L, 3L)).filter(r.js("(function(a) { return a >= 2; })"))
   ExpectedOriginal: ([2, 3])
   ExpectedType: List
-  ExpectedJava: r.array(2, 3)
+  ExpectedJava: r.array(2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 49
   Original: r.expr([1, 2, 3]).map(r.js('(function(a) { return a + 1; })'))
-  Java: r.expr(r.array(1, 2, 3)).map(r.js("(function(a) { return a + 1; })"))
+  Java: r.expr(r.array(1L, 2L, 3L)).map(r.js("(function(a) { return a + 1; })"))
   ExpectedOriginal: ([2, 3, 4])
   ExpectedType: List
-  ExpectedJava: r.array(2, 3, 4)
+  ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 50
   Original: r.expr([1, 2, 3]).map(r.js('1'))
-  Java: r.expr(r.array(1, 2, 3)).map(r.js("1"))
+  Java: r.expr(r.array(1L, 2L, 3L)).map(r.js("1"))
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type FUNCTION but found DATUM:", [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type FUNCTION but found DATUM:", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type FUNCTION but found DATUM:", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 51
   Original: r.expr([1, 2, 3]).filter(r.js('(function(a) {})'))
-  Java: r.expr(r.array(1, 2, 3)).filter(r.js("(function(a) {})"))
+  Java: r.expr(r.array(1L, 2L, 3L)).filter(r.js("(function(a) {})"))
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot convert javascript `undefined` to ql::datum_t.", [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot convert javascript `undefined` to ql::datum_t.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot convert javascript `undefined` to ql::datum_t.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 53
   Original: r.expr([1, 2, 3]).filter('foo')
-  Java: r.expr(r.array(1, 2, 3)).filter("foo")
+  Java: r.expr(r.array(1L, 2L, 3L)).filter("foo")
   ExpectedOriginal: ([1, 2, 3])
   ExpectedType: List
-  ExpectedJava: r.array(1, 2, 3)
+  ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 54
   Original: r.expr([1, 2, 4]).filter([])
-  Java: r.expr(r.array(1, 2, 4)).filter(r.array())
+  Java: r.expr(r.array(1L, 2L, 4L)).filter(r.array())
   ExpectedOriginal: ([1, 2, 4])
   ExpectedType: List
-  ExpectedJava: r.array(1, 2, 4)
+  ExpectedJava: r.array(1L, 2L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 55
   Original: r.expr([1, 2, 3]).filter(null)
-  Java: r.expr(r.array(1, 2, 3)).filter((ReqlExpr) null)
+  Java: r.expr(r.array(1L, 2L, 3L)).filter((ReqlExpr) null)
   ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: r.array()
@@ -403,7 +403,7 @@ DefsAndTests:
   TestFile: control.yaml
   TestNum: 56
   Original: r.expr([1, 2, 4]).filter(False)
-  Java: r.expr(r.array(1, 2, 4)).filter(false)
+  Java: r.expr(r.array(1L, 2L, 4L)).filter(false)
   ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: r.array()
@@ -415,16 +415,16 @@ DefsAndTests:
   Java: tbl.count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 58
   Original: r.expr([1, 2, 3]).for_each(lambda row:tbl.insert({ 'id':row }))
-  Java: r.expr(r.array(1, 2, 3)).forEach(row -> tbl.insert(r.hashMap("id", row)))
+  Java: r.expr(r.array(1L, 2L, 3L)).forEach(row -> tbl.insert(r.hashMap("id", row)))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 3)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
@@ -433,25 +433,25 @@ DefsAndTests:
   Java: tbl.count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 60
   Original: r.expr([1,2,3]).for_each(lambda row:tbl.update({'foo':row}))
-  Java: r.expr(r.array(1, 2, 3)).forEach(row -> tbl.update(r.hashMap("foo", row)))
+  Java: r.expr(r.array(1L, 2L, 3L)).forEach(row -> tbl.update(r.hashMap("foo", row)))
   ExpectedOriginal: ({'deleted':0.0,'replaced':9,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 9).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 0.0)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 9L).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 0.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 61
   Original: r.expr([1,2,3]).for_each(lambda row:[tbl.insert({ 'id':row }), tbl.insert({ 'id':row*10 })])
-  Java: r.expr(r.array(1, 2, 3)).forEach(row -> r.array(tbl.insert(r.hashMap("id", row)), tbl.insert(r.hashMap("id", r.mul(row, 10)))))
+  Java: r.expr(r.array(1L, 2L, 3L)).forEach(row -> r.array(tbl.insert(r.hashMap("id", row)), tbl.insert(r.hashMap("id", r.mul(row, 10L)))))
   ExpectedOriginal: ({'first_error':"Duplicate primary key `id`:\n{\n\t\"foo\":\t3,\n\t\"id\":\t1\n}\n{\n\t\"id\":\t1\n}",'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':3,'skipped':0.0,'inserted':3})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("first_error", "Duplicate primary key `id`:\n{\n\t\"foo\":\t3,\n\t\"id\":\t1\n}\n{\n\t\"id\":\t1\n}").with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 3).with("skipped", 0.0).with("inserted", 3)
+  ExpectedJava: r.hashMap("first_error", "Duplicate primary key `id`:\n{\n\t\"foo\":\t3,\n\t\"id\":\t1\n}\n{\n\t\"id\":\t1\n}").with("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 3L).with("skipped", 0.0).with("inserted", 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
@@ -460,7 +460,7 @@ DefsAndTests:
   Java: tbl.count()
   ExpectedOriginal: 6
   ExpectedType: Long
-  ExpectedJava: 6
+  ExpectedJava: 6L
   RunOpts: []
 - TestType: JavaDef
   TestFile: control.yaml
@@ -475,41 +475,41 @@ DefsAndTests:
   Java: tbl2.count()
   ExpectedOriginal: tableCount + 1
   ExpectedType: Add
-  ExpectedJava: r.add(tableCount, 1)
+  ExpectedJava: r.add(tableCount, 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 66
   Original: r.expr([1,2,3]).for_each(lambda row:[tbl.update({'foo':row}), tbl.update({'bar':row})])
-  Java: r.expr(r.array(1, 2, 3)).forEach(row -> r.array(tbl.update(r.hashMap("foo", row)), tbl.update(r.hashMap("bar", row))))
+  Java: r.expr(r.array(1L, 2L, 3L)).forEach(row -> r.array(tbl.update(r.hashMap("foo", row)), tbl.update(r.hashMap("bar", row))))
   ExpectedOriginal: ({'deleted':0.0,'replaced':36,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':0.0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 36).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 0.0)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 36L).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 0.0)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 69
   Original: r.expr([1, 2, 3]).for_each(lambda x:x)
-  Java: r.expr(r.array(1, 2, 3)).forEach(x -> x)
+  Java: r.expr(r.array(1L, 2L, 3L)).forEach(x -> x)
   ExpectedOriginal: err("ReqlQueryLogicError", "FOR_EACH expects one or more basic write queries.  Expected type ARRAY but found NUMBER.", [1, 1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "FOR_EACH expects one or more basic write queries.  Expected type ARRAY but found NUMBER.", r.array(1, 1))
+  ExpectedJava: err("ReqlQueryLogicError", "FOR_EACH expects one or more basic write queries.  Expected type ARRAY but found NUMBER.", r.array(1L, 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 71
   Original: r.expr([1, 2, 3]).for_each(lambda row:tbl)
-  Java: r.expr(r.array(1, 2, 3)).forEach(row -> tbl)
+  Java: r.expr(r.array(1L, 2L, 3L)).forEach(row -> tbl)
   ExpectedOriginal: err("ReqlQueryLogicError", "FOR_EACH expects one or more basic write queries.", [1, 1])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "FOR_EACH expects one or more basic write queries.", r.array(1, 1))
+  ExpectedJava: err("ReqlQueryLogicError", "FOR_EACH expects one or more basic write queries.", r.array(1L, 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: control.yaml
   TestNum: 80
   Original: r.expr(1).do(r.db('test').table_create('nested_table'))
-  Java: r.expr(1).do_(r.db("test").tableCreate("nested_table"))
+  Java: r.expr(1L).do_(r.db("test").tableCreate("nested_table"))
   ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_created", 1))
+  ExpectedJava: partial(r.hashMap("tables_created", 1L))
   RunOpts: []

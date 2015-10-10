@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = null as object;
                  
                  /* Original: tbl.insert([{'id':0}, {'id':1}, {'id':2}]) */
-                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0), r.hashMap("id", 1), r.hashMap("id", 2))) ,
+                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0L), r.hashMap("id", 1L), r.hashMap("id", 2L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -47,7 +47,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/545.yaml, #2
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: tbl.reduce(r.js("(function(x,y){return 1;})")) */
                  var obtained = runOrCatch( tbl.reduce(r.js("(function(x,y){return 1;})")) ,
@@ -61,7 +61,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/545.yaml, #3
                  /* ExpectedOriginal: ({'id':3}) */
-                 var expected_ = r.hashMap("id", 3);
+                 var expected_ = r.hashMap("id", 3L);
                  
                  /* Original: tbl.reduce(r.js("(function(x,y){return {id:x[\"id\"] + y[\"id\"]};})")) */
                  var obtained = runOrCatch( tbl.reduce(r.js("(function(x,y){return {id:x[\"id\"] + y[\"id\"]};})")) ,

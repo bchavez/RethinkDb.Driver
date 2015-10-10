@@ -42,7 +42,7 @@ DefsAndTests:
   TestFile: regression/2774.yaml
   TestNum: 7
   Original: trows = [{'id':0,'idx':[0]}, {'id':1,'idx':[1, 2, 3, 4, 5, 6, 7, 0]}, {'id':2,'idx':[1, 2, 3, 4, 5, 6, 7, 4]}, {'id':3,'idx':[1, 2, 3, 4, 5, 6, 7, 4, 5]}, {'id':4,'idx':[1, 2, 3, 4, 5, 6, 7, 8, 1]}, {'id':5,'idx':[1, 3, binary_trunc1]}, {'id':6,'idx':[1, 3, binary_trunc2]}, {'id':7,'idx':[1, 3, r.epoch_time(0), r.epoch_time(0), r.epoch_time(0)]}, {'id':8,'idx':[1, 3, r.epoch_time(0), r.epoch_time(0), r.epoch_time(0), r.epoch_time(0)]}, {'id':9,'idx':[1, 3, r.epoch_time(0), r.epoch_time(0), r.epoch_time(0), r.epoch_time(1)]}, {'id':10,'idx':[1, 3, str_trunc1, str_trunc1]}, {'id':11,'idx':[1, 3, str_trunc1, str_trunc2]}, {'id':12,'idx':[1, 4, 3, 4, 5, 6, 7, 8, 2]}, {'id':13,'idx':[binary_trunc1]}, {'id':14,'idx':[binary_trunc2]}, {'id':15,'idx':False}, {'id':16,'idx':True}, {'id':17,'idx':-500}, {'id':18,'idx':500}, {'id':19,'idx':binary_a}, {'id':20,'idx':binary_trunc1}, {'id':21,'idx':binary_trunc2}, {'id':22,'idx':binary_b}, {'id':23,'idx':r.epoch_time(0)}, {'id':24,'idx':''}, {'id':25,'idx':' str'}, {'id':26,'idx':str_trunc1}, {'id':27,'idx':str_trunc2}]
-  Java: List trows = (List) (r.array(r.hashMap("id", 0).with("idx", r.array(0)), r.hashMap("id", 1).with("idx", r.array(1, 2, 3, 4, 5, 6, 7, 0)), r.hashMap("id", 2).with("idx", r.array(1, 2, 3, 4, 5, 6, 7, 4)), r.hashMap("id", 3).with("idx", r.array(1, 2, 3, 4, 5, 6, 7, 4, 5)), r.hashMap("id", 4).with("idx", r.array(1, 2, 3, 4, 5, 6, 7, 8, 1)), r.hashMap("id", 5).with("idx", r.array(1, 3, binary_trunc1)), r.hashMap("id", 6).with("idx", r.array(1, 3, binary_trunc2)), r.hashMap("id", 7).with("idx", r.array(1, 3, r.epochTime(0), r.epochTime(0), r.epochTime(0))), r.hashMap("id", 8).with("idx", r.array(1, 3, r.epochTime(0), r.epochTime(0), r.epochTime(0), r.epochTime(0))), r.hashMap("id", 9).with("idx", r.array(1, 3, r.epochTime(0), r.epochTime(0), r.epochTime(0), r.epochTime(1))), r.hashMap("id", 10).with("idx", r.array(1, 3, str_trunc1, str_trunc1)), r.hashMap("id", 11).with("idx", r.array(1, 3, str_trunc1, str_trunc2)), r.hashMap("id", 12).with("idx", r.array(1, 4, 3, 4, 5, 6, 7, 8, 2)), r.hashMap("id", 13).with("idx", r.array(binary_trunc1)), r.hashMap("id", 14).with("idx", r.array(binary_trunc2)), r.hashMap("id", 15).with("idx", false), r.hashMap("id", 16).with("idx", true), r.hashMap("id", 17).with("idx", -500), r.hashMap("id", 18).with("idx", 500), r.hashMap("id", 19).with("idx", binary_a), r.hashMap("id", 20).with("idx", binary_trunc1), r.hashMap("id", 21).with("idx", binary_trunc2), r.hashMap("id", 22).with("idx", binary_b), r.hashMap("id", 23).with("idx", r.epochTime(0)), r.hashMap("id", 24).with("idx", ""), r.hashMap("id", 25).with("idx", " str"), r.hashMap("id", 26).with("idx", str_trunc1), r.hashMap("id", 27).with("idx", str_trunc2)));
+  Java: List trows = (List) (r.array(r.hashMap("id", 0L).with("idx", r.array(0L)), r.hashMap("id", 1L).with("idx", r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 0L)), r.hashMap("id", 2L).with("idx", r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 4L)), r.hashMap("id", 3L).with("idx", r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 4L, 5L)), r.hashMap("id", 4L).with("idx", r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 1L)), r.hashMap("id", 5L).with("idx", r.array(1L, 3L, binary_trunc1)), r.hashMap("id", 6L).with("idx", r.array(1L, 3L, binary_trunc2)), r.hashMap("id", 7L).with("idx", r.array(1L, 3L, r.epochTime(0L), r.epochTime(0L), r.epochTime(0L))), r.hashMap("id", 8L).with("idx", r.array(1L, 3L, r.epochTime(0L), r.epochTime(0L), r.epochTime(0L), r.epochTime(0L))), r.hashMap("id", 9L).with("idx", r.array(1L, 3L, r.epochTime(0L), r.epochTime(0L), r.epochTime(0L), r.epochTime(1L))), r.hashMap("id", 10L).with("idx", r.array(1L, 3L, str_trunc1, str_trunc1)), r.hashMap("id", 11L).with("idx", r.array(1L, 3L, str_trunc1, str_trunc2)), r.hashMap("id", 12L).with("idx", r.array(1L, 4L, 3L, 4L, 5L, 6L, 7L, 8L, 2L)), r.hashMap("id", 13L).with("idx", r.array(binary_trunc1)), r.hashMap("id", 14L).with("idx", r.array(binary_trunc2)), r.hashMap("id", 15L).with("idx", false), r.hashMap("id", 16L).with("idx", true), r.hashMap("id", 17L).with("idx", -500L), r.hashMap("id", 18L).with("idx", 500L), r.hashMap("id", 19L).with("idx", binary_a), r.hashMap("id", 20L).with("idx", binary_trunc1), r.hashMap("id", 21L).with("idx", binary_trunc2), r.hashMap("id", 22L).with("idx", binary_b), r.hashMap("id", 23L).with("idx", r.epochTime(0L)), r.hashMap("id", 24L).with("idx", ""), r.hashMap("id", 25L).with("idx", " str"), r.hashMap("id", 26L).with("idx", str_trunc1), r.hashMap("id", 27L).with("idx", str_trunc2)));
   RunOpts: []
 - TestType: JavaDef
   TestFile: regression/2774.yaml
@@ -57,7 +57,7 @@ DefsAndTests:
   Java: tbl.insert(trows).g("inserted")
   ExpectedOriginal: 28
   ExpectedType: Long
-  ExpectedJava: 28
+  ExpectedJava: 28L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2774.yaml
@@ -66,14 +66,14 @@ DefsAndTests:
   Java: tbl.indexCreate("idx")
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2774.yaml
   TestNum: 11
   Original: tbl.index_wait('idx').pluck('index', 'ready')
   Java: tbl.indexWait("idx").pluck("index", "ready")
-  ExpectedOriginal: '[{''ready'': True, ''index'': ''idx''}]'
+  ExpectedOriginal: '[{''index'': ''idx'', ''ready'': True}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("ready", true).with("index", "idx"))
+  ExpectedJava: r.array(r.hashMap("index", "idx").with("ready", true))
   RunOpts: []

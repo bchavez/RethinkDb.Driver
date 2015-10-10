@@ -33,10 +33,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2838.yaml, #1
                  /* ExpectedOriginal: ({'inserted':99}) */
-                 var expected_ = r.hashMap("inserted", 99);
+                 var expected_ = r.hashMap("inserted", 99L);
                  
                  /* Original: tbl.insert([{'result':i} for i in range(1,100)]).pluck('first_error', 'inserted') */
-                 var obtained = runOrCatch( tbl.insert(Enumerable.Range(1, 100).Select(i => r.hashMap("result", i)).ToList()).pluck("first_error", "inserted") ,
+                 var obtained = runOrCatch( tbl.insert(EnumerableLRange(1L, 100L).Select(i => r.hashMap("result", i)).ToList()).pluck("first_error", "inserted") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -47,12 +47,12 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2838.yaml, #2
                  /* ExpectedOriginal: (40) */
-                 var expected_ = 40;
+                 var expected_ = 40L;
                  
                  /* Original: tbl.update({'foo':'bar'}, return_changes=True)['changes'].count() */
                  var obtained = runOrCatch( tbl.update(r.hashMap("foo", "bar")).optArg("return_changes", true).g("changes").count() ,
                                             new OptArgs()
-                     .with("array_limit", 40)
+                     .with("array_limit", 40L)
                     );
                  assertEquals(expected_, obtained);
              }
@@ -67,7 +67,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  /* Original: tbl.update({'foo':'quux'}, return_changes=True)['warnings'] */
                  var obtained = runOrCatch( tbl.update(r.hashMap("foo", "quux")).optArg("return_changes", true).g("warnings") ,
                                             new OptArgs()
-                     .with("array_limit", 40)
+                     .with("array_limit", 40L)
                     );
                  assertEquals(expected_, obtained);
              }

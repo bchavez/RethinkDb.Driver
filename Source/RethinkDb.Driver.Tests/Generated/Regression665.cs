@@ -31,7 +31,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, regression/665.yaml, #Templates.YamlTest+DefTest.
              //Original: t = r.db('test').table('t665')
              
-Table t = (Table) (r.db("test").table("t665"));             
+var t = (Table) (r.db("test").table("t665"));             
              TestCounter++;
              
              {
@@ -51,10 +51,10 @@ Table t = (Table) (r.db("test").table("t665"));
              {
                  //JavaQuery, regression/665.yaml, #2
                  /* ExpectedOriginal: ({'unchanged':0, 'skipped':0, 'replaced':0, 'inserted':2, 'errors':0, 'deleted':0 }) */
-                 var expected_ = r.hashMap("unchanged", 0).with("skipped", 0).with("replaced", 0).with("inserted", 2).with("errors", 0).with("deleted", 0);
+                 var expected_ = r.hashMap("unchanged", 0L).with("skipped", 0L).with("replaced", 0L).with("inserted", 2L).with("errors", 0L).with("deleted", 0L);
                  
                  /* Original: t.insert([{'id':1}, {'id':4}]) */
-                 var obtained = runOrCatch( t.insert(r.array(r.hashMap("id", 1), r.hashMap("id", 4))) ,
+                 var obtained = runOrCatch( t.insert(r.array(r.hashMap("id", 1L), r.hashMap("id", 4L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

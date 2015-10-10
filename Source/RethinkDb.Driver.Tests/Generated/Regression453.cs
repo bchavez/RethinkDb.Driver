@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = null as object;
                  
                  /* Original: tbl.insert([{'a':1},{'a':2}]) */
-                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("a", 1), r.hashMap("a", 2))) ,
+                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("a", 1L), r.hashMap("a", 2L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -47,7 +47,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/453.yaml, #2
                  /* ExpectedOriginal: err("ReqlQueryLogicError", 'Expected type DATUM but found TABLE:', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", r.array(0L));
                  
                  /* Original: tbl.map(lambda x: tbl) */
                  var obtained = runOrCatch( tbl.map(x => tbl) ,
@@ -61,7 +61,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/453.yaml, #3
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: tbl.map(lambda x: tbl.coerce_to('array')).count() */
                  var obtained = runOrCatch( tbl.map(x => tbl.coerceTo("array")).count() ,

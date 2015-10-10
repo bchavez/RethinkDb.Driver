@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.polygon([0,0], [0,10], [10, 10], [10, 0]).polygon_sub(r.polygon([0,0], [0,10], [10, 10], [10, 0])).intersects(r.point(0,0)) */
-                 var obtained = runOrCatch( r.polygon(r.array(0, 0), r.array(0, 10), r.array(10, 10), r.array(10, 0)).polygonSub(r.polygon(r.array(0, 0), r.array(0, 10), r.array(10, 10), r.array(10, 0))).intersects(r.point(0, 0)) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 10L), r.array(10L, 10L), r.array(10L, 0L)).polygonSub(r.polygon(r.array(0L, 0L), r.array(0L, 10L), r.array(10L, 10L), r.array(10L, 0L))).intersects(r.point(0L, 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -49,7 +49,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.polygon([0,0], [0,10], [10, 10], [10, 0]).polygon_sub(r.polygon([0,0], [0,10], [10, 10], [10, 0])).intersects(r.polygon([0,0], [0,10], [10, 10], [10, 0])) */
-                 var obtained = runOrCatch( r.polygon(r.array(0, 0), r.array(0, 10), r.array(10, 10), r.array(10, 0)).polygonSub(r.polygon(r.array(0, 0), r.array(0, 10), r.array(10, 10), r.array(10, 0))).intersects(r.polygon(r.array(0, 0), r.array(0, 10), r.array(10, 10), r.array(10, 0))) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 10L), r.array(10L, 10L), r.array(10L, 0L)).polygonSub(r.polygon(r.array(0L, 0L), r.array(0L, 10L), r.array(10L, 10L), r.array(10L, 0L))).intersects(r.polygon(r.array(0L, 0L), r.array(0L, 10L), r.array(10L, 10L), r.array(10L, 0L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -63,7 +63,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.polygon([0,0], [0,10], [10, 10], [10, 0]).polygon_sub(r.polygon([0,0], [0,10], [10, 10], [10, 0])).intersects(r.line([0,0], [0,10])) */
-                 var obtained = runOrCatch( r.polygon(r.array(0, 0), r.array(0, 10), r.array(10, 10), r.array(10, 0)).polygonSub(r.polygon(r.array(0, 0), r.array(0, 10), r.array(10, 10), r.array(10, 0))).intersects(r.line(r.array(0, 0), r.array(0, 10))) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 10L), r.array(10L, 10L), r.array(10L, 0L)).polygonSub(r.polygon(r.array(0L, 0L), r.array(0L, 10L), r.array(10L, 10L), r.array(10L, 0L))).intersects(r.line(r.array(0L, 0L), r.array(0L, 10L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -77,7 +77,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.polygon([0,0], [0,10], [10, 10], [10, 0]).intersects(r.polygon([0,0], [0,10], [10, 10], [10, 0]).polygon_sub(r.polygon([0,0], [0,10], [10, 10], [10, 0]))) */
-                 var obtained = runOrCatch( r.polygon(r.array(0, 0), r.array(0, 10), r.array(10, 10), r.array(10, 0)).intersects(r.polygon(r.array(0, 0), r.array(0, 10), r.array(10, 10), r.array(10, 0)).polygonSub(r.polygon(r.array(0, 0), r.array(0, 10), r.array(10, 10), r.array(10, 0)))) ,
+                 var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 10L), r.array(10L, 10L), r.array(10L, 0L)).intersects(r.polygon(r.array(0L, 0L), r.array(0L, 10L), r.array(10L, 10L), r.array(10L, 0L)).polygonSub(r.polygon(r.array(0L, 0L), r.array(0L, 10L), r.array(10L, 10L), r.array(10L, 0L)))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

@@ -46,10 +46,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, range.yaml, #2
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: r.range().limit(4) */
-                 var obtained = runOrCatch( r.range().limit(4) ,
+                 var obtained = runOrCatch( r.range().limit(4L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -60,10 +60,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, range.yaml, #3
                  /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0, 1, 2, 3);
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
                  /* Original: r.range(4) */
-                 var obtained = runOrCatch( r.range(4) ,
+                 var obtained = runOrCatch( r.range(4L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -74,10 +74,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, range.yaml, #4
                  /* ExpectedOriginal: [2, 3, 4] */
-                 var expected_ = r.array(2, 3, 4);
+                 var expected_ = r.array(2L, 3L, 4L);
                  
                  /* Original: r.range(2, 5) */
-                 var obtained = runOrCatch( r.range(2, 5) ,
+                 var obtained = runOrCatch( r.range(2L, 5L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -91,7 +91,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.array();
                  
                  /* Original: r.range(0) */
-                 var obtained = runOrCatch( r.range(0) ,
+                 var obtained = runOrCatch( r.range(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -105,7 +105,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.array();
                  
                  /* Original: r.range(5, 2) */
-                 var obtained = runOrCatch( r.range(5, 2) ,
+                 var obtained = runOrCatch( r.range(5L, 2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -116,10 +116,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, range.yaml, #7
                  /* ExpectedOriginal: [-5, -4, -3] */
-                 var expected_ = r.array(-5, -4, -3);
+                 var expected_ = r.array(-5L, -4L, -3L);
                  
                  /* Original: r.range(-5, -2) */
-                 var obtained = runOrCatch( r.range(-5, -2) ,
+                 var obtained = runOrCatch( r.range(-5L, -2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -130,10 +130,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, range.yaml, #8
                  /* ExpectedOriginal: [-5, -4, -3, -2, -1, 0, 1] */
-                 var expected_ = r.array(-5, -4, -3, -2, -1, 0, 1);
+                 var expected_ = r.array(-5L, -4L, -3L, -2L, -1L, 0L, 1L);
                  
                  /* Original: r.range(-5, 2) */
-                 var obtained = runOrCatch( r.range(-5, 2) ,
+                 var obtained = runOrCatch( r.range(-5L, 2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -242,10 +242,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, range.yaml, #17
                  /* ExpectedOriginal: 4 */
-                 var expected_ = 4;
+                 var expected_ = 4L;
                  
                  /* Original: r.range(4).count() */
-                 var obtained = runOrCatch( r.range(4).count() ,
+                 var obtained = runOrCatch( r.range(4L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

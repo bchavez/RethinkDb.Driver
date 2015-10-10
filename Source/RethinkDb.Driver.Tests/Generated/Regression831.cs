@@ -33,7 +33,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/831.yaml, #1
                  /* ExpectedOriginal: ({'first_error':'Expected type OBJECT but found BOOL.', 'skipped':0, 'deleted':0, 'unchanged':0, 'errors':2, 'replaced':0, 'inserted':0}) */
-                 var expected_ = r.hashMap("first_error", "Expected type OBJECT but found BOOL.").with("skipped", 0).with("deleted", 0).with("unchanged", 0).with("errors", 2).with("replaced", 0).with("inserted", 0);
+                 var expected_ = r.hashMap("first_error", "Expected type OBJECT but found BOOL.").with("skipped", 0L).with("deleted", 0L).with("unchanged", 0L).with("errors", 2L).with("replaced", 0L).with("inserted", 0L);
                  
                  /* Original: tbl.insert([True, True]) */
                  var obtained = runOrCatch( tbl.insert(r.array(true, true)) ,

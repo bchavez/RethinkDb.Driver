@@ -32,10 +32,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/546.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: r.expr(1).do(lambda a:a) */
-                 var obtained = runOrCatch( r.expr(1).do_(a => a) ,
+                 var obtained = runOrCatch( r.expr(1L).do_(a => a) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -46,10 +46,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/546.yaml, #2
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: r.expr(1).do(lambda a:r.expr(2).do(lambda b:b)) */
-                 var obtained = runOrCatch( r.expr(1).do_(a => r.expr(2).do_(b => b)) ,
+                 var obtained = runOrCatch( r.expr(1L).do_(a => r.expr(2L).do_(b => b)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -60,10 +60,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/546.yaml, #3
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: r.expr(1).do(lambda a:r.expr(2).do(lambda b:a)) */
-                 var obtained = runOrCatch( r.expr(1).do_(a => r.expr(2).do_(b => a)) ,
+                 var obtained = runOrCatch( r.expr(1L).do_(a => r.expr(2L).do_(b => a)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

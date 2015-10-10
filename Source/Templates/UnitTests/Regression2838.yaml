@@ -6,10 +6,10 @@ DefsAndTests:
   TestFile: regression/2838.yaml
   TestNum: 1
   Original: tbl.insert([{'result':i} for i in range(1,100)]).pluck('first_error', 'inserted')
-  Java: tbl.insert(IntStream.range(1, 100).boxed().map(i -> r.hashMap("result", i)).collect(Collectors.toList())).pluck("first_error", "inserted")
+  Java: tbl.insert(LongStream.range(1L, 100L).boxed().map(i -> r.hashMap("result", i)).collect(Collectors.toList())).pluck("first_error", "inserted")
   ExpectedOriginal: ({'inserted':99})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("inserted", 99)
+  ExpectedJava: r.hashMap("inserted", 99L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2838.yaml
@@ -18,10 +18,10 @@ DefsAndTests:
   Java: tbl.update(r.hashMap("foo", "bar")).optArg("return_changes", true).g("changes").count()
   ExpectedOriginal: (40)
   ExpectedType: Long
-  ExpectedJava: 40
+  ExpectedJava: 40L
   RunOpts:
   - Key: array_limit
-    Val: 40
+    Val: 40L
 - TestType: JavaQuery
   TestFile: regression/2838.yaml
   TestNum: 3
@@ -32,4 +32,4 @@ DefsAndTests:
   ExpectedJava: r.array("Too many changes, array truncated to 40.")
   RunOpts:
   - Key: array_limit
-    Val: 40
+    Val: 40L

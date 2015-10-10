@@ -31,7 +31,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, regression/1081.yaml, #Templates.YamlTest+DefTest.
              //Original: t = r.db('test').table('t1081')
              
-Table t = (Table) (r.db("test").table("t1081"));             
+var t = (Table) (r.db("test").table("t1081"));             
 
         }
     }

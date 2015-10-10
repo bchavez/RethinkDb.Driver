@@ -6,68 +6,68 @@ DefsAndTests:
   TestFile: limits.yaml
   TestNum: 1
   Original: r.expr([1,1,1,1]).union([1, 1, 1, 1])
-  Java: r.expr(r.array(1, 1, 1, 1)).union(r.array(1, 1, 1, 1))
+  Java: r.expr(r.array(1L, 1L, 1L, 1L)).union(r.array(1L, 1L, 1L, 1L))
   ExpectedOriginal: '[1, 1, 1, 1, 1, 1, 1, 1]'
   ExpectedType: List
-  ExpectedJava: r.array(1, 1, 1, 1, 1, 1, 1, 1)
+  ExpectedJava: r.array(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L)
   RunOpts:
   - Key: array_limit
-    Val: 8
+    Val: 8L
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 2
   Original: r.expr([1,2,3,4]).union([5, 6, 7, 8])
-  Java: r.expr(r.array(1, 2, 3, 4)).union(r.array(5, 6, 7, 8))
+  Java: r.expr(r.array(1L, 2L, 3L, 4L)).union(r.array(5L, 6L, 7L, 8L))
   ExpectedOriginal: err("ReqlResourceLimitError", "Array over size limit `4`.", [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlResourceLimitError", "Array over size limit `4`.", r.array(0))
+  ExpectedJava: err("ReqlResourceLimitError", "Array over size limit `4`.", r.array(0L))
   RunOpts:
   - Key: array_limit
-    Val: 4
+    Val: 4L
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 3
   Original: r.expr([1,2,3,4,5,6,7,8])
-  Java: r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8))
+  Java: r.expr(r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L))
   ExpectedOriginal: err("ReqlResourceLimitError", "Array over size limit `4`.", [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlResourceLimitError", "Array over size limit `4`.", r.array(0))
+  ExpectedJava: err("ReqlResourceLimitError", "Array over size limit `4`.", r.array(0L))
   RunOpts:
   - Key: array_limit
-    Val: 4
+    Val: 4L
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 4
   Original: r.expr([1,2,3,4,5,6,7,8])
-  Java: r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8))
+  Java: r.expr(r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L))
   ExpectedOriginal: err("ReqlQueryLogicError", "Illegal array size limit `-1`.  (Must be >= 1.)", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Illegal array size limit `-1`.  (Must be >= 1.)", r.array())
   RunOpts:
   - Key: array_limit
-    Val: -1
+    Val: -1L
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 5
   Original: r.expr([1,2,3,4,5,6,7,8])
-  Java: r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8))
+  Java: r.expr(r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L))
   ExpectedOriginal: err("ReqlQueryLogicError", "Illegal array size limit `0`.  (Must be >= 1.)", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Illegal array size limit `0`.  (Must be >= 1.)", r.array())
   RunOpts:
   - Key: array_limit
-    Val: 0
+    Val: 0L
 - TestType: JavaDef
   TestFile: limits.yaml
   TestNum: 6
   Original: ten_l = r.expr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-  Java: MakeArray ten_l = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)));
+  Java: MakeArray ten_l = (MakeArray) (r.expr(r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L)));
   RunOpts: []
 - TestType: JavaDef
   TestFile: limits.yaml
   TestNum: 7
   Original: ten_f = lambda l:list(range(1,11))
-  Java: ReqlFunction1 ten_f = (ReqlFunction1) (l -> list(range(1, 11)));
+  Java: ReqlFunction1 ten_f = (ReqlFunction1) (l -> list(range(1L, 11L)));
   RunOpts: []
 - TestType: JavaDef
   TestFile: limits.yaml
@@ -79,55 +79,55 @@ DefsAndTests:
   TestFile: limits.yaml
   TestNum: 9
   Original: huge_l.append(1).count()
-  Java: huge_l.append(1).count()
+  Java: huge_l.append(1L).count()
   ExpectedOriginal: 100001
   ExpectedType: Long
-  ExpectedJava: 100001
+  ExpectedJava: 100001L
   RunOpts:
   - Key: array_limit
-    Val: 100001
+    Val: 100001L
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 10
   Original: tbl.insert({'id':0, 'array':huge_l.append(1)})
-  Java: tbl.insert(r.hashMap("id", 0).with("array", huge_l.append(1)))
+  Java: tbl.insert(r.hashMap("id", 0L).with("array", huge_l.append(1L)))
   ExpectedOriginal: partial({'errors':1, 'first_error':"Array too large for disk writes (limit 100,000 elements)."})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("errors", 1).with("first_error", "Array too large for disk writes (limit 100,000 elements)."))
+  ExpectedJava: partial(r.hashMap("errors", 1L).with("first_error", "Array too large for disk writes (limit 100,000 elements)."))
   RunOpts:
   - Key: array_limit
-    Val: 100001
+    Val: 100001L
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 11
   Original: tbl.get(0)
-  Java: tbl.get(0)
+  Java: tbl.get(0L)
   ExpectedOriginal: (null)
   ExpectedType: Object
   ExpectedJava: null
   RunOpts:
   - Key: array_limit
-    Val: 100001
+    Val: 100001L
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 12
   Original: tbl.insert({'id':1, 'array':ten_l})
-  Java: tbl.insert(r.hashMap("id", 1).with("array", ten_l))
+  Java: tbl.insert(r.hashMap("id", 1L).with("array", ten_l))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 13
   Original: tbl.get(1)
-  Java: tbl.get(1)
+  Java: tbl.get(1L)
   ExpectedOriginal: ({'array':[1,2,3,4,5,6,7,8,9,10],'id':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("array", r.array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)).with("id", 1)
+  ExpectedJava: r.hashMap("array", r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L)).with("id", 1L)
   RunOpts:
   - Key: array_limit
-    Val: 4
+    Val: 4L
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 14
@@ -135,49 +135,49 @@ DefsAndTests:
   Java: tbl.delete().g("deleted")
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaDef
   TestFile: limits.yaml
   TestNum: 15
   Original: c = tbl.changes(squash=1000000, changefeed_queue_size=10)
-  Java: Changes c = (Changes) (tbl.changes().optArg("squash", 1000000).optArg("changefeed_queue_size", 10));
+  Java: Changes c = (Changes) (tbl.changes().optArg("squash", 1000000L).optArg("changefeed_queue_size", 10L));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 16
   Original: tbl.insert([{'id':0}, {'id':1}, {'id':2}, {'id':3}, {'id':4}, {'id':5}, {'id':6}]).get_field('inserted')
-  Java: tbl.insert(r.array(r.hashMap("id", 0), r.hashMap("id", 1), r.hashMap("id", 2), r.hashMap("id", 3), r.hashMap("id", 4), r.hashMap("id", 5), r.hashMap("id", 6))).g("inserted")
+  Java: tbl.insert(r.array(r.hashMap("id", 0L), r.hashMap("id", 1L), r.hashMap("id", 2L), r.hashMap("id", 3L), r.hashMap("id", 4L), r.hashMap("id", 5L), r.hashMap("id", 6L))).g("inserted")
   ExpectedOriginal: 7
   ExpectedType: Long
-  ExpectedJava: 7
+  ExpectedJava: 7L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 17
   Original: fetch(c, 7)
-  Java: fetch(c, 7)
+  Java: fetch(c, 7L)
   ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':0}}, {'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}, {'old_val':null, 'new_val':{'id':3}}, {'old_val':null, 'new_val':{'id':4}}, {'old_val':null, 'new_val':{'id':5}}, {'old_val':null, 'new_val':{'id':6}}])
   ExpectedType: Bag
-  ExpectedJava: bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 0)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 4)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 5)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 6))))
+  ExpectedJava: bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 0L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 4L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 5L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 6L))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 18
   Original: tbl.insert([{'id':7}, {'id':8}, {'id':9}, {'id':10}, {'id':11}, {'id':12}, {'id':13}]).get_field('inserted')
-  Java: tbl.insert(r.array(r.hashMap("id", 7), r.hashMap("id", 8), r.hashMap("id", 9), r.hashMap("id", 10), r.hashMap("id", 11), r.hashMap("id", 12), r.hashMap("id", 13))).g("inserted")
+  Java: tbl.insert(r.array(r.hashMap("id", 7L), r.hashMap("id", 8L), r.hashMap("id", 9L), r.hashMap("id", 10L), r.hashMap("id", 11L), r.hashMap("id", 12L), r.hashMap("id", 13L))).g("inserted")
   ExpectedOriginal: 7
   ExpectedType: Long
-  ExpectedJava: 7
+  ExpectedJava: 7L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 19
   Original: fetch(c, 7)
-  Java: fetch(c, 7)
+  Java: fetch(c, 7L)
   ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':7}}, {'old_val':null, 'new_val':{'id':8}}, {'old_val':null, 'new_val':{'id':9}}, {'old_val':null, 'new_val':{'id':10}}, {'old_val':null, 'new_val':{'id':11}}, {'old_val':null, 'new_val':{'id':12}}, {'old_val':null, 'new_val':{'id':13}}])
   ExpectedType: Bag
-  ExpectedJava: bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 7)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 8)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 9)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 10)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 11)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 12)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 13))))
+  ExpectedJava: bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 7L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 8L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 9L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 10L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 11L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 12L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 13L))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: limits.yaml
@@ -186,47 +186,47 @@ DefsAndTests:
   Java: tbl.delete().g("deleted")
   ExpectedOriginal: 14
   ExpectedType: Long
-  ExpectedJava: 14
+  ExpectedJava: 14L
   RunOpts: []
 - TestType: JavaDef
   TestFile: limits.yaml
   TestNum: 21
   Original: c2 = tbl.changes(squash=1000000)
-  Java: Changes c2 = (Changes) (tbl.changes().optArg("squash", 1000000));
+  Java: Changes c2 = (Changes) (tbl.changes().optArg("squash", 1000000L));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 22
   Original: tbl.insert([{'id':0}, {'id':1}, {'id':2}, {'id':3}, {'id':4}, {'id':5}, {'id':6}]).get_field('inserted')
-  Java: tbl.insert(r.array(r.hashMap("id", 0), r.hashMap("id", 1), r.hashMap("id", 2), r.hashMap("id", 3), r.hashMap("id", 4), r.hashMap("id", 5), r.hashMap("id", 6))).g("inserted")
+  Java: tbl.insert(r.array(r.hashMap("id", 0L), r.hashMap("id", 1L), r.hashMap("id", 2L), r.hashMap("id", 3L), r.hashMap("id", 4L), r.hashMap("id", 5L), r.hashMap("id", 6L))).g("inserted")
   ExpectedOriginal: 7
   ExpectedType: Long
-  ExpectedJava: 7
+  ExpectedJava: 7L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 23
   Original: fetch(c2, 7)
-  Java: fetch(c2, 7)
+  Java: fetch(c2, 7L)
   ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':0}}, {'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}, {'old_val':null, 'new_val':{'id':3}}, {'old_val':null, 'new_val':{'id':4}}, {'old_val':null, 'new_val':{'id':5}}, {'old_val':null, 'new_val':{'id':6}}])
   ExpectedType: Bag
-  ExpectedJava: bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 0)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 4)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 5)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 6))))
+  ExpectedJava: bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 0L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 4L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 5L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 6L))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 24
   Original: tbl.insert([{'id':7}, {'id':8}, {'id':9}, {'id':10}, {'id':11}, {'id':12}, {'id':13}]).get_field('inserted')
-  Java: tbl.insert(r.array(r.hashMap("id", 7), r.hashMap("id", 8), r.hashMap("id", 9), r.hashMap("id", 10), r.hashMap("id", 11), r.hashMap("id", 12), r.hashMap("id", 13))).g("inserted")
+  Java: tbl.insert(r.array(r.hashMap("id", 7L), r.hashMap("id", 8L), r.hashMap("id", 9L), r.hashMap("id", 10L), r.hashMap("id", 11L), r.hashMap("id", 12L), r.hashMap("id", 13L))).g("inserted")
   ExpectedOriginal: 7
   ExpectedType: Long
-  ExpectedJava: 7
+  ExpectedJava: 7L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: limits.yaml
   TestNum: 25
   Original: fetch(c2, 7)
-  Java: fetch(c2, 7)
+  Java: fetch(c2, 7L)
   ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':7}}, {'old_val':null, 'new_val':{'id':8}}, {'old_val':null, 'new_val':{'id':9}}, {'old_val':null, 'new_val':{'id':10}}, {'old_val':null, 'new_val':{'id':11}}, {'old_val':null, 'new_val':{'id':12}}, {'old_val':null, 'new_val':{'id':13}}])
   ExpectedType: Bag
-  ExpectedJava: bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 7)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 8)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 9)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 10)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 11)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 12)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 13))))
+  ExpectedJava: bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 7L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 8L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 9L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 10L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 11L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 12L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 13L))))
   RunOpts: []

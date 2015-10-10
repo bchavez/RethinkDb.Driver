@@ -33,10 +33,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/3759.yaml, #1
                  /* ExpectedOriginal: [1] */
-                 var expected_ = r.array(1);
+                 var expected_ = r.array(1L);
                  
                  /* Original: r.db('rethinkdb').table('jobs').map(lambda:1) */
-                 var obtained = runOrCatch( r.db("rethinkdb").table("jobs").map(() => 1) ,
+                 var obtained = runOrCatch( r.db("rethinkdb").table("jobs").map(() => 1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = null as object;
                  
                  /* Original: r.db('rethinkdb').table('jobs').map(lambda:1) */
-                 var obtained = runOrCatch( r.db("rethinkdb").table("jobs").map(() => 1) ,
+                 var obtained = runOrCatch( r.db("rethinkdb").table("jobs").map(() => 1L) ,
                                             new OptArgs()
                      .with("noreply", "true")
                     );
@@ -65,7 +65,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = null as object;
                  
                  /* Original: r.db('rethinkdb').table('jobs').map(lambda:1) */
-                 var obtained = runOrCatch( r.db("rethinkdb").table("jobs").map(() => 1) ,
+                 var obtained = runOrCatch( r.db("rethinkdb").table("jobs").map(() => 1L) ,
                                             new OptArgs()
                      .with("noreply", "true")
                     );
@@ -77,10 +77,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/3759.yaml, #4
                  /* ExpectedOriginal: [1] */
-                 var expected_ = r.array(1);
+                 var expected_ = r.array(1L);
                  
                  /* Original: r.db('rethinkdb').table('jobs').map(lambda:1) */
-                 var obtained = runOrCatch( r.db("rethinkdb").table("jobs").map(() => 1) ,
+                 var obtained = runOrCatch( r.db("rethinkdb").table("jobs").map(() => 1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

@@ -33,7 +33,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/4501.yaml, #1
                  /* ExpectedOriginal: err_regex('ReqlOpFailedError', 'Index `missing` was not found on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]', [0]) */
-                 var expected_ = err_regex("ReqlOpFailedError", "Index `missing` was not found on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", r.array(0));
+                 var expected_ = err_regex("ReqlOpFailedError", "Index `missing` was not found on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", r.array(0L));
                  
                  /* Original: tbl.index_wait("missing") */
                  var obtained = runOrCatch( tbl.indexWait("missing") ,

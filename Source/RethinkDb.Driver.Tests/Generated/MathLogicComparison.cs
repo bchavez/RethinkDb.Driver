@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(1) < 2 */
-                 var obtained = runOrCatch( r.expr(1).lt(2) ,
+                 var obtained = runOrCatch( r.expr(1L).lt(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -49,7 +49,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: 1 < r.expr(2) */
-                 var obtained = runOrCatch( r.lt(1, r.expr(2)) ,
+                 var obtained = runOrCatch( r.lt(1L, r.expr(2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -63,7 +63,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(1).lt(2) */
-                 var obtained = runOrCatch( r.expr(1).lt(2) ,
+                 var obtained = runOrCatch( r.expr(1L).lt(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -77,7 +77,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr(3) < 2 */
-                 var obtained = runOrCatch( r.expr(3).lt(2) ,
+                 var obtained = runOrCatch( r.expr(3L).lt(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -91,7 +91,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr(2) < 2 */
-                 var obtained = runOrCatch( r.expr(2).lt(2) ,
+                 var obtained = runOrCatch( r.expr(2L).lt(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -105,7 +105,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr(1) > 2 */
-                 var obtained = runOrCatch( r.expr(1).gt(2) ,
+                 var obtained = runOrCatch( r.expr(1L).gt(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -119,7 +119,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: 1 > r.expr(2) */
-                 var obtained = runOrCatch( r.gt(1, r.expr(2)) ,
+                 var obtained = runOrCatch( r.gt(1L, r.expr(2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -133,7 +133,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr(1).gt(2) */
-                 var obtained = runOrCatch( r.expr(1).gt(2) ,
+                 var obtained = runOrCatch( r.expr(1L).gt(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -147,7 +147,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(3) > 2 */
-                 var obtained = runOrCatch( r.expr(3).gt(2) ,
+                 var obtained = runOrCatch( r.expr(3L).gt(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -161,7 +161,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr(2) > 2 */
-                 var obtained = runOrCatch( r.expr(2).gt(2) ,
+                 var obtained = runOrCatch( r.expr(2L).gt(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -175,7 +175,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr(1) == 2 */
-                 var obtained = runOrCatch( r.expr(1).eq(2) ,
+                 var obtained = runOrCatch( r.expr(1L).eq(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -189,7 +189,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: 1 == r.expr(2) */
-                 var obtained = runOrCatch( r.eq(1, r.expr(2)) ,
+                 var obtained = runOrCatch( r.eq(1L, r.expr(2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -203,7 +203,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr(1).eq(2) */
-                 var obtained = runOrCatch( r.expr(1).eq(2) ,
+                 var obtained = runOrCatch( r.expr(1L).eq(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -217,7 +217,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr(3) == 2 */
-                 var obtained = runOrCatch( r.expr(3).eq(2) ,
+                 var obtained = runOrCatch( r.expr(3L).eq(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -231,7 +231,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(2) == 2 */
-                 var obtained = runOrCatch( r.expr(2).eq(2) ,
+                 var obtained = runOrCatch( r.expr(2L).eq(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -245,7 +245,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(1) != 2 */
-                 var obtained = runOrCatch( r.expr(1).ne(2) ,
+                 var obtained = runOrCatch( r.expr(1L).ne(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -259,7 +259,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: 1 != r.expr(2) */
-                 var obtained = runOrCatch( r.ne(1, r.expr(2)) ,
+                 var obtained = runOrCatch( r.ne(1L, r.expr(2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -273,7 +273,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(1).ne(2) */
-                 var obtained = runOrCatch( r.expr(1).ne(2) ,
+                 var obtained = runOrCatch( r.expr(1L).ne(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -287,7 +287,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(3) != 2 */
-                 var obtained = runOrCatch( r.expr(3).ne(2) ,
+                 var obtained = runOrCatch( r.expr(3L).ne(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -301,7 +301,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr(2) != 2 */
-                 var obtained = runOrCatch( r.expr(2).ne(2) ,
+                 var obtained = runOrCatch( r.expr(2L).ne(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -315,7 +315,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(1) <= 2 */
-                 var obtained = runOrCatch( r.expr(1).le(2) ,
+                 var obtained = runOrCatch( r.expr(1L).le(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -329,7 +329,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: 1 <= r.expr(2) */
-                 var obtained = runOrCatch( r.le(1, r.expr(2)) ,
+                 var obtained = runOrCatch( r.le(1L, r.expr(2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -343,7 +343,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(1).le(2) */
-                 var obtained = runOrCatch( r.expr(1).le(2) ,
+                 var obtained = runOrCatch( r.expr(1L).le(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -357,7 +357,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr(3) <= 2 */
-                 var obtained = runOrCatch( r.expr(3).le(2) ,
+                 var obtained = runOrCatch( r.expr(3L).le(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -371,7 +371,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(2) <= 2 */
-                 var obtained = runOrCatch( r.expr(2).le(2) ,
+                 var obtained = runOrCatch( r.expr(2L).le(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -385,7 +385,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr(1) >= 2 */
-                 var obtained = runOrCatch( r.expr(1).ge(2) ,
+                 var obtained = runOrCatch( r.expr(1L).ge(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -399,7 +399,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: 1 >= r.expr(2) */
-                 var obtained = runOrCatch( r.ge(1, r.expr(2)) ,
+                 var obtained = runOrCatch( r.ge(1L, r.expr(2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -413,7 +413,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr(1).ge(2) */
-                 var obtained = runOrCatch( r.expr(1).ge(2) ,
+                 var obtained = runOrCatch( r.expr(1L).ge(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -427,7 +427,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(3) >= 2 */
-                 var obtained = runOrCatch( r.expr(3).ge(2) ,
+                 var obtained = runOrCatch( r.expr(3L).ge(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -441,7 +441,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(2) >= 2 */
-                 var obtained = runOrCatch( r.expr(2).ge(2) ,
+                 var obtained = runOrCatch( r.expr(2L).ge(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -679,7 +679,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr([1]) < [2] */
-                 var obtained = runOrCatch( r.expr(r.array(1)).lt(r.array(2)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L)).lt(r.array(2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -693,7 +693,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr([1]) > [2] */
-                 var obtained = runOrCatch( r.expr(r.array(1)).gt(r.array(2)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L)).gt(r.array(2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -707,7 +707,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr([1, 0]) < [2] */
-                 var obtained = runOrCatch( r.expr(r.array(1, 0)).lt(r.array(2)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, 0L)).lt(r.array(2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -721,7 +721,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr([1, 0]) < [1] */
-                 var obtained = runOrCatch( r.expr(r.array(1, 0)).lt(r.array(1)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, 0L)).lt(r.array(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -735,7 +735,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr([1, 0]) > [0] */
-                 var obtained = runOrCatch( r.expr(r.array(1, 0)).gt(r.array(0)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, 0L)).gt(r.array(0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -749,7 +749,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr([1, 'a']) < [1, 'b'] */
-                 var obtained = runOrCatch( r.expr(r.array(1, "a")).lt(r.array(1, "b")) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, "a")).lt(r.array(1L, "b")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -763,7 +763,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr([0, 'z']) < [1, 'b'] */
-                 var obtained = runOrCatch( r.expr(r.array(0, "z")).lt(r.array(1, "b")) ,
+                 var obtained = runOrCatch( r.expr(r.array(0L, "z")).lt(r.array(1L, "b")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -777,7 +777,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr([1, 1, 1]) < [1, 0, 2] */
-                 var obtained = runOrCatch( r.expr(r.array(1, 1, 1)).lt(r.array(1, 0, 2)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, 1L, 1L)).lt(r.array(1L, 0L, 2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -791,7 +791,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr([1, 0, 2]) < [1, 1, 1] */
-                 var obtained = runOrCatch( r.expr(r.array(1, 0, 2)).lt(r.array(1, 1, 1)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, 0L, 2L)).lt(r.array(1L, 1L, 1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -805,7 +805,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr({'a':0}) == {'a':0} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0)).eq(r.hashMap("a", 0)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0L)).eq(r.hashMap("a", 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -819,7 +819,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr({'a':0, 'b':1}) == {'b':1, 'a':0} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1)).eq(r.hashMap("b", 1).with("a", 0)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0L).with("b", 1L)).eq(r.hashMap("b", 1L).with("a", 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -833,7 +833,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr({'a':0, 'b':1, 'c':2}) == {'b':1, 'a':0} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1).with("c", 2)).eq(r.hashMap("b", 1).with("a", 0)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0L).with("b", 1L).with("c", 2L)).eq(r.hashMap("b", 1L).with("a", 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -847,7 +847,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr({'a':0, 'b':1}) == {'b':1, 'a':0, 'c':2} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1)).eq(r.hashMap("b", 1).with("a", 0).with("c", 2)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0L).with("b", 1L)).eq(r.hashMap("b", 1L).with("a", 0L).with("c", 2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -861,7 +861,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr({'a':0, 'b':1, 'd':2}) == {'b':1, 'a':0, 'c':2} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1).with("d", 2)).eq(r.hashMap("b", 1).with("a", 0).with("c", 2)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0L).with("b", 1L).with("d", 2L)).eq(r.hashMap("b", 1L).with("a", 0L).with("c", 2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -875,7 +875,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr({'a':0}) < {'b':0} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0)).lt(r.hashMap("b", 0)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0L)).lt(r.hashMap("b", 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -889,7 +889,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr({'a':1}) < {'b':0} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1)).lt(r.hashMap("b", 0)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1L)).lt(r.hashMap("b", 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -903,7 +903,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr({'b':1}) < {'b':0} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("b", 1)).lt(r.hashMap("b", 0)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("b", 1L)).lt(r.hashMap("b", 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -917,7 +917,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr({'b':1}) < {'a':0} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("b", 1)).lt(r.hashMap("a", 0)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("b", 1L)).lt(r.hashMap("a", 0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -931,7 +931,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr({'a':0, 'b':1, 'c':2}) < {'a':0, 'b':1, 'c':2} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1).with("c", 2)).lt(r.hashMap("a", 0).with("b", 1).with("c", 2)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0L).with("b", 1L).with("c", 2L)).lt(r.hashMap("a", 0L).with("b", 1L).with("c", 2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -945,7 +945,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr({'a':0, 'b':1, 'c':2, 'd':3}) < {'a':0, 'b':1, 'c':2} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1).with("c", 2).with("d", 3)).lt(r.hashMap("a", 0).with("b", 1).with("c", 2)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0L).with("b", 1L).with("c", 2L).with("d", 3L)).lt(r.hashMap("a", 0L).with("b", 1L).with("c", 2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -959,7 +959,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr({'a':0, 'b':1, 'c':2}) < {'a':0, 'b':1, 'c':2, 'd':3} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1).with("c", 2)).lt(r.hashMap("a", 0).with("b", 1).with("c", 2).with("d", 3)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0L).with("b", 1L).with("c", 2L)).lt(r.hashMap("a", 0L).with("b", 1L).with("c", 2L).with("d", 3L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -973,7 +973,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: r.expr({'a':0, 'c':2}) < {'a':0, 'b':1, 'c':2} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("c", 2)).lt(r.hashMap("a", 0).with("b", 1).with("c", 2)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0L).with("c", 2L)).lt(r.hashMap("a", 0L).with("b", 1L).with("c", 2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -987,7 +987,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr({'a':0, 'c':2}) > {'a':0, 'b':1, 'c':2} */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("c", 2)).gt(r.hashMap("a", 0).with("b", 1).with("c", 2)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 0L).with("c", 2L)).gt(r.hashMap("a", 0L).with("b", 1L).with("c", 2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -997,7 +997,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, math_logic/comparison.yaml, #Templates.YamlTest+DefTest.
              //Original: everything = r.expr([[],r.now(),r.binary(b"\x00"),false,null,-5,{},"a",r.maxval])
              
-MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(new byte[] { 0 }), false, null, -5, r.hashMap(), "a", r.maxval())));             
+var everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(new byte[] { 0 }), false, null, -5L, r.hashMap(), "a", r.maxval())));             
              TestCounter++;
              
              {
@@ -1034,7 +1034,7 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
                  var expected_ = true;
                  
                  /* Original: r.expr([1,2]) < False */
-                 var obtained = runOrCatch( r.expr(r.array(1, 2)).lt(false) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, 2L)).lt(false) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1076,7 +1076,7 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
                  var expected_ = true;
                  
                  /* Original: r.expr([1,2]) < r.binary(b"\xAE") */
-                 var obtained = runOrCatch( r.expr(r.array(1, 2)).lt(r.binary(new byte[] { 174 })) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, 2L)).lt(r.binary(new byte[] { 174 })) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1118,7 +1118,7 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
                  var expected_ = true;
                  
                  /* Original: r.expr(null) < 12 */
-                 var obtained = runOrCatch( r.expr((ReqlExpr) null).lt(12) ,
+                 var obtained = runOrCatch( r.expr((ReqlExpr) null).lt(12L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1132,7 +1132,7 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
                  var expected_ = true;
                  
                  /* Original: r.expr(null) < -2 */
-                 var obtained = runOrCatch( r.expr((ReqlExpr) null).lt(-2) ,
+                 var obtained = runOrCatch( r.expr((ReqlExpr) null).lt(-2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1146,7 +1146,7 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
                  var expected_ = true;
                  
                  /* Original: r.expr(-12) < {} */
-                 var obtained = runOrCatch( r.expr(-12).lt(r.hashMap()) ,
+                 var obtained = runOrCatch( r.expr(-12L).lt(r.hashMap()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1160,7 +1160,7 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
                  var expected_ = true;
                  
                  /* Original: r.expr(100) < {'a':-12} */
-                 var obtained = runOrCatch( r.expr(100).lt(r.hashMap("a", -12)) ,
+                 var obtained = runOrCatch( r.expr(100L).lt(r.hashMap("a", -12L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1174,7 +1174,7 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
                  var expected_ = false;
                  
                  /* Original: r.expr(r.binary(b"\xAE")) < 12 */
-                 var obtained = runOrCatch( r.expr(r.binary(new byte[] { 174 })).lt(12) ,
+                 var obtained = runOrCatch( r.expr(r.binary(new byte[] { 174 })).lt(12L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1216,7 +1216,7 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
                  var expected_ = true;
                  
                  /* Original: r.now() > 12 */
-                 var obtained = runOrCatch( r.now().gt(12) ,
+                 var obtained = runOrCatch( r.now().gt(12L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1244,7 +1244,7 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
                  var expected_ = true;
                  
                  /* Original: r.expr("abc") > {'a':-12} */
-                 var obtained = runOrCatch( r.expr("abc").gt(r.hashMap("a", -12)) ,
+                 var obtained = runOrCatch( r.expr("abc").gt(r.hashMap("a", -12L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1272,7 +1272,7 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
                  var expected_ = true;
                  
                  /* Original: r.expr('zzz') > 128 */
-                 var obtained = runOrCatch( r.expr("zzz").gt(128) ,
+                 var obtained = runOrCatch( r.expr("zzz").gt(128L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1300,7 +1300,7 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
                  var expected_ = true;
                  
                  /* Original: "'zzz' > r.expr(-152)" */
-                 var obtained = runOrCatch( r.gt("zzz", r.expr(-152)) ,
+                 var obtained = runOrCatch( r.gt("zzz", r.expr(-152L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1338,7 +1338,7 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              //JavaDef, math_logic/comparison.yaml, #Templates.YamlTest+DefTest.
              //Original: everything2 = r.expr([r.minval,[],r.now(),r.binary(b"\x00"),false,null,-5,{},"a"])
              
-MakeArray everything2 = (MakeArray) (r.expr(r.array(r.minval(), r.array(), r.now(), r.binary(new byte[] { 0 }), false, null, -5, r.hashMap(), "a")));             
+var everything2 = (MakeArray) (r.expr(r.array(r.minval(), r.array(), r.now(), r.binary(new byte[] { 0 }), false, null, -5L, r.hashMap(), "a")));             
              TestCounter++;
              
              {

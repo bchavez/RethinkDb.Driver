@@ -33,10 +33,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/578.yaml, #1
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create("578", lambda rec:1) */
-                 var obtained = runOrCatch( tbl.indexCreate("578", rec => 1) ,
+                 var obtained = runOrCatch( tbl.indexCreate("578", rec => 1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -64,7 +64,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err_regex("ReqlOpFailedError", "Index `578` already exists on table `[a-zA-Z0-9_]+.[a-zA-Z0-9_]+`[.]", r.array());
                  
                  /* Original: tbl.index_create("578", lambda rec:1) */
-                 var obtained = runOrCatch( tbl.indexCreate("578", rec => 1) ,
+                 var obtained = runOrCatch( tbl.indexCreate("578", rec => 1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -75,7 +75,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/578.yaml, #4
                  /* ExpectedOriginal: ({'dropped':1}) */
-                 var expected_ = r.hashMap("dropped", 1);
+                 var expected_ = r.hashMap("dropped", 1L);
                  
                  /* Original: tbl.index_drop("578") */
                  var obtained = runOrCatch( tbl.indexDrop("578") ,

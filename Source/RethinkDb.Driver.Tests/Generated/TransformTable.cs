@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "SELECTION<STREAM>";
                  
                  /* Original: tbl.limit(1).type_of() */
-                 var obtained = runOrCatch( tbl.limit(1).typeOf() ,
+                 var obtained = runOrCatch( tbl.limit(1L).typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -64,7 +64,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "ARRAY";
                  
                  /* Original: tbl.limit(1).coerce_to('array').type_of() */
-                 var obtained = runOrCatch( tbl.limit(1).coerceTo("array").typeOf() ,
+                 var obtained = runOrCatch( tbl.limit(1L).coerceTo("array").typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

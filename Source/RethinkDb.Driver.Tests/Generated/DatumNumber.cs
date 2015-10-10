@@ -32,10 +32,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/number.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: r.expr(1) */
-                 var obtained = runOrCatch( r.expr(1) ,
+                 var obtained = runOrCatch( r.expr(1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -46,10 +46,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/number.yaml, #2
                  /* ExpectedOriginal: -1 */
-                 var expected_ = -1;
+                 var expected_ = -1L;
                  
                  /* Original: r.expr(-1) */
-                 var obtained = runOrCatch( r.expr(-1) ,
+                 var obtained = runOrCatch( r.expr(-1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -60,10 +60,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/number.yaml, #3
                  /* ExpectedOriginal: 0 */
-                 var expected_ = 0;
+                 var expected_ = 0L;
                  
                  /* Original: r.expr(0) */
-                 var obtained = runOrCatch( r.expr(0) ,
+                 var obtained = runOrCatch( r.expr(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -130,10 +130,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/number.yaml, #8
                  /* ExpectedOriginal: 1234567890 */
-                 var expected_ = 1234567890;
+                 var expected_ = 1234567890L;
                  
                  /* Original: r.expr(1234567890) */
-                 var obtained = runOrCatch( r.expr(1234567890) ,
+                 var obtained = runOrCatch( r.expr(1234567890L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -189,7 +189,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "NUMBER";
                  
                  /* Original: r.expr(1).type_of() */
-                 var obtained = runOrCatch( r.expr(1).typeOf() ,
+                 var obtained = runOrCatch( r.expr(1L).typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -203,7 +203,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "1";
                  
                  /* Original: r.expr(1).coerce_to('string') */
-                 var obtained = runOrCatch( r.expr(1).coerceTo("string") ,
+                 var obtained = runOrCatch( r.expr(1L).coerceTo("string") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -214,10 +214,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/number.yaml, #14
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: r.expr(1).coerce_to('number') */
-                 var obtained = runOrCatch( r.expr(1).coerceTo("number") ,
+                 var obtained = runOrCatch( r.expr(1L).coerceTo("number") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -228,7 +228,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/number.yaml, #15
                  /* ExpectedOriginal: int_cmp(1) */
-                 var expected_ = int_cmp(1);
+                 var expected_ = int_cmp(1L);
                  
                  /* Original: r.expr(1.0) */
                  var obtained = runOrCatch( r.expr(1.0) ,
@@ -242,10 +242,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/number.yaml, #16
                  /* ExpectedOriginal: int_cmp(45) */
-                 var expected_ = int_cmp(45);
+                 var expected_ = int_cmp(45L);
                  
                  /* Original: r.expr(45) */
-                 var obtained = runOrCatch( r.expr(45) ,
+                 var obtained = runOrCatch( r.expr(45L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

@@ -89,7 +89,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/1001.yaml, #5
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: tbl.between(r.minval, r.maxval).count() */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).count() ,
@@ -103,7 +103,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/1001.yaml, #6
                  /* ExpectedOriginal: 0 */
-                 var expected_ = 0;
+                 var expected_ = 0L;
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='a').count() */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "a").count() ,
@@ -117,7 +117,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/1001.yaml, #7
                  /* ExpectedOriginal: 0 */
-                 var expected_ = 0;
+                 var expected_ = 0L;
                  
                  /* Original: tbl.between(r.minval, r.maxval, index='b').count() */
                  var obtained = runOrCatch( tbl.between(r.minval(), r.maxval()).optArg("index", "b").count() ,

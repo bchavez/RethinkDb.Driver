@@ -6,13 +6,13 @@ DefsAndTests:
   TestFile: regression/4030.yaml
   TestNum: 1
   Original: data = [{'id':1}, {'id':2}, {'id':3}, {'id':4}, {'id':5}, {'id':6}]
-  Java: List data = (List) (r.array(r.hashMap("id", 1), r.hashMap("id", 2), r.hashMap("id", 3), r.hashMap("id", 4), r.hashMap("id", 5), r.hashMap("id", 6)));
+  Java: List data = (List) (r.array(r.hashMap("id", 1L), r.hashMap("id", 2L), r.hashMap("id", 3L), r.hashMap("id", 4L), r.hashMap("id", 5L), r.hashMap("id", 6L)));
   RunOpts: []
 - TestType: JavaDef
   TestFile: regression/4030.yaml
   TestNum: 2
   Original: changes = [{'id':7}, {'id':8}, {'id':9}, {'id':10}]
-  Java: List changes = (List) (r.array(r.hashMap("id", 7), r.hashMap("id", 8), r.hashMap("id", 9), r.hashMap("id", 10)));
+  Java: List changes = (List) (r.array(r.hashMap("id", 7L), r.hashMap("id", 8L), r.hashMap("id", 9L), r.hashMap("id", 10L)));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
@@ -21,7 +21,7 @@ DefsAndTests:
   Java: tbl.insert(data)
   ExpectedOriginal: partial({'errors':0, 'inserted':6})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("errors", 0).with("inserted", 6))
+  ExpectedJava: partial(r.hashMap("errors", 0L).with("inserted", 6L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml
@@ -30,7 +30,7 @@ DefsAndTests:
   Java: tbl.count()
   ExpectedOriginal: (6)
   ExpectedType: Long
-  ExpectedJava: 6
+  ExpectedJava: 6L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/4030.yaml

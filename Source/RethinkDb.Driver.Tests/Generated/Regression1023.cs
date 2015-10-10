@@ -32,28 +32,28 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, regression/1023.yaml, #Templates.YamlTest+DefTest.
              //Original: binary_a = r.binary(b'')
              
-Binary binary_a = (Binary) (r.binary(new byte[] {}));             
+var binary_a = (Binary) (r.binary(new byte[] {}));             
              
              //JavaDef, regression/1023.yaml, #Templates.YamlTest+DefTest.
              //Original: binary_b = r.binary(b'5aurhbviunr')
              
-Binary binary_b = (Binary) (r.binary(new byte[] { 53, 97, 117, 114, 104, 98, 118, 105, 117, 110, 114 }));             
+var binary_b = (Binary) (r.binary(new byte[] { 53, 97, 117, 114, 104, 98, 118, 105, 117, 110, 114 }));             
              
              //JavaDef, regression/1023.yaml, #Templates.YamlTest+DefTest.
              //Original: trows = [{'num':0,'id':[0]}, {'num':1,'id':[1, 2, 3, 4, 0]}, {'num':2,'id':[1, 2, 3, 4, 4]}, {'num':3,'id':[1, 2, 3, 4, 4, 5]}, {'num':4,'id':[1, 2, 3, 4, 8, 1]}, {'num':5,'id':[1, 3, r.epoch_time(0)]}, {'num':6,'id':[1, 3, r.epoch_time(0), r.epoch_time(0)]}, {'num':7,'id':[1, 3, r.epoch_time(0), r.epoch_time(1)]}, {'num':8,'id':[1, 4, 3, 4, 8, 2]}, {'num':9,'id':False}, {'num':10,'id':True}, {'num':11,'id':-500}, {'num':12,'id':500}, {'num':13,'id':binary_a}, {'num':14,'id':binary_b}, {'num':15,'id':r.epoch_time(0)}, {'num':16,'id':''}, {'num':17,'id':' str'}]
              
-IList trows = (IList) (r.array(r.hashMap("num", 0).with("id", r.array(0)), r.hashMap("num", 1).with("id", r.array(1, 2, 3, 4, 0)), r.hashMap("num", 2).with("id", r.array(1, 2, 3, 4, 4)), r.hashMap("num", 3).with("id", r.array(1, 2, 3, 4, 4, 5)), r.hashMap("num", 4).with("id", r.array(1, 2, 3, 4, 8, 1)), r.hashMap("num", 5).with("id", r.array(1, 3, r.epochTime(0))), r.hashMap("num", 6).with("id", r.array(1, 3, r.epochTime(0), r.epochTime(0))), r.hashMap("num", 7).with("id", r.array(1, 3, r.epochTime(0), r.epochTime(1))), r.hashMap("num", 8).with("id", r.array(1, 4, 3, 4, 8, 2)), r.hashMap("num", 9).with("id", false), r.hashMap("num", 10).with("id", true), r.hashMap("num", 11).with("id", -500), r.hashMap("num", 12).with("id", 500), r.hashMap("num", 13).with("id", binary_a), r.hashMap("num", 14).with("id", binary_b), r.hashMap("num", 15).with("id", r.epochTime(0)), r.hashMap("num", 16).with("id", ""), r.hashMap("num", 17).with("id", " str")));             
+var trows = (IList) (r.array(r.hashMap("num", 0L).with("id", r.array(0L)), r.hashMap("num", 1L).with("id", r.array(1L, 2L, 3L, 4L, 0L)), r.hashMap("num", 2L).with("id", r.array(1L, 2L, 3L, 4L, 4L)), r.hashMap("num", 3L).with("id", r.array(1L, 2L, 3L, 4L, 4L, 5L)), r.hashMap("num", 4L).with("id", r.array(1L, 2L, 3L, 4L, 8L, 1L)), r.hashMap("num", 5L).with("id", r.array(1L, 3L, r.epochTime(0L))), r.hashMap("num", 6L).with("id", r.array(1L, 3L, r.epochTime(0L), r.epochTime(0L))), r.hashMap("num", 7L).with("id", r.array(1L, 3L, r.epochTime(0L), r.epochTime(1L))), r.hashMap("num", 8L).with("id", r.array(1L, 4L, 3L, 4L, 8L, 2L)), r.hashMap("num", 9L).with("id", false), r.hashMap("num", 10L).with("id", true), r.hashMap("num", 11L).with("id", -500L), r.hashMap("num", 12L).with("id", 500L), r.hashMap("num", 13L).with("id", binary_a), r.hashMap("num", 14L).with("id", binary_b), r.hashMap("num", 15L).with("id", r.epochTime(0L)), r.hashMap("num", 16L).with("id", ""), r.hashMap("num", 17L).with("id", " str")));             
              
              //JavaDef, regression/1023.yaml, #Templates.YamlTest+DefTest.
              //Original: expected = r.range(tbl.count()).coerce_to('array')
              
-CoerceTo expected = (CoerceTo) (r.range(tbl.count()).coerceTo("array"));             
+var expected = (CoerceTo) (r.range(tbl.count()).coerceTo("array"));             
              TestCounter++;
              
              {
                  //JavaQuery, regression/1023.yaml, #5
                  /* ExpectedOriginal: 18 */
-                 var expected_ = 18;
+                 var expected_ = 18L;
                  
                  /* Original: tbl.insert(trows)['inserted'] */
                  var obtained = runOrCatch( tbl.insert(trows).g("inserted") ,

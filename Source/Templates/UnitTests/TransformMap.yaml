@@ -31,46 +31,46 @@ DefsAndTests:
   TestFile: transform/map.yaml
   TestNum: 4
   Original: r.range(3).map(lambda:0)
-  Java: r.range(3).map(() -> 0)
+  Java: r.range(3L).map(() -> 0L)
   ExpectedOriginal: '[0, 0, 0]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 0, 0)
+  ExpectedJava: r.array(0L, 0L, 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/map.yaml
   TestNum: 5
   Original: r.range(3).map(r.range(4), lambda:0)
-  Java: r.range(3).map(r.range(4), () -> 0)
+  Java: r.range(3L).map(r.range(4L), () -> 0L)
   ExpectedOriginal: '[0, 0, 0]'
   ExpectedType: List
-  ExpectedJava: r.array(0, 0, 0)
+  ExpectedJava: r.array(0L, 0L, 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/map.yaml
   TestNum: 6
   Original: r.expr([1]).map(lambda x:(x,))
-  Java: r.expr(r.array(1)).map(x -> r.array(x))
+  Java: r.expr(r.array(1L)).map(x -> r.array(x))
   ExpectedOriginal: '[[1]]'
   ExpectedType: List
-  ExpectedJava: r.array(r.array(1))
+  ExpectedJava: r.array(r.array(1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/map.yaml
   TestNum: 7
   Original: r.expr([1]).map(r.expr([1]), lambda x, y:(x, y))
-  Java: r.expr(r.array(1)).map(r.expr(r.array(1)), (x, y) -> r.array(x, y))
+  Java: r.expr(r.array(1L)).map(r.expr(r.array(1L)), (x, y) -> r.array(x, y))
   ExpectedOriginal: '[[1, 1]]'
   ExpectedType: List
-  ExpectedJava: r.array(r.array(1, 1))
+  ExpectedJava: r.array(r.array(1L, 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/map.yaml
   TestNum: 8
   Original: r.expr([1]).map(r.expr([1]), r.expr([1]), lambda x, y, z:(x, y, z))
-  Java: r.expr(r.array(1)).map(r.expr(r.array(1)), r.expr(r.array(1)), (x, y, z) -> r.array(x, y, z))
+  Java: r.expr(r.array(1L)).map(r.expr(r.array(1L)), r.expr(r.array(1L)), (x, y, z) -> r.array(x, y, z))
   ExpectedOriginal: '[[1, 1, 1]]'
   ExpectedType: List
-  ExpectedJava: r.array(r.array(1, 1, 1))
+  ExpectedJava: r.array(r.array(1L, 1L, 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/map.yaml
@@ -85,43 +85,43 @@ DefsAndTests:
   TestFile: transform/map.yaml
   TestNum: 12
   Original: r.expr([1, 2]).map(r.expr([1, 2, 3, 4]), lambda x, y:(x, y))
-  Java: r.expr(r.array(1, 2)).map(r.expr(r.array(1, 2, 3, 4)), (x, y) -> r.array(x, y))
+  Java: r.expr(r.array(1L, 2L)).map(r.expr(r.array(1L, 2L, 3L, 4L)), (x, y) -> r.array(x, y))
   ExpectedOriginal: '[[1, 1], [2, 2]]'
   ExpectedType: List
-  ExpectedJava: r.array(r.array(1, 1), r.array(2, 2))
+  ExpectedJava: r.array(r.array(1L, 1L), r.array(2L, 2L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/map.yaml
   TestNum: 13
   Original: r.range(2).map(r.range(4), lambda x, y:(x, y))
-  Java: r.range(2).map(r.range(4), (x, y) -> r.array(x, y))
+  Java: r.range(2L).map(r.range(4L), (x, y) -> r.array(x, y))
   ExpectedOriginal: '[[0, 0], [1, 1]]'
   ExpectedType: List
-  ExpectedJava: r.array(r.array(0, 0), r.array(1, 1))
+  ExpectedJava: r.array(r.array(0L, 0L), r.array(1L, 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/map.yaml
   TestNum: 14
   Original: r.range().map(r.expr([1, 2, 3, 4]), lambda x, y:(x, y))
-  Java: r.range().map(r.expr(r.array(1, 2, 3, 4)), (x, y) -> r.array(x, y))
+  Java: r.range().map(r.expr(r.array(1L, 2L, 3L, 4L)), (x, y) -> r.array(x, y))
   ExpectedOriginal: '[[0, 1], [1, 2], [2, 3], [3, 4]]'
   ExpectedType: List
-  ExpectedJava: r.array(r.array(0, 1), r.array(1, 2), r.array(2, 3), r.array(3, 4))
+  ExpectedJava: r.array(r.array(0L, 1L), r.array(1L, 2L), r.array(2L, 3L), r.array(3L, 4L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/map.yaml
   TestNum: 15
   Original: r.range(3).map(r.range(5), r.js("(function(x, y){return [x, y];})"))
-  Java: r.range(3).map(r.range(5), r.js("(function(x, y){return [x, y];})"))
+  Java: r.range(3L).map(r.range(5L), r.js("(function(x, y){return [x, y];})"))
   ExpectedOriginal: '[[0, 0], [1, 1], [2, 2]]'
   ExpectedType: List
-  ExpectedJava: r.array(r.array(0, 0), r.array(1, 1), r.array(2, 2))
+  ExpectedJava: r.array(r.array(0L, 0L), r.array(1L, 1L), r.array(2L, 2L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/map.yaml
   TestNum: 16
   Original: r.range().map(r.expr(1), lambda x, y:(x, y))
-  Java: r.range().map(r.expr(1), (x, y) -> r.array(x, y))
+  Java: r.range().map(r.expr(1L), (x, y) -> r.array(x, y))
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot convert NUMBER to SEQUENCE", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot convert NUMBER to SEQUENCE", r.array())
@@ -139,17 +139,17 @@ DefsAndTests:
   TestFile: transform/map.yaml
   TestNum: 18
   Original: r.map(r.range(3), lambda x:(x,))
-  Java: r.map(r.range(3), x -> r.array(x))
+  Java: r.map(r.range(3L), x -> r.array(x))
   ExpectedOriginal: '[[0], [1], [2]]'
   ExpectedType: List
-  ExpectedJava: r.array(r.array(0), r.array(1), r.array(2))
+  ExpectedJava: r.array(r.array(0L), r.array(1L), r.array(2L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/map.yaml
   TestNum: 20
   Original: r.map(r.range(3), r.range(5), lambda x, y:(x, y))
-  Java: r.map(r.range(3), r.range(5), (x, y) -> r.array(x, y))
+  Java: r.map(r.range(3L), r.range(5L), (x, y) -> r.array(x, y))
   ExpectedOriginal: '[[0, 0], [1, 1], [2, 2]]'
   ExpectedType: List
-  ExpectedJava: r.array(r.array(0, 0), r.array(1, 1), r.array(2, 2))
+  ExpectedJava: r.array(r.array(0L, 0L), r.array(1L, 1L), r.array(2L, 2L))
   RunOpts: []

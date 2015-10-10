@@ -49,7 +49,7 @@ DefsAndTests:
   TestFile: regression/2766.yaml
   TestNum: 6
   Original: r.now().merge({"foo":4})
-  Java: r.now().merge(r.hashMap("foo", 4))
+  Java: r.now().merge(r.hashMap("foo", 4L))
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot call `merge` on objects of type `PTYPE<TIME>`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot call `merge` on objects of type `PTYPE<TIME>`.")
@@ -58,7 +58,7 @@ DefsAndTests:
   TestFile: regression/2766.yaml
   TestNum: 7
   Original: r.expr({"foo":4}).merge(r.now())
-  Java: r.expr(r.hashMap("foo", 4)).merge(r.now())
+  Java: r.expr(r.hashMap("foo", 4L)).merge(r.now())
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot merge objects of type `PTYPE<TIME>`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot merge objects of type `PTYPE<TIME>`.")
@@ -76,7 +76,7 @@ DefsAndTests:
   TestFile: regression/2766.yaml
   TestNum: 9
   Original: r.object().has_fields(r.time(2014, 7, 7, 'Z'))
-  Java: r.object().hasFields(r.time(2014, 7, 7, "Z"))
+  Java: r.object().hasFields(r.time(2014L, 7L, 7L, "Z"))
   ExpectedOriginal: err("ReqlQueryLogicError", "Invalid path argument `1404691200`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Invalid path argument `1404691200`.")
@@ -85,7 +85,7 @@ DefsAndTests:
   TestFile: regression/2766.yaml
   TestNum: 10
   Original: r.expr(1).keys()
-  Java: r.expr(1).keys()
+  Java: r.expr(1L).keys()
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot call `keys` on objects of type `NUMBER`.")
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot call `keys` on objects of type `NUMBER`.")

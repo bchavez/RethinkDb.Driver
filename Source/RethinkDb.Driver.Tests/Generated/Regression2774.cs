@@ -32,48 +32,48 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, regression/2774.yaml, #Templates.YamlTest+DefTest.
              //Original: binary_a = r.binary(b'')
              
-Binary binary_a = (Binary) (r.binary(new byte[] {}));             
+var binary_a = (Binary) (r.binary(new byte[] {}));             
              
              //JavaDef, regression/2774.yaml, #Templates.YamlTest+DefTest.
              //Original: binary_trunc1 = r.binary(b'123456789012345678901234567890123456789012345678901234567890' + b'123456789012345678901234567890123456789012345678901234567890')
              
-Binary binary_trunc1 = (Binary) (r.binary(new byte[] { 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48 }));             
+var binary_trunc1 = (Binary) (r.binary(new byte[] { 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48 }));             
              
              //JavaDef, regression/2774.yaml, #Templates.YamlTest+DefTest.
              //Original: binary_trunc2 = r.binary(b'123456789012345678901234567890123456789012345678901234567890' + b'123456789012345678901234567890123456789012345678901234567891')
              
-Binary binary_trunc2 = (Binary) (r.binary(new byte[] { 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 49 }));             
+var binary_trunc2 = (Binary) (r.binary(new byte[] { 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 49 }));             
              
              //JavaDef, regression/2774.yaml, #Templates.YamlTest+DefTest.
              //Original: binary_b = r.binary(b'5aurhbviunr')
              
-Binary binary_b = (Binary) (r.binary(new byte[] { 53, 97, 117, 114, 104, 98, 118, 105, 117, 110, 114 }));             
+var binary_b = (Binary) (r.binary(new byte[] { 53, 97, 117, 114, 104, 98, 118, 105, 117, 110, 114 }));             
              
              //JavaDef, regression/2774.yaml, #Templates.YamlTest+DefTest.
              //Original: str_trunc1 = '123456789012345678901234567890123456789012345678901234567890' + '123456789012345678901234567890123456789012345678901234567890'
              
-String str_trunc1 = (String) ("123456789012345678901234567890123456789012345678901234567890" + "123456789012345678901234567890123456789012345678901234567890");             
+var str_trunc1 = (String) ("123456789012345678901234567890123456789012345678901234567890" + "123456789012345678901234567890123456789012345678901234567890");             
              
              //JavaDef, regression/2774.yaml, #Templates.YamlTest+DefTest.
              //Original: str_trunc2 = '123456789012345678901234567890123456789012345678901234567890' + '123456789012345678901234567890123456789012345678901234567891'
              
-String str_trunc2 = (String) ("123456789012345678901234567890123456789012345678901234567890" + "123456789012345678901234567890123456789012345678901234567891");             
+var str_trunc2 = (String) ("123456789012345678901234567890123456789012345678901234567890" + "123456789012345678901234567890123456789012345678901234567891");             
              
              //JavaDef, regression/2774.yaml, #Templates.YamlTest+DefTest.
              //Original: trows = [{'id':0,'idx':[0]}, {'id':1,'idx':[1, 2, 3, 4, 5, 6, 7, 0]}, {'id':2,'idx':[1, 2, 3, 4, 5, 6, 7, 4]}, {'id':3,'idx':[1, 2, 3, 4, 5, 6, 7, 4, 5]}, {'id':4,'idx':[1, 2, 3, 4, 5, 6, 7, 8, 1]}, {'id':5,'idx':[1, 3, binary_trunc1]}, {'id':6,'idx':[1, 3, binary_trunc2]}, {'id':7,'idx':[1, 3, r.epoch_time(0), r.epoch_time(0), r.epoch_time(0)]}, {'id':8,'idx':[1, 3, r.epoch_time(0), r.epoch_time(0), r.epoch_time(0), r.epoch_time(0)]}, {'id':9,'idx':[1, 3, r.epoch_time(0), r.epoch_time(0), r.epoch_time(0), r.epoch_time(1)]}, {'id':10,'idx':[1, 3, str_trunc1, str_trunc1]}, {'id':11,'idx':[1, 3, str_trunc1, str_trunc2]}, {'id':12,'idx':[1, 4, 3, 4, 5, 6, 7, 8, 2]}, {'id':13,'idx':[binary_trunc1]}, {'id':14,'idx':[binary_trunc2]}, {'id':15,'idx':False}, {'id':16,'idx':True}, {'id':17,'idx':-500}, {'id':18,'idx':500}, {'id':19,'idx':binary_a}, {'id':20,'idx':binary_trunc1}, {'id':21,'idx':binary_trunc2}, {'id':22,'idx':binary_b}, {'id':23,'idx':r.epoch_time(0)}, {'id':24,'idx':''}, {'id':25,'idx':' str'}, {'id':26,'idx':str_trunc1}, {'id':27,'idx':str_trunc2}]
              
-IList trows = (IList) (r.array(r.hashMap("id", 0).with("idx", r.array(0)), r.hashMap("id", 1).with("idx", r.array(1, 2, 3, 4, 5, 6, 7, 0)), r.hashMap("id", 2).with("idx", r.array(1, 2, 3, 4, 5, 6, 7, 4)), r.hashMap("id", 3).with("idx", r.array(1, 2, 3, 4, 5, 6, 7, 4, 5)), r.hashMap("id", 4).with("idx", r.array(1, 2, 3, 4, 5, 6, 7, 8, 1)), r.hashMap("id", 5).with("idx", r.array(1, 3, binary_trunc1)), r.hashMap("id", 6).with("idx", r.array(1, 3, binary_trunc2)), r.hashMap("id", 7).with("idx", r.array(1, 3, r.epochTime(0), r.epochTime(0), r.epochTime(0))), r.hashMap("id", 8).with("idx", r.array(1, 3, r.epochTime(0), r.epochTime(0), r.epochTime(0), r.epochTime(0))), r.hashMap("id", 9).with("idx", r.array(1, 3, r.epochTime(0), r.epochTime(0), r.epochTime(0), r.epochTime(1))), r.hashMap("id", 10).with("idx", r.array(1, 3, str_trunc1, str_trunc1)), r.hashMap("id", 11).with("idx", r.array(1, 3, str_trunc1, str_trunc2)), r.hashMap("id", 12).with("idx", r.array(1, 4, 3, 4, 5, 6, 7, 8, 2)), r.hashMap("id", 13).with("idx", r.array(binary_trunc1)), r.hashMap("id", 14).with("idx", r.array(binary_trunc2)), r.hashMap("id", 15).with("idx", false), r.hashMap("id", 16).with("idx", true), r.hashMap("id", 17).with("idx", -500), r.hashMap("id", 18).with("idx", 500), r.hashMap("id", 19).with("idx", binary_a), r.hashMap("id", 20).with("idx", binary_trunc1), r.hashMap("id", 21).with("idx", binary_trunc2), r.hashMap("id", 22).with("idx", binary_b), r.hashMap("id", 23).with("idx", r.epochTime(0)), r.hashMap("id", 24).with("idx", ""), r.hashMap("id", 25).with("idx", " str"), r.hashMap("id", 26).with("idx", str_trunc1), r.hashMap("id", 27).with("idx", str_trunc2)));             
+var trows = (IList) (r.array(r.hashMap("id", 0L).with("idx", r.array(0L)), r.hashMap("id", 1L).with("idx", r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 0L)), r.hashMap("id", 2L).with("idx", r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 4L)), r.hashMap("id", 3L).with("idx", r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 4L, 5L)), r.hashMap("id", 4L).with("idx", r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 1L)), r.hashMap("id", 5L).with("idx", r.array(1L, 3L, binary_trunc1)), r.hashMap("id", 6L).with("idx", r.array(1L, 3L, binary_trunc2)), r.hashMap("id", 7L).with("idx", r.array(1L, 3L, r.epochTime(0L), r.epochTime(0L), r.epochTime(0L))), r.hashMap("id", 8L).with("idx", r.array(1L, 3L, r.epochTime(0L), r.epochTime(0L), r.epochTime(0L), r.epochTime(0L))), r.hashMap("id", 9L).with("idx", r.array(1L, 3L, r.epochTime(0L), r.epochTime(0L), r.epochTime(0L), r.epochTime(1L))), r.hashMap("id", 10L).with("idx", r.array(1L, 3L, str_trunc1, str_trunc1)), r.hashMap("id", 11L).with("idx", r.array(1L, 3L, str_trunc1, str_trunc2)), r.hashMap("id", 12L).with("idx", r.array(1L, 4L, 3L, 4L, 5L, 6L, 7L, 8L, 2L)), r.hashMap("id", 13L).with("idx", r.array(binary_trunc1)), r.hashMap("id", 14L).with("idx", r.array(binary_trunc2)), r.hashMap("id", 15L).with("idx", false), r.hashMap("id", 16L).with("idx", true), r.hashMap("id", 17L).with("idx", -500L), r.hashMap("id", 18L).with("idx", 500L), r.hashMap("id", 19L).with("idx", binary_a), r.hashMap("id", 20L).with("idx", binary_trunc1), r.hashMap("id", 21L).with("idx", binary_trunc2), r.hashMap("id", 22L).with("idx", binary_b), r.hashMap("id", 23L).with("idx", r.epochTime(0L)), r.hashMap("id", 24L).with("idx", ""), r.hashMap("id", 25L).with("idx", " str"), r.hashMap("id", 26L).with("idx", str_trunc1), r.hashMap("id", 27L).with("idx", str_trunc2)));             
              
              //JavaDef, regression/2774.yaml, #Templates.YamlTest+DefTest.
              //Original: expected = r.range(tbl.count()).coerce_to('array')
              
-CoerceTo expected = (CoerceTo) (r.range(tbl.count()).coerceTo("array"));             
+var expected = (CoerceTo) (r.range(tbl.count()).coerceTo("array"));             
              TestCounter++;
              
              {
                  //JavaQuery, regression/2774.yaml, #9
                  /* ExpectedOriginal: 28 */
-                 var expected_ = 28;
+                 var expected_ = 28L;
                  
                  /* Original: tbl.insert(trows)['inserted'] */
                  var obtained = runOrCatch( tbl.insert(trows).g("inserted") ,
@@ -87,7 +87,7 @@ CoerceTo expected = (CoerceTo) (r.range(tbl.count()).coerceTo("array"));
              {
                  //JavaQuery, regression/2774.yaml, #10
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('idx') */
                  var obtained = runOrCatch( tbl.indexCreate("idx") ,
@@ -100,8 +100,8 @@ CoerceTo expected = (CoerceTo) (r.range(tbl.count()).coerceTo("array"));
              
              {
                  //JavaQuery, regression/2774.yaml, #11
-                 /* ExpectedOriginal: [{'ready': True, 'index': 'idx'}] */
-                 var expected_ = r.array(r.hashMap("ready", true).with("index", "idx"));
+                 /* ExpectedOriginal: [{'index': 'idx', 'ready': True}] */
+                 var expected_ = r.array(r.hashMap("index", "idx").with("ready", true));
                  
                  /* Original: tbl.index_wait('idx').pluck('index', 'ready') */
                  var obtained = runOrCatch( tbl.indexWait("idx").pluck("index", "ready") ,

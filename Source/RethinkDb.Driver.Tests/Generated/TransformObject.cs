@@ -31,13 +31,13 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, transform/object.yaml, #Templates.YamlTest+DefTest.
              //Original: obj = r.expr({'a':1, 'b':2,'c':"str",'d':null,'e':{'f':'buzz'}})
              
-MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"))));             
+var obj = (MakeObj) (r.expr(r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"))));             
              TestCounter++;
              
              {
                  //JavaQuery, transform/object.yaml, #2
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: obj['a'] */
                  var obtained = runOrCatch( obj.g("a") ,
@@ -205,7 +205,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #14
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: r.expr([obj, obj.pluck('a', 'b')]).has_fields('a', 'b').count() */
                  var obtained = runOrCatch( r.expr(r.array(obj, obj.pluck("a", "b"))).hasFields("a", "b").count() ,
@@ -219,7 +219,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #15
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: r.expr([obj, obj.pluck('a', 'b')]).has_fields('a', 'c').count() */
                  var obtained = runOrCatch( r.expr(r.array(obj, obj.pluck("a", "b"))).hasFields("a", "c").count() ,
@@ -233,7 +233,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #16
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: r.expr([obj, obj.pluck('a', 'e')]).has_fields('a', {'e':'f'}).count() */
                  var obtained = runOrCatch( r.expr(r.array(obj, obj.pluck("a", "e"))).hasFields("a", r.hashMap("e", "f")).count() ,
@@ -247,7 +247,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #17
                  /* ExpectedOriginal: ({'a':1}) */
-                 var expected_ = r.hashMap("a", 1);
+                 var expected_ = r.hashMap("a", 1L);
                  
                  /* Original: obj.pluck('a') */
                  var obtained = runOrCatch( obj.pluck("a") ,
@@ -261,7 +261,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #18
                  /* ExpectedOriginal: ({'a':1, 'b':2}) */
-                 var expected_ = r.hashMap("a", 1).with("b", 2);
+                 var expected_ = r.hashMap("a", 1L).with("b", 2L);
                  
                  /* Original: obj.pluck('a', 'b') */
                  var obtained = runOrCatch( obj.pluck("a", "b") ,
@@ -275,7 +275,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #19
                  /* ExpectedOriginal: ({'b':2, 'c':'str', 'd':null, 'e':{'f':'buzz'}}) */
-                 var expected_ = r.hashMap("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"));
+                 var expected_ = r.hashMap("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"));
                  
                  /* Original: obj.without('a') */
                  var obtained = runOrCatch( obj.without("a") ,
@@ -317,7 +317,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #22
                  /* ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null, 'e':{}}) */
-                 var expected_ = r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap());
+                 var expected_ = r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap());
                  
                  /* Original: obj.without({'e':'f'}) */
                  var obtained = runOrCatch( obj.without(r.hashMap("e", "f")) ,
@@ -331,7 +331,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #23
                  /* ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null, 'e':{'f':'buzz'}}) */
-                 var expected_ = r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"));
+                 var expected_ = r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"));
                  
                  /* Original: obj.without({'e':'buzz'}) */
                  var obtained = runOrCatch( obj.without(r.hashMap("e", "buzz")) ,
@@ -345,10 +345,10 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #24
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: obj.merge(1) */
-                 var obtained = runOrCatch( obj.merge(1) ,
+                 var obtained = runOrCatch( obj.merge(1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -359,10 +359,10 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #25
                  /* ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null, 'e':-2}) */
-                 var expected_ = r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", -2);
+                 var expected_ = r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", -2L);
                  
                  /* Original: obj.merge({'e':-2}) */
-                 var obtained = runOrCatch( obj.merge(r.hashMap("e", -2)) ,
+                 var obtained = runOrCatch( obj.merge(r.hashMap("e", -2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -373,7 +373,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #26
                  /* ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null}) */
-                 var expected_ = r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null);
+                 var expected_ = r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null);
                  
                  /* Original: obj.merge({'e':r.literal()}) */
                  var obtained = runOrCatch( obj.merge(r.hashMap("e", r.literal())) ,
@@ -387,7 +387,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #27
                  /* ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null, 'e':{'f':'quux'}}) */
-                 var expected_ = r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("f", "quux"));
+                 var expected_ = r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("f", "quux"));
                  
                  /* Original: obj.merge({'e':{'f':'quux'}}) */
                  var obtained = runOrCatch( obj.merge(r.hashMap("e", r.hashMap("f", "quux"))) ,
@@ -401,7 +401,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #28
                  /* ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null, 'e':{'f':'buzz', 'g':'quux'}}) */
-                 var expected_ = r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz").with("g", "quux"));
+                 var expected_ = r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz").with("g", "quux"));
                  
                  /* Original: obj.merge({'e':{'g':'quux'}}) */
                  var obtained = runOrCatch( obj.merge(r.hashMap("e", r.hashMap("g", "quux"))) ,
@@ -415,7 +415,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #29
                  /* ExpectedOriginal: ({'a':1, 'b':2, 'c':'str', 'd':null, 'e':{'g':'quux'}}) */
-                 var expected_ = r.hashMap("a", 1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("g", "quux"));
+                 var expected_ = r.hashMap("a", 1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("g", "quux"));
                  
                  /* Original: obj.merge({'e':r.literal({'g':'quux'})}) */
                  var obtained = runOrCatch( obj.merge(r.hashMap("e", r.literal(r.hashMap("g", "quux")))) ,
@@ -429,10 +429,10 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              {
                  //JavaQuery, transform/object.yaml, #30
                  /* ExpectedOriginal: ({'a':-1, 'b':2, 'c':'str', 'd':null, 'e':{'f':'buzz'}}) */
-                 var expected_ = r.hashMap("a", -1).with("b", 2).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"));
+                 var expected_ = r.hashMap("a", -1L).with("b", 2L).with("c", "str").with("d", null).with("e", r.hashMap("f", "buzz"));
                  
                  /* Original: obj.merge({'a':-1}) */
-                 var obtained = runOrCatch( obj.merge(r.hashMap("a", -1)) ,
+                 var obtained = runOrCatch( obj.merge(r.hashMap("a", -1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -442,7 +442,7 @@ MakeObj obj = (MakeObj) (r.expr(r.hashMap("a", 1).with("b", 2).with("c", "str").
              //JavaDef, transform/object.yaml, #Templates.YamlTest+DefTest.
              //Original: errmsg = 'Stray literal keyword found:'+' literal is only legal inside of the object passed to merge or update and cannot nest inside other literals.'
              
-String errmsg = (String) ("Stray literal keyword found:" + " literal is only legal inside of the object passed to merge or update and cannot nest inside other literals.");             
+var errmsg = (String) ("Stray literal keyword found:" + " literal is only legal inside of the object passed to merge or update and cannot nest inside other literals.");             
              TestCounter++;
              
              {
@@ -489,16 +489,16 @@ String errmsg = (String) ("Stray literal keyword found:" + " literal is only leg
              //JavaDef, transform/object.yaml, #Templates.YamlTest+DefTest.
              //Original: o = r.expr({'a':{'b':1, 'c':2}, 'd':3})
              
-MakeObj o = (MakeObj) (r.expr(r.hashMap("a", r.hashMap("b", 1).with("c", 2)).with("d", 3)));             
+var o = (MakeObj) (r.expr(r.hashMap("a", r.hashMap("b", 1L).with("c", 2L)).with("d", 3L)));             
              TestCounter++;
              
              {
                  //JavaQuery, transform/object.yaml, #36
                  /* ExpectedOriginal: ({'a':{'b':1, 'c':2}, 'd':3, 'e':4, 'f':5}) */
-                 var expected_ = r.hashMap("a", r.hashMap("b", 1).with("c", 2)).with("d", 3).with("e", 4).with("f", 5);
+                 var expected_ = r.hashMap("a", r.hashMap("b", 1L).with("c", 2L)).with("d", 3L).with("e", 4L).with("f", 5L);
                  
                  /* Original: o.merge({'e':4}, {'f':5}) */
-                 var obtained = runOrCatch( o.merge(r.hashMap("e", 4), r.hashMap("f", 5)) ,
+                 var obtained = runOrCatch( o.merge(r.hashMap("e", 4L), r.hashMap("f", 5L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -509,10 +509,10 @@ MakeObj o = (MakeObj) (r.expr(r.hashMap("a", r.hashMap("b", 1).with("c", 2)).wit
              {
                  //JavaQuery, transform/object.yaml, #37
                  /* ExpectedOriginal: ([{'a':{'b':1, 'c':2}, 'd':3, 'e':3}, {'a':{'b':1, 'c':2}, 'd':4, 'e':4}]) */
-                 var expected_ = r.array(r.hashMap("a", r.hashMap("b", 1).with("c", 2)).with("d", 3).with("e", 3), r.hashMap("a", r.hashMap("b", 1).with("c", 2)).with("d", 4).with("e", 4));
+                 var expected_ = r.array(r.hashMap("a", r.hashMap("b", 1L).with("c", 2L)).with("d", 3L).with("e", 3L), r.hashMap("a", r.hashMap("b", 1L).with("c", 2L)).with("d", 4L).with("e", 4L));
                  
                  /* Original: r.expr([o, o.merge({'d':4})]).merge(lambda row:{'e':row['d']}) */
-                 var obtained = runOrCatch( r.expr(r.array(o, o.merge(r.hashMap("d", 4)))).merge(row => r.hashMap("e", row.g("d"))) ,
+                 var obtained = runOrCatch( r.expr(r.array(o, o.merge(r.hashMap("d", 4L)))).merge(row => r.hashMap("e", row.g("d"))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -523,10 +523,10 @@ MakeObj o = (MakeObj) (r.expr(r.hashMap("a", r.hashMap("b", 1).with("c", 2)).wit
              {
                  //JavaQuery, transform/object.yaml, #39
                  /* ExpectedOriginal: ([{'a':{'b':2, 'c':2}, 'd':3}, {'a':{'b':2, 'c':2}, 'd':4}]) */
-                 var expected_ = r.array(r.hashMap("a", r.hashMap("b", 2).with("c", 2)).with("d", 3), r.hashMap("a", r.hashMap("b", 2).with("c", 2)).with("d", 4));
+                 var expected_ = r.array(r.hashMap("a", r.hashMap("b", 2L).with("c", 2L)).with("d", 3L), r.hashMap("a", r.hashMap("b", 2L).with("c", 2L)).with("d", 4L));
                  
                  /* Original: r.expr([o, o.merge({'d':4})]).merge(lambda row:{'a':{'b':2}}) */
-                 var obtained = runOrCatch( r.expr(r.array(o, o.merge(r.hashMap("d", 4)))).merge(row => r.hashMap("a", r.hashMap("b", 2))) ,
+                 var obtained = runOrCatch( r.expr(r.array(o, o.merge(r.hashMap("d", 4L)))).merge(row => r.hashMap("a", r.hashMap("b", 2L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -537,10 +537,10 @@ MakeObj o = (MakeObj) (r.expr(r.hashMap("a", r.hashMap("b", 1).with("c", 2)).wit
              {
                  //JavaQuery, transform/object.yaml, #40
                  /* ExpectedOriginal: ([{'a':{'b':2}, 'd':3}, {'a':{'b':2}, 'd':4}]) */
-                 var expected_ = r.array(r.hashMap("a", r.hashMap("b", 2)).with("d", 3), r.hashMap("a", r.hashMap("b", 2)).with("d", 4));
+                 var expected_ = r.array(r.hashMap("a", r.hashMap("b", 2L)).with("d", 3L), r.hashMap("a", r.hashMap("b", 2L)).with("d", 4L));
                  
                  /* Original: r.expr([o, o.merge({'d':4})]).merge(lambda row:{'a':r.literal({'b':2})}) */
-                 var obtained = runOrCatch( r.expr(r.array(o, o.merge(r.hashMap("d", 4)))).merge(row => r.hashMap("a", r.literal(r.hashMap("b", 2)))) ,
+                 var obtained = runOrCatch( r.expr(r.array(o, o.merge(r.hashMap("d", 4L)))).merge(row => r.hashMap("a", r.literal(r.hashMap("b", 2L)))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -565,7 +565,7 @@ MakeObj o = (MakeObj) (r.expr(r.hashMap("a", r.hashMap("b", 1).with("c", 2)).wit
              {
                  //JavaQuery, transform/object.yaml, #42
                  /* ExpectedOriginal: ([1, 2, 'str', null, {'f':'buzz'}]) */
-                 var expected_ = r.array(1, 2, "str", null, r.hashMap("f", "buzz"));
+                 var expected_ = r.array(1L, 2L, "str", null, r.hashMap("f", "buzz"));
                  
                  /* Original: obj.values() */
                  var obtained = runOrCatch( obj.values() ,

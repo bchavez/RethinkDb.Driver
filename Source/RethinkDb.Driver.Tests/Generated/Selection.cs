@@ -32,13 +32,13 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, selection.yaml, #Templates.YamlTest+DefTest.
              //Original: tbl2 = r.db('test').table('test2')
              
-Table tbl2 = (Table) (r.db("test").table("test2"));             
+var tbl2 = (Table) (r.db("test").table("test2"));             
              TestCounter++;
              
              {
                  //JavaQuery, selection.yaml, #1
                  /* ExpectedOriginal: partial({'tables_created':1}) */
-                 var expected_ = partial(r.hashMap("tables_created", 1));
+                 var expected_ = partial(r.hashMap("tables_created", 1L));
                  
                  /* Original: r.db('test').table_create('test2') */
                  var obtained = runOrCatch( r.db("test").tableCreate("test2") ,
@@ -51,13 +51,13 @@ Table tbl2 = (Table) (r.db("test").table("test2"));
              //JavaDef, selection.yaml, #Templates.YamlTest+DefTest.
              //Original: tbl3 = r.db('test').table('test3')
              
-Table tbl3 = (Table) (r.db("test").table("test3"));             
+var tbl3 = (Table) (r.db("test").table("test3"));             
              TestCounter++;
              
              {
                  //JavaQuery, selection.yaml, #2
                  /* ExpectedOriginal: partial({'tables_created':1}) */
-                 var expected_ = partial(r.hashMap("tables_created", 1));
+                 var expected_ = partial(r.hashMap("tables_created", 1L));
                  
                  /* Original: r.db('test').table_create('test3') */
                  var obtained = runOrCatch( r.db("test").tableCreate("test3") ,
@@ -71,10 +71,10 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #3
                  /* ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100}) */
-                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100);
+                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L);
                  
                  /* Original: tbl.insert([{'id':i, 'a':i%4} for i in xrange(100)]) */
-                 var obtained = runOrCatch( tbl.insert(Enumerable.Range(0, 100).Select(i => r.hashMap("id", i).with("a", r.mod(i, 4))).ToList()) ,
+                 var obtained = runOrCatch( tbl.insert(EnumerableLRange(0, 100L).Select(i => r.hashMap("id", i).with("a", r.mod(i, 4L))).ToList()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -85,10 +85,10 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #4
                  /* ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100}) */
-                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100);
+                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L);
                  
                  /* Original: tbl2.insert([{'id':i, 'b':i%4} for i in xrange(100)]) */
-                 var obtained = runOrCatch( tbl2.insert(Enumerable.Range(0, 100).Select(i => r.hashMap("id", i).with("b", r.mod(i, 4))).ToList()) ,
+                 var obtained = runOrCatch( tbl2.insert(EnumerableLRange(0, 100L).Select(i => r.hashMap("id", i).with("b", r.mod(i, 4L))).ToList()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -113,7 +113,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #6
                  /* ExpectedOriginal: err("ReqlOpFailedError", 'Database `missing` does not exist.', [0]) */
-                 var expected_ = err("ReqlOpFailedError", "Database `missing` does not exist.", r.array(0));
+                 var expected_ = err("ReqlOpFailedError", "Database `missing` does not exist.", r.array(0L));
                  
                  /* Original: r.db('missing').table('bar') */
                  var obtained = runOrCatch( r.db("missing").table("bar") ,
@@ -127,7 +127,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #7
                  /* ExpectedOriginal: err("ReqlOpFailedError", 'Table `test.missing` does not exist.', [0]) */
-                 var expected_ = err("ReqlOpFailedError", "Table `test.missing` does not exist.", r.array(0));
+                 var expected_ = err("ReqlOpFailedError", "Table `test.missing` does not exist.", r.array(0L));
                  
                  /* Original: r.db('test').table('missing') */
                  var obtained = runOrCatch( r.db("test").table("missing") ,
@@ -141,7 +141,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #8
                  /* ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1}) */
-                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1);
+                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1L);
                  
                  /* Original: tbl3.insert({'id':u'Здравствуй','value':u'Земля!'}) */
                  var obtained = runOrCatch( tbl3.insert(r.hashMap("id", "\u0417\u0434\u0440\u0430\u0432\u0441\u0442\u0432\u0443\u0439").with("value", "\u0417\u0435\u043c\u043b\u044f!")) ,
@@ -183,7 +183,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #11
                  /* ExpectedOriginal: err("ReqlQueryLogicError", 'Database name `%` invalid (Use A-Za-z0-9_ only).', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Database name `%` invalid (Use A-Za-z0-9_ only).", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Database name `%` invalid (Use A-Za-z0-9_ only).", r.array(0L));
                  
                  /* Original: r.db('%') */
                  var obtained = runOrCatch( r.db("%") ,
@@ -197,7 +197,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #12
                  /* ExpectedOriginal: err("ReqlQueryLogicError", 'Table name `%` invalid (Use A-Za-z0-9_ only).', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Table name `%` invalid (Use A-Za-z0-9_ only).", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Table name `%` invalid (Use A-Za-z0-9_ only).", r.array(0L));
                  
                  /* Original: r.db('test').table('%') */
                  var obtained = runOrCatch( r.db("test").table("%") ,
@@ -211,7 +211,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #13
                  /* ExpectedOriginal: 100 */
-                 var expected_ = 100;
+                 var expected_ = 100L;
                  
                  /* Original: tbl.count() */
                  var obtained = runOrCatch( tbl.count() ,
@@ -225,7 +225,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #14
                  /* ExpectedOriginal: 100 */
-                 var expected_ = 100;
+                 var expected_ = 100L;
                  
                  /* Original: r.table('test2', read_mode='outdated').count() */
                  var obtained = runOrCatch( r.table("test2").optArg("read_mode", "outdated").count() ,
@@ -239,7 +239,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #14
                  /* ExpectedOriginal: 100 */
-                 var expected_ = 100;
+                 var expected_ = 100L;
                  
                  /* Original: r.table('test2', read_mode='single').count() */
                  var obtained = runOrCatch( r.table("test2").optArg("read_mode", "single").count() ,
@@ -253,7 +253,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #14
                  /* ExpectedOriginal: 100 */
-                 var expected_ = 100;
+                 var expected_ = 100L;
                  
                  /* Original: r.table('test2', read_mode='majority').count() */
                  var obtained = runOrCatch( r.table("test2").optArg("read_mode", "majority").count() ,
@@ -267,7 +267,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #14
                  /* ExpectedOriginal: 100 */
-                 var expected_ = 100;
+                 var expected_ = 100L;
                  
                  /* Original: r.db('test').table('test2', read_mode='outdated').count() */
                  var obtained = runOrCatch( r.db("test").table("test2").optArg("read_mode", "outdated").count() ,
@@ -281,7 +281,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #14
                  /* ExpectedOriginal: 100 */
-                 var expected_ = 100;
+                 var expected_ = 100L;
                  
                  /* Original: r.db('test').table('test2', read_mode='single').count() */
                  var obtained = runOrCatch( r.db("test").table("test2").optArg("read_mode", "single").count() ,
@@ -295,7 +295,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #14
                  /* ExpectedOriginal: 100 */
-                 var expected_ = 100;
+                 var expected_ = 100L;
                  
                  /* Original: r.db('test').table('test2', read_mode='majority').count() */
                  var obtained = runOrCatch( r.db("test").table("test2").optArg("read_mode", "majority").count() ,
@@ -393,10 +393,10 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #18
                  /* ExpectedOriginal: err("ReqlQueryLogicError", 'Expected type SEQUENCE but found SINGLE_SELECTION:', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type SEQUENCE but found SINGLE_SELECTION:", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type SEQUENCE but found SINGLE_SELECTION:", r.array(0L));
                  
                  /* Original: tbl.get(20).count() */
-                 var obtained = runOrCatch( tbl.get(20).count() ,
+                 var obtained = runOrCatch( tbl.get(20L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -407,10 +407,10 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, selection.yaml, #19
                  /* ExpectedOriginal: ({'id':20,'a':0}) */
-                 var expected_ = r.hashMap("id", 20).with("a", 0);
+                 var expected_ = r.hashMap("id", 20L).with("a", 0L);
                  
                  /* Original: tbl.get(20) */
-                 var obtained = runOrCatch( tbl.get(20) ,
+                 var obtained = runOrCatch( tbl.get(20L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -424,7 +424,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
                  var expected_ = null as object;
                  
                  /* Original: tbl.get(2000) */
-                 var obtained = runOrCatch( tbl.get(2000) ,
+                 var obtained = runOrCatch( tbl.get(2000L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -434,13 +434,13 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              //JavaDef, selection.yaml, #Templates.YamlTest+DefTest.
              //Original: tblpkey = r.db('test').table('testpkey')
              
-Table tblpkey = (Table) (r.db("test").table("testpkey"));             
+var tblpkey = (Table) (r.db("test").table("testpkey"));             
              TestCounter++;
              
              {
                  //JavaQuery, selection.yaml, #23
                  /* ExpectedOriginal: partial({'tables_created':1}) */
-                 var expected_ = partial(r.hashMap("tables_created", 1));
+                 var expected_ = partial(r.hashMap("tables_created", 1L));
                  
                  /* Original: r.db('test').table_create('testpkey', primary_key='foo') */
                  var obtained = runOrCatch( r.db("test").tableCreate("testpkey").optArg("primary_key", "foo") ,
@@ -454,10 +454,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #24
                  /* ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1}) */
-                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1);
+                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1L);
                  
                  /* Original: tblpkey.insert({'foo':10,'a':10}) */
-                 var obtained = runOrCatch( tblpkey.insert(r.hashMap("foo", 10).with("a", 10)) ,
+                 var obtained = runOrCatch( tblpkey.insert(r.hashMap("foo", 10L).with("a", 10L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -468,10 +468,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #25
                  /* ExpectedOriginal: ({'foo':10,'a':10}) */
-                 var expected_ = r.hashMap("foo", 10).with("a", 10);
+                 var expected_ = r.hashMap("foo", 10L).with("a", 10L);
                  
                  /* Original: tblpkey.get(10) */
-                 var obtained = runOrCatch( tblpkey.get(10) ,
+                 var obtained = runOrCatch( tblpkey.get(10L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -485,7 +485,7 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
                  var expected_ = "TABLE_SLICE";
                  
                  /* Original: tbl.between(1, 2).type_of() */
-                 var obtained = runOrCatch( tbl.between(1, 2).typeOf() ,
+                 var obtained = runOrCatch( tbl.between(1L, 2L).typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -499,7 +499,7 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
                  var expected_ = "TABLE_SLICE";
                  
                  /* Original: tbl.between(1, 2, index='id').type_of() */
-                 var obtained = runOrCatch( tbl.between(1, 2).optArg("index", "id").typeOf() ,
+                 var obtained = runOrCatch( tbl.between(1L, 2L).optArg("index", "id").typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -513,7 +513,7 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
                  var expected_ = "TABLE_SLICE";
                  
                  /* Original: tbl.between(1, 1, right_bound='closed').type_of() */
-                 var obtained = runOrCatch( tbl.between(1, 1).optArg("right_bound", "closed").typeOf() ,
+                 var obtained = runOrCatch( tbl.between(1L, 1L).optArg("right_bound", "closed").typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -527,7 +527,7 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
                  var expected_ = "TABLE_SLICE";
                  
                  /* Original: tbl.between(2, 1).type_of() */
-                 var obtained = runOrCatch( tbl.between(2, 1).typeOf() ,
+                 var obtained = runOrCatch( tbl.between(2L, 1L).typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -541,7 +541,7 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
                  var expected_ = "TABLE_SLICE";
                  
                  /* Original: tbl.between(2, 1, index='id').type_of() */
-                 var obtained = runOrCatch( tbl.between(2, 1).optArg("index", "id").typeOf() ,
+                 var obtained = runOrCatch( tbl.between(2L, 1L).optArg("index", "id").typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -552,10 +552,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #31
                  /* ExpectedOriginal: 9 */
-                 var expected_ = 9;
+                 var expected_ = 9L;
                  
                  /* Original: tbl.between(20, 29).count() */
-                 var obtained = runOrCatch( tbl.between(20, 29).count() ,
+                 var obtained = runOrCatch( tbl.between(20L, 29L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -566,10 +566,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #32
                  /* ExpectedOriginal: 9 */
-                 var expected_ = 9;
+                 var expected_ = 9L;
                  
                  /* Original: tbl.between(-10, 9).count() */
-                 var obtained = runOrCatch( tbl.between(-10, 9).count() ,
+                 var obtained = runOrCatch( tbl.between(-10L, 9L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -580,10 +580,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #33
                  /* ExpectedOriginal: 20 */
-                 var expected_ = 20;
+                 var expected_ = 20L;
                  
                  /* Original: tbl.between(80, 2000).count() */
-                 var obtained = runOrCatch( tbl.between(80, 2000).count() ,
+                 var obtained = runOrCatch( tbl.between(80L, 2000L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -594,10 +594,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #34
                  /* ExpectedOriginal: 100 */
-                 var expected_ = 100;
+                 var expected_ = 100L;
                  
                  /* Original: tbl.between(-2000, 2000).count() */
-                 var obtained = runOrCatch( tbl.between(-2000, 2000).count() ,
+                 var obtained = runOrCatch( tbl.between(-2000L, 2000L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -608,10 +608,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #35
                  /* ExpectedOriginal: 10 */
-                 var expected_ = 10;
+                 var expected_ = 10L;
                  
                  /* Original: tbl.between(20, 29, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.between(20, 29).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.between(20L, 29L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -622,10 +622,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #36
                  /* ExpectedOriginal: 10 */
-                 var expected_ = 10;
+                 var expected_ = 10L;
                  
                  /* Original: tbl.between(-10, 9, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.between(-10, 9).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.between(-10L, 9L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -636,10 +636,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #37
                  /* ExpectedOriginal: 20 */
-                 var expected_ = 20;
+                 var expected_ = 20L;
                  
                  /* Original: tbl.between(80, 2000, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.between(80, 2000).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.between(80L, 2000L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -650,10 +650,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #38
                  /* ExpectedOriginal: 100 */
-                 var expected_ = 100;
+                 var expected_ = 100L;
                  
                  /* Original: tbl.between(-2000, 2000, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.between(-2000, 2000).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.between(-2000L, 2000L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -664,10 +664,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #39
                  /* ExpectedOriginal: 8 */
-                 var expected_ = 8;
+                 var expected_ = 8L;
                  
                  /* Original: tbl.between(20, 29, left_bound='open').count() */
-                 var obtained = runOrCatch( tbl.between(20, 29).optArg("left_bound", "open").count() ,
+                 var obtained = runOrCatch( tbl.between(20L, 29L).optArg("left_bound", "open").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -678,10 +678,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #40
                  /* ExpectedOriginal: 9 */
-                 var expected_ = 9;
+                 var expected_ = 9L;
                  
                  /* Original: tbl.between(-10, 9, left_bound='open').count() */
-                 var obtained = runOrCatch( tbl.between(-10, 9).optArg("left_bound", "open").count() ,
+                 var obtained = runOrCatch( tbl.between(-10L, 9L).optArg("left_bound", "open").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -692,10 +692,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #41
                  /* ExpectedOriginal: 19 */
-                 var expected_ = 19;
+                 var expected_ = 19L;
                  
                  /* Original: tbl.between(80, 2000, left_bound='open').count() */
-                 var obtained = runOrCatch( tbl.between(80, 2000).optArg("left_bound", "open").count() ,
+                 var obtained = runOrCatch( tbl.between(80L, 2000L).optArg("left_bound", "open").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -706,10 +706,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #42
                  /* ExpectedOriginal: 100 */
-                 var expected_ = 100;
+                 var expected_ = 100L;
                  
                  /* Original: tbl.between(-2000, 2000, left_bound='open').count() */
-                 var obtained = runOrCatch( tbl.between(-2000, 2000).optArg("left_bound", "open").count() ,
+                 var obtained = runOrCatch( tbl.between(-2000L, 2000L).optArg("left_bound", "open").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -720,10 +720,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #43
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type TABLE_SLICE but found DATUM:', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type TABLE_SLICE but found DATUM:", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type TABLE_SLICE but found DATUM:", r.array(0L));
                  
                  /* Original: r.expr([1, 2, 3]).between(-1, 2) */
-                 var obtained = runOrCatch( r.expr(r.array(1, 2, 3)).between(-1, 2) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L)).between(-1L, 2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -734,10 +734,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #44
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: tbl.between(r.minval, 2).count() */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 2).count() ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 2L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -748,10 +748,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #45
                  /* ExpectedOriginal: 3 */
-                 var expected_ = 3;
+                 var expected_ = 3L;
                  
                  /* Original: tbl.between(r.minval, 2, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 2).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 2L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -762,10 +762,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #46
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: tbl.between(r.minval, 2, left_bound='open').count() */
-                 var obtained = runOrCatch( tbl.between(r.minval(), 2).optArg("left_bound", "open").count() ,
+                 var obtained = runOrCatch( tbl.between(r.minval(), 2L).optArg("left_bound", "open").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -776,10 +776,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #47
                  /* ExpectedOriginal: 98 */
-                 var expected_ = 98;
+                 var expected_ = 98L;
                  
                  /* Original: tbl.between(2, r.maxval).count() */
-                 var obtained = runOrCatch( tbl.between(2, r.maxval()).count() ,
+                 var obtained = runOrCatch( tbl.between(2L, r.maxval()).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -793,7 +793,7 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
                  var expected_ = err("ReqlQueryLogicError", "Cannot use `nu" + "ll` in BETWEEN, use `r.minval` or `r.maxval` to denote unboundedness.");
                  
                  /* Original: tbl.between(null, 2).count() */
-                 var obtained = runOrCatch( tbl.between((ReqlExpr) null, 2).count() ,
+                 var obtained = runOrCatch( tbl.between((ReqlExpr) null, 2L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -807,7 +807,7 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
                  var expected_ = err("ReqlQueryLogicError", "Cannot use `nu" + "ll` in BETWEEN, use `r.minval` or `r.maxval` to denote unboundedness.");
                  
                  /* Original: tbl.between(2, null).count() */
-                 var obtained = runOrCatch( tbl.between(2, (ReqlExpr) null).count() ,
+                 var obtained = runOrCatch( tbl.between(2L, (ReqlExpr) null).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -832,10 +832,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #50
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: tblpkey.between(9, 11).count() */
-                 var obtained = runOrCatch( tblpkey.between(9, 11).count() ,
+                 var obtained = runOrCatch( tblpkey.between(9L, 11L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -846,10 +846,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #51
                  /* ExpectedOriginal: 0 */
-                 var expected_ = 0;
+                 var expected_ = 0L;
                  
                  /* Original: tblpkey.between(11, 12).count() */
-                 var obtained = runOrCatch( tblpkey.between(11, 12).count() ,
+                 var obtained = runOrCatch( tblpkey.between(11L, 12L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -860,10 +860,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #52
                  /* ExpectedOriginal: 25 */
-                 var expected_ = 25;
+                 var expected_ = 25L;
                  
                  /* Original: tbl.filter(lambda row:row['a'] > 2).count() */
-                 var obtained = runOrCatch( tbl.filter(row => row.g("a").gt(2)).count() ,
+                 var obtained = runOrCatch( tbl.filter(row => row.g("a").gt(2L)).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -874,10 +874,10 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              {
                  //JavaQuery, selection.yaml, #53
                  /* ExpectedOriginal: 100 */
-                 var expected_ = 100;
+                 var expected_ = 100L;
                  
                  /* Original: tbl.filter(lambda row: 1).count() */
-                 var obtained = runOrCatch( tbl.filter(row => 1).count() ,
+                 var obtained = runOrCatch( tbl.filter(row => 1L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -887,16 +887,16 @@ Table tblpkey = (Table) (r.db("test").table("testpkey"));
              //JavaDef, selection.yaml, #Templates.YamlTest+DefTest.
              //Original: nested=r.expr([[1, 2], [3, 4], [5, 6]])
              
-MakeArray nested = (MakeArray) (r.expr(r.array(r.array(1, 2), r.array(3, 4), r.array(5, 6))));             
+var nested = (MakeArray) (r.expr(r.array(r.array(1L, 2L), r.array(3L, 4L), r.array(5L, 6L))));             
              TestCounter++;
              
              {
                  //JavaQuery, selection.yaml, #56
                  /* ExpectedOriginal: ([[3, 4], [5, 6]]) */
-                 var expected_ = r.array(r.array(3, 4), r.array(5, 6));
+                 var expected_ = r.array(r.array(3L, 4L), r.array(5L, 6L));
                  
                  /* Original: nested.filter(lambda x: x.filter(lambda y: y >= 4).count() > 0) */
-                 var obtained = runOrCatch( nested.filter(x => x.filter(y => r.ge(y, 4)).count().gt(0)) ,
+                 var obtained = runOrCatch( nested.filter(x => x.filter(y => r.ge(y, 4L)).count().gt(0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -906,11 +906,11 @@ MakeArray nested = (MakeArray) (r.expr(r.array(r.array(1, 2), r.array(3, 4), r.a
              
              {
                  //JavaQuery, selection.yaml, #60
-                 /* ExpectedOriginal: [{'a': 1, 'c': 3, 'b': 2}] */
-                 var expected_ = r.array(r.hashMap("a", 1).with("c", 3).with("b", 2));
+                 /* ExpectedOriginal: [{'c': 3, 'b': 2, 'a': 1}] */
+                 var expected_ = r.array(r.hashMap("c", 3L).with("b", 2L).with("a", 1L));
                  
                  /* Original: r.expr([{'a':1,'b':1,'c':3},{'a':1,'b':2,'c':3}]).filter({'a':1,'b':2}) */
-                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1).with("b", 1).with("c", 3), r.hashMap("a", 1).with("b", 2).with("c", 3))).filter(r.hashMap("a", 1).with("b", 2)) ,
+                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1L).with("b", 1L).with("c", 3L), r.hashMap("a", 1L).with("b", 2L).with("c", 3L))).filter(r.hashMap("a", 1L).with("b", 2L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -920,11 +920,11 @@ MakeArray nested = (MakeArray) (r.expr(r.array(r.array(1, 2), r.array(3, 4), r.a
              
              {
                  //JavaQuery, selection.yaml, #61
-                 /* ExpectedOriginal: [{'a': 1, 'c': 3, 'b': 1}, {'a': 1, 'c': 3, 'b': 2}] */
-                 var expected_ = r.array(r.hashMap("a", 1).with("c", 3).with("b", 1), r.hashMap("a", 1).with("c", 3).with("b", 2));
+                 /* ExpectedOriginal: [{'c': 3, 'b': 1, 'a': 1}, {'c': 3, 'b': 2, 'a': 1}] */
+                 var expected_ = r.array(r.hashMap("c", 3L).with("b", 1L).with("a", 1L), r.hashMap("c", 3L).with("b", 2L).with("a", 1L));
                  
                  /* Original: r.expr([{'a':1,'b':1,'c':3},{'a':1,'b':2,'c':3}]).filter({'a':1}) */
-                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1).with("b", 1).with("c", 3), r.hashMap("a", 1).with("b", 2).with("c", 3))).filter(r.hashMap("a", 1)) ,
+                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1L).with("b", 1L).with("c", 3L), r.hashMap("a", 1L).with("b", 2L).with("c", 3L))).filter(r.hashMap("a", 1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -938,7 +938,7 @@ MakeArray nested = (MakeArray) (r.expr(r.array(r.array(1, 2), r.array(3, 4), r.a
                  var expected_ = r.array();
                  
                  /* Original: r.expr([{'a':1}]).filter({'b':1}) */
-                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1))).filter(r.hashMap("b", 1)) ,
+                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1L))).filter(r.hashMap("b", 1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -949,10 +949,10 @@ MakeArray nested = (MakeArray) (r.expr(r.array(r.array(1, 2), r.array(3, 4), r.a
              {
                  //JavaQuery, selection.yaml, #64
                  /* ExpectedOriginal: 25 */
-                 var expected_ = 25;
+                 var expected_ = 25L;
                  
                  /* Original: tbl.count(lambda row: {'a':1}) */
-                 var obtained = runOrCatch( tbl.count(row => r.hashMap("a", 1)) ,
+                 var obtained = runOrCatch( tbl.count(row => r.hashMap("a", 1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -963,10 +963,10 @@ MakeArray nested = (MakeArray) (r.expr(r.array(r.array(1, 2), r.array(3, 4), r.a
              {
                  //JavaQuery, selection.yaml, #66
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: r.expr([1,2,3,1]).count(1) */
-                 var obtained = runOrCatch( r.expr(r.array(1, 2, 3, 1)).count(1) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L, 1L)).count(1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -977,10 +977,10 @@ MakeArray nested = (MakeArray) (r.expr(r.array(r.array(1, 2), r.array(3, 4), r.a
              {
                  //JavaQuery, selection.yaml, #67
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: r.expr([null, 4, null, 'foo']).count(null) */
-                 var obtained = runOrCatch( r.expr(r.array(null, 4, null, "foo")).count((ReqlExpr) null) ,
+                 var obtained = runOrCatch( r.expr(r.array(null, 4L, null, "foo")).count((ReqlExpr) null) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -991,10 +991,10 @@ MakeArray nested = (MakeArray) (r.expr(r.array(r.array(1, 2), r.array(3, 4), r.a
              {
                  //JavaQuery, selection.yaml, #68
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type DATUM but found TABLE:', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", r.array(0L));
                  
                  /* Original: r.expr(5) + tbl */
-                 var obtained = runOrCatch( r.expr(5).add(tbl) ,
+                 var obtained = runOrCatch( r.expr(5L).add(tbl) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

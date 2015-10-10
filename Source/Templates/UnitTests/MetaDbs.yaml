@@ -16,7 +16,7 @@ DefsAndTests:
   Java: r.dbCreate("a")
   ExpectedOriginal: partial({'dbs_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("dbs_created", 1))
+  ExpectedJava: partial(r.hashMap("dbs_created", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -25,7 +25,7 @@ DefsAndTests:
   Java: r.dbCreate("b")
   ExpectedOriginal: partial({'dbs_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("dbs_created", 1))
+  ExpectedJava: partial(r.hashMap("dbs_created", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -52,7 +52,7 @@ DefsAndTests:
   Java: r.dbDrop("b")
   ExpectedOriginal: partial({'dbs_dropped':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("dbs_dropped", 1))
+  ExpectedJava: partial(r.hashMap("dbs_dropped", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -70,7 +70,7 @@ DefsAndTests:
   Java: r.dbDrop("a")
   ExpectedOriginal: partial({'dbs_dropped':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("dbs_dropped", 1))
+  ExpectedJava: partial(r.hashMap("dbs_dropped", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -88,7 +88,7 @@ DefsAndTests:
   Java: r.dbCreate("bar")
   ExpectedOriginal: partial({'dbs_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("dbs_created", 1))
+  ExpectedJava: partial(r.hashMap("dbs_created", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -97,7 +97,7 @@ DefsAndTests:
   Java: r.dbCreate("bar")
   ExpectedOriginal: err('ReqlOpFailedError', 'Database `bar` already exists.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlOpFailedError", "Database `bar` already exists.", r.array(0))
+  ExpectedJava: err("ReqlOpFailedError", "Database `bar` already exists.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -106,7 +106,7 @@ DefsAndTests:
   Java: r.dbDrop("bar")
   ExpectedOriginal: partial({'dbs_dropped':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("dbs_dropped", 1))
+  ExpectedJava: partial(r.hashMap("dbs_dropped", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml
@@ -115,5 +115,5 @@ DefsAndTests:
   Java: r.dbDrop("bar")
   ExpectedOriginal: err('ReqlOpFailedError', 'Database `bar` does not exist.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlOpFailedError", "Database `bar` does not exist.", r.array(0))
+  ExpectedJava: err("ReqlOpFailedError", "Database `bar` does not exist.", r.array(0L))
   RunOpts: []

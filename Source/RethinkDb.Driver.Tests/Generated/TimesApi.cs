@@ -31,17 +31,17 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, times/api.yaml, #Templates.YamlTest+DefTest.
              //Original: rt1 = 1375147296.6812
              
-double rt1 = (double) (1375147296.6812);             
+var rt1 = (double) (1375147296.6812);             
              
              //JavaDef, times/api.yaml, #Templates.YamlTest+DefTest.
              //Original: t1 = r.epoch_time(rt1)
              
-EpochTime t1 = (EpochTime) (r.epochTime(rt1));             
+var t1 = (EpochTime) (r.epochTime(rt1));             
              
              //JavaDef, times/api.yaml, #Templates.YamlTest+DefTest.
              //Original: t2 = r.epoch_time(rt1 + 1000)
              
-EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));             
+var t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000L)));             
              TestCounter++;
              
              {
@@ -50,7 +50,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
                  var expected_ = 1375148296.681;
                  
                  /* Original: (t1 + 1000).to_epoch_time() */
-                 var obtained = runOrCatch( r.add(t1, 1000).toEpochTime() ,
+                 var obtained = runOrCatch( r.add(t1, 1000L).toEpochTime() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -64,7 +64,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
                  var expected_ = 1375146296.681;
                  
                  /* Original: (t1 - 1000).to_epoch_time() */
-                 var obtained = runOrCatch( r.sub(t1, 1000).toEpochTime() ,
+                 var obtained = runOrCatch( r.sub(t1, 1000L).toEpochTime() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -75,10 +75,10 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #6
                  /* ExpectedOriginal: 1000 */
-                 var expected_ = 1000;
+                 var expected_ = 1000L;
                  
                  /* Original: (t1 - (t1 - 1000)) */
-                 var obtained = runOrCatch( r.sub(t1, r.sub(t1, 1000)) ,
+                 var obtained = runOrCatch( r.sub(t1, r.sub(t1, 1000L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -260,7 +260,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
                  var expected_ = true;
                  
                  /* Original: t1.during(t1, t1 + 1000) */
-                 var obtained = runOrCatch( t1.during(t1, r.add(t1, 1000)) ,
+                 var obtained = runOrCatch( t1.during(t1, r.add(t1, 1000L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -274,7 +274,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
                  var expected_ = false;
                  
                  /* Original: t1.during(t1, t1 + 1000, left_bound='open') */
-                 var obtained = runOrCatch( t1.during(t1, r.add(t1, 1000)).optArg("left_bound", "open") ,
+                 var obtained = runOrCatch( t1.during(t1, r.add(t1, 1000L)).optArg("left_bound", "open") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -313,7 +313,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #23
                  /* ExpectedOriginal: 1375142400 */
-                 var expected_ = 1375142400;
+                 var expected_ = 1375142400L;
                  
                  /* Original: t1.date().to_epoch_time() */
                  var obtained = runOrCatch( t1.date().toEpochTime() ,
@@ -341,7 +341,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #25
                  /* ExpectedOriginal: 2013 */
-                 var expected_ = 2013;
+                 var expected_ = 2013L;
                  
                  /* Original: t1.year() */
                  var obtained = runOrCatch( t1.year() ,
@@ -355,7 +355,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #26
                  /* ExpectedOriginal: 7 */
-                 var expected_ = 7;
+                 var expected_ = 7L;
                  
                  /* Original: t1.month() */
                  var obtained = runOrCatch( t1.month() ,
@@ -369,7 +369,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #27
                  /* ExpectedOriginal: 30 */
-                 var expected_ = 30;
+                 var expected_ = 30L;
                  
                  /* Original: t1.day() */
                  var obtained = runOrCatch( t1.day() ,
@@ -383,7 +383,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #28
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: t1.day_of_week() */
                  var obtained = runOrCatch( t1.dayOfWeek() ,
@@ -397,7 +397,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #29
                  /* ExpectedOriginal: 211 */
-                 var expected_ = 211;
+                 var expected_ = 211L;
                  
                  /* Original: t1.day_of_year() */
                  var obtained = runOrCatch( t1.dayOfYear() ,
@@ -411,7 +411,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #30
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: t1.hours() */
                  var obtained = runOrCatch( t1.hours() ,
@@ -425,7 +425,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #31
                  /* ExpectedOriginal: 21 */
-                 var expected_ = 21;
+                 var expected_ = 21L;
                  
                  /* Original: t1.minutes() */
                  var obtained = runOrCatch( t1.minutes() ,
@@ -456,7 +456,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
                  var expected_ = 1375165800.1;
                  
                  /* Original: r.time(2013, r.july, 29, 23, 30, 0.1, "-07:00").to_epoch_time() */
-                 var obtained = runOrCatch( r.time(2013, r.july(), 29, 23, 30, 0.1, "-07:00").toEpochTime() ,
+                 var obtained = runOrCatch( r.time(2013L, r.july(), 29L, 23L, 30L, 0.1, "-07:00").toEpochTime() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -470,7 +470,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
                  var expected_ = "-07:00";
                  
                  /* Original: r.time(2013, r.july, 29, 23, 30, 0.1, "-07:00").timezone() */
-                 var obtained = runOrCatch( r.time(2013, r.july(), 29, 23, 30, 0.1, "-07:00").timezone() ,
+                 var obtained = runOrCatch( r.time(2013L, r.july(), 29L, 23L, 30L, 0.1, "-07:00").timezone() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -484,7 +484,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
                  var expected_ = err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array());
                  
                  /* Original: r.time(2013, r.july, 29, 23).to_epoch_time() */
-                 var obtained = runOrCatch( r.time(2013, r.july(), 29, 23).toEpochTime() ,
+                 var obtained = runOrCatch( r.time(2013L, r.july(), 29L, 23L).toEpochTime() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -495,10 +495,10 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #39
                  /* ExpectedOriginal: 1375081200 */
-                 var expected_ = 1375081200;
+                 var expected_ = 1375081200L;
                  
                  /* Original: r.time(2013, r.july, 29, "-07:00").to_epoch_time() */
-                 var obtained = runOrCatch( r.time(2013, r.july(), 29, "-07:00").toEpochTime() ,
+                 var obtained = runOrCatch( r.time(2013L, r.july(), 29L, "-07:00").toEpochTime() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -512,7 +512,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
                  var expected_ = "-07:00";
                  
                  /* Original: r.time(2013, r.july, 29, "-07:00").timezone() */
-                 var obtained = runOrCatch( r.time(2013, r.july(), 29, "-07:00").timezone() ,
+                 var obtained = runOrCatch( r.time(2013L, r.july(), 29L, "-07:00").timezone() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -523,7 +523,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #43
                  /* ExpectedOriginal: 1375242965 */
-                 var expected_ = 1375242965;
+                 var expected_ = 1375242965L;
                  
                  /* Original: r.iso8601("2013-07-30T20:56:05-07:00").to_epoch_time() */
                  var obtained = runOrCatch( r.iso8601("2013-07-30T20:56:05-07:00").toEpochTime() ,
@@ -540,7 +540,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
                  var expected_ = "2013-07-30T20:56:05-07:00";
                  
                  /* Original: r.epoch_time(1375242965).in_timezone("-07:00").to_iso8601() */
-                 var obtained = runOrCatch( r.epochTime(1375242965).inTimezone("-07:00").toIso8601() ,
+                 var obtained = runOrCatch( r.epochTime(1375242965L).inTimezone("-07:00").toIso8601() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -565,7 +565,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #46
                  /* ExpectedOriginal: 0 */
-                 var expected_ = 0;
+                 var expected_ = 0L;
                  
                  /* Original: (r.now() - r.now()) */
                  var obtained = runOrCatch( r.now().sub(r.now()) ,
@@ -607,7 +607,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #49
                  /* ExpectedOriginal: ([1, 2, 3, 4, 5, 6, 7]) */
-                 var expected_ = r.array(1, 2, 3, 4, 5, 6, 7);
+                 var expected_ = r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L);
                  
                  /* Original: r.expr([r.monday, r.tuesday, r.wednesday, r.thursday, r.friday, r.saturday, r.sunday]) */
                  var obtained = runOrCatch( r.expr(r.array(r.monday(), r.tuesday(), r.wednesday(), r.thursday(), r.friday(), r.saturday(), r.sunday())) ,
@@ -621,7 +621,7 @@ EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000)));
              {
                  //JavaQuery, times/api.yaml, #50
                  /* ExpectedOriginal: ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) */
-                 var expected_ = r.array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+                 var expected_ = r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L);
                  
                  /* Original: r.expr([r.january, r.february, r.march, r.april, r.may, r.june, r.july, r.august, r.september, r.october, r.november, r.december]) */
                  var obtained = runOrCatch( r.expr(r.array(r.january(), r.february(), r.march(), r.april(), r.may(), r.june(), r.july(), r.august(), r.september(), r.october(), r.november(), r.december())) ,

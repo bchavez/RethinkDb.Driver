@@ -15,7 +15,7 @@ DefsAndTests:
   Java: r.db("test").tableCreate("test2")
   ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_created", 1))
+  ExpectedJava: partial(r.hashMap("tables_created", 1L))
   RunOpts: []
 - TestType: JavaDef
   TestFile: transformation.yaml
@@ -30,16 +30,16 @@ DefsAndTests:
   Java: r.db("test").tableCreate("test3")
   ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_created", 1))
+  ExpectedJava: partial(r.hashMap("tables_created", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 3
   Original: tbl.insert([{'id':i, 'a':i%4} for i in xrange(100)])
-  Java: tbl.insert(IntStream.range(0, 100).boxed().map(i -> r.hashMap("id", i).with("a", r.mod(i, 4))).collect(Collectors.toList()))
+  Java: tbl.insert(LongStream.range(0, 100L).boxed().map(i -> r.hashMap("id", i).with("a", r.mod(i, 4L))).collect(Collectors.toList()))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -48,25 +48,25 @@ DefsAndTests:
   Java: tbl.indexCreate("a")
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 5
   Original: 'tbl.index_create(''truncated_a'', lambda x: [''a'' * 300, x[''a'']])'
-  Java: tbl.indexCreate("truncated_a", x -> r.array(r.mul("a", 300), x.g("a")))
+  Java: tbl.indexCreate("truncated_a", x -> r.array(r.mul("a", 300L), x.g("a")))
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 6
   Original: 'tbl.index_create(''error_prone'', lambda x: 1/x[''a''])'
-  Java: tbl.indexCreate("error_prone", x -> r.div(1, x.g("a")))
+  Java: tbl.indexCreate("error_prone", x -> r.div(1L, x.g("a")))
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -81,19 +81,19 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 8
   Original: tbl2.insert([{'id':i, 'b':i%4} for i in xrange(100)])
-  Java: tbl2.insert(IntStream.range(0, 100).boxed().map(i -> r.hashMap("id", i).with("b", r.mod(i, 4))).collect(Collectors.toList()))
+  Java: tbl2.insert(LongStream.range(0, 100L).boxed().map(i -> r.hashMap("id", i).with("b", r.mod(i, 4L))).collect(Collectors.toList()))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 9
   Original: tbl3.insert([{'id':i, 'a':i%4, 'b':{'c':i%5}} for i in xrange(100)])
-  Java: tbl3.insert(IntStream.range(0, 100).boxed().map(i -> r.hashMap("id", i).with("a", r.mod(i, 4)).with("b", r.hashMap("c", r.mod(i, 5)))).collect(Collectors.toList()))
+  Java: tbl3.insert(LongStream.range(0, 100L).boxed().map(i -> r.hashMap("id", i).with("a", r.mod(i, 4L)).with("b", r.hashMap("c", r.mod(i, 5L)))).collect(Collectors.toList()))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -102,7 +102,7 @@ DefsAndTests:
   Java: tbl.map(row -> row.g("id")).reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: 4950
   ExpectedType: Long
-  ExpectedJava: 4950
+  ExpectedJava: 4950L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -111,7 +111,7 @@ DefsAndTests:
   Java: tbl.union(tbl).map(row -> row.g("id")).reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: 9900
   ExpectedType: Long
-  ExpectedJava: 9900
+  ExpectedJava: 9900L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -120,7 +120,7 @@ DefsAndTests:
   Java: tbl.coerceTo("array").union(tbl).map(row -> row.g("id")).reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: 9900
   ExpectedType: Long
-  ExpectedJava: 9900
+  ExpectedJava: 9900L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -129,7 +129,7 @@ DefsAndTests:
   Java: tbl.union(tbl.coerceTo("array")).map(row -> row.g("id")).reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: 9900
   ExpectedType: Long
-  ExpectedJava: 9900
+  ExpectedJava: 9900L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -144,7 +144,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 15
   Original: ccm = tbl.concat_map(lambda row:[row['a'], (row['a'] + 1) % 4])
-  Java: ConcatMap ccm = (ConcatMap) (tbl.concatMap(row -> r.array(row.g("a"), row.g("a").add(1).mod(4))));
+  Java: ConcatMap ccm = (ConcatMap) (tbl.concatMap(row -> r.array(row.g("a"), row.g("a").add(1L).mod(4L))));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -153,214 +153,214 @@ DefsAndTests:
   Java: ccm.count()
   ExpectedOriginal: 200
   ExpectedType: Long
-  ExpectedJava: 200
+  ExpectedJava: 200L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 17
   Original: ccm.reduce(lambda a,b:(a+b) % 4)
-  Java: ccm.reduce((a, b) -> r.add(a, b).mod(4))
+  Java: ccm.reduce((a, b) -> r.add(a, b).mod(4L))
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 18
   Original: tbl.order_by('id')[0]
-  Java: tbl.orderBy("id").nth(0)
+  Java: tbl.orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0, 'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 19
   Original: tbl.order_by([1,2,3])
-  Java: tbl.orderBy(r.array(1, 2, 3))
+  Java: tbl.orderBy(r.array(1L, 2L, 3L))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type STRING but found ARRAY.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found ARRAY.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type STRING but found ARRAY.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 20
   Original: tbl.order_by(index='id')[0]
-  Java: tbl.orderBy().optArg("index", "id").nth(0)
+  Java: tbl.orderBy().optArg("index", "id").nth(0L)
   ExpectedOriginal: ({'id':0, 'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 21
   Original: tbl.order_by(index='id')[0].update({'a':0})['unchanged']
-  Java: tbl.orderBy().optArg("index", "id").nth(0).update(r.hashMap("a", 0)).g("unchanged")
+  Java: tbl.orderBy().optArg("index", "id").nth(0L).update(r.hashMap("a", 0L)).g("unchanged")
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 22
   Original: tbl.get_all(0).update({'a':0})['unchanged']
-  Java: tbl.getAll(0).update(r.hashMap("a", 0)).g("unchanged")
+  Java: tbl.getAll(0L).update(r.hashMap("a", 0L)).g("unchanged")
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 23
   Original: tbl.order_by(index='id').order_by(index='id')[0]
-  Java: tbl.orderBy().optArg("index", "id").orderBy().optArg("index", "id").nth(0)
+  Java: tbl.orderBy().optArg("index", "id").orderBy().optArg("index", "id").nth(0L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot perform multiple indexed ORDER_BYs on the same table.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot perform multiple indexed ORDER_BYs on the same table.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot perform multiple indexed ORDER_BYs on the same table.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 24
   Original: tbl.order_by(index='id').order_by(index='id')[0]
-  Java: tbl.orderBy().optArg("index", "id").orderBy().optArg("index", "id").nth(0)
+  Java: tbl.orderBy().optArg("index", "id").orderBy().optArg("index", "id").nth(0L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot perform multiple indexed ORDER_BYs on the same table.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot perform multiple indexed ORDER_BYs on the same table.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot perform multiple indexed ORDER_BYs on the same table.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 25
   Original: tbl.order_by('id').order_by(index='id')[0]
-  Java: tbl.orderBy("id").orderBy().optArg("index", "id").nth(0)
+  Java: tbl.orderBy("id").orderBy().optArg("index", "id").nth(0L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Indexed order_by can only be performed on a TABLE or TABLE_SLICE.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 26
   Original: tbl.order_by('id').order_by(index='a')[0]
-  Java: tbl.orderBy("id").orderBy().optArg("index", "a").nth(0)
+  Java: tbl.orderBy("id").orderBy().optArg("index", "a").nth(0L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Indexed order_by can only be performed on a TABLE or TABLE_SLICE.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 27
   Original: tbl.between(5, r.maxval, index='id').order_by(index='id')[0]
-  Java: tbl.between(5, r.maxval()).optArg("index", "id").orderBy().optArg("index", "id").nth(0)
+  Java: tbl.between(5L, r.maxval()).optArg("index", "id").orderBy().optArg("index", "id").nth(0L)
   ExpectedOriginal: ({'id':5, 'a':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 5).with("a", 1)
+  ExpectedJava: r.hashMap("id", 5L).with("a", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 28
   Original: tbl.order_by('a', index='id').between(5, r.maxval, index='id')[0]
-  Java: tbl.orderBy("a").optArg("index", "id").between(5, r.maxval()).optArg("index", "id").nth(0)
+  Java: tbl.orderBy("a").optArg("index", "id").between(5L, r.maxval()).optArg("index", "id").nth(0L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type TABLE_SLICE but found SELECTION:', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type TABLE_SLICE but found SELECTION:", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type TABLE_SLICE but found SELECTION:", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 29
   Original: 'tbl.order_by(lambda x: x[''id''])[0]'
-  Java: tbl.orderBy(x -> x.g("id")).nth(0)
+  Java: tbl.orderBy(x -> x.g("id")).nth(0L)
   ExpectedOriginal: ({'id':0, 'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 30
   Original: tbl.order_by('a', 'id').nth(0)
-  Java: tbl.orderBy("a", "id").nth(0)
+  Java: tbl.orderBy("a", "id").nth(0L)
   ExpectedOriginal: ({'id':0,'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 31
   Original: tbl.order_by('id', index='a').nth(0)
-  Java: tbl.orderBy("id").optArg("index", "a").nth(0)
+  Java: tbl.orderBy("id").optArg("index", "a").nth(0L)
   ExpectedOriginal: ({'id':0,'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 32
   Original: tbl.order_by('id', index='truncated_a').nth(0)
-  Java: tbl.orderBy("id").optArg("index", "truncated_a").nth(0)
+  Java: tbl.orderBy("id").optArg("index", "truncated_a").nth(0L)
   ExpectedOriginal: ({'id':0,'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 33
   Original: tbl.order_by('id', index='error_prone').nth(0)
-  Java: tbl.orderBy("id").optArg("index", "error_prone").nth(0)
+  Java: tbl.orderBy("id").optArg("index", "error_prone").nth(0L)
   ExpectedOriginal: ({'id':3,'a':3})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 3).with("a", 3)
+  ExpectedJava: r.hashMap("id", 3L).with("a", 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 34
   Original: 'tbl.order_by(lambda x: [x[''a''], x[''id'']])[0]'
-  Java: tbl.orderBy(x -> r.array(x.g("a"), x.g("id"))).nth(0)
+  Java: tbl.orderBy(x -> r.array(x.g("a"), x.g("id"))).nth(0L)
   ExpectedOriginal: ({'id':0, 'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 35
   Original: tbl.order_by(r.desc('a'), r.asc('id')).nth(0)
-  Java: tbl.orderBy(r.desc("a"), r.asc("id")).nth(0)
+  Java: tbl.orderBy(r.desc("a"), r.asc("id")).nth(0L)
   ExpectedOriginal: ({'id':3,'a':3})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 3).with("a", 3)
+  ExpectedJava: r.hashMap("id", 3L).with("a", 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 36
   Original: tbl.order_by('id', index=r.desc('a')).nth(0)
-  Java: tbl.orderBy("id").optArg("index", r.desc("a")).nth(0)
+  Java: tbl.orderBy("id").optArg("index", r.desc("a")).nth(0L)
   ExpectedOriginal: ({'id':3,'a':3})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 3).with("a", 3)
+  ExpectedJava: r.hashMap("id", 3L).with("a", 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 37
   Original: 'tbl.order_by(r.desc(lambda x: x[''a'']), lambda x: x[''id''])[0]'
-  Java: tbl.orderBy(r.desc(x -> x.g("a")), x -> x.g("id")).nth(0)
+  Java: tbl.orderBy(r.desc(x -> x.g("a")), x -> x.g("id")).nth(0L)
   ExpectedOriginal: ({'id':3, 'a':3})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 3).with("a", 3)
+  ExpectedJava: r.hashMap("id", 3L).with("a", 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 38
   Original: tbl.order_by(r.asc('a'), r.desc('id')).nth(0)
-  Java: tbl.orderBy(r.asc("a"), r.desc("id")).nth(0)
+  Java: tbl.orderBy(r.asc("a"), r.desc("id")).nth(0L)
   ExpectedOriginal: ({'id':96,'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 96).with("a", 0)
+  ExpectedJava: r.hashMap("id", 96L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 39
   Original: tbl.order_by(r.desc('id'), index='a').nth(0)
-  Java: tbl.orderBy(r.desc("id")).optArg("index", "a").nth(0)
+  Java: tbl.orderBy(r.desc("id")).optArg("index", "a").nth(0L)
   ExpectedOriginal: ({'id':96,'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 96).with("a", 0)
+  ExpectedJava: r.hashMap("id", 96L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -375,43 +375,43 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 41
   Original: tbl.order_by('missing').order_by('id').nth(0)
-  Java: tbl.orderBy("missing").orderBy("id").nth(0)
+  Java: tbl.orderBy("missing").orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0, 'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 42
   Original: tbl.order_by('missing').order_by(index='id').nth(0)
-  Java: tbl.orderBy("missing").orderBy().optArg("index", "id").nth(0)
+  Java: tbl.orderBy("missing").orderBy().optArg("index", "id").nth(0L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Indexed order_by can only be performed on a TABLE or TABLE_SLICE.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 43
   Original: tbl.order_by('id', 'missing').nth(0)
-  Java: tbl.orderBy("id", "missing").nth(0)
+  Java: tbl.orderBy("id", "missing").nth(0L)
   ExpectedOriginal: ({'id':0, 'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 44
   Original: tbl.order_by('missing', index='id').nth(0)
-  Java: tbl.orderBy("missing").optArg("index", "id").nth(0)
+  Java: tbl.orderBy("missing").optArg("index", "id").nth(0L)
   ExpectedOriginal: ({'id':0, 'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 45
   Original: 'tbl.order_by(r.desc(''id'')).coerce_to(''ARRAY'') == tbl.order_by(lambda x: 0 - x[''id'']).coerce_to(''ARRAY'')'
-  Java: tbl.orderBy(r.desc("id")).coerceTo("ARRAY").eq(tbl.orderBy(x -> r.sub(0, x.g("id"))).coerceTo("ARRAY"))
+  Java: tbl.orderBy(r.desc("id")).coerceTo("ARRAY").eq(tbl.orderBy(x -> r.sub(0L, x.g("id"))).coerceTo("ARRAY"))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -420,7 +420,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 46
   Original: 'tbl.order_by(index=r.desc(''id'')).coerce_to(''ARRAY'') == tbl.order_by(lambda x: 0 - x[''id'']).coerce_to(''ARRAY'')'
-  Java: tbl.orderBy().optArg("index", r.desc("id")).coerceTo("ARRAY").eq(tbl.orderBy(x -> r.sub(0, x.g("id"))).coerceTo("ARRAY"))
+  Java: tbl.orderBy().optArg("index", r.desc("id")).coerceTo("ARRAY").eq(tbl.orderBy(x -> r.sub(0L, x.g("id"))).coerceTo("ARRAY"))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -438,19 +438,19 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 48
   Original: tbl.skip(1).count()
-  Java: tbl.skip(1).count()
+  Java: tbl.skip(1L).count()
   ExpectedOriginal: 99
   ExpectedType: Long
-  ExpectedJava: 99
+  ExpectedJava: 99L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 49
   Original: tbl.skip(-1).count()
-  Java: tbl.skip(-1).count()
+  Java: tbl.skip(-1L).count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot use a negative left index on a stream.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -459,25 +459,25 @@ DefsAndTests:
   Java: tbl.skip("foo").count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 51
   Original: tbl.limit(1).count()
-  Java: tbl.limit(1).count()
+  Java: tbl.limit(1L).count()
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 52
   Original: tbl.limit(-1).count()
-  Java: tbl.limit(-1).count()
+  Java: tbl.limit(-1L).count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'LIMIT takes a non-negative argument (got -1)', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "LIMIT takes a non-negative argument (got -1)", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "LIMIT takes a non-negative argument (got -1)", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -486,49 +486,49 @@ DefsAndTests:
   Java: tbl.limit("foo").count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 54
   Original: tbl.slice(1, 3).count()
-  Java: tbl.slice(1, 3).count()
+  Java: tbl.slice(1L, 3L).count()
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 55
   Original: tbl.slice(5).count()
-  Java: tbl.slice(5).count()
+  Java: tbl.slice(5L).count()
   ExpectedOriginal: 95
   ExpectedType: Long
-  ExpectedJava: 95
+  ExpectedJava: 95L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 56
   Original: tbl.slice(-1, -3).count()
-  Java: tbl.slice(-1, -3).count()
+  Java: tbl.slice(-1L, -3L).count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot use a negative left index on a stream.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 57
   Original: tbl.slice(0, -3).count()
-  Java: tbl.slice(0, -3).count()
+  Java: tbl.slice(0L, -3L).count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot use a right index < -1 on a stream.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot use a right index < -1 on a stream.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot use a right index < -1 on a stream.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 58
   Original: tbl.slice(0, -1).count()
-  Java: tbl.slice(0, -1).count()
+  Java: tbl.slice(0L, -1L).count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot slice to an open right index of -1 on a stream.', [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot slice to an open right index of -1 on a stream.", r.array())
@@ -540,67 +540,67 @@ DefsAndTests:
   Java: tbl.slice("foo", "bar").count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 60
   Original: tbl.slice(1, null).count()
-  Java: tbl.slice(1, (ReqlExpr) null).count()
+  Java: tbl.slice(1L, (ReqlExpr) null).count()
   ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0))
+  ExpectedJava: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 61
   Original: tbl.slice(null, 1).count()
-  Java: tbl.slice((ReqlExpr) null, 1).count()
+  Java: tbl.slice((ReqlExpr) null, 1L).count()
   ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0))
+  ExpectedJava: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 62
   Original: tbl.slice(12, 20).count()
-  Java: tbl.slice(12, 20).count()
+  Java: tbl.slice(12L, 20L).count()
   ExpectedOriginal: 8
   ExpectedType: Long
-  ExpectedJava: 8
+  ExpectedJava: 8L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 63
   Original: tbl.slice(12, 20, right_bound='closed').count()
-  Java: tbl.slice(12, 20).optArg("right_bound", "closed").count()
+  Java: tbl.slice(12L, 20L).optArg("right_bound", "closed").count()
   ExpectedOriginal: 9
   ExpectedType: Long
-  ExpectedJava: 9
+  ExpectedJava: 9L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 64
   Original: tbl.slice(12, 20, left_bound='open').count()
-  Java: tbl.slice(12, 20).optArg("left_bound", "open").count()
+  Java: tbl.slice(12L, 20L).optArg("left_bound", "open").count()
   ExpectedOriginal: 7
   ExpectedType: Long
-  ExpectedJava: 7
+  ExpectedJava: 7L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 65
   Original: tbl.slice(12, 20, left_bound='open', right_bound='closed').count()
-  Java: tbl.slice(12, 20).optArg("left_bound", "open").optArg("right_bound", "closed").count()
+  Java: tbl.slice(12L, 20L).optArg("left_bound", "open").optArg("right_bound", "closed").count()
   ExpectedOriginal: 8
   ExpectedType: Long
-  ExpectedJava: 8
+  ExpectedJava: 8L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 66
   Original: tbl.slice(12, -1).count()
-  Java: tbl.slice(12, -1).count()
+  Java: tbl.slice(12L, -1L).count()
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot slice to an open right index of -1 on a stream.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot slice to an open right index of -1 on a stream.", r.array())
@@ -609,16 +609,16 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 67
   Original: tbl.slice(12, -1, right_bound='closed').count()
-  Java: tbl.slice(12, -1).optArg("right_bound", "closed").count()
+  Java: tbl.slice(12L, -1L).optArg("right_bound", "closed").count()
   ExpectedOriginal: 88
   ExpectedType: Long
-  ExpectedJava: 88
+  ExpectedJava: 88L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 68
   Original: tbl.slice(12, -2).count()
-  Java: tbl.slice(12, -2).count()
+  Java: tbl.slice(12L, -2L).count()
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot use a right index < -1 on a stream.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot use a right index < -1 on a stream.", r.array())
@@ -627,7 +627,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 69
   Original: tbl.slice(12, -2, right_bound='closed').count()
-  Java: tbl.slice(12, -2).optArg("right_bound", "closed").count()
+  Java: tbl.slice(12L, -2L).optArg("right_bound", "closed").count()
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot use a right index < -1 on a stream.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot use a right index < -1 on a stream.", r.array())
@@ -636,7 +636,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 70
   Original: tbl.slice(-12, -2).count()
-  Java: tbl.slice(-12, -2).count()
+  Java: tbl.slice(-12L, -2L).count()
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", r.array())
@@ -645,7 +645,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 71
   Original: tbl.slice(-12, -2, right_bound='closed').count()
-  Java: tbl.slice(-12, -2).optArg("right_bound", "closed").count()
+  Java: tbl.slice(-12L, -2L).optArg("right_bound", "closed").count()
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", r.array())
@@ -654,97 +654,97 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 72
   Original: tbl.coerce_to('array').slice(12, 20).count()
-  Java: tbl.coerceTo("array").slice(12, 20).count()
+  Java: tbl.coerceTo("array").slice(12L, 20L).count()
   ExpectedOriginal: 8
   ExpectedType: Long
-  ExpectedJava: 8
+  ExpectedJava: 8L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 73
   Original: tbl.coerce_to('array').slice(12, 20, right_bound='closed').count()
-  Java: tbl.coerceTo("array").slice(12, 20).optArg("right_bound", "closed").count()
+  Java: tbl.coerceTo("array").slice(12L, 20L).optArg("right_bound", "closed").count()
   ExpectedOriginal: 9
   ExpectedType: Long
-  ExpectedJava: 9
+  ExpectedJava: 9L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 74
   Original: tbl.coerce_to('array').slice(12, 20, left_bound='open').count()
-  Java: tbl.coerceTo("array").slice(12, 20).optArg("left_bound", "open").count()
+  Java: tbl.coerceTo("array").slice(12L, 20L).optArg("left_bound", "open").count()
   ExpectedOriginal: 7
   ExpectedType: Long
-  ExpectedJava: 7
+  ExpectedJava: 7L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 75
   Original: tbl.coerce_to('array').slice(12, 20, left_bound='open', right_bound='closed').count()
-  Java: tbl.coerceTo("array").slice(12, 20).optArg("left_bound", "open").optArg("right_bound", "closed").count()
+  Java: tbl.coerceTo("array").slice(12L, 20L).optArg("left_bound", "open").optArg("right_bound", "closed").count()
   ExpectedOriginal: 8
   ExpectedType: Long
-  ExpectedJava: 8
+  ExpectedJava: 8L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 76
   Original: tbl.coerce_to('array').slice(12, -1).count()
-  Java: tbl.coerceTo("array").slice(12, -1).count()
+  Java: tbl.coerceTo("array").slice(12L, -1L).count()
   ExpectedOriginal: 87
   ExpectedType: Long
-  ExpectedJava: 87
+  ExpectedJava: 87L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 77
   Original: tbl.coerce_to('array').slice(12, -1, right_bound='closed').count()
-  Java: tbl.coerceTo("array").slice(12, -1).optArg("right_bound", "closed").count()
+  Java: tbl.coerceTo("array").slice(12L, -1L).optArg("right_bound", "closed").count()
   ExpectedOriginal: 88
   ExpectedType: Long
-  ExpectedJava: 88
+  ExpectedJava: 88L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 78
   Original: tbl.coerce_to('array').slice(12, -2).count()
-  Java: tbl.coerceTo("array").slice(12, -2).count()
+  Java: tbl.coerceTo("array").slice(12L, -2L).count()
   ExpectedOriginal: 86
   ExpectedType: Long
-  ExpectedJava: 86
+  ExpectedJava: 86L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 79
   Original: tbl.coerce_to('array').slice(12, -2, right_bound='closed').count()
-  Java: tbl.coerceTo("array").slice(12, -2).optArg("right_bound", "closed").count()
+  Java: tbl.coerceTo("array").slice(12L, -2L).optArg("right_bound", "closed").count()
   ExpectedOriginal: 87
   ExpectedType: Long
-  ExpectedJava: 87
+  ExpectedJava: 87L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 80
   Original: tbl.coerce_to('array').slice(-12, -2).count()
-  Java: tbl.coerceTo("array").slice(-12, -2).count()
+  Java: tbl.coerceTo("array").slice(-12L, -2L).count()
   ExpectedOriginal: 10
   ExpectedType: Long
-  ExpectedJava: 10
+  ExpectedJava: 10L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 81
   Original: tbl.coerce_to('array').slice(-12, -2, right_bound='closed').count()
-  Java: tbl.coerceTo("array").slice(-12, -2).optArg("right_bound", "closed").count()
+  Java: tbl.coerceTo("array").slice(-12L, -2L).optArg("right_bound", "closed").count()
   ExpectedOriginal: 11
   ExpectedType: Long
-  ExpectedJava: 11
+  ExpectedJava: 11L
   RunOpts: []
 - TestType: JavaDef
   TestFile: transformation.yaml
   TestNum: 82
   Original: arr = r.expr([1,2,3,4,5])
-  Java: MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
+  Java: MakeArray arr = (MakeArray) (r.expr(r.array(1L, 2L, 3L, 4L, 5L)));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -753,7 +753,7 @@ DefsAndTests:
   Java: arr.slice(1, 3)
   ExpectedOriginal: ([2, 3])
   ExpectedType: List
-  ExpectedJava: r.array(2, 3)
+  ExpectedJava: r.array(2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -762,7 +762,7 @@ DefsAndTests:
   Java: arr.slice(1, -3)
   ExpectedOriginal: ([2])
   ExpectedType: List
-  ExpectedJava: r.array(2)
+  ExpectedJava: r.array(2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -771,7 +771,7 @@ DefsAndTests:
   Java: arr.slice(1, -1)
   ExpectedOriginal: ([2,3,4,5])
   ExpectedType: List
-  ExpectedJava: r.array(2, 3, 4, 5)
+  ExpectedJava: r.array(2L, 3L, 4L, 5L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -780,25 +780,25 @@ DefsAndTests:
   Java: arr.slice(1, -1)
   ExpectedOriginal: ([2,3,4])
   ExpectedType: List
-  ExpectedJava: r.array(2, 3, 4)
+  ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 89
   Original: tbl.order_by('id').nth(1)
-  Java: tbl.orderBy("id").nth(1)
+  Java: tbl.orderBy("id").nth(1L)
   ExpectedOriginal: ({'id':1,'a':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 1).with("a", 1)
+  ExpectedJava: r.hashMap("id", 1L).with("a", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 90
   Original: tbl.order_by('id').nth(-1)
-  Java: tbl.orderBy("id").nth(-1)
+  Java: tbl.orderBy("id").nth(-1L)
   ExpectedOriginal: ({'id':99,'a':3})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 99).with("a", 3)
+  ExpectedJava: r.hashMap("id", 99L).with("a", 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -807,7 +807,7 @@ DefsAndTests:
   Java: tbl.orderBy("id").nth("foo").count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -822,7 +822,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 93
   Original: tbl.limit(0).is_empty()
-  Java: tbl.limit(0).isEmpty()
+  Java: tbl.limit(0L).isEmpty()
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -831,7 +831,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 94
   Original: r.expr(1).is_empty()
-  Java: r.expr(1).isEmpty()
+  Java: r.expr(1L).isEmpty()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert NUMBER to SEQUENCE', [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot convert NUMBER to SEQUENCE", r.array())
@@ -849,7 +849,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 96
   Original: tbl3.pluck().nth(0)
-  Java: tbl3.pluck().nth(0)
+  Java: tbl3.pluck().nth(0L)
   ExpectedOriginal: ({})
   ExpectedType: Map
   ExpectedJava: r.hashMap()
@@ -858,7 +858,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 97
   Original: tbl3.pluck({}).nth(0)
-  Java: tbl3.pluck(r.hashMap()).nth(0)
+  Java: tbl3.pluck(r.hashMap()).nth(0L)
   ExpectedOriginal: ({})
   ExpectedType: Map
   ExpectedJava: r.hashMap()
@@ -867,7 +867,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 98
   Original: tbl3.pluck([]).nth(0)
-  Java: tbl3.pluck(r.array()).nth(0)
+  Java: tbl3.pluck(r.array()).nth(0L)
   ExpectedOriginal: ({})
   ExpectedType: Map
   ExpectedJava: r.hashMap()
@@ -876,106 +876,106 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 99
   Original: tbl3.pluck('id').order_by('id').nth(0)
-  Java: tbl3.pluck("id").orderBy("id").nth(0)
+  Java: tbl3.pluck("id").orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0)
+  ExpectedJava: r.hashMap("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 100
   Original: tbl3.pluck(['id']).order_by('id').nth(0)
-  Java: tbl3.pluck(r.array("id")).orderBy("id").nth(0)
+  Java: tbl3.pluck(r.array("id")).orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0)
+  ExpectedJava: r.hashMap("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 101
   Original: tbl3.pluck({'id':True}).order_by('id').nth(0)
-  Java: tbl3.pluck(r.hashMap("id", true)).orderBy("id").nth(0)
+  Java: tbl3.pluck(r.hashMap("id", true)).orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0)
+  ExpectedJava: r.hashMap("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 102
   Original: tbl3.pluck('id', 'a').order_by('id').nth(0)
-  Java: tbl3.pluck("id", "a").orderBy("id").nth(0)
+  Java: tbl3.pluck("id", "a").orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0,'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 103
   Original: tbl3.pluck(['id', 'a']).order_by('id').nth(0)
-  Java: tbl3.pluck(r.array("id", "a")).orderBy("id").nth(0)
+  Java: tbl3.pluck(r.array("id", "a")).orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0,'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 104
   Original: tbl3.pluck({'id':True, 'a':True}).order_by('id').nth(0)
-  Java: tbl3.pluck(r.hashMap("id", true).with("a", true)).orderBy("id").nth(0)
+  Java: tbl3.pluck(r.hashMap("id", true).with("a", true)).orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0,'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 105
   Original: tbl3.pluck('id', 'missing').order_by('id').nth(0)
-  Java: tbl3.pluck("id", "missing").orderBy("id").nth(0)
+  Java: tbl3.pluck("id", "missing").orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0)
+  ExpectedJava: r.hashMap("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 106
   Original: tbl3.pluck(['id', 'missing']).order_by('id').nth(0)
-  Java: tbl3.pluck(r.array("id", "missing")).orderBy("id").nth(0)
+  Java: tbl3.pluck(r.array("id", "missing")).orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0)
+  ExpectedJava: r.hashMap("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 107
   Original: tbl3.pluck({'id':True, 'missing':True}).order_by('id').nth(0)
-  Java: tbl3.pluck(r.hashMap("id", true).with("missing", true)).orderBy("id").nth(0)
+  Java: tbl3.pluck(r.hashMap("id", true).with("missing", true)).orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0)
+  ExpectedJava: r.hashMap("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 108
   Original: tbl3.pluck('id', {'b':'c'}).order_by('id').nth(0)
-  Java: tbl3.pluck("id", r.hashMap("b", "c")).orderBy("id").nth(0)
+  Java: tbl3.pluck("id", r.hashMap("b", "c")).orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0, 'b':{'c':0}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("b", r.hashMap("c", 0))
+  ExpectedJava: r.hashMap("id", 0L).with("b", r.hashMap("c", 0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 109
   Original: tbl3.pluck(['id', {'b':'c'}]).order_by('id').nth(0)
-  Java: tbl3.pluck(r.array("id", r.hashMap("b", "c"))).orderBy("id").nth(0)
+  Java: tbl3.pluck(r.array("id", r.hashMap("b", "c"))).orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0, 'b':{'c':0}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("b", r.hashMap("c", 0))
+  ExpectedJava: r.hashMap("id", 0L).with("b", r.hashMap("c", 0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 110
   Original: tbl3.pluck(1)
-  Java: tbl3.pluck(1)
+  Java: tbl3.pluck(1L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Invalid path argument `1`.', [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Invalid path argument `1`.", r.array())
@@ -984,7 +984,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 111
   Original: r.expr([[{"foo":1}]]).pluck("foo")
-  Java: r.expr(r.array(r.array(r.hashMap("foo", 1)))).pluck("foo")
+  Java: r.expr(r.array(r.array(r.hashMap("foo", 1L)))).pluck("foo")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot perform pluck on a sequence of sequences.', [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot perform pluck on a sequence of sequences.", r.array())
@@ -993,16 +993,16 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 112
   Original: r.expr(['a','b']).map(lambda x:r.expr({'a':1,'b':2}).pluck(x))
-  Java: r.expr(r.array("a", "b")).map(x -> r.expr(r.hashMap("a", 1).with("b", 2)).pluck(x))
+  Java: r.expr(r.array("a", "b")).map(x -> r.expr(r.hashMap("a", 1L).with("b", 2L)).pluck(x))
   ExpectedOriginal: ([{'a':1},{'b':2}])
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("a", 1), r.hashMap("b", 2))
+  ExpectedJava: r.array(r.hashMap("a", 1L), r.hashMap("b", 2L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 113
   Original: r.expr({"foo":{"bar":1}}).pluck({"foo":{"bar":"buzz"}})
-  Java: r.expr(r.hashMap("foo", r.hashMap("bar", 1))).pluck(r.hashMap("foo", r.hashMap("bar", "buzz")))
+  Java: r.expr(r.hashMap("foo", r.hashMap("bar", 1L))).pluck(r.hashMap("foo", r.hashMap("bar", "buzz")))
   ExpectedOriginal: ({"foo":{}})
   ExpectedType: Map
   ExpectedJava: r.hashMap("foo", r.hashMap())
@@ -1011,25 +1011,25 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 114
   Original: tbl.without().order_by('id').nth(0)
-  Java: tbl.without().orderBy("id").nth(0)
+  Java: tbl.without().orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0,'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("a", 0)
+  ExpectedJava: r.hashMap("id", 0L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 115
   Original: tbl.without('a').order_by('id').nth(0)
-  Java: tbl.without("a").orderBy("id").nth(0)
+  Java: tbl.without("a").orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0)
+  ExpectedJava: r.hashMap("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 116
   Original: tbl.without('id', 'a').nth(0)
-  Java: tbl.without("id", "a").nth(0)
+  Java: tbl.without("id", "a").nth(0L)
   ExpectedOriginal: ({})
   ExpectedType: Map
   ExpectedJava: r.hashMap()
@@ -1038,37 +1038,37 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 117
   Original: tbl.without('a', 'missing').order_by('id').nth(0)
-  Java: tbl.without("a", "missing").orderBy("id").nth(0)
+  Java: tbl.without("a", "missing").orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0)
+  ExpectedJava: r.hashMap("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 118
   Original: tbl3.without('a', {'b':'c'}).order_by('id').nth(0)
-  Java: tbl3.without("a", r.hashMap("b", "c")).orderBy("id").nth(0)
+  Java: tbl3.without("a", r.hashMap("b", "c")).orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0, 'b':{}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("b", r.hashMap())
+  ExpectedJava: r.hashMap("id", 0L).with("b", r.hashMap())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 119
   Original: tbl3.without(['a', {'b':'c'}]).order_by('id').nth(0)
-  Java: tbl3.without(r.array("a", r.hashMap("b", "c"))).orderBy("id").nth(0)
+  Java: tbl3.without(r.array("a", r.hashMap("b", "c"))).orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0, 'b':{}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("b", r.hashMap())
+  ExpectedJava: r.hashMap("id", 0L).with("b", r.hashMap())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 120
   Original: tbl3.without(['a', {'b':'d'}]).order_by('id').nth(0)
-  Java: tbl3.without(r.array("a", r.hashMap("b", "d"))).orderBy("id").nth(0)
+  Java: tbl3.without(r.array("a", r.hashMap("b", "d"))).orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0, 'b':{'c':0}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0).with("b", r.hashMap("c", 0))
+  ExpectedJava: r.hashMap("id", 0L).with("b", r.hashMap("c", 0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -1077,25 +1077,25 @@ DefsAndTests:
   Java: tbl.union(tbl2).count()
   ExpectedOriginal: 200
   ExpectedType: Long
-  ExpectedJava: 200
+  ExpectedJava: 200L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 122
   Original: tbl.union([1,2,3]).count()
-  Java: tbl.union(r.array(1, 2, 3)).count()
+  Java: tbl.union(r.array(1L, 2L, 3L)).count()
   ExpectedOriginal: 103
   ExpectedType: Long
-  ExpectedJava: 103
+  ExpectedJava: 103L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 123
   Original: r.expr([1,2,3]).union(tbl2).count()
-  Java: r.expr(r.array(1, 2, 3)).union(tbl2).count()
+  Java: r.expr(r.array(1L, 2L, 3L)).union(tbl2).count()
   ExpectedOriginal: 103
   ExpectedType: Long
-  ExpectedJava: 103
+  ExpectedJava: 103L
   RunOpts: []
 - TestType: JavaDef
   TestFile: transformation.yaml
@@ -1107,16 +1107,16 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 125
   Original: r.expr([1,2,3,4]).offsets_of(3)
-  Java: r.expr(r.array(1, 2, 3, 4)).offsetsOf(3)
+  Java: r.expr(r.array(1L, 2L, 3L, 4L)).offsetsOf(3L)
   ExpectedOriginal: '[2]'
   ExpectedType: List
-  ExpectedJava: r.array(2)
+  ExpectedJava: r.array(2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 126
   Original: r.expr([1]).offsets_of(tbl)
-  Java: r.expr(r.array(1)).offsetsOf(tbl)
+  Java: r.expr(r.array(1L)).offsetsOf(tbl)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type DATUM but found TABLE:', [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", r.array())
@@ -1125,16 +1125,16 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 127
   Original: 'r.expr(1).do(lambda x: r.expr([2,1,0]).offsets_of(x))'
-  Java: r.expr(1).do_(x -> r.expr(r.array(2, 1, 0)).offsetsOf(x))
+  Java: r.expr(1L).do_(x -> r.expr(r.array(2L, 1L, 0L)).offsetsOf(x))
   ExpectedOriginal: '[1]'
   ExpectedType: List
-  ExpectedJava: r.array(1)
+  ExpectedJava: r.array(1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 128
   Original: tbl.contains(tbl[0])
-  Java: tbl.contains(tbl.nth(0))
+  Java: tbl.contains(tbl.nth(0L))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -1143,7 +1143,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 129
   Original: tbl.contains(tbl[0].pluck('id'))
-  Java: tbl.contains(tbl.nth(0).pluck("id"))
+  Java: tbl.contains(tbl.nth(0L).pluck("id"))
   ExpectedOriginal: False
   ExpectedType: Boolean
   ExpectedJava: false
@@ -1152,16 +1152,16 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 132
   Original: tbl3.filter({'b':{'c':0}}).pluck('id').order_by('id').nth(0)
-  Java: tbl3.filter(r.hashMap("b", r.hashMap("c", 0))).pluck("id").orderBy("id").nth(0)
+  Java: tbl3.filter(r.hashMap("b", r.hashMap("c", 0L))).pluck("id").orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0)
+  ExpectedJava: r.hashMap("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
   TestNum: 133
   Original: tbl3.filter({'b':{'c':6}})
-  Java: tbl3.filter(r.hashMap("b", r.hashMap("c", 6)))
+  Java: tbl3.filter(r.hashMap("b", r.hashMap("c", 6L)))
   ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1170,7 +1170,7 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 134
   Original: tbl3.filter(r.literal({'id':0}))
-  Java: tbl3.filter(r.literal(r.hashMap("id", 0)))
+  Java: tbl3.filter(r.literal(r.hashMap("id", 0L)))
   ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: r.array()
@@ -1179,10 +1179,10 @@ DefsAndTests:
   TestFile: transformation.yaml
   TestNum: 135
   Original: tbl3.filter({'b':r.literal({'c':0})}).pluck('id').order_by('id').nth(0)
-  Java: tbl3.filter(r.hashMap("b", r.literal(r.hashMap("c", 0)))).pluck("id").orderBy("id").nth(0)
+  Java: tbl3.filter(r.hashMap("b", r.literal(r.hashMap("c", 0L)))).pluck("id").orderBy("id").nth(0L)
   ExpectedOriginal: ({'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 0)
+  ExpectedJava: r.hashMap("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -1191,7 +1191,7 @@ DefsAndTests:
   Java: r.db("test").tableDrop("test2")
   ExpectedOriginal: partial({'tables_dropped':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_dropped", 1))
+  ExpectedJava: partial(r.hashMap("tables_dropped", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transformation.yaml
@@ -1200,5 +1200,5 @@ DefsAndTests:
   Java: r.db("test").tableDrop("test3")
   ExpectedOriginal: partial({'tables_dropped':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_dropped", 1))
+  ExpectedJava: partial(r.hashMap("tables_dropped", 1L))
   RunOpts: []

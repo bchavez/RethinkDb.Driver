@@ -64,7 +64,7 @@ DefsAndTests:
   TestFile: times/time_arith.yaml
   TestNum: 11
   Original: ((t2 - t1) * 1000).do(lambda x:(x > 0.99) & (x < 1.01))
-  Java: r.sub(t2, t1).mul(1000).do_(x -> r.gt(x, 0.99).and(r.lt(x, 1.01)))
+  Java: r.sub(t2, t1).mul(1000L).do_(x -> r.gt(x, 0.99).and(r.lt(x, 1.01)))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -76,7 +76,7 @@ DefsAndTests:
   Java: r.sub(t3, t1)
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -85,13 +85,13 @@ DefsAndTests:
   Java: r.sub(t4, t1)
   ExpectedOriginal: 1000000000
   ExpectedType: Long
-  ExpectedJava: 1000000000
+  ExpectedJava: 1000000000L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
   TestNum: 14
   Original: ((t1 - t2) * 1000).do(lambda x:(x < -0.99) & (x > -1.01))
-  Java: r.sub(t1, t2).mul(1000).do_(x -> r.lt(x, -0.99).and(r.gt(x, -1.01)))
+  Java: r.sub(t1, t2).mul(1000L).do_(x -> r.lt(x, -0.99).and(r.gt(x, -1.01)))
   ExpectedOriginal: True
   ExpectedType: Boolean
   ExpectedJava: true
@@ -103,7 +103,7 @@ DefsAndTests:
   Java: r.sub(t1, t3)
   ExpectedOriginal: -1
   ExpectedType: Long
-  ExpectedJava: -1
+  ExpectedJava: -1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -112,7 +112,7 @@ DefsAndTests:
   Java: r.sub(t1, t4)
   ExpectedOriginal: -1000000000
   ExpectedType: Long
-  ExpectedJava: -1000000000
+  ExpectedJava: -1000000000L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
@@ -154,13 +154,13 @@ DefsAndTests:
   TestFile: times/time_arith.yaml
   TestNum: 21
   Original: datum_types = r.expr([null, true, false, 1, "1", [1], {"1":1}, r.binary(b'')])
-  Java: MakeArray datum_types = (MakeArray) (r.expr(r.array(null, true, false, 1, "1", r.array(1), r.hashMap("1", 1), r.binary(new byte[]{}))));
+  Java: MakeArray datum_types = (MakeArray) (r.expr(r.array(null, true, false, 1L, "1", r.array(1L), r.hashMap("1", 1L), r.binary(new byte[]{}))));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
   TestNum: 22
   Original: datum_types.map(lambda x:r.expr([[x, t1], [t1, x]]).map(lambda xy:xy[0].do(lambda x2:xy[1].do(lambda y:[x2 < y, x2 <= y, x2 == y, x2 != y, x2 >= y, x2 > y]))))
-  Java: datum_types.map(x -> r.expr(r.array(r.array(x, t1), r.array(t1, x))).map(xy -> xy.nth(0).do_(x2 -> xy.nth(1).do_(y -> r.array(r.lt(x2, y), r.le(x2, y), r.eq(x2, y), r.ne(x2, y), r.ge(x2, y), r.gt(x2, y))))))
+  Java: datum_types.map(x -> r.expr(r.array(r.array(x, t1), r.array(t1, x))).map(xy -> xy.nth(0L).do_(x2 -> xy.nth(1L).do_(y -> r.array(r.lt(x2, y), r.le(x2, y), r.eq(x2, y), r.ne(x2, y), r.ge(x2, y), r.gt(x2, y))))))
   ExpectedOriginal: ([[[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[false, false, false, true,  true,  true], [true,  true,  false, true,  false, false]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]]])
   ExpectedType: List
   ExpectedJava: r.array(r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(false, false, false, true, true, true), r.array(true, true, false, true, false, false)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)))

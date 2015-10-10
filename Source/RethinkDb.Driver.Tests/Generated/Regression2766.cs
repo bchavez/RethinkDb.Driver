@@ -105,7 +105,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Cannot call `merge` on objects of type `PTYPE<TIME>`.");
                  
                  /* Original: r.now().merge({"foo":4}) */
-                 var obtained = runOrCatch( r.now().merge(r.hashMap("foo", 4)) ,
+                 var obtained = runOrCatch( r.now().merge(r.hashMap("foo", 4L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -119,7 +119,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Cannot merge objects of type `PTYPE<TIME>`.");
                  
                  /* Original: r.expr({"foo":4}).merge(r.now()) */
-                 var obtained = runOrCatch( r.expr(r.hashMap("foo", 4)).merge(r.now()) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("foo", 4L)).merge(r.now()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -147,7 +147,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Invalid path argument `1404691200`.");
                  
                  /* Original: r.object().has_fields(r.time(2014, 7, 7, 'Z')) */
-                 var obtained = runOrCatch( r.object_().hasFields(r.time(2014, 7, 7, "Z")) ,
+                 var obtained = runOrCatch( r.object_().hasFields(r.time(2014L, 7L, 7L, "Z")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -161,7 +161,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Cannot call `keys` on objects of type `NUMBER`.");
                  
                  /* Original: r.expr(1).keys() */
-                 var obtained = runOrCatch( r.expr(1).keys() ,
+                 var obtained = runOrCatch( r.expr(1L).keys() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

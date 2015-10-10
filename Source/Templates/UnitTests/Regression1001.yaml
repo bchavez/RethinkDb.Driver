@@ -45,7 +45,7 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).count()
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
@@ -54,7 +54,7 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "a").count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/1001.yaml
@@ -63,5 +63,5 @@ DefsAndTests:
   Java: tbl.between(r.minval(), r.maxval()).optArg("index", "b").count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []

@@ -9,28 +9,28 @@ DefsAndTests:
   TestFile: aggregation.yaml
   TestNum: 1
   Original: tbl.insert([{'id':i, 'a':i%4} for i in xrange(100)])
-  Java: tbl.insert(IntStream.range(0, 100).boxed().map(i -> r.hashMap("id", i).with("a", r.mod(i, 4))).collect(Collectors.toList()))
+  Java: tbl.insert(LongStream.range(0, 100L).boxed().map(i -> r.hashMap("id", i).with("a", r.mod(i, 4L))).collect(Collectors.toList()))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
   TestNum: 2
   Original: tbl2.insert([{'id':i, 'b':i%4} for i in xrange(100)])
-  Java: tbl2.insert(IntStream.range(0, 100).boxed().map(i -> r.hashMap("id", i).with("b", r.mod(i, 4))).collect(Collectors.toList()))
+  Java: tbl2.insert(LongStream.range(0, 100L).boxed().map(i -> r.hashMap("id", i).with("b", r.mod(i, 4L))).collect(Collectors.toList()))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
   TestNum: 3
   Original: tbl3.insert([{'id':i, 'a':i%4, 'b':{'c':i%5}} for i in xrange(100)])
-  Java: tbl3.insert(IntStream.range(0, 100).boxed().map(i -> r.hashMap("id", i).with("a", r.mod(i, 4)).with("b", r.hashMap("c", r.mod(i, 5)))).collect(Collectors.toList()))
+  Java: tbl3.insert(LongStream.range(0, 100L).boxed().map(i -> r.hashMap("id", i).with("a", r.mod(i, 4L)).with("b", r.hashMap("c", r.mod(i, 5L)))).collect(Collectors.toList()))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L)
   RunOpts: []
 - TestType: JavaDef
   TestFile: aggregation.yaml
@@ -48,19 +48,19 @@ DefsAndTests:
   TestFile: aggregation.yaml
   TestNum: 6
   Original: tbl4.insert({'id':0, 'time':r.epoch_time(time1)})
-  Java: tbl4.insert(r.hashMap("id", 0).with("time", r.epochTime(time1)))
+  Java: tbl4.insert(r.hashMap("id", 0L).with("time", r.epochTime(time1)))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
   TestNum: 6
   Original: tbl4.insert({'id':1, 'time':r.epoch_time(time2)})
-  Java: tbl4.insert(r.hashMap("id", 1).with("time", r.epochTime(time2)))
+  Java: tbl4.insert(r.hashMap("id", 1L).with("time", r.epochTime(time2)))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -69,7 +69,7 @@ DefsAndTests:
   Java: tbl.sum("a")
   ExpectedOriginal: 150
   ExpectedType: Long
-  ExpectedJava: 150
+  ExpectedJava: 150L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -78,7 +78,7 @@ DefsAndTests:
   Java: tbl.map(row -> row.g("a")).sum()
   ExpectedOriginal: 150
   ExpectedType: Long
-  ExpectedJava: 150
+  ExpectedJava: 150L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -87,7 +87,7 @@ DefsAndTests:
   Java: tbl.group("a").sum("id")
   ExpectedOriginal: ({0:1200, 1:1225, 2:1250, 3:1275})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, 1200).with(1, 1225).with(2, 1250).with(3, 1275)
+  ExpectedJava: r.hashMap(0L, 1200L).with(1L, 1225L).with(2L, 1250L).with(3L, 1275L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -114,7 +114,7 @@ DefsAndTests:
   Java: tbl.group("a").avg("id")
   ExpectedOriginal: ({0:48, 1:49, 2:50, 3:51})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, 48).with(1, 49).with(2, 50).with(3, 51)
+  ExpectedJava: r.hashMap(0L, 48L).with(1L, 49L).with(2L, 50L).with(3L, 51L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -123,7 +123,7 @@ DefsAndTests:
   Java: tbl.min("a").g("a")
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -132,7 +132,7 @@ DefsAndTests:
   Java: tbl.orderBy("id").min("a")
   ExpectedOriginal: ({'a':0, 'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 0).with("id", 0)
+  ExpectedJava: r.hashMap("a", 0L).with("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -141,7 +141,7 @@ DefsAndTests:
   Java: tbl.map(row -> row.g("a")).min()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -150,7 +150,7 @@ DefsAndTests:
   Java: tbl.group("a").min("id")
   ExpectedOriginal: ({0:{'a':0, 'id':0}, 1:{'a':1, 'id':1}, 2:{'a':2, 'id':2}, 3:{'a':3, 'id':3}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, r.hashMap("a", 0).with("id", 0)).with(1, r.hashMap("a", 1).with("id", 1)).with(2, r.hashMap("a", 2).with("id", 2)).with(3, r.hashMap("a", 3).with("id", 3))
+  ExpectedJava: r.hashMap(0L, r.hashMap("a", 0L).with("id", 0L)).with(1L, r.hashMap("a", 1L).with("id", 1L)).with(2L, r.hashMap("a", 2L).with("id", 2L)).with(3L, r.hashMap("a", 3L).with("id", 3L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -159,7 +159,7 @@ DefsAndTests:
   Java: tbl.orderBy("id").max("a")
   ExpectedOriginal: ({'a':3, 'id':3})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 3).with("id", 3)
+  ExpectedJava: r.hashMap("a", 3L).with("id", 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -168,7 +168,7 @@ DefsAndTests:
   Java: tbl.map(row -> row.g("a")).max()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -177,7 +177,7 @@ DefsAndTests:
   Java: tbl.group("a").max("id")
   ExpectedOriginal: ({0:{'a':0, 'id':96}, 1:{'a':1, 'id':97}, 2:{'a':2, 'id':98}, 3:{'a':3, 'id':99}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, r.hashMap("a", 0).with("id", 96)).with(1, r.hashMap("a", 1).with("id", 97)).with(2, r.hashMap("a", 2).with("id", 98)).with(3, r.hashMap("a", 3).with("id", 99))
+  ExpectedJava: r.hashMap(0L, r.hashMap("a", 0L).with("id", 96L)).with(1L, r.hashMap("a", 1L).with("id", 97L)).with(2L, r.hashMap("a", 2L).with("id", 98L)).with(3L, r.hashMap("a", 3L).with("id", 99L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -186,7 +186,7 @@ DefsAndTests:
   Java: tbl.min()
   ExpectedOriginal: ({"a":0, "id":0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 0).with("id", 0)
+  ExpectedJava: r.hashMap("a", 0L).with("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -195,7 +195,7 @@ DefsAndTests:
   Java: tbl.group("a").min()
   ExpectedOriginal: ({0:{"a":0, "id":0}, 1:{"a":1, "id":1}, 2:{"a":2, "id":2}, 3:{"a":3, "id":3}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, r.hashMap("a", 0).with("id", 0)).with(1, r.hashMap("a", 1).with("id", 1)).with(2, r.hashMap("a", 2).with("id", 2)).with(3, r.hashMap("a", 3).with("id", 3))
+  ExpectedJava: r.hashMap(0L, r.hashMap("a", 0L).with("id", 0L)).with(1L, r.hashMap("a", 1L).with("id", 1L)).with(2L, r.hashMap("a", 2L).with("id", 2L)).with(3L, r.hashMap("a", 3L).with("id", 3L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -204,7 +204,7 @@ DefsAndTests:
   Java: tbl.max()
   ExpectedOriginal: ({"a":3, "id":99})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 3).with("id", 99)
+  ExpectedJava: r.hashMap("a", 3L).with("id", 99L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -213,7 +213,7 @@ DefsAndTests:
   Java: tbl.group("a").max()
   ExpectedOriginal: ({0:{'a':0, 'id':96}, 1:{'a':1, 'id':97}, 2:{'a':2, 'id':98}, 3:{'a':3, 'id':99}})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, r.hashMap("a", 0).with("id", 96)).with(1, r.hashMap("a", 1).with("id", 97)).with(2, r.hashMap("a", 2).with("id", 98)).with(3, r.hashMap("a", 3).with("id", 99))
+  ExpectedJava: r.hashMap(0L, r.hashMap("a", 0L).with("id", 96L)).with(1L, r.hashMap("a", 1L).with("id", 97L)).with(2L, r.hashMap("a", 2L).with("id", 98L)).with(3L, r.hashMap("a", 3L).with("id", 99L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -222,7 +222,7 @@ DefsAndTests:
   Java: tbl.sum(row -> row.g("a"))
   ExpectedOriginal: 150
   ExpectedType: Long
-  ExpectedJava: 150
+  ExpectedJava: 150L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -231,7 +231,7 @@ DefsAndTests:
   Java: tbl.map(row -> row.g("a")).sum()
   ExpectedOriginal: 150
   ExpectedType: Long
-  ExpectedJava: 150
+  ExpectedJava: 150L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -240,7 +240,7 @@ DefsAndTests:
   Java: tbl.group(row -> row.g("a")).sum(row -> row.g("id"))
   ExpectedOriginal: ({0:1200, 1:1225, 2:1250, 3:1275})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, 1200).with(1, 1225).with(2, 1250).with(3, 1275)
+  ExpectedJava: r.hashMap(0L, 1200L).with(1L, 1225L).with(2L, 1250L).with(3L, 1275L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -267,7 +267,7 @@ DefsAndTests:
   Java: tbl.group(row -> row.g("a")).avg(row -> row.g("id"))
   ExpectedOriginal: ({0:48, 1:49, 2:50, 3:51})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, 48).with(1, 49).with(2, 50).with(3, 51)
+  ExpectedJava: r.hashMap(0L, 48L).with(1L, 49L).with(2L, 50L).with(3L, 51L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -276,7 +276,7 @@ DefsAndTests:
   Java: tbl.orderBy(r.desc("id")).min(row -> row.g("a"))
   ExpectedOriginal: ({'a':0, 'id':96})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 0).with("id", 96)
+  ExpectedJava: r.hashMap("a", 0L).with("id", 96L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -285,7 +285,7 @@ DefsAndTests:
   Java: tbl.orderBy(r.desc("id")).min(row -> row.g("a")).g("a")
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -294,7 +294,7 @@ DefsAndTests:
   Java: tbl.map(row -> row.g("a")).min()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -303,7 +303,7 @@ DefsAndTests:
   Java: tbl.group(row -> row.g("a")).min(row -> row.g("id")).g("id")
   ExpectedOriginal: ({0:0, 1:1, 2:2, 3:3})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, 0).with(1, 1).with(2, 2).with(3, 3)
+  ExpectedJava: r.hashMap(0L, 0L).with(1L, 1L).with(2L, 2L).with(3L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -312,7 +312,7 @@ DefsAndTests:
   Java: tbl.max(row -> row.g("a")).g("a")
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -321,7 +321,7 @@ DefsAndTests:
   Java: tbl.map(row -> row.g("a")).max()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -330,7 +330,7 @@ DefsAndTests:
   Java: tbl.group(row -> row.g("a")).max(row -> row.g("id")).g("id")
   ExpectedOriginal: ({0:96, 1:97, 2:98, 3:99})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, 96).with(1, 97).with(2, 98).with(3, 99)
+  ExpectedJava: r.hashMap(0L, 96L).with(1L, 97L).with(2L, 98L).with(3L, 99L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -339,7 +339,7 @@ DefsAndTests:
   Java: tbl.group(row -> row.g("a")).map(row -> row.g("id")).reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: ({0:1200, 1:1225, 2:1250, 3:1275})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, 1200).with(1, 1225).with(2, 1250).with(3, 1275)
+  ExpectedJava: r.hashMap(0L, 1200L).with(1L, 1225L).with(2L, 1250L).with(3L, 1275L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -348,7 +348,7 @@ DefsAndTests:
   Java: tbl.group(row -> row.g("a")).map(row -> row.g("id")).reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[0, 1200], [1, 1225], [2, 1250], [3, 1275]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0, 1200), r.array(1, 1225), r.array(2, 1250), r.array(3, 1275)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0L, 1200L), r.array(1L, 1225L), r.array(2L, 1250L), r.array(3L, 1275L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -356,10 +356,10 @@ DefsAndTests:
   TestFile: aggregation.yaml
   TestNum: 39
   Original: r.expr([{'a':1}]).filter(true).limit(1).group('a')
-  Java: r.expr(r.array(r.hashMap("a", 1))).filter(true).limit(1).group("a")
+  Java: r.expr(r.array(r.hashMap("a", 1L))).filter(true).limit(1L).group("a")
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[1, [{'a':1}]]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(1, r.array(r.hashMap("a", 1)))))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(1L, r.array(r.hashMap("a", 1L)))))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -394,19 +394,19 @@ DefsAndTests:
   TestFile: aggregation.yaml
   TestNum: 43
   Original: tbl.order_by(index='id').filter(lambda row:row['id'] < 10).group('a').map(lambda row:row['id']).coerce_to('ARRAY')
-  Java: tbl.orderBy().optArg("index", "id").filter(row -> row.g("id").lt(10)).group("a").map(row -> row.g("id")).coerceTo("ARRAY")
+  Java: tbl.orderBy().optArg("index", "id").filter(row -> row.g("id").lt(10L)).group("a").map(row -> row.g("id")).coerceTo("ARRAY")
   ExpectedOriginal: ({0:[0,4,8],1:[1,5,9],2:[2,6],3:[3,7]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, r.array(0, 4, 8)).with(1, r.array(1, 5, 9)).with(2, r.array(2, 6)).with(3, r.array(3, 7))
+  ExpectedJava: r.hashMap(0L, r.array(0L, 4L, 8L)).with(1L, r.array(1L, 5L, 9L)).with(2L, r.array(2L, 6L)).with(3L, r.array(3L, 7L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
   TestNum: 44
   Original: tbl.filter(lambda row:row['id'] < 10).group('a').count().do(lambda x:x*x)
-  Java: tbl.filter(row -> row.g("id").lt(10)).group("a").count().do_(x -> r.mul(x, x))
+  Java: tbl.filter(row -> row.g("id").lt(10L)).group("a").count().do_(x -> r.mul(x, x))
   ExpectedOriginal: ({0:9,1:9,2:4,3:4})
   ExpectedType: Map
-  ExpectedJava: r.hashMap(0, 9).with(1, 9).with(2, 4).with(3, 4)
+  ExpectedJava: r.hashMap(0L, 9L).with(1L, 9L).with(2L, 4L).with(3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -415,7 +415,7 @@ DefsAndTests:
   Java: tbl.union(tbl).group(row -> row.g("a")).map(row -> row.g("id")).reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[0, 2400], [1, 2450], [2, 2500], [3, 2550]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0, 2400), r.array(1, 2450), r.array(2, 2500), r.array(3, 2550)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0L, 2400L), r.array(1L, 2450L), r.array(2L, 2500L), r.array(3L, 2550L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -426,7 +426,7 @@ DefsAndTests:
   Java: tbl.coerceTo("array").union(tbl).group(row -> row.g("a")).map(row -> row.g("id")).reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[0, 2400], [1, 2450], [2, 2500], [3, 2550]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0, 2400), r.array(1, 2450), r.array(2, 2500), r.array(3, 2550)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0L, 2400L), r.array(1L, 2450L), r.array(2L, 2500L), r.array(3L, 2550L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -437,7 +437,7 @@ DefsAndTests:
   Java: tbl.union(tbl.coerceTo("array")).group(row -> row.g("a")).map(row -> row.g("id")).reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[0, 2400], [1, 2450], [2, 2500], [3, 2550]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0, 2400), r.array(1, 2450), r.array(2, 2500), r.array(3, 2550)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0L, 2400L), r.array(1L, 2450L), r.array(2L, 2500L), r.array(3L, 2550L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -448,7 +448,7 @@ DefsAndTests:
   Java: tbl.group(row -> row.g("a")).map(row -> row.g("id")).reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[0, 1200], [1, 1225], [2, 1250], [3, 1275]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0, 1200), r.array(1, 1225), r.array(2, 1250), r.array(3, 1275)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0L, 1200L), r.array(1L, 1225L), r.array(2L, 1250L), r.array(3L, 1275L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -459,7 +459,7 @@ DefsAndTests:
   Java: tbl.group("a").count()
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[0, 25], [1, 25], [2, 25], [3, 25]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0, 25), r.array(1, 25), r.array(2, 25), r.array(3, 25)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0L, 25L), r.array(1L, 25L), r.array(2L, 25L), r.array(3L, 25L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -470,7 +470,7 @@ DefsAndTests:
   Java: tbl.group("a").sum("id")
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[0, 1200], [1, 1225], [2, 1250], [3, 1275]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0, 1200), r.array(1, 1225), r.array(2, 1250), r.array(3, 1275)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0L, 1200L), r.array(1L, 1225L), r.array(2L, 1250L), r.array(3L, 1275L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -481,7 +481,7 @@ DefsAndTests:
   Java: tbl.group("a").avg("id")
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[0, 48], [1, 49], [2, 50], [3, 51]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0, 48), r.array(1, 49), r.array(2, 50), r.array(3, 51)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0L, 48L), r.array(1L, 49L), r.array(2L, 50L), r.array(3L, 51L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -492,7 +492,7 @@ DefsAndTests:
   Java: tbl3.group(row -> row.g("b").g("c")).count()
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[0, 20], [1, 20], [2, 20], [3, 20], [4, 20]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0, 20), r.array(1, 20), r.array(2, 20), r.array(3, 20), r.array(4, 20)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0L, 20L), r.array(1L, 20L), r.array(2L, 20L), r.array(3L, 20L), r.array(4L, 20L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -500,10 +500,10 @@ DefsAndTests:
   TestFile: aggregation.yaml
   TestNum: 54
   Original: tbl.group('a', lambda row:row['id'].mod(3)).count()
-  Java: tbl.group("a", row -> row.g("id").mod(3)).count()
+  Java: tbl.group("a", row -> row.g("id").mod(3L)).count()
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[[0, 0], 9], [[0, 1], 8], [[0, 2], 8], [[1, 0], 8], [[1, 1], 9], [[1, 2], 8], [[2, 0], 8], [[2, 1], 8], [[2, 2], 9], [[3, 0], 9], [[3, 1], 8], [[3, 2], 8]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(r.array(0, 0), 9), r.array(r.array(0, 1), 8), r.array(r.array(0, 2), 8), r.array(r.array(1, 0), 8), r.array(r.array(1, 1), 9), r.array(r.array(1, 2), 8), r.array(r.array(2, 0), 8), r.array(r.array(2, 1), 8), r.array(r.array(2, 2), 9), r.array(r.array(3, 0), 9), r.array(r.array(3, 1), 8), r.array(r.array(3, 2), 8)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(r.array(0L, 0L), 9L), r.array(r.array(0L, 1L), 8L), r.array(r.array(0L, 2L), 8L), r.array(r.array(1L, 0L), 8L), r.array(r.array(1L, 1L), 9L), r.array(r.array(1L, 2L), 8L), r.array(r.array(2L, 0L), 8L), r.array(r.array(2L, 1L), 8L), r.array(r.array(2L, 2L), 9L), r.array(r.array(3L, 0L), 9L), r.array(r.array(3L, 1L), 8L), r.array(r.array(3L, 2L), 8L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -514,7 +514,7 @@ DefsAndTests:
   Java: tbl.map(row -> row.g("a")).distinct().count()
   ExpectedOriginal: 4
   ExpectedType: Long
-  ExpectedJava: 4
+  ExpectedJava: 4L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -532,7 +532,7 @@ DefsAndTests:
   Java: tbl.distinct().count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -550,7 +550,7 @@ DefsAndTests:
   Java: tbl.distinct().optArg("index", "id").count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -559,7 +559,7 @@ DefsAndTests:
   Java: tbl.indexCreate("a")
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -574,19 +574,19 @@ DefsAndTests:
   TestFile: aggregation.yaml
   TestNum: 69
   Original: tbl.between(0, 1, index='a').distinct().count()
-  Java: tbl.between(0, 1).optArg("index", "a").distinct().count()
+  Java: tbl.between(0L, 1L).optArg("index", "a").distinct().count()
   ExpectedOriginal: 25
   ExpectedType: Long
-  ExpectedJava: 25
+  ExpectedJava: 25L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
   TestNum: 70
   Original: tbl.between(0, 1, index='a').distinct(index='id').count()
-  Java: tbl.between(0, 1).optArg("index", "a").distinct().optArg("index", "id").count()
+  Java: tbl.between(0L, 1L).optArg("index", "a").distinct().optArg("index", "id").count()
   ExpectedOriginal: 25
   ExpectedType: Long
-  ExpectedJava: 25
+  ExpectedJava: 25L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -604,7 +604,7 @@ DefsAndTests:
   Java: tbl.distinct().optArg("index", "a").count()
   ExpectedOriginal: 4
   ExpectedType: Long
-  ExpectedJava: 4
+  ExpectedJava: 4L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -622,7 +622,7 @@ DefsAndTests:
   Java: tbl.group().optArg("index", "id").count()
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1], [7, 1], [8, 1], [9, 1], [10, 1], [11, 1], [12, 1], [13, 1], [14, 1], [15, 1], [16, 1], [17, 1], [18, 1], [19, 1], [20, 1], [21, 1], [22, 1], [23, 1], [24, 1], [25, 1], [26, 1], [27, 1], [28, 1], [29, 1], [30, 1], [31, 1], [32, 1], [33, 1], [34, 1], [35, 1], [36, 1], [37, 1], [38, 1], [39, 1], [40, 1], [41, 1], [42, 1], [43, 1], [44, 1], [45, 1], [46, 1], [47, 1], [48, 1], [49, 1], [50, 1], [51, 1], [52, 1], [53, 1], [54, 1], [55, 1], [56, 1], [57, 1], [58, 1], [59, 1], [60, 1], [61, 1], [62, 1], [63, 1], [64, 1], [65, 1], [66, 1], [67, 1], [68, 1], [69, 1], [70, 1], [71, 1], [72, 1], [73, 1], [74, 1], [75, 1], [76, 1], [77, 1], [78, 1], [79, 1], [80, 1], [81, 1], [82, 1], [83, 1], [84, 1], [85, 1], [86, 1], [87, 1], [88, 1], [89, 1], [90, 1], [91, 1], [92, 1], [93, 1], [94, 1], [95, 1], [96, 1], [97, 1], [98, 1], [99, 1]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0, 1), r.array(1, 1), r.array(2, 1), r.array(3, 1), r.array(4, 1), r.array(5, 1), r.array(6, 1), r.array(7, 1), r.array(8, 1), r.array(9, 1), r.array(10, 1), r.array(11, 1), r.array(12, 1), r.array(13, 1), r.array(14, 1), r.array(15, 1), r.array(16, 1), r.array(17, 1), r.array(18, 1), r.array(19, 1), r.array(20, 1), r.array(21, 1), r.array(22, 1), r.array(23, 1), r.array(24, 1), r.array(25, 1), r.array(26, 1), r.array(27, 1), r.array(28, 1), r.array(29, 1), r.array(30, 1), r.array(31, 1), r.array(32, 1), r.array(33, 1), r.array(34, 1), r.array(35, 1), r.array(36, 1), r.array(37, 1), r.array(38, 1), r.array(39, 1), r.array(40, 1), r.array(41, 1), r.array(42, 1), r.array(43, 1), r.array(44, 1), r.array(45, 1), r.array(46, 1), r.array(47, 1), r.array(48, 1), r.array(49, 1), r.array(50, 1), r.array(51, 1), r.array(52, 1), r.array(53, 1), r.array(54, 1), r.array(55, 1), r.array(56, 1), r.array(57, 1), r.array(58, 1), r.array(59, 1), r.array(60, 1), r.array(61, 1), r.array(62, 1), r.array(63, 1), r.array(64, 1), r.array(65, 1), r.array(66, 1), r.array(67, 1), r.array(68, 1), r.array(69, 1), r.array(70, 1), r.array(71, 1), r.array(72, 1), r.array(73, 1), r.array(74, 1), r.array(75, 1), r.array(76, 1), r.array(77, 1), r.array(78, 1), r.array(79, 1), r.array(80, 1), r.array(81, 1), r.array(82, 1), r.array(83, 1), r.array(84, 1), r.array(85, 1), r.array(86, 1), r.array(87, 1), r.array(88, 1), r.array(89, 1), r.array(90, 1), r.array(91, 1), r.array(92, 1), r.array(93, 1), r.array(94, 1), r.array(95, 1), r.array(96, 1), r.array(97, 1), r.array(98, 1), r.array(99, 1)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0L, 1L), r.array(1L, 1L), r.array(2L, 1L), r.array(3L, 1L), r.array(4L, 1L), r.array(5L, 1L), r.array(6L, 1L), r.array(7L, 1L), r.array(8L, 1L), r.array(9L, 1L), r.array(10L, 1L), r.array(11L, 1L), r.array(12L, 1L), r.array(13L, 1L), r.array(14L, 1L), r.array(15L, 1L), r.array(16L, 1L), r.array(17L, 1L), r.array(18L, 1L), r.array(19L, 1L), r.array(20L, 1L), r.array(21L, 1L), r.array(22L, 1L), r.array(23L, 1L), r.array(24L, 1L), r.array(25L, 1L), r.array(26L, 1L), r.array(27L, 1L), r.array(28L, 1L), r.array(29L, 1L), r.array(30L, 1L), r.array(31L, 1L), r.array(32L, 1L), r.array(33L, 1L), r.array(34L, 1L), r.array(35L, 1L), r.array(36L, 1L), r.array(37L, 1L), r.array(38L, 1L), r.array(39L, 1L), r.array(40L, 1L), r.array(41L, 1L), r.array(42L, 1L), r.array(43L, 1L), r.array(44L, 1L), r.array(45L, 1L), r.array(46L, 1L), r.array(47L, 1L), r.array(48L, 1L), r.array(49L, 1L), r.array(50L, 1L), r.array(51L, 1L), r.array(52L, 1L), r.array(53L, 1L), r.array(54L, 1L), r.array(55L, 1L), r.array(56L, 1L), r.array(57L, 1L), r.array(58L, 1L), r.array(59L, 1L), r.array(60L, 1L), r.array(61L, 1L), r.array(62L, 1L), r.array(63L, 1L), r.array(64L, 1L), r.array(65L, 1L), r.array(66L, 1L), r.array(67L, 1L), r.array(68L, 1L), r.array(69L, 1L), r.array(70L, 1L), r.array(71L, 1L), r.array(72L, 1L), r.array(73L, 1L), r.array(74L, 1L), r.array(75L, 1L), r.array(76L, 1L), r.array(77L, 1L), r.array(78L, 1L), r.array(79L, 1L), r.array(80L, 1L), r.array(81L, 1L), r.array(82L, 1L), r.array(83L, 1L), r.array(84L, 1L), r.array(85L, 1L), r.array(86L, 1L), r.array(87L, 1L), r.array(88L, 1L), r.array(89L, 1L), r.array(90L, 1L), r.array(91L, 1L), r.array(92L, 1L), r.array(93L, 1L), r.array(94L, 1L), r.array(95L, 1L), r.array(96L, 1L), r.array(97L, 1L), r.array(98L, 1L), r.array(99L, 1L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -633,7 +633,7 @@ DefsAndTests:
   Java: tbl.group().optArg("index", "a").count()
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[0, 25], [1, 25], [2, 25], [3, 25]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0, 25), r.array(1, 25), r.array(2, 25), r.array(3, 25)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(0L, 25L), r.array(1L, 25L), r.array(2L, 25L), r.array(3L, 25L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -644,7 +644,7 @@ DefsAndTests:
   Java: tbl.group("a").optArg("index", "id").count()
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[[0, 0], 1], [[0, 4], 1], [[0, 8], 1], [[0, 12], 1], [[0, 16], 1], [[0, 20], 1], [[0, 24], 1], [[0, 28], 1], [[0, 32], 1], [[0, 36], 1], [[0, 40], 1], [[0, 44], 1], [[0, 48], 1], [[0, 52], 1], [[0, 56], 1], [[0, 60], 1], [[0, 64], 1], [[0, 68], 1], [[0, 72], 1], [[0, 76], 1], [[0, 80], 1], [[0, 84], 1], [[0, 88], 1], [[0, 92], 1], [[0, 96], 1], [[1, 1], 1], [[1, 5], 1], [[1, 9], 1], [[1, 13], 1], [[1, 17], 1], [[1, 21], 1], [[1, 25], 1], [[1, 29], 1], [[1, 33], 1], [[1, 37], 1], [[1, 41], 1], [[1, 45], 1], [[1, 49], 1], [[1, 53], 1], [[1, 57], 1], [[1, 61], 1], [[1, 65], 1], [[1, 69], 1], [[1, 73], 1], [[1, 77], 1], [[1, 81], 1], [[1, 85], 1], [[1, 89], 1], [[1, 93], 1], [[1, 97], 1], [[2, 2], 1], [[2, 6], 1], [[2, 10], 1], [[2, 14], 1], [[2, 18], 1], [[2, 22], 1], [[2, 26], 1], [[2, 30], 1], [[2, 34], 1], [[2, 38], 1], [[2, 42], 1], [[2, 46], 1], [[2, 50], 1], [[2, 54], 1], [[2, 58], 1], [[2, 62], 1], [[2, 66], 1], [[2, 70], 1], [[2, 74], 1], [[2, 78], 1], [[2, 82], 1], [[2, 86], 1], [[2, 90], 1], [[2, 94], 1], [[2, 98], 1], [[3, 3], 1], [[3, 7], 1], [[3, 11], 1], [[3, 15], 1], [[3, 19], 1], [[3, 23], 1], [[3, 27], 1], [[3, 31], 1], [[3, 35], 1], [[3, 39], 1], [[3, 43], 1], [[3, 47], 1], [[3, 51], 1], [[3, 55], 1], [[3, 59], 1], [[3, 63], 1], [[3, 67], 1], [[3, 71], 1], [[3, 75], 1], [[3, 79], 1], [[3, 83], 1], [[3, 87], 1], [[3, 91], 1], [[3, 95], 1], [[3, 99], 1]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(r.array(0, 0), 1), r.array(r.array(0, 4), 1), r.array(r.array(0, 8), 1), r.array(r.array(0, 12), 1), r.array(r.array(0, 16), 1), r.array(r.array(0, 20), 1), r.array(r.array(0, 24), 1), r.array(r.array(0, 28), 1), r.array(r.array(0, 32), 1), r.array(r.array(0, 36), 1), r.array(r.array(0, 40), 1), r.array(r.array(0, 44), 1), r.array(r.array(0, 48), 1), r.array(r.array(0, 52), 1), r.array(r.array(0, 56), 1), r.array(r.array(0, 60), 1), r.array(r.array(0, 64), 1), r.array(r.array(0, 68), 1), r.array(r.array(0, 72), 1), r.array(r.array(0, 76), 1), r.array(r.array(0, 80), 1), r.array(r.array(0, 84), 1), r.array(r.array(0, 88), 1), r.array(r.array(0, 92), 1), r.array(r.array(0, 96), 1), r.array(r.array(1, 1), 1), r.array(r.array(1, 5), 1), r.array(r.array(1, 9), 1), r.array(r.array(1, 13), 1), r.array(r.array(1, 17), 1), r.array(r.array(1, 21), 1), r.array(r.array(1, 25), 1), r.array(r.array(1, 29), 1), r.array(r.array(1, 33), 1), r.array(r.array(1, 37), 1), r.array(r.array(1, 41), 1), r.array(r.array(1, 45), 1), r.array(r.array(1, 49), 1), r.array(r.array(1, 53), 1), r.array(r.array(1, 57), 1), r.array(r.array(1, 61), 1), r.array(r.array(1, 65), 1), r.array(r.array(1, 69), 1), r.array(r.array(1, 73), 1), r.array(r.array(1, 77), 1), r.array(r.array(1, 81), 1), r.array(r.array(1, 85), 1), r.array(r.array(1, 89), 1), r.array(r.array(1, 93), 1), r.array(r.array(1, 97), 1), r.array(r.array(2, 2), 1), r.array(r.array(2, 6), 1), r.array(r.array(2, 10), 1), r.array(r.array(2, 14), 1), r.array(r.array(2, 18), 1), r.array(r.array(2, 22), 1), r.array(r.array(2, 26), 1), r.array(r.array(2, 30), 1), r.array(r.array(2, 34), 1), r.array(r.array(2, 38), 1), r.array(r.array(2, 42), 1), r.array(r.array(2, 46), 1), r.array(r.array(2, 50), 1), r.array(r.array(2, 54), 1), r.array(r.array(2, 58), 1), r.array(r.array(2, 62), 1), r.array(r.array(2, 66), 1), r.array(r.array(2, 70), 1), r.array(r.array(2, 74), 1), r.array(r.array(2, 78), 1), r.array(r.array(2, 82), 1), r.array(r.array(2, 86), 1), r.array(r.array(2, 90), 1), r.array(r.array(2, 94), 1), r.array(r.array(2, 98), 1), r.array(r.array(3, 3), 1), r.array(r.array(3, 7), 1), r.array(r.array(3, 11), 1), r.array(r.array(3, 15), 1), r.array(r.array(3, 19), 1), r.array(r.array(3, 23), 1), r.array(r.array(3, 27), 1), r.array(r.array(3, 31), 1), r.array(r.array(3, 35), 1), r.array(r.array(3, 39), 1), r.array(r.array(3, 43), 1), r.array(r.array(3, 47), 1), r.array(r.array(3, 51), 1), r.array(r.array(3, 55), 1), r.array(r.array(3, 59), 1), r.array(r.array(3, 63), 1), r.array(r.array(3, 67), 1), r.array(r.array(3, 71), 1), r.array(r.array(3, 75), 1), r.array(r.array(3, 79), 1), r.array(r.array(3, 83), 1), r.array(r.array(3, 87), 1), r.array(r.array(3, 91), 1), r.array(r.array(3, 95), 1), r.array(r.array(3, 99), 1)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(r.array(0L, 0L), 1L), r.array(r.array(0L, 4L), 1L), r.array(r.array(0L, 8L), 1L), r.array(r.array(0L, 12L), 1L), r.array(r.array(0L, 16L), 1L), r.array(r.array(0L, 20L), 1L), r.array(r.array(0L, 24L), 1L), r.array(r.array(0L, 28L), 1L), r.array(r.array(0L, 32L), 1L), r.array(r.array(0L, 36L), 1L), r.array(r.array(0L, 40L), 1L), r.array(r.array(0L, 44L), 1L), r.array(r.array(0L, 48L), 1L), r.array(r.array(0L, 52L), 1L), r.array(r.array(0L, 56L), 1L), r.array(r.array(0L, 60L), 1L), r.array(r.array(0L, 64L), 1L), r.array(r.array(0L, 68L), 1L), r.array(r.array(0L, 72L), 1L), r.array(r.array(0L, 76L), 1L), r.array(r.array(0L, 80L), 1L), r.array(r.array(0L, 84L), 1L), r.array(r.array(0L, 88L), 1L), r.array(r.array(0L, 92L), 1L), r.array(r.array(0L, 96L), 1L), r.array(r.array(1L, 1L), 1L), r.array(r.array(1L, 5L), 1L), r.array(r.array(1L, 9L), 1L), r.array(r.array(1L, 13L), 1L), r.array(r.array(1L, 17L), 1L), r.array(r.array(1L, 21L), 1L), r.array(r.array(1L, 25L), 1L), r.array(r.array(1L, 29L), 1L), r.array(r.array(1L, 33L), 1L), r.array(r.array(1L, 37L), 1L), r.array(r.array(1L, 41L), 1L), r.array(r.array(1L, 45L), 1L), r.array(r.array(1L, 49L), 1L), r.array(r.array(1L, 53L), 1L), r.array(r.array(1L, 57L), 1L), r.array(r.array(1L, 61L), 1L), r.array(r.array(1L, 65L), 1L), r.array(r.array(1L, 69L), 1L), r.array(r.array(1L, 73L), 1L), r.array(r.array(1L, 77L), 1L), r.array(r.array(1L, 81L), 1L), r.array(r.array(1L, 85L), 1L), r.array(r.array(1L, 89L), 1L), r.array(r.array(1L, 93L), 1L), r.array(r.array(1L, 97L), 1L), r.array(r.array(2L, 2L), 1L), r.array(r.array(2L, 6L), 1L), r.array(r.array(2L, 10L), 1L), r.array(r.array(2L, 14L), 1L), r.array(r.array(2L, 18L), 1L), r.array(r.array(2L, 22L), 1L), r.array(r.array(2L, 26L), 1L), r.array(r.array(2L, 30L), 1L), r.array(r.array(2L, 34L), 1L), r.array(r.array(2L, 38L), 1L), r.array(r.array(2L, 42L), 1L), r.array(r.array(2L, 46L), 1L), r.array(r.array(2L, 50L), 1L), r.array(r.array(2L, 54L), 1L), r.array(r.array(2L, 58L), 1L), r.array(r.array(2L, 62L), 1L), r.array(r.array(2L, 66L), 1L), r.array(r.array(2L, 70L), 1L), r.array(r.array(2L, 74L), 1L), r.array(r.array(2L, 78L), 1L), r.array(r.array(2L, 82L), 1L), r.array(r.array(2L, 86L), 1L), r.array(r.array(2L, 90L), 1L), r.array(r.array(2L, 94L), 1L), r.array(r.array(2L, 98L), 1L), r.array(r.array(3L, 3L), 1L), r.array(r.array(3L, 7L), 1L), r.array(r.array(3L, 11L), 1L), r.array(r.array(3L, 15L), 1L), r.array(r.array(3L, 19L), 1L), r.array(r.array(3L, 23L), 1L), r.array(r.array(3L, 27L), 1L), r.array(r.array(3L, 31L), 1L), r.array(r.array(3L, 35L), 1L), r.array(r.array(3L, 39L), 1L), r.array(r.array(3L, 43L), 1L), r.array(r.array(3L, 47L), 1L), r.array(r.array(3L, 51L), 1L), r.array(r.array(3L, 55L), 1L), r.array(r.array(3L, 59L), 1L), r.array(r.array(3L, 63L), 1L), r.array(r.array(3L, 67L), 1L), r.array(r.array(3L, 71L), 1L), r.array(r.array(3L, 75L), 1L), r.array(r.array(3L, 79L), 1L), r.array(r.array(3L, 83L), 1L), r.array(r.array(3L, 87L), 1L), r.array(r.array(3L, 91L), 1L), r.array(r.array(3L, 95L), 1L), r.array(r.array(3L, 99L), 1L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -655,7 +655,7 @@ DefsAndTests:
   Java: tbl.group("a").optArg("index", "a").count()
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[[0, 0], 25], [[1, 1], 25], [[2, 2], 25], [[3, 3], 25]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(r.array(0, 0), 25), r.array(r.array(1, 1), 25), r.array(r.array(2, 2), 25), r.array(r.array(3, 3), 25)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(r.array(0L, 0L), 25L), r.array(r.array(1L, 1L), 25L), r.array(r.array(2L, 2L), 25L), r.array(r.array(3L, 3L), 25L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -663,10 +663,10 @@ DefsAndTests:
   TestFile: aggregation.yaml
   TestNum: 89
   Original: tbl.group('a', lambda row:'f', lambda row:[], lambda row:[{}, [0], null, 0], multi=True).count()
-  Java: tbl.group("a", row -> "f", row -> r.array(), row -> r.array(r.hashMap(), r.array(0), null, 0)).optArg("multi", true).count()
+  Java: tbl.group("a", row -> "f", row -> r.array(), row -> r.array(r.hashMap(), r.array(0L), null, 0L)).optArg("multi", true).count()
   ExpectedOriginal: ({'$reql_type$':'GROUPED_DATA', 'data':[[[0, "f", null, [0]], 25], [[0, "f", null, null], 25], [[0, "f", null, 0], 25], [[0, "f", null, {}], 25], [[1, "f", null, [0]], 25], [[1, "f", null, null], 25], [[1, "f", null, 0], 25], [[1, "f", null, {}], 25], [[2, "f", null, [0]], 25], [[2, "f", null, null], 25], [[2, "f", null, 0], 25], [[2, "f", null, {}], 25], [[3, "f", null, [0]], 25], [[3, "f", null, null], 25], [[3, "f", null, 0], 25], [[3, "f", null, {}], 25]]})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(r.array(0, "f", null, r.array(0)), 25), r.array(r.array(0, "f", null, null), 25), r.array(r.array(0, "f", null, 0), 25), r.array(r.array(0, "f", null, r.hashMap()), 25), r.array(r.array(1, "f", null, r.array(0)), 25), r.array(r.array(1, "f", null, null), 25), r.array(r.array(1, "f", null, 0), 25), r.array(r.array(1, "f", null, r.hashMap()), 25), r.array(r.array(2, "f", null, r.array(0)), 25), r.array(r.array(2, "f", null, null), 25), r.array(r.array(2, "f", null, 0), 25), r.array(r.array(2, "f", null, r.hashMap()), 25), r.array(r.array(3, "f", null, r.array(0)), 25), r.array(r.array(3, "f", null, null), 25), r.array(r.array(3, "f", null, 0), 25), r.array(r.array(3, "f", null, r.hashMap()), 25)))
+  ExpectedJava: r.hashMap("$reql_type$", "GROUPED_DATA").with("data", r.array(r.array(r.array(0L, "f", null, r.array(0L)), 25L), r.array(r.array(0L, "f", null, null), 25L), r.array(r.array(0L, "f", null, 0L), 25L), r.array(r.array(0L, "f", null, r.hashMap()), 25L), r.array(r.array(1L, "f", null, r.array(0L)), 25L), r.array(r.array(1L, "f", null, null), 25L), r.array(r.array(1L, "f", null, 0L), 25L), r.array(r.array(1L, "f", null, r.hashMap()), 25L), r.array(r.array(2L, "f", null, r.array(0L)), 25L), r.array(r.array(2L, "f", null, null), 25L), r.array(r.array(2L, "f", null, 0L), 25L), r.array(r.array(2L, "f", null, r.hashMap()), 25L), r.array(r.array(3L, "f", null, r.array(0L)), 25L), r.array(r.array(3L, "f", null, null), 25L), r.array(r.array(3L, "f", null, 0L), 25L), r.array(r.array(3L, "f", null, r.hashMap()), 25L)))
   RunOpts:
   - Key: group_format
     Val: raw
@@ -677,7 +677,7 @@ DefsAndTests:
   Java: tbl.group("a").count().ungroup()
   ExpectedOriginal: ([{'group':0, 'reduction':25}, {'group':1, 'reduction':25}, {'group':2, 'reduction':25}, {'group':3, 'reduction':25}])
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("group", 0).with("reduction", 25), r.hashMap("group", 1).with("reduction", 25), r.hashMap("group", 2).with("reduction", 25), r.hashMap("group", 3).with("reduction", 25))
+  ExpectedJava: r.array(r.hashMap("group", 0L).with("reduction", 25L), r.hashMap("group", 1L).with("reduction", 25L), r.hashMap("group", 2L).with("reduction", 25L), r.hashMap("group", 3L).with("reduction", 25L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -686,7 +686,7 @@ DefsAndTests:
   Java: tbl.group("a").ungroup().g("group")
   ExpectedOriginal: ([0, 1, 2, 3])
   ExpectedType: List
-  ExpectedJava: r.array(0, 1, 2, 3)
+  ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -695,16 +695,16 @@ DefsAndTests:
   Java: tbl.group("a", (ReqlExpr) null).count().ungroup()
   ExpectedOriginal: ([{'group':[0,null],'reduction':25},{'group':[1,null],'reduction':25},{'group':[2,null],'reduction':25},{'group':[3,null],'reduction':25}])
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("group", r.array(0, null)).with("reduction", 25), r.hashMap("group", r.array(1, null)).with("reduction", 25), r.hashMap("group", r.array(2, null)).with("reduction", 25), r.hashMap("group", r.array(3, null)).with("reduction", 25))
+  ExpectedJava: r.array(r.hashMap("group", r.array(0L, null)).with("reduction", 25L), r.hashMap("group", r.array(1L, null)).with("reduction", 25L), r.hashMap("group", r.array(2L, null)).with("reduction", 25L), r.hashMap("group", r.array(3L, null)).with("reduction", 25L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
   TestNum: 94
   Original: tbl.group('a', lambda row:[1,'two'], multi=True).count().ungroup()
-  Java: tbl.group("a", row -> r.array(1, "two")).optArg("multi", true).count().ungroup()
+  Java: tbl.group("a", row -> r.array(1L, "two")).optArg("multi", true).count().ungroup()
   ExpectedOriginal: ([{'group':[0,1],'reduction':25},{'group':[0,'two'],'reduction':25},{'group':[1,1],'reduction':25},{'group':[1,'two'],'reduction':25},{'group':[2,1],'reduction':25},{'group':[2,'two'],'reduction':25},{'group':[3,1],'reduction':25},{'group':[3,'two'],'reduction':25}])
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("group", r.array(0, 1)).with("reduction", 25), r.hashMap("group", r.array(0, "two")).with("reduction", 25), r.hashMap("group", r.array(1, 1)).with("reduction", 25), r.hashMap("group", r.array(1, "two")).with("reduction", 25), r.hashMap("group", r.array(2, 1)).with("reduction", 25), r.hashMap("group", r.array(2, "two")).with("reduction", 25), r.hashMap("group", r.array(3, 1)).with("reduction", 25), r.hashMap("group", r.array(3, "two")).with("reduction", 25))
+  ExpectedJava: r.array(r.hashMap("group", r.array(0L, 1L)).with("reduction", 25L), r.hashMap("group", r.array(0L, "two")).with("reduction", 25L), r.hashMap("group", r.array(1L, 1L)).with("reduction", 25L), r.hashMap("group", r.array(1L, "two")).with("reduction", 25L), r.hashMap("group", r.array(2L, 1L)).with("reduction", 25L), r.hashMap("group", r.array(2L, "two")).with("reduction", 25L), r.hashMap("group", r.array(3L, 1L)).with("reduction", 25L), r.hashMap("group", r.array(3L, "two")).with("reduction", 25L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -713,7 +713,7 @@ DefsAndTests:
   Java: tbl.count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -722,7 +722,7 @@ DefsAndTests:
   Java: tbl.min()
   ExpectedOriginal: ({'a':0,'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 0).with("id", 0)
+  ExpectedJava: r.hashMap("a", 0L).with("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -731,7 +731,7 @@ DefsAndTests:
   Java: tbl.min().optArg("index", "id")
   ExpectedOriginal: ({'a':0,'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 0).with("id", 0)
+  ExpectedJava: r.hashMap("a", 0L).with("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -740,7 +740,7 @@ DefsAndTests:
   Java: tbl.min().optArg("index", "a")
   ExpectedOriginal: ({'a':0,'id':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 0).with("id", 0)
+  ExpectedJava: r.hashMap("a", 0L).with("id", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -749,7 +749,7 @@ DefsAndTests:
   Java: tbl.max().without("b")
   ExpectedOriginal: ({'a':3,'id':99})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 3).with("id", 99)
+  ExpectedJava: r.hashMap("a", 3L).with("id", 99L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -758,7 +758,7 @@ DefsAndTests:
   Java: tbl.max().optArg("index", "id").without("b")
   ExpectedOriginal: ({'a':3,'id':99})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 3).with("id", 99)
+  ExpectedJava: r.hashMap("a", 3L).with("id", 99L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: aggregation.yaml
@@ -767,5 +767,5 @@ DefsAndTests:
   Java: tbl.max().optArg("index", "a").without("b")
   ExpectedOriginal: ({'a':3,'id':99})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("a", 3).with("id", 99)
+  ExpectedJava: r.hashMap("a", 3L).with("id", 99L)
   RunOpts: []

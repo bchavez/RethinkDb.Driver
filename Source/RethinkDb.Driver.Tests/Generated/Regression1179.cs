@@ -33,10 +33,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/1179.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: r.expr([1])[r.expr(0)] */
-                 var obtained = runOrCatch( r.expr(r.array(1)).bracket(r.expr(0)) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L)).bracket(r.expr(0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

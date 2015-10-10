@@ -15,7 +15,7 @@ DefsAndTests:
   Java: r.db("test").tableCreate("test2")
   ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_created", 1))
+  ExpectedJava: partial(r.hashMap("tables_created", 1L))
   RunOpts: []
 - TestType: JavaDef
   TestFile: selection.yaml
@@ -30,25 +30,25 @@ DefsAndTests:
   Java: r.db("test").tableCreate("test3")
   ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_created", 1))
+  ExpectedJava: partial(r.hashMap("tables_created", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 3
   Original: tbl.insert([{'id':i, 'a':i%4} for i in xrange(100)])
-  Java: tbl.insert(IntStream.range(0, 100).boxed().map(i -> r.hashMap("id", i).with("a", r.mod(i, 4))).collect(Collectors.toList()))
+  Java: tbl.insert(LongStream.range(0, 100L).boxed().map(i -> r.hashMap("id", i).with("a", r.mod(i, 4L))).collect(Collectors.toList()))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 4
   Original: tbl2.insert([{'id':i, 'b':i%4} for i in xrange(100)])
-  Java: tbl2.insert(IntStream.range(0, 100).boxed().map(i -> r.hashMap("id", i).with("b", r.mod(i, 4))).collect(Collectors.toList()))
+  Java: tbl2.insert(LongStream.range(0, 100L).boxed().map(i -> r.hashMap("id", i).with("b", r.mod(i, 4L))).collect(Collectors.toList()))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -66,7 +66,7 @@ DefsAndTests:
   Java: r.db("missing").table("bar")
   ExpectedOriginal: err("ReqlOpFailedError", 'Database `missing` does not exist.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlOpFailedError", "Database `missing` does not exist.", r.array(0))
+  ExpectedJava: err("ReqlOpFailedError", "Database `missing` does not exist.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -75,7 +75,7 @@ DefsAndTests:
   Java: r.db("test").table("missing")
   ExpectedOriginal: err("ReqlOpFailedError", 'Table `test.missing` does not exist.', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlOpFailedError", "Table `test.missing` does not exist.", r.array(0))
+  ExpectedJava: err("ReqlOpFailedError", "Table `test.missing` does not exist.", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -84,7 +84,7 @@ DefsAndTests:
   Java: "tbl3.insert(r.hashMap(\"id\", \"Здравствуй\").with(\"value\", \"Земля!\"))"
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -111,7 +111,7 @@ DefsAndTests:
   Java: r.db("%")
   ExpectedOriginal: err("ReqlQueryLogicError", 'Database name `%` invalid (Use A-Za-z0-9_ only).', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Database name `%` invalid (Use A-Za-z0-9_ only).", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Database name `%` invalid (Use A-Za-z0-9_ only).", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -120,7 +120,7 @@ DefsAndTests:
   Java: r.db("test").table("%")
   ExpectedOriginal: err("ReqlQueryLogicError", 'Table name `%` invalid (Use A-Za-z0-9_ only).', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Table name `%` invalid (Use A-Za-z0-9_ only).", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Table name `%` invalid (Use A-Za-z0-9_ only).", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -129,7 +129,7 @@ DefsAndTests:
   Java: tbl.count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -138,7 +138,7 @@ DefsAndTests:
   Java: r.table("test2").optArg("read_mode", "outdated").count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -147,7 +147,7 @@ DefsAndTests:
   Java: r.table("test2").optArg("read_mode", "single").count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -156,7 +156,7 @@ DefsAndTests:
   Java: r.table("test2").optArg("read_mode", "majority").count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -165,7 +165,7 @@ DefsAndTests:
   Java: r.db("test").table("test2").optArg("read_mode", "outdated").count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -174,7 +174,7 @@ DefsAndTests:
   Java: r.db("test").table("test2").optArg("read_mode", "single").count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -183,7 +183,7 @@ DefsAndTests:
   Java: r.db("test").table("test2").optArg("read_mode", "majority").count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
@@ -243,25 +243,25 @@ DefsAndTests:
   TestFile: selection.yaml
   TestNum: 18
   Original: tbl.get(20).count()
-  Java: tbl.get(20).count()
+  Java: tbl.get(20L).count()
   ExpectedOriginal: err("ReqlQueryLogicError", 'Expected type SEQUENCE but found SINGLE_SELECTION:', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type SEQUENCE but found SINGLE_SELECTION:", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type SEQUENCE but found SINGLE_SELECTION:", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 19
   Original: tbl.get(20)
-  Java: tbl.get(20)
+  Java: tbl.get(20L)
   ExpectedOriginal: ({'id':20,'a':0})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("id", 20).with("a", 0)
+  ExpectedJava: r.hashMap("id", 20L).with("a", 0L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 20
   Original: tbl.get(2000)
-  Java: tbl.get(2000)
+  Java: tbl.get(2000L)
   ExpectedOriginal: (null)
   ExpectedType: Object
   ExpectedJava: null
@@ -279,31 +279,31 @@ DefsAndTests:
   Java: r.db("test").tableCreate("testpkey").optArg("primary_key", "foo")
   ExpectedOriginal: partial({'tables_created':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("tables_created", 1))
+  ExpectedJava: partial(r.hashMap("tables_created", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 24
   Original: tblpkey.insert({'foo':10,'a':10})
-  Java: tblpkey.insert(r.hashMap("foo", 10).with("a", 10))
+  Java: tblpkey.insert(r.hashMap("foo", 10L).with("a", 10L))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1)
+  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 25
   Original: tblpkey.get(10)
-  Java: tblpkey.get(10)
+  Java: tblpkey.get(10L)
   ExpectedOriginal: ({'foo':10,'a':10})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("foo", 10).with("a", 10)
+  ExpectedJava: r.hashMap("foo", 10L).with("a", 10L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 26
   Original: tbl.between(1, 2).type_of()
-  Java: tbl.between(1, 2).typeOf()
+  Java: tbl.between(1L, 2L).typeOf()
   ExpectedOriginal: 'TABLE_SLICE'
   ExpectedType: String
   ExpectedJava: '"TABLE_SLICE"'
@@ -312,7 +312,7 @@ DefsAndTests:
   TestFile: selection.yaml
   TestNum: 27
   Original: tbl.between(1, 2, index='id').type_of()
-  Java: tbl.between(1, 2).optArg("index", "id").typeOf()
+  Java: tbl.between(1L, 2L).optArg("index", "id").typeOf()
   ExpectedOriginal: 'TABLE_SLICE'
   ExpectedType: String
   ExpectedJava: '"TABLE_SLICE"'
@@ -321,7 +321,7 @@ DefsAndTests:
   TestFile: selection.yaml
   TestNum: 28
   Original: tbl.between(1, 1, right_bound='closed').type_of()
-  Java: tbl.between(1, 1).optArg("right_bound", "closed").typeOf()
+  Java: tbl.between(1L, 1L).optArg("right_bound", "closed").typeOf()
   ExpectedOriginal: 'TABLE_SLICE'
   ExpectedType: String
   ExpectedJava: '"TABLE_SLICE"'
@@ -330,7 +330,7 @@ DefsAndTests:
   TestFile: selection.yaml
   TestNum: 29
   Original: tbl.between(2, 1).type_of()
-  Java: tbl.between(2, 1).typeOf()
+  Java: tbl.between(2L, 1L).typeOf()
   ExpectedOriginal: 'TABLE_SLICE'
   ExpectedType: String
   ExpectedJava: '"TABLE_SLICE"'
@@ -339,7 +339,7 @@ DefsAndTests:
   TestFile: selection.yaml
   TestNum: 30
   Original: tbl.between(2, 1, index='id').type_of()
-  Java: tbl.between(2, 1).optArg("index", "id").typeOf()
+  Java: tbl.between(2L, 1L).optArg("index", "id").typeOf()
   ExpectedOriginal: 'TABLE_SLICE'
   ExpectedType: String
   ExpectedJava: '"TABLE_SLICE"'
@@ -348,160 +348,160 @@ DefsAndTests:
   TestFile: selection.yaml
   TestNum: 31
   Original: tbl.between(20, 29).count()
-  Java: tbl.between(20, 29).count()
+  Java: tbl.between(20L, 29L).count()
   ExpectedOriginal: 9
   ExpectedType: Long
-  ExpectedJava: 9
+  ExpectedJava: 9L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 32
   Original: tbl.between(-10, 9).count()
-  Java: tbl.between(-10, 9).count()
+  Java: tbl.between(-10L, 9L).count()
   ExpectedOriginal: 9
   ExpectedType: Long
-  ExpectedJava: 9
+  ExpectedJava: 9L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 33
   Original: tbl.between(80, 2000).count()
-  Java: tbl.between(80, 2000).count()
+  Java: tbl.between(80L, 2000L).count()
   ExpectedOriginal: 20
   ExpectedType: Long
-  ExpectedJava: 20
+  ExpectedJava: 20L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 34
   Original: tbl.between(-2000, 2000).count()
-  Java: tbl.between(-2000, 2000).count()
+  Java: tbl.between(-2000L, 2000L).count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 35
   Original: tbl.between(20, 29, right_bound='closed').count()
-  Java: tbl.between(20, 29).optArg("right_bound", "closed").count()
+  Java: tbl.between(20L, 29L).optArg("right_bound", "closed").count()
   ExpectedOriginal: 10
   ExpectedType: Long
-  ExpectedJava: 10
+  ExpectedJava: 10L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 36
   Original: tbl.between(-10, 9, right_bound='closed').count()
-  Java: tbl.between(-10, 9).optArg("right_bound", "closed").count()
+  Java: tbl.between(-10L, 9L).optArg("right_bound", "closed").count()
   ExpectedOriginal: 10
   ExpectedType: Long
-  ExpectedJava: 10
+  ExpectedJava: 10L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 37
   Original: tbl.between(80, 2000, right_bound='closed').count()
-  Java: tbl.between(80, 2000).optArg("right_bound", "closed").count()
+  Java: tbl.between(80L, 2000L).optArg("right_bound", "closed").count()
   ExpectedOriginal: 20
   ExpectedType: Long
-  ExpectedJava: 20
+  ExpectedJava: 20L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 38
   Original: tbl.between(-2000, 2000, right_bound='closed').count()
-  Java: tbl.between(-2000, 2000).optArg("right_bound", "closed").count()
+  Java: tbl.between(-2000L, 2000L).optArg("right_bound", "closed").count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 39
   Original: tbl.between(20, 29, left_bound='open').count()
-  Java: tbl.between(20, 29).optArg("left_bound", "open").count()
+  Java: tbl.between(20L, 29L).optArg("left_bound", "open").count()
   ExpectedOriginal: 8
   ExpectedType: Long
-  ExpectedJava: 8
+  ExpectedJava: 8L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 40
   Original: tbl.between(-10, 9, left_bound='open').count()
-  Java: tbl.between(-10, 9).optArg("left_bound", "open").count()
+  Java: tbl.between(-10L, 9L).optArg("left_bound", "open").count()
   ExpectedOriginal: 9
   ExpectedType: Long
-  ExpectedJava: 9
+  ExpectedJava: 9L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 41
   Original: tbl.between(80, 2000, left_bound='open').count()
-  Java: tbl.between(80, 2000).optArg("left_bound", "open").count()
+  Java: tbl.between(80L, 2000L).optArg("left_bound", "open").count()
   ExpectedOriginal: 19
   ExpectedType: Long
-  ExpectedJava: 19
+  ExpectedJava: 19L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 42
   Original: tbl.between(-2000, 2000, left_bound='open').count()
-  Java: tbl.between(-2000, 2000).optArg("left_bound", "open").count()
+  Java: tbl.between(-2000L, 2000L).optArg("left_bound", "open").count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 43
   Original: r.expr([1, 2, 3]).between(-1, 2)
-  Java: r.expr(r.array(1, 2, 3)).between(-1, 2)
+  Java: r.expr(r.array(1L, 2L, 3L)).between(-1L, 2L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type TABLE_SLICE but found DATUM:', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type TABLE_SLICE but found DATUM:", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type TABLE_SLICE but found DATUM:", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 44
   Original: tbl.between(r.minval, 2).count()
-  Java: tbl.between(r.minval(), 2).count()
+  Java: tbl.between(r.minval(), 2L).count()
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 45
   Original: tbl.between(r.minval, 2, right_bound='closed').count()
-  Java: tbl.between(r.minval(), 2).optArg("right_bound", "closed").count()
+  Java: tbl.between(r.minval(), 2L).optArg("right_bound", "closed").count()
   ExpectedOriginal: 3
   ExpectedType: Long
-  ExpectedJava: 3
+  ExpectedJava: 3L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 46
   Original: tbl.between(r.minval, 2, left_bound='open').count()
-  Java: tbl.between(r.minval(), 2).optArg("left_bound", "open").count()
+  Java: tbl.between(r.minval(), 2L).optArg("left_bound", "open").count()
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 47
   Original: tbl.between(2, r.maxval).count()
-  Java: tbl.between(2, r.maxval()).count()
+  Java: tbl.between(2L, r.maxval()).count()
   ExpectedOriginal: 98
   ExpectedType: Long
-  ExpectedJava: 98
+  ExpectedJava: 98L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 49
   Original: tbl.between(null, 2).count()
-  Java: tbl.between((ReqlExpr) null, 2).count()
+  Java: tbl.between((ReqlExpr) null, 2L).count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot use `nu' + 'll` in BETWEEN, use `r.minval` or `r.maxval` to denote unboundedness.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot use `nu" + "ll` in BETWEEN, use `r.minval` or `r.maxval` to denote unboundedness.")
@@ -510,7 +510,7 @@ DefsAndTests:
   TestFile: selection.yaml
   TestNum: 49
   Original: tbl.between(2, null).count()
-  Java: tbl.between(2, (ReqlExpr) null).count()
+  Java: tbl.between(2L, (ReqlExpr) null).count()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot use `nu' + 'll` in BETWEEN, use `r.minval` or `r.maxval` to denote unboundedness.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot use `nu" + "ll` in BETWEEN, use `r.minval` or `r.maxval` to denote unboundedness.")
@@ -528,76 +528,76 @@ DefsAndTests:
   TestFile: selection.yaml
   TestNum: 50
   Original: tblpkey.between(9, 11).count()
-  Java: tblpkey.between(9, 11).count()
+  Java: tblpkey.between(9L, 11L).count()
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 51
   Original: tblpkey.between(11, 12).count()
-  Java: tblpkey.between(11, 12).count()
+  Java: tblpkey.between(11L, 12L).count()
   ExpectedOriginal: 0
   ExpectedType: Long
-  ExpectedJava: 0
+  ExpectedJava: 0L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 52
   Original: tbl.filter(lambda row:row['a'] > 2).count()
-  Java: tbl.filter(row -> row.g("a").gt(2)).count()
+  Java: tbl.filter(row -> row.g("a").gt(2L)).count()
   ExpectedOriginal: 25
   ExpectedType: Long
-  ExpectedJava: 25
+  ExpectedJava: 25L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 53
   Original: 'tbl.filter(lambda row: 1).count()'
-  Java: tbl.filter(row -> 1).count()
+  Java: tbl.filter(row -> 1L).count()
   ExpectedOriginal: 100
   ExpectedType: Long
-  ExpectedJava: 100
+  ExpectedJava: 100L
   RunOpts: []
 - TestType: JavaDef
   TestFile: selection.yaml
   TestNum: 55
   Original: nested=r.expr([[1, 2], [3, 4], [5, 6]])
-  Java: MakeArray nested = (MakeArray) (r.expr(r.array(r.array(1, 2), r.array(3, 4), r.array(5, 6))));
+  Java: MakeArray nested = (MakeArray) (r.expr(r.array(r.array(1L, 2L), r.array(3L, 4L), r.array(5L, 6L))));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 56
   Original: 'nested.filter(lambda x: x.filter(lambda y: y >= 4).count() > 0)'
-  Java: nested.filter(x -> x.filter(y -> r.ge(y, 4)).count().gt(0))
+  Java: nested.filter(x -> x.filter(y -> r.ge(y, 4L)).count().gt(0L))
   ExpectedOriginal: ([[3, 4], [5, 6]])
   ExpectedType: List
-  ExpectedJava: r.array(r.array(3, 4), r.array(5, 6))
+  ExpectedJava: r.array(r.array(3L, 4L), r.array(5L, 6L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 60
   Original: r.expr([{'a':1,'b':1,'c':3},{'a':1,'b':2,'c':3}]).filter({'a':1,'b':2})
-  Java: r.expr(r.array(r.hashMap("a", 1).with("b", 1).with("c", 3), r.hashMap("a", 1).with("b", 2).with("c", 3))).filter(r.hashMap("a", 1).with("b", 2))
-  ExpectedOriginal: '[{''a'': 1, ''c'': 3, ''b'': 2}]'
+  Java: r.expr(r.array(r.hashMap("a", 1L).with("b", 1L).with("c", 3L), r.hashMap("a", 1L).with("b", 2L).with("c", 3L))).filter(r.hashMap("a", 1L).with("b", 2L))
+  ExpectedOriginal: '[{''c'': 3, ''b'': 2, ''a'': 1}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("a", 1).with("c", 3).with("b", 2))
+  ExpectedJava: r.array(r.hashMap("c", 3L).with("b", 2L).with("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 61
   Original: r.expr([{'a':1,'b':1,'c':3},{'a':1,'b':2,'c':3}]).filter({'a':1})
-  Java: r.expr(r.array(r.hashMap("a", 1).with("b", 1).with("c", 3), r.hashMap("a", 1).with("b", 2).with("c", 3))).filter(r.hashMap("a", 1))
-  ExpectedOriginal: '[{''a'': 1, ''c'': 3, ''b'': 1}, {''a'': 1, ''c'': 3, ''b'': 2}]'
+  Java: r.expr(r.array(r.hashMap("a", 1L).with("b", 1L).with("c", 3L), r.hashMap("a", 1L).with("b", 2L).with("c", 3L))).filter(r.hashMap("a", 1L))
+  ExpectedOriginal: '[{''c'': 3, ''b'': 1, ''a'': 1}, {''c'': 3, ''b'': 2, ''a'': 1}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("a", 1).with("c", 3).with("b", 1), r.hashMap("a", 1).with("c", 3).with("b", 2))
+  ExpectedJava: r.array(r.hashMap("c", 3L).with("b", 1L).with("a", 1L), r.hashMap("c", 3L).with("b", 2L).with("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 63
   Original: r.expr([{'a':1}]).filter({'b':1})
-  Java: r.expr(r.array(r.hashMap("a", 1))).filter(r.hashMap("b", 1))
+  Java: r.expr(r.array(r.hashMap("a", 1L))).filter(r.hashMap("b", 1L))
   ExpectedOriginal: '[]'
   ExpectedType: List
   ExpectedJava: r.array()
@@ -606,37 +606,37 @@ DefsAndTests:
   TestFile: selection.yaml
   TestNum: 64
   Original: 'tbl.count(lambda row: {''a'':1})'
-  Java: tbl.count(row -> r.hashMap("a", 1))
+  Java: tbl.count(row -> r.hashMap("a", 1L))
   ExpectedOriginal: 25
   ExpectedType: Long
-  ExpectedJava: 25
+  ExpectedJava: 25L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 66
   Original: r.expr([1,2,3,1]).count(1)
-  Java: r.expr(r.array(1, 2, 3, 1)).count(1)
+  Java: r.expr(r.array(1L, 2L, 3L, 1L)).count(1L)
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 67
   Original: r.expr([null, 4, null, 'foo']).count(null)
-  Java: r.expr(r.array(null, 4, null, "foo")).count((ReqlExpr) null)
+  Java: r.expr(r.array(null, 4L, null, "foo")).count((ReqlExpr) null)
   ExpectedOriginal: 2
   ExpectedType: Long
-  ExpectedJava: 2
+  ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml
   TestNum: 68
   Original: r.expr(5) + tbl
-  Java: r.expr(5).add(tbl)
+  Java: r.expr(5L).add(tbl)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type DATUM but found TABLE:', [0])
   ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", r.array(0))
+  ExpectedJava: err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", r.array(0L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: selection.yaml

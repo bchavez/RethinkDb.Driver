@@ -33,10 +33,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/3637.yaml, #1
                  /* ExpectedOriginal: partial({'inserted':2}) */
-                 var expected_ = partial(r.hashMap("inserted", 2));
+                 var expected_ = partial(r.hashMap("inserted", 2L));
                  
                  /* Original: tbl.insert([{'id':0.0, 'value':'abc'}, {'id':[1, -0.0], 'value':'def'}]) */
-                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0.0).with("value", "abc"), r.hashMap("id", r.array(1, -0.0)).with("value", "def"))) ,
+                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0.0).with("value", "abc"), r.hashMap("id", r.array(1L, -0.0)).with("value", "def"))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -46,8 +46,8 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, regression/3637.yaml, #2
-                 /* ExpectedOriginal: {'id': 0.0, 'value': 'abc'} */
-                 var expected_ = r.hashMap("id", 0.0).with("value", "abc");
+                 /* ExpectedOriginal: {'value': 'abc', 'id': 0.0} */
+                 var expected_ = r.hashMap("value", "abc").with("id", 0.0);
                  
                  /* Original: tbl.get(0.0) */
                  var obtained = runOrCatch( tbl.get(0.0) ,
@@ -60,8 +60,8 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, regression/3637.yaml, #3
-                 /* ExpectedOriginal: {'id': 0.0, 'value': 'abc'} */
-                 var expected_ = r.hashMap("id", 0.0).with("value", "abc");
+                 /* ExpectedOriginal: {'value': 'abc', 'id': 0.0} */
+                 var expected_ = r.hashMap("value", "abc").with("id", 0.0);
                  
                  /* Original: tbl.get(-0.0) */
                  var obtained = runOrCatch( tbl.get(-0.0) ,
@@ -74,11 +74,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, regression/3637.yaml, #4
-                 /* ExpectedOriginal: {'id': [1, -0.0], 'value': 'def'} */
-                 var expected_ = r.hashMap("id", r.array(1, -0.0)).with("value", "def");
+                 /* ExpectedOriginal: {'value': 'def', 'id': [1, -0.0]} */
+                 var expected_ = r.hashMap("value", "def").with("id", r.array(1L, -0.0));
                  
                  /* Original: tbl.get([1, 0.0]) */
-                 var obtained = runOrCatch( tbl.get(r.array(1, 0.0)) ,
+                 var obtained = runOrCatch( tbl.get(r.array(1L, 0.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -88,11 +88,11 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, regression/3637.yaml, #5
-                 /* ExpectedOriginal: {'id': [1, -0.0], 'value': 'def'} */
-                 var expected_ = r.hashMap("id", r.array(1, -0.0)).with("value", "def");
+                 /* ExpectedOriginal: {'value': 'def', 'id': [1, -0.0]} */
+                 var expected_ = r.hashMap("value", "def").with("id", r.array(1L, -0.0));
                  
                  /* Original: tbl.get([1, -0.0]) */
-                 var obtained = runOrCatch( tbl.get(r.array(1, -0.0)) ,
+                 var obtained = runOrCatch( tbl.get(r.array(1L, -0.0)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -134,7 +134,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "{\"id\":[1,-0.0]}";
                  
                  /* Original: tbl.get([1, 0.0]).pluck('id').to_json_string() */
-                 var obtained = runOrCatch( tbl.get(r.array(1, 0.0)).pluck("id").toJsonString() ,
+                 var obtained = runOrCatch( tbl.get(r.array(1L, 0.0)).pluck("id").toJsonString() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -148,7 +148,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "{\"id\":[1,-0.0]}";
                  
                  /* Original: tbl.get([1, -0.0]).pluck('id').to_json_string() */
-                 var obtained = runOrCatch( tbl.get(r.array(1, -0.0)).pluck("id").toJsonString() ,
+                 var obtained = runOrCatch( tbl.get(r.array(1L, -0.0)).pluck("id").toJsonString() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -159,7 +159,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/3637.yaml, #10
                  /* ExpectedOriginal: partial({'errors':1}) */
-                 var expected_ = partial(r.hashMap("errors", 1));
+                 var expected_ = partial(r.hashMap("errors", 1L));
                  
                  /* Original: tbl.insert({'id':0.0}) */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0.0)) ,
@@ -173,10 +173,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/3637.yaml, #10
                  /* ExpectedOriginal: partial({'errors':1}) */
-                 var expected_ = partial(r.hashMap("errors", 1));
+                 var expected_ = partial(r.hashMap("errors", 1L));
                  
                  /* Original: tbl.insert({'id':[1,0.0]}) */
-                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", r.array(1, 0.0))) ,
+                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", r.array(1L, 0.0))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -187,7 +187,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/3637.yaml, #11
                  /* ExpectedOriginal: partial({'errors':1}) */
-                 var expected_ = partial(r.hashMap("errors", 1));
+                 var expected_ = partial(r.hashMap("errors", 1L));
                  
                  /* Original: tbl.insert({'id':-0.0}) */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", -0.0)) ,
@@ -201,10 +201,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/3637.yaml, #11
                  /* ExpectedOriginal: partial({'errors':1}) */
-                 var expected_ = partial(r.hashMap("errors", 1));
+                 var expected_ = partial(r.hashMap("errors", 1L));
                  
                  /* Original: tbl.insert({'id':[1,-0.0]}) */
-                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", r.array(1, -0.0))) ,
+                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", r.array(1L, -0.0))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

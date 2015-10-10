@@ -46,10 +46,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/object.yaml, #2
                  /* ExpectedOriginal: {'a':1} */
-                 var expected_ = r.hashMap("a", 1);
+                 var expected_ = r.hashMap("a", 1L);
                  
                  /* Original: r.expr({'a':1}) */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -60,10 +60,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/object.yaml, #3
                  /* ExpectedOriginal: {'a':1, 'b':'two', 'c':True} */
-                 var expected_ = r.hashMap("a", 1).with("b", "two").with("c", true);
+                 var expected_ = r.hashMap("a", 1L).with("b", "two").with("c", true);
                  
                  /* Original: r.expr({'a':1, 'b':'two', 'c':True}) */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1).with("b", "two").with("c", true)) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1L).with("b", "two").with("c", true)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -74,10 +74,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/object.yaml, #4
                  /* ExpectedOriginal: ({'a':1}) */
-                 var expected_ = r.hashMap("a", 1);
+                 var expected_ = r.hashMap("a", 1L);
                  
                  /* Original: r.expr({'a':r.expr(1)}) */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", r.expr(1))) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", r.expr(1L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -88,10 +88,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/object.yaml, #5
                  /* ExpectedOriginal: ({'a':{'b':[{'c':2}, 'a', 4]}}) */
-                 var expected_ = r.hashMap("a", r.hashMap("b", r.array(r.hashMap("c", 2), "a", 4)));
+                 var expected_ = r.hashMap("a", r.hashMap("b", r.array(r.hashMap("c", 2L), "a", 4L)));
                  
                  /* Original: r.expr({'a':{'b':[{'c':2}, 'a', 4]}}) */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", r.hashMap("b", r.array(r.hashMap("c", 2), "a", 4)))) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", r.hashMap("b", r.array(r.hashMap("c", 2L), "a", 4L)))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -105,7 +105,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "OBJECT";
                  
                  /* Original: r.expr({'a':1}).type_of() */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1)).typeOf() ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1L)).typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -119,7 +119,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "{\"a\":1}";
                  
                  /* Original: r.expr({'a':1}).coerce_to('string') */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1)).coerceTo("string") ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1L)).coerceTo("string") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -130,10 +130,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/object.yaml, #8
                  /* ExpectedOriginal: ({'a':1}) */
-                 var expected_ = r.hashMap("a", 1);
+                 var expected_ = r.hashMap("a", 1L);
                  
                  /* Original: r.expr({'a':1}).coerce_to('object') */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1)).coerceTo("object") ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1L)).coerceTo("object") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -144,10 +144,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/object.yaml, #9
                  /* ExpectedOriginal: [['a', 1]] */
-                 var expected_ = r.array(r.array("a", 1));
+                 var expected_ = r.array(r.array("a", 1L));
                  
                  /* Original: r.expr({'a':1}).coerce_to('array') */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1)).coerceTo("array") ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", 1L)).coerceTo("array") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -172,10 +172,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/object.yaml, #17
                  /* ExpectedOriginal: ({'a':1,'b':2}) */
-                 var expected_ = r.hashMap("a", 1).with("b", 2);
+                 var expected_ = r.hashMap("a", 1L).with("b", 2L);
                  
                  /* Original: r.object('a', 1, 'b', 2) */
-                 var obtained = runOrCatch( r.object_("a", 1, "b", 2) ,
+                 var obtained = runOrCatch( r.object_("a", 1L, "b", 2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -186,10 +186,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/object.yaml, #18
                  /* ExpectedOriginal: ({'cd':3}) */
-                 var expected_ = r.hashMap("cd", 3);
+                 var expected_ = r.hashMap("cd", 3L);
                  
                  /* Original: r.object('c'+'d', 3) */
-                 var obtained = runOrCatch( r.object_(r.add("c", "d"), 3) ,
+                 var obtained = runOrCatch( r.object_(r.add("c", "d"), 3L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -203,7 +203,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", r.array());
                  
                  /* Original: r.object(1, 1) */
-                 var obtained = runOrCatch( r.object_(1, 1) ,
+                 var obtained = runOrCatch( r.object_(1L, 1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -217,7 +217,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Duplicate key `e` in object.  (got `4` and `5` as values)", r.array());
                  
                  /* Original: r.object('e', 4, 'e', 5) */
-                 var obtained = runOrCatch( r.object_("e", 4, "e", 5) ,
+                 var obtained = runOrCatch( r.object_("e", 4L, "e", 5L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

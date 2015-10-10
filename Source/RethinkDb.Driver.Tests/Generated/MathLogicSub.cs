@@ -32,10 +32,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/sub.yaml, #1
                  /* ExpectedOriginal: 0 */
-                 var expected_ = 0;
+                 var expected_ = 0L;
                  
                  /* Original: (r.expr(1) - 1) */
-                 var obtained = runOrCatch( r.expr(1).sub(1) ,
+                 var obtained = runOrCatch( r.expr(1L).sub(1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -46,10 +46,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/sub.yaml, #1
                  /* ExpectedOriginal: 0 */
-                 var expected_ = 0;
+                 var expected_ = 0L;
                  
                  /* Original: (1 - r.expr(1)) */
-                 var obtained = runOrCatch( r.sub(1, r.expr(1)) ,
+                 var obtained = runOrCatch( r.sub(1L, r.expr(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -60,10 +60,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/sub.yaml, #1
                  /* ExpectedOriginal: 0 */
-                 var expected_ = 0;
+                 var expected_ = 0L;
                  
                  /* Original: (r.expr(1).sub(1)) */
-                 var obtained = runOrCatch( r.expr(1).sub(1) ,
+                 var obtained = runOrCatch( r.expr(1L).sub(1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -74,10 +74,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/sub.yaml, #2
                  /* ExpectedOriginal: -2 */
-                 var expected_ = -2;
+                 var expected_ = -2L;
                  
                  /* Original: r.expr(-1) - 1 */
-                 var obtained = runOrCatch( r.expr(-1).sub(1) ,
+                 var obtained = runOrCatch( r.expr(-1L).sub(1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -102,7 +102,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/sub.yaml, #5
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
                  
                  /* Original: r.expr('a') - 0.8 */
                  var obtained = runOrCatch( r.expr("a").sub(0.8) ,
@@ -116,10 +116,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/sub.yaml, #6
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1L));
                  
                  /* Original: r.expr(1) - 'a' */
-                 var obtained = runOrCatch( r.expr(1).sub("a") ,
+                 var obtained = runOrCatch( r.expr(1L).sub("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -130,7 +130,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/sub.yaml, #7
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
                  
                  /* Original: r.expr('b') - 'a' */
                  var obtained = runOrCatch( r.expr("b").sub("a") ,

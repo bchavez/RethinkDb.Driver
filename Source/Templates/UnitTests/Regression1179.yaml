@@ -6,8 +6,8 @@ DefsAndTests:
   TestFile: regression/1179.yaml
   TestNum: 1
   Original: r.expr([1])[r.expr(0)]
-  Java: r.expr(r.array(1)).bracket(r.expr(0))
+  Java: r.expr(r.array(1L)).bracket(r.expr(0L))
   ExpectedOriginal: 1
   ExpectedType: Long
-  ExpectedJava: 1
+  ExpectedJava: 1L
   RunOpts: []

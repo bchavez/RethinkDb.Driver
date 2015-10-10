@@ -32,10 +32,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/2710.yaml, #1
                  /* ExpectedOriginal: ({'a':{'b':2}}) */
-                 var expected_ = r.hashMap("a", r.hashMap("b", 2));
+                 var expected_ = r.hashMap("a", r.hashMap("b", 2L));
                  
                  /* Original: r.expr({"a":{"b":1, "c":2}}).merge(r.json('{"a":{"$reql_type$":"LITERAL", "value":{"b":2}}}')) */
-                 var obtained = runOrCatch( r.expr(r.hashMap("a", r.hashMap("b", 1).with("c", 2))).merge(r.json("{\"a\":{\"$reql_type$\":\"LITERAL\", \"value\":{\"b\":2}}}")) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("a", r.hashMap("b", 1L).with("c", 2L))).merge(r.json("{\"a\":{\"$reql_type$\":\"LITERAL\", \"value\":{\"b\":2}}}")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

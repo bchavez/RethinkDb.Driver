@@ -32,7 +32,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/46.yaml, #1
                  /* ExpectedOriginal: partial({'tables_created':1}) */
-                 var expected_ = partial(r.hashMap("tables_created", 1));
+                 var expected_ = partial(r.hashMap("tables_created", 1L));
                  
                  /* Original: r.table_create('46') */
                  var obtained = runOrCatch( r.tableCreate("46") ,
@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/46.yaml, #3
                  /* ExpectedOriginal: partial({'tables_dropped':1}) */
-                 var expected_ = partial(r.hashMap("tables_dropped", 1));
+                 var expected_ = partial(r.hashMap("tables_dropped", 1L));
                  
                  /* Original: r.table_drop('46') */
                  var obtained = runOrCatch( r.tableDrop("46") ,

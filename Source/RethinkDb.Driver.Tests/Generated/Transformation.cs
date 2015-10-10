@@ -32,13 +32,13 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, transformation.yaml, #Templates.YamlTest+DefTest.
              //Original: tbl2 = r.db('test').table('test2')
              
-Table tbl2 = (Table) (r.db("test").table("test2"));             
+var tbl2 = (Table) (r.db("test").table("test2"));             
              TestCounter++;
              
              {
                  //JavaQuery, transformation.yaml, #1
                  /* ExpectedOriginal: partial({'tables_created':1}) */
-                 var expected_ = partial(r.hashMap("tables_created", 1));
+                 var expected_ = partial(r.hashMap("tables_created", 1L));
                  
                  /* Original: r.db('test').table_create('test2') */
                  var obtained = runOrCatch( r.db("test").tableCreate("test2") ,
@@ -51,13 +51,13 @@ Table tbl2 = (Table) (r.db("test").table("test2"));
              //JavaDef, transformation.yaml, #Templates.YamlTest+DefTest.
              //Original: tbl3 = r.db('test').table('test3')
              
-Table tbl3 = (Table) (r.db("test").table("test3"));             
+var tbl3 = (Table) (r.db("test").table("test3"));             
              TestCounter++;
              
              {
                  //JavaQuery, transformation.yaml, #2
                  /* ExpectedOriginal: partial({'tables_created':1}) */
-                 var expected_ = partial(r.hashMap("tables_created", 1));
+                 var expected_ = partial(r.hashMap("tables_created", 1L));
                  
                  /* Original: r.db('test').table_create('test3') */
                  var obtained = runOrCatch( r.db("test").tableCreate("test3") ,
@@ -71,10 +71,10 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, transformation.yaml, #3
                  /* ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100}) */
-                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100);
+                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L);
                  
                  /* Original: tbl.insert([{'id':i, 'a':i%4} for i in xrange(100)]) */
-                 var obtained = runOrCatch( tbl.insert(Enumerable.Range(0, 100).Select(i => r.hashMap("id", i).with("a", r.mod(i, 4))).ToList()) ,
+                 var obtained = runOrCatch( tbl.insert(EnumerableLRange(0, 100L).Select(i => r.hashMap("id", i).with("a", r.mod(i, 4L))).ToList()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -85,7 +85,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, transformation.yaml, #4
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('a') */
                  var obtained = runOrCatch( tbl.indexCreate("a") ,
@@ -99,10 +99,10 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, transformation.yaml, #5
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('truncated_a', lambda x: ['a' * 300, x['a']]) */
-                 var obtained = runOrCatch( tbl.indexCreate("truncated_a", x => r.array(r.mul("a", 300), x.g("a"))) ,
+                 var obtained = runOrCatch( tbl.indexCreate("truncated_a", x => r.array(r.mul("a", 300L), x.g("a"))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -113,10 +113,10 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, transformation.yaml, #6
                  /* ExpectedOriginal: ({'created':1}) */
-                 var expected_ = r.hashMap("created", 1);
+                 var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('error_prone', lambda x: 1/x['a']) */
-                 var obtained = runOrCatch( tbl.indexCreate("error_prone", x => r.div(1, x.g("a"))) ,
+                 var obtained = runOrCatch( tbl.indexCreate("error_prone", x => r.div(1L, x.g("a"))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -141,10 +141,10 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, transformation.yaml, #8
                  /* ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100}) */
-                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100);
+                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L);
                  
                  /* Original: tbl2.insert([{'id':i, 'b':i%4} for i in xrange(100)]) */
-                 var obtained = runOrCatch( tbl2.insert(Enumerable.Range(0, 100).Select(i => r.hashMap("id", i).with("b", r.mod(i, 4))).ToList()) ,
+                 var obtained = runOrCatch( tbl2.insert(EnumerableLRange(0, 100L).Select(i => r.hashMap("id", i).with("b", r.mod(i, 4L))).ToList()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -155,10 +155,10 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, transformation.yaml, #9
                  /* ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':100}) */
-                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100);
+                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 100L);
                  
                  /* Original: tbl3.insert([{'id':i, 'a':i%4, 'b':{'c':i%5}} for i in xrange(100)]) */
-                 var obtained = runOrCatch( tbl3.insert(Enumerable.Range(0, 100).Select(i => r.hashMap("id", i).with("a", r.mod(i, 4)).with("b", r.hashMap("c", r.mod(i, 5)))).ToList()) ,
+                 var obtained = runOrCatch( tbl3.insert(EnumerableLRange(0, 100L).Select(i => r.hashMap("id", i).with("a", r.mod(i, 4L)).with("b", r.hashMap("c", r.mod(i, 5L)))).ToList()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -169,7 +169,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, transformation.yaml, #10
                  /* ExpectedOriginal: 4950 */
-                 var expected_ = 4950;
+                 var expected_ = 4950L;
                  
                  /* Original: tbl.map(lambda row:row['id']).reduce(lambda a,b:a+b) */
                  var obtained = runOrCatch( tbl.map(row => row.g("id")).reduce((a, b) => r.add(a, b)) ,
@@ -183,7 +183,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, transformation.yaml, #11
                  /* ExpectedOriginal: 9900 */
-                 var expected_ = 9900;
+                 var expected_ = 9900L;
                  
                  /* Original: tbl.union(tbl).map(lambda row:row['id']).reduce(lambda a,b:a+b) */
                  var obtained = runOrCatch( tbl.union(tbl).map(row => row.g("id")).reduce((a, b) => r.add(a, b)) ,
@@ -197,7 +197,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, transformation.yaml, #12
                  /* ExpectedOriginal: 9900 */
-                 var expected_ = 9900;
+                 var expected_ = 9900L;
                  
                  /* Original: tbl.coerce_to("array").union(tbl).map(lambda row:row['id']).reduce(lambda a,b:a+b) */
                  var obtained = runOrCatch( tbl.coerceTo("array").union(tbl).map(row => row.g("id")).reduce((a, b) => r.add(a, b)) ,
@@ -211,7 +211,7 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              {
                  //JavaQuery, transformation.yaml, #13
                  /* ExpectedOriginal: 9900 */
-                 var expected_ = 9900;
+                 var expected_ = 9900L;
                  
                  /* Original: tbl.union(tbl.coerce_to("array")).map(lambda row:row['id']).reduce(lambda a,b:a+b) */
                  var obtained = runOrCatch( tbl.union(tbl.coerceTo("array")).map(row => row.g("id")).reduce((a, b) => r.add(a, b)) ,
@@ -238,13 +238,13 @@ Table tbl3 = (Table) (r.db("test").table("test3"));
              //JavaDef, transformation.yaml, #Templates.YamlTest+DefTest.
              //Original: ccm = tbl.concat_map(lambda row:[row['a'], (row['a'] + 1) % 4])
              
-ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a").add(1).mod(4))));             
+var ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a").add(1L).mod(4L))));             
              TestCounter++;
              
              {
                  //JavaQuery, transformation.yaml, #16
                  /* ExpectedOriginal: 200 */
-                 var expected_ = 200;
+                 var expected_ = 200L;
                  
                  /* Original: ccm.count() */
                  var obtained = runOrCatch( ccm.count() ,
@@ -258,10 +258,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #17
                  /* ExpectedOriginal: 0 */
-                 var expected_ = 0;
+                 var expected_ = 0L;
                  
                  /* Original: ccm.reduce(lambda a,b:(a+b) % 4) */
-                 var obtained = runOrCatch( ccm.reduce((a, b) => r.add(a, b).mod(4)) ,
+                 var obtained = runOrCatch( ccm.reduce((a, b) => r.add(a, b).mod(4L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -272,10 +272,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #18
                  /* ExpectedOriginal: ({'id':0, 'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl.order_by('id')[0] */
-                 var obtained = runOrCatch( tbl.orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -286,10 +286,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #19
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type STRING but found ARRAY.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type STRING but found ARRAY.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type STRING but found ARRAY.", r.array(0L));
                  
                  /* Original: tbl.order_by([1,2,3]) */
-                 var obtained = runOrCatch( tbl.orderBy(r.array(1, 2, 3)) ,
+                 var obtained = runOrCatch( tbl.orderBy(r.array(1L, 2L, 3L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -300,10 +300,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #20
                  /* ExpectedOriginal: ({'id':0, 'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl.order_by(index='id')[0] */
-                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -314,10 +314,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #21
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: tbl.order_by(index='id')[0].update({'a':0})['unchanged'] */
-                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").nth(0).update(r.hashMap("a", 0)).g("unchanged") ,
+                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").nth(0L).update(r.hashMap("a", 0L)).g("unchanged") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -328,10 +328,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #22
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: tbl.get_all(0).update({'a':0})['unchanged'] */
-                 var obtained = runOrCatch( tbl.getAll(0).update(r.hashMap("a", 0)).g("unchanged") ,
+                 var obtained = runOrCatch( tbl.getAll(0L).update(r.hashMap("a", 0L)).g("unchanged") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -342,10 +342,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #23
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot perform multiple indexed ORDER_BYs on the same table.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Cannot perform multiple indexed ORDER_BYs on the same table.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Cannot perform multiple indexed ORDER_BYs on the same table.", r.array(0L));
                  
                  /* Original: tbl.order_by(index='id').order_by(index='id')[0] */
-                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").orderBy().optArg("index", "id").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").orderBy().optArg("index", "id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -356,10 +356,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #24
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot perform multiple indexed ORDER_BYs on the same table.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Cannot perform multiple indexed ORDER_BYs on the same table.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Cannot perform multiple indexed ORDER_BYs on the same table.", r.array(0L));
                  
                  /* Original: tbl.order_by(index='id').order_by(index='id')[0] */
-                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").orderBy().optArg("index", "id").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").orderBy().optArg("index", "id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -370,10 +370,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #25
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Indexed order_by can only be performed on a TABLE or TABLE_SLICE.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0L));
                  
                  /* Original: tbl.order_by('id').order_by(index='id')[0] */
-                 var obtained = runOrCatch( tbl.orderBy("id").orderBy().optArg("index", "id").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("id").orderBy().optArg("index", "id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -384,10 +384,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #26
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Indexed order_by can only be performed on a TABLE or TABLE_SLICE.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0L));
                  
                  /* Original: tbl.order_by('id').order_by(index='a')[0] */
-                 var obtained = runOrCatch( tbl.orderBy("id").orderBy().optArg("index", "a").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("id").orderBy().optArg("index", "a").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -398,10 +398,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #27
                  /* ExpectedOriginal: ({'id':5, 'a':1}) */
-                 var expected_ = r.hashMap("id", 5).with("a", 1);
+                 var expected_ = r.hashMap("id", 5L).with("a", 1L);
                  
                  /* Original: tbl.between(5, r.maxval, index='id').order_by(index='id')[0] */
-                 var obtained = runOrCatch( tbl.between(5, r.maxval()).optArg("index", "id").orderBy().optArg("index", "id").nth(0) ,
+                 var obtained = runOrCatch( tbl.between(5L, r.maxval()).optArg("index", "id").orderBy().optArg("index", "id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -412,10 +412,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #28
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type TABLE_SLICE but found SELECTION:', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type TABLE_SLICE but found SELECTION:", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type TABLE_SLICE but found SELECTION:", r.array(0L));
                  
                  /* Original: tbl.order_by('a', index='id').between(5, r.maxval, index='id')[0] */
-                 var obtained = runOrCatch( tbl.orderBy("a").optArg("index", "id").between(5, r.maxval()).optArg("index", "id").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("a").optArg("index", "id").between(5L, r.maxval()).optArg("index", "id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -426,10 +426,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #29
                  /* ExpectedOriginal: ({'id':0, 'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl.order_by(lambda x: x['id'])[0] */
-                 var obtained = runOrCatch( tbl.orderBy(x => x.g("id")).nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy(x => x.g("id")).nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -440,10 +440,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #30
                  /* ExpectedOriginal: ({'id':0,'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl.order_by('a', 'id').nth(0) */
-                 var obtained = runOrCatch( tbl.orderBy("a", "id").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("a", "id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -454,10 +454,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #31
                  /* ExpectedOriginal: ({'id':0,'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl.order_by('id', index='a').nth(0) */
-                 var obtained = runOrCatch( tbl.orderBy("id").optArg("index", "a").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("id").optArg("index", "a").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -468,10 +468,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #32
                  /* ExpectedOriginal: ({'id':0,'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl.order_by('id', index='truncated_a').nth(0) */
-                 var obtained = runOrCatch( tbl.orderBy("id").optArg("index", "truncated_a").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("id").optArg("index", "truncated_a").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -482,10 +482,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #33
                  /* ExpectedOriginal: ({'id':3,'a':3}) */
-                 var expected_ = r.hashMap("id", 3).with("a", 3);
+                 var expected_ = r.hashMap("id", 3L).with("a", 3L);
                  
                  /* Original: tbl.order_by('id', index='error_prone').nth(0) */
-                 var obtained = runOrCatch( tbl.orderBy("id").optArg("index", "error_prone").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("id").optArg("index", "error_prone").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -496,10 +496,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #34
                  /* ExpectedOriginal: ({'id':0, 'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl.order_by(lambda x: [x['a'], x['id']])[0] */
-                 var obtained = runOrCatch( tbl.orderBy(x => r.array(x.g("a"), x.g("id"))).nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy(x => r.array(x.g("a"), x.g("id"))).nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -510,10 +510,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #35
                  /* ExpectedOriginal: ({'id':3,'a':3}) */
-                 var expected_ = r.hashMap("id", 3).with("a", 3);
+                 var expected_ = r.hashMap("id", 3L).with("a", 3L);
                  
                  /* Original: tbl.order_by(r.desc('a'), r.asc('id')).nth(0) */
-                 var obtained = runOrCatch( tbl.orderBy(r.desc("a"), r.asc("id")).nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy(r.desc("a"), r.asc("id")).nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -524,10 +524,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #36
                  /* ExpectedOriginal: ({'id':3,'a':3}) */
-                 var expected_ = r.hashMap("id", 3).with("a", 3);
+                 var expected_ = r.hashMap("id", 3L).with("a", 3L);
                  
                  /* Original: tbl.order_by('id', index=r.desc('a')).nth(0) */
-                 var obtained = runOrCatch( tbl.orderBy("id").optArg("index", r.desc("a")).nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("id").optArg("index", r.desc("a")).nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -538,10 +538,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #37
                  /* ExpectedOriginal: ({'id':3, 'a':3}) */
-                 var expected_ = r.hashMap("id", 3).with("a", 3);
+                 var expected_ = r.hashMap("id", 3L).with("a", 3L);
                  
                  /* Original: tbl.order_by(r.desc(lambda x: x['a']), lambda x: x['id'])[0] */
-                 var obtained = runOrCatch( tbl.orderBy(r.desc(x => x.g("a")), x => x.g("id")).nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy(r.desc(x => x.g("a")), x => x.g("id")).nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -552,10 +552,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #38
                  /* ExpectedOriginal: ({'id':96,'a':0}) */
-                 var expected_ = r.hashMap("id", 96).with("a", 0);
+                 var expected_ = r.hashMap("id", 96L).with("a", 0L);
                  
                  /* Original: tbl.order_by(r.asc('a'), r.desc('id')).nth(0) */
-                 var obtained = runOrCatch( tbl.orderBy(r.asc("a"), r.desc("id")).nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy(r.asc("a"), r.desc("id")).nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -566,10 +566,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #39
                  /* ExpectedOriginal: ({'id':96,'a':0}) */
-                 var expected_ = r.hashMap("id", 96).with("a", 0);
+                 var expected_ = r.hashMap("id", 96L).with("a", 0L);
                  
                  /* Original: tbl.order_by(r.desc('id'), index='a').nth(0) */
-                 var obtained = runOrCatch( tbl.orderBy(r.desc("id")).optArg("index", "a").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy(r.desc("id")).optArg("index", "a").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -594,10 +594,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #41
                  /* ExpectedOriginal: ({'id':0, 'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl.order_by('missing').order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl.orderBy("missing").orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("missing").orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -608,10 +608,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #42
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Indexed order_by can only be performed on a TABLE or TABLE_SLICE.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Indexed order_by can only be performed on a TABLE or TABLE_SLICE.", r.array(0L));
                  
                  /* Original: tbl.order_by('missing').order_by(index='id').nth(0) */
-                 var obtained = runOrCatch( tbl.orderBy("missing").orderBy().optArg("index", "id").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("missing").orderBy().optArg("index", "id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -622,10 +622,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #43
                  /* ExpectedOriginal: ({'id':0, 'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl.order_by('id', 'missing').nth(0) */
-                 var obtained = runOrCatch( tbl.orderBy("id", "missing").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("id", "missing").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -636,10 +636,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #44
                  /* ExpectedOriginal: ({'id':0, 'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl.order_by('missing', index='id').nth(0) */
-                 var obtained = runOrCatch( tbl.orderBy("missing").optArg("index", "id").nth(0) ,
+                 var obtained = runOrCatch( tbl.orderBy("missing").optArg("index", "id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -653,7 +653,7 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
                  var expected_ = true;
                  
                  /* Original: tbl.order_by(r.desc('id')).coerce_to('ARRAY') == tbl.order_by(lambda x: 0 - x['id']).coerce_to('ARRAY') */
-                 var obtained = runOrCatch( tbl.orderBy(r.desc("id")).coerceTo("ARRAY").eq(tbl.orderBy(x => r.sub(0, x.g("id"))).coerceTo("ARRAY")) ,
+                 var obtained = runOrCatch( tbl.orderBy(r.desc("id")).coerceTo("ARRAY").eq(tbl.orderBy(x => r.sub(0L, x.g("id"))).coerceTo("ARRAY")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -667,7 +667,7 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
                  var expected_ = true;
                  
                  /* Original: tbl.order_by(index=r.desc('id')).coerce_to('ARRAY') == tbl.order_by(lambda x: 0 - x['id']).coerce_to('ARRAY') */
-                 var obtained = runOrCatch( tbl.orderBy().optArg("index", r.desc("id")).coerceTo("ARRAY").eq(tbl.orderBy(x => r.sub(0, x.g("id"))).coerceTo("ARRAY")) ,
+                 var obtained = runOrCatch( tbl.orderBy().optArg("index", r.desc("id")).coerceTo("ARRAY").eq(tbl.orderBy(x => r.sub(0L, x.g("id"))).coerceTo("ARRAY")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -692,10 +692,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #48
                  /* ExpectedOriginal: 99 */
-                 var expected_ = 99;
+                 var expected_ = 99L;
                  
                  /* Original: tbl.skip(1).count() */
-                 var obtained = runOrCatch( tbl.skip(1).count() ,
+                 var obtained = runOrCatch( tbl.skip(1L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -706,10 +706,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #49
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot use a negative left index on a stream.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", r.array(0L));
                  
                  /* Original: tbl.skip(-1).count() */
-                 var obtained = runOrCatch( tbl.skip(-1).count() ,
+                 var obtained = runOrCatch( tbl.skip(-1L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -720,7 +720,7 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #50
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
                  
                  /* Original: tbl.skip('foo').count() */
                  var obtained = runOrCatch( tbl.skip("foo").count() ,
@@ -734,10 +734,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #51
                  /* ExpectedOriginal: 1 */
-                 var expected_ = 1;
+                 var expected_ = 1L;
                  
                  /* Original: tbl.limit(1).count() */
-                 var obtained = runOrCatch( tbl.limit(1).count() ,
+                 var obtained = runOrCatch( tbl.limit(1L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -748,10 +748,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #52
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'LIMIT takes a non-negative argument (got -1)', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "LIMIT takes a non-negative argument (got -1)", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "LIMIT takes a non-negative argument (got -1)", r.array(0L));
                  
                  /* Original: tbl.limit(-1).count() */
-                 var obtained = runOrCatch( tbl.limit(-1).count() ,
+                 var obtained = runOrCatch( tbl.limit(-1L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -762,7 +762,7 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #53
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
                  
                  /* Original: tbl.limit('foo').count() */
                  var obtained = runOrCatch( tbl.limit("foo").count() ,
@@ -776,10 +776,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #54
                  /* ExpectedOriginal: 2 */
-                 var expected_ = 2;
+                 var expected_ = 2L;
                  
                  /* Original: tbl.slice(1, 3).count() */
-                 var obtained = runOrCatch( tbl.slice(1, 3).count() ,
+                 var obtained = runOrCatch( tbl.slice(1L, 3L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -790,10 +790,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #55
                  /* ExpectedOriginal: 95 */
-                 var expected_ = 95;
+                 var expected_ = 95L;
                  
                  /* Original: tbl.slice(5).count() */
-                 var obtained = runOrCatch( tbl.slice(5).count() ,
+                 var obtained = runOrCatch( tbl.slice(5L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -804,10 +804,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #56
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot use a negative left index on a stream.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", r.array(0L));
                  
                  /* Original: tbl.slice(-1, -3).count() */
-                 var obtained = runOrCatch( tbl.slice(-1, -3).count() ,
+                 var obtained = runOrCatch( tbl.slice(-1L, -3L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -818,10 +818,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #57
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot use a right index < -1 on a stream.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Cannot use a right index < -1 on a stream.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Cannot use a right index < -1 on a stream.", r.array(0L));
                  
                  /* Original: tbl.slice(0, -3).count() */
-                 var obtained = runOrCatch( tbl.slice(0, -3).count() ,
+                 var obtained = runOrCatch( tbl.slice(0L, -3L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -835,7 +835,7 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
                  var expected_ = err("ReqlQueryLogicError", "Cannot slice to an open right index of -1 on a stream.", r.array());
                  
                  /* Original: tbl.slice(0, -1).count() */
-                 var obtained = runOrCatch( tbl.slice(0, -1).count() ,
+                 var obtained = runOrCatch( tbl.slice(0L, -1L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -846,7 +846,7 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #59
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
                  
                  /* Original: tbl.slice('foo', 'bar').count() */
                  var obtained = runOrCatch( tbl.slice("foo", "bar").count() ,
@@ -860,10 +860,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #60
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0]) */
-                 var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0));
+                 var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0L));
                  
                  /* Original: tbl.slice(1, null).count() */
-                 var obtained = runOrCatch( tbl.slice(1, (ReqlExpr) null).count() ,
+                 var obtained = runOrCatch( tbl.slice(1L, (ReqlExpr) null).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -874,10 +874,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #61
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0]) */
-                 var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0));
+                 var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0L));
                  
                  /* Original: tbl.slice(null, 1).count() */
-                 var obtained = runOrCatch( tbl.slice((ReqlExpr) null, 1).count() ,
+                 var obtained = runOrCatch( tbl.slice((ReqlExpr) null, 1L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -888,10 +888,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #62
                  /* ExpectedOriginal: 8 */
-                 var expected_ = 8;
+                 var expected_ = 8L;
                  
                  /* Original: tbl.slice(12, 20).count() */
-                 var obtained = runOrCatch( tbl.slice(12, 20).count() ,
+                 var obtained = runOrCatch( tbl.slice(12L, 20L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -902,10 +902,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #63
                  /* ExpectedOriginal: 9 */
-                 var expected_ = 9;
+                 var expected_ = 9L;
                  
                  /* Original: tbl.slice(12, 20, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.slice(12, 20).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.slice(12L, 20L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -916,10 +916,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #64
                  /* ExpectedOriginal: 7 */
-                 var expected_ = 7;
+                 var expected_ = 7L;
                  
                  /* Original: tbl.slice(12, 20, left_bound='open').count() */
-                 var obtained = runOrCatch( tbl.slice(12, 20).optArg("left_bound", "open").count() ,
+                 var obtained = runOrCatch( tbl.slice(12L, 20L).optArg("left_bound", "open").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -930,10 +930,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #65
                  /* ExpectedOriginal: 8 */
-                 var expected_ = 8;
+                 var expected_ = 8L;
                  
                  /* Original: tbl.slice(12, 20, left_bound='open', right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.slice(12, 20).optArg("left_bound", "open").optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.slice(12L, 20L).optArg("left_bound", "open").optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -947,7 +947,7 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
                  var expected_ = err("ReqlQueryLogicError", "Cannot slice to an open right index of -1 on a stream.", r.array());
                  
                  /* Original: tbl.slice(12, -1).count() */
-                 var obtained = runOrCatch( tbl.slice(12, -1).count() ,
+                 var obtained = runOrCatch( tbl.slice(12L, -1L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -958,10 +958,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #67
                  /* ExpectedOriginal: 88 */
-                 var expected_ = 88;
+                 var expected_ = 88L;
                  
                  /* Original: tbl.slice(12, -1, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.slice(12, -1).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.slice(12L, -1L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -975,7 +975,7 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
                  var expected_ = err("ReqlQueryLogicError", "Cannot use a right index < -1 on a stream.", r.array());
                  
                  /* Original: tbl.slice(12, -2).count() */
-                 var obtained = runOrCatch( tbl.slice(12, -2).count() ,
+                 var obtained = runOrCatch( tbl.slice(12L, -2L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -989,7 +989,7 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
                  var expected_ = err("ReqlQueryLogicError", "Cannot use a right index < -1 on a stream.", r.array());
                  
                  /* Original: tbl.slice(12, -2, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.slice(12, -2).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.slice(12L, -2L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1003,7 +1003,7 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
                  var expected_ = err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", r.array());
                  
                  /* Original: tbl.slice(-12, -2).count() */
-                 var obtained = runOrCatch( tbl.slice(-12, -2).count() ,
+                 var obtained = runOrCatch( tbl.slice(-12L, -2L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1017,7 +1017,7 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
                  var expected_ = err("ReqlQueryLogicError", "Cannot use a negative left index on a stream.", r.array());
                  
                  /* Original: tbl.slice(-12, -2, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.slice(-12, -2).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.slice(-12L, -2L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1028,10 +1028,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #72
                  /* ExpectedOriginal: 8 */
-                 var expected_ = 8;
+                 var expected_ = 8L;
                  
                  /* Original: tbl.coerce_to('array').slice(12, 20).count() */
-                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12, 20).count() ,
+                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12L, 20L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1042,10 +1042,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #73
                  /* ExpectedOriginal: 9 */
-                 var expected_ = 9;
+                 var expected_ = 9L;
                  
                  /* Original: tbl.coerce_to('array').slice(12, 20, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12, 20).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12L, 20L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1056,10 +1056,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #74
                  /* ExpectedOriginal: 7 */
-                 var expected_ = 7;
+                 var expected_ = 7L;
                  
                  /* Original: tbl.coerce_to('array').slice(12, 20, left_bound='open').count() */
-                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12, 20).optArg("left_bound", "open").count() ,
+                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12L, 20L).optArg("left_bound", "open").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1070,10 +1070,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #75
                  /* ExpectedOriginal: 8 */
-                 var expected_ = 8;
+                 var expected_ = 8L;
                  
                  /* Original: tbl.coerce_to('array').slice(12, 20, left_bound='open', right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12, 20).optArg("left_bound", "open").optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12L, 20L).optArg("left_bound", "open").optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1084,10 +1084,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #76
                  /* ExpectedOriginal: 87 */
-                 var expected_ = 87;
+                 var expected_ = 87L;
                  
                  /* Original: tbl.coerce_to('array').slice(12, -1).count() */
-                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12, -1).count() ,
+                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12L, -1L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1098,10 +1098,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #77
                  /* ExpectedOriginal: 88 */
-                 var expected_ = 88;
+                 var expected_ = 88L;
                  
                  /* Original: tbl.coerce_to('array').slice(12, -1, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12, -1).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12L, -1L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1112,10 +1112,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #78
                  /* ExpectedOriginal: 86 */
-                 var expected_ = 86;
+                 var expected_ = 86L;
                  
                  /* Original: tbl.coerce_to('array').slice(12, -2).count() */
-                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12, -2).count() ,
+                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12L, -2L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1126,10 +1126,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #79
                  /* ExpectedOriginal: 87 */
-                 var expected_ = 87;
+                 var expected_ = 87L;
                  
                  /* Original: tbl.coerce_to('array').slice(12, -2, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12, -2).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.coerceTo("array").slice(12L, -2L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1140,10 +1140,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #80
                  /* ExpectedOriginal: 10 */
-                 var expected_ = 10;
+                 var expected_ = 10L;
                  
                  /* Original: tbl.coerce_to('array').slice(-12, -2).count() */
-                 var obtained = runOrCatch( tbl.coerceTo("array").slice(-12, -2).count() ,
+                 var obtained = runOrCatch( tbl.coerceTo("array").slice(-12L, -2L).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1154,10 +1154,10 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              {
                  //JavaQuery, transformation.yaml, #81
                  /* ExpectedOriginal: 11 */
-                 var expected_ = 11;
+                 var expected_ = 11L;
                  
                  /* Original: tbl.coerce_to('array').slice(-12, -2, right_bound='closed').count() */
-                 var obtained = runOrCatch( tbl.coerceTo("array").slice(-12, -2).optArg("right_bound", "closed").count() ,
+                 var obtained = runOrCatch( tbl.coerceTo("array").slice(-12L, -2L).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1167,13 +1167,13 @@ ConcatMap ccm = (ConcatMap) (tbl.concatMap(row => r.array(row.g("a"), row.g("a")
              //JavaDef, transformation.yaml, #Templates.YamlTest+DefTest.
              //Original: arr = r.expr([1,2,3,4,5])
              
-MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));             
+var arr = (MakeArray) (r.expr(r.array(1L, 2L, 3L, 4L, 5L)));             
              TestCounter++;
              
              {
                  //JavaQuery, transformation.yaml, #84
                  /* ExpectedOriginal: ([2, 3]) */
-                 var expected_ = r.array(2, 3);
+                 var expected_ = r.array(2L, 3L);
                  
                  /* Original: arr[1:3] */
                  var obtained = runOrCatch( arr.slice(1, 3) ,
@@ -1187,7 +1187,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #86
                  /* ExpectedOriginal: ([2]) */
-                 var expected_ = r.array(2);
+                 var expected_ = r.array(2L);
                  
                  /* Original: arr[1:-3] */
                  var obtained = runOrCatch( arr.slice(1, -3) ,
@@ -1201,7 +1201,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #87
                  /* ExpectedOriginal: ([2,3,4,5]) */
-                 var expected_ = r.array(2, 3, 4, 5);
+                 var expected_ = r.array(2L, 3L, 4L, 5L);
                  
                  /* Original: arr[1:] */
                  var obtained = runOrCatch( arr.slice(1, -1) ,
@@ -1215,7 +1215,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #88
                  /* ExpectedOriginal: ([2,3,4]) */
-                 var expected_ = r.array(2, 3, 4);
+                 var expected_ = r.array(2L, 3L, 4L);
                  
                  /* Original: arr[1:-1] */
                  var obtained = runOrCatch( arr.slice(1, -1) ,
@@ -1229,10 +1229,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #89
                  /* ExpectedOriginal: ({'id':1,'a':1}) */
-                 var expected_ = r.hashMap("id", 1).with("a", 1);
+                 var expected_ = r.hashMap("id", 1L).with("a", 1L);
                  
                  /* Original: tbl.order_by('id').nth(1) */
-                 var obtained = runOrCatch( tbl.orderBy("id").nth(1) ,
+                 var obtained = runOrCatch( tbl.orderBy("id").nth(1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1243,10 +1243,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #90
                  /* ExpectedOriginal: ({'id':99,'a':3}) */
-                 var expected_ = r.hashMap("id", 99).with("a", 3);
+                 var expected_ = r.hashMap("id", 99L).with("a", 3L);
                  
                  /* Original: tbl.order_by('id').nth(-1) */
-                 var obtained = runOrCatch( tbl.orderBy("id").nth(-1) ,
+                 var obtained = runOrCatch( tbl.orderBy("id").nth(-1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1257,7 +1257,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #91
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
                  
                  /* Original: tbl.order_by('id').nth('foo').count() */
                  var obtained = runOrCatch( tbl.orderBy("id").nth("foo").count() ,
@@ -1288,7 +1288,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
                  var expected_ = true;
                  
                  /* Original: tbl.limit(0).is_empty() */
-                 var obtained = runOrCatch( tbl.limit(0).isEmpty() ,
+                 var obtained = runOrCatch( tbl.limit(0L).isEmpty() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1302,7 +1302,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
                  var expected_ = err("ReqlQueryLogicError", "Cannot convert NUMBER to SEQUENCE", r.array());
                  
                  /* Original: r.expr(1).is_empty() */
-                 var obtained = runOrCatch( r.expr(1).isEmpty() ,
+                 var obtained = runOrCatch( r.expr(1L).isEmpty() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1330,7 +1330,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
                  var expected_ = r.hashMap();
                  
                  /* Original: tbl3.pluck().nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck().nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck().nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1344,7 +1344,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
                  var expected_ = r.hashMap();
                  
                  /* Original: tbl3.pluck({}).nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck(r.hashMap()).nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck(r.hashMap()).nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1358,7 +1358,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
                  var expected_ = r.hashMap();
                  
                  /* Original: tbl3.pluck([]).nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck(r.array()).nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck(r.array()).nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1369,10 +1369,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #99
                  /* ExpectedOriginal: ({'id':0}) */
-                 var expected_ = r.hashMap("id", 0);
+                 var expected_ = r.hashMap("id", 0L);
                  
                  /* Original: tbl3.pluck('id').order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck("id").orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck("id").orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1383,10 +1383,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #100
                  /* ExpectedOriginal: ({'id':0}) */
-                 var expected_ = r.hashMap("id", 0);
+                 var expected_ = r.hashMap("id", 0L);
                  
                  /* Original: tbl3.pluck(['id']).order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck(r.array("id")).orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck(r.array("id")).orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1397,10 +1397,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #101
                  /* ExpectedOriginal: ({'id':0}) */
-                 var expected_ = r.hashMap("id", 0);
+                 var expected_ = r.hashMap("id", 0L);
                  
                  /* Original: tbl3.pluck({'id':True}).order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck(r.hashMap("id", true)).orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck(r.hashMap("id", true)).orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1411,10 +1411,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #102
                  /* ExpectedOriginal: ({'id':0,'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl3.pluck('id', 'a').order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck("id", "a").orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck("id", "a").orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1425,10 +1425,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #103
                  /* ExpectedOriginal: ({'id':0,'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl3.pluck(['id', 'a']).order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck(r.array("id", "a")).orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck(r.array("id", "a")).orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1439,10 +1439,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #104
                  /* ExpectedOriginal: ({'id':0,'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl3.pluck({'id':True, 'a':True}).order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck(r.hashMap("id", true).with("a", true)).orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck(r.hashMap("id", true).with("a", true)).orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1453,10 +1453,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #105
                  /* ExpectedOriginal: ({'id':0}) */
-                 var expected_ = r.hashMap("id", 0);
+                 var expected_ = r.hashMap("id", 0L);
                  
                  /* Original: tbl3.pluck('id', 'missing').order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck("id", "missing").orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck("id", "missing").orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1467,10 +1467,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #106
                  /* ExpectedOriginal: ({'id':0}) */
-                 var expected_ = r.hashMap("id", 0);
+                 var expected_ = r.hashMap("id", 0L);
                  
                  /* Original: tbl3.pluck(['id', 'missing']).order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck(r.array("id", "missing")).orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck(r.array("id", "missing")).orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1481,10 +1481,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #107
                  /* ExpectedOriginal: ({'id':0}) */
-                 var expected_ = r.hashMap("id", 0);
+                 var expected_ = r.hashMap("id", 0L);
                  
                  /* Original: tbl3.pluck({'id':True, 'missing':True}).order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck(r.hashMap("id", true).with("missing", true)).orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck(r.hashMap("id", true).with("missing", true)).orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1495,10 +1495,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #108
                  /* ExpectedOriginal: ({'id':0, 'b':{'c':0}}) */
-                 var expected_ = r.hashMap("id", 0).with("b", r.hashMap("c", 0));
+                 var expected_ = r.hashMap("id", 0L).with("b", r.hashMap("c", 0L));
                  
                  /* Original: tbl3.pluck('id', {'b':'c'}).order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck("id", r.hashMap("b", "c")).orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck("id", r.hashMap("b", "c")).orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1509,10 +1509,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #109
                  /* ExpectedOriginal: ({'id':0, 'b':{'c':0}}) */
-                 var expected_ = r.hashMap("id", 0).with("b", r.hashMap("c", 0));
+                 var expected_ = r.hashMap("id", 0L).with("b", r.hashMap("c", 0L));
                  
                  /* Original: tbl3.pluck(['id', {'b':'c'}]).order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.pluck(r.array("id", r.hashMap("b", "c"))).orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.pluck(r.array("id", r.hashMap("b", "c"))).orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1526,7 +1526,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
                  var expected_ = err("ReqlQueryLogicError", "Invalid path argument `1`.", r.array());
                  
                  /* Original: tbl3.pluck(1) */
-                 var obtained = runOrCatch( tbl3.pluck(1) ,
+                 var obtained = runOrCatch( tbl3.pluck(1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1540,7 +1540,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
                  var expected_ = err("ReqlQueryLogicError", "Cannot perform pluck on a sequence of sequences.", r.array());
                  
                  /* Original: r.expr([[{"foo":1}]]).pluck("foo") */
-                 var obtained = runOrCatch( r.expr(r.array(r.array(r.hashMap("foo", 1)))).pluck("foo") ,
+                 var obtained = runOrCatch( r.expr(r.array(r.array(r.hashMap("foo", 1L)))).pluck("foo") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1551,10 +1551,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #112
                  /* ExpectedOriginal: ([{'a':1},{'b':2}]) */
-                 var expected_ = r.array(r.hashMap("a", 1), r.hashMap("b", 2));
+                 var expected_ = r.array(r.hashMap("a", 1L), r.hashMap("b", 2L));
                  
                  /* Original: r.expr(['a','b']).map(lambda x:r.expr({'a':1,'b':2}).pluck(x)) */
-                 var obtained = runOrCatch( r.expr(r.array("a", "b")).map(x => r.expr(r.hashMap("a", 1).with("b", 2)).pluck(x)) ,
+                 var obtained = runOrCatch( r.expr(r.array("a", "b")).map(x => r.expr(r.hashMap("a", 1L).with("b", 2L)).pluck(x)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1568,7 +1568,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
                  var expected_ = r.hashMap("foo", r.hashMap());
                  
                  /* Original: r.expr({"foo":{"bar":1}}).pluck({"foo":{"bar":"buzz"}}) */
-                 var obtained = runOrCatch( r.expr(r.hashMap("foo", r.hashMap("bar", 1))).pluck(r.hashMap("foo", r.hashMap("bar", "buzz"))) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap("foo", r.hashMap("bar", 1L))).pluck(r.hashMap("foo", r.hashMap("bar", "buzz"))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1579,10 +1579,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #114
                  /* ExpectedOriginal: ({'id':0,'a':0}) */
-                 var expected_ = r.hashMap("id", 0).with("a", 0);
+                 var expected_ = r.hashMap("id", 0L).with("a", 0L);
                  
                  /* Original: tbl.without().order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl.without().orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl.without().orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1593,10 +1593,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #115
                  /* ExpectedOriginal: ({'id':0}) */
-                 var expected_ = r.hashMap("id", 0);
+                 var expected_ = r.hashMap("id", 0L);
                  
                  /* Original: tbl.without('a').order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl.without("a").orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl.without("a").orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1610,7 +1610,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
                  var expected_ = r.hashMap();
                  
                  /* Original: tbl.without('id', 'a').nth(0) */
-                 var obtained = runOrCatch( tbl.without("id", "a").nth(0) ,
+                 var obtained = runOrCatch( tbl.without("id", "a").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1621,10 +1621,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #117
                  /* ExpectedOriginal: ({'id':0}) */
-                 var expected_ = r.hashMap("id", 0);
+                 var expected_ = r.hashMap("id", 0L);
                  
                  /* Original: tbl.without('a', 'missing').order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl.without("a", "missing").orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl.without("a", "missing").orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1635,10 +1635,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #118
                  /* ExpectedOriginal: ({'id':0, 'b':{}}) */
-                 var expected_ = r.hashMap("id", 0).with("b", r.hashMap());
+                 var expected_ = r.hashMap("id", 0L).with("b", r.hashMap());
                  
                  /* Original: tbl3.without('a', {'b':'c'}).order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.without("a", r.hashMap("b", "c")).orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.without("a", r.hashMap("b", "c")).orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1649,10 +1649,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #119
                  /* ExpectedOriginal: ({'id':0, 'b':{}}) */
-                 var expected_ = r.hashMap("id", 0).with("b", r.hashMap());
+                 var expected_ = r.hashMap("id", 0L).with("b", r.hashMap());
                  
                  /* Original: tbl3.without(['a', {'b':'c'}]).order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.without(r.array("a", r.hashMap("b", "c"))).orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.without(r.array("a", r.hashMap("b", "c"))).orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1663,10 +1663,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #120
                  /* ExpectedOriginal: ({'id':0, 'b':{'c':0}}) */
-                 var expected_ = r.hashMap("id", 0).with("b", r.hashMap("c", 0));
+                 var expected_ = r.hashMap("id", 0L).with("b", r.hashMap("c", 0L));
                  
                  /* Original: tbl3.without(['a', {'b':'d'}]).order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.without(r.array("a", r.hashMap("b", "d"))).orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.without(r.array("a", r.hashMap("b", "d"))).orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1677,7 +1677,7 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #121
                  /* ExpectedOriginal: 200 */
-                 var expected_ = 200;
+                 var expected_ = 200L;
                  
                  /* Original: tbl.union(tbl2).count() */
                  var obtained = runOrCatch( tbl.union(tbl2).count() ,
@@ -1691,10 +1691,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #122
                  /* ExpectedOriginal: 103 */
-                 var expected_ = 103;
+                 var expected_ = 103L;
                  
                  /* Original: tbl.union([1,2,3]).count() */
-                 var obtained = runOrCatch( tbl.union(r.array(1, 2, 3)).count() ,
+                 var obtained = runOrCatch( tbl.union(r.array(1L, 2L, 3L)).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1705,10 +1705,10 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              {
                  //JavaQuery, transformation.yaml, #123
                  /* ExpectedOriginal: 103 */
-                 var expected_ = 103;
+                 var expected_ = 103L;
                  
                  /* Original: r.expr([1,2,3]).union(tbl2).count() */
-                 var obtained = runOrCatch( r.expr(r.array(1, 2, 3)).union(tbl2).count() ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L)).union(tbl2).count() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1718,16 +1718,16 @@ MakeArray arr = (MakeArray) (r.expr(r.array(1, 2, 3, 4, 5)));
              //JavaDef, transformation.yaml, #Templates.YamlTest+DefTest.
              //Original: ord = tbl.order_by('id')
              
-OrderBy ord = (OrderBy) (tbl.orderBy("id"));             
+var ord = (OrderBy) (tbl.orderBy("id"));             
              TestCounter++;
              
              {
                  //JavaQuery, transformation.yaml, #125
                  /* ExpectedOriginal: [2] */
-                 var expected_ = r.array(2);
+                 var expected_ = r.array(2L);
                  
                  /* Original: r.expr([1,2,3,4]).offsets_of(3) */
-                 var obtained = runOrCatch( r.expr(r.array(1, 2, 3, 4)).offsetsOf(3) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L, 4L)).offsetsOf(3L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1741,7 +1741,7 @@ OrderBy ord = (OrderBy) (tbl.orderBy("id"));
                  var expected_ = err("ReqlQueryLogicError", "Expected type DATUM but found TABLE:", r.array());
                  
                  /* Original: r.expr([1]).offsets_of(tbl) */
-                 var obtained = runOrCatch( r.expr(r.array(1)).offsetsOf(tbl) ,
+                 var obtained = runOrCatch( r.expr(r.array(1L)).offsetsOf(tbl) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1752,10 +1752,10 @@ OrderBy ord = (OrderBy) (tbl.orderBy("id"));
              {
                  //JavaQuery, transformation.yaml, #127
                  /* ExpectedOriginal: [1] */
-                 var expected_ = r.array(1);
+                 var expected_ = r.array(1L);
                  
                  /* Original: r.expr(1).do(lambda x: r.expr([2,1,0]).offsets_of(x)) */
-                 var obtained = runOrCatch( r.expr(1).do_(x => r.expr(r.array(2, 1, 0)).offsetsOf(x)) ,
+                 var obtained = runOrCatch( r.expr(1L).do_(x => r.expr(r.array(2L, 1L, 0L)).offsetsOf(x)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1769,7 +1769,7 @@ OrderBy ord = (OrderBy) (tbl.orderBy("id"));
                  var expected_ = true;
                  
                  /* Original: tbl.contains(tbl[0]) */
-                 var obtained = runOrCatch( tbl.contains(tbl.nth(0)) ,
+                 var obtained = runOrCatch( tbl.contains(tbl.nth(0L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1783,7 +1783,7 @@ OrderBy ord = (OrderBy) (tbl.orderBy("id"));
                  var expected_ = false;
                  
                  /* Original: tbl.contains(tbl[0].pluck('id')) */
-                 var obtained = runOrCatch( tbl.contains(tbl.nth(0).pluck("id")) ,
+                 var obtained = runOrCatch( tbl.contains(tbl.nth(0L).pluck("id")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1794,10 +1794,10 @@ OrderBy ord = (OrderBy) (tbl.orderBy("id"));
              {
                  //JavaQuery, transformation.yaml, #132
                  /* ExpectedOriginal: ({'id':0}) */
-                 var expected_ = r.hashMap("id", 0);
+                 var expected_ = r.hashMap("id", 0L);
                  
                  /* Original: tbl3.filter({'b':{'c':0}}).pluck('id').order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.filter(r.hashMap("b", r.hashMap("c", 0))).pluck("id").orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.filter(r.hashMap("b", r.hashMap("c", 0L))).pluck("id").orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1811,7 +1811,7 @@ OrderBy ord = (OrderBy) (tbl.orderBy("id"));
                  var expected_ = r.array();
                  
                  /* Original: tbl3.filter({'b':{'c':6}}) */
-                 var obtained = runOrCatch( tbl3.filter(r.hashMap("b", r.hashMap("c", 6))) ,
+                 var obtained = runOrCatch( tbl3.filter(r.hashMap("b", r.hashMap("c", 6L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1825,7 +1825,7 @@ OrderBy ord = (OrderBy) (tbl.orderBy("id"));
                  var expected_ = r.array();
                  
                  /* Original: tbl3.filter(r.literal({'id':0})) */
-                 var obtained = runOrCatch( tbl3.filter(r.literal(r.hashMap("id", 0))) ,
+                 var obtained = runOrCatch( tbl3.filter(r.literal(r.hashMap("id", 0L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1836,10 +1836,10 @@ OrderBy ord = (OrderBy) (tbl.orderBy("id"));
              {
                  //JavaQuery, transformation.yaml, #135
                  /* ExpectedOriginal: ({'id':0}) */
-                 var expected_ = r.hashMap("id", 0);
+                 var expected_ = r.hashMap("id", 0L);
                  
                  /* Original: tbl3.filter({'b':r.literal({'c':0})}).pluck('id').order_by('id').nth(0) */
-                 var obtained = runOrCatch( tbl3.filter(r.hashMap("b", r.literal(r.hashMap("c", 0)))).pluck("id").orderBy("id").nth(0) ,
+                 var obtained = runOrCatch( tbl3.filter(r.hashMap("b", r.literal(r.hashMap("c", 0L)))).pluck("id").orderBy("id").nth(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1850,7 +1850,7 @@ OrderBy ord = (OrderBy) (tbl.orderBy("id"));
              {
                  //JavaQuery, transformation.yaml, #136
                  /* ExpectedOriginal: partial({'tables_dropped':1}) */
-                 var expected_ = partial(r.hashMap("tables_dropped", 1));
+                 var expected_ = partial(r.hashMap("tables_dropped", 1L));
                  
                  /* Original: r.db('test').table_drop('test2') */
                  var obtained = runOrCatch( r.db("test").tableDrop("test2") ,
@@ -1864,7 +1864,7 @@ OrderBy ord = (OrderBy) (tbl.orderBy("id"));
              {
                  //JavaQuery, transformation.yaml, #137
                  /* ExpectedOriginal: partial({'tables_dropped':1}) */
-                 var expected_ = partial(r.hashMap("tables_dropped", 1));
+                 var expected_ = partial(r.hashMap("tables_dropped", 1L));
                  
                  /* Original: r.db('test').table_drop('test3') */
                  var obtained = runOrCatch( r.db("test").tableDrop("test3") ,

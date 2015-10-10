@@ -15,7 +15,7 @@ DefsAndTests:
   TestFile: transform/table.yaml
   TestNum: 3
   Original: tbl.limit(1).type_of()
-  Java: tbl.limit(1).typeOf()
+  Java: tbl.limit(1L).typeOf()
   ExpectedOriginal: '"SELECTION<STREAM>"'
   ExpectedType: String
   ExpectedJava: '"SELECTION<STREAM>"'
@@ -24,7 +24,7 @@ DefsAndTests:
   TestFile: transform/table.yaml
   TestNum: 4
   Original: tbl.limit(1).coerce_to('array').type_of()
-  Java: tbl.limit(1).coerceTo("array").typeOf()
+  Java: tbl.limit(1L).coerceTo("array").typeOf()
   ExpectedOriginal: '"ARRAY"'
   ExpectedType: String
   ExpectedJava: '"ARRAY"'

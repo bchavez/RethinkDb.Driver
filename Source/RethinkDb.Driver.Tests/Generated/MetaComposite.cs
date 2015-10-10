@@ -32,7 +32,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, meta/composite.yaml, #1
                  /* ExpectedOriginal: partial({'dbs_dropped':1}) */
-                 var expected_ = partial(r.hashMap("dbs_dropped", 1));
+                 var expected_ = partial(r.hashMap("dbs_dropped", 1L));
                  
                  /* Original: r.db_drop('test') */
                  var obtained = runOrCatch( r.dbDrop("test") ,
@@ -46,13 +46,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, meta/composite.yaml, #3
                  /* ExpectedOriginal: partial({'tables_created':9}) */
-                 var expected_ = partial(r.hashMap("tables_created", 9));
+                 var expected_ = partial(r.hashMap("tables_created", 9L));
                  
                  /* Original: r.db_list().set_difference(["rethinkdb"]).for_each(lambda db_name:
     r.expr([1,2,3]).for_each(lambda i:
         r.db(db_name).table_create('tbl_' + i.coerce_to('string'))))
  */
-                 var obtained = runOrCatch( r.dbList().setDifference(r.array("rethinkdb")).forEach(db_name => r.expr(r.array(1, 2, 3)).forEach(i => r.db(db_name).tableCreate(r.add("tbl_", i.coerceTo("string"))))) ,
+                 var obtained = runOrCatch( r.dbList().setDifference(r.array("rethinkdb")).forEach(db_name => r.expr(r.array(1L, 2L, 3L)).forEach(i => r.db(db_name).tableCreate(r.add("tbl_", i.coerceTo("string"))))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -63,7 +63,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, meta/composite.yaml, #5
                  /* ExpectedOriginal: partial({'dbs_created':1}) */
-                 var expected_ = partial(r.hashMap("dbs_created", 1));
+                 var expected_ = partial(r.hashMap("dbs_created", 1L));
                  
                  /* Original: r.db_create('test') */
                  var obtained = runOrCatch( r.dbCreate("test") ,

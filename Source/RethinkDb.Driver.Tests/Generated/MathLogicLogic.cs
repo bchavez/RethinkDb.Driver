@@ -595,7 +595,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", r.array());
                  
                  /* Original: r.expr(r.expr('a')['b']).default(2) */
-                 var obtained = runOrCatch( r.expr(r.expr("a").g("b")).default_(2) ,
+                 var obtained = runOrCatch( r.expr(r.expr("a").g("b")).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -637,7 +637,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = true;
                  
                  /* Original: r.expr(1) & True */
-                 var obtained = runOrCatch( r.expr(1).and(true) ,
+                 var obtained = runOrCatch( r.expr(1L).and(true) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -665,7 +665,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = false;
                  
                  /* Original: ~r.expr(1) */
-                 var obtained = runOrCatch( r.expr(1).not() ,
+                 var obtained = runOrCatch( r.expr(1L).not() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

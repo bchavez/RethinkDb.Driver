@@ -46,7 +46,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, meta/dbs.yaml, #2
                  /* ExpectedOriginal: partial({'dbs_created':1}) */
-                 var expected_ = partial(r.hashMap("dbs_created", 1));
+                 var expected_ = partial(r.hashMap("dbs_created", 1L));
                  
                  /* Original: r.db_create('a') */
                  var obtained = runOrCatch( r.dbCreate("a") ,
@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, meta/dbs.yaml, #3
                  /* ExpectedOriginal: partial({'dbs_created':1}) */
-                 var expected_ = partial(r.hashMap("dbs_created", 1));
+                 var expected_ = partial(r.hashMap("dbs_created", 1L));
                  
                  /* Original: r.db_create('b') */
                  var obtained = runOrCatch( r.dbCreate("b") ,
@@ -102,7 +102,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, meta/dbs.yaml, #6
                  /* ExpectedOriginal: partial({'dbs_dropped':1}) */
-                 var expected_ = partial(r.hashMap("dbs_dropped", 1));
+                 var expected_ = partial(r.hashMap("dbs_dropped", 1L));
                  
                  /* Original: r.db_drop('b') */
                  var obtained = runOrCatch( r.dbDrop("b") ,
@@ -130,7 +130,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, meta/dbs.yaml, #8
                  /* ExpectedOriginal: partial({'dbs_dropped':1}) */
-                 var expected_ = partial(r.hashMap("dbs_dropped", 1));
+                 var expected_ = partial(r.hashMap("dbs_dropped", 1L));
                  
                  /* Original: r.db_drop('a') */
                  var obtained = runOrCatch( r.dbDrop("a") ,
@@ -158,7 +158,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, meta/dbs.yaml, #10
                  /* ExpectedOriginal: partial({'dbs_created':1}) */
-                 var expected_ = partial(r.hashMap("dbs_created", 1));
+                 var expected_ = partial(r.hashMap("dbs_created", 1L));
                  
                  /* Original: r.db_create('bar') */
                  var obtained = runOrCatch( r.dbCreate("bar") ,
@@ -172,7 +172,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, meta/dbs.yaml, #11
                  /* ExpectedOriginal: err('ReqlOpFailedError', 'Database `bar` already exists.', [0]) */
-                 var expected_ = err("ReqlOpFailedError", "Database `bar` already exists.", r.array(0));
+                 var expected_ = err("ReqlOpFailedError", "Database `bar` already exists.", r.array(0L));
                  
                  /* Original: r.db_create('bar') */
                  var obtained = runOrCatch( r.dbCreate("bar") ,
@@ -186,7 +186,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, meta/dbs.yaml, #12
                  /* ExpectedOriginal: partial({'dbs_dropped':1}) */
-                 var expected_ = partial(r.hashMap("dbs_dropped", 1));
+                 var expected_ = partial(r.hashMap("dbs_dropped", 1L));
                  
                  /* Original: r.db_drop('bar') */
                  var obtained = runOrCatch( r.dbDrop("bar") ,
@@ -200,7 +200,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, meta/dbs.yaml, #13
                  /* ExpectedOriginal: err('ReqlOpFailedError', 'Database `bar` does not exist.', [0]) */
-                 var expected_ = err("ReqlOpFailedError", "Database `bar` does not exist.", r.array(0));
+                 var expected_ = err("ReqlOpFailedError", "Database `bar` does not exist.", r.array(0L));
                  
                  /* Original: r.db_drop('bar') */
                  var obtained = runOrCatch( r.dbDrop("bar") ,

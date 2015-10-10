@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = null as object;
                  
                  /* Original: tbl.insert([{'id':0}, {'id':1}, {'id':2}]) */
-                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0), r.hashMap("id", 1), r.hashMap("id", 2))) ,
+                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0L), r.hashMap("id", 1L), r.hashMap("id", 2L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -47,10 +47,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/522.yaml, #2
                  /* ExpectedOriginal: [{'id': 1}, {'id': 2}] */
-                 var expected_ = r.array(r.hashMap("id", 1), r.hashMap("id", 2));
+                 var expected_ = r.array(r.hashMap("id", 1L), r.hashMap("id", 2L));
                  
                  /* Original: tbl.order_by('id').skip(1) */
-                 var obtained = runOrCatch( tbl.orderBy("id").skip(1) ,
+                 var obtained = runOrCatch( tbl.orderBy("id").skip(1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

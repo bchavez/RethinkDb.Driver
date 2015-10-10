@@ -12,55 +12,55 @@ DefsAndTests:
   TestFile: changefeeds/table.yaml
   TestNum: 2
   Original: tbl.insert([{'id':1}, {'id':2}])
-  Java: tbl.insert(r.array(r.hashMap("id", 1), r.hashMap("id", 2)))
+  Java: tbl.insert(r.array(r.hashMap("id", 1L), r.hashMap("id", 2L)))
   ExpectedOriginal: partial({'errors':0, 'inserted':2})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("errors", 0).with("inserted", 2))
+  ExpectedJava: partial(r.hashMap("errors", 0L).with("inserted", 2L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 3
   Original: fetch(all, 2)
-  Java: fetch(all, 2)
+  Java: fetch(all, 2L)
   ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])
   ExpectedType: Bag
-  ExpectedJava: bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2))))
+  ExpectedJava: bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2L))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 4
   Original: tbl.get(1).update({'version':1})
-  Java: tbl.get(1).update(r.hashMap("version", 1))
+  Java: tbl.get(1L).update(r.hashMap("version", 1L))
   ExpectedOriginal: partial({'errors':0, 'replaced':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("errors", 0).with("replaced", 1))
+  ExpectedJava: partial(r.hashMap("errors", 0L).with("replaced", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 5
   Original: fetch(all, 1)
-  Java: fetch(all, 1)
+  Java: fetch(all, 1L)
   ExpectedOriginal: '[{''new_val'': {''id'': 1, ''version'': 1}, ''old_val'': {''id'': 1}}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("new_val", r.hashMap("id", 1).with("version", 1)).with("old_val", r.hashMap("id", 1)))
+  ExpectedJava: r.array(r.hashMap("new_val", r.hashMap("id", 1L).with("version", 1L)).with("old_val", r.hashMap("id", 1L)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 6
   Original: tbl.get(1).delete()
-  Java: tbl.get(1).delete()
+  Java: tbl.get(1L).delete()
   ExpectedOriginal: partial({'errors':0, 'deleted':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("errors", 0).with("deleted", 1))
+  ExpectedJava: partial(r.hashMap("errors", 0L).with("deleted", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 7
   Original: fetch(all, 1)
-  Java: fetch(all, 1)
+  Java: fetch(all, 1L)
   ExpectedOriginal: '[{''new_val'': None, ''old_val'': {''id'': 1, ''version'': 1}}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("new_val", null).with("old_val", r.hashMap("id", 1).with("version", 1)))
+  ExpectedJava: r.array(r.hashMap("new_val", null).with("old_val", r.hashMap("id", 1L).with("version", 1L)))
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
@@ -72,19 +72,19 @@ DefsAndTests:
   TestFile: changefeeds/table.yaml
   TestNum: 9
   Original: tbl.insert([{'id':5, 'version':5}])
-  Java: tbl.insert(r.array(r.hashMap("id", 5).with("version", 5)))
+  Java: tbl.insert(r.array(r.hashMap("id", 5L).with("version", 5L)))
   ExpectedOriginal: partial({'errors':0, 'inserted':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("errors", 0).with("inserted", 1))
+  ExpectedJava: partial(r.hashMap("errors", 0L).with("inserted", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 10
   Original: fetch(pluck, 1)
-  Java: fetch(pluck, 1)
+  Java: fetch(pluck, 1L)
   ExpectedOriginal: '[{''new_val'': {''version'': 5}}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("new_val", r.hashMap("version", 5)))
+  ExpectedJava: r.array(r.hashMap("new_val", r.hashMap("version", 5L)))
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
@@ -108,55 +108,55 @@ DefsAndTests:
   TestFile: changefeeds/table.yaml
   TestNum: 14
   Original: vtbl.insert([{'id':1}, {'id':2}])
-  Java: vtbl.insert(r.array(r.hashMap("id", 1), r.hashMap("id", 2)))
+  Java: vtbl.insert(r.array(r.hashMap("id", 1L), r.hashMap("id", 2L)))
   ExpectedOriginal: partial({'errors':0, 'inserted':2})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("errors", 0).with("inserted", 2))
+  ExpectedJava: partial(r.hashMap("errors", 0L).with("inserted", 2L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 15
   Original: fetch(allVirtual, 2)
-  Java: fetch(allVirtual, 2)
+  Java: fetch(allVirtual, 2L)
   ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])
   ExpectedType: Bag
-  ExpectedJava: bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2))))
+  ExpectedJava: bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1L)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2L))))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 16
   Original: vtbl.get(1).update({'version':1})
-  Java: vtbl.get(1).update(r.hashMap("version", 1))
+  Java: vtbl.get(1L).update(r.hashMap("version", 1L))
   ExpectedOriginal: partial({'errors':0, 'replaced':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("errors", 0).with("replaced", 1))
+  ExpectedJava: partial(r.hashMap("errors", 0L).with("replaced", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 17
   Original: fetch(allVirtual, 1)
-  Java: fetch(allVirtual, 1)
+  Java: fetch(allVirtual, 1L)
   ExpectedOriginal: '[{''new_val'': {''id'': 1, ''version'': 1}, ''old_val'': {''id'': 1}}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("new_val", r.hashMap("id", 1).with("version", 1)).with("old_val", r.hashMap("id", 1)))
+  ExpectedJava: r.array(r.hashMap("new_val", r.hashMap("id", 1L).with("version", 1L)).with("old_val", r.hashMap("id", 1L)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 18
   Original: vtbl.get(1).delete()
-  Java: vtbl.get(1).delete()
+  Java: vtbl.get(1L).delete()
   ExpectedOriginal: partial({'errors':0, 'deleted':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("errors", 0).with("deleted", 1))
+  ExpectedJava: partial(r.hashMap("errors", 0L).with("deleted", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 19
   Original: fetch(allVirtual, 1)
-  Java: fetch(allVirtual, 1)
+  Java: fetch(allVirtual, 1L)
   ExpectedOriginal: '[{''new_val'': None, ''old_val'': {''id'': 1, ''version'': 1}}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("new_val", null).with("old_val", r.hashMap("id", 1).with("version", 1)))
+  ExpectedJava: r.array(r.hashMap("new_val", null).with("old_val", r.hashMap("id", 1L).with("version", 1L)))
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
@@ -168,17 +168,17 @@ DefsAndTests:
   TestFile: changefeeds/table.yaml
   TestNum: 21
   Original: vtbl.insert([{'id':5, 'version':5}])
-  Java: vtbl.insert(r.array(r.hashMap("id", 5).with("version", 5)))
+  Java: vtbl.insert(r.array(r.hashMap("id", 5L).with("version", 5L)))
   ExpectedOriginal: partial({'errors':0, 'inserted':1})
   ExpectedType: Partial
-  ExpectedJava: partial(r.hashMap("errors", 0).with("inserted", 1))
+  ExpectedJava: partial(r.hashMap("errors", 0L).with("inserted", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
   TestNum: 22
   Original: fetch(vpluck, 1)
-  Java: fetch(vpluck, 1)
+  Java: fetch(vpluck, 1L)
   ExpectedOriginal: '[{''new_val'': {''version'': 5}}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("new_val", r.hashMap("version", 5)))
+  ExpectedJava: r.array(r.hashMap("new_val", r.hashMap("version", 5L)))
   RunOpts: []

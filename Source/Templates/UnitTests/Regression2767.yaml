@@ -6,13 +6,13 @@ DefsAndTests:
   TestFile: regression/2767.yaml
   TestNum: 1
   Original: tbl.index_create('foo', lambda x:(x['a']+[1,2,3,4,5]+[6,7,8,9,10]).count())
-  Java: tbl.indexCreate("foo", x -> x.g("a").add(r.array(1, 2, 3, 4, 5)).add(r.array(6, 7, 8, 9, 10)).count())
+  Java: tbl.indexCreate("foo", x -> x.g("a").add(r.array(1L, 2L, 3L, 4L, 5L)).add(r.array(6L, 7L, 8L, 9L, 10L)).count())
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("created", 1)
+  ExpectedJava: r.hashMap("created", 1L)
   RunOpts:
   - Key: array_limit
-    Val: 6
+    Val: 6L
 - TestType: JavaQuery
   TestFile: regression/2767.yaml
   TestNum: 2
@@ -26,13 +26,13 @@ DefsAndTests:
   TestFile: regression/2767.yaml
   TestNum: 3
   Original: tbl.insert({'id':1,'a':[1,2,3,4,5]})
-  Java: tbl.insert(r.hashMap("id", 1).with("a", r.array(1, 2, 3, 4, 5)))
+  Java: tbl.insert(r.hashMap("id", 1L).with("a", r.array(1L, 2L, 3L, 4L, 5L)))
   ExpectedOriginal: ({'deleted':0,'replaced':0,'unchanged':0,'errors':0,'skipped':0,'inserted':1})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0).with("replaced", 0).with("unchanged", 0).with("errors", 0).with("skipped", 0).with("inserted", 1)
+  ExpectedJava: r.hashMap("deleted", 0L).with("replaced", 0L).with("unchanged", 0L).with("errors", 0L).with("skipped", 0L).with("inserted", 1L)
   RunOpts:
   - Key: array_limit
-    Val: 6
+    Val: 6L
 - TestType: JavaQuery
   TestFile: regression/2767.yaml
   TestNum: 4
@@ -40,25 +40,25 @@ DefsAndTests:
   Java: tbl.coerceTo("array")
   ExpectedOriginal: ([{'id':1,'a':[1,2,3,4,5]}])
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("id", 1).with("a", r.array(1, 2, 3, 4, 5)))
+  ExpectedJava: r.array(r.hashMap("id", 1L).with("a", r.array(1L, 2L, 3L, 4L, 5L)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2767.yaml
   TestNum: 5
   Original: tbl.get_all(15, index='foo').coerce_to('array')
-  Java: tbl.getAll(15).optArg("index", "foo").coerceTo("array")
+  Java: tbl.getAll(15L).optArg("index", "foo").coerceTo("array")
   ExpectedOriginal: ([{'id':1,'a':[1,2,3,4,5]}])
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("id", 1).with("a", r.array(1, 2, 3, 4, 5)))
+  ExpectedJava: r.array(r.hashMap("id", 1L).with("a", r.array(1L, 2L, 3L, 4L, 5L)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: regression/2767.yaml
   TestNum: 6
   Original: tbl.get_all(15, index='foo').coerce_to('array')
-  Java: tbl.getAll(15).optArg("index", "foo").coerceTo("array")
+  Java: tbl.getAll(15L).optArg("index", "foo").coerceTo("array")
   ExpectedOriginal: ([{'id':1,'a':[1,2,3,4,5]}])
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("id", 1).with("a", r.array(1, 2, 3, 4, 5)))
+  ExpectedJava: r.array(r.hashMap("id", 1L).with("a", r.array(1L, 2L, 3L, 4L, 5L)))
   RunOpts:
   - Key: array_limit
-    Val: 6
+    Val: 6L

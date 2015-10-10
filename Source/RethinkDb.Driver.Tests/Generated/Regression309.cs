@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = null as object;
                  
                  /* Original: t.insert([{'id':0}, {'id':1}]) */
-                 var obtained = runOrCatch( t.insert(r.array(r.hashMap("id", 0), r.hashMap("id", 1))) ,
+                 var obtained = runOrCatch( t.insert(r.array(r.hashMap("id", 0L), r.hashMap("id", 1L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -47,10 +47,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/309.yaml, #2
                  /* ExpectedOriginal: bag([{'id':0}, {'id':1}, 2, 3, 4]) */
-                 var expected_ = bag(r.array(r.hashMap("id", 0), r.hashMap("id", 1), 2, 3, 4));
+                 var expected_ = bag(r.array(r.hashMap("id", 0L), r.hashMap("id", 1L), 2L, 3L, 4L));
                  
                  /* Original: t.union([2,3,4]) */
-                 var obtained = runOrCatch( t.union(r.array(2, 3, 4)) ,
+                 var obtained = runOrCatch( t.union(r.array(2L, 3L, 4L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -61,10 +61,10 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, regression/309.yaml, #3
                  /* ExpectedOriginal: bag([{'id':0}, {'id':1}, 2, 3, 4]) */
-                 var expected_ = bag(r.array(r.hashMap("id", 0), r.hashMap("id", 1), 2, 3, 4));
+                 var expected_ = bag(r.array(r.hashMap("id", 0L), r.hashMap("id", 1L), 2L, 3L, 4L));
                  
                  /* Original: r.expr([2,3,4]).union(t) */
-                 var obtained = runOrCatch( r.expr(r.array(2, 3, 4)).union(t) ,
+                 var obtained = runOrCatch( r.expr(r.array(2L, 3L, 4L)).union(t) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

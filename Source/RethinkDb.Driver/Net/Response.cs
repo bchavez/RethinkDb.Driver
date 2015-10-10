@@ -12,7 +12,7 @@ namespace RethinkDb.Driver.Net
 	{
         private static ILog log = Log.Instance;
         public long Token { get; }
-        public ResponseType Type1 { get; }
+        public ResponseType Type { get; }
         public List<ResponseNote> Notes { get; }
 
         public JArray Data { get; }
@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Net
         public static Response ParseFrom(long token, string buf)
 		{
 		    var jsonResp = JObject.Parse(buf);
-            log.Debug("Received: " + jsonResp);
+            log.Trace("JSON Received: " + jsonResp);
             var responseType = jsonResp["t"].ToObject<ResponseType>();
 		    var responseNotes = jsonResp["n"]?.ToObject<List<ResponseNote>>() ?? new List<ResponseNote>();
 			ErrorType? et = jsonResp["e"]?.ToObject<ErrorType>();
@@ -43,7 +43,7 @@ namespace RethinkDb.Driver.Net
         private Response(long token, ResponseType responseType, JArray data, List<ResponseNote> responseNotes, Profile profile, Backtrace backtrace, ErrorType errorType)
         {
             this.Token = token;
-            this.Type1 = responseType;
+            this.Type = responseType;
             this.Data = data;
             this.Notes = responseNotes;
             this.Profile = profile;
@@ -115,7 +115,7 @@ namespace RethinkDb.Driver.Net
 		{
 			get
 			{
-				return Type1 == ResponseType.WAIT_COMPLETE;
+				return Type == ResponseType.WAIT_COMPLETE;
 			}
 		}
 
@@ -133,7 +133,7 @@ namespace RethinkDb.Driver.Net
 		{
 			get
 			{
-				return Type1.IsError();
+				return Type.IsError();
 			}
 		}
 
@@ -142,7 +142,7 @@ namespace RethinkDb.Driver.Net
 		{
 			get
 			{
-				return Type1 == ResponseType.SUCCESS_ATOM;
+				return Type == ResponseType.SUCCESS_ATOM;
 			}
 		}
 
@@ -150,7 +150,7 @@ namespace RethinkDb.Driver.Net
 		{
 			get
 			{
-				return Type1 == ResponseType.SUCCESS_SEQUENCE;
+				return Type == ResponseType.SUCCESS_SEQUENCE;
 			}
 		}
 
@@ -158,14 +158,14 @@ namespace RethinkDb.Driver.Net
 		{
 			get
 			{
-				return Type1 == ResponseType.SUCCESS_PARTIAL;
+				return Type == ResponseType.SUCCESS_PARTIAL;
 			}
 		}
 
 		internal virtual ReqlError MakeError(Query query)
 		{
 			string msg = Data.Count > 0 ? (string) Data[0] : "Unknown error message";
-			return (new ErrorBuilder(msg, Type1)).SetBacktrace(Backtrace).SetErrorType(ErrorType).SetTerm(query).Build();
+			return (new ErrorBuilder(msg, Type)).SetBacktrace(Backtrace).SetErrorType(ErrorType).SetTerm(query).Build();
 		}
 
 		public override string ToString()

@@ -25,48 +25,59 @@ namespace RethinkDb.Driver.Ast
 	        throw new ReqlDriverError($"Cannot convert {val} to ReqlExpr");
 	    }
 
-
-        //TODO: don't use "is" for performance
 		private static ReqlAst ToReqlAst(object val, int remainingDepth)
 		{
-			if (val is ReqlAst)
-			{
-				return (ReqlAst) val;
-			}
+		    {
+                var result = val as ReqlAst;
+		        if( result != null )
+		        {
+		            return result;
+		        }
+		    }
 
-			if (val is IList)
-			{
-				Arguments innerValues = new Arguments();
-				foreach (object innerValue in (IList) val)
-				{
-					innerValues.Add(ToReqlAst(innerValue, remainingDepth - 1));
-				}
-				return new MakeArray(innerValues, null);
-			}
+		    {
+		        var result = val as IList;
+		        if( result != null )
+		        {
+		            Arguments innerValues = new Arguments();
+		            foreach( object innerValue in result )
+		            {
+		                innerValues.Add(ToReqlAst(innerValue, remainingDepth - 1));
+		            }
+		            return new MakeArray(innerValues, null);
+		        }
+		    }
 
-			if (val is IDictionary)
-			{
-			    var dict = val as IDictionary;
-				var obj = new Dictionary<string, ReqlAst>();
-				foreach (var keyObj in dict.Keys)
-				{
-                    var key = keyObj as string;
-                    if( key == null)
-					{
-						throw new ReqlError("Object key can only be strings");
-					}
+		    {
+		        var result = val as IDictionary;
+		        if( result != null )
+		        {
+		            var dict = result;
+		            var obj = new Dictionary<string, ReqlAst>();
+		            foreach( var keyObj in dict.Keys )
+		            {
+		                var key = keyObj as string;
+		                if( key == null )
+		                {
+		                    throw new ReqlError("Object key can only be strings");
+		                }
 
-					obj[key] = ToReqlAst(dict[keyObj]);
-				}
-				return MakeObj.fromMap(obj);
-			}
+		                obj[key] = ToReqlAst(dict[keyObj]);
+		            }
+		            return MakeObj.fromMap(obj);
+		        }
+		    }
 
-			if (val is Delegate)
-			{
-			    return Func.FromLambda((Delegate)val);
-			}
-			
-			if (val is DateTime)
+		    {
+		        var result = val as Delegate;
+		        if( result != null )
+		        {
+		            return Func.FromLambda(result);
+		        }
+		    }
+
+
+		    if (val is DateTime)
 			{
 			    var dt = (DateTime)val;
 			    var isoStr = dt.ToUniversalTime().ToString("o");

@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using FluentAssertions;
 using FluentAssertions.Common;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
@@ -88,9 +89,28 @@ namespace RethinkDb.Driver.Tests
 
         protected void assertEquals(object expected, object obtained)
         {
-            //expected.Equals(obtained).Should().BeTrue();
+            if( expected is IList && obtained is IList )
+            {
+                var l1 = (expected as IList).OfType<object>();
+                var l2 = (obtained as IList).OfType<object>();
+
+                l1.Should().Equal(l2);
+                return;
+            }
 
 
+
+
+
+            if( obtained is JValue )
+            {
+                //try move expected to JValue for equality.
+                var jvalue = new JValue(expected);
+                jvalue.Equals(obtained as JValue).Should().BeTrue();
+                return;
+            }
+
+            Assert.Fail($"Couldn't compare expected: {expected.GetType().Name} and obtained: {obtained.GetType().Name}");
         }
 
         protected object runOrCatch(object query, OptArgs runopts)

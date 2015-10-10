@@ -95,6 +95,7 @@
     <Compile Include="Generated\MetaComposite.cs" />
     <Compile Include="Generated\MetaDbs.cs" />
     <Compile Include="Generated\MetaTable.cs" />
+    <Compile Include="Generated\MutationAtomicGetSet.cs" />
     <Compile Include="Generated\MutationInsert.cs" />
     <Compile Include="Generated\Random.cs" />
     <Compile Include="Generated\Range.cs" />

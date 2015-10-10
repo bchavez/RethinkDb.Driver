@@ -15,8 +15,10 @@ namespace Templates
                 {"Integer", "int"},
                 {"Double", "double"},
                 {"Long", "long"},
-                {"List ", "IList " },
-                {"(List)", "(IList)" }
+                {"List ", "IList "},
+                {"(List)", "(IList)"},
+                {" Map ", " MapObject "},
+                {"(Map)", "(MapObject)"}
             };
 
         public static NameValueCollection JavaLineReplacements = new NameValueCollection

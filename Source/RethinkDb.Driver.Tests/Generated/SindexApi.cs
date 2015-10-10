@@ -920,7 +920,7 @@ IList rows = (IList) (r.array(r.hashMap("id", 0).with("a", 0).with("b", 0).with(
              {
                  //JavaQuery, sindex/api.yaml, #74
                  /* ExpectedOriginal: ([rows[0]]) */
-                 var expected_ = r.array(rows);
+                 var expected_ = r.array(rows.get(0));
                  
                  /* Original: tbl.get_all(1, index='mi') */
                  var obtained = runOrCatch( tbl.getAll(1).optArg("index", "mi") ,

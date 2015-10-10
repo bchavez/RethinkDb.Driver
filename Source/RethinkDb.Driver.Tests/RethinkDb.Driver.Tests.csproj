@@ -164,8 +164,12 @@
     <Compile Include="Generated\SindexStatus.cs" />
     <Compile Include="Generated\SindexTruncation.cs" />
     <Compile Include="Generated\Timeout.cs" />
+    <Compile Include="Generated\TimesApi.cs" />
     <Compile Include="Generated\TimesTimezones.cs" />
     <Compile Include="Generated\TransformArray.cs" />
+    <Compile Include="Generated\Transformation.cs" />
+    <Compile Include="Generated\TransformObject.cs" />
+    <Compile Include="Generated\TransformTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

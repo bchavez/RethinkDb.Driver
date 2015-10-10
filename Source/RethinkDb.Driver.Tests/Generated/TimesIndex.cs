@@ -441,7 +441,7 @@ var bad_insert = (IList) (r.array(r.hashMap("id", r.expr(t1).inTimezone("Z"))));
              //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
              //Original: oldtime = datetime.fromtimestamp(1375147296.681, PacificTimeZone())
              
-var oldtime = (DateTimeOffset) (datetime.fromtimestamp(1375147296.681, TimeSpan.Parse("-07:00:00")));             
+var oldtime = (DateTimeOffset) (datetime.fromtimestamp(1375147296.681, PacificTimeZone()));             
              
              //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
              //Original: curtime = datetime.now()

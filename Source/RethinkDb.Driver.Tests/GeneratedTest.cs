@@ -395,6 +395,16 @@ namespace RethinkDb.Driver.Tests
             }
         }
 
+        protected TimeSpan PacificTimeZone()
+        {
+            return TimeSpan.FromHours(-7);
+        }
+
+        protected TimeSpan UTCTimeZone()
+        {
+            return TimeSpan.FromHours(0);
+        }
+
         public static class datetime
         {
             public static DateTimeOffset now()

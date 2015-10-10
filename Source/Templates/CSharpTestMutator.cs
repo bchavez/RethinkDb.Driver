@@ -37,8 +37,6 @@ namespace Templates
                 {"r.object(", "r.object_("},
                 {"Stream.concat(", "Enumerable.Concat("},
                 {".stream()", ".OfType<object>().ToList()"},
-                {"PacificTimeZone()", @"TimeSpan.Parse(""-07:00:00"")"},
-                {"UTCTimeZone()", @"TimeSpan.Parse(""00:00:00"")"}
             };
 
         public CSharpTestMutator(YamlTest yamlTest)

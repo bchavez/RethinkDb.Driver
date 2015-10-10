@@ -40,7 +40,7 @@ var t = (double) (1375147296.68);
                  var expected_ = "2013-07-29T18:21:36.680-07:00";
                  
                  /* Original: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).to_iso8601() */
-                 var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, TimeSpan.Parse("-07:00:00"))).toIso8601() ,
+                 var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, PacificTimeZone())).toIso8601() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -54,7 +54,7 @@ var t = (double) (1375147296.68);
                  var expected_ = "2013-07-30T01:21:36.680+00:00";
                  
                  /* Original: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).to_iso8601() */
-                 var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, TimeSpan.Parse("00:00:00"))).toIso8601() ,
+                 var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, UTCTimeZone())).toIso8601() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -68,7 +68,7 @@ var t = (double) (1375147296.68);
                  var expected_ = 1375147296.68;
                  
                  /* Original: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).to_epoch_time() */
-                 var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, TimeSpan.Parse("-07:00:00"))).toEpochTime() ,
+                 var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, PacificTimeZone())).toEpochTime() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -82,7 +82,7 @@ var t = (double) (1375147296.68);
                  var expected_ = 1375147296.68;
                  
                  /* Original: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).to_epoch_time() */
-                 var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, TimeSpan.Parse("00:00:00"))).toEpochTime() ,
+                 var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, UTCTimeZone())).toEpochTime() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

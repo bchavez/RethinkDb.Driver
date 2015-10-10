@@ -173,6 +173,7 @@
     <Compile Include="Generated\TimesTimezones.cs" />
     <Compile Include="Generated\TransformArray.cs" />
     <Compile Include="Generated\Transformation.cs" />
+    <Compile Include="Generated\TransformMap.cs" />
     <Compile Include="Generated\TransformObject.cs" />
     <Compile Include="Generated\TransformTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

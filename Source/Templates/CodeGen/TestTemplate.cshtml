@@ -61,7 +61,7 @@ namespace RethinkDb.Driver.Test.Generated {
              @:{
                  @://JavaQuery, @test.TestFile, #@test.TestNum
                  @:/* ExpectedOriginal: @test.ExpectedOriginal */
-                 @:var expected = @(test.ExpectedJava ?? "null as object");
+                 @:var expected_ = @(test.ExpectedJava ?? "null as object");
                  @:
                  @:/* Original: @test.Original */
                  @:var obtained = runOrCatch( @test.Java ,
@@ -72,7 +72,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  }
                  @:   );
                  
-                 @:assertEquals(expected, obtained);
+                 @:assertEquals(expected_, obtained);
              @:}
              @:
          }

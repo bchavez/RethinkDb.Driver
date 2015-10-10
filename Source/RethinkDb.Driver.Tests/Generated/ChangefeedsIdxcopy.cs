@@ -33,13 +33,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, changefeeds/idxcopy.yaml, #1
                  /* ExpectedOriginal: partial({'created':1}) */
-                 var expected = partial(r.hashMap("created", 1));
+                 var expected_ = partial(r.hashMap("created", 1));
                  
                  /* Original: tbl.index_create('a') */
                  var obtained = runOrCatch( tbl.indexCreate("a") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -47,13 +47,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, changefeeds/idxcopy.yaml, #2
                  /* ExpectedOriginal: None */
-                 var expected = null as object;
+                 var expected_ = null as object;
                  
                  /* Original: tbl.index_wait('a') */
                  var obtained = runOrCatch( tbl.indexWait("a") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
@@ -66,13 +66,13 @@ Limit feed = (Limit) (tbl.orderBy().optArg("index", "a").limit(10).changes().opt
              {
                  //JavaQuery, changefeeds/idxcopy.yaml, #5
                  /* ExpectedOriginal: partial({'deleted':3, 'errors':0}) */
-                 var expected = partial(r.hashMap("deleted", 3).with("errors", 0));
+                 var expected_ = partial(r.hashMap("deleted", 3).with("errors", 0));
                  
                  /* Original: tbl.get_all(0, 1, 8, index='id').delete() */
                  var obtained = runOrCatch( tbl.getAll(0, 1, 8).optArg("index", "id").delete() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -80,13 +80,13 @@ Limit feed = (Limit) (tbl.orderBy().optArg("index", "a").limit(10).changes().opt
              {
                  //JavaQuery, changefeeds/idxcopy.yaml, #6
                  /* ExpectedOriginal: None */
-                 var expected = null as object;
+                 var expected_ = null as object;
                  
                  /* Original: wait(2) */
                  var obtained = runOrCatch( wait_(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -94,13 +94,13 @@ Limit feed = (Limit) (tbl.orderBy().optArg("index", "a").limit(10).changes().opt
              {
                  //JavaQuery, changefeeds/idxcopy.yaml, #7
                  /* ExpectedOriginal: bag([ {"new_val":{"a":5, "id":2}, "old_val":nil}, {"new_val":{"a":5, "id":3}, "old_val":nil}, {"new_val":{"a":5, "id":4}, "old_val":nil}, {"new_val":{"a":5, "id":5}, "old_val":nil}, {"new_val":{"a":5, "id":6}, "old_val":nil}, {"new_val":{"a":5, "id":7}, "old_val":nil}, {"new_val":{"a":5, "id":9}, "old_val":nil}, {"new_val":{"a":5, "id":10}, "old_val":nil}, {"new_val":{"a":5, "id":11}, "old_val":nil}]) */
-                 var expected = bag(r.array(r.hashMap("new_val", r.hashMap("a", 5).with("id", 2)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 3)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 4)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 5)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 6)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 7)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 9)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 10)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 11)).with("old_val", null)));
+                 var expected_ = bag(r.array(r.hashMap("new_val", r.hashMap("a", 5).with("id", 2)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 3)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 4)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 5)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 6)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 7)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 9)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 10)).with("old_val", null), r.hashMap("new_val", r.hashMap("a", 5).with("id", 11)).with("old_val", null)));
                  
                  /* Original: feed */
                  var obtained = runOrCatch( feed ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
 

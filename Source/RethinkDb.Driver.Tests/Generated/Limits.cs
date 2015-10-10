@@ -33,14 +33,14 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, limits.yaml, #1
                  /* ExpectedOriginal: [1, 1, 1, 1, 1, 1, 1, 1] */
-                 var expected = r.array(1, 1, 1, 1, 1, 1, 1, 1);
+                 var expected_ = r.array(1, 1, 1, 1, 1, 1, 1, 1);
                  
                  /* Original: r.expr([1,1,1,1]).union([1, 1, 1, 1]) */
                  var obtained = runOrCatch( r.expr(r.array(1, 1, 1, 1)).union(r.array(1, 1, 1, 1)) ,
                                             new OptArgs()
                      .with("array_limit", 8)
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -48,14 +48,14 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, limits.yaml, #2
                  /* ExpectedOriginal: err("ReqlResourceLimitError", "Array over size limit `4`.", [0]) */
-                 var expected = err("ReqlResourceLimitError", "Array over size limit `4`.", r.array(0));
+                 var expected_ = err("ReqlResourceLimitError", "Array over size limit `4`.", r.array(0));
                  
                  /* Original: r.expr([1,2,3,4]).union([5, 6, 7, 8]) */
                  var obtained = runOrCatch( r.expr(r.array(1, 2, 3, 4)).union(r.array(5, 6, 7, 8)) ,
                                             new OptArgs()
                      .with("array_limit", 4)
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -63,14 +63,14 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, limits.yaml, #3
                  /* ExpectedOriginal: err("ReqlResourceLimitError", "Array over size limit `4`.", [0]) */
-                 var expected = err("ReqlResourceLimitError", "Array over size limit `4`.", r.array(0));
+                 var expected_ = err("ReqlResourceLimitError", "Array over size limit `4`.", r.array(0));
                  
                  /* Original: r.expr([1,2,3,4,5,6,7,8]) */
                  var obtained = runOrCatch( r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8)) ,
                                             new OptArgs()
                      .with("array_limit", 4)
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -78,14 +78,14 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, limits.yaml, #4
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Illegal array size limit `-1`.  (Must be >= 1.)", []) */
-                 var expected = err("ReqlQueryLogicError", "Illegal array size limit `-1`.  (Must be >= 1.)", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Illegal array size limit `-1`.  (Must be >= 1.)", r.array());
                  
                  /* Original: r.expr([1,2,3,4,5,6,7,8]) */
                  var obtained = runOrCatch( r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8)) ,
                                             new OptArgs()
                      .with("array_limit", -1)
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -93,14 +93,14 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, limits.yaml, #5
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Illegal array size limit `0`.  (Must be >= 1.)", []) */
-                 var expected = err("ReqlQueryLogicError", "Illegal array size limit `0`.  (Must be >= 1.)", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Illegal array size limit `0`.  (Must be >= 1.)", r.array());
                  
                  /* Original: r.expr([1,2,3,4,5,6,7,8]) */
                  var obtained = runOrCatch( r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8)) ,
                                             new OptArgs()
                      .with("array_limit", 0)
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
@@ -123,14 +123,14 @@ ConcatMap huge_l = (ConcatMap) (r.expr(ten_l).concatMap(ten_f).concatMap(ten_f).
              {
                  //JavaQuery, limits.yaml, #9
                  /* ExpectedOriginal: 100001 */
-                 var expected = 100001;
+                 var expected_ = 100001;
                  
                  /* Original: huge_l.append(1).count() */
                  var obtained = runOrCatch( huge_l.append(1).count() ,
                                             new OptArgs()
                      .with("array_limit", 100001)
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -138,14 +138,14 @@ ConcatMap huge_l = (ConcatMap) (r.expr(ten_l).concatMap(ten_f).concatMap(ten_f).
              {
                  //JavaQuery, limits.yaml, #10
                  /* ExpectedOriginal: partial({'errors':1, 'first_error':"Array too large for disk writes (limit 100,000 elements)."}) */
-                 var expected = partial(r.hashMap("errors", 1).with("first_error", "Array too large for disk writes (limit 100,000 elements)."));
+                 var expected_ = partial(r.hashMap("errors", 1).with("first_error", "Array too large for disk writes (limit 100,000 elements)."));
                  
                  /* Original: tbl.insert({'id':0, 'array':huge_l.append(1)}) */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0).with("array", huge_l.append(1))) ,
                                             new OptArgs()
                      .with("array_limit", 100001)
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -153,14 +153,14 @@ ConcatMap huge_l = (ConcatMap) (r.expr(ten_l).concatMap(ten_f).concatMap(ten_f).
              {
                  //JavaQuery, limits.yaml, #11
                  /* ExpectedOriginal: (null) */
-                 var expected = null as object;
+                 var expected_ = null as object;
                  
                  /* Original: tbl.get(0) */
                  var obtained = runOrCatch( tbl.get(0) ,
                                             new OptArgs()
                      .with("array_limit", 100001)
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -168,13 +168,13 @@ ConcatMap huge_l = (ConcatMap) (r.expr(ten_l).concatMap(ten_f).concatMap(ten_f).
              {
                  //JavaQuery, limits.yaml, #12
                  /* ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1}) */
-                 var expected = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1);
+                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1);
                  
                  /* Original: tbl.insert({'id':1, 'array':ten_l}) */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", 1).with("array", ten_l)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -182,14 +182,14 @@ ConcatMap huge_l = (ConcatMap) (r.expr(ten_l).concatMap(ten_f).concatMap(ten_f).
              {
                  //JavaQuery, limits.yaml, #13
                  /* ExpectedOriginal: ({'array':[1,2,3,4,5,6,7,8,9,10],'id':1}) */
-                 var expected = r.hashMap("array", r.array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)).with("id", 1);
+                 var expected_ = r.hashMap("array", r.array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)).with("id", 1);
                  
                  /* Original: tbl.get(1) */
                  var obtained = runOrCatch( tbl.get(1) ,
                                             new OptArgs()
                      .with("array_limit", 4)
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -197,13 +197,13 @@ ConcatMap huge_l = (ConcatMap) (r.expr(ten_l).concatMap(ten_f).concatMap(ten_f).
              {
                  //JavaQuery, limits.yaml, #14
                  /* ExpectedOriginal: 1 */
-                 var expected = 1;
+                 var expected_ = 1;
                  
                  /* Original: tbl.delete().get_field('deleted') */
                  var obtained = runOrCatch( tbl.delete().g("deleted") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
@@ -216,13 +216,13 @@ Changes c = (Changes) (tbl.changes().optArg("squash", 1000000).optArg("changefee
              {
                  //JavaQuery, limits.yaml, #16
                  /* ExpectedOriginal: 7 */
-                 var expected = 7;
+                 var expected_ = 7;
                  
                  /* Original: tbl.insert([{'id':0}, {'id':1}, {'id':2}, {'id':3}, {'id':4}, {'id':5}, {'id':6}]).get_field('inserted') */
                  var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0), r.hashMap("id", 1), r.hashMap("id", 2), r.hashMap("id", 3), r.hashMap("id", 4), r.hashMap("id", 5), r.hashMap("id", 6))).g("inserted") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -230,13 +230,13 @@ Changes c = (Changes) (tbl.changes().optArg("squash", 1000000).optArg("changefee
              {
                  //JavaQuery, limits.yaml, #17
                  /* ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':0}}, {'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}, {'old_val':null, 'new_val':{'id':3}}, {'old_val':null, 'new_val':{'id':4}}, {'old_val':null, 'new_val':{'id':5}}, {'old_val':null, 'new_val':{'id':6}}]) */
-                 var expected = bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 0)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 4)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 5)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 6))));
+                 var expected_ = bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 0)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 4)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 5)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 6))));
                  
                  /* Original: fetch(c, 7) */
                  var obtained = runOrCatch( fetch(c, 7) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -244,13 +244,13 @@ Changes c = (Changes) (tbl.changes().optArg("squash", 1000000).optArg("changefee
              {
                  //JavaQuery, limits.yaml, #18
                  /* ExpectedOriginal: 7 */
-                 var expected = 7;
+                 var expected_ = 7;
                  
                  /* Original: tbl.insert([{'id':7}, {'id':8}, {'id':9}, {'id':10}, {'id':11}, {'id':12}, {'id':13}]).get_field('inserted') */
                  var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 7), r.hashMap("id", 8), r.hashMap("id", 9), r.hashMap("id", 10), r.hashMap("id", 11), r.hashMap("id", 12), r.hashMap("id", 13))).g("inserted") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -258,13 +258,13 @@ Changes c = (Changes) (tbl.changes().optArg("squash", 1000000).optArg("changefee
              {
                  //JavaQuery, limits.yaml, #19
                  /* ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':7}}, {'old_val':null, 'new_val':{'id':8}}, {'old_val':null, 'new_val':{'id':9}}, {'old_val':null, 'new_val':{'id':10}}, {'old_val':null, 'new_val':{'id':11}}, {'old_val':null, 'new_val':{'id':12}}, {'old_val':null, 'new_val':{'id':13}}]) */
-                 var expected = bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 7)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 8)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 9)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 10)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 11)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 12)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 13))));
+                 var expected_ = bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 7)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 8)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 9)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 10)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 11)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 12)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 13))));
                  
                  /* Original: fetch(c, 7) */
                  var obtained = runOrCatch( fetch(c, 7) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -272,13 +272,13 @@ Changes c = (Changes) (tbl.changes().optArg("squash", 1000000).optArg("changefee
              {
                  //JavaQuery, limits.yaml, #20
                  /* ExpectedOriginal: 14 */
-                 var expected = 14;
+                 var expected_ = 14;
                  
                  /* Original: tbl.delete().get_field('deleted') */
                  var obtained = runOrCatch( tbl.delete().g("deleted") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
@@ -291,13 +291,13 @@ Changes c2 = (Changes) (tbl.changes().optArg("squash", 1000000));
              {
                  //JavaQuery, limits.yaml, #22
                  /* ExpectedOriginal: 7 */
-                 var expected = 7;
+                 var expected_ = 7;
                  
                  /* Original: tbl.insert([{'id':0}, {'id':1}, {'id':2}, {'id':3}, {'id':4}, {'id':5}, {'id':6}]).get_field('inserted') */
                  var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0), r.hashMap("id", 1), r.hashMap("id", 2), r.hashMap("id", 3), r.hashMap("id", 4), r.hashMap("id", 5), r.hashMap("id", 6))).g("inserted") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -305,13 +305,13 @@ Changes c2 = (Changes) (tbl.changes().optArg("squash", 1000000));
              {
                  //JavaQuery, limits.yaml, #23
                  /* ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':0}}, {'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}, {'old_val':null, 'new_val':{'id':3}}, {'old_val':null, 'new_val':{'id':4}}, {'old_val':null, 'new_val':{'id':5}}, {'old_val':null, 'new_val':{'id':6}}]) */
-                 var expected = bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 0)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 4)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 5)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 6))));
+                 var expected_ = bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 0)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 1)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 4)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 5)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 6))));
                  
                  /* Original: fetch(c2, 7) */
                  var obtained = runOrCatch( fetch(c2, 7) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -319,13 +319,13 @@ Changes c2 = (Changes) (tbl.changes().optArg("squash", 1000000));
              {
                  //JavaQuery, limits.yaml, #24
                  /* ExpectedOriginal: 7 */
-                 var expected = 7;
+                 var expected_ = 7;
                  
                  /* Original: tbl.insert([{'id':7}, {'id':8}, {'id':9}, {'id':10}, {'id':11}, {'id':12}, {'id':13}]).get_field('inserted') */
                  var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 7), r.hashMap("id", 8), r.hashMap("id", 9), r.hashMap("id", 10), r.hashMap("id", 11), r.hashMap("id", 12), r.hashMap("id", 13))).g("inserted") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -333,13 +333,13 @@ Changes c2 = (Changes) (tbl.changes().optArg("squash", 1000000));
              {
                  //JavaQuery, limits.yaml, #25
                  /* ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':7}}, {'old_val':null, 'new_val':{'id':8}}, {'old_val':null, 'new_val':{'id':9}}, {'old_val':null, 'new_val':{'id':10}}, {'old_val':null, 'new_val':{'id':11}}, {'old_val':null, 'new_val':{'id':12}}, {'old_val':null, 'new_val':{'id':13}}]) */
-                 var expected = bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 7)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 8)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 9)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 10)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 11)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 12)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 13))));
+                 var expected_ = bag(r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 7)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 8)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 9)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 10)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 11)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 12)), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 13))));
                  
                  /* Original: fetch(c2, 7) */
                  var obtained = runOrCatch( fetch(c2, 7) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
 

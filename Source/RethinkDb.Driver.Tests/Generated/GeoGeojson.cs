@@ -32,13 +32,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/geojson.yaml, #1
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, 0], 'type':'Point'}) */
-                 var expected = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0, 0)).with("type", "Point");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0, 0)).with("type", "Point");
                  
                  /* Original: r.geojson({'coordinates':[0, 0], 'type':'Point'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(0, 0)).with("type", "Point")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -46,13 +46,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/geojson.yaml, #2
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0,0], [0,1]], 'type':'LineString'}) */
-                 var expected = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(0, 0), r.array(0, 1))).with("type", "LineString");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(0, 0), r.array(0, 1))).with("type", "LineString");
                  
                  /* Original: r.geojson({'coordinates':[[0,0], [0,1]], 'type':'LineString'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(r.array(0, 0), r.array(0, 1))).with("type", "LineString")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -60,13 +60,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/geojson.yaml, #3
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0,0], [0,1], [1,0], [0,0]]], 'type':'Polygon'}) */
-                 var expected = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0, 0), r.array(0, 1), r.array(1, 0), r.array(0, 0)))).with("type", "Polygon");
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0, 0), r.array(0, 1), r.array(1, 0), r.array(0, 0)))).with("type", "Polygon");
                  
                  /* Original: r.geojson({'coordinates':[[[0,0], [0,1], [1,0], [0,0]]], 'type':'Polygon'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(r.array(r.array(0, 0), r.array(0, 1), r.array(1, 0), r.array(0, 0)))).with("type", "Polygon")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -74,13 +74,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/geojson.yaml, #4
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found ARRAY.', [0]) */
-                 var expected = err("ReqlQueryLogicError", "Expected type NUMBER but found ARRAY.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found ARRAY.", r.array(0));
                  
                  /* Original: r.geojson({'coordinates':[[], 0], 'type':'Point'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(r.array(), 0)).with("type", "Point")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -88,13 +88,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/geojson.yaml, #5
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type ARRAY but found BOOL.', [0]) */
-                 var expected = err("ReqlQueryLogicError", "Expected type ARRAY but found BOOL.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Expected type ARRAY but found BOOL.", r.array(0));
                  
                  /* Original: r.geojson({'coordinates':true, 'type':'Point'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", true).with("type", "Point")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -102,13 +102,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/geojson.yaml, #6
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'No attribute `coordinates` in object:', [0]) */
-                 var expected = err("ReqlNonExistenceError", "No attribute `coordinates` in object:", r.array(0));
+                 var expected_ = err("ReqlNonExistenceError", "No attribute `coordinates` in object:", r.array(0));
                  
                  /* Original: r.geojson({'type':'Point'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("type", "Point")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -116,13 +116,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/geojson.yaml, #7
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'No attribute `type` in object:', [0]) */
-                 var expected = err("ReqlNonExistenceError", "No attribute `type` in object:", r.array(0));
+                 var expected_ = err("ReqlNonExistenceError", "No attribute `type` in object:", r.array(0));
                  
                  /* Original: r.geojson({'coordinates':[0, 0]}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(0, 0))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -130,13 +130,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/geojson.yaml, #8
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Unrecognized GeoJSON type `foo`.', [0]) */
-                 var expected = err("ReqlQueryLogicError", "Unrecognized GeoJSON type `foo`.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Unrecognized GeoJSON type `foo`.", r.array(0));
                  
                  /* Original: r.geojson({'coordinates':[0, 0], 'type':'foo'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(0, 0)).with("type", "foo")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -144,13 +144,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/geojson.yaml, #9
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Unrecognized field `foo` found in geometry object.', [0]) */
-                 var expected = err("ReqlQueryLogicError", "Unrecognized field `foo` found in geometry object.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Unrecognized field `foo` found in geometry object.", r.array(0));
                  
                  /* Original: r.geojson({'coordinates':[0, 0], 'type':'Point', 'foo':'wrong'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(0, 0)).with("type", "Point").with("foo", "wrong")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -158,13 +158,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/geojson.yaml, #10
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, 0], 'type':'Point', 'crs':null}) */
-                 var expected = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0, 0)).with("type", "Point").with("crs", null);
+                 var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0, 0)).with("type", "Point").with("crs", null);
                  
                  /* Original: r.geojson({'coordinates':[0, 0], 'type':'Point', 'crs':null}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(0, 0)).with("type", "Point").with("crs", null)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -172,13 +172,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, geo/geojson.yaml, #12
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'GeoJSON type `MultiPoint` is not supported.', [0]) */
-                 var expected = err("ReqlQueryLogicError", "GeoJSON type `MultiPoint` is not supported.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "GeoJSON type `MultiPoint` is not supported.", r.array(0));
                  
                  /* Original: r.geojson({'coordinates':[0, 0], 'type':'MultiPoint'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(0, 0)).with("type", "MultiPoint")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
 

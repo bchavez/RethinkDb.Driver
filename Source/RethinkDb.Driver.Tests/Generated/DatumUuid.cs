@@ -32,13 +32,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/uuid.yaml, #1
                  /* ExpectedOriginal: None */
-                 var expected = null as object;
+                 var expected_ = null as object;
                  
                  /* Original: r.uuid() */
                  var obtained = runOrCatch( r.uuid() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -46,13 +46,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/uuid.yaml, #2
                  /* ExpectedOriginal: None */
-                 var expected = null as object;
+                 var expected_ = null as object;
                  
                  /* Original: r.expr(r.uuid()) */
                  var obtained = runOrCatch( r.expr(r.uuid()) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -60,13 +60,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/uuid.yaml, #3
                  /* ExpectedOriginal: ('STRING') */
-                 var expected = "STRING";
+                 var expected_ = "STRING";
                  
                  /* Original: r.type_of(r.uuid()) */
                  var obtained = runOrCatch( r.typeOf(r.uuid()) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -74,13 +74,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/uuid.yaml, #4
                  /* ExpectedOriginal: (true) */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.uuid().ne(r.uuid()) */
                  var obtained = runOrCatch( r.uuid().ne(r.uuid()) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -88,13 +88,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/uuid.yaml, #5
                  /* ExpectedOriginal: (10) */
-                 var expected = 10;
+                 var expected_ = 10;
                  
                  /* Original: r.expr([1,2,3,4,5,6,7,8,9,10]).map(lambda u:r.uuid()).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)).map(u => r.uuid()).distinct().count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
 

@@ -326,12 +326,12 @@ WriteLiteral(" */\r\n");
 
 WriteLiteral("                 ");
 
-WriteLiteral("var expected = ");
+WriteLiteral("var expected_ = ");
 
 
             
             #line 64 "..\..\CodeGen\TestTemplate.cshtml"
-                              Write(test.ExpectedJava ?? "null as object");
+                               Write(test.ExpectedJava ?? "null as object");
 
             
             #line default
@@ -437,7 +437,7 @@ WriteLiteral("   );\r\n");
             #line hidden
 WriteLiteral("                 ");
 
-WriteLiteral("assertEquals(expected, obtained);\r\n");
+WriteLiteral("assertEquals(expected_, obtained);\r\n");
 
 
 

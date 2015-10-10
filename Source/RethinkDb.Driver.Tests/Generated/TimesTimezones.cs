@@ -102,13 +102,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #15
                  /* ExpectedOriginal: ([["+00:00", 29], ["+00:00", 29], ["+00:00", 29]]) */
-                 var expected = r.array(r.array("+00:00", 29), r.array("+00:00", 29), r.array("+00:00", 29));
+                 var expected_ = r.array(r.array("+00:00", 29), r.array("+00:00", 29), r.array("+00:00", 29));
                  
                  /* Original: tutcs.map(lambda x:[x.timezone(), x.day()]) */
                  var obtained = runOrCatch( tutcs.map(x => r.array(x.timezone(), x.day())) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -116,13 +116,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #16
                  /* ExpectedOriginal: ([["-00:59", 29], ["-01:00", 29], ["-01:01", 29]]) */
-                 var expected = r.array(r.array("-00:59", 29), r.array("-01:00", 29), r.array("-01:01", 29));
+                 var expected_ = r.array(r.array("-00:59", 29), r.array("-01:00", 29), r.array("-01:01", 29));
                  
                  /* Original: tms.map(lambda x:[x.timezone(), x.day()]) */
                  var obtained = runOrCatch( tms.map(x => r.array(x.timezone(), x.day())) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -130,13 +130,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #17
                  /* ExpectedOriginal: ([["+00:59", 30], ["+01:00", 30], ["+01:01", 30]]) */
-                 var expected = r.array(r.array("+00:59", 30), r.array("+01:00", 30), r.array("+01:01", 30));
+                 var expected_ = r.array(r.array("+00:59", 30), r.array("+01:00", 30), r.array("+01:01", 30));
                  
                  /* Original: tps.map(lambda x:[x.timezone(), x.day()]) */
                  var obtained = runOrCatch( tps.map(x => r.array(x.timezone(), x.day())) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -144,13 +144,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #18
                  /* ExpectedOriginal: ([0]) */
-                 var expected = r.array(0);
+                 var expected_ = r.array(0);
                  
                  /* Original: ts.concat_map(lambda x:ts.map(lambda y:x - y)).distinct() */
                  var obtained = runOrCatch( ts.concatMap(x => ts.map(y => r.sub(x, y))).distinct() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -158,13 +158,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #19
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `` does not start with `-` or `+`.') */
-                 var expected = err("ReqlQueryLogicError", "Timezone `` does not start with `-` or `+`.");
+                 var expected_ = err("ReqlQueryLogicError", "Timezone `` does not start with `-` or `+`.");
                  
                  /* Original: r.now().in_timezone("") */
                  var obtained = runOrCatch( r.now().inTimezone("") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -172,13 +172,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #20
                  /* ExpectedOriginal: err('ReqlQueryLogicError', '`-00` is not a valid time offset.') */
-                 var expected = err("ReqlQueryLogicError", "`-00` is not a valid time offset.");
+                 var expected_ = err("ReqlQueryLogicError", "`-00` is not a valid time offset.");
                  
                  /* Original: r.now().in_timezone("-00") */
                  var obtained = runOrCatch( r.now().inTimezone("-00") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -186,13 +186,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #21
                  /* ExpectedOriginal: err('ReqlQueryLogicError', '`-00:00` is not a valid time offset.') */
-                 var expected = err("ReqlQueryLogicError", "`-00:00` is not a valid time offset.");
+                 var expected_ = err("ReqlQueryLogicError", "`-00:00` is not a valid time offset.");
                  
                  /* Original: r.now().in_timezone("-00:00") */
                  var obtained = runOrCatch( r.now().inTimezone("-00:00") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -200,13 +200,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #22
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `UTC+00` does not start with `-` or `+`.') */
-                 var expected = err("ReqlQueryLogicError", "Timezone `UTC+00` does not start with `-` or `+`.");
+                 var expected_ = err("ReqlQueryLogicError", "Timezone `UTC+00` does not start with `-` or `+`.");
                  
                  /* Original: r.now().in_timezone("UTC+00") */
                  var obtained = runOrCatch( r.now().inTimezone("UTC+00") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -214,13 +214,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #23
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Minutes out of range in `+00:60`.') */
-                 var expected = err("ReqlQueryLogicError", "Minutes out of range in `+00:60`.");
+                 var expected_ = err("ReqlQueryLogicError", "Minutes out of range in `+00:60`.");
                  
                  /* Original: r.now().in_timezone("+00:60") */
                  var obtained = runOrCatch( r.now().inTimezone("+00:60") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -228,13 +228,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #24
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Hours out of range in `+25:00`.') */
-                 var expected = err("ReqlQueryLogicError", "Hours out of range in `+25:00`.");
+                 var expected_ = err("ReqlQueryLogicError", "Hours out of range in `+25:00`.");
                  
                  /* Original: r.now().in_timezone("+25:00") */
                  var obtained = runOrCatch( r.now().inTimezone("+25:00") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -242,13 +242,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #25
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `` does not start with `-` or `+`.') */
-                 var expected = err("ReqlQueryLogicError", "Timezone `` does not start with `-` or `+`.");
+                 var expected_ = err("ReqlQueryLogicError", "Timezone `` does not start with `-` or `+`.");
                  
                  /* Original: r.time(2013, 1, 1, "") */
                  var obtained = runOrCatch( r.time(2013, 1, 1, "") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -256,13 +256,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #26
                  /* ExpectedOriginal: err('ReqlQueryLogicError', '`-00` is not a valid time offset.') */
-                 var expected = err("ReqlQueryLogicError", "`-00` is not a valid time offset.");
+                 var expected_ = err("ReqlQueryLogicError", "`-00` is not a valid time offset.");
                  
                  /* Original: r.time(2013, 1, 1, "-00") */
                  var obtained = runOrCatch( r.time(2013, 1, 1, "-00") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -270,13 +270,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #27
                  /* ExpectedOriginal: err('ReqlQueryLogicError', '`-00:00` is not a valid time offset.') */
-                 var expected = err("ReqlQueryLogicError", "`-00:00` is not a valid time offset.");
+                 var expected_ = err("ReqlQueryLogicError", "`-00:00` is not a valid time offset.");
                  
                  /* Original: r.time(2013, 1, 1, "-00:00") */
                  var obtained = runOrCatch( r.time(2013, 1, 1, "-00:00") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -284,13 +284,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #28
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `UTC+00` does not start with `-` or `+`.') */
-                 var expected = err("ReqlQueryLogicError", "Timezone `UTC+00` does not start with `-` or `+`.");
+                 var expected_ = err("ReqlQueryLogicError", "Timezone `UTC+00` does not start with `-` or `+`.");
                  
                  /* Original: r.time(2013, 1, 1, "UTC+00") */
                  var obtained = runOrCatch( r.time(2013, 1, 1, "UTC+00") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -298,13 +298,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #29
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Minutes out of range in `+00:60`.') */
-                 var expected = err("ReqlQueryLogicError", "Minutes out of range in `+00:60`.");
+                 var expected_ = err("ReqlQueryLogicError", "Minutes out of range in `+00:60`.");
                  
                  /* Original: r.time(2013, 1, 1, "+00:60") */
                  var obtained = runOrCatch( r.time(2013, 1, 1, "+00:60") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -312,13 +312,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #30
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Hours out of range in `+25:00`.') */
-                 var expected = err("ReqlQueryLogicError", "Hours out of range in `+25:00`.");
+                 var expected_ = err("ReqlQueryLogicError", "Hours out of range in `+25:00`.");
                  
                  /* Original: r.time(2013, 1, 1, "+25:00") */
                  var obtained = runOrCatch( r.time(2013, 1, 1, "+25:00") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -326,13 +326,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #31
                  /* ExpectedOriginal: ("2015-07-08T00:00:00-08:00") */
-                 var expected = "2015-07-08T00:00:00-08:00";
+                 var expected_ = "2015-07-08T00:00:00-08:00";
                  
                  /* Original: r.epoch_time(1436428422.339).in_timezone('-08:00').date().to_iso8601() */
                  var obtained = runOrCatch( r.epochTime(1436428422.339).inTimezone("-08:00").date().toIso8601() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -340,13 +340,13 @@ Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              {
                  //JavaQuery, times/timezones.yaml, #32
                  /* ExpectedOriginal: ("2015-07-09T00:00:00-07:00") */
-                 var expected = "2015-07-09T00:00:00-07:00";
+                 var expected_ = "2015-07-09T00:00:00-07:00";
                  
                  /* Original: r.epoch_time(1436428422.339).in_timezone('-07:00').date().to_iso8601() */
                  var obtained = runOrCatch( r.epochTime(1436428422.339).inTimezone("-07:00").date().toIso8601() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
 

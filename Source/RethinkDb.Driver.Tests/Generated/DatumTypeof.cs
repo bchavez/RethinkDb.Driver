@@ -32,13 +32,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/typeof.yaml, #1
                  /* ExpectedOriginal: NULL */
-                 var expected = "NULL";
+                 var expected_ = "NULL";
                  
                  /* Original: r.expr(null).type_of() */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).typeOf() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -46,13 +46,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/typeof.yaml, #2
                  /* ExpectedOriginal: NULL */
-                 var expected = "NULL";
+                 var expected_ = "NULL";
                  
                  /* Original: r.type_of(null) */
                  var obtained = runOrCatch( r.typeOf((ReqlExpr) null) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
 

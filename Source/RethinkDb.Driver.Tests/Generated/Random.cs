@@ -32,13 +32,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #1
                  /* ExpectedOriginal: 3 */
-                 var expected = 3;
+                 var expected_ = 3;
                  
                  /* Original: r.expr([1,2,3]).sample(3).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(1, 2, 3)).sample(3).distinct().count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -46,13 +46,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #2
                  /* ExpectedOriginal: 3 */
-                 var expected = 3;
+                 var expected_ = 3;
                  
                  /* Original: r.expr([1,2,3]).sample(3).count() */
                  var obtained = runOrCatch( r.expr(r.array(1, 2, 3)).sample(3).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -60,13 +60,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #3
                  /* ExpectedOriginal: 3 */
-                 var expected = 3;
+                 var expected_ = 3;
                  
                  /* Original: r.expr([1,2,3,4,5,6]).sample(3).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(1, 2, 3, 4, 5, 6)).sample(3).distinct().count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -74,13 +74,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #4
                  /* ExpectedOriginal: 3 */
-                 var expected = 3;
+                 var expected_ = 3;
                  
                  /* Original: r.expr([1,2,3]).sample(4).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(1, 2, 3)).sample(4).distinct().count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -88,13 +88,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #6
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Number of items to sample must be non-negative, got `-1`.', [0]) */
-                 var expected = err("ReqlQueryLogicError", "Number of items to sample must be non-negative, got `-1`.", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Number of items to sample must be non-negative, got `-1`.", r.array(0));
                  
                  /* Original: r.expr([1,2,3]).sample(-1) */
                  var obtained = runOrCatch( r.expr(r.array(1, 2, 3)).sample(-1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -102,13 +102,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #7
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert NUMBER to SEQUENCE', [0]) */
-                 var expected = err("ReqlQueryLogicError", "Cannot convert NUMBER to SEQUENCE", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Cannot convert NUMBER to SEQUENCE", r.array(0));
                  
                  /* Original: r.expr(1).sample(1) */
                  var obtained = runOrCatch( r.expr(1).sample(1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -116,13 +116,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #8
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert OBJECT to SEQUENCE', [0]) */
-                 var expected = err("ReqlQueryLogicError", "Cannot convert OBJECT to SEQUENCE", r.array(0));
+                 var expected_ = err("ReqlQueryLogicError", "Cannot convert OBJECT to SEQUENCE", r.array(0));
                  
                  /* Original: r.expr({}).sample(1) */
                  var obtained = runOrCatch( r.expr(r.hashMap()).sample(1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -130,13 +130,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #9
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random().do(lambda x:r.and_(x.ge(0), x.lt(1))) */
                  var obtained = runOrCatch( r.random().do_(x => r.and(x.ge(0), x.lt(1))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -144,13 +144,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #9
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(1, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1))) */
                  var obtained = runOrCatch( r.random(1).optArg("float", true).do_(x => r.and(x.ge(0), x.lt(1))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -158,13 +158,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #9
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(0, 1, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1))) */
                  var obtained = runOrCatch( r.random(0, 1).optArg("float", true).do_(x => r.and(x.ge(0), x.lt(1))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -172,13 +172,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #9
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(1, 0, float=True).do(lambda x:r.and_(x.le(1), x.gt(0))) */
                  var obtained = runOrCatch( r.random(1, 0).optArg("float", true).do_(x => r.and(x.le(1), x.gt(0))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -186,13 +186,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #9
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(r.expr(0), 1, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1))) */
                  var obtained = runOrCatch( r.random(r.expr(0), 1).optArg("float", true).do_(x => r.and(x.ge(0), x.lt(1))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -200,13 +200,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #9
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(1, r.expr(0), float=True).do(lambda x:r.and_(x.le(1), x.gt(0))) */
                  var obtained = runOrCatch( r.random(1, r.expr(0)).optArg("float", true).do_(x => r.and(x.le(1), x.gt(0))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -214,13 +214,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #9
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(r.expr(1), r.expr(0), float=True).do(lambda x:r.and_(x.le(1), x.gt(0))) */
                  var obtained = runOrCatch( r.random(r.expr(1), r.expr(0)).optArg("float", true).do_(x => r.and(x.le(1), x.gt(0))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -228,13 +228,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #10
                  /* ExpectedOriginal: None */
-                 var expected = null as object;
+                 var expected_ = null as object;
                  
                  /* Original: r.random(0.495, float=True).do(lambda x:r.and_(x.ge(0), x.lt(0.495))) */
                  var obtained = runOrCatch( r.random(0.495).optArg("float", true).do_(x => r.and(x.ge(0), x.lt(0.495))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -242,13 +242,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #10
                  /* ExpectedOriginal: None */
-                 var expected = null as object;
+                 var expected_ = null as object;
                  
                  /* Original: r.random(-0.495, float=True).do(lambda x:r.and_(x.le(0), x.gt(-0.495))) */
                  var obtained = runOrCatch( r.random(-0.495).optArg("float", true).do_(x => r.and(x.le(0), x.gt(-0.495))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -256,13 +256,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #10
                  /* ExpectedOriginal: None */
-                 var expected = null as object;
+                 var expected_ = null as object;
                  
                  /* Original: r.random(1823756.24, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1823756.24))) */
                  var obtained = runOrCatch( r.random(1823756.24).optArg("float", true).do_(x => r.and(x.ge(0), x.lt(1823756.24))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -270,13 +270,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #10
                  /* ExpectedOriginal: None */
-                 var expected = null as object;
+                 var expected_ = null as object;
                  
                  /* Original: r.random(-1823756.24, float=True).do(lambda x:r.and_(x.le(0), x.gt(-1823756.24))) */
                  var obtained = runOrCatch( r.random(-1823756.24).optArg("float", true).do_(x => r.and(x.le(0), x.gt(-1823756.24))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -284,13 +284,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #11
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(10.5, 20.153, float=True).do(lambda x:r.and_(x.ge(10.5), x.lt(20.153))) */
                  var obtained = runOrCatch( r.random(10.5, 20.153).optArg("float", true).do_(x => r.and(x.ge(10.5), x.lt(20.153))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -298,13 +298,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #11
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(20.153, 10.5, float=True).do(lambda x:r.and_(x.le(20.153), x.gt(10.5))) */
                  var obtained = runOrCatch( r.random(20.153, 10.5).optArg("float", true).do_(x => r.and(x.le(20.153), x.gt(10.5))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -312,13 +312,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #11
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(31415926.1, 31415926, float=True).do(lambda x:r.and_(x.le(31415926.1), x.gt(31415926))) */
                  var obtained = runOrCatch( r.random(31415926.1, 31415926).optArg("float", true).do_(x => r.and(x.le(31415926.1), x.gt(31415926))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -326,13 +326,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #12
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(-10.5, 20.153, float=True).do(lambda x:r.and_(x.ge(-10.5), x.lt(20.153))) */
                  var obtained = runOrCatch( r.random(-10.5, 20.153).optArg("float", true).do_(x => r.and(x.ge(-10.5), x.lt(20.153))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -340,13 +340,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #12
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(-20.153, -10.5, float=True).do(lambda x:r.and_(x.ge(-20.153), x.lt(-10.5))) */
                  var obtained = runOrCatch( r.random(-20.153, -10.5).optArg("float", true).do_(x => r.and(x.ge(-20.153), x.lt(-10.5))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -354,13 +354,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #12
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(-31415926, -31415926.1, float=True).do(lambda x:r.and_(x.le(-31415926), x.gt(-31415926.1))) */
                  var obtained = runOrCatch( r.random(-31415926, -31415926.1).optArg("float", true).do_(x => r.and(x.le(-31415926), x.gt(-31415926.1))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -368,13 +368,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #13
                  /* ExpectedOriginal: 2 */
-                 var expected = 2;
+                 var expected_ = 2;
                  
                  /* Original: r.expr([r.random(), r.random()]).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(r.random(), r.random())).distinct().count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -382,13 +382,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #13
                  /* ExpectedOriginal: 2 */
-                 var expected = 2;
+                 var expected_ = 2;
                  
                  /* Original: r.expr([r.random(1, float=True), r.random(1, float=True)]).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(r.random(1).optArg("float", true), r.random(1).optArg("float", true))).distinct().count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -396,13 +396,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #13
                  /* ExpectedOriginal: 2 */
-                 var expected = 2;
+                 var expected_ = 2;
                  
                  /* Original: r.expr([r.random(0, 1, float=True), r.random(0, 1, float=True)]).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(r.random(0, 1).optArg("float", true), r.random(0, 1).optArg("float", true))).distinct().count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -410,13 +410,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #14
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(0, float=True).eq(0) */
                  var obtained = runOrCatch( r.random(0).optArg("float", true).eq(0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -424,13 +424,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #14
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(5, 5, float=True).eq(5) */
                  var obtained = runOrCatch( r.random(5, 5).optArg("float", true).eq(5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -438,13 +438,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #14
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(-499384756758, -499384756758, float=True).eq(-499384756758) */
                  var obtained = runOrCatch( r.random(-499384756758L, -499384756758L).optArg("float", true).eq(-499384756758L) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -452,13 +452,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #14
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(-93.94757, -93.94757, float=True).eq(-93.94757) */
                  var obtained = runOrCatch( r.random(-93.94757, -93.94757).optArg("float", true).eq(-93.94757) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -466,13 +466,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #14
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(294.69148, 294.69148, float=True).eq(294.69148) */
                  var obtained = runOrCatch( r.random(294.69148, 294.69148).optArg("float", true).eq(294.69148) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
@@ -490,13 +490,13 @@ double float_min = (double) (double.MinValue);
              {
                  //JavaQuery, random.yaml, #17
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(-float_max, float_max, float=True).do(lambda x:r.and_(x.ge(-float_max), x.lt(float_max))) */
                  var obtained = runOrCatch( r.random(-float_max, float_max).optArg("float", true).do_(x => r.and(x.ge(-float_max), x.lt(float_max))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -504,13 +504,13 @@ double float_min = (double) (double.MinValue);
              {
                  //JavaQuery, random.yaml, #17
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(float_max, -float_max, float=True).do(lambda x:r.and_(x.le(float_max), x.gt(-float_max))) */
                  var obtained = runOrCatch( r.random(float_max, -float_max).optArg("float", true).do_(x => r.and(x.le(float_max), x.gt(-float_max))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -518,13 +518,13 @@ double float_min = (double) (double.MinValue);
              {
                  //JavaQuery, random.yaml, #17
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(float_min, float_max, float=True).do(lambda x:r.and_(x.ge(float_min), x.lt(float_max))) */
                  var obtained = runOrCatch( r.random(float_min, float_max).optArg("float", true).do_(x => r.and(x.ge(float_min), x.lt(float_max))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -532,13 +532,13 @@ double float_min = (double) (double.MinValue);
              {
                  //JavaQuery, random.yaml, #17
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(float_min, -float_max, float=True).do(lambda x:r.and_(x.le(float_min), x.gt(-float_max))) */
                  var obtained = runOrCatch( r.random(float_min, -float_max).optArg("float", true).do_(x => r.and(x.le(float_min), x.gt(-float_max))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -546,13 +546,13 @@ double float_min = (double) (double.MinValue);
              {
                  //JavaQuery, random.yaml, #17
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(-float_min, float_max, float=True).do(lambda x:r.and_(x.ge(-float_min), x.lt(float_max))) */
                  var obtained = runOrCatch( r.random(-float_min, float_max).optArg("float", true).do_(x => r.and(x.ge(-float_min), x.lt(float_max))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -560,13 +560,13 @@ double float_min = (double) (double.MinValue);
              {
                  //JavaQuery, random.yaml, #17
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(-float_min, -float_max, float=True).do(lambda x:r.and_(x.le(-float_min), x.gt(-float_max))) */
                  var obtained = runOrCatch( r.random(-float_min, -float_max).optArg("float", true).do_(x => r.and(x.le(-float_min), x.gt(-float_max))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
@@ -584,13 +584,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #20
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(256).do(lambda x:r.and_(x.ge(0), x.lt(256))) */
                  var obtained = runOrCatch( r.random(256).do_(x => r.and(x.ge(0), x.lt(256))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -598,13 +598,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #20
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(0, 256).do(lambda x:r.and_(x.ge(0), x.lt(256))) */
                  var obtained = runOrCatch( r.random(0, 256).do_(x => r.and(x.ge(0), x.lt(256))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -612,13 +612,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #20
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(r.expr(256)).do(lambda x:r.and_(x.ge(0), x.lt(256))) */
                  var obtained = runOrCatch( r.random(r.expr(256)).do_(x => r.and(x.ge(0), x.lt(256))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -626,13 +626,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #20
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(r.expr(0), 256).do(lambda x:r.and_(x.ge(0), x.lt(256))) */
                  var obtained = runOrCatch( r.random(r.expr(0), 256).do_(x => r.and(x.ge(0), x.lt(256))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -640,13 +640,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #20
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(0, r.expr(256)).do(lambda x:r.and_(x.ge(0), x.lt(256))) */
                  var obtained = runOrCatch( r.random(0, r.expr(256)).do_(x => r.and(x.ge(0), x.lt(256))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -654,13 +654,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #20
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(r.expr(0), r.expr(256)).do(lambda x:r.and_(x.ge(0), x.lt(256))) */
                  var obtained = runOrCatch( r.random(r.expr(0), r.expr(256)).do_(x => r.and(x.ge(0), x.lt(256))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -668,13 +668,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #21
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(10, 20).do(lambda x:r.and_(x.ge(10), x.lt(20))) */
                  var obtained = runOrCatch( r.random(10, 20).do_(x => r.and(x.ge(10), x.lt(20))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -682,13 +682,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #21
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(9347849, 120937493).do(lambda x:r.and_(x.ge(9347849), x.lt(120937493))) */
                  var obtained = runOrCatch( r.random(9347849, 120937493).do_(x => r.and(x.ge(9347849), x.lt(120937493))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -696,13 +696,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #22
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(-10, 20).do(lambda x:r.and_(x.ge(-10), x.lt(20))) */
                  var obtained = runOrCatch( r.random(-10, 20).do_(x => r.and(x.ge(-10), x.lt(20))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -710,13 +710,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #22
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(-20, -10).do(lambda x:r.and_(x.ge(-20), x.lt(-10))) */
                  var obtained = runOrCatch( r.random(-20, -10).do_(x => r.and(x.ge(-20), x.lt(-10))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -724,13 +724,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #22
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.random(-120937493, -9347849).do(lambda x:r.and_(x.ge(-120937493), x.lt(-9347849))) */
                  var obtained = runOrCatch( r.random(-120937493, -9347849).do_(x => r.and(x.ge(-120937493), x.lt(-9347849))) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -738,13 +738,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #23
                  /* ExpectedOriginal: 2 */
-                 var expected = 2;
+                 var expected_ = 2;
                  
                  /* Original: r.expr([r.random(upper_limit), r.random(upper_limit)]).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(r.random(upper_limit), r.random(upper_limit))).distinct().count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -752,13 +752,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #24
                  /* ExpectedOriginal: 2 */
-                 var expected = 2;
+                 var expected_ = 2;
                  
                  /* Original: r.expr([upper_limit,upper_limit]).map(lambda x:r.random(x)).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(upper_limit, upper_limit)).map(x => r.random(x)).distinct().count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -766,13 +766,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #25
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Upper bound (-0.5) could not be safely converted to an integer.", []) */
-                 var expected = err("ReqlQueryLogicError", "Upper bound (-0.5) could not be safely converted to an integer.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Upper bound (-0.5) could not be safely converted to an integer.", r.array());
                  
                  /* Original: r.random(-0.5) */
                  var obtained = runOrCatch( r.random(-0.5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -780,13 +780,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #26
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Upper bound (0.25) could not be safely converted to an integer.", []) */
-                 var expected = err("ReqlQueryLogicError", "Upper bound (0.25) could not be safely converted to an integer.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Upper bound (0.25) could not be safely converted to an integer.", r.array());
                  
                  /* Original: r.random(0.25) */
                  var obtained = runOrCatch( r.random(0.25) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -794,13 +794,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #27
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Upper bound (0.75) could not be safely converted to an integer.", []) */
-                 var expected = err("ReqlQueryLogicError", "Upper bound (0.75) could not be safely converted to an integer.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Upper bound (0.75) could not be safely converted to an integer.", r.array());
                  
                  /* Original: r.random(-10, 0.75) */
                  var obtained = runOrCatch( r.random(-10, 0.75) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -808,13 +808,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #28
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (-120549.25) could not be safely converted to an integer.", []) */
-                 var expected = err("ReqlQueryLogicError", "Lower bound (-120549.25) could not be safely converted to an integer.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Lower bound (-120549.25) could not be safely converted to an integer.", r.array());
                  
                  /* Original: r.random(-120549.25, 39458) */
                  var obtained = runOrCatch( r.random(-120549.25, 39458) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -822,13 +822,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #29
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (-6.5) could not be safely converted to an integer.", []) */
-                 var expected = err("ReqlQueryLogicError", "Lower bound (-6.5) could not be safely converted to an integer.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Lower bound (-6.5) could not be safely converted to an integer.", r.array());
                  
                  /* Original: r.random(-6.5, 8.125) */
                  var obtained = runOrCatch( r.random(-6.5, 8.125) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -836,13 +836,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #30
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Generating a random integer requires one or two bounds.", []) */
-                 var expected = err("ReqlQueryLogicError", "Generating a random integer requires one or two bounds.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Generating a random integer requires one or two bounds.", r.array());
                  
                  /* Original: r.random(float=False) */
                  var obtained = runOrCatch( r.random().optArg("float", false) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -850,13 +850,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #31
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (0).", []) */
-                 var expected = err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (0).", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (0).", r.array());
                  
                  /* Original: r.random(0) */
                  var obtained = runOrCatch( r.random(0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -864,13 +864,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #32
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (0).", []) */
-                 var expected = err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (0).", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (0).", r.array());
                  
                  /* Original: r.random(0, 0) */
                  var obtained = runOrCatch( r.random(0, 0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -878,13 +878,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #33
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (515) is not less than upper bound (515).", []) */
-                 var expected = err("ReqlQueryLogicError", "Lower bound (515) is not less than upper bound (515).", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Lower bound (515) is not less than upper bound (515).", r.array());
                  
                  /* Original: r.random(515, 515) */
                  var obtained = runOrCatch( r.random(515, 515) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -892,13 +892,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #34
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (-956) is not less than upper bound (-956).", []) */
-                 var expected = err("ReqlQueryLogicError", "Lower bound (-956) is not less than upper bound (-956).", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Lower bound (-956) is not less than upper bound (-956).", r.array());
                  
                  /* Original: r.random(-956, -956) */
                  var obtained = runOrCatch( r.random(-956, -956) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -906,13 +906,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #35
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (-10).", []) */
-                 var expected = err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (-10).", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Lower bound (0) is not less than upper bound (-10).", r.array());
                  
                  /* Original: r.random(-10) */
                  var obtained = runOrCatch( r.random(-10) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -920,13 +920,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #36
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (20) is not less than upper bound (2).", []) */
-                 var expected = err("ReqlQueryLogicError", "Lower bound (20) is not less than upper bound (2).", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Lower bound (20) is not less than upper bound (2).", r.array());
                  
                  /* Original: r.random(20, 2) */
                  var obtained = runOrCatch( r.random(20, 2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -934,13 +934,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #37
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (2) is not less than upper bound (-20).", []) */
-                 var expected = err("ReqlQueryLogicError", "Lower bound (2) is not less than upper bound (-20).", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Lower bound (2) is not less than upper bound (-20).", r.array());
                  
                  /* Original: r.random(2, -20) */
                  var obtained = runOrCatch( r.random(2, -20) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -948,13 +948,13 @@ long lower_limit = (long) (1 - 2L << 53);
              {
                  //JavaQuery, random.yaml, #38
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Lower bound (1456) is not less than upper bound (0).", []) */
-                 var expected = err("ReqlQueryLogicError", "Lower bound (1456) is not less than upper bound (0).", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Lower bound (1456) is not less than upper bound (0).", r.array());
                  
                  /* Original: r.random(1456, 0) */
                  var obtained = runOrCatch( r.random(1456, 0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
 

@@ -388,5 +388,13 @@ namespace RethinkDb.Driver.Tests
         }
         
     }
+
+    public static class ExtensionsForIList
+    {
+        public static object get(this IList lst, int idx)
+        {
+            return lst[idx];
+        }
+    }
     
 }

@@ -32,13 +32,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #1
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(1) < 2 */
                  var obtained = runOrCatch( r.expr(1).lt(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -46,13 +46,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #1
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: 1 < r.expr(2) */
                  var obtained = runOrCatch( r.lt(1, r.expr(2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -60,13 +60,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #1
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(1).lt(2) */
                  var obtained = runOrCatch( r.expr(1).lt(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -74,13 +74,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #2
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(3) < 2 */
                  var obtained = runOrCatch( r.expr(3).lt(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -88,13 +88,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #3
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(2) < 2 */
                  var obtained = runOrCatch( r.expr(2).lt(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -102,13 +102,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #6
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(1) > 2 */
                  var obtained = runOrCatch( r.expr(1).gt(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -116,13 +116,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #6
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: 1 > r.expr(2) */
                  var obtained = runOrCatch( r.gt(1, r.expr(2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -130,13 +130,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #6
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(1).gt(2) */
                  var obtained = runOrCatch( r.expr(1).gt(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -144,13 +144,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #7
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(3) > 2 */
                  var obtained = runOrCatch( r.expr(3).gt(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -158,13 +158,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #8
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(2) > 2 */
                  var obtained = runOrCatch( r.expr(2).gt(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -172,13 +172,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #11
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(1) == 2 */
                  var obtained = runOrCatch( r.expr(1).eq(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -186,13 +186,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #11
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: 1 == r.expr(2) */
                  var obtained = runOrCatch( r.eq(1, r.expr(2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -200,13 +200,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #11
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(1).eq(2) */
                  var obtained = runOrCatch( r.expr(1).eq(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -214,13 +214,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #12
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(3) == 2 */
                  var obtained = runOrCatch( r.expr(3).eq(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -228,13 +228,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #13
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(2) == 2 */
                  var obtained = runOrCatch( r.expr(2).eq(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -242,13 +242,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #16
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(1) != 2 */
                  var obtained = runOrCatch( r.expr(1).ne(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -256,13 +256,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #16
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: 1 != r.expr(2) */
                  var obtained = runOrCatch( r.ne(1, r.expr(2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -270,13 +270,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #16
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(1).ne(2) */
                  var obtained = runOrCatch( r.expr(1).ne(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -284,13 +284,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #17
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(3) != 2 */
                  var obtained = runOrCatch( r.expr(3).ne(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -298,13 +298,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #18
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(2) != 2 */
                  var obtained = runOrCatch( r.expr(2).ne(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -312,13 +312,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #21
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(1) <= 2 */
                  var obtained = runOrCatch( r.expr(1).le(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -326,13 +326,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #21
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: 1 <= r.expr(2) */
                  var obtained = runOrCatch( r.le(1, r.expr(2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -340,13 +340,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #21
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(1).le(2) */
                  var obtained = runOrCatch( r.expr(1).le(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -354,13 +354,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #22
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(3) <= 2 */
                  var obtained = runOrCatch( r.expr(3).le(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -368,13 +368,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #23
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(2) <= 2 */
                  var obtained = runOrCatch( r.expr(2).le(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -382,13 +382,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #26
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(1) >= 2 */
                  var obtained = runOrCatch( r.expr(1).ge(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -396,13 +396,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #26
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: 1 >= r.expr(2) */
                  var obtained = runOrCatch( r.ge(1, r.expr(2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -410,13 +410,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #26
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(1).ge(2) */
                  var obtained = runOrCatch( r.expr(1).ge(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -424,13 +424,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #27
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(3) >= 2 */
                  var obtained = runOrCatch( r.expr(3).ge(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -438,13 +438,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #28
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(2) >= 2 */
                  var obtained = runOrCatch( r.expr(2).ge(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -452,13 +452,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #31
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(null) == null */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).eq(null) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -466,13 +466,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #31
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: null == r.expr(null) */
                  var obtained = runOrCatch( r.eq(null, r.expr((ReqlExpr) null)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -480,13 +480,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #32
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(null) < null */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).lt(null) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -494,13 +494,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #32
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: null < r.expr(null) */
                  var obtained = runOrCatch( r.lt(null, r.expr((ReqlExpr) null)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -508,13 +508,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #32
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(null).gt(null) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).gt((ReqlExpr) null) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -522,13 +522,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #33
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(null) > null */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).gt(null) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -536,13 +536,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #33
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: null > r.expr(null) */
                  var obtained = runOrCatch( r.gt(null, r.expr((ReqlExpr) null)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -550,13 +550,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #33
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(null).lt(null) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).lt((ReqlExpr) null) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -564,13 +564,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #34
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr('a') == 'a' */
                  var obtained = runOrCatch( r.expr("a").eq("a") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -578,13 +578,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #35
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr('a') == 'aa' */
                  var obtained = runOrCatch( r.expr("a").eq("aa") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -592,13 +592,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #36
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr('a') < 'aa' */
                  var obtained = runOrCatch( r.expr("a").lt("aa") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -606,13 +606,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #37
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr('a') < 'bb' */
                  var obtained = runOrCatch( r.expr("a").lt("bb") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -620,13 +620,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #38
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr('bb') > 'a' */
                  var obtained = runOrCatch( r.expr("bb").gt("a") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -634,13 +634,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #39
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr('abcdef') < 'abcdeg' */
                  var obtained = runOrCatch( r.expr("abcdef").lt("abcdeg") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -648,13 +648,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #40
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr('abcdefg') > 'abcdeg' */
                  var obtained = runOrCatch( r.expr("abcdefg").gt("abcdeg") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -662,13 +662,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #41
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr('A quick brown fox') > 'A quick brawn fox' */
                  var obtained = runOrCatch( r.expr("A quick brown fox").gt("A quick brawn fox") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -676,13 +676,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #42
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr([1]) < [2] */
                  var obtained = runOrCatch( r.expr(r.array(1)).lt(r.array(2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -690,13 +690,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #43
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr([1]) > [2] */
                  var obtained = runOrCatch( r.expr(r.array(1)).gt(r.array(2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -704,13 +704,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #44
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr([1, 0]) < [2] */
                  var obtained = runOrCatch( r.expr(r.array(1, 0)).lt(r.array(2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -718,13 +718,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #45
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr([1, 0]) < [1] */
                  var obtained = runOrCatch( r.expr(r.array(1, 0)).lt(r.array(1)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -732,13 +732,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #46
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr([1, 0]) > [0] */
                  var obtained = runOrCatch( r.expr(r.array(1, 0)).gt(r.array(0)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -746,13 +746,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #47
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr([1, 'a']) < [1, 'b'] */
                  var obtained = runOrCatch( r.expr(r.array(1, "a")).lt(r.array(1, "b")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -760,13 +760,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #48
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr([0, 'z']) < [1, 'b'] */
                  var obtained = runOrCatch( r.expr(r.array(0, "z")).lt(r.array(1, "b")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -774,13 +774,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #49
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr([1, 1, 1]) < [1, 0, 2] */
                  var obtained = runOrCatch( r.expr(r.array(1, 1, 1)).lt(r.array(1, 0, 2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -788,13 +788,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #50
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr([1, 0, 2]) < [1, 1, 1] */
                  var obtained = runOrCatch( r.expr(r.array(1, 0, 2)).lt(r.array(1, 1, 1)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -802,13 +802,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #51
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr({'a':0}) == {'a':0} */
                  var obtained = runOrCatch( r.expr(r.hashMap("a", 0)).eq(r.hashMap("a", 0)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -816,13 +816,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #52
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr({'a':0, 'b':1}) == {'b':1, 'a':0} */
                  var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1)).eq(r.hashMap("b", 1).with("a", 0)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -830,13 +830,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #53
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr({'a':0, 'b':1, 'c':2}) == {'b':1, 'a':0} */
                  var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1).with("c", 2)).eq(r.hashMap("b", 1).with("a", 0)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -844,13 +844,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #54
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr({'a':0, 'b':1}) == {'b':1, 'a':0, 'c':2} */
                  var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1)).eq(r.hashMap("b", 1).with("a", 0).with("c", 2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -858,13 +858,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #55
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr({'a':0, 'b':1, 'd':2}) == {'b':1, 'a':0, 'c':2} */
                  var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1).with("d", 2)).eq(r.hashMap("b", 1).with("a", 0).with("c", 2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -872,13 +872,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #56
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr({'a':0}) < {'b':0} */
                  var obtained = runOrCatch( r.expr(r.hashMap("a", 0)).lt(r.hashMap("b", 0)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -886,13 +886,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #57
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr({'a':1}) < {'b':0} */
                  var obtained = runOrCatch( r.expr(r.hashMap("a", 1)).lt(r.hashMap("b", 0)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -900,13 +900,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #58
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr({'b':1}) < {'b':0} */
                  var obtained = runOrCatch( r.expr(r.hashMap("b", 1)).lt(r.hashMap("b", 0)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -914,13 +914,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #59
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr({'b':1}) < {'a':0} */
                  var obtained = runOrCatch( r.expr(r.hashMap("b", 1)).lt(r.hashMap("a", 0)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -928,13 +928,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #60
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr({'a':0, 'b':1, 'c':2}) < {'a':0, 'b':1, 'c':2} */
                  var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1).with("c", 2)).lt(r.hashMap("a", 0).with("b", 1).with("c", 2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -942,13 +942,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #61
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr({'a':0, 'b':1, 'c':2, 'd':3}) < {'a':0, 'b':1, 'c':2} */
                  var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1).with("c", 2).with("d", 3)).lt(r.hashMap("a", 0).with("b", 1).with("c", 2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -956,13 +956,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #62
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr({'a':0, 'b':1, 'c':2}) < {'a':0, 'b':1, 'c':2, 'd':3} */
                  var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("b", 1).with("c", 2)).lt(r.hashMap("a", 0).with("b", 1).with("c", 2).with("d", 3)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -970,13 +970,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #63
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr({'a':0, 'c':2}) < {'a':0, 'b':1, 'c':2} */
                  var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("c", 2)).lt(r.hashMap("a", 0).with("b", 1).with("c", 2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -984,13 +984,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/comparison.yaml, #64
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr({'a':0, 'c':2}) > {'a':0, 'b':1, 'c':2} */
                  var obtained = runOrCatch( r.expr(r.hashMap("a", 0).with("c", 2)).gt(r.hashMap("a", 0).with("b", 1).with("c", 2)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
@@ -1003,13 +1003,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #68
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.eq(r.minval, r.minval) */
                  var obtained = runOrCatch( r.eq(r.minval(), r.minval()) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1017,13 +1017,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #69
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr([]) < True */
                  var obtained = runOrCatch( r.expr(r.array()).lt(true) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1031,13 +1031,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #70
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr([1,2]) < False */
                  var obtained = runOrCatch( r.expr(r.array(1, 2)).lt(false) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1045,13 +1045,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #71
                  /* ExpectedOriginal: None */
-                 var expected = null as object;
+                 var expected_ = null as object;
                  
                  /* Original: r.expr(False) < [] */
                  var obtained = runOrCatch( r.expr(false).lt(r.array()) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1059,13 +1059,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #72
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr([]) < r.binary(b"\xAE") */
                  var obtained = runOrCatch( r.expr(r.array()).lt(r.binary(new byte[] { 174 })) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1073,13 +1073,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #73
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr([1,2]) < r.binary(b"\xAE") */
                  var obtained = runOrCatch( r.expr(r.array(1, 2)).lt(r.binary(new byte[] { 174 })) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1087,13 +1087,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #74
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: True < r.expr(null) */
                  var obtained = runOrCatch( r.lt(true, r.expr((ReqlExpr) null)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1101,13 +1101,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #75
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(null) > [] */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).gt(r.array()) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1115,13 +1115,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #76
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(null) < 12 */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).lt(12) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1129,13 +1129,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #77
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(null) < -2 */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).lt(-2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1143,13 +1143,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #78
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(-12) < {} */
                  var obtained = runOrCatch( r.expr(-12).lt(r.hashMap()) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1157,13 +1157,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #79
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(100) < {'a':-12} */
                  var obtained = runOrCatch( r.expr(100).lt(r.hashMap("a", -12)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1171,13 +1171,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #80
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.expr(r.binary(b"\xAE")) < 12 */
                  var obtained = runOrCatch( r.expr(r.binary(new byte[] { 174 })).lt(12) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1185,13 +1185,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #81
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(b"0xAE") < 'abc' */
-                 var obtained = runOrCatch( r.binary(new byte[] { 48,120,65,69 }).lt("abc") ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 48, 120, 65, 69 }).lt("abc") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1199,13 +1199,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #82
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(b"0xAE") > r.now() */
-                 var obtained = runOrCatch( r.binary(new byte[] { 48,120,65,69 }).gt(r.now()) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 48, 120, 65, 69 }).gt(r.now()) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1213,13 +1213,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #83
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.now() > 12 */
                  var obtained = runOrCatch( r.now().gt(12) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1227,13 +1227,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #84
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.now() > 'abc' */
                  var obtained = runOrCatch( r.now().gt("abc") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1241,13 +1241,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #85
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr("abc") > {'a':-12} */
                  var obtained = runOrCatch( r.expr("abc").gt(r.hashMap("a", -12)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1255,13 +1255,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #86
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr("abc") > {'abc':'abc'} */
                  var obtained = runOrCatch( r.expr("abc").gt(r.hashMap("abc", "abc")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1269,13 +1269,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #87
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr('zzz') > 128 */
                  var obtained = runOrCatch( r.expr("zzz").gt(128) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1283,13 +1283,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #88
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr('zzz') > {} */
                  var obtained = runOrCatch( r.expr("zzz").gt(r.hashMap()) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1297,13 +1297,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #89
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: "'zzz' > r.expr(-152)" */
                  var obtained = runOrCatch( r.gt("zzz", r.expr(-152)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1311,13 +1311,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #90
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: "'zzz' > r.expr(null)" */
                  var obtained = runOrCatch( r.gt("zzz", r.expr((ReqlExpr) null)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1325,13 +1325,13 @@ MakeArray everything = (MakeArray) (r.expr(r.array(r.array(), r.now(), r.binary(
              {
                  //JavaQuery, math_logic/comparison.yaml, #91
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: "'zzz' > r.expr([])" */
                  var obtained = runOrCatch( r.gt("zzz", r.expr(r.array())) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
@@ -1344,13 +1344,13 @@ MakeArray everything2 = (MakeArray) (r.expr(r.array(r.minval(), r.array(), r.now
              {
                  //JavaQuery, math_logic/comparison.yaml, #95
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.eq(r.maxval, r.maxval) */
                  var obtained = runOrCatch( r.eq(r.maxval(), r.maxval()) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
 

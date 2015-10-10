@@ -32,13 +32,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/null.yaml, #1
                  /* ExpectedOriginal: (null) */
-                 var expected = null as object;
+                 var expected_ = null as object;
                  
                  /* Original: r.expr(null) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -46,13 +46,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/null.yaml, #2
                  /* ExpectedOriginal: NULL */
-                 var expected = "NULL";
+                 var expected_ = "NULL";
                  
                  /* Original: r.expr(null).type_of() */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).typeOf() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -60,13 +60,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/null.yaml, #3
                  /* ExpectedOriginal: null */
-                 var expected = "null";
+                 var expected_ = "null";
                  
                  /* Original: r.expr(null).coerce_to('string') */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).coerceTo("string") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -74,13 +74,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, datum/null.yaml, #4
                  /* ExpectedOriginal: (null) */
-                 var expected = null as object;
+                 var expected_ = null as object;
                  
                  /* Original: r.expr(null).coerce_to('null') */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).coerceTo("null") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
 

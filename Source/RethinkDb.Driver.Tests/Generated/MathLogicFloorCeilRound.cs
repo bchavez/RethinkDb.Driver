@@ -32,13 +32,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #1
                  /* ExpectedOriginal: "NUMBER" */
-                 var expected = "NUMBER";
+                 var expected_ = "NUMBER";
                  
                  /* Original: r.floor(1.0).type_of() */
                  var obtained = runOrCatch( r.floor(1.0).typeOf() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -46,13 +46,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #2
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.floor(1.0) */
                  var obtained = runOrCatch( r.floor(1.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -60,13 +60,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #3
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.expr(1.0).floor() */
                  var obtained = runOrCatch( r.expr(1.0).floor() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -74,13 +74,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #4
                  /* ExpectedOriginal: 0.0 */
-                 var expected = 0.0;
+                 var expected_ = 0.0;
                  
                  /* Original: r.floor(0.5) */
                  var obtained = runOrCatch( r.floor(0.5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -88,13 +88,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #5
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.floor(1.0) */
                  var obtained = runOrCatch( r.floor(1.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -102,13 +102,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #6
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.floor(1.5) */
                  var obtained = runOrCatch( r.floor(1.5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -116,13 +116,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #7
                  /* ExpectedOriginal: -1.0 */
-                 var expected = -1.0;
+                 var expected_ = -1.0;
                  
                  /* Original: r.floor(-0.5) */
                  var obtained = runOrCatch( r.floor(-0.5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -130,13 +130,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #8
                  /* ExpectedOriginal: -1.0 */
-                 var expected = -1.0;
+                 var expected_ = -1.0;
                  
                  /* Original: r.floor(-1.0) */
                  var obtained = runOrCatch( r.floor(-1.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -144,13 +144,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #9
                  /* ExpectedOriginal: -2.0 */
-                 var expected = -2.0;
+                 var expected_ = -2.0;
                  
                  /* Original: r.floor(-1.5) */
                  var obtained = runOrCatch( r.floor(-1.5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -158,13 +158,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #10
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", []) */
-                 var expected = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
                  
                  /* Original: r.expr('X').floor() */
                  var obtained = runOrCatch( r.expr("X").floor() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -172,13 +172,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #11
                  /* ExpectedOriginal: "NUMBER" */
-                 var expected = "NUMBER";
+                 var expected_ = "NUMBER";
                  
                  /* Original: r.ceil(1.0).type_of() */
                  var obtained = runOrCatch( r.ceil(1.0).typeOf() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -186,13 +186,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #12
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.ceil(1.0) */
                  var obtained = runOrCatch( r.ceil(1.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -200,13 +200,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #13
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.expr(1.0).ceil() */
                  var obtained = runOrCatch( r.expr(1.0).ceil() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -214,13 +214,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #14
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.ceil(0.5) */
                  var obtained = runOrCatch( r.ceil(0.5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -228,13 +228,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #15
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.ceil(1.0) */
                  var obtained = runOrCatch( r.ceil(1.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -242,13 +242,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #16
                  /* ExpectedOriginal: 2.0 */
-                 var expected = 2.0;
+                 var expected_ = 2.0;
                  
                  /* Original: r.ceil(1.5) */
                  var obtained = runOrCatch( r.ceil(1.5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -256,13 +256,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #17
                  /* ExpectedOriginal: 0.0 */
-                 var expected = 0.0;
+                 var expected_ = 0.0;
                  
                  /* Original: r.ceil(-0.5) */
                  var obtained = runOrCatch( r.ceil(-0.5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -270,13 +270,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #18
                  /* ExpectedOriginal: -1.0 */
-                 var expected = -1.0;
+                 var expected_ = -1.0;
                  
                  /* Original: r.ceil(-1.0) */
                  var obtained = runOrCatch( r.ceil(-1.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -284,13 +284,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #19
                  /* ExpectedOriginal: -1.0 */
-                 var expected = -1.0;
+                 var expected_ = -1.0;
                  
                  /* Original: r.ceil(-1.5) */
                  var obtained = runOrCatch( r.ceil(-1.5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -298,13 +298,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #20
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", []) */
-                 var expected = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
                  
                  /* Original: r.expr('X').ceil() */
                  var obtained = runOrCatch( r.expr("X").ceil() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -312,13 +312,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #21
                  /* ExpectedOriginal: "NUMBER" */
-                 var expected = "NUMBER";
+                 var expected_ = "NUMBER";
                  
                  /* Original: r.round(1.0).type_of() */
                  var obtained = runOrCatch( r.round(1.0).typeOf() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -326,13 +326,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #22
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.round(1.0) */
                  var obtained = runOrCatch( r.round(1.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -340,13 +340,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #23
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.expr(1.0).round() */
                  var obtained = runOrCatch( r.expr(1.0).round() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -354,13 +354,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #24
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.round(0.5) */
                  var obtained = runOrCatch( r.round(0.5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -368,13 +368,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #25
                  /* ExpectedOriginal: -1.0 */
-                 var expected = -1.0;
+                 var expected_ = -1.0;
                  
                  /* Original: r.round(-0.5) */
                  var obtained = runOrCatch( r.round(-0.5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -382,13 +382,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #26
                  /* ExpectedOriginal: 0.0 */
-                 var expected = 0.0;
+                 var expected_ = 0.0;
                  
                  /* Original: r.round(0.0) */
                  var obtained = runOrCatch( r.round(0.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -396,13 +396,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #27
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.round(1.0) */
                  var obtained = runOrCatch( r.round(1.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -410,13 +410,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #28
                  /* ExpectedOriginal: 10.0 */
-                 var expected = 10.0;
+                 var expected_ = 10.0;
                  
                  /* Original: r.round(10.0) */
                  var obtained = runOrCatch( r.round(10.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -424,13 +424,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #29
                  /* ExpectedOriginal: 1000000000.0 */
-                 var expected = 1000000000.0;
+                 var expected_ = 1000000000.0;
                  
                  /* Original: r.round(1000000000.0) */
                  var obtained = runOrCatch( r.round(1000000000.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -438,13 +438,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #30
                  /* ExpectedOriginal: 1e20 */
-                 var expected = 1e+20;
+                 var expected_ = 1e+20;
                  
                  /* Original: r.round(1e20) */
                  var obtained = runOrCatch( r.round(1e+20) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -452,13 +452,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #31
                  /* ExpectedOriginal: -1.0 */
-                 var expected = -1.0;
+                 var expected_ = -1.0;
                  
                  /* Original: r.round(-1.0) */
                  var obtained = runOrCatch( r.round(-1.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -466,13 +466,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #32
                  /* ExpectedOriginal: -10.0 */
-                 var expected = -10.0;
+                 var expected_ = -10.0;
                  
                  /* Original: r.round(-10.0) */
                  var obtained = runOrCatch( r.round(-10.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -480,13 +480,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #33
                  /* ExpectedOriginal: -1000000000.0 */
-                 var expected = -1000000000.0;
+                 var expected_ = -1000000000.0;
                  
                  /* Original: r.round(-1000000000.0) */
                  var obtained = runOrCatch( r.round(-1000000000.0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -494,13 +494,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #34
                  /* ExpectedOriginal: -1e20 */
-                 var expected = -1e+20;
+                 var expected_ = -1e+20;
                  
                  /* Original: r.round(-1e20) */
                  var obtained = runOrCatch( r.round(-1e+20) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -508,13 +508,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #35
                  /* ExpectedOriginal: 0.0 */
-                 var expected = 0.0;
+                 var expected_ = 0.0;
                  
                  /* Original: r.round(0.1) */
                  var obtained = runOrCatch( r.round(0.1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -522,13 +522,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #36
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.round(1.1) */
                  var obtained = runOrCatch( r.round(1.1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -536,13 +536,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #37
                  /* ExpectedOriginal: 10.0 */
-                 var expected = 10.0;
+                 var expected_ = 10.0;
                  
                  /* Original: r.round(10.1) */
                  var obtained = runOrCatch( r.round(10.1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -550,13 +550,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #38
                  /* ExpectedOriginal: 1000000000.0 */
-                 var expected = 1000000000.0;
+                 var expected_ = 1000000000.0;
                  
                  /* Original: r.round(1000000000.1) */
                  var obtained = runOrCatch( r.round(1000000000.1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -564,13 +564,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #39
                  /* ExpectedOriginal: -1.0 */
-                 var expected = -1.0;
+                 var expected_ = -1.0;
                  
                  /* Original: r.round(-1.1) */
                  var obtained = runOrCatch( r.round(-1.1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -578,13 +578,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #40
                  /* ExpectedOriginal: -10.0 */
-                 var expected = -10.0;
+                 var expected_ = -10.0;
                  
                  /* Original: r.round(-10.1) */
                  var obtained = runOrCatch( r.round(-10.1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -592,13 +592,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #41
                  /* ExpectedOriginal: -1000000000.0 */
-                 var expected = -1000000000.0;
+                 var expected_ = -1000000000.0;
                  
                  /* Original: r.round(-1000000000.1) */
                  var obtained = runOrCatch( r.round(-1000000000.1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -606,13 +606,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #42
                  /* ExpectedOriginal: 1.0 */
-                 var expected = 1.0;
+                 var expected_ = 1.0;
                  
                  /* Original: r.round(0.9) */
                  var obtained = runOrCatch( r.round(0.9) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -620,13 +620,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #43
                  /* ExpectedOriginal: 10.0 */
-                 var expected = 10.0;
+                 var expected_ = 10.0;
                  
                  /* Original: r.round(9.9) */
                  var obtained = runOrCatch( r.round(9.9) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -634,13 +634,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #44
                  /* ExpectedOriginal: 1000000000.0 */
-                 var expected = 1000000000.0;
+                 var expected_ = 1000000000.0;
                  
                  /* Original: r.round(999999999.9) */
                  var obtained = runOrCatch( r.round(999999999.9) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -648,13 +648,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #45
                  /* ExpectedOriginal: -1.0 */
-                 var expected = -1.0;
+                 var expected_ = -1.0;
                  
                  /* Original: r.round(-0.9) */
                  var obtained = runOrCatch( r.round(-0.9) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -662,13 +662,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #46
                  /* ExpectedOriginal: -10.0 */
-                 var expected = -10.0;
+                 var expected_ = -10.0;
                  
                  /* Original: r.round(-9.9) */
                  var obtained = runOrCatch( r.round(-9.9) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -676,13 +676,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #47
                  /* ExpectedOriginal: -1000000000.0 */
-                 var expected = -1000000000.0;
+                 var expected_ = -1000000000.0;
                  
                  /* Original: r.round(-999999999.9) */
                  var obtained = runOrCatch( r.round(-999999999.9) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -690,13 +690,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #48
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", []) */
-                 var expected = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
                  
                  /* Original: r.expr('X').round() */
                  var obtained = runOrCatch( r.expr("X").round() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
 

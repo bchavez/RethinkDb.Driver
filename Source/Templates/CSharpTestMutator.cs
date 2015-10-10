@@ -14,7 +14,9 @@ namespace Templates
                 {"Boolean", "bool"},
                 {"Integer", "int"},
                 {"Double", "double"},
-                {"Long", "long"}
+                {"Long", "long"},
+                {"List ", "IList " },
+                {"(List)", "(IList)" }
             };
 
         public static NameValueCollection JavaLineReplacements = new NameValueCollection
@@ -27,7 +29,10 @@ namespace Templates
                 {".boxed().map(", ".Select("},
                 {".collect(Collectors.toList())", ".ToList()"},
                 {"sys.floatInfo.max", "double.MaxValue"},
-                {"sys.floatInfo.min", "double.MinValue"}
+                {"sys.floatInfo.min", "double.MinValue"},
+                {"r.object(", "r.object_("},
+                {"Stream.concat(","Enumerable.Concat(" },
+                {".stream()",".OfType<object>().ToList()" },
             };
 
         public CSharpTestMutator(YamlTest yamlTest)
@@ -45,7 +50,8 @@ namespace Templates
                 test.Java = FixUpJava(test.Java);
 
                 if( test.ExpectedJava.IsNotNullOrWhiteSpace() )
-                test.ExpectedJava = ScanLiteral(test.ExpectedJava);
+                    //test.ExpectedJava = ScanLiteral(test.ExpectedJava);
+                    test.ExpectedJava = FixUpJava(test.ExpectedJava);
             }
         }
 
@@ -96,7 +102,7 @@ namespace Templates
                     .ToArray();
                 
                 //... keep converting until we got dat space.
-                javaLine = javaLine.Replace($"byte[]{{{byteStr}}}", $"byte[] {{ {string.Join(",", unsignedBytes)} }}");
+                javaLine = javaLine.Replace($"byte[]{{{byteStr}}}", $"byte[] {{ {string.Join(", ", unsignedBytes)} }}");
             } while( javaLine.Contains("byte[]{") );
 
             return javaLine;

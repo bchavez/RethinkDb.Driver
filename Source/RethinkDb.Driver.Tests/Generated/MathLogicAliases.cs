@@ -32,13 +32,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected = 1;
+                 var expected_ = 1;
                  
                  /* Original: r.expr(0).add(1) */
                  var obtained = runOrCatch( r.expr(0).add(1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -46,13 +46,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected = 1;
+                 var expected_ = 1;
                  
                  /* Original: r.add(0, 1) */
                  var obtained = runOrCatch( r.add(0, 1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -60,13 +60,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected = 1;
+                 var expected_ = 1;
                  
                  /* Original: r.expr(2).sub(1) */
                  var obtained = runOrCatch( r.expr(2).sub(1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -74,13 +74,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected = 1;
+                 var expected_ = 1;
                  
                  /* Original: r.sub(2, 1) */
                  var obtained = runOrCatch( r.sub(2, 1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -88,13 +88,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected = 1;
+                 var expected_ = 1;
                  
                  /* Original: r.expr(2).div(2) */
                  var obtained = runOrCatch( r.expr(2).div(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -102,13 +102,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected = 1;
+                 var expected_ = 1;
                  
                  /* Original: r.div(2, 2) */
                  var obtained = runOrCatch( r.div(2, 2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -116,13 +116,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected = 1;
+                 var expected_ = 1;
                  
                  /* Original: r.expr(1).mul(1) */
                  var obtained = runOrCatch( r.expr(1).mul(1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -130,13 +130,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected = 1;
+                 var expected_ = 1;
                  
                  /* Original: r.mul(1, 1) */
                  var obtained = runOrCatch( r.mul(1, 1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -144,13 +144,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected = 1;
+                 var expected_ = 1;
                  
                  /* Original: r.expr(1).mod(2) */
                  var obtained = runOrCatch( r.expr(1).mod(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -158,13 +158,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #1
                  /* ExpectedOriginal: 1 */
-                 var expected = 1;
+                 var expected_ = 1;
                  
                  /* Original: r.mod(1, 2) */
                  var obtained = runOrCatch( r.mod(1, 2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -172,13 +172,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #2
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(True).and_(True) */
                  var obtained = runOrCatch( r.expr(true).and(true) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -186,13 +186,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #2
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(True).or_(True) */
                  var obtained = runOrCatch( r.expr(true).or(true) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -200,13 +200,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #2
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.and_(True, True) */
                  var obtained = runOrCatch( r.and(true, true) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -214,13 +214,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #2
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.or_(True, True) */
                  var obtained = runOrCatch( r.or(true, true) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -228,13 +228,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #2
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(False).not_() */
                  var obtained = runOrCatch( r.expr(false).not() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -242,13 +242,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #2
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.not_(False) */
                  var obtained = runOrCatch( r.not(false) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -256,13 +256,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #3
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(1).eq(1) */
                  var obtained = runOrCatch( r.expr(1).eq(1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -270,13 +270,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #3
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(1).ne(2) */
                  var obtained = runOrCatch( r.expr(1).ne(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -284,13 +284,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #3
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(1).lt(2) */
                  var obtained = runOrCatch( r.expr(1).lt(2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -298,13 +298,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #3
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(1).gt(0) */
                  var obtained = runOrCatch( r.expr(1).gt(0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -312,13 +312,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #3
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(1).le(1) */
                  var obtained = runOrCatch( r.expr(1).le(1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -326,13 +326,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #3
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.expr(1).ge(1) */
                  var obtained = runOrCatch( r.expr(1).ge(1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -340,13 +340,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #3
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.eq(1, 1) */
                  var obtained = runOrCatch( r.eq(1, 1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -354,13 +354,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #3
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.ne(1, 2) */
                  var obtained = runOrCatch( r.ne(1, 2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -368,13 +368,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #3
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.lt(1, 2) */
                  var obtained = runOrCatch( r.lt(1, 2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -382,13 +382,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #3
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.gt(1, 0) */
                  var obtained = runOrCatch( r.gt(1, 0) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -396,13 +396,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #3
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.le(1, 1) */
                  var obtained = runOrCatch( r.le(1, 1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -410,13 +410,13 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, math_logic/aliases.yaml, #3
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.ge(1, 1) */
                  var obtained = runOrCatch( r.ge(1, 1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
 

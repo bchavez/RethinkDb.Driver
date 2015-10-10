@@ -37,13 +37,13 @@ byte[] s = (byte[]) (new byte[] {});
              {
                  //JavaQuery, datum/binary.yaml, #2
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -51,13 +51,13 @@ byte[] s = (byte[]) (new byte[] {});
              {
                  //JavaQuery, datum/binary.yaml, #3
                  /* ExpectedOriginal: 0 */
-                 var expected = 0;
+                 var expected_ = 0;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
@@ -70,13 +70,13 @@ byte[] s = (byte[]) (new byte[] { 0 });
              {
                  //JavaQuery, datum/binary.yaml, #5
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -84,32 +84,32 @@ byte[] s = (byte[]) (new byte[] { 0 });
              {
                  //JavaQuery, datum/binary.yaml, #6
                  /* ExpectedOriginal: 1 */
-                 var expected = 1;
+                 var expected_ = 1;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x00\x42'
              
-byte[] s = (byte[]) (new byte[] { 0,66 });             
+byte[] s = (byte[]) (new byte[] { 0, 66 });             
              TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #8
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -117,32 +117,32 @@ byte[] s = (byte[]) (new byte[] { 0,66 });
              {
                  //JavaQuery, datum/binary.yaml, #9
                  /* ExpectedOriginal: 2 */
-                 var expected = 2;
+                 var expected_ = 2;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x00\xfe\x7a'
              
-byte[] s = (byte[]) (new byte[] { 0,254,122 });             
+byte[] s = (byte[]) (new byte[] { 0, 254, 122 });             
              TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #11
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -150,32 +150,32 @@ byte[] s = (byte[]) (new byte[] { 0,254,122 });
              {
                  //JavaQuery, datum/binary.yaml, #12
                  /* ExpectedOriginal: 3 */
-                 var expected = 3;
+                 var expected_ = 3;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\xed\xfe\x00\xba'
              
-byte[] s = (byte[]) (new byte[] { 237,254,0,186 });             
+byte[] s = (byte[]) (new byte[] { 237, 254, 0, 186 });             
              TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #14
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -183,32 +183,32 @@ byte[] s = (byte[]) (new byte[] { 237,254,0,186 });
              {
                  //JavaQuery, datum/binary.yaml, #15
                  /* ExpectedOriginal: 4 */
-                 var expected = 4;
+                 var expected_ = 4;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x50\xf9\x00\x77\xf9'
              
-byte[] s = (byte[]) (new byte[] { 80,249,0,119,249 });             
+byte[] s = (byte[]) (new byte[] { 80, 249, 0, 119, 249 });             
              TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #17
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -216,32 +216,32 @@ byte[] s = (byte[]) (new byte[] { 80,249,0,119,249 });
              {
                  //JavaQuery, datum/binary.yaml, #18
                  /* ExpectedOriginal: 5 */
-                 var expected = 5;
+                 var expected_ = 5;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x2f\xe3\xb5\x57\x00\x92'
              
-byte[] s = (byte[]) (new byte[] { 47,227,181,87,0,146 });             
+byte[] s = (byte[]) (new byte[] { 47, 227, 181, 87, 0, 146 });             
              TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #20
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -249,32 +249,32 @@ byte[] s = (byte[]) (new byte[] { 47,227,181,87,0,146 });
              {
                  //JavaQuery, datum/binary.yaml, #21
                  /* ExpectedOriginal: 6 */
-                 var expected = 6;
+                 var expected_ = 6;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\xa9\x43\x54\xe9\x00\xf8\xfb'
              
-byte[] s = (byte[]) (new byte[] { 169,67,84,233,0,248,251 });             
+byte[] s = (byte[]) (new byte[] { 169, 67, 84, 233, 0, 248, 251 });             
              TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #23
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -282,32 +282,32 @@ byte[] s = (byte[]) (new byte[] { 169,67,84,233,0,248,251 });
              {
                  //JavaQuery, datum/binary.yaml, #24
                  /* ExpectedOriginal: 7 */
-                 var expected = 7;
+                 var expected_ = 7;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x57\xbb\xe5\x82\x8b\xd3\x00\xf9'
              
-byte[] s = (byte[]) (new byte[] { 87,187,229,130,139,211,0,249 });             
+byte[] s = (byte[]) (new byte[] { 87, 187, 229, 130, 139, 211, 0, 249 });             
              TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #26
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -315,32 +315,32 @@ byte[] s = (byte[]) (new byte[] { 87,187,229,130,139,211,0,249 });
              {
                  //JavaQuery, datum/binary.yaml, #27
                  /* ExpectedOriginal: 8 */
-                 var expected = 8;
+                 var expected_ = 8;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x44\x1b\x3e\x00\x13\x19\x29\x2a\xbf'
              
-byte[] s = (byte[]) (new byte[] { 68,27,62,0,19,25,41,42,191 });             
+byte[] s = (byte[]) (new byte[] { 68, 27, 62, 0, 19, 25, 41, 42, 191 });             
              TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #29
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -348,32 +348,32 @@ byte[] s = (byte[]) (new byte[] { 68,27,62,0,19,25,41,42,191 });
              {
                  //JavaQuery, datum/binary.yaml, #30
                  /* ExpectedOriginal: 9 */
-                 var expected = 9;
+                 var expected_ = 9;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x8a\x1d\x09\x00\x5d\x60\x6b\x2e\x70\xd9'
              
-byte[] s = (byte[]) (new byte[] { 138,29,9,0,93,96,107,46,112,217 });             
+byte[] s = (byte[]) (new byte[] { 138, 29, 9, 0, 93, 96, 107, 46, 112, 217 });             
              TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #32
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -381,32 +381,32 @@ byte[] s = (byte[]) (new byte[] { 138,29,9,0,93,96,107,46,112,217 });
              {
                  //JavaQuery, datum/binary.yaml, #33
                  /* ExpectedOriginal: 10 */
-                 var expected = 10;
+                 var expected_ = 10;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x00\xaf\x47\x4b\x38\x99\x14\x8d\x8f\x10\x51'
              
-byte[] s = (byte[]) (new byte[] { 0,175,71,75,56,153,20,141,143,16,81 });             
+byte[] s = (byte[]) (new byte[] { 0, 175, 71, 75, 56, 153, 20, 141, 143, 16, 81 });             
              TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #35
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -414,32 +414,32 @@ byte[] s = (byte[]) (new byte[] { 0,175,71,75,56,153,20,141,143,16,81 });
              {
                  //JavaQuery, datum/binary.yaml, #36
                  /* ExpectedOriginal: 11 */
-                 var expected = 11;
+                 var expected_ = 11;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x45\x39\x00\xf7\xc2\x37\xfd\xe0\x38\x82\x40\xa9'
              
-byte[] s = (byte[]) (new byte[] { 69,57,0,247,194,55,253,224,56,130,64,169 });             
+byte[] s = (byte[]) (new byte[] { 69, 57, 0, 247, 194, 55, 253, 224, 56, 130, 64, 169 });             
              TestCounter++;
              
              {
                  //JavaQuery, datum/binary.yaml, #38
                  /* ExpectedOriginal: s */
-                 var expected = s;
+                 var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -447,13 +447,13 @@ byte[] s = (byte[]) (new byte[] { 69,57,0,247,194,55,253,224,56,130,64,169 });
              {
                  //JavaQuery, datum/binary.yaml, #39
                  /* ExpectedOriginal: 12 */
-                 var expected = 12;
+                 var expected_ = 12;
                  
                  /* Original: r.binary(s).count() */
                  var obtained = runOrCatch( r.binary(s).count() ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              
@@ -465,7 +465,7 @@ byte[] a = (byte[]) (new byte[] { 0 });
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: b = b'\x00\x01'
              
-byte[] b = (byte[]) (new byte[] { 0,1 });             
+byte[] b = (byte[]) (new byte[] { 0, 1 });             
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: c = b'\x01'
@@ -475,7 +475,7 @@ byte[] c = (byte[]) (new byte[] { 1 });
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: d = b'\x70\x22'
              
-byte[] d = (byte[]) (new byte[] { 112,34 });             
+byte[] d = (byte[]) (new byte[] { 112, 34 });             
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: e = b'\x80'
@@ -491,13 +491,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #46
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(a).eq(r.binary(a)) */
                  var obtained = runOrCatch( r.binary(a).eq(r.binary(a)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -505,13 +505,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #47
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(a).le(r.binary(a)) */
                  var obtained = runOrCatch( r.binary(a).le(r.binary(a)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -519,13 +519,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #48
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(a).ge(r.binary(a)) */
                  var obtained = runOrCatch( r.binary(a).ge(r.binary(a)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -533,13 +533,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #49
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(a).ne(r.binary(a)) */
                  var obtained = runOrCatch( r.binary(a).ne(r.binary(a)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -547,13 +547,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #50
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(a).lt(r.binary(a)) */
                  var obtained = runOrCatch( r.binary(a).lt(r.binary(a)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -561,13 +561,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #51
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(a).gt(r.binary(a)) */
                  var obtained = runOrCatch( r.binary(a).gt(r.binary(a)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -575,13 +575,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #52
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(a).ne(r.binary(b)) */
                  var obtained = runOrCatch( r.binary(a).ne(r.binary(b)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -589,13 +589,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #53
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(a).lt(r.binary(b)) */
                  var obtained = runOrCatch( r.binary(a).lt(r.binary(b)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -603,13 +603,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #54
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(a).le(r.binary(b)) */
                  var obtained = runOrCatch( r.binary(a).le(r.binary(b)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -617,13 +617,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #55
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(a).ge(r.binary(b)) */
                  var obtained = runOrCatch( r.binary(a).ge(r.binary(b)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -631,13 +631,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #56
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(a).gt(r.binary(b)) */
                  var obtained = runOrCatch( r.binary(a).gt(r.binary(b)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -645,13 +645,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #57
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(a).eq(r.binary(b)) */
                  var obtained = runOrCatch( r.binary(a).eq(r.binary(b)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -659,13 +659,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #58
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(b).ne(r.binary(c)) */
                  var obtained = runOrCatch( r.binary(b).ne(r.binary(c)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -673,13 +673,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #59
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(b).lt(r.binary(c)) */
                  var obtained = runOrCatch( r.binary(b).lt(r.binary(c)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -687,13 +687,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #60
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(b).le(r.binary(c)) */
                  var obtained = runOrCatch( r.binary(b).le(r.binary(c)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -701,13 +701,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #61
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(b).ge(r.binary(c)) */
                  var obtained = runOrCatch( r.binary(b).ge(r.binary(c)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -715,13 +715,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #62
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(b).gt(r.binary(c)) */
                  var obtained = runOrCatch( r.binary(b).gt(r.binary(c)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -729,13 +729,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #63
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(b).eq(r.binary(c)) */
                  var obtained = runOrCatch( r.binary(b).eq(r.binary(c)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -743,13 +743,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #64
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(c).ne(r.binary(d)) */
                  var obtained = runOrCatch( r.binary(c).ne(r.binary(d)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -757,13 +757,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #65
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(c).lt(r.binary(d)) */
                  var obtained = runOrCatch( r.binary(c).lt(r.binary(d)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -771,13 +771,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #66
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(c).le(r.binary(d)) */
                  var obtained = runOrCatch( r.binary(c).le(r.binary(d)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -785,13 +785,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #67
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(c).ge(r.binary(d)) */
                  var obtained = runOrCatch( r.binary(c).ge(r.binary(d)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -799,13 +799,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #68
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(c).gt(r.binary(d)) */
                  var obtained = runOrCatch( r.binary(c).gt(r.binary(d)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -813,13 +813,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #69
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(c).eq(r.binary(d)) */
                  var obtained = runOrCatch( r.binary(c).eq(r.binary(d)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -827,13 +827,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #70
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(d).ne(r.binary(e)) */
                  var obtained = runOrCatch( r.binary(d).ne(r.binary(e)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -841,13 +841,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #71
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(d).lt(r.binary(e)) */
                  var obtained = runOrCatch( r.binary(d).lt(r.binary(e)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -855,13 +855,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #72
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(d).le(r.binary(e)) */
                  var obtained = runOrCatch( r.binary(d).le(r.binary(e)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -869,13 +869,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #73
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(d).ge(r.binary(e)) */
                  var obtained = runOrCatch( r.binary(d).ge(r.binary(e)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -883,13 +883,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #74
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(d).gt(r.binary(e)) */
                  var obtained = runOrCatch( r.binary(d).gt(r.binary(e)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -897,13 +897,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #75
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(d).eq(r.binary(e)) */
                  var obtained = runOrCatch( r.binary(d).eq(r.binary(e)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -911,13 +911,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #76
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(e).ne(r.binary(f)) */
                  var obtained = runOrCatch( r.binary(e).ne(r.binary(f)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -925,13 +925,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #77
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(e).lt(r.binary(f)) */
                  var obtained = runOrCatch( r.binary(e).lt(r.binary(f)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -939,13 +939,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #78
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(e).le(r.binary(f)) */
                  var obtained = runOrCatch( r.binary(e).le(r.binary(f)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -953,13 +953,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #79
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(e).ge(r.binary(f)) */
                  var obtained = runOrCatch( r.binary(e).ge(r.binary(f)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -967,13 +967,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #80
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(e).gt(r.binary(f)) */
                  var obtained = runOrCatch( r.binary(e).gt(r.binary(f)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -981,13 +981,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #81
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(e).eq(r.binary(f)) */
                  var obtained = runOrCatch( r.binary(e).eq(r.binary(f)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -995,13 +995,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #82
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(f).eq(r.binary(f)) */
                  var obtained = runOrCatch( r.binary(f).eq(r.binary(f)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1009,13 +1009,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #83
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(f).le(r.binary(f)) */
                  var obtained = runOrCatch( r.binary(f).le(r.binary(f)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1023,13 +1023,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #84
                  /* ExpectedOriginal: True */
-                 var expected = true;
+                 var expected_ = true;
                  
                  /* Original: r.binary(f).ge(r.binary(f)) */
                  var obtained = runOrCatch( r.binary(f).ge(r.binary(f)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1037,13 +1037,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #85
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(f).ne(r.binary(f)) */
                  var obtained = runOrCatch( r.binary(f).ne(r.binary(f)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1051,13 +1051,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #86
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(f).lt(r.binary(f)) */
                  var obtained = runOrCatch( r.binary(f).lt(r.binary(f)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1065,13 +1065,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #87
                  /* ExpectedOriginal: False */
-                 var expected = false;
+                 var expected_ = false;
                  
                  /* Original: r.binary(f).gt(r.binary(f)) */
                  var obtained = runOrCatch( r.binary(f).gt(r.binary(f)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1079,13 +1079,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #88
                  /* ExpectedOriginal: u'イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム'.encode('utf-8') */
-                 var expected = "\u30a4\u30ed\u30cf\u30cb\u30db\u30d8\u30c8 \u30c1\u30ea\u30cc\u30eb\u30f2 \u30ef\u30ab\u30e8\u30bf\u30ec\u30bd \u30c4\u30cd\u30ca\u30e9\u30e0".getBytes(StandardCharsets.UTF_8);
+                 var expected_ = "\u30a4\u30ed\u30cf\u30cb\u30db\u30d8\u30c8 \u30c1\u30ea\u30cc\u30eb\u30f2 \u30ef\u30ab\u30e8\u30bf\u30ec\u30bd \u30c4\u30cd\u30ca\u30e9\u30e0".getBytes(StandardCharsets.UTF_8);
                  
                  /* Original: r.binary(u'イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム'.encode('utf-8')) */
                  var obtained = runOrCatch( r.binary("\u30a4\u30ed\u30cf\u30cb\u30db\u30d8\u30c8 \u30c1\u30ea\u30cc\u30eb\u30f2 \u30ef\u30ab\u30e8\u30bf\u30ec\u30bd \u30c4\u30cd\u30ca\u30e9\u30e0".getBytes(StandardCharsets.UTF_8)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1093,13 +1093,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #89
                  /* ExpectedOriginal: u'ƀƁƂƃƄƅƆƇƈƉƊƋƌƍƎƏ'.encode('utf-16') */
-                 var expected = "\u0180\u0181\u0182\u0183\u0184\u0185\u0186\u0187\u0188\u0189\u018a\u018b\u018c\u018d\u018e\u018f".getBytes(StandardCharsets.UTF_16);
+                 var expected_ = "\u0180\u0181\u0182\u0183\u0184\u0185\u0186\u0187\u0188\u0189\u018a\u018b\u018c\u018d\u018e\u018f".getBytes(StandardCharsets.UTF_16);
                  
                  /* Original: r.binary(u'ƀƁƂƃƄƅƆƇƈƉƊƋƌƍƎƏ'.encode('utf-16')) */
                  var obtained = runOrCatch( r.binary("\u0180\u0181\u0182\u0183\u0184\u0185\u0186\u0187\u0188\u0189\u018a\u018b\u018c\u018d\u018e\u018f".getBytes(StandardCharsets.UTF_16)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1107,13 +1107,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #90
                  /* ExpectedOriginal: u'lorem ipsum'.encode('ascii') */
-                 var expected = "lorem ipsum".getBytes(StandardCharsets.US_ASCII);
+                 var expected_ = "lorem ipsum".getBytes(StandardCharsets.US_ASCII);
                  
                  /* Original: r.binary(u'lorem ipsum'.encode('ascii')) */
                  var obtained = runOrCatch( r.binary("lorem ipsum".getBytes(StandardCharsets.US_ASCII)) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1121,13 +1121,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #91
                  /* ExpectedOriginal: ('foo') */
-                 var expected = "foo";
+                 var expected_ = "foo";
                  
                  /* Original: r.binary(b'foo').coerce_to('string') */
-                 var obtained = runOrCatch( r.binary(new byte[] { 102,111,111 }).coerceTo("string") ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 102, 111, 111 }).coerceTo("string") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1135,13 +1135,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #92
                  /* ExpectedOriginal: u'イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム' */
-                 var expected = "\u30a4\u30ed\u30cf\u30cb\u30db\u30d8\u30c8 \u30c1\u30ea\u30cc\u30eb\u30f2 \u30ef\u30ab\u30e8\u30bf\u30ec\u30bd \u30c4\u30cd\u30ca\u30e9\u30e0";
+                 var expected_ = "\u30a4\u30ed\u30cf\u30cb\u30db\u30d8\u30c8 \u30c1\u30ea\u30cc\u30eb\u30f2 \u30ef\u30ab\u30e8\u30bf\u30ec\u30bd \u30c4\u30cd\u30ca\u30e9\u30e0";
                  
                  /* Original: r.binary(u'イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム'.encode('utf-8')).coerce_to('string') */
                  var obtained = runOrCatch( r.binary("\u30a4\u30ed\u30cf\u30cb\u30db\u30d8\u30c8 \u30c1\u30ea\u30cc\u30eb\u30f2 \u30ef\u30ab\u30e8\u30bf\u30ec\u30bd \u30c4\u30cd\u30ca\u30e9\u30e0".getBytes(StandardCharsets.UTF_8)).coerceTo("string") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1149,13 +1149,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #93
                  /* ExpectedOriginal: u'lorem ipsum' */
-                 var expected = "lorem ipsum";
+                 var expected_ = "lorem ipsum";
                  
                  /* Original: r.binary(u'lorem ipsum'.encode('ascii')).coerce_to('string') */
                  var obtained = runOrCatch( r.binary("lorem ipsum".getBytes(StandardCharsets.US_ASCII)).coerceTo("string") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1163,13 +1163,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #94
                  /* ExpectedOriginal: b'foo' */
-                 var expected = new byte[]{102, 111, 111};
+                 var expected_ = new byte[] { 102, 111, 111 };
                  
                  /* Original: r.expr('foo').coerce_to('binary') */
                  var obtained = runOrCatch( r.expr("foo").coerceTo("binary") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1177,13 +1177,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #95
                  /* ExpectedOriginal: b'foo' */
-                 var expected = new byte[]{102, 111, 111};
+                 var expected_ = new byte[] { 102, 111, 111 };
                  
                  /* Original: r.binary(b'foo').coerce_to('binary') */
-                 var obtained = runOrCatch( r.binary(new byte[] { 102,111,111 }).coerceTo("binary") ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 102, 111, 111 }).coerceTo("binary") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1191,13 +1191,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #96
                  /* ExpectedOriginal: b'ef' */
-                 var expected = new byte[]{101, 102};
+                 var expected_ = new byte[] { 101, 102 };
                  
                  /* Original: r.binary(b'abcdefg').slice(-3,-1) */
-                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(-3, -1) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97, 98, 99, 100, 101, 102, 103 }).slice(-3, -1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1205,13 +1205,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #97
                  /* ExpectedOriginal: b'ab' */
-                 var expected = new byte[]{97, 98};
+                 var expected_ = new byte[] { 97, 98 };
                  
                  /* Original: r.binary(b'abcdefg').slice(0, 2) */
-                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(0, 2) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97, 98, 99, 100, 101, 102, 103 }).slice(0, 2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1219,13 +1219,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #98
                  /* ExpectedOriginal: b'def' */
-                 var expected = new byte[]{100, 101, 102};
+                 var expected_ = new byte[] { 100, 101, 102 };
                  
                  /* Original: r.binary(b'abcdefg').slice(3, -1) */
-                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(3, -1) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97, 98, 99, 100, 101, 102, 103 }).slice(3, -1) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1233,13 +1233,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #99
                  /* ExpectedOriginal: b'cde' */
-                 var expected = new byte[]{99, 100, 101};
+                 var expected_ = new byte[] { 99, 100, 101 };
                  
                  /* Original: r.binary(b'abcdefg').slice(-5, 5) */
-                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(-5, 5) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97, 98, 99, 100, 101, 102, 103 }).slice(-5, 5) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1247,13 +1247,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #100
                  /* ExpectedOriginal: b'ab' */
-                 var expected = new byte[]{97, 98};
+                 var expected_ = new byte[] { 97, 98 };
                  
                  /* Original: r.binary(b'abcdefg').slice(-8, 2) */
-                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(-8, 2) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97, 98, 99, 100, 101, 102, 103 }).slice(-8, 2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1261,13 +1261,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #101
                  /* ExpectedOriginal: b'fg' */
-                 var expected = new byte[]{102, 103};
+                 var expected_ = new byte[] { 102, 103 };
                  
                  /* Original: r.binary(b'abcdefg').slice(5, 7) */
-                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(5, 7) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97, 98, 99, 100, 101, 102, 103 }).slice(5, 7) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1275,13 +1275,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #102
                  /* ExpectedOriginal: b'ab' */
-                 var expected = new byte[]{97, 98};
+                 var expected_ = new byte[] { 97, 98 };
                  
                  /* Original: r.binary(b'abcdefg').slice(-9, 2) */
-                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(-9, 2) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97, 98, 99, 100, 101, 102, 103 }).slice(-9, 2) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1289,13 +1289,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #103
                  /* ExpectedOriginal: b'fg' */
-                 var expected = new byte[]{102, 103};
+                 var expected_ = new byte[] { 102, 103 };
                  
                  /* Original: r.binary(b'abcdefg').slice(5, 9) */
-                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(5, 9) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97, 98, 99, 100, 101, 102, 103 }).slice(5, 9) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1303,14 +1303,14 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #104
                  /* ExpectedOriginal: b */
-                 var expected = b;
+                 var expected_ = b;
                  
                  /* Original: r.binary(b) */
                  var obtained = runOrCatch( r.binary(b) ,
                                             new OptArgs()
                      .with("binary_format", "native")
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1318,14 +1318,14 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #105
                  /* ExpectedOriginal: ({'$reql_type$':'BINARY','data':'AAE='}) */
-                 var expected = r.hashMap("$reql_type$", "BINARY").with("data", "AAE=");
+                 var expected_ = r.hashMap("$reql_type$", "BINARY").with("data", "AAE=");
                  
                  /* Original: r.binary(b) */
                  var obtained = runOrCatch( r.binary(b) ,
                                             new OptArgs()
                      .with("binary_format", "raw")
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1333,13 +1333,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #106
                  /* ExpectedOriginal: (b"data") */
-                 var expected = new byte[]{100, 97, 116, 97};
+                 var expected_ = new byte[] { 100, 97, 116, 97 };
                  
                  /* Original: r.binary(r.expr("data")) */
                  var obtained = runOrCatch( r.binary(r.expr("data")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1347,13 +1347,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #107
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type STRING but found OBJECT.', []) */
-                 var expected = err("ReqlQueryLogicError", "Expected type STRING but found OBJECT.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Expected type STRING but found OBJECT.", r.array());
                  
                  /* Original: r.binary(r.expr({})) */
                  var obtained = runOrCatch( r.binary(r.expr(r.hashMap())) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1361,13 +1361,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #108
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type STRING but found ARRAY.', []) */
-                 var expected = err("ReqlQueryLogicError", "Expected type STRING but found ARRAY.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Expected type STRING but found ARRAY.", r.array());
                  
                  /* Original: r.binary(r.expr([])) */
                  var obtained = runOrCatch( r.binary(r.expr(r.array())) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1375,13 +1375,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #109
                  /* ExpectedOriginal: err('ReqlQueryLogicError','Invalid binary pseudotype:'+' lacking `data` key.',[]) */
-                 var expected = err("ReqlQueryLogicError", "Invalid binary pseudotype:" + " lacking `data` key.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Invalid binary pseudotype:" + " lacking `data` key.", r.array());
                  
                  /* Original: r.expr({'$reql_type$':'BINARY'}) */
                  var obtained = runOrCatch( r.expr(r.hashMap("$reql_type$", "BINARY")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1389,13 +1389,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #110
                  /* ExpectedOriginal: err('ReqlQueryLogicError','Invalid base64 format, data found after padding character \'=\'.',[]) */
-                 var expected = err("ReqlQueryLogicError", "Invalid base64 format, data found after padding character '='.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Invalid base64 format, data found after padding character '='.", r.array());
                  
                  /* Original: r.expr({'$reql_type$':'BINARY','data':'ABCDEFGH==AA'}) */
                  var obtained = runOrCatch( r.expr(r.hashMap("$reql_type$", "BINARY").with("data", "ABCDEFGH==AA")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1403,13 +1403,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #111
                  /* ExpectedOriginal: err('ReqlQueryLogicError','Invalid base64 format, data found after padding character \'=\'.',[]) */
-                 var expected = err("ReqlQueryLogicError", "Invalid base64 format, data found after padding character '='.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Invalid base64 format, data found after padding character '='.", r.array());
                  
                  /* Original: r.expr({'$reql_type$':'BINARY','data':'ABCDEF==$'}) */
                  var obtained = runOrCatch( r.expr(r.hashMap("$reql_type$", "BINARY").with("data", "ABCDEF==$")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1417,13 +1417,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #112
                  /* ExpectedOriginal: err('ReqlQueryLogicError','Invalid base64 character found:'+' \'^\'.',[]) */
-                 var expected = err("ReqlQueryLogicError", "Invalid base64 character found:" + " '^'.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Invalid base64 character found:" + " '^'.", r.array());
                  
                  /* Original: r.expr({'$reql_type$':'BINARY','data':'A^CDEFGH'}) */
                  var obtained = runOrCatch( r.expr(r.hashMap("$reql_type$", "BINARY").with("data", "A^CDEFGH")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1431,13 +1431,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #113
                  /* ExpectedOriginal: err('ReqlQueryLogicError','Invalid base64 length:'+' 1 character remaining, cannot decode a full byte.',[]) */
-                 var expected = err("ReqlQueryLogicError", "Invalid base64 length:" + " 1 character remaining, cannot decode a full byte.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Invalid base64 length:" + " 1 character remaining, cannot decode a full byte.", r.array());
                  
                  /* Original: r.expr({'$reql_type$':'BINARY','data':'ABCDE'}) */
                  var obtained = runOrCatch( r.expr(r.hashMap("$reql_type$", "BINARY").with("data", "ABCDE")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1445,13 +1445,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #114
                  /* ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to ARRAY.',[]) */
-                 var expected = err("ReqlQueryLogicError", "Cannot coerce BINARY to ARRAY.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Cannot coerce BINARY to ARRAY.", r.array());
                  
                  /* Original: r.binary(a).coerce_to('array') */
                  var obtained = runOrCatch( r.binary(a).coerceTo("array") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1459,13 +1459,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #115
                  /* ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to OBJECT.',[]) */
-                 var expected = err("ReqlQueryLogicError", "Cannot coerce BINARY to OBJECT.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Cannot coerce BINARY to OBJECT.", r.array());
                  
                  /* Original: r.binary(a).coerce_to('object') */
                  var obtained = runOrCatch( r.binary(a).coerceTo("object") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1473,13 +1473,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #116
                  /* ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to BOOL.',[]) */
-                 var expected = err("ReqlQueryLogicError", "Cannot coerce BINARY to BOOL.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Cannot coerce BINARY to BOOL.", r.array());
                  
                  /* Original: r.binary(a).coerce_to('bool') */
                  var obtained = runOrCatch( r.binary(a).coerceTo("bool") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1487,13 +1487,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #117
                  /* ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to NUMBER.',[]) */
-                 var expected = err("ReqlQueryLogicError", "Cannot coerce BINARY to NUMBER.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Cannot coerce BINARY to NUMBER.", r.array());
                  
                  /* Original: r.binary(a).coerce_to('number') */
                  var obtained = runOrCatch( r.binary(a).coerceTo("number") ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1501,13 +1501,13 @@ byte[] f = (byte[]) (new byte[] { 254 });
              {
                  //JavaQuery, datum/binary.yaml, #118
                  /* ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to NULL.',[]) */
-                 var expected = err("ReqlQueryLogicError", "Cannot coerce BINARY to NULL.", r.array());
+                 var expected_ = err("ReqlQueryLogicError", "Cannot coerce BINARY to NULL.", r.array());
                  
                  /* Original: r.binary(a).coerce_to('nu'+'ll') */
                  var obtained = runOrCatch( r.binary(a).coerceTo(r.add("nu", "ll")) ,
                                             new OptArgs()
                     );
-                 assertEquals(expected, obtained);
+                 assertEquals(expected_, obtained);
              }
              
 

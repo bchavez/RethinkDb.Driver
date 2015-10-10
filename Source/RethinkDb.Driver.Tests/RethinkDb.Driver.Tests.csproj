@@ -74,6 +74,7 @@
     <Compile Include="Generated\DatumUuid.cs" />
     <Compile Include="Generated\GeoConstructors.cs" />
     <Compile Include="Generated\GeoGeojson.cs" />
+    <Compile Include="Generated\GeoIndexing.cs" />
     <Compile Include="Generated\GeoIntersectionInclusion.cs" />
     <Compile Include="Generated\GeoOperations.cs" />
     <Compile Include="Generated\GeoPrimitives.cs" />

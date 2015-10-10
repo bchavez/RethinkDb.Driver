@@ -62,7 +62,7 @@ namespace Templates
             {
                 //if( !file.Contains("random", StringComparison.OrdinalIgnoreCase) )
                 //    continue;//just deal with random for now.
-
+                Console.WriteLine("READING: " + file);
                 var sr = new StringReader(File.ReadAllText(file));
                 var yamlTest = deser.Deserialize<YamlTest>(sr);
 
@@ -75,7 +75,7 @@ namespace Templates
                         Path.GetFileName(
                             Path.ChangeExtension(file, ".cs")));
 
-                Console.WriteLine("output file: " + outputFile);
+                Console.WriteLine("OUTPUT: " + outputFile);
 
                 var template = new TestTemplate() {YamlTest = yamlTest};
 

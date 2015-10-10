@@ -1,4 +1,5 @@
 using System.Collections.Specialized;
+using System.Linq;
 using System.Text;
 using Z.ExtensionMethods;
 
@@ -65,8 +66,40 @@ namespace Templates
                     javaLine = javaLine.Replace(typeRename, TypeRenames[typeRename]);
                 }
             }
+
+            if( javaLine.Contains("byte[]{") )
+            {//upvert java's signed bytes to real bytes.
+                javaLine = ConvertJavaSignedBytes(javaLine);
+            }
+
+
             return ScanLiteral(javaLine);
             //return javaLine;
+        }
+
+        private string ConvertJavaSignedBytes(string javaLine)
+        {
+            do
+            {
+                var byteStr = javaLine.GetBetween("byte[]{", "}");
+
+                if( byteStr.IsNullOrWhiteSpace() )
+                {
+                    javaLine = javaLine.Replace("byte[]{}", "byte[] {}");
+                    continue;
+                }
+
+                var unsignedBytes = byteStr
+                    .Split(",")
+                    .Select(s => s.ExtractInt32())
+                    .Select(i => i < 0 ? 256 + i : i)
+                    .ToArray();
+                
+                //... keep converting until we got dat space.
+                javaLine = javaLine.Replace($"byte[]{{{byteStr}}}", $"byte[] {{ {string.Join(",", unsignedBytes)} }}");
+            } while( javaLine.Contains("byte[]{") );
+
+            return javaLine;
         }
 
 

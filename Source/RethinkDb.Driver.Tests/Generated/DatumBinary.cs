@@ -31,7 +31,7 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b''
              
-byte[] s = (byte[]) (new byte[]{});             
+byte[] s = (byte[]) (new byte[] {});             
              TestCounter++;
              
              {
@@ -64,7 +64,7 @@ byte[] s = (byte[]) (new byte[]{});
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x00'
              
-byte[] s = (byte[]) (new byte[]{0});             
+byte[] s = (byte[]) (new byte[] { 0 });             
              TestCounter++;
              
              {
@@ -97,7 +97,7 @@ byte[] s = (byte[]) (new byte[]{0});
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x00\x42'
              
-byte[] s = (byte[]) (new byte[]{0, 66});             
+byte[] s = (byte[]) (new byte[] { 0,66 });             
              TestCounter++;
              
              {
@@ -130,7 +130,7 @@ byte[] s = (byte[]) (new byte[]{0, 66});
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x00\xfe\x7a'
              
-byte[] s = (byte[]) (new byte[]{0, -2, 122});             
+byte[] s = (byte[]) (new byte[] { 0,254,122 });             
              TestCounter++;
              
              {
@@ -163,7 +163,7 @@ byte[] s = (byte[]) (new byte[]{0, -2, 122});
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\xed\xfe\x00\xba'
              
-byte[] s = (byte[]) (new byte[]{-19, -2, 0, -70});             
+byte[] s = (byte[]) (new byte[] { 237,254,0,186 });             
              TestCounter++;
              
              {
@@ -196,7 +196,7 @@ byte[] s = (byte[]) (new byte[]{-19, -2, 0, -70});
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x50\xf9\x00\x77\xf9'
              
-byte[] s = (byte[]) (new byte[]{80, -7, 0, 119, -7});             
+byte[] s = (byte[]) (new byte[] { 80,249,0,119,249 });             
              TestCounter++;
              
              {
@@ -229,7 +229,7 @@ byte[] s = (byte[]) (new byte[]{80, -7, 0, 119, -7});
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x2f\xe3\xb5\x57\x00\x92'
              
-byte[] s = (byte[]) (new byte[]{47, -29, -75, 87, 0, -110});             
+byte[] s = (byte[]) (new byte[] { 47,227,181,87,0,146 });             
              TestCounter++;
              
              {
@@ -262,7 +262,7 @@ byte[] s = (byte[]) (new byte[]{47, -29, -75, 87, 0, -110});
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\xa9\x43\x54\xe9\x00\xf8\xfb'
              
-byte[] s = (byte[]) (new byte[]{-87, 67, 84, -23, 0, -8, -5});             
+byte[] s = (byte[]) (new byte[] { 169,67,84,233,0,248,251 });             
              TestCounter++;
              
              {
@@ -295,7 +295,7 @@ byte[] s = (byte[]) (new byte[]{-87, 67, 84, -23, 0, -8, -5});
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x57\xbb\xe5\x82\x8b\xd3\x00\xf9'
              
-byte[] s = (byte[]) (new byte[]{87, -69, -27, -126, -117, -45, 0, -7});             
+byte[] s = (byte[]) (new byte[] { 87,187,229,130,139,211,0,249 });             
              TestCounter++;
              
              {
@@ -328,7 +328,7 @@ byte[] s = (byte[]) (new byte[]{87, -69, -27, -126, -117, -45, 0, -7});
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x44\x1b\x3e\x00\x13\x19\x29\x2a\xbf'
              
-byte[] s = (byte[]) (new byte[]{68, 27, 62, 0, 19, 25, 41, 42, -65});             
+byte[] s = (byte[]) (new byte[] { 68,27,62,0,19,25,41,42,191 });             
              TestCounter++;
              
              {
@@ -361,7 +361,7 @@ byte[] s = (byte[]) (new byte[]{68, 27, 62, 0, 19, 25, 41, 42, -65});
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x8a\x1d\x09\x00\x5d\x60\x6b\x2e\x70\xd9'
              
-byte[] s = (byte[]) (new byte[]{-118, 29, 9, 0, 93, 96, 107, 46, 112, -39});             
+byte[] s = (byte[]) (new byte[] { 138,29,9,0,93,96,107,46,112,217 });             
              TestCounter++;
              
              {
@@ -394,7 +394,7 @@ byte[] s = (byte[]) (new byte[]{-118, 29, 9, 0, 93, 96, 107, 46, 112, -39});
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x00\xaf\x47\x4b\x38\x99\x14\x8d\x8f\x10\x51'
              
-byte[] s = (byte[]) (new byte[]{0, -81, 71, 75, 56, -103, 20, -115, -113, 16, 81});             
+byte[] s = (byte[]) (new byte[] { 0,175,71,75,56,153,20,141,143,16,81 });             
              TestCounter++;
              
              {
@@ -427,7 +427,7 @@ byte[] s = (byte[]) (new byte[]{0, -81, 71, 75, 56, -103, 20, -115, -113, 16, 81
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x45\x39\x00\xf7\xc2\x37\xfd\xe0\x38\x82\x40\xa9'
              
-byte[] s = (byte[]) (new byte[]{69, 57, 0, -9, -62, 55, -3, -32, 56, -126, 64, -87});             
+byte[] s = (byte[]) (new byte[] { 69,57,0,247,194,55,253,224,56,130,64,169 });             
              TestCounter++;
              
              {
@@ -460,32 +460,32 @@ byte[] s = (byte[]) (new byte[]{69, 57, 0, -9, -62, 55, -3, -32, 56, -126, 64, -
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: a = b'\x00'
              
-byte[] a = (byte[]) (new byte[]{0});             
+byte[] a = (byte[]) (new byte[] { 0 });             
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: b = b'\x00\x01'
              
-byte[] b = (byte[]) (new byte[]{0, 1});             
+byte[] b = (byte[]) (new byte[] { 0,1 });             
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: c = b'\x01'
              
-byte[] c = (byte[]) (new byte[]{1});             
+byte[] c = (byte[]) (new byte[] { 1 });             
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: d = b'\x70\x22'
              
-byte[] d = (byte[]) (new byte[]{112, 34});             
+byte[] d = (byte[]) (new byte[] { 112,34 });             
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: e = b'\x80'
              
-byte[] e = (byte[]) (new byte[]{-128});             
+byte[] e = (byte[]) (new byte[] { 128 });             
              
              //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
              //Original: f = b'\xFE'
              
-byte[] f = (byte[]) (new byte[]{-2});             
+byte[] f = (byte[]) (new byte[] { 254 });             
              TestCounter++;
              
              {
@@ -1124,7 +1124,7 @@ byte[] f = (byte[]) (new byte[]{-2});
                  var expected = "foo";
                  
                  /* Original: r.binary(b'foo').coerce_to('string') */
-                 var obtained = runOrCatch( r.binary(new byte[]{102, 111, 111}).coerceTo("string") ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 102,111,111 }).coerceTo("string") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1180,7 +1180,7 @@ byte[] f = (byte[]) (new byte[]{-2});
                  var expected = new byte[]{102, 111, 111};
                  
                  /* Original: r.binary(b'foo').coerce_to('binary') */
-                 var obtained = runOrCatch( r.binary(new byte[]{102, 111, 111}).coerceTo("binary") ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 102,111,111 }).coerceTo("binary") ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1194,7 +1194,7 @@ byte[] f = (byte[]) (new byte[]{-2});
                  var expected = new byte[]{101, 102};
                  
                  /* Original: r.binary(b'abcdefg').slice(-3,-1) */
-                 var obtained = runOrCatch( r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-3, -1) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(-3, -1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1208,7 +1208,7 @@ byte[] f = (byte[]) (new byte[]{-2});
                  var expected = new byte[]{97, 98};
                  
                  /* Original: r.binary(b'abcdefg').slice(0, 2) */
-                 var obtained = runOrCatch( r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(0, 2) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(0, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1222,7 +1222,7 @@ byte[] f = (byte[]) (new byte[]{-2});
                  var expected = new byte[]{100, 101, 102};
                  
                  /* Original: r.binary(b'abcdefg').slice(3, -1) */
-                 var obtained = runOrCatch( r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(3, -1) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(3, -1) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1236,7 +1236,7 @@ byte[] f = (byte[]) (new byte[]{-2});
                  var expected = new byte[]{99, 100, 101};
                  
                  /* Original: r.binary(b'abcdefg').slice(-5, 5) */
-                 var obtained = runOrCatch( r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-5, 5) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(-5, 5) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1250,7 +1250,7 @@ byte[] f = (byte[]) (new byte[]{-2});
                  var expected = new byte[]{97, 98};
                  
                  /* Original: r.binary(b'abcdefg').slice(-8, 2) */
-                 var obtained = runOrCatch( r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-8, 2) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(-8, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1264,7 +1264,7 @@ byte[] f = (byte[]) (new byte[]{-2});
                  var expected = new byte[]{102, 103};
                  
                  /* Original: r.binary(b'abcdefg').slice(5, 7) */
-                 var obtained = runOrCatch( r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(5, 7) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(5, 7) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1278,7 +1278,7 @@ byte[] f = (byte[]) (new byte[]{-2});
                  var expected = new byte[]{97, 98};
                  
                  /* Original: r.binary(b'abcdefg').slice(-9, 2) */
-                 var obtained = runOrCatch( r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-9, 2) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(-9, 2) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);
@@ -1292,7 +1292,7 @@ byte[] f = (byte[]) (new byte[]{-2});
                  var expected = new byte[]{102, 103};
                  
                  /* Original: r.binary(b'abcdefg').slice(5, 9) */
-                 var obtained = runOrCatch( r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(5, 9) ,
+                 var obtained = runOrCatch( r.binary(new byte[] { 97,98,99,100,101,102,103 }).slice(5, 9) ,
                                             new OptArgs()
                     );
                  assertEquals(expected, obtained);

@@ -386,48 +386,7 @@ namespace RethinkDb.Driver.Tests
         {
             return null;
         }
-
-
-       
-
+        
     }
-
-
-    //Oh Java, ugly Java... j/k.
-    /*public class IntStream
-    {
-        public static IEnumerable<int> range(int start, int end)
-        {
-            return Enumerable.Range(start, end);
-        }
-    }
-
-    public static class JavaExtensionHelpers
-    {
-        public static IEnumerable<int> boxed(this IEnumerable<int> sequence)
-        {
-            //yeah yeah java, what's inside the box?
-            return sequence;
-        }
-
-        public static IEnumerable<object> map(this IEnumerable<int> sequence, Func<int, object> mapper)
-        {
-            return sequence.Select(mapper);
-        }
-
-        public static IEnumerable<object> collect(this IEnumerable<object> sequence, Func<IEnumerable<object>,IEnumerable<object>> collectStrategy)
-        {
-            return collectStrategy(sequence);
-        }
-    }
-
-    public static class Collectors
-    {
-        public static Func<IEnumerable<object>,List<object>> toList()
-        {
-            return sequence => sequence.ToList();
-        }
-    }*/
-
-
+    
 }

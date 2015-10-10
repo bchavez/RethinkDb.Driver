@@ -84,6 +84,7 @@
     <Compile Include="Generated\Match.cs" />
     <Compile Include="Generated\MathLogicAdd.cs" />
     <Compile Include="Generated\MathLogicAliases.cs" />
+    <Compile Include="Generated\MathLogicComparison.cs" />
     <Compile Include="Generated\MathLogicDiv.cs" />
     <Compile Include="Generated\MathLogicFloorCeilRound.cs" />
     <Compile Include="Generated\MathLogicLogic.cs" />

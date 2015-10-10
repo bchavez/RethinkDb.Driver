@@ -294,7 +294,7 @@ String sorted = (String) ("[{\"country\":\"Andorra\",\"email\":\"hriley0@usgs.go
              //JavaDef, json.yaml, #Templates.YamlTest+DefTest.
              //Original: s = b'\x66\x6f\x6f'
              
-byte[] s = (byte[]) (new byte[]{102, 111, 111});             
+byte[] s = (byte[]) (new byte[] { 102,111,111 });             
              TestCounter++;
              
              {

@@ -92,6 +92,7 @@
     <Compile Include="Generated\MathLogicMod.cs" />
     <Compile Include="Generated\MathLogicMul.cs" />
     <Compile Include="Generated\MathLogicSub.cs" />
+    <Compile Include="Generated\MetaComposite.cs" />
     <Compile Include="Generated\MetaDbs.cs" />
     <Compile Include="Generated\MetaTable.cs" />
     <Compile Include="Generated\MutationInsert.cs" />

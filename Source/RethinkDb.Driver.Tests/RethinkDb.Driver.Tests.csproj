@@ -98,6 +98,9 @@
     <Compile Include="Generated\MutationAtomicGetSet.cs" />
     <Compile Include="Generated\MutationDelete.cs" />
     <Compile Include="Generated\MutationInsert.cs" />
+    <Compile Include="Generated\MutationReplace.cs" />
+    <Compile Include="Generated\MutationSync.cs" />
+    <Compile Include="Generated\MutationUpdate.cs" />
     <Compile Include="Generated\Random.cs" />
     <Compile Include="Generated\Range.cs" />
     <Compile Include="Generated\Timeout.cs" />

@@ -114,3 +114,51 @@ The code generator templates are located in [`Source/Templates/CodeGen/`](https:
 The templates are [RazorGenerator](https://github.com/RazorGenerator/RazorGenerator) templates. Updating any of the `*.cshtml` code generation
 templates requires installing [RazorGenerator's Visual Studio Extension](https://visualstudiogallery.msdn.microsoft.com/1f6ec6ff-e89b-4c47-8e79-d2d68df894ec)
 or using RazorGenerator's MSBuild task to transform the Razor `*.cshtml` templates to `*.generated.cs` razor code-behind files.
+
+Protocol Debugging 
+--------
+Debugging the JSON protocol can be useful when debugging driver issues. This driver uses `Common.Logging` for the logging infrastructure. To enable driver protocol logging add the following to your **App.config** (or **Web.config**):
+
+```
+  <configSections>
+    <sectionGroup name="common">
+      <section name="logging" type="Common.Logging.ConfigurationSectionHandler, Common.Logging" />
+    </sectionGroup>
+  </configSections>
+
+  <common>
+    <logging>
+      <factoryAdapter type="Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter, Common.Logging">
+        <arg key="level" value="TRACE" />
+        <arg key="showLogName" value="false" />
+        <arg key="showDateTime" value="false" />
+      </factoryAdapter>
+    </logging>
+  </common>
+```
+
+Since we're using `Common.Logging` you can customize the log level and various log adapters for popular logging libraries like **NLog** or **log4net**.
+
+#### Log Levels
+ * `TRACE` - Logs the AST JSON sent to the server and the JSON response.
+ * `DEBUG` - Logs only JSON responses received from the server.
+
+#### Query Debugging
+You can compare your query sent to the server with a query written in the RethinkDB web-admin console.
+
+1. Browse to the RethinkDb web-admin console.
+2. Select the RethinkDB **Data Explorer**. 
+3. Open up the Chrome developer console.
+4. Select the *Sources* tab, and press F8 to pause script execution.
+5. After the script pauses, type the following in the JavaScript console: `n.timers`. You'll get output similar to:
+	* `Object {1: Object, 2: Object}`
+6. Next, disable the timers by typing:
+	* `driver.stop_timer(1)`
+	* `driver.stop_timer(2)`
+7. Press F8 to resume script execution. 
+8. Select the *Network* tab, and clear the requests.
+9. Now finally, type your query in the **Data Explorer** and press *Run*.
+10. Your query's AST is in the HTTP request ***payload*** for network traffic named `?conn_id=hash`. For example, running `r.now()` translates to:
+	* `[1,[103,[]], {global args}]`
+
+Using the debugging technique above, you can compare the C# driver's AST output with the RethinkDB web-admin's AST to help you locate any AST discrepancies.

@@ -27,53 +27,47 @@ namespace RethinkDb.Driver.Ast
 
 		private static ReqlAst ToReqlAst(object val, int remainingDepth)
 		{
+		    var ast = val as ReqlAst;
+		    if( ast != null )
 		    {
-                var result = val as ReqlAst;
-		        if( result != null )
-		        {
-		            return result;
-		        }
+		        return ast;
 		    }
 
+
+		    var lst = val as IList;
+		    if( lst != null )
 		    {
-		        var result = val as IList;
-		        if( result != null )
+		        Arguments innerValues = new Arguments();
+		        foreach( object innerValue in lst )
 		        {
-		            Arguments innerValues = new Arguments();
-		            foreach( object innerValue in result )
+		            innerValues.Add(ToReqlAst(innerValue, remainingDepth - 1));
+		        }
+		        return new MakeArray(innerValues, null);
+		    }
+
+
+		    var dict = val as IDictionary;
+		    if( dict != null )
+		    {
+		        var obj = new Dictionary<string, ReqlAst>();
+		        foreach( var keyObj in dict.Keys )
+		        {
+		            var key = keyObj as string;
+		            if( key == null )
 		            {
-		                innerValues.Add(ToReqlAst(innerValue, remainingDepth - 1));
+		                throw new ReqlError("Object key can only be strings");
 		            }
-		            return new MakeArray(innerValues, null);
+
+		            obj[key] = ToReqlAst(dict[keyObj]);
 		        }
+		        return MakeObj.fromMap(obj);
 		    }
 
-		    {
-		        var result = val as IDictionary;
-		        if( result != null )
-		        {
-		            var dict = result;
-		            var obj = new Dictionary<string, ReqlAst>();
-		            foreach( var keyObj in dict.Keys )
-		            {
-		                var key = keyObj as string;
-		                if( key == null )
-		                {
-		                    throw new ReqlError("Object key can only be strings");
-		                }
 
-		                obj[key] = ToReqlAst(dict[keyObj]);
-		            }
-		            return MakeObj.fromMap(obj);
-		        }
-		    }
-
+		    var del = val as Delegate;
+		    if( del != null )
 		    {
-		        var result = val as Delegate;
-		        if( result != null )
-		        {
-		            return Func.FromLambda(result);
-		        }
+		        return Func.FromLambda(del);
 		    }
 
 
@@ -90,21 +84,28 @@ namespace RethinkDb.Driver.Ast
                 return Iso8601.FromString(isoStr);
             }
 
-            if (val is int?)
+
+		    var @int = val as int?;
+		    if (@int != null)
 			{
-				return new Datum((int?) val);
+				return new Datum(@int);
 			}
+
 			if (IsNumber(val))
 			{
 				return new Datum(val);
 			}
-			if (val is bool?)
+
+		    var @bool = val as bool?;
+		    if (@bool != null)
 			{
-				return new Datum((bool?) val);
+				return new Datum(@bool);
 			}
-			if (val is string)
+
+		    var str = val as string;
+		    if (str != null)
 			{
-				return new Datum((string) val);
+				return new Datum(str);
 			}
 		    if( val == null )
 		    {

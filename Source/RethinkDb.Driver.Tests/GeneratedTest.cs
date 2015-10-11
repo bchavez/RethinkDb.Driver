@@ -69,12 +69,33 @@ namespace RethinkDb.Driver.Tests
             private string errorMessage;
             private string errorType;
             private object obj;
+            private Type clazz;
 
             public Err(string errorType, string errorMessage, object obj)
             {
                 this.errorType = errorType;
                 this.errorMessage = errorMessage;
                 this.obj = obj;
+
+                //check if the errortype exists.
+                this.clazz = Type.GetType($"RethinkDb.Driver.{errorType}, RethinkDb.Driver", throwOnError: true);
+            }
+
+            public override bool Equals(object obj)
+            {
+                if( obj.GetType() != this.clazz )
+                {
+                    Console.WriteLine($"Classes didn't match: {this.clazz.Name} vs. {obj.GetType().Name}");
+                    return false;
+                }
+
+                var otherMessage = ((Exception)obj).Message;
+                Console.WriteLine(otherMessage);
+                Console.WriteLine(this.errorMessage);
+                otherMessage.Trim().Should().BeEquivalentTo(
+                    this.errorMessage.Trim());
+
+                return true;
             }
         }
 
@@ -91,16 +112,21 @@ namespace RethinkDb.Driver.Tests
         {
             if( expected is IList && obtained is IList )
             {
-                var l1 = (expected as IList).OfType<object>();
-                var l2 = (obtained as IList).OfType<object>();
+                var l1 = ((IList)expected).OfType<object>();
+                var l2 = ((IList)obtained).OfType<object>();
 
                 l1.Should().Equal(l2);
                 return;
             }
 
+            var err = expected as Err;
+            if( err != null )
+            {
+                err.Equals(obtained)
+                    .Should().BeTrue();
 
-
-
+                return;
+            }
 
             if( obtained is JValue )
             {
@@ -110,6 +136,10 @@ namespace RethinkDb.Driver.Tests
                 return;
             }
 
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>> ASSERT FAIL");
+
+            if( obtained is Exception )
+                Console.WriteLine(((Exception)obtained).Message);
             Assert.Fail($"Couldn't compare expected: {expected.GetType().Name} and obtained: {obtained.GetType().Name}");
         }
 

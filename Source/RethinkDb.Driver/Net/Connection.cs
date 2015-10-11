@@ -153,7 +153,8 @@ namespace RethinkDb.Driver.Net
             Response res = inst.ReadResponse(query.Token);
 
             // TODO: This logic needs to move into the Response class
-            log.Debug(res.ToString()); //RSI
+            log.Debug(res.ToString());
+
             if( res.IsAtom )
             {
                 try

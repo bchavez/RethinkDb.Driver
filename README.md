@@ -137,14 +137,14 @@ Debugging the JSON protocol can be useful when debugging driver issues. This dri
   </common>
 ```
 
-Since we're using `Common.Logging` you can customize the log level and various log adapters for popular logging libraries like **NLog** or **log4net**.
+Since we're using `Common.Logging` you can customize the log level and use log adapters for popular logging libraries like **NLog** or **log4net**.
 
 #### Log Levels
  * `TRACE` - Logs the AST JSON sent to the server and the JSON response.
  * `DEBUG` - Logs only JSON responses received from the server.
 
 #### Query Debugging
-You can compare your query sent to the server with a query written in the RethinkDB web-admin console.
+If you're concerned the a C# driver is sending invalid an AST query, you can compare C# AST query sent to the server with the official JavaScript driver in the RethinkDB web-admin console.
 
 1. Browse to the RethinkDb web-admin console.
 2. Select the RethinkDB **Data Explorer**. 
@@ -161,4 +161,4 @@ You can compare your query sent to the server with a query written in the Rethin
 10. Your query's AST is in the HTTP request ***payload*** for network traffic named `?conn_id=hash`. For example, running `r.now()` translates to:
 	* `[1,[103,[]], {global args}]`
 
-Using the debugging technique above, you can compare the C# driver's AST output with the RethinkDB web-admin's AST to help you locate any AST discrepancies.
+Using the debugging technique above, you can compare the C# driver's AST output with the JavaScript AST to help you locate any AST discrepancies.

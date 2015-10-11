@@ -75,6 +75,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="CodeGen\Specialized\Funcall.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Funcall.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="CodeGen\TestTemplate.generated.cs">
       <DependentUpon>TestTemplate.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -156,6 +161,10 @@
     <None Include="CodeGen\Specialized\Binary.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>Binary.generated.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGen\Specialized\Funcall.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>Funcall.generated.cs</LastGenOutput>
     </None>
     <None Include="CodeGen\Test.yaml" />
     <None Include="CodeGen\TestTemplate.cshtml">

@@ -53,7 +53,36 @@ namespace RethinkDb.Driver.Ast {
 
     
 
+
+
+
+
+
+
+       
+
+
+
+
     
+    
+        /*
+          This object should be constructed with arguments first, and the
+          function itself as the last parameter.  This makes it easier for
+          the places where this object is constructed.  The actual wire
+          format is function first, arguments last, so we flip them around
+          when building the AST.
+        */
+        protected internal override object Build() {
+            
+            var lastIdx = this.Args.Count - 1;
+            var func = this.Args[lastIdx];
+            this.Args.RemoveAt(lastIdx);
+            this.Args.Insert(0, func);
+
+            return base.Build();
+        }
+
 
 
     

@@ -144,7 +144,7 @@ Since we're using `Common.Logging` you can customize the log level and use log a
  * `DEBUG` - Logs only JSON responses received from the server.
 
 #### Query Debugging
-If you're concerned the a C# driver is sending invalid an AST query, you can compare C# AST query sent to the server with the official JavaScript driver in the RethinkDB web-admin console.
+If you're concerned the a C# driver is sending an invalid AST query, you can compare C# AST query sent to the server with the official JavaScript driver in the RethinkDB web-admin console.
 
 1. Browse to the RethinkDb web-admin console.
 2. Select the RethinkDB **Data Explorer**. 

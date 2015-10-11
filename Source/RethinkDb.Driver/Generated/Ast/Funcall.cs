@@ -29,6 +29,8 @@ namespace RethinkDb.Driver.Ast {
     public class Funcall : ReqlExpr {
 
     
+        private bool swappedArgs = false;
+
     
     
         public Funcall (object arg) : this(new Arguments(arg), null) {
@@ -59,6 +61,7 @@ namespace RethinkDb.Driver.Ast {
 
 
 
+
        
 
 
@@ -75,10 +78,15 @@ namespace RethinkDb.Driver.Ast {
         */
         protected internal override object Build() {
             
-            var lastIdx = this.Args.Count - 1;
-            var func = this.Args[lastIdx];
-            this.Args.RemoveAt(lastIdx);
-            this.Args.Insert(0, func);
+            if( !swappedArgs )
+            {
+                var lastIdx = this.Args.Count - 1;
+                var func = this.Args[lastIdx];
+                this.Args.RemoveAt(lastIdx);
+                this.Args.Insert(0, func);
+                swappedArgs = true;
+            }
+
 
             return base.Build();
         }

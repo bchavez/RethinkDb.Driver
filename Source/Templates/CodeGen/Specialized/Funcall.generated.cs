@@ -49,7 +49,7 @@ namespace Templates.CodeGen.Specialized
     {
 #line hidden
 
-        #line 35 "..\..\CodeGen\Specialized\Funcall.cshtml"
+        #line 43 "..\..\CodeGen\Specialized\Funcall.cshtml"
 
     
 
@@ -82,6 +82,16 @@ WriteLiteral("\r\n");
             
             #line default
             #line hidden
+WriteLiteral("\r\n");
+
+
+DefineSection("MemberVars", () => {
+
+WriteLiteral("\r\n        private bool swappedArgs = false;\r\n");
+
+
+});
+
 WriteLiteral("\r\n\r\n");
 
 
@@ -98,10 +108,15 @@ WriteLiteral(@"
         */
         protected internal override object Build() {
             
-            var lastIdx = this.Args.Count - 1;
-            var func = this.Args[lastIdx];
-            this.Args.RemoveAt(lastIdx);
-            this.Args.Insert(0, func);
+            if( !swappedArgs )
+            {
+                var lastIdx = this.Args.Count - 1;
+                var func = this.Args[lastIdx];
+                this.Args.RemoveAt(lastIdx);
+                this.Args.Insert(0, func);
+                swappedArgs = true;
+            }
+
 
             return base.Build();
         }

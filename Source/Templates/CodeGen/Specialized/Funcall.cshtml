@@ -11,6 +11,9 @@
     this.Layout = UseParentLayout(this);
 }
 
+@section MemberVars{
+        private bool swappedArgs = false;
+}
 
 @section SpecialMethods{
     
@@ -23,10 +26,15 @@
         */
         protected internal override object Build() {
             
-            var lastIdx = this.Args.Count - 1;
-            var func = this.Args[lastIdx];
-            this.Args.RemoveAt(lastIdx);
-            this.Args.Insert(0, func);
+            if( !swappedArgs )
+            {
+                var lastIdx = this.Args.Count - 1;
+                var func = this.Args[lastIdx];
+                this.Args.RemoveAt(lastIdx);
+                this.Args.Insert(0, func);
+                swappedArgs = true;
+            }
+
 
             return base.Build();
         }

@@ -228,7 +228,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #10
                  /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 var expected_ = true;
                  
                  /* Original: r.random(0.495, float=True).do(lambda x:r.and_(x.ge(0), x.lt(0.495))) */
                  var obtained = runOrCatch( r.random(0.495).optArg("float", true).do_(x => r.and(x.ge(0L), x.lt(0.495))) ,
@@ -242,7 +242,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #10
                  /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 var expected_ = true;
                  
                  /* Original: r.random(-0.495, float=True).do(lambda x:r.and_(x.le(0), x.gt(-0.495))) */
                  var obtained = runOrCatch( r.random(-0.495).optArg("float", true).do_(x => r.and(x.le(0L), x.gt(-0.495))) ,
@@ -256,7 +256,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #10
                  /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 var expected_ = true;
                  
                  /* Original: r.random(1823756.24, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1823756.24))) */
                  var obtained = runOrCatch( r.random(1823756.24).optArg("float", true).do_(x => r.and(x.ge(0L), x.lt(1823756.24))) ,
@@ -270,7 +270,7 @@ namespace RethinkDb.Driver.Test.Generated {
              {
                  //JavaQuery, random.yaml, #10
                  /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 var expected_ = true;
                  
                  /* Original: r.random(-1823756.24, float=True).do(lambda x:r.and_(x.le(0), x.gt(-1823756.24))) */
                  var obtained = runOrCatch( r.random(-1823756.24).optArg("float", true).do_(x => r.and(x.le(0L), x.gt(-1823756.24))) ,
@@ -532,7 +532,7 @@ var float_min = (double) (double.MinValue);
              {
                  //JavaQuery, random.yaml, #17
                  /* ExpectedOriginal: True */
-                 var expected_ = true;
+                 var expected_ = false;
                  
                  /* Original: r.random(float_min, -float_max, float=True).do(lambda x:r.and_(x.le(float_min), x.gt(-float_max))) */
                  var obtained = runOrCatch( r.random(float_min, -float_max).optArg("float", true).do_(x => r.and(x.le(float_min), x.gt(-float_max))) ,

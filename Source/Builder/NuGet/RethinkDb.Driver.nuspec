@@ -16,9 +16,14 @@
     
     <releaseNotes>
       History
+      v0.0.4-alpha9
+      * Fixed bug in Reql Function lambda FUNCALL AST ordering.
+      * Best practice - avoid using C# "is" operator in Util.ToReqlAst.
+      
+      
       v0.0.4-alpha8
       * AST Update
-      * More signatures for table.indexCreate
+      * More signatures for table.indexCreate.
       * Allow JavaScript in places for ReqlFunction1.
       * r.desc and r.desc can accept functions
       
@@ -30,7 +35,7 @@
       
       v0.0.4-alpha5
       * Added a toplevel r.array and r.hashMap utility
-      * AST now using proper C# lambdas
+      * AST now using proper C# lambdas.
       * More refined AST signatures.
 
       v0.0.4-alpha4
@@ -38,7 +43,7 @@
 
       v0.0.4-alpha3
       * Fixed recursion in MakeObject
-      * optArg now explicitly included where needed
+      * optArg now explicitly included where needed.
 
       v0.0.4-alpha2
       * Added IntelliSense XML documentation.

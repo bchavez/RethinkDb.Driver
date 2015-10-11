@@ -146,6 +146,19 @@ Since we're using `Common.Logging` you can customize the log level and use log a
 #### Query Debugging
 If you're concerned the a C# driver is sending an invalid AST query, you can compare C# AST query sent to the server with the official JavaScript driver in the RethinkDB web-admin console.
 
+There's two ways to find the JSON AST from the web-admin console:
+
+##### Option A: Using `r.expr` and `.build`
+Thanks to [@neumino](https://github.com/rethinkdb/rethinkdb/issues/4812#issuecomment-147144128) the following will output the AST in the web-admin console:
+
+```
+r.expr(
+  r.table("foo").map(function(x) { return x.merge({foo: "bar"})}).build()
+  // Or <your_query>.build()
+)
+```
+
+##### Option B: Using Chrome Developer Console
 1. Browse to the RethinkDb web-admin console.
 2. Select the RethinkDB **Data Explorer**. 
 3. Open up the Chrome developer console.

@@ -1,5 +1,8 @@
 version: '{build}'
 
+skip_commits:
+  message: /readme*/   
+
 init:
     - ps: |
             If ($Env:APPVEYOR_REPO_TAG_NAME -match "-"){

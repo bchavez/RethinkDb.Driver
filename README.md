@@ -161,15 +161,15 @@ The C# unit tests have been automatically converted from YAML to C# and reside i
 
 * `Source\RethinkDb.Driver.Tests\Generated`
 
-You can simply run all the unit tests in `RethinkDb.Driver.Tests` to test the driver's ability.
+You can simply run all the unit tests in `RethinkDb.Driver.Tests` to test the driver's correctness.
 
 #### Updating Generated Tests
-The process for updating the auto generated unit tests requires `convert_tests.py` from the Java driver source. The following process updates the C# generated tests from YAML files:
+The generated unit tests can be updated. The process for updating the auto generated unit tests requires `convert_tests.py` from the Java driver source. The following process updates the C# generated tests from YAML files:
 
 1. Checkout the Java driver.
 2. Ensure you have `java_term_info.json` (if not read above on how to generate it).
-3. Copy our special C# [**`Test.yaml`**](https://github.com/bchavez/RethinkDb.Driver/blob/master/Source/Templates/CodeGen/Test.yaml) template to the Java driver's `java\template\` directory. The `template\Test.yaml`  file (from our repo) should be along side `template\Test.java` file in the Java driver folder.
-4. Make two edits to `convert_test.py` so the `Test.yaml` file is used when generating test outputs.
+3. Copy our special YAML [**`Test.yaml`**](https://github.com/bchavez/RethinkDb.Driver/blob/master/Source/Templates/CodeGen/Test.yaml) template to the Java driver's `java\template\` directory. The `template\Test.yaml`  file (from our repo) should be along side `template\Test.java` file in the Java driver folder.
+4. Make two edits to `convert_test.py` to ensure the `Test.yaml` file is used when generating test outputs.
 
 	```
     class TestFile(object): def render(self)

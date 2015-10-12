@@ -22,7 +22,9 @@ namespace Builder
         public const string Restore = "restore";
         public const string DnxRestore = "dnxrestore";
         public const string BuildInfo = "buildinfo";
-        public const string CodeGen = "codegen";
+        public const string AstGen = "astgen";
+        public const string YamlImport = "yamlimport";
+        public const string TestGen = "testgen";
         public const string Pack = "pack";
         public const string Push = "push";
 
@@ -45,7 +47,7 @@ namespace Builder
             bau.DependsOn(Clean, Restore, MsBuild)
                 //Define
                 .MSBuild(MsBuild).Desc("Invokes MSBuild to build solution")
-                .DependsOn(Clean, BuildInfo, CodeGen)
+                .DependsOn(Clean, BuildInfo, AstGen)
                 .Do(msb =>
                     {
                         msb.ToolsVersion = "14.0";
@@ -62,7 +64,7 @@ namespace Builder
 
                 //Define
                 .Exec(DnxBuild).Desc("Build .NET Core Assemblies")
-                .DependsOn(Clean, DnxRestore, BuildInfo, CodeGen)
+                .DependsOn(Clean, DnxRestore, BuildInfo, AstGen)
                 .Do(exec =>
                     {
                         exec.Run("cmd.exe")
@@ -130,7 +132,7 @@ namespace Builder
                     })
 
                 //Define
-                .Task(CodeGen).Desc("Regenerates C# AST classes")
+                .Task(AstGen).Desc("Regenerates C# AST classes")
                 .Do(() =>
                     {
                         Directory.SetCurrentDirectory(Projects.DriverProject.Folder.ToString());
@@ -140,6 +142,30 @@ namespace Builder
                         gen.EnsurePathsExist();
                         gen.Generate_All();
                     })
+
+                //Define
+                .Task(YamlImport).Desc("Imports fresh YAML files and cleans them up")
+                .Do(() =>
+                    {
+                        Directory.SetCurrentDirectory(Projects.Tests.Folder.ToString());
+
+                        var gen = new Templates.GeneratorForUnitTests();
+                        gen.EnsurePathsExist();
+                        gen.CleanUpYamlTests();
+
+                    })
+
+                 //Define
+                .Task(TestGen).Desc("Generates C# unit tests from refined YAML files.")
+                .Do(() =>
+                {
+                    Directory.SetCurrentDirectory(Projects.Tests.Folder.ToString());
+
+                    var gen = new Templates.GeneratorForUnitTests();
+                    gen.EnsurePathsExist();
+                    gen.Generate_All();
+
+                })
 
                 //Define
                 .Task(Clean).Desc("Cleans project files")

@@ -20,7 +20,7 @@ architecture of both drivers are the same.
 Install-Package RethinkDb.Driver
 ```
 
-**Minimum Supproted Runtimes**
+**Minimum Supported Runtimes**
 
 <table>
 <tr>
@@ -92,20 +92,28 @@ Building
 * NuGet Package Command Line installed in your PATH [via NuGet.org](http://docs.nuget.org/consume/installing-nuget) or [via Chocolatey](https://chocolatey.org/packages/NuGet.CommandLine).
 * (Optional) [RazorGenerator](https://github.com/RazorGenerator/RazorGenerator) to modify CodeGen templates.
 
-#### Build Commands
+#### Checkout
 * `git clone https://github.com/bchavez/RethinkDb.Driver.git`
 * `cd RethinkDb.Driver`
-* `build`
 
-If you want to build the nuget package, run:
-* `build pack`
+#### Build Commands
+The following build tasks are defined in [`BauBuild.cs`](https://github.com/bchavez/RethinkDb.Driver/blob/master/Source/Builder/BauBuild.cs). Execute any of the following build commands in the root project folder. 
+* `build` - By default, triggers `build msb`.
+* `build msb` - Builds binaries for **.NET Framework v4.5** using **msbuild**.
+* `build dnx` - Builds **CoreCLR** binaries using **dnu build**.
+* `build mono` - Builds **Mono** binaries using **mcs**.
+* `build clean` - Cleans up build.
+* `build astgen` - Regenerates C# AST classes from `*.json` files.
+* `build pack` - Builds local NuGet packages.
+* `build yamlimport` - Imports and cleans up freshly copied YAML tests from the Java driver. See **Unit Tests** section below.
+* `build testgen` - Generates C# unit tests from refined YAML tests.
 
-The following folders at the root level be generated:
+The following folders at the root checkout level be generated:
 * `__compile` - Contains the result of the build process.
 * `__package` - Contains the result of the packaging process.
 
 #### Project Structure
-* `build.cmd` - Ensures build environment and forwards build commands to `Builder`.
+* `build.cmd` - Ensures sane build environment and forwards build commands to `Builder`.
 * `Source\Builder` - Primary location where build tasks are defined. See [`BauBuild.cs`](https://github.com/bchavez/RethinkDb.Driver/blob/master/Source/Builder/BauBuild.cs).
 * `Source\RethinkDb.Driver` - The RethinkDB C# driver.
 * `Source\RethinkDb.Driver.Tests` - Driver unit tests.
@@ -134,16 +142,55 @@ by running the following command in the Java driver's folder:
 
 `python3 metajava.py --term-info term_info.json --output-file java_term_info.json generate-java-terminfo`
 
-The result of the command above will produce `java_term_info.json`. The **JSON** files inside the Java driver's folder can be copied to & overwritten inside the C# driver's folder `Source/Templates/Metadata`. The `build codegen` task will use the `*.json` files mentioned above to regenerate all AST C# classes, protocol enums, and various models.
+The result of the command above will produce `java_term_info.json`. The **JSON** files inside the Java driver's folder can be copied to & overwritten inside the C# driver's folder `Source/Templates/Metadata`. The `build astgen` task will use the `*.json` files mentioned above to regenerate all AST C# classes, protocol enums, and various models.
 
-`build codegen` build task essentially runs `Templates\GeneratorForAst.cs:Generate_All()`.
+`build astgen` build task essentially runs `Templates\GeneratorForAst.cs:Generate_All()`.
 
-#### Changing Code Generation Templates
+#### Updating Code Generation Templates
 
 The code generator templates are located in [`Source/Templates/CodeGen/`](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/Templates/CodeGen).
 The templates are [RazorGenerator](https://github.com/RazorGenerator/RazorGenerator) templates. Updating any of the `*.cshtml` code generation
 templates requires installing [RazorGenerator's Visual Studio Extension](https://visualstudiogallery.msdn.microsoft.com/1f6ec6ff-e89b-4c47-8e79-d2d68df894ec)
 or using RazorGenerator's MSBuild task to transform the Razor `*.cshtml` templates to `*.generated.cs` razor code-behind files.
+
+Unit Tests
+--------
+Like the official Java driver, the C# driver also derives its **Query Language Tests** from the official [`rethinkdb\test\rql_test`](https://github.com/rethinkdb/rethinkdb/tree/next/test/rql_test) YAML tests.
+
+The C# unit tests have been automatically converted from YAML to C# and reside inside:
+
+* `Source\RethinkDb.Driver.Tests\Generated`
+
+You can simply run all the unit tests in `RethinkDb.Driver.Tests` to test the driver's ability.
+
+#### Updating Generated Tests
+The process for updating the auto generated unit tests requires `convert_tests.py` from the Java driver source. The following process updates the C# generated tests from YAML files:
+
+1. Checkout the Java driver.
+2. Ensure you have `java_term_info.json` (if not read above on how to generate it).
+3. Copy our special C# [**`Test.yaml`**](https://github.com/bchavez/RethinkDb.Driver/blob/master/Source/Templates/CodeGen/Test.yaml) template to the Java driver's `java\template\` directory. The `template\Test.yaml`  file (from our repo) should be along side `template\Test.java` file in the Java driver folder.
+4. Make two edits to `convert_test.py` so the `Test.yaml` file is used when generating test outputs.
+	```
+    class TestFile(object): def render(self)
+        ....
+        self.renderer.render(
+            'Test.yaml', //EDIT 1: from Test.java 
+            output_dir=self.test_output_dir,
+            output_name=self.module_name + '.yaml', //EDIT 2: from .java
+            ....
+        )
+	```
+    All we're doing here is using our template instead of
+    the Test.java template to output the expected Java lines in ReQL.
+5. Next, run `python3 convert_tests.py` in the Java driver's folder. The result of the command above will result in a batch of YAML files in `/src/test/java/gen/*.yaml`.
+6. Copy `/src/test/java/gen/*.yaml` and overwrite all the YAML files in the C# driver's folder:
+ 
+   * `Source\Templates\UnitTests` 
+  
+   These fresh YAML files will be base64 encoded to keep non-ascii characters intact and avoid complex character escape sequences when making the transition.
+7. Next, clean up and decode the imported YAML tests by running `build yamlimport` task. The YAML tasks should now be valid YAML tests with correct escape sequences and character encodings.
+8. Lastly, run `build testgen` to regenerate the C# tests in `Source\RethinkDb.Driver.Tests\Generated`
+
 
 Protocol Debugging 
 --------
@@ -172,6 +219,8 @@ Since we're using `Common.Logging` you can customize the log level and use log a
 #### Log Levels
  * `TRACE` - Logs the AST JSON sent to the server and the JSON response.
  * `DEBUG` - Logs only JSON responses received from the server.
+
+If you're using **CoreCLR**, logging is handled by **[`Microsoft.Extensions.Logging`](https://github.com/aspnet/Logging)**.
 
 #### Query Debugging
 If you're concerned the a C# driver is sending an invalid AST query, you can compare C# AST query sent to the server with the official JavaScript driver in the RethinkDB web-admin console.

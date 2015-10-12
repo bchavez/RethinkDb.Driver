@@ -16,10 +16,13 @@
     
     <releaseNotes>
       History
+      v0.0.4-alpha10
+      * Support for .NET Core / DNX Runtime.
+      * Support for Mono / Linux Runtime.
+      
       v0.0.4-alpha9
       * Fixed bug in Reql Function lambda FUNCALL AST ordering.
       * Best practice - avoid using C# "is" operator in Util.ToReqlAst.
-      
       
       v0.0.4-alpha8
       * AST Update
@@ -80,11 +83,16 @@
   </metadata>
 
   <files>
-      <file src="RethinkDb.Driver.dll" target="lib\net45" />
-      <file src="RethinkDb.Driver.pdb" target="lib\net45" />
-      <file src="RethinkDb.Driver.XML" target="lib\net45" />
-      <file src="..\Source\RethinkDb.Driver\**\*.cs"
-            exclude="..\Source\RethinkDb.Driver\obj\**" target="src" />
+    <file src="Release\net45\RethinkDb.Driver.dll" target="lib\net45" />
+    <file src="Release\net45\RethinkDb.Driver.pdb" target="lib\net45" />
+    <file src="Release\net45\RethinkDb.Driver.XML" target="lib\net45" />
+
+    <file src="Release\dotnet\RethinkDb.Driver.dll" target="lib\dotnet" />
+    <file src="Release\dotnet\RethinkDb.Driver.pdb" target="lib\dotnet" />
+    <file src="Release\dotnet\RethinkDb.Driver.XML" target="lib\dotnet" />
+
+    <file src="..\..\Source\RethinkDb.Driver\**\*.cs"
+            exclude="..\..\Source\RethinkDb.Driver\obj\**" target="src" />
   </files>
 
 </package>

@@ -15,8 +15,9 @@ namespace Builder
     public static class BauBuild
     {
         //Build Tasks
-        public const string MsBuild = "msbuild";
-        public const string DnxBuild = "dnxbuild";
+        public const string MsBuild = "msb";
+        public const string DnxBuild = "dnx";
+        public const string MonoBuild = "mono";
         public const string Clean = "clean";
         public const string Restore = "restore";
         public const string DnxRestore = "dnxrestore";
@@ -38,16 +39,18 @@ namespace Builder
 
             var nugetExe = FindNugetExe();
 
-            new Bau(Arguments.Parse(args))
-                //By default, no build arguments...
-                .DependsOn(Clean, Restore, MsBuild)
-
+            var bau = new Bau(Arguments.Parse(args));
+            
+            //By default, no build arguments...
+            bau.DependsOn(Clean, Restore, MsBuild)
                 //Define
                 .MSBuild(MsBuild).Desc("Invokes MSBuild to build solution")
                 .DependsOn(Clean, BuildInfo, CodeGen)
                 .Do(msb =>
                     {
                         msb.ToolsVersion = "14.0";
+                        msb.MSBuildVersion = "VS14"; //Hack for MSBuild VS2015
+
                         msb.Solution = Projects.SolutionFile.ToString();
                         msb.Properties = new
                             {
@@ -59,11 +62,11 @@ namespace Builder
 
                 //Define
                 .Exec(DnxBuild).Desc("Build .NET Core Assemblies")
-                .DependsOn(DnxRestore)
+                .DependsOn(Clean, DnxRestore, BuildInfo, CodeGen)
                 .Do(exec =>
                     {
                         exec.Run("cmd.exe")
-                            .With("/c dnu build --configuration Release")
+                            .With($"/c dnu build --configuration Release --out {Projects.DriverProject.OutputDirectory}")
                             .In(Projects.DriverProject.Folder.ToString());
                     })
 
@@ -71,6 +74,7 @@ namespace Builder
                 .Task(DnxRestore).Desc("Restores .NET Core dependencies")
                 .Do(() =>
                     {
+                        bau.CurrentTask.LogInfo("DNVM INSTALL");
                         //DNVM INSTALL
                         Task.Run.Executable(e =>
                             {
@@ -78,13 +82,17 @@ namespace Builder
                                     .WithArguments($"/c dnvm install {Projects.DnmvVersion} -r clr")
                                     .InWorkingDirectory(Projects.DriverProject.Folder);
                             });
+
+                        bau.CurrentTask.LogInfo("DNVM USE");
                         //USE
                         Task.Run.Executable(e =>
-                        {
-                            e.ExecutablePath("cmd.exe")
-                                .WithArguments($"/c dnvm use {Projects.DnmvVersion} -r clr")
-                                .InWorkingDirectory(Projects.DriverProject.Folder);
-                        });
+                            {
+                                e.ExecutablePath("cmd.exe")
+                                    .WithArguments($"/c dnvm use {Projects.DnmvVersion} -r clr")
+                                    .InWorkingDirectory(Projects.DriverProject.Folder);
+                            });
+
+                        bau.CurrentTask.LogInfo("DNU RESTORE");
                         //DNU RESTORE
                         Task.Run.Executable(e =>
                             {
@@ -98,6 +106,7 @@ namespace Builder
                 .Task(BuildInfo).Desc("Creates dynamic AssemblyInfos for projects")
                 .Do(() =>
                     {
+                        bau.CurrentTask.LogInfo("Injecting AssemblyInfo.cs");
                         Task.CreateAssemblyInfo.Language.CSharp(aid =>
                             {
                                 Projects.DriverProject.AssemblyInfo(aid);
@@ -105,6 +114,19 @@ namespace Builder
                                 Console.WriteLine($"Creating AssemblyInfo file: {outputPath}");
                                 aid.OutputPath(outputPath);
                             });
+
+                        bau.CurrentTask.LogInfo("Injecting DNX project.json with Nuspec");
+                        //version
+                        WriteJson.Value(Projects.DriverProject.DnxProjectFile.ToString(), "version", BuildContext.FullVersion);
+                        //description
+                        WriteJson.Value(Projects.DriverProject.DnxProjectFile.ToString(), "description",
+                            ReadXml.From(Projects.DriverProject.NugetSpec.ToString(), "package.metadata.summary"));
+                        //projectUrl
+                        WriteJson.Value(Projects.DriverProject.DnxProjectFile.ToString(), "projectUrl",
+                            ReadXml.From(Projects.DriverProject.NugetSpec.ToString(), "package.metadata.projectUrl"));
+                        //license
+                        WriteJson.Value(Projects.DriverProject.DnxProjectFile.ToString(), "licenseUrl",
+                            ReadXml.From(Projects.DriverProject.NugetSpec.ToString(), "package.metadata.licenseUrl"));
                     })
 
                 //Define
@@ -133,12 +155,12 @@ namespace Builder
 
                 //Define
                 .NuGet(Pack).Desc("Packs NuGet packages")
-                .DependsOn(MsBuild, DnxBuild).Do(ng =>
+                .DependsOn(DnxBuild).Do(ng =>
                     {
                         ng.Pack(Projects.DriverProject.NugetSpec.ToString(),
                             p =>
                                 {
-                                    p.BasePath = Folders.CompileOutput.ToString();
+                                    p.BasePath = Projects.DriverProject.OutputDirectory.ToString();
                                     p.Version = BuildContext.FullVersion;
                                     p.Symbols = true;
                                     p.OutputDirectory = Folders.Package.ToString();
@@ -160,17 +182,20 @@ namespace Builder
                     {
                         ng.Restore(Projects.SolutionFile.ToString())
                             .WithNuGetExePathOverride(nugetExe.FullName);
-                    })
+                    });
 
-                .Run();
+            bau.Run();
         }
 
         private static FileInfo FindNugetExe()
         {
-            Directory.SetCurrentDirectory(Folders.Lib.ToString());
+            //Directory.SetCurrentDirectory(Folders.Lib.ToString());
+            Directory.SetCurrentDirectory(Folders.WorkingFolder.ToString());
+
             var nugetExe = NuGetFileFinder.FindFile();
             nugetExe.Should().NotBeNull();
-            Directory.SetCurrentDirectory(Folders.WorkingFolder.ToString());
+            Console.WriteLine("FOUND NUGET HERE: " + nugetExe);
+            //
             return nugetExe;
         }
     }

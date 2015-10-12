@@ -1,8 +1,11 @@
 using System;
+using System.Xml;
+using System.Xml.Linq;
 using FluentFs.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Z.ExtensionMethods;
+using Formatting = Newtonsoft.Json.Formatting;
 
 namespace Builder.Extensions
 {
@@ -59,7 +62,32 @@ namespace Builder.Extensions
     {
         public static string From(string filename, string jsonPath)
         {
-            return JsonConvert.DeserializeObject<JObject>(System.IO.File.ReadAllText(filename)).SelectToken(jsonPath).ToString();
+            return Token(filename, jsonPath).ToString();
+        }
+
+        public static JToken Token(string filename, string jsonPath)
+        {
+            return JsonConvert.DeserializeObject<JObject>(System.IO.File.ReadAllText(filename)).SelectToken(jsonPath);
+        }
+    }
+
+    public static class WriteJson
+    {
+        public static void Value(string file, string jsonPath, object value)
+        {
+            var val = ReadJson.Token(file, jsonPath) as JValue;
+            val.Value = value;
+            System.IO.File.WriteAllText(file, JsonConvert.SerializeObject(val.Root, Formatting.Indented));
+        }
+    }
+
+    public static class ReadXml
+    {
+        public static string From(string filename, string jsonPath)
+        {
+            var xdoc = XDocument.Load(filename);
+            var obj = JObject.FromObject(xdoc);
+            return obj.SelectToken(jsonPath).ToString();
         }
     }
 }

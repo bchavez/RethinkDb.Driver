@@ -10,7 +10,18 @@ IF NOT DEFINED DevEnvDir (
 	)
 )
 
-nuget restore Source\RethinkDb.Driver.sln
+if exist nuget.exe (
+    .\nuget.exe restore Source\RethinkDb.Driver.sln
+) else (
+    echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    echo      nuget.exe required
+    echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    echo nuget.exe v3.2+ is required in the root build directory.
+    echo You can download nuget.exe from here:
+    echo https://dist.nuget.org/index.html
+    echo Once downloaded, place it in the same folder as build.cmd
+    exit /b 99
+)
 
 msbuild Source\Builder\Builder.csproj
 if %errorlevel% neq 0 exit /b %errorlevel%

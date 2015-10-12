@@ -1,32 +1,34 @@
-﻿{
-  "version": "0.0.0",
-  "description": "RethinkDb.Driver3 Class Library",
-  "authors": [ "Brian Chavez" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-
+{
+  "version": "0.0.0-localbuild",
+  "description": "A RethinkDB database driver written in C# striving for 100% ReQL API compatibility and completeness. Architecturally, this driver is a one-to-one port of the official Java driver.",
+  "authors": [
+    "Brian Chavez"
+  ],
+  "tags": [
+    ""
+  ],
+  "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
+  "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
   "configurations": {
     "Debug": {
-      "compilationOptions": {
-      }
+      "compilationOptions": {}
     },
     "Release": {
       "compilationOptions": {
         "optimize": true
       }
     }
-
   },
-
   "dependencies": {
     "Newtonsoft.Json": "7.0.1"
   },
-
   "frameworks": {
+    "net45": {
+      "dependencies": {
+        "Common.Logging": "3.3.0"
+      }
+    },
     "dotnet": {
-      "compilationOptions": {
-      },
       "dependencies": {
         "System.Text.Encoding": "4.0.11-beta-23405",
         "System.Dynamic.Runtime": "4.0.10-beta-23109",

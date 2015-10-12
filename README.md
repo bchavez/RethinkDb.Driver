@@ -40,11 +40,11 @@ Install-Package RethinkDb.Driver
 </tr>
 <tr>
  <td><strong>CoreCLR</strong></td>
- <td colspan='3' align='center'>All CoreCLR platforms since beta8</td>
+ <td colspan='3' align='center'>All platforms since <strong>beta8</strong></td>
 </tr>
 <tr>
  <td><strong>Mono</strong></td>
- <td colspan='3' align='center'>All Mono platforms since 4.02 SR2</td>
+ <td colspan='3' align='center'>All platforms since <strong>4.02 SR2</strong></td>
 </tr>
 </table>
 

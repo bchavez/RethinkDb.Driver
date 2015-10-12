@@ -30,24 +30,21 @@ Install-Package RethinkDb.Driver
 
 <table>
 <tr>
-	<th></th>
-	<th>Windows<th>
-	<th>Linux<th>
-	<th>Mac OS X<th>
+	<th></th><th>Windows</th><th>Linux</th><th>Mac OS X</th>
 </tr>
 <tr>
- <td>**.NET Framework**</td>
- <td>4.5</td>
- <td>:x:</td>
- <td>:x:</td>
+ <td><strong>.NET Framework</strong</td>
+ <td align='center'>4.5</td>
+ <td align='center'>:x:</td>
+ <td align='center'>:x:</td>
 </tr>
 <tr>
  <td>**CoreCLR**</td>
- <td colspan='3'>beta8</td>
+ <td colspan='3' align='center'>beta8</td>
 </tr>
 <tr>
  <td>**Mono**</td>
- <td colspan='3'>4.03 SR</td>
+ <td colspan='3' align='center'>4.02 SR2</td>
 </tr>
 </table>
 

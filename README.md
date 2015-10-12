@@ -22,15 +22,15 @@ Install-Package RethinkDb.Driver
 
 **Minimum Supproted Runtimes**
 
-|         | ![Windows](https://github.com/Turbo87/Font-Awesome/raw/platform-icons/svg/windows.png) Windows| ![Linux](https://github.com/Turbo87/Font-Awesome/raw/platform-icons/svg/linux.png) Linux  | ![Mac](https://github.com/Turbo87/Font-Awesome/raw/platform-icons/svg/apple.png) Mac OS X |
-|---------|:------:|:------:|:-------:|
-|**.NET Framework** | v4.5 | :x: | :x: | 
-|**CoreCLR**| beta8 ||
-|**Mono**|  4.03 ||
-
 <table>
 <tr>
-	<th></th><th>Windows</th><th>Linux</th><th>Mac OS X</th>
+	<th></th>
+
+	<th><img src='https://github.com/Turbo87/Font-Awesome/raw/platform-icons/svg/windows.png'/> Windows</th>
+	
+	<th><img src='https://github.com/Turbo87/Font-Awesome/raw/platform-icons/svg/linux.png'> Linux</th>
+
+	<th><img src='https://github.com/Turbo87/Font-Awesome/raw/platform-icons/svg/apple.png'/> Mac OS X</th>
 </tr>
 <tr>
  <td><strong>.NET Framework</strong</td>

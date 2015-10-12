@@ -1,0 +1,40 @@
+﻿{
+  "version": "0.0.0",
+  "description": "RethinkDb.Driver3 Class Library",
+  "authors": [ "Brian Chavez" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "configurations": {
+    "Debug": {
+      "compilationOptions": {
+      }
+    },
+    "Release": {
+      "compilationOptions": {
+        "optimize": true
+      }
+    }
+
+  },
+
+  "dependencies": {
+    "Newtonsoft.Json": "7.0.1"
+  },
+
+  "frameworks": {
+    "dotnet": {
+      "compilationOptions": {
+      },
+      "dependencies": {
+        "System.Text.Encoding": "4.0.11-beta-23405",
+        "System.Dynamic.Runtime": "4.0.10-beta-23109",
+        "System.IO": "4.0.11-beta-23225",
+        "System.ComponentModel": "4.0.1-beta-23405",
+        "Microsoft.Extensions.Logging": "1.0.0-rc1-15673",
+        "System.Net.Sockets": "4.0.10-beta-23109"
+      }
+    }
+  }
+}

@@ -56,10 +56,19 @@ namespace RethinkDb.Driver.Net
 			}
 			catch when(!taskComplete)
 			{
-			    socketChannel.Close();
+			    try
+			    {
+			        this.Close();
+			    }
+			    catch
+			    {
+			        // attempt to close, ignored,
+                    // and re-throw the original exception
+			    }
 			    throw;
-			}
-		}
+
+            }
+        }
 
 	    private string ReadNullTerminatedString(TimeSpan deadline)
 		{
@@ -103,9 +112,13 @@ namespace RethinkDb.Driver.Net
 		{
 			try
 			{
-				socketChannel.Close();
-			}
-			catch (IOException e)
+#if DOTNET
+                socketChannel.Dispose();
+#else
+                socketChannel.Close();
+#endif
+            }
+            catch (IOException e)
 			{
 				throw new ReqlError(e);
 			}

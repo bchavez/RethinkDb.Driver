@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using BauCore;
 using BauMSBuild;
 using BauNuGet;
+using BauExec;
 using Builder.Extensions;
 using FluentAssertions;
 using FluentBuild;
@@ -13,9 +15,11 @@ namespace Builder
     public static class BauBuild
     {
         //Build Tasks
-        public const string Build = "build";
+        public const string MsBuild = "msbuild";
+        public const string DnxBuild = "dnxbuild";
         public const string Clean = "clean";
         public const string Restore = "restore";
+        public const string DnxRestore = "dnxrestore";
         public const string BuildInfo = "buildinfo";
         public const string CodeGen = "codegen";
         public const string Pack = "pack";
@@ -35,8 +39,11 @@ namespace Builder
             var nugetExe = FindNugetExe();
 
             new Bau(Arguments.Parse(args))
-                .DependsOn(Clean, Restore, Build)
-                .MSBuild(Build).Desc("Invokes MSBuild to build solution")
+                //By default, no build arguments...
+                .DependsOn(Clean, Restore, MsBuild)
+
+                //Define
+                .MSBuild(MsBuild).Desc("Invokes MSBuild to build solution")
                 .DependsOn(Clean, BuildInfo, CodeGen)
                 .Do(msb =>
                     {
@@ -45,10 +52,31 @@ namespace Builder
                         msb.Properties = new
                             {
                                 Configuration = "Release",
-                                OutDir = Folders.CompileOutput
+                                //OutDir = Folders.CompileOutput
                             };
                         msb.Targets = new[] {"Rebuild"};
                     })
+
+                //Define
+                .Exec(DnxBuild).Desc("Build .NET Core Assemblies")
+                .DependsOn(DnxRestore)
+                .Do(exec =>
+                    {
+                        exec.Run("cmd.exe")
+                            .With("/c dnu build --configuration Release")
+                            .In(Projects.DriverProject.Folder.ToString());
+                    })
+                
+                //Define
+                .Exec(DnxRestore).Desc("Restores .NET Core dependencies")
+                .Do(exec =>
+                    {
+                        exec.Run("cmd.exe")
+                            .With("/c dnu restore")
+                            .In(Projects.DriverProject.Folder.ToString());
+                    })
+
+                //Define
                 .Task(BuildInfo).Desc("Creates dynamic AssemblyInfos for projects")
                 .Do(() =>
                     {
@@ -60,6 +88,8 @@ namespace Builder
                                 aid.OutputPath(outputPath);
                             });
                     })
+
+                //Define
                 .Task(CodeGen).Desc("Regenerates C# AST classes")
                 .Do(() =>
                     {
@@ -70,6 +100,8 @@ namespace Builder
                         gen.EnsurePathsExist();
                         gen.Generate_All();
                     })
+
+                //Define
                 .Task(Clean).Desc("Cleans project files")
                 .Do(() =>
                     {
@@ -80,8 +112,10 @@ namespace Builder
                         Folders.Package.Wipe();
                         Directory.CreateDirectory(Folders.Package.ToString());
                     })
+
+                //Define
                 .NuGet(Pack).Desc("Packs NuGet packages")
-                .DependsOn(Build).Do(ng =>
+                .DependsOn(MsBuild).Do(ng =>
                     {
                         ng.Pack(Projects.DriverProject.NugetSpec.ToString(),
                             p =>
@@ -93,12 +127,16 @@ namespace Builder
                                 })
                             .WithNuGetExePathOverride(nugetExe.FullName);
                     })
+
+                //Define
                 .NuGet(Push).Desc("Pushes NuGet packages")
                 .DependsOn(Pack).Do(ng =>
                     {
                         ng.Push(Projects.DriverProject.NugetNupkg.ToString())
                             .WithNuGetExePathOverride(nugetExe.FullName);
                     })
+
+                //Define
                 .NuGet(Restore).Desc("Restores NuGet packages")
                 .Do(ng =>
                     {

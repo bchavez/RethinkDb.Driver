@@ -133,7 +133,7 @@ namespace Builder
 
                 //Define
                 .NuGet(Pack).Desc("Packs NuGet packages")
-                .DependsOn(MsBuild).Do(ng =>
+                .DependsOn(MsBuild, DnxBuild).Do(ng =>
                     {
                         ng.Pack(Projects.DriverProject.NugetSpec.ToString(),
                             p =>

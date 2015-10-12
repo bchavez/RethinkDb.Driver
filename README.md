@@ -28,6 +28,29 @@ Install-Package RethinkDb.Driver
 |**CoreCLR**| beta8 ||
 |**Mono**|  4.03 ||
 
+<table>
+	<tr>
+		<th></th>
+		<th>Windows<th>
+		<th>Linux<th>
+		<th>Mac OS X<th>
+	</tr>
+<tr>
+ <td>.NET Framework</td>
+ <td>4.5</td>
+ <td>:x:</td>
+ <td>:x:</td>
+</tr>
+<tr>
+ <td>CoreCLR</td>
+ <td colspan='3'>beta8</td>
+</tr>
+<tr>
+ <td>Mono</td>
+ <td colspan='3'>4.03 SR</td>
+</tr>
+</table
+
 
 
 Usage

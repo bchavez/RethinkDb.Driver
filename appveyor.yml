@@ -1,7 +1,7 @@
 version: '{build}'
 
 skip_commits:
-  message: /read\W{0,1}me*/i
+  message: /read\W{0,1}me*/
 
 init:
     - ps: |

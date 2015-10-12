@@ -39,11 +39,11 @@ Install-Package RethinkDb.Driver
  <td align='center'>:x:</td>
 </tr>
 <tr>
- <td>**CoreCLR**</td>
+ <td><strong>CoreCLR</strong></td>
  <td colspan='3' align='center'>beta8</td>
 </tr>
 <tr>
- <td>**Mono**</td>
+ <td><strong>Mono</strong></td>
  <td colspan='3' align='center'>4.02 SR2</td>
 </tr>
 </table>

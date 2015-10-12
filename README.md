@@ -20,13 +20,13 @@ architecture of both drivers are the same.
 Install-Package RethinkDb.Driver
 ```
 
-** Supproted Runtimes**
+**Minimum Supproted Runtimes**
 
 |         | ![Windows](https://github.com/Turbo87/Font-Awesome/raw/platform-icons/svg/windows.png) Windows| ![Linux](https://github.com/Turbo87/Font-Awesome/raw/platform-icons/svg/linux.png) Linux  | ![Mac](https://github.com/Turbo87/Font-Awesome/raw/platform-icons/svg/apple.png) Mac OS X |
 |---------|:------:|:------:|:-------:|
-|**.NET Framework**| :heavy_check_mark: | :x: | :x: |
-|**CoreCLR**| :heavy_check_mark: |  :heavy_check_mark: | :heavy_check_mark:   |
-|**Mono**| :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:   |
+|**.NET Framework** | v4.5 | :x: | :x: | 
+|**CoreCLR**| beta8 |
+|**Mono**|  4.03 |
 
 
 

@@ -184,14 +184,14 @@ The generated unit tests can be updated. The process for updating the auto gener
 
     All we're doing here is using our template instead of
     the Test.java template to output the expected Java lines in ReQL.
-5. Next, run `python3 convert_tests.py` in the Java driver's folder. The result of the command above will result in a batch of YAML files in `/src/test/java/gen/*.yaml`.
+5. Next, run `python3 convert_tests.py` in the Java driver's folder. The result of the command will result in a batch of YAML files in `/src/test/java/gen/*.yaml`.
 6. Copy `/src/test/java/gen/*.yaml` and overwrite all the YAML files in the C# driver's folder:
  
    * `Source\Templates\UnitTests` 
   
-   These fresh YAML files will be base64 encoded to keep non-ascii characters intact and avoid complex character escape sequences when making the transition.
+   The fresh YAML files from the Java folder will be base64 encoded to keep non-ascii characters intact and avoid complex character escape sequences when making the transition.
 7. Next, clean up and decode the imported YAML tests by running `build yamlimport` task. The YAML tasks should now be valid YAML tests with correct escape sequences and character encodings.
-8. Lastly, run `build testgen` to regenerate the C# tests in `Source\RethinkDb.Driver.Tests\Generated`
+8. Lastly, run `build testgen` to regenerate the C# tests in `Source\RethinkDb.Driver.Tests\Generated` from the newly imported YAML files.
 
 
 Protocol Debugging 

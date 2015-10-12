@@ -66,14 +66,32 @@ namespace Builder
                             .With("/c dnu build --configuration Release")
                             .In(Projects.DriverProject.Folder.ToString());
                     })
-                
+
                 //Define
-                .Exec(DnxRestore).Desc("Restores .NET Core dependencies")
-                .Do(exec =>
+                .Task(DnxRestore).Desc("Restores .NET Core dependencies")
+                .Do(() =>
                     {
-                        exec.Run("cmd.exe")
-                            .With("/c dnu restore")
-                            .In(Projects.DriverProject.Folder.ToString());
+                        //DNVM INSTALL
+                        Task.Run.Executable(e =>
+                            {
+                                e.ExecutablePath("cmd.exe")
+                                    .WithArguments($"/c dnvm install {Projects.DnmvVersion} -r clr")
+                                    .InWorkingDirectory(Projects.DriverProject.Folder);
+                            });
+                        //USE
+                        Task.Run.Executable(e =>
+                        {
+                            e.ExecutablePath("cmd.exe")
+                                .WithArguments($"/c dnvm use {Projects.DnmvVersion} -r clr")
+                                .InWorkingDirectory(Projects.DriverProject.Folder);
+                        });
+                        //DNU RESTORE
+                        Task.Run.Executable(e =>
+                            {
+                                e.ExecutablePath("cmd.exe")
+                                    .WithArguments("/c dnu restore")
+                                    .InWorkingDirectory(Projects.DriverProject.Folder);
+                            });
                     })
 
                 //Define

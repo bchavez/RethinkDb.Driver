@@ -3,6 +3,8 @@ using Builder.Extensions;
 using FluentBuild;
 using FluentBuild.AssemblyInfoBuilding;
 using FluentFs.Core;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Z.ExtensionMethods;
 
 namespace Builder
@@ -39,6 +41,8 @@ namespace Builder
         }
 
         public static readonly File SolutionFile = Folders.Source.File( "RethinkDb.Driver.sln" );
+        public static readonly File GlobalJson = Folders.Source.File("global.json");
+        public static string DnmvVersion = ReadJson.From(GlobalJson.ToString(), "sdk.version");
 
         public class DriverProject
         {

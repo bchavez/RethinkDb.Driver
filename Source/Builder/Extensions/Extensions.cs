@@ -1,5 +1,7 @@
 using System;
 using FluentFs.Core;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Z.ExtensionMethods;
 
 namespace Builder.Extensions
@@ -50,6 +52,14 @@ namespace Builder.Extensions
             if (ver.IsNotNullOrWhiteSpace())
                 return $"0.0.{ver}-ci";
             return "0.0.0-localbuild";
+        }
+    }
+
+    public static class ReadJson
+    {
+        public static string From(string filename, string jsonPath)
+        {
+            return JsonConvert.DeserializeObject<JObject>(System.IO.File.ReadAllText(filename)).SelectToken(jsonPath).ToString();
         }
     }
 }

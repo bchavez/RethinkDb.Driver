@@ -170,6 +170,7 @@ The process for updating the auto generated unit tests requires `convert_tests.p
 2. Ensure you have `java_term_info.json` (if not read above on how to generate it).
 3. Copy our special C# [**`Test.yaml`**](https://github.com/bchavez/RethinkDb.Driver/blob/master/Source/Templates/CodeGen/Test.yaml) template to the Java driver's `java\template\` directory. The `template\Test.yaml`  file (from our repo) should be along side `template\Test.java` file in the Java driver folder.
 4. Make two edits to `convert_test.py` so the `Test.yaml` file is used when generating test outputs.
+
 	```
     class TestFile(object): def render(self)
         ....
@@ -180,6 +181,7 @@ The process for updating the auto generated unit tests requires `convert_tests.p
             ....
         )
 	```
+
     All we're doing here is using our template instead of
     the Test.java template to output the expected Java lines in ReQL.
 5. Next, run `python3 convert_tests.py` in the Java driver's folder. The result of the command above will result in a batch of YAML files in `/src/test/java/gen/*.yaml`.

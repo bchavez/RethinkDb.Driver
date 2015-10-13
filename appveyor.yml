@@ -19,7 +19,7 @@ test: off
 #    - __compile\RethinkDb.Driver.Tests.dll
 
 after_build:
-    - ps: Copy-Item .\Source\RethinkDb.Driver\bin\Release\* .\__compile\RethinkDb.Driver\Release\other\ -include Common.Logging*,Newtonsoft.Json*
+    - ps: Copy-Item %APPVEYOR_BUILD_FOLDER\Source\RethinkDb.Driver\bin\Release\* %APPVEYOR_BUILD_FOLDER\__compile\RethinkDb.Driver\Release\other\ -include Common.Logging*,Newtonsoft.Json*
     - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver\Release\**
 
 artifacts:
@@ -55,5 +55,5 @@ deploy:
 on_failure:
     - ps: |
             # Enables RDP for debugging and setup some tools
-            #$blockRdp = $true; choco install notepad2; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+            $blockRdp = $true; choco install notepad2; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
             

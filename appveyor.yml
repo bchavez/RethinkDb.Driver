@@ -12,18 +12,15 @@ init:
               Set-AppveyorBuildVariable -Name "IsPreRelease" -Value False
             }
 
-build_script: build.cmd pack
+build_script: build.cmd ci
 
 test: off
 #  assemblies:
 #    - __compile\RethinkDb.Driver.Tests.dll
 
 after_build:
-    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver.dll
-    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver.xml
-    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver.pdb
-    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\Newtonsoft.Json.*
-    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\Common.Logging.*
+    - robocopy Source\RethinkDb.Driver\bin\Release __compile\RethinkDb.Driver\other\ Common.Logging* Newtonsoft.Json*
+    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver\**
 
 artifacts:
     - path: __package\*.nupkg

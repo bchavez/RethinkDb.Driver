@@ -28,6 +28,8 @@ namespace Builder
         public const string Pack = "pack";
         public const string Push = "push";
 
+        public const string ci = "ci";
+
         public static void Main(string[] args)
         {
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
@@ -88,51 +90,6 @@ namespace Builder
                                         "dnu restore --fallbacksource https://www.myget.org/F/aspnetvnext/api/v2/"
                                     ).InWorkingDirectory(Projects.DriverProject.Folder);
                             });
-
-                        /*
-                        bau.CurrentTask.LogInfo("DNVM UPDATE");
-                        Task.Run.Executable(e =>
-                        {
-                            e.ExecutablePath("powershell")
-                                .WithArguments($"dnvm update-self")
-                                .InWorkingDirectory(Projects.DriverProject.Folder);
-                        });
-                        
-                        bau.CurrentTask.LogInfo("DNVM INSTALL");
-                        //DNVM INSTALL
-                        Task.Run.Executable(e =>
-                            {
-                                e.ExecutablePath("powershell")
-                                    .WithArguments($"dnvm install {Projects.DnmvVersion} -r clr")
-                                    .InWorkingDirectory(Projects.DriverProject.Folder);
-                            });
-
-                        bau.CurrentTask.LogInfo("DNVM USE");
-                        //USE
-                        Task.Run.Executable(e =>
-                            {
-                                e.ExecutablePath("powershell")
-                                    .WithArguments($"dnvm use {Projects.DnmvVersion} -r clr -p")
-                                    .InWorkingDirectory(Projects.DriverProject.Folder);
-                            });
-
-                        bau.CurrentTask.LogInfo("DNVM LIST");
-                        //USE
-                        Task.Run.Executable(e =>
-                        {
-                            e.ExecutablePath("powershell")
-                                .WithArguments($"dnvm list")
-                                .InWorkingDirectory(Projects.DriverProject.Folder);
-                        });
-
-                        bau.CurrentTask.LogInfo("DNU RESTORE");
-                        //DNU RESTORE
-                        Task.Run.Executable(e =>
-                            {
-                                e.ExecutablePath("powershell")
-                                    .WithArguments("dnu restore")
-                                    .InWorkingDirectory(Projects.DriverProject.Folder);
-                            });*/
                     })
 
                 //Define
@@ -186,17 +143,17 @@ namespace Builder
 
                     })
 
-                 //Define
+                //Define
                 .Task(TestGen).Desc("Generates C# unit tests from refined YAML files.")
                 .Do(() =>
-                {
-                    Directory.SetCurrentDirectory(Projects.Tests.Folder.ToString());
+                    {
+                        Directory.SetCurrentDirectory(Projects.Tests.Folder.ToString());
 
-                    var gen = new Templates.GeneratorForUnitTests();
-                    gen.EnsurePathsExist();
-                    gen.Generate_All();
+                        var gen = new Templates.GeneratorForUnitTests();
+                        gen.EnsurePathsExist();
+                        gen.Generate_All();
 
-                })
+                    })
 
                 //Define
                 .Task(Clean).Desc("Cleans project files")
@@ -239,7 +196,19 @@ namespace Builder
                     {
                         ng.Restore(Projects.SolutionFile.ToString())
                             .WithNuGetExePathOverride(nugetExe.FullName);
+                    })
+
+                //Define
+                .Task(ci).Desc("Use by appveyor for continuous integration builds. Not to be used.")
+                .DependsOn(Pack, MsBuild)
+                .Do(() =>
+                    {
+                        //We just use this task to depend on Pack (dnx build) and MSBuild
+                        //to ensure MS build gets called so we know *everything* compiles, including
+                        //unit tests.
                     });
+
+
 
             bau.Run();
         }

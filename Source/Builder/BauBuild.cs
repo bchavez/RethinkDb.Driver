@@ -59,8 +59,9 @@ namespace Builder
                         msb.Properties = new
                             {
                                 Configuration = "Release",
-                                //OutDir = Folders.CompileOutput
-                            };
+                                RestorePackages = false, //we already got them from build.cmd
+                            //OutDir = Folders.CompileOutput
+                        };
                         msb.Targets = new[] {"Rebuild"};
                     })
 

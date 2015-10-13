@@ -19,8 +19,8 @@ test: off
 #    - __compile\RethinkDb.Driver.Tests.dll
 
 after_build:
-    - robocopy Source\RethinkDb.Driver\bin\Release __compile\RethinkDb.Driver\other\ Common.Logging* Newtonsoft.Json*
-    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver\**
+    - robocopy Source\RethinkDb.Driver\bin\Release __compile\RethinkDb.Driver\Release\other\ Common.Logging* Newtonsoft.Json*
+    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver\Release\**
 
 artifacts:
     - path: __package\*.nupkg

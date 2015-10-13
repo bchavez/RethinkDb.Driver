@@ -50,9 +50,7 @@ Install-Package RethinkDb.Driver
 	<td colspan='4'></td>
 </tr>
 <tr>
- <td><strong>RethinkDB Server</strong></td>
- <td align='center'>n/a</td>
- <td colspan='2' align='center'>Server <strong>2.1.5</strong> or higher</td>
+     <td colspan='4' align='center'><strong>RethinkDB</strong> server <strong>2.1.5</strong> or higher</td>
 </tr>
 </table>
 

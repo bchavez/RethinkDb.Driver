@@ -67,7 +67,7 @@ namespace Builder
                 .DependsOn(Clean, DnxRestore, BuildInfo, AstGen)
                 .Do(exec =>
                     {
-                        exec.Run("cmd.exe")
+                        exec.Run("powershell")
                             .With($"/c dnu build --configuration Release --out {Projects.DriverProject.OutputDirectory}")
                             .In(Projects.DriverProject.Folder.ToString());
                     })
@@ -79,17 +79,17 @@ namespace Builder
                         bau.CurrentTask.LogInfo("DNVM UPDATE");
                         Task.Run.Executable(e =>
                         {
-                            e.ExecutablePath("cmd.exe")
-                                .WithArguments($"/c dnvm update-self")
+                            e.ExecutablePath("powershell")
+                                .WithArguments($"dnvm update-self")
                                 .InWorkingDirectory(Projects.DriverProject.Folder);
                         });
-
+                        
                         bau.CurrentTask.LogInfo("DNVM INSTALL");
                         //DNVM INSTALL
                         Task.Run.Executable(e =>
                             {
-                                e.ExecutablePath("cmd.exe")
-                                    .WithArguments($"/c dnvm install {Projects.DnmvVersion} -r clr")
+                                e.ExecutablePath("powershell")
+                                    .WithArguments($"dnvm install {Projects.DnmvVersion} -r clr")
                                     .InWorkingDirectory(Projects.DriverProject.Folder);
                             });
 
@@ -97,8 +97,8 @@ namespace Builder
                         //USE
                         Task.Run.Executable(e =>
                             {
-                                e.ExecutablePath("cmd.exe")
-                                    .WithArguments($"/c dnvm use {Projects.DnmvVersion} -r clr -p")
+                                e.ExecutablePath("powershell")
+                                    .WithArguments($"dnvm use {Projects.DnmvVersion} -r clr -p")
                                     .InWorkingDirectory(Projects.DriverProject.Folder);
                             });
 
@@ -106,8 +106,8 @@ namespace Builder
                         //DNU RESTORE
                         Task.Run.Executable(e =>
                             {
-                                e.ExecutablePath("cmd.exe")
-                                    .WithArguments("/c dnu restore")
+                                e.ExecutablePath("powershell")
+                                    .WithArguments("dnu restore")
                                     .InWorkingDirectory(Projects.DriverProject.Folder);
                             });
                     })

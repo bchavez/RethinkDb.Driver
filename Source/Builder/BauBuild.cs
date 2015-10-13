@@ -215,13 +215,14 @@ namespace Builder
 
         private static FileInfo FindNugetExe()
         {
-            //Directory.SetCurrentDirectory(Folders.Lib.ToString());
-            Directory.SetCurrentDirectory(Folders.WorkingFolder.ToString());
+            Directory.SetCurrentDirectory(Folders.Lib.ToString());
 
             var nugetExe = NuGetFileFinder.FindFile();
             nugetExe.Should().NotBeNull();
             Console.WriteLine("FOUND NUGET HERE: " + nugetExe);
-            //
+
+            Directory.SetCurrentDirectory(Folders.WorkingFolder.ToString());
+
             return nugetExe;
         }
     }

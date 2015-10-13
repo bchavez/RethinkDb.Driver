@@ -22,7 +22,7 @@ Install-Package RethinkDb.Driver
 
 **Minimum Supported Runtimes**
 
-<table>
+<table style='border-collapse: collapse;'>
 <tr>
 	<th></th>
 
@@ -46,7 +46,7 @@ Install-Package RethinkDb.Driver
  <td><strong>Mono</strong></td>
  <td colspan='3' align='center'>All platforms <strong>4.02 SR2</strong> or higher</td>
 </tr>
-<tr style='border-top: 3px;'>
+<tr style='border-top: medium solid;'>
  <td><strong>RethinkDB Server</strong></td>
  <td align='center'>n/a</td>
  <td colspan='2' align='center'>Server <strong>2.1.5</strong> or higher</td>

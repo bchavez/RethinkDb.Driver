@@ -19,7 +19,7 @@ test: off
 #    - __compile\RethinkDb.Driver.Tests.dll
 
 after_build:
-    - robocopy Source\RethinkDb.Driver\bin\Release __compile\RethinkDb.Driver\Release\other\ Common.Logging* Newtonsoft.Json*
+    - robocopy Source\RethinkDb.Driver\bin\Release __compile\RethinkDb.Driver\Release\other\ Common.Logging* Newtonsoft.Json* /S
     - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver\Release\**
 
 artifacts:

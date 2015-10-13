@@ -157,6 +157,18 @@ namespace Builder
                     })
 
                 //Define
+                .Exec(MonoBuild).Desc("Produces runs the mono xbuild.")
+                .Do(exec =>
+                    {
+                        var monopath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86)}\Mono\bin";
+                        exec.Run("cmd.exe")
+                            .With("/c",
+                            $@"""{monopath}\setmonopath.bat"" & ",
+                            $@"xbuild.bat {Projects.DriverProject.ProjectFile.ToString()} /p:OutDir={Projects.DriverProject.OutputDirectory}\Release\mono\"
+                            ).In(Projects.DriverProject.Folder.ToString());
+                    })
+
+                //Define
                 .Task(Clean).Desc("Cleans project files")
                 .Do(() =>
                     {
@@ -201,7 +213,7 @@ namespace Builder
 
                 //Define
                 .Task(ci).Desc("Use by appveyor for continuous integration builds. Not to be used.")
-                .DependsOn(MsBuild, Pack)
+                .DependsOn(MsBuild, MonoBuild, Pack)
                 .Do(() =>
                     {
                         //We just use this task to depend on Pack (dnx build) and MSBuild
@@ -220,7 +232,6 @@ namespace Builder
 
             var nugetExe = NuGetFileFinder.FindFile();
             nugetExe.Should().NotBeNull();
-            Console.WriteLine("FOUND NUGET HERE: " + nugetExe);
 
             Directory.SetCurrentDirectory(Folders.WorkingFolder.ToString());
 

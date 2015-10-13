@@ -51,3 +51,8 @@ deploy:
       on:
           branch: /v\d+\.\d+\.\d+/
           appveyor_repo_tag: true
+
+on_failure:
+    - ps: |
+        # Enable RDP so we can see.
+        $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

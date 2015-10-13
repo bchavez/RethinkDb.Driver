@@ -68,14 +68,28 @@ namespace Builder
                 .Do(exec =>
                     {
                         exec.Run("powershell")
-                            .With($"/c dnu build --configuration Release --out {Projects.DriverProject.OutputDirectory}")
-                            .In(Projects.DriverProject.Folder.ToString());
+                            .With(
+                                $"dnvm use {Projects.DnmvVersion} -r clr -p;",
+                                $"dnu build --configuration Release --out {Projects.DriverProject.OutputDirectory};"
+                            ).In(Projects.DriverProject.Folder.ToString());
                     })
 
                 //Define
                 .Task(DnxRestore).Desc("Restores .NET Core dependencies")
                 .Do(() =>
                     {
+                        Task.Run.Executable(e =>
+                            {
+                                e.ExecutablePath("powershell")
+                                    .WithArguments(
+                                        "dnvm update-self;",
+                                        $"dnvm install {Projects.DnmvVersion} -r clr;",
+                                        $"dnvm use {Projects.DnmvVersion} -r clr -p;",
+                                        "dnu restore"
+                                    ).InWorkingDirectory(Projects.DriverProject.Folder);
+                            });
+
+                        /*
                         bau.CurrentTask.LogInfo("DNVM UPDATE");
                         Task.Run.Executable(e =>
                         {
@@ -92,15 +106,6 @@ namespace Builder
                                     .WithArguments($"dnvm install {Projects.DnmvVersion} -r clr")
                                     .InWorkingDirectory(Projects.DriverProject.Folder);
                             });
-
-                        bau.CurrentTask.LogInfo("DNVM LIST");
-                        //USE
-                        Task.Run.Executable(e =>
-                        {
-                            e.ExecutablePath("powershell")
-                                .WithArguments($"dnvm list")
-                                .InWorkingDirectory(Projects.DriverProject.Folder);
-                        });
 
                         bau.CurrentTask.LogInfo("DNVM USE");
                         //USE
@@ -127,7 +132,7 @@ namespace Builder
                                 e.ExecutablePath("powershell")
                                     .WithArguments("dnu restore")
                                     .InWorkingDirectory(Projects.DriverProject.Folder);
-                            });
+                            });*/
                     })
 
                 //Define

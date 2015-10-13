@@ -19,6 +19,7 @@
       v0.0.4-alpha10
       * Support for .NET Core / DNX Runtime.
       * Support for Mono / Linux Runtime.
+      * Convert Func0 in AST.
       
       v0.0.4-alpha9
       * Fixed bug in Reql Function lambda FUNCALL AST ordering.

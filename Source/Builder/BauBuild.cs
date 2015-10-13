@@ -93,6 +93,15 @@ namespace Builder
                                     .InWorkingDirectory(Projects.DriverProject.Folder);
                             });
 
+                        bau.CurrentTask.LogInfo("DNVM LIST");
+                        //USE
+                        Task.Run.Executable(e =>
+                        {
+                            e.ExecutablePath("powershell")
+                                .WithArguments($"dnvm list")
+                                .InWorkingDirectory(Projects.DriverProject.Folder);
+                        });
+
                         bau.CurrentTask.LogInfo("DNVM USE");
                         //USE
                         Task.Run.Executable(e =>
@@ -101,6 +110,15 @@ namespace Builder
                                     .WithArguments($"dnvm use {Projects.DnmvVersion} -r clr -p")
                                     .InWorkingDirectory(Projects.DriverProject.Folder);
                             });
+
+                        bau.CurrentTask.LogInfo("DNVM LIST");
+                        //USE
+                        Task.Run.Executable(e =>
+                        {
+                            e.ExecutablePath("powershell")
+                                .WithArguments($"dnvm list")
+                                .InWorkingDirectory(Projects.DriverProject.Folder);
+                        });
 
                         bau.CurrentTask.LogInfo("DNU RESTORE");
                         //DNU RESTORE

@@ -39,6 +39,12 @@
     
     public static Func FromLambda(Delegate function){
     
+        var func0 = function as ReqlFunction0;
+        if( func0 != null )
+        {
+            return new Func(Arguments.Make(new List<object>(),
+                Util.ToReqlAst( func0() )));
+        }
         @foreach( var n in Enumerable.Range(1, GeneratorForAst.GetMaxArity()) )
         {
             @://Function @n

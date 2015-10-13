@@ -24,7 +24,6 @@ using RethinkDb.Driver.Proto;
 using System.Collections.Generic;
 
     using System.Threading;
-    using System.Linq;
 
 
 namespace RethinkDb.Driver.Ast {
@@ -48,6 +47,12 @@ namespace RethinkDb.Driver.Ast {
     
     public static Func FromLambda(Delegate function){
     
+        var func0 = function as ReqlFunction0;
+        if( func0 != null )
+        {
+            return new Func(Arguments.Make(new List<object>(),
+                Util.ToReqlAst( func0() )));
+        }
             //Function 1
             var func1 = function as ReqlFunction1;
             if( func1 != null){

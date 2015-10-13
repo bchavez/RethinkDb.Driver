@@ -55,7 +55,7 @@ namespace Templates.CodeGen.Specialized
     {
 #line hidden
 
-        #line 80 "..\..\CodeGen\Specialized\Func.cshtml"
+        #line 85 "..\..\CodeGen\Specialized\Func.cshtml"
 
     
 
@@ -94,7 +94,7 @@ WriteLiteral("\r\n");
 
 DefineSection("Add_Imports", () => {
 
-WriteLiteral("\r\n    using System.Threading;\r\n    using System.Linq;\r\n");
+WriteLiteral("\r\n    using System.Threading;\r\n");
 
 
 });
@@ -136,11 +136,22 @@ WriteLiteral("\r\n\r\n");
 
 DefineSection("StaticFactories", () => {
 
-WriteLiteral("\r\n    \r\n    \r\n    public static Func FromLambda(Delegate function){\r\n    \r\n");
+WriteLiteral(@"
+    
+    
+    public static Func FromLambda(Delegate function){
+    
+        var func0 = function as ReqlFunction0;
+        if( func0 != null )
+        {
+            return new Func(Arguments.Make(new List<object>(),
+                Util.ToReqlAst( func0() )));
+        }
+");
 
 
             
-            #line 43 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 48 "..\..\CodeGen\Specialized\Func.cshtml"
          foreach( var n in Enumerable.Range(1, GeneratorForAst.GetMaxArity()) )
         {
 
@@ -153,7 +164,7 @@ WriteLiteral("//Function ");
 
 
             
-            #line 45 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 50 "..\..\CodeGen\Specialized\Func.cshtml"
                     Write(n);
 
             
@@ -169,7 +180,7 @@ WriteLiteral("var ");
 
 
             
-            #line 46 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 51 "..\..\CodeGen\Specialized\Func.cshtml"
               Write("func"+n);
 
             
@@ -179,7 +190,7 @@ WriteLiteral(" = function as ");
 
 
             
-            #line 46 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 51 "..\..\CodeGen\Specialized\Func.cshtml"
                                         Write("ReqlFunction"+n);
 
             
@@ -195,7 +206,7 @@ WriteLiteral("if( ");
 
 
             
-            #line 47 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 52 "..\..\CodeGen\Specialized\Func.cshtml"
               Write("func"+n);
 
             
@@ -205,7 +216,7 @@ WriteLiteral(" != null){\r\n");
 
 
             
-            #line 48 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 53 "..\..\CodeGen\Specialized\Func.cshtml"
                 for( int v = 1; v <= n; v++ )
                 {
 
@@ -218,7 +229,7 @@ WriteLiteral("int ");
 
 
             
-            #line 50 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 55 "..\..\CodeGen\Specialized\Func.cshtml"
                   Write("var" + v);
 
             
@@ -228,7 +239,7 @@ WriteLiteral(" = NextVarId();\r\n");
 
 
             
-            #line 51 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 56 "..\..\CodeGen\Specialized\Func.cshtml"
                 }
 
             
@@ -240,7 +251,7 @@ WriteLiteral("var varIds = new List<int>{ \r\n");
 
 
             
-            #line 53 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 58 "..\..\CodeGen\Specialized\Func.cshtml"
                 for( int v = 1; v <= n; v++ )
                 {
 
@@ -253,7 +264,7 @@ WriteLiteral("var");
 
 
             
-            #line 55 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 60 "..\..\CodeGen\Specialized\Func.cshtml"
                      Write(v + ",");
 
             
@@ -263,7 +274,7 @@ WriteLiteral("\r\n");
 
 
             
-            #line 56 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 61 "..\..\CodeGen\Specialized\Func.cshtml"
                 }
 
             
@@ -275,7 +286,7 @@ WriteLiteral("};\r\n");
 
 
             
-            #line 58 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 63 "..\..\CodeGen\Specialized\Func.cshtml"
 
 
             
@@ -287,7 +298,7 @@ WriteLiteral("var appliedFunction = ");
 
 
             
-            #line 59 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 64 "..\..\CodeGen\Specialized\Func.cshtml"
                                     Write("func"+n);
 
             
@@ -297,7 +308,7 @@ WriteLiteral("(\r\n");
 
 
             
-            #line 60 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 65 "..\..\CodeGen\Specialized\Func.cshtml"
                     for (int v = 1; v <= n; v++)
                 {
 
@@ -310,7 +321,7 @@ WriteLiteral("new Var(var");
 
 
             
-            #line 62 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 67 "..\..\CodeGen\Specialized\Func.cshtml"
                              Write(v);
 
             
@@ -320,7 +331,7 @@ WriteLiteral(") ");
 
 
             
-            #line 62 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 67 "..\..\CodeGen\Specialized\Func.cshtml"
                                    Write(v == n ? "" : ",");
 
             
@@ -330,7 +341,7 @@ WriteLiteral("\r\n");
 
 
             
-            #line 63 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 68 "..\..\CodeGen\Specialized\Func.cshtml"
                 }
 
             
@@ -342,7 +353,7 @@ WriteLiteral(");\r\n");
 
 
             
-            #line 65 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 70 "..\..\CodeGen\Specialized\Func.cshtml"
 
 
             
@@ -378,7 +389,7 @@ WriteLiteral("}\r\n");
 
 
             
-            #line 71 "..\..\CodeGen\Specialized\Func.cshtml"
+            #line 76 "..\..\CodeGen\Specialized\Func.cshtml"
         }
 
             

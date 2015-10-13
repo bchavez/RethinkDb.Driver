@@ -101,7 +101,7 @@ The following build tasks are defined in [`BauBuild.cs`](https://github.com/bcha
 * `build` - By default, triggers `build msb`.
 * `build msb` - Builds binaries for **.NET Framework v4.5** using **msbuild**.
 * `build dnx` - Builds **CoreCLR** binaries using **dnu build**.
-* `build mono` - Builds **Mono** binaries using **mcs**.
+* `build mono` - Builds **Mono** binaries using **xbuild**.
 * `build clean` - Cleans up build.
 * `build astgen` - Regenerates C# AST classes from `*.json` files.
 * `build pack` - Builds local NuGet packages.

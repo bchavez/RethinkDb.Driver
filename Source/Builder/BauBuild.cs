@@ -76,6 +76,14 @@ namespace Builder
                 .Task(DnxRestore).Desc("Restores .NET Core dependencies")
                 .Do(() =>
                     {
+                        bau.CurrentTask.LogInfo("DNVM UPDATE");
+                        Task.Run.Executable(e =>
+                        {
+                            e.ExecutablePath("cmd.exe")
+                                .WithArguments($"/c dnvm update-self")
+                                .InWorkingDirectory(Projects.DriverProject.Folder);
+                        });
+
                         bau.CurrentTask.LogInfo("DNVM INSTALL");
                         //DNVM INSTALL
                         Task.Run.Executable(e =>
@@ -90,7 +98,7 @@ namespace Builder
                         Task.Run.Executable(e =>
                             {
                                 e.ExecutablePath("cmd.exe")
-                                    .WithArguments($"/c dnvm use {Projects.DnmvVersion} -r clr")
+                                    .WithArguments($"/c dnvm use {Projects.DnmvVersion} -r clr -p")
                                     .InWorkingDirectory(Projects.DriverProject.Folder);
                             });
 

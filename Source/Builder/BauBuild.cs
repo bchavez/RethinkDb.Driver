@@ -49,7 +49,7 @@ namespace Builder
             bau.DependsOn(Clean, Restore, MsBuild)
                 //Define
                 .MSBuild(MsBuild).Desc("Invokes MSBuild to build solution")
-                .DependsOn(Clean, BuildInfo, AstGen)
+                .DependsOn(Clean, Restore, BuildInfo, AstGen)
                 .Do(msb =>
                     {
                         msb.ToolsVersion = "14.0";
@@ -201,7 +201,7 @@ namespace Builder
 
                 //Define
                 .Task(ci).Desc("Use by appveyor for continuous integration builds. Not to be used.")
-                .DependsOn(Pack, MsBuild)
+                .DependsOn(MsBuild, Pack)
                 .Do(() =>
                     {
                         //We just use this task to depend on Pack (dnx build) and MSBuild

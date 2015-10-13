@@ -44,7 +44,7 @@ Install-Package RethinkDb.Driver
 </tr>
 <tr>
  <td><strong>Mono</strong></td>
- <td colspan='3' align='center'>All platforms <strong>4.02 SR2</strong> or higher</td>
+ <td colspan='3' align='center'>All platforms <strong>4.0.2 SR2</strong> or higher</td>
 </tr>
 <tr>
 	<td colspan='4'></td>

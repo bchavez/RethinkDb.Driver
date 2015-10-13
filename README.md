@@ -34,13 +34,13 @@ Install-Package RethinkDb.Driver
 </tr>
 <tr>
  <td><strong>.NET Framework</strong</td>
- <td align='center'>v4.5</td>
+ <td align='center'><strong>v4.5</strong></td>
  <td align='center'>n/a</td>
  <td align='center'>n/a</td>
 </tr>
 <tr>
  <td><strong>CoreCLR</strong></td>
- <td colspan='3' align='center'>All platforms since <strong>beta8</strong></td>
+ <td colspan='3' align='center'>All platforms since <strong>beta7</strong></td>
 </tr>
 <tr>
  <td><strong>Mono</strong></td>

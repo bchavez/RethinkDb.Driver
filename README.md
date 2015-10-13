@@ -20,7 +20,7 @@ architecture of both drivers are the same.
 Install-Package RethinkDb.Driver
 ```
 
-**Minimum Supported Runtimes**
+**Supported Runtimes**
 
 <table>
 <tr>

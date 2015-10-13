@@ -72,7 +72,7 @@ namespace Builder
                     {
                         exec.Run("powershell")
                             .With(
-                                $"dnvm use {Projects.DnmvVersion} -r clr -p;",
+                                $"dnvm use {Projects.DnmvVersion} -r coreclr -p;",
                                 $"dnu build --configuration Release --out {Projects.DriverProject.OutputDirectory};"
                             ).In(Projects.DriverProject.Folder.ToString());
                     })
@@ -86,8 +86,8 @@ namespace Builder
                                 e.ExecutablePath("powershell")
                                     .WithArguments(
                                         "dnvm update-self;",
-                                        $"dnvm install {Projects.DnmvVersion} -r clr;",
-                                        $"dnvm use {Projects.DnmvVersion} -r clr -p;",
+                                        $"dnvm install {Projects.DnmvVersion} -r coreclr;",
+                                        $"dnvm use {Projects.DnmvVersion} -r coreclr -p;",
                                         "dnu restore --fallbacksource https://www.myget.org/F/aspnetvnext/api/v2/"
                                     ).InWorkingDirectory(Projects.DriverProject.Folder);
                             });

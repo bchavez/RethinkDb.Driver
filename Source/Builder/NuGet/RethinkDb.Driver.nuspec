@@ -16,7 +16,7 @@
     
     <releaseNotes>
       History
-      v0.0.4-alpha10
+      v0.0.5-alpha1
       * Support for .NET Core / DNX Runtime.
       * Support for Mono / Linux Runtime.
       * Convert Func0 in AST.

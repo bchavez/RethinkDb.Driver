@@ -1126,7 +1126,11 @@
       "Newtonsoft.Json >= 7.0.1"
     ],
     ".NETFramework,Version=v4.5": [
-      "Common.Logging >= 3.3.0"
+      "Common.Logging >= 3.3.0",
+      "fx/Microsoft.CSharp >= 4.0.0.0",
+      "fx/mscorlib >= 4.0.0.0",
+      "fx/System >= 4.0.0.0",
+      "fx/System.Core >= 4.0.0.0"
     ],
     ".NETPlatform,Version=v5.0": [
       "System.Text.Encoding >= 4.0.11-beta-23405",

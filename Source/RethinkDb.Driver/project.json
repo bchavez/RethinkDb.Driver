@@ -26,6 +26,9 @@
     "net45": {
       "dependencies": {
         "Common.Logging": "3.3.0"
+      },
+      "frameworkAssemblies": {
+        
       }
     },
     "dotnet": {

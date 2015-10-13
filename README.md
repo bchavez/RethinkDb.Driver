@@ -46,6 +46,9 @@ Install-Package RethinkDb.Driver
  <td><strong>Mono</strong></td>
  <td colspan='3' align='center'>All platforms <strong>4.02 SR2</strong> or higher</td>
 </tr>
+<tr>
+ <td colspan='4' align='center'><strong>RethinkDB</strong> server <strong>2.1.5</strong> or higher</td>
+</tr>
 </table>
 
 

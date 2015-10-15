@@ -150,7 +150,18 @@ namespace RethinkDb.Driver.Tests
 
             try
             {
-                return ((ReqlAst)query).run(conn, runopts);
+                var res = ((ReqlAst)query).run(conn, runopts);
+                if( res is ICursor )
+                {
+                    var cur = (ICursor)res;
+                    var list = new ArrayList();
+                    foreach( var obj in cur )
+                    {
+                        list.Add(obj);
+                    }
+                    return list;
+                }
+                return res;
             }
             catch( Exception e)
             {

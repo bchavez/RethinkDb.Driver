@@ -8,7 +8,7 @@ using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver.Net
 {
-    internal interface ICursor
+    internal interface ICursor : IEnumerable
     {
         void Extend(Response response);
         void SetError(string msg);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -97,6 +98,11 @@ namespace RethinkDb.Driver.Tests
 
                 return true;
             }
+
+            public override string ToString()
+            {
+                return $"Err({clazz}: {errorMessage})";
+            }
         }
 
         protected Err err(string errorType, string errorMessage)
@@ -150,7 +156,15 @@ namespace RethinkDb.Driver.Tests
 
             try
             {
-                var res = ((ReqlAst)query).run(conn, runopts);
+                object res = null;
+                if( query is Fetch )
+                {
+                    res = ((Fetch)query).run(conn, runopts);
+                }
+                else
+                {
+                    res = ((ReqlAst)query).run(conn, runopts);
+                }
                 if( res is ICursor )
                 {
                     var cur = (ICursor)res;
@@ -200,7 +214,7 @@ namespace RethinkDb.Driver.Tests
 
             public Bag(IList lst)
             {
-                var newlist = lst.OfType<object>().ToList();
+                var newlist = lst.OfType<string>().ToList();
                 newlist.Sort();
                 this.lst = newlist;
             }
@@ -213,6 +227,11 @@ namespace RethinkDb.Driver.Tests
                 var otherList = ((IList)other).OfType<object>().ToList();
                 otherList.Sort();
                 return lst.Equals(otherList);
+            }
+
+            public override string ToString()
+            {
+                return $"Bag({lst}))";
             }
         }
 
@@ -332,18 +351,30 @@ namespace RethinkDb.Driver.Tests
             return new ArrLen(length, thing);
         }
 
+        protected ArrLen arrlen(long length)
+        {
+            return new ArrLen((int)length, null);
+        }
+
 
 
         public class Uuid
         {
             public override bool Equals(Object other)
             {
-                if (!(other is String)) {
+                if (!(other is String))
+                {
+                    Console.WriteLine("Not compared to a string! Got:" + other);
                     return false;
                 }
 
                 Guid val;
                 return Guid.TryParse(other as string, out val);
+            }
+
+            public override string ToString()
+            {
+                return $@"Uuid("")";
             }
         }
 
@@ -429,10 +460,52 @@ namespace RethinkDb.Driver.Tests
             return new ErrRegex(classname, message_rgx);
         }
 
-        protected ArrayList fetch(ReqlAst query, double values)
+        public class Fetch
         {
-            throw new NotImplementedException("Not implemented!");
+            public ReqlExpr query;
+            public long limit;
+
+            public Fetch( ReqlExpr query, long limit)
+            {
+                this.query = query;
+
+                if( limit < 0 )
+                {
+                    this.limit = long.MaxValue;
+                }
+                else
+                {
+                    this.limit = limit;
+                }
+            }
+
+            public object run(Connection conn, OptArgs runopts)
+            {
+                ICursor cursor = (ICursor)query.run(conn, runopts);
+                long total = 0;
+                var result = new ArrayList((int)limit);
+                for( long i = 0; i < limit; i++ )
+                {
+                    if( !cursor.HasNext() )
+                    {
+                        break;
+                    }
+                    result[(int)i] = cursor.next();
+                }
+                return result;
+            }
         }
+
+        protected Fetch fetch(ReqlExpr query, long limit)
+        {
+            return new Fetch(query, limit);
+        }
+
+        protected Fetch fetch(ReqlExpr query)
+        {
+            return new Fetch(query, -1);
+        }
+        
 
         public IEnumerable<int> range(int start, int stop)
         {

@@ -12,6 +12,8 @@ namespace RethinkDb.Driver.Net
     {
         void Extend(Response response);
         void SetError(string msg);
+        bool HasNext();
+        object next();
         long Token { get; }
     }
 
@@ -119,20 +121,26 @@ namespace RethinkDb.Driver.Net
 			return new DefaultCursor<T>(connection, query);
 		}
 
-		public T next()
+        object ICursor.next()
+        {
+            return this.next();
+        }
+
+        public T next()
 		{
 			return getNext(null);
 		}
 
-		public virtual T next(TimeSpan? timeout)
+        public virtual T next(TimeSpan? timeout)
 		{
 			return getNext(timeout);
 		}
 
-		// Abstract methods
-		internal abstract T getNext(TimeSpan? timeout);
+        // Abstract methods
 
-		private class DefaultCursor<T> : Cursor<T>
+        internal abstract T getNext(TimeSpan? timeout);
+
+        private class DefaultCursor<T> : Cursor<T>
 		{
 		    private FormatOptions fmt;
 			public DefaultCursor(Connection connection, Query query) : base(connection, query)
@@ -156,6 +164,21 @@ namespace RethinkDb.Driver.Net
 			}
 
 		}
+
+        public bool HasNext()
+        {
+            if( this.items.Count > 0 )
+            {
+                return true;
+            }
+            if( error != null )
+            {
+                return false;
+            }
+            MaybeFetchBatch();
+            connection.ReadResponse(query.Token, null);
+            return this.items.Count > 0;
+        }
 
         public IEnumerator<T> GetEnumerator()
         {

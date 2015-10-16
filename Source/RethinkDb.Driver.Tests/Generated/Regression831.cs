@@ -22,6 +22,11 @@ namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
     public class Regression831 : GeneratedTest {
 
+        public Regression831 (){
+                tableVars.Add( "tbl" );
+        }
+
+
             public static Table tbl = r.db(DbName).table("tbl");
 
 

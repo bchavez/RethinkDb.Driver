@@ -22,6 +22,11 @@ namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
     public class SindexStatus : GeneratedTest {
 
+        public SindexStatus (){
+                tableVars.Add( "tbl2" );
+        }
+
+
             public static Table tbl2 = r.db(DbName).table("tbl2");
 
 

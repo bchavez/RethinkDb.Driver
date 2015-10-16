@@ -22,6 +22,10 @@ namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
     public class GeoOperations : GeneratedTest {
 
+        public GeoOperations (){
+        }
+
+
 
 
         [Test]

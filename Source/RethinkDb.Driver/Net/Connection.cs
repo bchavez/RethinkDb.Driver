@@ -134,9 +134,9 @@ namespace RethinkDb.Driver.Net
             return Interlocked.Increment(ref nextToken);
         }
 
-        internal virtual Response ReadResponse(long token, long? deadline)
+        internal virtual Response ReadResponse(Query query, long? deadline)
         {
-            return checkOpen().ReadResponse(token, deadline);
+            return checkOpen().ReadResponse(query, deadline);
         }
 
         internal virtual T RunQuery<T>(Query query)
@@ -147,7 +147,7 @@ namespace RethinkDb.Driver.Net
 
             inst.Socket.WriteQuery( query.Token, query.Serialize());
 
-            Response res = inst.ReadResponse(query.Token);
+            Response res = inst.ReadResponse(query);
 
             // TODO: This logic needs to move into the Response class
             Log.Debug(res.ToString());
@@ -166,7 +166,7 @@ namespace RethinkDb.Driver.Net
             }
             else if( res.IsPartial || res.IsSequence )
             {
-                ICursor cursor = Cursor<T>.empty(this, query);
+                ICursor cursor = Cursor<T>.create(this, query, res);
                 cursor.Extend(res);
                 return (T) cursor;
             }

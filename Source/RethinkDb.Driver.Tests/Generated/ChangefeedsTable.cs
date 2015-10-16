@@ -22,6 +22,11 @@ namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
     public class ChangefeedsTable : GeneratedTest {
 
+        public ChangefeedsTable (){
+                tableVars.Add( "tbl" );
+        }
+
+
             public static Table tbl = r.db(DbName).table("tbl");
 
 

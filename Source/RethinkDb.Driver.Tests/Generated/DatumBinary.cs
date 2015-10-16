@@ -22,6 +22,10 @@ namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
     public class DatumBinary : GeneratedTest {
 
+        public DatumBinary (){
+        }
+
+
 
 
         [Test]

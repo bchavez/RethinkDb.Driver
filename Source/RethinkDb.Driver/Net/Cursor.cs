@@ -18,41 +18,34 @@ namespace RethinkDb.Driver.Net
     }
 
     internal abstract class Cursor<T> : IEnumerable<T>, IEnumerator<T>, ICursor
-	{
-		// public immutable members
-		public long Token { get; }
+    {
+        // public immutable members
+        public long Token { get; }
 
-		// immutable members
-		protected internal readonly Connection connection;
-		protected internal readonly Query query;
+        // immutable members
+        protected internal readonly Connection connection;
+        protected internal readonly Query query;
 
-		// mutable members
-		protected internal List<JToken> items = new List<JToken>();
-		protected internal int outstandingRequests = 1;
-		protected internal int threshold = 0;
-		protected internal Exception error = null;
+        // mutable members
+        protected internal List<JToken> items = new List<JToken>();
+        protected internal int outstandingRequests = 0;
+        protected internal int threshold = 1;
+        protected internal Exception error = null;
+        public bool IsFeed { get; }
 
-		public Cursor(Connection connection, Query query)
+
+        public Cursor(Connection connection, Query query, Response firstResponse)
 		{
 			this.connection = connection;
 			this.query = query;
 			this.Token = query.Token;
+            this.IsFeed = firstResponse.IsFeed;
 			connection.AddToCache(query.Token, this);
+            MaybeSendContinue();
+            ExtendInternal(firstResponse);
 		}
 
-        public void SetError(string msg)
-        {
-            if( this.error != null ) return;
-
-            this.error = new ReqlRuntimeError(msg);
-
-            var dummyResponse = Response.Make(query.Token, ResponseType.SUCCESS_SEQUENCE)
-                .Build();
-
-            Extend(dummyResponse);
-        }
-
-		public virtual void close()
+        public virtual void close()
 		{
 			if (error == null)
 			{
@@ -65,38 +58,53 @@ namespace RethinkDb.Driver.Net
 			}
 		}
 
-        public virtual void Extend(Response response)
-		{
-			outstandingRequests -= 1;
-			threshold = response.Data.Count;
-			if (error == null)
-			{
-				if (response.IsPartial)
-				{
-				    foreach( var item in response.Data )
-				        items.Add(item);
-				}
-				else if (response.IsSequence)
-				{
-                    foreach( var item in response.Data )
+        private void ExtendInternal(Response response)
+        {
+            threshold = response.Data.Count;
+            if (error == null)
+            {
+                if (response.IsPartial)
+                {
+                    foreach (var item in response.Data)
                         items.Add(item);
-				    error = new InvalidOperationException("No such element");
-				}
-				else
-				{
-				    error = response.MakeError(query);
-				}
-			}
-			MaybeFetchBatch();
-			if (outstandingRequests == 0 && error != null)
-			{
-				connection.RemoveFromCache(response.Token);
-			}
-		}
+                }
+                else if (response.IsSequence)
+                {
+                    foreach (var item in response.Data)
+                        items.Add(item);
+                    error = new InvalidOperationException("No such element");
+                }
+                else
+                {
+                    error = response.MakeError(query);
+                }
+            }
+            if (outstandingRequests == 0 && error != null)
+            {
+                connection.RemoveFromCache(response.Token);
+            }
+        }
 
-		protected internal virtual void MaybeFetchBatch()
+        public virtual void Extend(Response response)
+        {
+            throw new NotImplementedException();ddd
+        }
+
+        public void SetError(string msg)
+        {
+            if( this.error != null ) return;
+
+            this.error = new ReqlRuntimeError(msg);
+
+            var dummyResponse = Response.Make(query.Token, ResponseType.SUCCESS_SEQUENCE)
+                .Build();
+
+            ExtendInternal(dummyResponse);
+        }
+
+        protected internal virtual void MaybeSendContinue()
 		{
-			if (error == null && items.Count <= threshold && outstandingRequests == 0)
+			if (error == null && items.Count < threshold && outstandingRequests == 0)
 			{
 				outstandingRequests += 1;
 				connection.Continue(this);
@@ -116,10 +124,10 @@ namespace RethinkDb.Driver.Net
 			}
 		}
 
-		public static Cursor<T> empty(Connection connection, Query query)
-		{
-			return new DefaultCursor<T>(connection, query);
-		}
+        public static Cursor<T> create(Connection connection, Query query, Response firstResponse)
+        {
+            return new DefaultCursor<T>(connection, query, firstResponse);
+        }
 
         object ICursor.next()
         {
@@ -143,7 +151,7 @@ namespace RethinkDb.Driver.Net
         private class DefaultCursor<T> : Cursor<T>
 		{
 		    private FormatOptions fmt;
-			public DefaultCursor(Connection connection, Query query) : base(connection, query)
+			public DefaultCursor(Connection connection, Query query, Response firstResponse) : base(connection, query, firstResponse)
 			{
 			    this.fmt = new FormatOptions(query.GlobalOptions);
 			}
@@ -152,11 +160,11 @@ namespace RethinkDb.Driver.Net
 			{
 				while (items.Count == 0)
 				{
-					MaybeFetchBatch();
+					MaybeSendContinue();
 				    if( error != null )
 				        throw error;
 
-				    connection.ReadResponse(query.Token, NetUtil.Deadline(timeout));
+				    connection.ReadResponse(query, NetUtil.Deadline(timeout));
 				}
 			    var element = items.First();
 			    items.RemoveAt(0);
@@ -175,8 +183,12 @@ namespace RethinkDb.Driver.Net
             {
                 return false;
             }
-            MaybeFetchBatch();
-            connection.ReadResponse(query.Token, null);
+            if( this.IsFeed )
+            {
+                return true;
+            }
+            MaybeSendContinue();
+            connection.ReadResponse(query, null);
             return this.items.Count > 0;
         }
 

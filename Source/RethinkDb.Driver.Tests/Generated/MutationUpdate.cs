@@ -22,6 +22,12 @@ namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
     public class MutationUpdate : GeneratedTest {
 
+        public MutationUpdate (){
+                tableVars.Add( "tbl" );
+                tableVars.Add( "tbl2" );
+        }
+
+
             public static Table tbl = r.db(DbName).table("tbl");
             public static Table tbl2 = r.db(DbName).table("tbl2");
 

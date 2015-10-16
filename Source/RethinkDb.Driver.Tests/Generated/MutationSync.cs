@@ -22,6 +22,10 @@ namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
     public class MutationSync : GeneratedTest {
 
+        public MutationSync (){
+        }
+
+
 
 
         [Test]

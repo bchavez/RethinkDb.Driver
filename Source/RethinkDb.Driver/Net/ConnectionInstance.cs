@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Net
 {
@@ -43,15 +44,18 @@ namespace RethinkDb.Driver.Net
 			cursorCache.Remove(token);
 		}
 
-		internal virtual Response ReadResponse(long token)
+		internal virtual Response ReadResponse(Query query)
 		{
-			return ReadResponse(token, null);
+			return ReadResponse(query, null);
 		}
 
-	    internal virtual Response ReadResponse(long token, long? deadline)
+	    internal virtual Response ReadResponse(Query query, long? deadline)
 	    {
 	        if( Socket == null )
 	            throw new ReqlError("Socket not open");
+
+            long token = query.Token;
+
             /*
 				if (headerInProgress == null)
 				{
@@ -64,7 +68,7 @@ namespace RethinkDb.Driver.Net
 
 				var res = Response.parseFrom(resToken, resBuf);*/
 
-	        while( true )
+            while ( true )
 	        {
                 //may or maynot be the token we're looking for.
 	            var res = this.Socket.Read();
@@ -73,13 +77,16 @@ namespace RethinkDb.Driver.Net
 	            if( cursorCache.TryGetValue(res.Token, out cursor) )
 	            {
 	                cursor.Extend(res);
+	                if( res.Token == token )
+	                {
+	                    return null;
+	                }
 	            }
-
-                if( res.Token == token )
+                else if( res.Token == token )
 	            {
 	                return res;
 	            }
-	            else if( closing || cursor != null )
+	            else if( !closing )
 	            {
 	                Close();
 	                throw new ReqlDriverError("Unexpected response received");

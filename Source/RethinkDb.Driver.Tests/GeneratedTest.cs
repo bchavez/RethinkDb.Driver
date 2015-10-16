@@ -27,6 +27,9 @@ namespace RethinkDb.Driver.Tests
         protected static RethinkDB r = RethinkDB.r;
         protected Connection conn;
 
+        protected List<string> tableVars = new List<string>();
+
+
         [TestFixtureSetUp]
         public void BeforeRunningTestSession()
         {
@@ -52,7 +55,10 @@ namespace RethinkDb.Driver.Tests
         [TearDown]
         public void AfterEachTest()
         {
-
+            if( !conn.Open )
+            {
+                conn.reconnect();
+            }
         }
 
         // Python test conversion compatibility definitions

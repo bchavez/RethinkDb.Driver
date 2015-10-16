@@ -34,6 +34,7 @@ namespace RethinkDb.Driver.Net
 			try
 			{
 			    socketChannel.NoDelay = true;
+			    socketChannel.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
                 socketChannel.Client.Blocking = true;
                 taskComplete = socketChannel.ConnectAsync(this.hostname, this.port).Wait(this.timeout);
 			    if( deadline < DateTime.UtcNow.Ticks || (taskComplete && !socketChannel.Connected) )

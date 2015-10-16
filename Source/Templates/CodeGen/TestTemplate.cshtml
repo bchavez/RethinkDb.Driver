@@ -34,6 +34,14 @@ namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
     public class @YamlTest.ModuleName : GeneratedTest {
 
+        public @YamlTest.ModuleName (){
+            @foreach (var table in this.YamlTest.TableVarNames)
+            {
+                @:tableVars.Add( "@table" );
+            }
+        }
+
+
         @foreach( var table in this.YamlTest.TableVarNames )
         {
             @:public static Table @table = r.db(DbName).table("@table");

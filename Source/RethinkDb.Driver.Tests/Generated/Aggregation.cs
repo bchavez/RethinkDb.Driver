@@ -22,6 +22,14 @@ namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
     public class Aggregation : GeneratedTest {
 
+        public Aggregation (){
+                tableVars.Add( "tbl" );
+                tableVars.Add( "tbl2" );
+                tableVars.Add( "tbl3" );
+                tableVars.Add( "tbl4" );
+        }
+
+
             public static Table tbl = r.db(DbName).table("tbl");
             public static Table tbl2 = r.db(DbName).table("tbl2");
             public static Table tbl3 = r.db(DbName).table("tbl3");

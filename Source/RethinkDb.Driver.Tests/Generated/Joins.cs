@@ -22,6 +22,15 @@ namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
     public class Joins : GeneratedTest {
 
+        public Joins (){
+                tableVars.Add( "messages" );
+                tableVars.Add( "receivers" );
+                tableVars.Add( "senders" );
+                tableVars.Add( "tbl" );
+                tableVars.Add( "tbl2" );
+        }
+
+
             public static Table messages = r.db(DbName).table("messages");
             public static Table receivers = r.db(DbName).table("receivers");
             public static Table senders = r.db(DbName).table("senders");

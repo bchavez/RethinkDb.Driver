@@ -22,6 +22,10 @@ namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
     public class Regression3059 : GeneratedTest {
 
+        public Regression3059 (){
+        }
+
+
 
 
         [Test]

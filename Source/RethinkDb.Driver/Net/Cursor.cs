@@ -87,7 +87,9 @@ namespace RethinkDb.Driver.Net
 
         public virtual void Extend(Response response)
         {
-            throw new NotImplementedException();ddd
+            outstandingRequests -= 1;
+            MaybeSendContinue();
+            ExtendInternal(response);
         }
 
         public void SetError(string msg)

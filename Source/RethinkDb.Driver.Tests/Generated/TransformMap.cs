@@ -86,21 +86,7 @@ namespace RethinkDb.Driver.Test.Generated {
                     );
                  assertEquals(expected_, obtained);
              }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/map.yaml, #5
-                 /* ExpectedOriginal: [0, 0, 0] */
-                 var expected_ = r.array(0L, 0L, 0L);
-                 
-                 /* Original: r.range(3).map(r.range(4), lambda:0) */
-                 var obtained = runOrCatch( r.range(3L).map(r.range(4L), () => 0L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
+                        
              TestCounter++;
              
              {

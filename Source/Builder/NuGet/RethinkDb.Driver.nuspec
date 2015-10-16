@@ -16,6 +16,9 @@
     
     <releaseNotes>
       History
+      v0.0.5-alpha2
+      * Implemented driver prefetching.
+      
       v0.0.5-alpha1
       * Support for .NET Core / DNX Runtime.
       * Support for Mono / Linux Runtime.

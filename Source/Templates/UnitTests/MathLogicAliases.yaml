@@ -2,7 +2,7 @@ ModuleName: MathLogicAliases
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 1
+  TestNum: (1, 1)
   Original: r.expr(0).add(1)
   Java: r.expr(0L).add(1L)
   ExpectedOriginal: 1
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 1
+  TestNum: (1, 2)
   Original: r.add(0, 1)
   Java: r.add(0L, 1L)
   ExpectedOriginal: 1
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 1
+  TestNum: (1, 3)
   Original: r.expr(2).sub(1)
   Java: r.expr(2L).sub(1L)
   ExpectedOriginal: 1
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 1
+  TestNum: (1, 4)
   Original: r.sub(2, 1)
   Java: r.sub(2L, 1L)
   ExpectedOriginal: 1
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 1
+  TestNum: (1, 5)
   Original: r.expr(2).div(2)
   Java: r.expr(2L).div(2L)
   ExpectedOriginal: 1
@@ -47,7 +47,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 1
+  TestNum: (1, 6)
   Original: r.div(2, 2)
   Java: r.div(2L, 2L)
   ExpectedOriginal: 1
@@ -56,7 +56,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 1
+  TestNum: (1, 7)
   Original: r.expr(1).mul(1)
   Java: r.expr(1L).mul(1L)
   ExpectedOriginal: 1
@@ -65,7 +65,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 1
+  TestNum: (1, 8)
   Original: r.mul(1, 1)
   Java: r.mul(1L, 1L)
   ExpectedOriginal: 1
@@ -74,7 +74,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 1
+  TestNum: (1, 9)
   Original: r.expr(1).mod(2)
   Java: r.expr(1L).mod(2L)
   ExpectedOriginal: 1
@@ -83,7 +83,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 1
+  TestNum: (1, 10)
   Original: r.mod(1, 2)
   Java: r.mod(1L, 2L)
   ExpectedOriginal: 1
@@ -92,7 +92,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 2
+  TestNum: (2, 1)
   Original: r.expr(True).and_(True)
   Java: r.expr(true).and(true)
   ExpectedOriginal: True
@@ -101,7 +101,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 2
+  TestNum: (2, 2)
   Original: r.expr(True).or_(True)
   Java: r.expr(true).or(true)
   ExpectedOriginal: True
@@ -110,7 +110,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 2
+  TestNum: (2, 3)
   Original: r.and_(True, True)
   Java: r.and(true, true)
   ExpectedOriginal: True
@@ -119,7 +119,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 2
+  TestNum: (2, 4)
   Original: r.or_(True, True)
   Java: r.or(true, true)
   ExpectedOriginal: True
@@ -128,7 +128,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 2
+  TestNum: (2, 5)
   Original: r.expr(False).not_()
   Java: r.expr(false).not()
   ExpectedOriginal: True
@@ -137,7 +137,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 2
+  TestNum: (2, 6)
   Original: r.not_(False)
   Java: r.not(false)
   ExpectedOriginal: True
@@ -146,7 +146,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 3
+  TestNum: (3, 1)
   Original: r.expr(1).eq(1)
   Java: r.expr(1L).eq(1L)
   ExpectedOriginal: True
@@ -155,7 +155,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 3
+  TestNum: (3, 2)
   Original: r.expr(1).ne(2)
   Java: r.expr(1L).ne(2L)
   ExpectedOriginal: True
@@ -164,7 +164,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 3
+  TestNum: (3, 3)
   Original: r.expr(1).lt(2)
   Java: r.expr(1L).lt(2L)
   ExpectedOriginal: True
@@ -173,7 +173,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 3
+  TestNum: (3, 4)
   Original: r.expr(1).gt(0)
   Java: r.expr(1L).gt(0L)
   ExpectedOriginal: True
@@ -182,7 +182,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 3
+  TestNum: (3, 5)
   Original: r.expr(1).le(1)
   Java: r.expr(1L).le(1L)
   ExpectedOriginal: True
@@ -191,7 +191,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 3
+  TestNum: (3, 6)
   Original: r.expr(1).ge(1)
   Java: r.expr(1L).ge(1L)
   ExpectedOriginal: True
@@ -200,7 +200,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 3
+  TestNum: (3, 7)
   Original: r.eq(1, 1)
   Java: r.eq(1L, 1L)
   ExpectedOriginal: True
@@ -209,7 +209,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 3
+  TestNum: (3, 8)
   Original: r.ne(1, 2)
   Java: r.ne(1L, 2L)
   ExpectedOriginal: True
@@ -218,7 +218,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 3
+  TestNum: (3, 9)
   Original: r.lt(1, 2)
   Java: r.lt(1L, 2L)
   ExpectedOriginal: True
@@ -227,7 +227,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 3
+  TestNum: (3, 10)
   Original: r.gt(1, 0)
   Java: r.gt(1L, 0L)
   ExpectedOriginal: True
@@ -236,7 +236,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 3
+  TestNum: (3, 11)
   Original: r.le(1, 1)
   Java: r.le(1L, 1L)
   ExpectedOriginal: True
@@ -245,7 +245,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml
-  TestNum: 3
+  TestNum: (3, 12)
   Original: r.ge(1, 1)
   Java: r.ge(1L, 1L)
   ExpectedOriginal: True

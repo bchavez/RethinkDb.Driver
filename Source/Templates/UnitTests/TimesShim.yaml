@@ -4,6 +4,9 @@ DefsAndTests:
   TestFile: times/shim.yaml
   TestNum: 1
   Original: t = 1375147296.68
+  VarName: t
+  VarType: Double
+  Value: (Double) (1375147296.68)
   Java: Double t = (Double) (1375147296.68);
   RunOpts: []
 - TestType: JavaQuery

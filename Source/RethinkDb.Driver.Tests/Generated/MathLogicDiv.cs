@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/div.yaml, #1
+                 //JavaQuery, math_logic/div.yaml, #(1, 1)
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
@@ -48,7 +48,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/div.yaml, #1
+                 //JavaQuery, math_logic/div.yaml, #(1, 2)
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
@@ -62,7 +62,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/div.yaml, #1
+                 //JavaQuery, math_logic/div.yaml, #(1, 3)
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
@@ -104,7 +104,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/div.yaml, #5
+                 //JavaQuery, math_logic/div.yaml, #(5, 1)
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1L));
                  
@@ -118,7 +118,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/div.yaml, #5
+                 //JavaQuery, math_logic/div.yaml, #(5, 2)
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1L));
                  
@@ -132,7 +132,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/div.yaml, #5
+                 //JavaQuery, math_logic/div.yaml, #(5, 3)
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1L));
                  
@@ -146,7 +146,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/div.yaml, #5
+                 //JavaQuery, math_logic/div.yaml, #(5, 4)
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1L));
                  
@@ -160,7 +160,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/div.yaml, #5
+                 //JavaQuery, math_logic/div.yaml, #(5, 5)
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1L));
                  
@@ -174,7 +174,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/div.yaml, #5
+                 //JavaQuery, math_logic/div.yaml, #(5, 6)
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1L));
                  

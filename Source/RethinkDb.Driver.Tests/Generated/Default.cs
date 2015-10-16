@@ -67,7 +67,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = 2L;
                  
                  /* Original: r.expr({})['b'].default(2) */
-                 var obtained = runOrCatch( r.expr(r.hashMap()).g("b").default_(2L) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap()).bracket("b").default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -81,7 +81,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", r.array());
                  
                  /* Original: r.expr(r.expr('a')['b']).default(2) */
-                 var obtained = runOrCatch( r.expr(r.expr("a").g("b")).default_(2L) ,
+                 var obtained = runOrCatch( r.expr(r.expr("a").bracket("b")).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -277,7 +277,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlNonExistenceError", "No attribute `b` in object:", r.array());
                  
                  /* Original: r.expr({})['b'].default(r.error()) */
-                 var obtained = runOrCatch( r.expr(r.hashMap()).g("b").default_(r.error()) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap()).bracket("b").default_(r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -403,7 +403,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = "No attribute `b` in object:\n{}";
                  
                  /* Original: r.expr({})['b'].default(lambda e:e) */
-                 var obtained = runOrCatch( r.expr(r.hashMap()).g("b").default_(e => e) ,
+                 var obtained = runOrCatch( r.expr(r.hashMap()).bracket("b").default_(e => e) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -494,10 +494,11 @@ namespace RethinkDb.Driver.Test.Generated {
              }
              
              
-             //JavaDef, default.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, default.yaml, #34
              //Original: arr = r.expr([{'a':1},{'a':null},{}]).order_by('a')
              
-var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.hashMap())).orderBy("a"));             
+                 var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.hashMap())).orderBy("a"));
+             
              TestCounter++;
              
              {
@@ -506,7 +507,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1)) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1L)) ,
+                 var obtained = runOrCatch( arr.filter(x => x.bracket("a").eq(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -520,7 +521,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=False) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1L)).optArg("default", false) ,
+                 var obtained = runOrCatch( arr.filter(x => x.bracket("a").eq(1L)).optArg("default", false) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -534,7 +535,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap(), r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=True) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1L)).optArg("default", true) ,
+                 var obtained = runOrCatch( arr.filter(x => x.bracket("a").eq(1L)).optArg("default", true) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -548,7 +549,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap(), r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=r.js('true')) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1L)).optArg("default", r.js("true")) ,
+                 var obtained = runOrCatch( arr.filter(x => x.bracket("a").eq(1L)).optArg("default", r.js("true")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -562,7 +563,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=r.js('false')) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1L)).optArg("default", r.js("false")) ,
+                 var obtained = runOrCatch( arr.filter(x => x.bracket("a").eq(1L)).optArg("default", r.js("false")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -576,7 +577,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = err("ReqlNonExistenceError", "No attribute `a` in object:", r.array());
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=r.error()) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").eq(1L)).optArg("default", r.error()) ,
+                 var obtained = runOrCatch( arr.filter(x => x.bracket("a").eq(1L)).optArg("default", r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -590,7 +591,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: r.expr(False).do(lambda d:arr.filter(lambda x:x['a'].eq(1), default=d)) */
-                 var obtained = runOrCatch( r.expr(false).do_(d => arr.filter(x => x.g("a").eq(1L)).optArg("default", d)) ,
+                 var obtained = runOrCatch( r.expr(false).do_(d => arr.filter(x => x.bracket("a").eq(1L)).optArg("default", d)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -604,7 +605,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap(), r.hashMap("a", 1L));
                  
                  /* Original: r.expr(True).do(lambda d:arr.filter(lambda x:x['a'].eq(1), default=d)).order_by('a') */
-                 var obtained = runOrCatch( r.expr(true).do_(d => arr.filter(x => x.g("a").eq(1L)).optArg("default", d)).orderBy("a") ,
+                 var obtained = runOrCatch( r.expr(true).do_(d => arr.filter(x => x.bracket("a").eq(1L)).optArg("default", d)).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -618,7 +619,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].default(0).eq(1)) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").default_(0L).eq(1L)) ,
+                 var obtained = runOrCatch( arr.filter(x => x.bracket("a").default_(0L).eq(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -632,7 +633,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].default(1).eq(1)).order_by('a') */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").default_(1L).eq(1L)).orderBy("a") ,
+                 var obtained = runOrCatch( arr.filter(x => x.bracket("a").default_(1L).eq(1L)).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -646,7 +647,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:x['a'].default(r.error()).eq(1)) */
-                 var obtained = runOrCatch( arr.filter(x => x.g("a").default_(r.error()).eq(1L)) ,
+                 var obtained = runOrCatch( arr.filter(x => x.bracket("a").default_(r.error()).eq(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -660,7 +661,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: r.expr(0).do(lambda i:arr.filter(lambda x:x['a'].default(i).eq(1))) */
-                 var obtained = runOrCatch( r.expr(0L).do_(i => arr.filter(x => x.g("a").default_(i).eq(1L))) ,
+                 var obtained = runOrCatch( r.expr(0L).do_(i => arr.filter(x => x.bracket("a").default_(i).eq(1L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -674,7 +675,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L));
                  
                  /* Original: r.expr(1).do(lambda i:arr.filter(lambda x:x['a'].default(i).eq(1))).order_by('a') */
-                 var obtained = runOrCatch( r.expr(1L).do_(i => arr.filter(x => x.g("a").default_(i).eq(1L))).orderBy("a") ,
+                 var obtained = runOrCatch( r.expr(1L).do_(i => arr.filter(x => x.bracket("a").default_(i).eq(1L))).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -688,7 +689,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2))) */
-                 var obtained = runOrCatch( arr.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))) ,
+                 var obtained = runOrCatch( arr.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -702,7 +703,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=False) */
-                 var obtained = runOrCatch( arr.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", false) ,
+                 var obtained = runOrCatch( arr.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", false) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -716,7 +717,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L));
                  
                  /* Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=True).order_by('a') */
-                 var obtained = runOrCatch( arr.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", true).orderBy("a") ,
+                 var obtained = runOrCatch( arr.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", true).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -730,7 +731,7 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
                  var expected_ = err("ReqlNonExistenceError", "No attribute `a` in object:", r.array());
                  
                  /* Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=r.error()) */
-                 var obtained = runOrCatch( arr.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", r.error()) ,
+                 var obtained = runOrCatch( arr.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -765,10 +766,11 @@ var arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.
              }
              
              
-             //JavaDef, default.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, default.yaml, #54
              //Original: tbl = r.table('default_test').order_by('a').pluck('a')
              
-var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));             
+                 var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
+             
              TestCounter++;
              
              {
@@ -777,7 +779,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:x['a'].eq(1)) */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").eq(1L)) ,
+                 var obtained = runOrCatch( tbl.filter(x => x.bracket("a").eq(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -791,7 +793,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:x['a'].eq(1), default=False) */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").eq(1L)).optArg("default", false) ,
+                 var obtained = runOrCatch( tbl.filter(x => x.bracket("a").eq(1L)).optArg("default", false) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -805,7 +807,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap(), r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:x['a'].eq(1), default=True) */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").eq(1L)).optArg("default", true) ,
+                 var obtained = runOrCatch( tbl.filter(x => x.bracket("a").eq(1L)).optArg("default", true) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -819,7 +821,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = err("ReqlNonExistenceError", "No attribute `a` in object:", r.array());
                  
                  /* Original: tbl.filter(lambda x:x['a'].eq(1), default=r.error()) */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").eq(1L)).optArg("default", r.error()) ,
+                 var obtained = runOrCatch( tbl.filter(x => x.bracket("a").eq(1L)).optArg("default", r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -833,7 +835,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: r.expr(False).do(lambda d:tbl.filter(lambda x:x['a'].eq(1), default=d)) */
-                 var obtained = runOrCatch( r.expr(false).do_(d => tbl.filter(x => x.g("a").eq(1L)).optArg("default", d)) ,
+                 var obtained = runOrCatch( r.expr(false).do_(d => tbl.filter(x => x.bracket("a").eq(1L)).optArg("default", d)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -847,7 +849,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap(), r.hashMap("a", 1L));
                  
                  /* Original: r.expr(True).do(lambda d:tbl.filter(lambda x:x['a'].eq(1), default=d)).order_by('a') */
-                 var obtained = runOrCatch( r.expr(true).do_(d => tbl.filter(x => x.g("a").eq(1L)).optArg("default", d)).orderBy("a") ,
+                 var obtained = runOrCatch( r.expr(true).do_(d => tbl.filter(x => x.bracket("a").eq(1L)).optArg("default", d)).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -861,7 +863,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:x['a'].default(0).eq(1)) */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").default_(0L).eq(1L)) ,
+                 var obtained = runOrCatch( tbl.filter(x => x.bracket("a").default_(0L).eq(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -875,7 +877,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:x['a'].default(1).eq(1)).order_by('a') */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").default_(1L).eq(1L)).orderBy("a") ,
+                 var obtained = runOrCatch( tbl.filter(x => x.bracket("a").default_(1L).eq(1L)).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -889,7 +891,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:x['a'].default(r.error()).eq(1)) */
-                 var obtained = runOrCatch( tbl.filter(x => x.g("a").default_(r.error()).eq(1L)) ,
+                 var obtained = runOrCatch( tbl.filter(x => x.bracket("a").default_(r.error()).eq(1L)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -903,7 +905,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: r.expr(0).do(lambda i:tbl.filter(lambda x:x['a'].default(i).eq(1))) */
-                 var obtained = runOrCatch( r.expr(0L).do_(i => tbl.filter(x => x.g("a").default_(i).eq(1L))) ,
+                 var obtained = runOrCatch( r.expr(0L).do_(i => tbl.filter(x => x.bracket("a").default_(i).eq(1L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -917,7 +919,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L));
                  
                  /* Original: r.expr(1).do(lambda i:tbl.filter(lambda x:x['a'].default(i).eq(1))).order_by('a') */
-                 var obtained = runOrCatch( r.expr(1L).do_(i => tbl.filter(x => x.g("a").default_(i).eq(1L))).orderBy("a") ,
+                 var obtained = runOrCatch( r.expr(1L).do_(i => tbl.filter(x => x.bracket("a").default_(i).eq(1L))).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -931,7 +933,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2))) */
-                 var obtained = runOrCatch( tbl.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))) ,
+                 var obtained = runOrCatch( tbl.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -945,7 +947,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=False) */
-                 var obtained = runOrCatch( tbl.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", false) ,
+                 var obtained = runOrCatch( tbl.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", false) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -959,7 +961,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L));
                  
                  /* Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=True).order_by('a') */
-                 var obtained = runOrCatch( tbl.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", true).orderBy("a") ,
+                 var obtained = runOrCatch( tbl.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", true).orderBy("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -973,7 +975,7 @@ var tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
                  var expected_ = err("ReqlNonExistenceError", "No attribute `a` in object:", r.array());
                  
                  /* Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=r.error()) */
-                 var obtained = runOrCatch( tbl.filter(x => r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", r.error()) ,
+                 var obtained = runOrCatch( tbl.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", r.error()) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

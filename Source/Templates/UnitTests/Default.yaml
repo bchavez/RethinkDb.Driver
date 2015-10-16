@@ -22,7 +22,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 3
   Original: r.expr({})['b'].default(2)
-  Java: r.expr(r.hashMap()).g("b").default_(2L)
+  Java: r.expr(r.hashMap()).bracket("b").default_(2L)
   ExpectedOriginal: 2
   ExpectedType: Long
   ExpectedJava: 2L
@@ -31,7 +31,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 4
   Original: r.expr(r.expr('a')['b']).default(2)
-  Java: r.expr(r.expr("a").g("b")).default_(2L)
+  Java: r.expr(r.expr("a").bracket("b")).default_(2L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", r.array())
@@ -157,7 +157,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 18
   Original: r.expr({})['b'].default(r.error())
-  Java: r.expr(r.hashMap()).g("b").default_(r.error())
+  Java: r.expr(r.hashMap()).bracket("b").default_(r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "No attribute `b` in object:", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlNonExistenceError", "No attribute `b` in object:", r.array())
@@ -238,7 +238,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 27
   Original: r.expr({})['b'].default(lambda e:e)
-  Java: r.expr(r.hashMap()).g("b").default_(e -> e)
+  Java: r.expr(r.hashMap()).bracket("b").default_(e -> e)
   ExpectedOriginal: ("No attribute `b` in object:\n{}")
   ExpectedType: String
   ExpectedJava: '"No attribute `b` in object:\n{}"'
@@ -301,13 +301,16 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 34
   Original: arr = r.expr([{'a':1},{'a':null},{}]).order_by('a')
+  VarName: arr
+  VarType: OrderBy
+  Value: (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.hashMap())).orderBy("a"))
   Java: OrderBy arr = (OrderBy) (r.expr(r.array(r.hashMap("a", 1L), r.hashMap("a", null), r.hashMap())).orderBy("a"));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
   TestNum: 35
   Original: arr.filter(lambda x:x['a'].eq(1))
-  Java: arr.filter(x -> x.g("a").eq(1L))
+  Java: arr.filter(x -> x.bracket("a").eq(1L))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -316,7 +319,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 36
   Original: arr.filter(lambda x:x['a'].eq(1), default=False)
-  Java: arr.filter(x -> x.g("a").eq(1L)).optArg("default", false)
+  Java: arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", false)
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -325,7 +328,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 37
   Original: arr.filter(lambda x:x['a'].eq(1), default=True)
-  Java: arr.filter(x -> x.g("a").eq(1L)).optArg("default", true)
+  Java: arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", true)
   ExpectedOriginal: '[{}, {''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", 1L))
@@ -334,7 +337,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 38
   Original: arr.filter(lambda x:x['a'].eq(1), default=r.js('true'))
-  Java: arr.filter(x -> x.g("a").eq(1L)).optArg("default", r.js("true"))
+  Java: arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", r.js("true"))
   ExpectedOriginal: '[{}, {''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", 1L))
@@ -343,7 +346,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 39
   Original: arr.filter(lambda x:x['a'].eq(1), default=r.js('false'))
-  Java: arr.filter(x -> x.g("a").eq(1L)).optArg("default", r.js("false"))
+  Java: arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", r.js("false"))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -352,7 +355,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 40
   Original: arr.filter(lambda x:x['a'].eq(1), default=r.error())
-  Java: arr.filter(x -> x.g("a").eq(1L)).optArg("default", r.error())
+  Java: arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "No attribute `a` in object:", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlNonExistenceError", "No attribute `a` in object:", r.array())
@@ -361,7 +364,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 41
   Original: r.expr(False).do(lambda d:arr.filter(lambda x:x['a'].eq(1), default=d))
-  Java: r.expr(false).do_(d -> arr.filter(x -> x.g("a").eq(1L)).optArg("default", d))
+  Java: r.expr(false).do_(d -> arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", d))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -370,7 +373,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 42
   Original: r.expr(True).do(lambda d:arr.filter(lambda x:x['a'].eq(1), default=d)).order_by('a')
-  Java: r.expr(true).do_(d -> arr.filter(x -> x.g("a").eq(1L)).optArg("default", d)).orderBy("a")
+  Java: r.expr(true).do_(d -> arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", d)).orderBy("a")
   ExpectedOriginal: '[{}, {''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", 1L))
@@ -379,7 +382,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 43
   Original: arr.filter(lambda x:x['a'].default(0).eq(1))
-  Java: arr.filter(x -> x.g("a").default_(0L).eq(1L))
+  Java: arr.filter(x -> x.bracket("a").default_(0L).eq(1L))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -388,7 +391,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 44
   Original: arr.filter(lambda x:x['a'].default(1).eq(1)).order_by('a')
-  Java: arr.filter(x -> x.g("a").default_(1L).eq(1L)).orderBy("a")
+  Java: arr.filter(x -> x.bracket("a").default_(1L).eq(1L)).orderBy("a")
   ExpectedOriginal: ([{}, {'a':null}, {'a':1}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L))
@@ -397,7 +400,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 45
   Original: arr.filter(lambda x:x['a'].default(r.error()).eq(1))
-  Java: arr.filter(x -> x.g("a").default_(r.error()).eq(1L))
+  Java: arr.filter(x -> x.bracket("a").default_(r.error()).eq(1L))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -406,7 +409,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 46
   Original: r.expr(0).do(lambda i:arr.filter(lambda x:x['a'].default(i).eq(1)))
-  Java: r.expr(0L).do_(i -> arr.filter(x -> x.g("a").default_(i).eq(1L)))
+  Java: r.expr(0L).do_(i -> arr.filter(x -> x.bracket("a").default_(i).eq(1L)))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -415,7 +418,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 47
   Original: r.expr(1).do(lambda i:arr.filter(lambda x:x['a'].default(i).eq(1))).order_by('a')
-  Java: r.expr(1L).do_(i -> arr.filter(x -> x.g("a").default_(i).eq(1L))).orderBy("a")
+  Java: r.expr(1L).do_(i -> arr.filter(x -> x.bracket("a").default_(i).eq(1L))).orderBy("a")
   ExpectedOriginal: ([{},{'a':null},{'a':1}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L))
@@ -424,7 +427,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 48
   Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)))
-  Java: arr.filter(x -> r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L)))
+  Java: arr.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L)))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -433,7 +436,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 49
   Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=False)
-  Java: arr.filter(x -> r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", false)
+  Java: arr.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", false)
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -442,7 +445,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 50
   Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=True).order_by('a')
-  Java: arr.filter(x -> r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", true).orderBy("a")
+  Java: arr.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", true).orderBy("a")
   ExpectedOriginal: ([{}, {'a':null}, {'a':1}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L))
@@ -451,7 +454,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 51
   Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=r.error())
-  Java: arr.filter(x -> r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", r.error())
+  Java: arr.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "No attribute `a` in object:", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlNonExistenceError", "No attribute `a` in object:", r.array())
@@ -478,13 +481,16 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 54
   Original: tbl = r.table('default_test').order_by('a').pluck('a')
+  VarName: tbl
+  VarType: Pluck
+  Value: (Pluck) (r.table("default_test").orderBy("a").pluck("a"))
   Java: Pluck tbl = (Pluck) (r.table("default_test").orderBy("a").pluck("a"));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
   TestNum: 55
   Original: tbl.filter(lambda x:x['a'].eq(1))
-  Java: tbl.filter(x -> x.g("a").eq(1L))
+  Java: tbl.filter(x -> x.bracket("a").eq(1L))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -493,7 +499,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 56
   Original: tbl.filter(lambda x:x['a'].eq(1), default=False)
-  Java: tbl.filter(x -> x.g("a").eq(1L)).optArg("default", false)
+  Java: tbl.filter(x -> x.bracket("a").eq(1L)).optArg("default", false)
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -502,7 +508,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 57
   Original: tbl.filter(lambda x:x['a'].eq(1), default=True)
-  Java: tbl.filter(x -> x.g("a").eq(1L)).optArg("default", true)
+  Java: tbl.filter(x -> x.bracket("a").eq(1L)).optArg("default", true)
   ExpectedOriginal: '[{}, {''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", 1L))
@@ -511,7 +517,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 58
   Original: tbl.filter(lambda x:x['a'].eq(1), default=r.error())
-  Java: tbl.filter(x -> x.g("a").eq(1L)).optArg("default", r.error())
+  Java: tbl.filter(x -> x.bracket("a").eq(1L)).optArg("default", r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "No attribute `a` in object:", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlNonExistenceError", "No attribute `a` in object:", r.array())
@@ -520,7 +526,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 59
   Original: r.expr(False).do(lambda d:tbl.filter(lambda x:x['a'].eq(1), default=d))
-  Java: r.expr(false).do_(d -> tbl.filter(x -> x.g("a").eq(1L)).optArg("default", d))
+  Java: r.expr(false).do_(d -> tbl.filter(x -> x.bracket("a").eq(1L)).optArg("default", d))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -529,7 +535,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 60
   Original: r.expr(True).do(lambda d:tbl.filter(lambda x:x['a'].eq(1), default=d)).order_by('a')
-  Java: r.expr(true).do_(d -> tbl.filter(x -> x.g("a").eq(1L)).optArg("default", d)).orderBy("a")
+  Java: r.expr(true).do_(d -> tbl.filter(x -> x.bracket("a").eq(1L)).optArg("default", d)).orderBy("a")
   ExpectedOriginal: '[{}, {''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", 1L))
@@ -538,7 +544,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 61
   Original: tbl.filter(lambda x:x['a'].default(0).eq(1))
-  Java: tbl.filter(x -> x.g("a").default_(0L).eq(1L))
+  Java: tbl.filter(x -> x.bracket("a").default_(0L).eq(1L))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -547,7 +553,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 62
   Original: tbl.filter(lambda x:x['a'].default(1).eq(1)).order_by('a')
-  Java: tbl.filter(x -> x.g("a").default_(1L).eq(1L)).orderBy("a")
+  Java: tbl.filter(x -> x.bracket("a").default_(1L).eq(1L)).orderBy("a")
   ExpectedOriginal: ([{}, {'a':null}, {'a':1}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L))
@@ -556,7 +562,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 63
   Original: tbl.filter(lambda x:x['a'].default(r.error()).eq(1))
-  Java: tbl.filter(x -> x.g("a").default_(r.error()).eq(1L))
+  Java: tbl.filter(x -> x.bracket("a").default_(r.error()).eq(1L))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -565,7 +571,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 64
   Original: r.expr(0).do(lambda i:tbl.filter(lambda x:x['a'].default(i).eq(1)))
-  Java: r.expr(0L).do_(i -> tbl.filter(x -> x.g("a").default_(i).eq(1L)))
+  Java: r.expr(0L).do_(i -> tbl.filter(x -> x.bracket("a").default_(i).eq(1L)))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -574,7 +580,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 65
   Original: r.expr(1).do(lambda i:tbl.filter(lambda x:x['a'].default(i).eq(1))).order_by('a')
-  Java: r.expr(1L).do_(i -> tbl.filter(x -> x.g("a").default_(i).eq(1L))).orderBy("a")
+  Java: r.expr(1L).do_(i -> tbl.filter(x -> x.bracket("a").default_(i).eq(1L))).orderBy("a")
   ExpectedOriginal: ([{},{'a':null},{'a':1}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L))
@@ -583,7 +589,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 66
   Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)))
-  Java: tbl.filter(x -> r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L)))
+  Java: tbl.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L)))
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -592,7 +598,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 67
   Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=False)
-  Java: tbl.filter(x -> r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", false)
+  Java: tbl.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", false)
   ExpectedOriginal: '[{''a'': 1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
@@ -601,7 +607,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 68
   Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=True).order_by('a')
-  Java: tbl.filter(x -> r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", true).orderBy("a")
+  Java: tbl.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", true).orderBy("a")
   ExpectedOriginal: ([{}, {'a':null}, {'a':1}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", null), r.hashMap("a", 1L))
@@ -610,7 +616,7 @@ DefsAndTests:
   TestFile: default.yaml
   TestNum: 69
   Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=r.error())
-  Java: tbl.filter(x -> r.or(x.g("a").eq(1L), x.g("a").g("b").eq(2L))).optArg("default", r.error())
+  Java: tbl.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "No attribute `a` in object:", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlNonExistenceError", "No attribute `a` in object:", r.array())

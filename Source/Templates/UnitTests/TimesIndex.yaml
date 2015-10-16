@@ -6,55 +6,79 @@ DefsAndTests:
   TestFile: times/index.yaml
   TestNum: 1
   Original: ts={"timezone":"-07:00","epoch_time":1375445162.0872,"$reql_type$":"TIME"}
+  VarName: ts
+  VarType: Map
+  Value: (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445162.0872).with("$reql_type$", "TIME"))
   Java: Map ts = (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445162.0872).with("$reql_type$", "TIME"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
   TestNum: 2
   Original: t1={"timezone":"-07:00","epoch_time":1375445163.0872,"$reql_type$":"TIME"}
+  VarName: t1
+  VarType: Map
+  Value: (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.0872).with("$reql_type$", "TIME"))
   Java: Map t1 = (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.0872).with("$reql_type$", "TIME"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
   TestNum: 3
   Original: t2={"timezone":"-07:00","epoch_time":1375445163.08832,"$reql_type$":"TIME"}
+  VarName: t2
+  VarType: Map
+  Value: (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.08832).with("$reql_type$", "TIME"))
   Java: Map t2 = (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.08832).with("$reql_type$", "TIME"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
   TestNum: 4
   Original: t3={"timezone":"-07:00","epoch_time":1375445163.08943,"$reql_type$":"TIME"}
+  VarName: t3
+  VarType: Map
+  Value: (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.08943).with("$reql_type$", "TIME"))
   Java: Map t3 = (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.08943).with("$reql_type$", "TIME"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
   TestNum: 5
   Original: t4={"timezone":"-07:00","epoch_time":1375445163.09055,"$reql_type$":"TIME"}
+  VarName: t4
+  VarType: Map
+  Value: (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.09055).with("$reql_type$", "TIME"))
   Java: Map t4 = (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.09055).with("$reql_type$", "TIME"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
   TestNum: 6
   Original: t5={"timezone":"-07:00","epoch_time":1375445163.09166,"$reql_type$":"TIME"}
+  VarName: t5
+  VarType: Map
+  Value: (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.09166).with("$reql_type$", "TIME"))
   Java: Map t5 = (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.09166).with("$reql_type$", "TIME"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
   TestNum: 7
   Original: te={"timezone":"-07:00","epoch_time":1375445164.0872,"$reql_type$":"TIME"}
+  VarName: te
+  VarType: Map
+  Value: (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445164.0872).with("$reql_type$", "TIME"))
   Java: Map te = (Map) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445164.0872).with("$reql_type$", "TIME"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
   TestNum: 8
   Original: trows = [{'id':t1}, {'id':t2}, {'id':t3}, {'id':t4}, {'id':t5}]
+  VarName: trows
+  VarType: List
+  Value: (List) (r.array(r.hashMap("id", t1), r.hashMap("id", t2), r.hashMap("id", t3), r.hashMap("id", t4), r.hashMap("id", t5)))
   Java: List trows = (List) (r.array(r.hashMap("id", t1), r.hashMap("id", t2), r.hashMap("id", t3), r.hashMap("id", t4), r.hashMap("id", t5)));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
   TestNum: 9
   Original: tbl.insert(trows)['inserted']
-  Java: tbl.insert(trows).g("inserted")
+  Java: tbl.insert(trows).bracket("inserted")
   ExpectedOriginal: 5
   ExpectedType: Long
   ExpectedJava: 5L
@@ -63,13 +87,16 @@ DefsAndTests:
   TestFile: times/index.yaml
   TestNum: 10
   Original: bad_insert = [{'id':r.expr(t1).in_timezone("Z")}]
+  VarName: bad_insert
+  VarType: List
+  Value: (List) (r.array(r.hashMap("id", r.expr(t1).inTimezone("Z"))))
   Java: List bad_insert = (List) (r.array(r.hashMap("id", r.expr(t1).inTimezone("Z"))));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
   TestNum: 11
   Original: tbl.insert(bad_insert)['first_error']
-  Java: tbl.insert(bad_insert).g("first_error")
+  Java: tbl.insert(bad_insert).bracket("first_error")
   ExpectedOriginal: ("Duplicate primary key `id`:\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"-07:00\"\n\t}\n}\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"+00:00\"\n\t}\n}")
   ExpectedType: String
   ExpectedJava: '"Duplicate primary key `id`:\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"-07:00\"\n\t}\n}\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"+00:00\"\n\t}\n}"'
@@ -132,7 +159,7 @@ DefsAndTests:
   TestFile: times/index.yaml
   TestNum: 18
   Original: tbl.update(lambda row:{'a':row['id']})['replaced']
-  Java: tbl.update(row -> r.hashMap("a", row.g("id"))).g("replaced")
+  Java: tbl.update(row -> r.hashMap("a", row.bracket("id"))).bracket("replaced")
   ExpectedOriginal: 5
   ExpectedType: Long
   ExpectedJava: 5L
@@ -213,7 +240,7 @@ DefsAndTests:
   TestFile: times/index.yaml
   TestNum: 27
   Original: tbl.index_create('b', lambda row:r.branch(row['id'] < t4, row['a'], null))
-  Java: tbl.indexCreate("b", row -> r.branch(row.g("id").lt(t4), row.g("a"), (ReqlExpr) null))
+  Java: tbl.indexCreate("b", row -> r.branch(row.bracket("id").lt(t4), row.bracket("a"), (ReqlExpr) null))
   ExpectedOriginal: ({'created':1})
   ExpectedType: Map
   ExpectedJava: r.hashMap("created", 1L)
@@ -294,19 +321,25 @@ DefsAndTests:
   TestFile: times/index.yaml
   TestNum: 36
   Original: oldtime = datetime.fromtimestamp(1375147296.681, PacificTimeZone())
+  VarName: oldtime
+  VarType: OffsetDateTime
+  Value: (OffsetDateTime) (datetime.fromtimestamp(1375147296.681, PacificTimeZone()))
   Java: OffsetDateTime oldtime = (OffsetDateTime) (datetime.fromtimestamp(1375147296.681, PacificTimeZone()));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
   TestNum: 37
   Original: curtime = datetime.now()
+  VarName: curtime
+  VarType: OffsetDateTime
+  Value: (OffsetDateTime) (datetime.now())
   Java: OffsetDateTime curtime = (OffsetDateTime) (datetime.now());
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
   TestNum: 38
   Original: tbl.insert([{'id':oldtime}])['inserted']
-  Java: tbl.insert(r.array(r.hashMap("id", oldtime))).g("inserted")
+  Java: tbl.insert(r.array(r.hashMap("id", oldtime))).bracket("inserted")
   ExpectedOriginal: 1
   ExpectedType: Long
   ExpectedJava: 1L
@@ -315,7 +348,7 @@ DefsAndTests:
   TestFile: times/index.yaml
   TestNum: 39
   Original: tbl.get(oldtime)['id'].type_of()
-  Java: tbl.get(oldtime).g("id").typeOf()
+  Java: tbl.get(oldtime).bracket("id").typeOf()
   ExpectedOriginal: ("PTYPE<TIME>")
   ExpectedType: String
   ExpectedJava: '"PTYPE<TIME>"'

@@ -32,25 +32,29 @@ namespace RethinkDb.Driver.Test.Generated {
         public void YamlTest(){
 
              
-             //JavaDef, transform/array.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, transform/array.yaml, #1
              //Original: arr = r.expr([1, 2, 3])
              
-var arr = (MakeArray) (r.expr(r.array(1L, 2L, 3L)));             
+                 var arr = (MakeArray) (r.expr(r.array(1L, 2L, 3L)));
              
-             //JavaDef, transform/array.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, transform/array.yaml, #2
              //Original: dupe_arr = r.expr([1, 1, 2, 3])
              
-var dupe_arr = (MakeArray) (r.expr(r.array(1L, 1L, 2L, 3L)));             
+                 var dupe_arr = (MakeArray) (r.expr(r.array(1L, 1L, 2L, 3L)));
              
-             //JavaDef, transform/array.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, transform/array.yaml, #3
              //Original: objArr = r.expr([{'a':1, 'b':'a'}, {'a':2, 'b':'b'}, {'a':3, 'b':'c'}])
              
-var objArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"))));             
+                 var objArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"))));
              
-             //JavaDef, transform/array.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, transform/array.yaml, #4
              //Original: nestedObjArr = r.expr([{'a':1, 'b':{'c':1}}, {'a':2, 'b':{'c':2}}, {'a':3, 'b':{'c':3}}])
              
-var nestedObjArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.hashMap("c", 1L)), r.hashMap("a", 2L).with("b", r.hashMap("c", 2L)), r.hashMap("a", 3L).with("b", r.hashMap("c", 3L)))));             
+                 var nestedObjArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.hashMap("c", 1L)), r.hashMap("a", 2L).with("b", r.hashMap("c", 2L)), r.hashMap("a", 3L).with("b", r.hashMap("c", 3L)))));
+             
              TestCounter++;
              
              {
@@ -264,7 +268,7 @@ var nestedObjArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.ha
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #20
+                 //JavaQuery, transform/array.yaml, #(20, 1)
                  /* ExpectedOriginal: [2, 3] */
                  var expected_ = r.array(2L, 3L);
                  
@@ -278,7 +282,7 @@ var nestedObjArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.ha
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #20
+                 //JavaQuery, transform/array.yaml, #(20, 2)
                  /* ExpectedOriginal: [2, 3] */
                  var expected_ = r.array(2L, 3L);
                  
@@ -292,7 +296,7 @@ var nestedObjArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.ha
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #20
+                 //JavaQuery, transform/array.yaml, #(20, 3)
                  /* ExpectedOriginal: [2, 3] */
                  var expected_ = r.array(2L, 3L);
                  
@@ -306,7 +310,7 @@ var nestedObjArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.ha
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #21
+                 //JavaQuery, transform/array.yaml, #(21, 1)
                  /* ExpectedOriginal: [1, 2] */
                  var expected_ = r.array(1L, 2L);
                  
@@ -320,7 +324,7 @@ var nestedObjArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.ha
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #21
+                 //JavaQuery, transform/array.yaml, #(21, 2)
                  /* ExpectedOriginal: [1, 2] */
                  var expected_ = r.array(1L, 2L);
                  
@@ -334,7 +338,7 @@ var nestedObjArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.ha
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #22
+                 //JavaQuery, transform/array.yaml, #(22, 1)
                  /* ExpectedOriginal: [2, 3] */
                  var expected_ = r.array(2L, 3L);
                  
@@ -348,7 +352,7 @@ var nestedObjArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.ha
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #22
+                 //JavaQuery, transform/array.yaml, #(22, 2)
                  /* ExpectedOriginal: [2, 3] */
                  var expected_ = r.array(2L, 3L);
                  
@@ -500,10 +504,11 @@ var nestedObjArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.ha
              }
              
              
-             //JavaDef, transform/array.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, transform/array.yaml, #33
              //Original: wftst = objArr.union(objArr.pluck('a')).union(objArr.pluck('b')).union([{'a':null}])
              
-var wftst = (Union) (objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).union(r.array(r.hashMap("a", null))));             
+                 var wftst = (Union) (objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).union(r.array(r.hashMap("a", null))));
+             
              TestCounter++;
              
              {
@@ -561,10 +566,11 @@ var wftst = (Union) (objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).un
              }
              
              
-             //JavaDef, transform/array.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, transform/array.yaml, #38
              //Original: wftst2 = nestedObjArr.union(objArr.pluck({'b':'missing'})).union(nestedObjArr.pluck({'b':'c'}))
              
-var wftst2 = (Union) (nestedObjArr.union(objArr.pluck(r.hashMap("b", "missing"))).union(nestedObjArr.pluck(r.hashMap("b", "c"))));             
+                 var wftst2 = (Union) (nestedObjArr.union(objArr.pluck(r.hashMap("b", "missing"))).union(nestedObjArr.pluck(r.hashMap("b", "c"))));
+             
              TestCounter++;
              
              {
@@ -727,7 +733,7 @@ var wftst2 = (Union) (nestedObjArr.union(objArr.pluck(r.hashMap("b", "missing"))
                  var expected_ = r.array(r.hashMap("b", "b").with("a", 2L));
                  
                  /* Original: objArr.filter(lambda row: row['b'] == 'b') */
-                 var obtained = runOrCatch( objArr.filter(row => row.g("b").eq("b")) ,
+                 var obtained = runOrCatch( objArr.filter(row => row.bracket("b").eq("b")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -848,12 +854,12 @@ var wftst2 = (Union) (nestedObjArr.union(objArr.pluck(r.hashMap("b", "missing"))
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #59
+                 //JavaQuery, transform/array.yaml, #(59, 1)
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
                  /* Original: arr[1] */
-                 var obtained = runOrCatch( arr.nth(1L) ,
+                 var obtained = runOrCatch( arr.bracket(1L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -862,7 +868,7 @@ var wftst2 = (Union) (nestedObjArr.union(objArr.pluck(r.hashMap("b", "missing"))
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #59
+                 //JavaQuery, transform/array.yaml, #(59, 2)
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
@@ -881,7 +887,7 @@ var wftst2 = (Union) (nestedObjArr.union(objArr.pluck(r.hashMap("b", "missing"))
                  var expected_ = 1L;
                  
                  /* Original: arr[0] */
-                 var obtained = runOrCatch( arr.nth(0L) ,
+                 var obtained = runOrCatch( arr.bracket(0L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1091,7 +1097,7 @@ var wftst2 = (Union) (nestedObjArr.union(objArr.pluck(r.hashMap("b", "missing"))
                  var expected_ = r.array(1L, 3L);
                  
                  /* Original: r.expr([{'a':1},{'b':2},{'a':3,'c':4}])['a'] */
-                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1L), r.hashMap("b", 2L), r.hashMap("a", 3L).with("c", 4L))).g("a") ,
+                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1L), r.hashMap("b", 2L), r.hashMap("a", 3L).with("c", 4L))).bracket("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -1105,7 +1111,7 @@ var wftst2 = (Union) (nestedObjArr.union(objArr.pluck(r.hashMap("b", "missing"))
                  var expected_ = err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", r.array());
                  
                  /* Original: r.expr([{'a':1},'a',{'b':2},{'a':3,'c':4}])['a'] */
-                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1L), "a", r.hashMap("b", 2L), r.hashMap("a", 3L).with("c", 4L))).g("a") ,
+                 var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1L), "a", r.hashMap("b", 2L), r.hashMap("a", 3L).with("c", 4L))).bracket("a") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

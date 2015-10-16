@@ -5,18 +5,18 @@ DefsAndTests:
   TestNum: 1
   Original: r.uuid()
   Java: r.uuid()
-  ExpectedOriginal: None
-  ExpectedType: Object
-  ExpectedJava: null
+  ExpectedOriginal: uuid()
+  ExpectedType: Uuid
+  ExpectedJava: uuid()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml
   TestNum: 2
   Original: r.expr(r.uuid())
   Java: r.expr(r.uuid())
-  ExpectedOriginal: None
-  ExpectedType: Object
-  ExpectedJava: null
+  ExpectedOriginal: uuid()
+  ExpectedType: Uuid
+  ExpectedJava: uuid()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml

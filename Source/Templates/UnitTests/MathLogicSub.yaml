@@ -2,7 +2,7 @@ ModuleName: MathLogicSub
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/sub.yaml
-  TestNum: 1
+  TestNum: (1, 1)
   Original: (r.expr(1) - 1)
   Java: r.expr(1L).sub(1L)
   ExpectedOriginal: 0
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/sub.yaml
-  TestNum: 1
+  TestNum: (1, 2)
   Original: (1 - r.expr(1))
   Java: r.sub(1L, r.expr(1L))
   ExpectedOriginal: 0
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/sub.yaml
-  TestNum: 1
+  TestNum: (1, 3)
   Original: (r.expr(1).sub(1))
   Java: r.expr(1L).sub(1L)
   ExpectedOriginal: 0

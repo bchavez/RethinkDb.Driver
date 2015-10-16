@@ -4,18 +4,27 @@ DefsAndTests:
   TestFile: times/api.yaml
   TestNum: 1
   Original: rt1 = 1375147296.6812
+  VarName: rt1
+  VarType: Double
+  Value: (Double) (1375147296.6812)
   Java: Double rt1 = (Double) (1375147296.6812);
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/api.yaml
   TestNum: 2
   Original: t1 = r.epoch_time(rt1)
+  VarName: t1
+  VarType: EpochTime
+  Value: (EpochTime) (r.epochTime(rt1))
   Java: EpochTime t1 = (EpochTime) (r.epochTime(rt1));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/api.yaml
   TestNum: 3
   Original: t2 = r.epoch_time(rt1 + 1000)
+  VarName: t2
+  VarType: EpochTime
+  Value: (EpochTime) (r.epochTime(r.add(rt1, 1000L)))
   Java: EpochTime t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000L)));
   RunOpts: []
 - TestType: JavaQuery

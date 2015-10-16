@@ -4,6 +4,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 1
   Original: s = b''
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{})
   Java: byte[] s = (byte[]) (new byte[]{});
   RunOpts: []
 - TestType: JavaQuery
@@ -28,6 +31,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 4
   Original: s = b'\x00'
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{0})
   Java: byte[] s = (byte[]) (new byte[]{0});
   RunOpts: []
 - TestType: JavaQuery
@@ -52,6 +58,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 7
   Original: s = b'\x00\x42'
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{0, 66})
   Java: byte[] s = (byte[]) (new byte[]{0, 66});
   RunOpts: []
 - TestType: JavaQuery
@@ -76,6 +85,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 10
   Original: s = b'\x00\xfe\x7a'
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{0, -2, 122})
   Java: byte[] s = (byte[]) (new byte[]{0, -2, 122});
   RunOpts: []
 - TestType: JavaQuery
@@ -100,6 +112,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 13
   Original: s = b'\xed\xfe\x00\xba'
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{-19, -2, 0, -70})
   Java: byte[] s = (byte[]) (new byte[]{-19, -2, 0, -70});
   RunOpts: []
 - TestType: JavaQuery
@@ -124,6 +139,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 16
   Original: s = b'\x50\xf9\x00\x77\xf9'
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{80, -7, 0, 119, -7})
   Java: byte[] s = (byte[]) (new byte[]{80, -7, 0, 119, -7});
   RunOpts: []
 - TestType: JavaQuery
@@ -148,6 +166,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 19
   Original: s = b'\x2f\xe3\xb5\x57\x00\x92'
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{47, -29, -75, 87, 0, -110})
   Java: byte[] s = (byte[]) (new byte[]{47, -29, -75, 87, 0, -110});
   RunOpts: []
 - TestType: JavaQuery
@@ -172,6 +193,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 22
   Original: s = b'\xa9\x43\x54\xe9\x00\xf8\xfb'
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{-87, 67, 84, -23, 0, -8, -5})
   Java: byte[] s = (byte[]) (new byte[]{-87, 67, 84, -23, 0, -8, -5});
   RunOpts: []
 - TestType: JavaQuery
@@ -196,6 +220,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 25
   Original: s = b'\x57\xbb\xe5\x82\x8b\xd3\x00\xf9'
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{87, -69, -27, -126, -117, -45, 0, -7})
   Java: byte[] s = (byte[]) (new byte[]{87, -69, -27, -126, -117, -45, 0, -7});
   RunOpts: []
 - TestType: JavaQuery
@@ -220,6 +247,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 28
   Original: s = b'\x44\x1b\x3e\x00\x13\x19\x29\x2a\xbf'
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{68, 27, 62, 0, 19, 25, 41, 42, -65})
   Java: byte[] s = (byte[]) (new byte[]{68, 27, 62, 0, 19, 25, 41, 42, -65});
   RunOpts: []
 - TestType: JavaQuery
@@ -244,6 +274,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 31
   Original: s = b'\x8a\x1d\x09\x00\x5d\x60\x6b\x2e\x70\xd9'
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{-118, 29, 9, 0, 93, 96, 107, 46, 112, -39})
   Java: byte[] s = (byte[]) (new byte[]{-118, 29, 9, 0, 93, 96, 107, 46, 112, -39});
   RunOpts: []
 - TestType: JavaQuery
@@ -268,6 +301,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 34
   Original: s = b'\x00\xaf\x47\x4b\x38\x99\x14\x8d\x8f\x10\x51'
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{0, -81, 71, 75, 56, -103, 20, -115, -113, 16, 81})
   Java: byte[] s = (byte[]) (new byte[]{0, -81, 71, 75, 56, -103, 20, -115, -113, 16, 81});
   RunOpts: []
 - TestType: JavaQuery
@@ -292,6 +328,9 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 37
   Original: s = b'\x45\x39\x00\xf7\xc2\x37\xfd\xe0\x38\x82\x40\xa9'
+  VarName: s
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{69, 57, 0, -9, -62, 55, -3, -32, 56, -126, 64, -87})
   Java: byte[] s = (byte[]) (new byte[]{69, 57, 0, -9, -62, 55, -3, -32, 56, -126, 64, -87});
   RunOpts: []
 - TestType: JavaQuery
@@ -316,36 +355,54 @@ DefsAndTests:
   TestFile: datum/binary.yaml
   TestNum: 40
   Original: a = b'\x00'
+  VarName: a
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{0})
   Java: byte[] a = (byte[]) (new byte[]{0});
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
   TestNum: 41
   Original: b = b'\x00\x01'
+  VarName: b
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{0, 1})
   Java: byte[] b = (byte[]) (new byte[]{0, 1});
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
   TestNum: 42
   Original: c = b'\x01'
+  VarName: c
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{1})
   Java: byte[] c = (byte[]) (new byte[]{1});
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
   TestNum: 43
   Original: d = b'\x70\x22'
+  VarName: d
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{112, 34})
   Java: byte[] d = (byte[]) (new byte[]{112, 34});
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
   TestNum: 44
   Original: e = b'\x80'
+  VarName: e
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{-128})
   Java: byte[] e = (byte[]) (new byte[]{-128});
   RunOpts: []
 - TestType: JavaDef
   TestFile: datum/binary.yaml
   TestNum: 45
   Original: f = b'\xFE'
+  VarName: f
+  VarType: byte[]
+  Value: (byte[]) (new byte[]{-2})
   Java: byte[] f = (byte[]) (new byte[]{-2});
   RunOpts: []
 - TestType: JavaQuery

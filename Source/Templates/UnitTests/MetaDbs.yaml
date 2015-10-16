@@ -41,9 +41,9 @@ DefsAndTests:
   TestNum: 5
   Original: r.db('a').config()
   Java: r.db("a").config()
-  ExpectedOriginal: '{''name'': ''a'', ''uuid'': uuid()}'
+  ExpectedOriginal: '{''id'': uuid(), ''name'': ''a''}'
   ExpectedType: Map
-  ExpectedJava: r.hashMap("name", "a").with("uuid", uuid())
+  ExpectedJava: r.hashMap("id", uuid()).with("name", "a")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml

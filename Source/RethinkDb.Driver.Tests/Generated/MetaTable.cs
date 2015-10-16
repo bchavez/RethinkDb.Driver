@@ -32,10 +32,11 @@ namespace RethinkDb.Driver.Test.Generated {
         public void YamlTest(){
 
              
-             //JavaDef, meta/table.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, meta/table.yaml, #1
              //Original: db = r.db('test')
              
-var db = (Db) (r.db("test"));             
+                 var db = (Db) (r.db("test"));
+             
              TestCounter++;
              
              {
@@ -1051,10 +1052,11 @@ var db = (Db) (r.db("test"));
              }
              
              
-             //JavaDef, meta/table.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, meta/table.yaml, #75
              //Original: db2 = r.db("test2")
              
-var db2 = (Db) (r.db("test2"));             
+                 var db2 = (Db) (r.db("test2"));
+             
              TestCounter++;
              
              {
@@ -1101,8 +1103,8 @@ var db2 = (Db) (r.db("test2"));
              
              {
                  //JavaQuery, meta/table.yaml, #79
-                 /* ExpectedOriginal: {'name': 'testA', 'db': 'test'} */
-                 var expected_ = r.hashMap("name", "testA").with("db", "test");
+                 /* ExpectedOriginal: {'db': 'test', 'name': 'testA'} */
+                 var expected_ = r.hashMap("db", "test").with("name", "testA");
                  
                  /* Original: r.table('testA').config().pluck('db','name') */
                  var obtained = runOrCatch( r.table("testA").config().pluck("db", "name") ,
@@ -1175,7 +1177,7 @@ var db2 = (Db) (r.db("test2"));
                  var expected_ = uuid();
                  
                  /* Original: r.db('rethinkdb').table('table_config', identifier_format='uuid').nth(0)["db"] */
-                 var obtained = runOrCatch( r.db("rethinkdb").table("table_config").optArg("identifier_format", "uuid").nth(0L).g("db") ,
+                 var obtained = runOrCatch( r.db("rethinkdb").table("table_config").optArg("identifier_format", "uuid").nth(0L).bracket("db") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

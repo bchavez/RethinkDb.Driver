@@ -48,6 +48,11 @@ namespace Templates
         {
             foreach( var test in yamlTest.DefsAndTests )
             {
+                if( test.Value.IsNotNullOrWhiteSpace() )
+                {
+                    test.Value = FixUpJava(test.Value);
+                }
+
                 if( TypeRenames[test.ExpectedType] != null )
                     test.ExpectedType = TypeRenames[test.ExpectedType];
 

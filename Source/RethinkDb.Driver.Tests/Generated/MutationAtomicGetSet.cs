@@ -139,7 +139,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.hashMap("changes", r.array()).with("first_error", "a");
                  
                  /* Original: tbl.get(0).update({'x':r.error("a")}, return_changes=True).pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.get(0L).update(r.hashMap("x", r.error())).optArg("return_changes", true).pluck("changes", "first_error") ,
+                 var obtained = runOrCatch( tbl.get(0L).update(r.hashMap("x", r.error("a"))).optArg("return_changes", true).pluck("changes", "first_error") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -153,7 +153,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L).with("x", 1L)).with("new_val", r.hashMap("id", 0L).with("x", 3L)), r.hashMap("old_val", r.hashMap("id", 1L)).with("new_val", r.hashMap("id", 1L).with("x", 3L))));
                  
                  /* Original: tbl.update({'x':3}, return_changes=True).pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])})) */
-                 var obtained = runOrCatch( tbl.update(r.hashMap("x", 3L)).optArg("return_changes", true).pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.g("changes").orderBy(a => a.g("old_val").g("id"))))) ,
+                 var obtained = runOrCatch( tbl.update(r.hashMap("x", 3L)).optArg("return_changes", true).pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a => a.bracket("old_val").bracket("id"))))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -181,7 +181,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.hashMap("changes", r.array()).with("first_error", "a");
                  
                  /* Original: tbl.get(0).replace(lambda y:{'x':r.error('a')}, return_changes=True).pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.get(0L).replace(y => r.hashMap("x", r.error())).optArg("return_changes", true).pluck("changes", "first_error") ,
+                 var obtained = runOrCatch( tbl.get(0L).replace(y => r.hashMap("x", r.error("a"))).optArg("return_changes", true).pluck("changes", "first_error") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -195,7 +195,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.hashMap("first_error", "a").with("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L).with("x", 2L)).with("new_val", r.hashMap("id", 0L).with("x", 2L))));
                  
                  /* Original: tbl.get(0).replace(lambda y:{'x':r.error('a')}, return_changes='always').pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.get(0L).replace(y => r.hashMap("x", r.error())).optArg("return_changes", "always").pluck("changes", "first_error") ,
+                 var obtained = runOrCatch( tbl.get(0L).replace(y => r.hashMap("x", r.error("a"))).optArg("return_changes", "always").pluck("changes", "first_error") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -209,7 +209,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.hashMap("changes", r.array(r.hashMap("new_val", r.hashMap("id", 0L)).with("old_val", r.hashMap("id", 0L).with("x", 2L)), r.hashMap("new_val", r.hashMap("id", 1L)).with("old_val", r.hashMap("id", 1L).with("x", 3L))));
                  
                  /* Original: tbl.replace(lambda y:y.without('x'), return_changes=True).pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])})) */
-                 var obtained = runOrCatch( tbl.replace(y => y.without("x")).optArg("return_changes", true).pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.g("changes").orderBy(a => a.g("old_val").g("id"))))) ,
+                 var obtained = runOrCatch( tbl.replace(y => y.without("x")).optArg("return_changes", true).pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a => a.bracket("old_val").bracket("id"))))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -223,7 +223,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.hashMap("first_error", "Inserted object must have primary key `id`:\n{\n\t\"x\":\t1\n}").with("changes", r.array(r.hashMap("new_val", r.hashMap("id", 0L)).with("old_val", r.hashMap("id", 0L)), r.hashMap("new_val", r.hashMap("id", 1L)).with("old_val", r.hashMap("id", 1L))));
                  
                  /* Original: tbl.replace({'x':1}, return_changes='always').pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])})) */
-                 var obtained = runOrCatch( tbl.replace(r.hashMap("x", 1L)).optArg("return_changes", "always").pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.g("changes").orderBy(a => a.g("old_val").g("id"))))) ,
+                 var obtained = runOrCatch( tbl.replace(r.hashMap("x", 1L)).optArg("return_changes", "always").pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a => a.bracket("old_val").bracket("id"))))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

@@ -34,45 +34,53 @@ namespace RethinkDb.Driver.Test.Generated {
         public void YamlTest(){
 
              
-             //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, times/index.yaml, #1
              //Original: ts={"timezone":"-07:00","epoch_time":1375445162.0872,"$reql_type$":"TIME"}
              
-var ts = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445162.0872).with("$reql_type$", "TIME"));             
+                 var ts = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445162.0872).with("$reql_type$", "TIME"));
              
-             //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/index.yaml, #2
              //Original: t1={"timezone":"-07:00","epoch_time":1375445163.0872,"$reql_type$":"TIME"}
              
-var t1 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.0872).with("$reql_type$", "TIME"));             
+                 var t1 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.0872).with("$reql_type$", "TIME"));
              
-             //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/index.yaml, #3
              //Original: t2={"timezone":"-07:00","epoch_time":1375445163.08832,"$reql_type$":"TIME"}
              
-var t2 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.08832).with("$reql_type$", "TIME"));             
+                 var t2 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.08832).with("$reql_type$", "TIME"));
              
-             //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/index.yaml, #4
              //Original: t3={"timezone":"-07:00","epoch_time":1375445163.08943,"$reql_type$":"TIME"}
              
-var t3 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.08943).with("$reql_type$", "TIME"));             
+                 var t3 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.08943).with("$reql_type$", "TIME"));
              
-             //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/index.yaml, #5
              //Original: t4={"timezone":"-07:00","epoch_time":1375445163.09055,"$reql_type$":"TIME"}
              
-var t4 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.09055).with("$reql_type$", "TIME"));             
+                 var t4 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.09055).with("$reql_type$", "TIME"));
              
-             //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/index.yaml, #6
              //Original: t5={"timezone":"-07:00","epoch_time":1375445163.09166,"$reql_type$":"TIME"}
              
-var t5 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.09166).with("$reql_type$", "TIME"));             
+                 var t5 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.09166).with("$reql_type$", "TIME"));
              
-             //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/index.yaml, #7
              //Original: te={"timezone":"-07:00","epoch_time":1375445164.0872,"$reql_type$":"TIME"}
              
-var te = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445164.0872).with("$reql_type$", "TIME"));             
+                 var te = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445164.0872).with("$reql_type$", "TIME"));
              
-             //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/index.yaml, #8
              //Original: trows = [{'id':t1}, {'id':t2}, {'id':t3}, {'id':t4}, {'id':t5}]
              
-var trows = (IList) (r.array(r.hashMap("id", t1), r.hashMap("id", t2), r.hashMap("id", t3), r.hashMap("id", t4), r.hashMap("id", t5)));             
+                 var trows = (IList) (r.array(r.hashMap("id", t1), r.hashMap("id", t2), r.hashMap("id", t3), r.hashMap("id", t4), r.hashMap("id", t5)));
+             
              TestCounter++;
              
              {
@@ -81,17 +89,18 @@ var trows = (IList) (r.array(r.hashMap("id", t1), r.hashMap("id", t2), r.hashMap
                  var expected_ = 5L;
                  
                  /* Original: tbl.insert(trows)['inserted'] */
-                 var obtained = runOrCatch( tbl.insert(trows).g("inserted") ,
+                 var obtained = runOrCatch( tbl.insert(trows).bracket("inserted") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
              }
              
              
-             //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, times/index.yaml, #10
              //Original: bad_insert = [{'id':r.expr(t1).in_timezone("Z")}]
              
-var bad_insert = (IList) (r.array(r.hashMap("id", r.expr(t1).inTimezone("Z"))));             
+                 var bad_insert = (IList) (r.array(r.hashMap("id", r.expr(t1).inTimezone("Z"))));
+             
              TestCounter++;
              
              {
@@ -100,7 +109,7 @@ var bad_insert = (IList) (r.array(r.hashMap("id", r.expr(t1).inTimezone("Z"))));
                  var expected_ = "Duplicate primary key `id`:\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"-07:00\"\n\t}\n}\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"+00:00\"\n\t}\n}";
                  
                  /* Original: tbl.insert(bad_insert)['first_error'] */
-                 var obtained = runOrCatch( tbl.insert(bad_insert).g("first_error") ,
+                 var obtained = runOrCatch( tbl.insert(bad_insert).bracket("first_error") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -198,7 +207,7 @@ var bad_insert = (IList) (r.array(r.hashMap("id", r.expr(t1).inTimezone("Z"))));
                  var expected_ = 5L;
                  
                  /* Original: tbl.update(lambda row:{'a':row['id']})['replaced'] */
-                 var obtained = runOrCatch( tbl.update(row => r.hashMap("a", row.g("id"))).g("replaced") ,
+                 var obtained = runOrCatch( tbl.update(row => r.hashMap("a", row.bracket("id"))).bracket("replaced") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -324,7 +333,7 @@ var bad_insert = (IList) (r.array(r.hashMap("id", r.expr(t1).inTimezone("Z"))));
                  var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('b', lambda row:r.branch(row['id'] < t4, row['a'], null)) */
-                 var obtained = runOrCatch( tbl.indexCreate("b", row => r.branch(row.g("id").lt(t4), row.g("a"), (ReqlExpr) null)) ,
+                 var obtained = runOrCatch( tbl.indexCreate("b", row => r.branch(row.bracket("id").lt(t4), row.bracket("a"), (ReqlExpr) null)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -443,15 +452,17 @@ var bad_insert = (IList) (r.array(r.hashMap("id", r.expr(t1).inTimezone("Z"))));
              }
              
              
-             //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, times/index.yaml, #36
              //Original: oldtime = datetime.fromtimestamp(1375147296.681, PacificTimeZone())
              
-var oldtime = (DateTimeOffset) (datetime.fromtimestamp(1375147296.681, PacificTimeZone()));             
+                 var oldtime = (DateTimeOffset) (datetime.fromtimestamp(1375147296.681, PacificTimeZone()));
              
-             //JavaDef, times/index.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/index.yaml, #37
              //Original: curtime = datetime.now()
              
-var curtime = (DateTimeOffset) (datetime.now());             
+                 var curtime = (DateTimeOffset) (datetime.now());
+             
              TestCounter++;
              
              {
@@ -460,7 +471,7 @@ var curtime = (DateTimeOffset) (datetime.now());
                  var expected_ = 1L;
                  
                  /* Original: tbl.insert([{'id':oldtime}])['inserted'] */
-                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", oldtime))).g("inserted") ,
+                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", oldtime))).bracket("inserted") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -474,7 +485,7 @@ var curtime = (DateTimeOffset) (datetime.now());
                  var expected_ = "PTYPE<TIME>";
                  
                  /* Original: tbl.get(oldtime)['id'].type_of() */
-                 var obtained = runOrCatch( tbl.get(oldtime).g("id").typeOf() ,
+                 var obtained = runOrCatch( tbl.get(oldtime).bracket("id").typeOf() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

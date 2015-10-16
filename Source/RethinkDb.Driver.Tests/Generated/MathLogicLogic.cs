@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #1
+                 //JavaQuery, math_logic/logic.yaml, #(1, 1)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -48,7 +48,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #1
+                 //JavaQuery, math_logic/logic.yaml, #(1, 2)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -62,7 +62,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #1
+                 //JavaQuery, math_logic/logic.yaml, #(1, 3)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -76,7 +76,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #1
+                 //JavaQuery, math_logic/logic.yaml, #(1, 4)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -90,7 +90,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #2
+                 //JavaQuery, math_logic/logic.yaml, #(2, 1)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -104,7 +104,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #2
+                 //JavaQuery, math_logic/logic.yaml, #(2, 2)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -118,7 +118,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #2
+                 //JavaQuery, math_logic/logic.yaml, #(2, 3)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -132,7 +132,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #2
+                 //JavaQuery, math_logic/logic.yaml, #(2, 4)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -146,7 +146,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #2
+                 //JavaQuery, math_logic/logic.yaml, #(2, 5)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -160,7 +160,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #2
+                 //JavaQuery, math_logic/logic.yaml, #(2, 6)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -174,7 +174,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #2
+                 //JavaQuery, math_logic/logic.yaml, #(2, 7)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -188,7 +188,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #2
+                 //JavaQuery, math_logic/logic.yaml, #(2, 8)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -202,7 +202,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #3
+                 //JavaQuery, math_logic/logic.yaml, #(3, 1)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -216,7 +216,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #3
+                 //JavaQuery, math_logic/logic.yaml, #(3, 2)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -230,7 +230,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #3
+                 //JavaQuery, math_logic/logic.yaml, #(3, 3)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -244,7 +244,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #3
+                 //JavaQuery, math_logic/logic.yaml, #(3, 4)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -258,7 +258,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #3
+                 //JavaQuery, math_logic/logic.yaml, #(3, 5)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -272,7 +272,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #3
+                 //JavaQuery, math_logic/logic.yaml, #(3, 6)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -286,7 +286,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #3
+                 //JavaQuery, math_logic/logic.yaml, #(3, 7)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -300,7 +300,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #3
+                 //JavaQuery, math_logic/logic.yaml, #(3, 8)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -314,7 +314,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #4
+                 //JavaQuery, math_logic/logic.yaml, #(4, 1)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -328,7 +328,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #4
+                 //JavaQuery, math_logic/logic.yaml, #(4, 2)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -342,7 +342,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #4
+                 //JavaQuery, math_logic/logic.yaml, #(4, 3)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -356,7 +356,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #4
+                 //JavaQuery, math_logic/logic.yaml, #(4, 4)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -370,7 +370,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #5
+                 //JavaQuery, math_logic/logic.yaml, #(5, 1)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -384,7 +384,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #5
+                 //JavaQuery, math_logic/logic.yaml, #(5, 2)
                  /* ExpectedOriginal: False */
                  var expected_ = false;
                  
@@ -398,7 +398,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #6
+                 //JavaQuery, math_logic/logic.yaml, #(6, 1)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -412,7 +412,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #6
+                 //JavaQuery, math_logic/logic.yaml, #(6, 2)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -454,7 +454,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #9
+                 //JavaQuery, math_logic/logic.yaml, #(9, 1)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -468,7 +468,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #9
+                 //JavaQuery, math_logic/logic.yaml, #(9, 2)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -482,7 +482,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #9
+                 //JavaQuery, math_logic/logic.yaml, #(9, 3)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -496,7 +496,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/logic.yaml, #9
+                 //JavaQuery, math_logic/logic.yaml, #(9, 4)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -599,7 +599,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", r.array());
                  
                  /* Original: r.expr(r.expr('a')['b']).default(2) */
-                 var obtained = runOrCatch( r.expr(r.expr("a").g("b")).default_(2L) ,
+                 var obtained = runOrCatch( r.expr(r.expr("a").bracket("b")).default_(2L) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

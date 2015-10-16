@@ -4,84 +4,126 @@ DefsAndTests:
   TestFile: times/timezones.yaml
   TestNum: 1
   Original: t1 = r.time(2013, r.july, 29, 23, 30, 0, "+00:00")
+  VarName: t1
+  VarType: Time
+  Value: (Time) (r.time(2013L, r.july(), 29L, 23L, 30L, 0L, "+00:00"))
   Java: Time t1 = (Time) (r.time(2013L, r.july(), 29L, 23L, 30L, 0L, "+00:00"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 2
   Original: tutc1 = t1.in_timezone("Z")
+  VarName: tutc1
+  VarType: InTimezone
+  Value: (InTimezone) (t1.inTimezone("Z"))
   Java: InTimezone tutc1 = (InTimezone) (t1.inTimezone("Z"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 3
   Original: tutc2 = t1.in_timezone("+00:00")
+  VarName: tutc2
+  VarType: InTimezone
+  Value: (InTimezone) (t1.inTimezone("+00:00"))
   Java: InTimezone tutc2 = (InTimezone) (t1.inTimezone("+00:00"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 4
   Original: tutc3 = t1.in_timezone("+00")
+  VarName: tutc3
+  VarType: InTimezone
+  Value: (InTimezone) (t1.inTimezone("+00"))
   Java: InTimezone tutc3 = (InTimezone) (t1.inTimezone("+00"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 5
   Original: tutcs = r.expr([tutc1, tutc2, tutc3])
+  VarName: tutcs
+  VarType: MakeArray
+  Value: (MakeArray) (r.expr(r.array(tutc1, tutc2, tutc3)))
   Java: MakeArray tutcs = (MakeArray) (r.expr(r.array(tutc1, tutc2, tutc3)));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 6
   Original: tm1 = t1.in_timezone("-00:59")
+  VarName: tm1
+  VarType: InTimezone
+  Value: (InTimezone) (t1.inTimezone("-00:59"))
   Java: InTimezone tm1 = (InTimezone) (t1.inTimezone("-00:59"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 7
   Original: tm2 = t1.in_timezone("-01:00")
+  VarName: tm2
+  VarType: InTimezone
+  Value: (InTimezone) (t1.inTimezone("-01:00"))
   Java: InTimezone tm2 = (InTimezone) (t1.inTimezone("-01:00"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 8
   Original: tm3 = t1.in_timezone("-01:01")
+  VarName: tm3
+  VarType: InTimezone
+  Value: (InTimezone) (t1.inTimezone("-01:01"))
   Java: InTimezone tm3 = (InTimezone) (t1.inTimezone("-01:01"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 9
   Original: tms = r.expr([tm1, tm2, tm3])
+  VarName: tms
+  VarType: MakeArray
+  Value: (MakeArray) (r.expr(r.array(tm1, tm2, tm3)))
   Java: MakeArray tms = (MakeArray) (r.expr(r.array(tm1, tm2, tm3)));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 10
   Original: tp1 = t1.in_timezone("+00:59")
+  VarName: tp1
+  VarType: InTimezone
+  Value: (InTimezone) (t1.inTimezone("+00:59"))
   Java: InTimezone tp1 = (InTimezone) (t1.inTimezone("+00:59"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 11
   Original: tp2 = t1.in_timezone("+01:00")
+  VarName: tp2
+  VarType: InTimezone
+  Value: (InTimezone) (t1.inTimezone("+01:00"))
   Java: InTimezone tp2 = (InTimezone) (t1.inTimezone("+01:00"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 12
   Original: tp3 = t1.in_timezone("+01:01")
+  VarName: tp3
+  VarType: InTimezone
+  Value: (InTimezone) (t1.inTimezone("+01:01"))
   Java: InTimezone tp3 = (InTimezone) (t1.inTimezone("+01:01"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 13
   Original: tps = r.expr([tp1, tp2, tp3])
+  VarName: tps
+  VarType: MakeArray
+  Value: (MakeArray) (r.expr(r.array(tp1, tp2, tp3)))
   Java: MakeArray tps = (MakeArray) (r.expr(r.array(tp1, tp2, tp3)));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
   TestNum: 14
   Original: ts = tutcs.union(tms).union(tps).union([t1])
+  VarName: ts
+  VarType: Union
+  Value: (Union) (tutcs.union(tms).union(tps).union(r.array(t1)))
   Java: Union ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
   RunOpts: []
 - TestType: JavaQuery

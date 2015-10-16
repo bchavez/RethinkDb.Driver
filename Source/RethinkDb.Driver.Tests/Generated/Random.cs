@@ -132,7 +132,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #9
+                 //JavaQuery, random.yaml, #(9, 1)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -146,7 +146,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #9
+                 //JavaQuery, random.yaml, #(9, 2)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -160,7 +160,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #9
+                 //JavaQuery, random.yaml, #(9, 3)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -174,7 +174,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #9
+                 //JavaQuery, random.yaml, #(9, 4)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -188,7 +188,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #9
+                 //JavaQuery, random.yaml, #(9, 5)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -202,7 +202,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #9
+                 //JavaQuery, random.yaml, #(9, 6)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -216,7 +216,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #9
+                 //JavaQuery, random.yaml, #(9, 7)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -230,9 +230,9 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #10
-                 /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 //JavaQuery, random.yaml, #(10, 1)
+                 /* ExpectedOriginal: True */
+                 var expected_ = true;
                  
                  /* Original: r.random(0.495, float=True).do(lambda x:r.and_(x.ge(0), x.lt(0.495))) */
                  var obtained = runOrCatch( r.random(0.495).optArg("float", true).do_(x => r.and(x.ge(0L), x.lt(0.495))) ,
@@ -244,9 +244,9 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #10
-                 /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 //JavaQuery, random.yaml, #(10, 2)
+                 /* ExpectedOriginal: True */
+                 var expected_ = true;
                  
                  /* Original: r.random(-0.495, float=True).do(lambda x:r.and_(x.le(0), x.gt(-0.495))) */
                  var obtained = runOrCatch( r.random(-0.495).optArg("float", true).do_(x => r.and(x.le(0L), x.gt(-0.495))) ,
@@ -258,9 +258,9 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #10
-                 /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 //JavaQuery, random.yaml, #(10, 3)
+                 /* ExpectedOriginal: True */
+                 var expected_ = true;
                  
                  /* Original: r.random(1823756.24, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1823756.24))) */
                  var obtained = runOrCatch( r.random(1823756.24).optArg("float", true).do_(x => r.and(x.ge(0L), x.lt(1823756.24))) ,
@@ -272,9 +272,9 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #10
-                 /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 //JavaQuery, random.yaml, #(10, 4)
+                 /* ExpectedOriginal: True */
+                 var expected_ = true;
                  
                  /* Original: r.random(-1823756.24, float=True).do(lambda x:r.and_(x.le(0), x.gt(-1823756.24))) */
                  var obtained = runOrCatch( r.random(-1823756.24).optArg("float", true).do_(x => r.and(x.le(0L), x.gt(-1823756.24))) ,
@@ -286,7 +286,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #11
+                 //JavaQuery, random.yaml, #(11, 1)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -300,7 +300,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #11
+                 //JavaQuery, random.yaml, #(11, 2)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -314,7 +314,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #11
+                 //JavaQuery, random.yaml, #(11, 3)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -328,7 +328,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #12
+                 //JavaQuery, random.yaml, #(12, 1)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -342,7 +342,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #12
+                 //JavaQuery, random.yaml, #(12, 2)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -356,7 +356,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #12
+                 //JavaQuery, random.yaml, #(12, 3)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -370,7 +370,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #13
+                 //JavaQuery, random.yaml, #(13, 1)
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
@@ -384,7 +384,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #13
+                 //JavaQuery, random.yaml, #(13, 2)
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
@@ -398,7 +398,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #13
+                 //JavaQuery, random.yaml, #(13, 3)
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
@@ -412,7 +412,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #14
+                 //JavaQuery, random.yaml, #(14, 1)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -426,7 +426,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #14
+                 //JavaQuery, random.yaml, #(14, 2)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -440,7 +440,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #14
+                 //JavaQuery, random.yaml, #(14, 3)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -454,7 +454,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #14
+                 //JavaQuery, random.yaml, #(14, 4)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -468,7 +468,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #14
+                 //JavaQuery, random.yaml, #(14, 5)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -480,19 +480,21 @@ namespace RethinkDb.Driver.Test.Generated {
              }
              
              
-             //JavaDef, random.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, random.yaml, #15
              //Original: float_max = sys.float_info.max
              
-var float_max = (double) (double.MaxValue);             
+                 var float_max = (double) (double.MaxValue);
              
-             //JavaDef, random.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, random.yaml, #16
              //Original: float_min = sys.float_info.min
              
-var float_min = (double) (double.MinValue);             
+                 var float_min = (double) (double.MinValue);
+             
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #17
+                 //JavaQuery, random.yaml, #(17, 1)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -506,7 +508,7 @@ var float_min = (double) (double.MinValue);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #17
+                 //JavaQuery, random.yaml, #(17, 2)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -520,7 +522,7 @@ var float_min = (double) (double.MinValue);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #17
+                 //JavaQuery, random.yaml, #(17, 3)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -534,7 +536,7 @@ var float_min = (double) (double.MinValue);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #17
+                 //JavaQuery, random.yaml, #(17, 4)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -548,7 +550,7 @@ var float_min = (double) (double.MinValue);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #17
+                 //JavaQuery, random.yaml, #(17, 5)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -562,7 +564,7 @@ var float_min = (double) (double.MinValue);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #17
+                 //JavaQuery, random.yaml, #(17, 6)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -574,19 +576,21 @@ var float_min = (double) (double.MinValue);
              }
              
              
-             //JavaDef, random.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, random.yaml, #18
              //Original: upper_limit = 2**53 - 1
              
-var upper_limit = (long) (2L << 53 - 1);             
+                 var upper_limit = (long) (2L << 53 - 1);
              
-             //JavaDef, random.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, random.yaml, #19
              //Original: lower_limit = 1 - (2**53)
              
-var lower_limit = (long) (1L - 2L << 53);             
+                 var lower_limit = (long) (1L - 2L << 53);
+             
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #20
+                 //JavaQuery, random.yaml, #(20, 1)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -600,7 +604,7 @@ var lower_limit = (long) (1L - 2L << 53);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #20
+                 //JavaQuery, random.yaml, #(20, 2)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -614,7 +618,7 @@ var lower_limit = (long) (1L - 2L << 53);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #20
+                 //JavaQuery, random.yaml, #(20, 3)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -628,7 +632,7 @@ var lower_limit = (long) (1L - 2L << 53);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #20
+                 //JavaQuery, random.yaml, #(20, 4)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -642,7 +646,7 @@ var lower_limit = (long) (1L - 2L << 53);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #20
+                 //JavaQuery, random.yaml, #(20, 5)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -656,7 +660,7 @@ var lower_limit = (long) (1L - 2L << 53);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #20
+                 //JavaQuery, random.yaml, #(20, 6)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -670,7 +674,7 @@ var lower_limit = (long) (1L - 2L << 53);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #21
+                 //JavaQuery, random.yaml, #(21, 1)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -684,7 +688,7 @@ var lower_limit = (long) (1L - 2L << 53);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #21
+                 //JavaQuery, random.yaml, #(21, 2)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -698,7 +702,7 @@ var lower_limit = (long) (1L - 2L << 53);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #22
+                 //JavaQuery, random.yaml, #(22, 1)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -712,7 +716,7 @@ var lower_limit = (long) (1L - 2L << 53);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #22
+                 //JavaQuery, random.yaml, #(22, 2)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  
@@ -726,7 +730,7 @@ var lower_limit = (long) (1L - 2L << 53);
              TestCounter++;
              
              {
-                 //JavaQuery, random.yaml, #22
+                 //JavaQuery, random.yaml, #(22, 3)
                  /* ExpectedOriginal: True */
                  var expected_ = true;
                  

@@ -34,10 +34,11 @@ namespace RethinkDb.Driver.Test.Generated {
         public void YamlTest(){
 
              
-             //JavaDef, polymorphism.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, polymorphism.yaml, #1
              //Original: obj = r.expr({'id':0,'a':0})
              
-var obj = (MakeObj) (r.expr(r.hashMap("id", 0L).with("a", 0L)));             
+                 var obj = (MakeObj) (r.expr(r.hashMap("id", 0L).with("a", 0L)));
+             
              TestCounter++;
              
              {
@@ -55,7 +56,7 @@ var obj = (MakeObj) (r.expr(r.hashMap("id", 0L).with("a", 0L)));
              TestCounter++;
              
              {
-                 //JavaQuery, polymorphism.yaml, #3
+                 //JavaQuery, polymorphism.yaml, #(3, 1)
                  /* ExpectedOriginal: ({'id':0,'c':1,'a':0}) */
                  var expected_ = r.hashMap("id", 0L).with("c", 1L).with("a", 0L);
                  
@@ -69,7 +70,7 @@ var obj = (MakeObj) (r.expr(r.hashMap("id", 0L).with("a", 0L)));
              TestCounter++;
              
              {
-                 //JavaQuery, polymorphism.yaml, #3
+                 //JavaQuery, polymorphism.yaml, #(3, 2)
                  /* ExpectedOriginal: ({'id':0,'c':1,'a':0}) */
                  var expected_ = r.hashMap("id", 0L).with("c", 1L).with("a", 0L);
                  
@@ -83,7 +84,7 @@ var obj = (MakeObj) (r.expr(r.hashMap("id", 0L).with("a", 0L)));
              TestCounter++;
              
              {
-                 //JavaQuery, polymorphism.yaml, #4
+                 //JavaQuery, polymorphism.yaml, #(4, 1)
                  /* ExpectedOriginal: ({'id':0}) */
                  var expected_ = r.hashMap("id", 0L);
                  
@@ -97,7 +98,7 @@ var obj = (MakeObj) (r.expr(r.hashMap("id", 0L).with("a", 0L)));
              TestCounter++;
              
              {
-                 //JavaQuery, polymorphism.yaml, #4
+                 //JavaQuery, polymorphism.yaml, #(4, 2)
                  /* ExpectedOriginal: ({'id':0}) */
                  var expected_ = r.hashMap("id", 0L);
                  
@@ -111,7 +112,7 @@ var obj = (MakeObj) (r.expr(r.hashMap("id", 0L).with("a", 0L)));
              TestCounter++;
              
              {
-                 //JavaQuery, polymorphism.yaml, #5
+                 //JavaQuery, polymorphism.yaml, #(5, 1)
                  /* ExpectedOriginal: ({'a':0}) */
                  var expected_ = r.hashMap("a", 0L);
                  
@@ -125,7 +126,7 @@ var obj = (MakeObj) (r.expr(r.hashMap("id", 0L).with("a", 0L)));
              TestCounter++;
              
              {
-                 //JavaQuery, polymorphism.yaml, #5
+                 //JavaQuery, polymorphism.yaml, #(5, 2)
                  /* ExpectedOriginal: ({'a':0}) */
                  var expected_ = r.hashMap("a", 0L);
                  

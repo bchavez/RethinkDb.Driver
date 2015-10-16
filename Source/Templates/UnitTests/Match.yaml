@@ -33,7 +33,7 @@ DefsAndTests:
   TestFile: match.yaml
   TestNum: 4
   Original: r.expr(["aba", "aca", "ada", "aea"]).filter(lambda row:row.match("a(.)a")['groups'][0]['str'].match("[cd]"))
-  Java: r.expr(r.array("aba", "aca", "ada", "aea")).filter(row -> row.match("a(.)a").g("groups").nth(0L).g("str").match("[cd]"))
+  Java: r.expr(r.array("aba", "aca", "ada", "aea")).filter(row -> row.match("a(.)a").bracket("groups").bracket(0L).bracket("str").match("[cd]"))
   ExpectedOriginal: (["aca", "ada"])
   ExpectedType: List
   ExpectedJava: r.array("aca", "ada")
@@ -51,7 +51,7 @@ DefsAndTests:
   TestFile: match.yaml
   TestNum: 6
   Original: tbl.filter(lambda row:row['a'].match('b')).order_by('id')
-  Java: tbl.filter(row -> row.g("a").match("b")).orderBy("id")
+  Java: tbl.filter(row -> row.bracket("a").match("b")).orderBy("id")
   ExpectedOriginal: ([{'id':0,'a':'abc'},{'id':1,'a':'ab'},{'id':2,'a':'bc'}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("id", 0L).with("a", "abc"), r.hashMap("id", 1L).with("a", "ab"), r.hashMap("id", 2L).with("a", "bc"))
@@ -60,7 +60,7 @@ DefsAndTests:
   TestFile: match.yaml
   TestNum: 7
   Original: tbl.filter(lambda row:row['a'].match('ab')).order_by('id')
-  Java: tbl.filter(row -> row.g("a").match("ab")).orderBy("id")
+  Java: tbl.filter(row -> row.bracket("a").match("ab")).orderBy("id")
   ExpectedOriginal: ([{'id':0,'a':'abc'},{'id':1,'a':'ab'}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("id", 0L).with("a", "abc"), r.hashMap("id", 1L).with("a", "ab"))
@@ -69,7 +69,7 @@ DefsAndTests:
   TestFile: match.yaml
   TestNum: 8
   Original: tbl.filter(lambda row:row['a'].match('ab$')).order_by('id')
-  Java: tbl.filter(row -> row.g("a").match("ab$")).orderBy("id")
+  Java: tbl.filter(row -> row.bracket("a").match("ab$")).orderBy("id")
   ExpectedOriginal: ([{'id':1,'a':'ab'}])
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("id", 1L).with("a", "ab"))
@@ -78,7 +78,7 @@ DefsAndTests:
   TestFile: match.yaml
   TestNum: 9
   Original: tbl.filter(lambda row:row['a'].match('^b$')).order_by('id')
-  Java: tbl.filter(row -> row.g("a").match("^b$")).orderBy("id")
+  Java: tbl.filter(row -> row.bracket("a").match("^b$")).orderBy("id")
   ExpectedOriginal: ([])
   ExpectedType: List
   ExpectedJava: r.array()

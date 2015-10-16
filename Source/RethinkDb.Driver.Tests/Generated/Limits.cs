@@ -109,20 +109,23 @@ namespace RethinkDb.Driver.Test.Generated {
              }
              
              
-             //JavaDef, limits.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, limits.yaml, #6
              //Original: ten_l = r.expr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
              
-var ten_l = (MakeArray) (r.expr(r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L)));             
+                 var ten_l = (MakeArray) (r.expr(r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L)));
              
-             //JavaDef, limits.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, limits.yaml, #7
              //Original: ten_f = lambda l:list(range(1,11))
              
-ReqlFunction1 ten_f =  (l => list(range(1L, 11L)));             
+                 ReqlFunction1 ten_f =  (l => list(range(1L, 11L)));
              
-             //JavaDef, limits.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, limits.yaml, #8
              //Original: huge_l = r.expr(ten_l).concat_map(ten_f).concat_map(ten_f).concat_map(ten_f).concat_map(ten_f)
              
-var huge_l = (ConcatMap) (r.expr(ten_l).concatMap(ten_f).concatMap(ten_f).concatMap(ten_f).concatMap(ten_f));             
+                 var huge_l = (ConcatMap) (r.expr(ten_l).concatMap(ten_f).concatMap(ten_f).concatMap(ten_f).concatMap(ten_f));
+             
              TestCounter++;
              
              {
@@ -172,8 +175,8 @@ var huge_l = (ConcatMap) (r.expr(ten_l).concatMap(ten_f).concatMap(ten_f).concat
              
              {
                  //JavaQuery, limits.yaml, #12
-                 /* ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':1}) */
-                 var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 1L);
+                 /* ExpectedOriginal: ({'deleted':0,'replaced':0,'unchanged':0,'errors':0,'skipped':0,'inserted':1}) */
+                 var expected_ = r.hashMap("deleted", 0L).with("replaced", 0L).with("unchanged", 0L).with("errors", 0L).with("skipped", 0L).with("inserted", 1L);
                  
                  /* Original: tbl.insert({'id':1, 'array':ten_l}) */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", 1L).with("array", ten_l)) ,
@@ -212,10 +215,11 @@ var huge_l = (ConcatMap) (r.expr(ten_l).concatMap(ten_f).concatMap(ten_f).concat
              }
              
              
-             //JavaDef, limits.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, limits.yaml, #15
              //Original: c = tbl.changes(squash=1000000, changefeed_queue_size=10)
              
-var c = (Changes) (tbl.changes().optArg("squash", 1000000L).optArg("changefeed_queue_size", 10L));             
+                 var c = maybeRun( (Changes) (tbl.changes().optArg("squash", 1000000L).optArg("changefeed_queue_size", 10L)) );
+             
              TestCounter++;
              
              {
@@ -287,10 +291,11 @@ var c = (Changes) (tbl.changes().optArg("squash", 1000000L).optArg("changefeed_q
              }
              
              
-             //JavaDef, limits.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, limits.yaml, #21
              //Original: c2 = tbl.changes(squash=1000000)
              
-var c2 = (Changes) (tbl.changes().optArg("squash", 1000000L));             
+                 var c2 = maybeRun( (Changes) (tbl.changes().optArg("squash", 1000000L)) );
+             
              TestCounter++;
              
              {

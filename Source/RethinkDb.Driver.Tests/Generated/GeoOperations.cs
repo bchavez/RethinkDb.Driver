@@ -88,10 +88,11 @@ namespace RethinkDb.Driver.Test.Generated {
              }
              
              
-             //JavaDef, geo/operations.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, geo/operations.yaml, #5
              //Original: someDist = r.distance(r.point(-122, 37), r.point(-123, 37))
              
-var someDist = (Distance) (r.distance(r.point(-122L, 37L), r.point(-123L, 37L)));             
+                 var someDist = (Distance) (r.distance(r.point(-122L, 37L), r.point(-123L, 37L)));
+             
              TestCounter++;
              
              {

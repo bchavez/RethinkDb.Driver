@@ -31,12 +31,18 @@ DefsAndTests:
   TestFile: mutation/sync.yaml
   TestNum: 4
   Original: tbl = r.db('test').table('test1')
+  VarName: tbl
+  VarType: Table
+  Value: (Table) (r.db("test").table("test1"))
   Java: Table tbl = (Table) (r.db("test").table("test1"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: mutation/sync.yaml
   TestNum: 5
   Original: tbl_soft = r.db('test').table('test1soft')
+  VarName: tbl_soft
+  VarType: Table
+  Value: (Table) (r.db("test").table("test1soft"))
   Java: Table tbl_soft = (Table) (r.db("test").table("test1soft"));
   RunOpts: []
 - TestType: JavaQuery

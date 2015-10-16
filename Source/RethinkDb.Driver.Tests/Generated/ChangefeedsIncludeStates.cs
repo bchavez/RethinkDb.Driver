@@ -104,10 +104,11 @@ namespace RethinkDb.Driver.Test.Generated {
              }
              
              
-             //JavaDef, changefeeds/include_states.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, changefeeds/include_states.yaml, #6
              //Original: tblchanges = tbl.changes(squash=true, include_states=true)
              
-var tblchanges = (Changes) (tbl.changes().optArg("squash", true).optArg("include_states", true));             
+                 var tblchanges = maybeRun( (Changes) (tbl.changes().optArg("squash", true).optArg("include_states", true)) );
+             
              TestCounter++;
              
              {
@@ -126,8 +127,8 @@ var tblchanges = (Changes) (tbl.changes().optArg("squash", true).optArg("include
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #8
-                 /* ExpectedOriginal: [{'state': 'ready'}, {'new_val': {'id': 2}, 'old_val': None}] */
-                 var expected_ = r.array(r.hashMap("state", "ready"), r.hashMap("new_val", r.hashMap("id", 2L)).with("old_val", null));
+                 /* ExpectedOriginal: [{'state': 'ready'}, {'old_val': None, 'new_val': {'id': 2}}] */
+                 var expected_ = r.array(r.hashMap("state", "ready"), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 2L)));
                  
                  /* Original: fetch(tblchanges, 2) */
                  var obtained = runOrCatch( fetch(tblchanges, 2L) ,
@@ -137,10 +138,11 @@ var tblchanges = (Changes) (tbl.changes().optArg("squash", true).optArg("include
              }
              
              
-             //JavaDef, changefeeds/include_states.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, changefeeds/include_states.yaml, #9
              //Original: getchanges = tbl.get(2).changes(include_states=true)
              
-var getchanges = (Changes) (tbl.get(2L).changes().optArg("include_states", true));             
+                 var getchanges = maybeRun( (Changes) (tbl.get(2L).changes().optArg("include_states", true)) );
+             
              TestCounter++;
              
              {
@@ -159,8 +161,8 @@ var getchanges = (Changes) (tbl.get(2L).changes().optArg("include_states", true)
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #11
-                 /* ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 2}}, {'state': 'ready'}, {'new_val': {'a': 1, 'id': 2}, 'old_val': {'id': 2}}] */
-                 var expected_ = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 2L)), r.hashMap("state", "ready"), r.hashMap("new_val", r.hashMap("a", 1L).with("id", 2L)).with("old_val", r.hashMap("id", 2L)));
+                 /* ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 2}}, {'state': 'ready'}, {'old_val': {'id': 2}, 'new_val': {'id': 2, 'a': 1}}] */
+                 var expected_ = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 2L)), r.hashMap("state", "ready"), r.hashMap("old_val", r.hashMap("id", 2L)).with("new_val", r.hashMap("id", 2L).with("a", 1L)));
                  
                  /* Original: fetch(getchanges, 4) */
                  var obtained = runOrCatch( fetch(getchanges, 4L) ,
@@ -170,15 +172,17 @@ var getchanges = (Changes) (tbl.get(2L).changes().optArg("include_states", true)
              }
              
              
-             //JavaDef, changefeeds/include_states.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, changefeeds/include_states.yaml, #12
              //Original: limitchanges = tbl.order_by(index='id').limit(10).changes(include_states=true)
              
-var limitchanges = (Changes) (tbl.orderBy().optArg("index", "id").limit(10L).changes().optArg("include_states", true));             
+                 var limitchanges = maybeRun( (Changes) (tbl.orderBy().optArg("index", "id").limit(10L).changes().optArg("include_states", true)) );
              
-             //JavaDef, changefeeds/include_states.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, changefeeds/include_states.yaml, #13
              //Original: limitchangesdesc = tbl.order_by(index=r.desc('id')).limit(10).changes(include_states=true)
              
-var limitchangesdesc = (Changes) (tbl.orderBy().optArg("index", r.desc("id")).limit(10L).changes().optArg("include_states", true));             
+                 var limitchangesdesc = maybeRun( (Changes) (tbl.orderBy().optArg("index", r.desc("id")).limit(10L).changes().optArg("include_states", true)) );
+             
              TestCounter++;
              
              {
@@ -197,8 +201,8 @@ var limitchangesdesc = (Changes) (tbl.orderBy().optArg("index", r.desc("id")).li
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #15
-                 /* ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 1}}, {'new_val': {'a': 1, 'id': 2}}, {'state': 'ready'}, {'new_val': {'id': 3}, 'old_val': None}] */
-                 var expected_ = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 1L)), r.hashMap("new_val", r.hashMap("a", 1L).with("id", 2L)), r.hashMap("state", "ready"), r.hashMap("new_val", r.hashMap("id", 3L)).with("old_val", null));
+                 /* ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 1}}, {'new_val': {'id': 2, 'a': 1}}, {'state': 'ready'}, {'old_val': None, 'new_val': {'id': 3}}] */
+                 var expected_ = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 1L)), r.hashMap("new_val", r.hashMap("id", 2L).with("a", 1L)), r.hashMap("state", "ready"), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3L)));
                  
                  /* Original: fetch(limitchanges, 5) */
                  var obtained = runOrCatch( fetch(limitchanges, 5L) ,
@@ -211,8 +215,8 @@ var limitchangesdesc = (Changes) (tbl.orderBy().optArg("index", r.desc("id")).li
              
              {
                  //JavaQuery, changefeeds/include_states.yaml, #16
-                 /* ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'a': 1, 'id': 2}}, {'new_val': {'id': 1}}, {'state': 'ready'}, {'new_val': {'id': 3}, 'old_val': None}] */
-                 var expected_ = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("a", 1L).with("id", 2L)), r.hashMap("new_val", r.hashMap("id", 1L)), r.hashMap("state", "ready"), r.hashMap("new_val", r.hashMap("id", 3L)).with("old_val", null));
+                 /* ExpectedOriginal: [{'state': 'initializing'}, {'new_val': {'id': 2, 'a': 1}}, {'new_val': {'id': 1}}, {'state': 'ready'}, {'old_val': None, 'new_val': {'id': 3}}] */
+                 var expected_ = r.array(r.hashMap("state", "initializing"), r.hashMap("new_val", r.hashMap("id", 2L).with("a", 1L)), r.hashMap("new_val", r.hashMap("id", 1L)), r.hashMap("state", "ready"), r.hashMap("old_val", null).with("new_val", r.hashMap("id", 3L)));
                  
                  /* Original: fetch(limitchangesdesc, 5) */
                  var obtained = runOrCatch( fetch(limitchangesdesc, 5L) ,

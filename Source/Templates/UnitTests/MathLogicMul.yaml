@@ -2,7 +2,7 @@ ModuleName: MathLogicMul
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/mul.yaml
-  TestNum: 1
+  TestNum: (1, 1)
   Original: (r.expr(1) * 2)
   Java: r.expr(1L).mul(2L)
   ExpectedOriginal: 2
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mul.yaml
-  TestNum: 1
+  TestNum: (1, 2)
   Original: (1 * r.expr(2))
   Java: r.mul(1L, r.expr(2L))
   ExpectedOriginal: 2
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/mul.yaml
-  TestNum: 1
+  TestNum: (1, 3)
   Original: (r.expr(1).mul(2))
   Java: r.expr(1L).mul(2L)
   ExpectedOriginal: 2

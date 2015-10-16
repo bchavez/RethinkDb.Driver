@@ -83,7 +83,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.array("aca", "ada");
                  
                  /* Original: r.expr(["aba", "aca", "ada", "aea"]).filter(lambda row:row.match("a(.)a")['groups'][0]['str'].match("[cd]")) */
-                 var obtained = runOrCatch( r.expr(r.array("aba", "aca", "ada", "aea")).filter(row => row.match("a(.)a").g("groups").nth(0L).g("str").match("[cd]")) ,
+                 var obtained = runOrCatch( r.expr(r.array("aba", "aca", "ada", "aea")).filter(row => row.match("a(.)a").bracket("groups").bracket(0L).bracket("str").match("[cd]")) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -111,7 +111,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.array(r.hashMap("id", 0L).with("a", "abc"), r.hashMap("id", 1L).with("a", "ab"), r.hashMap("id", 2L).with("a", "bc"));
                  
                  /* Original: tbl.filter(lambda row:row['a'].match('b')).order_by('id') */
-                 var obtained = runOrCatch( tbl.filter(row => row.g("a").match("b")).orderBy("id") ,
+                 var obtained = runOrCatch( tbl.filter(row => row.bracket("a").match("b")).orderBy("id") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -125,7 +125,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.array(r.hashMap("id", 0L).with("a", "abc"), r.hashMap("id", 1L).with("a", "ab"));
                  
                  /* Original: tbl.filter(lambda row:row['a'].match('ab')).order_by('id') */
-                 var obtained = runOrCatch( tbl.filter(row => row.g("a").match("ab")).orderBy("id") ,
+                 var obtained = runOrCatch( tbl.filter(row => row.bracket("a").match("ab")).orderBy("id") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -139,7 +139,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.array(r.hashMap("id", 1L).with("a", "ab"));
                  
                  /* Original: tbl.filter(lambda row:row['a'].match('ab$')).order_by('id') */
-                 var obtained = runOrCatch( tbl.filter(row => row.g("a").match("ab$")).orderBy("id") ,
+                 var obtained = runOrCatch( tbl.filter(row => row.bracket("a").match("ab$")).orderBy("id") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -153,7 +153,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  var expected_ = r.array();
                  
                  /* Original: tbl.filter(lambda row:row['a'].match('^b$')).order_by('id') */
-                 var obtained = runOrCatch( tbl.filter(row => row.g("a").match("^b$")).orderBy("id") ,
+                 var obtained = runOrCatch( tbl.filter(row => row.bracket("a").match("^b$")).orderBy("id") ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

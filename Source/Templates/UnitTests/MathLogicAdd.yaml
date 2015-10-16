@@ -2,7 +2,7 @@ ModuleName: MathLogicAdd
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: 1
+  TestNum: (1, 1)
   Original: (r.expr(1) + 1)
   Java: r.expr(1L).add(1L)
   ExpectedOriginal: 2
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: 1
+  TestNum: (1, 2)
   Original: (1 + r.expr(1))
   Java: r.add(1L, r.expr(1L))
   ExpectedOriginal: 2
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: 1
+  TestNum: (1, 3)
   Original: (r.expr(1).add(1))
   Java: r.expr(1L).add(1L)
   ExpectedOriginal: 2

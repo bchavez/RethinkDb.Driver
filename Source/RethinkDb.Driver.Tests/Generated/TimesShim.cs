@@ -32,10 +32,11 @@ namespace RethinkDb.Driver.Test.Generated {
         public void YamlTest(){
 
              
-             //JavaDef, times/shim.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, times/shim.yaml, #1
              //Original: t = 1375147296.68
              
-var t = (double) (1375147296.68);             
+                 var t = (double) (1375147296.68);
+             
              TestCounter++;
              
              {

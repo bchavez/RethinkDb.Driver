@@ -6,6 +6,9 @@ DefsAndTests:
   TestFile: polymorphism.yaml
   TestNum: 1
   Original: obj = r.expr({'id':0,'a':0})
+  VarName: obj
+  VarType: MakeObj
+  Value: (MakeObj) (r.expr(r.hashMap("id", 0L).with("a", 0L)))
   Java: MakeObj obj = (MakeObj) (r.expr(r.hashMap("id", 0L).with("a", 0L)));
   RunOpts: []
 - TestType: JavaQuery
@@ -19,7 +22,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: 3
+  TestNum: (3, 1)
   Original: tbl.merge({'c':1}).nth(0)
   Java: tbl.merge(r.hashMap("c", 1L)).nth(0L)
   ExpectedOriginal: ({'id':0,'c':1,'a':0})
@@ -28,7 +31,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: 3
+  TestNum: (3, 2)
   Original: obj.merge({'c':1})
   Java: obj.merge(r.hashMap("c", 1L))
   ExpectedOriginal: ({'id':0,'c':1,'a':0})
@@ -37,7 +40,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: 4
+  TestNum: (4, 1)
   Original: tbl.without('a').nth(0)
   Java: tbl.without("a").nth(0L)
   ExpectedOriginal: ({'id':0})
@@ -46,7 +49,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: 4
+  TestNum: (4, 2)
   Original: obj.without('a')
   Java: obj.without("a")
   ExpectedOriginal: ({'id':0})
@@ -55,7 +58,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: 5
+  TestNum: (5, 1)
   Original: tbl.pluck('a').nth(0)
   Java: tbl.pluck("a").nth(0L)
   ExpectedOriginal: ({'a':0})
@@ -64,7 +67,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: 5
+  TestNum: (5, 2)
   Original: obj.pluck('a')
   Java: obj.pluck("a")
   ExpectedOriginal: ({'a':0})

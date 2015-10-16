@@ -4,60 +4,90 @@ DefsAndTests:
   TestFile: times/time_arith.yaml
   TestNum: 1
   Original: rt1 = 1375147296.681
+  VarName: rt1
+  VarType: Double
+  Value: (Double) (1375147296.681)
   Java: Double rt1 = (Double) (1375147296.681);
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/time_arith.yaml
   TestNum: 2
   Original: rt2 = 1375147296.682
+  VarName: rt2
+  VarType: Double
+  Value: (Double) (1375147296.682)
   Java: Double rt2 = (Double) (1375147296.682);
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/time_arith.yaml
   TestNum: 3
   Original: rt3 = 1375147297.681
+  VarName: rt3
+  VarType: Double
+  Value: (Double) (1375147297.681)
   Java: Double rt3 = (Double) (1375147297.681);
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/time_arith.yaml
   TestNum: 4
   Original: rt4 = 2375147296.681
+  VarName: rt4
+  VarType: Double
+  Value: (Double) (2375147296.681)
   Java: Double rt4 = (Double) (2375147296.681);
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/time_arith.yaml
   TestNum: 5
   Original: rts = [rt1, rt2, rt3, rt4]
+  VarName: rts
+  VarType: List
+  Value: (List) (r.array(rt1, rt2, rt3, rt4))
   Java: List rts = (List) (r.array(rt1, rt2, rt3, rt4));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/time_arith.yaml
   TestNum: 6
   Original: t1 = r.epoch_time(rt1)
+  VarName: t1
+  VarType: EpochTime
+  Value: (EpochTime) (r.epochTime(rt1))
   Java: EpochTime t1 = (EpochTime) (r.epochTime(rt1));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/time_arith.yaml
   TestNum: 7
   Original: t2 = r.epoch_time(rt2)
+  VarName: t2
+  VarType: EpochTime
+  Value: (EpochTime) (r.epochTime(rt2))
   Java: EpochTime t2 = (EpochTime) (r.epochTime(rt2));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/time_arith.yaml
   TestNum: 8
   Original: t3 = r.epoch_time(rt3)
+  VarName: t3
+  VarType: EpochTime
+  Value: (EpochTime) (r.epochTime(rt3))
   Java: EpochTime t3 = (EpochTime) (r.epochTime(rt3));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/time_arith.yaml
   TestNum: 9
   Original: t4 = r.epoch_time(rt4)
+  VarName: t4
+  VarType: EpochTime
+  Value: (EpochTime) (r.epochTime(rt4))
   Java: EpochTime t4 = (EpochTime) (r.epochTime(rt4));
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/time_arith.yaml
   TestNum: 10
   Original: ts = r.expr([t1, t2, t3, t4])
+  VarName: ts
+  VarType: MakeArray
+  Value: (MakeArray) (r.expr(r.array(t1, t2, t3, t4)))
   Java: MakeArray ts = (MakeArray) (r.expr(r.array(t1, t2, t3, t4)));
   RunOpts: []
 - TestType: JavaQuery
@@ -154,13 +184,16 @@ DefsAndTests:
   TestFile: times/time_arith.yaml
   TestNum: 21
   Original: datum_types = r.expr([null, true, false, 1, "1", [1], {"1":1}, r.binary(b'')])
+  VarName: datum_types
+  VarType: MakeArray
+  Value: (MakeArray) (r.expr(r.array(null, true, false, 1L, "1", r.array(1L), r.hashMap("1", 1L), r.binary(new byte[]{}))))
   Java: MakeArray datum_types = (MakeArray) (r.expr(r.array(null, true, false, 1L, "1", r.array(1L), r.hashMap("1", 1L), r.binary(new byte[]{}))));
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/time_arith.yaml
   TestNum: 22
   Original: datum_types.map(lambda x:r.expr([[x, t1], [t1, x]]).map(lambda xy:xy[0].do(lambda x2:xy[1].do(lambda y:[x2 < y, x2 <= y, x2 == y, x2 != y, x2 >= y, x2 > y]))))
-  Java: datum_types.map(x -> r.expr(r.array(r.array(x, t1), r.array(t1, x))).map(xy -> xy.nth(0L).do_(x2 -> xy.nth(1L).do_(y -> r.array(r.lt(x2, y), r.le(x2, y), r.eq(x2, y), r.ne(x2, y), r.ge(x2, y), r.gt(x2, y))))))
+  Java: datum_types.map(x -> r.expr(r.array(r.array(x, t1), r.array(t1, x))).map(xy -> xy.bracket(0L).do_(x2 -> xy.bracket(1L).do_(y -> r.array(r.lt(x2, y), r.le(x2, y), r.eq(x2, y), r.ne(x2, y), r.ge(x2, y), r.gt(x2, y))))))
   ExpectedOriginal: ([[[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[false, false, false, true,  true,  true], [true,  true,  false, true,  false, false]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]], [[true,  true,  false, true,  false, false], [false, false, false, true,  true,  true]]])
   ExpectedType: List
   ExpectedJava: r.array(r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(false, false, false, true, true, true), r.array(true, true, false, true, false, false)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)))
@@ -232,7 +265,7 @@ DefsAndTests:
   TestFile: times/time_arith.yaml
   TestNum: 30
   Original: r.do(r.js("(function(x){doc = new Object(); doc.date = new Date('2012-08-01'); return doc;})"))["date"].to_iso8601()
-  Java: r.do_(r.js("(function(x){doc = new Object(); doc.date = new Date('2012-08-01'); return doc;})")).g("date").toIso8601()
+  Java: r.do_(r.js("(function(x){doc = new Object(); doc.date = new Date('2012-08-01'); return doc;})")).bracket("date").toIso8601()
   ExpectedOriginal: ("2012-08-01T00:00:00+00:00")
   ExpectedType: String
   ExpectedJava: '"2012-08-01T00:00:00+00:00"'

@@ -48,6 +48,22 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
+                 //JavaQuery, meta/composite.yaml, #2
+                 /* ExpectedOriginal: ({'dbs_created':3,'config_changes':arrlen(3)}) */
+                 var expected_ = r.hashMap("dbs_created", 3L).with("config_changes", arrlen(3L));
+                 
+                 /* Original: r.expr([1,2,3]).for_each(lambda row:
+    r.db_create('db_' + row.coerce_to('string')))
+ */
+                 var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L)).forEach(row => r.dbCreate(r.add("db_", row.coerceTo("string")))) ,
+                                            new OptArgs()
+                    );
+                 assertEquals(expected_, obtained);
+             }
+             
+             TestCounter++;
+             
+             {
                  //JavaQuery, meta/composite.yaml, #3
                  /* ExpectedOriginal: partial({'tables_created':9}) */
                  var expected_ = partial(r.hashMap("tables_created", 9L));
@@ -57,6 +73,22 @@ namespace RethinkDb.Driver.Test.Generated {
         r.db(db_name).table_create('tbl_' + i.coerce_to('string'))))
  */
                  var obtained = runOrCatch( r.dbList().setDifference(r.array("rethinkdb")).forEach(db_name => r.expr(r.array(1L, 2L, 3L)).forEach(i => r.db(db_name).tableCreate(r.add("tbl_", i.coerceTo("string"))))) ,
+                                            new OptArgs()
+                    );
+                 assertEquals(expected_, obtained);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, meta/composite.yaml, #4
+                 /* ExpectedOriginal: partial({'dbs_dropped':3,'tables_dropped':9}) */
+                 var expected_ = partial(r.hashMap("dbs_dropped", 3L).with("tables_dropped", 9L));
+                 
+                 /* Original: r.db_list().set_difference(["rethinkdb"]).for_each(lambda row:
+    r.db_drop(row))
+ */
+                 var obtained = runOrCatch( r.dbList().setDifference(r.array("rethinkdb")).forEach(row => r.dbDrop(row)) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

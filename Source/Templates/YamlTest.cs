@@ -19,8 +19,12 @@ namespace Templates
         {
             public string TestType { get; set; }
             public string TestFile { get; set; }
-            public int TestNum { get; set; }
+            public string TestNum { get; set; }
             public string Original { get; set; }
+            public string VarName { get; set; }
+            public string VarType { get; set; }
+            public bool RunIfQuery { get; set; }
+            public string Value { get; set; }
             public string Java { get; set; }
             public string ExpectedOriginal { get; set; }
             public string ExpectedType { get; set; }

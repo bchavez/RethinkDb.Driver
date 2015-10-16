@@ -6,6 +6,10 @@ DefsAndTests:
   TestFile: changefeeds/table.yaml
   TestNum: 1
   Original: all = tbl.changes()
+  VarName: all
+  VarType: Changes
+  RunIfQuery: true
+  Value: (Changes) (tbl.changes())
   Java: Changes all = (Changes) (tbl.changes());
   RunOpts: []
 - TestType: JavaQuery
@@ -40,9 +44,9 @@ DefsAndTests:
   TestNum: 5
   Original: fetch(all, 1)
   Java: fetch(all, 1L)
-  ExpectedOriginal: '[{''new_val'': {''id'': 1, ''version'': 1}, ''old_val'': {''id'': 1}}]'
+  ExpectedOriginal: '[{''old_val'': {''id'': 1}, ''new_val'': {''id'': 1, ''version'': 1}}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("new_val", r.hashMap("id", 1L).with("version", 1L)).with("old_val", r.hashMap("id", 1L)))
+  ExpectedJava: r.array(r.hashMap("old_val", r.hashMap("id", 1L)).with("new_val", r.hashMap("id", 1L).with("version", 1L)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
@@ -58,14 +62,18 @@ DefsAndTests:
   TestNum: 7
   Original: fetch(all, 1)
   Java: fetch(all, 1L)
-  ExpectedOriginal: '[{''new_val'': None, ''old_val'': {''id'': 1, ''version'': 1}}]'
+  ExpectedOriginal: '[{''old_val'': {''id'': 1, ''version'': 1}, ''new_val'': None}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("new_val", null).with("old_val", r.hashMap("id", 1L).with("version", 1L)))
+  ExpectedJava: r.array(r.hashMap("old_val", r.hashMap("id", 1L).with("version", 1L)).with("new_val", null))
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
   TestNum: 8
   Original: pluck = tbl.changes().pluck({'new_val':['version']})
+  VarName: pluck
+  VarType: Pluck
+  RunIfQuery: true
+  Value: (Pluck) (tbl.changes().pluck(r.hashMap("new_val", r.array("version"))))
   Java: Pluck pluck = (Pluck) (tbl.changes().pluck(r.hashMap("new_val", r.array("version"))));
   RunOpts: []
 - TestType: JavaQuery
@@ -90,18 +98,29 @@ DefsAndTests:
   TestFile: changefeeds/table.yaml
   TestNum: 11
   Original: ordered = tbl.changes().order_by('id')
+  VarName: ordered
+  VarType: OrderBy
+  RunIfQuery: true
+  Value: (OrderBy) (tbl.changes().orderBy("id"))
   Java: OrderBy ordered = (OrderBy) (tbl.changes().orderBy("id"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
   TestNum: 12
   Original: vtbl = r.db('rethinkdb').table('_debug_scratch')
+  VarName: vtbl
+  VarType: Table
+  Value: (Table) (r.db("rethinkdb").table("_debug_scratch"))
   Java: Table vtbl = (Table) (r.db("rethinkdb").table("_debug_scratch"));
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
   TestNum: 13
   Original: allVirtual = vtbl.changes()
+  VarName: allVirtual
+  VarType: Changes
+  RunIfQuery: true
+  Value: (Changes) (vtbl.changes())
   Java: Changes allVirtual = (Changes) (vtbl.changes());
   RunOpts: []
 - TestType: JavaQuery
@@ -136,9 +155,9 @@ DefsAndTests:
   TestNum: 17
   Original: fetch(allVirtual, 1)
   Java: fetch(allVirtual, 1L)
-  ExpectedOriginal: '[{''new_val'': {''id'': 1, ''version'': 1}, ''old_val'': {''id'': 1}}]'
+  ExpectedOriginal: '[{''old_val'': {''id'': 1}, ''new_val'': {''id'': 1, ''version'': 1}}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("new_val", r.hashMap("id", 1L).with("version", 1L)).with("old_val", r.hashMap("id", 1L)))
+  ExpectedJava: r.array(r.hashMap("old_val", r.hashMap("id", 1L)).with("new_val", r.hashMap("id", 1L).with("version", 1L)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
@@ -154,14 +173,18 @@ DefsAndTests:
   TestNum: 19
   Original: fetch(allVirtual, 1)
   Java: fetch(allVirtual, 1L)
-  ExpectedOriginal: '[{''new_val'': None, ''old_val'': {''id'': 1, ''version'': 1}}]'
+  ExpectedOriginal: '[{''old_val'': {''id'': 1, ''version'': 1}, ''new_val'': None}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("new_val", null).with("old_val", r.hashMap("id", 1L).with("version", 1L)))
+  ExpectedJava: r.array(r.hashMap("old_val", r.hashMap("id", 1L).with("version", 1L)).with("new_val", null))
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
   TestNum: 20
   Original: vpluck = vtbl.changes().pluck({'new_val':['version']})
+  VarName: vpluck
+  VarType: Pluck
+  RunIfQuery: true
+  Value: (Pluck) (vtbl.changes().pluck(r.hashMap("new_val", r.array("version"))))
   Java: Pluck vpluck = (Pluck) (vtbl.changes().pluck(r.hashMap("new_val", r.array("version"))));
   RunOpts: []
 - TestType: JavaQuery

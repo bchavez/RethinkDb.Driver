@@ -91,8 +91,8 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, meta/dbs.yaml, #5
-                 /* ExpectedOriginal: {'name': 'a', 'uuid': uuid()} */
-                 var expected_ = r.hashMap("name", "a").with("uuid", uuid());
+                 /* ExpectedOriginal: {'id': uuid(), 'name': 'a'} */
+                 var expected_ = r.hashMap("id", uuid()).with("name", "a");
                  
                  /* Original: r.db('a').config() */
                  var obtained = runOrCatch( r.db("a").config() ,

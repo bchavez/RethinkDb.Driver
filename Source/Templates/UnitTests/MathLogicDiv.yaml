@@ -2,7 +2,7 @@ ModuleName: MathLogicDiv
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
-  TestNum: 1
+  TestNum: (1, 1)
   Original: (r.expr(4) / 2)
   Java: r.expr(4L).div(2L)
   ExpectedOriginal: 2
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
-  TestNum: 1
+  TestNum: (1, 2)
   Original: (4 / r.expr(2))
   Java: r.div(4L, r.expr(2L))
   ExpectedOriginal: 2
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
-  TestNum: 1
+  TestNum: (1, 3)
   Original: r.expr(4).div(2)
   Java: r.expr(4L).div(2L)
   ExpectedOriginal: 2
@@ -47,7 +47,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
-  TestNum: 5
+  TestNum: (5, 1)
   Original: r.expr(1) / 0
   Java: r.expr(1L).div(0L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1])
@@ -56,7 +56,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
-  TestNum: 5
+  TestNum: (5, 2)
   Original: r.expr(2.0) / 0
   Java: r.expr(2.0).div(0L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1])
@@ -65,7 +65,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
-  TestNum: 5
+  TestNum: (5, 3)
   Original: r.expr(3) / 0.0
   Java: r.expr(3L).div(0.0)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1])
@@ -74,7 +74,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
-  TestNum: 5
+  TestNum: (5, 4)
   Original: r.expr(4.0) / 0.0
   Java: r.expr(4.0).div(0.0)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1])
@@ -83,7 +83,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
-  TestNum: 5
+  TestNum: (5, 5)
   Original: r.expr(0) / 0
   Java: r.expr(0L).div(0L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1])
@@ -92,7 +92,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/div.yaml
-  TestNum: 5
+  TestNum: (5, 6)
   Original: r.expr(0.0) / 0.0
   Java: r.expr(0.0).div(0.0)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1])

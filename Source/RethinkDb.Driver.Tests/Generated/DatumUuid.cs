@@ -35,8 +35,8 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/uuid.yaml, #1
-                 /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 /* ExpectedOriginal: uuid() */
+                 var expected_ = uuid();
                  
                  /* Original: r.uuid() */
                  var obtained = runOrCatch( r.uuid() ,
@@ -49,8 +49,8 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/uuid.yaml, #2
-                 /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 /* ExpectedOriginal: uuid() */
+                 var expected_ = uuid();
                  
                  /* Original: r.expr(r.uuid()) */
                  var obtained = runOrCatch( r.expr(r.uuid()) ,

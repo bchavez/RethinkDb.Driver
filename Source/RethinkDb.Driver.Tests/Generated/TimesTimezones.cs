@@ -32,75 +32,89 @@ namespace RethinkDb.Driver.Test.Generated {
         public void YamlTest(){
 
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, times/timezones.yaml, #1
              //Original: t1 = r.time(2013, r.july, 29, 23, 30, 0, "+00:00")
              
-var t1 = (Time) (r.time(2013L, r.july(), 29L, 23L, 30L, 0L, "+00:00"));             
+                 var t1 = (Time) (r.time(2013L, r.july(), 29L, 23L, 30L, 0L, "+00:00"));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #2
              //Original: tutc1 = t1.in_timezone("Z")
              
-var tutc1 = (InTimezone) (t1.inTimezone("Z"));             
+                 var tutc1 = (InTimezone) (t1.inTimezone("Z"));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #3
              //Original: tutc2 = t1.in_timezone("+00:00")
              
-var tutc2 = (InTimezone) (t1.inTimezone("+00:00"));             
+                 var tutc2 = (InTimezone) (t1.inTimezone("+00:00"));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #4
              //Original: tutc3 = t1.in_timezone("+00")
              
-var tutc3 = (InTimezone) (t1.inTimezone("+00"));             
+                 var tutc3 = (InTimezone) (t1.inTimezone("+00"));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #5
              //Original: tutcs = r.expr([tutc1, tutc2, tutc3])
              
-var tutcs = (MakeArray) (r.expr(r.array(tutc1, tutc2, tutc3)));             
+                 var tutcs = (MakeArray) (r.expr(r.array(tutc1, tutc2, tutc3)));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #6
              //Original: tm1 = t1.in_timezone("-00:59")
              
-var tm1 = (InTimezone) (t1.inTimezone("-00:59"));             
+                 var tm1 = (InTimezone) (t1.inTimezone("-00:59"));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #7
              //Original: tm2 = t1.in_timezone("-01:00")
              
-var tm2 = (InTimezone) (t1.inTimezone("-01:00"));             
+                 var tm2 = (InTimezone) (t1.inTimezone("-01:00"));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #8
              //Original: tm3 = t1.in_timezone("-01:01")
              
-var tm3 = (InTimezone) (t1.inTimezone("-01:01"));             
+                 var tm3 = (InTimezone) (t1.inTimezone("-01:01"));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #9
              //Original: tms = r.expr([tm1, tm2, tm3])
              
-var tms = (MakeArray) (r.expr(r.array(tm1, tm2, tm3)));             
+                 var tms = (MakeArray) (r.expr(r.array(tm1, tm2, tm3)));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #10
              //Original: tp1 = t1.in_timezone("+00:59")
              
-var tp1 = (InTimezone) (t1.inTimezone("+00:59"));             
+                 var tp1 = (InTimezone) (t1.inTimezone("+00:59"));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #11
              //Original: tp2 = t1.in_timezone("+01:00")
              
-var tp2 = (InTimezone) (t1.inTimezone("+01:00"));             
+                 var tp2 = (InTimezone) (t1.inTimezone("+01:00"));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #12
              //Original: tp3 = t1.in_timezone("+01:01")
              
-var tp3 = (InTimezone) (t1.inTimezone("+01:01"));             
+                 var tp3 = (InTimezone) (t1.inTimezone("+01:01"));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #13
              //Original: tps = r.expr([tp1, tp2, tp3])
              
-var tps = (MakeArray) (r.expr(r.array(tp1, tp2, tp3)));             
+                 var tps = (MakeArray) (r.expr(r.array(tp1, tp2, tp3)));
              
-             //JavaDef, times/timezones.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/timezones.yaml, #14
              //Original: ts = tutcs.union(tms).union(tps).union([t1])
              
-var ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));             
+                 var ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
+             
              TestCounter++;
              
              {

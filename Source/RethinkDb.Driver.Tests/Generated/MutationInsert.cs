@@ -48,10 +48,11 @@ namespace RethinkDb.Driver.Test.Generated {
              }
              
              
-             //JavaDef, mutation/insert.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, mutation/insert.yaml, #2
              //Original: tbl2 = r.db('test').table('test2')
              
-var tbl2 = (Table) (r.db("test").table("test2"));             
+                 var tbl2 = (Table) (r.db("test").table("test2"));
+             
              TestCounter++;
              
              {
@@ -389,10 +390,11 @@ var tbl2 = (Table) (r.db("test").table("test2"));
              }
              
              
-             //JavaDef, mutation/insert.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, mutation/insert.yaml, #27
              //Original: tblpkey = r.db('test').table('testpkey')
              
-var tblpkey = (Table) (r.db("test").table("testpkey"));             
+                 var tblpkey = (Table) (r.db("test").table("testpkey"));
+             
              TestCounter++;
              
              {
@@ -485,7 +487,7 @@ var tblpkey = (Table) (r.db("test").table("testpkey"));
                  var expected_ = r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 7L);
                  
                  /* Original: tbl.for_each(lambda  row:          tbl2.insert(row.merge({'id':row['id']  +  100 }))   ) */
-                 var obtained = runOrCatch( tbl.forEach(row => tbl2.insert(row.merge(r.hashMap("id", row.g("id").add(100L))))) ,
+                 var obtained = runOrCatch( tbl.forEach(row => tbl2.insert(row.merge(r.hashMap("id", row.bracket("id").add(100L))))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #1
+                 //JavaQuery, math_logic/mul.yaml, #(1, 1)
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
@@ -48,7 +48,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #1
+                 //JavaQuery, math_logic/mul.yaml, #(1, 2)
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
@@ -62,7 +62,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #1
+                 //JavaQuery, math_logic/mul.yaml, #(1, 3)
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  

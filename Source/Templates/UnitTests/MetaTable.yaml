@@ -4,6 +4,9 @@ DefsAndTests:
   TestFile: meta/table.yaml
   TestNum: 1
   Original: db = r.db('test')
+  VarName: db
+  VarType: Db
+  Value: (Db) (r.db("test"))
   Java: Db db = (Db) (r.db("test"));
   RunOpts: []
 - TestType: JavaQuery
@@ -664,6 +667,9 @@ DefsAndTests:
   TestFile: meta/table.yaml
   TestNum: 75
   Original: db2 = r.db("test2")
+  VarName: db2
+  VarType: Db
+  Value: (Db) (r.db("test2"))
   Java: Db db2 = (Db) (r.db("test2"));
   RunOpts: []
 - TestType: JavaQuery
@@ -698,9 +704,9 @@ DefsAndTests:
   TestNum: 79
   Original: r.table('testA').config().pluck('db','name')
   Java: r.table("testA").config().pluck("db", "name")
-  ExpectedOriginal: '{''name'': ''testA'', ''db'': ''test''}'
+  ExpectedOriginal: '{''db'': ''test'', ''name'': ''testA''}'
   ExpectedType: Map
-  ExpectedJava: r.hashMap("name", "testA").with("db", "test")
+  ExpectedJava: r.hashMap("db", "test").with("name", "testA")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
@@ -742,7 +748,7 @@ DefsAndTests:
   TestFile: meta/table.yaml
   TestNum: 84
   Original: r.db('rethinkdb').table('table_config', identifier_format='uuid').nth(0)["db"]
-  Java: r.db("rethinkdb").table("table_config").optArg("identifier_format", "uuid").nth(0L).g("db")
+  Java: r.db("rethinkdb").table("table_config").optArg("identifier_format", "uuid").nth(0L).bracket("db")
   ExpectedOriginal: uuid()
   ExpectedType: Uuid
   ExpectedJava: uuid()

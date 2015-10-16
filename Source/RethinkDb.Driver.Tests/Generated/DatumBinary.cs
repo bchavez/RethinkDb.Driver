@@ -32,10 +32,11 @@ namespace RethinkDb.Driver.Test.Generated {
         public void YamlTest(){
 
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #1
              //Original: s = b''
              
-var s = (byte[]) (new byte[] {});             
+                 var s = (byte[]) (new byte[] {});
+             
              TestCounter++;
              
              {
@@ -65,10 +66,11 @@ var s = (byte[]) (new byte[] {});
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #4
              //Original: s = b'\x00'
              
-var s = (byte[]) (new byte[] { 0 });             
+                 s =  ((byte[]) (new byte[] { 0 }));
+             
              TestCounter++;
              
              {
@@ -98,10 +100,11 @@ var s = (byte[]) (new byte[] { 0 });
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #7
              //Original: s = b'\x00\x42'
              
-var s = (byte[]) (new byte[] { 0, 66 });             
+                 s =  ((byte[]) (new byte[] { 0, 66 }));
+             
              TestCounter++;
              
              {
@@ -131,10 +134,11 @@ var s = (byte[]) (new byte[] { 0, 66 });
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #10
              //Original: s = b'\x00\xfe\x7a'
              
-var s = (byte[]) (new byte[] { 0, 254, 122 });             
+                 s =  ((byte[]) (new byte[] { 0, 254, 122 }));
+             
              TestCounter++;
              
              {
@@ -164,10 +168,11 @@ var s = (byte[]) (new byte[] { 0, 254, 122 });
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #13
              //Original: s = b'\xed\xfe\x00\xba'
              
-var s = (byte[]) (new byte[] { 237, 254, 0, 186 });             
+                 s =  ((byte[]) (new byte[] { 237, 254, 0, 186 }));
+             
              TestCounter++;
              
              {
@@ -197,10 +202,11 @@ var s = (byte[]) (new byte[] { 237, 254, 0, 186 });
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #16
              //Original: s = b'\x50\xf9\x00\x77\xf9'
              
-var s = (byte[]) (new byte[] { 80, 249, 0, 119, 249 });             
+                 s =  ((byte[]) (new byte[] { 80, 249, 0, 119, 249 }));
+             
              TestCounter++;
              
              {
@@ -230,10 +236,11 @@ var s = (byte[]) (new byte[] { 80, 249, 0, 119, 249 });
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #19
              //Original: s = b'\x2f\xe3\xb5\x57\x00\x92'
              
-var s = (byte[]) (new byte[] { 47, 227, 181, 87, 0, 146 });             
+                 s =  ((byte[]) (new byte[] { 47, 227, 181, 87, 0, 146 }));
+             
              TestCounter++;
              
              {
@@ -263,10 +270,11 @@ var s = (byte[]) (new byte[] { 47, 227, 181, 87, 0, 146 });
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #22
              //Original: s = b'\xa9\x43\x54\xe9\x00\xf8\xfb'
              
-var s = (byte[]) (new byte[] { 169, 67, 84, 233, 0, 248, 251 });             
+                 s =  ((byte[]) (new byte[] { 169, 67, 84, 233, 0, 248, 251 }));
+             
              TestCounter++;
              
              {
@@ -296,10 +304,11 @@ var s = (byte[]) (new byte[] { 169, 67, 84, 233, 0, 248, 251 });
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #25
              //Original: s = b'\x57\xbb\xe5\x82\x8b\xd3\x00\xf9'
              
-var s = (byte[]) (new byte[] { 87, 187, 229, 130, 139, 211, 0, 249 });             
+                 s =  ((byte[]) (new byte[] { 87, 187, 229, 130, 139, 211, 0, 249 }));
+             
              TestCounter++;
              
              {
@@ -329,10 +338,11 @@ var s = (byte[]) (new byte[] { 87, 187, 229, 130, 139, 211, 0, 249 });
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #28
              //Original: s = b'\x44\x1b\x3e\x00\x13\x19\x29\x2a\xbf'
              
-var s = (byte[]) (new byte[] { 68, 27, 62, 0, 19, 25, 41, 42, 191 });             
+                 s =  ((byte[]) (new byte[] { 68, 27, 62, 0, 19, 25, 41, 42, 191 }));
+             
              TestCounter++;
              
              {
@@ -362,10 +372,11 @@ var s = (byte[]) (new byte[] { 68, 27, 62, 0, 19, 25, 41, 42, 191 });
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #31
              //Original: s = b'\x8a\x1d\x09\x00\x5d\x60\x6b\x2e\x70\xd9'
              
-var s = (byte[]) (new byte[] { 138, 29, 9, 0, 93, 96, 107, 46, 112, 217 });             
+                 s =  ((byte[]) (new byte[] { 138, 29, 9, 0, 93, 96, 107, 46, 112, 217 }));
+             
              TestCounter++;
              
              {
@@ -395,10 +406,11 @@ var s = (byte[]) (new byte[] { 138, 29, 9, 0, 93, 96, 107, 46, 112, 217 });
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #34
              //Original: s = b'\x00\xaf\x47\x4b\x38\x99\x14\x8d\x8f\x10\x51'
              
-var s = (byte[]) (new byte[] { 0, 175, 71, 75, 56, 153, 20, 141, 143, 16, 81 });             
+                 s =  ((byte[]) (new byte[] { 0, 175, 71, 75, 56, 153, 20, 141, 143, 16, 81 }));
+             
              TestCounter++;
              
              {
@@ -428,10 +440,11 @@ var s = (byte[]) (new byte[] { 0, 175, 71, 75, 56, 153, 20, 141, 143, 16, 81 });
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #37
              //Original: s = b'\x45\x39\x00\xf7\xc2\x37\xfd\xe0\x38\x82\x40\xa9'
              
-var s = (byte[]) (new byte[] { 69, 57, 0, 247, 194, 55, 253, 224, 56, 130, 64, 169 });             
+                 s =  ((byte[]) (new byte[] { 69, 57, 0, 247, 194, 55, 253, 224, 56, 130, 64, 169 }));
+             
              TestCounter++;
              
              {
@@ -461,35 +474,41 @@ var s = (byte[]) (new byte[] { 69, 57, 0, 247, 194, 55, 253, 224, 56, 130, 64, 1
              }
              
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, datum/binary.yaml, #40
              //Original: a = b'\x00'
              
-var a = (byte[]) (new byte[] { 0 });             
+                 var a = (byte[]) (new byte[] { 0 });
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, datum/binary.yaml, #41
              //Original: b = b'\x00\x01'
              
-var b = (byte[]) (new byte[] { 0, 1 });             
+                 var b = (byte[]) (new byte[] { 0, 1 });
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, datum/binary.yaml, #42
              //Original: c = b'\x01'
              
-var c = (byte[]) (new byte[] { 1 });             
+                 var c = (byte[]) (new byte[] { 1 });
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, datum/binary.yaml, #43
              //Original: d = b'\x70\x22'
              
-var d = (byte[]) (new byte[] { 112, 34 });             
+                 var d = (byte[]) (new byte[] { 112, 34 });
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, datum/binary.yaml, #44
              //Original: e = b'\x80'
              
-var e = (byte[]) (new byte[] { 128 });             
+                 var e = (byte[]) (new byte[] { 128 });
              
-             //JavaDef, datum/binary.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, datum/binary.yaml, #45
              //Original: f = b'\xFE'
              
-var f = (byte[]) (new byte[] { 254 });             
+                 var f = (byte[]) (new byte[] { 254 });
+             
              TestCounter++;
              
              {

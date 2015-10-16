@@ -40,6 +40,9 @@ DefsAndTests:
   TestFile: geo/operations.yaml
   TestNum: 5
   Original: someDist = r.distance(r.point(-122, 37), r.point(-123, 37))
+  VarName: someDist
+  VarType: Distance
+  Value: (Distance) (r.distance(r.point(-122L, 37L), r.point(-123L, 37L)))
   Java: Distance someDist = (Distance) (r.distance(r.point(-122L, 37L), r.point(-123L, 37L)));
   RunOpts: []
 - TestType: JavaQuery

@@ -4,24 +4,36 @@ DefsAndTests:
   TestFile: transform/array.yaml
   TestNum: 1
   Original: arr = r.expr([1, 2, 3])
+  VarName: arr
+  VarType: MakeArray
+  Value: (MakeArray) (r.expr(r.array(1L, 2L, 3L)))
   Java: MakeArray arr = (MakeArray) (r.expr(r.array(1L, 2L, 3L)));
   RunOpts: []
 - TestType: JavaDef
   TestFile: transform/array.yaml
   TestNum: 2
   Original: dupe_arr = r.expr([1, 1, 2, 3])
+  VarName: dupe_arr
+  VarType: MakeArray
+  Value: (MakeArray) (r.expr(r.array(1L, 1L, 2L, 3L)))
   Java: MakeArray dupe_arr = (MakeArray) (r.expr(r.array(1L, 1L, 2L, 3L)));
   RunOpts: []
 - TestType: JavaDef
   TestFile: transform/array.yaml
   TestNum: 3
   Original: objArr = r.expr([{'a':1, 'b':'a'}, {'a':2, 'b':'b'}, {'a':3, 'b':'c'}])
+  VarName: objArr
+  VarType: MakeArray
+  Value: (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"))))
   Java: MakeArray objArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"))));
   RunOpts: []
 - TestType: JavaDef
   TestFile: transform/array.yaml
   TestNum: 4
   Original: nestedObjArr = r.expr([{'a':1, 'b':{'c':1}}, {'a':2, 'b':{'c':2}}, {'a':3, 'b':{'c':3}}])
+  VarName: nestedObjArr
+  VarType: MakeArray
+  Value: (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.hashMap("c", 1L)), r.hashMap("a", 2L).with("b", r.hashMap("c", 2L)), r.hashMap("a", 3L).with("b", r.hashMap("c", 3L)))))
   Java: MakeArray nestedObjArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.hashMap("c", 1L)), r.hashMap("a", 2L).with("b", r.hashMap("c", 2L)), r.hashMap("a", 3L).with("b", r.hashMap("c", 3L)))));
   RunOpts: []
 - TestType: JavaQuery
@@ -161,7 +173,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 20
+  TestNum: (20, 1)
   Original: arr[1:3]
   Java: arr.slice(1, 3)
   ExpectedOriginal: '[2, 3]'
@@ -170,7 +182,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 20
+  TestNum: (20, 2)
   Original: arr.slice(1, 3)
   Java: arr.slice(1L, 3L)
   ExpectedOriginal: '[2, 3]'
@@ -179,7 +191,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 20
+  TestNum: (20, 3)
   Original: arr.slice(1, 2, right_bound='closed')
   Java: arr.slice(1L, 2L).optArg("right_bound", "closed")
   ExpectedOriginal: '[2, 3]'
@@ -188,7 +200,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 21
+  TestNum: (21, 1)
   Original: arr[:2]
   Java: arr.slice(0, 2)
   ExpectedOriginal: '[1, 2]'
@@ -197,7 +209,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 21
+  TestNum: (21, 2)
   Original: arr.slice(0,2)
   Java: arr.slice(0L, 2L)
   ExpectedOriginal: '[1, 2]'
@@ -206,7 +218,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 22
+  TestNum: (22, 1)
   Original: arr[1:]
   Java: arr.slice(1, -1)
   ExpectedOriginal: '[2, 3]'
@@ -215,7 +227,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 22
+  TestNum: (22, 2)
   Original: arr.slice(1)
   Java: arr.slice(1L)
   ExpectedOriginal: '[2, 3]'
@@ -316,6 +328,9 @@ DefsAndTests:
   TestFile: transform/array.yaml
   TestNum: 33
   Original: wftst = objArr.union(objArr.pluck('a')).union(objArr.pluck('b')).union([{'a':null}])
+  VarName: wftst
+  VarType: Union
+  Value: (Union) (objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).union(r.array(r.hashMap("a", null))))
   Java: Union wftst = (Union) (objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).union(r.array(r.hashMap("a", null))));
   RunOpts: []
 - TestType: JavaQuery
@@ -358,6 +373,9 @@ DefsAndTests:
   TestFile: transform/array.yaml
   TestNum: 38
   Original: wftst2 = nestedObjArr.union(objArr.pluck({'b':'missing'})).union(nestedObjArr.pluck({'b':'c'}))
+  VarName: wftst2
+  VarType: Union
+  Value: (Union) (nestedObjArr.union(objArr.pluck(r.hashMap("b", "missing"))).union(nestedObjArr.pluck(r.hashMap("b", "c"))))
   Java: Union wftst2 = (Union) (nestedObjArr.union(objArr.pluck(r.hashMap("b", "missing"))).union(nestedObjArr.pluck(r.hashMap("b", "c"))));
   RunOpts: []
 - TestType: JavaQuery
@@ -463,7 +481,7 @@ DefsAndTests:
   TestFile: transform/array.yaml
   TestNum: 50
   Original: 'objArr.filter(lambda row: row[''b''] == ''b'')'
-  Java: objArr.filter(row -> row.g("b").eq("b"))
+  Java: objArr.filter(row -> row.bracket("b").eq("b"))
   ExpectedOriginal: '[{''b'': ''b'', ''a'': 2}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("b", "b").with("a", 2L))
@@ -542,16 +560,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 59
+  TestNum: (59, 1)
   Original: arr[1]
-  Java: arr.nth(1L)
+  Java: arr.bracket(1L)
   ExpectedOriginal: 2
   ExpectedType: Long
   ExpectedJava: 2L
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 59
+  TestNum: (59, 2)
   Original: arr.nth(1)
   Java: arr.nth(1L)
   ExpectedOriginal: 2
@@ -562,7 +580,7 @@ DefsAndTests:
   TestFile: transform/array.yaml
   TestNum: 60
   Original: arr[0]
-  Java: arr.nth(0L)
+  Java: arr.bracket(0L)
   ExpectedOriginal: 1
   ExpectedType: Long
   ExpectedJava: 1L
@@ -697,7 +715,7 @@ DefsAndTests:
   TestFile: transform/array.yaml
   TestNum: 75
   Original: r.expr([{'a':1},{'b':2},{'a':3,'c':4}])['a']
-  Java: r.expr(r.array(r.hashMap("a", 1L), r.hashMap("b", 2L), r.hashMap("a", 3L).with("c", 4L))).g("a")
+  Java: r.expr(r.array(r.hashMap("a", 1L), r.hashMap("b", 2L), r.hashMap("a", 3L).with("c", 4L))).bracket("a")
   ExpectedOriginal: '[1, 3]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 3L)
@@ -706,7 +724,7 @@ DefsAndTests:
   TestFile: transform/array.yaml
   TestNum: 76
   Original: r.expr([{'a':1},'a',{'b':2},{'a':3,'c':4}])['a']
-  Java: r.expr(r.array(r.hashMap("a", 1L), "a", r.hashMap("b", 2L), r.hashMap("a", 3L).with("c", 4L))).g("a")
+  Java: r.expr(r.array(r.hashMap("a", 1L), "a", r.hashMap("b", 2L), r.hashMap("a", 3L).with("c", 4L))).bracket("a")
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", r.array())

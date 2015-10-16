@@ -32,20 +32,23 @@ namespace RethinkDb.Driver.Test.Generated {
         public void YamlTest(){
 
              
-             //JavaDef, times/api.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, times/api.yaml, #1
              //Original: rt1 = 1375147296.6812
              
-var rt1 = (double) (1375147296.6812);             
+                 var rt1 = (double) (1375147296.6812);
              
-             //JavaDef, times/api.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/api.yaml, #2
              //Original: t1 = r.epoch_time(rt1)
              
-var t1 = (EpochTime) (r.epochTime(rt1));             
+                 var t1 = (EpochTime) (r.epochTime(rt1));
              
-             //JavaDef, times/api.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/api.yaml, #3
              //Original: t2 = r.epoch_time(rt1 + 1000)
              
-var t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000L)));             
+                 var t2 = (EpochTime) (r.epochTime(r.add(rt1, 1000L)));
+             
              TestCounter++;
              
              {

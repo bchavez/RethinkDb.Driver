@@ -270,55 +270,65 @@ namespace RethinkDb.Driver.Test.Generated {
              }
              
              
-             //JavaDef, times/constructors.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, times/constructors.yaml, #18
              //Original: cdate = "2013-01-01"
              
-var cdate = (String) ("2013-01-01");             
+                 var cdate = (String) ("2013-01-01");
              
-             //JavaDef, times/constructors.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/constructors.yaml, #19
              //Original: dates = ["2013", "2013-01", "2013-01-01", "20130101", "2013-001", "2013001"]
              
-var dates = (IList) (r.array("2013", "2013-01", "2013-01-01", "20130101", "2013-001", "2013001"));             
+                 var dates = (IList) (r.array("2013", "2013-01", "2013-01-01", "20130101", "2013-001", "2013001"));
              
-             //JavaDef, times/constructors.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/constructors.yaml, #20
              //Original: ctime = "13:00:00"
              
-var ctime = (String) ("13:00:00");             
+                 var ctime = (String) ("13:00:00");
              
-             //JavaDef, times/constructors.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/constructors.yaml, #21
              //Original: times = ["13", "13:00", "1300", "13:00:00", "13:00:00.000000", "130000.000000"]
              
-var times = (IList) (r.array("13", "13:00", "1300", "13:00:00", "13:00:00.000000", "130000.000000"));             
+                 var times = (IList) (r.array("13", "13:00", "1300", "13:00:00", "13:00:00.000000", "130000.000000"));
              
-             //JavaDef, times/constructors.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/constructors.yaml, #22
              //Original: ctz = "+00:00"
              
-var ctz = (String) ("+00:00");             
+                 var ctz = (String) ("+00:00");
              
-             //JavaDef, times/constructors.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/constructors.yaml, #23
              //Original: tzs = ["Z", "+00", "+0000", "+00:00"]
              
-var tzs = (IList) (r.array("Z", "+00", "+0000", "+00:00"));             
+                 var tzs = (IList) (r.array("Z", "+00", "+0000", "+00:00"));
              
-             //JavaDef, times/constructors.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/constructors.yaml, #24
              //Original: cdt = [cdate+"T"+ctime+ctz]
              
-var cdt = (IList) (r.array(cdate + "T" + ctime + ctz));             
+                 var cdt = (IList) (r.array(cdate + "T" + ctime + ctz));
              
-             //JavaDef, times/constructors.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/constructors.yaml, #28
              //Original: bad_dates = ["201301", "2013-0101", "2a13", "2013+01", "2013-01-01.1"]
              
-var bad_dates = (IList) (r.array("201301", "2013-0101", "2a13", "2013+01", "2013-01-01.1"));             
+                 var bad_dates = (IList) (r.array("201301", "2013-0101", "2a13", "2013+01", "2013-01-01.1"));
              
-             //JavaDef, times/constructors.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/constructors.yaml, #29
              //Original: bad_times = ["a3", "13:0000", "13:000", "13:00.00", "130000.00000000a"]
              
-var bad_times = (IList) (r.array("a3", "13:0000", "13:000", "13:00.00", "130000.00000000a"));             
+                 var bad_times = (IList) (r.array("a3", "13:0000", "13:000", "13:00.00", "130000.00000000a"));
              
-             //JavaDef, times/constructors.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/constructors.yaml, #30
              //Original: bad_tzs = ["X", "-7", "-07:-1", "+07+01", "PST", "UTC", "Z+00"]
              
-var bad_tzs = (IList) (r.array("X", "-7", "-07:-1", "+07+01", "PST", "UTC", "Z+00"));             
+                 var bad_tzs = (IList) (r.array("X", "-7", "-07:-1", "+07+01", "PST", "UTC", "Z+00"));
+             
 
         }
     }

@@ -90,7 +90,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #5
+                 //JavaQuery, datum/array.yaml, #(5, 1)
                  /* ExpectedOriginal: [1,2] */
                  var expected_ = "[1,2]";
                  
@@ -104,7 +104,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #5
+                 //JavaQuery, datum/array.yaml, #(5, 2)
                  /* ExpectedOriginal: [1,2] */
                  var expected_ = "[1,2]";
                  
@@ -259,8 +259,8 @@ namespace RethinkDb.Driver.Test.Generated {
              
              {
                  //JavaQuery, datum/array.yaml, #16
-                 /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 /* ExpectedOriginal: [1, 2, 3, 4] */
+                 var expected_ = r.array(1L, 2L, 3L, 4L);
                  
                  /* Original: r.expr(3).do(lambda x: r.expr([1,2,3]).insert_at(x, 4)) */
                  var obtained = runOrCatch( r.expr(3L).do_(x => r.expr(r.array(1L, 2L, 3L)).insertAt(x, 4L)) ,
@@ -272,7 +272,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #19
+                 //JavaQuery, datum/array.yaml, #17
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Index `4` out of bounds for array of size: `3`.', [0]) */
                  var expected_ = err("ReqlNonExistenceError", "Index `4` out of bounds for array of size: `3`.", r.array(0L));
                  
@@ -286,7 +286,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #20
+                 //JavaQuery, datum/array.yaml, #18
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Index out of bounds: -5', [0]) */
                  var expected_ = err("ReqlNonExistenceError", "Index out of bounds: -5", r.array(0L));
                  
@@ -300,7 +300,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #21
+                 //JavaQuery, datum/array.yaml, #19
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Number not an integer: 1.5', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Number not an integer: 1.5", r.array(0L));
                  
@@ -314,7 +314,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #22
+                 //JavaQuery, datum/array.yaml, #20
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0]) */
                  var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0L));
                  
@@ -328,7 +328,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #23
+                 //JavaQuery, datum/array.yaml, #21
                  /* ExpectedOriginal: [1, 2, 3, 4] */
                  var expected_ = r.array(1L, 2L, 3L, 4L);
                  
@@ -342,7 +342,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #24
+                 //JavaQuery, datum/array.yaml, #22
                  /* ExpectedOriginal: [1, 2, 3, 4] */
                  var expected_ = r.array(1L, 2L, 3L, 4L);
                  
@@ -356,7 +356,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #25
+                 //JavaQuery, datum/array.yaml, #23
                  /* ExpectedOriginal: [1, 2, 3, 4] */
                  var expected_ = r.array(1L, 2L, 3L, 4L);
                  
@@ -370,7 +370,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #26
+                 //JavaQuery, datum/array.yaml, #24
                  /* ExpectedOriginal: [1, 2, 3, 4] */
                  var expected_ = r.array(1L, 2L, 3L, 4L);
                  
@@ -384,9 +384,9 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #27
-                 /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 //JavaQuery, datum/array.yaml, #25
+                 /* ExpectedOriginal: [1, 2, 3, 4] */
+                 var expected_ = r.array(1L, 2L, 3L, 4L);
                  
                  /* Original: r.expr(2).do(lambda x: r.expr([1,2]).splice_at(x, [3,4])) */
                  var obtained = runOrCatch( r.expr(2L).do_(x => r.expr(r.array(1L, 2L)).spliceAt(x, r.array(3L, 4L))) ,
@@ -398,7 +398,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #30
+                 //JavaQuery, datum/array.yaml, #26
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Index `3` out of bounds for array of size: `2`.', [0]) */
                  var expected_ = err("ReqlNonExistenceError", "Index `3` out of bounds for array of size: `2`.", r.array(0L));
                  
@@ -412,7 +412,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #31
+                 //JavaQuery, datum/array.yaml, #27
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Index out of bounds: -4', [0]) */
                  var expected_ = err("ReqlNonExistenceError", "Index out of bounds: -4", r.array(0L));
                  
@@ -426,7 +426,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #32
+                 //JavaQuery, datum/array.yaml, #28
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Number not an integer: 1.5', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Number not an integer: 1.5", r.array(0L));
                  
@@ -440,7 +440,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #33
+                 //JavaQuery, datum/array.yaml, #29
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0]) */
                  var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0L));
                  
@@ -454,7 +454,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #34
+                 //JavaQuery, datum/array.yaml, #30
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type ARRAY but found NUMBER.', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Expected type ARRAY but found NUMBER.", r.array(0L));
                  
@@ -468,7 +468,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #35
+                 //JavaQuery, datum/array.yaml, #31
                  /* ExpectedOriginal: [2, 3, 4] */
                  var expected_ = r.array(2L, 3L, 4L);
                  
@@ -482,9 +482,9 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #36
-                 /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 //JavaQuery, datum/array.yaml, #32
+                 /* ExpectedOriginal: [2, 3, 4] */
+                 var expected_ = r.array(2L, 3L, 4L);
                  
                  /* Original: r.expr(0).do(lambda x: r.expr([1,2,3,4]).delete_at(x)) */
                  var obtained = runOrCatch( r.expr(0L).do_(x => r.expr(r.array(1L, 2L, 3L, 4L)).deleteAt(x)) ,
@@ -496,7 +496,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #39
+                 //JavaQuery, datum/array.yaml, #33
                  /* ExpectedOriginal: [1, 2, 3] */
                  var expected_ = r.array(1L, 2L, 3L);
                  
@@ -510,7 +510,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #40
+                 //JavaQuery, datum/array.yaml, #34
                  /* ExpectedOriginal: [1, 4] */
                  var expected_ = r.array(1L, 4L);
                  
@@ -524,7 +524,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #41
+                 //JavaQuery, datum/array.yaml, #35
                  /* ExpectedOriginal: [1, 2, 3, 4] */
                  var expected_ = r.array(1L, 2L, 3L, 4L);
                  
@@ -538,7 +538,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #42
+                 //JavaQuery, datum/array.yaml, #36
                  /* ExpectedOriginal: [] */
                  var expected_ = r.array();
                  
@@ -552,7 +552,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #43
+                 //JavaQuery, datum/array.yaml, #37
                  /* ExpectedOriginal: [1, 4] */
                  var expected_ = r.array(1L, 4L);
                  
@@ -566,7 +566,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #44
+                 //JavaQuery, datum/array.yaml, #38
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Index `4` out of bounds for array of size: `4`.', [0]) */
                  var expected_ = err("ReqlNonExistenceError", "Index `4` out of bounds for array of size: `4`.", r.array(0L));
                  
@@ -580,7 +580,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #45
+                 //JavaQuery, datum/array.yaml, #39
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Index out of bounds: -5', [0]) */
                  var expected_ = err("ReqlNonExistenceError", "Index out of bounds: -5", r.array(0L));
                  
@@ -594,7 +594,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #46
+                 //JavaQuery, datum/array.yaml, #40
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Number not an integer: 1.5', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Number not an integer: 1.5", r.array(0L));
                  
@@ -608,7 +608,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #47
+                 //JavaQuery, datum/array.yaml, #41
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0]) */
                  var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0L));
                  
@@ -622,7 +622,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #48
+                 //JavaQuery, datum/array.yaml, #42
                  /* ExpectedOriginal: [1, 2, 3] */
                  var expected_ = r.array(1L, 2L, 3L);
                  
@@ -636,9 +636,9 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #49
-                 /* ExpectedOriginal: None */
-                 var expected_ = null as object;
+                 //JavaQuery, datum/array.yaml, #43
+                 /* ExpectedOriginal: [1, 2, 3] */
+                 var expected_ = r.array(1L, 2L, 3L);
                  
                  /* Original: r.expr(1).do(lambda x: r.expr([0,2,3]).change_at(0,x)) */
                  var obtained = runOrCatch( r.expr(1L).do_(x => r.expr(r.array(0L, 2L, 3L)).changeAt(0L, x)) ,
@@ -650,7 +650,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #52
+                 //JavaQuery, datum/array.yaml, #44
                  /* ExpectedOriginal: [1, 2, 3] */
                  var expected_ = r.array(1L, 2L, 3L);
                  
@@ -664,7 +664,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #53
+                 //JavaQuery, datum/array.yaml, #45
                  /* ExpectedOriginal: [1, 2, 3] */
                  var expected_ = r.array(1L, 2L, 3L);
                  
@@ -678,7 +678,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #54
+                 //JavaQuery, datum/array.yaml, #46
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Index `3` out of bounds for array of size: `3`.', [0]) */
                  var expected_ = err("ReqlNonExistenceError", "Index `3` out of bounds for array of size: `3`.", r.array(0L));
                  
@@ -692,7 +692,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #55
+                 //JavaQuery, datum/array.yaml, #47
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Index out of bounds: -5', [0]) */
                  var expected_ = err("ReqlNonExistenceError", "Index out of bounds: -5", r.array(0L));
                  
@@ -706,7 +706,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #56
+                 //JavaQuery, datum/array.yaml, #48
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Number not an integer: 1.5', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Number not an integer: 1.5", r.array(0L));
                  
@@ -720,7 +720,7 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/array.yaml, #57
+                 //JavaQuery, datum/array.yaml, #49
                  /* ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0]) */
                  var expected_ = err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", r.array(0L));
                  

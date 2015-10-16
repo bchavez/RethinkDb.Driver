@@ -32,55 +32,65 @@ namespace RethinkDb.Driver.Test.Generated {
         public void YamlTest(){
 
              
-             //JavaDef, times/time_arith.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, times/time_arith.yaml, #1
              //Original: rt1 = 1375147296.681
              
-var rt1 = (double) (1375147296.681);             
+                 var rt1 = (double) (1375147296.681);
              
-             //JavaDef, times/time_arith.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/time_arith.yaml, #2
              //Original: rt2 = 1375147296.682
              
-var rt2 = (double) (1375147296.682);             
+                 var rt2 = (double) (1375147296.682);
              
-             //JavaDef, times/time_arith.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/time_arith.yaml, #3
              //Original: rt3 = 1375147297.681
              
-var rt3 = (double) (1375147297.681);             
+                 var rt3 = (double) (1375147297.681);
              
-             //JavaDef, times/time_arith.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/time_arith.yaml, #4
              //Original: rt4 = 2375147296.681
              
-var rt4 = (double) (2375147296.681);             
+                 var rt4 = (double) (2375147296.681);
              
-             //JavaDef, times/time_arith.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/time_arith.yaml, #5
              //Original: rts = [rt1, rt2, rt3, rt4]
              
-var rts = (IList) (r.array(rt1, rt2, rt3, rt4));             
+                 var rts = (IList) (r.array(rt1, rt2, rt3, rt4));
              
-             //JavaDef, times/time_arith.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/time_arith.yaml, #6
              //Original: t1 = r.epoch_time(rt1)
              
-var t1 = (EpochTime) (r.epochTime(rt1));             
+                 var t1 = (EpochTime) (r.epochTime(rt1));
              
-             //JavaDef, times/time_arith.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/time_arith.yaml, #7
              //Original: t2 = r.epoch_time(rt2)
              
-var t2 = (EpochTime) (r.epochTime(rt2));             
+                 var t2 = (EpochTime) (r.epochTime(rt2));
              
-             //JavaDef, times/time_arith.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/time_arith.yaml, #8
              //Original: t3 = r.epoch_time(rt3)
              
-var t3 = (EpochTime) (r.epochTime(rt3));             
+                 var t3 = (EpochTime) (r.epochTime(rt3));
              
-             //JavaDef, times/time_arith.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/time_arith.yaml, #9
              //Original: t4 = r.epoch_time(rt4)
              
-var t4 = (EpochTime) (r.epochTime(rt4));             
+                 var t4 = (EpochTime) (r.epochTime(rt4));
              
-             //JavaDef, times/time_arith.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, times/time_arith.yaml, #10
              //Original: ts = r.expr([t1, t2, t3, t4])
              
-var ts = (MakeArray) (r.expr(r.array(t1, t2, t3, t4)));             
+                 var ts = (MakeArray) (r.expr(r.array(t1, t2, t3, t4)));
+             
              TestCounter++;
              
              {
@@ -222,10 +232,11 @@ var ts = (MakeArray) (r.expr(r.array(t1, t2, t3, t4)));
              }
              
              
-             //JavaDef, times/time_arith.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, times/time_arith.yaml, #21
              //Original: datum_types = r.expr([null, true, false, 1, "1", [1], {"1":1}, r.binary(b'')])
              
-var datum_types = (MakeArray) (r.expr(r.array(null, true, false, 1L, "1", r.array(1L), r.hashMap("1", 1L), r.binary(new byte[] {}))));             
+                 var datum_types = (MakeArray) (r.expr(r.array(null, true, false, 1L, "1", r.array(1L), r.hashMap("1", 1L), r.binary(new byte[] {}))));
+             
              TestCounter++;
              
              {
@@ -234,7 +245,7 @@ var datum_types = (MakeArray) (r.expr(r.array(null, true, false, 1L, "1", r.arra
                  var expected_ = r.array(r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(false, false, false, true, true, true), r.array(true, true, false, true, false, false)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)), r.array(r.array(true, true, false, true, false, false), r.array(false, false, false, true, true, true)));
                  
                  /* Original: datum_types.map(lambda x:r.expr([[x, t1], [t1, x]]).map(lambda xy:xy[0].do(lambda x2:xy[1].do(lambda y:[x2 < y, x2 <= y, x2 == y, x2 != y, x2 >= y, x2 > y])))) */
-                 var obtained = runOrCatch( datum_types.map(x => r.expr(r.array(r.array(x, t1), r.array(t1, x))).map(xy => xy.nth(0L).do_(x2 => xy.nth(1L).do_(y => r.array(r.lt(x2, y), r.le(x2, y), r.eq(x2, y), r.ne(x2, y), r.ge(x2, y), r.gt(x2, y)))))) ,
+                 var obtained = runOrCatch( datum_types.map(x => r.expr(r.array(r.array(x, t1), r.array(t1, x))).map(xy => xy.bracket(0L).do_(x2 => xy.bracket(1L).do_(y => r.array(r.lt(x2, y), r.le(x2, y), r.eq(x2, y), r.ne(x2, y), r.ge(x2, y), r.gt(x2, y)))))) ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);
@@ -346,7 +357,7 @@ var datum_types = (MakeArray) (r.expr(r.array(null, true, false, 1L, "1", r.arra
                  var expected_ = "2012-08-01T00:00:00+00:00";
                  
                  /* Original: r.do(r.js("(function(x){doc = new Object(); doc.date = new Date('2012-08-01'); return doc;})"))["date"].to_iso8601() */
-                 var obtained = runOrCatch( r.do_(r.js("(function(x){doc = new Object(); doc.date = new Date('2012-08-01'); return doc;})")).g("date").toIso8601() ,
+                 var obtained = runOrCatch( r.do_(r.js("(function(x){doc = new Object(); doc.date = new Date('2012-08-01'); return doc;})")).bracket("date").toIso8601() ,
                                             new OptArgs()
                     );
                  assertEquals(expected_, obtained);

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using FluentAssertions;
@@ -179,6 +180,17 @@ namespace RethinkDb.Driver.Tests
             Assert.Fail($"Couldn't compare expected: {expected.GetType().Name} and obtained: {obtained.GetType().Name}");
         }
 
+        protected object maybeRun(object query)
+        {
+            if( query is ReqlAst )
+            {
+                return ((ReqlAst)query).run(conn);
+            }
+            else
+            {
+                return query;
+            }
+        }
         protected object runOrCatch(object query, OptArgs runopts)
         {
             if( query == null )
@@ -189,15 +201,8 @@ namespace RethinkDb.Driver.Tests
 
             try
             {
-                object res = null;
-                if( query is Fetch )
-                {
-                    res = ((Fetch)query).run(conn, runopts);
-                }
-                else
-                {
-                    res = ((ReqlAst)query).run(conn, runopts);
-                }
+                object res = ((ReqlAst)query).run(conn, runopts);
+
                 if( res is ICursor )
                 {
                     var cur = (ICursor)res;
@@ -493,50 +498,29 @@ namespace RethinkDb.Driver.Tests
             return new ErrRegex(classname, message_rgx);
         }
 
-        public class Fetch
+        protected IList fetch(object cursor)
         {
-            public ReqlExpr query;
-            public long limit;
-
-            public Fetch( ReqlExpr query, long limit)
-            {
-                this.query = query;
-
-                if( limit < 0 )
-                {
-                    this.limit = long.MaxValue;
-                }
-                else
-                {
-                    this.limit = limit;
-                }
-            }
-
-            public object run(Connection conn, OptArgs runopts)
-            {
-                ICursor cursor = (ICursor)query.run(conn, runopts);
-                long total = 0;
-                var result = new ArrayList((int)limit);
-                for( long i = 0; i < limit; i++ )
-                {
-                    if( !cursor.HasNext() )
-                    {
-                        break;
-                    }
-                    result.Add(cursor.next());
-                }
-                return result;
-            }
+            return fetch(cursor, -1);
         }
 
-        protected Fetch fetch(ReqlExpr query, long limit)
+        protected IList fetch(object cursor_, long limit)
         {
-            return new Fetch(query, limit);
-        }
-
-        protected Fetch fetch(ReqlExpr query)
-        {
-            return new Fetch(query, -1);
+            if( limit < 0 )
+            {
+                limit = long.MaxValue;
+            }
+            var cursor = cursor_ as ICursor;
+            long total = 0;
+            var result = new ArrayList((int)limit);
+            for( long i = 0; i < limit; i++ )
+            {
+                if( !cursor.HasNext() )
+                {
+                    break;
+                }
+                result.Add(cursor.next());
+            }
+            return result;
         }
         
 
@@ -596,12 +580,37 @@ namespace RethinkDb.Driver.Tests
         
     }
 
-    public static class ExtensionsForIList
+    public static class ExtensionsForJava
     {
         public static object get(this IList lst, int idx)
         {
             return lst[idx];
         }
+
+        public static byte[] getBytes(this string str , Encoding enc)
+        {
+            return enc.GetBytes(str);
+        }
     }
+
+    public static class StandardCharsets
+    {
+        public static Encoding US_ASCII
+        {
+            get { return Encoding.ASCII; }
+        }
+
+        public static Encoding UTF_8
+        {
+            get { return Encoding.UTF8; }
+        }
+
+        public static Encoding UTF_16
+        {
+            get { return Encoding.Unicode; }
+        }
+    }
+
+
     
 }

@@ -17,6 +17,10 @@ DefsAndTests:
    - TestType: JavaDef
      TestFile: ${item.testfile}
      TestNum: ${item.test_num}
+     VarName: ${item.varname}
+     VarType: ${item.vartype}
+     RunIfQuery: ${item.run_if_query}
+     Value: ${item.value}
      Original: ${base64.b64encode(bytes(item.line.original,"utf-8"))}
      Java: ${base64.b64encode(bytes(item.line.java,"utf-8"))}
         %elif type(item) == JavaQuery:

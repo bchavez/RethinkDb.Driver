@@ -65,7 +65,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 9
+  TestNum: (9, 1)
   Original: r.random().do(lambda x:r.and_(x.ge(0), x.lt(1)))
   Java: r.random().do_(x -> r.and(x.ge(0L), x.lt(1L)))
   ExpectedOriginal: True
@@ -74,7 +74,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 9
+  TestNum: (9, 2)
   Original: r.random(1, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1)))
   Java: r.random(1L).optArg("float", true).do_(x -> r.and(x.ge(0L), x.lt(1L)))
   ExpectedOriginal: True
@@ -83,7 +83,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 9
+  TestNum: (9, 3)
   Original: r.random(0, 1, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1)))
   Java: r.random(0L, 1L).optArg("float", true).do_(x -> r.and(x.ge(0L), x.lt(1L)))
   ExpectedOriginal: True
@@ -92,7 +92,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 9
+  TestNum: (9, 4)
   Original: r.random(1, 0, float=True).do(lambda x:r.and_(x.le(1), x.gt(0)))
   Java: r.random(1L, 0L).optArg("float", true).do_(x -> r.and(x.le(1L), x.gt(0L)))
   ExpectedOriginal: True
@@ -101,7 +101,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 9
+  TestNum: (9, 5)
   Original: r.random(r.expr(0), 1, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1)))
   Java: r.random(r.expr(0L), 1L).optArg("float", true).do_(x -> r.and(x.ge(0L), x.lt(1L)))
   ExpectedOriginal: True
@@ -110,7 +110,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 9
+  TestNum: (9, 6)
   Original: r.random(1, r.expr(0), float=True).do(lambda x:r.and_(x.le(1), x.gt(0)))
   Java: r.random(1L, r.expr(0L)).optArg("float", true).do_(x -> r.and(x.le(1L), x.gt(0L)))
   ExpectedOriginal: True
@@ -119,7 +119,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 9
+  TestNum: (9, 7)
   Original: r.random(r.expr(1), r.expr(0), float=True).do(lambda x:r.and_(x.le(1), x.gt(0)))
   Java: r.random(r.expr(1L), r.expr(0L)).optArg("float", true).do_(x -> r.and(x.le(1L), x.gt(0L)))
   ExpectedOriginal: True
@@ -128,43 +128,43 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 10
+  TestNum: (10, 1)
   Original: r.random(0.495, float=True).do(lambda x:r.and_(x.ge(0), x.lt(0.495)))
   Java: r.random(0.495).optArg("float", true).do_(x -> r.and(x.ge(0L), x.lt(0.495)))
-  ExpectedOriginal: None
-  ExpectedType: Object
-  ExpectedJava: null
+  ExpectedOriginal: True
+  ExpectedType: Boolean
+  ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 10
+  TestNum: (10, 2)
   Original: r.random(-0.495, float=True).do(lambda x:r.and_(x.le(0), x.gt(-0.495)))
   Java: r.random(-0.495).optArg("float", true).do_(x -> r.and(x.le(0L), x.gt(-0.495)))
-  ExpectedOriginal: None
-  ExpectedType: Object
-  ExpectedJava: null
+  ExpectedOriginal: True
+  ExpectedType: Boolean
+  ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 10
+  TestNum: (10, 3)
   Original: r.random(1823756.24, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1823756.24)))
   Java: r.random(1823756.24).optArg("float", true).do_(x -> r.and(x.ge(0L), x.lt(1823756.24)))
-  ExpectedOriginal: None
-  ExpectedType: Object
-  ExpectedJava: null
+  ExpectedOriginal: True
+  ExpectedType: Boolean
+  ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 10
+  TestNum: (10, 4)
   Original: r.random(-1823756.24, float=True).do(lambda x:r.and_(x.le(0), x.gt(-1823756.24)))
   Java: r.random(-1823756.24).optArg("float", true).do_(x -> r.and(x.le(0L), x.gt(-1823756.24)))
-  ExpectedOriginal: None
-  ExpectedType: Object
-  ExpectedJava: null
+  ExpectedOriginal: True
+  ExpectedType: Boolean
+  ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 11
+  TestNum: (11, 1)
   Original: r.random(10.5, 20.153, float=True).do(lambda x:r.and_(x.ge(10.5), x.lt(20.153)))
   Java: r.random(10.5, 20.153).optArg("float", true).do_(x -> r.and(x.ge(10.5), x.lt(20.153)))
   ExpectedOriginal: True
@@ -173,7 +173,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 11
+  TestNum: (11, 2)
   Original: r.random(20.153, 10.5, float=True).do(lambda x:r.and_(x.le(20.153), x.gt(10.5)))
   Java: r.random(20.153, 10.5).optArg("float", true).do_(x -> r.and(x.le(20.153), x.gt(10.5)))
   ExpectedOriginal: True
@@ -182,7 +182,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 11
+  TestNum: (11, 3)
   Original: r.random(31415926.1, 31415926, float=True).do(lambda x:r.and_(x.le(31415926.1), x.gt(31415926)))
   Java: r.random(31415926.1, 31415926L).optArg("float", true).do_(x -> r.and(x.le(31415926.1), x.gt(31415926L)))
   ExpectedOriginal: True
@@ -191,7 +191,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 12
+  TestNum: (12, 1)
   Original: r.random(-10.5, 20.153, float=True).do(lambda x:r.and_(x.ge(-10.5), x.lt(20.153)))
   Java: r.random(-10.5, 20.153).optArg("float", true).do_(x -> r.and(x.ge(-10.5), x.lt(20.153)))
   ExpectedOriginal: True
@@ -200,7 +200,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 12
+  TestNum: (12, 2)
   Original: r.random(-20.153, -10.5, float=True).do(lambda x:r.and_(x.ge(-20.153), x.lt(-10.5)))
   Java: r.random(-20.153, -10.5).optArg("float", true).do_(x -> r.and(x.ge(-20.153), x.lt(-10.5)))
   ExpectedOriginal: True
@@ -209,7 +209,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 12
+  TestNum: (12, 3)
   Original: r.random(-31415926, -31415926.1, float=True).do(lambda x:r.and_(x.le(-31415926), x.gt(-31415926.1)))
   Java: r.random(-31415926L, -31415926.1).optArg("float", true).do_(x -> r.and(x.le(-31415926L), x.gt(-31415926.1)))
   ExpectedOriginal: True
@@ -218,7 +218,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 13
+  TestNum: (13, 1)
   Original: r.expr([r.random(), r.random()]).distinct().count()
   Java: r.expr(r.array(r.random(), r.random())).distinct().count()
   ExpectedOriginal: 2
@@ -227,7 +227,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 13
+  TestNum: (13, 2)
   Original: r.expr([r.random(1, float=True), r.random(1, float=True)]).distinct().count()
   Java: r.expr(r.array(r.random(1L).optArg("float", true), r.random(1L).optArg("float", true))).distinct().count()
   ExpectedOriginal: 2
@@ -236,7 +236,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 13
+  TestNum: (13, 3)
   Original: r.expr([r.random(0, 1, float=True), r.random(0, 1, float=True)]).distinct().count()
   Java: r.expr(r.array(r.random(0L, 1L).optArg("float", true), r.random(0L, 1L).optArg("float", true))).distinct().count()
   ExpectedOriginal: 2
@@ -245,7 +245,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 14
+  TestNum: (14, 1)
   Original: r.random(0, float=True).eq(0)
   Java: r.random(0L).optArg("float", true).eq(0L)
   ExpectedOriginal: True
@@ -254,7 +254,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 14
+  TestNum: (14, 2)
   Original: r.random(5, 5, float=True).eq(5)
   Java: r.random(5L, 5L).optArg("float", true).eq(5L)
   ExpectedOriginal: True
@@ -263,7 +263,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 14
+  TestNum: (14, 3)
   Original: r.random(-499384756758, -499384756758, float=True).eq(-499384756758)
   Java: r.random(-499384756758L, -499384756758L).optArg("float", true).eq(-499384756758L)
   ExpectedOriginal: True
@@ -272,7 +272,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 14
+  TestNum: (14, 4)
   Original: r.random(-93.94757, -93.94757, float=True).eq(-93.94757)
   Java: r.random(-93.94757, -93.94757).optArg("float", true).eq(-93.94757)
   ExpectedOriginal: True
@@ -281,7 +281,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 14
+  TestNum: (14, 5)
   Original: r.random(294.69148, 294.69148, float=True).eq(294.69148)
   Java: r.random(294.69148, 294.69148).optArg("float", true).eq(294.69148)
   ExpectedOriginal: True
@@ -292,17 +292,23 @@ DefsAndTests:
   TestFile: random.yaml
   TestNum: 15
   Original: float_max = sys.float_info.max
+  VarName: float_max
+  VarType: Double
+  Value: (Double) (sys.floatInfo.max)
   Java: Double float_max = (Double) (sys.floatInfo.max);
   RunOpts: []
 - TestType: JavaDef
   TestFile: random.yaml
   TestNum: 16
   Original: float_min = sys.float_info.min
+  VarName: float_min
+  VarType: Double
+  Value: (Double) (sys.floatInfo.min)
   Java: Double float_min = (Double) (sys.floatInfo.min);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 17
+  TestNum: (17, 1)
   Original: r.random(-float_max, float_max, float=True).do(lambda x:r.and_(x.ge(-float_max), x.lt(float_max)))
   Java: r.random(-float_max, float_max).optArg("float", true).do_(x -> r.and(x.ge(-float_max), x.lt(float_max)))
   ExpectedOriginal: True
@@ -311,7 +317,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 17
+  TestNum: (17, 2)
   Original: r.random(float_max, -float_max, float=True).do(lambda x:r.and_(x.le(float_max), x.gt(-float_max)))
   Java: r.random(float_max, -float_max).optArg("float", true).do_(x -> r.and(x.le(float_max), x.gt(-float_max)))
   ExpectedOriginal: True
@@ -320,7 +326,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 17
+  TestNum: (17, 3)
   Original: r.random(float_min, float_max, float=True).do(lambda x:r.and_(x.ge(float_min), x.lt(float_max)))
   Java: r.random(float_min, float_max).optArg("float", true).do_(x -> r.and(x.ge(float_min), x.lt(float_max)))
   ExpectedOriginal: True
@@ -329,7 +335,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 17
+  TestNum: (17, 4)
   Original: r.random(float_min, -float_max, float=True).do(lambda x:r.and_(x.le(float_min), x.gt(-float_max)))
   Java: r.random(float_min, -float_max).optArg("float", true).do_(x -> r.and(x.le(float_min), x.gt(-float_max)))
   ExpectedOriginal: True
@@ -338,7 +344,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 17
+  TestNum: (17, 5)
   Original: r.random(-float_min, float_max, float=True).do(lambda x:r.and_(x.ge(-float_min), x.lt(float_max)))
   Java: r.random(-float_min, float_max).optArg("float", true).do_(x -> r.and(x.ge(-float_min), x.lt(float_max)))
   ExpectedOriginal: True
@@ -347,7 +353,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 17
+  TestNum: (17, 6)
   Original: r.random(-float_min, -float_max, float=True).do(lambda x:r.and_(x.le(-float_min), x.gt(-float_max)))
   Java: r.random(-float_min, -float_max).optArg("float", true).do_(x -> r.and(x.le(-float_min), x.gt(-float_max)))
   ExpectedOriginal: True
@@ -358,17 +364,23 @@ DefsAndTests:
   TestFile: random.yaml
   TestNum: 18
   Original: upper_limit = 2**53 - 1
+  VarName: upper_limit
+  VarType: Long
+  Value: (Long) (2L << 53L - 1L)
   Java: Long upper_limit = (Long) (2L << 53L - 1L);
   RunOpts: []
 - TestType: JavaDef
   TestFile: random.yaml
   TestNum: 19
   Original: lower_limit = 1 - (2**53)
+  VarName: lower_limit
+  VarType: Long
+  Value: (Long) (1L - 2L << 53L)
   Java: Long lower_limit = (Long) (1L - 2L << 53L);
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 20
+  TestNum: (20, 1)
   Original: r.random(256).do(lambda x:r.and_(x.ge(0), x.lt(256)))
   Java: r.random(256L).do_(x -> r.and(x.ge(0L), x.lt(256L)))
   ExpectedOriginal: True
@@ -377,7 +389,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 20
+  TestNum: (20, 2)
   Original: r.random(0, 256).do(lambda x:r.and_(x.ge(0), x.lt(256)))
   Java: r.random(0L, 256L).do_(x -> r.and(x.ge(0L), x.lt(256L)))
   ExpectedOriginal: True
@@ -386,7 +398,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 20
+  TestNum: (20, 3)
   Original: r.random(r.expr(256)).do(lambda x:r.and_(x.ge(0), x.lt(256)))
   Java: r.random(r.expr(256L)).do_(x -> r.and(x.ge(0L), x.lt(256L)))
   ExpectedOriginal: True
@@ -395,7 +407,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 20
+  TestNum: (20, 4)
   Original: r.random(r.expr(0), 256).do(lambda x:r.and_(x.ge(0), x.lt(256)))
   Java: r.random(r.expr(0L), 256L).do_(x -> r.and(x.ge(0L), x.lt(256L)))
   ExpectedOriginal: True
@@ -404,7 +416,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 20
+  TestNum: (20, 5)
   Original: r.random(0, r.expr(256)).do(lambda x:r.and_(x.ge(0), x.lt(256)))
   Java: r.random(0L, r.expr(256L)).do_(x -> r.and(x.ge(0L), x.lt(256L)))
   ExpectedOriginal: True
@@ -413,7 +425,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 20
+  TestNum: (20, 6)
   Original: r.random(r.expr(0), r.expr(256)).do(lambda x:r.and_(x.ge(0), x.lt(256)))
   Java: r.random(r.expr(0L), r.expr(256L)).do_(x -> r.and(x.ge(0L), x.lt(256L)))
   ExpectedOriginal: True
@@ -422,7 +434,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 21
+  TestNum: (21, 1)
   Original: r.random(10, 20).do(lambda x:r.and_(x.ge(10), x.lt(20)))
   Java: r.random(10L, 20L).do_(x -> r.and(x.ge(10L), x.lt(20L)))
   ExpectedOriginal: True
@@ -431,7 +443,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 21
+  TestNum: (21, 2)
   Original: r.random(9347849, 120937493).do(lambda x:r.and_(x.ge(9347849), x.lt(120937493)))
   Java: r.random(9347849L, 120937493L).do_(x -> r.and(x.ge(9347849L), x.lt(120937493L)))
   ExpectedOriginal: True
@@ -440,7 +452,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 22
+  TestNum: (22, 1)
   Original: r.random(-10, 20).do(lambda x:r.and_(x.ge(-10), x.lt(20)))
   Java: r.random(-10L, 20L).do_(x -> r.and(x.ge(-10L), x.lt(20L)))
   ExpectedOriginal: True
@@ -449,7 +461,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 22
+  TestNum: (22, 2)
   Original: r.random(-20, -10).do(lambda x:r.and_(x.ge(-20), x.lt(-10)))
   Java: r.random(-20L, -10L).do_(x -> r.and(x.ge(-20L), x.lt(-10L)))
   ExpectedOriginal: True
@@ -458,7 +470,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: random.yaml
-  TestNum: 22
+  TestNum: (22, 3)
   Original: r.random(-120937493, -9347849).do(lambda x:r.and_(x.ge(-120937493), x.lt(-9347849)))
   Java: r.random(-120937493L, -9347849L).do_(x -> r.and(x.ge(-120937493L), x.lt(-9347849L)))
   ExpectedOriginal: True

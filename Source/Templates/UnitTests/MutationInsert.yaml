@@ -15,6 +15,9 @@ DefsAndTests:
   TestFile: mutation/insert.yaml
   TestNum: 2
   Original: tbl2 = r.db('test').table('test2')
+  VarName: tbl2
+  VarType: Table
+  Value: (Table) (r.db("test").table("test2"))
   Java: Table tbl2 = (Table) (r.db("test").table("test2"));
   RunOpts: []
 - TestType: JavaQuery
@@ -237,6 +240,9 @@ DefsAndTests:
   TestFile: mutation/insert.yaml
   TestNum: 27
   Original: tblpkey = r.db('test').table('testpkey')
+  VarName: tblpkey
+  VarType: Table
+  Value: (Table) (r.db("test").table("testpkey"))
   Java: Table tblpkey = (Table) (r.db("test").table("testpkey"));
   RunOpts: []
 - TestType: JavaQuery
@@ -297,7 +303,7 @@ DefsAndTests:
   TestFile: mutation/insert.yaml
   TestNum: 33
   Original: 'tbl.for_each(lambda  row:          tbl2.insert(row.merge({''id'':row[''id'']  +  100 }))   )'
-  Java: tbl.forEach(row -> tbl2.insert(row.merge(r.hashMap("id", row.g("id").add(100L)))))
+  Java: tbl.forEach(row -> tbl2.insert(row.merge(r.hashMap("id", row.bracket("id").add(100L)))))
   ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':7})
   ExpectedType: Map
   ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 7L)

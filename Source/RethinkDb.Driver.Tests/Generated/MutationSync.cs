@@ -74,15 +74,17 @@ namespace RethinkDb.Driver.Test.Generated {
              }
              
              
-             //JavaDef, mutation/sync.yaml, #Templates.YamlTest+DefTest.
+             //JavaDef, mutation/sync.yaml, #4
              //Original: tbl = r.db('test').table('test1')
              
-var tbl = (Table) (r.db("test").table("test1"));             
+                 var tbl = (Table) (r.db("test").table("test1"));
              
-             //JavaDef, mutation/sync.yaml, #Templates.YamlTest+DefTest.
+             
+             //JavaDef, mutation/sync.yaml, #5
              //Original: tbl_soft = r.db('test').table('test1soft')
              
-var tbl_soft = (Table) (r.db("test").table("test1soft"));             
+                 var tbl_soft = (Table) (r.db("test").table("test1soft"));
+             
              TestCounter++;
              
              {

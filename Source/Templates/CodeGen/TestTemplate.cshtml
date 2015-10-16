@@ -2,6 +2,7 @@
 @using System.Linq
 @using Humanizer
 @using Newtonsoft.Json.Linq
+@using NUnit.Framework.Constraints
 @using Templates
 @using Templates.CodeGen.Util
 @using Templates.Metadata
@@ -11,7 +12,7 @@
 
 @functions {
     public YamlTest YamlTest { get; set; }
-
+    protected List<string> renderedVars = new List<string>();
 }
 
 
@@ -56,10 +57,23 @@ namespace RethinkDb.Driver.Test.Generated {
          if( test.TestType == "JavaDef" )
          {
              @:
-             @://JavaDef, @test.TestFile, #@test.
+             @://JavaDef, @test.TestFile, #@test.TestNum
              @://Original: @test.Original
              @:
-             @test.Java
+             if( @renderedVars.Contains(test.VarName) )
+             {
+                 @:@test.VarName = @( test.RunIfQuery ? "maybeRun" : "") (@test.Value);
+             }
+             else if( test.RunIfQuery )
+             {
+                 @:var @test.VarName = maybeRun( @test.Value );
+                 renderedVars.Add(@test.VarName);
+             }
+             else
+             {
+                 @:@( test.VarType.Contains("ReqlFunction") ? test.VarType : "var" ) @test.VarName = @test.Value;
+                 renderedVars.Add(@test.VarName);
+             }
              @:
          }
          else if( test.TestType == "JavaQuery" )

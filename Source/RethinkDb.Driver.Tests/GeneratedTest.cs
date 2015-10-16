@@ -50,6 +50,23 @@ namespace RethinkDb.Driver.Tests
                 .hostname(Hostname)
                 .port(Port)
                 .connect();
+
+            try
+            {
+                r.dbCreate(DbName).run(conn);
+                r.db(DbName).wait_().run(conn);
+            }
+            catch { }
+
+            foreach( var tableName in tableVars )
+            {
+                try
+                {
+                    r.db(DbName).tableCreate(tableName).run(conn);
+                    r.db(DbName).table(tableName).wait_().run(conn);
+                }
+                catch{}
+            }
         }
 
         [TearDown]
@@ -59,6 +76,13 @@ namespace RethinkDb.Driver.Tests
             {
                 conn.reconnect();
             }
+
+            foreach( var tableName in tableVars )
+            {
+                r.db(DbName).tableDrop(tableName).run(conn);
+            }
+            r.dbDrop(DbName).run(conn);
+            conn.close();
         }
 
         // Python test conversion compatibility definitions
@@ -159,6 +183,9 @@ namespace RethinkDb.Driver.Tests
         {
             if( query == null )
                 return null;
+
+            if ( query is IList )
+                return query;
 
             try
             {
@@ -496,7 +523,7 @@ namespace RethinkDb.Driver.Tests
                     {
                         break;
                     }
-                    result[(int)i] = cursor.next();
+                    result.Add(cursor.next());
                 }
                 return result;
             }

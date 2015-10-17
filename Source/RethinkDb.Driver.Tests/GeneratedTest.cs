@@ -83,7 +83,7 @@ namespace RethinkDb.Driver.Tests
                 r.db(DbName).tableDrop(tableName).run(conn);
             }
             r.dbDrop(DbName).run(conn);
-            conn.close();
+            conn.close(false);
         }
 
         // Python test conversion compatibility definitions
@@ -328,13 +328,36 @@ namespace RethinkDb.Driver.Tests
                 }
                 var otherDict = ((IDictionary)other);
 
-                return otherDict.Keys.OfType<object>()
-                    .Except(this.dct.Keys.OfType<object>())
-                    .Any()
-                       ||
-                       otherDict.Values.OfType<object>()
-                           .Except(this.dct.Values.OfType<object>())
-                           .Any();
+                foreach( var entry in dct.Keys )
+                {
+                    var key = entry;
+                    var val = dct[key];
+
+                    if( otherDict.Keys.OfType<object>().All(k => k != key) )
+                    {
+                        Console.WriteLine($"The obtained didn't have key {key}");
+                        return false;
+                    }
+
+                    var otherVal = otherDict[key];
+
+                    if( val == null && otherVal == null )
+                        continue;
+
+                    if( val == null && otherVal != null ||
+                        val != null && otherVal == null )
+                    {
+                        Console.WriteLine($"One was null and the other wasn't for key {key}");
+                        return false;
+                    }
+                    if( !val.Equals(otherVal) )
+                    {
+                        Console.WriteLine($"Wern't equal: {val} and {otherVal}");
+                        return false;
+                    }
+                }
+
+                return true;
             }
         }
         protected PartialDct partial(MapObject dct)
@@ -370,12 +393,17 @@ namespace RethinkDb.Driver.Tests
                 }
                 foreach (var item in otherList)
                 {
-                    if (!item.Equals(thing))
+                    if (!thing.Equals(item))
                     {
                         return false;
                     }
                 }
                 return true;
+            }
+
+            public override string ToString()
+            {
+                return $"ArrLen(length={length} of {thing})";
             }
         }
 
@@ -412,7 +440,7 @@ namespace RethinkDb.Driver.Tests
 
             public override string ToString()
             {
-                return $@"Uuid("")";
+                return $@"Uuid()";
             }
         }
 
@@ -521,6 +549,23 @@ namespace RethinkDb.Driver.Tests
                 result.Add(cursor.next());
             }
             return result;
+        }
+
+        public class AnythingIsFineBro
+        {
+            public override bool Equals(object obj)
+            {
+                return true;
+            }
+
+            public override string ToString()
+            {
+                return "AnythingIsFine";
+            }
+        }
+        protected AnythingIsFineBro AnythingIsFine()
+        {
+            return new AnythingIsFineBro();
         }
         
 

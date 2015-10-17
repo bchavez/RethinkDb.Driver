@@ -71,12 +71,21 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-	    private string ReadNullTerminatedString(TimeSpan deadline)
-		{
+	    private string ReadNullTerminatedString(TimeSpan? deadline)
+	    {
+	        var deadlineInstant = deadline.HasValue ? DateTime.Now.Add(deadline.Value) : (DateTime?)null;
+
 		    var sb = new StringBuilder();
 		    char c;
 		    while( (c = this.br.ReadChar()) != '\0' )
 		    {
+		        if( deadlineInstant.HasValue )
+		        {
+		            if( deadlineInstant <= DateTime.Now )
+		            {
+		                throw new ReqlDriverError("Connection timed out.");
+		            }
+		        }
 		        sb.Append(c);
 		    }
 		    return sb.ToString();

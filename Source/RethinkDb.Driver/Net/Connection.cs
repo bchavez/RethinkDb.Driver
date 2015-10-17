@@ -82,7 +82,14 @@ namespace RethinkDb.Driver.Net
 
         public virtual Connection reconnect()
         {
-            return reconnect(false, null);
+            try
+            {
+                return reconnect(false, null);
+            }
+            catch( Exception e )
+            {
+                throw e;
+            }
         }
 
         public virtual Connection reconnect(bool noreplyWait, TimeSpan? timeout)
@@ -134,6 +141,10 @@ namespace RethinkDb.Driver.Net
             return Interlocked.Increment(ref nextToken);
         }
 
+        internal virtual Response ReadResponse(Query query)
+        {
+            return ReadResponse(query, null);
+        }
         internal virtual Response ReadResponse(Query query, long? deadline)
         {
             return checkOpen().ReadResponse(query, deadline);
@@ -214,6 +225,7 @@ namespace RethinkDb.Driver.Net
         public void runNoReply(ReqlAst term, OptArgs globalOpts)
         {
             SetDefaultDb(globalOpts);
+            globalOpts.with("noreply", true);
             RunQueryNoreply(Query.Start(NewToken(), term, globalOpts));
         }
 

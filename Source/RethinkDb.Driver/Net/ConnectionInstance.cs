@@ -89,7 +89,7 @@ namespace RethinkDb.Driver.Net
 	            else if( !closing )
 	            {
 	                Close();
-	                throw new ReqlDriverError("Unexpected response received");
+	                throw new ReqlDriverError($"Unexpected response received: {res}");
 	            }
 	        }
 	    }

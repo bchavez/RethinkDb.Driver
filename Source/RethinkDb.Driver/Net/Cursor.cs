@@ -58,6 +58,10 @@ namespace RethinkDb.Driver.Net
 			}
 		}
 
+        public int BufferedSize => this.items.Count;
+
+        public List<T> BufferedItems => items.Select(t => t.ToObject<T>()).ToList();
+
         private void ExtendInternal(Response response)
         {
             threshold = response.Data.Count;
@@ -190,7 +194,7 @@ namespace RethinkDb.Driver.Net
                 return true;
             }
             MaybeSendContinue();
-            connection.ReadResponse(query, null);
+            connection.ReadResponse(query);
             return this.items.Count > 0;
         }
 

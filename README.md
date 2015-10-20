@@ -20,6 +20,11 @@ architecture of both drivers are the same.
 Install-Package RethinkDb.Driver
 ```
 
+If you're using CoreCLR, you may need to manually restore  `Microsoft.Extensions.Logging` references from:
+```
+dnu restore --fallbacksource https://www.myget.org/F/aspnetvnext/api/v2/
+```
+
 **Supported Runtimes**
 
 <table>

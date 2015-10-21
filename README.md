@@ -20,7 +20,7 @@ architecture of both drivers are the same.
 Install-Package RethinkDb.Driver
 ```
 
-If you're using CoreCLR, you may need to manually restore  `Microsoft.Extensions.Logging` references from:
+If you're using **CoreCLR**, you may need to manually restore  `Microsoft.Extensions.Logging` references from:
 ```
 dnu restore --fallbacksource https://www.myget.org/F/aspnetvnext/api/v2/
 ```
@@ -80,6 +80,68 @@ public void can_connect()
     result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
 }
 // Output: 8
+
+[Test]
+public void insert_poco_without_id()
+{
+    var obj = new Foo { Bar = 1, Baz = 2};
+    var result = r.db(DbName).table(TableName).insert(obj).run(conn);
+    result.Dump();
+}
+/*
+    //JObject: Insert Response
+	{
+	  "deleted": 0,
+	  "errors": 0,
+	  "generated_keys": [
+	    "6931c97f-de3d-46d2-b0f9-956af9517a57"
+	  ],
+	  "inserted": 1,
+	  "replaced": 0,
+	  "skipped": 0,
+	  "unchanged": 0
+	}
+*/
+
+[Test]
+public void insert_an_array_of_pocos()
+{
+    var arr = new[]
+        {
+            new Foo {id = "a", Baz = 1, Bar = 1},
+            new Foo {id = "b", Baz = 2, Bar = 2},
+            new Foo {id = "c", Baz = 3, Bar = 3}
+        };
+    var result = r.db(DbName).table(TableName).insert(arr).run(conn);
+    result.Dump();
+}
+/*
+    //JObject Insert Response
+    {
+      "deleted": 0,
+      "errors": 0,
+      "inserted": 3,
+      "replaced": 0,
+      "skipped": 0,
+      "unchanged": 0
+    }
+*/
+
+
+[Test]
+public void get_a_poco()
+{
+    var foo = r.db(DbName).table(TableName).get("abc").run<Foo>(conn);
+    foo.Dump();
+}
+//Foo Object
+/*
+    {
+      "id": "abc",
+      "Bar": 1,
+      "Baz": 2
+    }
+*/
 ```
 You should be able to follow any examples found in the official [ReQL documentation](http://www.rethinkdb.com/api/javascript/) with this driver.
 

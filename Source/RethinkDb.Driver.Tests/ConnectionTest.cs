@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
 using System.Text;
+using Newtonsoft.Json;
 using RethinkDb.Driver.Ast;
 using Templates.Utils;
 using Z.ExtensionMethods;
@@ -138,21 +139,21 @@ namespace RethinkDb.Driver.Tests
         }
 
         [Test]
-        public void insert_test()
+        public void insert_test_without_id()
         {
-            var obj = new Foo { id = "abc", Bar = 1, Jam = 2};
+            var obj = new Foo { Bar = 1, Baz = 2};
             var result = r.db(DbName).table(TableName).insert(obj).run(conn);
             result.Dump();
         }
 
         [Test]
-        public void insert_an_array_of_objects()
+        public void insert_an_array_of_pocos()
         {
             var arr = new[]
                 {
-                    new Foo {id = "a", Jam = 1, Bar = 1},
-                    new Foo {id = "b", Jam = 2, Bar = 2},
-                    new Foo {id = "c", Jam = 3, Bar = 3}
+                    new Foo {id = "a", Baz = 1, Bar = 1},
+                    new Foo {id = "b", Baz = 2, Bar = 2},
+                    new Foo {id = "c", Baz = 3, Bar = 3}
                 };
             var result = r.db(DbName).table(TableName).insert(arr).run(conn);
             result.Dump();
@@ -164,14 +165,25 @@ namespace RethinkDb.Driver.Tests
             var foo = r.db(DbName).table(TableName).get("a").run<Foo>(conn);
             foo.Dump();
         }
+
+        [Test]
+        public void Test()
+        {
+
+            Poco.Converter = o =>
+                {
+                    return JObject.FromObject(o, new JsonSerializer() {Formatting = Formatting.Indented});
+                };
+        }
         
     }
 
     public class Foo
     {
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id { get; set; }
         public int Bar { get; set; }
-        public int Jam { get; set; }
+        public int Baz { get; set; }
     }
 
 }

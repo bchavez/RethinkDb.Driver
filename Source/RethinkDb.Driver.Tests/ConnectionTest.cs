@@ -146,9 +146,22 @@ namespace RethinkDb.Driver.Tests
         }
 
         [Test]
+        public void insert_an_array_of_objects()
+        {
+            var arr = new[]
+                {
+                    new Foo {id = "a", Jam = 1, Bar = 1},
+                    new Foo {id = "b", Jam = 2, Bar = 2},
+                    new Foo {id = "c", Jam = 3, Bar = 3}
+                };
+            var result = r.db(DbName).table(TableName).insert(arr).run(conn);
+            result.Dump();
+        }
+
+        [Test]
         public void get_test()
         {
-            var foo = r.db(DbName).table(TableName).get("abc").run<Foo>(conn);
+            var foo = r.db(DbName).table(TableName).get("a").run<Foo>(conn);
             foo.Dump();
         }
         

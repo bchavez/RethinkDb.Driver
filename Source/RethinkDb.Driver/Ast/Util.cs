@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using RethinkDb.Driver.Model;
 
 namespace RethinkDb.Driver.Ast
@@ -74,13 +75,13 @@ namespace RethinkDb.Driver.Ast
 		    if (val is DateTime)
 			{
 			    var dt = (DateTime)val;
-			    var isoStr = dt.ToUniversalTime().ToString("o");
+			    var isoStr = dt.ToString("o");
 				return Iso8601.FromString(isoStr);
 			}
             if (val is DateTimeOffset)
             {
                 var dt = (DateTimeOffset)val;
-                var isoStr = dt.ToUniversalTime().ToString("o");
+                var isoStr = dt.ToString("o");
                 return Iso8601.FromString(isoStr);
             }
 
@@ -112,7 +113,8 @@ namespace RethinkDb.Driver.Ast
 		        return new Datum(null);
 		    }
 
-			throw new ReqlDriverError($"Can't convert {val} to a ReqlAst");
+		    return new Poco(val);
+		    //throw new ReqlDriverError($"Can't convert {val} to a ReqlAst");
 		}
 
         public static bool IsNumber(object value)

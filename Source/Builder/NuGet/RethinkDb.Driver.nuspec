@@ -18,6 +18,9 @@
       History
       v0.0.5-alpha2
       * Implemented driver prefetching.
+      * Support for inserting POCO objects in tables.
+      * Support for retrieving POCO objects from tables.
+      * More accurate DateTime conversions.
       
       v0.0.5-alpha1
       * Support for .NET Core / DNX Runtime.

@@ -6,7 +6,7 @@ namespace RethinkDb.Driver.Net
 	{
 		public static long Deadline(TimeSpan? timeout)
 		{
-		    return DateTime.Now.Add(timeout.Value).Ticks;
+		    return DateTime.UtcNow.Add(timeout.Value).Ticks;
 		}
 
 	}

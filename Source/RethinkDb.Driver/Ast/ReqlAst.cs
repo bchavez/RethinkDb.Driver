@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
@@ -28,6 +29,11 @@ namespace RethinkDb.Driver.Ast
         protected internal ReqlAst(TermType termType, Arguments args) : this(termType, args, null)
         {
         }
+
+	    protected internal ReqlAst()
+	    {
+	        
+	    }
 
         protected internal virtual object Build()
         {
@@ -88,5 +94,4 @@ namespace RethinkDb.Driver.Ast
         }
         
     }
-
 }

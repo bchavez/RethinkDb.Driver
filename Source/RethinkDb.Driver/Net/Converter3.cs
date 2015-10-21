@@ -9,8 +9,6 @@ namespace RethinkDb.Driver.Net
 {
     public class Converter3
     {
-        //public static Func<long, string, Response> ResponseBuillder = Response.ParseFrom;
-
         public const string PseudoTypeKey = "$reql_type$";
         public const string Time = "TIME";
         public const string GroupedData = "GROUPED_DATA";
@@ -58,14 +56,14 @@ namespace RethinkDb.Driver.Net
             double epoch_time = value["epoch_time"].ToObject<double>();
             string timezone = value["timezone"].ToString();
 
-            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            var dt = epoch + TimeSpan.FromSeconds(epoch_time);
-
             var tz = TimeSpan.Parse(timezone.Substring(1));
             if (!timezone.StartsWith("+"))
                 tz = -tz;
 
-            return new DateTimeOffset(dt, tz);
+            var epoch = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero); // epoch UTC
+            var dt = epoch + TimeSpan.FromSeconds(epoch_time);
+
+            return dt.ToOffset(tz);
         }
 
         private static byte[] GetBinary(JObject value)

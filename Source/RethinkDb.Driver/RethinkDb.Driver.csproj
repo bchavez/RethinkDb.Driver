@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyAttributes.cs" />
+    <Compile Include="Ast\Poco.cs" />
     <Compile Include="Ast\Query.cs" />
     <Compile Include="Ast\ReqlAst.cs" />
     <Compile Include="Ast\Util.cs" />

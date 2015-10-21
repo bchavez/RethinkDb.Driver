@@ -4,7 +4,9 @@ using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
 using System.Text;
+using RethinkDb.Driver.Ast;
 using Templates.Utils;
+using Z.ExtensionMethods;
 
 namespace RethinkDb.Driver.Tests
 {
@@ -112,8 +114,9 @@ namespace RethinkDb.Driver.Tests
         {
             var date = DateTime.Now;
             var result = r.expr(date).run<DateTime>(conn);
-
-            date.Should().Be(result);
+            //(date - result).Dump();
+            //result.Should().Be(date);
+            result.Should().BeCloseTo(date, 1); // must be within 1ms of each other
         }
 
         [Test]
@@ -133,7 +136,29 @@ namespace RethinkDb.Driver.Tests
             var dt2 = GeneratedTest.datetime.fromtimestamp(1375147296.681, GeneratedTest.ast.rqlTzinfo("-07:00"));
             dt2.Dump();
         }
+
+        [Test]
+        public void insert_test()
+        {
+            var obj = new Foo { id = "abc", Bar = 1, Jam = 2};
+            var result = r.db(DbName).table(TableName).insert(obj).run(conn);
+            result.Dump();
+        }
+
+        [Test]
+        public void get_test()
+        {
+            var foo = r.db(DbName).table(TableName).get("abc").run<Foo>(conn);
+            foo.Dump();
+        }
         
+    }
+
+    public class Foo
+    {
+        public string id { get; set; }
+        public int Bar { get; set; }
+        public int Jam { get; set; }
     }
 
 }

@@ -8,12 +8,10 @@ using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver.Net
 {
-    internal interface ICursor : IEnumerable
+    internal interface ICursor : IEnumerable, IEnumerator
     {
         void Extend(Response response);
         void SetError(string msg);
-        bool HasNext();
-        object next();
         long Token { get; }
     }
 
@@ -33,30 +31,31 @@ namespace RethinkDb.Driver.Net
         protected internal Exception error = null;
         public bool IsFeed { get; }
 
-
-        public Cursor(Connection connection, Query query, Response firstResponse)
-		{
-			this.connection = connection;
-			this.query = query;
-			this.Token = query.Token;
+        protected Cursor(Connection connection, Query query, Response firstResponse)
+        {
+            this.connection = connection;
+            this.query = query;
+            this.Token = query.Token;
             this.IsFeed = firstResponse.IsFeed;
-			connection.AddToCache(query.Token, this);
+            connection.AddToCache(query.Token, this);
             MaybeSendContinue();
             ExtendInternal(firstResponse);
-		}
+        }
+
+
 
         public virtual void close()
-		{
-			if (error == null)
-			{
-				error = new Exception("No such element.");
-				if (connection.Open)
-				{
-					outstandingRequests += 1;
-					connection.Stop(this);
-				}
-			}
-		}
+        {
+            if (error == null)
+            {
+                error = new Exception("No such element.");
+                if (connection.Open)
+                {
+                    outstandingRequests += 1;
+                    connection.Stop(this);
+                }
+            }
+        }
 
         public int BufferedSize => this.items.Count;
 
@@ -98,7 +97,7 @@ namespace RethinkDb.Driver.Net
 
         public void SetError(string msg)
         {
-            if( this.error != null ) return;
+            if (this.error != null) return;
 
             this.error = new ReqlRuntimeError(msg);
 
@@ -109,94 +108,68 @@ namespace RethinkDb.Driver.Net
         }
 
         protected internal virtual void MaybeSendContinue()
-		{
-			if (error == null && items.Count < threshold && outstandingRequests == 0)
-			{
-				outstandingRequests += 1;
-				connection.Continue(this);
-			}
-		}
+        {
+            if (error == null && items.Count < threshold && outstandingRequests == 0)
+            {
+                outstandingRequests += 1;
+                connection.Continue(this);
+            }
+        }
 
-		internal virtual string Error
-		{
-			set
-			{
-				if (error != null)
-				{
-				    error = new ReqlRuntimeError(value);
-					Response dummyResponse = Response.Make(query.Token, ResponseType.SUCCESS_SEQUENCE).Build();
-					Extend(dummyResponse);
-				}
-			}
-		}
+        internal virtual string Error
+        {
+            set
+            {
+                if (error != null)
+                {
+                    error = new ReqlRuntimeError(value);
+                    Response dummyResponse = Response.Make(query.Token, ResponseType.SUCCESS_SEQUENCE).Build();
+                    Extend(dummyResponse);
+                }
+            }
+        }
 
         public static Cursor<T> create(Connection connection, Query query, Response firstResponse)
         {
             return new DefaultCursor<T>(connection, query, firstResponse);
         }
 
-        object ICursor.next()
-        {
-            return this.next();
-        }
-
-        public T next()
-		{
-			return getNext(null);
-		}
-
-        public virtual T next(TimeSpan? timeout)
-		{
-			return getNext(timeout);
-		}
-
-        // Abstract methods
-
-        internal abstract T getNext(TimeSpan? timeout);
-
         private class DefaultCursor<T> : Cursor<T>
-		{
-		    private FormatOptions fmt;
-			public DefaultCursor(Connection connection, Query query, Response firstResponse) : base(connection, query, firstResponse)
-			{
-			    this.fmt = new FormatOptions(query.GlobalOptions);
-			}
-
-			internal override T getNext(TimeSpan? timeout)
-			{
-				while (items.Count == 0)
-				{
-					MaybeSendContinue();
-				    if( error != null )
-				        throw error;
-
-				    connection.ReadResponse(query, NetUtil.Deadline(timeout));
-				}
-			    var element = items.First();
-			    items.RemoveAt(0);
-				return Converter3.ConvertPesudoTypes(element, fmt).Value<T>();
-			}
-
-		}
-
-        public bool HasNext()
         {
-            if( this.items.Count > 0 )
+            private FormatOptions fmt;
+            public DefaultCursor(Connection connection, Query query, Response firstResponse) : base(connection, query, firstResponse)
             {
-                return true;
+                this.fmt = new FormatOptions(query.GlobalOptions);
             }
-            if( error != null )
+
+            private TimeSpan? timeout;
+            private T current;
+
+            public override bool MoveNext()
             {
+                while (items.Count == 0)
+                {//if we're out of buffered items, poll until we get more.
+                    MaybeSendContinue();
+                    if( error != null )
+                        return false; //we don't throw in .net
+
+                    connection.ReadResponse(query, NetUtil.Deadline(timeout));
+                }
+
+                if (this.items.Count > 0)
+                {
+                    var element = items[0];
+                    items.RemoveAt(0);
+                    this.current = Converter3.ConvertPesudoTypes(element, fmt).ToObject<T>();
+                    return true;
+                }
+
                 return false;
             }
-            if( this.IsFeed )
-            {
-                return true;
-            }
-            MaybeSendContinue();
-            connection.ReadResponse(query);
-            return this.items.Count > 0;
+
+            public override T Current => this.current;
         }
+
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -213,22 +186,18 @@ namespace RethinkDb.Driver.Net
             this.close();
         }
 
-        public bool MoveNext()
-        {
-            this.Current = this.next();
-            return this.Current != null;
-        }
+        public abstract bool MoveNext();
 
         public void Reset()
         {
-            this.Current = default(T);
+            throw new ReqlDriverError("A Cursor can't be reset.");
         }
 
-        public T Current { get; private set; }
+        public abstract T Current { get; }
 
         object IEnumerator.Current
         {
             get { return Current; }
         }
-	}
+    }
 }

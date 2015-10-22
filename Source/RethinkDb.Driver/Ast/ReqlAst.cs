@@ -55,35 +55,38 @@ namespace RethinkDb.Driver.Ast
 
             if( OptArgs.Count > 0 )
             {
-                list.Add(JObject.FromObject(BuildOptarg(OptArgs)));
+                list.Add(JObject.FromObject(buildOptarg(OptArgs)));
             }
             return list;
         }
 
-	    public static Dictionary<string, object> BuildOptarg(OptArgs opts)
+	    public static Dictionary<string, object> buildOptarg(OptArgs opts)
 	    {
 	        return opts.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Build());
 	    }
 
-        public virtual T run<T>(Connection conn, OptArgs g)
+        public virtual dynamic run<T>(Connection conn, OptArgs g)
         {
-            return (T)conn.run<T>(this, g);
+            return conn.run<T>(this, g);
         }
 
-        public virtual T run<T>(Connection conn)
+        public virtual dynamic run<T>(Connection conn)
         {
-            return (T)conn.run<T>(this, new OptArgs());
+            return conn.run<T>(this, new OptArgs());
         }
 
-	    public virtual object run(Connection conn)
+	    public virtual dynamic run(Connection conn)
 	    {
-	        return run<object>(conn);
+	        return run<dynamic>(conn);
 	    }
-        public virtual object run(Connection conn, OptArgs args)
+        public virtual dynamic run(Connection conn, OptArgs args)
         {
-            return run<object>(conn, args);
+            return run<dynamic>(conn);
         }
-
+        public virtual Cursor<T> runCursor<T>(Connection conn, OptArgs args = null)
+        {
+            return conn.runCursor<T>(this, args ?? new OptArgs());
+        }
         public void runNoReply(Connection conn)
 	    {
 	        conn.runNoReply(this, new OptArgs());

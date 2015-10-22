@@ -124,7 +124,7 @@ namespace RethinkDb.Driver.Net
                 {
                     if( shouldNoReplyWait )
                     {
-                        NoReplyWait();
+                        noreplyWait();
                     }
                 }
                 finally
@@ -150,18 +150,34 @@ namespace RethinkDb.Driver.Net
             return checkOpen().ReadResponse(query, deadline);
         }
 
-        internal virtual T RunQuery<T>(Query query)
+        internal virtual Cursor<T> RunQueryCursor<T>(Query query)
         {
-            ConnectionInstance inst = checkOpen();
-            if( inst.Socket == null )
-                throw new ReqlDriverError("No socket open.");
+            var inst = checkOpen();
+            if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
+            inst.Socket.WriteQuery(query.Token, query.Serialize());
+            Response res = inst.ReadResponse(query);
+            if( res.IsPartial || res.IsSequence )
+            {
+                return Cursor<T>.create(this, query, res);
+            }
+            throw new ReqlDriverError("The query response can't be converted to a Cursor<T>. The response is not a sequence or partial. Use `.run` instead.");
+        }
 
-            inst.Socket.WriteQuery( query.Token, query.Serialize());
+        internal virtual void RunQueryNoreply(Query query)
+        {
+            var inst = checkOpen();
+            if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
+            inst.Socket.WriteStringWithLength(query.Serialize());
+        }
+
+        internal virtual dynamic RunQuery<T>(Query query)
+        {
+            var inst = checkOpen();
+            if (inst.Socket == null) throw new ReqlDriverError("No socket open.");
+
+            inst.Socket.WriteQuery(query.Token, query.Serialize());
 
             Response res = inst.ReadResponse(query);
-
-            // TODO: This logic needs to move into the Response class
-            Log.Debug(res.ToString());
 
             if( res.IsAtom )
             {
@@ -178,11 +194,11 @@ namespace RethinkDb.Driver.Net
             else if( res.IsPartial || res.IsSequence )
             {
                 ICursor cursor = Cursor<T>.create(this, query, res);
-                return (T)cursor;
+                return cursor;
             }
             else if( res.IsWaitComplete )
             {
-                return default(T);
+                return null;
             }
             else
             {
@@ -190,27 +206,31 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-        internal virtual void RunQueryNoreply(Query query)
-        {
-            var inst = checkOpen();
-            if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
-            inst.Socket.WriteStringWithLength(query.Serialize());
-        }
-
-        public virtual void NoReplyWait()
+        public virtual void noreplyWait()
         {
             RunQuery<object>(Query.NoReplyWait(NewToken()));
         }
 
-        public virtual object run<T>(ReqlAst term, OptArgs globalOpts)
+        private Query PrepareQuery(ReqlAst term, OptArgs globalOpts)
         {
             SetDefaultDb(globalOpts);
             Query q = Query.Start(NewToken(), term, globalOpts);
-            if( globalOpts.ContainsKey("noreply") )
+            if (globalOpts.ContainsKey("noreply"))
             {
                 throw new ReqlDriverError("Don't provide the noreply option as an optarg. Use `.runNoReply` instead of `.run`");
             }
+            return q;
+        }
+        public virtual dynamic run<T>(ReqlAst term, OptArgs globalOpts)
+        {
+            Query q = PrepareQuery(term, globalOpts);   
             return RunQuery<T>(q);
+        }
+
+        public virtual Cursor<T> runCursor<T>(ReqlAst term, OptArgs globalOpts)
+        {
+            Query q = PrepareQuery(term, globalOpts);
+            return RunQueryCursor<T>(q);
         }
 
         private void SetDefaultDb(OptArgs globalOpts)

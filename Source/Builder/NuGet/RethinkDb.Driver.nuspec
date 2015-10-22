@@ -15,60 +15,65 @@
     <description>A RethinkDB database driver written in C# striving for 100% ReQL API compatibility and completeness. Architecturally, this driver is a one-to-one port of the official Java driver.</description>
     
     <releaseNotes>
-      History
-      v0.0.5-alpha2
-      * Implemented driver prefetching.
-      * Support for inserting POCO objects in tables.
-      * Support for retrieving POCO objects from tables.
-      * More accurate DateTime conversions.
-      
-      v0.0.5-alpha1
-      * Support for .NET Core / DNX Runtime.
-      * Support for Mono / Linux Runtime.
-      * Convert Func0 in AST.
-      
-      v0.0.4-alpha9
-      * Fixed bug in Reql Function lambda FUNCALL AST ordering.
-      * Best practice - avoid using C# "is" operator in Util.ToReqlAst.
-      
-      v0.0.4-alpha8
-      * AST Update
-      * More signatures for table.indexCreate.
-      * Allow JavaScript in places for ReqlFunction1.
-      * r.desc and r.desc can accept functions
-      
-      v0.0.4-alpha7
-      * Ensure latest Common.Logging is used.
-      
-      v0.0.4-alpha6
-      * Removed unnecessary dependency on extension methods utility.
-      
-      v0.0.4-alpha5
-      * Added a toplevel r.array and r.hashMap utility
-      * AST now using proper C# lambdas.
-      * More refined AST signatures.
+        History
+        v0.0.5-alpha3
+        * Cursor support for sequence / partial results (ex: getAll).
+        * Make .run dynamic.
+        * Added faster .runCursor for queries expecting a cursor.
 
-      v0.0.4-alpha4
-      * PR#2: Fix null reference exception: JObject.FromObject before objects to JArray list. -cadabloom
+        v0.0.5-alpha2
+        * Implemented driver prefetching.
+        * Support for inserting POCO objects in tables.
+        * Support for retrieving POCO objects from tables.
+        * More accurate DateTime conversions.
 
-      v0.0.4-alpha3
-      * Fixed recursion in MakeObject
-      * optArg now explicitly included where needed.
+        v0.0.5-alpha1
+        * Support for .NET Core / DNX Runtime.
+        * Support for Mono / Linux Runtime.
+        * Convert Func0 in AST.
 
-      v0.0.4-alpha2
-      * Added IntelliSense XML documentation.
+        v0.0.4-alpha9
+        * Fixed bug in Reql Function lambda FUNCALL AST ordering.
+        * Best practice - avoid using C# "is" operator in Util.ToReqlAst.
 
-      v0.0.4-alpha1
-      * Refined serialization.
-      * DB methods fixed.
-      * Create/Delete database working.
-      * RethinkDB PesudoType conversion working.
+        v0.0.4-alpha8
+        * AST Update
+        * More signatures for table.indexCreate.
+        * Allow JavaScript in places for ReqlFunction1.
+        * r.desc and r.desc can accept functions
 
-      v0.0.0.3
-      * Connection to RethinkDB working.
+        v0.0.4-alpha7
+        * Ensure latest Common.Logging is used.
 
-      v0.0.0.0:
-      * Initial port from Josh's Java Driver.
+        v0.0.4-alpha6
+        * Removed unnecessary dependency on extension methods utility.
+
+        v0.0.4-alpha5
+        * Added a toplevel r.array and r.hashMap utility
+        * AST now using proper C# lambdas.
+        * More refined AST signatures.
+
+        v0.0.4-alpha4
+        * PR#2: Fix null reference exception: JObject.FromObject before objects to JArray list. -cadabloom
+
+        v0.0.4-alpha3
+        * Fixed recursion in MakeObject
+        * optArg now explicitly included where needed.
+
+        v0.0.4-alpha2
+        * Added IntelliSense XML documentation.
+
+        v0.0.4-alpha1
+        * Refined serialization.
+        * DB methods fixed.
+        * Create/Delete database working.
+        * RethinkDB PesudoType conversion working.
+
+        v0.0.0.3
+        * Connection to RethinkDB working.
+
+        v0.0.0.0:
+        * Initial port from Josh's Java Driver.
     </releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>rethinkdb database driver reql</tags>

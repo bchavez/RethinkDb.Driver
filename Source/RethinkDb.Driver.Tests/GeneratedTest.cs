@@ -542,11 +542,11 @@ namespace RethinkDb.Driver.Tests
             var result = new ArrayList((int)limit);
             for( long i = 0; i < limit; i++ )
             {
-                if( !cursor.HasNext() )
+                if( !cursor.MoveNext() )
                 {
                     break;
                 }
-                result.Add(cursor.next());
+                result.Add(cursor.Current);
             }
             return result;
         }

@@ -170,10 +170,27 @@ namespace RethinkDb.Driver.Tests
         [Test]
         public void getall_test()
         {
-            var all = r.db(DbName).table(TableName).getAll("a", "b", "c").run(conn) as Cursor<object>;
+            Cursor<Foo> all = r.db(DbName).table(TableName).getAll("a", "b", "c").run<Foo>(conn);
 
             all.BufferedItems.Dump();
-            //all.GetType().Dump();
+            
+            foreach( var foo in all )
+            {
+                Console.WriteLine($"Printing: {foo.id}!");
+                foo.Dump();
+            }
+        }
+
+        [Test]
+        public void use_a_cursor_to_get_items()
+        {
+            Cursor<Foo> all = r.db(DbName).table(TableName).getAll("a", "b", "c").runCursor<Foo>(conn);
+
+            foreach (var foo in all)
+            {
+                Console.WriteLine($"Printing: {foo.id}!");
+                foo.Dump();
+            }
         }
 
         [Test]

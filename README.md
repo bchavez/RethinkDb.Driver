@@ -143,18 +143,21 @@ public void get_a_poco()
     }
 */
 ```
-You should be able to follow any examples found in the official [ReQL documentation](http://www.rethinkdb.com/api/javascript/) with this driver.
 
-#### Known deviations from official JavaScript API documentation
-There are some known deviations in both the Java Driver and this driver from the official JavaScript API documentation.
+#### Documentation
+You should be able to follow any examples found in the official [ReQL documentation](http://www.rethinkdb.com/api/javascript/) for the ***Java*** driver. However, the official **Java** driver documentation is *unavailable* at the time of this writing. 
 
-__Specifying optional arguments in getAll()__
+In the meantime, the ReQL **JavaScript** API documentation can suffice. However, there are some known deviations between the official **Java** API and **JavaScript** APIs. For example, specifying optional arguments:
+
+##### Optional arguments with getAll()
 ```javascript
 r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback)
 ```
-To specify the same index as in the sample, use ```.optArg(```
+The **Java** and **C#** driver use `.optArg()` to specify optional arguments. The equivalent query in **Java** (and **C#**) is shown below:
 ```csharp
-Cursor<Foo> foo = r.db(DbName).table("marvel").getAll("man_of_steel").optArg("index", "code_name").run<Foo>(conn);
+Cursor<Foo> foo = r.db(DbName).table("marvel").getAll("man_of_steel")
+                   .optArg("index", "code_name")
+                   .run<Foo>(conn);
 ```
 
 

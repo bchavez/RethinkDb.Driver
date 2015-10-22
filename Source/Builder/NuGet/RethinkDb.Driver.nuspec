@@ -17,7 +17,7 @@
     <releaseNotes>
         History
         v0.0.5-alpha3
-        * Cursor support for sequence / partial results (ex: getAll).
+        * Cursor support for sequence / partial results (example getAll).
         * Make .run dynamic.
         * Added faster .runCursor for queries expecting a cursor.
 

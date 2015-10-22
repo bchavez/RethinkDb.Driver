@@ -145,6 +145,17 @@ public void get_a_poco()
 ```
 You should be able to follow any examples found in the official [ReQL documentation](http://www.rethinkdb.com/api/javascript/) with this driver.
 
+#### Known deviations from official JavaScript API documentation
+There are some known deviations in both the Java Driver and this driver from the official JavaScript API documentation.
+
+__Specifying optional arguments in getAll()__
+```javascript
+r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback)
+```
+To specify the same index as in the sample, use ```.optArg(```
+```csharp
+Cursor<Foo> foo = r.db(DbName).table("marvel").getAll("man_of_steel").optArg("index", "code_name").run<Foo>(conn);
+```
 
 
 Contributing

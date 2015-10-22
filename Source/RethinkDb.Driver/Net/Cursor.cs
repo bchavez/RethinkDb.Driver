@@ -17,7 +17,7 @@ namespace RethinkDb.Driver.Net
         long Token { get; }
     }
 
-    internal abstract class Cursor<T> : IEnumerable<T>, IEnumerator<T>, ICursor
+    public abstract class Cursor<T> : IEnumerable<T>, IEnumerator<T>, ICursor
     {
         // public immutable members
         public long Token { get; }

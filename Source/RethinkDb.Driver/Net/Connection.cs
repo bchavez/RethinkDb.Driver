@@ -178,8 +178,7 @@ namespace RethinkDb.Driver.Net
             else if( res.IsPartial || res.IsSequence )
             {
                 ICursor cursor = Cursor<T>.create(this, query, res);
-                cursor.Extend(res);
-                return (T) cursor;
+                return (T)cursor;
             }
             else if( res.IsWaitComplete )
             {

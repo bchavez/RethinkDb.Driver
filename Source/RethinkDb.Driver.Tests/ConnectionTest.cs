@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -164,6 +165,15 @@ namespace RethinkDb.Driver.Tests
         {
             var foo = r.db(DbName).table(TableName).get("a").run<Foo>(conn);
             foo.Dump();
+        }
+
+        [Test]
+        public void getall_test()
+        {
+            var all = r.db(DbName).table(TableName).getAll("a", "b", "c").run(conn) as Cursor<object>;
+
+            all.BufferedItems.Dump();
+            //all.GetType().Dump();
         }
 
         [Test]

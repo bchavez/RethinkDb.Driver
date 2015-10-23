@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // Tests meta queries for creating and deleting tables
+
     [TestFixture]
     public class MetaTable : GeneratedTest {
 

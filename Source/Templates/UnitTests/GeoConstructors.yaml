@@ -1,4 +1,5 @@
 ModuleName: GeoConstructors
+Description: Test geo constructors
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml

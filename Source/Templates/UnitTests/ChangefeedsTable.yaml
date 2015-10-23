@@ -1,4 +1,5 @@
 ModuleName: ChangefeedsTable
+Description: Test changefeeds on a table
 TableVarNames:
 - tbl
 DefsAndTests:

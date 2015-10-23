@@ -1,4 +1,5 @@
 ModuleName: TransformArray
+Description: Tests manipulation operations on arrays
 DefsAndTests:
 - TestType: JavaDef
   TestFile: transform/array.yaml

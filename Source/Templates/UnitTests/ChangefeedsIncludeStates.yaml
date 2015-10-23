@@ -1,4 +1,5 @@
 ModuleName: ChangefeedsIncludeStates
+Description: Test `include_states`
 TableVarNames:
 - tbl
 DefsAndTests:

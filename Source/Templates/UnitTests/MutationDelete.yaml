@@ -1,4 +1,5 @@
 ModuleName: MutationDelete
+Description: Tests deletes of selections
 TableVarNames:
 - tbl
 DefsAndTests:

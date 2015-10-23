@@ -1,4 +1,5 @@
 ModuleName: MathLogicAliases
+Description: Test named aliases for math and logic operators
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/aliases.yaml

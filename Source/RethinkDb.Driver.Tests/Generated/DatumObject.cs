@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // Tests conversion to and from the RQL object type
+
     [TestFixture]
     public class DatumObject : GeneratedTest {
 

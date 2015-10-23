@@ -1,4 +1,5 @@
 ModuleName: MetaTable
+Description: Tests meta queries for creating and deleting tables
 DefsAndTests:
 - TestType: JavaDef
   TestFile: meta/table.yaml

@@ -1,4 +1,5 @@
 ModuleName: TimesShim
+Description: Test the native shims.
 DefsAndTests:
 - TestType: JavaDef
   TestFile: times/shim.yaml

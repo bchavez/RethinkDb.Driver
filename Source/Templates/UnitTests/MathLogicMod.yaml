@@ -1,4 +1,5 @@
 ModuleName: MathLogicMod
+Description: Tests for the basic usage of the mod operation
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/mod.yaml

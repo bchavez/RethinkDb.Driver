@@ -1,4 +1,5 @@
 ModuleName: MetaComposite
+Description: Tests meta operations in composite queries
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: meta/composite.yaml

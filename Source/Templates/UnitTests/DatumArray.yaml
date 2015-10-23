@@ -1,4 +1,5 @@
 ModuleName: DatumArray
+Description: Tests conversion to and from the RQL array type
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/array.yaml

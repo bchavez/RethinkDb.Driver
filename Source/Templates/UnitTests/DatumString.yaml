@@ -1,4 +1,5 @@
 ModuleName: DatumString
+Description: Tests of converstion to and from the RQL string type
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/string.yaml

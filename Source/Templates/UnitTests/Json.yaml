@@ -1,4 +1,5 @@
 ModuleName: Json
+Description: Tests RQL json parsing
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: json.yaml

@@ -1,4 +1,5 @@
 ModuleName: MetaDbs
+Description: Tests meta queries for databases
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: meta/dbs.yaml

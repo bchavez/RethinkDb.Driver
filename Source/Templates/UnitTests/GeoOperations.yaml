@@ -1,4 +1,5 @@
 ModuleName: GeoOperations
+Description: Test basic geometry operators
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: geo/operations.yaml

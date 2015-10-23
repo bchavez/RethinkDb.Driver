@@ -1,4 +1,5 @@
 ModuleName: DatumObject
+Description: Tests conversion to and from the RQL object type
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/object.yaml

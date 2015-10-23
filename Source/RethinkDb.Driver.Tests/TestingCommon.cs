@@ -59,6 +59,19 @@ namespace RethinkDb.Driver.Tests
                 return;
             }
 
+            if (expected == obtained)
+            {
+                return;
+            }
+
+            if ( expected.Equals(obtained) )
+            {
+                return;
+            }
+            
+
+            expected.Should().Be(obtained);
+
             Console.WriteLine(">>>>>>>>>>>>>>>>>>> ASSERT FAIL");
 
             if( obtained is Exception )
@@ -581,6 +594,15 @@ namespace RethinkDb.Driver.Tests
         }
 
         public static AnythingIsFineBro AnythingIsFine = new AnythingIsFineBro();
+
+        public static class sys
+        {
+            public static class floatInfo
+            {
+                public static double max = double.MaxValue;
+                public static double min = double.Epsilon; // not double.MinValue
+            }
+        }
 
     }
 

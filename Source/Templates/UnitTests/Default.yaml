@@ -1,4 +1,5 @@
 ModuleName: Default
+Description: Tests r.default
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: default.yaml

@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // Tests for match
+
     [TestFixture]
     public class Match : GeneratedTest {
 

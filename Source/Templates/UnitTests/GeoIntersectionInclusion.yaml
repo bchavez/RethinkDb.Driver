@@ -1,4 +1,5 @@
 ModuleName: GeoIntersectionInclusion
+Description: Test intersects and includes semantics
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: geo/intersection_inclusion.yaml

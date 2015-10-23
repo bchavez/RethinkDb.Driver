@@ -1,4 +1,5 @@
 ModuleName: GeoPrimitives
+Description: Test geometric primitive constructors
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: geo/primitives.yaml

@@ -2,6 +2,7 @@
 import base64
 %>
 ModuleName: "${module_name}"
+Description: "${description}"
 TableVarNames:
 %for var_name in table_var_names:
     - ${var_name}

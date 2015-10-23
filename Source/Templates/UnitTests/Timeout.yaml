@@ -1,4 +1,5 @@
 ModuleName: Timeout
+Description: Tests timeouts.
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: timeout.yaml

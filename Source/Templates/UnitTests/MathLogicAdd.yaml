@@ -1,4 +1,5 @@
 ModuleName: MathLogicAdd
+Description: Tests for basic usage of the add operation
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml

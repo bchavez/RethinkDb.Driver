@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // tests for `floor`, `ceil`, and `round`, tests inspired by the Python test suite
+
     [TestFixture]
     public class MathLogicFloorCeilRound : GeneratedTest {
 

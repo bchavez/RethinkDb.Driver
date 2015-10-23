@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // date/time api (#977)
+
     [TestFixture]
     public class TimesApi : GeneratedTest {
 

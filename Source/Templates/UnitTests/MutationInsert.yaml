@@ -1,4 +1,5 @@
 ModuleName: MutationInsert
+Description: Tests insertion into tables
 TableVarNames:
 - tbl
 DefsAndTests:

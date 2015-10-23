@@ -118,12 +118,22 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
-    [TestFixture]
-    public class ");
+
+    // ");
 
 
             
             #line 37 "..\..\CodeGen\TestTemplate.cshtml"
+  Write(YamlTest.Description);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\n\r\n    [TestFixture]\r\n    public class ");
+
+
+            
+            #line 40 "..\..\CodeGen\TestTemplate.cshtml"
             Write(YamlTest.ModuleName);
 
             
@@ -133,7 +143,7 @@ WriteLiteral(" : GeneratedTest {\r\n\r\n        public ");
 
 
             
-            #line 39 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 42 "..\..\CodeGen\TestTemplate.cshtml"
           Write(YamlTest.ModuleName);
 
             
@@ -143,7 +153,7 @@ WriteLiteral(" (){\r\n");
 
 
             
-            #line 40 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 43 "..\..\CodeGen\TestTemplate.cshtml"
              foreach (var table in this.YamlTest.TableVarNames)
             {
 
@@ -156,7 +166,7 @@ WriteLiteral("tableVars.Add( \"");
 
 
             
-            #line 42 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 45 "..\..\CodeGen\TestTemplate.cshtml"
                              Write(table);
 
             
@@ -166,7 +176,7 @@ WriteLiteral("\" );\r\n");
 
 
             
-            #line 43 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 46 "..\..\CodeGen\TestTemplate.cshtml"
             }
 
             
@@ -176,7 +186,7 @@ WriteLiteral("        }\r\n\r\n\r\n");
 
 
             
-            #line 47 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 50 "..\..\CodeGen\TestTemplate.cshtml"
          foreach( var table in this.YamlTest.TableVarNames )
         {
 
@@ -189,7 +199,7 @@ WriteLiteral("public static Table ");
 
 
             
-            #line 49 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 52 "..\..\CodeGen\TestTemplate.cshtml"
                              Write(table);
 
             
@@ -199,7 +209,7 @@ WriteLiteral(" = r.db(DbName).table(\"");
 
 
             
-            #line 49 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 52 "..\..\CodeGen\TestTemplate.cshtml"
                                                           Write(table);
 
             
@@ -209,7 +219,7 @@ WriteLiteral("\");\r\n");
 
 
             
-            #line 50 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 53 "..\..\CodeGen\TestTemplate.cshtml"
         }
 
             
@@ -219,7 +229,7 @@ WriteLiteral("\r\n\r\n        [Test]\r\n        public void YamlTest(){\r\n\r\n"
 
 
             
-            #line 56 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 59 "..\..\CodeGen\TestTemplate.cshtml"
       foreach( var test in this.YamlTest.DefsAndTests )
      {
          if( test.TestType == "JavaDef" )
@@ -240,7 +250,7 @@ WriteLiteral("//JavaDef, ");
 
 
             
-            #line 61 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 64 "..\..\CodeGen\TestTemplate.cshtml"
                      Write(test.TestFile);
 
             
@@ -250,7 +260,7 @@ WriteLiteral(", #");
 
 
             
-            #line 61 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 64 "..\..\CodeGen\TestTemplate.cshtml"
                                       Write(test.LineNum);
 
             
@@ -266,7 +276,7 @@ WriteLiteral("//Original: ");
 
 
             
-            #line 62 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 65 "..\..\CodeGen\TestTemplate.cshtml"
                       Write(test.Original);
 
             
@@ -282,7 +292,7 @@ WriteLiteral("\r\n");
 
 
             
-            #line 64 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 67 "..\..\CodeGen\TestTemplate.cshtml"
              if( @renderedVars.Contains(test.VarName) )
              {
 
@@ -293,7 +303,7 @@ WriteLiteral("                 ");
 
 
             
-            #line 66 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 69 "..\..\CodeGen\TestTemplate.cshtml"
               Write(test.VarName);
 
             
@@ -303,7 +313,7 @@ WriteLiteral(" = ");
 
 
             
-            #line 66 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 69 "..\..\CodeGen\TestTemplate.cshtml"
                                Write( test.RunIfQuery ? "maybeRun" : "");
 
             
@@ -313,7 +323,7 @@ WriteLiteral(" (");
 
 
             
-            #line 66 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 69 "..\..\CodeGen\TestTemplate.cshtml"
                                                                      Write(test.Value);
 
             
@@ -323,7 +333,7 @@ WriteLiteral(");\r\n");
 
 
             
-            #line 67 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 70 "..\..\CodeGen\TestTemplate.cshtml"
              }
              else if( test.RunIfQuery )
              {
@@ -337,7 +347,7 @@ WriteLiteral("var ");
 
 
             
-            #line 70 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 73 "..\..\CodeGen\TestTemplate.cshtml"
                   Write(test.VarName);
 
             
@@ -347,7 +357,7 @@ WriteLiteral(" = maybeRun( ");
 
 
             
-            #line 70 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 73 "..\..\CodeGen\TestTemplate.cshtml"
                                             Write(test.Value);
 
             
@@ -357,7 +367,7 @@ WriteLiteral(" , conn);\r\n");
 
 
             
-            #line 71 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 74 "..\..\CodeGen\TestTemplate.cshtml"
                  renderedVars.Add(@test.VarName);
              }
              else
@@ -370,7 +380,7 @@ WriteLiteral("                 ");
 
 
             
-            #line 75 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 78 "..\..\CodeGen\TestTemplate.cshtml"
                Write( test.VarType.Contains("ReqlFunction") ? test.VarType : "var" );
 
             
@@ -380,7 +390,7 @@ WriteLiteral(" ");
 
 
             
-            #line 75 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 78 "..\..\CodeGen\TestTemplate.cshtml"
                                                                                 Write(test.VarName);
 
             
@@ -390,7 +400,7 @@ WriteLiteral(" = ");
 
 
             
-            #line 75 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 78 "..\..\CodeGen\TestTemplate.cshtml"
                                                                                                 Write(test.Value);
 
             
@@ -400,7 +410,7 @@ WriteLiteral(";\r\n");
 
 
             
-            #line 76 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 79 "..\..\CodeGen\TestTemplate.cshtml"
                  renderedVars.Add(@test.VarName);
              }
 
@@ -413,7 +423,7 @@ WriteLiteral("\r\n");
 
 
             
-            #line 79 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 82 "..\..\CodeGen\TestTemplate.cshtml"
          }
          else if( test.TestType == "JavaQuery" )
          {
@@ -445,7 +455,7 @@ WriteLiteral("//JavaQuery, ");
 
 
             
-            #line 85 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 88 "..\..\CodeGen\TestTemplate.cshtml"
                            Write(test.TestFile);
 
             
@@ -455,7 +465,7 @@ WriteLiteral(", #");
 
 
             
-            #line 85 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 88 "..\..\CodeGen\TestTemplate.cshtml"
                                             Write(test.LineNum);
 
             
@@ -471,7 +481,7 @@ WriteLiteral("/* ExpectedOriginal: ");
 
 
             
-            #line 86 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 89 "..\..\CodeGen\TestTemplate.cshtml"
                                    Write(test.ExpectedOriginal);
 
             
@@ -487,7 +497,7 @@ WriteLiteral("var expected_ = ");
 
 
             
-            #line 87 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 90 "..\..\CodeGen\TestTemplate.cshtml"
                                Write(test.ExpectedJava ?? "null as object");
 
             
@@ -509,7 +519,7 @@ WriteLiteral("/* Original: ");
 
 
             
-            #line 89 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 92 "..\..\CodeGen\TestTemplate.cshtml"
                            Write(test.Original);
 
             
@@ -525,7 +535,7 @@ WriteLiteral("var obtained = runOrCatch( ");
 
 
             
-            #line 90 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 93 "..\..\CodeGen\TestTemplate.cshtml"
                                          Write(test.Java);
 
             
@@ -541,7 +551,7 @@ WriteLiteral("                           new OptArgs()\r\n");
 
 
             
-            #line 92 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 95 "..\..\CodeGen\TestTemplate.cshtml"
                  foreach( var opt in test.RunOpts )
                  {
 
@@ -554,7 +564,7 @@ WriteLiteral(".with(\"");
 
 
             
-            #line 94 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 97 "..\..\CodeGen\TestTemplate.cshtml"
                          Write(opt.Key);
 
             
@@ -564,7 +574,7 @@ WriteLiteral("\", ");
 
 
             
-            #line 94 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 97 "..\..\CodeGen\TestTemplate.cshtml"
                                      Write(opt.Val.IsNumber(0) || opt.Val.IsNumber(1) ?  opt.Val : "\"" + opt.Val + "\"" );
 
             
@@ -574,7 +584,7 @@ WriteLiteral(")\r\n");
 
 
             
-            #line 95 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 98 "..\..\CodeGen\TestTemplate.cshtml"
                  }
 
             
@@ -586,7 +596,7 @@ WriteLiteral("   , conn);\r\n");
 
 
             
-            #line 97 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 100 "..\..\CodeGen\TestTemplate.cshtml"
                  
 
             
@@ -598,7 +608,7 @@ WriteLiteral("\r\n");
 
 
             
-            #line 99 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 102 "..\..\CodeGen\TestTemplate.cshtml"
                  if( @test.ExpectedType.EndsWith("[]") )
                  {
 
@@ -611,7 +621,7 @@ WriteLiteral("assertArrayEquals(expected_, (");
 
 
             
-            #line 101 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 104 "..\..\CodeGen\TestTemplate.cshtml"
                                                 Write(test.ExpectedType);
 
             
@@ -621,7 +631,7 @@ WriteLiteral(") obtained);\r\n");
 
 
             
-            #line 102 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 105 "..\..\CodeGen\TestTemplate.cshtml"
                  }
                  else if( test.ExpectedType == "double" )
                  {
@@ -635,7 +645,7 @@ WriteLiteral("assertEquals((double) expected_, (double) obtained, 0.00000000001)
 
 
             
-            #line 106 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 109 "..\..\CodeGen\TestTemplate.cshtml"
                  }
                  else
                  {
@@ -649,7 +659,7 @@ WriteLiteral("assertEquals(expected_, obtained);                 \r\n");
 
 
             
-            #line 110 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 113 "..\..\CodeGen\TestTemplate.cshtml"
                  }
 
             
@@ -667,7 +677,7 @@ WriteLiteral("\r\n");
 
 
             
-            #line 113 "..\..\CodeGen\TestTemplate.cshtml"
+            #line 116 "..\..\CodeGen\TestTemplate.cshtml"
          }
      }
 

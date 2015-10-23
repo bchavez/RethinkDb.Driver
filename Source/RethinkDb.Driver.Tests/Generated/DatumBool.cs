@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // Tests of conversion to and from the RQL bool type
+
     [TestFixture]
     public class DatumBool : GeneratedTest {
 

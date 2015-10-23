@@ -1,4 +1,5 @@
 ModuleName: TimesIndex
+Description: secondary indexes on times
 TableVarNames:
 - tbl
 DefsAndTests:

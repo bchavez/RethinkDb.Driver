@@ -1,4 +1,5 @@
 ModuleName: TimesTimeArith
+Description: Test basic time arithmetic
 DefsAndTests:
 - TestType: JavaDef
   TestFile: times/time_arith.yaml

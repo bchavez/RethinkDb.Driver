@@ -1,4 +1,5 @@
 ModuleName: MathLogicMath
+Description: Tests of nested arithmetic expressions
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/math.yaml

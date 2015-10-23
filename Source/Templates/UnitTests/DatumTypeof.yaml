@@ -1,4 +1,5 @@
 ModuleName: DatumTypeof
+Description: These tests test the type of command
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/typeof.yaml

@@ -1,4 +1,5 @@
 ModuleName: MathLogicFloorCeilRound
+Description: tests for `floor`, `ceil`, and `round`, tests inspired by the Python test suite
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/floor_ceil_round.yaml

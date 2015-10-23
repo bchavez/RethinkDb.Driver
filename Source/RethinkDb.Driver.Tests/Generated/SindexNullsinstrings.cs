@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // sindex nulls in strings
+
     [TestFixture]
     public class SindexNullsinstrings : GeneratedTest {
 

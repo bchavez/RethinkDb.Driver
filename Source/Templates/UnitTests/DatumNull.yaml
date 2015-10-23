@@ -1,4 +1,5 @@
 ModuleName: DatumNull
+Description: Tests of conversion to and from the RQL null type
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/null.yaml

@@ -1,4 +1,5 @@
 ModuleName: Random
+Description: Tests randomization functions
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: random.yaml

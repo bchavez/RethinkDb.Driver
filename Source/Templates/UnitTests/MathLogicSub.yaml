@@ -1,4 +1,5 @@
 ModuleName: MathLogicSub
+Description: Tests for basic usage of the subtraction operation
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/sub.yaml

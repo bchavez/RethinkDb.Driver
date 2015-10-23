@@ -1,3 +1,4 @@
 ModuleName: ChangefeedsSindex
+Description: Test basic changefeed operations
 TableVarNames:
 - tbl

@@ -1,4 +1,5 @@
 ModuleName: MutationAtomicGetSet
+Description: Tests replacement of selections
 TableVarNames:
 - tbl
 DefsAndTests:

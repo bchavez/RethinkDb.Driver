@@ -1,4 +1,5 @@
 ModuleName: MathLogicMul
+Description: Tests for the basic usage of the multiplication operation
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/mul.yaml

@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // Tests of nested arithmetic expressions
+
     [TestFixture]
     public class MathLogicMath : GeneratedTest {
 

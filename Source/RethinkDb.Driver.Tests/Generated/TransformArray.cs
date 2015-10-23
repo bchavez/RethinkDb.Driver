@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // Tests manipulation operations on arrays
+
     [TestFixture]
     public class TransformArray : GeneratedTest {
 

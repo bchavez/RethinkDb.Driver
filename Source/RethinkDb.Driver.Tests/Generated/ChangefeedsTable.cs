@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // Test changefeeds on a table
+
     [TestFixture]
     public class ChangefeedsTable : GeneratedTest {
 

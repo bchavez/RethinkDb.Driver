@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // Test basic timezone manipulation
+
     [TestFixture]
     public class TimesTimezones : GeneratedTest {
 

@@ -1,4 +1,5 @@
 ModuleName: TimesConstructors
+Description: Test basic time arithmetic
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: times/constructors.yaml

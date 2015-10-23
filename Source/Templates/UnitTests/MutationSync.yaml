@@ -1,4 +1,5 @@
 ModuleName: MutationSync
+Description: Tests syncing tables
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: mutation/sync.yaml

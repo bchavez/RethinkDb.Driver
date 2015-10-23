@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // Tests for basic usage of the add operation
+
     [TestFixture]
     public class MathLogicAdd : GeneratedTest {
 

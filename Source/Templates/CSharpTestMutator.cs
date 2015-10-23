@@ -32,8 +32,6 @@ namespace Templates
                 {"LongStream.range(", "EnumerableLRange("},
                 {".boxed().map(", ".Select("},
                 {".collect(Collectors.toList())", ".ToList()"},
-                {"sys.floatInfo.max", "double.MaxValue"},
-                {"sys.floatInfo.min", "double.MinValue"},
                 {"r.object(", "r.object_("},
                 {"Stream.concat(", "Enumerable.Concat("},
                 {".stream()", ".OfType<object>().ToList()"},

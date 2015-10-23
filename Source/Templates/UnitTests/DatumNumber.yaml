@@ -1,4 +1,5 @@
 ModuleName: DatumNumber
+Description: Tests of conversion to and from the RQL number type
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/number.yaml

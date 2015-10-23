@@ -1,4 +1,5 @@
 ModuleName: DatumBinary
+Description: Tests of converstion to and from the RQL binary type
 DefsAndTests:
 - TestType: JavaDef
   TestFile: datum/binary.yaml

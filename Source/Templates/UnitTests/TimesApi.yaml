@@ -1,4 +1,5 @@
 ModuleName: TimesApi
+Description: date/time api (#977)
 DefsAndTests:
 - TestType: JavaDef
   TestFile: times/api.yaml

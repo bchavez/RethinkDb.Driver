@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // Tests randomization functions
+
     [TestFixture]
     public class Random : GeneratedTest {
 
@@ -516,13 +519,13 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, random.yaml, #74
              //Original: float_max = sys.float_info.max
              
-                 var float_max = (double) (double.MaxValue);
+                 var float_max = (double) (sys.floatInfo.max);
              
              
              //JavaDef, random.yaml, #78
              //Original: float_min = sys.float_info.min
              
-                 var float_min = (double) (double.MinValue);
+                 var float_min = (double) (sys.floatInfo.min);
              
              TestCounter++;
              

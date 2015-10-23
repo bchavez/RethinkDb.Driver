@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // Test basic time arithmetic
+
     [TestFixture]
     public class TimesConstructors : GeneratedTest {
 

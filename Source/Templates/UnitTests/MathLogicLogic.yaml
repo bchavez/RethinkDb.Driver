@@ -1,4 +1,5 @@
 ModuleName: MathLogicLogic
+Description: These tests are aimed at &&, ||, and !
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml

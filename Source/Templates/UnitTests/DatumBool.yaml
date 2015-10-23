@@ -1,4 +1,5 @@
 ModuleName: DatumBool
+Description: Tests of conversion to and from the RQL bool type
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/bool.yaml

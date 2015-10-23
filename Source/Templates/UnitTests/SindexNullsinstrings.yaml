@@ -1,4 +1,5 @@
 ModuleName: SindexNullsinstrings
+Description: sindex nulls in strings
 TableVarNames:
 - tbl
 DefsAndTests:

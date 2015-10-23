@@ -1,4 +1,5 @@
 ModuleName: DatumUuid
+Description: Test that UUIDs work
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml

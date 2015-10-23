@@ -9,6 +9,7 @@ namespace Templates
     public class YamlTest
     {
         public string ModuleName { get; set; }
+        public string Description { get; set; }
         public string[] TableVarNames { get; set; } = {};
         public DefTest[] DefsAndTests { get; set; } = {};
 

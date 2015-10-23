@@ -20,6 +20,9 @@ using RethinkDb.Driver.Tests;
 using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
+
+    // These tests are aimed at &&, ||, and !
+
     [TestFixture]
     public class MathLogicLogic : GeneratedTest {
 

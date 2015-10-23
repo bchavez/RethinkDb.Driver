@@ -1,4 +1,5 @@
 ModuleName: TimesTimezones
+Description: Test basic timezone manipulation
 DefsAndTests:
 - TestType: JavaDef
   TestFile: times/timezones.yaml

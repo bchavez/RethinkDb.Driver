@@ -1,4 +1,5 @@
 ModuleName: GeoGeojson
+Description: Test geoJSON conversion
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml

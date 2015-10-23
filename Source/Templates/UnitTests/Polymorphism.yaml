@@ -1,4 +1,5 @@
 ModuleName: Polymorphism
+Description: Tests that manipulation data in tables
 TableVarNames:
 - tbl
 DefsAndTests:

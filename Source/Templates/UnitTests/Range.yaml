@@ -1,4 +1,5 @@
 ModuleName: Range
+Description: Tests RQL range generation
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: range.yaml

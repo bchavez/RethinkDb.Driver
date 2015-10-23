@@ -2,8 +2,17 @@ ModuleName: MathLogicAdd
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: (1, 1)
-  Original: (r.expr(1) + 1)
+  LineNum: 3
+  Original: r.add(1, 1)
+  Java: r.add(1L, 1L)
+  ExpectedOriginal: 2
+  ExpectedType: Long
+  ExpectedJava: 2L
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: math_logic/add.yaml
+  LineNum: 8
+  Original: r.expr(1) + 1
   Java: r.expr(1L).add(1L)
   ExpectedOriginal: 2
   ExpectedType: Long
@@ -11,8 +20,8 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: (1, 2)
-  Original: (1 + r.expr(1))
+  LineNum: 9
+  Original: 1 + r.expr(1)
   Java: r.add(1L, r.expr(1L))
   ExpectedOriginal: 2
   ExpectedType: Long
@@ -20,8 +29,8 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: (1, 3)
-  Original: (r.expr(1).add(1))
+  LineNum: 10
+  Original: r.expr(1).add(1)
   Java: r.expr(1L).add(1L)
   ExpectedOriginal: 2
   ExpectedType: Long
@@ -29,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: 2
+  LineNum: 16
   Original: r.expr(-1) + 1
   Java: r.expr(-1L).add(1L)
   ExpectedOriginal: 0
@@ -38,7 +47,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: 3
+  LineNum: 21
   Original: r.expr(1.75) + 8.5
   Java: r.expr(1.75).add(8.5)
   ExpectedOriginal: 10.25
@@ -47,7 +56,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: 4
+  LineNum: 27
   Original: r.expr('') + ''
   Java: r.expr("").add("")
   ExpectedOriginal: ''
@@ -56,7 +65,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: 5
+  LineNum: 32
   Original: r.expr('abc') + 'def'
   Java: r.expr("abc").add("def")
   ExpectedOriginal: 'abcdef'
@@ -65,16 +74,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: 6
+  LineNum: 38
   Original: r.expr([1,2]) + [3] + [4,5] + [6,7,8]
   Java: r.expr(r.array(1L, 2L)).add(r.array(3L)).add(r.array(4L, 5L)).add(r.array(6L, 7L, 8L))
-  ExpectedOriginal: '[1, 2, 3, 4, 5, 6, 7, 8]'
+  ExpectedOriginal: '[1,2,3,4,5,6,7,8]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: 9
+  LineNum: 52
   Original: r.expr(1) + 'a'
   Java: r.expr(1L).add("a")
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [1])
@@ -83,7 +92,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: 10
+  LineNum: 57
   Original: r.expr('a') + 1
   Java: r.expr("a").add(1L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", [1])
@@ -92,7 +101,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/add.yaml
-  TestNum: 11
+  LineNum: 62
   Original: r.expr([]) + 1
   Java: r.expr(r.array()).add(1L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type ARRAY but found NUMBER.", [1])

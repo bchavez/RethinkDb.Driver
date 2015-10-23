@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -34,71 +35,121 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/uuid.yaml, #1
+                 //JavaQuery, datum/uuid.yaml, #3
                  /* ExpectedOriginal: uuid() */
                  var expected_ = uuid();
                  
                  /* Original: r.uuid() */
                  var obtained = runOrCatch( r.uuid() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/uuid.yaml, #2
-                 /* ExpectedOriginal: uuid() */
-                 var expected_ = uuid();
+                    , conn);
                  
-                 /* Original: r.expr(r.uuid()) */
-                 var obtained = runOrCatch( r.expr(r.uuid()) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/uuid.yaml, #3
-                 /* ExpectedOriginal: ('STRING') */
-                 var expected_ = "STRING";
-                 
-                 /* Original: r.type_of(r.uuid()) */
-                 var obtained = runOrCatch( r.typeOf(r.uuid()) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/uuid.yaml, #4
-                 /* ExpectedOriginal: (true) */
-                 var expected_ = true;
-                 
-                 /* Original: r.uuid().ne(r.uuid()) */
-                 var obtained = runOrCatch( r.uuid().ne(r.uuid()) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/uuid.yaml, #5
-                 /* ExpectedOriginal: (10) */
+                 /* ExpectedOriginal: uuid() */
+                 var expected_ = uuid();
+                 
+                 /* Original: r.expr(r.uuid()) */
+                 var obtained = runOrCatch( r.expr(r.uuid()) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/uuid.yaml, #7
+                 /* ExpectedOriginal: STRING */
+                 var expected_ = "STRING";
+                 
+                 /* Original: r.type_of(r.uuid()) */
+                 var obtained = runOrCatch( r.typeOf(r.uuid()) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/uuid.yaml, #9
+                 /* ExpectedOriginal: true */
+                 var expected_ = true;
+                 
+                 /* Original: r.uuid().ne(r.uuid()) */
+                 var obtained = runOrCatch( r.uuid().ne(r.uuid()) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/uuid.yaml, #11
+                 /* ExpectedOriginal: ('97dd10a5-4fc4-554f-86c5-0d2c2e3d5330') */
+                 var expected_ = "97dd10a5-4fc4-554f-86c5-0d2c2e3d5330";
+                 
+                 /* Original: r.uuid('magic') */
+                 var obtained = runOrCatch( r.uuid("magic") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/uuid.yaml, #13
+                 /* ExpectedOriginal: true */
+                 var expected_ = true;
+                 
+                 /* Original: r.uuid('magic').eq(r.uuid('magic')) */
+                 var obtained = runOrCatch( r.uuid("magic").eq(r.uuid("magic")) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/uuid.yaml, #15
+                 /* ExpectedOriginal: true */
+                 var expected_ = true;
+                 
+                 /* Original: r.uuid('magic').ne(r.uuid('beans')) */
+                 var obtained = runOrCatch( r.uuid("magic").ne(r.uuid("beans")) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/uuid.yaml, #17
+                 /* ExpectedOriginal: 10 */
                  var expected_ = 10L;
                  
                  /* Original: r.expr([1,2,3,4,5,6,7,8,9,10]).map(lambda u:r.uuid()).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L)).map(u => r.uuid()).distinct().count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
 

@@ -4,7 +4,7 @@ TableVarNames:
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 1
+  LineNum: 7
   Original: tbl.insert({'id':0}, return_vals=True).pluck('changes', 'first_error')
   Java: tbl.insert(r.hashMap("id", 0L)).optArg("return_vals", true).pluck("changes", "first_error")
   ExpectedOriginal: err("ReqlQueryLogicError", "Error:"+" encountered obsolete optarg `return_vals`.  Use `return_changes` instead.", [0])
@@ -13,7 +13,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 2
+  LineNum: 12
   Original: tbl.insert({'id':0}, return_changes=True).pluck('changes', 'first_error')
   Java: tbl.insert(r.hashMap("id", 0L)).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[{'old_val':null,'new_val':{'id':0}}]})
@@ -22,7 +22,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 3
+  LineNum: 16
   Original: tbl.insert({'id':0}, return_changes=True).pluck('changes', 'first_error')
   Java: tbl.insert(r.hashMap("id", 0L)).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[], 'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}"})
@@ -31,7 +31,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 4
+  LineNum: 20
   Original: tbl.insert({'id':0}, return_changes='always').pluck('changes', 'first_error')
   Java: tbl.insert(r.hashMap("id", 0L)).optArg("return_changes", "always").pluck("changes", "first_error")
   ExpectedOriginal: ({'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}",'changes':[{'old_val':{'id':0},'new_val':{'id':0}}]})
@@ -40,7 +40,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 5
+  LineNum: 24
   Original: tbl.insert([{'id':1}], return_changes=True)
   Java: tbl.insert(r.array(r.hashMap("id", 1L))).optArg("return_changes", true)
   ExpectedOriginal: ({'changes':[{'new_val':{'id':1},'old_val':null}], 'errors':0, 'deleted':0, 'unchanged':0, 'skipped':0, 'replaced':0, 'inserted':1})
@@ -49,7 +49,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 6
+  LineNum: 28
   Original: tbl.insert([{'id':0}], return_changes=True).pluck('changes', 'first_error')
   Java: tbl.insert(r.array(r.hashMap("id", 0L))).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[],'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}"})
@@ -58,7 +58,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 7
+  LineNum: 33
   Original: tbl.get(0).update({'x':1}, return_changes=True).pluck('changes', 'first_error')
   Java: tbl.get(0L).update(r.hashMap("x", 1L)).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[{'old_val':{'id':0},'new_val':{'id':0,'x':1}}]})
@@ -67,7 +67,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 8
+  LineNum: 37
   Original: tbl.get(0).update({'x':r.error("a")}, return_changes=True).pluck('changes', 'first_error')
   Java: tbl.get(0L).update(r.hashMap("x", r.error("a"))).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[],'first_error':'a'})
@@ -76,7 +76,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 9
+  LineNum: 41
   Original: tbl.update({'x':3}, return_changes=True).pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])}))
   Java: tbl.update(r.hashMap("x", 3L)).optArg("return_changes", true).pluck("changes", "first_error").do_(d -> d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a -> a.bracket("old_val").bracket("id")))))
   ExpectedOriginal: ({'changes':[{'old_val':{'id':0, 'x':1},'new_val':{'id':0, 'x':3}}, {'old_val':{'id':1},'new_val':{'id':1, 'x':3}}]})
@@ -85,7 +85,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 10
+  LineNum: 46
   Original: tbl.get(0).replace({'id':0,'x':2}, return_changes=True).pluck('changes', 'first_error')
   Java: tbl.get(0L).replace(r.hashMap("id", 0L).with("x", 2L)).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[{'old_val':{'id':0,'x':3},'new_val':{'id':0,'x':2}}]})
@@ -94,7 +94,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 11
+  LineNum: 50
   Original: tbl.get(0).replace(lambda y:{'x':r.error('a')}, return_changes=True).pluck('changes', 'first_error')
   Java: tbl.get(0L).replace(y -> r.hashMap("x", r.error("a"))).optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[],'first_error':'a'})
@@ -103,7 +103,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 12
+  LineNum: 54
   Original: tbl.get(0).replace(lambda y:{'x':r.error('a')}, return_changes='always').pluck('changes', 'first_error')
   Java: tbl.get(0L).replace(y -> r.hashMap("x", r.error("a"))).optArg("return_changes", "always").pluck("changes", "first_error")
   ExpectedOriginal: ({'first_error':'a','changes':[{'old_val':{'id':0,'x':2},'new_val':{'id':0,'x':2}}]})
@@ -112,7 +112,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 13
+  LineNum: 58
   Original: tbl.replace(lambda y:y.without('x'), return_changes=True).pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])}))
   Java: tbl.replace(y -> y.without("x")).optArg("return_changes", true).pluck("changes", "first_error").do_(d -> d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a -> a.bracket("old_val").bracket("id")))))
   ExpectedOriginal: ({'changes':[{'new_val':{'id':0},'old_val':{'id':0, 'x':2}}, {'new_val':{'id':1},'old_val':{'id':1,'x':3}}]})
@@ -121,7 +121,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 14
+  LineNum: 62
   Original: tbl.replace({'x':1}, return_changes='always').pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])}))
   Java: tbl.replace(r.hashMap("x", 1L)).optArg("return_changes", "always").pluck("changes", "first_error").do_(d -> d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a -> a.bracket("old_val").bracket("id")))))
   ExpectedOriginal: ({'first_error':"Inserted object must have primary key `id`:\n{\n\t\"x\":\t1\n}", 'changes':[{'new_val':{'id':0},'old_val':{'id':0}}, {'new_val':{'id':1},'old_val':{'id':1}}]})
@@ -130,7 +130,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 23
+  LineNum: 86
   Original: tbl.get(0).delete(return_changes=True).pluck('changes', 'first_error')
   Java: tbl.get(0L).delete().optArg("return_changes", true).pluck("changes", "first_error")
   ExpectedOriginal: ({'changes':[{'old_val':{'id':0},'new_val':null}]})
@@ -139,7 +139,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/atomic_get_set.yaml
-  TestNum: 24
+  LineNum: 90
   Original: tbl.delete(return_changes=True)
   Java: tbl.delete().optArg("return_changes", true)
   ExpectedOriginal: ({'deleted':1,'errors':0,'inserted':0,'replaced':0,'skipped':0,'unchanged':0,'changes':[{'new_val':null, 'old_val':{'id':1}}]})

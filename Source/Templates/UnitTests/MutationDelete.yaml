@@ -4,7 +4,7 @@ TableVarNames:
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: mutation/delete.yaml
-  TestNum: 1
+  LineNum: 7
   Original: tbl.insert([{'id':i} for i in xrange(100)])
   Java: tbl.insert(LongStream.range(0, 100L).boxed().map(i -> r.hashMap("id", i)).collect(Collectors.toList()))
   ExpectedOriginal: ({'deleted':0,'replaced':0,'unchanged':0,'errors':0,'skipped':0,'inserted':100})
@@ -13,7 +13,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/delete.yaml
-  TestNum: 2
+  LineNum: 19
   Original: tbl.count()
   Java: tbl.count()
   ExpectedOriginal: 100
@@ -22,7 +22,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/delete.yaml
-  TestNum: 3
+  LineNum: 24
   Original: tbl.get(12).delete()
   Java: tbl.get(12L).delete()
   ExpectedOriginal: ({'deleted':1,'replaced':0,'unchanged':0,'errors':0,'skipped':0,'inserted':0})
@@ -31,7 +31,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/delete.yaml
-  TestNum: 4
+  LineNum: 31
   Original: tbl.skip(50).delete(durability='wrong')
   Java: tbl.skip(50L).delete().optArg("durability", "wrong")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Durability option `wrong` unrecognized (options are "hard" and "soft").', [0])
@@ -40,7 +40,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/delete.yaml
-  TestNum: 5
+  LineNum: 38
   Original: tbl.skip(50).delete(durability='soft')
   Java: tbl.skip(50L).delete().optArg("durability", "soft")
   ExpectedOriginal: ({'deleted':49,'replaced':0,'unchanged':0,'errors':0,'skipped':0,'inserted':0})
@@ -49,7 +49,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/delete.yaml
-  TestNum: 6
+  LineNum: 45
   Original: tbl.delete(durability='hard')
   Java: tbl.delete().optArg("durability", "hard")
   ExpectedOriginal: ({'deleted':50,'replaced':0,'unchanged':0,'errors':0,'skipped':0,'inserted':0})
@@ -58,7 +58,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: mutation/delete.yaml
-  TestNum: 7
+  LineNum: 49
   Original: r.expr([1, 2]).delete()
   Java: r.expr(r.array(1L, 2L)).delete()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type SELECTION but found DATUM:', [0])

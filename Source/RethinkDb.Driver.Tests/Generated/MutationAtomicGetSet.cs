@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -36,225 +37,241 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #1
+                 //JavaQuery, mutation/atomic_get_set.yaml, #7
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Error:"+" encountered obsolete optarg `return_vals`.  Use `return_changes` instead.", [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Error:" + " encountered obsolete optarg `return_vals`.  Use `return_changes` instead.", r.array(0L));
                  
                  /* Original: tbl.insert({'id':0}, return_vals=True).pluck('changes', 'first_error') */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0L)).optArg("return_vals", true).pluck("changes", "first_error") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #2
-                 /* ExpectedOriginal: ({'changes':[{'old_val':null,'new_val':{'id':0}}]}) */
-                 var expected_ = r.hashMap("changes", r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 0L))));
+                    , conn);
                  
-                 /* Original: tbl.insert({'id':0}, return_changes=True).pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0L)).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #3
-                 /* ExpectedOriginal: ({'changes':[], 'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}"}) */
-                 var expected_ = r.hashMap("changes", r.array()).with("first_error", "Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}");
-                 
-                 /* Original: tbl.insert({'id':0}, return_changes=True).pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0L)).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #4
-                 /* ExpectedOriginal: ({'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}",'changes':[{'old_val':{'id':0},'new_val':{'id':0}}]}) */
-                 var expected_ = r.hashMap("first_error", "Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}").with("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L)).with("new_val", r.hashMap("id", 0L))));
-                 
-                 /* Original: tbl.insert({'id':0}, return_changes='always').pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0L)).optArg("return_changes", "always").pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #5
-                 /* ExpectedOriginal: ({'changes':[{'new_val':{'id':1},'old_val':null}], 'errors':0, 'deleted':0, 'unchanged':0, 'skipped':0, 'replaced':0, 'inserted':1}) */
-                 var expected_ = r.hashMap("changes", r.array(r.hashMap("new_val", r.hashMap("id", 1L)).with("old_val", null))).with("errors", 0L).with("deleted", 0L).with("unchanged", 0L).with("skipped", 0L).with("replaced", 0L).with("inserted", 1L);
-                 
-                 /* Original: tbl.insert([{'id':1}], return_changes=True) */
-                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 1L))).optArg("return_changes", true) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #6
-                 /* ExpectedOriginal: ({'changes':[],'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}"}) */
-                 var expected_ = r.hashMap("changes", r.array()).with("first_error", "Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}");
-                 
-                 /* Original: tbl.insert([{'id':0}], return_changes=True).pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0L))).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #7
-                 /* ExpectedOriginal: ({'changes':[{'old_val':{'id':0},'new_val':{'id':0,'x':1}}]}) */
-                 var expected_ = r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L)).with("new_val", r.hashMap("id", 0L).with("x", 1L))));
-                 
-                 /* Original: tbl.get(0).update({'x':1}, return_changes=True).pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.get(0L).update(r.hashMap("x", 1L)).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #8
-                 /* ExpectedOriginal: ({'changes':[],'first_error':'a'}) */
-                 var expected_ = r.hashMap("changes", r.array()).with("first_error", "a");
-                 
-                 /* Original: tbl.get(0).update({'x':r.error("a")}, return_changes=True).pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.get(0L).update(r.hashMap("x", r.error("a"))).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #9
-                 /* ExpectedOriginal: ({'changes':[{'old_val':{'id':0, 'x':1},'new_val':{'id':0, 'x':3}}, {'old_val':{'id':1},'new_val':{'id':1, 'x':3}}]}) */
-                 var expected_ = r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L).with("x", 1L)).with("new_val", r.hashMap("id", 0L).with("x", 3L)), r.hashMap("old_val", r.hashMap("id", 1L)).with("new_val", r.hashMap("id", 1L).with("x", 3L))));
-                 
-                 /* Original: tbl.update({'x':3}, return_changes=True).pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])})) */
-                 var obtained = runOrCatch( tbl.update(r.hashMap("x", 3L)).optArg("return_changes", true).pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a => a.bracket("old_val").bracket("id"))))) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #10
-                 /* ExpectedOriginal: ({'changes':[{'old_val':{'id':0,'x':3},'new_val':{'id':0,'x':2}}]}) */
-                 var expected_ = r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L).with("x", 3L)).with("new_val", r.hashMap("id", 0L).with("x", 2L))));
-                 
-                 /* Original: tbl.get(0).replace({'id':0,'x':2}, return_changes=True).pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.get(0L).replace(r.hashMap("id", 0L).with("x", 2L)).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #11
-                 /* ExpectedOriginal: ({'changes':[],'first_error':'a'}) */
-                 var expected_ = r.hashMap("changes", r.array()).with("first_error", "a");
-                 
-                 /* Original: tbl.get(0).replace(lambda y:{'x':r.error('a')}, return_changes=True).pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.get(0L).replace(y => r.hashMap("x", r.error("a"))).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, mutation/atomic_get_set.yaml, #12
-                 /* ExpectedOriginal: ({'first_error':'a','changes':[{'old_val':{'id':0,'x':2},'new_val':{'id':0,'x':2}}]}) */
-                 var expected_ = r.hashMap("first_error", "a").with("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L).with("x", 2L)).with("new_val", r.hashMap("id", 0L).with("x", 2L))));
+                 /* ExpectedOriginal: ({'changes':[{'old_val':null,'new_val':{'id':0}}]}) */
+                 var expected_ = r.hashMap("changes", r.array(r.hashMap("old_val", null).with("new_val", r.hashMap("id", 0L))));
                  
-                 /* Original: tbl.get(0).replace(lambda y:{'x':r.error('a')}, return_changes='always').pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.get(0L).replace(y => r.hashMap("x", r.error("a"))).optArg("return_changes", "always").pluck("changes", "first_error") ,
+                 /* Original: tbl.insert({'id':0}, return_changes=True).pluck('changes', 'first_error') */
+                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0L)).optArg("return_changes", true).pluck("changes", "first_error") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #13
-                 /* ExpectedOriginal: ({'changes':[{'new_val':{'id':0},'old_val':{'id':0, 'x':2}}, {'new_val':{'id':1},'old_val':{'id':1,'x':3}}]}) */
-                 var expected_ = r.hashMap("changes", r.array(r.hashMap("new_val", r.hashMap("id", 0L)).with("old_val", r.hashMap("id", 0L).with("x", 2L)), r.hashMap("new_val", r.hashMap("id", 1L)).with("old_val", r.hashMap("id", 1L).with("x", 3L))));
+                 //JavaQuery, mutation/atomic_get_set.yaml, #16
+                 /* ExpectedOriginal: ({'changes':[], 'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}"}) */
+                 var expected_ = r.hashMap("changes", r.array()).with("first_error", "Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}");
                  
-                 /* Original: tbl.replace(lambda y:y.without('x'), return_changes=True).pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])})) */
-                 var obtained = runOrCatch( tbl.replace(y => y.without("x")).optArg("return_changes", true).pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a => a.bracket("old_val").bracket("id"))))) ,
+                 /* Original: tbl.insert({'id':0}, return_changes=True).pluck('changes', 'first_error') */
+                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0L)).optArg("return_changes", true).pluck("changes", "first_error") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #14
-                 /* ExpectedOriginal: ({'first_error':"Inserted object must have primary key `id`:\n{\n\t\"x\":\t1\n}", 'changes':[{'new_val':{'id':0},'old_val':{'id':0}}, {'new_val':{'id':1},'old_val':{'id':1}}]}) */
-                 var expected_ = r.hashMap("first_error", "Inserted object must have primary key `id`:\n{\n\t\"x\":\t1\n}").with("changes", r.array(r.hashMap("new_val", r.hashMap("id", 0L)).with("old_val", r.hashMap("id", 0L)), r.hashMap("new_val", r.hashMap("id", 1L)).with("old_val", r.hashMap("id", 1L))));
+                 //JavaQuery, mutation/atomic_get_set.yaml, #20
+                 /* ExpectedOriginal: ({'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}",'changes':[{'old_val':{'id':0},'new_val':{'id':0}}]}) */
+                 var expected_ = r.hashMap("first_error", "Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}").with("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L)).with("new_val", r.hashMap("id", 0L))));
                  
-                 /* Original: tbl.replace({'x':1}, return_changes='always').pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])})) */
-                 var obtained = runOrCatch( tbl.replace(r.hashMap("x", 1L)).optArg("return_changes", "always").pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a => a.bracket("old_val").bracket("id"))))) ,
+                 /* Original: tbl.insert({'id':0}, return_changes='always').pluck('changes', 'first_error') */
+                 var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0L)).optArg("return_changes", "always").pluck("changes", "first_error") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, mutation/atomic_get_set.yaml, #23
-                 /* ExpectedOriginal: ({'changes':[{'old_val':{'id':0},'new_val':null}]}) */
-                 var expected_ = r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L)).with("new_val", null)));
+                    , conn);
                  
-                 /* Original: tbl.get(0).delete(return_changes=True).pluck('changes', 'first_error') */
-                 var obtained = runOrCatch( tbl.get(0L).delete().optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, mutation/atomic_get_set.yaml, #24
+                 /* ExpectedOriginal: ({'changes':[{'new_val':{'id':1},'old_val':null}], 'errors':0, 'deleted':0, 'unchanged':0, 'skipped':0, 'replaced':0, 'inserted':1}) */
+                 var expected_ = r.hashMap("changes", r.array(r.hashMap("new_val", r.hashMap("id", 1L)).with("old_val", null))).with("errors", 0L).with("deleted", 0L).with("unchanged", 0L).with("skipped", 0L).with("replaced", 0L).with("inserted", 1L);
+                 
+                 /* Original: tbl.insert([{'id':1}], return_changes=True) */
+                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 1L))).optArg("return_changes", true) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, mutation/atomic_get_set.yaml, #28
+                 /* ExpectedOriginal: ({'changes':[],'first_error':"Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}"}) */
+                 var expected_ = r.hashMap("changes", r.array()).with("first_error", "Duplicate primary key `id`:\n{\n\t\"id\":\t0\n}\n{\n\t\"id\":\t0\n}");
+                 
+                 /* Original: tbl.insert([{'id':0}], return_changes=True).pluck('changes', 'first_error') */
+                 var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0L))).optArg("return_changes", true).pluck("changes", "first_error") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, mutation/atomic_get_set.yaml, #33
+                 /* ExpectedOriginal: ({'changes':[{'old_val':{'id':0},'new_val':{'id':0,'x':1}}]}) */
+                 var expected_ = r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L)).with("new_val", r.hashMap("id", 0L).with("x", 1L))));
+                 
+                 /* Original: tbl.get(0).update({'x':1}, return_changes=True).pluck('changes', 'first_error') */
+                 var obtained = runOrCatch( tbl.get(0L).update(r.hashMap("x", 1L)).optArg("return_changes", true).pluck("changes", "first_error") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, mutation/atomic_get_set.yaml, #37
+                 /* ExpectedOriginal: ({'changes':[],'first_error':'a'}) */
+                 var expected_ = r.hashMap("changes", r.array()).with("first_error", "a");
+                 
+                 /* Original: tbl.get(0).update({'x':r.error("a")}, return_changes=True).pluck('changes', 'first_error') */
+                 var obtained = runOrCatch( tbl.get(0L).update(r.hashMap("x", r.error("a"))).optArg("return_changes", true).pluck("changes", "first_error") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, mutation/atomic_get_set.yaml, #41
+                 /* ExpectedOriginal: ({'changes':[{'old_val':{'id':0, 'x':1},'new_val':{'id':0, 'x':3}}, {'old_val':{'id':1},'new_val':{'id':1, 'x':3}}]}) */
+                 var expected_ = r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L).with("x", 1L)).with("new_val", r.hashMap("id", 0L).with("x", 3L)), r.hashMap("old_val", r.hashMap("id", 1L)).with("new_val", r.hashMap("id", 1L).with("x", 3L))));
+                 
+                 /* Original: tbl.update({'x':3}, return_changes=True).pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])})) */
+                 var obtained = runOrCatch( tbl.update(r.hashMap("x", 3L)).optArg("return_changes", true).pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a => a.bracket("old_val").bracket("id"))))) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, mutation/atomic_get_set.yaml, #46
+                 /* ExpectedOriginal: ({'changes':[{'old_val':{'id':0,'x':3},'new_val':{'id':0,'x':2}}]}) */
+                 var expected_ = r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L).with("x", 3L)).with("new_val", r.hashMap("id", 0L).with("x", 2L))));
+                 
+                 /* Original: tbl.get(0).replace({'id':0,'x':2}, return_changes=True).pluck('changes', 'first_error') */
+                 var obtained = runOrCatch( tbl.get(0L).replace(r.hashMap("id", 0L).with("x", 2L)).optArg("return_changes", true).pluck("changes", "first_error") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, mutation/atomic_get_set.yaml, #50
+                 /* ExpectedOriginal: ({'changes':[],'first_error':'a'}) */
+                 var expected_ = r.hashMap("changes", r.array()).with("first_error", "a");
+                 
+                 /* Original: tbl.get(0).replace(lambda y:{'x':r.error('a')}, return_changes=True).pluck('changes', 'first_error') */
+                 var obtained = runOrCatch( tbl.get(0L).replace(y => r.hashMap("x", r.error("a"))).optArg("return_changes", true).pluck("changes", "first_error") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, mutation/atomic_get_set.yaml, #54
+                 /* ExpectedOriginal: ({'first_error':'a','changes':[{'old_val':{'id':0,'x':2},'new_val':{'id':0,'x':2}}]}) */
+                 var expected_ = r.hashMap("first_error", "a").with("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L).with("x", 2L)).with("new_val", r.hashMap("id", 0L).with("x", 2L))));
+                 
+                 /* Original: tbl.get(0).replace(lambda y:{'x':r.error('a')}, return_changes='always').pluck('changes', 'first_error') */
+                 var obtained = runOrCatch( tbl.get(0L).replace(y => r.hashMap("x", r.error("a"))).optArg("return_changes", "always").pluck("changes", "first_error") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, mutation/atomic_get_set.yaml, #58
+                 /* ExpectedOriginal: ({'changes':[{'new_val':{'id':0},'old_val':{'id':0, 'x':2}}, {'new_val':{'id':1},'old_val':{'id':1,'x':3}}]}) */
+                 var expected_ = r.hashMap("changes", r.array(r.hashMap("new_val", r.hashMap("id", 0L)).with("old_val", r.hashMap("id", 0L).with("x", 2L)), r.hashMap("new_val", r.hashMap("id", 1L)).with("old_val", r.hashMap("id", 1L).with("x", 3L))));
+                 
+                 /* Original: tbl.replace(lambda y:y.without('x'), return_changes=True).pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])})) */
+                 var obtained = runOrCatch( tbl.replace(y => y.without("x")).optArg("return_changes", true).pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a => a.bracket("old_val").bracket("id"))))) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, mutation/atomic_get_set.yaml, #62
+                 /* ExpectedOriginal: ({'first_error':"Inserted object must have primary key `id`:\n{\n\t\"x\":\t1\n}", 'changes':[{'new_val':{'id':0},'old_val':{'id':0}}, {'new_val':{'id':1},'old_val':{'id':1}}]}) */
+                 var expected_ = r.hashMap("first_error", "Inserted object must have primary key `id`:\n{\n\t\"x\":\t1\n}").with("changes", r.array(r.hashMap("new_val", r.hashMap("id", 0L)).with("old_val", r.hashMap("id", 0L)), r.hashMap("new_val", r.hashMap("id", 1L)).with("old_val", r.hashMap("id", 1L))));
+                 
+                 /* Original: tbl.replace({'x':1}, return_changes='always').pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])})) */
+                 var obtained = runOrCatch( tbl.replace(r.hashMap("x", 1L)).optArg("return_changes", "always").pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a => a.bracket("old_val").bracket("id"))))) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, mutation/atomic_get_set.yaml, #86
+                 /* ExpectedOriginal: ({'changes':[{'old_val':{'id':0},'new_val':null}]}) */
+                 var expected_ = r.hashMap("changes", r.array(r.hashMap("old_val", r.hashMap("id", 0L)).with("new_val", null)));
+                 
+                 /* Original: tbl.get(0).delete(return_changes=True).pluck('changes', 'first_error') */
+                 var obtained = runOrCatch( tbl.get(0L).delete().optArg("return_changes", true).pluck("changes", "first_error") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, mutation/atomic_get_set.yaml, #90
                  /* ExpectedOriginal: ({'deleted':1,'errors':0,'inserted':0,'replaced':0,'skipped':0,'unchanged':0,'changes':[{'new_val':null, 'old_val':{'id':1}}]}) */
                  var expected_ = r.hashMap("deleted", 1L).with("errors", 0L).with("inserted", 0L).with("replaced", 0L).with("skipped", 0L).with("unchanged", 0L).with("changes", r.array(r.hashMap("new_val", null).with("old_val", r.hashMap("id", 1L))));
                  
                  /* Original: tbl.delete(return_changes=True) */
                  var obtained = runOrCatch( tbl.delete().optArg("return_changes", true) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
 

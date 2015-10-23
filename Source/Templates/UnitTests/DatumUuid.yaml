@@ -2,46 +2,73 @@ ModuleName: DatumUuid
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml
-  TestNum: 1
+  LineNum: 3
   Original: r.uuid()
   Java: r.uuid()
   ExpectedOriginal: uuid()
-  ExpectedType: Uuid
+  ExpectedType: UUIDMatch
   ExpectedJava: uuid()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml
-  TestNum: 2
+  LineNum: 5
   Original: r.expr(r.uuid())
   Java: r.expr(r.uuid())
   ExpectedOriginal: uuid()
-  ExpectedType: Uuid
+  ExpectedType: UUIDMatch
   ExpectedJava: uuid()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml
-  TestNum: 3
+  LineNum: 7
   Original: r.type_of(r.uuid())
   Java: r.typeOf(r.uuid())
-  ExpectedOriginal: ('STRING')
+  ExpectedOriginal: 'STRING'
   ExpectedType: String
   ExpectedJava: '"STRING"'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml
-  TestNum: 4
+  LineNum: 9
   Original: r.uuid().ne(r.uuid())
   Java: r.uuid().ne(r.uuid())
-  ExpectedOriginal: (true)
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/uuid.yaml
-  TestNum: 5
+  LineNum: 11
+  Original: r.uuid('magic')
+  Java: r.uuid("magic")
+  ExpectedOriginal: ('97dd10a5-4fc4-554f-86c5-0d2c2e3d5330')
+  ExpectedType: String
+  ExpectedJava: '"97dd10a5-4fc4-554f-86c5-0d2c2e3d5330"'
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: datum/uuid.yaml
+  LineNum: 13
+  Original: r.uuid('magic').eq(r.uuid('magic'))
+  Java: r.uuid("magic").eq(r.uuid("magic"))
+  ExpectedOriginal: true
+  ExpectedType: Boolean
+  ExpectedJava: true
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: datum/uuid.yaml
+  LineNum: 15
+  Original: r.uuid('magic').ne(r.uuid('beans'))
+  Java: r.uuid("magic").ne(r.uuid("beans"))
+  ExpectedOriginal: true
+  ExpectedType: Boolean
+  ExpectedJava: true
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: datum/uuid.yaml
+  LineNum: 17
   Original: r.expr([1,2,3,4,5,6,7,8,9,10]).map(lambda u:r.uuid()).distinct().count()
   Java: r.expr(r.array(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L)).map(u -> r.uuid()).distinct().count()
-  ExpectedOriginal: (10)
+  ExpectedOriginal: 10
   ExpectedType: Long
   ExpectedJava: 10L
   RunOpts: []

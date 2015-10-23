@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -32,7 +33,7 @@ namespace RethinkDb.Driver.Test.Generated {
         public void YamlTest(){
 
              
-             //JavaDef, times/shim.yaml, #1
+             //JavaDef, times/shim.yaml, #4
              //Original: t = 1375147296.68
              
                  var t = (double) (1375147296.68);
@@ -40,57 +41,61 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, times/shim.yaml, #2
+                 //JavaQuery, times/shim.yaml, #8
                  /* ExpectedOriginal: ("2013-07-29T18:21:36.680-07:00") */
                  var expected_ = "2013-07-29T18:21:36.680-07:00";
                  
                  /* Original: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).to_iso8601() */
                  var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, PacificTimeZone())).toIso8601() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/shim.yaml, #3
+                 //JavaQuery, times/shim.yaml, #12
                  /* ExpectedOriginal: ("2013-07-30T01:21:36.680+00:00") */
                  var expected_ = "2013-07-30T01:21:36.680+00:00";
                  
                  /* Original: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).to_iso8601() */
                  var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, UTCTimeZone())).toIso8601() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/shim.yaml, #4
+                 //JavaQuery, times/shim.yaml, #16
                  /* ExpectedOriginal: (1375147296.68) */
                  var expected_ = 1375147296.68;
                  
                  /* Original: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).to_epoch_time() */
                  var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, PacificTimeZone())).toEpochTime() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/shim.yaml, #5
+                 //JavaQuery, times/shim.yaml, #20
                  /* ExpectedOriginal: (1375147296.68) */
                  var expected_ = 1375147296.68;
                  
                  /* Original: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).to_epoch_time() */
                  var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, UTCTimeZone())).toEpochTime() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
 

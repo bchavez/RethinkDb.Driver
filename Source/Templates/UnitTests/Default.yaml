@@ -2,7 +2,7 @@ ModuleName: Default
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 1
+  LineNum: 3
   Original: r.expr(1).default(2)
   Java: r.expr(1L).default_(2L)
   ExpectedOriginal: 1
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 2
+  LineNum: 5
   Original: r.expr(null).default(2)
   Java: r.expr((ReqlExpr) null).default_(2L)
   ExpectedOriginal: 2
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 3
+  LineNum: 7
   Original: r.expr({})['b'].default(2)
   Java: r.expr(r.hashMap()).bracket("b").default_(2L)
   ExpectedOriginal: 2
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 4
+  LineNum: 10
   Original: r.expr(r.expr('a')['b']).default(2)
   Java: r.expr(r.expr("a").bracket("b")).default_(2L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", [])
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 5
+  LineNum: 14
   Original: r.expr([]).reduce(lambda a,b:a+b).default(2)
   Java: r.expr(r.array()).reduce((a, b) -> r.add(a, b)).default_(2L)
   ExpectedOriginal: 2
@@ -47,7 +47,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 6
+  LineNum: 18
   Original: r.expr([]).union([]).reduce(lambda a,b:a+b).default(2)
   Java: r.expr(r.array()).union(r.array()).reduce((a, b) -> r.add(a, b)).default_(2L)
   ExpectedOriginal: 2
@@ -56,7 +56,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 7
+  LineNum: 22
   Original: r.expr('a').reduce(lambda a,b:a+b).default(2)
   Java: r.expr("a").reduce((a, b) -> r.add(a, b)).default_(2L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot convert STRING to SEQUENCE", [])
@@ -65,7 +65,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 8
+  LineNum: 25
   Original: (r.expr(null) + 5).default(2)
   Java: r.expr((ReqlExpr) null).add(5L).default_(2L)
   ExpectedOriginal: 2
@@ -74,7 +74,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 9
+  LineNum: 28
   Original: (5 + r.expr(null)).default(2)
   Java: r.add(5L, r.expr((ReqlExpr) null)).default_(2L)
   ExpectedOriginal: 2
@@ -83,7 +83,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 10
+  LineNum: 31
   Original: (5 - r.expr(null)).default(2)
   Java: r.sub(5L, r.expr((ReqlExpr) null)).default_(2L)
   ExpectedOriginal: 2
@@ -92,7 +92,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 11
+  LineNum: 34
   Original: (r.expr(null) - 5).default(2)
   Java: r.expr((ReqlExpr) null).sub(5L).default_(2L)
   ExpectedOriginal: 2
@@ -101,7 +101,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 12
+  LineNum: 37
   Original: (r.expr('a') + 5).default(2)
   Java: r.expr("a").add(5L).default_(2L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", [])
@@ -110,7 +110,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 13
+  LineNum: 40
   Original: (5 + r.expr('a')).default(2)
   Java: r.add(5L, r.expr("a")).default_(2L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [])
@@ -119,7 +119,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 14
+  LineNum: 43
   Original: (r.expr('a') - 5).default(2)
   Java: r.expr("a").sub(5L).default_(2L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [])
@@ -128,7 +128,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 15
+  LineNum: 46
   Original: (5 - r.expr('a')).default(2)
   Java: r.sub(5L, r.expr("a")).default_(2L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [])
@@ -137,7 +137,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 16
+  LineNum: 50
   Original: r.expr(1).default(r.error())
   Java: r.expr(1L).default_(r.error())
   ExpectedOriginal: 1
@@ -146,7 +146,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 17
+  LineNum: 52
   Original: r.expr(null).default(r.error())
   Java: r.expr((ReqlExpr) null).default_(r.error())
   ExpectedOriginal: (null)
@@ -155,7 +155,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 18
+  LineNum: 54
   Original: r.expr({})['b'].default(r.error())
   Java: r.expr(r.hashMap()).bracket("b").default_(r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "No attribute `b` in object:", [])
@@ -164,7 +164,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 19
+  LineNum: 58
   Original: r.expr([]).reduce(lambda a,b:a+b).default(r.error)
   Java: r.expr(r.array()).reduce((a, b) -> r.add(a, b)).default_(r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "Cannot reduce over an empty stream.", [])
@@ -173,7 +173,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 20
+  LineNum: 62
   Original: r.expr([]).union([]).reduce(lambda a,b:a+b).default(r.error)
   Java: r.expr(r.array()).union(r.array()).reduce((a, b) -> r.add(a, b)).default_(r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "Cannot reduce over an empty stream.", [])
@@ -182,7 +182,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 21
+  LineNum: 65
   Original: (r.expr(null) + 5).default(r.error)
   Java: r.expr((ReqlExpr) null).add(5L).default_(r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", [])
@@ -191,7 +191,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 22
+  LineNum: 68
   Original: (5 + r.expr(null)).default(r.error)
   Java: r.add(5L, r.expr((ReqlExpr) null)).default_(r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", [])
@@ -200,7 +200,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 23
+  LineNum: 71
   Original: (5 - r.expr(null)).default(r.error)
   Java: r.sub(5L, r.expr((ReqlExpr) null)).default_(r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", [])
@@ -209,7 +209,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 24
+  LineNum: 74
   Original: (r.expr(null) - 5).default(r.error)
   Java: r.expr((ReqlExpr) null).sub(5L).default_(r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "Expected type NUMBER but found NULL.", [])
@@ -218,7 +218,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 25
+  LineNum: 79
   Original: r.expr(1).default(lambda e:e)
   Java: r.expr(1L).default_(e -> e)
   ExpectedOriginal: 1
@@ -227,7 +227,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 26
+  LineNum: 83
   Original: r.expr(null).default(lambda e:e)
   Java: r.expr((ReqlExpr) null).default_(e -> e)
   ExpectedOriginal: (null)
@@ -236,16 +236,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 27
+  LineNum: 87
   Original: r.expr({})['b'].default(lambda e:e)
   Java: r.expr(r.hashMap()).bracket("b").default_(e -> e)
-  ExpectedOriginal: ("No attribute `b` in object:\n{}")
+  ExpectedOriginal: '"No attribute `b` in object:\n{}"'
   ExpectedType: String
   ExpectedJava: '"No attribute `b` in object:\n{}"'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 28
+  LineNum: 91
   Original: r.expr([]).reduce(lambda a,b:a+b).default(lambda e:e)
   Java: r.expr(r.array()).reduce((a, b) -> r.add(a, b)).default_(e -> e)
   ExpectedOriginal: ("Cannot reduce over an empty stream.")
@@ -254,7 +254,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 29
+  LineNum: 95
   Original: r.expr([]).union([]).reduce(lambda a,b:a+b).default(lambda e:e)
   Java: r.expr(r.array()).union(r.array()).reduce((a, b) -> r.add(a, b)).default_(e -> e)
   ExpectedOriginal: ("Cannot reduce over an empty stream.")
@@ -263,7 +263,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 30
+  LineNum: 99
   Original: (r.expr(null) + 5).default(lambda e:e)
   Java: r.expr((ReqlExpr) null).add(5L).default_(e -> e)
   ExpectedOriginal: ("Expected type NUMBER but found NULL.")
@@ -272,7 +272,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 31
+  LineNum: 103
   Original: (5 + r.expr(null)).default(lambda e:e)
   Java: r.add(5L, r.expr((ReqlExpr) null)).default_(e -> e)
   ExpectedOriginal: ("Expected type NUMBER but found NULL.")
@@ -281,7 +281,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 32
+  LineNum: 107
   Original: (5 - r.expr(null)).default(lambda e:e)
   Java: r.sub(5L, r.expr((ReqlExpr) null)).default_(e -> e)
   ExpectedOriginal: ("Expected type NUMBER but found NULL.")
@@ -290,7 +290,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 33
+  LineNum: 111
   Original: (r.expr(null) - 5).default(lambda e:e)
   Java: r.expr((ReqlExpr) null).sub(5L).default_(e -> e)
   ExpectedOriginal: ("Expected type NUMBER but found NULL.")
@@ -299,7 +299,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: default.yaml
-  TestNum: 34
+  LineNum: 115
   Original: arr = r.expr([{'a':1},{'a':null},{}]).order_by('a')
   VarName: arr
   VarType: OrderBy
@@ -308,52 +308,52 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 35
+  LineNum: 118
   Original: arr.filter(lambda x:x['a'].eq(1))
   Java: arr.filter(x -> x.bracket("a").eq(1L))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 36
+  LineNum: 122
   Original: arr.filter(lambda x:x['a'].eq(1), default=False)
   Java: arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", false)
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 37
+  LineNum: 126
   Original: arr.filter(lambda x:x['a'].eq(1), default=True)
   Java: arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", true)
-  ExpectedOriginal: '[{}, {''a'': 1}]'
+  ExpectedOriginal: '[{}, {''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 38
+  LineNum: 131
   Original: arr.filter(lambda x:x['a'].eq(1), default=r.js('true'))
   Java: arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", r.js("true"))
-  ExpectedOriginal: '[{}, {''a'': 1}]'
+  ExpectedOriginal: '[{}, {''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 39
+  LineNum: 135
   Original: arr.filter(lambda x:x['a'].eq(1), default=r.js('false'))
   Java: arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", r.js("false"))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 40
+  LineNum: 139
   Original: arr.filter(lambda x:x['a'].eq(1), default=r.error())
   Java: arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "No attribute `a` in object:", [])
@@ -362,34 +362,34 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 41
+  LineNum: 144
   Original: r.expr(False).do(lambda d:arr.filter(lambda x:x['a'].eq(1), default=d))
   Java: r.expr(false).do_(d -> arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", d))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 42
+  LineNum: 148
   Original: r.expr(True).do(lambda d:arr.filter(lambda x:x['a'].eq(1), default=d)).order_by('a')
   Java: r.expr(true).do_(d -> arr.filter(x -> x.bracket("a").eq(1L)).optArg("default", d)).orderBy("a")
-  ExpectedOriginal: '[{}, {''a'': 1}]'
+  ExpectedOriginal: '[{}, {''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 43
+  LineNum: 154
   Original: arr.filter(lambda x:x['a'].default(0).eq(1))
   Java: arr.filter(x -> x.bracket("a").default_(0L).eq(1L))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 44
+  LineNum: 158
   Original: arr.filter(lambda x:x['a'].default(1).eq(1)).order_by('a')
   Java: arr.filter(x -> x.bracket("a").default_(1L).eq(1L)).orderBy("a")
   ExpectedOriginal: ([{}, {'a':null}, {'a':1}])
@@ -398,25 +398,25 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 45
+  LineNum: 162
   Original: arr.filter(lambda x:x['a'].default(r.error()).eq(1))
   Java: arr.filter(x -> x.bracket("a").default_(r.error()).eq(1L))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 46
+  LineNum: 168
   Original: r.expr(0).do(lambda i:arr.filter(lambda x:x['a'].default(i).eq(1)))
   Java: r.expr(0L).do_(i -> arr.filter(x -> x.bracket("a").default_(i).eq(1L)))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 47
+  LineNum: 172
   Original: r.expr(1).do(lambda i:arr.filter(lambda x:x['a'].default(i).eq(1))).order_by('a')
   Java: r.expr(1L).do_(i -> arr.filter(x -> x.bracket("a").default_(i).eq(1L))).orderBy("a")
   ExpectedOriginal: ([{},{'a':null},{'a':1}])
@@ -425,25 +425,25 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 48
+  LineNum: 177
   Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)))
   Java: arr.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L)))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 49
+  LineNum: 181
   Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=False)
   Java: arr.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", false)
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 50
+  LineNum: 185
   Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=True).order_by('a')
   Java: arr.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", true).orderBy("a")
   ExpectedOriginal: ([{}, {'a':null}, {'a':1}])
@@ -452,7 +452,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 51
+  LineNum: 189
   Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=r.error())
   Java: arr.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "No attribute `a` in object:", [])
@@ -461,7 +461,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 52
+  LineNum: 193
   Original: r.table_create('default_test')
   Java: r.tableCreate("default_test")
   ExpectedOriginal: partial({'tables_created':1})
@@ -470,16 +470,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 53
+  LineNum: 196
   Original: r.table('default_test').insert(arr)
   Java: r.table("default_test").insert(arr)
-  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'generated_keys':arrlen(3,uuid()),'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3})
+  ExpectedOriginal: ({'deleted':0,'replaced':0,'generated_keys':arrlen(3,uuid()),'unchanged':0,'errors':0,'skipped':0,'inserted':3})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("generated_keys", arrlen(3L, uuid())).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 3L)
+  ExpectedJava: r.hashMap("deleted", 0L).with("replaced", 0L).with("generated_keys", arrlen(3L, uuid())).with("unchanged", 0L).with("errors", 0L).with("skipped", 0L).with("inserted", 3L)
   RunOpts: []
 - TestType: JavaDef
   TestFile: default.yaml
-  TestNum: 54
+  LineNum: 199
   Original: tbl = r.table('default_test').order_by('a').pluck('a')
   VarName: tbl
   VarType: Pluck
@@ -488,34 +488,34 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 55
+  LineNum: 202
   Original: tbl.filter(lambda x:x['a'].eq(1))
   Java: tbl.filter(x -> x.bracket("a").eq(1L))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 56
+  LineNum: 206
   Original: tbl.filter(lambda x:x['a'].eq(1), default=False)
   Java: tbl.filter(x -> x.bracket("a").eq(1L)).optArg("default", false)
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 57
+  LineNum: 210
   Original: tbl.filter(lambda x:x['a'].eq(1), default=True)
   Java: tbl.filter(x -> x.bracket("a").eq(1L)).optArg("default", true)
-  ExpectedOriginal: '[{}, {''a'': 1}]'
+  ExpectedOriginal: '[{}, {''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 58
+  LineNum: 215
   Original: tbl.filter(lambda x:x['a'].eq(1), default=r.error())
   Java: tbl.filter(x -> x.bracket("a").eq(1L)).optArg("default", r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "No attribute `a` in object:", [])
@@ -524,34 +524,34 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 59
+  LineNum: 220
   Original: r.expr(False).do(lambda d:tbl.filter(lambda x:x['a'].eq(1), default=d))
   Java: r.expr(false).do_(d -> tbl.filter(x -> x.bracket("a").eq(1L)).optArg("default", d))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 60
+  LineNum: 224
   Original: r.expr(True).do(lambda d:tbl.filter(lambda x:x['a'].eq(1), default=d)).order_by('a')
   Java: r.expr(true).do_(d -> tbl.filter(x -> x.bracket("a").eq(1L)).optArg("default", d)).orderBy("a")
-  ExpectedOriginal: '[{}, {''a'': 1}]'
+  ExpectedOriginal: '[{}, {''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap(), r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 61
+  LineNum: 230
   Original: tbl.filter(lambda x:x['a'].default(0).eq(1))
   Java: tbl.filter(x -> x.bracket("a").default_(0L).eq(1L))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 62
+  LineNum: 234
   Original: tbl.filter(lambda x:x['a'].default(1).eq(1)).order_by('a')
   Java: tbl.filter(x -> x.bracket("a").default_(1L).eq(1L)).orderBy("a")
   ExpectedOriginal: ([{}, {'a':null}, {'a':1}])
@@ -560,25 +560,25 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 63
+  LineNum: 238
   Original: tbl.filter(lambda x:x['a'].default(r.error()).eq(1))
   Java: tbl.filter(x -> x.bracket("a").default_(r.error()).eq(1L))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 64
+  LineNum: 244
   Original: r.expr(0).do(lambda i:tbl.filter(lambda x:x['a'].default(i).eq(1)))
   Java: r.expr(0L).do_(i -> tbl.filter(x -> x.bracket("a").default_(i).eq(1L)))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 65
+  LineNum: 248
   Original: r.expr(1).do(lambda i:tbl.filter(lambda x:x['a'].default(i).eq(1))).order_by('a')
   Java: r.expr(1L).do_(i -> tbl.filter(x -> x.bracket("a").default_(i).eq(1L))).orderBy("a")
   ExpectedOriginal: ([{},{'a':null},{'a':1}])
@@ -587,25 +587,25 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 66
+  LineNum: 253
   Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)))
   Java: tbl.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L)))
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 67
+  LineNum: 257
   Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=False)
   Java: tbl.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", false)
-  ExpectedOriginal: '[{''a'': 1}]'
+  ExpectedOriginal: '[{''a'':1}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 68
+  LineNum: 261
   Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=True).order_by('a')
   Java: tbl.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", true).orderBy("a")
   ExpectedOriginal: ([{}, {'a':null}, {'a':1}])
@@ -614,7 +614,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 69
+  LineNum: 265
   Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=r.error())
   Java: tbl.filter(x -> r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", r.error())
   ExpectedOriginal: err("ReqlNonExistenceError", "No attribute `a` in object:", [])
@@ -623,7 +623,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: default.yaml
-  TestNum: 70
+  LineNum: 269
   Original: r.table_drop('default_test')
   Java: r.tableDrop("default_test")
   ExpectedOriginal: partial({'tables_dropped':1})

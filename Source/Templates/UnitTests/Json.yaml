@@ -2,16 +2,16 @@ ModuleName: Json
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 1
+  LineNum: 4
   Original: r.json("[1,2,3]")
   Java: r.json("[1,2,3]")
-  ExpectedOriginal: '[1, 2, 3]'
+  ExpectedOriginal: '[1,2,3]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 2
+  LineNum: 7
   Original: r.json("1")
   Java: r.json("1")
   ExpectedOriginal: 1
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 3
+  LineNum: 10
   Original: r.json("{}")
   Java: r.json("{}")
   ExpectedOriginal: '{}'
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 4
+  LineNum: 13
   Original: r.json('"foo"')
   Java: r.json("\"foo\"")
   ExpectedOriginal: '"foo"'
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 5
+  LineNum: 16
   Original: r.json("[1,2")
   Java: r.json("[1,2")
   ExpectedOriginal: err("ReqlQueryLogicError", 'Failed to parse "[1,2" as JSON:' + ' Missing a comma or \']\' after an array element.', [0])
@@ -47,43 +47,43 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 6
+  LineNum: 19
   Original: r.json("[1,2,3]").to_json_string()
   Java: r.json("[1,2,3]").toJsonString()
-  ExpectedOriginal: ('[1,2,3]')
+  ExpectedOriginal: '[1,2,3]'
   ExpectedType: String
   ExpectedJava: '"[1,2,3]"'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 7
+  LineNum: 23
   Original: r.json("[1,2,3]").to_json()
   Java: r.json("[1,2,3]").toJson()
-  ExpectedOriginal: ('[1,2,3]')
+  ExpectedOriginal: '[1,2,3]'
   ExpectedType: String
   ExpectedJava: '"[1,2,3]"'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 8
+  LineNum: 26
   Original: r.json("{\"foo\":4}").to_json_string()
   Java: r.json("{\"foo\":4}").toJsonString()
-  ExpectedOriginal: ('{"foo":4}')
+  ExpectedOriginal: '{"foo":4}'
   ExpectedType: String
   ExpectedJava: '"{\"foo\":4}"'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 9
+  LineNum: 30
   Original: r.json("{\"foo\":4}").to_json()
   Java: r.json("{\"foo\":4}").toJson()
-  ExpectedOriginal: ('{"foo":4}')
+  ExpectedOriginal: '{"foo":4}'
   ExpectedType: String
   ExpectedJava: '"{\"foo\":4}"'
   RunOpts: []
 - TestType: JavaDef
   TestFile: json.yaml
-  TestNum: 10
+  LineNum: 34
   Original: text = '[{"id":1,"first_name":"Harry","last_name":"Riley","email":"hriley0@usgs.gov","country":"Andorra","ip_address":"221.25.65.136"},{"id":2,"first_name":"Bonnie","last_name":"Anderson","email":"banderson1@list-manage.com","country":"Tuvalu","ip_address":"116.162.43.150"},{"id":3,"first_name":"Marie","last_name":"Schmidt","email":"mschmidt2@diigo.com","country":"Iraq","ip_address":"181.105.59.57"},{"id":4,"first_name":"Phillip","last_name":"Willis","email":"pwillis3@com.com","country":"Montenegro","ip_address":"24.223.139.156"}]'
   VarName: text
   VarType: String
@@ -92,7 +92,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: json.yaml
-  TestNum: 11
+  LineNum: 35
   Original: sorted = '[{"country":"Andorra","email":"hriley0@usgs.gov","first_name":"Harry","id":1,"ip_address":"221.25.65.136","last_name":"Riley"},{"country":"Tuvalu","email":"banderson1@list-manage.com","first_name":"Bonnie","id":2,"ip_address":"116.162.43.150","last_name":"Anderson"},{"country":"Iraq","email":"mschmidt2@diigo.com","first_name":"Marie","id":3,"ip_address":"181.105.59.57","last_name":"Schmidt"},{"country":"Montenegro","email":"pwillis3@com.com","first_name":"Phillip","id":4,"ip_address":"24.223.139.156","last_name":"Willis"}]'
   VarName: sorted
   VarType: String
@@ -101,7 +101,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 12
+  LineNum: 37
   Original: r.json(text).to_json_string()
   Java: r.json(text).toJsonString()
   ExpectedOriginal: sorted
@@ -110,7 +110,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 13
+  LineNum: 40
   Original: r.expr(r.minval).to_json_string()
   Java: r.expr(r.minval()).toJsonString()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert `r.minval` to JSON.')
@@ -119,7 +119,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 14
+  LineNum: 43
   Original: r.expr(r.maxval).to_json_string()
   Java: r.expr(r.maxval()).toJsonString()
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert `r.maxval` to JSON.')
@@ -128,7 +128,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 15
+  LineNum: 46
   Original: r.expr(r.minval).coerce_to('string')
   Java: r.expr(r.minval()).coerceTo("string")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert `r.minval` to JSON.')
@@ -137,7 +137,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 16
+  LineNum: 49
   Original: r.expr(r.maxval).coerce_to('string')
   Java: r.expr(r.maxval()).coerceTo("string")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert `r.maxval` to JSON.')
@@ -146,10 +146,10 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 17
+  LineNum: 52
   Original: r.time(2014,9,11, 'Z')
   Java: r.time(2014L, 9L, 11L, "Z")
-  ExpectedOriginal: ({'timezone':'+00:00','$reql_type$':'TIME','epoch_time':1410393600})
+  ExpectedOriginal: '{''timezone'':''+00:00'',''$reql_type$'':''TIME'',''epoch_time'':1410393600}'
   ExpectedType: Map
   ExpectedJava: r.hashMap("timezone", "+00:00").with("$reql_type$", "TIME").with("epoch_time", 1410393600L)
   RunOpts:
@@ -157,34 +157,34 @@ DefsAndTests:
     Val: raw
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 18
+  LineNum: 57
   Original: r.time(2014,9,11, 'Z').to_json_string()
   Java: r.time(2014L, 9L, 11L, "Z").toJsonString()
-  ExpectedOriginal: ('{"$reql_type$":"TIME","epoch_time":1410393600,"timezone":"+00:00"}')
+  ExpectedOriginal: '{"$reql_type$":"TIME","epoch_time":1410393600,"timezone":"+00:00"}'
   ExpectedType: String
   ExpectedJava: '"{\"$reql_type$\":\"TIME\",\"epoch_time\":1410393600,\"timezone\":\"+00:00\"}"'
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 19
+  LineNum: 60
   Original: r.point(0,0)
   Java: r.point(0L, 0L)
-  ExpectedOriginal: ({'$reql_type$':'GEOMETRY','coordinates':[0,0],'type':'Point'})
+  ExpectedOriginal: '{''$reql_type$'':''GEOMETRY'',''coordinates'':[0,0],''type'':''Point''}'
   ExpectedType: Map
   ExpectedJava: r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0L, 0L)).with("type", "Point")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 20
+  LineNum: 63
   Original: r.point(0,0).to_json_string()
   Java: r.point(0L, 0L).toJsonString()
-  ExpectedOriginal: ('{"$reql_type$":"GEOMETRY","coordinates":[0,0],"type":"Point"}')
+  ExpectedOriginal: '{"$reql_type$":"GEOMETRY","coordinates":[0,0],"type":"Point"}'
   ExpectedType: String
   ExpectedJava: '"{\"$reql_type$\":\"GEOMETRY\",\"coordinates\":[0,0],\"type\":\"Point\"}"'
   RunOpts: []
 - TestType: JavaDef
   TestFile: json.yaml
-  TestNum: 21
+  LineNum: 68
   Original: s = b'\x66\x6f\x6f'
   VarName: s
   VarType: byte[]
@@ -193,19 +193,19 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 22
+  LineNum: 70
   Original: r.binary(s)
   Java: r.binary(s)
-  ExpectedOriginal: (s)
+  ExpectedOriginal: s
   ExpectedType: byte[]
   ExpectedJava: s
   RunOpts: []
 - TestType: JavaQuery
   TestFile: json.yaml
-  TestNum: 23
+  LineNum: 73
   Original: r.expr("foo").coerce_to("binary").to_json_string()
   Java: r.expr("foo").coerceTo("binary").toJsonString()
-  ExpectedOriginal: ('{"$reql_type$":"BINARY","data":"Zm9v"}')
+  ExpectedOriginal: '{"$reql_type$":"BINARY","data":"Zm9v"}'
   ExpectedType: String
   ExpectedJava: '"{\"$reql_type$\":\"BINARY\",\"data\":\"Zm9v\"}"'
   RunOpts: []

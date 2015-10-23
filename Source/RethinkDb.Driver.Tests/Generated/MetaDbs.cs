@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -34,183 +35,196 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, meta/dbs.yaml, #1
-                 /* ExpectedOriginal: bag(['rethinkdb', 'test']) */
-                 var expected_ = bag(r.array("rethinkdb", "test"));
-                 
-                 /* Original: r.db_list() */
-                 var obtained = runOrCatch( r.dbList() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, meta/dbs.yaml, #2
-                 /* ExpectedOriginal: partial({'dbs_created':1}) */
-                 var expected_ = partial(r.hashMap("dbs_created", 1L));
-                 
-                 /* Original: r.db_create('a') */
-                 var obtained = runOrCatch( r.dbCreate("a") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, meta/dbs.yaml, #3
-                 /* ExpectedOriginal: partial({'dbs_created':1}) */
-                 var expected_ = partial(r.hashMap("dbs_created", 1L));
-                 
-                 /* Original: r.db_create('b') */
-                 var obtained = runOrCatch( r.dbCreate("b") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, meta/dbs.yaml, #4
-                 /* ExpectedOriginal: bag(['rethinkdb', 'a', 'b', 'test']) */
-                 var expected_ = bag(r.array("rethinkdb", "a", "b", "test"));
-                 
-                 /* Original: r.db_list() */
-                 var obtained = runOrCatch( r.dbList() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, meta/dbs.yaml, #5
-                 /* ExpectedOriginal: {'id': uuid(), 'name': 'a'} */
-                 var expected_ = r.hashMap("id", uuid()).with("name", "a");
-                 
-                 /* Original: r.db('a').config() */
-                 var obtained = runOrCatch( r.db("a").config() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
                  //JavaQuery, meta/dbs.yaml, #6
-                 /* ExpectedOriginal: partial({'dbs_dropped':1}) */
-                 var expected_ = partial(r.hashMap("dbs_dropped", 1L));
-                 
-                 /* Original: r.db_drop('b') */
-                 var obtained = runOrCatch( r.dbDrop("b") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, meta/dbs.yaml, #7
-                 /* ExpectedOriginal: bag(['rethinkdb', 'a', 'test']) */
-                 var expected_ = bag(r.array("rethinkdb", "a", "test"));
-                 
-                 /* Original: r.db_list() */
-                 var obtained = runOrCatch( r.dbList() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, meta/dbs.yaml, #8
-                 /* ExpectedOriginal: partial({'dbs_dropped':1}) */
-                 var expected_ = partial(r.hashMap("dbs_dropped", 1L));
-                 
-                 /* Original: r.db_drop('a') */
-                 var obtained = runOrCatch( r.dbDrop("a") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, meta/dbs.yaml, #9
                  /* ExpectedOriginal: bag(['rethinkdb', 'test']) */
                  var expected_ = bag(r.array("rethinkdb", "test"));
                  
                  /* Original: r.db_list() */
                  var obtained = runOrCatch( r.dbList() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, meta/dbs.yaml, #10
-                 /* ExpectedOriginal: partial({'dbs_created':1}) */
-                 var expected_ = partial(r.hashMap("dbs_created", 1L));
+                    , conn);
                  
-                 /* Original: r.db_create('bar') */
-                 var obtained = runOrCatch( r.dbCreate("bar") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, meta/dbs.yaml, #11
-                 /* ExpectedOriginal: err('ReqlOpFailedError', 'Database `bar` already exists.', [0]) */
-                 var expected_ = err("ReqlOpFailedError", "Database `bar` already exists.", r.array(0L));
+                 /* ExpectedOriginal: partial({'dbs_created':1}) */
+                 var expected_ = partial(r.hashMap("dbs_created", 1L));
                  
-                 /* Original: r.db_create('bar') */
-                 var obtained = runOrCatch( r.dbCreate("bar") ,
+                 /* Original: r.db_create('a') */
+                 var obtained = runOrCatch( r.dbCreate("a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, meta/dbs.yaml, #12
-                 /* ExpectedOriginal: partial({'dbs_dropped':1}) */
-                 var expected_ = partial(r.hashMap("dbs_dropped", 1L));
+                    , conn);
                  
-                 /* Original: r.db_drop('bar') */
-                 var obtained = runOrCatch( r.dbDrop("bar") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, meta/dbs.yaml, #13
+                 /* ExpectedOriginal: partial({'dbs_created':1}) */
+                 var expected_ = partial(r.hashMap("dbs_created", 1L));
+                 
+                 /* Original: r.db_create('b') */
+                 var obtained = runOrCatch( r.dbCreate("b") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, meta/dbs.yaml, #18
+                 /* ExpectedOriginal: bag(['rethinkdb', 'a', 'b', 'test']) */
+                 var expected_ = bag(r.array("rethinkdb", "a", "b", "test"));
+                 
+                 /* Original: r.db_list() */
+                 var obtained = runOrCatch( r.dbList() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, meta/dbs.yaml, #23
+                 /* ExpectedOriginal: {'name':'a','id':uuid()} */
+                 var expected_ = r.hashMap("name", "a").with("id", uuid());
+                 
+                 /* Original: r.db('a').config() */
+                 var obtained = runOrCatch( r.db("a").config() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, meta/dbs.yaml, #28
+                 /* ExpectedOriginal: partial({'dbs_dropped':1}) */
+                 var expected_ = partial(r.hashMap("dbs_dropped", 1L));
+                 
+                 /* Original: r.db_drop('b') */
+                 var obtained = runOrCatch( r.dbDrop("b") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, meta/dbs.yaml, #31
+                 /* ExpectedOriginal: bag(['rethinkdb', 'a', 'test']) */
+                 var expected_ = bag(r.array("rethinkdb", "a", "test"));
+                 
+                 /* Original: r.db_list() */
+                 var obtained = runOrCatch( r.dbList() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, meta/dbs.yaml, #34
+                 /* ExpectedOriginal: partial({'dbs_dropped':1}) */
+                 var expected_ = partial(r.hashMap("dbs_dropped", 1L));
+                 
+                 /* Original: r.db_drop('a') */
+                 var obtained = runOrCatch( r.dbDrop("a") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, meta/dbs.yaml, #37
+                 /* ExpectedOriginal: bag(['rethinkdb', 'test']) */
+                 var expected_ = bag(r.array("rethinkdb", "test"));
+                 
+                 /* Original: r.db_list() */
+                 var obtained = runOrCatch( r.dbList() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, meta/dbs.yaml, #41
+                 /* ExpectedOriginal: partial({'dbs_created':1}) */
+                 var expected_ = partial(r.hashMap("dbs_created", 1L));
+                 
+                 /* Original: r.db_create('bar') */
+                 var obtained = runOrCatch( r.dbCreate("bar") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, meta/dbs.yaml, #44
+                 /* ExpectedOriginal: err('ReqlOpFailedError', 'Database `bar` already exists.', [0]) */
+                 var expected_ = err("ReqlOpFailedError", "Database `bar` already exists.", r.array(0L));
+                 
+                 /* Original: r.db_create('bar') */
+                 var obtained = runOrCatch( r.dbCreate("bar") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, meta/dbs.yaml, #47
+                 /* ExpectedOriginal: partial({'dbs_dropped':1}) */
+                 var expected_ = partial(r.hashMap("dbs_dropped", 1L));
+                 
+                 /* Original: r.db_drop('bar') */
+                 var obtained = runOrCatch( r.dbDrop("bar") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, meta/dbs.yaml, #50
                  /* ExpectedOriginal: err('ReqlOpFailedError', 'Database `bar` does not exist.', [0]) */
                  var expected_ = err("ReqlOpFailedError", "Database `bar` does not exist.", r.array(0L));
                  
                  /* Original: r.db_drop('bar') */
                  var obtained = runOrCatch( r.dbDrop("bar") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
 

@@ -2,7 +2,7 @@ ModuleName: DatumTypeof
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/typeof.yaml
-  TestNum: 1
+  LineNum: 5
   Original: r.expr(null).type_of()
   Java: r.expr((ReqlExpr) null).typeOf()
   ExpectedOriginal: 'NULL'
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/typeof.yaml
-  TestNum: 2
+  LineNum: 9
   Original: r.type_of(null)
   Java: r.typeOf((ReqlExpr) null)
   ExpectedOriginal: 'NULL'

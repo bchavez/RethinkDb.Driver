@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -34,29 +35,31 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/typeof.yaml, #1
+                 //JavaQuery, datum/typeof.yaml, #5
                  /* ExpectedOriginal: NULL */
                  var expected_ = "NULL";
                  
                  /* Original: r.expr(null).type_of() */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).typeOf() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, datum/typeof.yaml, #2
+                 //JavaQuery, datum/typeof.yaml, #9
                  /* ExpectedOriginal: NULL */
                  var expected_ = "NULL";
                  
                  /* Original: r.type_of(null) */
                  var obtained = runOrCatch( r.typeOf((ReqlExpr) null) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
 

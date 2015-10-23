@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -34,49 +35,49 @@ namespace RethinkDb.Driver.Test.Generated {
         public void YamlTest(){
 
              
-             //JavaDef, times/index.yaml, #1
+             //JavaDef, times/index.yaml, #7
              //Original: ts={"timezone":"-07:00","epoch_time":1375445162.0872,"$reql_type$":"TIME"}
              
                  var ts = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445162.0872).with("$reql_type$", "TIME"));
              
              
-             //JavaDef, times/index.yaml, #2
+             //JavaDef, times/index.yaml, #11
              //Original: t1={"timezone":"-07:00","epoch_time":1375445163.0872,"$reql_type$":"TIME"}
              
                  var t1 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.0872).with("$reql_type$", "TIME"));
              
              
-             //JavaDef, times/index.yaml, #3
+             //JavaDef, times/index.yaml, #15
              //Original: t2={"timezone":"-07:00","epoch_time":1375445163.08832,"$reql_type$":"TIME"}
              
                  var t2 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.08832).with("$reql_type$", "TIME"));
              
              
-             //JavaDef, times/index.yaml, #4
+             //JavaDef, times/index.yaml, #19
              //Original: t3={"timezone":"-07:00","epoch_time":1375445163.08943,"$reql_type$":"TIME"}
              
                  var t3 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.08943).with("$reql_type$", "TIME"));
              
              
-             //JavaDef, times/index.yaml, #5
+             //JavaDef, times/index.yaml, #23
              //Original: t4={"timezone":"-07:00","epoch_time":1375445163.09055,"$reql_type$":"TIME"}
              
                  var t4 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.09055).with("$reql_type$", "TIME"));
              
              
-             //JavaDef, times/index.yaml, #6
+             //JavaDef, times/index.yaml, #27
              //Original: t5={"timezone":"-07:00","epoch_time":1375445163.09166,"$reql_type$":"TIME"}
              
                  var t5 = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445163.09166).with("$reql_type$", "TIME"));
              
              
-             //JavaDef, times/index.yaml, #7
+             //JavaDef, times/index.yaml, #31
              //Original: te={"timezone":"-07:00","epoch_time":1375445164.0872,"$reql_type$":"TIME"}
              
                  var te = (MapObject) (r.hashMap("timezone", "-07:00").with("epoch_time", 1375445164.0872).with("$reql_type$", "TIME"));
              
              
-             //JavaDef, times/index.yaml, #8
+             //JavaDef, times/index.yaml, #36
              //Original: trows = [{'id':t1}, {'id':t2}, {'id':t3}, {'id':t4}, {'id':t5}]
              
                  var trows = (IList) (r.array(r.hashMap("id", t1), r.hashMap("id", t2), r.hashMap("id", t3), r.hashMap("id", t4), r.hashMap("id", t5)));
@@ -84,19 +85,20 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #9
+                 //JavaQuery, times/index.yaml, #37
                  /* ExpectedOriginal: 5 */
                  var expected_ = 5L;
                  
                  /* Original: tbl.insert(trows)['inserted'] */
                  var obtained = runOrCatch( tbl.insert(trows).bracket("inserted") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              
-             //JavaDef, times/index.yaml, #10
+             //JavaDef, times/index.yaml, #41
              //Original: bad_insert = [{'id':r.expr(t1).in_timezone("Z")}]
              
                  var bad_insert = (IList) (r.array(r.hashMap("id", r.expr(t1).inTimezone("Z"))));
@@ -104,361 +106,386 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #11
+                 //JavaQuery, times/index.yaml, #42
                  /* ExpectedOriginal: ("Duplicate primary key `id`:\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"-07:00\"\n\t}\n}\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"+00:00\"\n\t}\n}") */
                  var expected_ = "Duplicate primary key `id`:\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"-07:00\"\n\t}\n}\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"+00:00\"\n\t}\n}";
                  
                  /* Original: tbl.insert(bad_insert)['first_error'] */
                  var obtained = runOrCatch( tbl.insert(bad_insert).bracket("first_error") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #12
+                 //JavaQuery, times/index.yaml, #46
                  /* ExpectedOriginal: 5 */
                  var expected_ = 5L;
                  
                  /* Original: tbl.between(ts, te).count() */
                  var obtained = runOrCatch( tbl.between(ts, te).count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #13
+                 //JavaQuery, times/index.yaml, #48
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
                  
                  /* Original: tbl.between(t1, t4).count() */
                  var obtained = runOrCatch( tbl.between(t1, t4).count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #14
+                 //JavaQuery, times/index.yaml, #51
                  /* ExpectedOriginal: 4 */
                  var expected_ = 4L;
                  
                  /* Original: tbl.between(t1, t4, right_bound='closed').count() */
                  var obtained = runOrCatch( tbl.between(t1, t4).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #15
+                 //JavaQuery, times/index.yaml, #54
                  /* ExpectedOriginal: 5 */
                  var expected_ = 5L;
                  
                  /* Original: tbl.between(r.expr(ts).in_timezone("+06:00"), te).count() */
                  var obtained = runOrCatch( tbl.between(r.expr(ts).inTimezone("+06:00"), te).count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #16
+                 //JavaQuery, times/index.yaml, #56
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
                  
                  /* Original: tbl.between(t1, r.expr(t4).in_timezone("+08:00")).count() */
                  var obtained = runOrCatch( tbl.between(t1, r.expr(t4).inTimezone("+08:00")).count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #17
+                 //JavaQuery, times/index.yaml, #59
                  /* ExpectedOriginal: 4 */
                  var expected_ = 4L;
                  
                  /* Original: tbl.between(r.expr(t1).in_timezone("Z"), t4, right_bound='closed').count() */
                  var obtained = runOrCatch( tbl.between(r.expr(t1).inTimezone("Z"), t4).optArg("right_bound", "closed").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #18
+                 //JavaQuery, times/index.yaml, #64
                  /* ExpectedOriginal: 5 */
                  var expected_ = 5L;
                  
                  /* Original: tbl.update(lambda row:{'a':row['id']})['replaced'] */
                  var obtained = runOrCatch( tbl.update(row => r.hashMap("a", row.bracket("id"))).bracket("replaced") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #19
+                 //JavaQuery, times/index.yaml, #67
                  /* ExpectedOriginal: ({'created':1}) */
                  var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('a') */
                  var obtained = runOrCatch( tbl.indexCreate("a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #20
+                 //JavaQuery, times/index.yaml, #69
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
                  
                  /* Original: tbl.index_wait('a').count() */
                  var obtained = runOrCatch( tbl.indexWait("a").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #21
+                 //JavaQuery, times/index.yaml, #73
                  /* ExpectedOriginal: 5 */
                  var expected_ = 5L;
                  
                  /* Original: tbl.between(ts, te, index='a').count() */
                  var obtained = runOrCatch( tbl.between(ts, te).optArg("index", "a").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #22
+                 //JavaQuery, times/index.yaml, #77
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
                  
                  /* Original: tbl.between(t1, t4, index='a').count() */
                  var obtained = runOrCatch( tbl.between(t1, t4).optArg("index", "a").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #23
+                 //JavaQuery, times/index.yaml, #81
                  /* ExpectedOriginal: 4 */
                  var expected_ = 4L;
                  
                  /* Original: tbl.between(t1, t4, right_bound='closed', index='a').count() */
                  var obtained = runOrCatch( tbl.between(t1, t4).optArg("right_bound", "closed").optArg("index", "a").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #24
+                 //JavaQuery, times/index.yaml, #85
                  /* ExpectedOriginal: 5 */
                  var expected_ = 5L;
                  
                  /* Original: tbl.between(r.expr(ts).in_timezone("+06:00"), te, index='a').count() */
                  var obtained = runOrCatch( tbl.between(r.expr(ts).inTimezone("+06:00"), te).optArg("index", "a").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #25
+                 //JavaQuery, times/index.yaml, #89
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
                  
                  /* Original: tbl.between(t1, r.expr(t4).in_timezone("+08:00"), index='a').count() */
                  var obtained = runOrCatch( tbl.between(t1, r.expr(t4).inTimezone("+08:00")).optArg("index", "a").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #26
+                 //JavaQuery, times/index.yaml, #93
                  /* ExpectedOriginal: 4 */
                  var expected_ = 4L;
                  
                  /* Original: tbl.between(r.expr(t1).in_timezone("Z"), t4, right_bound='closed', index='a').count() */
                  var obtained = runOrCatch( tbl.between(r.expr(t1).inTimezone("Z"), t4).optArg("right_bound", "closed").optArg("index", "a").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #27
+                 //JavaQuery, times/index.yaml, #98
                  /* ExpectedOriginal: ({'created':1}) */
                  var expected_ = r.hashMap("created", 1L);
                  
                  /* Original: tbl.index_create('b', lambda row:r.branch(row['id'] < t4, row['a'], null)) */
                  var obtained = runOrCatch( tbl.indexCreate("b", row => r.branch(row.bracket("id").lt(t4), row.bracket("a"), (ReqlExpr) null)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #28
+                 //JavaQuery, times/index.yaml, #101
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
                  
                  /* Original: tbl.index_wait('b').count() */
                  var obtained = runOrCatch( tbl.indexWait("b").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #29
+                 //JavaQuery, times/index.yaml, #105
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
                  
                  /* Original: tbl.index_wait('b').count() */
                  var obtained = runOrCatch( tbl.indexWait("b").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #30
+                 //JavaQuery, times/index.yaml, #109
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
                  
                  /* Original: tbl.between(ts, te, index='b').count() */
                  var obtained = runOrCatch( tbl.between(ts, te).optArg("index", "b").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #31
+                 //JavaQuery, times/index.yaml, #113
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
                  
                  /* Original: tbl.between(t1, t4, index='b').count() */
                  var obtained = runOrCatch( tbl.between(t1, t4).optArg("index", "b").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #32
+                 //JavaQuery, times/index.yaml, #117
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
                  
                  /* Original: tbl.between(t1, t4, right_bound='closed', index='b').count() */
                  var obtained = runOrCatch( tbl.between(t1, t4).optArg("right_bound", "closed").optArg("index", "b").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #33
+                 //JavaQuery, times/index.yaml, #121
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
                  
                  /* Original: tbl.between(r.expr(ts).in_timezone("+06:00"), te, index='b').count() */
                  var obtained = runOrCatch( tbl.between(r.expr(ts).inTimezone("+06:00"), te).optArg("index", "b").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #34
+                 //JavaQuery, times/index.yaml, #125
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
                  
                  /* Original: tbl.between(t1, r.expr(t4).in_timezone("+08:00"), index='b').count() */
                  var obtained = runOrCatch( tbl.between(t1, r.expr(t4).inTimezone("+08:00")).optArg("index", "b").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #35
+                 //JavaQuery, times/index.yaml, #129
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
                  
                  /* Original: tbl.between(r.expr(t1).in_timezone("Z"), t4, right_bound='closed', index='b').count() */
                  var obtained = runOrCatch( tbl.between(r.expr(t1).inTimezone("Z"), t4).optArg("right_bound", "closed").optArg("index", "b").count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              
-             //JavaDef, times/index.yaml, #36
+             //JavaDef, times/index.yaml, #135
              //Original: oldtime = datetime.fromtimestamp(1375147296.681, PacificTimeZone())
              
                  var oldtime = (DateTimeOffset) (datetime.fromtimestamp(1375147296.681, PacificTimeZone()));
              
              
-             //JavaDef, times/index.yaml, #37
+             //JavaDef, times/index.yaml, #139
              //Original: curtime = datetime.now()
              
                  var curtime = (DateTimeOffset) (datetime.now());
@@ -466,29 +493,31 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #38
+                 //JavaQuery, times/index.yaml, #142
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
                  
                  /* Original: tbl.insert([{'id':oldtime}])['inserted'] */
                  var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", oldtime))).bracket("inserted") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, times/index.yaml, #39
+                 //JavaQuery, times/index.yaml, #148
                  /* ExpectedOriginal: ("PTYPE<TIME>") */
                  var expected_ = "PTYPE<TIME>";
                  
                  /* Original: tbl.get(oldtime)['id'].type_of() */
                  var obtained = runOrCatch( tbl.get(oldtime).bracket("id").typeOf() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
 

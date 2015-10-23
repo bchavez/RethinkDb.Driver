@@ -2,7 +2,7 @@ ModuleName: TimesApi
 DefsAndTests:
 - TestType: JavaDef
   TestFile: times/api.yaml
-  TestNum: 1
+  LineNum: 6
   Original: rt1 = 1375147296.6812
   VarName: rt1
   VarType: Double
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/api.yaml
-  TestNum: 2
+  LineNum: 7
   Original: t1 = r.epoch_time(rt1)
   VarName: t1
   VarType: EpochTime
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/api.yaml
-  TestNum: 3
+  LineNum: 8
   Original: t2 = r.epoch_time(rt1 + 1000)
   VarName: t2
   VarType: EpochTime
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 4
+  LineNum: 11
   Original: (t1 + 1000).to_epoch_time()
   Java: r.add(t1, 1000L).toEpochTime()
   ExpectedOriginal: (1375148296.681)
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 5
+  LineNum: 14
   Original: (t1 - 1000).to_epoch_time()
   Java: r.sub(t1, 1000L).toEpochTime()
   ExpectedOriginal: (1375146296.681)
@@ -47,7 +47,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 6
+  LineNum: 17
   Original: (t1 - (t1 - 1000))
   Java: r.sub(t1, r.sub(t1, 1000L))
   ExpectedOriginal: 1000
@@ -56,151 +56,151 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 7
+  LineNum: 22
   Original: (t1 < t1)
   Java: r.lt(t1, t1)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 8
+  LineNum: 25
   Original: (t1 <= t1)
   Java: r.le(t1, t1)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 9
+  LineNum: 29
   Original: (t1 == t1)
   Java: r.eq(t1, t1)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 10
+  LineNum: 32
   Original: (t1 != t1)
   Java: r.ne(t1, t1)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 11
+  LineNum: 34
   Original: (t1 >= t1)
   Java: r.ge(t1, t1)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 12
+  LineNum: 37
   Original: (t1 > t1)
   Java: r.gt(t1, t1)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 13
+  LineNum: 40
   Original: (t1 < t2)
   Java: r.lt(t1, t2)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 14
+  LineNum: 43
   Original: (t1 <= t2)
   Java: r.le(t1, t2)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 15
+  LineNum: 47
   Original: (t1 == t2)
   Java: r.eq(t1, t2)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 16
+  LineNum: 50
   Original: (t1 != t2)
   Java: r.ne(t1, t2)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 17
+  LineNum: 52
   Original: (t1 >= t2)
   Java: r.ge(t1, t2)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 18
+  LineNum: 55
   Original: (t1 > t2)
   Java: r.gt(t1, t2)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 19
+  LineNum: 60
   Original: t1.during(t1, t1 + 1000)
   Java: t1.during(t1, r.add(t1, 1000L))
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 20
+  LineNum: 64
   Original: t1.during(t1, t1 + 1000, left_bound='open')
   Java: t1.during(t1, r.add(t1, 1000L)).optArg("left_bound", "open")
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 21
+  LineNum: 67
   Original: t1.during(t1, t1)
   Java: t1.during(t1, t1)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 22
+  LineNum: 70
   Original: t1.during(t1, t1, right_bound='closed')
   Java: t1.during(t1, t1).optArg("right_bound", "closed")
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 23
+  LineNum: 77
   Original: t1.date().to_epoch_time()
   Java: t1.date().toEpochTime()
   ExpectedOriginal: 1375142400
@@ -209,7 +209,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 24
+  LineNum: 79
   Original: t1.time_of_day()
   Java: t1.timeOfDay()
   ExpectedOriginal: (4896.681)
@@ -218,7 +218,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 25
+  LineNum: 81
   Original: t1.year()
   Java: t1.year()
   ExpectedOriginal: 2013
@@ -227,7 +227,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 26
+  LineNum: 83
   Original: t1.month()
   Java: t1.month()
   ExpectedOriginal: 7
@@ -236,7 +236,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 27
+  LineNum: 85
   Original: t1.day()
   Java: t1.day()
   ExpectedOriginal: 30
@@ -245,7 +245,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 28
+  LineNum: 87
   Original: t1.day_of_week()
   Java: t1.dayOfWeek()
   ExpectedOriginal: 2
@@ -254,7 +254,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 29
+  LineNum: 89
   Original: t1.day_of_year()
   Java: t1.dayOfYear()
   ExpectedOriginal: 211
@@ -263,7 +263,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 30
+  LineNum: 91
   Original: t1.hours()
   Java: t1.hours()
   ExpectedOriginal: 1
@@ -272,7 +272,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 31
+  LineNum: 93
   Original: t1.minutes()
   Java: t1.minutes()
   ExpectedOriginal: 21
@@ -281,7 +281,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 32
+  LineNum: 95
   Original: t1.seconds()
   Java: t1.seconds()
   ExpectedOriginal: 36.681
@@ -290,7 +290,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 33
+  LineNum: 99
   Original: r.time(2013, r.july, 29, 23, 30, 0.1, "-07:00").to_epoch_time()
   Java: r.time(2013L, r.july(), 29L, 23L, 30L, 0.1, "-07:00").toEpochTime()
   ExpectedOriginal: (1375165800.1)
@@ -299,7 +299,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 34
+  LineNum: 101
   Original: r.time(2013, r.july, 29, 23, 30, 0.1, "-07:00").timezone()
   Java: r.time(2013L, r.july(), 29L, 23L, 30L, 0.1, "-07:00").timezone()
   ExpectedOriginal: ("-07:00")
@@ -308,7 +308,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 38
+  LineNum: 109
   Original: r.time(2013, r.july, 29, 23).to_epoch_time()
   Java: r.time(2013L, r.july(), 29L, 23L).toEpochTime()
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type STRING but found NUMBER.", [])
@@ -317,7 +317,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 39
+  LineNum: 111
   Original: r.time(2013, r.july, 29, "-07:00").to_epoch_time()
   Java: r.time(2013L, r.july(), 29L, "-07:00").toEpochTime()
   ExpectedOriginal: 1375081200
@@ -326,7 +326,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 40
+  LineNum: 113
   Original: r.time(2013, r.july, 29, "-07:00").timezone()
   Java: r.time(2013L, r.july(), 29L, "-07:00").timezone()
   ExpectedOriginal: ("-07:00")
@@ -335,7 +335,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 43
+  LineNum: 119
   Original: r.iso8601("2013-07-30T20:56:05-07:00").to_epoch_time()
   Java: r.iso8601("2013-07-30T20:56:05-07:00").toEpochTime()
   ExpectedOriginal: 1375242965
@@ -344,7 +344,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 44
+  LineNum: 122
   Original: r.epoch_time(1375242965).in_timezone("-07:00").to_iso8601()
   Java: r.epochTime(1375242965L).inTimezone("-07:00").toIso8601()
   ExpectedOriginal: ("2013-07-30T20:56:05-07:00")
@@ -353,7 +353,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 45
+  LineNum: 125
   Original: r.now().type_of()
   Java: r.now().typeOf()
   ExpectedOriginal: ("PTYPE<TIME>")
@@ -362,7 +362,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 46
+  LineNum: 127
   Original: (r.now() - r.now())
   Java: r.now().sub(r.now())
   ExpectedOriginal: 0
@@ -371,7 +371,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 47
+  LineNum: 132
   Original: r.iso8601("2013-07-30T20:56:05").to_iso8601()
   Java: r.iso8601("2013-07-30T20:56:05").toIso8601()
   ExpectedOriginal: err("ReqlQueryLogicError", "ISO 8601 string has no time zone, and no default time zone was provided.", [])
@@ -380,7 +380,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 48
+  LineNum: 136
   Original: r.iso8601("2013-07-30T20:56:05", default_timezone='-07').to_iso8601()
   Java: r.iso8601("2013-07-30T20:56:05").optArg("default_timezone", "-07").toIso8601()
   ExpectedOriginal: ("2013-07-30T20:56:05-07:00")
@@ -389,7 +389,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 49
+  LineNum: 140
   Original: r.expr([r.monday, r.tuesday, r.wednesday, r.thursday, r.friday, r.saturday, r.sunday])
   Java: r.expr(r.array(r.monday(), r.tuesday(), r.wednesday(), r.thursday(), r.friday(), r.saturday(), r.sunday()))
   ExpectedOriginal: ([1, 2, 3, 4, 5, 6, 7])
@@ -398,8 +398,11 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/api.yaml
-  TestNum: 50
-  Original: r.expr([r.january, r.february, r.march, r.april, r.may, r.june, r.july, r.august, r.september, r.october, r.november, r.december])
+  LineNum: 142
+  Original: >-
+    r.expr([r.january, r.february, r.march, r.april, r.may, r.june,
+
+    r.july, r.august, r.september, r.october, r.november, r.december])
   Java: r.expr(r.array(r.january(), r.february(), r.march(), r.april(), r.may(), r.june(), r.july(), r.august(), r.september(), r.october(), r.november(), r.december()))
   ExpectedOriginal: ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
   ExpectedType: List

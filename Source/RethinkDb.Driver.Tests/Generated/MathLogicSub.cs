@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -34,113 +35,136 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/sub.yaml, #(1, 1)
-                 /* ExpectedOriginal: 0 */
-                 var expected_ = 0L;
-                 
-                 /* Original: (r.expr(1) - 1) */
-                 var obtained = runOrCatch( r.expr(1L).sub(1L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/sub.yaml, #(1, 2)
-                 /* ExpectedOriginal: 0 */
-                 var expected_ = 0L;
-                 
-                 /* Original: (1 - r.expr(1)) */
-                 var obtained = runOrCatch( r.sub(1L, r.expr(1L)) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/sub.yaml, #(1, 3)
-                 /* ExpectedOriginal: 0 */
-                 var expected_ = 0L;
-                 
-                 /* Original: (r.expr(1).sub(1)) */
-                 var obtained = runOrCatch( r.expr(1L).sub(1L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/sub.yaml, #2
-                 /* ExpectedOriginal: -2 */
-                 var expected_ = -2L;
-                 
-                 /* Original: r.expr(-1) - 1 */
-                 var obtained = runOrCatch( r.expr(-1L).sub(1L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/sub.yaml, #3
-                 /* ExpectedOriginal: -6.75 */
-                 var expected_ = -6.75;
-                 
-                 /* Original: r.expr(1.75) - 8.5 */
-                 var obtained = runOrCatch( r.expr(1.75).sub(8.5) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/sub.yaml, #5
-                 /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
-                 
-                 /* Original: r.expr('a') - 0.8 */
-                 var obtained = runOrCatch( r.expr("a").sub(0.8) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
                  //JavaQuery, math_logic/sub.yaml, #6
-                 /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1]) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1L));
+                 /* ExpectedOriginal: 0 */
+                 var expected_ = 0L;
                  
-                 /* Original: r.expr(1) - 'a' */
-                 var obtained = runOrCatch( r.expr(1L).sub("a") ,
+                 /* Original: r.expr(1) - 1 */
+                 var obtained = runOrCatch( r.expr(1L).sub(1L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/sub.yaml, #7
+                 /* ExpectedOriginal: 0 */
+                 var expected_ = 0L;
+                 
+                 /* Original: 1 - r.expr(1) */
+                 var obtained = runOrCatch( r.sub(1L, r.expr(1L)) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/sub.yaml, #8
+                 /* ExpectedOriginal: 0 */
+                 var expected_ = 0L;
+                 
+                 /* Original: r.expr(1).sub(1) */
+                 var obtained = runOrCatch( r.expr(1L).sub(1L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/sub.yaml, #17
+                 /* ExpectedOriginal: -2 */
+                 var expected_ = -2L;
+                 
+                 /* Original: r.expr(-1) - 1 */
+                 var obtained = runOrCatch( r.expr(-1L).sub(1L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/sub.yaml, #22
+                 /* ExpectedOriginal: -6.75 */
+                 var expected_ = -6.75;
+                 
+                 /* Original: r.expr(1.75) - 8.5 */
+                 var obtained = runOrCatch( r.expr(1.75).sub(8.5) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/sub.yaml, #26
+                 /* ExpectedOriginal: -13 */
+                 var expected_ = -13L;
+                 
+                 /* Original: r.expr(1).sub(2,3,4,5) */
+                 var obtained = runOrCatch( r.expr(1L).sub(2L, 3L, 4L, 5L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/sub.yaml, #30
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
                  
-                 /* Original: r.expr('b') - 'a' */
+                 /* Original: r.expr('a').sub(0.8) */
+                 var obtained = runOrCatch( r.expr("a").sub(0.8) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/sub.yaml, #33
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1]) */
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1L));
+                 
+                 /* Original: r.expr(1).sub('a') */
+                 var obtained = runOrCatch( r.expr(1L).sub("a") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/sub.yaml, #36
+                 /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
+                 
+                 /* Original: r.expr('b').sub('a') */
                  var obtained = runOrCatch( r.expr("b").sub("a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
 

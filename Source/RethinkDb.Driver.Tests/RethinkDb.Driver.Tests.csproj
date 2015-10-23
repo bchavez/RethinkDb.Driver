@@ -81,7 +81,6 @@
     <Compile Include="Generated\GeoOperations.cs" />
     <Compile Include="Generated\GeoPrimitives.cs" />
     <Compile Include="Generated\Json.cs" />
-    <Compile Include="Generated\Limits.cs" />
     <Compile Include="Generated\Match.cs" />
     <Compile Include="Generated\MathLogicAdd.cs" />
     <Compile Include="Generated\MathLogicAliases.cs" />
@@ -102,7 +101,7 @@
     <Compile Include="Generated\Polymorphism.cs" />
     <Compile Include="Generated\Random.cs" />
     <Compile Include="Generated\Range.cs" />
-    <Compile Include="Generated\SindexTruncation.cs" />
+    <Compile Include="Generated\SindexNullsinstrings.cs" />
     <Compile Include="Generated\Timeout.cs" />
     <Compile Include="Generated\TimesApi.cs" />
     <Compile Include="Generated\TimesConstructors.cs" />
@@ -113,6 +112,7 @@
     <Compile Include="Generated\TransformArray.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDebugger.cs" />
+    <Compile Include="TestingCommon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

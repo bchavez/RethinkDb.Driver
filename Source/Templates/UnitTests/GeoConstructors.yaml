@@ -2,7 +2,7 @@ ModuleName: GeoConstructors
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 1
+  LineNum: 4
   Original: r.point(0, 0)
   Java: r.point(0L, 0L)
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, 0], 'type':'Point'})
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 2
+  LineNum: 6
   Original: r.point(0, -90)
   Java: r.point(0L, -90L)
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, -90], 'type':'Point'})
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 3
+  LineNum: 8
   Original: r.point(0, 90)
   Java: r.point(0L, 90L)
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, 90], 'type':'Point'})
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 4
+  LineNum: 10
   Original: r.point(-180, 0)
   Java: r.point(-180L, 0L)
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[-180, 0], 'type':'Point'})
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 5
+  LineNum: 12
   Original: r.point(180, 0)
   Java: r.point(180L, 0L)
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[180, 0], 'type':'Point'})
@@ -47,7 +47,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 6
+  LineNum: 14
   Original: r.point(0, -91)
   Java: r.point(0L, -91L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Latitude must be between -90 and 90.  Got -91.', [0])
@@ -56,7 +56,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 7
+  LineNum: 16
   Original: r.point(0, 91)
   Java: r.point(0L, 91L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Latitude must be between -90 and 90.  Got 91.', [0])
@@ -65,7 +65,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 8
+  LineNum: 18
   Original: r.point(-181, 0)
   Java: r.point(-181L, 0L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Longitude must be between -180 and 180.  Got -181.', [0])
@@ -74,7 +74,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 9
+  LineNum: 20
   Original: r.point(181, 0)
   Java: r.point(181L, 0L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Longitude must be between -180 and 180.  Got 181.', [0])
@@ -83,7 +83,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 12
+  LineNum: 28
   Original: r.line([0,0], [0,0])
   Java: r.line(r.array(0L, 0L), r.array(0L, 0L))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Invalid LineString.  Are there antipodal or duplicate vertices?', [0])
@@ -92,7 +92,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 13
+  LineNum: 30
   Original: r.line([0,0], [0,1])
   Java: r.line(r.array(0L, 0L), r.array(0L, 1L))
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0,0], [0,1]], 'type':'LineString'})
@@ -101,7 +101,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 14
+  LineNum: 32
   Original: r.line([0,0], [1])
   Java: r.line(r.array(0L, 0L), r.array(1L))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected point coordinate pair.  Got 1 element array instead of a 2 element one.', [0])
@@ -110,7 +110,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 15
+  LineNum: 34
   Original: r.line([0,0], [1,0,0])
   Java: r.line(r.array(0L, 0L), r.array(1L, 0L, 0L))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected point coordinate pair.  Got 3 element array instead of a 2 element one.', [0])
@@ -119,7 +119,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 16
+  LineNum: 36
   Original: r.line([0,0], [0,1], [0,0])
   Java: r.line(r.array(0L, 0L), r.array(0L, 1L), r.array(0L, 0L))
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0,0], [0,1], [0,0]], 'type':'LineString'})
@@ -128,7 +128,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 17
+  LineNum: 38
   Original: r.line(r.point(0,0), r.point(0,1), r.point(0,0))
   Java: r.line(r.point(0L, 0L), r.point(0L, 1L), r.point(0L, 0L))
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0,0], [0,1], [0,0]], 'type':'LineString'})
@@ -137,7 +137,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 18
+  LineNum: 40
   Original: r.line(r.point(0,0), r.point(1,0), r.line([0,0], [1,0]))
   Java: r.line(r.point(0L, 0L), r.point(1L, 0L), r.line(r.array(0L, 0L), r.array(1L, 0L)))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected geometry of type `Point` but found `LineString`.', [0])
@@ -146,7 +146,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 22
+  LineNum: 50
   Original: r.polygon([0,0], [0,0], [0,0], [0,0])
   Java: r.polygon(r.array(0L, 0L), r.array(0L, 0L), r.array(0L, 0L), r.array(0L, 0L))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Invalid LinearRing.  Are there antipodal or duplicate vertices? Is it self-intersecting?', [0])
@@ -155,7 +155,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 23
+  LineNum: 52
   Original: r.polygon([0,0], [0,1], [1,0])
   Java: r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L))
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0,0], [0,1], [1,0], [0,0]]], 'type':'Polygon'})
@@ -164,7 +164,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 24
+  LineNum: 54
   Original: r.polygon([0,0], [0,1], [1,0], [0,0])
   Java: r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L), r.array(0L, 0L))
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0,0], [0,1], [1,0], [0,0]]], 'type':'Polygon'})
@@ -173,7 +173,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 25
+  LineNum: 56
   Original: r.polygon([0,0], [0,1], [1,0], [-1,0.5])
   Java: r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L), r.array(-1L, 0.5))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Invalid LinearRing.  Are there antipodal or duplicate vertices? Is it self-intersecting?', [0])
@@ -182,7 +182,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 26
+  LineNum: 58
   Original: r.polygon([0,0], [0,1], [0])
   Java: r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(0L))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected point coordinate pair.  Got 1 element array instead of a 2 element one.', [0])
@@ -191,7 +191,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 27
+  LineNum: 60
   Original: r.polygon([0,0], [0,1], [0,1,0])
   Java: r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(0L, 1L, 0L))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected point coordinate pair.  Got 3 element array instead of a 2 element one.', [0])
@@ -200,7 +200,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/constructors.yaml
-  TestNum: 28
+  LineNum: 62
   Original: r.polygon(r.point(0,0), r.point(0,1), r.line([0,0], [0,1]))
   Java: r.polygon(r.point(0L, 0L), r.point(0L, 1L), r.line(r.array(0L, 0L), r.array(0L, 1L)))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected geometry of type `Point` but found `LineString`.', [0])

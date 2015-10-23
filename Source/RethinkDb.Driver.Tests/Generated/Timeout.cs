@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -34,113 +35,121 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, timeout.yaml, #1
+                 //JavaQuery, timeout.yaml, #5
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "JavaScript query `while(true) {}` timed out after 5.000 seconds.", [0]) */
                  var expected_ = err("ReqlQueryLogicError", "JavaScript query `while(true) {}` timed out after 5.000 seconds.", r.array(0L));
                  
                  /* Original: r.js('while(true) {}') */
                  var obtained = runOrCatch( r.js("while(true) {}") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, timeout.yaml, #2
-                 /* ExpectedOriginal: err("ReqlQueryLogicError", "JavaScript query `while(true) {}` timed out after 1.300 seconds.", [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "JavaScript query `while(true) {}` timed out after 1.300 seconds.", r.array(0L));
+                    , conn);
                  
-                 /* Original: r.js('while(true) {}', timeout=1.3) */
-                 var obtained = runOrCatch( r.js("while(true) {}").optArg("timeout", 1.3) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, timeout.yaml, #3
-                 /* ExpectedOriginal: err("ReqlQueryLogicError", "JavaScript query `while(true) {}` timed out after 8.000 seconds.", [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "JavaScript query `while(true) {}` timed out after 8.000 seconds.", r.array(0L));
-                 
-                 /* Original: r.js('while(true) {}', timeout=8) */
-                 var obtained = runOrCatch( r.js("while(true) {}").optArg("timeout", 8L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, timeout.yaml, #4
-                 /* ExpectedOriginal: err("ReqlQueryLogicError", "JavaScript query `(function(x) { while(true) {} })` timed out after 5.000 seconds.", [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "JavaScript query `(function(x) { while(true) {} })` timed out after 5.000 seconds.", r.array(0L));
-                 
-                 /* Original: r.expr('foo').do(r.js('(function(x) { while(true) {} })')) */
-                 var obtained = runOrCatch( r.expr("foo").do_(r.js("(function(x) { while(true) {} })")) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, timeout.yaml, #5
-                 /* ExpectedOriginal: err("ReqlQueryLogicError", "JavaScript query `(function(x) { while(true) {} })` timed out after 1.300 seconds.", [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "JavaScript query `(function(x) { while(true) {} })` timed out after 1.300 seconds.", r.array(0L));
-                 
-                 /* Original: r.expr('foo').do(r.js('(function(x) { while(true) {} })', timeout=1.3)) */
-                 var obtained = runOrCatch( r.expr("foo").do_(r.js("(function(x) { while(true) {} })").optArg("timeout", 1.3)) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, timeout.yaml, #6
-                 /* ExpectedOriginal: err("ReqlQueryLogicError", "JavaScript query `(function(x) { while(true) {} })` timed out after 8.000 seconds.", [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "JavaScript query `(function(x) { while(true) {} })` timed out after 8.000 seconds.", r.array(0L));
-                 
-                 /* Original: r.expr('foo').do(r.js('(function(x) { while(true) {} })', timeout=8)) */
-                 var obtained = runOrCatch( r.expr("foo").do_(r.js("(function(x) { while(true) {} })").optArg("timeout", 8L)) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, timeout.yaml, #7
-                 /* ExpectedOriginal: err("ReqlNonExistenceError", "Error in HTTP GET of `httpbin.org/delay/10`:" + " timed out after 0.800 seconds.", []) */
-                 var expected_ = err("ReqlNonExistenceError", "Error in HTTP GET of `httpbin.org/delay/10`:" + " timed out after 0.800 seconds.", r.array());
-                 
-                 /* Original: r.http('httpbin.org/delay/10', timeout=0.8) */
-                 var obtained = runOrCatch( r.http("httpbin.org/delay/10").optArg("timeout", 0.8) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, timeout.yaml, #8
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "JavaScript query `while(true) {}` timed out after 1.300 seconds.", [0]) */
+                 var expected_ = err("ReqlQueryLogicError", "JavaScript query `while(true) {}` timed out after 1.300 seconds.", r.array(0L));
+                 
+                 /* Original: r.js('while(true) {}', timeout=1.3) */
+                 var obtained = runOrCatch( r.js("while(true) {}").optArg("timeout", 1.3) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, timeout.yaml, #13
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "JavaScript query `while(true) {}` timed out after 8.000 seconds.", [0]) */
+                 var expected_ = err("ReqlQueryLogicError", "JavaScript query `while(true) {}` timed out after 8.000 seconds.", r.array(0L));
+                 
+                 /* Original: r.js('while(true) {}', timeout=8) */
+                 var obtained = runOrCatch( r.js("while(true) {}").optArg("timeout", 8L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, timeout.yaml, #18
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "JavaScript query `(function(x) { while(true) {} })` timed out after 5.000 seconds.", [0]) */
+                 var expected_ = err("ReqlQueryLogicError", "JavaScript query `(function(x) { while(true) {} })` timed out after 5.000 seconds.", r.array(0L));
+                 
+                 /* Original: r.expr('foo').do(r.js('(function(x) { while(true) {} })')) */
+                 var obtained = runOrCatch( r.expr("foo").do_(r.js("(function(x) { while(true) {} })")) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, timeout.yaml, #21
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "JavaScript query `(function(x) { while(true) {} })` timed out after 1.300 seconds.", [0]) */
+                 var expected_ = err("ReqlQueryLogicError", "JavaScript query `(function(x) { while(true) {} })` timed out after 1.300 seconds.", r.array(0L));
+                 
+                 /* Original: r.expr('foo').do(r.js('(function(x) { while(true) {} })', timeout=1.3)) */
+                 var obtained = runOrCatch( r.expr("foo").do_(r.js("(function(x) { while(true) {} })").optArg("timeout", 1.3)) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, timeout.yaml, #26
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "JavaScript query `(function(x) { while(true) {} })` timed out after 8.000 seconds.", [0]) */
+                 var expected_ = err("ReqlQueryLogicError", "JavaScript query `(function(x) { while(true) {} })` timed out after 8.000 seconds.", r.array(0L));
+                 
+                 /* Original: r.expr('foo').do(r.js('(function(x) { while(true) {} })', timeout=8)) */
+                 var obtained = runOrCatch( r.expr("foo").do_(r.js("(function(x) { while(true) {} })").optArg("timeout", 8L)) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, timeout.yaml, #32
+                 /* ExpectedOriginal: err("ReqlNonExistenceError", "Error in HTTP GET of `httpbin.org/delay/10`:" + " timed out after 0.800 seconds.", []) */
+                 var expected_ = err("ReqlNonExistenceError", "Error in HTTP GET of `httpbin.org/delay/10`:" + " timed out after 0.800 seconds.", r.array());
+                 
+                 /* Original: r.http('httpbin.org/delay/10', timeout=0.8) */
+                 var obtained = runOrCatch( r.http("httpbin.org/delay/10").optArg("timeout", 0.8) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, timeout.yaml, #36
                  /* ExpectedOriginal: err("ReqlNonExistenceError", "Error in HTTP PUT of `httpbin.org/delay/10`:" + " timed out after 0.000 seconds.", []) */
                  var expected_ = err("ReqlNonExistenceError", "Error in HTTP PUT of `httpbin.org/delay/10`:" + " timed out after 0.000 seconds.", r.array());
                  
                  /* Original: r.http('httpbin.org/delay/10', method='PUT', timeout=0.0) */
                  var obtained = runOrCatch( r.http("httpbin.org/delay/10").optArg("method", "PUT").optArg("timeout", 0.0) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
 

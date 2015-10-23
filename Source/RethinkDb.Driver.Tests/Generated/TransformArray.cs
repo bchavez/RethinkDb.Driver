@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -32,25 +33,25 @@ namespace RethinkDb.Driver.Test.Generated {
         public void YamlTest(){
 
              
-             //JavaDef, transform/array.yaml, #1
+             //JavaDef, transform/array.yaml, #5
              //Original: arr = r.expr([1, 2, 3])
              
                  var arr = (MakeArray) (r.expr(r.array(1L, 2L, 3L)));
              
              
-             //JavaDef, transform/array.yaml, #2
+             //JavaDef, transform/array.yaml, #6
              //Original: dupe_arr = r.expr([1, 1, 2, 3])
              
                  var dupe_arr = (MakeArray) (r.expr(r.array(1L, 1L, 2L, 3L)));
              
              
-             //JavaDef, transform/array.yaml, #3
+             //JavaDef, transform/array.yaml, #7
              //Original: objArr = r.expr([{'a':1, 'b':'a'}, {'a':2, 'b':'b'}, {'a':3, 'b':'c'}])
              
                  var objArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"))));
              
              
-             //JavaDef, transform/array.yaml, #4
+             //JavaDef, transform/array.yaml, #8
              //Original: nestedObjArr = r.expr([{'a':1, 'b':{'c':1}}, {'a':2, 'b':{'c':2}}, {'a':3, 'b':{'c':3}}])
              
                  var nestedObjArr = (MakeArray) (r.expr(r.array(r.hashMap("a", 1L).with("b", r.hashMap("c", 1L)), r.hashMap("a", 2L).with("b", r.hashMap("c", 2L)), r.hashMap("a", 3L).with("b", r.hashMap("c", 3L)))));
@@ -58,453 +59,485 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #5
-                 /* ExpectedOriginal: [1, 2, 3, 4] */
+                 //JavaQuery, transform/array.yaml, #12
+                 /* ExpectedOriginal: [1,2,3,4] */
                  var expected_ = r.array(1L, 2L, 3L, 4L);
                  
                  /* Original: arr.append(4) */
                  var obtained = runOrCatch( arr.append(4L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #6
-                 /* ExpectedOriginal: [1, 2, 3, 'a'] */
-                 var expected_ = r.array(1L, 2L, 3L, "a");
+                    , conn);
                  
-                 /* Original: arr.append('a') */
-                 var obtained = runOrCatch( arr.append("a") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #7
-                 /* ExpectedOriginal: [0, 1, 2, 3] */
-                 var expected_ = r.array(0L, 1L, 2L, 3L);
-                 
-                 /* Original: arr.prepend(0) */
-                 var obtained = runOrCatch( arr.prepend(0L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #8
-                 /* ExpectedOriginal: ['a', 1, 2, 3] */
-                 var expected_ = r.array("a", 1L, 2L, 3L);
-                 
-                 /* Original: arr.prepend('a') */
-                 var obtained = runOrCatch( arr.prepend("a") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #9
-                 /* ExpectedOriginal: [3] */
-                 var expected_ = r.array(3L);
-                 
-                 /* Original: arr.difference([1,2,2]) */
-                 var obtained = runOrCatch( arr.difference(r.array(1L, 2L, 2L)) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #10
-                 /* ExpectedOriginal: [1, 2, 3] */
-                 var expected_ = r.array(1L, 2L, 3L);
-                 
-                 /* Original: arr.difference([]) */
-                 var obtained = runOrCatch( arr.difference(r.array()) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #11
-                 /* ExpectedOriginal: [1, 2, 3] */
-                 var expected_ = r.array(1L, 2L, 3L);
-                 
-                 /* Original: arr.difference(["foo", "bar"]) */
-                 var obtained = runOrCatch( arr.difference(r.array("foo", "bar")) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #12
-                 /* ExpectedOriginal: [1, 2, 3] */
-                 var expected_ = r.array(1L, 2L, 3L);
-                 
-                 /* Original: dupe_arr.set_insert(1) */
-                 var obtained = runOrCatch( dupe_arr.setInsert(1L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #13
-                 /* ExpectedOriginal: [1, 2, 3, 4] */
-                 var expected_ = r.array(1L, 2L, 3L, 4L);
-                 
-                 /* Original: dupe_arr.set_insert(4) */
-                 var obtained = runOrCatch( dupe_arr.setInsert(4L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #14
-                 /* ExpectedOriginal: [1, 2, 3, 4, 5] */
-                 var expected_ = r.array(1L, 2L, 3L, 4L, 5L);
+                 /* ExpectedOriginal: [1,2,3,'a'] */
+                 var expected_ = r.array(1L, 2L, 3L, "a");
                  
-                 /* Original: dupe_arr.set_union([3,4,5,5]) */
-                 var obtained = runOrCatch( dupe_arr.setUnion(r.array(3L, 4L, 5L, 5L)) ,
+                 /* Original: arr.append('a') */
+                 var obtained = runOrCatch( arr.append("a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #15
-                 /* ExpectedOriginal: [1, 2, 3, 5, 6] */
-                 var expected_ = r.array(1L, 2L, 3L, 5L, 6L);
+                    , conn);
                  
-                 /* Original: dupe_arr.set_union([5,6]) */
-                 var obtained = runOrCatch( dupe_arr.setUnion(r.array(5L, 6L)) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #16
-                 /* ExpectedOriginal: [1, 2] */
-                 var expected_ = r.array(1L, 2L);
-                 
-                 /* Original: dupe_arr.set_intersection([1,1,1,2,2]) */
-                 var obtained = runOrCatch( dupe_arr.setIntersection(r.array(1L, 1L, 1L, 2L, 2L)) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #17
-                 /* ExpectedOriginal: [] */
-                 var expected_ = r.array();
-                 
-                 /* Original: dupe_arr.set_intersection(["foo"]) */
-                 var obtained = runOrCatch( dupe_arr.setIntersection(r.array("foo")) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #18
-                 /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2L, 3L);
-                 
-                 /* Original: dupe_arr.set_difference([1,1,1,10]) */
-                 var obtained = runOrCatch( dupe_arr.setDifference(r.array(1L, 1L, 1L, 10L)) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #19
-                 /* ExpectedOriginal: [1, 3] */
-                 var expected_ = r.array(1L, 3L);
+                 /* ExpectedOriginal: [0,1,2,3] */
+                 var expected_ = r.array(0L, 1L, 2L, 3L);
                  
-                 /* Original: dupe_arr.set_difference([2]) */
-                 var obtained = runOrCatch( dupe_arr.setDifference(r.array(2L)) ,
+                 /* Original: arr.prepend(0) */
+                 var obtained = runOrCatch( arr.prepend(0L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #(20, 1)
-                 /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2L, 3L);
+                 //JavaQuery, transform/array.yaml, #21
+                 /* ExpectedOriginal: ['a',1,2,3] */
+                 var expected_ = r.array("a", 1L, 2L, 3L);
                  
-                 /* Original: arr[1:3] */
-                 var obtained = runOrCatch( arr.slice(1, 3) ,
+                 /* Original: arr.prepend('a') */
+                 var obtained = runOrCatch( arr.prepend("a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #(20, 2)
-                 /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2L, 3L);
+                    , conn);
                  
-                 /* Original: arr.slice(1, 3) */
-                 var obtained = runOrCatch( arr.slice(1L, 3L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #(20, 3)
-                 /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2L, 3L);
-                 
-                 /* Original: arr.slice(1, 2, right_bound='closed') */
-                 var obtained = runOrCatch( arr.slice(1L, 2L).optArg("right_bound", "closed") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #(21, 1)
-                 /* ExpectedOriginal: [1, 2] */
-                 var expected_ = r.array(1L, 2L);
-                 
-                 /* Original: arr[:2] */
-                 var obtained = runOrCatch( arr.slice(0, 2) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #(21, 2)
-                 /* ExpectedOriginal: [1, 2] */
-                 var expected_ = r.array(1L, 2L);
-                 
-                 /* Original: arr.slice(0,2) */
-                 var obtained = runOrCatch( arr.slice(0L, 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #(22, 1)
-                 /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2L, 3L);
-                 
-                 /* Original: arr[1:] */
-                 var obtained = runOrCatch( arr.slice(1, -1) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #(22, 2)
-                 /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2L, 3L);
-                 
-                 /* Original: arr.slice(1) */
-                 var obtained = runOrCatch( arr.slice(1L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #23
-                 /* ExpectedOriginal: [2] */
-                 var expected_ = r.array(2L);
-                 
-                 /* Original: arr.slice(-2, -1) */
-                 var obtained = runOrCatch( arr.slice(-2L, -1L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #24
-                 /* ExpectedOriginal: [2, 3] */
-                 var expected_ = r.array(2L, 3L);
-                 
-                 /* Original: arr.skip(1) */
-                 var obtained = runOrCatch( arr.skip(1L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #25
-                 /* ExpectedOriginal: [3] */
-                 var expected_ = r.array(3L);
-                 
-                 /* Original: arr.skip(2) */
-                 var obtained = runOrCatch( arr.skip(2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #26
-                 /* ExpectedOriginal: [] */
-                 var expected_ = r.array();
+                 /* ExpectedOriginal: [3] */
+                 var expected_ = r.array(3L);
                  
-                 /* Original: arr.skip(12) */
-                 var obtained = runOrCatch( arr.skip(12L) ,
+                 /* Original: arr.difference([1,2,2]) */
+                 var obtained = runOrCatch( arr.difference(r.array(1L, 2L, 2L)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #27
-                 /* ExpectedOriginal: [1, 2] */
-                 var expected_ = r.array(1L, 2L);
+                    , conn);
                  
-                 /* Original: arr.limit(2) */
-                 var obtained = runOrCatch( arr.limit(2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #28
-                 /* ExpectedOriginal: [] */
-                 var expected_ = r.array();
-                 
-                 /* Original: arr.limit(0) */
-                 var obtained = runOrCatch( arr.limit(0L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, transform/array.yaml, #29
-                 /* ExpectedOriginal: [1, 2, 3] */
+                 /* ExpectedOriginal: [1,2,3] */
                  var expected_ = r.array(1L, 2L, 3L);
                  
-                 /* Original: arr.limit(12) */
-                 var obtained = runOrCatch( arr.limit(12L) ,
+                 /* Original: arr.difference([]) */
+                 var obtained = runOrCatch( arr.difference(r.array()) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, transform/array.yaml, #30
-                 /* ExpectedOriginal: [{'b': 'a', 'a': 1}, {'b': 'b', 'a': 2}, {'b': 'c', 'a': 3}] */
-                 var expected_ = r.array(r.hashMap("b", "a").with("a", 1L), r.hashMap("b", "b").with("a", 2L), r.hashMap("b", "c").with("a", 3L));
+                 /* ExpectedOriginal: [1,2,3] */
+                 var expected_ = r.array(1L, 2L, 3L);
                  
-                 /* Original: objArr.pluck('a', 'b') */
-                 var obtained = runOrCatch( objArr.pluck("a", "b") ,
+                 /* Original: arr.difference(["foo", "bar"]) */
+                 var obtained = runOrCatch( arr.difference(r.array("foo", "bar")) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #31
-                 /* ExpectedOriginal: [{'a': 1}, {'a': 2}, {'a': 3}] */
+                 //JavaQuery, transform/array.yaml, #34
+                 /* ExpectedOriginal: [1,2,3] */
+                 var expected_ = r.array(1L, 2L, 3L);
+                 
+                 /* Original: dupe_arr.set_insert(1) */
+                 var obtained = runOrCatch( dupe_arr.setInsert(1L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #36
+                 /* ExpectedOriginal: [1,2,3,4] */
+                 var expected_ = r.array(1L, 2L, 3L, 4L);
+                 
+                 /* Original: dupe_arr.set_insert(4) */
+                 var obtained = runOrCatch( dupe_arr.setInsert(4L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #39
+                 /* ExpectedOriginal: [1,2,3,4,5] */
+                 var expected_ = r.array(1L, 2L, 3L, 4L, 5L);
+                 
+                 /* Original: dupe_arr.set_union([3,4,5,5]) */
+                 var obtained = runOrCatch( dupe_arr.setUnion(r.array(3L, 4L, 5L, 5L)) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #41
+                 /* ExpectedOriginal: [1,2,3,5,6] */
+                 var expected_ = r.array(1L, 2L, 3L, 5L, 6L);
+                 
+                 /* Original: dupe_arr.set_union([5,6]) */
+                 var obtained = runOrCatch( dupe_arr.setUnion(r.array(5L, 6L)) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #44
+                 /* ExpectedOriginal: [1,2] */
+                 var expected_ = r.array(1L, 2L);
+                 
+                 /* Original: dupe_arr.set_intersection([1,1,1,2,2]) */
+                 var obtained = runOrCatch( dupe_arr.setIntersection(r.array(1L, 1L, 1L, 2L, 2L)) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #46
+                 /* ExpectedOriginal: [] */
+                 var expected_ = r.array();
+                 
+                 /* Original: dupe_arr.set_intersection(["foo"]) */
+                 var obtained = runOrCatch( dupe_arr.setIntersection(r.array("foo")) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #49
+                 /* ExpectedOriginal: [2,3] */
+                 var expected_ = r.array(2L, 3L);
+                 
+                 /* Original: dupe_arr.set_difference([1,1,1,10]) */
+                 var obtained = runOrCatch( dupe_arr.setDifference(r.array(1L, 1L, 1L, 10L)) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #51
+                 /* ExpectedOriginal: [1,3] */
+                 var expected_ = r.array(1L, 3L);
+                 
+                 /* Original: dupe_arr.set_difference([2]) */
+                 var obtained = runOrCatch( dupe_arr.setDifference(r.array(2L)) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #58
+                 /* ExpectedOriginal: [2, 3] */
+                 var expected_ = r.array(2L, 3L);
+                 
+                 /* Original: arr[1:3] */
+                 var obtained = runOrCatch( arr.slice(1, 3) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #59
+                 /* ExpectedOriginal: [2, 3] */
+                 var expected_ = r.array(2L, 3L);
+                 
+                 /* Original: arr.slice(1, 3) */
+                 var obtained = runOrCatch( arr.slice(1L, 3L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #60
+                 /* ExpectedOriginal: [2, 3] */
+                 var expected_ = r.array(2L, 3L);
+                 
+                 /* Original: arr.slice(1, 2, right_bound='closed') */
+                 var obtained = runOrCatch( arr.slice(1L, 2L).optArg("right_bound", "closed") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #72
+                 /* ExpectedOriginal: [1,2] */
+                 var expected_ = r.array(1L, 2L);
+                 
+                 /* Original: arr[:2] */
+                 var obtained = runOrCatch( arr.slice(0, 2) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #73
+                 /* ExpectedOriginal: [1,2] */
+                 var expected_ = r.array(1L, 2L);
+                 
+                 /* Original: arr.slice(0,2) */
+                 var obtained = runOrCatch( arr.slice(0L, 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #81
+                 /* ExpectedOriginal: [2,3] */
+                 var expected_ = r.array(2L, 3L);
+                 
+                 /* Original: arr[1:] */
+                 var obtained = runOrCatch( arr.slice(1, -1).optArg("right_bound", "closed") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #82
+                 /* ExpectedOriginal: [2,3] */
+                 var expected_ = r.array(2L, 3L);
+                 
+                 /* Original: arr.slice(1) */
+                 var obtained = runOrCatch( arr.slice(1L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #89
+                 /* ExpectedOriginal: [2] */
+                 var expected_ = r.array(2L);
+                 
+                 /* Original: arr.slice(-2, -1) */
+                 var obtained = runOrCatch( arr.slice(-2L, -1L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #95
+                 /* ExpectedOriginal: [2,3] */
+                 var expected_ = r.array(2L, 3L);
+                 
+                 /* Original: arr.skip(1) */
+                 var obtained = runOrCatch( arr.skip(1L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #97
+                 /* ExpectedOriginal: [3] */
+                 var expected_ = r.array(3L);
+                 
+                 /* Original: arr.skip(2) */
+                 var obtained = runOrCatch( arr.skip(2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #99
+                 /* ExpectedOriginal: [] */
+                 var expected_ = r.array();
+                 
+                 /* Original: arr.skip(12) */
+                 var obtained = runOrCatch( arr.skip(12L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #104
+                 /* ExpectedOriginal: [1,2] */
+                 var expected_ = r.array(1L, 2L);
+                 
+                 /* Original: arr.limit(2) */
+                 var obtained = runOrCatch( arr.limit(2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #106
+                 /* ExpectedOriginal: [] */
+                 var expected_ = r.array();
+                 
+                 /* Original: arr.limit(0) */
+                 var obtained = runOrCatch( arr.limit(0L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #108
+                 /* ExpectedOriginal: [1,2,3] */
+                 var expected_ = r.array(1L, 2L, 3L);
+                 
+                 /* Original: arr.limit(12) */
+                 var obtained = runOrCatch( arr.limit(12L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #113
+                 /* ExpectedOriginal: [{'a':1, 'b':'a'}, {'a':2, 'b':'b'}, {'a':3, 'b':'c'}] */
+                 var expected_ = r.array(r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"));
+                 
+                 /* Original: objArr.pluck('a', 'b') */
+                 var obtained = runOrCatch( objArr.pluck("a", "b") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, transform/array.yaml, #115
+                 /* ExpectedOriginal: [{'a':1}, {'a':2}, {'a':3}] */
                  var expected_ = r.array(r.hashMap("a", 1L), r.hashMap("a", 2L), r.hashMap("a", 3L));
                  
                  /* Original: objArr.pluck('a') */
                  var obtained = runOrCatch( objArr.pluck("a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #32
+                 //JavaQuery, transform/array.yaml, #117
                  /* ExpectedOriginal: [{}, {}, {}] */
                  var expected_ = r.array(r.hashMap(), r.hashMap(), r.hashMap());
                  
                  /* Original: objArr.pluck() */
                  var obtained = runOrCatch( objArr.pluck() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              
-             //JavaDef, transform/array.yaml, #33
+             //JavaDef, transform/array.yaml, #121
              //Original: wftst = objArr.union(objArr.pluck('a')).union(objArr.pluck('b')).union([{'a':null}])
              
                  var wftst = (Union) (objArr.union(objArr.pluck("a")).union(objArr.pluck("b")).union(r.array(r.hashMap("a", null))));
@@ -512,61 +545,65 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #34
+                 //JavaQuery, transform/array.yaml, #122
                  /* ExpectedOriginal: ([{'a':1},{'a':2},{'a':3},{'a':1},{'a':2},{'a':3}]) */
                  var expected_ = r.array(r.hashMap("a", 1L), r.hashMap("a", 2L), r.hashMap("a", 3L), r.hashMap("a", 1L), r.hashMap("a", 2L), r.hashMap("a", 3L));
                  
                  /* Original: wftst.with_fields('a') */
                  var obtained = runOrCatch( wftst.withFields("a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #35
+                 //JavaQuery, transform/array.yaml, #124
                  /* ExpectedOriginal: ([{'b':'a'},{'b':'b'},{'b':'c'},{'b':'a'},{'b':'b'},{'b':'c'}]) */
                  var expected_ = r.array(r.hashMap("b", "a"), r.hashMap("b", "b"), r.hashMap("b", "c"), r.hashMap("b", "a"), r.hashMap("b", "b"), r.hashMap("b", "c"));
                  
                  /* Original: wftst.with_fields('b') */
                  var obtained = runOrCatch( wftst.withFields("b") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #36
+                 //JavaQuery, transform/array.yaml, #126
                  /* ExpectedOriginal: ([{'a':1,'b':'a'},{'a':2,'b':'b'},{'a':3,'b':'c'}]) */
                  var expected_ = r.array(r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"));
                  
                  /* Original: wftst.with_fields('a', 'b') */
                  var obtained = runOrCatch( wftst.withFields("a", "b") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #37
+                 //JavaQuery, transform/array.yaml, #128
                  /* ExpectedOriginal: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}] */
                  var expected_ = r.array(r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap(), r.hashMap());
                  
                  /* Original: wftst.with_fields() */
                  var obtained = runOrCatch( wftst.withFields() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              
-             //JavaDef, transform/array.yaml, #38
+             //JavaDef, transform/array.yaml, #131
              //Original: wftst2 = nestedObjArr.union(objArr.pluck({'b':'missing'})).union(nestedObjArr.pluck({'b':'c'}))
              
                  var wftst2 = (Union) (nestedObjArr.union(objArr.pluck(r.hashMap("b", "missing"))).union(nestedObjArr.pluck(r.hashMap("b", "c"))));
@@ -574,547 +611,586 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #39
+                 //JavaQuery, transform/array.yaml, #132
                  /* ExpectedOriginal: ([{'b':{'c':1}}, {'b':{'c':2}}, {'b':{'c':3}}, {'b':{'c':1}}, {'b':{'c':2}}, {'b':{'c':3}}]) */
                  var expected_ = r.array(r.hashMap("b", r.hashMap("c", 1L)), r.hashMap("b", r.hashMap("c", 2L)), r.hashMap("b", r.hashMap("c", 3L)), r.hashMap("b", r.hashMap("c", 1L)), r.hashMap("b", r.hashMap("c", 2L)), r.hashMap("b", r.hashMap("c", 3L)));
                  
                  /* Original: wftst2.with_fields({'b':'c'}) */
                  var obtained = runOrCatch( wftst2.withFields(r.hashMap("b", "c")) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #40
+                 //JavaQuery, transform/array.yaml, #135
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Invalid path argument `1`.", []) */
                  var expected_ = err("ReqlQueryLogicError", "Invalid path argument `1`.", r.array());
                  
                  /* Original: wftst.with_fields(1) */
                  var obtained = runOrCatch( wftst.withFields(1L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #41
+                 //JavaQuery, transform/array.yaml, #137
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform has_fields on a non-object non-sequence `1`.", []) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot perform has_fields on a non-object non-sequence `1`.", r.array());
                  
                  /* Original: r.expr(1).with_fields() */
                  var obtained = runOrCatch( r.expr(1L).withFields() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #42
+                 //JavaQuery, transform/array.yaml, #142
                  /* ExpectedOriginal: [{}, {}, {}] */
                  var expected_ = r.array(r.hashMap(), r.hashMap(), r.hashMap());
                  
                  /* Original: objArr.without('a', 'b') */
                  var obtained = runOrCatch( objArr.without("a", "b") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #43
-                 /* ExpectedOriginal: [{'b': 'a'}, {'b': 'b'}, {'b': 'c'}] */
+                 //JavaQuery, transform/array.yaml, #144
+                 /* ExpectedOriginal: [{'b':'a'}, {'b':'b'}, {'b':'c'}] */
                  var expected_ = r.array(r.hashMap("b", "a"), r.hashMap("b", "b"), r.hashMap("b", "c"));
                  
                  /* Original: objArr.without('a') */
                  var obtained = runOrCatch( objArr.without("a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #44
-                 /* ExpectedOriginal: [{'b': 'a', 'a': 1}, {'b': 'b', 'a': 2}, {'b': 'c', 'a': 3}] */
-                 var expected_ = r.array(r.hashMap("b", "a").with("a", 1L), r.hashMap("b", "b").with("a", 2L), r.hashMap("b", "c").with("a", 3L));
+                 //JavaQuery, transform/array.yaml, #146
+                 /* ExpectedOriginal: [{'a':1, 'b':'a'}, {'a':2, 'b':'b'}, {'a':3, 'b':'c'}] */
+                 var expected_ = r.array(r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"));
                  
                  /* Original: objArr.without() */
                  var obtained = runOrCatch( objArr.without() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #45
-                 /* ExpectedOriginal: [2, 3, 4] */
+                 //JavaQuery, transform/array.yaml, #151
+                 /* ExpectedOriginal: [2,3,4] */
                  var expected_ = r.array(2L, 3L, 4L);
                  
                  /* Original: arr.map(lambda v: v + 1) */
                  var obtained = runOrCatch( arr.map(v => r.add(v, 1L)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #46
+                 //JavaQuery, transform/array.yaml, #161
                  /* ExpectedOriginal: 6 */
                  var expected_ = 6L;
                  
                  /* Original: arr.reduce(lambda a, b: a + b) */
                  var obtained = runOrCatch( arr.reduce((a, b) => r.add(a, b)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #47
+                 //JavaQuery, transform/array.yaml, #166
                  /* ExpectedOriginal: 6 */
                  var expected_ = 6L;
                  
                  /* Original: arr.reduce(lambda a, b:a + b) */
                  var obtained = runOrCatch( arr.reduce((a, b) => r.add(a, b)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #48
+                 //JavaQuery, transform/array.yaml, #171
                  /* ExpectedOriginal: 12 */
                  var expected_ = 12L;
                  
                  /* Original: arr.union(arr).reduce(lambda a, b: a + b) */
                  var obtained = runOrCatch( arr.union(arr).reduce((a, b) => r.add(a, b)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #49
+                 //JavaQuery, transform/array.yaml, #176
                  /* ExpectedOriginal: 12 */
                  var expected_ = 12L;
                  
                  /* Original: arr.union(arr).reduce(lambda a, b:a + b) */
                  var obtained = runOrCatch( arr.union(arr).reduce((a, b) => r.add(a, b)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #50
-                 /* ExpectedOriginal: [{'b': 'b', 'a': 2}] */
-                 var expected_ = r.array(r.hashMap("b", "b").with("a", 2L));
+                 //JavaQuery, transform/array.yaml, #183
+                 /* ExpectedOriginal: [{'a':2, 'b':'b'}] */
+                 var expected_ = r.array(r.hashMap("a", 2L).with("b", "b"));
                  
                  /* Original: objArr.filter(lambda row: row['b'] == 'b') */
                  var obtained = runOrCatch( objArr.filter(row => row.bracket("b").eq("b")) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #51
-                 /* ExpectedOriginal: [1, 2, 1, 2, 1, 2] */
+                 //JavaQuery, transform/array.yaml, #190
+                 /* ExpectedOriginal: [1,2,1,2,1,2] */
                  var expected_ = r.array(1L, 2L, 1L, 2L, 1L, 2L);
                  
                  /* Original: arr.concat_map(lambda v: [1,2]) */
                  var obtained = runOrCatch( arr.concatMap(v => r.array(1L, 2L)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #52
-                 /* ExpectedOriginal: [{'v': 1}, {'v2': 2}, {'v': 2}, {'v2': 3}, {'v': 3}, {'v2': 4}] */
+                 //JavaQuery, transform/array.yaml, #194
+                 /* ExpectedOriginal: [{'v':1}, {'v2':2}, {'v':2}, {'v2':3}, {'v':3}, {'v2':4}] */
                  var expected_ = r.array(r.hashMap("v", 1L), r.hashMap("v2", 2L), r.hashMap("v", 2L), r.hashMap("v2", 3L), r.hashMap("v", 3L), r.hashMap("v2", 4L));
                  
                  /* Original: arr.concat_map(lambda v: [{'v':v}, {'v2':v + 1}]) */
                  var obtained = runOrCatch( arr.concatMap(v => r.array(r.hashMap("v", v), r.hashMap("v2", r.add(v, 1L)))) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #53
-                 /* ExpectedOriginal: [{'b': 'a', 'a': 1}, {'b': 'b', 'a': 2}, {'b': 'c', 'a': 3}] */
-                 var expected_ = r.array(r.hashMap("b", "a").with("a", 1L), r.hashMap("b", "b").with("a", 2L), r.hashMap("b", "c").with("a", 3L));
+                 //JavaQuery, transform/array.yaml, #201
+                 /* ExpectedOriginal: [{'a':1, 'b':'a'}, {'a':2, 'b':'b'}, {'a':3, 'b':'c'}] */
+                 var expected_ = r.array(r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"));
                  
                  /* Original: objArr.order_by('b') */
                  var obtained = runOrCatch( objArr.orderBy("b") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #54
-                 /* ExpectedOriginal: [{'b': 'c', 'a': 3}, {'b': 'b', 'a': 2}, {'b': 'a', 'a': 1}] */
-                 var expected_ = r.array(r.hashMap("b", "c").with("a", 3L), r.hashMap("b", "b").with("a", 2L), r.hashMap("b", "a").with("a", 1L));
+                 //JavaQuery, transform/array.yaml, #205
+                 /* ExpectedOriginal: [{'a':3, 'b':'c'}, {'a':2, 'b':'b'}, {'a':1, 'b':'a'}] */
+                 var expected_ = r.array(r.hashMap("a", 3L).with("b", "c"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 1L).with("b", "a"));
                  
                  /* Original: objArr.order_by(r.desc('b')) */
                  var obtained = runOrCatch( objArr.orderBy(r.desc("b")) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #55
-                 /* ExpectedOriginal: [{'-a': 1}, {'-a': 2}] */
+                 //JavaQuery, transform/array.yaml, #208
+                 /* ExpectedOriginal: [{'-a':1},{'-a':2}] */
                  var expected_ = r.array(r.hashMap("-a", 1L), r.hashMap("-a", 2L));
                  
                  /* Original: r.expr([{'-a':1},{'-a':2}]).order_by('-a') */
                  var obtained = runOrCatch( r.expr(r.array(r.hashMap("-a", 1L), r.hashMap("-a", 2L))).orderBy("-a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #56
-                 /* ExpectedOriginal: [1, 2, 3, 4] */
+                 //JavaQuery, transform/array.yaml, #216
+                 /* ExpectedOriginal: [1,2,3,4] */
                  var expected_ = r.array(1L, 2L, 3L, 4L);
                  
                  /* Original: r.expr([1,1,2,2,2,3,4]).distinct() */
                  var obtained = runOrCatch( r.expr(r.array(1L, 1L, 2L, 2L, 2L, 3L, 4L)).distinct() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #57
+                 //JavaQuery, transform/array.yaml, #223
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
                  
                  /* Original: objArr.count() */
                  var obtained = runOrCatch( objArr.count() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #58
-                 /* ExpectedOriginal: [1, 2, 3, {'b': 'a', 'a': 1}, {'b': 'b', 'a': 2}, {'b': 'c', 'a': 3}] */
-                 var expected_ = r.array(1L, 2L, 3L, r.hashMap("b", "a").with("a", 1L), r.hashMap("b", "b").with("a", 2L), r.hashMap("b", "c").with("a", 3L));
+                 //JavaQuery, transform/array.yaml, #228
+                 /* ExpectedOriginal: [1, 2, 3, {'a':1, 'b':'a'}, {'a':2, 'b':'b'}, {'a':3, 'b':'c'}] */
+                 var expected_ = r.array(1L, 2L, 3L, r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"));
                  
                  /* Original: arr.union(objArr) */
                  var obtained = runOrCatch( arr.union(objArr) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #(59, 1)
+                 //JavaQuery, transform/array.yaml, #234
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
                  /* Original: arr[1] */
                  var obtained = runOrCatch( arr.bracket(1L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #(59, 2)
+                 //JavaQuery, transform/array.yaml, #235
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
                  /* Original: arr.nth(1) */
                  var obtained = runOrCatch( arr.nth(1L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #60
+                 //JavaQuery, transform/array.yaml, #238
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
                  
                  /* Original: arr[0] */
                  var obtained = runOrCatch( arr.bracket(0L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #61
-                 /* ExpectedOriginal: True */
+                 //JavaQuery, transform/array.yaml, #245
+                 /* ExpectedOriginal: true */
                  var expected_ = true;
                  
                  /* Original: r.expr([]).is_empty() */
                  var obtained = runOrCatch( r.expr(r.array()).isEmpty() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #62
-                 /* ExpectedOriginal: False */
+                 //JavaQuery, transform/array.yaml, #247
+                 /* ExpectedOriginal: false */
                  var expected_ = false;
                  
                  /* Original: arr.is_empty() */
                  var obtained = runOrCatch( arr.isEmpty() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #63
-                 /* ExpectedOriginal: True */
+                 //JavaQuery, transform/array.yaml, #251
+                 /* ExpectedOriginal: true */
                  var expected_ = true;
                  
                  /* Original: arr.contains(2) */
                  var obtained = runOrCatch( arr.contains(2L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #64
-                 /* ExpectedOriginal: True */
+                 //JavaQuery, transform/array.yaml, #253
+                 /* ExpectedOriginal: true */
                  var expected_ = true;
                  
                  /* Original: arr.contains(2, 3) */
                  var obtained = runOrCatch( arr.contains(2L, 3L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #65
-                 /* ExpectedOriginal: False */
+                 //JavaQuery, transform/array.yaml, #255
+                 /* ExpectedOriginal: false */
                  var expected_ = false;
                  
                  /* Original: arr.contains(4) */
                  var obtained = runOrCatch( arr.contains(4L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #66
-                 /* ExpectedOriginal: False */
+                 //JavaQuery, transform/array.yaml, #257
+                 /* ExpectedOriginal: false */
                  var expected_ = false;
                  
                  /* Original: arr.contains(2, 4) */
                  var obtained = runOrCatch( arr.contains(2L, 4L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #67
-                 /* ExpectedOriginal: False */
+                 //JavaQuery, transform/array.yaml, #259
+                 /* ExpectedOriginal: false */
                  var expected_ = false;
                  
                  /* Original: arr.contains(2, 2) */
                  var obtained = runOrCatch( arr.contains(2L, 2L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #68
-                 /* ExpectedOriginal: True */
+                 //JavaQuery, transform/array.yaml, #261
+                 /* ExpectedOriginal: true */
                  var expected_ = true;
                  
                  /* Original: arr.union(arr).contains(2, 2) */
                  var obtained = runOrCatch( arr.union(arr).contains(2L, 2L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #69
-                 /* ExpectedOriginal: True */
+                 //JavaQuery, transform/array.yaml, #265
+                 /* ExpectedOriginal: true */
                  var expected_ = true;
                  
                  /* Original: arr.contains(lambda x:x == 2) */
                  var obtained = runOrCatch( arr.contains(x => r.eq(x, 2L)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #70
-                 /* ExpectedOriginal: True */
+                 //JavaQuery, transform/array.yaml, #269
+                 /* ExpectedOriginal: true */
                  var expected_ = true;
                  
                  /* Original: arr.contains(lambda x:x == 2, lambda x:x==3) */
                  var obtained = runOrCatch( arr.contains(x => r.eq(x, 2L), x => r.eq(x, 3L)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #71
-                 /* ExpectedOriginal: False */
+                 //JavaQuery, transform/array.yaml, #273
+                 /* ExpectedOriginal: false */
                  var expected_ = false;
                  
                  /* Original: arr.contains(lambda x:x == 4) */
                  var obtained = runOrCatch( arr.contains(x => r.eq(x, 4L)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #72
-                 /* ExpectedOriginal: False */
+                 //JavaQuery, transform/array.yaml, #277
+                 /* ExpectedOriginal: false */
                  var expected_ = false;
                  
                  /* Original: arr.contains(lambda x:x == 2, lambda x:x==4) */
                  var obtained = runOrCatch( arr.contains(x => r.eq(x, 2L), x => r.eq(x, 4L)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #73
-                 /* ExpectedOriginal: False */
+                 //JavaQuery, transform/array.yaml, #281
+                 /* ExpectedOriginal: false */
                  var expected_ = false;
                  
                  /* Original: arr.contains(lambda x:x == 2, lambda x:x==2) */
                  var obtained = runOrCatch( arr.contains(x => r.eq(x, 2L), x => r.eq(x, 2L)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #74
-                 /* ExpectedOriginal: True */
+                 //JavaQuery, transform/array.yaml, #285
+                 /* ExpectedOriginal: true */
                  var expected_ = true;
                  
                  /* Original: arr.union(arr).contains(lambda x:x == 2, lambda x:x==2) */
                  var obtained = runOrCatch( arr.union(arr).contains(x => r.eq(x, 2L), x => r.eq(x, 2L)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #75
+                 //JavaQuery, transform/array.yaml, #290
                  /* ExpectedOriginal: [1, 3] */
                  var expected_ = r.array(1L, 3L);
                  
                  /* Original: r.expr([{'a':1},{'b':2},{'a':3,'c':4}])['a'] */
                  var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1L), r.hashMap("b", 2L), r.hashMap("a", 3L).with("c", 4L))).bracket("a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, transform/array.yaml, #76
+                 //JavaQuery, transform/array.yaml, #293
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", []) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", r.array());
                  
                  /* Original: r.expr([{'a':1},'a',{'b':2},{'a':3,'c':4}])['a'] */
                  var obtained = runOrCatch( r.expr(r.array(r.hashMap("a", 1L), "a", r.hashMap("b", 2L), r.hashMap("a", 3L).with("c", 4L))).bracket("a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
 

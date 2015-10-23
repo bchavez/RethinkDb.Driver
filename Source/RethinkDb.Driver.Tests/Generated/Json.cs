@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -34,137 +35,146 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #1
-                 /* ExpectedOriginal: [1, 2, 3] */
+                 //JavaQuery, json.yaml, #4
+                 /* ExpectedOriginal: [1,2,3] */
                  var expected_ = r.array(1L, 2L, 3L);
                  
                  /* Original: r.json("[1,2,3]") */
                  var obtained = runOrCatch( r.json("[1,2,3]") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, json.yaml, #2
-                 /* ExpectedOriginal: 1 */
-                 var expected_ = 1L;
+                    , conn);
                  
-                 /* Original: r.json("1") */
-                 var obtained = runOrCatch( r.json("1") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, json.yaml, #3
-                 /* ExpectedOriginal: {} */
-                 var expected_ = r.hashMap();
-                 
-                 /* Original: r.json("{}") */
-                 var obtained = runOrCatch( r.json("{}") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, json.yaml, #4
-                 /* ExpectedOriginal: "foo" */
-                 var expected_ = "foo";
-                 
-                 /* Original: r.json('"foo"') */
-                 var obtained = runOrCatch( r.json("\"foo\"") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, json.yaml, #5
-                 /* ExpectedOriginal: err("ReqlQueryLogicError", 'Failed to parse "[1,2" as JSON:' + ' Missing a comma or \']\' after an array element.', [0]) */
-                 var expected_ = err("ReqlQueryLogicError", "Failed to parse \"[1,2\" as JSON:" + " Missing a comma or ']' after an array element.", r.array(0L));
-                 
-                 /* Original: r.json("[1,2") */
-                 var obtained = runOrCatch( r.json("[1,2") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, json.yaml, #6
-                 /* ExpectedOriginal: ('[1,2,3]') */
-                 var expected_ = "[1,2,3]";
-                 
-                 /* Original: r.json("[1,2,3]").to_json_string() */
-                 var obtained = runOrCatch( r.json("[1,2,3]").toJsonString() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, json.yaml, #7
-                 /* ExpectedOriginal: ('[1,2,3]') */
+                 /* ExpectedOriginal: 1 */
+                 var expected_ = 1L;
+                 
+                 /* Original: r.json("1") */
+                 var obtained = runOrCatch( r.json("1") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, json.yaml, #10
+                 /* ExpectedOriginal: {} */
+                 var expected_ = r.hashMap();
+                 
+                 /* Original: r.json("{}") */
+                 var obtained = runOrCatch( r.json("{}") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, json.yaml, #13
+                 /* ExpectedOriginal: "foo" */
+                 var expected_ = "foo";
+                 
+                 /* Original: r.json('"foo"') */
+                 var obtained = runOrCatch( r.json("\"foo\"") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, json.yaml, #16
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", 'Failed to parse "[1,2" as JSON:' + ' Missing a comma or \']\' after an array element.', [0]) */
+                 var expected_ = err("ReqlQueryLogicError", "Failed to parse \"[1,2\" as JSON:" + " Missing a comma or ']' after an array element.", r.array(0L));
+                 
+                 /* Original: r.json("[1,2") */
+                 var obtained = runOrCatch( r.json("[1,2") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, json.yaml, #19
+                 /* ExpectedOriginal: [1,2,3] */
+                 var expected_ = "[1,2,3]";
+                 
+                 /* Original: r.json("[1,2,3]").to_json_string() */
+                 var obtained = runOrCatch( r.json("[1,2,3]").toJsonString() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, json.yaml, #23
+                 /* ExpectedOriginal: [1,2,3] */
                  var expected_ = "[1,2,3]";
                  
                  /* Original: r.json("[1,2,3]").to_json() */
                  var obtained = runOrCatch( r.json("[1,2,3]").toJson() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #8
-                 /* ExpectedOriginal: ('{"foo":4}') */
+                 //JavaQuery, json.yaml, #26
+                 /* ExpectedOriginal: {"foo":4} */
                  var expected_ = "{\"foo\":4}";
                  
                  /* Original: r.json("{\"foo\":4}").to_json_string() */
                  var obtained = runOrCatch( r.json("{\"foo\":4}").toJsonString() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #9
-                 /* ExpectedOriginal: ('{"foo":4}') */
+                 //JavaQuery, json.yaml, #30
+                 /* ExpectedOriginal: {"foo":4} */
                  var expected_ = "{\"foo\":4}";
                  
                  /* Original: r.json("{\"foo\":4}").to_json() */
                  var obtained = runOrCatch( r.json("{\"foo\":4}").toJson() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              
-             //JavaDef, json.yaml, #10
+             //JavaDef, json.yaml, #34
              //Original: text = '[{"id":1,"first_name":"Harry","last_name":"Riley","email":"hriley0@usgs.gov","country":"Andorra","ip_address":"221.25.65.136"},{"id":2,"first_name":"Bonnie","last_name":"Anderson","email":"banderson1@list-manage.com","country":"Tuvalu","ip_address":"116.162.43.150"},{"id":3,"first_name":"Marie","last_name":"Schmidt","email":"mschmidt2@diigo.com","country":"Iraq","ip_address":"181.105.59.57"},{"id":4,"first_name":"Phillip","last_name":"Willis","email":"pwillis3@com.com","country":"Montenegro","ip_address":"24.223.139.156"}]'
              
                  var text = (String) ("[{\"id\":1,\"first_name\":\"Harry\",\"last_name\":\"Riley\",\"email\":\"hriley0@usgs.gov\",\"country\":\"Andorra\",\"ip_address\":\"221.25.65.136\"},{\"id\":2,\"first_name\":\"Bonnie\",\"last_name\":\"Anderson\",\"email\":\"banderson1@list-manage.com\",\"country\":\"Tuvalu\",\"ip_address\":\"116.162.43.150\"},{\"id\":3,\"first_name\":\"Marie\",\"last_name\":\"Schmidt\",\"email\":\"mschmidt2@diigo.com\",\"country\":\"Iraq\",\"ip_address\":\"181.105.59.57\"},{\"id\":4,\"first_name\":\"Phillip\",\"last_name\":\"Willis\",\"email\":\"pwillis3@com.com\",\"country\":\"Montenegro\",\"ip_address\":\"24.223.139.156\"}]");
              
              
-             //JavaDef, json.yaml, #11
+             //JavaDef, json.yaml, #35
              //Original: sorted = '[{"country":"Andorra","email":"hriley0@usgs.gov","first_name":"Harry","id":1,"ip_address":"221.25.65.136","last_name":"Riley"},{"country":"Tuvalu","email":"banderson1@list-manage.com","first_name":"Bonnie","id":2,"ip_address":"116.162.43.150","last_name":"Anderson"},{"country":"Iraq","email":"mschmidt2@diigo.com","first_name":"Marie","id":3,"ip_address":"181.105.59.57","last_name":"Schmidt"},{"country":"Montenegro","email":"pwillis3@com.com","first_name":"Phillip","id":4,"ip_address":"24.223.139.156","last_name":"Willis"}]'
              
                  var sorted = (String) ("[{\"country\":\"Andorra\",\"email\":\"hriley0@usgs.gov\",\"first_name\":\"Harry\",\"id\":1,\"ip_address\":\"221.25.65.136\",\"last_name\":\"Riley\"},{\"country\":\"Tuvalu\",\"email\":\"banderson1@list-manage.com\",\"first_name\":\"Bonnie\",\"id\":2,\"ip_address\":\"116.162.43.150\",\"last_name\":\"Anderson\"},{\"country\":\"Iraq\",\"email\":\"mschmidt2@diigo.com\",\"first_name\":\"Marie\",\"id\":3,\"ip_address\":\"181.105.59.57\",\"last_name\":\"Schmidt\"},{\"country\":\"Montenegro\",\"email\":\"pwillis3@com.com\",\"first_name\":\"Phillip\",\"id\":4,\"ip_address\":\"24.223.139.156\",\"last_name\":\"Willis\"}]");
@@ -172,132 +182,141 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #12
+                 //JavaQuery, json.yaml, #37
                  /* ExpectedOriginal: sorted */
                  var expected_ = sorted;
                  
                  /* Original: r.json(text).to_json_string() */
                  var obtained = runOrCatch( r.json(text).toJsonString() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #13
+                 //JavaQuery, json.yaml, #40
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert `r.minval` to JSON.') */
                  var expected_ = err("ReqlQueryLogicError", "Cannot convert `r.minval` to JSON.");
                  
                  /* Original: r.expr(r.minval).to_json_string() */
                  var obtained = runOrCatch( r.expr(r.minval()).toJsonString() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #14
+                 //JavaQuery, json.yaml, #43
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert `r.maxval` to JSON.') */
                  var expected_ = err("ReqlQueryLogicError", "Cannot convert `r.maxval` to JSON.");
                  
                  /* Original: r.expr(r.maxval).to_json_string() */
                  var obtained = runOrCatch( r.expr(r.maxval()).toJsonString() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #15
+                 //JavaQuery, json.yaml, #46
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert `r.minval` to JSON.') */
                  var expected_ = err("ReqlQueryLogicError", "Cannot convert `r.minval` to JSON.");
                  
                  /* Original: r.expr(r.minval).coerce_to('string') */
                  var obtained = runOrCatch( r.expr(r.minval()).coerceTo("string") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #16
+                 //JavaQuery, json.yaml, #49
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot convert `r.maxval` to JSON.') */
                  var expected_ = err("ReqlQueryLogicError", "Cannot convert `r.maxval` to JSON.");
                  
                  /* Original: r.expr(r.maxval).coerce_to('string') */
                  var obtained = runOrCatch( r.expr(r.maxval()).coerceTo("string") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #17
-                 /* ExpectedOriginal: ({'timezone':'+00:00','$reql_type$':'TIME','epoch_time':1410393600}) */
+                 //JavaQuery, json.yaml, #52
+                 /* ExpectedOriginal: {'timezone':'+00:00','$reql_type$':'TIME','epoch_time':1410393600} */
                  var expected_ = r.hashMap("timezone", "+00:00").with("$reql_type$", "TIME").with("epoch_time", 1410393600L);
                  
                  /* Original: r.time(2014,9,11, 'Z') */
                  var obtained = runOrCatch( r.time(2014L, 9L, 11L, "Z") ,
                                             new OptArgs()
                      .with("time_format", "raw")
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #18
-                 /* ExpectedOriginal: ('{"$reql_type$":"TIME","epoch_time":1410393600,"timezone":"+00:00"}') */
+                 //JavaQuery, json.yaml, #57
+                 /* ExpectedOriginal: {"$reql_type$":"TIME","epoch_time":1410393600,"timezone":"+00:00"} */
                  var expected_ = "{\"$reql_type$\":\"TIME\",\"epoch_time\":1410393600,\"timezone\":\"+00:00\"}";
                  
                  /* Original: r.time(2014,9,11, 'Z').to_json_string() */
                  var obtained = runOrCatch( r.time(2014L, 9L, 11L, "Z").toJsonString() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #19
-                 /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY','coordinates':[0,0],'type':'Point'}) */
+                 //JavaQuery, json.yaml, #60
+                 /* ExpectedOriginal: {'$reql_type$':'GEOMETRY','coordinates':[0,0],'type':'Point'} */
                  var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(0L, 0L)).with("type", "Point");
                  
                  /* Original: r.point(0,0) */
                  var obtained = runOrCatch( r.point(0L, 0L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #20
-                 /* ExpectedOriginal: ('{"$reql_type$":"GEOMETRY","coordinates":[0,0],"type":"Point"}') */
+                 //JavaQuery, json.yaml, #63
+                 /* ExpectedOriginal: {"$reql_type$":"GEOMETRY","coordinates":[0,0],"type":"Point"} */
                  var expected_ = "{\"$reql_type$\":\"GEOMETRY\",\"coordinates\":[0,0],\"type\":\"Point\"}";
                  
                  /* Original: r.point(0,0).to_json_string() */
                  var obtained = runOrCatch( r.point(0L, 0L).toJsonString() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              
-             //JavaDef, json.yaml, #21
+             //JavaDef, json.yaml, #68
              //Original: s = b'\x66\x6f\x6f'
              
                  var s = (byte[]) (new byte[] { 102, 111, 111 });
@@ -305,29 +324,31 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #22
-                 /* ExpectedOriginal: (s) */
+                 //JavaQuery, json.yaml, #70
+                 /* ExpectedOriginal: s */
                  var expected_ = s;
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertArrayEquals(expected_, (byte[]) obtained);
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, json.yaml, #23
-                 /* ExpectedOriginal: ('{"$reql_type$":"BINARY","data":"Zm9v"}') */
+                 //JavaQuery, json.yaml, #73
+                 /* ExpectedOriginal: {"$reql_type$":"BINARY","data":"Zm9v"} */
                  var expected_ = "{\"$reql_type$\":\"BINARY\",\"data\":\"Zm9v\"}";
                  
                  /* Original: r.expr("foo").coerce_to("binary").to_json_string() */
                  var obtained = runOrCatch( r.expr("foo").coerceTo("binary").toJsonString() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
 

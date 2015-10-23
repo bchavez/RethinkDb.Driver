@@ -2,7 +2,7 @@ ModuleName: DatumNull
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/null.yaml
-  TestNum: 1
+  LineNum: 6
   Original: r.expr(null)
   Java: r.expr((ReqlExpr) null)
   ExpectedOriginal: (null)
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/null.yaml
-  TestNum: 2
+  LineNum: 9
   Original: r.expr(null).type_of()
   Java: r.expr((ReqlExpr) null).typeOf()
   ExpectedOriginal: 'NULL'
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/null.yaml
-  TestNum: 3
+  LineNum: 14
   Original: r.expr(null).coerce_to('string')
   Java: r.expr((ReqlExpr) null).coerceTo("string")
   ExpectedOriginal: 'null'
@@ -29,10 +29,10 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/null.yaml
-  TestNum: 4
+  LineNum: 17
   Original: r.expr(null).coerce_to('null')
   Java: r.expr((ReqlExpr) null).coerceTo("null")
-  ExpectedOriginal: (null)
+  ExpectedOriginal: null
   ExpectedType: Object
   ExpectedJava: null
   RunOpts: []

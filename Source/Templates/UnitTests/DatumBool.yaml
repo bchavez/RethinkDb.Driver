@@ -2,25 +2,25 @@ ModuleName: DatumBool
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
-  TestNum: 1
+  LineNum: 3
   Original: r.expr(True)
   Java: r.expr(true)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
-  TestNum: 2
+  LineNum: 10
   Original: r.expr(False)
   Java: r.expr(false)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
-  TestNum: 3
+  LineNum: 17
   Original: r.expr(False).type_of()
   Java: r.expr(false).typeOf()
   ExpectedOriginal: 'BOOL'
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
-  TestNum: 4
+  LineNum: 21
   Original: r.expr(True).coerce_to('string')
   Java: r.expr(true).coerceTo("string")
   ExpectedOriginal: 'true'
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/bool.yaml
-  TestNum: 5
+  LineNum: 24
   Original: r.expr(True).coerce_to('bool')
   Java: r.expr(true).coerceTo("bool")
   ExpectedOriginal: True

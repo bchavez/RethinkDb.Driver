@@ -2,7 +2,7 @@ ModuleName: GeoPrimitives
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: geo/primitives.yaml
-  TestNum: 1
+  LineNum: 5
   Original: r.circle([0,0], 1, num_vertices=3)
   Java: r.circle(r.array(0L, 0L), 1L).optArg("num_vertices", 3L)
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'})
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/primitives.yaml
-  TestNum: 2
+  LineNum: 10
   Original: r.circle(r.point(0,0), 1, num_vertices=3)
   Java: r.circle(r.point(0L, 0L), 1L).optArg("num_vertices", 3L)
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'})
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/primitives.yaml
-  TestNum: 3
+  LineNum: 15
   Original: r.circle([0,0], 1, num_vertices=3, fill=false)
   Java: r.circle(r.array(0L, 0L), 1L).optArg("num_vertices", 3L).optArg("fill", false)
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]], 'type':'LineString'})
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/primitives.yaml
-  TestNum: 4
+  LineNum: 20
   Original: r.circle([0,0], 14000000, num_vertices=3)
   Java: r.circle(r.array(0L, 0L), 14000000L).optArg("num_vertices", 3L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Radius must be smaller than a quarter of the circumference along the minor axis of the reference ellipsoid.  Got 14000000m, but must be smaller than 9985163.1855612862855m.', [0])
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/primitives.yaml
-  TestNum: 5
+  LineNum: 25
   Original: r.circle([0,0], 1, num_vertices=3, geo_system='WGS84')
   Java: r.circle(r.array(0L, 0L), 1L).optArg("num_vertices", 3L).optArg("geo_system", "WGS84")
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'})
@@ -47,7 +47,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/primitives.yaml
-  TestNum: 6
+  LineNum: 30
   Original: r.circle([0,0], 2, num_vertices=3, geo_system='unit_sphere')
   Java: r.circle(r.array(0L, 0L), 2L).optArg("num_vertices", 3L).optArg("geo_system", "unit_sphere")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Radius must be smaller than a quarter of the circumference along the minor axis of the reference ellipsoid.  Got 2m, but must be smaller than 1.570796326794896558m.', [0])
@@ -56,7 +56,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/primitives.yaml
-  TestNum: 7
+  LineNum: 35
   Original: r.circle([0,0], 0.1, num_vertices=3, geo_system='unit_sphere')
   Java: r.circle(r.array(0L, 0L), 0.1).optArg("num_vertices", 3L).optArg("geo_system", "unit_sphere")
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -5.729577951308232], [-4.966092947444857, 2.861205754495701], [4.966092947444857, 2.861205754495701], [0, -5.729577951308232]]], 'type':'Polygon'})
@@ -65,7 +65,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/primitives.yaml
-  TestNum: 8
+  LineNum: 42
   Original: r.circle([0,0], 1.0/1000.0, num_vertices=3, unit='km')
   Java: r.circle(r.array(0L, 0L), r.div(1.0, 1000.0)).optArg("num_vertices", 3L).optArg("unit", "km")
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'})
@@ -74,7 +74,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/primitives.yaml
-  TestNum: 9
+  LineNum: 47
   Original: r.circle([0,0], 1.0/1609.344, num_vertices=3, unit='mi')
   Java: r.circle(r.array(0L, 0L), r.div(1.0, 1609.344)).optArg("num_vertices", 3L).optArg("unit", "mi")
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'})

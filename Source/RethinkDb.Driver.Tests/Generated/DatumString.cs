@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -34,1416 +35,1516 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, datum/string.yaml, #1
-                 /* ExpectedOriginal: str */
+                 //JavaQuery, datum/string.yaml, #8
+                 /* ExpectedOriginal: "str" */
                  var expected_ = "str";
                  
                  /* Original: r.expr('str') */
                  var obtained = runOrCatch( r.expr("str") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #2
-                 /* ExpectedOriginal: "str" */
-                 var expected_ = "str";
+                    , conn);
                  
-                 /* Original: r.expr("str") */
-                 var obtained = runOrCatch( r.expr("str") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #3
-                 /* ExpectedOriginal: str */
-                 var expected_ = "str";
-                 
-                 /* Original: r.expr(u'str') */
-                 var obtained = runOrCatch( r.expr("str") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #4
-                 /* ExpectedOriginal: 'こんにちは' */
-                 var expected_ = "\u3053\u3093\u306b\u3061\u306f";
-                 
-                 /* Original: r.expr(u'こんにちは') */
-                 var obtained = runOrCatch( r.expr("\u3053\u3093\u306b\u3061\u306f") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #5
-                 /* ExpectedOriginal: STRING */
-                 var expected_ = "STRING";
-                 
-                 /* Original: r.expr('foo').type_of() */
-                 var obtained = runOrCatch( r.expr("foo").typeOf() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #6
-                 /* ExpectedOriginal: ('foo') */
-                 var expected_ = "foo";
-                 
-                 /* Original: r.expr('foo').coerce_to('string') */
-                 var obtained = runOrCatch( r.expr("foo").coerceTo("string") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #7
-                 /* ExpectedOriginal: -1.2 */
-                 var expected_ = -1.2;
-                 
-                 /* Original: r.expr('-1.2').coerce_to('NUMBER') */
-                 var obtained = runOrCatch( r.expr("-1.2").coerceTo("NUMBER") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #8
-                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Could not coerce `--1.2` to NUMBER.", []) */
-                 var expected_ = err("ReqlQueryLogicError", "Could not coerce `--1.2` to NUMBER.", r.array());
-                 
-                 /* Original: r.expr('--1.2').coerce_to('NUMBER') */
-                 var obtained = runOrCatch( r.expr("--1.2").coerceTo("NUMBER") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #9
-                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Could not coerce `-1.2-` to NUMBER.", []) */
-                 var expected_ = err("ReqlQueryLogicError", "Could not coerce `-1.2-` to NUMBER.", r.array());
-                 
-                 /* Original: r.expr('-1.2-').coerce_to('NUMBER') */
-                 var obtained = runOrCatch( r.expr("-1.2-").coerceTo("NUMBER") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #10
-                 /* ExpectedOriginal: 10 */
-                 var expected_ = 10L;
-                 
-                 /* Original: r.expr('0xa').coerce_to('NUMBER') */
-                 var obtained = runOrCatch( r.expr("0xa").coerceTo("NUMBER") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #11
-                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Non-finite number: inf", [])
- */
-                 var expected_ = err("ReqlQueryLogicError", "Non-finite number: inf", r.array());
-                 
-                 /* Original: r.expr('inf').coerce_to('NUMBER') */
-                 var obtained = runOrCatch( r.expr("inf").coerceTo("NUMBER") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #12
-                 /* ExpectedOriginal: ([]) */
-                 var expected_ = r.array();
-                 
-                 /* Original: r.expr('').split() */
-                 var obtained = runOrCatch( r.expr("").split() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #13
-                 /* ExpectedOriginal: ([]) */
-                 var expected_ = r.array();
+                 /* ExpectedOriginal: "str" */
+                 var expected_ = "str";
                  
-                 /* Original: r.expr('').split(null) */
-                 var obtained = runOrCatch( r.expr("").split((ReqlExpr) null) ,
+                 /* Original: r.expr("str") */
+                 var obtained = runOrCatch( r.expr("str") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #14
-                 /* ExpectedOriginal: (['']) */
-                 var expected_ = r.array("");
+                    , conn);
                  
-                 /* Original: r.expr('').split(' ') */
-                 var obtained = runOrCatch( r.expr("").split(" ") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #15
-                 /* ExpectedOriginal: ([]) */
-                 var expected_ = r.array();
-                 
-                 /* Original: r.expr('').split('') */
-                 var obtained = runOrCatch( r.expr("").split("") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #16
-                 /* ExpectedOriginal: ([]) */
-                 var expected_ = r.array();
-                 
-                 /* Original: r.expr('').split(null, 5) */
-                 var obtained = runOrCatch( r.expr("").split((ReqlExpr) null, 5L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #17
-                 /* ExpectedOriginal: (['']) */
-                 var expected_ = r.array("");
-                 
-                 /* Original: r.expr('').split(' ', 5) */
-                 var obtained = runOrCatch( r.expr("").split(" ", 5L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #18
-                 /* ExpectedOriginal: ([]) */
-                 var expected_ = r.array();
-                 
-                 /* Original: r.expr('').split('', 5) */
-                 var obtained = runOrCatch( r.expr("").split("", 5L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #19
-                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc']) */
-                 var expected_ = r.array("aaaa", "bbbb", "cccc");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc ').split() */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #20
-                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc']) */
-                 var expected_ = r.array("aaaa", "bbbb", "cccc");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc ').split(null) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #21
-                 /* ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', '']) */
-                 var expected_ = r.array("aaaa", "bbbb", "", "cccc", "");
+                 /* ExpectedOriginal: str */
+                 var expected_ = "str";
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split(' ') */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ") ,
+                 /* Original: r.expr(u'str') */
+                 var obtained = runOrCatch( r.expr("str") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #22
-                 /* ExpectedOriginal: (['a', 'a', 'a', 'a', ' ', 'b', 'b', 'b', 'b', ' ', ' ', 'c', 'c', 'c', 'c', ' ']) */
-                 var expected_ = r.array("a", "a", "a", "a", " ", "b", "b", "b", "b", " ", " ", "c", "c", "c", "c", " ");
+                    , conn);
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split('') */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #23
-                 /* ExpectedOriginal: (['aaaa ', '', '', '', '  cccc ']) */
-                 var expected_ = r.array("aaaa ", "", "", "", "  cccc ");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc ').split('b') */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #24
-                 /* ExpectedOriginal: (['aaaa ', '', '  cccc ']) */
-                 var expected_ = r.array("aaaa ", "", "  cccc ");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc ').split('bb') */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #25
-                 /* ExpectedOriginal: (['aaaa', 'cccc ']) */
-                 var expected_ = r.array("aaaa", "cccc ");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ') */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #26
-                 /* ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f']) */
-                 var expected_ = r.array("aaaa ", "", "  cccc b d ", " e ", "", " f");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb') */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #27
-                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f']) */
-                 var expected_ = r.array("aaaa", "cccc b d bb e bbbb f");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ') */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #28
-                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f']) */
-                 var expected_ = r.array("aaaa", "cccc b d bb e", "f");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ') */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #29
-                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc']) */
-                 var expected_ = r.array("aaaa", "bbbb", "cccc");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc ').split(null, 3) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 3L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #30
-                 /* ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', '']) */
-                 var expected_ = r.array("aaaa", "bbbb", "", "cccc", "");
+                 /* ExpectedOriginal: 'こんにちは' */
+                 var expected_ = "\u3053\u3093\u306b\u3061\u306f";
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split(' ', 5) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 5L) ,
+                 /* Original: r.expr(u'こんにちは') */
+                 var obtained = runOrCatch( r.expr("\u3053\u3093\u306b\u3061\u306f") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #31
-                 /* ExpectedOriginal: (['a', 'a', 'a', 'a', ' ', 'bbbb  cccc ']) */
-                 var expected_ = r.array("a", "a", "a", "a", " ", "bbbb  cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split('', 5) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 5L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #32
-                 /* ExpectedOriginal: (['aaaa ', '', '', '', '  cccc ']) */
-                 var expected_ = r.array("aaaa ", "", "", "", "  cccc ");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc ').split('b', 5) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 5L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #33
-                 /* ExpectedOriginal: (['aaaa ', '', '  cccc ']) */
-                 var expected_ = r.array("aaaa ", "", "  cccc ");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc ').split('bb', 3) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 3L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #34
-                 /* ExpectedOriginal: (['aaaa', 'cccc ']) */
-                 var expected_ = r.array("aaaa", "cccc ");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #35
-                 /* ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f']) */
-                 var expected_ = r.array("aaaa ", "", "  cccc b d ", " e ", "", " f");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #36
-                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f']) */
-                 var expected_ = r.array("aaaa", "cccc b d bb e bbbb f");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #37
-                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f']) */
-                 var expected_ = r.array("aaaa", "cccc b d bb e", "f");
+                 /* ExpectedOriginal: STRING */
+                 var expected_ = "STRING";
                  
-                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3L) ,
+                 /* Original: r.expr('foo').type_of() */
+                 var obtained = runOrCatch( r.expr("foo").typeOf() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #38
-                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc ']) */
-                 var expected_ = r.array("aaaa", "bbbb", "cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split(null, 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #39
-                 /* ExpectedOriginal: (["a", "b"]) */
-                 var expected_ = r.array("a", "b");
-                 
-                 /* Original: r.expr("a  b  ").split(null, 2) */
-                 var obtained = runOrCatch( r.expr("a  b  ").split((ReqlExpr) null, 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #40
-                 /* ExpectedOriginal: (['aaaa', 'bbbb', '', 'cccc', '']) */
-                 var expected_ = r.array("aaaa", "bbbb", "", "cccc", "");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc ').split(' ', 4) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 4L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #41
-                 /* ExpectedOriginal: (['a', 'a', 'a', 'a', ' bbbb  cccc ']) */
-                 var expected_ = r.array("a", "a", "a", "a", " bbbb  cccc ");
+                 /* ExpectedOriginal: foo */
+                 var expected_ = "foo";
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split('', 4) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 4L) ,
+                 /* Original: r.expr('foo').coerce_to('string') */
+                 var obtained = runOrCatch( r.expr("foo").coerceTo("string") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #42
-                 /* ExpectedOriginal: (['aaaa ', '', '', '', '  cccc ']) */
-                 var expected_ = r.array("aaaa ", "", "", "", "  cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split('b', 4) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 4L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #43
-                 /* ExpectedOriginal: (['aaaa ', '', '  cccc ']) */
-                 var expected_ = r.array("aaaa ", "", "  cccc ");
+                 /* ExpectedOriginal: -1.2 */
+                 var expected_ = -1.2;
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split('bb', 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 2L) ,
+                 /* Original: r.expr('-1.2').coerce_to('NUMBER') */
+                 var obtained = runOrCatch( r.expr("-1.2").coerceTo("NUMBER") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #44
-                 /* ExpectedOriginal: (['aaaa', 'cccc ']) */
-                 var expected_ = r.array("aaaa", "cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 1) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 1L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #45
-                 /* ExpectedOriginal: (['aaaa ', '', '  cccc b d ', ' e ', '', ' f']) */
-                 var expected_ = r.array("aaaa ", "", "  cccc b d ", " e ", "", " f");
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Could not coerce `--1.2` to NUMBER.", []) */
+                 var expected_ = err("ReqlQueryLogicError", "Could not coerce `--1.2` to NUMBER.", r.array());
                  
-                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5L) ,
+                 /* Original: r.expr('--1.2').coerce_to('NUMBER') */
+                 var obtained = runOrCatch( r.expr("--1.2").coerceTo("NUMBER") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #46
-                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f']) */
-                 var expected_ = r.array("aaaa", "cccc b d bb e bbbb f");
+                    , conn);
                  
-                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #47
-                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f']) */
-                 var expected_ = r.array("aaaa", "cccc b d bb e", "f");
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Could not coerce `-1.2-` to NUMBER.", []) */
+                 var expected_ = err("ReqlQueryLogicError", "Could not coerce `-1.2-` to NUMBER.", r.array());
                  
-                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L) ,
+                 /* Original: r.expr('-1.2-').coerce_to('NUMBER') */
+                 var obtained = runOrCatch( r.expr("-1.2-").coerceTo("NUMBER") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #48
-                 /* ExpectedOriginal: (['aaaa', 'bbbb  cccc ']) */
-                 var expected_ = r.array("aaaa", "bbbb  cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split(null, 1) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 1L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #49
-                 /* ExpectedOriginal: (['aaaa', 'bbbb', ' cccc ']) */
-                 var expected_ = r.array("aaaa", "bbbb", " cccc ");
+                 /* ExpectedOriginal: 10 */
+                 var expected_ = 10L;
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split(' ', 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 2L) ,
+                 /* Original: r.expr('0xa').coerce_to('NUMBER') */
+                 var obtained = runOrCatch( r.expr("0xa").coerceTo("NUMBER") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #50
-                 /* ExpectedOriginal: (['a', 'a', 'aa bbbb  cccc ']) */
-                 var expected_ = r.array("a", "a", "aa bbbb  cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split('', 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #51
-                 /* ExpectedOriginal: (['aaaa ', '', 'bb  cccc ']) */
-                 var expected_ = r.array("aaaa ", "", "bb  cccc ");
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Non-finite number: inf", []) */
+                 var expected_ = err("ReqlQueryLogicError", "Non-finite number: inf", r.array());
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split('b', 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 2L) ,
+                 /* Original: r.expr('inf').coerce_to('NUMBER') */
+                 var obtained = runOrCatch( r.expr("inf").coerceTo("NUMBER") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #52
-                 /* ExpectedOriginal: (['aaaa ', '', '  cccc ']) */
-                 var expected_ = r.array("aaaa ", "", "  cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('aaaa bbbb  cccc ').split('bb', 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #53
-                 /* ExpectedOriginal: (['aaaa', 'cccc ']) */
-                 var expected_ = r.array("aaaa", "cccc ");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #54
-                 /* ExpectedOriginal: (['aaaa ', '', '  cccc b d bb e bbbb f']) */
-                 var expected_ = r.array("aaaa ", "", "  cccc b d bb e bbbb f");
-                 
-                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #55
-                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e bbbb f']) */
-                 var expected_ = r.array("aaaa", "cccc b d bb e bbbb f");
+                 /* ExpectedOriginal: [] */
+                 var expected_ = r.array();
                  
-                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L) ,
+                 /* Original: r.expr('').split() */
+                 var obtained = runOrCatch( r.expr("").split() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #56
-                 /* ExpectedOriginal: (['aaaa', 'cccc b d bb e', 'f']) */
-                 var expected_ = r.array("aaaa", "cccc b d bb e", "f");
+                    , conn);
                  
-                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
-                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #57
-                 /* ExpectedOriginal: ([]) */
+                 /* ExpectedOriginal: [] */
                  var expected_ = r.array();
                  
-                 /* Original: r.expr('  ').split() */
-                 var obtained = runOrCatch( r.expr("  ").split() ,
+                 /* Original: r.expr('').split(null) */
+                 var obtained = runOrCatch( r.expr("").split((ReqlExpr) null) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #58
-                 /* ExpectedOriginal: ([]) */
-                 var expected_ = r.array();
+                    , conn);
                  
-                 /* Original: r.expr('  ').split(null) */
-                 var obtained = runOrCatch( r.expr("  ").split((ReqlExpr) null) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #59
-                 /* ExpectedOriginal: (['', '', '']) */
-                 var expected_ = r.array("", "", "");
+                 /* ExpectedOriginal: [''] */
+                 var expected_ = r.array("");
                  
-                 /* Original: r.expr('  ').split(' ') */
-                 var obtained = runOrCatch( r.expr("  ").split(" ") ,
+                 /* Original: r.expr('').split(' ') */
+                 var obtained = runOrCatch( r.expr("").split(" ") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #60
-                 /* ExpectedOriginal: ([]) */
-                 var expected_ = r.array();
+                    , conn);
                  
-                 /* Original: r.expr('  ').split(null, 5) */
-                 var obtained = runOrCatch( r.expr("  ").split((ReqlExpr) null, 5L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #61
-                 /* ExpectedOriginal: (['', '', '']) */
-                 var expected_ = r.array("", "", "");
+                 /* ExpectedOriginal: [] */
+                 var expected_ = r.array();
                  
-                 /* Original: r.expr('  ').split(' ', 5) */
-                 var obtained = runOrCatch( r.expr("  ").split(" ", 5L) ,
+                 /* Original: r.expr('').split('') */
+                 var obtained = runOrCatch( r.expr("").split("") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #62
-                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc']) */
-                 var expected_ = r.array("aaaa", "bbbb", "cccc");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split() */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #63
-                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc']) */
-                 var expected_ = r.array("aaaa", "bbbb", "cccc");
+                 /* ExpectedOriginal: [] */
+                 var expected_ = r.array();
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split(null) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null) ,
+                 /* Original: r.expr('').split(null, 5) */
+                 var obtained = runOrCatch( r.expr("").split((ReqlExpr) null, 5L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #64
-                 /* ExpectedOriginal: (['', '', 'aaaa', 'bbbb', '', 'cccc', '']) */
-                 var expected_ = r.array("", "", "aaaa", "bbbb", "", "cccc", "");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' ') */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #65
-                 /* ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc ']) */
-                 var expected_ = r.array("  aaaa ", "", "", "", "  cccc ");
+                 /* ExpectedOriginal: [''] */
+                 var expected_ = r.array("");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split('b') */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b") ,
+                 /* Original: r.expr('').split(' ', 5) */
+                 var obtained = runOrCatch( r.expr("").split(" ", 5L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #66
-                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc ']) */
-                 var expected_ = r.array("  aaaa ", "", "  cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split('bb') */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #67
-                 /* ExpectedOriginal: (['  aaaa', 'cccc ']) */
-                 var expected_ = r.array("  aaaa", "cccc ");
+                 /* ExpectedOriginal: [] */
+                 var expected_ = r.array();
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ') */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ") ,
+                 /* Original: r.expr('').split('', 5) */
+                 var obtained = runOrCatch( r.expr("").split("", 5L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #68
-                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f']) */
-                 var expected_ = r.array("  aaaa ", "", "  cccc b d ", " e ", "", " f");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb') */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #69
-                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f']) */
-                 var expected_ = r.array("  aaaa", "cccc b d bb e bbbb f");
-                 
-                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ') */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #70
-                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f']) */
-                 var expected_ = r.array("  aaaa", "cccc b d bb e", "f");
-                 
-                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ') */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #71
-                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc']) */
+                 /* ExpectedOriginal: ['aaaa', 'bbbb', 'cccc'] */
                  var expected_ = r.array("aaaa", "bbbb", "cccc");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split(null, 3) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 3L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split() */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #72
-                 /* ExpectedOriginal: (['', '', 'aaaa', 'bbbb', '', 'cccc ']) */
-                 var expected_ = r.array("", "", "aaaa", "bbbb", "", "cccc ");
+                 /* ExpectedOriginal: ['aaaa', 'bbbb', 'cccc'] */
+                 var expected_ = r.array("aaaa", "bbbb", "cccc");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' ', 5) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 5L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(null) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #73
-                 /* ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc ']) */
-                 var expected_ = r.array("  aaaa ", "", "", "", "  cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split('b', 5) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 5L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #74
-                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc ']) */
-                 var expected_ = r.array("  aaaa ", "", "  cccc ");
+                 /* ExpectedOriginal: ['aaaa', 'bbbb', '', 'cccc', ''] */
+                 var expected_ = r.array("aaaa", "bbbb", "", "cccc", "");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split('bb', 3) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 3L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' ') */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #75
-                 /* ExpectedOriginal: (['  aaaa', 'cccc ']) */
-                 var expected_ = r.array("  aaaa", "cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #76
-                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f']) */
-                 var expected_ = r.array("  aaaa ", "", "  cccc b d ", " e ", "", " f");
+                 /* ExpectedOriginal: ['a', 'a', 'a', 'a', ' ', 'b', 'b', 'b', 'b', ' ', ' ', 'c', 'c', 'c', 'c', ' '] */
+                 var expected_ = r.array("a", "a", "a", "a", " ", "b", "b", "b", "b", " ", " ", "c", "c", "c", "c", " ");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('') */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #77
-                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f']) */
-                 var expected_ = r.array("  aaaa", "cccc b d bb e bbbb f");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #78
-                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f']) */
-                 var expected_ = r.array("  aaaa", "cccc b d bb e", "f");
+                 /* ExpectedOriginal: ['aaaa ', '', '', '', '  cccc '] */
+                 var expected_ = r.array("aaaa ", "", "", "", "  cccc ");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('b') */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #79
-                 /* ExpectedOriginal: (['aaaa', 'bbbb', 'cccc ']) */
-                 var expected_ = r.array("aaaa", "bbbb", "cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split(null, 2) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #80
-                 /* ExpectedOriginal: (["a", "b"]) */
-                 var expected_ = r.array("a", "b");
+                 /* ExpectedOriginal: ['aaaa ', '', '  cccc '] */
+                 var expected_ = r.array("aaaa ", "", "  cccc ");
                  
-                 /* Original: r.expr("a  b  ").split(null, 2) */
-                 var obtained = runOrCatch( r.expr("a  b  ").split((ReqlExpr) null, 2L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('bb') */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #81
-                 /* ExpectedOriginal: (['', '', 'aaaa', 'bbbb', ' cccc ']) */
-                 var expected_ = r.array("", "", "aaaa", "bbbb", " cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' ', 4) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 4L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #82
-                 /* ExpectedOriginal: (['  aaaa ', '', '', '', '  cccc ']) */
-                 var expected_ = r.array("  aaaa ", "", "", "", "  cccc ");
+                 /* ExpectedOriginal: ['aaaa', 'cccc '] */
+                 var expected_ = r.array("aaaa", "cccc ");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split('b', 4) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 4L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ') */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #83
-                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc ']) */
-                 var expected_ = r.array("  aaaa ", "", "  cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #84
-                 /* ExpectedOriginal: (['  aaaa', 'cccc ']) */
-                 var expected_ = r.array("  aaaa", "cccc ");
+                 /* ExpectedOriginal: ['aaaa ', '', '  cccc b d ', ' e ', '', ' f'] */
+                 var expected_ = r.array("aaaa ", "", "  cccc b d ", " e ", "", " f");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 1) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 1L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb') */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #85
-                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc b d ', ' e ', '', ' f']) */
-                 var expected_ = r.array("  aaaa ", "", "  cccc b d ", " e ", "", " f");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #86
-                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f']) */
-                 var expected_ = r.array("  aaaa", "cccc b d bb e bbbb f");
+                 /* ExpectedOriginal: ['aaaa', 'cccc b d bb e bbbb f'] */
+                 var expected_ = r.array("aaaa", "cccc b d bb e bbbb f");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ') */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #87
-                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f']) */
-                 var expected_ = r.array("  aaaa", "cccc b d bb e", "f");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #88
-                 /* ExpectedOriginal: (['aaaa', 'bbbb  cccc ']) */
-                 var expected_ = r.array("aaaa", "bbbb  cccc ");
+                 /* ExpectedOriginal: ['aaaa', 'cccc b d bb e', 'f'] */
+                 var expected_ = r.array("aaaa", "cccc b d bb e", "f");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split(null, 1) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 1L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ') */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #89
-                 /* ExpectedOriginal: (['', '', 'aaaa bbbb  cccc ']) */
-                 var expected_ = r.array("", "", "aaaa bbbb  cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' ', 2) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #90
-                 /* ExpectedOriginal: (['  aaaa ', '', 'bb  cccc ']) */
-                 var expected_ = r.array("  aaaa ", "", "bb  cccc ");
-                 
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split('b', 2) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #91
-                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc ']) */
-                 var expected_ = r.array("  aaaa ", "", "  cccc ");
+                 /* ExpectedOriginal: ['aaaa', 'bbbb', 'cccc'] */
+                 var expected_ = r.array("aaaa", "bbbb", "cccc");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 2L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(null, 3) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 3L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #92
-                 /* ExpectedOriginal: (['  aaaa', 'cccc ']) */
-                 var expected_ = r.array("  aaaa", "cccc ");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #93
-                 /* ExpectedOriginal: (['  aaaa ', '', '  cccc b d bb e bbbb f']) */
-                 var expected_ = r.array("  aaaa ", "", "  cccc b d bb e bbbb f");
+                 /* ExpectedOriginal: ['aaaa', 'bbbb', '', 'cccc', ''] */
+                 var expected_ = r.array("aaaa", "bbbb", "", "cccc", "");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' ', 5) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 5L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #94
-                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e bbbb f']) */
-                 var expected_ = r.array("  aaaa", "cccc b d bb e bbbb f");
+                    , conn);
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #95
-                 /* ExpectedOriginal: (['  aaaa', 'cccc b d bb e', 'f']) */
-                 var expected_ = r.array("  aaaa", "cccc b d bb e", "f");
+                 /* ExpectedOriginal: ['a', 'a', 'a', 'a', ' ', 'bbbb  cccc '] */
+                 var expected_ = r.array("a", "a", "a", "a", " ", "bbbb  cccc ");
                  
-                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
-                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L) ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('', 5) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 5L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #96
-                 /* ExpectedOriginal: ("ABC-DEF-GHJ") */
-                 var expected_ = "ABC-DEF-GHJ";
+                    , conn);
                  
-                 /* Original: r.expr("abc-dEf-GHJ").upcase() */
-                 var obtained = runOrCatch( r.expr("abc-dEf-GHJ").upcase() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #97
-                 /* ExpectedOriginal: ("abc-def-ghj") */
-                 var expected_ = "abc-def-ghj";
+                 /* ExpectedOriginal: ['aaaa ', '', '', '', '  cccc '] */
+                 var expected_ = r.array("aaaa ", "", "", "", "  cccc ");
                  
-                 /* Original: r.expr("abc-dEf-GHJ").downcase() */
-                 var obtained = runOrCatch( r.expr("abc-dEf-GHJ").downcase() ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('b', 5) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 5L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #98
-                 /* ExpectedOriginal: (["f", "\u00e9", "o", "o"]) */
-                 var expected_ = r.array("f", "\u00e9", "o", "o");
+                    , conn);
                  
-                 /* Original: r.expr(u"f\u00e9oo").split("") */
-                 var obtained = runOrCatch( r.expr("f\u00e9oo").split("") ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #99
-                 /* ExpectedOriginal: (["f", "e\u0301", "o", "o"]) */
-                 var expected_ = r.array("f", "e\u0301", "o", "o");
+                 /* ExpectedOriginal: ['aaaa ', '', '  cccc '] */
+                 var expected_ = r.array("aaaa ", "", "  cccc ");
                  
-                 /* Original: r.expr(u"fe\u0301oo").split("") */
-                 var obtained = runOrCatch( r.expr("fe\u0301oo").split("") ,
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('bb', 3) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 3L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, datum/string.yaml, #100
-                 /* ExpectedOriginal: (["foo", "bar", "baz", "quux", "fred", "barney", "wilma"]) */
-                 var expected_ = r.array("foo", "bar", "baz", "quux", "fred", "barney", "wilma");
+                    , conn);
                  
-                 /* Original: r.expr(u"foo bar\tbaz\nquux\rfred\u000bbarney\u000cwilma").split() */
-                 var obtained = runOrCatch( r.expr("foo bar\tbaz\nquux\rfred\u000bbarney\u000cwilma").split() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, datum/string.yaml, #101
-                 /* ExpectedOriginal: (["foo", "bar", "baz\u2060quux", "fred", "barney", "wilma", "betty\u200b"]) */
+                 /* ExpectedOriginal: ['aaaa', 'cccc '] */
+                 var expected_ = r.array("aaaa", "cccc ");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #103
+                 /* ExpectedOriginal: ['aaaa ', '', '  cccc b d ', ' e ', '', ' f'] */
+                 var expected_ = r.array("aaaa ", "", "  cccc b d ", " e ", "", " f");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #105
+                 /* ExpectedOriginal: ['aaaa', 'cccc b d bb e bbbb f'] */
+                 var expected_ = r.array("aaaa", "cccc b d bb e bbbb f");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #107
+                 /* ExpectedOriginal: ['aaaa', 'cccc b d bb e', 'f'] */
+                 var expected_ = r.array("aaaa", "cccc b d bb e", "f");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #110
+                 /* ExpectedOriginal: ['aaaa', 'bbbb', 'cccc '] */
+                 var expected_ = r.array("aaaa", "bbbb", "cccc ");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(null, 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #112
+                 /* ExpectedOriginal: ["a", "b"] */
+                 var expected_ = r.array("a", "b");
+                 
+                 /* Original: r.expr("a  b  ").split(null, 2) */
+                 var obtained = runOrCatch( r.expr("a  b  ").split((ReqlExpr) null, 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #114
+                 /* ExpectedOriginal: ['aaaa', 'bbbb', '', 'cccc', ''] */
+                 var expected_ = r.array("aaaa", "bbbb", "", "cccc", "");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' ', 4) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 4L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #116
+                 /* ExpectedOriginal: ['a', 'a', 'a', 'a', ' bbbb  cccc '] */
+                 var expected_ = r.array("a", "a", "a", "a", " bbbb  cccc ");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('', 4) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 4L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #118
+                 /* ExpectedOriginal: ['aaaa ', '', '', '', '  cccc '] */
+                 var expected_ = r.array("aaaa ", "", "", "", "  cccc ");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('b', 4) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 4L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #120
+                 /* ExpectedOriginal: ['aaaa ', '', '  cccc '] */
+                 var expected_ = r.array("aaaa ", "", "  cccc ");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('bb', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #122
+                 /* ExpectedOriginal: ['aaaa', 'cccc '] */
+                 var expected_ = r.array("aaaa", "cccc ");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 1) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 1L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #124
+                 /* ExpectedOriginal: ['aaaa ', '', '  cccc b d ', ' e ', '', ' f'] */
+                 var expected_ = r.array("aaaa ", "", "  cccc b d ", " e ", "", " f");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #126
+                 /* ExpectedOriginal: ['aaaa', 'cccc b d bb e bbbb f'] */
+                 var expected_ = r.array("aaaa", "cccc b d bb e bbbb f");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #128
+                 /* ExpectedOriginal: ['aaaa', 'cccc b d bb e', 'f'] */
+                 var expected_ = r.array("aaaa", "cccc b d bb e", "f");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #131
+                 /* ExpectedOriginal: ['aaaa', 'bbbb  cccc '] */
+                 var expected_ = r.array("aaaa", "bbbb  cccc ");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(null, 1) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 1L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #133
+                 /* ExpectedOriginal: ['aaaa', 'bbbb', ' cccc '] */
+                 var expected_ = r.array("aaaa", "bbbb", " cccc ");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #135
+                 /* ExpectedOriginal: ['a', 'a', 'aa bbbb  cccc '] */
+                 var expected_ = r.array("a", "a", "aa bbbb  cccc ");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #137
+                 /* ExpectedOriginal: ['aaaa ', '', 'bb  cccc '] */
+                 var expected_ = r.array("aaaa ", "", "bb  cccc ");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('b', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #139
+                 /* ExpectedOriginal: ['aaaa ', '', '  cccc '] */
+                 var expected_ = r.array("aaaa ", "", "  cccc ");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split('bb', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #141
+                 /* ExpectedOriginal: ['aaaa', 'cccc '] */
+                 var expected_ = r.array("aaaa", "cccc ");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #143
+                 /* ExpectedOriginal: ['aaaa ', '', '  cccc b d bb e bbbb f'] */
+                 var expected_ = r.array("aaaa ", "", "  cccc b d bb e bbbb f");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #145
+                 /* ExpectedOriginal: ['aaaa', 'cccc b d bb e bbbb f'] */
+                 var expected_ = r.array("aaaa", "cccc b d bb e bbbb f");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #147
+                 /* ExpectedOriginal: ['aaaa', 'cccc b d bb e', 'f'] */
+                 var expected_ = r.array("aaaa", "cccc b d bb e", "f");
+                 
+                 /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #150
+                 /* ExpectedOriginal: [] */
+                 var expected_ = r.array();
+                 
+                 /* Original: r.expr('  ').split() */
+                 var obtained = runOrCatch( r.expr("  ").split() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #152
+                 /* ExpectedOriginal: [] */
+                 var expected_ = r.array();
+                 
+                 /* Original: r.expr('  ').split(null) */
+                 var obtained = runOrCatch( r.expr("  ").split((ReqlExpr) null) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #154
+                 /* ExpectedOriginal: ['', '', ''] */
+                 var expected_ = r.array("", "", "");
+                 
+                 /* Original: r.expr('  ').split(' ') */
+                 var obtained = runOrCatch( r.expr("  ").split(" ") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #156
+                 /* ExpectedOriginal: [] */
+                 var expected_ = r.array();
+                 
+                 /* Original: r.expr('  ').split(null, 5) */
+                 var obtained = runOrCatch( r.expr("  ").split((ReqlExpr) null, 5L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #158
+                 /* ExpectedOriginal: ['', '', ''] */
+                 var expected_ = r.array("", "", "");
+                 
+                 /* Original: r.expr('  ').split(' ', 5) */
+                 var obtained = runOrCatch( r.expr("  ").split(" ", 5L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #161
+                 /* ExpectedOriginal: ['aaaa', 'bbbb', 'cccc'] */
+                 var expected_ = r.array("aaaa", "bbbb", "cccc");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split() */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #163
+                 /* ExpectedOriginal: ['aaaa', 'bbbb', 'cccc'] */
+                 var expected_ = r.array("aaaa", "bbbb", "cccc");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(null) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #165
+                 /* ExpectedOriginal: ['', '', 'aaaa', 'bbbb', '', 'cccc', ''] */
+                 var expected_ = r.array("", "", "aaaa", "bbbb", "", "cccc", "");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' ') */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #167
+                 /* ExpectedOriginal: ['  aaaa ', '', '', '', '  cccc '] */
+                 var expected_ = r.array("  aaaa ", "", "", "", "  cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('b') */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #169
+                 /* ExpectedOriginal: ['  aaaa ', '', '  cccc '] */
+                 var expected_ = r.array("  aaaa ", "", "  cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('bb') */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #171
+                 /* ExpectedOriginal: ['  aaaa', 'cccc '] */
+                 var expected_ = r.array("  aaaa", "cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ') */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #173
+                 /* ExpectedOriginal: ['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'] */
+                 var expected_ = r.array("  aaaa ", "", "  cccc b d ", " e ", "", " f");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb') */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #175
+                 /* ExpectedOriginal: ['  aaaa', 'cccc b d bb e bbbb f'] */
+                 var expected_ = r.array("  aaaa", "cccc b d bb e bbbb f");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ') */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #177
+                 /* ExpectedOriginal: ['  aaaa', 'cccc b d bb e', 'f'] */
+                 var expected_ = r.array("  aaaa", "cccc b d bb e", "f");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ') */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #180
+                 /* ExpectedOriginal: ['aaaa', 'bbbb', 'cccc'] */
+                 var expected_ = r.array("aaaa", "bbbb", "cccc");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(null, 3) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 3L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #182
+                 /* ExpectedOriginal: ['', '', 'aaaa', 'bbbb', '', 'cccc '] */
+                 var expected_ = r.array("", "", "aaaa", "bbbb", "", "cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' ', 5) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 5L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #184
+                 /* ExpectedOriginal: ['  aaaa ', '', '', '', '  cccc '] */
+                 var expected_ = r.array("  aaaa ", "", "", "", "  cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('b', 5) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 5L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #186
+                 /* ExpectedOriginal: ['  aaaa ', '', '  cccc '] */
+                 var expected_ = r.array("  aaaa ", "", "  cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('bb', 3) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 3L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #188
+                 /* ExpectedOriginal: ['  aaaa', 'cccc '] */
+                 var expected_ = r.array("  aaaa", "cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #190
+                 /* ExpectedOriginal: ['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'] */
+                 var expected_ = r.array("  aaaa ", "", "  cccc b d ", " e ", "", " f");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #192
+                 /* ExpectedOriginal: ['  aaaa', 'cccc b d bb e bbbb f'] */
+                 var expected_ = r.array("  aaaa", "cccc b d bb e bbbb f");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #194
+                 /* ExpectedOriginal: ['  aaaa', 'cccc b d bb e', 'f'] */
+                 var expected_ = r.array("  aaaa", "cccc b d bb e", "f");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #197
+                 /* ExpectedOriginal: ['aaaa', 'bbbb', 'cccc '] */
+                 var expected_ = r.array("aaaa", "bbbb", "cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(null, 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #199
+                 /* ExpectedOriginal: ["a", "b"] */
+                 var expected_ = r.array("a", "b");
+                 
+                 /* Original: r.expr("a  b  ").split(null, 2) */
+                 var obtained = runOrCatch( r.expr("a  b  ").split((ReqlExpr) null, 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #201
+                 /* ExpectedOriginal: ['', '', 'aaaa', 'bbbb', ' cccc '] */
+                 var expected_ = r.array("", "", "aaaa", "bbbb", " cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' ', 4) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 4L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #203
+                 /* ExpectedOriginal: ['  aaaa ', '', '', '', '  cccc '] */
+                 var expected_ = r.array("  aaaa ", "", "", "", "  cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('b', 4) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 4L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #205
+                 /* ExpectedOriginal: ['  aaaa ', '', '  cccc '] */
+                 var expected_ = r.array("  aaaa ", "", "  cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #207
+                 /* ExpectedOriginal: ['  aaaa', 'cccc '] */
+                 var expected_ = r.array("  aaaa", "cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 1) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 1L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #209
+                 /* ExpectedOriginal: ['  aaaa ', '', '  cccc b d ', ' e ', '', ' f'] */
+                 var expected_ = r.array("  aaaa ", "", "  cccc b d ", " e ", "", " f");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #211
+                 /* ExpectedOriginal: ['  aaaa', 'cccc b d bb e bbbb f'] */
+                 var expected_ = r.array("  aaaa", "cccc b d bb e bbbb f");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #213
+                 /* ExpectedOriginal: ['  aaaa', 'cccc b d bb e', 'f'] */
+                 var expected_ = r.array("  aaaa", "cccc b d bb e", "f");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #216
+                 /* ExpectedOriginal: ['aaaa', 'bbbb  cccc '] */
+                 var expected_ = r.array("aaaa", "bbbb  cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(null, 1) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 1L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #218
+                 /* ExpectedOriginal: ['', '', 'aaaa bbbb  cccc '] */
+                 var expected_ = r.array("", "", "aaaa bbbb  cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #220
+                 /* ExpectedOriginal: ['  aaaa ', '', 'bb  cccc '] */
+                 var expected_ = r.array("  aaaa ", "", "bb  cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('b', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #222
+                 /* ExpectedOriginal: ['  aaaa ', '', '  cccc '] */
+                 var expected_ = r.array("  aaaa ", "", "  cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #224
+                 /* ExpectedOriginal: ['  aaaa', 'cccc '] */
+                 var expected_ = r.array("  aaaa", "cccc ");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #226
+                 /* ExpectedOriginal: ['  aaaa ', '', '  cccc b d bb e bbbb f'] */
+                 var expected_ = r.array("  aaaa ", "", "  cccc b d bb e bbbb f");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #228
+                 /* ExpectedOriginal: ['  aaaa', 'cccc b d bb e bbbb f'] */
+                 var expected_ = r.array("  aaaa", "cccc b d bb e bbbb f");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #230
+                 /* ExpectedOriginal: ['  aaaa', 'cccc b d bb e', 'f'] */
+                 var expected_ = r.array("  aaaa", "cccc b d bb e", "f");
+                 
+                 /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
+                 var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #233
+                 /* ExpectedOriginal: "ABC-DEF-GHJ" */
+                 var expected_ = "ABC-DEF-GHJ";
+                 
+                 /* Original: r.expr("abc-dEf-GHJ").upcase() */
+                 var obtained = runOrCatch( r.expr("abc-dEf-GHJ").upcase() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #235
+                 /* ExpectedOriginal: "abc-def-ghj" */
+                 var expected_ = "abc-def-ghj";
+                 
+                 /* Original: r.expr("abc-dEf-GHJ").downcase() */
+                 var obtained = runOrCatch( r.expr("abc-dEf-GHJ").downcase() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #240
+                 /* ExpectedOriginal: ["f", "\u00e9", "o", "o"] */
+                 var expected_ = r.array("f", "\u00e9", "o", "o");
+                 
+                 /* Original: r.expr(u"f\u00e9oo").split("") */
+                 var obtained = runOrCatch( r.expr("f\u00e9oo").split("") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #249
+                 /* ExpectedOriginal: ["f", "e\u0301", "o", "o"] */
+                 var expected_ = r.array("f", "e\u0301", "o", "o");
+                 
+                 /* Original: r.expr(u"fe\u0301oo").split("") */
+                 var obtained = runOrCatch( r.expr("fe\u0301oo").split("") ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #262
+                 /* ExpectedOriginal: ["foo", "bar", "baz", "quux", "fred", "barney", "wilma"] */
+                 var expected_ = r.array("foo", "bar", "baz", "quux", "fred", "barney", "wilma");
+                 
+                 /* Original: r.expr(u"foo bar\tbaz\nquux\rfred\u000bbarney\u000cwilma").split() */
+                 var obtained = runOrCatch( r.expr("foo bar\tbaz\nquux\rfred\u000bbarney\u000cwilma").split() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, datum/string.yaml, #278
+                 /* ExpectedOriginal: ["foo", "bar", "baz\u2060quux", "fred", "barney", "wilma", "betty\u200b"] */
                  var expected_ = r.array("foo", "bar", "baz\u2060quux", "fred", "barney", "wilma", "betty\u200b");
                  
                  /* Original: r.expr(u"foo\u00a0bar\u2001baz\u2060quux\u2028fred\u2028barney\u2029wilma\u0085betty\u200b").split() */
                  var obtained = runOrCatch( r.expr("foo\u00a0bar\u2001baz\u2060quux\u2028fred\u2028barney\u2029wilma\u0085betty\u200b").split() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
 

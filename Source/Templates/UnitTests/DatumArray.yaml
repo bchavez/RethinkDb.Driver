@@ -2,7 +2,7 @@ ModuleName: DatumArray
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 1
+  LineNum: 6
   Original: r.expr([])
   Java: r.expr(r.array())
   ExpectedOriginal: '[]'
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 2
+  LineNum: 9
   Original: r.expr([1])
   Java: r.expr(r.array(1L))
   ExpectedOriginal: '[1]'
@@ -20,16 +20,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 3
+  LineNum: 14
   Original: r.expr([1,2,3,4,5])
   Java: r.expr(r.array(1L, 2L, 3L, 4L, 5L))
-  ExpectedOriginal: '[1, 2, 3, 4, 5]'
+  ExpectedOriginal: '[1,2,3,4,5]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L, 5L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 4
+  LineNum: 19
   Original: r.expr([]).type_of()
   Java: r.expr(r.array()).typeOf()
   ExpectedOriginal: 'ARRAY'
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: (5, 1)
+  LineNum: 24
   Original: r.expr([1, 2]).coerce_to('string')
   Java: r.expr(r.array(1L, 2L)).coerceTo("string")
   ExpectedOriginal: '[1,2]'
@@ -47,7 +47,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: (5, 2)
+  LineNum: 25
   Original: r.expr([1, 2]).coerce_to('STRING')
   Java: r.expr(r.array(1L, 2L)).coerceTo("STRING")
   ExpectedOriginal: '[1,2]'
@@ -56,7 +56,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 6
+  LineNum: 28
   Original: r.expr([1, 2]).coerce_to('array')
   Java: r.expr(r.array(1L, 2L)).coerceTo("array")
   ExpectedOriginal: '[1, 2]'
@@ -65,7 +65,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 7
+  LineNum: 31
   Original: r.expr([1, 2]).coerce_to('number')
   Java: r.expr(r.array(1L, 2L)).coerceTo("number")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot coerce ARRAY to NUMBER.', [0])
@@ -74,16 +74,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 8
+  LineNum: 34
   Original: r.expr([['a', 1], ['b', 2]]).coerce_to('object')
   Java: r.expr(r.array(r.array("a", 1L), r.array("b", 2L))).coerceTo("object")
-  ExpectedOriginal: ({'a':1,'b':2})
+  ExpectedOriginal: '{''a'':1,''b'':2}'
   ExpectedType: Map
   ExpectedJava: r.hashMap("a", 1L).with("b", 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 9
+  LineNum: 37
   Original: r.expr([[]]).coerce_to('object')
   Java: r.expr(r.array(r.array())).coerceTo("object")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected array of size 2, but got size 0.')
@@ -92,7 +92,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 10
+  LineNum: 40
   Original: r.expr([['1',2,3]]).coerce_to('object')
   Java: r.expr(r.array(r.array("1", 2L, 3L))).coerceTo("object")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected array of size 2, but got size 3.')
@@ -101,7 +101,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 11
+  LineNum: 44
   Original: r.expr([r.expr(1)])
   Java: r.expr(r.array(r.expr(1L)))
   ExpectedOriginal: '[1]'
@@ -110,52 +110,52 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 12
+  LineNum: 47
   Original: r.expr([1,3,4]).insert_at(1, 2)
   Java: r.expr(r.array(1L, 3L, 4L)).insertAt(1L, 2L)
-  ExpectedOriginal: '[1, 2, 3, 4]'
+  ExpectedOriginal: '[1,2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 13
+  LineNum: 49
   Original: r.expr([2,3]).insert_at(0, 1)
   Java: r.expr(r.array(2L, 3L)).insertAt(0L, 1L)
-  ExpectedOriginal: '[1, 2, 3]'
+  ExpectedOriginal: '[1,2,3]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 14
+  LineNum: 51
   Original: r.expr([1,2,3]).insert_at(-1, 4)
   Java: r.expr(r.array(1L, 2L, 3L)).insertAt(-1L, 4L)
-  ExpectedOriginal: '[1, 2, 3, 4]'
+  ExpectedOriginal: '[1,2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 15
+  LineNum: 53
   Original: r.expr([1,2,3]).insert_at(3, 4)
   Java: r.expr(r.array(1L, 2L, 3L)).insertAt(3L, 4L)
-  ExpectedOriginal: '[1, 2, 3, 4]'
+  ExpectedOriginal: '[1,2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 16
+  LineNum: 55
   Original: 'r.expr(3).do(lambda x: r.expr([1,2,3]).insert_at(x, 4))'
   Java: r.expr(3L).do_(x -> r.expr(r.array(1L, 2L, 3L)).insertAt(x, 4L))
-  ExpectedOriginal: '[1, 2, 3, 4]'
-  ExpectedType: List
-  ExpectedJava: r.array(1L, 2L, 3L, 4L)
+  ExpectedOriginal: AnythingIsFine
+  ExpectedType: Object
+  ExpectedJava: AnythingIsFine
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 17
+  LineNum: 59
   Original: r.expr([1,2,3]).insert_at(4, 5)
   Java: r.expr(r.array(1L, 2L, 3L)).insertAt(4L, 5L)
   ExpectedOriginal: 'err(''ReqlNonExistenceError'', ''Index `4` out of bounds for array of size: `3`.'', [0])'
@@ -164,7 +164,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 18
+  LineNum: 61
   Original: r.expr([1,2,3]).insert_at(-5, -1)
   Java: r.expr(r.array(1L, 2L, 3L)).insertAt(-5L, -1L)
   ExpectedOriginal: 'err(''ReqlNonExistenceError'', ''Index out of bounds: -5'', [0])'
@@ -173,7 +173,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 19
+  LineNum: 63
   Original: r.expr([1,2,3]).insert_at(1.5, 1)
   Java: r.expr(r.array(1L, 2L, 3L)).insertAt(1.5, 1L)
   ExpectedOriginal: 'err(''ReqlQueryLogicError'', ''Number not an integer: 1.5'', [0])'
@@ -182,7 +182,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 20
+  LineNum: 65
   Original: r.expr([1,2,3]).insert_at(null, 1)
   Java: r.expr(r.array(1L, 2L, 3L)).insertAt((ReqlExpr) null, 1L)
   ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0])
@@ -191,52 +191,52 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 21
+  LineNum: 68
   Original: r.expr([1,4]).splice_at(1, [2,3])
   Java: r.expr(r.array(1L, 4L)).spliceAt(1L, r.array(2L, 3L))
-  ExpectedOriginal: '[1, 2, 3, 4]'
+  ExpectedOriginal: '[1,2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 22
+  LineNum: 70
   Original: r.expr([3,4]).splice_at(0, [1,2])
   Java: r.expr(r.array(3L, 4L)).spliceAt(0L, r.array(1L, 2L))
-  ExpectedOriginal: '[1, 2, 3, 4]'
+  ExpectedOriginal: '[1,2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 23
+  LineNum: 72
   Original: r.expr([1,2]).splice_at(2, [3,4])
   Java: r.expr(r.array(1L, 2L)).spliceAt(2L, r.array(3L, 4L))
-  ExpectedOriginal: '[1, 2, 3, 4]'
+  ExpectedOriginal: '[1,2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 24
+  LineNum: 74
   Original: r.expr([1,2]).splice_at(-1, [3,4])
   Java: r.expr(r.array(1L, 2L)).spliceAt(-1L, r.array(3L, 4L))
-  ExpectedOriginal: '[1, 2, 3, 4]'
+  ExpectedOriginal: '[1,2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 25
+  LineNum: 76
   Original: 'r.expr(2).do(lambda x: r.expr([1,2]).splice_at(x, [3,4]))'
   Java: r.expr(2L).do_(x -> r.expr(r.array(1L, 2L)).spliceAt(x, r.array(3L, 4L)))
-  ExpectedOriginal: '[1, 2, 3, 4]'
-  ExpectedType: List
-  ExpectedJava: r.array(1L, 2L, 3L, 4L)
+  ExpectedOriginal: AnythingIsFine
+  ExpectedType: Object
+  ExpectedJava: AnythingIsFine
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 26
+  LineNum: 80
   Original: r.expr([1,2]).splice_at(3, [3,4])
   Java: r.expr(r.array(1L, 2L)).spliceAt(3L, r.array(3L, 4L))
   ExpectedOriginal: 'err(''ReqlNonExistenceError'', ''Index `3` out of bounds for array of size: `2`.'', [0])'
@@ -245,7 +245,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 27
+  LineNum: 82
   Original: r.expr([1,2]).splice_at(-4, [3,4])
   Java: r.expr(r.array(1L, 2L)).spliceAt(-4L, r.array(3L, 4L))
   ExpectedOriginal: 'err(''ReqlNonExistenceError'', ''Index out of bounds: -4'', [0])'
@@ -254,7 +254,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 28
+  LineNum: 84
   Original: r.expr([1,2,3]).splice_at(1.5, [1])
   Java: r.expr(r.array(1L, 2L, 3L)).spliceAt(1.5, r.array(1L))
   ExpectedOriginal: 'err(''ReqlQueryLogicError'', ''Number not an integer: 1.5'', [0])'
@@ -263,7 +263,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 29
+  LineNum: 86
   Original: r.expr([1,2,3]).splice_at(null, [1])
   Java: r.expr(r.array(1L, 2L, 3L)).spliceAt((ReqlExpr) null, r.array(1L))
   ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0])
@@ -272,7 +272,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 30
+  LineNum: 88
   Original: r.expr([1,4]).splice_at(1, 2)
   Java: r.expr(r.array(1L, 4L)).spliceAt(1L, 2L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type ARRAY but found NUMBER.', [0])
@@ -281,52 +281,52 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 31
+  LineNum: 91
   Original: r.expr([1,2,3,4]).delete_at(0)
   Java: r.expr(r.array(1L, 2L, 3L, 4L)).deleteAt(0L)
-  ExpectedOriginal: '[2, 3, 4]'
+  ExpectedOriginal: '[2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 32
+  LineNum: 93
   Original: 'r.expr(0).do(lambda x: r.expr([1,2,3,4]).delete_at(x))'
   Java: r.expr(0L).do_(x -> r.expr(r.array(1L, 2L, 3L, 4L)).deleteAt(x))
-  ExpectedOriginal: '[2, 3, 4]'
-  ExpectedType: List
-  ExpectedJava: r.array(2L, 3L, 4L)
+  ExpectedOriginal: AnythingIsFine
+  ExpectedType: Object
+  ExpectedJava: AnythingIsFine
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 33
+  LineNum: 97
   Original: r.expr([1,2,3,4]).delete_at(-1)
   Java: r.expr(r.array(1L, 2L, 3L, 4L)).deleteAt(-1L)
-  ExpectedOriginal: '[1, 2, 3]'
+  ExpectedOriginal: '[1,2,3]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 34
+  LineNum: 99
   Original: r.expr([1,2,3,4]).delete_at(1,3)
   Java: r.expr(r.array(1L, 2L, 3L, 4L)).deleteAt(1L, 3L)
-  ExpectedOriginal: '[1, 4]'
+  ExpectedOriginal: '[1,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 35
+  LineNum: 101
   Original: r.expr([1,2,3,4]).delete_at(4,4)
   Java: r.expr(r.array(1L, 2L, 3L, 4L)).deleteAt(4L, 4L)
-  ExpectedOriginal: '[1, 2, 3, 4]'
+  ExpectedOriginal: '[1,2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 36
+  LineNum: 103
   Original: r.expr([]).delete_at(0,0)
   Java: r.expr(r.array()).deleteAt(0L, 0L)
   ExpectedOriginal: '[]'
@@ -335,16 +335,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 37
+  LineNum: 105
   Original: r.expr([1,2,3,4]).delete_at(1,-1)
   Java: r.expr(r.array(1L, 2L, 3L, 4L)).deleteAt(1L, -1L)
-  ExpectedOriginal: '[1, 4]'
+  ExpectedOriginal: '[1,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 38
+  LineNum: 107
   Original: r.expr([1,2,3,4]).delete_at(4)
   Java: r.expr(r.array(1L, 2L, 3L, 4L)).deleteAt(4L)
   ExpectedOriginal: 'err(''ReqlNonExistenceError'', ''Index `4` out of bounds for array of size: `4`.'', [0])'
@@ -353,7 +353,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 39
+  LineNum: 109
   Original: r.expr([1,2,3,4]).delete_at(-5)
   Java: r.expr(r.array(1L, 2L, 3L, 4L)).deleteAt(-5L)
   ExpectedOriginal: 'err(''ReqlNonExistenceError'', ''Index out of bounds: -5'', [0])'
@@ -362,7 +362,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 40
+  LineNum: 111
   Original: r.expr([1,2,3]).delete_at(1.5)
   Java: r.expr(r.array(1L, 2L, 3L)).deleteAt(1.5)
   ExpectedOriginal: 'err(''ReqlQueryLogicError'', ''Number not an integer: 1.5'', [0])'
@@ -371,7 +371,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 41
+  LineNum: 113
   Original: r.expr([1,2,3]).delete_at(null)
   Java: r.expr(r.array(1L, 2L, 3L)).deleteAt((ReqlExpr) null)
   ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0])
@@ -380,43 +380,43 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 42
+  LineNum: 116
   Original: r.expr([0,2,3]).change_at(0, 1)
   Java: r.expr(r.array(0L, 2L, 3L)).changeAt(0L, 1L)
-  ExpectedOriginal: '[1, 2, 3]'
+  ExpectedOriginal: '[1,2,3]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 43
+  LineNum: 118
   Original: 'r.expr(1).do(lambda x: r.expr([0,2,3]).change_at(0,x))'
   Java: r.expr(1L).do_(x -> r.expr(r.array(0L, 2L, 3L)).changeAt(0L, x))
-  ExpectedOriginal: '[1, 2, 3]'
-  ExpectedType: List
-  ExpectedJava: r.array(1L, 2L, 3L)
+  ExpectedOriginal: AnythingIsFine
+  ExpectedType: Object
+  ExpectedJava: AnythingIsFine
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 44
+  LineNum: 122
   Original: r.expr([1,0,3]).change_at(1, 2)
   Java: r.expr(r.array(1L, 0L, 3L)).changeAt(1L, 2L)
-  ExpectedOriginal: '[1, 2, 3]'
+  ExpectedOriginal: '[1,2,3]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 45
+  LineNum: 124
   Original: r.expr([1,2,0]).change_at(2, 3)
   Java: r.expr(r.array(1L, 2L, 0L)).changeAt(2L, 3L)
-  ExpectedOriginal: '[1, 2, 3]'
+  ExpectedOriginal: '[1,2,3]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 46
+  LineNum: 126
   Original: r.expr([1,2,3]).change_at(3, 4)
   Java: r.expr(r.array(1L, 2L, 3L)).changeAt(3L, 4L)
   ExpectedOriginal: 'err(''ReqlNonExistenceError'', ''Index `3` out of bounds for array of size: `3`.'', [0])'
@@ -425,7 +425,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 47
+  LineNum: 128
   Original: r.expr([1,2,3,4]).change_at(-5, 1)
   Java: r.expr(r.array(1L, 2L, 3L, 4L)).changeAt(-5L, 1L)
   ExpectedOriginal: 'err(''ReqlNonExistenceError'', ''Index out of bounds: -5'', [0])'
@@ -434,7 +434,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 48
+  LineNum: 130
   Original: r.expr([1,2,3]).change_at(1.5, 1)
   Java: r.expr(r.array(1L, 2L, 3L)).changeAt(1.5, 1L)
   ExpectedOriginal: 'err(''ReqlQueryLogicError'', ''Number not an integer: 1.5'', [0])'
@@ -443,7 +443,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/array.yaml
-  TestNum: 49
+  LineNum: 132
   Original: r.expr([1,2,3]).change_at(null, 1)
   Java: r.expr(r.array(1L, 2L, 3L)).changeAt((ReqlExpr) null, 1L)
   ExpectedOriginal: err('ReqlNonExistenceError', 'Expected type NUMBER but found NULL.', [0])

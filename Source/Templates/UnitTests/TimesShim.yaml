@@ -2,7 +2,7 @@ ModuleName: TimesShim
 DefsAndTests:
 - TestType: JavaDef
   TestFile: times/shim.yaml
-  TestNum: 1
+  LineNum: 4
   Original: t = 1375147296.68
   VarName: t
   VarType: Double
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/shim.yaml
-  TestNum: 2
+  LineNum: 8
   Original: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).to_iso8601()
   Java: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).toIso8601()
   ExpectedOriginal: ("2013-07-29T18:21:36.680-07:00")
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/shim.yaml
-  TestNum: 3
+  LineNum: 12
   Original: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).to_iso8601()
   Java: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).toIso8601()
   ExpectedOriginal: ("2013-07-30T01:21:36.680+00:00")
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/shim.yaml
-  TestNum: 4
+  LineNum: 16
   Original: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).to_epoch_time()
   Java: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).toEpochTime()
   ExpectedOriginal: (1375147296.68)
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/shim.yaml
-  TestNum: 5
+  LineNum: 20
   Original: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).to_epoch_time()
   Java: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).toEpochTime()
   ExpectedOriginal: (1375147296.68)

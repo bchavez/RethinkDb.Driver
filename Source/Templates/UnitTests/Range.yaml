@@ -2,7 +2,7 @@ ModuleName: Range
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 1
+  LineNum: 3
   Original: r.range().type_of()
   Java: r.range().typeOf()
   ExpectedOriginal: 'STREAM'
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 2
+  LineNum: 6
   Original: r.range().limit(4)
   Java: r.range().limit(4L)
   ExpectedOriginal: '[0, 1, 2, 3]'
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 3
+  LineNum: 9
   Original: r.range(4)
   Java: r.range(4L)
   ExpectedOriginal: '[0, 1, 2, 3]'
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 4
+  LineNum: 12
   Original: r.range(2, 5)
   Java: r.range(2L, 5L)
   ExpectedOriginal: '[2, 3, 4]'
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 5
+  LineNum: 15
   Original: r.range(0)
   Java: r.range(0L)
   ExpectedOriginal: '[]'
@@ -47,7 +47,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 6
+  LineNum: 18
   Original: r.range(5, 2)
   Java: r.range(5L, 2L)
   ExpectedOriginal: '[]'
@@ -56,7 +56,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 7
+  LineNum: 21
   Original: r.range(-5, -2)
   Java: r.range(-5L, -2L)
   ExpectedOriginal: '[-5, -4, -3]'
@@ -65,7 +65,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 8
+  LineNum: 24
   Original: r.range(-5, 2)
   Java: r.range(-5L, 2L)
   ExpectedOriginal: '[-5, -4, -3, -2, -1, 0, 1]'
@@ -74,7 +74,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 10
+  LineNum: 30
   Original: r.range("foo")
   Java: r.range("foo")
   ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", [])
@@ -83,7 +83,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 11
+  LineNum: 34
   Original: r.range(9007199254740994)
   Java: r.range(9007199254740994L)
   ExpectedOriginal: err_regex("ReqlQueryLogicError", "Number not an integer \\(>2\\^53\\). 9007199254740994", [])
@@ -92,7 +92,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 12
+  LineNum: 37
   Original: r.range(-9007199254740994)
   Java: r.range(-9007199254740994L)
   ExpectedOriginal: err_regex("ReqlQueryLogicError", "Number not an integer \\(<-2\\^53\\). -9007199254740994", [])
@@ -101,7 +101,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 13
+  LineNum: 40
   Original: r.range(0.5)
   Java: r.range(0.5)
   ExpectedOriginal: err_regex("ReqlQueryLogicError", "Number not an integer. 0\\.5", [])
@@ -110,7 +110,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 14
+  LineNum: 43
   Original: r.range().count()
   Java: r.range().count()
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", [])
@@ -119,7 +119,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 15
+  LineNum: 46
   Original: r.range().coerce_to("ARRAY")
   Java: r.range().coerceTo("ARRAY")
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", [])
@@ -128,7 +128,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 16
+  LineNum: 49
   Original: r.range().coerce_to("OBJECT")
   Java: r.range().coerceTo("OBJECT")
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot use an infinite stream with an aggregation function (`reduce`, `count`, etc.) or coerce it to an array.", [])
@@ -137,7 +137,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: range.yaml
-  TestNum: 17
+  LineNum: 52
   Original: r.range(4).count()
   Java: r.range(4L).count()
   ExpectedOriginal: 4

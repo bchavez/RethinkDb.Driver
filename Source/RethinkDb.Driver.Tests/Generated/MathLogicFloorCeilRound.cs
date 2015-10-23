@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -34,57 +35,16 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #1
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #3
                  /* ExpectedOriginal: "NUMBER" */
                  var expected_ = "NUMBER";
                  
                  /* Original: r.floor(1.0).type_of() */
                  var obtained = runOrCatch( r.floor(1.0).typeOf() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #2
-                 /* ExpectedOriginal: 1.0 */
-                 var expected_ = 1.0;
+                    , conn);
                  
-                 /* Original: r.floor(1.0) */
-                 var obtained = runOrCatch( r.floor(1.0) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #3
-                 /* ExpectedOriginal: 1.0 */
-                 var expected_ = 1.0;
-                 
-                 /* Original: r.expr(1.0).floor() */
-                 var obtained = runOrCatch( r.expr(1.0).floor() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #4
-                 /* ExpectedOriginal: 0.0 */
-                 var expected_ = 0.0;
-                 
-                 /* Original: r.floor(0.5) */
-                 var obtained = runOrCatch( r.floor(0.5) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
@@ -97,92 +57,39 @@ namespace RethinkDb.Driver.Test.Generated {
                  /* Original: r.floor(1.0) */
                  var obtained = runOrCatch( r.floor(1.0) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #6
-                 /* ExpectedOriginal: 1.0 */
-                 var expected_ = 1.0;
+                    , conn);
                  
-                 /* Original: r.floor(1.5) */
-                 var obtained = runOrCatch( r.floor(1.5) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #7
-                 /* ExpectedOriginal: -1.0 */
-                 var expected_ = -1.0;
+                 /* ExpectedOriginal: 1.0 */
+                 var expected_ = 1.0;
                  
-                 /* Original: r.floor(-0.5) */
-                 var obtained = runOrCatch( r.floor(-0.5) ,
+                 /* Original: r.expr(1.0).floor() */
+                 var obtained = runOrCatch( r.expr(1.0).floor() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #8
-                 /* ExpectedOriginal: -1.0 */
-                 var expected_ = -1.0;
+                    , conn);
                  
-                 /* Original: r.floor(-1.0) */
-                 var obtained = runOrCatch( r.floor(-1.0) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #9
-                 /* ExpectedOriginal: -2.0 */
-                 var expected_ = -2.0;
-                 
-                 /* Original: r.floor(-1.5) */
-                 var obtained = runOrCatch( r.floor(-1.5) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #10
-                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", []) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
+                 /* ExpectedOriginal: 0.0 */
+                 var expected_ = 0.0;
                  
-                 /* Original: r.expr('X').floor() */
-                 var obtained = runOrCatch( r.expr("X").floor() ,
+                 /* Original: r.floor(0.5) */
+                 var obtained = runOrCatch( r.floor(0.5) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #11
-                 /* ExpectedOriginal: "NUMBER" */
-                 var expected_ = "NUMBER";
+                    , conn);
                  
-                 /* Original: r.ceil(1.0).type_of() */
-                 var obtained = runOrCatch( r.ceil(1.0).typeOf() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
@@ -192,25 +99,12 @@ namespace RethinkDb.Driver.Test.Generated {
                  /* ExpectedOriginal: 1.0 */
                  var expected_ = 1.0;
                  
-                 /* Original: r.ceil(1.0) */
-                 var obtained = runOrCatch( r.ceil(1.0) ,
+                 /* Original: r.floor(1.0) */
+                 var obtained = runOrCatch( r.floor(1.0) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #13
-                 /* ExpectedOriginal: 1.0 */
-                 var expected_ = 1.0;
+                    , conn);
                  
-                 /* Original: r.expr(1.0).ceil() */
-                 var obtained = runOrCatch( r.expr(1.0).ceil() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
@@ -220,53 +114,27 @@ namespace RethinkDb.Driver.Test.Generated {
                  /* ExpectedOriginal: 1.0 */
                  var expected_ = 1.0;
                  
-                 /* Original: r.ceil(0.5) */
-                 var obtained = runOrCatch( r.ceil(0.5) ,
+                 /* Original: r.floor(1.5) */
+                 var obtained = runOrCatch( r.floor(1.5) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #15
-                 /* ExpectedOriginal: 1.0 */
-                 var expected_ = 1.0;
+                    , conn);
                  
-                 /* Original: r.ceil(1.0) */
-                 var obtained = runOrCatch( r.ceil(1.0) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #16
-                 /* ExpectedOriginal: 2.0 */
-                 var expected_ = 2.0;
+                 /* ExpectedOriginal: -1.0 */
+                 var expected_ = -1.0;
                  
-                 /* Original: r.ceil(1.5) */
-                 var obtained = runOrCatch( r.ceil(1.5) ,
+                 /* Original: r.floor(-0.5) */
+                 var obtained = runOrCatch( r.floor(-0.5) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #17
-                 /* ExpectedOriginal: 0.0 */
-                 var expected_ = 0.0;
+                    , conn);
                  
-                 /* Original: r.ceil(-0.5) */
-                 var obtained = runOrCatch( r.ceil(-0.5) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
@@ -276,249 +144,102 @@ namespace RethinkDb.Driver.Test.Generated {
                  /* ExpectedOriginal: -1.0 */
                  var expected_ = -1.0;
                  
-                 /* Original: r.ceil(-1.0) */
-                 var obtained = runOrCatch( r.ceil(-1.0) ,
+                 /* Original: r.floor(-1.0) */
+                 var obtained = runOrCatch( r.floor(-1.0) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #19
-                 /* ExpectedOriginal: -1.0 */
-                 var expected_ = -1.0;
+                    , conn);
                  
-                 /* Original: r.ceil(-1.5) */
-                 var obtained = runOrCatch( r.ceil(-1.5) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #20
-                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", []) */
-                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
+                 /* ExpectedOriginal: -2.0 */
+                 var expected_ = -2.0;
                  
-                 /* Original: r.expr('X').ceil() */
-                 var obtained = runOrCatch( r.expr("X").ceil() ,
+                 /* Original: r.floor(-1.5) */
+                 var obtained = runOrCatch( r.floor(-1.5) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #21
-                 /* ExpectedOriginal: "NUMBER" */
-                 var expected_ = "NUMBER";
+                    , conn);
                  
-                 /* Original: r.round(1.0).type_of() */
-                 var obtained = runOrCatch( r.round(1.0).typeOf() ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #22
-                 /* ExpectedOriginal: 1.0 */
-                 var expected_ = 1.0;
-                 
-                 /* Original: r.round(1.0) */
-                 var obtained = runOrCatch( r.round(1.0) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #23
-                 /* ExpectedOriginal: 1.0 */
-                 var expected_ = 1.0;
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", []) */
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
                  
-                 /* Original: r.expr(1.0).round() */
-                 var obtained = runOrCatch( r.expr(1.0).round() ,
+                 /* Original: r.expr('X').floor() */
+                 var obtained = runOrCatch( r.expr("X").floor() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #24
-                 /* ExpectedOriginal: 1.0 */
-                 var expected_ = 1.0;
+                    , conn);
                  
-                 /* Original: r.round(0.5) */
-                 var obtained = runOrCatch( r.round(0.5) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #25
-                 /* ExpectedOriginal: -1.0 */
-                 var expected_ = -1.0;
-                 
-                 /* Original: r.round(-0.5) */
-                 var obtained = runOrCatch( r.round(-0.5) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #26
-                 /* ExpectedOriginal: 0.0 */
-                 var expected_ = 0.0;
-                 
-                 /* Original: r.round(0.0) */
-                 var obtained = runOrCatch( r.round(0.0) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #27
-                 /* ExpectedOriginal: 1.0 */
-                 var expected_ = 1.0;
+                 /* ExpectedOriginal: "NUMBER" */
+                 var expected_ = "NUMBER";
                  
-                 /* Original: r.round(1.0) */
-                 var obtained = runOrCatch( r.round(1.0) ,
+                 /* Original: r.ceil(1.0).type_of() */
+                 var obtained = runOrCatch( r.ceil(1.0).typeOf() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #28
-                 /* ExpectedOriginal: 10.0 */
-                 var expected_ = 10.0;
+                    , conn);
                  
-                 /* Original: r.round(10.0) */
-                 var obtained = runOrCatch( r.round(10.0) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #29
-                 /* ExpectedOriginal: 1000000000.0 */
-                 var expected_ = 1000000000.0;
+                 /* ExpectedOriginal: 1.0 */
+                 var expected_ = 1.0;
                  
-                 /* Original: r.round(1000000000.0) */
-                 var obtained = runOrCatch( r.round(1000000000.0) ,
+                 /* Original: r.ceil(1.0) */
+                 var obtained = runOrCatch( r.ceil(1.0) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #30
-                 /* ExpectedOriginal: 1e20 */
-                 var expected_ = 1e+20;
+                    , conn);
                  
-                 /* Original: r.round(1e20) */
-                 var obtained = runOrCatch( r.round(1e+20) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #31
-                 /* ExpectedOriginal: -1.0 */
-                 var expected_ = -1.0;
+                 /* ExpectedOriginal: 1.0 */
+                 var expected_ = 1.0;
                  
-                 /* Original: r.round(-1.0) */
-                 var obtained = runOrCatch( r.round(-1.0) ,
+                 /* Original: r.expr(1.0).ceil() */
+                 var obtained = runOrCatch( r.expr(1.0).ceil() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #32
-                 /* ExpectedOriginal: -10.0 */
-                 var expected_ = -10.0;
+                    , conn);
                  
-                 /* Original: r.round(-10.0) */
-                 var obtained = runOrCatch( r.round(-10.0) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #33
-                 /* ExpectedOriginal: -1000000000.0 */
-                 var expected_ = -1000000000.0;
-                 
-                 /* Original: r.round(-1000000000.0) */
-                 var obtained = runOrCatch( r.round(-1000000000.0) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #34
-                 /* ExpectedOriginal: -1e20 */
-                 var expected_ = -1e+20;
+                 /* ExpectedOriginal: 1.0 */
+                 var expected_ = 1.0;
                  
-                 /* Original: r.round(-1e20) */
-                 var obtained = runOrCatch( r.round(-1e+20) ,
+                 /* Original: r.ceil(0.5) */
+                 var obtained = runOrCatch( r.ceil(0.5) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #35
-                 /* ExpectedOriginal: 0.0 */
-                 var expected_ = 0.0;
+                    , conn);
                  
-                 /* Original: r.round(0.1) */
-                 var obtained = runOrCatch( r.round(0.1) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
@@ -528,179 +249,507 @@ namespace RethinkDb.Driver.Test.Generated {
                  /* ExpectedOriginal: 1.0 */
                  var expected_ = 1.0;
                  
-                 /* Original: r.round(1.1) */
-                 var obtained = runOrCatch( r.round(1.1) ,
+                 /* Original: r.ceil(1.0) */
+                 var obtained = runOrCatch( r.ceil(1.0) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #37
-                 /* ExpectedOriginal: 10.0 */
-                 var expected_ = 10.0;
+                    , conn);
                  
-                 /* Original: r.round(10.1) */
-                 var obtained = runOrCatch( r.round(10.1) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #38
-                 /* ExpectedOriginal: 1000000000.0 */
-                 var expected_ = 1000000000.0;
+                 /* ExpectedOriginal: 2.0 */
+                 var expected_ = 2.0;
                  
-                 /* Original: r.round(1000000000.1) */
-                 var obtained = runOrCatch( r.round(1000000000.1) ,
+                 /* Original: r.ceil(1.5) */
+                 var obtained = runOrCatch( r.ceil(1.5) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #39
-                 /* ExpectedOriginal: -1.0 */
-                 var expected_ = -1.0;
+                    , conn);
                  
-                 /* Original: r.round(-1.1) */
-                 var obtained = runOrCatch( r.round(-1.1) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #40
-                 /* ExpectedOriginal: -10.0 */
-                 var expected_ = -10.0;
+                 /* ExpectedOriginal: 0.0 */
+                 var expected_ = 0.0;
                  
-                 /* Original: r.round(-10.1) */
-                 var obtained = runOrCatch( r.round(-10.1) ,
+                 /* Original: r.ceil(-0.5) */
+                 var obtained = runOrCatch( r.ceil(-0.5) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #41
-                 /* ExpectedOriginal: -1000000000.0 */
-                 var expected_ = -1000000000.0;
+                    , conn);
                  
-                 /* Original: r.round(-1000000000.1) */
-                 var obtained = runOrCatch( r.round(-1000000000.1) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #42
-                 /* ExpectedOriginal: 1.0 */
-                 var expected_ = 1.0;
+                 /* ExpectedOriginal: -1.0 */
+                 var expected_ = -1.0;
                  
-                 /* Original: r.round(0.9) */
-                 var obtained = runOrCatch( r.round(0.9) ,
+                 /* Original: r.ceil(-1.0) */
+                 var obtained = runOrCatch( r.ceil(-1.0) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #43
-                 /* ExpectedOriginal: 10.0 */
-                 var expected_ = 10.0;
+                    , conn);
                  
-                 /* Original: r.round(9.9) */
-                 var obtained = runOrCatch( r.round(9.9) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #44
-                 /* ExpectedOriginal: 1000000000.0 */
-                 var expected_ = 1000000000.0;
-                 
-                 /* Original: r.round(999999999.9) */
-                 var obtained = runOrCatch( r.round(999999999.9) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #45
                  /* ExpectedOriginal: -1.0 */
                  var expected_ = -1.0;
                  
-                 /* Original: r.round(-0.9) */
-                 var obtained = runOrCatch( r.round(-0.9) ,
+                 /* Original: r.ceil(-1.5) */
+                 var obtained = runOrCatch( r.ceil(-1.5) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
-             }
-             
-             TestCounter++;
-             
-             {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #46
-                 /* ExpectedOriginal: -10.0 */
-                 var expected_ = -10.0;
+                    , conn);
                  
-                 /* Original: r.round(-9.9) */
-                 var obtained = runOrCatch( r.round(-9.9) ,
-                                            new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
                  //JavaQuery, math_logic/floor_ceil_round.yaml, #47
+                 /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", []) */
+                 var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
+                 
+                 /* Original: r.expr('X').ceil() */
+                 var obtained = runOrCatch( r.expr("X").ceil() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #51
+                 /* ExpectedOriginal: "NUMBER" */
+                 var expected_ = "NUMBER";
+                 
+                 /* Original: r.round(1.0).type_of() */
+                 var obtained = runOrCatch( r.round(1.0).typeOf() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #53
+                 /* ExpectedOriginal: 1.0 */
+                 var expected_ = 1.0;
+                 
+                 /* Original: r.round(1.0) */
+                 var obtained = runOrCatch( r.round(1.0) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #55
+                 /* ExpectedOriginal: 1.0 */
+                 var expected_ = 1.0;
+                 
+                 /* Original: r.expr(1.0).round() */
+                 var obtained = runOrCatch( r.expr(1.0).round() ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #58
+                 /* ExpectedOriginal: 1.0 */
+                 var expected_ = 1.0;
+                 
+                 /* Original: r.round(0.5) */
+                 var obtained = runOrCatch( r.round(0.5) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #60
+                 /* ExpectedOriginal: -1.0 */
+                 var expected_ = -1.0;
+                 
+                 /* Original: r.round(-0.5) */
+                 var obtained = runOrCatch( r.round(-0.5) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #63
+                 /* ExpectedOriginal: 0.0 */
+                 var expected_ = 0.0;
+                 
+                 /* Original: r.round(0.0) */
+                 var obtained = runOrCatch( r.round(0.0) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #65
+                 /* ExpectedOriginal: 1.0 */
+                 var expected_ = 1.0;
+                 
+                 /* Original: r.round(1.0) */
+                 var obtained = runOrCatch( r.round(1.0) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #67
+                 /* ExpectedOriginal: 10.0 */
+                 var expected_ = 10.0;
+                 
+                 /* Original: r.round(10.0) */
+                 var obtained = runOrCatch( r.round(10.0) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #69
+                 /* ExpectedOriginal: 1000000000.0 */
+                 var expected_ = 1000000000.0;
+                 
+                 /* Original: r.round(1000000000.0) */
+                 var obtained = runOrCatch( r.round(1000000000.0) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #71
+                 /* ExpectedOriginal: 1e20 */
+                 var expected_ = 1e+20;
+                 
+                 /* Original: r.round(1e20) */
+                 var obtained = runOrCatch( r.round(1e+20) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #74
+                 /* ExpectedOriginal: -1.0 */
+                 var expected_ = -1.0;
+                 
+                 /* Original: r.round(-1.0) */
+                 var obtained = runOrCatch( r.round(-1.0) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #76
+                 /* ExpectedOriginal: -10.0 */
+                 var expected_ = -10.0;
+                 
+                 /* Original: r.round(-10.0) */
+                 var obtained = runOrCatch( r.round(-10.0) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #78
+                 /* ExpectedOriginal: -1000000000.0 */
+                 var expected_ = -1000000000.0;
+                 
+                 /* Original: r.round(-1000000000.0) */
+                 var obtained = runOrCatch( r.round(-1000000000.0) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #80
+                 /* ExpectedOriginal: -1e20 */
+                 var expected_ = -1e+20;
+                 
+                 /* Original: r.round(-1e20) */
+                 var obtained = runOrCatch( r.round(-1e+20) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #83
+                 /* ExpectedOriginal: 0.0 */
+                 var expected_ = 0.0;
+                 
+                 /* Original: r.round(0.1) */
+                 var obtained = runOrCatch( r.round(0.1) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #85
+                 /* ExpectedOriginal: 1.0 */
+                 var expected_ = 1.0;
+                 
+                 /* Original: r.round(1.1) */
+                 var obtained = runOrCatch( r.round(1.1) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #87
+                 /* ExpectedOriginal: 10.0 */
+                 var expected_ = 10.0;
+                 
+                 /* Original: r.round(10.1) */
+                 var obtained = runOrCatch( r.round(10.1) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #89
+                 /* ExpectedOriginal: 1000000000.0 */
+                 var expected_ = 1000000000.0;
+                 
+                 /* Original: r.round(1000000000.1) */
+                 var obtained = runOrCatch( r.round(1000000000.1) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #92
+                 /* ExpectedOriginal: -1.0 */
+                 var expected_ = -1.0;
+                 
+                 /* Original: r.round(-1.1) */
+                 var obtained = runOrCatch( r.round(-1.1) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #94
+                 /* ExpectedOriginal: -10.0 */
+                 var expected_ = -10.0;
+                 
+                 /* Original: r.round(-10.1) */
+                 var obtained = runOrCatch( r.round(-10.1) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #96
+                 /* ExpectedOriginal: -1000000000.0 */
+                 var expected_ = -1000000000.0;
+                 
+                 /* Original: r.round(-1000000000.1) */
+                 var obtained = runOrCatch( r.round(-1000000000.1) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #99
+                 /* ExpectedOriginal: 1.0 */
+                 var expected_ = 1.0;
+                 
+                 /* Original: r.round(0.9) */
+                 var obtained = runOrCatch( r.round(0.9) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #101
+                 /* ExpectedOriginal: 10.0 */
+                 var expected_ = 10.0;
+                 
+                 /* Original: r.round(9.9) */
+                 var obtained = runOrCatch( r.round(9.9) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #103
+                 /* ExpectedOriginal: 1000000000.0 */
+                 var expected_ = 1000000000.0;
+                 
+                 /* Original: r.round(999999999.9) */
+                 var obtained = runOrCatch( r.round(999999999.9) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #106
+                 /* ExpectedOriginal: -1.0 */
+                 var expected_ = -1.0;
+                 
+                 /* Original: r.round(-0.9) */
+                 var obtained = runOrCatch( r.round(-0.9) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #108
+                 /* ExpectedOriginal: -10.0 */
+                 var expected_ = -10.0;
+                 
+                 /* Original: r.round(-9.9) */
+                 var obtained = runOrCatch( r.round(-9.9) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #110
                  /* ExpectedOriginal: -1000000000.0 */
                  var expected_ = -1000000000.0;
                  
                  /* Original: r.round(-999999999.9) */
                  var obtained = runOrCatch( r.round(-999999999.9) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/floor_ceil_round.yaml, #48
+                 //JavaQuery, math_logic/floor_ceil_round.yaml, #113
                  /* ExpectedOriginal: err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", []) */
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array());
                  
                  /* Original: r.expr('X').round() */
                  var obtained = runOrCatch( r.expr("X").round() ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
 

@@ -30,6 +30,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -57,7 +58,7 @@ namespace RethinkDb.Driver.Test.Generated {
          if( test.TestType == "JavaDef" )
          {
              @:
-             @://JavaDef, @test.TestFile, #@test.TestNum
+             @://JavaDef, @test.TestFile, #@test.LineNum
              @://Original: @test.Original
              @:
              if( @renderedVars.Contains(test.VarName) )
@@ -66,7 +67,7 @@ namespace RethinkDb.Driver.Test.Generated {
              }
              else if( test.RunIfQuery )
              {
-                 @:var @test.VarName = maybeRun( @test.Value );
+                 @:var @test.VarName = maybeRun( @test.Value , conn);
                  renderedVars.Add(@test.VarName);
              }
              else
@@ -81,7 +82,7 @@ namespace RethinkDb.Driver.Test.Generated {
              @:TestCounter++;
              @:
              @:{
-                 @://JavaQuery, @test.TestFile, #@test.TestNum
+                 @://JavaQuery, @test.TestFile, #@test.LineNum
                  @:/* ExpectedOriginal: @test.ExpectedOriginal */
                  @:var expected_ = @(test.ExpectedJava ?? "null as object");
                  @:
@@ -92,9 +93,21 @@ namespace RethinkDb.Driver.Test.Generated {
                  {
                      @:.with("@opt.Key", @(opt.Val.IsNumber(0) || opt.Val.IsNumber(1) ?  opt.Val : "\"" + opt.Val + "\"" ))
                  }
-                 @:   );
+                 @:   , conn);
                  
-                 @:assertEquals(expected_, obtained);
+                 @:
+                 if( @test.ExpectedType.EndsWith("[]") )
+                 {
+                     @:assertArrayEquals(expected_, (@test.ExpectedType) obtained);
+                 }
+                 else if( test.ExpectedType == "double" )
+                 {
+                     @:assertEquals((double) expected_, (double) obtained, 0.00000000001);
+                 }
+                 else
+                 {
+                     @:assertEquals(expected_, obtained);                 
+                 }
              @:}
              @:
          }

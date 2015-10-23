@@ -2,7 +2,7 @@ ModuleName: TransformArray
 DefsAndTests:
 - TestType: JavaDef
   TestFile: transform/array.yaml
-  TestNum: 1
+  LineNum: 5
   Original: arr = r.expr([1, 2, 3])
   VarName: arr
   VarType: MakeArray
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: transform/array.yaml
-  TestNum: 2
+  LineNum: 6
   Original: dupe_arr = r.expr([1, 1, 2, 3])
   VarName: dupe_arr
   VarType: MakeArray
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: transform/array.yaml
-  TestNum: 3
+  LineNum: 7
   Original: objArr = r.expr([{'a':1, 'b':'a'}, {'a':2, 'b':'b'}, {'a':3, 'b':'c'}])
   VarName: objArr
   VarType: MakeArray
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: transform/array.yaml
-  TestNum: 4
+  LineNum: 8
   Original: nestedObjArr = r.expr([{'a':1, 'b':{'c':1}}, {'a':2, 'b':{'c':2}}, {'a':3, 'b':{'c':3}}])
   VarName: nestedObjArr
   VarType: MakeArray
@@ -38,43 +38,43 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 5
+  LineNum: 12
   Original: arr.append(4)
   Java: arr.append(4L)
-  ExpectedOriginal: '[1, 2, 3, 4]'
+  ExpectedOriginal: '[1,2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 6
+  LineNum: 14
   Original: arr.append('a')
   Java: arr.append("a")
-  ExpectedOriginal: '[1, 2, 3, ''a'']'
+  ExpectedOriginal: '[1,2,3,''a'']'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, "a")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 7
+  LineNum: 19
   Original: arr.prepend(0)
   Java: arr.prepend(0L)
-  ExpectedOriginal: '[0, 1, 2, 3]'
+  ExpectedOriginal: '[0,1,2,3]'
   ExpectedType: List
   ExpectedJava: r.array(0L, 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 8
+  LineNum: 21
   Original: arr.prepend('a')
   Java: arr.prepend("a")
-  ExpectedOriginal: '[''a'', 1, 2, 3]'
+  ExpectedOriginal: '[''a'',1,2,3]'
   ExpectedType: List
   ExpectedJava: r.array("a", 1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 9
+  LineNum: 26
   Original: arr.difference([1,2,2])
   Java: arr.difference(r.array(1L, 2L, 2L))
   ExpectedOriginal: '[3]'
@@ -83,70 +83,70 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 10
+  LineNum: 28
   Original: arr.difference([])
   Java: arr.difference(r.array())
-  ExpectedOriginal: '[1, 2, 3]'
+  ExpectedOriginal: '[1,2,3]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 11
+  LineNum: 30
   Original: arr.difference(["foo", "bar"])
   Java: arr.difference(r.array("foo", "bar"))
-  ExpectedOriginal: '[1, 2, 3]'
+  ExpectedOriginal: '[1,2,3]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 12
+  LineNum: 34
   Original: dupe_arr.set_insert(1)
   Java: dupe_arr.setInsert(1L)
-  ExpectedOriginal: '[1, 2, 3]'
+  ExpectedOriginal: '[1,2,3]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 13
+  LineNum: 36
   Original: dupe_arr.set_insert(4)
   Java: dupe_arr.setInsert(4L)
-  ExpectedOriginal: '[1, 2, 3, 4]'
+  ExpectedOriginal: '[1,2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 14
+  LineNum: 39
   Original: dupe_arr.set_union([3,4,5,5])
   Java: dupe_arr.setUnion(r.array(3L, 4L, 5L, 5L))
-  ExpectedOriginal: '[1, 2, 3, 4, 5]'
+  ExpectedOriginal: '[1,2,3,4,5]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L, 5L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 15
+  LineNum: 41
   Original: dupe_arr.set_union([5,6])
   Java: dupe_arr.setUnion(r.array(5L, 6L))
-  ExpectedOriginal: '[1, 2, 3, 5, 6]'
+  ExpectedOriginal: '[1,2,3,5,6]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 5L, 6L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 16
+  LineNum: 44
   Original: dupe_arr.set_intersection([1,1,1,2,2])
   Java: dupe_arr.setIntersection(r.array(1L, 1L, 1L, 2L, 2L))
-  ExpectedOriginal: '[1, 2]'
+  ExpectedOriginal: '[1,2]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 17
+  LineNum: 46
   Original: dupe_arr.set_intersection(["foo"])
   Java: dupe_arr.setIntersection(r.array("foo"))
   ExpectedOriginal: '[]'
@@ -155,25 +155,25 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 18
+  LineNum: 49
   Original: dupe_arr.set_difference([1,1,1,10])
   Java: dupe_arr.setDifference(r.array(1L, 1L, 1L, 10L))
-  ExpectedOriginal: '[2, 3]'
+  ExpectedOriginal: '[2,3]'
   ExpectedType: List
   ExpectedJava: r.array(2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 19
+  LineNum: 51
   Original: dupe_arr.set_difference([2])
   Java: dupe_arr.setDifference(r.array(2L))
-  ExpectedOriginal: '[1, 3]'
+  ExpectedOriginal: '[1,3]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: (20, 1)
+  LineNum: 58
   Original: arr[1:3]
   Java: arr.slice(1, 3)
   ExpectedOriginal: '[2, 3]'
@@ -182,7 +182,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: (20, 2)
+  LineNum: 59
   Original: arr.slice(1, 3)
   Java: arr.slice(1L, 3L)
   ExpectedOriginal: '[2, 3]'
@@ -191,7 +191,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: (20, 3)
+  LineNum: 60
   Original: arr.slice(1, 2, right_bound='closed')
   Java: arr.slice(1L, 2L).optArg("right_bound", "closed")
   ExpectedOriginal: '[2, 3]'
@@ -200,43 +200,43 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: (21, 1)
+  LineNum: 72
   Original: arr[:2]
   Java: arr.slice(0, 2)
-  ExpectedOriginal: '[1, 2]'
+  ExpectedOriginal: '[1,2]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: (21, 2)
+  LineNum: 73
   Original: arr.slice(0,2)
   Java: arr.slice(0L, 2L)
-  ExpectedOriginal: '[1, 2]'
+  ExpectedOriginal: '[1,2]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: (22, 1)
+  LineNum: 81
   Original: arr[1:]
-  Java: arr.slice(1, -1)
-  ExpectedOriginal: '[2, 3]'
+  Java: arr.slice(1, -1).optArg("right_bound", "closed")
+  ExpectedOriginal: '[2,3]'
   ExpectedType: List
   ExpectedJava: r.array(2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: (22, 2)
+  LineNum: 82
   Original: arr.slice(1)
   Java: arr.slice(1L)
-  ExpectedOriginal: '[2, 3]'
+  ExpectedOriginal: '[2,3]'
   ExpectedType: List
   ExpectedJava: r.array(2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 23
+  LineNum: 89
   Original: arr.slice(-2, -1)
   Java: arr.slice(-2L, -1L)
   ExpectedOriginal: '[2]'
@@ -245,16 +245,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 24
+  LineNum: 95
   Original: arr.skip(1)
   Java: arr.skip(1L)
-  ExpectedOriginal: '[2, 3]'
+  ExpectedOriginal: '[2,3]'
   ExpectedType: List
   ExpectedJava: r.array(2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 25
+  LineNum: 97
   Original: arr.skip(2)
   Java: arr.skip(2L)
   ExpectedOriginal: '[3]'
@@ -263,7 +263,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 26
+  LineNum: 99
   Original: arr.skip(12)
   Java: arr.skip(12L)
   ExpectedOriginal: '[]'
@@ -272,16 +272,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 27
+  LineNum: 104
   Original: arr.limit(2)
   Java: arr.limit(2L)
-  ExpectedOriginal: '[1, 2]'
+  ExpectedOriginal: '[1,2]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 28
+  LineNum: 106
   Original: arr.limit(0)
   Java: arr.limit(0L)
   ExpectedOriginal: '[]'
@@ -290,34 +290,34 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 29
+  LineNum: 108
   Original: arr.limit(12)
   Java: arr.limit(12L)
-  ExpectedOriginal: '[1, 2, 3]'
+  ExpectedOriginal: '[1,2,3]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 30
+  LineNum: 113
   Original: objArr.pluck('a', 'b')
   Java: objArr.pluck("a", "b")
-  ExpectedOriginal: '[{''b'': ''a'', ''a'': 1}, {''b'': ''b'', ''a'': 2}, {''b'': ''c'', ''a'': 3}]'
+  ExpectedOriginal: '[{''a'':1, ''b'':''a''}, {''a'':2, ''b'':''b''}, {''a'':3, ''b'':''c''}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("b", "a").with("a", 1L), r.hashMap("b", "b").with("a", 2L), r.hashMap("b", "c").with("a", 3L))
+  ExpectedJava: r.array(r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 31
+  LineNum: 115
   Original: objArr.pluck('a')
   Java: objArr.pluck("a")
-  ExpectedOriginal: '[{''a'': 1}, {''a'': 2}, {''a'': 3}]'
+  ExpectedOriginal: '[{''a'':1}, {''a'':2}, {''a'':3}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("a", 1L), r.hashMap("a", 2L), r.hashMap("a", 3L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 32
+  LineNum: 117
   Original: objArr.pluck()
   Java: objArr.pluck()
   ExpectedOriginal: '[{}, {}, {}]'
@@ -326,7 +326,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: transform/array.yaml
-  TestNum: 33
+  LineNum: 121
   Original: wftst = objArr.union(objArr.pluck('a')).union(objArr.pluck('b')).union([{'a':null}])
   VarName: wftst
   VarType: Union
@@ -335,7 +335,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 34
+  LineNum: 122
   Original: wftst.with_fields('a')
   Java: wftst.withFields("a")
   ExpectedOriginal: ([{'a':1},{'a':2},{'a':3},{'a':1},{'a':2},{'a':3}])
@@ -344,7 +344,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 35
+  LineNum: 124
   Original: wftst.with_fields('b')
   Java: wftst.withFields("b")
   ExpectedOriginal: ([{'b':'a'},{'b':'b'},{'b':'c'},{'b':'a'},{'b':'b'},{'b':'c'}])
@@ -353,7 +353,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 36
+  LineNum: 126
   Original: wftst.with_fields('a', 'b')
   Java: wftst.withFields("a", "b")
   ExpectedOriginal: ([{'a':1,'b':'a'},{'a':2,'b':'b'},{'a':3,'b':'c'}])
@@ -362,7 +362,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 37
+  LineNum: 128
   Original: wftst.with_fields()
   Java: wftst.withFields()
   ExpectedOriginal: '[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]'
@@ -371,7 +371,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: transform/array.yaml
-  TestNum: 38
+  LineNum: 131
   Original: wftst2 = nestedObjArr.union(objArr.pluck({'b':'missing'})).union(nestedObjArr.pluck({'b':'c'}))
   VarName: wftst2
   VarType: Union
@@ -380,7 +380,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 39
+  LineNum: 132
   Original: wftst2.with_fields({'b':'c'})
   Java: wftst2.withFields(r.hashMap("b", "c"))
   ExpectedOriginal: ([{'b':{'c':1}}, {'b':{'c':2}}, {'b':{'c':3}}, {'b':{'c':1}}, {'b':{'c':2}}, {'b':{'c':3}}])
@@ -389,7 +389,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 40
+  LineNum: 135
   Original: wftst.with_fields(1)
   Java: wftst.withFields(1L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Invalid path argument `1`.", [])
@@ -398,7 +398,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 41
+  LineNum: 137
   Original: r.expr(1).with_fields()
   Java: r.expr(1L).withFields()
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform has_fields on a non-object non-sequence `1`.", [])
@@ -407,7 +407,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 42
+  LineNum: 142
   Original: objArr.without('a', 'b')
   Java: objArr.without("a", "b")
   ExpectedOriginal: '[{}, {}, {}]'
@@ -416,34 +416,34 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 43
+  LineNum: 144
   Original: objArr.without('a')
   Java: objArr.without("a")
-  ExpectedOriginal: '[{''b'': ''a''}, {''b'': ''b''}, {''b'': ''c''}]'
+  ExpectedOriginal: '[{''b'':''a''}, {''b'':''b''}, {''b'':''c''}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("b", "a"), r.hashMap("b", "b"), r.hashMap("b", "c"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 44
+  LineNum: 146
   Original: objArr.without()
   Java: objArr.without()
-  ExpectedOriginal: '[{''b'': ''a'', ''a'': 1}, {''b'': ''b'', ''a'': 2}, {''b'': ''c'', ''a'': 3}]'
+  ExpectedOriginal: '[{''a'':1, ''b'':''a''}, {''a'':2, ''b'':''b''}, {''a'':3, ''b'':''c''}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("b", "a").with("a", 1L), r.hashMap("b", "b").with("a", 2L), r.hashMap("b", "c").with("a", 3L))
+  ExpectedJava: r.array(r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 45
+  LineNum: 151
   Original: 'arr.map(lambda v: v + 1)'
   Java: arr.map(v -> r.add(v, 1L))
-  ExpectedOriginal: '[2, 3, 4]'
+  ExpectedOriginal: '[2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 46
+  LineNum: 161
   Original: 'arr.reduce(lambda a, b: a + b)'
   Java: arr.reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: 6
@@ -452,7 +452,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 47
+  LineNum: 166
   Original: arr.reduce(lambda a, b:a + b)
   Java: arr.reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: 6
@@ -461,7 +461,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 48
+  LineNum: 171
   Original: 'arr.union(arr).reduce(lambda a, b: a + b)'
   Java: arr.union(arr).reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: 12
@@ -470,7 +470,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 49
+  LineNum: 176
   Original: arr.union(arr).reduce(lambda a, b:a + b)
   Java: arr.union(arr).reduce((a, b) -> r.add(a, b))
   ExpectedOriginal: 12
@@ -479,70 +479,70 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 50
+  LineNum: 183
   Original: 'objArr.filter(lambda row: row[''b''] == ''b'')'
   Java: objArr.filter(row -> row.bracket("b").eq("b"))
-  ExpectedOriginal: '[{''b'': ''b'', ''a'': 2}]'
+  ExpectedOriginal: '[{''a'':2, ''b'':''b''}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("b", "b").with("a", 2L))
+  ExpectedJava: r.array(r.hashMap("a", 2L).with("b", "b"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 51
+  LineNum: 190
   Original: 'arr.concat_map(lambda v: [1,2])'
   Java: arr.concatMap(v -> r.array(1L, 2L))
-  ExpectedOriginal: '[1, 2, 1, 2, 1, 2]'
+  ExpectedOriginal: '[1,2,1,2,1,2]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 1L, 2L, 1L, 2L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 52
+  LineNum: 194
   Original: 'arr.concat_map(lambda v: [{''v'':v}, {''v2'':v + 1}])'
   Java: arr.concatMap(v -> r.array(r.hashMap("v", v), r.hashMap("v2", r.add(v, 1L))))
-  ExpectedOriginal: '[{''v'': 1}, {''v2'': 2}, {''v'': 2}, {''v2'': 3}, {''v'': 3}, {''v2'': 4}]'
+  ExpectedOriginal: '[{''v'':1}, {''v2'':2}, {''v'':2}, {''v2'':3}, {''v'':3}, {''v2'':4}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("v", 1L), r.hashMap("v2", 2L), r.hashMap("v", 2L), r.hashMap("v2", 3L), r.hashMap("v", 3L), r.hashMap("v2", 4L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 53
+  LineNum: 201
   Original: objArr.order_by('b')
   Java: objArr.orderBy("b")
-  ExpectedOriginal: '[{''b'': ''a'', ''a'': 1}, {''b'': ''b'', ''a'': 2}, {''b'': ''c'', ''a'': 3}]'
+  ExpectedOriginal: '[{''a'':1, ''b'':''a''}, {''a'':2, ''b'':''b''}, {''a'':3, ''b'':''c''}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("b", "a").with("a", 1L), r.hashMap("b", "b").with("a", 2L), r.hashMap("b", "c").with("a", 3L))
+  ExpectedJava: r.array(r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 54
+  LineNum: 205
   Original: objArr.order_by(r.desc('b'))
   Java: objArr.orderBy(r.desc("b"))
-  ExpectedOriginal: '[{''b'': ''c'', ''a'': 3}, {''b'': ''b'', ''a'': 2}, {''b'': ''a'', ''a'': 1}]'
+  ExpectedOriginal: '[{''a'':3, ''b'':''c''}, {''a'':2, ''b'':''b''}, {''a'':1, ''b'':''a''}]'
   ExpectedType: List
-  ExpectedJava: r.array(r.hashMap("b", "c").with("a", 3L), r.hashMap("b", "b").with("a", 2L), r.hashMap("b", "a").with("a", 1L))
+  ExpectedJava: r.array(r.hashMap("a", 3L).with("b", "c"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 1L).with("b", "a"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 55
+  LineNum: 208
   Original: r.expr([{'-a':1},{'-a':2}]).order_by('-a')
   Java: r.expr(r.array(r.hashMap("-a", 1L), r.hashMap("-a", 2L))).orderBy("-a")
-  ExpectedOriginal: '[{''-a'': 1}, {''-a'': 2}]'
+  ExpectedOriginal: '[{''-a'':1},{''-a'':2}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("-a", 1L), r.hashMap("-a", 2L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 56
+  LineNum: 216
   Original: r.expr([1,1,2,2,2,3,4]).distinct()
   Java: r.expr(r.array(1L, 1L, 2L, 2L, 2L, 3L, 4L)).distinct()
-  ExpectedOriginal: '[1, 2, 3, 4]'
+  ExpectedOriginal: '[1,2,3,4]'
   ExpectedType: List
   ExpectedJava: r.array(1L, 2L, 3L, 4L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 57
+  LineNum: 223
   Original: objArr.count()
   Java: objArr.count()
   ExpectedOriginal: 3
@@ -551,16 +551,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 58
+  LineNum: 228
   Original: arr.union(objArr)
   Java: arr.union(objArr)
-  ExpectedOriginal: '[1, 2, 3, {''b'': ''a'', ''a'': 1}, {''b'': ''b'', ''a'': 2}, {''b'': ''c'', ''a'': 3}]'
+  ExpectedOriginal: '[1, 2, 3, {''a'':1, ''b'':''a''}, {''a'':2, ''b'':''b''}, {''a'':3, ''b'':''c''}]'
   ExpectedType: List
-  ExpectedJava: r.array(1L, 2L, 3L, r.hashMap("b", "a").with("a", 1L), r.hashMap("b", "b").with("a", 2L), r.hashMap("b", "c").with("a", 3L))
+  ExpectedJava: r.array(1L, 2L, 3L, r.hashMap("a", 1L).with("b", "a"), r.hashMap("a", 2L).with("b", "b"), r.hashMap("a", 3L).with("b", "c"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: (59, 1)
+  LineNum: 234
   Original: arr[1]
   Java: arr.bracket(1L)
   ExpectedOriginal: 2
@@ -569,7 +569,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: (59, 2)
+  LineNum: 235
   Original: arr.nth(1)
   Java: arr.nth(1L)
   ExpectedOriginal: 2
@@ -578,7 +578,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 60
+  LineNum: 238
   Original: arr[0]
   Java: arr.bracket(0L)
   ExpectedOriginal: 1
@@ -587,133 +587,133 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 61
+  LineNum: 245
   Original: r.expr([]).is_empty()
   Java: r.expr(r.array()).isEmpty()
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 62
+  LineNum: 247
   Original: arr.is_empty()
   Java: arr.isEmpty()
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 63
+  LineNum: 251
   Original: arr.contains(2)
   Java: arr.contains(2L)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 64
+  LineNum: 253
   Original: arr.contains(2, 3)
   Java: arr.contains(2L, 3L)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 65
+  LineNum: 255
   Original: arr.contains(4)
   Java: arr.contains(4L)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 66
+  LineNum: 257
   Original: arr.contains(2, 4)
   Java: arr.contains(2L, 4L)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 67
+  LineNum: 259
   Original: arr.contains(2, 2)
   Java: arr.contains(2L, 2L)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 68
+  LineNum: 261
   Original: arr.union(arr).contains(2, 2)
   Java: arr.union(arr).contains(2L, 2L)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 69
+  LineNum: 265
   Original: arr.contains(lambda x:x == 2)
   Java: arr.contains(x -> r.eq(x, 2L))
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 70
+  LineNum: 269
   Original: arr.contains(lambda x:x == 2, lambda x:x==3)
   Java: arr.contains(x -> r.eq(x, 2L), x -> r.eq(x, 3L))
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 71
+  LineNum: 273
   Original: arr.contains(lambda x:x == 4)
   Java: arr.contains(x -> r.eq(x, 4L))
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 72
+  LineNum: 277
   Original: arr.contains(lambda x:x == 2, lambda x:x==4)
   Java: arr.contains(x -> r.eq(x, 2L), x -> r.eq(x, 4L))
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 73
+  LineNum: 281
   Original: arr.contains(lambda x:x == 2, lambda x:x==2)
   Java: arr.contains(x -> r.eq(x, 2L), x -> r.eq(x, 2L))
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 74
+  LineNum: 285
   Original: arr.union(arr).contains(lambda x:x == 2, lambda x:x==2)
   Java: arr.union(arr).contains(x -> r.eq(x, 2L), x -> r.eq(x, 2L))
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 75
+  LineNum: 290
   Original: r.expr([{'a':1},{'b':2},{'a':3,'c':4}])['a']
   Java: r.expr(r.array(r.hashMap("a", 1L), r.hashMap("b", 2L), r.hashMap("a", 3L).with("c", 4L))).bracket("a")
   ExpectedOriginal: '[1, 3]'
@@ -722,7 +722,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: transform/array.yaml
-  TestNum: 76
+  LineNum: 293
   Original: r.expr([{'a':1},'a',{'b':2},{'a':3,'c':4}])['a']
   Java: r.expr(r.array(r.hashMap("a", 1L), "a", r.hashMap("b", 2L), r.hashMap("a", 3L).with("c", 4L))).bracket("a")
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", [])

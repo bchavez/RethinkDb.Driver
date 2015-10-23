@@ -19,7 +19,7 @@ namespace Templates
         {
             public string TestType { get; set; }
             public string TestFile { get; set; }
-            public string TestNum { get; set; }
+            public string LineNum { get; set; }
             public string Original { get; set; }
             public string VarName { get; set; }
             public string VarType { get; set; }

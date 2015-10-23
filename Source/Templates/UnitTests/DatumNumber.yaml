@@ -2,7 +2,7 @@ ModuleName: DatumNumber
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 1
+  LineNum: 6
   Original: r.expr(1)
   Java: r.expr(1L)
   ExpectedOriginal: 1
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 2
+  LineNum: 15
   Original: r.expr(-1)
   Java: r.expr(-1L)
   ExpectedOriginal: -1
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 3
+  LineNum: 24
   Original: r.expr(0)
   Java: r.expr(0L)
   ExpectedOriginal: 0
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 4
+  LineNum: 35
   Original: r.expr(1.0)
   Java: r.expr(1.0)
   ExpectedOriginal: 1.0
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 5
+  LineNum: 44
   Original: r.expr(1.5)
   Java: r.expr(1.5)
   ExpectedOriginal: 1.5
@@ -47,7 +47,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 6
+  LineNum: 53
   Original: r.expr(-0.5)
   Java: r.expr(-0.5)
   ExpectedOriginal: -0.5
@@ -56,7 +56,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 7
+  LineNum: 62
   Original: r.expr(67498.89278)
   Java: r.expr(67498.89278)
   ExpectedOriginal: 67498.89278
@@ -65,7 +65,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 8
+  LineNum: 73
   Original: r.expr(1234567890)
   Java: r.expr(1234567890L)
   ExpectedOriginal: 1234567890
@@ -74,7 +74,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 9
+  LineNum: 83
   Original: r.expr(-73850380122423)
   Java: r.expr(-73850380122423L)
   ExpectedOriginal: -73850380122423
@@ -83,7 +83,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 10
+  LineNum: 95
   Original: r.expr(1234567890123456789012345678901234567890)
   Java: r.expr(1234567890123456789012345678901234567890.0)
   ExpectedOriginal: float(1234567890123456789012345678901234567890)
@@ -92,16 +92,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 11
+  LineNum: 100
   Original: r.expr(123.4567890123456789012345678901234567890)
   Java: r.expr(123.45678901234568)
-  ExpectedOriginal: (123.4567890123456789012345678901234567890)
+  ExpectedOriginal: 123.4567890123456789012345678901234567890
   ExpectedType: Double
   ExpectedJava: 123.45678901234568
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 12
+  LineNum: 103
   Original: r.expr(1).type_of()
   Java: r.expr(1L).typeOf()
   ExpectedOriginal: 'NUMBER'
@@ -110,7 +110,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 13
+  LineNum: 107
   Original: r.expr(1).coerce_to('string')
   Java: r.expr(1L).coerceTo("string")
   ExpectedOriginal: '1'
@@ -119,7 +119,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 14
+  LineNum: 110
   Original: r.expr(1).coerce_to('number')
   Java: r.expr(1L).coerceTo("number")
   ExpectedOriginal: 1
@@ -128,7 +128,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 15
+  LineNum: 115
   Original: r.expr(1.0)
   Java: r.expr(1.0)
   ExpectedOriginal: int_cmp(1)
@@ -137,7 +137,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 16
+  LineNum: 119
   Original: r.expr(45)
   Java: r.expr(45L)
   ExpectedOriginal: int_cmp(45)
@@ -146,7 +146,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/number.yaml
-  TestNum: 17
+  LineNum: 123
   Original: r.expr(1.2)
   Java: r.expr(1.2)
   ExpectedOriginal: float_cmp(1.2)

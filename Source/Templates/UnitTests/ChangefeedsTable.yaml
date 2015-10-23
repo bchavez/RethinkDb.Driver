@@ -4,7 +4,7 @@ TableVarNames:
 DefsAndTests:
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
-  TestNum: 1
+  LineNum: 9
   Original: all = tbl.changes()
   VarName: all
   VarType: Changes
@@ -14,7 +14,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 2
+  LineNum: 15
   Original: tbl.insert([{'id':1}, {'id':2}])
   Java: tbl.insert(r.array(r.hashMap("id", 1L), r.hashMap("id", 2L)))
   ExpectedOriginal: partial({'errors':0, 'inserted':2})
@@ -23,7 +23,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 3
+  LineNum: 17
   Original: fetch(all, 2)
   Java: fetch(all, 2L)
   ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])
@@ -32,7 +32,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 4
+  LineNum: 22
   Original: tbl.get(1).update({'version':1})
   Java: tbl.get(1L).update(r.hashMap("version", 1L))
   ExpectedOriginal: partial({'errors':0, 'replaced':1})
@@ -41,16 +41,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 5
+  LineNum: 24
   Original: fetch(all, 1)
   Java: fetch(all, 1L)
-  ExpectedOriginal: '[{''old_val'': {''id'': 1}, ''new_val'': {''id'': 1, ''version'': 1}}]'
+  ExpectedOriginal: '[{''old_val'':{''id'':1}, ''new_val'':{''id'':1, ''version'':1}}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("old_val", r.hashMap("id", 1L)).with("new_val", r.hashMap("id", 1L).with("version", 1L)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 6
+  LineNum: 29
   Original: tbl.get(1).delete()
   Java: tbl.get(1L).delete()
   ExpectedOriginal: partial({'errors':0, 'deleted':1})
@@ -59,16 +59,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 7
+  LineNum: 31
   Original: fetch(all, 1)
   Java: fetch(all, 1L)
-  ExpectedOriginal: '[{''old_val'': {''id'': 1, ''version'': 1}, ''new_val'': None}]'
+  ExpectedOriginal: '[{''old_val'':{''id'':1, ''version'':1}, ''new_val'':null}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("old_val", r.hashMap("id", 1L).with("version", 1L)).with("new_val", null))
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
-  TestNum: 8
+  LineNum: 36
   Original: pluck = tbl.changes().pluck({'new_val':['version']})
   VarName: pluck
   VarType: Pluck
@@ -78,7 +78,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 9
+  LineNum: 37
   Original: tbl.insert([{'id':5, 'version':5}])
   Java: tbl.insert(r.array(r.hashMap("id", 5L).with("version", 5L)))
   ExpectedOriginal: partial({'errors':0, 'inserted':1})
@@ -87,26 +87,25 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 10
+  LineNum: 39
   Original: fetch(pluck, 1)
   Java: fetch(pluck, 1L)
-  ExpectedOriginal: '[{''new_val'': {''version'': 5}}]'
+  ExpectedOriginal: '[{''new_val'':{''version'':5}}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("new_val", r.hashMap("version", 5L)))
   RunOpts: []
-- TestType: JavaDef
+- TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 11
-  Original: ordered = tbl.changes().order_by('id')
-  VarName: ordered
-  VarType: OrderBy
-  RunIfQuery: true
-  Value: (OrderBy) (tbl.changes().orderBy("id"))
-  Java: OrderBy ordered = (OrderBy) (tbl.changes().orderBy("id"));
+  LineNum: 44
+  Original: tbl.changes().order_by('id')
+  Java: tbl.changes().orderBy("id")
+  ExpectedOriginal: err('ReqlQueryLogicError', "Cannot call a terminal (`reduce`, `count`, etc.) on an infinite stream (such as a changefeed).")
+  ExpectedType: Err
+  ExpectedJava: err("ReqlQueryLogicError", "Cannot call a terminal (`reduce`, `count`, etc.) on an infinite stream (such as a changefeed).")
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
-  TestNum: 12
+  LineNum: 71
   Original: vtbl = r.db('rethinkdb').table('_debug_scratch')
   VarName: vtbl
   VarType: Table
@@ -115,7 +114,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
-  TestNum: 13
+  LineNum: 72
   Original: allVirtual = vtbl.changes()
   VarName: allVirtual
   VarType: Changes
@@ -125,7 +124,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 14
+  LineNum: 76
   Original: vtbl.insert([{'id':1}, {'id':2}])
   Java: vtbl.insert(r.array(r.hashMap("id", 1L), r.hashMap("id", 2L)))
   ExpectedOriginal: partial({'errors':0, 'inserted':2})
@@ -134,7 +133,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 15
+  LineNum: 78
   Original: fetch(allVirtual, 2)
   Java: fetch(allVirtual, 2L)
   ExpectedOriginal: bag([{'old_val':null, 'new_val':{'id':1}}, {'old_val':null, 'new_val':{'id':2}}])
@@ -143,7 +142,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 16
+  LineNum: 83
   Original: vtbl.get(1).update({'version':1})
   Java: vtbl.get(1L).update(r.hashMap("version", 1L))
   ExpectedOriginal: partial({'errors':0, 'replaced':1})
@@ -152,16 +151,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 17
+  LineNum: 85
   Original: fetch(allVirtual, 1)
   Java: fetch(allVirtual, 1L)
-  ExpectedOriginal: '[{''old_val'': {''id'': 1}, ''new_val'': {''id'': 1, ''version'': 1}}]'
+  ExpectedOriginal: '[{''old_val'':{''id'':1}, ''new_val'':{''id'':1, ''version'':1}}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("old_val", r.hashMap("id", 1L)).with("new_val", r.hashMap("id", 1L).with("version", 1L)))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 18
+  LineNum: 90
   Original: vtbl.get(1).delete()
   Java: vtbl.get(1L).delete()
   ExpectedOriginal: partial({'errors':0, 'deleted':1})
@@ -170,16 +169,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 19
+  LineNum: 92
   Original: fetch(allVirtual, 1)
   Java: fetch(allVirtual, 1L)
-  ExpectedOriginal: '[{''old_val'': {''id'': 1, ''version'': 1}, ''new_val'': None}]'
+  ExpectedOriginal: '[{''old_val'':{''id'':1, ''version'':1}, ''new_val'':null}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("old_val", r.hashMap("id", 1L).with("version", 1L)).with("new_val", null))
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
-  TestNum: 20
+  LineNum: 97
   Original: vpluck = vtbl.changes().pluck({'new_val':['version']})
   VarName: vpluck
   VarType: Pluck
@@ -189,7 +188,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 21
+  LineNum: 98
   Original: vtbl.insert([{'id':5, 'version':5}])
   Java: vtbl.insert(r.array(r.hashMap("id", 5L).with("version", 5L)))
   ExpectedOriginal: partial({'errors':0, 'inserted':1})
@@ -198,10 +197,10 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: changefeeds/table.yaml
-  TestNum: 22
+  LineNum: 100
   Original: fetch(vpluck, 1)
   Java: fetch(vpluck, 1L)
-  ExpectedOriginal: '[{''new_val'': {''version'': 5}}]'
+  ExpectedOriginal: '[{''new_val'':{''version'':5}}]'
   ExpectedType: List
   ExpectedJava: r.array(r.hashMap("new_val", r.hashMap("version", 5L)))
   RunOpts: []

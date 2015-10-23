@@ -4,7 +4,7 @@ TableVarNames:
 DefsAndTests:
 - TestType: JavaDef
   TestFile: polymorphism.yaml
-  TestNum: 1
+  LineNum: 5
   Original: obj = r.expr({'id':0,'a':0})
   VarName: obj
   VarType: MakeObj
@@ -13,16 +13,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: 2
+  LineNum: 7
   Original: tbl.insert([{'id':i, 'a':i} for i in xrange(3)])
   Java: tbl.insert(LongStream.range(0, 3L).boxed().map(i -> r.hashMap("id", i).with("a", i)).collect(Collectors.toList()))
-  ExpectedOriginal: ({'deleted':0.0,'replaced':0.0,'unchanged':0.0,'errors':0.0,'skipped':0.0,'inserted':3})
+  ExpectedOriginal: ({'deleted':0,'replaced':0,'unchanged':0,'errors':0,'skipped':0,'inserted':3})
   ExpectedType: Map
-  ExpectedJava: r.hashMap("deleted", 0.0).with("replaced", 0.0).with("unchanged", 0.0).with("errors", 0.0).with("skipped", 0.0).with("inserted", 3L)
+  ExpectedJava: r.hashMap("deleted", 0L).with("replaced", 0L).with("unchanged", 0L).with("errors", 0L).with("skipped", 0L).with("inserted", 3L)
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: (3, 1)
+  LineNum: 21
   Original: tbl.merge({'c':1}).nth(0)
   Java: tbl.merge(r.hashMap("c", 1L)).nth(0L)
   ExpectedOriginal: ({'id':0,'c':1,'a':0})
@@ -31,7 +31,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: (3, 2)
+  LineNum: 22
   Original: obj.merge({'c':1})
   Java: obj.merge(r.hashMap("c", 1L))
   ExpectedOriginal: ({'id':0,'c':1,'a':0})
@@ -40,7 +40,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: (4, 1)
+  LineNum: 26
   Original: tbl.without('a').nth(0)
   Java: tbl.without("a").nth(0L)
   ExpectedOriginal: ({'id':0})
@@ -49,7 +49,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: (4, 2)
+  LineNum: 27
   Original: obj.without('a')
   Java: obj.without("a")
   ExpectedOriginal: ({'id':0})
@@ -58,7 +58,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: (5, 1)
+  LineNum: 31
   Original: tbl.pluck('a').nth(0)
   Java: tbl.pluck("a").nth(0L)
   ExpectedOriginal: ({'a':0})
@@ -67,7 +67,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: polymorphism.yaml
-  TestNum: (5, 2)
+  LineNum: 32
   Original: obj.pluck('a')
   Java: obj.pluck("a")
   ExpectedOriginal: ({'a':0})

@@ -2,7 +2,7 @@ ModuleName: TimesTimezones
 DefsAndTests:
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 1
+  LineNum: 3
   Original: t1 = r.time(2013, r.july, 29, 23, 30, 0, "+00:00")
   VarName: t1
   VarType: Time
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 2
+  LineNum: 5
   Original: tutc1 = t1.in_timezone("Z")
   VarName: tutc1
   VarType: InTimezone
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 3
+  LineNum: 6
   Original: tutc2 = t1.in_timezone("+00:00")
   VarName: tutc2
   VarType: InTimezone
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 4
+  LineNum: 7
   Original: tutc3 = t1.in_timezone("+00")
   VarName: tutc3
   VarType: InTimezone
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 5
+  LineNum: 8
   Original: tutcs = r.expr([tutc1, tutc2, tutc3])
   VarName: tutcs
   VarType: MakeArray
@@ -47,7 +47,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 6
+  LineNum: 10
   Original: tm1 = t1.in_timezone("-00:59")
   VarName: tm1
   VarType: InTimezone
@@ -56,7 +56,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 7
+  LineNum: 11
   Original: tm2 = t1.in_timezone("-01:00")
   VarName: tm2
   VarType: InTimezone
@@ -65,7 +65,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 8
+  LineNum: 12
   Original: tm3 = t1.in_timezone("-01:01")
   VarName: tm3
   VarType: InTimezone
@@ -74,7 +74,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 9
+  LineNum: 13
   Original: tms = r.expr([tm1, tm2, tm3])
   VarName: tms
   VarType: MakeArray
@@ -83,7 +83,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 10
+  LineNum: 15
   Original: tp1 = t1.in_timezone("+00:59")
   VarName: tp1
   VarType: InTimezone
@@ -92,7 +92,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 11
+  LineNum: 16
   Original: tp2 = t1.in_timezone("+01:00")
   VarName: tp2
   VarType: InTimezone
@@ -101,7 +101,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 12
+  LineNum: 17
   Original: tp3 = t1.in_timezone("+01:01")
   VarName: tp3
   VarType: InTimezone
@@ -110,7 +110,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 13
+  LineNum: 18
   Original: tps = r.expr([tp1, tp2, tp3])
   VarName: tps
   VarType: MakeArray
@@ -119,7 +119,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/timezones.yaml
-  TestNum: 14
+  LineNum: 20
   Original: ts = tutcs.union(tms).union(tps).union([t1])
   VarName: ts
   VarType: Union
@@ -128,7 +128,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 15
+  LineNum: 23
   Original: tutcs.map(lambda x:[x.timezone(), x.day()])
   Java: tutcs.map(x -> r.array(x.timezone(), x.day()))
   ExpectedOriginal: ([["+00:00", 29], ["+00:00", 29], ["+00:00", 29]])
@@ -137,7 +137,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 16
+  LineNum: 27
   Original: tms.map(lambda x:[x.timezone(), x.day()])
   Java: tms.map(x -> r.array(x.timezone(), x.day()))
   ExpectedOriginal: ([["-00:59", 29], ["-01:00", 29], ["-01:01", 29]])
@@ -146,7 +146,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 17
+  LineNum: 31
   Original: tps.map(lambda x:[x.timezone(), x.day()])
   Java: tps.map(x -> r.array(x.timezone(), x.day()))
   ExpectedOriginal: ([["+00:59", 30], ["+01:00", 30], ["+01:01", 30]])
@@ -155,7 +155,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 18
+  LineNum: 38
   Original: ts.concat_map(lambda x:ts.map(lambda y:x - y)).distinct()
   Java: ts.concatMap(x -> ts.map(y -> r.sub(x, y))).distinct()
   ExpectedOriginal: ([0])
@@ -164,7 +164,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 19
+  LineNum: 44
   Original: r.now().in_timezone("")
   Java: r.now().inTimezone("")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `` does not start with `-` or `+`.')
@@ -173,7 +173,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 20
+  LineNum: 47
   Original: r.now().in_timezone("-00")
   Java: r.now().inTimezone("-00")
   ExpectedOriginal: err('ReqlQueryLogicError', '`-00` is not a valid time offset.')
@@ -182,7 +182,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 21
+  LineNum: 50
   Original: r.now().in_timezone("-00:00")
   Java: r.now().inTimezone("-00:00")
   ExpectedOriginal: err('ReqlQueryLogicError', '`-00:00` is not a valid time offset.')
@@ -191,7 +191,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 22
+  LineNum: 53
   Original: r.now().in_timezone("UTC+00")
   Java: r.now().inTimezone("UTC+00")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `UTC+00` does not start with `-` or `+`.')
@@ -200,7 +200,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 23
+  LineNum: 56
   Original: r.now().in_timezone("+00:60")
   Java: r.now().inTimezone("+00:60")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Minutes out of range in `+00:60`.')
@@ -209,7 +209,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 24
+  LineNum: 59
   Original: r.now().in_timezone("+25:00")
   Java: r.now().inTimezone("+25:00")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Hours out of range in `+25:00`.')
@@ -218,7 +218,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 25
+  LineNum: 63
   Original: r.time(2013, 1, 1, "")
   Java: r.time(2013L, 1L, 1L, "")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `` does not start with `-` or `+`.')
@@ -227,7 +227,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 26
+  LineNum: 66
   Original: r.time(2013, 1, 1, "-00")
   Java: r.time(2013L, 1L, 1L, "-00")
   ExpectedOriginal: err('ReqlQueryLogicError', '`-00` is not a valid time offset.')
@@ -236,7 +236,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 27
+  LineNum: 69
   Original: r.time(2013, 1, 1, "-00:00")
   Java: r.time(2013L, 1L, 1L, "-00:00")
   ExpectedOriginal: err('ReqlQueryLogicError', '`-00:00` is not a valid time offset.')
@@ -245,7 +245,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 28
+  LineNum: 72
   Original: r.time(2013, 1, 1, "UTC+00")
   Java: r.time(2013L, 1L, 1L, "UTC+00")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `UTC+00` does not start with `-` or `+`.')
@@ -254,7 +254,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 29
+  LineNum: 75
   Original: r.time(2013, 1, 1, "+00:60")
   Java: r.time(2013L, 1L, 1L, "+00:60")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Minutes out of range in `+00:60`.')
@@ -263,7 +263,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 30
+  LineNum: 78
   Original: r.time(2013, 1, 1, "+25:00")
   Java: r.time(2013L, 1L, 1L, "+25:00")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Hours out of range in `+25:00`.')
@@ -272,7 +272,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 31
+  LineNum: 81
   Original: r.epoch_time(1436428422.339).in_timezone('-08:00').date().to_iso8601()
   Java: r.epochTime(1436428422.339).inTimezone("-08:00").date().toIso8601()
   ExpectedOriginal: ("2015-07-08T00:00:00-08:00")
@@ -281,7 +281,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/timezones.yaml
-  TestNum: 32
+  LineNum: 85
   Original: r.epoch_time(1436428422.339).in_timezone('-07:00').date().to_iso8601()
   Java: r.epochTime(1436428422.339).inTimezone("-07:00").date().toIso8601()
   ExpectedOriginal: ("2015-07-09T00:00:00-07:00")

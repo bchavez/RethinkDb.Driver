@@ -2,367 +2,367 @@ ModuleName: MathLogicLogic
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (1, 1)
+  LineNum: 8
   Original: r.expr(true) & true
   Java: r.expr(true).and(true)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (1, 2)
+  LineNum: 9
   Original: true & r.expr(true)
   Java: r.and(true, r.expr(true))
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (1, 3)
+  LineNum: 10
   Original: r.and_(true,true)
   Java: r.and(true, true)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (1, 4)
+  LineNum: 11
   Original: r.expr(true).and_(true)
   Java: r.expr(true).and(true)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (2, 1)
+  LineNum: 22
   Original: r.expr(true) & false
   Java: r.expr(true).and(false)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (2, 2)
+  LineNum: 23
   Original: r.expr(false) & false
   Java: r.expr(false).and(false)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (2, 3)
+  LineNum: 24
   Original: true & r.expr(false)
   Java: r.and(true, r.expr(false))
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (2, 4)
+  LineNum: 25
   Original: false & r.expr(false)
   Java: r.and(false, r.expr(false))
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (2, 5)
+  LineNum: 26
   Original: r.and_(true,false)
   Java: r.and(true, false)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (2, 6)
+  LineNum: 27
   Original: r.and_(false,false)
   Java: r.and(false, false)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (2, 7)
+  LineNum: 28
   Original: r.expr(true).and_(false)
   Java: r.expr(true).and(false)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (2, 8)
+  LineNum: 29
   Original: r.expr(false).and_(false)
   Java: r.expr(false).and(false)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (3, 1)
+  LineNum: 48
   Original: r.expr(true) | true
   Java: r.expr(true).or(true)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (3, 2)
+  LineNum: 49
   Original: r.expr(true) | false
   Java: r.expr(true).or(false)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (3, 3)
+  LineNum: 50
   Original: true | r.expr(true)
   Java: r.or(true, r.expr(true))
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (3, 4)
+  LineNum: 51
   Original: true | r.expr(false)
   Java: r.or(true, r.expr(false))
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (3, 5)
+  LineNum: 52
   Original: r.or_(true,true)
   Java: r.or(true, true)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (3, 6)
+  LineNum: 53
   Original: r.or_(true,false)
   Java: r.or(true, false)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (3, 7)
+  LineNum: 54
   Original: r.expr(true).or_(true)
   Java: r.expr(true).or(true)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (3, 8)
+  LineNum: 55
   Original: r.expr(true).or_(false)
   Java: r.expr(true).or(false)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (4, 1)
+  LineNum: 72
   Original: r.expr(false) | false
   Java: r.expr(false).or(false)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (4, 2)
+  LineNum: 73
   Original: false | r.expr(false)
   Java: r.or(false, r.expr(false))
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (4, 3)
+  LineNum: 74
   Original: r.and_(false,false)
   Java: r.and(false, false)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (4, 4)
+  LineNum: 75
   Original: r.expr(false).and_(false)
   Java: r.expr(false).and(false)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (5, 1)
+  LineNum: 88
   Original: ~r.expr(True)
   Java: r.expr(true).not()
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (5, 2)
+  LineNum: 89
   Original: r.not_(True)
   Java: r.not(true)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (6, 1)
+  LineNum: 93
   Original: ~r.expr(False)
   Java: r.expr(false).not()
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (6, 2)
+  LineNum: 94
   Original: r.not_(False)
   Java: r.not(false)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 7
+  LineNum: 97
   Original: r.expr(True).not_()
   Java: r.expr(true).not()
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 8
+  LineNum: 100
   Original: r.expr(False).not_()
   Java: r.expr(false).not()
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (9, 1)
+  LineNum: 107
   Original: ~r.and_(True, True) == r.or_(~r.expr(True), ~r.expr(True))
   Java: r.and(true, true).not().eq(r.or(r.expr(true).not(), r.expr(true).not()))
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (9, 2)
+  LineNum: 108
   Original: ~r.and_(True, False) == r.or_(~r.expr(True), ~r.expr(False))
   Java: r.and(true, false).not().eq(r.or(r.expr(true).not(), r.expr(false).not()))
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (9, 3)
+  LineNum: 109
   Original: ~r.and_(False, False) == r.or_(~r.expr(False), ~r.expr(False))
   Java: r.and(false, false).not().eq(r.or(r.expr(false).not(), r.expr(false).not()))
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: (9, 4)
+  LineNum: 110
   Original: ~r.and_(False, True) == r.or_(~r.expr(False), ~r.expr(True))
   Java: r.and(false, true).not().eq(r.or(r.expr(false).not(), r.expr(true).not()))
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 10
+  LineNum: 120
   Original: r.and_(True, True, True, True, True)
   Java: r.and(true, true, true, true, true)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 11
+  LineNum: 123
   Original: r.and_(True, True, True, False, True)
   Java: r.and(true, true, true, false, true)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 12
+  LineNum: 126
   Original: r.and_(True, False, True, False, True)
   Java: r.and(true, false, true, false, true)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 13
+  LineNum: 129
   Original: r.or_(False, False, False, False, False)
   Java: r.or(false, false, false, false, false)
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 14
+  LineNum: 132
   Original: r.or_(False, False, False, True, False)
   Java: r.or(false, false, false, true, false)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 15
+  LineNum: 135
   Original: r.or_(False, True, False, True, False)
   Java: r.or(false, true, false, true, false)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 16
+  LineNum: 140
   Original: r.expr(r.expr('a')['b']).default(2)
   Java: r.expr(r.expr("a").bracket("b")).default_(2L)
   ExpectedOriginal: err("ReqlQueryLogicError", "Cannot perform bracket on a non-object non-sequence `\"a\"`.", [])
@@ -371,7 +371,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 18
+  LineNum: 145
   Original: r.expr(r.and_(True, False) == r.or_(False, True))
   Java: r.expr(r.and(true, false).eq(r.or(false, true)))
   ExpectedOriginal: False
@@ -380,7 +380,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 20
+  LineNum: 151
   Original: r.expr(r.and_(True, False) >= r.or_(False, True))
   Java: r.expr(r.and(true, false).ge(r.or(false, true)))
   ExpectedOriginal: False
@@ -389,16 +389,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 21
+  LineNum: 155
   Original: r.expr(1) & True
   Java: r.expr(1L).and(true)
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 22
+  LineNum: 159
   Original: r.expr(False) | 'str'
   Java: r.expr(false).or("str")
   ExpectedOriginal: ("str")
@@ -407,19 +407,19 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 23
+  LineNum: 163
   Original: ~r.expr(1)
   Java: r.expr(1L).not()
-  ExpectedOriginal: False
+  ExpectedOriginal: false
   ExpectedType: Boolean
   ExpectedJava: false
   RunOpts: []
 - TestType: JavaQuery
   TestFile: math_logic/logic.yaml
-  TestNum: 24
+  LineNum: 167
   Original: ~r.expr(null)
   Java: r.expr((ReqlExpr) null).not()
-  ExpectedOriginal: True
+  ExpectedOriginal: true
   ExpectedType: Boolean
   ExpectedJava: true
   RunOpts: []

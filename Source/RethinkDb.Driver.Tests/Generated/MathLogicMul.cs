@@ -17,6 +17,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
+using static RethinkDb.Driver.Tests.TestingCommon;
 
 namespace RethinkDb.Driver.Test.Generated {
     [TestFixture]
@@ -34,141 +35,166 @@ namespace RethinkDb.Driver.Test.Generated {
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #(1, 1)
+                 //JavaQuery, math_logic/mul.yaml, #6
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
-                 /* Original: (r.expr(1) * 2) */
+                 /* Original: r.expr(1) * 2 */
                  var obtained = runOrCatch( r.expr(1L).mul(2L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #(1, 2)
+                 //JavaQuery, math_logic/mul.yaml, #7
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
-                 /* Original: (1 * r.expr(2)) */
+                 /* Original: 1 * r.expr(2) */
                  var obtained = runOrCatch( r.mul(1L, r.expr(2L)) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #(1, 3)
+                 //JavaQuery, math_logic/mul.yaml, #8
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
                  
-                 /* Original: (r.expr(1).mul(2)) */
+                 /* Original: r.expr(1).mul(2) */
                  var obtained = runOrCatch( r.expr(1L).mul(2L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #2
+                 //JavaQuery, math_logic/mul.yaml, #15
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
                  
                  /* Original: r.expr(-1) * -1 */
                  var obtained = runOrCatch( r.expr(-1L).mul(-1L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #3
+                 //JavaQuery, math_logic/mul.yaml, #21
                  /* ExpectedOriginal: 6.75 */
                  var expected_ = 6.75;
                  
                  /* Original: r.expr(1.5) * 4.5 */
                  var obtained = runOrCatch( r.expr(1.5).mul(4.5) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #4
-                 /* ExpectedOriginal: [1, 2, 3, 1, 2, 3, 1, 2, 3] */
+                 //JavaQuery, math_logic/mul.yaml, #25
+                 /* ExpectedOriginal: [1,2,3,1,2,3,1,2,3] */
                  var expected_ = r.array(1L, 2L, 3L, 1L, 2L, 3L, 1L, 2L, 3L);
                  
                  /* Original: r.expr([1,2,3]) * 3 */
                  var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L)).mul(3L) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #9
+                 //JavaQuery, math_logic/mul.yaml, #30
+                 /* ExpectedOriginal: 120 */
+                 var expected_ = 120L;
+                 
+                 /* Original: r.expr(1).mul(2,3,4,5) */
+                 var obtained = runOrCatch( r.expr(1L).mul(2L, 3L, 4L, 5L) ,
+                                            new OptArgs()
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             TestCounter++;
+             
+             {
+                 //JavaQuery, math_logic/mul.yaml, #46
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
                  
                  /* Original: r.expr('a') * 0.8 */
                  var obtained = runOrCatch( r.expr("a").mul(0.8) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #10
+                 //JavaQuery, math_logic/mul.yaml, #50
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1L));
                  
                  /* Original: r.expr(1) * 'a' */
                  var obtained = runOrCatch( r.expr(1L).mul("a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #11
+                 //JavaQuery, math_logic/mul.yaml, #54
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
                  
                  /* Original: r.expr('b') * 'a' */
                  var obtained = runOrCatch( r.expr("b").mul("a") ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
              TestCounter++;
              
              {
-                 //JavaQuery, math_logic/mul.yaml, #12
+                 //JavaQuery, math_logic/mul.yaml, #58
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Number not an integer: 1.5', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Number not an integer: 1.5", r.array(0L));
                  
                  /* Original: r.expr([]) * 1.5 */
                  var obtained = runOrCatch( r.expr(r.array()).mul(1.5) ,
                                             new OptArgs()
-                    );
-                 assertEquals(expected_, obtained);
+                    , conn);
+                 
+                     assertEquals(expected_, obtained);                 
              }
              
 

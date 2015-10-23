@@ -2,7 +2,7 @@ ModuleName: GeoGeojson
 DefsAndTests:
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
-  TestNum: 1
+  LineNum: 4
   Original: r.geojson({'coordinates':[0, 0], 'type':'Point'})
   Java: r.geojson(r.hashMap("coordinates", r.array(0L, 0L)).with("type", "Point"))
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, 0], 'type':'Point'})
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
-  TestNum: 2
+  LineNum: 6
   Original: r.geojson({'coordinates':[[0,0], [0,1]], 'type':'LineString'})
   Java: r.geojson(r.hashMap("coordinates", r.array(r.array(0L, 0L), r.array(0L, 1L))).with("type", "LineString"))
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0,0], [0,1]], 'type':'LineString'})
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
-  TestNum: 3
+  LineNum: 8
   Original: r.geojson({'coordinates':[[[0,0], [0,1], [1,0], [0,0]]], 'type':'Polygon'})
   Java: r.geojson(r.hashMap("coordinates", r.array(r.array(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L), r.array(0L, 0L)))).with("type", "Polygon"))
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0,0], [0,1], [1,0], [0,0]]], 'type':'Polygon'})
@@ -29,7 +29,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
-  TestNum: 4
+  LineNum: 12
   Original: r.geojson({'coordinates':[[], 0], 'type':'Point'})
   Java: r.geojson(r.hashMap("coordinates", r.array(r.array(), 0L)).with("type", "Point"))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found ARRAY.', [0])
@@ -38,7 +38,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
-  TestNum: 5
+  LineNum: 14
   Original: r.geojson({'coordinates':true, 'type':'Point'})
   Java: r.geojson(r.hashMap("coordinates", true).with("type", "Point"))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type ARRAY but found BOOL.', [0])
@@ -47,7 +47,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
-  TestNum: 6
+  LineNum: 16
   Original: r.geojson({'type':'Point'})
   Java: r.geojson(r.hashMap("type", "Point"))
   ExpectedOriginal: err('ReqlNonExistenceError', 'No attribute `coordinates` in object:', [0])
@@ -56,7 +56,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
-  TestNum: 7
+  LineNum: 18
   Original: r.geojson({'coordinates':[0, 0]})
   Java: r.geojson(r.hashMap("coordinates", r.array(0L, 0L)))
   ExpectedOriginal: err('ReqlNonExistenceError', 'No attribute `type` in object:', [0])
@@ -65,7 +65,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
-  TestNum: 8
+  LineNum: 20
   Original: r.geojson({'coordinates':[0, 0], 'type':'foo'})
   Java: r.geojson(r.hashMap("coordinates", r.array(0L, 0L)).with("type", "foo"))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Unrecognized GeoJSON type `foo`.', [0])
@@ -74,7 +74,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
-  TestNum: 9
+  LineNum: 22
   Original: r.geojson({'coordinates':[0, 0], 'type':'Point', 'foo':'wrong'})
   Java: r.geojson(r.hashMap("coordinates", r.array(0L, 0L)).with("type", "Point").with("foo", "wrong"))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Unrecognized field `foo` found in geometry object.', [0])
@@ -83,7 +83,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
-  TestNum: 10
+  LineNum: 26
   Original: r.geojson({'coordinates':[0, 0], 'type':'Point', 'crs':null})
   Java: r.geojson(r.hashMap("coordinates", r.array(0L, 0L)).with("type", "Point").with("crs", null))
   ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[0, 0], 'type':'Point', 'crs':null})
@@ -92,7 +92,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: geo/geojson.yaml
-  TestNum: 12
+  LineNum: 30
   Original: r.geojson({'coordinates':[0, 0], 'type':'MultiPoint'})
   Java: r.geojson(r.hashMap("coordinates", r.array(0L, 0L)).with("type", "MultiPoint"))
   ExpectedOriginal: err('ReqlQueryLogicError', 'GeoJSON type `MultiPoint` is not supported.', [0])

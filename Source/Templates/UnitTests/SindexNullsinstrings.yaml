@@ -1,0 +1,49 @@
+ModuleName: SindexNullsinstrings
+TableVarNames:
+- tbl
+DefsAndTests:
+- TestType: JavaQuery
+  TestFile: sindex/nullsinstrings.yaml
+  LineNum: 4
+  Original: tbl.index_create("key")
+  Java: tbl.indexCreate("key")
+  ExpectedOriginal: ({"created":1})
+  ExpectedType: Map
+  ExpectedJava: r.hashMap("created", 1L)
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: sindex/nullsinstrings.yaml
+  LineNum: 6
+  Original: tbl.index_wait().pluck("ready")
+  Java: tbl.indexWait().pluck("ready")
+  ExpectedOriginal: ([{"ready":true}])
+  ExpectedType: List
+  ExpectedJava: r.array(r.hashMap("ready", true))
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: sindex/nullsinstrings.yaml
+  LineNum: 10
+  Original: tbl.insert([{"id":1,"key":["a","b"]},{"id":2,"key":["a\u0000Sb"]}]).pluck("inserted")
+  Java: tbl.insert(r.array(r.hashMap("id", 1L).with("key", r.array("a", "b")), r.hashMap("id", 2L).with("key", r.array("a\u0000Sb")))).pluck("inserted")
+  ExpectedOriginal: ({"inserted":2})
+  ExpectedType: Map
+  ExpectedJava: r.hashMap("inserted", 2L)
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: sindex/nullsinstrings.yaml
+  LineNum: 13
+  Original: tbl.get_all(["a\u0000Sb"], index="key").pluck("id")
+  Java: tbl.getAll(r.array("a\u0000Sb")).optArg("index", "key").pluck("id")
+  ExpectedOriginal: ([{"id":2}])
+  ExpectedType: List
+  ExpectedJava: r.array(r.hashMap("id", 2L))
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: sindex/nullsinstrings.yaml
+  LineNum: 18
+  Original: tbl.get_all(["a","b"], index="key").pluck("id")
+  Java: tbl.getAll(r.array("a", "b")).optArg("index", "key").pluck("id")
+  ExpectedOriginal: ([{"id":1}])
+  ExpectedType: List
+  ExpectedJava: r.array(r.hashMap("id", 1L))
+  RunOpts: []

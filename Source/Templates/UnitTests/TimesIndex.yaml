@@ -4,7 +4,7 @@ TableVarNames:
 DefsAndTests:
 - TestType: JavaDef
   TestFile: times/index.yaml
-  TestNum: 1
+  LineNum: 7
   Original: ts={"timezone":"-07:00","epoch_time":1375445162.0872,"$reql_type$":"TIME"}
   VarName: ts
   VarType: Map
@@ -13,7 +13,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
-  TestNum: 2
+  LineNum: 11
   Original: t1={"timezone":"-07:00","epoch_time":1375445163.0872,"$reql_type$":"TIME"}
   VarName: t1
   VarType: Map
@@ -22,7 +22,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
-  TestNum: 3
+  LineNum: 15
   Original: t2={"timezone":"-07:00","epoch_time":1375445163.08832,"$reql_type$":"TIME"}
   VarName: t2
   VarType: Map
@@ -31,7 +31,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
-  TestNum: 4
+  LineNum: 19
   Original: t3={"timezone":"-07:00","epoch_time":1375445163.08943,"$reql_type$":"TIME"}
   VarName: t3
   VarType: Map
@@ -40,7 +40,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
-  TestNum: 5
+  LineNum: 23
   Original: t4={"timezone":"-07:00","epoch_time":1375445163.09055,"$reql_type$":"TIME"}
   VarName: t4
   VarType: Map
@@ -49,7 +49,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
-  TestNum: 6
+  LineNum: 27
   Original: t5={"timezone":"-07:00","epoch_time":1375445163.09166,"$reql_type$":"TIME"}
   VarName: t5
   VarType: Map
@@ -58,7 +58,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
-  TestNum: 7
+  LineNum: 31
   Original: te={"timezone":"-07:00","epoch_time":1375445164.0872,"$reql_type$":"TIME"}
   VarName: te
   VarType: Map
@@ -67,7 +67,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
-  TestNum: 8
+  LineNum: 36
   Original: trows = [{'id':t1}, {'id':t2}, {'id':t3}, {'id':t4}, {'id':t5}]
   VarName: trows
   VarType: List
@@ -76,7 +76,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 9
+  LineNum: 37
   Original: tbl.insert(trows)['inserted']
   Java: tbl.insert(trows).bracket("inserted")
   ExpectedOriginal: 5
@@ -85,7 +85,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
-  TestNum: 10
+  LineNum: 41
   Original: bad_insert = [{'id':r.expr(t1).in_timezone("Z")}]
   VarName: bad_insert
   VarType: List
@@ -94,7 +94,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 11
+  LineNum: 42
   Original: tbl.insert(bad_insert)['first_error']
   Java: tbl.insert(bad_insert).bracket("first_error")
   ExpectedOriginal: ("Duplicate primary key `id`:\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"-07:00\"\n\t}\n}\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"+00:00\"\n\t}\n}")
@@ -103,7 +103,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 12
+  LineNum: 46
   Original: tbl.between(ts, te).count()
   Java: tbl.between(ts, te).count()
   ExpectedOriginal: 5
@@ -112,7 +112,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 13
+  LineNum: 48
   Original: tbl.between(t1, t4).count()
   Java: tbl.between(t1, t4).count()
   ExpectedOriginal: 3
@@ -121,7 +121,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 14
+  LineNum: 51
   Original: tbl.between(t1, t4, right_bound='closed').count()
   Java: tbl.between(t1, t4).optArg("right_bound", "closed").count()
   ExpectedOriginal: 4
@@ -130,7 +130,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 15
+  LineNum: 54
   Original: tbl.between(r.expr(ts).in_timezone("+06:00"), te).count()
   Java: tbl.between(r.expr(ts).inTimezone("+06:00"), te).count()
   ExpectedOriginal: 5
@@ -139,7 +139,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 16
+  LineNum: 56
   Original: tbl.between(t1, r.expr(t4).in_timezone("+08:00")).count()
   Java: tbl.between(t1, r.expr(t4).inTimezone("+08:00")).count()
   ExpectedOriginal: 3
@@ -148,7 +148,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 17
+  LineNum: 59
   Original: tbl.between(r.expr(t1).in_timezone("Z"), t4, right_bound='closed').count()
   Java: tbl.between(r.expr(t1).inTimezone("Z"), t4).optArg("right_bound", "closed").count()
   ExpectedOriginal: 4
@@ -157,7 +157,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 18
+  LineNum: 64
   Original: tbl.update(lambda row:{'a':row['id']})['replaced']
   Java: tbl.update(row -> r.hashMap("a", row.bracket("id"))).bracket("replaced")
   ExpectedOriginal: 5
@@ -166,7 +166,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 19
+  LineNum: 67
   Original: tbl.index_create('a')
   Java: tbl.indexCreate("a")
   ExpectedOriginal: ({'created':1})
@@ -175,7 +175,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 20
+  LineNum: 69
   Original: tbl.index_wait('a').count()
   Java: tbl.indexWait("a").count()
   ExpectedOriginal: 1
@@ -184,7 +184,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 21
+  LineNum: 73
   Original: tbl.between(ts, te, index='a').count()
   Java: tbl.between(ts, te).optArg("index", "a").count()
   ExpectedOriginal: 5
@@ -193,7 +193,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 22
+  LineNum: 77
   Original: tbl.between(t1, t4, index='a').count()
   Java: tbl.between(t1, t4).optArg("index", "a").count()
   ExpectedOriginal: 3
@@ -202,7 +202,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 23
+  LineNum: 81
   Original: tbl.between(t1, t4, right_bound='closed', index='a').count()
   Java: tbl.between(t1, t4).optArg("right_bound", "closed").optArg("index", "a").count()
   ExpectedOriginal: 4
@@ -211,7 +211,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 24
+  LineNum: 85
   Original: tbl.between(r.expr(ts).in_timezone("+06:00"), te, index='a').count()
   Java: tbl.between(r.expr(ts).inTimezone("+06:00"), te).optArg("index", "a").count()
   ExpectedOriginal: 5
@@ -220,7 +220,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 25
+  LineNum: 89
   Original: tbl.between(t1, r.expr(t4).in_timezone("+08:00"), index='a').count()
   Java: tbl.between(t1, r.expr(t4).inTimezone("+08:00")).optArg("index", "a").count()
   ExpectedOriginal: 3
@@ -229,7 +229,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 26
+  LineNum: 93
   Original: tbl.between(r.expr(t1).in_timezone("Z"), t4, right_bound='closed', index='a').count()
   Java: tbl.between(r.expr(t1).inTimezone("Z"), t4).optArg("right_bound", "closed").optArg("index", "a").count()
   ExpectedOriginal: 4
@@ -238,7 +238,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 27
+  LineNum: 98
   Original: tbl.index_create('b', lambda row:r.branch(row['id'] < t4, row['a'], null))
   Java: tbl.indexCreate("b", row -> r.branch(row.bracket("id").lt(t4), row.bracket("a"), (ReqlExpr) null))
   ExpectedOriginal: ({'created':1})
@@ -247,7 +247,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 28
+  LineNum: 101
   Original: tbl.index_wait('b').count()
   Java: tbl.indexWait("b").count()
   ExpectedOriginal: 1
@@ -256,7 +256,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 29
+  LineNum: 105
   Original: tbl.index_wait('b').count()
   Java: tbl.indexWait("b").count()
   ExpectedOriginal: 1
@@ -265,7 +265,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 30
+  LineNum: 109
   Original: tbl.between(ts, te, index='b').count()
   Java: tbl.between(ts, te).optArg("index", "b").count()
   ExpectedOriginal: 3
@@ -274,7 +274,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 31
+  LineNum: 113
   Original: tbl.between(t1, t4, index='b').count()
   Java: tbl.between(t1, t4).optArg("index", "b").count()
   ExpectedOriginal: 3
@@ -283,7 +283,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 32
+  LineNum: 117
   Original: tbl.between(t1, t4, right_bound='closed', index='b').count()
   Java: tbl.between(t1, t4).optArg("right_bound", "closed").optArg("index", "b").count()
   ExpectedOriginal: 3
@@ -292,7 +292,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 33
+  LineNum: 121
   Original: tbl.between(r.expr(ts).in_timezone("+06:00"), te, index='b').count()
   Java: tbl.between(r.expr(ts).inTimezone("+06:00"), te).optArg("index", "b").count()
   ExpectedOriginal: 3
@@ -301,7 +301,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 34
+  LineNum: 125
   Original: tbl.between(t1, r.expr(t4).in_timezone("+08:00"), index='b').count()
   Java: tbl.between(t1, r.expr(t4).inTimezone("+08:00")).optArg("index", "b").count()
   ExpectedOriginal: 3
@@ -310,7 +310,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 35
+  LineNum: 129
   Original: tbl.between(r.expr(t1).in_timezone("Z"), t4, right_bound='closed', index='b').count()
   Java: tbl.between(r.expr(t1).inTimezone("Z"), t4).optArg("right_bound", "closed").optArg("index", "b").count()
   ExpectedOriginal: 3
@@ -319,7 +319,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
-  TestNum: 36
+  LineNum: 135
   Original: oldtime = datetime.fromtimestamp(1375147296.681, PacificTimeZone())
   VarName: oldtime
   VarType: OffsetDateTime
@@ -328,7 +328,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: times/index.yaml
-  TestNum: 37
+  LineNum: 139
   Original: curtime = datetime.now()
   VarName: curtime
   VarType: OffsetDateTime
@@ -337,7 +337,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 38
+  LineNum: 142
   Original: tbl.insert([{'id':oldtime}])['inserted']
   Java: tbl.insert(r.array(r.hashMap("id", oldtime))).bracket("inserted")
   ExpectedOriginal: 1
@@ -346,7 +346,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: times/index.yaml
-  TestNum: 39
+  LineNum: 148
   Original: tbl.get(oldtime)['id'].type_of()
   Java: tbl.get(oldtime).bracket("id").typeOf()
   ExpectedOriginal: ("PTYPE<TIME>")

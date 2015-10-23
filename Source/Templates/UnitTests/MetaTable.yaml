@@ -2,7 +2,7 @@ ModuleName: MetaTable
 DefsAndTests:
 - TestType: JavaDef
   TestFile: meta/table.yaml
-  TestNum: 1
+  LineNum: 4
   Original: db = r.db('test')
   VarName: db
   VarType: Db
@@ -11,7 +11,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 2
+  LineNum: 6
   Original: db.table_list()
   Java: db.tableList()
   ExpectedOriginal: '[]'
@@ -20,7 +20,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 3
+  LineNum: 9
   Original: r.db('rethinkdb').info()
   Java: r.db("rethinkdb").info()
   ExpectedOriginal: ({'type':'DB','name':'rethinkdb','id':null})
@@ -29,16 +29,21 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 4
+  LineNum: 12
   Original: r.db('rethinkdb').table('stats').info()
   Java: r.db("rethinkdb").table("stats").info()
-  ExpectedOriginal: partial({'db':{'type':'DB','name':'rethinkdb','id':null}, 'type':'TABLE','id':null,'name':'stats', 'indexes':[],'primary_key':'id'})
+  ExpectedOriginal: >-
+    partial({'db':{'type':'DB','name':'rethinkdb','id':null},
+
+    'type':'TABLE','id':null,'name':'stats',
+
+    'indexes':[],'primary_key':'id'})
   ExpectedType: Partial
   ExpectedJava: partial(r.hashMap("db", r.hashMap("type", "DB").with("name", "rethinkdb").with("id", null)).with("type", "TABLE").with("id", null).with("name", "stats").with("indexes", r.array()).with("primary_key", "id"))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 5
+  LineNum: 18
   Original: db.table_create('a')
   Java: db.tableCreate("a")
   ExpectedOriginal: partial({'tables_created':1})
@@ -47,7 +52,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 6
+  LineNum: 21
   Original: db.table_list()
   Java: db.tableList()
   ExpectedOriginal: '[''a'']'
@@ -56,7 +61,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 7
+  LineNum: 24
   Original: db.table_create('b')
   Java: db.tableCreate("b")
   ExpectedOriginal: partial({'tables_created':1})
@@ -65,7 +70,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 8
+  LineNum: 27
   Original: db.table_list()
   Java: db.tableList()
   ExpectedOriginal: bag(['a', 'b'])
@@ -74,7 +79,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 9
+  LineNum: 31
   Original: db.table_drop('a')
   Java: db.tableDrop("a")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -83,7 +88,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 10
+  LineNum: 34
   Original: db.table_list()
   Java: db.tableList()
   ExpectedOriginal: '[''b'']'
@@ -92,7 +97,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 11
+  LineNum: 37
   Original: db.table_drop('b')
   Java: db.tableDrop("b")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -101,7 +106,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 12
+  LineNum: 40
   Original: db.table_list()
   Java: db.tableList()
   ExpectedOriginal: '[]'
@@ -110,7 +115,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 13
+  LineNum: 44
   Original: db.table_create('ab', durability='soft')
   Java: db.tableCreate("ab").optArg("durability", "soft")
   ExpectedOriginal: partial({'tables_created':1,'config_changes':[partial({'new_val':partial({'durability':'soft'})})]})
@@ -119,7 +124,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 14
+  LineNum: 49
   Original: db.table_drop('ab')
   Java: db.tableDrop("ab")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -128,7 +133,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 15
+  LineNum: 52
   Original: db.table_create('ab', durability='hard')
   Java: db.tableCreate("ab").optArg("durability", "hard")
   ExpectedOriginal: partial({'tables_created':1,'config_changes':[partial({'new_val':partial({'durability':'hard'})})]})
@@ -137,7 +142,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 16
+  LineNum: 57
   Original: db.table_drop('ab')
   Java: db.tableDrop("ab")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -146,7 +151,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 17
+  LineNum: 60
   Original: db.table_create('ab', durability='fake')
   Java: db.tableCreate("ab").optArg("durability", "fake")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Durability option `fake` unrecognized (options are "hard" and "soft").')
@@ -155,7 +160,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 18
+  LineNum: 65
   Original: db.table_create('ab', primary_key='bar', shards=2, replicas=1)
   Java: db.tableCreate("ab").optArg("primary_key", "bar").optArg("shards", 2L).optArg("replicas", 1L)
   ExpectedOriginal: partial({'tables_created':1})
@@ -164,7 +169,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 19
+  LineNum: 70
   Original: db.table_drop('ab')
   Java: db.tableDrop("ab")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -173,7 +178,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 20
+  LineNum: 73
   Original: db.table_create('ab', primary_key='bar', primary_replica_tag='default')
   Java: db.tableCreate("ab").optArg("primary_key", "bar").optArg("primary_replica_tag", "default")
   ExpectedOriginal: partial({'tables_created':1})
@@ -182,7 +187,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 21
+  LineNum: 78
   Original: db.table_drop('ab')
   Java: db.tableDrop("ab")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -191,7 +196,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 22
+  LineNum: 81
   Original: db.table_create('ab', nonvoting_replica_tags=['default'])
   Java: db.tableCreate("ab").optArg("nonvoting_replica_tags", r.array("default"))
   ExpectedOriginal: partial({'tables_created':1})
@@ -200,7 +205,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 23
+  LineNum: 86
   Original: db.table_drop('ab')
   Java: db.tableDrop("ab")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -209,7 +214,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 24
+  LineNum: 90
   Original: db.table_create('a')
   Java: db.tableCreate("a")
   ExpectedOriginal: partial({'tables_created':1})
@@ -218,7 +223,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 25
+  LineNum: 93
   Original: db.table('a').reconfigure(shards=1, replicas=1)
   Java: db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", 1L)
   ExpectedOriginal: partial({'reconfigured':1})
@@ -227,7 +232,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 26
+  LineNum: 98
   Original: db.table('a').reconfigure(shards=1, replicas={"default":1}, nonvoting_replica_tags=['default'], primary_replica_tag='default')
   Java: db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", 1L)).optArg("nonvoting_replica_tags", r.array("default")).optArg("primary_replica_tag", "default")
   ExpectedOriginal: partial({'reconfigured':1})
@@ -236,7 +241,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 27
+  LineNum: 103
   Original: db.table('a').reconfigure(shards=1, replicas=1, dry_run=True)
   Java: db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", 1L).optArg("dry_run", true)
   ExpectedOriginal: partial({'reconfigured':0})
@@ -245,7 +250,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 28
+  LineNum: 108
   Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback")
   Java: db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback")
   ExpectedOriginal: err('ReqlOpFailedError', 'This table doesn\'t need to be repaired.', [])
@@ -254,7 +259,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 29
+  LineNum: 113
   Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback", dry_run=True)
   Java: db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback").optArg("dry_run", true)
   ExpectedOriginal: err('ReqlOpFailedError', 'This table doesn\'t need to be repaired.', [])
@@ -263,7 +268,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 30
+  LineNum: 118
   Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback_or_erase")
   Java: db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback_or_erase")
   ExpectedOriginal: err('ReqlOpFailedError', 'This table doesn\'t need to be repaired.', [])
@@ -272,7 +277,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 31
+  LineNum: 123
   Original: db.table('a').reconfigure(emergency_repair=None, shards=1, replicas=1, dry_run=True)
   Java: db.table("a").reconfigure().optArg("emergency_repair", null).optArg("shards", 1L).optArg("replicas", 1L).optArg("dry_run", true)
   ExpectedOriginal: partial({'reconfigured':0})
@@ -281,7 +286,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 32
+  LineNum: 128
   Original: db.table_drop('a')
   Java: db.tableDrop("a")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -290,7 +295,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 33
+  LineNum: 132
   Original: db.table_create('foo')
   Java: db.tableCreate("foo")
   ExpectedOriginal: partial({'tables_created':1})
@@ -299,7 +304,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 34
+  LineNum: 135
   Original: db.table_create('foo')
   Java: db.tableCreate("foo")
   ExpectedOriginal: err('ReqlOpFailedError', 'Table `test.foo` already exists.', [0])
@@ -308,7 +313,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 35
+  LineNum: 138
   Original: db.table_drop('foo')
   Java: db.tableDrop("foo")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -317,7 +322,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 36
+  LineNum: 141
   Original: db.table_drop('foo')
   Java: db.tableDrop("foo")
   ExpectedOriginal: err('ReqlOpFailedError', 'Table `test.foo` does not exist.', [0])
@@ -326,7 +331,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 38
+  LineNum: 151
   Original: db.table_create('nonsense', foo='bar')
   Java: db.tableCreate("nonsense").optArg("foo", "bar")
   ExpectedOriginal: err('ReqlCompileError', "Unrecognized optional argument `foo`.", [])
@@ -335,7 +340,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 39
+  LineNum: 158
   Original: db.table_create('a')
   Java: db.tableCreate("a")
   ExpectedOriginal: partial({'tables_created':1})
@@ -344,7 +349,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 40
+  LineNum: 161
   Original: db.table('a').reconfigure(shards=0, replicas=1)
   Java: db.table("a").reconfigure().optArg("shards", 0L).optArg("replicas", 1L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Every table must have at least one shard.', [])
@@ -353,37 +358,34 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 41
+  LineNum: 166
   Original: db.table('a').reconfigure(shards=1, replicas={"default":1}, primary_replica_tag="foo")
   Java: db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", 1L)).optArg("primary_replica_tag", "foo")
-  ExpectedOriginal: >
-    err('ReqlOpFailedError', 'Can\'t use server tag `foo` for primary replicas because you specified no replicas in server tag `foo`.', [])
+  ExpectedOriginal: err('ReqlOpFailedError', 'Can\'t use server tag `foo` for primary replicas because you specified no replicas in server tag `foo`.', [])
   ExpectedType: Err
   ExpectedJava: err("ReqlOpFailedError", "Can't use server tag `foo` for primary replicas because you specified no replicas in server tag `foo`.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 42
+  LineNum: 171
   Original: db.table('a').reconfigure(shards=1, replicas={"default":1}, primary_replica_tag="default", nonvoting_replica_tags=["foo"])
   Java: db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", 1L)).optArg("primary_replica_tag", "default").optArg("nonvoting_replica_tags", r.array("foo"))
-  ExpectedOriginal: >
-    err('ReqlOpFailedError', 'You specified that the replicas in server tag `foo` should be non-voting, but you didn\'t specify a number of replicas in server tag `foo`.', [])
+  ExpectedOriginal: err('ReqlOpFailedError', 'You specified that the replicas in server tag `foo` should be non-voting, but you didn\'t specify a number of replicas in server tag `foo`.', [])
   ExpectedType: Err
   ExpectedJava: err("ReqlOpFailedError", "You specified that the replicas in server tag `foo` should be non-voting, but you didn't specify a number of replicas in server tag `foo`.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 43
+  LineNum: 176
   Original: db.table('a').reconfigure(shards=1, replicas={"foo":0}, primary_replica_tag="foo")
   Java: db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("foo", 0L)).optArg("primary_replica_tag", "foo")
-  ExpectedOriginal: >
-    err('ReqlOpFailedError', 'You must set `replicas` to at least one. `replicas` includes the primary replica; if there are zero replicas, there is nowhere to put the data.', [])
+  ExpectedOriginal: err('ReqlOpFailedError', 'You must set `replicas` to at least one. `replicas` includes the primary replica; if there are zero replicas, there is nowhere to put the data.', [])
   ExpectedType: Err
   ExpectedJava: err("ReqlOpFailedError", "You must set `replicas` to at least one. `replicas` includes the primary replica; if there are zero replicas, there is nowhere to put the data.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 44
+  LineNum: 181
   Original: db.table('a').reconfigure(shards=1, replicas={"default":0})
   Java: db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", 0L))
   ExpectedOriginal: err('ReqlQueryLogicError', '`primary_replica_tag` must be specified when `replicas` is an OBJECT.', [])
@@ -392,7 +394,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 45
+  LineNum: 186
   Original: db.table('a').reconfigure(shards=1, replicas={"default":-3}, primary_replica_tag='default')
   Java: db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", -3L)).optArg("primary_replica_tag", "default")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Can\'t have a negative number of replicas', [])
@@ -401,7 +403,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 46
+  LineNum: 191
   Original: db.table('a').reconfigure(shards=1, replicas=3, primary_replica_tag='foo')
   Java: db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", 3L).optArg("primary_replica_tag", "foo")
   ExpectedOriginal: err('ReqlQueryLogicError', '`replicas` must be an OBJECT if `primary_replica_tag` is specified.', [])
@@ -410,27 +412,25 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 47
+  LineNum: 196
   Original: db.table('a').reconfigure(shards=1, replicas=3, nonvoting_replica_tags=['foo'])
   Java: db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", 3L).optArg("nonvoting_replica_tags", r.array("foo"))
-  ExpectedOriginal: >
-    err('ReqlQueryLogicError', '`replicas` must be an OBJECT if `nonvoting_replica_tags` is specified.', [])
+  ExpectedOriginal: err('ReqlQueryLogicError', '`replicas` must be an OBJECT if `nonvoting_replica_tags` is specified.', [])
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "`replicas` must be an OBJECT if `nonvoting_replica_tags` is specified.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 48
+  LineNum: 201
   Original: db.reconfigure(emergency_repair="unsafe_rollback")
   Java: db.reconfigure().optArg("emergency_repair", "unsafe_rollback")
-  ExpectedOriginal: >
-    err('ReqlQueryLogicError', 'Can\'t emergency repair an entire database at once; instead you should run `reconfigure()` on each table individually.')
+  ExpectedOriginal: err('ReqlQueryLogicError', 'Can\'t emergency repair an entire database at once; instead you should run `reconfigure()` on each table individually.')
   ExpectedType: Err
   ExpectedJava: err("ReqlQueryLogicError", "Can't emergency repair an entire database at once; instead you should run `reconfigure()` on each table individually.")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 49
+  LineNum: 206
   Original: db.table('a').reconfigure(emergency_repair="foo")
   Java: db.table("a").reconfigure().optArg("emergency_repair", "foo")
   ExpectedOriginal: err('ReqlQueryLogicError', '`emergency_repair` should be "unsafe_rollback" or "unsafe_rollback_or_erase"', [])
@@ -439,7 +439,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 50
+  LineNum: 211
   Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback", shards=1, replicas=1)
   Java: db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback").optArg("shards", 1L).optArg("replicas", 1L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'In emergency repair mode, you can\'t specify shards, replicas, etc.')
@@ -448,7 +448,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 51
+  LineNum: 217
   Original: db.table('a').reconfigure(shards=2, replicas=1)
   Java: db.table("a").reconfigure().optArg("shards", 2L).optArg("replicas", 1L)
   ExpectedOriginal: partial({'reconfigured':1})
@@ -457,25 +457,25 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 52
+  LineNum: 222
   Original: db.table('a').wait()
   Java: db.table("a").wait_()
-  ExpectedOriginal: None
+  ExpectedOriginal: AnythingIsFine
   ExpectedType: Object
-  ExpectedJava: null
+  ExpectedJava: AnythingIsFine
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 53
+  LineNum: 225
   Original: db.table('a').insert([{"id":1}, {"id":2}, {"id":3}, {"id":4}])
   Java: db.table("a").insert(r.array(r.hashMap("id", 1L), r.hashMap("id", 2L), r.hashMap("id", 3L), r.hashMap("id", 4L)))
-  ExpectedOriginal: '{''inserted'': 4}'
-  ExpectedType: Map
-  ExpectedJava: r.hashMap("inserted", 4L)
+  ExpectedOriginal: partial({"inserted":4})
+  ExpectedType: Partial
+  ExpectedJava: partial(r.hashMap("inserted", 4L))
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 54
+  LineNum: 230
   Original: db.table('a').reconfigure(shards=2, replicas=1)
   Java: db.table("a").reconfigure().optArg("shards", 2L).optArg("replicas", 1L)
   ExpectedOriginal: partial({'reconfigured':1})
@@ -484,17 +484,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 55
+  LineNum: 235
   Original: db.table('a').reconfigure(shards=1, replicas=2)
   Java: db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", 2L)
-  ExpectedOriginal: >
-    err('ReqlOpFailedError', 'Can\'t put 2 replicas on servers with the tag `default` because there are only 1 servers with the tag `default`. It\'s impossible to have more replicas of the data than there are servers.', [])
+  ExpectedOriginal: err('ReqlOpFailedError', 'Can\'t put 2 replicas on servers with the tag `default` because there are only 1 servers with the tag `default`. It\'s impossible to have more replicas of the data than there are servers.', [])
   ExpectedType: Err
   ExpectedJava: err("ReqlOpFailedError", "Can't put 2 replicas on servers with the tag `default` because there are only 1 servers with the tag `default`. It's impossible to have more replicas of the data than there are servers.", r.array())
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 56
+  LineNum: 241
   Original: db.table('a').wait()
   Java: db.table("a").wait_()
   ExpectedOriginal: partial({'ready':1})
@@ -503,7 +502,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 57
+  LineNum: 243
   Original: db.table('a').rebalance()
   Java: db.table("a").rebalance()
   ExpectedOriginal: partial({'rebalanced':1})
@@ -512,7 +511,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 58
+  LineNum: 246
   Original: db.wait()
   Java: db.wait_()
   ExpectedOriginal: partial({'ready':1})
@@ -521,7 +520,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 59
+  LineNum: 248
   Original: db.rebalance()
   Java: db.rebalance()
   ExpectedOriginal: partial({'rebalanced':1})
@@ -530,7 +529,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 60
+  LineNum: 251
   Original: r.wait()
   Java: r.wait_()
   ExpectedOriginal: partial({'ready':1})
@@ -539,7 +538,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 61
+  LineNum: 253
   Original: r.rebalance()
   Java: r.rebalance()
   ExpectedOriginal: partial({'rebalanced':1})
@@ -548,7 +547,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 62
+  LineNum: 256
   Original: db.table_drop('a')
   Java: db.tableDrop("a")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -557,34 +556,34 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 63
+  LineNum: 260
   Original: db.table_create('a')
   Java: db.tableCreate("a")
-  ExpectedOriginal: None
+  ExpectedOriginal: AnythingIsFine
   ExpectedType: Object
-  ExpectedJava: null
+  ExpectedJava: AnythingIsFine
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 64
+  LineNum: 261
   Original: db.table_create('b')
   Java: db.tableCreate("b")
-  ExpectedOriginal: None
+  ExpectedOriginal: AnythingIsFine
   ExpectedType: Object
-  ExpectedJava: null
+  ExpectedJava: AnythingIsFine
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 65
+  LineNum: 262
   Original: db.table_create('c')
   Java: db.tableCreate("c")
-  ExpectedOriginal: None
+  ExpectedOriginal: AnythingIsFine
   ExpectedType: Object
-  ExpectedJava: null
+  ExpectedJava: AnythingIsFine
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 66
+  LineNum: 264
   Original: db.reconfigure(shards=0, replicas=1)
   Java: db.reconfigure().optArg("shards", 0L).optArg("replicas", 1L)
   ExpectedOriginal: err('ReqlQueryLogicError', 'Every table must have at least one shard.', [])
@@ -593,7 +592,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 67
+  LineNum: 269
   Original: db.reconfigure(shards=1, replicas={"default":0})
   Java: db.reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", 0L))
   ExpectedOriginal: err('ReqlQueryLogicError', '`primary_replica_tag` must be specified when `replicas` is an OBJECT.', [])
@@ -602,7 +601,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 68
+  LineNum: 274
   Original: db.reconfigure(shards=1, replicas={"default":-3}, primary_replica_tag='default')
   Java: db.reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", -3L)).optArg("primary_replica_tag", "default")
   ExpectedOriginal: err('ReqlQueryLogicError', 'Can\'t have a negative number of replicas', [])
@@ -611,7 +610,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 69
+  LineNum: 279
   Original: db.reconfigure(shards=1, replicas=3, primary_replica_tag='foo')
   Java: db.reconfigure().optArg("shards", 1L).optArg("replicas", 3L).optArg("primary_replica_tag", "foo")
   ExpectedOriginal: err('ReqlQueryLogicError', '`replicas` must be an OBJECT if `primary_replica_tag` is specified.', [])
@@ -620,7 +619,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 70
+  LineNum: 284
   Original: db.reconfigure(shards=2, replicas=1)
   Java: db.reconfigure().optArg("shards", 2L).optArg("replicas", 1L)
   ExpectedOriginal: partial({'reconfigured':3})
@@ -629,7 +628,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 71
+  LineNum: 289
   Original: db.table_drop('a')
   Java: db.tableDrop("a")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -638,7 +637,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 72
+  LineNum: 291
   Original: db.table_drop('b')
   Java: db.tableDrop("b")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -647,7 +646,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 73
+  LineNum: 293
   Original: db.table_drop('c')
   Java: db.tableDrop("c")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -656,7 +655,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 74
+  LineNum: 297
   Original: r.db_create("test2")
   Java: r.dbCreate("test2")
   ExpectedOriginal: partial({'dbs_created':1})
@@ -665,7 +664,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: meta/table.yaml
-  TestNum: 75
+  LineNum: 300
   Original: db2 = r.db("test2")
   VarName: db2
   VarType: Db
@@ -674,7 +673,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 76
+  LineNum: 302
   Original: db.table_create("testA")
   Java: db.tableCreate("testA")
   ExpectedOriginal: partial({'tables_created':1})
@@ -683,7 +682,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 77
+  LineNum: 304
   Original: db.table_create("testB")
   Java: db.tableCreate("testB")
   ExpectedOriginal: partial({'tables_created':1})
@@ -692,7 +691,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 78
+  LineNum: 306
   Original: db2.table_create("test2B")
   Java: db2.tableCreate("test2B")
   ExpectedOriginal: partial({'tables_created':1})
@@ -701,16 +700,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 79
+  LineNum: 309
   Original: r.table('testA').config().pluck('db','name')
   Java: r.table("testA").config().pluck("db", "name")
-  ExpectedOriginal: '{''db'': ''test'', ''name'': ''testA''}'
+  ExpectedOriginal: '{''db'':''test'',''name'':''testA''}'
   ExpectedType: Map
   ExpectedJava: r.hashMap("db", "test").with("name", "testA")
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 80
+  LineNum: 312
   Original: r.table('doesntexist').config()
   Java: r.table("doesntexist").config()
   ExpectedOriginal: err('ReqlOpFailedError', 'Table `test.doesntexist` does not exist.', [])
@@ -719,7 +718,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 81
+  LineNum: 315
   Original: r.table('test2B').config()
   Java: r.table("test2B").config()
   ExpectedOriginal: err('ReqlOpFailedError', 'Table `test.test2B` does not exist.', [])
@@ -728,7 +727,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 82
+  LineNum: 318
   Original: r.db('rethinkdb').table('table_config').filter({'name':'testA'}).nth(0).eq(r.table('testA').config())
   Java: r.db("rethinkdb").table("table_config").filter(r.hashMap("name", "testA")).nth(0L).eq(r.table("testA").config())
   ExpectedOriginal: True
@@ -737,7 +736,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 83
+  LineNum: 321
   Original: r.db('rethinkdb').table('table_status').filter({'name':'testA'}).nth(0).eq(r.table('testA').status())
   Java: r.db("rethinkdb").table("table_status").filter(r.hashMap("name", "testA")).nth(0L).eq(r.table("testA").status())
   ExpectedOriginal: True
@@ -746,16 +745,16 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 84
+  LineNum: 324
   Original: r.db('rethinkdb').table('table_config', identifier_format='uuid').nth(0)["db"]
   Java: r.db("rethinkdb").table("table_config").optArg("identifier_format", "uuid").nth(0L).bracket("db")
   ExpectedOriginal: uuid()
-  ExpectedType: Uuid
+  ExpectedType: UUIDMatch
   ExpectedJava: uuid()
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 85
+  LineNum: 329
   Original: r.table('testA', identifier_format='uuid').count()
   Java: r.table("testA").optArg("identifier_format", "uuid").count()
   ExpectedOriginal: 0
@@ -764,7 +763,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 86
+  LineNum: 334
   Original: r.wait(wait_for='all_replicas_ready', timeout=5)
   Java: r.wait_().optArg("wait_for", "all_replicas_ready").optArg("timeout", 5L)
   ExpectedOriginal: partial({'ready':2})
@@ -773,7 +772,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 87
+  LineNum: 339
   Original: db.table_drop('testA')
   Java: db.tableDrop("testA")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -782,7 +781,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 88
+  LineNum: 342
   Original: db.table_drop('testB')
   Java: db.tableDrop("testB")
   ExpectedOriginal: partial({'tables_dropped':1})
@@ -791,7 +790,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: meta/table.yaml
-  TestNum: 89
+  LineNum: 345
   Original: r.db_drop('test2')
   Java: r.dbDrop("test2")
   ExpectedOriginal: partial({'dbs_dropped':1,'tables_dropped':1})

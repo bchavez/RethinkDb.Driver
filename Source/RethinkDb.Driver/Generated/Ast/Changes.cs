@@ -75,7 +75,8 @@ namespace RethinkDb.Driver.Ast {
     
 ///<summary>
 /// "squash": "T_BOOL",
-///  "include_states": "T_BOOL"
+///  "include_states": "T_BOOL",
+///  "include_initial": "T_BOOL"
 ///</summary>
         public Changes optArg(string optname, object value) {
              var newOptargs = OptArgs.fromMap(this.OptArgs)

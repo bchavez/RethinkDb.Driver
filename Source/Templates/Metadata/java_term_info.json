@@ -73,6 +73,15 @@
       {
         "args": [],
         "first_arg": null
+      },
+      {
+        "args": [
+          {
+            "var": "expr",
+            "type": "Object"
+          }
+        ],
+        "first_arg": "ReqlExpr"
       }
     ],
     "id": 169,
@@ -9864,7 +9873,8 @@
     ],
     "optargs": {
       "squash": "T_BOOL",
-      "include_states": "T_BOOL"
+      "include_states": "T_BOOL",
+      "include_initial": "T_BOOL"
     },
     "id": 152,
     "methodnames": [

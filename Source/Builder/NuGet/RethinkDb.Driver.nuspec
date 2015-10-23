@@ -16,6 +16,10 @@
     
     <releaseNotes>
         History
+        v0.0.5-alpha4
+        * AST: added uuid(expr)
+        
+        
         v0.0.5-alpha3
         * Cursor support for sequence / partial results (example getAll).
         * Make .run dynamic.

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -190,6 +191,19 @@ namespace RethinkDb.Driver.Tests
             {
                 Console.WriteLine($"Printing: {foo.id}!");
                 foo.Dump();
+            }
+        }
+
+        [Test]
+        public void getall_with_linq()
+        {
+            Cursor<Foo> all = r.db(DbName).table(TableName).getAll("a", "b", "c").runCursor<Foo>(conn);
+
+            var bazInOrder = all.OrderByDescending(f => f.Baz)
+                .Select(f => f.Baz);
+            foreach( var baz in bazInOrder )
+            {
+                Console.WriteLine(baz);
             }
         }
 

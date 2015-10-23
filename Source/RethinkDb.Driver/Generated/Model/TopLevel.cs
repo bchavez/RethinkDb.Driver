@@ -63,6 +63,20 @@ namespace RethinkDb.Driver.Ast {
                                 return new Uuid (arguments);
                             }
 /// <summary>
+/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID.</para>
+///</summary>
+/// <example><para>Example: Generate a UUID.</para>
+/// <code>&gt; r.uuid().run(conn, callback)
+/// // result returned to callback
+/// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
+/// </code></example>
+                            public Uuid uuid ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                return new Uuid (arguments);
+                            }
+/// <summary>
 /// <para>Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.</para>
 ///</summary>
 /// <example><para>Example: Perform a simple HTTP <code>GET</code> request, and store the result in a table.</para>

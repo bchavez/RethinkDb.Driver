@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Secondary index keys are not guaranteed to be unique so we cannot query via <a href="/api/javascript/get/">get</a> when using a secondary index.</para>
 /// <code>r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback)
 /// </code></example>
-        public GetAll (Arguments args, object optargs)
+        public GetAll (Arguments args, OptArgs optargs)
          : base(TermType.GET_ALL, args, optargs) {
         }
 
@@ -70,10 +70,9 @@ namespace RethinkDb.Driver.Ast {
         public GetAll this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new GetAll (this.Args, optArgs);
+                return new GetAll (this.Args, newOptargs);
             }
         }
         
@@ -81,13 +80,10 @@ namespace RethinkDb.Driver.Ast {
 /// "index": "T_STR"
 ///</summary>
         public GetAll optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new GetAll (this.Args, optArgs);
+            return new GetAll (this.Args, newOptargs);
         }
 
 

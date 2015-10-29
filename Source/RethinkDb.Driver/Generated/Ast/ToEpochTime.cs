@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return the current time in seconds since the Unix Epoch with millisecond-precision.</para>
 /// <code>r.now().toEpochTime()
 /// </code></example>
-        public ToEpochTime (Arguments args, object optargs)
+        public ToEpochTime (Arguments args, OptArgs optargs)
          : base(TermType.TO_EPOCH_TIME, args, optargs) {
         }
 

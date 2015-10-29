@@ -69,7 +69,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's 3 + 5 + 7?</para>
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
-        public Sum (Arguments args, object optargs)
+        public Sum (Arguments args, OptArgs optargs)
          : base(TermType.SUM, args, optargs) {
         }
 

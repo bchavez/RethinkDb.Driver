@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Perform a simple HTTP <code>GET</code> request, and store the result in a table.</para>
 /// <code>r.table('posts').insert(r.http('http://httpbin.org/get')).run(conn, callback)
 /// </code></example>
-        public Http (Arguments args, object optargs)
+        public Http (Arguments args, OptArgs optargs)
          : base(TermType.HTTP, args, optargs) {
         }
 
@@ -89,10 +89,9 @@ namespace RethinkDb.Driver.Ast {
         public Http this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Http (this.Args, optArgs);
+                return new Http (this.Args, newOptargs);
             }
         }
         
@@ -119,13 +118,10 @@ namespace RethinkDb.Driver.Ast {
 ///  ]
 ///</summary>
         public Http optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Http (this.Args, optArgs);
+            return new Http (this.Args, newOptargs);
         }
 
 

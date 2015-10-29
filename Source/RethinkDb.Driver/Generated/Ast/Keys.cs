@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get all the keys of a row.</para>
 /// <code>r.table('marvel').get('ironman').keys().run(conn, callback)
 /// </code></example>
-        public Keys (Arguments args, object optargs)
+        public Keys (Arguments args, OptArgs optargs)
          : base(TermType.KEYS, args, optargs) {
         }
 

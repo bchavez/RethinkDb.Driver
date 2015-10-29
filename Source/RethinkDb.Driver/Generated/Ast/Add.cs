@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: It's as easy as 2 + 2 = 4.</para>
 /// <code>r.expr(2).add(2).run(conn, callback)
 /// </code></example>
-        public Add (Arguments args, object optargs)
+        public Add (Arguments args, OptArgs optargs)
          : base(TermType.ADD, args, optargs) {
         }
 

@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Ast {
         }
         public Asc (Arguments args) : this(args, null) {
         }
-        public Asc (Arguments args, object optargs)
+        public Asc (Arguments args, OptArgs optargs)
          : base(TermType.ASC, args, optargs) {
         }
 

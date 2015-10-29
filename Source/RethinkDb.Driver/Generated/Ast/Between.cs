@@ -69,7 +69,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Find all users with primary key &gt;= 10 and &lt; 20 (a normal half-open interval).</para>
 /// <code>r.table('marvel').between(10, 20).run(conn, callback)
 /// </code></example>
-        public Between (Arguments args, object optargs)
+        public Between (Arguments args, OptArgs optargs)
          : base(TermType.BETWEEN, args, optargs) {
         }
 
@@ -87,10 +87,9 @@ namespace RethinkDb.Driver.Ast {
         public Between this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Between (this.Args, optArgs);
+                return new Between (this.Args, newOptargs);
             }
         }
         
@@ -100,13 +99,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "right_bound": "E_BOUND"
 ///</summary>
         public Between optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Between (this.Args, optArgs);
+            return new Between (this.Args, newOptargs);
         }
 
 

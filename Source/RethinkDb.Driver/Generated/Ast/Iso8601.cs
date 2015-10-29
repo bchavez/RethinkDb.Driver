@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Update the time of John's birth.</para>
 /// <code>r.table("user").get("John").update({birth: r.ISO8601('1986-11-03T08:30:00-07:00')}).run(conn, callback)
 /// </code></example>
-        public Iso8601 (Arguments args, object optargs)
+        public Iso8601 (Arguments args, OptArgs optargs)
          : base(TermType.ISO8601, args, optargs) {
         }
 
@@ -70,10 +70,9 @@ namespace RethinkDb.Driver.Ast {
         public Iso8601 this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Iso8601 (this.Args, optArgs);
+                return new Iso8601 (this.Args, newOptargs);
             }
         }
         
@@ -81,13 +80,10 @@ namespace RethinkDb.Driver.Ast {
 /// "default_timezone": "T_STR"
 ///</summary>
         public Iso8601 optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Iso8601 (this.Args, optArgs);
+            return new Iso8601 (this.Args, newOptargs);
         }
 
 

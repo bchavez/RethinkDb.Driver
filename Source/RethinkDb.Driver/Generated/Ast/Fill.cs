@@ -90,7 +90,7 @@ namespace RethinkDb.Driver.Ast {
 ///     rectangle: r.row('rectangle').fill()
 /// }).run(conn, callback);
 /// </code></example>
-        public Fill (Arguments args, object optargs)
+        public Fill (Arguments args, OptArgs optargs)
          : base(TermType.FILL, args, optargs) {
         }
 

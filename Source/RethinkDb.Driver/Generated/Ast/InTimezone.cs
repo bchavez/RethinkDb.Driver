@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Hour of the day in San Francisco (UTC/GMT -8, without daylight saving time).</para>
 /// <code>r.now().inTimezone('-08:00').hours().run(conn, callback)
 /// </code></example>
-        public InTimezone (Arguments args, object optargs)
+        public InTimezone (Arguments args, OptArgs optargs)
          : base(TermType.IN_TIMEZONE, args, optargs) {
         }
 

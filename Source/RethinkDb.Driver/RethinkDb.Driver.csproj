@@ -283,6 +283,7 @@
     <Compile Include="Model\Backtrace.cs" />
     <Compile Include="Model\GroupedResult.cs" />
     <Compile Include="Model\MapObject.cs" />
+    <Compile Include="Model\OptArgs.cs" />
     <Compile Include="Model\PathSpec.cs" />
     <Compile Include="Model\Profile.cs" />
     <Compile Include="Model\ReqlLambda.cs" />

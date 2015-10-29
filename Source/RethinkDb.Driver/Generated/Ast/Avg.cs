@@ -69,7 +69,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's the average of 3, 5, and 7?</para>
 /// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
 /// </code></example>
-        public Avg (Arguments args, object optargs)
+        public Avg (Arguments args, OptArgs optargs)
          : base(TermType.AVG, args, optargs) {
         }
 

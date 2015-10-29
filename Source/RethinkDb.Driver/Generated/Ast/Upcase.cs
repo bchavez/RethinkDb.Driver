@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").upcase().run(conn, callback)
 /// </code></example>
-        public Upcase (Arguments args, object optargs)
+        public Upcase (Arguments args, OptArgs optargs)
          : base(TermType.UPCASE, args, optargs) {
         }
 

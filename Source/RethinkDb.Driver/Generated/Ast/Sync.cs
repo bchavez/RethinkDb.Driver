@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Ast {
 /// until these changes are persisted.</para>
 /// <code>r.table('marvel').sync().run(conn, callback)
 /// </code></example>
-        public Sync (Arguments args, object optargs)
+        public Sync (Arguments args, OptArgs optargs)
          : base(TermType.SYNC, args, optargs) {
         }
 

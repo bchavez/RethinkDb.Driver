@@ -98,11 +98,18 @@ namespace RethinkDb.Driver.Net
         public bool RawGroups { get; }
         public bool RawBinary { get; }
 
-        public FormatOptions(JObject args)
+        public FormatOptions(OptArgs args)
         {
-            this.RawTime = args?["time_format"]?.ToString() == "raw";
-            this.RawGroups = args?["group_format"]?.ToString() == "raw";
-            this.RawBinary = args?["binary_format"]?.ToString() == "raw";
+            // TODO: find a better way to do this.
+            ReqlAst datum;
+            var value = args.TryGetValue("time_format", out datum) ? ((Datum)datum).datum : new Datum("native").datum;
+            this.RawTime = value.Equals("raw");
+
+            value = args.TryGetValue("binary_format", out datum) ? ((Datum)datum).datum : new Datum("native").datum;
+            this.RawBinary = value.Equals("raw");
+
+            value = args.TryGetValue("group_format", out datum) ? ((Datum)datum).datum : new Datum("native").datum;
+            this.RawGroups = value.Equals("raw");
         }
     }
 }

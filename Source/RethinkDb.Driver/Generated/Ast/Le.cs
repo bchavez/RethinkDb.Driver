@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Is 2 less than or equal to 2?</para>
 /// <code>r.expr(2).le(2).run(conn, callback)
 /// </code></example>
-        public Le (Arguments args, object optargs)
+        public Le (Arguments args, OptArgs optargs)
          : base(TermType.LE, args, optargs) {
         }
 

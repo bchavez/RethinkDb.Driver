@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// [0, 1, 2, 3]
 /// </code></example>
-        public Range (Arguments args, object optargs)
+        public Range (Arguments args, OptArgs optargs)
          : base(TermType.RANGE, args, optargs) {
         }
 

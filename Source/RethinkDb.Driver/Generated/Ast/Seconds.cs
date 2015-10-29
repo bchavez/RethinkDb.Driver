@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 ///     return post("date").seconds().lt(30)
 /// })
 /// </code></example>
-        public Seconds (Arguments args, object optargs)
+        public Seconds (Arguments args, OptArgs optargs)
          : base(TermType.SECONDS, args, optargs) {
         }
 

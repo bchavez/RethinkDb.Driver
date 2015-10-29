@@ -90,7 +90,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
 ///     .run(conn, callback)
 /// </code></example>
-        public Time (Arguments args, object optargs)
+        public Time (Arguments args, OptArgs optargs)
          : base(TermType.TIME, args, optargs) {
         }
 

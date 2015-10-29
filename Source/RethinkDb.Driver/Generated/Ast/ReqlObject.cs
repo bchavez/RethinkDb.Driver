@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a simple object.</para>
 /// <code>r.object('id', 5, 'data', ['foo', 'bar']).run(conn, callback)
 /// </code></example>
-        public ReqlObject (Arguments args, object optargs)
+        public ReqlObject (Arguments args, OptArgs optargs)
          : base(TermType.OBJECT, args, optargs) {
         }
 

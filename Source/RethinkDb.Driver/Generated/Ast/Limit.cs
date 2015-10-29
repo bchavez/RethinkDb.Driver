@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Only so many can fit in our Pantheon of heroes.</para>
 /// <code>r.table('marvel').orderBy('belovedness').limit(10).run(conn, callback)
 /// </code></example>
-        public Limit (Arguments args, object optargs)
+        public Limit (Arguments args, OptArgs optargs)
          : base(TermType.LIMIT, args, optargs) {
         }
 

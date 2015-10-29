@@ -81,7 +81,7 @@ namespace RethinkDb.Driver.Ast {
 ///     )
 /// ).run(conn, callback)
 /// </code></example>
-        public Branch (Arguments args, object optargs)
+        public Branch (Arguments args, OptArgs optargs)
          : base(TermType.BRANCH, args, optargs) {
         }
 

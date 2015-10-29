@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Retrieve Iron Man's equipment list without boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').difference(['Boots']).run(conn, callback)
 /// </code></example>
-        public Difference (Arguments args, object optargs)
+        public Difference (Arguments args, OptArgs optargs)
          : base(TermType.DIFFERENCE, args, optargs) {
         }
 

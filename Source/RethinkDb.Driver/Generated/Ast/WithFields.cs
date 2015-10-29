@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get a list of users and their posts, excluding any users who have not made any posts.</para>
 /// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
 /// </code></example>
-        public WithFields (Arguments args, object optargs)
+        public WithFields (Arguments args, OptArgs optargs)
          : base(TermType.WITH_FIELDS, args, optargs) {
         }
 

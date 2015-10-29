@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Just how many super heroes are there?</para>
 /// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
 /// </code></example>
-        public Count (Arguments args, object optargs)
+        public Count (Arguments args, OptArgs optargs)
          : base(TermType.COUNT, args, optargs) {
         }
 

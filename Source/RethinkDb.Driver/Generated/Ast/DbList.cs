@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: List all databases.</para>
 /// <code>r.dbList().run(conn, callback)
 /// </code></example>
-        public DbList (Arguments args, object optargs)
+        public DbList (Arguments args, OptArgs optargs)
          : base(TermType.DB_LIST, args, optargs) {
         }
 

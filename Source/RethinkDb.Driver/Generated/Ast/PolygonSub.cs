@@ -90,7 +90,7 @@ namespace RethinkDb.Driver.Ast {
 /// );
 /// outerPolygon.polygonSub(innerpolygon).run(conn, callback);
 /// </code></example>
-        public PolygonSub (Arguments args, object optargs)
+        public PolygonSub (Arguments args, OptArgs optargs)
          : base(TermType.POLYGON_SUB, args, optargs) {
         }
 

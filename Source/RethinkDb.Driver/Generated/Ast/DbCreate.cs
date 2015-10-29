@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a database named 'superheroes'.</para>
 /// <code>r.dbCreate('superheroes').run(conn, callback)
 /// </code></example>
-        public DbCreate (Arguments args, object optargs)
+        public DbCreate (Arguments args, OptArgs optargs)
          : base(TermType.DB_CREATE, args, optargs) {
         }
 

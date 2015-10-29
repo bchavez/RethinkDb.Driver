@@ -38,7 +38,7 @@ namespace RethinkDb.Driver.Ast {
         }
         public Funcall (Arguments args) : this(args, null) {
         }
-        public Funcall (Arguments args, object optargs)
+        public Funcall (Arguments args, OptArgs optargs)
          : base(TermType.FUNCALL, args, optargs) {
         }
 

@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback 
 /// 734.1252496021841
 /// </code></example>
-        public Distance (Arguments args, object optargs)
+        public Distance (Arguments args, OptArgs optargs)
          : base(TermType.DISTANCE, args, optargs) {
         }
 
@@ -83,10 +83,9 @@ namespace RethinkDb.Driver.Ast {
         public Distance this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Distance (this.Args, optArgs);
+                return new Distance (this.Args, newOptargs);
             }
         }
         
@@ -95,13 +94,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "unit": "E_UNIT"
 ///</summary>
         public Distance optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Distance (this.Args, optArgs);
+            return new Distance (this.Args, newOptargs);
         }
 
 

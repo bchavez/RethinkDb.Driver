@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-        public Group (Arguments args, object optargs)
+        public Group (Arguments args, OptArgs optargs)
          : base(TermType.GROUP, args, optargs) {
         }
 
@@ -77,10 +77,9 @@ namespace RethinkDb.Driver.Ast {
         public Group this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Group (this.Args, optArgs);
+                return new Group (this.Args, newOptargs);
             }
         }
         
@@ -89,13 +88,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "multi": "T_BOOL"
 ///</summary>
         public Group optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Group (this.Args, optArgs);
+            return new Group (this.Args, newOptargs);
         }
 
 

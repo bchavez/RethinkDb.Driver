@@ -63,7 +63,7 @@ namespace RethinkDb.Driver.Ast {
 ///     {index: 'location', maxDist: 5000}
 /// ).run(conn, callback)
 /// </code></example>
-        public GetNearest (Arguments args, object optargs)
+        public GetNearest (Arguments args, OptArgs optargs)
          : base(TermType.GET_NEAREST, args, optargs) {
         }
 
@@ -83,10 +83,9 @@ namespace RethinkDb.Driver.Ast {
         public GetNearest this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new GetNearest (this.Args, optArgs);
+                return new GetNearest (this.Args, newOptargs);
             }
         }
         
@@ -98,13 +97,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "geo_system": "E_GEO_SYSTEM"
 ///</summary>
         public GetNearest optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new GetNearest (this.Args, optArgs);
+            return new GetNearest (this.Args, newOptargs);
         }
 
 

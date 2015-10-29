@@ -69,7 +69,7 @@ namespace RethinkDb.Driver.Ast {
 ///     'coordinates': [ -122.423246, 37.779388 ]
 /// }
 /// </code></example>
-        public ToGeojson (Arguments args, object optargs)
+        public ToGeojson (Arguments args, OptArgs optargs)
          : base(TermType.TO_GEOJSON, args, optargs) {
         }
 

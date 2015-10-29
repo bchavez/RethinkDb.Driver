@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 ///     r.row("birthdate").month().eq(11)
 /// )
 /// </code></example>
-        public Month (Arguments args, object optargs)
+        public Month (Arguments args, OptArgs optargs)
          : base(TermType.MONTH, args, optargs) {
         }
 

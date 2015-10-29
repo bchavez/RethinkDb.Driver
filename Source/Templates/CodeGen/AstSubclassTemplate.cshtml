@@ -62,13 +62,13 @@
         @:}
 
         @RenderCtorXmlDoc(this.TermName)
-        @:public @Class(ClassName) (Arguments args, object optargs)
+        @:public @Class(ClassName) (Arguments args, OptArgs optargs)
         @: : base(TermType.@TermName, args, optargs) {
         @:}
     }
     else
     {
-        @:protected @Class(ClassName) (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
+        @:protected @Class(ClassName) (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
         @:{
         @:}
     }
@@ -88,10 +88,9 @@
         @:public @Class(ClassName) this[object optArgs] {
         @:    get
         @:    {
-        @:        if(this.OptArgs is Hashtable)
-        @:            throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        @:        var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         @:
-        @:        return new @Class(ClassName) (this.Args, optArgs);
+        @:        return new @Class(ClassName) (this.Args, newOptargs);
         @:    }
         @:}
         @:
@@ -99,13 +98,10 @@
 @:/// @optArgs.ToString().Trim('{', '}').Trim().Replace("\n","\n///")
 @:///</summary>
         @:public @Class(ClassName) optArg(string key, object val){
-        @:    if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-        @:        throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        @:    
+        @:    var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         @:
-        @:    var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-        @:    optArgs[key] = val;
-        @:
-        @:    return new @Class(ClassName) (this.Args, optArgs);
+        @:    return new @Class(ClassName) (this.Args, newOptargs);
         @:}
      }
 }

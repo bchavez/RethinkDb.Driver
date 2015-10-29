@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Wait for a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
 /// </code></example>
-        public Wait (Arguments args, object optargs)
+        public Wait (Arguments args, OptArgs optargs)
          : base(TermType.WAIT, args, optargs) {
         }
 
@@ -71,10 +71,9 @@ namespace RethinkDb.Driver.Ast {
         public Wait this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Wait (this.Args, optArgs);
+                return new Wait (this.Args, newOptargs);
             }
         }
         
@@ -83,13 +82,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "timeout": "T_NUM"
 ///</summary>
         public Wait optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Wait (this.Args, optArgs);
+            return new Wait (this.Args, newOptargs);
         }
 
 

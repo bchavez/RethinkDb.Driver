@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Ast {
         }
         public Javascript (Arguments args) : this(args, null) {
         }
-        public Javascript (Arguments args, object optargs)
+        public Javascript (Arguments args, OptArgs optargs)
          : base(TermType.JAVASCRIPT, args, optargs) {
         }
 
@@ -52,10 +52,9 @@ namespace RethinkDb.Driver.Ast {
         public Javascript this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Javascript (this.Args, optArgs);
+                return new Javascript (this.Args, newOptargs);
             }
         }
         
@@ -63,13 +62,10 @@ namespace RethinkDb.Driver.Ast {
 /// "timeout": "T_NUM"
 ///</summary>
         public Javascript optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Javascript (this.Args, optArgs);
+            return new Javascript (this.Args, newOptargs);
         }
 
 

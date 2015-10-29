@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Select 3 random heroes.</para>
 /// <code>r.table('marvel').sample(3).run(conn, callback)
 /// </code></example>
-        public Sample (Arguments args, object optargs)
+        public Sample (Arguments args, OptArgs optargs)
          : base(TermType.SAMPLE, args, optargs) {
         }
 

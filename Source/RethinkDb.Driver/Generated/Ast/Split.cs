@@ -78,7 +78,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Split on whitespace.</para>
 /// <code>r.expr("foo  bar bax").split().run(conn, callback)
 /// </code></example>
-        public Split (Arguments args, object optargs)
+        public Split (Arguments args, OptArgs optargs)
          : base(TermType.SPLIT, args, optargs) {
         }
 

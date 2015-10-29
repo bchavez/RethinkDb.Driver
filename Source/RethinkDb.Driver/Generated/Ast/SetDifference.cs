@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Check which pieces of equipment Iron Man has, excluding a fixed list.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setDifference(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
-        public SetDifference (Arguments args, object optargs)
+        public SetDifference (Arguments args, OptArgs optargs)
          : base(TermType.SET_DIFFERENCE, args, optargs) {
         }
 

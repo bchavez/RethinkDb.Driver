@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 ///     return user("subscriptionDate").timezone().eq("-07:00")
 /// })
 /// </code></example>
-        public Timezone (Arguments args, object optargs)
+        public Timezone (Arguments args, OptArgs optargs)
          : base(TermType.TIMEZONE, args, optargs) {
         }
 

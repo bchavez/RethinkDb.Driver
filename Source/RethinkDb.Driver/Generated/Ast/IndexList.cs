@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: List the available secondary indexes for this table.</para>
 /// <code>r.table('marvel').indexList().run(conn, callback)
 /// </code></example>
-        public IndexList (Arguments args, object optargs)
+        public IndexList (Arguments args, OptArgs optargs)
          : base(TermType.INDEX_LIST, args, optargs) {
         }
 

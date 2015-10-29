@@ -90,7 +90,7 @@ namespace RethinkDb.Driver.Ast {
 ///     )
 /// }).run(conn, callback);
 /// </code></example>
-        public Polygon (Arguments args, object optargs)
+        public Polygon (Arguments args, OptArgs optargs)
          : base(TermType.POLYGON, args, optargs) {
         }
 

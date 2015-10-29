@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: It's as easy as 2 / 2 = 1.</para>
 /// <code>r.expr(2).div(2).run(conn, callback)
 /// </code></example>
-        public Div (Arguments args, object optargs)
+        public Div (Arguments args, OptArgs optargs)
          : base(TermType.DIV, args, optargs) {
         }
 

@@ -63,7 +63,7 @@ namespace RethinkDb.Driver.Ast {
 ///     r.table('equipment').get('pimento_sandwich')
 /// ).run(conn, callback)
 /// </code></example>
-        public Merge (Arguments args, object optargs)
+        public Merge (Arguments args, OptArgs optargs)
          : base(TermType.MERGE, args, optargs) {
         }
 

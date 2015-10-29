@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Ast {
 ///         ironman)
 /// }).run(conn, callback)
 /// </code></example>
-        public Error (Arguments args, object optargs)
+        public Error (Arguments args, OptArgs optargs)
          : base(TermType.ERROR, args, optargs) {
         }
 

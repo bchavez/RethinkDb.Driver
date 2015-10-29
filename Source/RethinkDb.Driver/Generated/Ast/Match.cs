@@ -81,7 +81,7 @@ namespace RethinkDb.Driver.Ast {
 ///     return doc('name').match("^A")
 /// }).run(conn, callback)
 /// </code></example>
-        public Match (Arguments args, object optargs)
+        public Match (Arguments args, OptArgs optargs)
          : base(TermType.MATCH, args, optargs) {
         }
 

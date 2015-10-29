@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').append('newBoots').run(conn, callback)
 /// </code></example>
-        public Append (Arguments args, object optargs)
+        public Append (Arguments args, OptArgs optargs)
          : base(TermType.APPEND, args, optargs) {
         }
 

@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-        public Map (Arguments args, object optargs)
+        public Map (Arguments args, OptArgs optargs)
          : base(TermType.MAP, args, optargs) {
         }
 

@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots and an arc reactor.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setUnion(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
-        public SetUnion (Arguments args, object optargs)
+        public SetUnion (Arguments args, OptArgs optargs)
          : base(TermType.SET_UNION, args, optargs) {
         }
 

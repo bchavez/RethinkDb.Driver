@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Does 2 equal 2?</para>
 /// <code>r.expr(2).eq(2).run(conn, callback)
 /// </code></example>
-        public Eq (Arguments args, object optargs)
+        public Eq (Arguments args, OptArgs optargs)
          : base(TermType.EQ, args, optargs) {
         }
 

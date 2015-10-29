@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Ast {
 ///     neighborhood: r.circle([-122.423246,37.779388], 1000)
 /// }).run(conn, callback);
 /// </code></example>
-        public Circle (Arguments args, object optargs)
+        public Circle (Arguments args, OptArgs optargs)
          : base(TermType.CIRCLE, args, optargs) {
         }
 
@@ -85,10 +85,9 @@ namespace RethinkDb.Driver.Ast {
         public Circle this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Circle (this.Args, optArgs);
+                return new Circle (this.Args, newOptargs);
             }
         }
         
@@ -99,13 +98,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "fill": "T_BOOL"
 ///</summary>
         public Circle optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Circle (this.Args, optArgs);
+            return new Circle (this.Args, newOptargs);
         }
 
 

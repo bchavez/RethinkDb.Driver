@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var circle1 = r.circle([-117.220406,32.719464], 10, {unit: 'mi'});
 /// r.table('parks').getIntersecting(circle1, {index: 'area'}).run(conn, callback);
 /// </code></example>
-        public GetIntersecting (Arguments args, object optargs)
+        public GetIntersecting (Arguments args, OptArgs optargs)
          : base(TermType.GET_INTERSECTING, args, optargs) {
         }
 
@@ -73,10 +73,9 @@ namespace RethinkDb.Driver.Ast {
         public GetIntersecting this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new GetIntersecting (this.Args, optArgs);
+                return new GetIntersecting (this.Args, newOptargs);
             }
         }
         
@@ -84,13 +83,10 @@ namespace RethinkDb.Driver.Ast {
 /// "index": "T_STR"
 ///</summary>
         public GetIntersecting optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new GetIntersecting (this.Args, optArgs);
+            return new GetIntersecting (this.Args, newOptargs);
         }
 
 

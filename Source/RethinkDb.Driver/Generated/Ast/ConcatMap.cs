@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 ///     return hero('defeatedMonsters')
 /// }).run(conn, callback)
 /// </code></example>
-        public ConcatMap (Arguments args, object optargs)
+        public ConcatMap (Arguments args, OptArgs optargs)
          : base(TermType.CONCAT_MAP, args, optargs) {
         }
 

@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// "2015-04-20T18:37:52.690+00:00"
 /// </code></example>
-        public ToIso8601 (Arguments args, object optargs)
+        public ToIso8601 (Arguments args, OptArgs optargs)
          : base(TermType.TO_ISO8601, args, optargs) {
         }
 

@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Example: Wait for the index <code>timestamp</code> to be ready:</para>
 /// <code>r.table('test').indexWait('timestamp').run(conn, callback)
 /// </code></example>
-        public IndexWait (Arguments args, object optargs)
+        public IndexWait (Arguments args, OptArgs optargs)
          : base(TermType.INDEX_WAIT, args, optargs) {
         }
 

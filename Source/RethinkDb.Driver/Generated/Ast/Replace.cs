@@ -75,7 +75,7 @@ namespace RethinkDb.Driver.Ast {
 ///     status: "draft"
 /// }).run(conn, callback)
 /// </code></example>
-        public Replace (Arguments args, object optargs)
+        public Replace (Arguments args, OptArgs optargs)
          : base(TermType.REPLACE, args, optargs) {
         }
 
@@ -96,10 +96,9 @@ namespace RethinkDb.Driver.Ast {
         public Replace this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Replace (this.Args, optArgs);
+                return new Replace (this.Args, newOptargs);
             }
         }
         
@@ -112,13 +111,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "non_atomic": "T_BOOL"
 ///</summary>
         public Replace optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Replace (this.Args, optArgs);
+            return new Replace (this.Args, newOptargs);
         }
 
 

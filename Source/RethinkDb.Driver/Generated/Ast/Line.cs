@@ -75,7 +75,7 @@ namespace RethinkDb.Driver.Ast {
 ///     route: r.line([-122.423246,37.779388], [-121.886420,37.329898])
 /// }).run(conn, callback);
 /// </code></example>
-        public Line (Arguments args, object optargs)
+        public Line (Arguments args, OptArgs optargs)
          : base(TermType.LINE, args, optargs) {
         }
 

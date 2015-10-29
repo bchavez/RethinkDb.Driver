@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Hulk and Thor decide to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).spliceAt(1, ["Hulk", "Thor"]).run(conn, callback)
 /// </code></example>
-        public SpliceAt (Arguments args, object optargs)
+        public SpliceAt (Arguments args, OptArgs optargs)
          : base(TermType.SPLICE_AT, args, optargs) {
         }
 

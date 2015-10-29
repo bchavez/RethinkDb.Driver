@@ -90,7 +90,7 @@ namespace RethinkDb.Driver.Ast {
 /// <para>You can also select a descending ordering:</para>
 /// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
 /// </code></example>
-        public OrderBy (Arguments args, object optargs)
+        public OrderBy (Arguments args, OptArgs optargs)
          : base(TermType.ORDER_BY, args, optargs) {
         }
 
@@ -106,10 +106,9 @@ namespace RethinkDb.Driver.Ast {
         public OrderBy this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new OrderBy (this.Args, optArgs);
+                return new OrderBy (this.Args, newOptargs);
             }
         }
         
@@ -117,13 +116,10 @@ namespace RethinkDb.Driver.Ast {
 /// "index": "T_EXPR"
 ///</summary>
         public OrderBy optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new OrderBy (this.Args, optArgs);
+            return new OrderBy (this.Args, newOptargs);
         }
 
 

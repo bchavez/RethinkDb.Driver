@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Here in conjunction with <code>orderBy</code> we choose to ignore the most successful heroes.</para>
 /// <code>r.table('marvel').orderBy('successMetric').skip(10).run(conn, callback)
 /// </code></example>
-        public Skip (Arguments args, object optargs)
+        public Skip (Arguments args, OptArgs optargs)
          : base(TermType.SKIP, args, optargs) {
         }
 

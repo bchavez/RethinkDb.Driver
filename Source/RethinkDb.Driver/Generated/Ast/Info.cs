@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
 /// <code>r.table('marvel').info().run(conn, callback)
 /// </code></example>
-        public Info (Arguments args, object optargs)
+        public Info (Arguments args, OptArgs optargs)
          : base(TermType.INFO, args, optargs) {
         }
 

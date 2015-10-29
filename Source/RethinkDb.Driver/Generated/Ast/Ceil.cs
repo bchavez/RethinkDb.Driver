@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 13.0
 /// </code></example>
-        public Ceil (Arguments args, object optargs)
+        public Ceil (Arguments args, OptArgs optargs)
          : base(TermType.CEIL, args, optargs) {
         }
 

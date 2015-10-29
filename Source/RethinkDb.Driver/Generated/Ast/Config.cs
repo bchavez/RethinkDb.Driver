@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get the configuration for the <code>users</code> table.</para>
 /// <code>&gt; r.table('users').config().run(conn, callback);
 /// </code></example>
-        public Config (Arguments args, object optargs)
+        public Config (Arguments args, OptArgs optargs)
          : base(TermType.CONFIG, args, optargs) {
         }
 

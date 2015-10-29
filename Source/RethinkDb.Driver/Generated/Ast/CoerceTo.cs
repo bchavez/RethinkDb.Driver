@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 ///     post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
 /// }).run(conn, callback)
 /// </code></example>
-        public CoerceTo (Arguments args, object optargs)
+        public CoerceTo (Arguments args, OptArgs optargs)
          : base(TermType.COERCE_TO, args, optargs) {
         }
 

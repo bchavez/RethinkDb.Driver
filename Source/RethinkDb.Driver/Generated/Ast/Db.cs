@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Explicitly specify a database for a query.</para>
 /// <code>r.db('heroes').table('marvel').run(conn, callback)
 /// </code></example>
-        public Db (Arguments args, object optargs)
+        public Db (Arguments args, OptArgs optargs)
          : base(TermType.DB, args, optargs) {
         }
 

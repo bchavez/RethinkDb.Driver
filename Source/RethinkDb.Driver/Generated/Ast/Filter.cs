@@ -78,7 +78,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get all the users that are 30 years old.</para>
 /// <code>r.table('users').filter({age: 30}).run(conn, callback)
 /// </code></example>
-        public Filter (Arguments args, object optargs)
+        public Filter (Arguments args, OptArgs optargs)
          : base(TermType.FILTER, args, optargs) {
         }
 
@@ -94,10 +94,9 @@ namespace RethinkDb.Driver.Ast {
         public Filter this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Filter (this.Args, optArgs);
+                return new Filter (this.Args, newOptargs);
             }
         }
         
@@ -105,13 +104,10 @@ namespace RethinkDb.Driver.Ast {
 /// "default": "T_EXPR"
 ///</summary>
         public Filter optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Filter (this.Args, optArgs);
+            return new Filter (this.Args, newOptargs);
         }
 
 

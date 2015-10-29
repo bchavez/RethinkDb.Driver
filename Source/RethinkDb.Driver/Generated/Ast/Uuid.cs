@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback
 /// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
 /// </code></example>
-        public Uuid (Arguments args, object optargs)
+        public Uuid (Arguments args, OptArgs optargs)
          : base(TermType.UUID, args, optargs) {
         }
 

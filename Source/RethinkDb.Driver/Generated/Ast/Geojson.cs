@@ -78,7 +78,7 @@ namespace RethinkDb.Driver.Ast {
 ///     location: r.geojson(geoJson)
 /// }).run(conn, callback);
 /// </code></example>
-        public Geojson (Arguments args, object optargs)
+        public Geojson (Arguments args, OptArgs optargs)
          : base(TermType.GEOJSON, args, optargs) {
         }
 

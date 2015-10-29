@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
-        public Reconfigure (Arguments args, object optargs)
+        public Reconfigure (Arguments args, OptArgs optargs)
          : base(TermType.RECONFIGURE, args, optargs) {
         }
 
@@ -78,10 +78,9 @@ namespace RethinkDb.Driver.Ast {
         public Reconfigure this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Reconfigure (this.Args, optArgs);
+                return new Reconfigure (this.Args, newOptargs);
             }
         }
         
@@ -97,13 +96,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "emergency_repair": "E_EMERGENCY_REPAIR"
 ///</summary>
         public Reconfigure optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Reconfigure (this.Args, optArgs);
+            return new Reconfigure (this.Args, newOptargs);
         }
 
 

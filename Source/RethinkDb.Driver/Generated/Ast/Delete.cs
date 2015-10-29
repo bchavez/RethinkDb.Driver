@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Delete a single document from the table <code>comments</code>.</para>
 /// <code>r.table("comments").get("7eab9e63-73f1-4f33-8ce4-95cbea626f59").delete().run(conn, callback)
 /// </code></example>
-        public Delete (Arguments args, object optargs)
+        public Delete (Arguments args, OptArgs optargs)
          : base(TermType.DELETE, args, optargs) {
         }
 
@@ -74,10 +74,9 @@ namespace RethinkDb.Driver.Ast {
         public Delete this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Delete (this.Args, optArgs);
+                return new Delete (this.Args, newOptargs);
             }
         }
         
@@ -89,13 +88,10 @@ namespace RethinkDb.Driver.Ast {
 ///  ]
 ///</summary>
         public Delete optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Delete (this.Args, optArgs);
+            return new Delete (this.Args, newOptargs);
         }
 
 

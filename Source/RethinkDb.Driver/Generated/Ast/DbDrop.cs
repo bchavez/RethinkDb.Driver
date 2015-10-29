@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Drop a database named 'superheroes'.</para>
 /// <code>r.dbDrop('superheroes').run(conn, callback)
 /// </code></example>
-        public DbDrop (Arguments args, object optargs)
+        public DbDrop (Arguments args, OptArgs optargs)
          : base(TermType.DB_DROP, args, optargs) {
         }
 

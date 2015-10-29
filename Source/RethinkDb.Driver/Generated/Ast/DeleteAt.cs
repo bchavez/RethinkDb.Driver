@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// ['a', 'c', 'd', 'e', 'f']
 /// </code></example>
-        public DeleteAt (Arguments args, object optargs)
+        public DeleteAt (Arguments args, OptArgs optargs)
          : base(TermType.DELETE_AT, args, optargs) {
         }
 

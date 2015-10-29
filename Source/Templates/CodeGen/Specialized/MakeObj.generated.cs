@@ -91,16 +91,17 @@ WriteLiteral("\r\n\r\n");
 DefineSection("Ctors", () => {
 
 WriteLiteral(@"
-        public MakeObj(Object arg, object optArgs = null) : this(new Arguments(arg), optArgs) {
+        public MakeObj(Object arg) : this(new Arguments(arg), null) {
 
         }
-
+        public MakeObj(OptArgs opts) : this(new Arguments(), opts) {
+        }
         public MakeObj(Arguments args) : this(args, null) {
         }
-        public MakeObj(Arguments args, object optargs) : 
+        public MakeObj(Arguments args, OptArgs optargs) : 
                this(TermType.MAKE_OBJ, args, optargs) {
         }
-        protected MakeObj(TermType termType, Arguments args, object optargs)
+        protected MakeObj(TermType termType, Arguments args, OptArgs optargs)
               : base(termType, args, optargs){
 
         }
@@ -115,12 +116,12 @@ WriteLiteral("\r\n\r\n");
 DefineSection("SpecialMethods", () => {
 
 WriteLiteral("\r\n        public static MakeObj fromMap(Dictionary<string, ReqlAst> map){\r\n      " +
-"       return new MakeObj(new Arguments(), map);\r\n        }\r\n");
+"      return new MakeObj(OptArgs.fromMap(map));\r\n        }\r\n");
 
 
 });
 
-WriteLiteral("\r\n    \r\n\r\n");
+WriteLiteral("\r\n\r\n\r\n");
 
 
         }

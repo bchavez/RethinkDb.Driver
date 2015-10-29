@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Find the position of the letter 'c'.</para>
 /// <code>r.expr(['a','b','c']).offsetsOf('c').run(conn, callback)
 /// </code></example>
-        public OffsetsOf (Arguments args, object optargs)
+        public OffsetsOf (Arguments args, OptArgs optargs)
          : base(TermType.OFFSETS_OF, args, optargs) {
         }
 

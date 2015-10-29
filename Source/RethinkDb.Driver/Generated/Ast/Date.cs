@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 ///     return user("birthdate").date().eq(r.now().date())
 /// }).run(conn, callback)
 /// </code></example>
-        public Date (Arguments args, object optargs)
+        public Date (Arguments args, OptArgs optargs)
          : base(TermType.DATE, args, optargs) {
         }
 

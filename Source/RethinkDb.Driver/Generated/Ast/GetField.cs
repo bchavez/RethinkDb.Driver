@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan').getField('firstAppearance').run(conn, callback)
 /// </code></example>
-        public GetField (Arguments args, object optargs)
+        public GetField (Arguments args, OptArgs optargs)
          : base(TermType.GET_FIELD, args, optargs) {
         }
 

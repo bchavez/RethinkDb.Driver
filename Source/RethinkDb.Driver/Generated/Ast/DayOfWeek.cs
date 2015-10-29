@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return today's day of week.</para>
 /// <code>r.now().dayOfWeek().run(conn, callback)
 /// </code></example>
-        public DayOfWeek (Arguments args, object optargs)
+        public DayOfWeek (Arguments args, OptArgs optargs)
          : base(TermType.DAY_OF_WEEK, args, optargs) {
         }
 

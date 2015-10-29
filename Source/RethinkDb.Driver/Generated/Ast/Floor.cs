@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 12.0
 /// </code></example>
-        public Floor (Arguments args, object optargs)
+        public Floor (Arguments args, OptArgs optargs)
          : base(TermType.FLOOR, args, optargs) {
         }
 

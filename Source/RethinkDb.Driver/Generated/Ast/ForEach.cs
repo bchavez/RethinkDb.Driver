@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 ///     return r.table('villains').get(hero('villainDefeated')).delete()
 /// }).run(conn, callback)
 /// </code></example>
-        public ForEach (Arguments args, object optargs)
+        public ForEach (Arguments args, OptArgs optargs)
          : base(TermType.FOR_EACH, args, optargs) {
         }
 

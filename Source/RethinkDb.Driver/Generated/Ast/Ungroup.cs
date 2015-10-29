@@ -75,7 +75,7 @@ namespace RethinkDb.Driver.Ast {
 ///     .group('player').max('points')['points']
 ///     .ungroup().orderBy(r.desc('reduction')).run(conn)
 /// </code></example>
-        public Ungroup (Arguments args, object optargs)
+        public Ungroup (Arguments args, OptArgs optargs)
          : base(TermType.UNGROUP, args, optargs) {
         }
 

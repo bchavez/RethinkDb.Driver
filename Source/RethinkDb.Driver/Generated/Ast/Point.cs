@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Ast {
 ///     location: r.point(-122.423246,37.779388)
 /// }).run(conn, callback);
 /// </code></example>
-        public Point (Arguments args, object optargs)
+        public Point (Arguments args, OptArgs optargs)
          : base(TermType.POINT, args, optargs) {
         }
 

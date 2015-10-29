@@ -69,7 +69,7 @@ namespace RethinkDb.Driver.Ast {
 /// // or
 /// r.table('people').getAll(r.args(['Alice', 'Bob'])).run(conn, callback)
 /// </code></example>
-        public Args (Arguments args, object optargs)
+        public Args (Arguments args, OptArgs optargs)
          : base(TermType.ARGS, args, optargs) {
         }
 

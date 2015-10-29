@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Select the second element in the array.</para>
 /// <code>r.expr([1,2,3]).nth(1).run(conn, callback)
 /// </code></example>
-        public Nth (Arguments args, object optargs)
+        public Nth (Arguments args, OptArgs optargs)
          : base(TermType.NTH, args, optargs) {
         }
 

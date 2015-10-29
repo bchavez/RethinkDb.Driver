@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').eqJoin('main_dc_collaborator', r.table('dc'))
 ///     .zip().run(conn, callback)
 /// </code></example>
-        public Zip (Arguments args, object optargs)
+        public Zip (Arguments args, OptArgs optargs)
          : base(TermType.ZIP, args, optargs) {
         }
 

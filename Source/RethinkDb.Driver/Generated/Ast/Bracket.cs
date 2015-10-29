@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan')('firstAppearance').run(conn, callback)
 /// </code></example>
-        public Bracket (Arguments args, object optargs)
+        public Bracket (Arguments args, OptArgs optargs)
          : base(TermType.BRACKET, args, optargs) {
         }
 

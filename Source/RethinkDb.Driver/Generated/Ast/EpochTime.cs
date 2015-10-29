@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("user").get("John").update({birthdate: r.epochTime(531360000)})
 ///     .run(conn, callback)
 /// </code></example>
-        public EpochTime (Arguments args, object optargs)
+        public EpochTime (Arguments args, OptArgs optargs)
          : base(TermType.EPOCH_TIME, args, optargs) {
         }
 

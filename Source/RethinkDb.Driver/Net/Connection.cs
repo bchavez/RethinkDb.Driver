@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -211,11 +212,11 @@ namespace RethinkDb.Driver.Net
             RunQuery<object>(Query.NoReplyWait(NewToken()));
         }
 
-        private Query PrepareQuery(ReqlAst term, JObject globalOpts)
+        private Query PrepareQuery(ReqlAst term, OptArgs globalOpts)
         {
             SetDefaultDb(globalOpts);
             Query q = Query.Start(NewToken(), term, globalOpts);
-            if (globalOpts?["noreply"] != null)
+            if (globalOpts?.ContainsKey("noreply") == true)
             {
                 throw new ReqlDriverError("Don't provide the noreply option as an optarg. Use `.runNoReply` instead of `.run`");
             }
@@ -223,29 +224,36 @@ namespace RethinkDb.Driver.Net
         }
         public virtual dynamic run<T>(ReqlAst term, object globalOpts)
         {
-            Query q = PrepareQuery(term, globalOpts.ToJObject());
+            Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
             return RunQuery<T>(q);
         }
 
         public virtual Cursor<T> runCursor<T>(ReqlAst term, object globalOpts)
         {
-            Query q = PrepareQuery(term, globalOpts.ToJObject());
+            Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
             return RunQueryCursor<T>(q);
         }
 
-        private void SetDefaultDb(JObject globalOpts)
+        private void SetDefaultDb(OptArgs globalOpts)
         {
-            if( globalOpts?["db"] != null && this.dbname != null )
+
+            if( globalOpts?.ContainsKey("db") == false && this.dbname != null )
             {
-                globalOpts["db"] = this.dbname;
+                // Only override the db global arg if the user hasn't
+                // specified one already and one is specified on the connection
+                globalOpts.with("db", this.dbname);
+            }
+            if( globalOpts?.ContainsKey("db") == true )
+            {
+                globalOpts.with("db", new Db(Arguments.Make(globalOpts["db"])));
             }
         }
 
         public void runNoReply(ReqlAst term, object globalOpts)
         {
-            var opts = globalOpts?.ToJObject() ?? new JObject();
+            var opts = OptArgs.fromAnonType(globalOpts);
             SetDefaultDb(opts);
-            opts["noreply"] = true;
+            opts.with("noreply", true);
             RunQueryNoreply(Query.Start(NewToken(), term, opts));
         }
 

@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Ast {
         }
         public Maxval (Arguments args) : this(args, null) {
         }
-        public Maxval (Arguments args, object optargs)
+        public Maxval (Arguments args, OptArgs optargs)
          : base(TermType.MAXVAL, args, optargs) {
         }
 

@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Example: Get the status of the <code>timestamp</code> index:</para>
 /// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
-        public IndexStatus (Arguments args, object optargs)
+        public IndexStatus (Arguments args, OptArgs optargs)
          : base(TermType.INDEX_STATUS, args, optargs) {
         }
 

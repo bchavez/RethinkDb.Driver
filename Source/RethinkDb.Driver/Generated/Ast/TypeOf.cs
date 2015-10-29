@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get the type of a string.</para>
 /// <code>r.expr("foo").typeOf().run(conn, callback)
 /// </code></example>
-        public TypeOf (Arguments args, object optargs)
+        public TypeOf (Arguments args, OptArgs optargs)
          : base(TermType.TYPE_OF, args, optargs) {
         }
 

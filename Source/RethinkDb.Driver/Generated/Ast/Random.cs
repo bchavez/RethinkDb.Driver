@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
-        public Random (Arguments args, object optargs)
+        public Random (Arguments args, OptArgs optargs)
          : base(TermType.RANDOM, args, optargs) {
         }
 
@@ -70,10 +70,9 @@ namespace RethinkDb.Driver.Ast {
         public Random this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Random (this.Args, optArgs);
+                return new Random (this.Args, newOptargs);
             }
         }
         
@@ -81,13 +80,10 @@ namespace RethinkDb.Driver.Ast {
 /// "float": "T_BOOL"
 ///</summary>
         public Random optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Random (this.Args, optArgs);
+            return new Random (this.Args, newOptargs);
         }
 
 

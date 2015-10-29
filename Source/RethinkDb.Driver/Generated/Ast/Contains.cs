@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-        public Contains (Arguments args, object optargs)
+        public Contains (Arguments args, OptArgs optargs)
          : base(TermType.CONTAINS, args, optargs) {
         }
 

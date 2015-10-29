@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
 /// </code></example>
-        public Update (Arguments args, object optargs)
+        public Update (Arguments args, OptArgs optargs)
          : base(TermType.UPDATE, args, optargs) {
         }
 
@@ -81,10 +81,9 @@ namespace RethinkDb.Driver.Ast {
         public Update this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Update (this.Args, optArgs);
+                return new Update (this.Args, newOptargs);
             }
         }
         
@@ -97,13 +96,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "non_atomic": "T_BOOL"
 ///</summary>
         public Update optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Update (this.Args, optArgs);
+            return new Update (this.Args, newOptargs);
         }
 
 

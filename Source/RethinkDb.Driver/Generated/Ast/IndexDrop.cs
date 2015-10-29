@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Drop a secondary index named 'code_name'.</para>
 /// <code>r.table('dc').indexDrop('code_name').run(conn, callback)
 /// </code></example>
-        public IndexDrop (Arguments args, object optargs)
+        public IndexDrop (Arguments args, OptArgs optargs)
          : base(TermType.INDEX_DROP, args, optargs) {
         }
 

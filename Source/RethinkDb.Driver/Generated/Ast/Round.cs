@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 12.0
 /// </code></example>
-        public Round (Arguments args, object optargs)
+        public Round (Arguments args, OptArgs optargs)
          : base(TermType.ROUND, args, optargs) {
         }
 

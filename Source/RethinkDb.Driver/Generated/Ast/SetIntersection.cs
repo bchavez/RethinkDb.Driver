@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Check which pieces of equipment Iron Man has from a fixed list.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setIntersection(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
-        public SetIntersection (Arguments args, object optargs)
+        public SetIntersection (Arguments args, OptArgs optargs)
          : base(TermType.SET_INTERSECTION, args, optargs) {
         }
 

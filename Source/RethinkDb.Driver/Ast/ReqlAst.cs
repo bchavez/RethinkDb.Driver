@@ -22,13 +22,13 @@ namespace RethinkDb.Driver.Ast
     {
         protected internal TermType TermType { get; }
         protected internal Arguments Args { get; }
-        protected internal object OptArgs { get; }
+        protected internal OptArgs OptArgs { get; }
 
-        protected internal ReqlAst(TermType termType, Arguments args, object optargs)
+        protected internal ReqlAst(TermType termType, Arguments args, OptArgs optargs)
         {
             this.TermType = termType;
             this.Args = args ?? new Arguments();
-            this.OptArgs = optargs;
+            this.OptArgs = optargs ?? new OptArgs();
         }
 
         protected internal ReqlAst(TermType termType, Arguments args) : this(termType, args, null)
@@ -58,45 +58,18 @@ namespace RethinkDb.Driver.Ast
                 list.Add(new JArray());
             }
 
-            if( OptArgs != null )
+            if( OptArgs.Count > 0)
             {
-                var optArgMethod = this.OptArgs as IDictionary;
-                if( optArgMethod != null )
-                {
-                    list.Add(buildOptargDict(optArgMethod));
-                }
-                else
-                {
-                    list.Add(buildOptArgAnon(this.OptArgs));
-                }
+                list.Add(buildOptarg(this.OptArgs));
             }
             return list;
         }
 
-        public static JObject buildOptargDict(IDictionary dict)
-        {
-            var optArgs = new JObject();
-            foreach( var key in dict.Keys )
-            {
-                var val = dict[key];
-                optArgs[key] = JToken.FromObject(Util.ToReqlAst(val).Build());
-            }
-            return optArgs;
-        }
 
-        public static JObject buildOptArgAnon(object anonType)
+        public static JObject buildOptarg(OptArgs opts)
         {
-            //scan the jobject property values and convert them to via AST.
-
-            var optArgs = new JObject();
-            
-            foreach (var p in PropertyHelper.GetProperties(anonType))
-            {
-                var val = p.GetValue(anonType);
-                var name = p.Name;
-                optArgs[name] = JToken.FromObject(Util.ToReqlAst(val).Build());
-            }
-            return optArgs;
+            var dict = opts.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Build());
+            return JObject.FromObject(dict);
         }
 
         public virtual dynamic run<T>(Connection conn, object globalOpts = null)

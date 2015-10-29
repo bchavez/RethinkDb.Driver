@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get a table's status.</para>
 /// <code>&gt; r.table('superheroes').status().run(conn, callback);
 /// </code></example>
-        public Status (Arguments args, object optargs)
+        public Status (Arguments args, OptArgs optargs)
          : base(TermType.STATUS, args, optargs) {
         }
 

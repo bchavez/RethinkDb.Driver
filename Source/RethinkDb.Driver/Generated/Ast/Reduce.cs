@@ -69,7 +69,7 @@ namespace RethinkDb.Driver.Ast {
 ///     return left.add(right)
 /// }).run(conn, callback);
 /// </code></example>
-        public Reduce (Arguments args, object optargs)
+        public Reduce (Arguments args, OptArgs optargs)
          : base(TermType.REDUCE, args, optargs) {
         }
 

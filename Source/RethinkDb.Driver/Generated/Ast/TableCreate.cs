@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
 /// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
 /// </code></example>
-        public TableCreate (Arguments args, object optargs)
+        public TableCreate (Arguments args, OptArgs optargs)
          : base(TermType.TABLE_CREATE, args, optargs) {
         }
 
@@ -77,10 +77,9 @@ namespace RethinkDb.Driver.Ast {
         public TableCreate this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new TableCreate (this.Args, optArgs);
+                return new TableCreate (this.Args, newOptargs);
             }
         }
         
@@ -95,13 +94,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "primary_replica_tag": "T_STR"
 ///</summary>
         public TableCreate optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new TableCreate (this.Args, optArgs);
+            return new TableCreate (this.Args, newOptargs);
         }
 
 

@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Send an array to the server.</para>
 /// <code>r.json("[1,2,3]").run(conn, callback)
 /// </code></example>
-        public Json (Arguments args, object optargs)
+        public Json (Arguments args, OptArgs optargs)
          : base(TermType.JSON, args, optargs) {
         }
 

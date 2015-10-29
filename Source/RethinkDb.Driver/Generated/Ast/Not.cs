@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
 /// </code></example>
-        public Not (Arguments args, object optargs)
+        public Not (Arguments args, OptArgs optargs)
          : base(TermType.NOT, args, optargs) {
         }
 

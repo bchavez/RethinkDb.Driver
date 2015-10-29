@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Hulk decides to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).insertAt(1, "Hulk").run(conn, callback)
 /// </code></example>
-        public InsertAt (Arguments args, object optargs)
+        public InsertAt (Arguments args, OptArgs optargs)
          : base(TermType.INSERT_AT, args, optargs) {
         }
 

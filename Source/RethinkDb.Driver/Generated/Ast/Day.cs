@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 ///     r.row("birthdate").day().eq(24)
 /// ).run(conn, callback)
 /// </code></example>
-        public Day (Arguments args, object optargs)
+        public Day (Arguments args, OptArgs optargs)
          : base(TermType.DAY, args, optargs) {
         }
 

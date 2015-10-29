@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
@@ -14,9 +16,9 @@ namespace RethinkDb.Driver.Ast
 	    public QueryType Type { get; }
 	    public long Token { get; }
 	    public ReqlAst Term { get; }
-	    public JObject GlobalOptions { get; }
+	    public OptArgs GlobalOptions { get; }
 
-	    public Query(QueryType type, long token, ReqlAst term, JObject globalOptions)
+	    public Query(QueryType type, long token, ReqlAst term, OptArgs globalOptions)
 		{
 			this.Type = type;
 			this.Token = token;
@@ -38,7 +40,7 @@ namespace RethinkDb.Driver.Ast
 			return new Query(QueryType.CONTINUE, token, null, null);
 		}
 
-		public static Query Start(long token, ReqlAst term, JObject globalOptions)
+		public static Query Start(long token, ReqlAst term, OptArgs globalOptions)
 		{
 			return new Query(QueryType.START, token, term, globalOptions);
 		}
@@ -60,7 +62,7 @@ namespace RethinkDb.Driver.Ast
 		    }
 		    if( GlobalOptions != null )
 		    {
-		        queryArr.Add(GlobalOptions);
+		        queryArr.Add(ReqlAst.buildOptarg(GlobalOptions));
 		    }
 
             string queryJson = queryArr.ToString(Formatting.None);

@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setInsert('newBoots').run(conn, callback)
 /// </code></example>
-        public SetInsert (Arguments args, object optargs)
+        public SetInsert (Arguments args, OptArgs optargs)
          : base(TermType.SET_INSERT, args, optargs) {
         }
 

@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
 /// </code></example>
-        public Union (Arguments args, object optargs)
+        public Union (Arguments args, OptArgs optargs)
          : base(TermType.UNION, args, optargs) {
         }
 

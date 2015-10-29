@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Find a document by UUID.</para>
 /// <code>r.table('posts').get('a9849eef-7176-4411-935b-79a6e3c56a74').run(conn, callback)
 /// </code></example>
-        public Get (Arguments args, object optargs)
+        public Get (Arguments args, OptArgs optargs)
          : base(TermType.GET, args, optargs) {
         }
 

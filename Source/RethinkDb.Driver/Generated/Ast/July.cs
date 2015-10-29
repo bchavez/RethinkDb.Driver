@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Ast {
         }
         public July (Arguments args) : this(args, null) {
         }
-        public July (Arguments args, object optargs)
+        public July (Arguments args, OptArgs optargs)
          : base(TermType.JULY, args, optargs) {
         }
 

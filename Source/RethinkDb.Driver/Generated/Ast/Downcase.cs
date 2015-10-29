@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").downcase().run(conn, callback)
 /// </code></example>
-        public Downcase (Arguments args, object optargs)
+        public Downcase (Arguments args, OptArgs optargs)
          : base(TermType.DOWNCASE, args, optargs) {
         }
 

@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: List all tables of the 'test' database.</para>
 /// <code>r.db('test').tableList().run(conn, callback)
 /// </code></example>
-        public TableList (Arguments args, object optargs)
+        public TableList (Arguments args, OptArgs optargs)
          : base(TermType.TABLE_LIST, args, optargs) {
         }
 

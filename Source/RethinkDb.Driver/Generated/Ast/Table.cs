@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
 /// </code></example>
-        public Table (Arguments args, object optargs)
+        public Table (Arguments args, OptArgs optargs)
          : base(TermType.TABLE, args, optargs) {
         }
 
@@ -74,10 +74,9 @@ namespace RethinkDb.Driver.Ast {
         public Table this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Table (this.Args, optArgs);
+                return new Table (this.Args, newOptargs);
             }
         }
         
@@ -86,13 +85,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "identifier_format": "E_IDENTIFIER_FORMAT"
 ///</summary>
         public Table optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Table (this.Args, optArgs);
+            return new Table (this.Args, newOptargs);
         }
 
 

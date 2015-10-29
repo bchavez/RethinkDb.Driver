@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 ///     r.row("date").timeOfDay().le(12*60*60)
 /// ).run(conn, callback)
 /// </code></example>
-        public TimeOfDay (Arguments args, object optargs)
+        public TimeOfDay (Arguments args, OptArgs optargs)
          : base(TermType.TIME_OF_DAY, args, optargs) {
         }
 

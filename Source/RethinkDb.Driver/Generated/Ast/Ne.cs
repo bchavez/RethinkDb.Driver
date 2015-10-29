@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Does 2 not equal 2?</para>
 /// <code>r.expr(2).ne(2).run(conn, callback)
 /// </code></example>
-        public Ne (Arguments args, object optargs)
+        public Ne (Arguments args, OptArgs optargs)
          : base(TermType.NE, args, optargs) {
         }
 

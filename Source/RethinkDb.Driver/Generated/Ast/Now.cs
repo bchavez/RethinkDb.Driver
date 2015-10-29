@@ -63,7 +63,7 @@ namespace RethinkDb.Driver.Ast {
 ///     subscription_date: r.now()
 /// }).run(conn, callback)
 /// </code></example>
-        public Now (Arguments args, object optargs)
+        public Now (Arguments args, OptArgs optargs)
          : base(TermType.NOW, args, optargs) {
         }
 

@@ -69,7 +69,7 @@ namespace RethinkDb.Driver.Ast {
 ///     content: "Dolor sit amet"
 /// }).run(conn, callback)
 /// </code></example>
-        public Insert (Arguments args, object optargs)
+        public Insert (Arguments args, OptArgs optargs)
          : base(TermType.INSERT, args, optargs) {
         }
 
@@ -90,10 +90,9 @@ namespace RethinkDb.Driver.Ast {
         public Insert this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Insert (this.Args, optArgs);
+                return new Insert (this.Args, newOptargs);
             }
         }
         
@@ -106,13 +105,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "conflict": "E_CONFLICT"
 ///</summary>
         public Insert optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Insert (this.Args, optArgs);
+            return new Insert (this.Args, newOptargs);
         }
 
 

@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).max().run(conn, callback);
 /// </code></example>
-        public Max (Arguments args, object optargs)
+        public Max (Arguments args, OptArgs optargs)
          : base(TermType.MAX, args, optargs) {
         }
 
@@ -70,10 +70,9 @@ namespace RethinkDb.Driver.Ast {
         public Max this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new Max (this.Args, optArgs);
+                return new Max (this.Args, newOptargs);
             }
         }
         
@@ -81,13 +80,10 @@ namespace RethinkDb.Driver.Ast {
 /// "index": "T_STR"
 ///</summary>
         public Max optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new Max (this.Args, optArgs);
+            return new Max (this.Args, newOptargs);
         }
 
 

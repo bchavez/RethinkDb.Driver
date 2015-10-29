@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
-        public Rebalance (Arguments args, object optargs)
+        public Rebalance (Arguments args, OptArgs optargs)
          : base(TermType.REBALANCE, args, optargs) {
         }
 

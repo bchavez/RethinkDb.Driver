@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
-        public Literal (Arguments args, object optargs)
+        public Literal (Arguments args, OptArgs optargs)
          : base(TermType.LITERAL, args, optargs) {
         }
 

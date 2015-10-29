@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
 /// </code></example>
-        public IndexCreate (Arguments args, object optargs)
+        public IndexCreate (Arguments args, OptArgs optargs)
          : base(TermType.INDEX_CREATE, args, optargs) {
         }
 
@@ -71,10 +71,9 @@ namespace RethinkDb.Driver.Ast {
         public IndexCreate this[object optArgs] {
             get
             {
-                if(this.OptArgs is Hashtable)
-                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
         
-                return new IndexCreate (this.Args, optArgs);
+                return new IndexCreate (this.Args, newOptargs);
             }
         }
         
@@ -83,13 +82,10 @@ namespace RethinkDb.Driver.Ast {
 ///  "geo": "T_BOOL"
 ///</summary>
         public IndexCreate optArg(string key, object val){
-            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
-                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+            
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
         
-            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
-            optArgs[key] = val;
-        
-            return new IndexCreate (this.Args, optArgs);
+            return new IndexCreate (this.Args, newOptargs);
         }
 
 

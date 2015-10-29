@@ -54,7 +54,7 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Is 2 greater than 2?</para>
 /// <code>r.expr(2).gt(2).run(conn, callback)
 /// </code></example>
-        public Gt (Arguments args, object optargs)
+        public Gt (Arguments args, OptArgs optargs)
          : base(TermType.GT, args, optargs) {
         }
 

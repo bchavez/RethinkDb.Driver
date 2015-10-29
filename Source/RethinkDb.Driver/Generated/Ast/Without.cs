@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// out the list of IronMan's romantic conquests.</para>
 /// <code>r.table('marvel').get('IronMan').without('personalVictoriesList').run(conn, callback)
 /// </code></example>
-        public Without (Arguments args, object optargs)
+        public Without (Arguments args, OptArgs optargs)
          : base(TermType.WITHOUT, args, optargs) {
         }
 

@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 ///     return post("date").minutes().lt(10)
 /// })
 /// </code></example>
-        public Minutes (Arguments args, object optargs)
+        public Minutes (Arguments args, OptArgs optargs)
          : base(TermType.MINUTES, args, optargs) {
         }
 

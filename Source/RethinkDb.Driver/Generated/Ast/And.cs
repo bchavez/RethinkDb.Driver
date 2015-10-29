@@ -63,7 +63,7 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// false
 /// </code></example>
-        public And (Arguments args, object optargs)
+        public And (Arguments args, OptArgs optargs)
          : base(TermType.AND, args, optargs) {
         }
 

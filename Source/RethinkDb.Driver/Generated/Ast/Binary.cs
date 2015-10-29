@@ -45,10 +45,10 @@ namespace RethinkDb.Driver.Ast {
     public Binary (Arguments args) : this(args, null){
 
     }
-    public Binary (Arguments args, object optargs) : this(TermType.BINARY, args, optargs) {
+    public Binary (Arguments args, OptArgs optargs) : this(TermType.BINARY, args, optargs) {
         
     }
-    protected Binary (TermType termType, Arguments args, object optargs) : base(termType, args, optargs){
+    protected Binary (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs){
         
     }
 

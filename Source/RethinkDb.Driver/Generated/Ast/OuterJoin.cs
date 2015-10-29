@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).run(conn, callback)
 /// </code></example>
-        public OuterJoin (Arguments args, object optargs)
+        public OuterJoin (Arguments args, OptArgs optargs)
          : base(TermType.OUTER_JOIN, args, optargs) {
         }
 

@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback
 /// '{"id": 1, "name": "Batman", "city": "Gotham", "powers": ["martial arts", "cinematic entrances"]}'
 /// </code></example>
-        public ToJsonString (Arguments args, object optargs)
+        public ToJsonString (Arguments args, OptArgs optargs)
          : base(TermType.TO_JSON_STRING, args, optargs) {
         }
 

@@ -13,15 +13,15 @@ namespace RethinkDb.Driver.Tests
     {
         //crazy i know right... :)
         private static Regex replacer = new Regex(@"(?<=\[)\d+(?!\d*])");
-        
+
         [Test]
         public void Test()
         {
             //C#
-            var q1 = @"[1,[64,[[69,[[2,[21]],[67,[[20,[[10,[21]],-1.7976931348623157E+308]],[21,[[10,[21]],-1.7976931348623157E+308]]]]]],[151,[-1.7976931348623157E+308,-1.7976931348623157E+308],{""float"":true}]]]]";
+            var q1 =
+                @"[1,[64,[[69,[[2,[21]],[67,[[20,[[10,[21]],-1.7976931348623157E+308]],[21,[[10,[21]],-1.7976931348623157E+308]]]]]],[151,[-1.7976931348623157E+308,-1.7976931348623157E+308],{""float"":true}]]]]";
             //Java
             var q2 = @"[1,[56,[[15,[[14,[""CSharpDriverTests""]],""TableA""]],""{'Bar':1,'Jam':2}""]]]";
-
 
 
             q1 = FixUp(q1);
@@ -41,14 +41,14 @@ namespace RethinkDb.Driver.Tests
             Console.WriteLine(q1);
 
             q2 = replacer.Replace(q2, m =>
-            {
-                TermType termType;
-                if (Enum.TryParse(m.Value, out termType))
                 {
-                    return m.Result(termType.ToString());
-                }
-                return m.Value;
-            });
+                    TermType termType;
+                    if( Enum.TryParse(m.Value, out termType) )
+                    {
+                        return m.Result(termType.ToString());
+                    }
+                    return m.Value;
+                });
 
             Console.WriteLine("Q2:");
             Console.WriteLine(q2);
@@ -59,7 +59,7 @@ namespace RethinkDb.Driver.Tests
         private string FixUp(string q)
         {
             if( q.StartsWith("[1,") )
-                return q.Substring(3, q.Length - 4 );
+                return q.Substring(3, q.Length - 4);
             return q;
         }
     }

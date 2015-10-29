@@ -143,7 +143,7 @@ namespace RethinkDb.Driver.Tests
         [Test]
         public void insert_test_without_id()
         {
-            var obj = new Foo { Bar = 1, Baz = 2, Tim = DateTimeOffset.Now};
+            var obj = new Foo {Bar = 1, Baz = 2, Tim = DateTimeOffset.Now};
             JObject result = r.db(DbName).table(TableName).insert(obj).run(conn);
             result.Dump();
         }
@@ -183,7 +183,7 @@ namespace RethinkDb.Driver.Tests
             Cursor<Foo> all = r.db(DbName).table(TableName).getAll("a", "b", "c").run<Foo>(conn);
 
             all.BufferedItems.Dump();
-            
+
             foreach( var foo in all )
             {
                 Console.WriteLine($"Printing: {foo.id}!");
@@ -196,7 +196,7 @@ namespace RethinkDb.Driver.Tests
         {
             Cursor<Foo> all = r.db(DbName).table(TableName).getAll("a", "b", "c").runCursor<Foo>(conn);
 
-            foreach (var foo in all)
+            foreach( var foo in all )
             {
                 Console.WriteLine($"Printing: {foo.id}!");
                 foo.Dump();
@@ -223,17 +223,15 @@ namespace RethinkDb.Driver.Tests
                 .getAll("foo")[new {index = "foo"}]
                 .run<Foo>(conn);
         }
-
-        
     }
 
     public class Foo
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id { get; set; }
+
         public int Bar { get; set; }
         public int Baz { get; set; }
         public DateTimeOffset Tim { get; set; }
     }
-
 }

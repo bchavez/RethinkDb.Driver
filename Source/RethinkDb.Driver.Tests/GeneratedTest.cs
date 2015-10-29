@@ -34,7 +34,6 @@ namespace RethinkDb.Driver.Tests
         [TestFixtureSetUp]
         public void BeforeRunningTestSession()
         {
-
         }
 
         [TestFixtureTearDown]
@@ -57,7 +56,9 @@ namespace RethinkDb.Driver.Tests
                 r.dbCreate(DbName).run(conn);
                 r.db(DbName).wait_().run(conn);
             }
-            catch { }
+            catch
+            {
+            }
 
             foreach( var tableName in tableVars )
             {
@@ -66,7 +67,9 @@ namespace RethinkDb.Driver.Tests
                     r.db(DbName).tableCreate(tableName).run(conn);
                     r.db(DbName).table(tableName).wait_().run(conn);
                 }
-                catch{}
+                catch
+                {
+                }
             }
         }
 
@@ -87,8 +90,5 @@ namespace RethinkDb.Driver.Tests
             r.dbDrop(DbName).run(conn);
             conn.close(false);
         }
-     
     }
-
-    
 }

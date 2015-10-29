@@ -59,16 +59,16 @@ namespace RethinkDb.Driver.Tests
                 return;
             }
 
-            if (expected == obtained)
+            if( expected == obtained )
             {
                 return;
             }
 
-            if ( expected.Equals(obtained) )
+            if( expected.Equals(obtained) )
             {
                 return;
             }
-            
+
 
             expected.Should().Be(obtained);
 
@@ -78,7 +78,6 @@ namespace RethinkDb.Driver.Tests
                 Console.WriteLine(((Exception)obtained).Message);
             Assert.Fail($"Couldn't compare expected: {expected.GetType().Name} and obtained: {obtained.GetType().Name}");
         }
-
 
 
         public static dynamic maybeRun(object query, Connection conn)
@@ -330,7 +329,6 @@ namespace RethinkDb.Driver.Tests
         }
 
 
-
         public class ArrLen
         {
             private int length;
@@ -393,7 +391,7 @@ namespace RethinkDb.Driver.Tests
         {
             public override bool Equals(Object other)
             {
-                if (!(other is String))
+                if( !(other is String) )
                 {
                     Console.WriteLine("Not compared to a string! Got:" + other);
                     return false;
@@ -474,12 +472,12 @@ namespace RethinkDb.Driver.Tests
 
             public override bool Equals(Object other)
             {
-                if (!(other is ErrRegex))
+                if( !(other is ErrRegex) )
                 {
                     return false;
                 }
                 var errRegex = other as ErrRegex;
-                if (errRegex.clazz != this.clazz)
+                if( errRegex.clazz != this.clazz )
                     return false;
 
                 return Regex.Match(message_rgx, errRegex.message_rgx).Success;
@@ -498,16 +496,16 @@ namespace RethinkDb.Driver.Tests
 
         public static IList fetch(object cursor_, long limit)
         {
-            if (limit < 0)
+            if( limit < 0 )
             {
                 limit = long.MaxValue;
             }
             var cursor = cursor_ as ICursor;
             long total = 0;
             var result = new ArrayList((int)limit);
-            for (long i = 0; i < limit; i++)
+            for( long i = 0; i < limit; i++ )
             {
-                if (!cursor.MoveNext())
+                if( !cursor.MoveNext() )
                 {
                     break;
                 }
@@ -521,6 +519,7 @@ namespace RethinkDb.Driver.Tests
         {
             return Enumerable.Range(start, stop);
         }
+
         public static IEnumerable<int> range(double start, double stop)
         {
             return range((int)start, (int)stop);
@@ -533,7 +532,7 @@ namespace RethinkDb.Driver.Tests
 
         public static IEnumerable<long> EnumerableLRange(long start, long end)
         {
-            for (var i = start; i < end; i++)
+            for( var i = start; i < end; i++ )
             {
                 yield return i;
             }
@@ -548,7 +547,6 @@ namespace RethinkDb.Driver.Tests
         {
             return TimeSpan.FromHours(0);
         }
-
 
 
         public static class datetime
@@ -604,7 +602,6 @@ namespace RethinkDb.Driver.Tests
                 public static double min = double.Epsilon; // not double.MinValue
             }
         }
-
     }
 
     // Java test compatibility definitions
@@ -639,5 +636,4 @@ namespace RethinkDb.Driver.Tests
             get { return Encoding.Unicode; }
         }
     }
-
 }

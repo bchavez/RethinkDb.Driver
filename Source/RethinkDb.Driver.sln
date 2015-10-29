@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{BBBED03D-3
 		..\appveyor.yml = ..\appveyor.yml
 		..\build.cmd = ..\build.cmd
 		..\LICENSE = ..\LICENSE
+		RethinkDb.Driver\project.json = RethinkDb.Driver\project.json
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject

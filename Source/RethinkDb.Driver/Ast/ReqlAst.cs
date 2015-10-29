@@ -89,7 +89,8 @@ namespace RethinkDb.Driver.Ast
             //scan the jobject property values and convert them to via AST.
 
             var optArgs = new JObject();
-            foreach (PropertyDescriptor p in TypeDescriptor.GetProperties(anonType))
+            
+            foreach (var p in PropertyHelper.GetProperties(anonType))
             {
                 var val = p.GetValue(anonType);
                 var name = p.Name;

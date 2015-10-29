@@ -105,7 +105,7 @@ namespace RethinkDb.Driver.Net
         public static JsonConverter TimeConverter = new PocoIso8601Converter();
     }
 
-    internal class PocoIso8601Converter : JsonConverter
+    public class PocoIso8601Converter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

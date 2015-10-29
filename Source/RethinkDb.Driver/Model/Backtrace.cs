@@ -6,13 +6,20 @@ namespace RethinkDb.Driver.Model
 {
     public class Backtrace
     {
-        public static Backtrace FromJsonArray(JArray @object)
+        public JArray RawBacktrace { get; }
+
+        private Backtrace(JArray rawBacktrace)
         {
-            if( @object == null || @object.Count == 0 )
+            this.RawBacktrace = rawBacktrace;
+        }
+
+        public static Backtrace FromJsonArray(JArray rawBacktrace)
+        {
+            if( rawBacktrace == null || rawBacktrace.Count == 0 )
             {
                 return null;
             }
-            throw new Exception("fromJSONArray not implemented");
+            return new Backtrace(rawBacktrace);
         }
     }
 }

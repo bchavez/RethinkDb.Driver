@@ -43,6 +43,17 @@ namespace RethinkDb.Driver.Tests
 
                 return;
             }
+
+            if (expected is PartialDct)
+            {
+                var obtainedDct = obtained as JObject;
+
+                ((PartialDct)expected).Equals(obtainedDct.ToSortedDictionary());
+
+                return;
+            }
+
+
             var map = expected as MapObject;
             if( map != null )
             {
@@ -67,6 +78,7 @@ namespace RethinkDb.Driver.Tests
                 return;
             }
 
+            
             CheckEquals(expected, obtained);
 
 
@@ -155,8 +167,6 @@ namespace RethinkDb.Driver.Tests
                 }
 
                 var otherMessage = ((Exception)obj).Message;
-                Console.WriteLine(otherMessage);
-                Console.WriteLine(this.errorMessage);
                 otherMessage.Trim().Should().BeEquivalentTo(
                     this.errorMessage.Trim());
 
@@ -300,12 +310,9 @@ namespace RethinkDb.Driver.Tests
                     var key = entry;
                     var val = dct[key];
 
-                    if( otherDict.Keys.OfType<object>().All(k => k != key) )
-                    {
-                        Console.WriteLine($"The obtained didn't have key {key}");
-                        return false;
-                    }
-
+                    otherDict.Contains(key).Should()
+                        .BeTrue($"The key {key} must exist in the obtained.");
+                    
                     var otherVal = otherDict[key];
 
                     if( val == null && otherVal == null )
@@ -317,11 +324,9 @@ namespace RethinkDb.Driver.Tests
                         Console.WriteLine($"One was null and the other wasn't for key {key}");
                         return false;
                     }
-                    if( !val.Equals(otherVal) )
-                    {
-                        Console.WriteLine($"Wern't equal: {val} and {otherVal}");
-                        return false;
-                    }
+
+                    JToken.DeepEquals(JToken.FromObject(val), ((JToken)otherVal))
+                        .Should().BeTrue($"Dictionary values of {key} should be equal.");
                 }
 
                 return true;

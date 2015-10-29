@@ -336,7 +336,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;

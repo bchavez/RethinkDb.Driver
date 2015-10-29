@@ -18,6 +18,10 @@
         History
         v0.0.5-alpha4
         * AST: added uuid(expr)
+        * Feature: Anonymous typed args. Example: getAll(...)[new {index = "foo"}].run()
+        * Fixed bugs in r.binary() when building AST.
+        * Binary unit tests passing.
+        * Times Constructors unit tests passing.
         
         
         v0.0.5-alpha3

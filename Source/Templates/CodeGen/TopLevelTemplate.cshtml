@@ -84,7 +84,7 @@ namespace RethinkDb.Driver.Ast {
                             {
                                 var firstArg = sig.Args[0].Var;
                                 @:   var byteArray = @firstArg as byte[];
-                                @:   if( @firstArg != null ){
+                                @:   if( byteArray != null ){
                                 @:     return new Binary(byteArray);
                                 @:   }
                             }

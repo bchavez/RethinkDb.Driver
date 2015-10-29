@@ -101,7 +101,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  @:
                  if( @test.ExpectedType.EndsWith("[]") )
                  {
-                     @:assertArrayEquals(expected_, (@test.ExpectedType) obtained);
+                     @:assertArrayEquals(expected_, obtained);
                  }
                  else if( test.ExpectedType == "double" )
                  {

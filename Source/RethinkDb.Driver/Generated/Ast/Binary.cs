@@ -25,6 +25,7 @@ using System.Collections;
 using System.Collections.Generic;
 
     using RethinkDb.Driver.Net;
+    using Newtonsoft.Json.Linq;
 
 
 namespace RethinkDb.Driver.Ast {
@@ -79,7 +80,7 @@ namespace RethinkDb.Driver.Ast {
     
         protected internal override object Build() {
             if( b64Data != null){
-                return Converter.ToBinary(b64Data);
+                return JObject.FromObject(Converter.ToBinary(b64Data));
             }
             else{
                 return base.Build();

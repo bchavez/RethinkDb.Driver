@@ -13,6 +13,7 @@
 
 @section add_imports{
     using RethinkDb.Driver.Net;
+    using Newtonsoft.Json.Linq;
 }
 
 @section MemberVars{
@@ -43,7 +44,7 @@
     
         protected internal override object Build() {
             if( b64Data != null){
-                return Converter.ToBinary(b64Data);
+                return JObject.FromObject(Converter.ToBinary(b64Data));
             }
             else{
                 return base.Build();

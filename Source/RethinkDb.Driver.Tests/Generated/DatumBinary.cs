@@ -53,7 +53,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -89,7 +89,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -125,7 +125,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -161,7 +161,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -197,7 +197,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -233,7 +233,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -269,7 +269,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -305,7 +305,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -341,7 +341,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -377,7 +377,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -413,7 +413,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -449,7 +449,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -485,7 +485,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1181,7 +1181,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1196,7 +1196,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1211,7 +1211,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1271,7 +1271,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1286,7 +1286,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1301,7 +1301,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1316,7 +1316,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1331,7 +1331,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1346,7 +1346,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1361,7 +1361,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1376,7 +1376,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1391,7 +1391,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1406,7 +1406,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1422,7 +1422,7 @@ namespace RethinkDb.Driver.Test.Generated {
                      binary_format = "native" ,
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;
@@ -1453,7 +1453,7 @@ namespace RethinkDb.Driver.Test.Generated {
                                             new {
                     }, conn);
                  
-                     assertArrayEquals(expected_, (byte[]) obtained);
+                     assertArrayEquals(expected_, obtained);
              }
              
              TestCounter++;

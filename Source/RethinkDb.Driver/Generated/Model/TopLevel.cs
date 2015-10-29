@@ -1211,7 +1211,7 @@ namespace RethinkDb.Driver.Ast {
                             public Binary binary ( Object expr )
                             {
                                    var byteArray = expr as byte[];
-                                   if( expr != null ){
+                                   if( byteArray != null ){
                                      return new Binary(byteArray);
                                    }
                                 Arguments arguments = new Arguments();

@@ -22,7 +22,7 @@ namespace RethinkDb.Driver.Tests
     public class GeneratedTest
     {
         protected static int TestCounter = 0;
-        protected const string DbName = "CSharpDriverTests";
+        protected const string DbName = "test";
         protected const string Hostname = "192.168.0.11";
         protected const int Port = RethinkDb.Driver.RethinkDBConstants.DEFAULT_PORT;
 
@@ -92,9 +92,21 @@ namespace RethinkDb.Driver.Tests
 
             foreach( var tableName in tableVars )
             {
-                r.db(DbName).tableDrop(tableName).run(conn);
+                try
+                {
+                    r.db(DbName).tableDrop(tableName).run(conn);
+                }
+                catch
+                {
+                }
             }
-            r.dbDrop(DbName).run(conn);
+            try
+            {
+                r.dbDrop(DbName).run(conn);
+            }
+            catch
+            {
+            }
             conn.close(false);
             FixtureWaitHandle.Set();
         }

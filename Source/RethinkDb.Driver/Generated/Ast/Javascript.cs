@@ -37,12 +37,8 @@ namespace RethinkDb.Driver.Ast {
         public Javascript (Arguments args) : this(args, null) {
         }
         public Javascript (Arguments args, object optargs)
-             : this(TermType.JAVASCRIPT, args, optargs) {
+         : base(TermType.JAVASCRIPT, args, optargs) {
         }
-
-    protected Javascript (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

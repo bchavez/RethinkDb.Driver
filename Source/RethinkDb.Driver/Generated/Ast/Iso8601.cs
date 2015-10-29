@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("user").get("John").update({birth: r.ISO8601('1986-11-03T08:30:00-07:00')}).run(conn, callback)
 /// </code></example>
         public Iso8601 (Arguments args, object optargs)
-             : this(TermType.ISO8601, args, optargs) {
+         : base(TermType.ISO8601, args, optargs) {
         }
-
-    protected Iso8601 (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

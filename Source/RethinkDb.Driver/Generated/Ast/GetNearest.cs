@@ -64,12 +64,8 @@ namespace RethinkDb.Driver.Ast {
 /// ).run(conn, callback)
 /// </code></example>
         public GetNearest (Arguments args, object optargs)
-             : this(TermType.GET_NEAREST, args, optargs) {
+         : base(TermType.GET_NEAREST, args, optargs) {
         }
-
-    protected GetNearest (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

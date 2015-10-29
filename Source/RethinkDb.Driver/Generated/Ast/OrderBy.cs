@@ -91,12 +91,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
 /// </code></example>
         public OrderBy (Arguments args, object optargs)
-             : this(TermType.ORDER_BY, args, optargs) {
+         : base(TermType.ORDER_BY, args, optargs) {
         }
-
-    protected OrderBy (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

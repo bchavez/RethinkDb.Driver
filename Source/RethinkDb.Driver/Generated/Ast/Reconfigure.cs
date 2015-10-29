@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
         public Reconfigure (Arguments args, object optargs)
-             : this(TermType.RECONFIGURE, args, optargs) {
+         : base(TermType.RECONFIGURE, args, optargs) {
         }
-
-    protected Reconfigure (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

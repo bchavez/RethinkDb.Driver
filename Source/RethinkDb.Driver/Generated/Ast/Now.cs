@@ -64,12 +64,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback)
 /// </code></example>
         public Now (Arguments args, object optargs)
-             : this(TermType.NOW, args, optargs) {
+         : base(TermType.NOW, args, optargs) {
         }
-
-    protected Now (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -58,12 +58,8 @@ namespace RethinkDb.Driver.Ast {
 ///     .zip().run(conn, callback)
 /// </code></example>
         public Zip (Arguments args, object optargs)
-             : this(TermType.ZIP, args, optargs) {
+         : base(TermType.ZIP, args, optargs) {
         }
-
-    protected Zip (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

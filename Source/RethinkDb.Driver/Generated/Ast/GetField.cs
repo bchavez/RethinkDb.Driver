@@ -58,12 +58,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').get('IronMan').getField('firstAppearance').run(conn, callback)
 /// </code></example>
         public GetField (Arguments args, object optargs)
-             : this(TermType.GET_FIELD, args, optargs) {
+         : base(TermType.GET_FIELD, args, optargs) {
         }
-
-    protected GetField (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

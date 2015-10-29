@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.dbList().run(conn, callback)
 /// </code></example>
         public DbList (Arguments args, object optargs)
-             : this(TermType.DB_LIST, args, optargs) {
+         : base(TermType.DB_LIST, args, optargs) {
         }
-
-    protected DbList (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

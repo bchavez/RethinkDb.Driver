@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>&gt; r.table('superheroes').status().run(conn, callback);
 /// </code></example>
         public Status (Arguments args, object optargs)
-             : this(TermType.STATUS, args, optargs) {
+         : base(TermType.STATUS, args, optargs) {
         }
-
-    protected Status (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// 13.0
 /// </code></example>
         public Ceil (Arguments args, object optargs)
-             : this(TermType.CEIL, args, optargs) {
+         : base(TermType.CEIL, args, optargs) {
         }
-
-    protected Ceil (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

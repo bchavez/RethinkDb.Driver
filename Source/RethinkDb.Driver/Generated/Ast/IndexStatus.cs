@@ -67,12 +67,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
         public IndexStatus (Arguments args, object optargs)
-             : this(TermType.INDEX_STATUS, args, optargs) {
+         : base(TermType.INDEX_STATUS, args, optargs) {
         }
-
-    protected IndexStatus (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

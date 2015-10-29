@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// '{"id": 1, "name": "Batman", "city": "Gotham", "powers": ["martial arts", "cinematic entrances"]}'
 /// </code></example>
         public ToJsonString (Arguments args, object optargs)
-             : this(TermType.TO_JSON_STRING, args, optargs) {
+         : base(TermType.TO_JSON_STRING, args, optargs) {
         }
-
-    protected ToJsonString (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

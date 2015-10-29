@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// })
 /// </code></example>
         public Timezone (Arguments args, object optargs)
-             : this(TermType.TIMEZONE, args, optargs) {
+         : base(TermType.TIMEZONE, args, optargs) {
         }
-
-    protected Timezone (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

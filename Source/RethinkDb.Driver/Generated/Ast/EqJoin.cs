@@ -58,12 +58,8 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example></example>
         public EqJoin (Arguments args, object optargs)
-             : this(TermType.EQ_JOIN, args, optargs) {
+         : base(TermType.EQ_JOIN, args, optargs) {
         }
-
-    protected EqJoin (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
         public Contains (Arguments args, object optargs)
-             : this(TermType.CONTAINS, args, optargs) {
+         : base(TermType.CONTAINS, args, optargs) {
         }
-
-    protected Contains (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

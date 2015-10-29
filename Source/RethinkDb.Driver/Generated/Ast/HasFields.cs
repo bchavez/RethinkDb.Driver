@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('players').hasFields('games_won').run(conn, callback)
 /// </code></example>
         public HasFields (Arguments args, object optargs)
-             : this(TermType.HAS_FIELDS, args, optargs) {
+         : base(TermType.HAS_FIELDS, args, optargs) {
         }
-
-    protected HasFields (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

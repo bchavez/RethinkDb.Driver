@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
 /// </code></example>
         public IndexCreate (Arguments args, object optargs)
-             : this(TermType.INDEX_CREATE, args, optargs) {
+         : base(TermType.INDEX_CREATE, args, optargs) {
         }
-
-    protected IndexCreate (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

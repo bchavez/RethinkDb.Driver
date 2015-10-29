@@ -82,12 +82,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback)
 /// </code></example>
         public Match (Arguments args, object optargs)
-             : this(TermType.MATCH, args, optargs) {
+         : base(TermType.MATCH, args, optargs) {
         }
-
-    protected Match (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

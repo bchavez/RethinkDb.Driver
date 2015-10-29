@@ -67,12 +67,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback);
 /// </code></example>
         public Point (Arguments args, object optargs)
-             : this(TermType.POINT, args, optargs) {
+         : base(TermType.POINT, args, optargs) {
         }
-
-    protected Point (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

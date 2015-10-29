@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.dbDrop('superheroes').run(conn, callback)
 /// </code></example>
         public DbDrop (Arguments args, object optargs)
-             : this(TermType.DB_DROP, args, optargs) {
+         : base(TermType.DB_DROP, args, optargs) {
         }
-
-    protected DbDrop (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -67,12 +67,8 @@ namespace RethinkDb.Driver.Ast {
 /// [1, 4, 9, 16, 25]
 /// </code></example>
         public Map (Arguments args, object optargs)
-             : this(TermType.MAP, args, optargs) {
+         : base(TermType.MAP, args, optargs) {
         }
-
-    protected Map (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

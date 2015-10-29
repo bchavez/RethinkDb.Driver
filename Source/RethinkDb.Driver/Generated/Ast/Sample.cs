@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').sample(3).run(conn, callback)
 /// </code></example>
         public Sample (Arguments args, object optargs)
-             : this(TermType.SAMPLE, args, optargs) {
+         : base(TermType.SAMPLE, args, optargs) {
         }
-
-    protected Sample (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

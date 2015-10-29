@@ -37,12 +37,8 @@ namespace RethinkDb.Driver.Ast {
         public Minval (Arguments args) : this(args, null) {
         }
         public Minval (Arguments args, object optargs)
-             : this(TermType.MINVAL, args, optargs) {
+         : base(TermType.MINVAL, args, optargs) {
         }
-
-    protected Minval (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

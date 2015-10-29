@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// })
 /// </code></example>
         public Seconds (Arguments args, object optargs)
-             : this(TermType.SECONDS, args, optargs) {
+         : base(TermType.SECONDS, args, optargs) {
         }
-
-    protected Seconds (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr(2).mod(2).run(conn, callback)
 /// </code></example>
         public Mod (Arguments args, object optargs)
-             : this(TermType.MOD, args, optargs) {
+         : base(TermType.MOD, args, optargs) {
         }
-
-    protected Mod (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

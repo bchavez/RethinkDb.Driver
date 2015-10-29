@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').get('IronMan').without('personalVictoriesList').run(conn, callback)
 /// </code></example>
         public Without (Arguments args, object optargs)
-             : this(TermType.WITHOUT, args, optargs) {
+         : base(TermType.WITHOUT, args, optargs) {
         }
-
-    protected Without (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

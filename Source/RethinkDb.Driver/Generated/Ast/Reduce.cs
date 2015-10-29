@@ -70,12 +70,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback);
 /// </code></example>
         public Reduce (Arguments args, object optargs)
-             : this(TermType.REDUCE, args, optargs) {
+         : base(TermType.REDUCE, args, optargs) {
         }
-
-    protected Reduce (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

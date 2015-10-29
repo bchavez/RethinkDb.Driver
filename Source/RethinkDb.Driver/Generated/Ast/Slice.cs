@@ -58,12 +58,8 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example></example>
         public Slice (Arguments args, object optargs)
-             : this(TermType.SLICE, args, optargs) {
+         : base(TermType.SLICE, args, optargs) {
         }
-
-    protected Slice (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

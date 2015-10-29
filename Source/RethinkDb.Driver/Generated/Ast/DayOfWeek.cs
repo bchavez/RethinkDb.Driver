@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.now().dayOfWeek().run(conn, callback)
 /// </code></example>
         public DayOfWeek (Arguments args, object optargs)
-             : this(TermType.DAY_OF_WEEK, args, optargs) {
+         : base(TermType.DAY_OF_WEEK, args, optargs) {
         }
-
-    protected DayOfWeek (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

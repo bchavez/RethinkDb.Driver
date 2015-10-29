@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback)
 /// </code></example>
         public CoerceTo (Arguments args, object optargs)
-             : this(TermType.COERCE_TO, args, optargs) {
+         : base(TermType.COERCE_TO, args, optargs) {
         }
-
-    protected CoerceTo (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

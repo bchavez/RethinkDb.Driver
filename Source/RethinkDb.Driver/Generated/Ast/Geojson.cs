@@ -79,12 +79,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback);
 /// </code></example>
         public Geojson (Arguments args, object optargs)
-             : this(TermType.GEOJSON, args, optargs) {
+         : base(TermType.GEOJSON, args, optargs) {
         }
-
-    protected Geojson (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

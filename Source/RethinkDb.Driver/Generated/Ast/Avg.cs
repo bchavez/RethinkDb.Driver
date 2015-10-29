@@ -70,12 +70,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
 /// </code></example>
         public Avg (Arguments args, object optargs)
-             : this(TermType.AVG, args, optargs) {
+         : base(TermType.AVG, args, optargs) {
         }
-
-    protected Avg (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

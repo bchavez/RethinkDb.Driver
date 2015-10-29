@@ -58,12 +58,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('posts').get('a9849eef-7176-4411-935b-79a6e3c56a74').run(conn, callback)
 /// </code></example>
         public Get (Arguments args, object optargs)
-             : this(TermType.GET, args, optargs) {
+         : base(TermType.GET, args, optargs) {
         }
-
-    protected Get (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

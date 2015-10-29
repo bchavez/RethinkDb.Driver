@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
 /// </code></example>
         public TableDrop (Arguments args, object optargs)
-             : this(TermType.TABLE_DROP, args, optargs) {
+         : base(TermType.TABLE_DROP, args, optargs) {
         }
-
-    protected TableDrop (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

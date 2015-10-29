@@ -58,12 +58,8 @@ namespace RethinkDb.Driver.Ast {
 /// r.table('parks').getIntersecting(circle1, {index: 'area'}).run(conn, callback);
 /// </code></example>
         public GetIntersecting (Arguments args, object optargs)
-             : this(TermType.GET_INTERSECTING, args, optargs) {
+         : base(TermType.GET_INTERSECTING, args, optargs) {
         }
-
-    protected GetIntersecting (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

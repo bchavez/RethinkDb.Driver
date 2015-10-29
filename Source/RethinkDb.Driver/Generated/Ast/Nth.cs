@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr([1,2,3]).nth(1).run(conn, callback)
 /// </code></example>
         public Nth (Arguments args, object optargs)
-             : this(TermType.NTH, args, optargs) {
+         : base(TermType.NTH, args, optargs) {
         }
-
-    protected Nth (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

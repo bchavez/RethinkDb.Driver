@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.now().inTimezone('-08:00').hours().run(conn, callback)
 /// </code></example>
         public InTimezone (Arguments args, object optargs)
-             : this(TermType.IN_TIMEZONE, args, optargs) {
+         : base(TermType.IN_TIMEZONE, args, optargs) {
         }
-
-    protected InTimezone (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

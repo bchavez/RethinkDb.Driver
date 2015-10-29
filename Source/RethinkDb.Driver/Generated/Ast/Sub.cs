@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr(2).sub(2).run(conn, callback)
 /// </code></example>
         public Sub (Arguments args, object optargs)
-             : this(TermType.SUB, args, optargs) {
+         : base(TermType.SUB, args, optargs) {
         }
-
-    protected Sub (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

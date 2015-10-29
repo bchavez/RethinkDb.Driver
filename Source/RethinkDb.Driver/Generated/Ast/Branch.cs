@@ -82,12 +82,8 @@ namespace RethinkDb.Driver.Ast {
 /// ).run(conn, callback)
 /// </code></example>
         public Branch (Arguments args, object optargs)
-             : this(TermType.BRANCH, args, optargs) {
+         : base(TermType.BRANCH, args, optargs) {
         }
-
-    protected Branch (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

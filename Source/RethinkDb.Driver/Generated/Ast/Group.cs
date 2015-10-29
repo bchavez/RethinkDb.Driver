@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
         public Group (Arguments args, object optargs)
-             : this(TermType.GROUP, args, optargs) {
+         : base(TermType.GROUP, args, optargs) {
         }
-
-    protected Group (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

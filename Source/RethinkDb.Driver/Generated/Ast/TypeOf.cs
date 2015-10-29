@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr("foo").typeOf().run(conn, callback)
 /// </code></example>
         public TypeOf (Arguments args, object optargs)
-             : this(TermType.TYPE_OF, args, optargs) {
+         : base(TermType.TYPE_OF, args, optargs) {
         }
-
-    protected TypeOf (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

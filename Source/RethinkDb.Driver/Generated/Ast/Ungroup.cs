@@ -76,12 +76,8 @@ namespace RethinkDb.Driver.Ast {
 ///     .ungroup().orderBy(r.desc('reduction')).run(conn)
 /// </code></example>
         public Ungroup (Arguments args, object optargs)
-             : this(TermType.UNGROUP, args, optargs) {
+         : base(TermType.UNGROUP, args, optargs) {
         }
-
-    protected Ungroup (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').isEmpty().run(conn, callback)
 /// </code></example>
         public IsEmpty (Arguments args, object optargs)
-             : this(TermType.IS_EMPTY, args, optargs) {
+         : base(TermType.IS_EMPTY, args, optargs) {
         }
-
-    protected IsEmpty (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

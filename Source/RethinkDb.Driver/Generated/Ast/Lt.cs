@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr(2).lt(2).run(conn, callback)
 /// </code></example>
         public Lt (Arguments args, object optargs)
-             : this(TermType.LT, args, optargs) {
+         : base(TermType.LT, args, optargs) {
         }
-
-    protected Lt (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

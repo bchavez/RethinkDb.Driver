@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback)
 /// </code></example>
         public ForEach (Arguments args, object optargs)
-             : this(TermType.FOR_EACH, args, optargs) {
+         : base(TermType.FOR_EACH, args, optargs) {
         }
-
-    protected ForEach (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

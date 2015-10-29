@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("comments").get("7eab9e63-73f1-4f33-8ce4-95cbea626f59").delete().run(conn, callback)
 /// </code></example>
         public Delete (Arguments args, object optargs)
-             : this(TermType.DELETE, args, optargs) {
+         : base(TermType.DELETE, args, optargs) {
         }
-
-    protected Delete (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr(['a','b','c']).offsetsOf('c').run(conn, callback)
 /// </code></example>
         public OffsetsOf (Arguments args, object optargs)
-             : this(TermType.OFFSETS_OF, args, optargs) {
+         : base(TermType.OFFSETS_OF, args, optargs) {
         }
-
-    protected OffsetsOf (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

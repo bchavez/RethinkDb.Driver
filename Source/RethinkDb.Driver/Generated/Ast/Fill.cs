@@ -91,12 +91,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback);
 /// </code></example>
         public Fill (Arguments args, object optargs)
-             : this(TermType.FILL, args, optargs) {
+         : base(TermType.FILL, args, optargs) {
         }
-
-    protected Fill (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

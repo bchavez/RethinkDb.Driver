@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback)
 /// </code></example>
         public Year (Arguments args, object optargs)
-             : this(TermType.YEAR, args, optargs) {
+         : base(TermType.YEAR, args, optargs) {
         }
-
-    protected Year (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

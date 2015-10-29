@@ -79,12 +79,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('users').filter({age: 30}).run(conn, callback)
 /// </code></example>
         public Filter (Arguments args, object optargs)
-             : this(TermType.FILTER, args, optargs) {
+         : base(TermType.FILTER, args, optargs) {
         }
-
-    protected Filter (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

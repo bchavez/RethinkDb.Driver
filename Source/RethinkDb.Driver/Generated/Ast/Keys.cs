@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').get('ironman').keys().run(conn, callback)
 /// </code></example>
         public Keys (Arguments args, object optargs)
-             : this(TermType.KEYS, args, optargs) {
+         : base(TermType.KEYS, args, optargs) {
         }
-
-    protected Keys (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

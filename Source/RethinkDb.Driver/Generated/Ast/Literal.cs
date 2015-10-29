@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example></example>
         public Literal (Arguments args, object optargs)
-             : this(TermType.LITERAL, args, optargs) {
+         : base(TermType.LITERAL, args, optargs) {
         }
-
-    protected Literal (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

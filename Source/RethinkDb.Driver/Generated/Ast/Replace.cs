@@ -76,12 +76,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback)
 /// </code></example>
         public Replace (Arguments args, object optargs)
-             : this(TermType.REPLACE, args, optargs) {
+         : base(TermType.REPLACE, args, optargs) {
         }
-
-    protected Replace (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

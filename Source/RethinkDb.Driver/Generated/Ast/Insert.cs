@@ -70,12 +70,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback)
 /// </code></example>
         public Insert (Arguments args, object optargs)
-             : this(TermType.INSERT, args, optargs) {
+         : base(TermType.INSERT, args, optargs) {
         }
-
-    protected Insert (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

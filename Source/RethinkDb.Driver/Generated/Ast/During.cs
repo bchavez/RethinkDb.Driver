@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// ).run(conn, callback)
 /// </code></example>
         public During (Arguments args, object optargs)
-             : this(TermType.DURING, args, optargs) {
+         : base(TermType.DURING, args, optargs) {
         }
-
-    protected During (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

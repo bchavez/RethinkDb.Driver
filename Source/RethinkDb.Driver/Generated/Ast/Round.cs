@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// 12.0
 /// </code></example>
         public Round (Arguments args, object optargs)
-             : this(TermType.ROUND, args, optargs) {
+         : base(TermType.ROUND, args, optargs) {
         }
-
-    protected Round (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

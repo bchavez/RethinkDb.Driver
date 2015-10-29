@@ -58,12 +58,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').run(conn, callback)
 /// </code></example>
         public Table (Arguments args, object optargs)
-             : this(TermType.TABLE, args, optargs) {
+         : base(TermType.TABLE, args, optargs) {
         }
-
-    protected Table (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').get('IronMan')('equipment').append('newBoots').run(conn, callback)
 /// </code></example>
         public Append (Arguments args, object optargs)
-             : this(TermType.APPEND, args, optargs) {
+         : base(TermType.APPEND, args, optargs) {
         }
-
-    protected Append (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

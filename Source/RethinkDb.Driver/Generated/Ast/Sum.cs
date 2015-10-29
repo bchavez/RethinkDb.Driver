@@ -70,12 +70,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
         public Sum (Arguments args, object optargs)
-             : this(TermType.SUM, args, optargs) {
+         : base(TermType.SUM, args, optargs) {
         }
-
-    protected Sum (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

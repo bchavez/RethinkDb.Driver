@@ -67,12 +67,8 @@ namespace RethinkDb.Driver.Ast {
 /// true
 /// </code></example>
         public Includes (Arguments args, object optargs)
-             : this(TermType.INCLUDES, args, optargs) {
+         : base(TermType.INCLUDES, args, optargs) {
         }
-
-    protected Includes (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

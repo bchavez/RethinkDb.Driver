@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// "2015-04-20T18:37:52.690+00:00"
 /// </code></example>
         public ToIso8601 (Arguments args, object optargs)
-             : this(TermType.TO_ISO8601, args, optargs) {
+         : base(TermType.TO_ISO8601, args, optargs) {
         }
-
-    protected ToIso8601 (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('comments').indexRename('postId', 'messageId').run(conn, callback)
 /// </code></example>
         public IndexRename (Arguments args, object optargs)
-             : this(TermType.INDEX_RENAME, args, optargs) {
+         : base(TermType.INDEX_RENAME, args, optargs) {
         }
-
-    protected IndexRename (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
 /// </code></example>
         public TableCreate (Arguments args, object optargs)
-             : this(TermType.TABLE_CREATE, args, optargs) {
+         : base(TermType.TABLE_CREATE, args, optargs) {
         }
-
-    protected TableCreate (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

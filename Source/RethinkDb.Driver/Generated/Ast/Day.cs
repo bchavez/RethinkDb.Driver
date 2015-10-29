@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// ).run(conn, callback)
 /// </code></example>
         public Day (Arguments args, object optargs)
-             : this(TermType.DAY, args, optargs) {
+         : base(TermType.DAY, args, optargs) {
         }
-
-    protected Day (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

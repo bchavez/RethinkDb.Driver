@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr(2).div(2).run(conn, callback)
 /// </code></example>
         public Div (Arguments args, object optargs)
-             : this(TermType.DIV, args, optargs) {
+         : base(TermType.DIV, args, optargs) {
         }
-
-    protected Div (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

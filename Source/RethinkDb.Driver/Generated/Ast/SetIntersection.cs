@@ -58,12 +58,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').get('IronMan')('equipment').setIntersection(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
         public SetIntersection (Arguments args, object optargs)
-             : this(TermType.SET_INTERSECTION, args, optargs) {
+         : base(TermType.SET_INTERSECTION, args, optargs) {
         }
-
-    protected SetIntersection (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

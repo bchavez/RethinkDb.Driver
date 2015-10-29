@@ -32,10 +32,9 @@ namespace RethinkDb.Driver.Ast {
     
     
     
-
-    protected ReqlExpr (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
+        protected ReqlExpr (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
+        {
+        }
 
 
     

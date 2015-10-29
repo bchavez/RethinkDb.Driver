@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>&gt; r.table('users').config().run(conn, callback);
 /// </code></example>
         public Config (Arguments args, object optargs)
-             : this(TermType.CONFIG, args, optargs) {
+         : base(TermType.CONFIG, args, optargs) {
         }
-
-    protected Config (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

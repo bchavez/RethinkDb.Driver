@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
 /// </code></example>
         public Update (Arguments args, object optargs)
-             : this(TermType.UPDATE, args, optargs) {
+         : base(TermType.UPDATE, args, optargs) {
         }
-
-    protected Update (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr(2).eq(2).run(conn, callback)
 /// </code></example>
         public Eq (Arguments args, object optargs)
-             : this(TermType.EQ, args, optargs) {
+         : base(TermType.EQ, args, optargs) {
         }
-
-    protected Eq (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

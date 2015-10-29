@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// ['a', 'c', 'd', 'e', 'f']
 /// </code></example>
         public DeleteAt (Arguments args, object optargs)
-             : this(TermType.DELETE_AT, args, optargs) {
+         : base(TermType.DELETE_AT, args, optargs) {
         }
-
-    protected DeleteAt (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

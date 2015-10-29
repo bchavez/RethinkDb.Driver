@@ -67,12 +67,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback)
 /// </code></example>
         public Error (Arguments args, object optargs)
-             : this(TermType.ERROR, args, optargs) {
+         : base(TermType.ERROR, args, optargs) {
         }
-
-    protected Error (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

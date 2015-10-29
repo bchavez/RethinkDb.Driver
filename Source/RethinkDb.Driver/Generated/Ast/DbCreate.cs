@@ -67,12 +67,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.dbCreate('superheroes').run(conn, callback)
 /// </code></example>
         public DbCreate (Arguments args, object optargs)
-             : this(TermType.DB_CREATE, args, optargs) {
+         : base(TermType.DB_CREATE, args, optargs) {
         }
-
-    protected DbCreate (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

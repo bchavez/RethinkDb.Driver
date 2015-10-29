@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
 /// </code></example>
         public Uuid (Arguments args, object optargs)
-             : this(TermType.UUID, args, optargs) {
+         : base(TermType.UUID, args, optargs) {
         }
-
-    protected Uuid (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

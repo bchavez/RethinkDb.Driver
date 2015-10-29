@@ -70,12 +70,8 @@ namespace RethinkDb.Driver.Ast {
 /// r.table('people').getAll(r.args(['Alice', 'Bob'])).run(conn, callback)
 /// </code></example>
         public Args (Arguments args, object optargs)
-             : this(TermType.ARGS, args, optargs) {
+         : base(TermType.ARGS, args, optargs) {
         }
-
-    protected Args (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

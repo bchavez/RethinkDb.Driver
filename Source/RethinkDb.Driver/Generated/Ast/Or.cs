@@ -64,12 +64,8 @@ namespace RethinkDb.Driver.Ast {
 /// true
 /// </code></example>
         public Or (Arguments args, object optargs)
-             : this(TermType.OR, args, optargs) {
+         : base(TermType.OR, args, optargs) {
         }
-
-    protected Or (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.db('test').tableList().run(conn, callback)
 /// </code></example>
         public TableList (Arguments args, object optargs)
-             : this(TermType.TABLE_LIST, args, optargs) {
+         : base(TermType.TABLE_LIST, args, optargs) {
         }
-
-    protected TableList (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

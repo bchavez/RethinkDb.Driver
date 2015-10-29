@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').orderBy('belovedness').limit(10).run(conn, callback)
 /// </code></example>
         public Limit (Arguments args, object optargs)
-             : this(TermType.LIMIT, args, optargs) {
+         : base(TermType.LIMIT, args, optargs) {
         }
-
-    protected Limit (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

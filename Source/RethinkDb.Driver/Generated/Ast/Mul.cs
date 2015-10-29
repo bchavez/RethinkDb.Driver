@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr(2).mul(2).run(conn, callback)
 /// </code></example>
         public Mul (Arguments args, object optargs)
-             : this(TermType.MUL, args, optargs) {
+         : base(TermType.MUL, args, optargs) {
         }
-
-    protected Mul (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

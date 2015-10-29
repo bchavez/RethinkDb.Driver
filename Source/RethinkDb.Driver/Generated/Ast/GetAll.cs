@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback)
 /// </code></example>
         public GetAll (Arguments args, object optargs)
-             : this(TermType.GET_ALL, args, optargs) {
+         : base(TermType.GET_ALL, args, optargs) {
         }
-
-    protected GetAll (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

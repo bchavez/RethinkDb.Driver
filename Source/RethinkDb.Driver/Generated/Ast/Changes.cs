@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// })
 /// </code></example>
         public Changes (Arguments args, object optargs)
-             : this(TermType.CHANGES, args, optargs) {
+         : base(TermType.CHANGES, args, optargs) {
         }
-
-    protected Changes (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

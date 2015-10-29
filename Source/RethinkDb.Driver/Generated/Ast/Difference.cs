@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').get('IronMan')('equipment').difference(['Boots']).run(conn, callback)
 /// </code></example>
         public Difference (Arguments args, object optargs)
-             : this(TermType.DIFFERENCE, args, optargs) {
+         : base(TermType.DIFFERENCE, args, optargs) {
         }
-
-    protected Difference (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -64,12 +64,8 @@ namespace RethinkDb.Driver.Ast {
 /// false
 /// </code></example>
         public And (Arguments args, object optargs)
-             : this(TermType.AND, args, optargs) {
+         : base(TermType.AND, args, optargs) {
         }
-
-    protected And (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

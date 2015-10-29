@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').info().run(conn, callback)
 /// </code></example>
         public Info (Arguments args, object optargs)
-             : this(TermType.INFO, args, optargs) {
+         : base(TermType.INFO, args, optargs) {
         }
-
-    protected Info (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

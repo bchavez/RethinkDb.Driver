@@ -37,12 +37,8 @@ namespace RethinkDb.Driver.Ast {
         public MakeArray (Arguments args) : this(args, null) {
         }
         public MakeArray (Arguments args, object optargs)
-             : this(TermType.MAKE_ARRAY, args, optargs) {
+         : base(TermType.MAKE_ARRAY, args, optargs) {
         }
-
-    protected MakeArray (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

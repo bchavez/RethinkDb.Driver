@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').get('IronMan')('equipment').setInsert('newBoots').run(conn, callback)
 /// </code></example>
         public SetInsert (Arguments args, object optargs)
-             : this(TermType.SET_INSERT, args, optargs) {
+         : base(TermType.SET_INSERT, args, optargs) {
         }
-
-    protected SetInsert (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').orderBy('successMetric').skip(10).run(conn, callback)
 /// </code></example>
         public Skip (Arguments args, object optargs)
-             : this(TermType.SKIP, args, optargs) {
+         : base(TermType.SKIP, args, optargs) {
         }
-
-    protected Skip (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr(2).gt(2).run(conn, callback)
 /// </code></example>
         public Gt (Arguments args, object optargs)
-             : this(TermType.GT, args, optargs) {
+         : base(TermType.GT, args, optargs) {
         }
-
-    protected Gt (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr(["Iron Man", "Spider-Man"]).insertAt(1, "Hulk").run(conn, callback)
 /// </code></example>
         public InsertAt (Arguments args, object optargs)
-             : this(TermType.INSERT_AT, args, optargs) {
+         : base(TermType.INSERT_AT, args, optargs) {
         }
-
-    protected InsertAt (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

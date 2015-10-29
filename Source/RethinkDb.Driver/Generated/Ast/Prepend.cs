@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').get('IronMan')('equipment').prepend('newBoots').run(conn, callback)
 /// </code></example>
         public Prepend (Arguments args, object optargs)
-             : this(TermType.PREPEND, args, optargs) {
+         : base(TermType.PREPEND, args, optargs) {
         }
-
-    protected Prepend (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

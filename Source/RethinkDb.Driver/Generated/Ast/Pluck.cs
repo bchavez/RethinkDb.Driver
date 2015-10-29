@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').get('IronMan').pluck('reactorState', 'reactorPower').run(conn, callback)
 /// </code></example>
         public Pluck (Arguments args, object optargs)
-             : this(TermType.PLUCK, args, optargs) {
+         : base(TermType.PLUCK, args, optargs) {
         }
-
-    protected Pluck (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').indexList().run(conn, callback)
 /// </code></example>
         public IndexList (Arguments args, object optargs)
-             : this(TermType.INDEX_LIST, args, optargs) {
+         : base(TermType.INDEX_LIST, args, optargs) {
         }
-
-    protected IndexList (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -67,12 +67,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback);
 /// </code></example>
         public Circle (Arguments args, object optargs)
-             : this(TermType.CIRCLE, args, optargs) {
+         : base(TermType.CIRCLE, args, optargs) {
         }
-
-    protected Circle (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

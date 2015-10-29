@@ -64,12 +64,8 @@ namespace RethinkDb.Driver.Ast {
 /// ).run(conn, callback)
 /// </code></example>
         public Merge (Arguments args, object optargs)
-             : this(TermType.MERGE, args, optargs) {
+         : base(TermType.MERGE, args, optargs) {
         }
-
-    protected Merge (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

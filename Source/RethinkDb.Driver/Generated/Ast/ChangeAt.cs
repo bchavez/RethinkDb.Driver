@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr(["Iron Man", "Bruce", "Spider-Man"]).changeAt(1, "Hulk").run(conn, callback)
 /// </code></example>
         public ChangeAt (Arguments args, object optargs)
-             : this(TermType.CHANGE_AT, args, optargs) {
+         : base(TermType.CHANGE_AT, args, optargs) {
         }
-
-    protected ChangeAt (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

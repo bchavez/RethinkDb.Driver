@@ -70,12 +70,8 @@ namespace RethinkDb.Driver.Ast {
 /// }
 /// </code></example>
         public ToGeojson (Arguments args, object optargs)
-             : this(TermType.TO_GEOJSON, args, optargs) {
+         : base(TermType.TO_GEOJSON, args, optargs) {
         }
-
-    protected ToGeojson (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

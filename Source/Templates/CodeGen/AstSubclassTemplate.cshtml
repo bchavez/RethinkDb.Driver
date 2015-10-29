@@ -63,12 +63,14 @@
 
         @RenderCtorXmlDoc(this.TermName)
         @:public @Class(ClassName) (Arguments args, object optargs)
-        @:     : this(TermType.@TermName, args, optargs) {
+        @: : base(TermType.@TermName, args, optargs) {
         @:}
     }
-
-    protected @Class(ClassName) (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
+    else
     {
+        @:protected @Class(ClassName) (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
+        @:{
+        @:}
     }
 }
 

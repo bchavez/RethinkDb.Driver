@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr([3, 5, 7]).min().run(conn, callback);
 /// </code></example>
         public Min (Arguments args, object optargs)
-             : this(TermType.MIN, args, optargs) {
+         : base(TermType.MIN, args, optargs) {
         }
-
-    protected Min (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

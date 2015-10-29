@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback)
 /// </code></example>
         public OuterJoin (Arguments args, object optargs)
-             : this(TermType.OUTER_JOIN, args, optargs) {
+         : base(TermType.OUTER_JOIN, args, optargs) {
         }
-
-    protected OuterJoin (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -67,12 +67,8 @@ namespace RethinkDb.Driver.Ast {
 /// 734.1252496021841
 /// </code></example>
         public Distance (Arguments args, object optargs)
-             : this(TermType.DISTANCE, args, optargs) {
+         : base(TermType.DISTANCE, args, optargs) {
         }
-
-    protected Distance (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).distinct().run(conn, callback)
 /// </code></example>
         public Distinct (Arguments args, object optargs)
-             : this(TermType.DISTINCT, args, optargs) {
+         : base(TermType.DISTINCT, args, optargs) {
         }
-
-    protected Distinct (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

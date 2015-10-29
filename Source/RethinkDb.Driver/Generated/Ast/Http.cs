@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('posts').insert(r.http('http://httpbin.org/get')).run(conn, callback)
 /// </code></example>
         public Http (Arguments args, object optargs)
-             : this(TermType.HTTP, args, optargs) {
+         : base(TermType.HTTP, args, optargs) {
         }
-
-    protected Http (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

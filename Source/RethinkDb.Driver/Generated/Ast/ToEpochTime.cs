@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.now().toEpochTime()
 /// </code></example>
         public ToEpochTime (Arguments args, object optargs)
-             : this(TermType.TO_EPOCH_TIME, args, optargs) {
+         : base(TermType.TO_EPOCH_TIME, args, optargs) {
         }
-
-    protected ToEpochTime (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

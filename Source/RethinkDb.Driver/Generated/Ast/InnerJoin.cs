@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).zip().run(conn, callback)
 /// </code></example>
         public InnerJoin (Arguments args, object optargs)
-             : this(TermType.INNER_JOIN, args, optargs) {
+         : base(TermType.INNER_JOIN, args, optargs) {
         }
-
-    protected InnerJoin (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

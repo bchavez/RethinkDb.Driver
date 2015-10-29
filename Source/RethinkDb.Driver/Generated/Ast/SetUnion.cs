@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').get('IronMan')('equipment').setUnion(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
         public SetUnion (Arguments args, object optargs)
-             : this(TermType.SET_UNION, args, optargs) {
+         : base(TermType.SET_UNION, args, optargs) {
         }
-
-    protected SetUnion (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

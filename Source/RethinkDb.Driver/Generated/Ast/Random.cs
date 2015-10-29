@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.random().run(conn, callback)
 /// </code></example>
         public Random (Arguments args, object optargs)
-             : this(TermType.RANDOM, args, optargs) {
+         : base(TermType.RANDOM, args, optargs) {
         }
-
-    protected Random (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

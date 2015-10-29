@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
 /// </code></example>
         public Wait (Arguments args, object optargs)
-             : this(TermType.WAIT, args, optargs) {
+         : base(TermType.WAIT, args, optargs) {
         }
-
-    protected Wait (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr(["Iron Man", "Spider-Man"]).spliceAt(1, ["Hulk", "Thor"]).run(conn, callback)
 /// </code></example>
         public SpliceAt (Arguments args, object optargs)
-             : this(TermType.SPLICE_AT, args, optargs) {
+         : base(TermType.SPLICE_AT, args, optargs) {
         }
-
-    protected SpliceAt (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

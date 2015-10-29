@@ -70,12 +70,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').between(10, 20).run(conn, callback)
 /// </code></example>
         public Between (Arguments args, object optargs)
-             : this(TermType.BETWEEN, args, optargs) {
+         : base(TermType.BETWEEN, args, optargs) {
         }
-
-    protected Between (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

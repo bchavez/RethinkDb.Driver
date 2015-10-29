@@ -88,12 +88,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback)
 /// </code></example>
         public Default (Arguments args, object optargs)
-             : this(TermType.DEFAULT, args, optargs) {
+         : base(TermType.DEFAULT, args, optargs) {
         }
-
-    protected Default (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

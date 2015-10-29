@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
         public Rebalance (Arguments args, object optargs)
-             : this(TermType.REBALANCE, args, optargs) {
+         : base(TermType.REBALANCE, args, optargs) {
         }
-
-    protected Rebalance (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

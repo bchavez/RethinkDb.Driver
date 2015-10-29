@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
 /// </code></example>
         public Union (Arguments args, object optargs)
-             : this(TermType.UNION, args, optargs) {
+         : base(TermType.UNION, args, optargs) {
         }
-
-    protected Union (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

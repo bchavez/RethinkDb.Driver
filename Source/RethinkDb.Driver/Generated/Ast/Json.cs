@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.json("[1,2,3]").run(conn, callback)
 /// </code></example>
         public Json (Arguments args, object optargs)
-             : this(TermType.JSON, args, optargs) {
+         : base(TermType.JSON, args, optargs) {
         }
-
-    protected Json (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

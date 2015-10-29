@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').get('IronMan')('firstAppearance').run(conn, callback)
 /// </code></example>
         public Bracket (Arguments args, object optargs)
-             : this(TermType.BRACKET, args, optargs) {
+         : base(TermType.BRACKET, args, optargs) {
         }
-
-    protected Bracket (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

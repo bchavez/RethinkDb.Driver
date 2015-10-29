@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('dc').indexDrop('code_name').run(conn, callback)
 /// </code></example>
         public IndexDrop (Arguments args, object optargs)
-             : this(TermType.INDEX_DROP, args, optargs) {
+         : base(TermType.INDEX_DROP, args, optargs) {
         }
-
-    protected IndexDrop (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

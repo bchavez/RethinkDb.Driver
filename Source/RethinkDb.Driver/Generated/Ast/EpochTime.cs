@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 ///     .run(conn, callback)
 /// </code></example>
         public EpochTime (Arguments args, object optargs)
-             : this(TermType.EPOCH_TIME, args, optargs) {
+         : base(TermType.EPOCH_TIME, args, optargs) {
         }
-
-    protected EpochTime (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

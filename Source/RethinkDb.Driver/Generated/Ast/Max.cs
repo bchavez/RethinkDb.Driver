@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr([3, 5, 7]).max().run(conn, callback);
 /// </code></example>
         public Max (Arguments args, object optargs)
-             : this(TermType.MAX, args, optargs) {
+         : base(TermType.MAX, args, optargs) {
         }
-
-    protected Max (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

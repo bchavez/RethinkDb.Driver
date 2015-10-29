@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// r.not(true).run(conn, callback)
 /// </code></example>
         public Not (Arguments args, object optargs)
-             : this(TermType.NOT, args, optargs) {
+         : base(TermType.NOT, args, optargs) {
         }
-
-    protected Not (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

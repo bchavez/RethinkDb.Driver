@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.object('id', 5, 'data', ['foo', 'bar']).run(conn, callback)
 /// </code></example>
         public ReqlObject (Arguments args, object optargs)
-             : this(TermType.OBJECT, args, optargs) {
+         : base(TermType.OBJECT, args, optargs) {
         }
-
-    protected ReqlObject (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

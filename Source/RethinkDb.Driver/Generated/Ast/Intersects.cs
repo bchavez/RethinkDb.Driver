@@ -67,12 +67,8 @@ namespace RethinkDb.Driver.Ast {
 /// true
 /// </code></example>
         public Intersects (Arguments args, object optargs)
-             : this(TermType.INTERSECTS, args, optargs) {
+         : base(TermType.INTERSECTS, args, optargs) {
         }
-
-    protected Intersects (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

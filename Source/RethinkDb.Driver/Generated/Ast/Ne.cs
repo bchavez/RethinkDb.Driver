@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr(2).ne(2).run(conn, callback)
 /// </code></example>
         public Ne (Arguments args, object optargs)
-             : this(TermType.NE, args, optargs) {
+         : base(TermType.NE, args, optargs) {
         }
-
-    protected Ne (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

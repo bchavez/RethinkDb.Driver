@@ -79,12 +79,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.expr("foo  bar bax").split().run(conn, callback)
 /// </code></example>
         public Split (Arguments args, object optargs)
-             : this(TermType.SPLIT, args, optargs) {
+         : base(TermType.SPLIT, args, optargs) {
         }
-
-    protected Split (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

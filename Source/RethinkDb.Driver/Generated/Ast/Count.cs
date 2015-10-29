@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
 /// </code></example>
         public Count (Arguments args, object optargs)
-             : this(TermType.COUNT, args, optargs) {
+         : base(TermType.COUNT, args, optargs) {
         }
-
-    protected Count (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

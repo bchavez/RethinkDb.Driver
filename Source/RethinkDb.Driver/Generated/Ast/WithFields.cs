@@ -55,12 +55,8 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
 /// </code></example>
         public WithFields (Arguments args, object optargs)
-             : this(TermType.WITH_FIELDS, args, optargs) {
+         : base(TermType.WITH_FIELDS, args, optargs) {
         }
-
-    protected WithFields (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

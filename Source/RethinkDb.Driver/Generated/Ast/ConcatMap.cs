@@ -61,12 +61,8 @@ namespace RethinkDb.Driver.Ast {
 /// }).run(conn, callback)
 /// </code></example>
         public ConcatMap (Arguments args, object optargs)
-             : this(TermType.CONCAT_MAP, args, optargs) {
+         : base(TermType.CONCAT_MAP, args, optargs) {
         }
-
-    protected ConcatMap (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
-    {
-    }
 
 
     

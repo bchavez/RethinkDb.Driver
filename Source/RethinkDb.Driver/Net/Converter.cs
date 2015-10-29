@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
@@ -12,60 +10,46 @@ namespace RethinkDb.Driver.Net
 {
     public class Converter
     {
-        //public static Func<long, string, Response> ResponseBuillder = Response.ParseFrom;
+        public const string PseudoTypeKey = "$reql_type$";
+        public const string Time = "TIME";
+        public const string GroupedData = "GROUPED_DATA";
+        public const string Geometry = "GEOMETRY";
+        public const string Binary = "BINARY";
 
-        public const string PSEUDOTYPE_KEY = "$reql_type$";
-        public const string TIME = "TIME";
-        public const string GROUPED_DATA = "GROUPED_DATA";
-        public const string GEOMETRY = "GEOMETRY";
-        public const string BINARY = "BINARY";
-
-        public static object ConvertPesudoTypes(object obj, FormatOptions fmt)
+        public static JToken ConvertPesudoTypes(JToken data, FormatOptions fmt)
         {
-            var list = obj as JArray;
-            var dict = obj as JObject;
+            var reqlTypes = data.SelectTokens("$..$reql_type$").ToList();
 
-            if( list != null )
+            foreach( var typeToken in reqlTypes )
             {
-                return list.Select(item => ConvertPesudoTypes(item, fmt))
-                    .ToList();
-            }
-            else if( dict != null )
-            {
-                if( dict[PSEUDOTYPE_KEY] != null )
+                var reqlType = typeToken.Value<string>();
+                //JObject -> JProerty -> JVaule:$reql_type$, go backup the chain.
+                var pesudoObject = typeToken.Parent.Parent as JObject;
+
+                JToken convertedValue = null;
+                if( reqlType == Time )
                 {
-                    return ConvertPesudo(dict, fmt);
+                    if( fmt.RawTime )
+                        continue;
+                    convertedValue = new JValue(GetTime(pesudoObject));
+                }
+                else if( reqlType == GroupedData )
+                {
+                    if( fmt.RawGroups )
+                        continue;
+                    convertedValue = new JValue(GetGrouped(pesudoObject));
+                }
+                else if( reqlType == Binary )
+                {
+                    if( fmt.RawBinary )
+                        continue;
+                    convertedValue = new JArray(GetBinary(pesudoObject));
                 }
 
-                return dict.Properties()
-                    .ToDictionary(p => p.Name, p => ConvertPesudoTypes(p.Value, fmt));
+                pesudoObject.Replace(convertedValue);
             }
-            else
-            {
-                return obj;
-            }
-        }
 
-        public static object ConvertPesudo(JObject value, FormatOptions fmt)
-        {
-            if( value == null ) return null;
-
-            var reqlType = value[PSEUDOTYPE_KEY].ToString();
-
-            switch( reqlType )
-            {
-                case TIME:
-                    return fmt.RawTime ? value : (object)GetTime(value);
-                case GROUPED_DATA:
-                    return fmt.RawGroups ? value : (object)GetGrouped(value);
-                case BINARY:
-                    return fmt.RawBinary ? value : (object)GetBinary(value);
-                case GEOMETRY:
-                    return value;
-
-                default:
-                    return value;
-            }
+            return data;
         }
 
         private static DateTimeOffset GetTime(JObject value)
@@ -73,14 +57,14 @@ namespace RethinkDb.Driver.Net
             double epoch_time = value["epoch_time"].ToObject<double>();
             string timezone = value["timezone"].ToString();
 
-            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            var dt = epoch + TimeSpan.FromSeconds(epoch_time);
-
             var tz = TimeSpan.Parse(timezone.Substring(1));
             if( !timezone.StartsWith("+") )
                 tz = -tz;
 
-            return new DateTimeOffset(dt, tz);
+            var epoch = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero); // epoch UTC
+            var dt = epoch + TimeSpan.FromSeconds(epoch_time);
+
+            return dt.ToOffset(tz);
         }
 
         private static byte[] GetBinary(JObject value)
@@ -103,9 +87,62 @@ namespace RethinkDb.Driver.Net
         public static object ToBinary(byte[] data)
         {
             var mob = new MapObject();
-            mob.with(PSEUDOTYPE_KEY, BINARY);
+            mob.with(PseudoTypeKey, Binary);
             mob.with("data", Convert.ToBase64String(data));
             return mob;
+        }
+
+        public static Func<object, JObject> PocoConverter = DefaultPocoConverter;
+
+        public static JObject DefaultPocoConverter(object value)
+        {
+            return JObject.FromObject(value, JsonSerializer.CreateDefault(new JsonSerializerSettings()
+                {
+                    Converters = new[] {TimeConverter}
+                }));
+        }
+
+        public static JsonConverter TimeConverter = new PocoIso8601Converter();
+    }
+
+    internal class PocoIso8601Converter : JsonConverter
+    {
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            var ast = Util.ToReqlAst(value);
+            serializer.Serialize(writer, ast.Build());
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType == typeof(DateTime) ||
+                   objectType == typeof(DateTimeOffset);
+        }
+    }
+
+    public class FormatOptions
+    {
+        public bool RawTime { get; }
+        public bool RawGroups { get; }
+        public bool RawBinary { get; }
+
+        public FormatOptions(OptArgs args)
+        {
+            // TODO: find a better way to do this.
+            ReqlAst datum;
+            var value = args.TryGetValue("time_format", out datum) ? ((Datum)datum).datum : new Datum("native").datum;
+            this.RawTime = value.Equals("raw");
+
+            value = args.TryGetValue("binary_format", out datum) ? ((Datum)datum).datum : new Datum("native").datum;
+            this.RawBinary = value.Equals("raw");
+
+            value = args.TryGetValue("group_format", out datum) ? ((Datum)datum).datum : new Datum("native").datum;
+            this.RawGroups = value.Equals("raw");
         }
     }
 }

@@ -186,7 +186,7 @@ namespace RethinkDb.Driver.Net
                 try
                 {
                     var fmt = new FormatOptions(query.GlobalOptions);
-                    return Converter3.ConvertPesudoTypes(res.Data, fmt)[0].ToObject<T>();
+                    return Converter.ConvertPesudoTypes(res.Data, fmt)[0].ToObject<T>();
                 }
                 catch( System.IndexOutOfRangeException ex )
                 {

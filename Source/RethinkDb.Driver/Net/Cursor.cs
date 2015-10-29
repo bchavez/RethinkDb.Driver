@@ -161,7 +161,7 @@ namespace RethinkDb.Driver.Net
                 {
                     var element = items[0];
                     items.RemoveAt(0);
-                    this.current = Converter3.ConvertPesudoTypes(element, fmt).ToObject<T>();
+                    this.current = Converter.ConvertPesudoTypes(element, fmt).ToObject<T>();
                     return true;
                 }
 

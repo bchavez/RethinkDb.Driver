@@ -25,7 +25,7 @@ namespace RethinkDb.Driver.Ast
 
         protected internal override object Build()
         {
-            return Converter3.PocoConverter(obj);
+            return Converter.PocoConverter(obj);
         }
     }
 }

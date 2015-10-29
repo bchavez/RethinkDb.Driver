@@ -147,7 +147,7 @@ public void get_a_poco()
 
 Contributing
 ------------
-If you'd like to contribute, please consider reading some [helpful tips before making any changes](https://github.com/bchavez/RethinkDb.Driver/blob/master/CONTRIBUTING.md).
+If you'd like to contribute, please consider reading some [helpful tips before making changes](https://github.com/bchavez/RethinkDb.Driver/blob/master/CONTRIBUTING.md).
  
 Contributors
 ---------

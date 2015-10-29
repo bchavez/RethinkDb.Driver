@@ -15,9 +15,8 @@ using Z.ExtensionMethods;
 namespace Templates
 {
     [TestFixture]
-	public class GeneratorForUnitTests
-	{
-
+    public class GeneratorForUnitTests
+    {
         public string ProjectFolder = "RethinkDb.Driver.Tests";
         public string OutputDir = "./Generated";
 
@@ -35,7 +34,7 @@ namespace Templates
 
         private void Clean()
         {
-            if (Directory.Exists(OutputDir))
+            if( Directory.Exists(OutputDir) )
             {
                 Directory.Delete(OutputDir, true);
             }
@@ -44,7 +43,7 @@ namespace Templates
 
         public void EnsurePathsExist()
         {
-            if (!Directory.Exists(OutputDir))
+            if( !Directory.Exists(OutputDir) )
                 Directory.CreateDirectory(OutputDir);
         }
 
@@ -84,49 +83,47 @@ namespace Templates
         }
 
 
-
         [Test]
         [Explicit]
-	    public void CleanUpYamlTests()
-	    {
+        public void CleanUpYamlTests()
+        {
             var ser = new Serializer();
-	        var dser = new Deserializer();
+            var dser = new Deserializer();
 
             var files = GetAllYamlFiles();
-	        foreach( var file in files )
-	        {
-	            Console.WriteLine("READING: " + file);
-	            var lines = File.ReadAllLines(file);
-	            var sw = new StringWriter(new StringBuilder());
-	            for( int i = 0; i < lines.Length; i++ )
-	            {
-	                var line = lines[i];
-                    if( line.StartsWith("//"))
+            foreach( var file in files )
+            {
+                Console.WriteLine("READING: " + file);
+                var lines = File.ReadAllLines(file);
+                var sw = new StringWriter(new StringBuilder());
+                for( int i = 0; i < lines.Length; i++ )
+                {
+                    var line = lines[i];
+                    if( line.StartsWith("//") )
                         continue;
 
-	                sw.WriteLine(line);
-	            }
+                    sw.WriteLine(line);
+                }
 
-	            var sr = new StringReader(sw.ToString());
-	            var yamltests = dser.Deserialize<YamlTest>(sr);
-	            yamltests.Decode();
+                var sr = new StringReader(sw.ToString());
+                var yamltests = dser.Deserialize<YamlTest>(sr);
+                yamltests.Decode();
 
-	            var sfile = new StringWriter(new StringBuilder());
+                var sfile = new StringWriter(new StringBuilder());
 
-	            ser.Serialize(sfile, yamltests);
+                ser.Serialize(sfile, yamltests);
 
-	            File.WriteAllText(file, sfile.ToString());
-	        }
+                File.WriteAllText(file, sfile.ToString());
+            }
+        }
 
-	    }
+        private string[] GetAllYamlFiles()
+        {
+            var dir = Path.GetFullPath(YamlImportDir);
 
-		private string[] GetAllYamlFiles()
-		{
-			var dir = Path.GetFullPath(YamlImportDir);
+            var allTests = Directory.GetFiles(dir, "*.yaml", SearchOption.AllDirectories);
 
-			var allTests = Directory.GetFiles(dir, "*.yaml", SearchOption.AllDirectories);
-
-			return allTests.ToArray();
-		}
-	}
+            return allTests.ToArray();
+        }
+    }
 }

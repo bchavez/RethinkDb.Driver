@@ -49,7 +49,7 @@ namespace Templates
             //and 
 
             if( DefsAndTests == null ) return;
-            
+
             foreach( var test in DefsAndTests )
             {
                 var value = test.Original;
@@ -58,7 +58,7 @@ namespace Templates
                     test.Original =
                         Encoding.UTF8.GetString(Convert.FromBase64String(value.Substring(1).Trim('\'')));
 
-                    if (test.Original.StartsWith("'") && test.Original.Contains(">"))
+                    if( test.Original.StartsWith("'") && test.Original.Contains(">") )
                     {
                         test.Original = "\"" + test.Original + "\"";
                     }
@@ -72,14 +72,14 @@ namespace Templates
                 }
 
                 value = test.ExpectedOriginal;
-                if (value.IsNotNullOrWhiteSpace())
+                if( value.IsNotNullOrWhiteSpace() )
                 {
                     test.ExpectedOriginal =
                         Encoding.UTF8.GetString(Convert.FromBase64String(value.Substring(1).Trim('\'')));
                 }
 
                 value = test.Java;
-                if (value.IsNotNullOrWhiteSpace())
+                if( value.IsNotNullOrWhiteSpace() )
                 {
                     test.Java =
                         Encoding.UTF8.GetString(Convert.FromBase64String(value.Substring(1).Trim('\'')));

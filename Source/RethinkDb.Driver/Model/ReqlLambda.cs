@@ -1,4 +1,6 @@
 namespace RethinkDb.Driver.Model
 {
-    public interface ReqlLambda { }
+    public interface ReqlLambda
+    {
+    }
 }

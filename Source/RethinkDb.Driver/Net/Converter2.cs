@@ -20,9 +20,9 @@ namespace RethinkDb.Driver.Net
         public static JToken ConvertPesudoTypes(JToken obj, FormatOptions fmt)
         {
             var jarray = obj as JArray;
-            if (jarray != null)
+            if( jarray != null )
             {
-                for( var i = 0; i < jarray.Count; i++)
+                for( var i = 0; i < jarray.Count; i++ )
                 {
                     var value = ConvertPesudoTypes(jarray[i], fmt);
                     jarray[i] = value;
@@ -31,7 +31,7 @@ namespace RethinkDb.Driver.Net
             }
 
             var jobject = obj as JObject;
-            if (jobject != null)
+            if( jobject != null )
             {
                 var props = jobject.Properties().ToList();
                 if( props.Any(prop => prop.Name == PseudoTypeKey) )
@@ -44,7 +44,7 @@ namespace RethinkDb.Driver.Net
                     var value = ConvertPesudoTypes(props[i], fmt);
                     props[i].Value = value;
                 }
-                
+
                 return jobject;
             }
 
@@ -53,11 +53,11 @@ namespace RethinkDb.Driver.Net
 
         public static object ConvertPesudo(JObject value, FormatOptions fmt)
         {
-            if (value == null) return null;
+            if( value == null ) return null;
 
             var reqlType = value[PseudoTypeKey].ToString();
 
-            switch (reqlType)
+            switch( reqlType )
             {
                 case Time:
                     return fmt.RawTime ? value : (object)GetTime(value);
@@ -82,7 +82,7 @@ namespace RethinkDb.Driver.Net
             var dt = epoch + TimeSpan.FromSeconds(epoch_time);
 
             var tz = TimeSpan.Parse(timezone.Substring(1));
-            if (!timezone.StartsWith("+"))
+            if( !timezone.StartsWith("+") )
                 tz = -tz;
 
             return new DateTimeOffset(dt, tz);

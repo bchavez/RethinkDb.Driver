@@ -43,13 +43,12 @@ namespace RethinkDb.Driver.Net
         }
 
 
-
         public virtual void close()
         {
-            if (error == null)
+            if( error == null )
             {
                 error = new Exception("No such element.");
-                if (connection.Open)
+                if( connection.Open )
                 {
                     outstandingRequests += 1;
                     connection.Stop(this);
@@ -64,16 +63,16 @@ namespace RethinkDb.Driver.Net
         private void ExtendInternal(Response response)
         {
             threshold = response.Data.Count;
-            if (error == null)
+            if( error == null )
             {
-                if (response.IsPartial)
+                if( response.IsPartial )
                 {
-                    foreach (var item in response.Data)
+                    foreach( var item in response.Data )
                         items.Add(item);
                 }
-                else if (response.IsSequence)
+                else if( response.IsSequence )
                 {
-                    foreach (var item in response.Data)
+                    foreach( var item in response.Data )
                         items.Add(item);
                     error = new InvalidOperationException("No such element");
                 }
@@ -82,7 +81,7 @@ namespace RethinkDb.Driver.Net
                     error = response.MakeError(query);
                 }
             }
-            if (outstandingRequests == 0 && error != null)
+            if( outstandingRequests == 0 && error != null )
             {
                 connection.RemoveFromCache(response.Token);
             }
@@ -97,7 +96,7 @@ namespace RethinkDb.Driver.Net
 
         public void SetError(string msg)
         {
-            if (this.error != null) return;
+            if( this.error != null ) return;
 
             this.error = new ReqlRuntimeError(msg);
 
@@ -109,7 +108,7 @@ namespace RethinkDb.Driver.Net
 
         protected internal virtual void MaybeSendContinue()
         {
-            if (error == null && items.Count < threshold && outstandingRequests == 0)
+            if( error == null && items.Count < threshold && outstandingRequests == 0 )
             {
                 outstandingRequests += 1;
                 connection.Continue(this);
@@ -120,7 +119,7 @@ namespace RethinkDb.Driver.Net
         {
             set
             {
-                if (error != null)
+                if( error != null )
                 {
                     error = new ReqlRuntimeError(value);
                     Response dummyResponse = Response.Make(query.Token, ResponseType.SUCCESS_SEQUENCE).Build();
@@ -137,6 +136,7 @@ namespace RethinkDb.Driver.Net
         private class DefaultCursor<T> : Cursor<T>
         {
             private FormatOptions fmt;
+
             public DefaultCursor(Connection connection, Query query, Response firstResponse) : base(connection, query, firstResponse)
             {
                 this.fmt = new FormatOptions(query.GlobalOptions);
@@ -147,8 +147,9 @@ namespace RethinkDb.Driver.Net
 
             public override bool MoveNext()
             {
-                while (items.Count == 0)
-                {//if we're out of buffered items, poll until we get more.
+                while( items.Count == 0 )
+                {
+                    //if we're out of buffered items, poll until we get more.
                     MaybeSendContinue();
                     if( error != null )
                         return false; //we don't throw in .net
@@ -156,7 +157,7 @@ namespace RethinkDb.Driver.Net
                     connection.ReadResponse(query, NetUtil.Deadline(timeout));
                 }
 
-                if (this.items.Count > 0)
+                if( this.items.Count > 0 )
                 {
                     var element = items[0];
                     items.RemoveAt(0);

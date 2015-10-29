@@ -70,19 +70,15 @@ namespace Templates
             {
                 var term = termInfo.Key;
                 var info = termInfo.Value;
-
-
             }
         }
 
         private void MutateImpelments()
         {
-            foreach (var termInfo in allTerms)
+            foreach( var termInfo in allTerms )
             {
                 var term = termInfo.Key;
                 var info = termInfo.Value;
-
-
             }
         }
 
@@ -141,6 +137,5 @@ namespace Templates
                 }
             }
         }
-
     }
 }

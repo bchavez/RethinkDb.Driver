@@ -14,7 +14,6 @@ using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver.Ast
 {
-
     /// <summary>
     /// Base class for all reql queries.
     /// </summary>
@@ -42,10 +41,7 @@ namespace RethinkDb.Driver.Ast
             list.Add(TermType);
             if( Args.Count > 0 )
             {
-                var collect = Args.Select(a =>
-                    {
-                        return a.Build();
-                    });
+                var collect = Args.Select(a => { return a.Build(); });
                 list.Add(new JArray(collect));
             }
             else
@@ -53,7 +49,7 @@ namespace RethinkDb.Driver.Ast
                 list.Add(new JArray());
             }
 
-            if( OptArgs.Count > 0)
+            if( OptArgs.Count > 0 )
             {
                 list.Add(buildOptarg(this.OptArgs));
             }
@@ -86,8 +82,5 @@ namespace RethinkDb.Driver.Ast
         {
             conn.runNoReply(this, globalOpts);
         }
-
     }
-
-
 }

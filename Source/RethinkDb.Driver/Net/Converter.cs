@@ -11,25 +11,25 @@ using RethinkDb.Driver.Model;
 namespace RethinkDb.Driver.Net
 {
     public class Converter
-	{
-	    //public static Func<long, string, Response> ResponseBuillder = Response.ParseFrom;
+    {
+        //public static Func<long, string, Response> ResponseBuillder = Response.ParseFrom;
 
-	    public const string PSEUDOTYPE_KEY = "$reql_type$";
-	    public const string TIME = "TIME";
-	    public const string GROUPED_DATA = "GROUPED_DATA";
-	    public const string GEOMETRY = "GEOMETRY";
-	    public const string BINARY = "BINARY"; 
+        public const string PSEUDOTYPE_KEY = "$reql_type$";
+        public const string TIME = "TIME";
+        public const string GROUPED_DATA = "GROUPED_DATA";
+        public const string GEOMETRY = "GEOMETRY";
+        public const string BINARY = "BINARY";
 
-	    public static object ConvertPesudoTypes(object obj, FormatOptions fmt)
-	    {
-	        var list = obj as JArray;
-	        var dict = obj as JObject;
+        public static object ConvertPesudoTypes(object obj, FormatOptions fmt)
+        {
+            var list = obj as JArray;
+            var dict = obj as JObject;
 
-	        if( list != null )
-	        {
-	            return list.Select(item => ConvertPesudoTypes(item, fmt))
-	                .ToList();
-	        }
+            if( list != null )
+            {
+                return list.Select(item => ConvertPesudoTypes(item, fmt))
+                    .ToList();
+            }
             else if( dict != null )
             {
                 if( dict[PSEUDOTYPE_KEY] != null )
@@ -39,75 +39,73 @@ namespace RethinkDb.Driver.Net
 
                 return dict.Properties()
                     .ToDictionary(p => p.Name, p => ConvertPesudoTypes(p.Value, fmt));
-
             }
             else
             {
                 return obj;
             }
-	    }
+        }
 
-	    public static object ConvertPesudo(JObject value, FormatOptions fmt)
-	    {
-	        if( value == null ) return null;
+        public static object ConvertPesudo(JObject value, FormatOptions fmt)
+        {
+            if( value == null ) return null;
 
-	        var reqlType = value[PSEUDOTYPE_KEY].ToString();
+            var reqlType = value[PSEUDOTYPE_KEY].ToString();
 
-	        switch( reqlType )
-	        {
+            switch( reqlType )
+            {
                 case TIME:
-	                return fmt.RawTime ? value : (object)GetTime(value);
+                    return fmt.RawTime ? value : (object)GetTime(value);
                 case GROUPED_DATA:
-	                return fmt.RawGroups ? value : (object)GetGrouped(value);
+                    return fmt.RawGroups ? value : (object)GetGrouped(value);
                 case BINARY:
-	                return fmt.RawBinary ? value : (object)GetBinary(value);
+                    return fmt.RawBinary ? value : (object)GetBinary(value);
                 case GEOMETRY:
-	                return value;
+                    return value;
 
                 default:
-	                return value;
-	        }
-	    }
+                    return value;
+            }
+        }
 
-	    private static DateTimeOffset GetTime(JObject value)
-	    {
-	        double epoch_time = value["epoch_time"].ToObject<double>();
-	        string timezone = value["timezone"].ToString();
+        private static DateTimeOffset GetTime(JObject value)
+        {
+            double epoch_time = value["epoch_time"].ToObject<double>();
+            string timezone = value["timezone"].ToString();
 
-	        var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-	        var dt = epoch + TimeSpan.FromSeconds(epoch_time);
+            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var dt = epoch + TimeSpan.FromSeconds(epoch_time);
 
-	        var tz = TimeSpan.Parse(timezone.Substring(1));
-	        if( !timezone.StartsWith("+") )
-	            tz = -tz;
+            var tz = TimeSpan.Parse(timezone.Substring(1));
+            if( !timezone.StartsWith("+") )
+                tz = -tz;
 
-	        return new DateTimeOffset(dt, tz);
-	    }
+            return new DateTimeOffset(dt, tz);
+        }
 
-	    private static byte[] GetBinary(JObject value)
-	    {
-	        var base64 = value["data"].Value<string>();
-	        return Convert.FromBase64String(base64);
-	    }
+        private static byte[] GetBinary(JObject value)
+        {
+            var base64 = value["data"].Value<string>();
+            return Convert.FromBase64String(base64);
+        }
 
-	    private static List<GroupedResult> GetGrouped(JObject value)
-	    {
-	        return value["data"].ToObject<List<List<object>>>()
-	            .Select(g =>
-	                {
-	                    var group = g[0];
-	                    g.RemoveAt(0);
-	                    return new GroupedResult(group, g);
-	                }).ToList();
-	    }
+        private static List<GroupedResult> GetGrouped(JObject value)
+        {
+            return value["data"].ToObject<List<List<object>>>()
+                .Select(g =>
+                    {
+                        var group = g[0];
+                        g.RemoveAt(0);
+                        return new GroupedResult(group, g);
+                    }).ToList();
+        }
 
-	    public static object ToBinary(byte[] data)
-	    {
-	        var mob = new MapObject();
-	        mob.with(PSEUDOTYPE_KEY, BINARY);
-	        mob.with("data", Convert.ToBase64String(data));
-	        return mob;
-	    }
-	}
-
+        public static object ToBinary(byte[] data)
+        {
+            var mob = new MapObject();
+            mob.with(PSEUDOTYPE_KEY, BINARY);
+            mob.with("data", Convert.ToBase64String(data));
+            return mob;
+        }
+    }
 }

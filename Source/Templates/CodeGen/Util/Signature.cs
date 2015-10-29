@@ -6,8 +6,10 @@ namespace Templates.CodeGen.Util
     {
         [JsonProperty("first_arg")]
         public string FirstArg { get; set; }
+
         [JsonProperty("args")]
         public SigArg[] Args { get; set; }
+
         public class SigArg
         {
             public string Var { get; set; }

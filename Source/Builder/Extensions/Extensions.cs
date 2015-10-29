@@ -11,9 +11,9 @@ namespace Builder.Extensions
 {
     public static class ExtensionsForString
     {
-        public static string With( this string format, params object[] args )
+        public static string With(this string format, params object[] args)
         {
-            return string.Format( format, args );
+            return string.Format(format, args);
         }
     }
 
@@ -21,7 +21,7 @@ namespace Builder.Extensions
     {
         public static Directory Wipe(this Directory f)
         {
-            return f.Delete( OnError.Continue ).Create();
+            return f.Delete(OnError.Continue).Create();
         }
     }
 
@@ -34,7 +34,7 @@ namespace Builder.Extensions
             return dash > 0 ? version.Substring(0, dash) : version.Trim();
         }
 
-        public static string PreReleaseName( this string version)
+        public static string PreReleaseName(this string version)
         {
             var dash = version.IndexOf("-");
             return dash > 0 ? version.Substring(dash + 1) : null;
@@ -52,7 +52,7 @@ namespace Builder.Extensions
             if( ver.IsNotNullOrWhiteSpace() )
                 return ver;
             ver = Environment.GetEnvironmentVariable("APPVEYOR_BUILD_VERSION")?.Trim();
-            if (ver.IsNotNullOrWhiteSpace())
+            if( ver.IsNotNullOrWhiteSpace() )
                 return $"0.0.{ver}-ci";
             return "0.0.0-localbuild";
         }

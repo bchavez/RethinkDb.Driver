@@ -44,7 +44,7 @@ namespace Builder
             var nugetExe = FindNugetExe();
 
             var bau = new Bau(Arguments.Parse(args));
-            
+
             //By default, no build arguments...
             bau.DependsOn(Clean, Restore, MsBuild)
                 //Define
@@ -60,8 +60,8 @@ namespace Builder
                             {
                                 Configuration = "Release",
                                 RestorePackages = false, //we already got them from build.cmd
-                            //OutDir = Folders.CompileOutput
-                        };
+                                //OutDir = Folders.CompileOutput
+                            };
                         msb.Targets = new[] {"Rebuild"};
                     })
 
@@ -141,7 +141,6 @@ namespace Builder
                         var gen = new Templates.GeneratorForUnitTests();
                         gen.EnsurePathsExist();
                         gen.CleanUpYamlTests();
-
                     })
 
                 //Define
@@ -153,7 +152,6 @@ namespace Builder
                         var gen = new Templates.GeneratorForUnitTests();
                         gen.EnsurePathsExist();
                         gen.Generate_All();
-
                     })
 
                 //Define
@@ -163,8 +161,8 @@ namespace Builder
                         var monopath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86)}\Mono\bin";
                         exec.Run("cmd.exe")
                             .With("/c",
-                            $@"""{monopath}\setmonopath.bat"" & ",
-                            $@"xbuild.bat {Projects.DriverProject.ProjectFile.ToString()} /p:OutDir={Projects.DriverProject.OutputDirectory}\Release\mono\"
+                                $@"""{monopath}\setmonopath.bat"" & ",
+                                $@"xbuild.bat {Projects.DriverProject.ProjectFile.ToString()} /p:OutDir={Projects.DriverProject.OutputDirectory}\Release\mono\"
                             ).In(Projects.DriverProject.Folder.ToString());
                     })
 
@@ -220,7 +218,6 @@ namespace Builder
                         //to ensure MS build gets called so we know *everything* compiles, including
                         //unit tests.
                     });
-
 
 
             bau.Run();

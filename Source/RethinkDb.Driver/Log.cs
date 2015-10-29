@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 #else
 using Common.Logging;
+
 #endif
 
 namespace RethinkDb.Driver
@@ -15,7 +16,6 @@ namespace RethinkDb.Driver
 #endif
 
 
-        
         public static void Trace(string msg)
         {
 #if DOTNET
@@ -35,4 +35,3 @@ namespace RethinkDb.Driver
         }
     }
 }
-

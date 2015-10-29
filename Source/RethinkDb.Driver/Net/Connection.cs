@@ -146,6 +146,7 @@ namespace RethinkDb.Driver.Net
         {
             return ReadResponse(query, null);
         }
+
         internal virtual Response ReadResponse(Query query, long? deadline)
         {
             return checkOpen().ReadResponse(query, deadline);
@@ -174,7 +175,7 @@ namespace RethinkDb.Driver.Net
         internal virtual dynamic RunQuery<T>(Query query)
         {
             var inst = checkOpen();
-            if (inst.Socket == null) throw new ReqlDriverError("No socket open.");
+            if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
 
             inst.Socket.WriteQuery(query.Token, query.Serialize());
 
@@ -216,12 +217,13 @@ namespace RethinkDb.Driver.Net
         {
             SetDefaultDb(globalOpts);
             Query q = Query.Start(NewToken(), term, globalOpts);
-            if (globalOpts?.ContainsKey("noreply") == true)
+            if( globalOpts?.ContainsKey("noreply") == true )
             {
                 throw new ReqlDriverError("Don't provide the noreply option as an optarg. Use `.runNoReply` instead of `.run`");
             }
             return q;
         }
+
         public virtual dynamic run<T>(ReqlAst term, object globalOpts)
         {
             Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
@@ -236,7 +238,6 @@ namespace RethinkDb.Driver.Net
 
         private void SetDefaultDb(OptArgs globalOpts)
         {
-
             if( globalOpts?.ContainsKey("db") == false && this.dbname != null )
             {
                 // Only override the db global arg if the user hasn't
@@ -321,6 +322,4 @@ namespace RethinkDb.Driver.Net
             }
         }
     }
-
-   
 }

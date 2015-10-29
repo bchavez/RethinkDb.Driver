@@ -65,6 +65,7 @@ namespace Templates.Metadata
             this.Description = RemoveUnwantedTags(this.Description);
             this.Example = RemoveUnwantedTags(this.Example);
         }
+
         internal static string RemoveUnwantedTags(string data)
         {
             return data
@@ -72,11 +73,10 @@ namespace Templates.Metadata
                 .Replace("</pre>", "")
                 .Replace("<p>", "<para>")
                 .Replace("</p>", "</para>")
-                .Replace("\n","\r\n/// "
-                .Replace("&rarr", "JArray"))
-                .Replace("<strong>","")
-                .Replace("</strong>","");
-
+                .Replace("\n", "\r\n/// "
+                    .Replace("&rarr", "JArray"))
+                .Replace("<strong>", "")
+                .Replace("</strong>", "");
         }
     }
 }

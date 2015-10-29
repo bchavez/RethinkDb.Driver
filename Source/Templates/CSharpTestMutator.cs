@@ -21,7 +21,7 @@ namespace Templates
                 {"(List)", "(IList)"},
                 {" Map ", " MapObject "},
                 {"(Map)", "(MapObject)"},
-                {"(OffsetDateTime)", "(DateTimeOffset)" }
+                {"(OffsetDateTime)", "(DateTimeOffset)"}
             };
 
         public static NameValueCollection JavaLineReplacements = new NameValueCollection
@@ -56,7 +56,7 @@ namespace Templates
                 if( TypeRenames[test.ExpectedType] != null )
                     test.ExpectedType = TypeRenames[test.ExpectedType];
 
-                if ( test.TestType == "JavaDef" && !test.Java.StartsWith("ReqlFunction") )
+                if( test.TestType == "JavaDef" && !test.Java.StartsWith("ReqlFunction") )
                 {
                     test.Java = "var " + test.Java.GetAfter(" ");
                 }
@@ -80,16 +80,17 @@ namespace Templates
                 }
             }
 
-            foreach (var typeRename in TypeRenames.AllKeys)
+            foreach( var typeRename in TypeRenames.AllKeys )
             {
-                if (javaLine.Contains(typeRename))
+                if( javaLine.Contains(typeRename) )
                 {
                     javaLine = javaLine.Replace(typeRename, TypeRenames[typeRename]);
                 }
             }
 
             if( javaLine.Contains("byte[]{") )
-            {//upvert java's signed bytes to real bytes.
+            {
+                //upvert java's signed bytes to real bytes.
                 javaLine = ConvertJavaSignedBytes(javaLine);
             }
 
@@ -114,7 +115,7 @@ namespace Templates
                     .Select(s => s.ExtractInt32())
                     .Select(i => i < 0 ? 256 + i : i)
                     .ToArray();
-                
+
                 //... keep converting until we got dat space.
                 javaLine = javaLine.Replace($"byte[]{{{byteStr}}}", $"byte[] {{ {string.Join(", ", unsignedBytes)} }}");
             } while( javaLine.Contains("byte[]{") );
@@ -126,21 +127,37 @@ namespace Templates
         public string ScanLiteral(string input)
         {
             var literal = new StringBuilder(input.Length + 2);
-            foreach (var c in input)
+            foreach( var c in input )
             {
-                switch (c)
+                switch( c )
                 {
-                    case '\0': literal.Append(@"\0"); break;
-                    case '\a': literal.Append(@"\a"); break;
-                    case '\b': literal.Append(@"\b"); break;
-                    case '\f': literal.Append(@"\f"); break;
-                    case '\n': literal.Append(@"\n"); break;
-                    case '\r': literal.Append(@"\r"); break;
-                    case '\t': literal.Append(@"\t"); break;
-                    case '\v': literal.Append(@"\v"); break;
+                    case '\0':
+                        literal.Append(@"\0");
+                        break;
+                    case '\a':
+                        literal.Append(@"\a");
+                        break;
+                    case '\b':
+                        literal.Append(@"\b");
+                        break;
+                    case '\f':
+                        literal.Append(@"\f");
+                        break;
+                    case '\n':
+                        literal.Append(@"\n");
+                        break;
+                    case '\r':
+                        literal.Append(@"\r");
+                        break;
+                    case '\t':
+                        literal.Append(@"\t");
+                        break;
+                    case '\v':
+                        literal.Append(@"\v");
+                        break;
                     default:
                         // ASCII printable character
-                        if (c >= 0x20 && c <= 0x7e)
+                        if( c >= 0x20 && c <= 0x7e )
                         {
                             literal.Append(c);
                             // As UTF16 escaped character

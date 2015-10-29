@@ -20,7 +20,7 @@ namespace RethinkDb.Driver.Net
         {
             var reqlTypes = data.SelectTokens("$..$reql_type$").ToList();
 
-            foreach ( var typeToken in reqlTypes )
+            foreach( var typeToken in reqlTypes )
             {
                 var reqlType = typeToken.Value<string>();
                 //JObject -> JProerty -> JVaule:$reql_type$, go backup the chain.
@@ -58,7 +58,7 @@ namespace RethinkDb.Driver.Net
             string timezone = value["timezone"].ToString();
 
             var tz = TimeSpan.Parse(timezone.Substring(1));
-            if (!timezone.StartsWith("+"))
+            if( !timezone.StartsWith("+") )
                 tz = -tz;
 
             var epoch = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero); // epoch UTC
@@ -93,6 +93,7 @@ namespace RethinkDb.Driver.Net
         }
 
         public static Func<object, JObject> PocoConverter = DefaultPocoConverter;
+
         public static JObject DefaultPocoConverter(object value)
         {
             return JObject.FromObject(value, JsonSerializer.CreateDefault(new JsonSerializerSettings()

@@ -11,14 +11,13 @@ namespace Builder
         {
             Defaults.Logger.Verbosity = VerbosityLevel.Full;
 
-            System.IO.Directory.SetCurrentDirectory( @"..\..\..\.." );
+            System.IO.Directory.SetCurrentDirectory(@"..\..\..\..");
         }
 
         [Test]
         [Explicit]
         public void Test()
         {
-
         }
     }
 }

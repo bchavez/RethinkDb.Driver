@@ -21,7 +21,6 @@ namespace System.Web.WebPages
             return string.Empty;
         }
     }
-
 }
 
 namespace RazorGenerator.Templating
@@ -51,12 +50,13 @@ namespace RazorGenerator.Templating
             {
                 return;
             }
-            genEnv.Append(textToAppend); ;
+            genEnv.Append(textToAppend);
+            ;
         }
 
         public void Write(object value)
         {
-            if( ( value == null ) )
+            if( (value == null) )
             {
                 return;
             }

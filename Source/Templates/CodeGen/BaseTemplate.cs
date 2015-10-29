@@ -47,7 +47,6 @@ namespace Templates.CodeGen
                 var sectionContent = this.ChildTemplate.genEnv.ToString();
                 this.content = content;
                 return sectionContent;
-
             }
             else
             {
@@ -59,7 +58,5 @@ namespace Templates.CodeGen
         {
             return null;
         }
-
-      
     }
 }

@@ -13,7 +13,7 @@ namespace Templates
         [TestFixtureSetUp]
         public void BeforeRunningTestSession()
         {
-//            MetaDb.Initialize(@"..\..\Metadata");
+            //            MetaDb.Initialize(@"..\..\Metadata");
         }
 
         [Test]
@@ -22,10 +22,10 @@ namespace Templates
             var versions = MetaDb.Protocol.SelectToken("VersionDummy.Version").ToObject<Dictionary<string, object>>();
 
             var tmpl = new EnumTemplate
-            {
-                EnumName = "Version",
-                Enums = versions
-            };
+                {
+                    EnumName = "Version",
+                    Enums = versions
+                };
             Console.WriteLine(tmpl.TransformText());
         }
 
@@ -35,10 +35,10 @@ namespace Templates
             var versions = MetaDb.Protocol.SelectToken("VersionDummy.Protocol").ToObject<Dictionary<string, object>>();
 
             var tmpl = new EnumTemplate
-            {
-                EnumName = "Protocol",
-                Enums = versions
-            };
+                {
+                    EnumName = "Protocol",
+                    Enums = versions
+                };
             Console.WriteLine(tmpl.TransformText());
         }
 

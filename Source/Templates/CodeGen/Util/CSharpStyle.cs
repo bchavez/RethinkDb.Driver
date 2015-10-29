@@ -4,17 +4,17 @@ namespace Templates.CodeGen.Util
 {
     public static class CSharpStyle
     {
-        public static string ClassName( this string str)
+        public static string ClassName(this string str)
         {
             return str.Pascalize();
         }
 
-        public static string MethodName( this string str)
+        public static string MethodName(this string str)
         {
             return str.Camelize();
         }
 
-        public static string PropertyName( this string str)
+        public static string PropertyName(this string str)
         {
             return str.Pascalize();
         }

@@ -153,10 +153,16 @@ In the meantime, the ReQL **JavaScript** API documentation can suffice. However,
 ```javascript
 r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback)
 ```
-The **Java** and **C#** driver use `.optArg()` to specify optional arguments. The equivalent query in **Java** (and **C#**) is shown below:
+The **Java** driver (and **C#** driver supports) the use of `.optArg()` method calls to specify optional arguments. The equivalent query in **Java** (and **C#**) is shown below:
 ```csharp
 Cursor<Foo> foo = r.db(DbName).table("marvel").getAll("man_of_steel")
                    .optArg("index", "code_name")
+                   .run<Foo>(conn);
+```
+The **C#** driver also supports anonymous typed optional arguments via indexers for a more common ReQL syntax. The equivalent query above can also be written as:
+```csharp
+Cursor<Foo> foo = r.db(DbName).table("marvel")
+                   .getAll("man_of_steel")[new {index="code_name"}]
                    .run<Foo>(conn);
 ```
 

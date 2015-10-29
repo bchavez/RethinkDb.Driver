@@ -10,8 +10,7 @@ A RethinkDB database driver written in C# striving for 100% API compatibility an
 
 This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/josh/java-driver). This driver and the official Java Driver are *still under active development*.
 
-The code here is a one-to-one port of the Java driver. The basic mechanics and 
-architecture of both drivers are the same.
+The basic mechanics and architecture of both drivers are the same.
 
 ### Download & Install
 **NuGet Package [RethinkDb.Driver](https://www.nuget.org/packages/RethinkDb.Driver/)**
@@ -143,19 +142,19 @@ public void get_a_poco()
     }
 */
 ```
-
-
+[**Check our Wiki for more documentation**](https://github.com/bchavez/RethinkDb.Driver/wiki).
 
 
 Contributing
 ------------
-Here are some helpful guidelines to keep in mind when contributing.  While following them isn't absolutely required, it does help everyone to accept your pull-requests with maximum awesomeness.
+If you'd like to contribute, please consider reading some [helpful tips before making any changes](https://github.com/bchavez/RethinkDb.Driver/blob/master/CONTRIBUTING.md).
+ 
+Contributors
+---------
+Created by [Brian Chavez](http://bchavez.bitarmory.com). Originally ported from the Java Driver by [Josh Kuhn](https://github.com/deontologician).
 
-* :heavy_check_mark: **CONSIDER** adding a unit test if your PR resolves an issue.
-* :heavy_check_mark: **DO** keep pull requests small so they can be easily reviewed. 
-* :heavy_check_mark: **DO** make sure unit tests pass.
-* :x: **AVOID** breaking the continuous integration build. 
-* :x: **AVOID** making significant changes to the driver's overall architecture. We'd like to keep this driver in-sync with the overall architecture of the Java driver so both projects benefit from bug fixes and new features. 
+A big thanks to GitHub and all contributors:
 
-
+* [fiLLLip](https://github.com/fiLLLip) (Filip Andre Larsen Tomren)
+* [cadabloom](https://github.com/cadabloom)
 

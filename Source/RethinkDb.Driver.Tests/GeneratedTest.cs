@@ -9,6 +9,7 @@ using System.Threading;
 using FluentAssertions;
 using FluentAssertions.Common;
 using Newtonsoft.Json.Linq;
+using NLog;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
@@ -42,10 +43,14 @@ namespace RethinkDb.Driver.Tests
             Console.WriteLine($"TOTAL TESTS: {TestCounter}");
         }
 
+        private ManualResetEvent FixtureWaitHandle = new ManualResetEvent(true);
 
         [SetUp]
         public void BeforeEachTest()
         {
+            Log.Trace(">>>>>>>>>>>>>> SET UP");
+            FixtureWaitHandle.WaitOne();
+
             conn = r.connection()
                 .hostname(Hostname)
                 .port(Port)
@@ -76,6 +81,8 @@ namespace RethinkDb.Driver.Tests
         [TearDown]
         public void AfterEachTest()
         {
+            Log.Trace(">>>>>>>>>>>>>> TARE DOWN");
+
             r.db("rethinkdb").table("_debug_scratch").delete().run(conn);
             if( !conn.Open )
             {
@@ -89,6 +96,7 @@ namespace RethinkDb.Driver.Tests
             }
             r.dbDrop(DbName).run(conn);
             conn.close(false);
+            FixtureWaitHandle.Set();
         }
     }
 }

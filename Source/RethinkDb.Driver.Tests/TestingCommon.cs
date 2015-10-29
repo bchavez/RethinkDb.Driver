@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using FluentAssertions;
 using FluentAssertions.Common;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
@@ -28,57 +29,61 @@ namespace RethinkDb.Driver.Tests
 
         public static void assertArrayEquals(IEnumerable expected, IEnumerable obtained)
         {
-            obtained.Should().Equal(expected);
+            var ej = JsonConvert.SerializeObject(expected);
+            var oj = JsonConvert.SerializeObject(expected);
+            oj.Should().Be(ej);
         }
 
         public static void assertEquals(object expected, object obtained)
         {
-            if( expected is IList && obtained is IList )
-            {
-                var l1 = ((IList)expected).OfType<object>();
-                var l2 = ((IList)obtained).OfType<object>();
-
-                l1.Should().Equal(l2);
-                return;
-            }
-
             var err = expected as Err;
             if( err != null )
             {
-                err.Equals(obtained)
-                    .Should().BeTrue();
+                err.Equals(obtained);
 
                 return;
             }
-
-            if( obtained is JValue )
+            var map = expected as MapObject;
+            if( map != null )
             {
-                //try move expected to JValue for equality.
-                var jvalue = new JValue(expected);
-                jvalue.Equals(obtained as JValue).Should().BeTrue();
+                var oobj = obtained as JObject;
+                foreach( var kvp in map )
+                {
+                    var valExpected = map[kvp.Key];
+                    var valObtained = oobj[kvp.Key];
+
+                    CheckEquals(valExpected, valObtained);
+                }
+
                 return;
             }
 
-            if( expected == obtained )
+            if( expected is string && obtained is DateTime )
             {
+                var expectedTime = DateTimeOffset.Parse(expected as string).ToUniversalTime().DateTime;
+                ((DateTime)obtained).ToUniversalTime()
+                    .Should().Be(expectedTime);
+
                 return;
             }
 
-            if( expected.Equals(obtained) )
-            {
-                return;
-            }
+            CheckEquals(expected, obtained);
 
 
-            expected.Should().Be(obtained);
-
-            Console.WriteLine(">>>>>>>>>>>>>>>>>>> ASSERT FAIL");
+            /*Console.WriteLine(">>>>>>>>>>>>>>>>>>> ASSERT FAIL");
 
             if( obtained is Exception )
                 Console.WriteLine(((Exception)obtained).Message);
-            Assert.Fail($"Couldn't compare expected: {expected.GetType().Name} and obtained: {obtained.GetType().Name}");
+            Assert.Fail($"Couldn't compare expected: {expected.GetType().Name} and obtained: {obtained.GetType().Name}");*/
         }
 
+        public static void CheckEquals(object expected, object obtained)
+        {
+            var ej = JsonConvert.SerializeObject(expected);
+            var oj = JsonConvert.SerializeObject(obtained);
+
+            oj.Should().Be(ej);
+        }
 
         public static dynamic maybeRun(object query, Connection conn)
         {
@@ -145,7 +150,7 @@ namespace RethinkDb.Driver.Tests
             {
                 if( obj.GetType() != this.clazz )
                 {
-                    Console.WriteLine($"Classes didn't match: {this.clazz.Name} vs. {obj.GetType().Name}");
+                    obj.GetType().Should().Be(this.clazz);
                     return false;
                 }
 

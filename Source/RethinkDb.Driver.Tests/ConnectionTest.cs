@@ -98,6 +98,13 @@ namespace RethinkDb.Driver.Tests
         }
 
         [Test]
+        public void test_timezone()
+        {
+            var val = r.epochTime(1.4444445).toIso8601().run(conn);
+            Console.WriteLine(val.GetType());
+        }
+
+        [Test]
         public void test_booleans()
         {
             bool t = r.expr(true).run<bool>(conn);

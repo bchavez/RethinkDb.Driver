@@ -164,7 +164,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(1.4444445).to_iso8601() */
                  var obtained = runOrCatch( r.epochTime(1.4444445).toIso8601() ,
-                                            new {
+                                            new { time_format="raw", binary_format="raw", profile=false
                     }, conn);
                  
                      assertEquals(expected_, obtained);                 

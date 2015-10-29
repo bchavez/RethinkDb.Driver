@@ -266,6 +266,7 @@
     <Compile Include="Generated\ReqlAvailabilityError.cs" />
     <Compile Include="Generated\ReqlClientError.cs" />
     <Compile Include="Generated\ReqlCompileError.cs" />
+    <Compile Include="Generated\ReqlDriverCompileError.cs" />
     <Compile Include="Generated\ReqlDriverError.cs" />
     <Compile Include="Generated\ReqlError.cs" />
     <Compile Include="Generated\ReqlInternalError.cs" />
@@ -275,6 +276,7 @@
     <Compile Include="Generated\ReqlQueryLogicError.cs" />
     <Compile Include="Generated\ReqlResourceLimitError.cs" />
     <Compile Include="Generated\ReqlRuntimeError.cs" />
+    <Compile Include="Generated\ReqlServerCompileError.cs" />
     <Compile Include="Generated\ReqlUserError.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Model\Arguments.cs" />

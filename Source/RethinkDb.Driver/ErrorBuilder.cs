@@ -45,7 +45,7 @@ namespace RethinkDb.Driver
 					con = new ReqlClientError(Msg);
 					break;
 				case Proto.ResponseType.COMPILE_ERROR:
-					con = new ReqlCompileError(Msg);
+					con = new ReqlServerCompileError(Msg);
 					break;
 				case Proto.ResponseType.RUNTIME_ERROR:
 			    {

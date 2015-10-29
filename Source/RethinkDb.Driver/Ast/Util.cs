@@ -11,7 +11,7 @@ namespace RethinkDb.Driver.Ast
 
 		public static ReqlAst ToReqlAst(object val)
 		{
-			return ToReqlAst(val, 1000);
+			return ToReqlAst(val, 100);
 		}
 
 	    public static ReqlExpr ToReqlExpr(object val)
@@ -27,6 +27,10 @@ namespace RethinkDb.Driver.Ast
 
 		private static ReqlAst ToReqlAst(object val, int remainingDepth)
 		{
+		    if( remainingDepth <= 0 )
+		    {
+		        throw new ReqlDriverCompileError("Recursion limit reached converting to ReqlAst");
+		    }
 		    var ast = val as ReqlAst;
 		    if( ast != null )
 		    {
@@ -55,7 +59,7 @@ namespace RethinkDb.Driver.Ast
 		            var key = keyObj as string;
 		            if( key == null )
 		            {
-		                throw new ReqlError("Object key can only be strings");
+		                throw new ReqlDriverCompileError("Object key can only be strings");
 		            }
 
 		            obj[key] = ToReqlAst(dict[keyObj]);

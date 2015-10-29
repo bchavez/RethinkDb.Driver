@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -56,11 +57,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan').getField('firstAppearance').run(conn, callback)
 /// </code></example>
-        public GetField (Arguments args, OptArgs optargs)
+        public GetField (Arguments args, object optargs)
              : this(TermType.GET_FIELD, args, optargs) {
         }
 
-    protected GetField (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected GetField (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

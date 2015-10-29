@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 12.0
 /// </code></example>
-        public Round (Arguments args, OptArgs optargs)
+        public Round (Arguments args, object optargs)
              : this(TermType.ROUND, args, optargs) {
         }
 
-    protected Round (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Round (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

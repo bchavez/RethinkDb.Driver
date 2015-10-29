@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -35,11 +36,11 @@ namespace RethinkDb.Driver.Ast {
         }
         public October (Arguments args) : this(args, null) {
         }
-        public October (Arguments args, OptArgs optargs)
+        public October (Arguments args, object optargs)
              : this(TermType.OCTOBER, args, optargs) {
         }
 
-    protected October (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected October (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

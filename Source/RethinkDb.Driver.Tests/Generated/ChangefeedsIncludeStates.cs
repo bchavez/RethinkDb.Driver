@@ -46,8 +46,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.changes(squash=true, include_states=true).limit(1) */
                  var obtained = runOrCatch( tbl.changes().optArg("squash", true).optArg("include_states", true).limit(1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -61,8 +61,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.get(0).changes(squash=true, include_states=true, include_initial=true).limit(3) */
                  var obtained = runOrCatch( tbl.get(0L).changes().optArg("squash", true).optArg("include_states", true).optArg("include_initial", true).limit(3L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -76,8 +76,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.order_by(index='id').limit(10).changes(squash=true, include_states=true, include_initial=true).limit(2) */
                  var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").limit(10L).changes().optArg("squash", true).optArg("include_states", true).optArg("include_initial", true).limit(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -91,8 +91,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert({'id':1}) */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", 1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -106,8 +106,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.order_by(index='id').limit(10).changes(squash=true, include_states=true, include_initial=true).limit(3) */
                  var obtained = runOrCatch( tbl.orderBy().optArg("index", "id").limit(10L).changes().optArg("squash", true).optArg("include_states", true).optArg("include_initial", true).limit(3L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -127,8 +127,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert({'id':2}) */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", 2L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -142,8 +142,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: fetch(tblchanges, 2) */
                  var obtained = runOrCatch( fetch(tblchanges, 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -163,8 +163,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.get(2).update({'a':1}) */
                  var obtained = runOrCatch( tbl.get(2L).update(r.hashMap("a", 1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -178,8 +178,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: fetch(getchanges, 4) */
                  var obtained = runOrCatch( fetch(getchanges, 4L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -205,8 +205,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert({'id':3}) */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", 3L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -220,8 +220,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: fetch(limitchanges, 5) */
                  var obtained = runOrCatch( fetch(limitchanges, 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -235,8 +235,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: fetch(limitchangesdesc, 5) */
                  var obtained = runOrCatch( fetch(limitchangesdesc, 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

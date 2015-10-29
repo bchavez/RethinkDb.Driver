@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: It's as easy as 2 - 2 = 0.</para>
 /// <code>r.expr(2).sub(2).run(conn, callback)
 /// </code></example>
-        public Sub (Arguments args, OptArgs optargs)
+        public Sub (Arguments args, object optargs)
              : this(TermType.SUB, args, optargs) {
         }
 
-    protected Sub (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Sub (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

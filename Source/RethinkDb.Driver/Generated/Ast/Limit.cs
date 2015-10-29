@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Only so many can fit in our Pantheon of heroes.</para>
 /// <code>r.table('marvel').orderBy('belovedness').limit(10).run(conn, callback)
 /// </code></example>
-        public Limit (Arguments args, OptArgs optargs)
+        public Limit (Arguments args, object optargs)
              : this(TermType.LIMIT, args, optargs) {
         }
 
-    protected Limit (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Limit (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

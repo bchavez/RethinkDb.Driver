@@ -52,8 +52,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert([{'id':i, 'a':i} for i in xrange(3)]) */
                  var obtained = runOrCatch( tbl.insert(EnumerableLRange(0, 3L).Select(i => r.hashMap("id", i).with("a", i)).ToList()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -67,8 +67,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.merge({'c':1}).nth(0) */
                  var obtained = runOrCatch( tbl.merge(r.hashMap("c", 1L)).nth(0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -82,8 +82,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: obj.merge({'c':1}) */
                  var obtained = runOrCatch( obj.merge(r.hashMap("c", 1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -97,8 +97,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.without('a').nth(0) */
                  var obtained = runOrCatch( tbl.without("a").nth(0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -112,8 +112,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: obj.without('a') */
                  var obtained = runOrCatch( obj.without("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -127,8 +127,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.pluck('a').nth(0) */
                  var obtained = runOrCatch( tbl.pluck("a").nth(0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -142,8 +142,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: obj.pluck('a') */
                  var obtained = runOrCatch( obj.pluck("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

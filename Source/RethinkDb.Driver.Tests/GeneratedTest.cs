@@ -89,5 +89,6 @@ namespace RethinkDb.Driver.Tests
         }
      
     }
+
     
 }

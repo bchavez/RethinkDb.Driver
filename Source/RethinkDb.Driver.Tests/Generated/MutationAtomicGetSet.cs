@@ -46,8 +46,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert({'id':0}, return_vals=True).pluck('changes', 'first_error') */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0L)).optArg("return_vals", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -61,8 +61,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert({'id':0}, return_changes=True).pluck('changes', 'first_error') */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0L)).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -76,8 +76,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert({'id':0}, return_changes=True).pluck('changes', 'first_error') */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0L)).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -91,8 +91,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert({'id':0}, return_changes='always').pluck('changes', 'first_error') */
                  var obtained = runOrCatch( tbl.insert(r.hashMap("id", 0L)).optArg("return_changes", "always").pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -106,8 +106,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert([{'id':1}], return_changes=True) */
                  var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 1L))).optArg("return_changes", true) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -121,8 +121,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert([{'id':0}], return_changes=True).pluck('changes', 'first_error') */
                  var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0L))).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -136,8 +136,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.get(0).update({'x':1}, return_changes=True).pluck('changes', 'first_error') */
                  var obtained = runOrCatch( tbl.get(0L).update(r.hashMap("x", 1L)).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -151,8 +151,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.get(0).update({'x':r.error("a")}, return_changes=True).pluck('changes', 'first_error') */
                  var obtained = runOrCatch( tbl.get(0L).update(r.hashMap("x", r.error("a"))).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -166,8 +166,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.update({'x':3}, return_changes=True).pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])})) */
                  var obtained = runOrCatch( tbl.update(r.hashMap("x", 3L)).optArg("return_changes", true).pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a => a.bracket("old_val").bracket("id"))))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -181,8 +181,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.get(0).replace({'id':0,'x':2}, return_changes=True).pluck('changes', 'first_error') */
                  var obtained = runOrCatch( tbl.get(0L).replace(r.hashMap("id", 0L).with("x", 2L)).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -196,8 +196,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.get(0).replace(lambda y:{'x':r.error('a')}, return_changes=True).pluck('changes', 'first_error') */
                  var obtained = runOrCatch( tbl.get(0L).replace(y => r.hashMap("x", r.error("a"))).optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -211,8 +211,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.get(0).replace(lambda y:{'x':r.error('a')}, return_changes='always').pluck('changes', 'first_error') */
                  var obtained = runOrCatch( tbl.get(0L).replace(y => r.hashMap("x", r.error("a"))).optArg("return_changes", "always").pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -226,8 +226,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.replace(lambda y:y.without('x'), return_changes=True).pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])})) */
                  var obtained = runOrCatch( tbl.replace(y => y.without("x")).optArg("return_changes", true).pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a => a.bracket("old_val").bracket("id"))))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -241,8 +241,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.replace({'x':1}, return_changes='always').pluck('changes', 'first_error').do(lambda d:d.merge({'changes':d['changes'].order_by(lambda a:a['old_val']['id'])})) */
                  var obtained = runOrCatch( tbl.replace(r.hashMap("x", 1L)).optArg("return_changes", "always").pluck("changes", "first_error").do_(d => d.merge(r.hashMap("changes", d.bracket("changes").orderBy(a => a.bracket("old_val").bracket("id"))))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -256,8 +256,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.get(0).delete(return_changes=True).pluck('changes', 'first_error') */
                  var obtained = runOrCatch( tbl.get(0L).delete().optArg("return_changes", true).pluck("changes", "first_error") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -271,8 +271,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.delete(return_changes=True) */
                  var obtained = runOrCatch( tbl.delete().optArg("return_changes", true) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

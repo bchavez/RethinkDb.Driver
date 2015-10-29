@@ -128,8 +128,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tutcs.map(lambda x:[x.timezone(), x.day()]) */
                  var obtained = runOrCatch( tutcs.map(x => r.array(x.timezone(), x.day())) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -143,8 +143,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tms.map(lambda x:[x.timezone(), x.day()]) */
                  var obtained = runOrCatch( tms.map(x => r.array(x.timezone(), x.day())) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -158,8 +158,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tps.map(lambda x:[x.timezone(), x.day()]) */
                  var obtained = runOrCatch( tps.map(x => r.array(x.timezone(), x.day())) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -173,8 +173,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: ts.concat_map(lambda x:ts.map(lambda y:x - y)).distinct() */
                  var obtained = runOrCatch( ts.concatMap(x => ts.map(y => r.sub(x, y))).distinct() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -188,8 +188,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.now().in_timezone("") */
                  var obtained = runOrCatch( r.now().inTimezone("") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -203,8 +203,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.now().in_timezone("-00") */
                  var obtained = runOrCatch( r.now().inTimezone("-00") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -218,8 +218,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.now().in_timezone("-00:00") */
                  var obtained = runOrCatch( r.now().inTimezone("-00:00") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -233,8 +233,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.now().in_timezone("UTC+00") */
                  var obtained = runOrCatch( r.now().inTimezone("UTC+00") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -248,8 +248,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.now().in_timezone("+00:60") */
                  var obtained = runOrCatch( r.now().inTimezone("+00:60") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -263,8 +263,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.now().in_timezone("+25:00") */
                  var obtained = runOrCatch( r.now().inTimezone("+25:00") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -278,8 +278,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2013, 1, 1, "") */
                  var obtained = runOrCatch( r.time(2013L, 1L, 1L, "") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -293,8 +293,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2013, 1, 1, "-00") */
                  var obtained = runOrCatch( r.time(2013L, 1L, 1L, "-00") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -308,8 +308,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2013, 1, 1, "-00:00") */
                  var obtained = runOrCatch( r.time(2013L, 1L, 1L, "-00:00") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -323,8 +323,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2013, 1, 1, "UTC+00") */
                  var obtained = runOrCatch( r.time(2013L, 1L, 1L, "UTC+00") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -338,8 +338,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2013, 1, 1, "+00:60") */
                  var obtained = runOrCatch( r.time(2013L, 1L, 1L, "+00:60") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -353,8 +353,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2013, 1, 1, "+25:00") */
                  var obtained = runOrCatch( r.time(2013L, 1L, 1L, "+25:00") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -368,8 +368,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(1436428422.339).in_timezone('-08:00').date().to_iso8601() */
                  var obtained = runOrCatch( r.epochTime(1436428422.339).inTimezone("-08:00").date().toIso8601() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -383,8 +383,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(1436428422.339).in_timezone('-07:00').date().to_iso8601() */
                  var obtained = runOrCatch( r.epochTime(1436428422.339).inTimezone("-07:00").date().toIso8601() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

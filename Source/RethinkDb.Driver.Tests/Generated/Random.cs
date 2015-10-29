@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([1,2,3]).sample(3).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L)).sample(3L).distinct().count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([1,2,3]).sample(3).count() */
                  var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L)).sample(3L).count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([1,2,3,4,5,6]).sample(3).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L, 4L, 5L, 6L)).sample(3L).distinct().count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -89,8 +89,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([1,2,3]).sample(4).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L)).sample(4L).distinct().count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([1,2,3]).sample(-1) */
                  var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L)).sample(-1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -119,8 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).sample(1) */
                  var obtained = runOrCatch( r.expr(1L).sample(1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -134,8 +134,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr({}).sample(1) */
                  var obtained = runOrCatch( r.expr(r.hashMap()).sample(1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -149,8 +149,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random().do(lambda x:r.and_(x.ge(0), x.lt(1))) */
                  var obtained = runOrCatch( r.random().do_(x => r.and(x.ge(0L), x.lt(1L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -164,8 +164,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(1, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1))) */
                  var obtained = runOrCatch( r.random(1L).optArg("float", true).do_(x => r.and(x.ge(0L), x.lt(1L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -179,8 +179,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(0, 1, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1))) */
                  var obtained = runOrCatch( r.random(0L, 1L).optArg("float", true).do_(x => r.and(x.ge(0L), x.lt(1L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -194,8 +194,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(1, 0, float=True).do(lambda x:r.and_(x.le(1), x.gt(0))) */
                  var obtained = runOrCatch( r.random(1L, 0L).optArg("float", true).do_(x => r.and(x.le(1L), x.gt(0L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -209,8 +209,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(r.expr(0), 1, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1))) */
                  var obtained = runOrCatch( r.random(r.expr(0L), 1L).optArg("float", true).do_(x => r.and(x.ge(0L), x.lt(1L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -224,8 +224,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(1, r.expr(0), float=True).do(lambda x:r.and_(x.le(1), x.gt(0))) */
                  var obtained = runOrCatch( r.random(1L, r.expr(0L)).optArg("float", true).do_(x => r.and(x.le(1L), x.gt(0L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -239,8 +239,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(r.expr(1), r.expr(0), float=True).do(lambda x:r.and_(x.le(1), x.gt(0))) */
                  var obtained = runOrCatch( r.random(r.expr(1L), r.expr(0L)).optArg("float", true).do_(x => r.and(x.le(1L), x.gt(0L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -254,8 +254,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(0.495, float=True).do(lambda x:r.and_(x.ge(0), x.lt(0.495))) */
                  var obtained = runOrCatch( r.random(0.495).optArg("float", true).do_(x => r.and(x.ge(0L), x.lt(0.495))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -269,8 +269,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-0.495, float=True).do(lambda x:r.and_(x.le(0), x.gt(-0.495))) */
                  var obtained = runOrCatch( r.random(-0.495).optArg("float", true).do_(x => r.and(x.le(0L), x.gt(-0.495))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -284,8 +284,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(1823756.24, float=True).do(lambda x:r.and_(x.ge(0), x.lt(1823756.24))) */
                  var obtained = runOrCatch( r.random(1823756.24).optArg("float", true).do_(x => r.and(x.ge(0L), x.lt(1823756.24))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -299,8 +299,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-1823756.24, float=True).do(lambda x:r.and_(x.le(0), x.gt(-1823756.24))) */
                  var obtained = runOrCatch( r.random(-1823756.24).optArg("float", true).do_(x => r.and(x.le(0L), x.gt(-1823756.24))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -314,8 +314,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(10.5, 20.153, float=True).do(lambda x:r.and_(x.ge(10.5), x.lt(20.153))) */
                  var obtained = runOrCatch( r.random(10.5, 20.153).optArg("float", true).do_(x => r.and(x.ge(10.5), x.lt(20.153))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -329,8 +329,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(20.153, 10.5, float=True).do(lambda x:r.and_(x.le(20.153), x.gt(10.5))) */
                  var obtained = runOrCatch( r.random(20.153, 10.5).optArg("float", true).do_(x => r.and(x.le(20.153), x.gt(10.5))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -344,8 +344,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(31415926.1, 31415926, float=True).do(lambda x:r.and_(x.le(31415926.1), x.gt(31415926))) */
                  var obtained = runOrCatch( r.random(31415926.1, 31415926L).optArg("float", true).do_(x => r.and(x.le(31415926.1), x.gt(31415926L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -359,8 +359,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-10.5, 20.153, float=True).do(lambda x:r.and_(x.ge(-10.5), x.lt(20.153))) */
                  var obtained = runOrCatch( r.random(-10.5, 20.153).optArg("float", true).do_(x => r.and(x.ge(-10.5), x.lt(20.153))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -374,8 +374,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-20.153, -10.5, float=True).do(lambda x:r.and_(x.ge(-20.153), x.lt(-10.5))) */
                  var obtained = runOrCatch( r.random(-20.153, -10.5).optArg("float", true).do_(x => r.and(x.ge(-20.153), x.lt(-10.5))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -389,8 +389,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-31415926, -31415926.1, float=True).do(lambda x:r.and_(x.le(-31415926), x.gt(-31415926.1))) */
                  var obtained = runOrCatch( r.random(-31415926L, -31415926.1).optArg("float", true).do_(x => r.and(x.le(-31415926L), x.gt(-31415926.1))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -404,8 +404,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([r.random(), r.random()]).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(r.random(), r.random())).distinct().count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -419,8 +419,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([r.random(1, float=True), r.random(1, float=True)]).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(r.random(1L).optArg("float", true), r.random(1L).optArg("float", true))).distinct().count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -434,8 +434,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([r.random(0, 1, float=True), r.random(0, 1, float=True)]).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(r.random(0L, 1L).optArg("float", true), r.random(0L, 1L).optArg("float", true))).distinct().count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -449,8 +449,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(0, float=True).eq(0) */
                  var obtained = runOrCatch( r.random(0L).optArg("float", true).eq(0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -464,8 +464,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(5, 5, float=True).eq(5) */
                  var obtained = runOrCatch( r.random(5L, 5L).optArg("float", true).eq(5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -479,8 +479,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-499384756758, -499384756758, float=True).eq(-499384756758) */
                  var obtained = runOrCatch( r.random(-499384756758L, -499384756758L).optArg("float", true).eq(-499384756758L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -494,8 +494,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-93.94757, -93.94757, float=True).eq(-93.94757) */
                  var obtained = runOrCatch( r.random(-93.94757, -93.94757).optArg("float", true).eq(-93.94757) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -509,8 +509,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(294.69148, 294.69148, float=True).eq(294.69148) */
                  var obtained = runOrCatch( r.random(294.69148, 294.69148).optArg("float", true).eq(294.69148) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -536,8 +536,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-float_max, float_max, float=True).do(lambda x:r.and_(x.ge(-float_max), x.lt(float_max))) */
                  var obtained = runOrCatch( r.random(-float_max, float_max).optArg("float", true).do_(x => r.and(x.ge(-float_max), x.lt(float_max))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -551,8 +551,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(float_max, -float_max, float=True).do(lambda x:r.and_(x.le(float_max), x.gt(-float_max))) */
                  var obtained = runOrCatch( r.random(float_max, -float_max).optArg("float", true).do_(x => r.and(x.le(float_max), x.gt(-float_max))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -566,8 +566,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(float_min, float_max, float=True).do(lambda x:r.and_(x.ge(float_min), x.lt(float_max))) */
                  var obtained = runOrCatch( r.random(float_min, float_max).optArg("float", true).do_(x => r.and(x.ge(float_min), x.lt(float_max))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -581,8 +581,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(float_min, -float_max, float=True).do(lambda x:r.and_(x.le(float_min), x.gt(-float_max))) */
                  var obtained = runOrCatch( r.random(float_min, -float_max).optArg("float", true).do_(x => r.and(x.le(float_min), x.gt(-float_max))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -596,8 +596,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-float_min, float_max, float=True).do(lambda x:r.and_(x.ge(-float_min), x.lt(float_max))) */
                  var obtained = runOrCatch( r.random(-float_min, float_max).optArg("float", true).do_(x => r.and(x.ge(-float_min), x.lt(float_max))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -611,8 +611,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-float_min, -float_max, float=True).do(lambda x:r.and_(x.le(-float_min), x.gt(-float_max))) */
                  var obtained = runOrCatch( r.random(-float_min, -float_max).optArg("float", true).do_(x => r.and(x.le(-float_min), x.gt(-float_max))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -638,8 +638,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(256).do(lambda x:r.and_(x.ge(0), x.lt(256))) */
                  var obtained = runOrCatch( r.random(256L).do_(x => r.and(x.ge(0L), x.lt(256L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -653,8 +653,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(0, 256).do(lambda x:r.and_(x.ge(0), x.lt(256))) */
                  var obtained = runOrCatch( r.random(0L, 256L).do_(x => r.and(x.ge(0L), x.lt(256L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -668,8 +668,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(r.expr(256)).do(lambda x:r.and_(x.ge(0), x.lt(256))) */
                  var obtained = runOrCatch( r.random(r.expr(256L)).do_(x => r.and(x.ge(0L), x.lt(256L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -683,8 +683,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(r.expr(0), 256).do(lambda x:r.and_(x.ge(0), x.lt(256))) */
                  var obtained = runOrCatch( r.random(r.expr(0L), 256L).do_(x => r.and(x.ge(0L), x.lt(256L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -698,8 +698,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(0, r.expr(256)).do(lambda x:r.and_(x.ge(0), x.lt(256))) */
                  var obtained = runOrCatch( r.random(0L, r.expr(256L)).do_(x => r.and(x.ge(0L), x.lt(256L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -713,8 +713,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(r.expr(0), r.expr(256)).do(lambda x:r.and_(x.ge(0), x.lt(256))) */
                  var obtained = runOrCatch( r.random(r.expr(0L), r.expr(256L)).do_(x => r.and(x.ge(0L), x.lt(256L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -728,8 +728,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(10, 20).do(lambda x:r.and_(x.ge(10), x.lt(20))) */
                  var obtained = runOrCatch( r.random(10L, 20L).do_(x => r.and(x.ge(10L), x.lt(20L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -743,8 +743,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(9347849, 120937493).do(lambda x:r.and_(x.ge(9347849), x.lt(120937493))) */
                  var obtained = runOrCatch( r.random(9347849L, 120937493L).do_(x => r.and(x.ge(9347849L), x.lt(120937493L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -758,8 +758,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-10, 20).do(lambda x:r.and_(x.ge(-10), x.lt(20))) */
                  var obtained = runOrCatch( r.random(-10L, 20L).do_(x => r.and(x.ge(-10L), x.lt(20L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -773,8 +773,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-20, -10).do(lambda x:r.and_(x.ge(-20), x.lt(-10))) */
                  var obtained = runOrCatch( r.random(-20L, -10L).do_(x => r.and(x.ge(-20L), x.lt(-10L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -788,8 +788,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-120937493, -9347849).do(lambda x:r.and_(x.ge(-120937493), x.lt(-9347849))) */
                  var obtained = runOrCatch( r.random(-120937493L, -9347849L).do_(x => r.and(x.ge(-120937493L), x.lt(-9347849L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -803,8 +803,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([r.random(upper_limit), r.random(upper_limit)]).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(r.random(upper_limit), r.random(upper_limit))).distinct().count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -818,8 +818,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([upper_limit,upper_limit]).map(lambda x:r.random(x)).distinct().count() */
                  var obtained = runOrCatch( r.expr(r.array(upper_limit, upper_limit)).map(x => r.random(x)).distinct().count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -833,8 +833,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-0.5) */
                  var obtained = runOrCatch( r.random(-0.5) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -848,8 +848,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(0.25) */
                  var obtained = runOrCatch( r.random(0.25) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -863,8 +863,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-10, 0.75) */
                  var obtained = runOrCatch( r.random(-10L, 0.75) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -878,8 +878,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-120549.25, 39458) */
                  var obtained = runOrCatch( r.random(-120549.25, 39458L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -893,8 +893,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-6.5, 8.125) */
                  var obtained = runOrCatch( r.random(-6.5, 8.125) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -908,8 +908,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(float=False) */
                  var obtained = runOrCatch( r.random().optArg("float", false) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -923,8 +923,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(0) */
                  var obtained = runOrCatch( r.random(0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -938,8 +938,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(0, 0) */
                  var obtained = runOrCatch( r.random(0L, 0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -953,8 +953,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(515, 515) */
                  var obtained = runOrCatch( r.random(515L, 515L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -968,8 +968,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-956, -956) */
                  var obtained = runOrCatch( r.random(-956L, -956L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -983,8 +983,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(-10) */
                  var obtained = runOrCatch( r.random(-10L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -998,8 +998,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(20, 2) */
                  var obtained = runOrCatch( r.random(20L, 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1013,8 +1013,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(2, -20) */
                  var obtained = runOrCatch( r.random(2L, -20L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1028,8 +1028,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.random(1456, 0) */
                  var obtained = runOrCatch( r.random(1456L, 0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

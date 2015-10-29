@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Is 2 less than 2?</para>
 /// <code>r.expr(2).lt(2).run(conn, callback)
 /// </code></example>
-        public Lt (Arguments args, OptArgs optargs)
+        public Lt (Arguments args, object optargs)
              : this(TermType.LT, args, optargs) {
         }
 
-    protected Lt (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Lt (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

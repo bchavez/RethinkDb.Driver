@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Z.ExtensionMethods;
 
 namespace Templates
@@ -90,7 +92,6 @@ namespace Templates
             {//upvert java's signed bytes to real bytes.
                 javaLine = ConvertJavaSignedBytes(javaLine);
             }
-
 
             return ScanLiteral(javaLine);
             //return javaLine;

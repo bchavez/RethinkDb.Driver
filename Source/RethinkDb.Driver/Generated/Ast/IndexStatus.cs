@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -65,11 +66,11 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Example: Get the status of the <code>timestamp</code> index:</para>
 /// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
-        public IndexStatus (Arguments args, OptArgs optargs)
+        public IndexStatus (Arguments args, object optargs)
              : this(TermType.INDEX_STATUS, args, optargs) {
         }
 
-    protected IndexStatus (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected IndexStatus (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

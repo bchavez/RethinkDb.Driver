@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return post("date").seconds().lt(30)
 /// })
 /// </code></example>
-        public Seconds (Arguments args, OptArgs optargs)
+        public Seconds (Arguments args, object optargs)
              : this(TermType.SECONDS, args, optargs) {
         }
 
-    protected Seconds (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Seconds (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

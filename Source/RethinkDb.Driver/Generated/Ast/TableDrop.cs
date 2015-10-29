@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Drop a table named 'dc_universe'.</para>
 /// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
 /// </code></example>
-        public TableDrop (Arguments args, OptArgs optargs)
+        public TableDrop (Arguments args, object optargs)
              : this(TermType.TABLE_DROP, args, optargs) {
         }
 
-    protected TableDrop (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected TableDrop (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

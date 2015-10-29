@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Drop a secondary index named 'code_name'.</para>
 /// <code>r.table('dc').indexDrop('code_name').run(conn, callback)
 /// </code></example>
-        public IndexDrop (Arguments args, OptArgs optargs)
+        public IndexDrop (Arguments args, object optargs)
              : this(TermType.INDEX_DROP, args, optargs) {
         }
 
-    protected IndexDrop (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected IndexDrop (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -56,11 +57,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Check which pieces of equipment Iron Man has from a fixed list.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setIntersection(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
-        public SetIntersection (Arguments args, OptArgs optargs)
+        public SetIntersection (Arguments args, object optargs)
              : this(TermType.SET_INTERSECTION, args, optargs) {
         }
 
-    protected SetIntersection (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected SetIntersection (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

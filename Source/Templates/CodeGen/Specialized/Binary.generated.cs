@@ -148,12 +148,12 @@ WriteLiteral(" (Arguments args) : this(args, null){\r\n\r\n    }\r\n    public "
             
             #line default
             #line hidden
-WriteLiteral(" (Arguments args, OptArgs optargs) : this(TermType.");
+WriteLiteral(" (Arguments args, object optargs) : this(TermType.");
 
 
             
             #line 31 "..\..\CodeGen\Specialized\Binary.cshtml"
-                                                                          Write(TermName);
+                                                                         Write(TermName);
 
             
             #line default
@@ -168,8 +168,8 @@ WriteLiteral(", args, optargs) {\r\n        \r\n    }\r\n    protected ");
             
             #line default
             #line hidden
-WriteLiteral(" (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, opta" +
-"rgs){\r\n        \r\n    }\r\n");
+WriteLiteral(" (TermType termType, Arguments args, object optargs) : base(termType, args, optar" +
+"gs){\r\n        \r\n    }\r\n");
 
 
 });

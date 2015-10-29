@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return r.table('villains').get(hero('villainDefeated')).delete()
 /// }).run(conn, callback)
 /// </code></example>
-        public ForEach (Arguments args, OptArgs optargs)
+        public ForEach (Arguments args, object optargs)
              : this(TermType.FOR_EACH, args, optargs) {
         }
 
-    protected ForEach (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected ForEach (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

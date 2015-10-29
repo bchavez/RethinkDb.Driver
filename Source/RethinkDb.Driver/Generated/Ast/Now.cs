@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -62,11 +63,11 @@ namespace RethinkDb.Driver.Ast {
 ///     subscription_date: r.now()
 /// }).run(conn, callback)
 /// </code></example>
-        public Now (Arguments args, OptArgs optargs)
+        public Now (Arguments args, object optargs)
              : this(TermType.NOW, args, optargs) {
         }
 
-    protected Now (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Now (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

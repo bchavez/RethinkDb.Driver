@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return the players who have won games.</para>
 /// <code>r.table('players').hasFields('games_won').run(conn, callback)
 /// </code></example>
-        public HasFields (Arguments args, OptArgs optargs)
+        public HasFields (Arguments args, object optargs)
              : this(TermType.HAS_FIELDS, args, optargs) {
         }
 
-    protected HasFields (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected HasFields (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

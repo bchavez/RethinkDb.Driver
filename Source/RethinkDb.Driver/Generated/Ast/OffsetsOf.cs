@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Find the position of the letter 'c'.</para>
 /// <code>r.expr(['a','b','c']).offsetsOf('c').run(conn, callback)
 /// </code></example>
-        public OffsetsOf (Arguments args, OptArgs optargs)
+        public OffsetsOf (Arguments args, object optargs)
              : this(TermType.OFFSETS_OF, args, optargs) {
         }
 
-    protected OffsetsOf (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected OffsetsOf (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

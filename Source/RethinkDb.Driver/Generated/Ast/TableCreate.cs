@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
 /// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
 /// </code></example>
-        public TableCreate (Arguments args, OptArgs optargs)
+        public TableCreate (Arguments args, object optargs)
              : this(TermType.TABLE_CREATE, args, optargs) {
         }
 
-    protected TableCreate (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected TableCreate (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -77,10 +78,34 @@ namespace RethinkDb.Driver.Ast {
 ///  ],
 ///  "primary_replica_tag": "T_STR"
 ///</summary>
-        public TableCreate optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new TableCreate (this.Args, newOptargs);
+        public TableCreate this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new TableCreate (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "primary_key": "T_STR",
+///  "durability": "E_DURABILITY",
+///  "shards": "T_NUM",
+///  "replicas": [
+///    "T_NUM",
+///    "T_OBJECT"
+///  ],
+///  "primary_replica_tag": "T_STR"
+///</summary>
+        public TableCreate optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new TableCreate (this.Args, optArgs);
         }
 
 

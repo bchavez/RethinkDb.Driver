@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Bruce Banner hulks out.</para>
 /// <code>r.expr(["Iron Man", "Bruce", "Spider-Man"]).changeAt(1, "Hulk").run(conn, callback)
 /// </code></example>
-        public ChangeAt (Arguments args, OptArgs optargs)
+        public ChangeAt (Arguments args, object optargs)
              : this(TermType.CHANGE_AT, args, optargs) {
         }
 
-    protected ChangeAt (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected ChangeAt (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

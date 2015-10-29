@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(0).add(1) */
                  var obtained = runOrCatch( r.expr(0L).add(1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.add(0, 1) */
                  var obtained = runOrCatch( r.add(0L, 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(2).sub(1) */
                  var obtained = runOrCatch( r.expr(2L).sub(1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -89,8 +89,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.sub(2, 1) */
                  var obtained = runOrCatch( r.sub(2L, 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(2).div(2) */
                  var obtained = runOrCatch( r.expr(2L).div(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -119,8 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.div(2, 2) */
                  var obtained = runOrCatch( r.div(2L, 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -134,8 +134,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).mul(1) */
                  var obtained = runOrCatch( r.expr(1L).mul(1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -149,8 +149,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.mul(1, 1) */
                  var obtained = runOrCatch( r.mul(1L, 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -164,8 +164,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).mod(2) */
                  var obtained = runOrCatch( r.expr(1L).mod(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -179,8 +179,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.mod(1, 2) */
                  var obtained = runOrCatch( r.mod(1L, 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -194,8 +194,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(True).and_(True) */
                  var obtained = runOrCatch( r.expr(true).and(true) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -209,8 +209,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(True).or_(True) */
                  var obtained = runOrCatch( r.expr(true).or(true) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -224,8 +224,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.and_(True, True) */
                  var obtained = runOrCatch( r.and(true, true) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -239,8 +239,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.or_(True, True) */
                  var obtained = runOrCatch( r.or(true, true) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -254,8 +254,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(False).not_() */
                  var obtained = runOrCatch( r.expr(false).not() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -269,8 +269,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.not_(False) */
                  var obtained = runOrCatch( r.not(false) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -284,8 +284,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).eq(1) */
                  var obtained = runOrCatch( r.expr(1L).eq(1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -299,8 +299,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).ne(2) */
                  var obtained = runOrCatch( r.expr(1L).ne(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -314,8 +314,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).lt(2) */
                  var obtained = runOrCatch( r.expr(1L).lt(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -329,8 +329,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).gt(0) */
                  var obtained = runOrCatch( r.expr(1L).gt(0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -344,8 +344,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).le(1) */
                  var obtained = runOrCatch( r.expr(1L).le(1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -359,8 +359,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).ge(1) */
                  var obtained = runOrCatch( r.expr(1L).ge(1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -374,8 +374,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.eq(1, 1) */
                  var obtained = runOrCatch( r.eq(1L, 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -389,8 +389,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.ne(1, 2) */
                  var obtained = runOrCatch( r.ne(1L, 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -404,8 +404,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.lt(1, 2) */
                  var obtained = runOrCatch( r.lt(1L, 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -419,8 +419,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.gt(1, 0) */
                  var obtained = runOrCatch( r.gt(1L, 0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -434,8 +434,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.le(1, 1) */
                  var obtained = runOrCatch( r.le(1L, 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -449,8 +449,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.ge(1, 1) */
                  var obtained = runOrCatch( r.ge(1L, 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Hour of the day in San Francisco (UTC/GMT -8, without daylight saving time).</para>
 /// <code>r.now().inTimezone('-08:00').hours().run(conn, callback)
 /// </code></example>
-        public InTimezone (Arguments args, OptArgs optargs)
+        public InTimezone (Arguments args, object optargs)
              : this(TermType.IN_TIMEZONE, args, optargs) {
         }
 
-    protected InTimezone (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected InTimezone (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

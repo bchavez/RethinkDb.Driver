@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 /// out the list of IronMan's romantic conquests.</para>
 /// <code>r.table('marvel').get('IronMan').without('personalVictoriesList').run(conn, callback)
 /// </code></example>
-        public Without (Arguments args, OptArgs optargs)
+        public Without (Arguments args, object optargs)
              : this(TermType.WITHOUT, args, optargs) {
         }
 
-    protected Without (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Without (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

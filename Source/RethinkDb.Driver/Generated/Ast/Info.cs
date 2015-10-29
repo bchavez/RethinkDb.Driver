@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
 /// <code>r.table('marvel').info().run(conn, callback)
 /// </code></example>
-        public Info (Arguments args, OptArgs optargs)
+        public Info (Arguments args, object optargs)
              : this(TermType.INFO, args, optargs) {
         }
 
-    protected Info (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Info (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

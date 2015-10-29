@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get the configuration for the <code>users</code> table.</para>
 /// <code>&gt; r.table('users').config().run(conn, callback);
 /// </code></example>
-        public Config (Arguments args, OptArgs optargs)
+        public Config (Arguments args, object optargs)
              : this(TermType.CONFIG, args, optargs) {
         }
 
-    protected Config (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Config (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

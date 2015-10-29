@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
 /// </code></example>
-        public Update (Arguments args, OptArgs optargs)
+        public Update (Arguments args, object optargs)
              : this(TermType.UPDATE, args, optargs) {
         }
 
-    protected Update (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Update (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -81,10 +82,32 @@ namespace RethinkDb.Driver.Ast {
 ///  ],
 ///  "non_atomic": "T_BOOL"
 ///</summary>
-        public Update optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new Update (this.Args, newOptargs);
+        public Update this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new Update (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "durability": "E_DURABILITY",
+///  "return_changes": [
+///    "T_BOOL",
+///    "always"
+///  ],
+///  "non_atomic": "T_BOOL"
+///</summary>
+        public Update optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new Update (this.Args, optArgs);
         }
 
 

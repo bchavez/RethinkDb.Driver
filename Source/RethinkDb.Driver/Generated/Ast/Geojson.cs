@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -77,11 +78,11 @@ namespace RethinkDb.Driver.Ast {
 ///     location: r.geojson(geoJson)
 /// }).run(conn, callback);
 /// </code></example>
-        public Geojson (Arguments args, OptArgs optargs)
+        public Geojson (Arguments args, object optargs)
              : this(TermType.GEOJSON, args, optargs) {
         }
 
-    protected Geojson (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Geojson (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

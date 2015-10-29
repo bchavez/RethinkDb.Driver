@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 /// document.</para>
 /// <code>r.table('marvel').get('IronMan').pluck('reactorState', 'reactorPower').run(conn, callback)
 /// </code></example>
-        public Pluck (Arguments args, OptArgs optargs)
+        public Pluck (Arguments args, object optargs)
              : this(TermType.PLUCK, args, optargs) {
         }
 
-    protected Pluck (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Pluck (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

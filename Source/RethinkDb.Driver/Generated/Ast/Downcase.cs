@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").downcase().run(conn, callback)
 /// </code></example>
-        public Downcase (Arguments args, OptArgs optargs)
+        public Downcase (Arguments args, object optargs)
              : this(TermType.DOWNCASE, args, optargs) {
         }
 
-    protected Downcase (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Downcase (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

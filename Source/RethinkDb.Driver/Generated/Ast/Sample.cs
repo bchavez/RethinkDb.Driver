@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Select 3 random heroes.</para>
 /// <code>r.table('marvel').sample(3).run(conn, callback)
 /// </code></example>
-        public Sample (Arguments args, OptArgs optargs)
+        public Sample (Arguments args, object optargs)
              : this(TermType.SAMPLE, args, optargs) {
         }
 
-    protected Sample (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Sample (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

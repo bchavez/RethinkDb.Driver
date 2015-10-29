@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Hulk and Thor decide to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).spliceAt(1, ["Hulk", "Thor"]).run(conn, callback)
 /// </code></example>
-        public SpliceAt (Arguments args, OptArgs optargs)
+        public SpliceAt (Arguments args, object optargs)
              : this(TermType.SPLICE_AT, args, optargs) {
         }
 
-    protected SpliceAt (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected SpliceAt (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

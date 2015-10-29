@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Is 2 greater than or equal to 2?</para>
 /// <code>r.expr(2).ge(2).run(conn, callback)
 /// </code></example>
-        public Ge (Arguments args, OptArgs optargs)
+        public Ge (Arguments args, object optargs)
              : this(TermType.GE, args, optargs) {
         }
 
-    protected Ge (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Ge (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

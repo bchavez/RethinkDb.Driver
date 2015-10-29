@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get a list of users and their posts, excluding any users who have not made any posts.</para>
 /// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
 /// </code></example>
-        public WithFields (Arguments args, OptArgs optargs)
+        public WithFields (Arguments args, object optargs)
              : this(TermType.WITH_FIELDS, args, optargs) {
         }
 
-    protected WithFields (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected WithFields (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

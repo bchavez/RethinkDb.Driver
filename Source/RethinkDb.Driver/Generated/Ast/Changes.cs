@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 ///   cursor.each(console.log)
 /// })
 /// </code></example>
-        public Changes (Arguments args, OptArgs optargs)
+        public Changes (Arguments args, object optargs)
              : this(TermType.CHANGES, args, optargs) {
         }
 
-    protected Changes (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Changes (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -78,10 +79,29 @@ namespace RethinkDb.Driver.Ast {
 ///  "include_states": "T_BOOL",
 ///  "include_initial": "T_BOOL"
 ///</summary>
-        public Changes optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new Changes (this.Args, newOptargs);
+        public Changes this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new Changes (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "squash": "T_BOOL",
+///  "include_states": "T_BOOL",
+///  "include_initial": "T_BOOL"
+///</summary>
+        public Changes optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new Changes (this.Args, optArgs);
         }
 
 

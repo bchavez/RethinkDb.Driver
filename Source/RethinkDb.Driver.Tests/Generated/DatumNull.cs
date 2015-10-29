@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(null) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(null).type_of() */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).typeOf() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(null).coerce_to('string') */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).coerceTo("string") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -89,8 +89,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(null).coerce_to('null') */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).coerceTo("null") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

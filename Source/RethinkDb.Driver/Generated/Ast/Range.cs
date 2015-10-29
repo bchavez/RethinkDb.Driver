@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// [0, 1, 2, 3]
 /// </code></example>
-        public Range (Arguments args, OptArgs optargs)
+        public Range (Arguments args, object optargs)
              : this(TermType.RANGE, args, optargs) {
         }
 
-    protected Range (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Range (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -68,11 +69,11 @@ namespace RethinkDb.Driver.Ast {
 ///     content: "Dolor sit amet"
 /// }).run(conn, callback)
 /// </code></example>
-        public Insert (Arguments args, OptArgs optargs)
+        public Insert (Arguments args, object optargs)
              : this(TermType.INSERT, args, optargs) {
         }
 
-    protected Insert (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Insert (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -90,10 +91,32 @@ namespace RethinkDb.Driver.Ast {
 ///  ],
 ///  "conflict": "E_CONFLICT"
 ///</summary>
-        public Insert optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new Insert (this.Args, newOptargs);
+        public Insert this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new Insert (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "durability": "E_DURABILITY",
+///  "return_changes": [
+///    "T_BOOL",
+///    "always"
+///  ],
+///  "conflict": "E_CONFLICT"
+///</summary>
+        public Insert optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new Insert (this.Args, optArgs);
         }
 
 

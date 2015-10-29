@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.circle([0,0], 1, num_vertices=3) */
                  var obtained = runOrCatch( r.circle(r.array(0L, 0L), 1L).optArg("num_vertices", 3L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.circle(r.point(0,0), 1, num_vertices=3) */
                  var obtained = runOrCatch( r.circle(r.point(0L, 0L), 1L).optArg("num_vertices", 3L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.circle([0,0], 1, num_vertices=3, fill=false) */
                  var obtained = runOrCatch( r.circle(r.array(0L, 0L), 1L).optArg("num_vertices", 3L).optArg("fill", false) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -89,8 +89,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.circle([0,0], 14000000, num_vertices=3) */
                  var obtained = runOrCatch( r.circle(r.array(0L, 0L), 14000000L).optArg("num_vertices", 3L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.circle([0,0], 1, num_vertices=3, geo_system='WGS84') */
                  var obtained = runOrCatch( r.circle(r.array(0L, 0L), 1L).optArg("num_vertices", 3L).optArg("geo_system", "WGS84") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -119,8 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.circle([0,0], 2, num_vertices=3, geo_system='unit_sphere') */
                  var obtained = runOrCatch( r.circle(r.array(0L, 0L), 2L).optArg("num_vertices", 3L).optArg("geo_system", "unit_sphere") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -134,8 +134,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.circle([0,0], 0.1, num_vertices=3, geo_system='unit_sphere') */
                  var obtained = runOrCatch( r.circle(r.array(0L, 0L), 0.1).optArg("num_vertices", 3L).optArg("geo_system", "unit_sphere") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -149,8 +149,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.circle([0,0], 1.0/1000.0, num_vertices=3, unit='km') */
                  var obtained = runOrCatch( r.circle(r.array(0L, 0L), r.div(1.0, 1000.0)).optArg("num_vertices", 3L).optArg("unit", "km") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -164,8 +164,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.circle([0,0], 1.0/1609.344, num_vertices=3, unit='mi') */
                  var obtained = runOrCatch( r.circle(r.array(0L, 0L), r.div(1.0, 1609.344)).optArg("num_vertices", 3L).optArg("unit", "mi") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

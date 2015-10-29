@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -74,11 +75,11 @@ namespace RethinkDb.Driver.Ast {
 ///     route: r.line([-122.423246,37.779388], [-121.886420,37.329898])
 /// }).run(conn, callback);
 /// </code></example>
-        public Line (Arguments args, OptArgs optargs)
+        public Line (Arguments args, object optargs)
              : this(TermType.LINE, args, optargs) {
         }
 
-    protected Line (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Line (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Delete a single document from the table <code>comments</code>.</para>
 /// <code>r.table("comments").get("7eab9e63-73f1-4f33-8ce4-95cbea626f59").delete().run(conn, callback)
 /// </code></example>
-        public Delete (Arguments args, OptArgs optargs)
+        public Delete (Arguments args, object optargs)
              : this(TermType.DELETE, args, optargs) {
         }
 
-    protected Delete (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Delete (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -74,10 +75,31 @@ namespace RethinkDb.Driver.Ast {
 ///    "always"
 ///  ]
 ///</summary>
-        public Delete optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new Delete (this.Args, newOptargs);
+        public Delete this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new Delete (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "durability": "E_DURABILITY",
+///  "return_changes": [
+///    "T_BOOL",
+///    "always"
+///  ]
+///</summary>
+        public Delete optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new Delete (this.Args, optArgs);
         }
 
 

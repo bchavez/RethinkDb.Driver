@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -56,11 +57,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Check which pieces of equipment Iron Man has, excluding a fixed list.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setDifference(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
-        public SetDifference (Arguments args, OptArgs optargs)
+        public SetDifference (Arguments args, object optargs)
              : this(TermType.SET_DIFFERENCE, args, optargs) {
         }
 
-    protected SetDifference (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected SetDifference (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

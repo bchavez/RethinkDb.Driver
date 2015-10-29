@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
 /// </code></example>
-        public Union (Arguments args, OptArgs optargs)
+        public Union (Arguments args, object optargs)
              : this(TermType.UNION, args, optargs) {
         }
 
-    protected Union (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Union (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

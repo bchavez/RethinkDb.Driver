@@ -91,12 +91,12 @@ namespace RethinkDb.Driver.Test.Generated {
                  @:
                  @:/* Original: @test.Original */
                  @:var obtained = runOrCatch( @test.Java ,
-                 @:                           new OptArgs()
+                 @:                           new {
                  foreach( var opt in test.RunOpts )
                  {
-                     @:.with("@opt.Key", @(opt.Val.IsNumber(0) || opt.Val.IsNumber(1) ?  opt.Val : "\"" + opt.Val + "\"" ))
+                     @:@opt.Key = @(opt.Val.IsNumber(0) || opt.Val.IsNumber(1) ?  opt.Val : "\"" + opt.Val + "\"" ) ,
                  }
-                 @:   , conn);
+                 @:   }, conn);
                  
                  @:
                  if( @test.ExpectedType.EndsWith("[]") )

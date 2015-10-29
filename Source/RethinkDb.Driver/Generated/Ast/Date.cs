@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return user("birthdate").date().eq(r.now().date())
 /// }).run(conn, callback)
 /// </code></example>
-        public Date (Arguments args, OptArgs optargs)
+        public Date (Arguments args, object optargs)
              : this(TermType.DATE, args, optargs) {
         }
 
-    protected Date (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Date (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

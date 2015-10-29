@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -89,11 +90,11 @@ namespace RethinkDb.Driver.Ast {
 ///     )
 /// }).run(conn, callback);
 /// </code></example>
-        public Polygon (Arguments args, OptArgs optargs)
+        public Polygon (Arguments args, object optargs)
              : this(TermType.POLYGON, args, optargs) {
         }
 
-    protected Polygon (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Polygon (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

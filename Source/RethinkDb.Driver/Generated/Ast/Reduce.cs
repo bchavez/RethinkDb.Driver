@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -68,11 +69,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return left.add(right)
 /// }).run(conn, callback);
 /// </code></example>
-        public Reduce (Arguments args, OptArgs optargs)
+        public Reduce (Arguments args, object optargs)
              : this(TermType.REDUCE, args, optargs) {
         }
 
-    protected Reduce (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Reduce (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan')('firstAppearance').run(conn, callback)
 /// </code></example>
-        public Bracket (Arguments args, OptArgs optargs)
+        public Bracket (Arguments args, object optargs)
              : this(TermType.BRACKET, args, optargs) {
         }
 
-    protected Bracket (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Bracket (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// "2015-04-20T18:37:52.690+00:00"
 /// </code></example>
-        public ToIso8601 (Arguments args, OptArgs optargs)
+        public ToIso8601 (Arguments args, object optargs)
              : this(TermType.TO_ISO8601, args, optargs) {
         }
 
-    protected ToIso8601 (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected ToIso8601 (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

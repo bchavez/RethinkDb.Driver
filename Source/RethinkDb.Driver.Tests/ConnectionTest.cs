@@ -208,6 +208,14 @@ namespace RethinkDb.Driver.Tests
         }
 
         [Test]
+        public void getall_indexer_opt_args()
+        {
+            var all = r.db(DbName).table(TableName)
+                .getAll("foo")
+                .run<Foo>(conn);
+        }
+
+        [Test]
         public void Test()
         {
 

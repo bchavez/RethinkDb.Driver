@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -56,11 +57,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Find a document by UUID.</para>
 /// <code>r.table('posts').get('a9849eef-7176-4411-935b-79a6e3c56a74').run(conn, callback)
 /// </code></example>
-        public Get (Arguments args, OptArgs optargs)
+        public Get (Arguments args, object optargs)
              : this(TermType.GET, args, optargs) {
         }
 
-    protected Get (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Get (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return post("date").hours().lt(4)
 /// })
 /// </code></example>
-        public Hours (Arguments args, OptArgs optargs)
+        public Hours (Arguments args, object optargs)
              : this(TermType.HOURS, args, optargs) {
         }
 
-    protected Hours (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Hours (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

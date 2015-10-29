@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(0, 0) */
                  var obtained = runOrCatch( r.point(0L, 0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(0, -90) */
                  var obtained = runOrCatch( r.point(0L, -90L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(0, 90) */
                  var obtained = runOrCatch( r.point(0L, 90L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -89,8 +89,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(-180, 0) */
                  var obtained = runOrCatch( r.point(-180L, 0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(180, 0) */
                  var obtained = runOrCatch( r.point(180L, 0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -119,8 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(0, -91) */
                  var obtained = runOrCatch( r.point(0L, -91L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -134,8 +134,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(0, 91) */
                  var obtained = runOrCatch( r.point(0L, 91L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -149,8 +149,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(-181, 0) */
                  var obtained = runOrCatch( r.point(-181L, 0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -164,8 +164,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(181, 0) */
                  var obtained = runOrCatch( r.point(181L, 0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -179,8 +179,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line([0,0], [0,0]) */
                  var obtained = runOrCatch( r.line(r.array(0L, 0L), r.array(0L, 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -194,8 +194,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line([0,0], [0,1]) */
                  var obtained = runOrCatch( r.line(r.array(0L, 0L), r.array(0L, 1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -209,8 +209,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line([0,0], [1]) */
                  var obtained = runOrCatch( r.line(r.array(0L, 0L), r.array(1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -224,8 +224,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line([0,0], [1,0,0]) */
                  var obtained = runOrCatch( r.line(r.array(0L, 0L), r.array(1L, 0L, 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -239,8 +239,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line([0,0], [0,1], [0,0]) */
                  var obtained = runOrCatch( r.line(r.array(0L, 0L), r.array(0L, 1L), r.array(0L, 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -254,8 +254,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line(r.point(0,0), r.point(0,1), r.point(0,0)) */
                  var obtained = runOrCatch( r.line(r.point(0L, 0L), r.point(0L, 1L), r.point(0L, 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -269,8 +269,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line(r.point(0,0), r.point(1,0), r.line([0,0], [1,0])) */
                  var obtained = runOrCatch( r.line(r.point(0L, 0L), r.point(1L, 0L), r.line(r.array(0L, 0L), r.array(1L, 0L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -284,8 +284,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([0,0], [0,0], [0,0], [0,0]) */
                  var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 0L), r.array(0L, 0L), r.array(0L, 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -299,8 +299,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([0,0], [0,1], [1,0]) */
                  var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -314,8 +314,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([0,0], [0,1], [1,0], [0,0]) */
                  var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L), r.array(0L, 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -329,8 +329,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([0,0], [0,1], [1,0], [-1,0.5]) */
                  var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L), r.array(-1L, 0.5)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -344,8 +344,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([0,0], [0,1], [0]) */
                  var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -359,8 +359,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([0,0], [0,1], [0,1,0]) */
                  var obtained = runOrCatch( r.polygon(r.array(0L, 0L), r.array(0L, 1L), r.array(0L, 1L, 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -374,8 +374,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon(r.point(0,0), r.point(0,1), r.line([0,0], [0,1])) */
                  var obtained = runOrCatch( r.polygon(r.point(0L, 0L), r.point(0L, 1L), r.line(r.array(0L, 0L), r.array(0L, 1L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

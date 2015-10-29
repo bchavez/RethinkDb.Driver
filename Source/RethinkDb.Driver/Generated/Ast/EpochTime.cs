@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("user").get("John").update({birthdate: r.epochTime(531360000)})
 ///     .run(conn, callback)
 /// </code></example>
-        public EpochTime (Arguments args, OptArgs optargs)
+        public EpochTime (Arguments args, object optargs)
              : this(TermType.EPOCH_TIME, args, optargs) {
         }
 
-    protected EpochTime (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected EpochTime (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

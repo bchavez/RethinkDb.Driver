@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -77,11 +78,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get all the users that are 30 years old.</para>
 /// <code>r.table('users').filter({age: 30}).run(conn, callback)
 /// </code></example>
-        public Filter (Arguments args, OptArgs optargs)
+        public Filter (Arguments args, object optargs)
              : this(TermType.FILTER, args, optargs) {
         }
 
-    protected Filter (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Filter (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -94,10 +95,27 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "default": "T_EXPR"
 ///</summary>
-        public Filter optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new Filter (this.Args, newOptargs);
+        public Filter this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new Filter (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "default": "T_EXPR"
+///</summary>
+        public Filter optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new Filter (this.Args, optArgs);
         }
 
 

@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.point(1.5,1.5)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.point(1.5, 1.5)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.point(2.5,2.5)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.point(2.5, 2.5)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).intersects(r.point(1.5,1.5)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).polygonSub(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))).intersects(r.point(1.5, 1.5)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -89,8 +89,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).intersects(r.point(1.05,1.05)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).polygonSub(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))).intersects(r.point(1.05, 1.05)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.point(2,2)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.point(2L, 2L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -119,8 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.point(2,1.5)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.point(2L, 1.5)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -134,8 +134,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.line([1.5,1.5], [2,2])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.line(r.array(1.5, 1.5), r.array(2L, 2L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -149,8 +149,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.line([1.5,1.5], [2,1.5])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.line(r.array(1.5, 1.5), r.array(2L, 1.5))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -164,8 +164,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).intersects(r.point(1.1,1.1)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).polygonSub(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))).intersects(r.point(1.1, 1.1)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -179,8 +179,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).intersects(r.point(1.5,1.1)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).polygonSub(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))).intersects(r.point(1.5, 1.1)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -194,8 +194,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.line([2,2], [3,3])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.line(r.array(2L, 2L), r.array(3L, 3L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -209,8 +209,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.line([2,1.5], [3,3])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.line(r.array(2L, 1.5), r.array(3L, 3L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -224,8 +224,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.line([1.5,1.5], [3,3])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.line(r.array(1.5, 1.5), r.array(3L, 3L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -239,8 +239,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.polygon([1.2,1.2], [1.8,1.2], [1.8,1.8], [1.2,1.8])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.polygon(r.array(1.2, 1.2), r.array(1.8, 1.2), r.array(1.8, 1.8), r.array(1.2, 1.8))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -254,8 +254,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.polygon([1.5,1.5], [2.5,1.5], [2.5,2.5], [1.5,2.5])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.polygon(r.array(1.5, 1.5), r.array(2.5, 1.5), r.array(2.5, 2.5), r.array(1.5, 2.5))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -269,8 +269,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).intersects(r.polygon([1.2,1.2], [1.8,1.2], [1.8,1.8], [1.2,1.8])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).polygonSub(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))).intersects(r.polygon(r.array(1.2, 1.2), r.array(1.8, 1.2), r.array(1.8, 1.8), r.array(1.2, 1.8))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -284,8 +284,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).intersects(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).polygonSub(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))).intersects(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -299,8 +299,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.polygon([2,1.1], [3,1.1], [3,1.9], [2,1.9])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.polygon(r.array(2L, 1.1), r.array(3L, 1.1), r.array(3L, 1.9), r.array(2L, 1.9))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -314,8 +314,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).intersects(r.polygon([2,2], [3,2], [3,3], [2,3])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).intersects(r.polygon(r.array(2L, 2L), r.array(3L, 2L), r.array(3L, 3L), r.array(2L, 3L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -329,8 +329,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(1,1).intersects(r.point(1.5,1.5)) */
                  var obtained = runOrCatch( r.point(1L, 1L).intersects(r.point(1.5, 1.5)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -344,8 +344,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(1,1).intersects(r.point(1,1)) */
                  var obtained = runOrCatch( r.point(1L, 1L).intersects(r.point(1L, 1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -359,8 +359,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line([1,1], [2,1]).intersects(r.point(1,1)) */
                  var obtained = runOrCatch( r.line(r.array(1L, 1L), r.array(2L, 1L)).intersects(r.point(1L, 1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -374,8 +374,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line([1,1], [1,2]).intersects(r.point(1,1.8)) */
                  var obtained = runOrCatch( r.line(r.array(1L, 1L), r.array(1L, 2L)).intersects(r.point(1L, 1.8)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -389,8 +389,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line([1,0], [2,0]).intersects(r.point(1.8,0)) */
                  var obtained = runOrCatch( r.line(r.array(1L, 0L), r.array(2L, 0L)).intersects(r.point(1.8, 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -404,8 +404,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line([1,1], [2,1]).intersects(r.point(1.5,1.5)) */
                  var obtained = runOrCatch( r.line(r.array(1L, 1L), r.array(2L, 1L)).intersects(r.point(1.5, 1.5)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -419,8 +419,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line([1,1], [2,1]).intersects(r.line([2,1], [3,1])) */
                  var obtained = runOrCatch( r.line(r.array(1L, 1L), r.array(2L, 1L)).intersects(r.line(r.array(2L, 1L), r.array(3L, 1L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -434,8 +434,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([r.point(1, 0), r.point(3,0), r.point(2, 0)]).intersects(r.line([0,0], [2, 0])).count() */
                  var obtained = runOrCatch( r.expr(r.array(r.point(1L, 0L), r.point(3L, 0L), r.point(2L, 0L))).intersects(r.line(r.array(0L, 0L), r.array(2L, 0L))).count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -449,8 +449,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.point(1.5,1.5)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.point(1.5, 1.5)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -464,8 +464,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.point(2.5,2.5)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.point(2.5, 2.5)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -479,8 +479,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).includes(r.point(1.5,1.5)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).polygonSub(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))).includes(r.point(1.5, 1.5)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -494,8 +494,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).includes(r.point(1.05,1.05)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).polygonSub(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))).includes(r.point(1.05, 1.05)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -509,8 +509,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.point(2,2)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.point(2L, 2L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -524,8 +524,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.point(2,1.5)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.point(2L, 1.5)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -539,8 +539,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.line([1.5,1.5], [2,2])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.line(r.array(1.5, 1.5), r.array(2L, 2L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -554,8 +554,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.line([1.5,1.5], [2,1.5])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.line(r.array(1.5, 1.5), r.array(2L, 1.5))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -569,8 +569,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).includes(r.point(1.1,1.1)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).polygonSub(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))).includes(r.point(1.1, 1.1)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -584,8 +584,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).includes(r.point(1.5,1.1)) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).polygonSub(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))).includes(r.point(1.5, 1.1)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -599,8 +599,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.line([2,2], [3,3])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.line(r.array(2L, 2L), r.array(3L, 3L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -614,8 +614,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.line([2,1.5], [2,2])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.line(r.array(2L, 1.5), r.array(2L, 2L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -629,8 +629,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.line([2,1], [2,2])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.line(r.array(2L, 1L), r.array(2L, 2L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -644,8 +644,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.line([1.5,1.5], [3,3])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.line(r.array(1.5, 1.5), r.array(3L, 3L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -659,8 +659,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.polygon([1,1], [2,1], [2,2], [1,2])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -674,8 +674,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.polygon([1.2,1.2], [1.8,1.2], [1.8,1.8], [1.2,1.8])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.polygon(r.array(1.2, 1.2), r.array(1.8, 1.2), r.array(1.8, 1.8), r.array(1.2, 1.8))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -689,8 +689,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.polygon([1.5,1.5], [2,1.5], [2,2], [1.5,2])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.polygon(r.array(1.5, 1.5), r.array(2L, 1.5), r.array(2L, 2L), r.array(1.5, 2L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -704,8 +704,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.polygon([1.5,1.5], [2.5,1.5], [2.5,2.5], [1.5,2.5])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.polygon(r.array(1.5, 1.5), r.array(2.5, 1.5), r.array(2.5, 2.5), r.array(1.5, 2.5))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -719,8 +719,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).includes(r.polygon([1.2,1.2], [1.8,1.2], [1.8,1.8], [1.2,1.8])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).polygonSub(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))).includes(r.polygon(r.array(1.2, 1.2), r.array(1.8, 1.2), r.array(1.8, 1.8), r.array(1.2, 1.8))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -734,8 +734,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).polygon_sub(r.polygon([1.1,1.1], [1.9,1.1], [1.9,1.9], [1.1,1.9])).includes(r.polygon([1.1,1.1], [2,1.1], [2,2], [1.1,2])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).polygonSub(r.polygon(r.array(1.1, 1.1), r.array(1.9, 1.1), r.array(1.9, 1.9), r.array(1.1, 1.9))).includes(r.polygon(r.array(1.1, 1.1), r.array(2L, 1.1), r.array(2L, 2L), r.array(1.1, 2L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -749,8 +749,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.polygon([2,1.1], [3,1.1], [3,1.9], [2,1.9])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.polygon(r.array(2L, 1.1), r.array(3L, 1.1), r.array(3L, 1.9), r.array(2L, 1.9))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -764,8 +764,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.polygon([1,1], [2,1], [2,2], [1,2]).includes(r.polygon([2,2], [3,2], [3,3], [2,3])) */
                  var obtained = runOrCatch( r.polygon(r.array(1L, 1L), r.array(2L, 1L), r.array(2L, 2L), r.array(1L, 2L)).includes(r.polygon(r.array(2L, 2L), r.array(3L, 2L), r.array(3L, 3L), r.array(2L, 3L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -779,8 +779,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([r.polygon([0,0], [1,1], [1,0]), r.polygon([0,1], [1,2], [1,1])]).includes(r.point(0,0)).count() */
                  var obtained = runOrCatch( r.expr(r.array(r.polygon(r.array(0L, 0L), r.array(1L, 1L), r.array(1L, 0L)), r.polygon(r.array(0L, 1L), r.array(1L, 2L), r.array(1L, 1L)))).includes(r.point(0L, 0L)).count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -794,8 +794,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(0,0).includes(r.point(0,0)) */
                  var obtained = runOrCatch( r.point(0L, 0L).includes(r.point(0L, 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -809,8 +809,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.line([0,0], [0,1]).includes(r.point(0,0)) */
                  var obtained = runOrCatch( r.line(r.array(0L, 0L), r.array(0L, 1L)).includes(r.point(0L, 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

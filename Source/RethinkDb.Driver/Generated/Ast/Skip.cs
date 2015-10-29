@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Here in conjunction with <code>orderBy</code> we choose to ignore the most successful heroes.</para>
 /// <code>r.table('marvel').orderBy('successMetric').skip(10).run(conn, callback)
 /// </code></example>
-        public Skip (Arguments args, OptArgs optargs)
+        public Skip (Arguments args, object optargs)
              : this(TermType.SKIP, args, optargs) {
         }
 
-    protected Skip (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Skip (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

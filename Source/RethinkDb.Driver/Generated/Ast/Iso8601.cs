@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Update the time of John's birth.</para>
 /// <code>r.table("user").get("John").update({birth: r.ISO8601('1986-11-03T08:30:00-07:00')}).run(conn, callback)
 /// </code></example>
-        public Iso8601 (Arguments args, OptArgs optargs)
+        public Iso8601 (Arguments args, object optargs)
              : this(TermType.ISO8601, args, optargs) {
         }
 
-    protected Iso8601 (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Iso8601 (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -70,10 +71,27 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "default_timezone": "T_STR"
 ///</summary>
-        public Iso8601 optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new Iso8601 (this.Args, newOptargs);
+        public Iso8601 this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new Iso8601 (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "default_timezone": "T_STR"
+///</summary>
+        public Iso8601 optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new Iso8601 (this.Args, optArgs);
         }
 
 

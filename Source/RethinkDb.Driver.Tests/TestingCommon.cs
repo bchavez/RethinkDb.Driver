@@ -93,7 +93,7 @@ namespace RethinkDb.Driver.Tests
             }
         }
 
-        public static dynamic runOrCatch(object query, OptArgs runopts, Connection conn)
+        public static dynamic runOrCatch(object query, object runopts, Connection conn)
         {
             if( query == null )
                 return null;
@@ -119,6 +119,7 @@ namespace RethinkDb.Driver.Tests
             }
             catch( Exception e )
             {
+                //throw e;
                 return e;
             }
         }

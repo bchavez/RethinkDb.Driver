@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback
 /// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
 /// </code></example>
-        public Uuid (Arguments args, OptArgs optargs)
+        public Uuid (Arguments args, object optargs)
              : this(TermType.UUID, args, optargs) {
         }
 
-    protected Uuid (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Uuid (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

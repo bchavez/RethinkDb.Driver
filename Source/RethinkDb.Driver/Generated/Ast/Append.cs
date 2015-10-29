@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').append('newBoots').run(conn, callback)
 /// </code></example>
-        public Append (Arguments args, OptArgs optargs)
+        public Append (Arguments args, object optargs)
              : this(TermType.APPEND, args, optargs) {
         }
 
-    protected Append (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Append (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

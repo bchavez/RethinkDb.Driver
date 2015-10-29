@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 ///     post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
 /// }).run(conn, callback)
 /// </code></example>
-        public CoerceTo (Arguments args, OptArgs optargs)
+        public CoerceTo (Arguments args, object optargs)
              : this(TermType.COERCE_TO, args, optargs) {
         }
 
-    protected CoerceTo (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected CoerceTo (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

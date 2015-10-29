@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using RethinkDb.Driver.Model;
 
 namespace RethinkDb.Driver.Ast
@@ -134,5 +133,4 @@ namespace RethinkDb.Driver.Ast
 
     
     }
-
 }

@@ -62,8 +62,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 + 1000).to_epoch_time() */
                  var obtained = runOrCatch( r.add(t1, 1000L).toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
@@ -77,8 +77,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 - 1000).to_epoch_time() */
                  var obtained = runOrCatch( r.sub(t1, 1000L).toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
@@ -92,8 +92,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 - (t1 - 1000)) */
                  var obtained = runOrCatch( r.sub(t1, r.sub(t1, 1000L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -107,8 +107,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 < t1) */
                  var obtained = runOrCatch( r.lt(t1, t1) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -122,8 +122,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 <= t1) */
                  var obtained = runOrCatch( r.le(t1, t1) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -137,8 +137,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 == t1) */
                  var obtained = runOrCatch( r.eq(t1, t1) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -152,8 +152,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 != t1) */
                  var obtained = runOrCatch( r.ne(t1, t1) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -167,8 +167,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 >= t1) */
                  var obtained = runOrCatch( r.ge(t1, t1) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -182,8 +182,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 > t1) */
                  var obtained = runOrCatch( r.gt(t1, t1) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -197,8 +197,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 < t2) */
                  var obtained = runOrCatch( r.lt(t1, t2) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -212,8 +212,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 <= t2) */
                  var obtained = runOrCatch( r.le(t1, t2) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -227,8 +227,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 == t2) */
                  var obtained = runOrCatch( r.eq(t1, t2) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -242,8 +242,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 != t2) */
                  var obtained = runOrCatch( r.ne(t1, t2) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -257,8 +257,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 >= t2) */
                  var obtained = runOrCatch( r.ge(t1, t2) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -272,8 +272,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (t1 > t2) */
                  var obtained = runOrCatch( r.gt(t1, t2) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -287,8 +287,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.during(t1, t1 + 1000) */
                  var obtained = runOrCatch( t1.during(t1, r.add(t1, 1000L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -302,8 +302,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.during(t1, t1 + 1000, left_bound='open') */
                  var obtained = runOrCatch( t1.during(t1, r.add(t1, 1000L)).optArg("left_bound", "open") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -317,8 +317,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.during(t1, t1) */
                  var obtained = runOrCatch( t1.during(t1, t1) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -332,8 +332,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.during(t1, t1, right_bound='closed') */
                  var obtained = runOrCatch( t1.during(t1, t1).optArg("right_bound", "closed") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -347,8 +347,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.date().to_epoch_time() */
                  var obtained = runOrCatch( t1.date().toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -362,8 +362,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.time_of_day() */
                  var obtained = runOrCatch( t1.timeOfDay() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
@@ -377,8 +377,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.year() */
                  var obtained = runOrCatch( t1.year() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -392,8 +392,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.month() */
                  var obtained = runOrCatch( t1.month() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -407,8 +407,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.day() */
                  var obtained = runOrCatch( t1.day() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -422,8 +422,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.day_of_week() */
                  var obtained = runOrCatch( t1.dayOfWeek() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -437,8 +437,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.day_of_year() */
                  var obtained = runOrCatch( t1.dayOfYear() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -452,8 +452,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.hours() */
                  var obtained = runOrCatch( t1.hours() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -467,8 +467,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.minutes() */
                  var obtained = runOrCatch( t1.minutes() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -482,8 +482,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: t1.seconds() */
                  var obtained = runOrCatch( t1.seconds() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
@@ -497,8 +497,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2013, r.july, 29, 23, 30, 0.1, "-07:00").to_epoch_time() */
                  var obtained = runOrCatch( r.time(2013L, r.july(), 29L, 23L, 30L, 0.1, "-07:00").toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
@@ -512,8 +512,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2013, r.july, 29, 23, 30, 0.1, "-07:00").timezone() */
                  var obtained = runOrCatch( r.time(2013L, r.july(), 29L, 23L, 30L, 0.1, "-07:00").timezone() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -527,8 +527,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2013, r.july, 29, 23).to_epoch_time() */
                  var obtained = runOrCatch( r.time(2013L, r.july(), 29L, 23L).toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -542,8 +542,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2013, r.july, 29, "-07:00").to_epoch_time() */
                  var obtained = runOrCatch( r.time(2013L, r.july(), 29L, "-07:00").toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -557,8 +557,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2013, r.july, 29, "-07:00").timezone() */
                  var obtained = runOrCatch( r.time(2013L, r.july(), 29L, "-07:00").timezone() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -572,8 +572,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.iso8601("2013-07-30T20:56:05-07:00").to_epoch_time() */
                  var obtained = runOrCatch( r.iso8601("2013-07-30T20:56:05-07:00").toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -587,8 +587,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(1375242965).in_timezone("-07:00").to_iso8601() */
                  var obtained = runOrCatch( r.epochTime(1375242965L).inTimezone("-07:00").toIso8601() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -602,8 +602,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.now().type_of() */
                  var obtained = runOrCatch( r.now().typeOf() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -617,8 +617,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (r.now() - r.now()) */
                  var obtained = runOrCatch( r.now().sub(r.now()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -632,8 +632,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.iso8601("2013-07-30T20:56:05").to_iso8601() */
                  var obtained = runOrCatch( r.iso8601("2013-07-30T20:56:05").toIso8601() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -647,8 +647,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.iso8601("2013-07-30T20:56:05", default_timezone='-07').to_iso8601() */
                  var obtained = runOrCatch( r.iso8601("2013-07-30T20:56:05").optArg("default_timezone", "-07").toIso8601() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -662,8 +662,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([r.monday, r.tuesday, r.wednesday, r.thursday, r.friday, r.saturday, r.sunday]) */
                  var obtained = runOrCatch( r.expr(r.array(r.monday(), r.tuesday(), r.wednesday(), r.thursday(), r.friday(), r.saturday(), r.sunday())) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -678,8 +678,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  /* Original: r.expr([r.january, r.february, r.march, r.april, r.may, r.june,
 r.july, r.august, r.september, r.october, r.november, r.december]) */
                  var obtained = runOrCatch( r.expr(r.array(r.january(), r.february(), r.march(), r.april(), r.may(), r.june(), r.july(), r.august(), r.september(), r.october(), r.november(), r.december())) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

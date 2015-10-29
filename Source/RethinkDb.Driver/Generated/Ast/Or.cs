@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -62,11 +63,11 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// true
 /// </code></example>
-        public Or (Arguments args, OptArgs optargs)
+        public Or (Arguments args, object optargs)
              : this(TermType.OR, args, optargs) {
         }
 
-    protected Or (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Or (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

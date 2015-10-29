@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Are there any documents in the marvel table?</para>
 /// <code>r.table('marvel').isEmpty().run(conn, callback)
 /// </code></example>
-        public IsEmpty (Arguments args, OptArgs optargs)
+        public IsEmpty (Arguments args, object optargs)
              : this(TermType.IS_EMPTY, args, optargs) {
         }
 
-    protected IsEmpty (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected IsEmpty (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

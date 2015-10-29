@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -74,11 +75,11 @@ namespace RethinkDb.Driver.Ast {
 ///     .group('player').max('points')['points']
 ///     .ungroup().orderBy(r.desc('reduction')).run(conn)
 /// </code></example>
-        public Ungroup (Arguments args, OptArgs optargs)
+        public Ungroup (Arguments args, object optargs)
              : this(TermType.UNGROUP, args, optargs) {
         }
 
-    protected Ungroup (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Ungroup (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Rename an index on the comments table.</para>
 /// <code>r.table('comments').indexRename('postId', 'messageId').run(conn, callback)
 /// </code></example>
-        public IndexRename (Arguments args, OptArgs optargs)
+        public IndexRename (Arguments args, object optargs)
              : this(TermType.INDEX_RENAME, args, optargs) {
         }
 
-    protected IndexRename (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected IndexRename (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -70,10 +71,27 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "overwrite": "T_BOOL"
 ///</summary>
-        public IndexRename optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new IndexRename (this.Args, newOptargs);
+        public IndexRename this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new IndexRename (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "overwrite": "T_BOOL"
+///</summary>
+        public IndexRename optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new IndexRename (this.Args, optArgs);
         }
 
 

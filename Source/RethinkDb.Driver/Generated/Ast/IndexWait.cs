@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -65,11 +66,11 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Example: Wait for the index <code>timestamp</code> to be ready:</para>
 /// <code>r.table('test').indexWait('timestamp').run(conn, callback)
 /// </code></example>
-        public IndexWait (Arguments args, OptArgs optargs)
+        public IndexWait (Arguments args, object optargs)
              : this(TermType.INDEX_WAIT, args, optargs) {
         }
 
-    protected IndexWait (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected IndexWait (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

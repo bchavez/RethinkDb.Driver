@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return the current time in seconds since the Unix Epoch with millisecond-precision.</para>
 /// <code>r.now().toEpochTime()
 /// </code></example>
-        public ToEpochTime (Arguments args, OptArgs optargs)
+        public ToEpochTime (Arguments args, object optargs)
              : this(TermType.TO_EPOCH_TIME, args, optargs) {
         }
 
-    protected ToEpochTime (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected ToEpochTime (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

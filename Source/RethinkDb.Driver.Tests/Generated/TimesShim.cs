@@ -50,8 +50,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).to_iso8601() */
                  var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, PacificTimeZone())).toIso8601() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -65,8 +65,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).to_iso8601() */
                  var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, UTCTimeZone())).toIso8601() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -80,8 +80,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(datetime.fromtimestamp(t, PacificTimeZone())).to_epoch_time() */
                  var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, PacificTimeZone())).toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
@@ -95,8 +95,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(datetime.fromtimestamp(t, UTCTimeZone())).to_epoch_time() */
                  var obtained = runOrCatch( r.expr(datetime.fromtimestamp(t, UTCTimeZone())).toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }

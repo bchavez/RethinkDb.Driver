@@ -35,6 +35,7 @@
             ChildTemplate = child
         };
     }
+
 }
 
 @helper RenderCtorXmlDoc(string term)
@@ -61,12 +62,12 @@
         @:}
 
         @RenderCtorXmlDoc(this.TermName)
-        @:public @Class(ClassName) (Arguments args, OptArgs optargs)
+        @:public @Class(ClassName) (Arguments args, object optargs)
         @:     : this(TermType.@TermName, args, optargs) {
         @:}
     }
 
-    protected @Class(ClassName) (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected @Class(ClassName) (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 }
@@ -82,10 +83,27 @@
 @:///<summary>
 @:/// @optArgs.ToString().Trim('{', '}').Trim().Replace("\n","\n///")
 @:///</summary>
-        @:public @Class(ClassName) optArg(string optname, object value) {
-        @:     var newOptargs = OptArgs.fromMap(this.OptArgs)
-        @:                             .with(optname, value);
-        @:     return new @Class(ClassName) (this.Args, newOptargs);
+        @:public @Class(ClassName) this[object optArgs] {
+        @:    get
+        @:    {
+        @:        if(this.OptArgs is Hashtable)
+        @:            throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        @:
+        @:        return new @Class(ClassName) (this.Args, optArgs);
+        @:    }
+        @:}
+        @:
+@:///<summary>
+@:/// @optArgs.ToString().Trim('{', '}').Trim().Replace("\n","\n///")
+@:///</summary>
+        @:public @Class(ClassName) optArg(string key, object val){
+        @:    if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+        @:        throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        @:
+        @:    var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+        @:    optArgs[key] = val;
+        @:
+        @:    return new @Class(ClassName) (this.Args, optArgs);
         @:}
      }
 }
@@ -100,6 +118,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 @RenderSection("add_imports")
 
@@ -150,7 +169,7 @@ namespace RethinkDb.Driver.Ast {
                                 @:arguments.CoerceAndAdd(@ArgumentVariable(param.Var));
                             }
                         }
-                        @:return new @Class(info["classname"].ToString()) (arguments);
+                        @:return new @Class(info["classname"].ToString()) (arguments );
 
                         @:}
                     }

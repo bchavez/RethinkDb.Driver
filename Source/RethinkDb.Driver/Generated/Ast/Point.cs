@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -65,11 +66,11 @@ namespace RethinkDb.Driver.Ast {
 ///     location: r.point(-122.423246,37.779388)
 /// }).run(conn, callback);
 /// </code></example>
-        public Point (Arguments args, OptArgs optargs)
+        public Point (Arguments args, object optargs)
              : this(TermType.POINT, args, optargs) {
         }
 
-    protected Point (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Point (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

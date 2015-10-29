@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -56,11 +57,11 @@ namespace RethinkDb.Driver.Ast {
 /// r.table('players').eqJoin('gameId', r.table('games')).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
-        public EqJoin (Arguments args, OptArgs optargs)
+        public EqJoin (Arguments args, object optargs)
              : this(TermType.EQ_JOIN, args, optargs) {
         }
 
-    protected EqJoin (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected EqJoin (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -73,10 +74,27 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "index": "T_STR"
 ///</summary>
-        public EqJoin optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new EqJoin (this.Args, newOptargs);
+        public EqJoin this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new EqJoin (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "index": "T_STR"
+///</summary>
+        public EqJoin optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new EqJoin (this.Args, optArgs);
         }
 
 

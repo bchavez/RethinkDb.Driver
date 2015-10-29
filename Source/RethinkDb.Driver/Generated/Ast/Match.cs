@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -80,11 +81,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return doc('name').match("^A")
 /// }).run(conn, callback)
 /// </code></example>
-        public Match (Arguments args, OptArgs optargs)
+        public Match (Arguments args, object optargs)
              : this(TermType.MATCH, args, optargs) {
         }
 
-    protected Match (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Match (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

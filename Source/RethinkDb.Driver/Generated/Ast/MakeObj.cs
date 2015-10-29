@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -31,17 +32,16 @@ namespace RethinkDb.Driver.Ast {
     
     
     
-        public MakeObj(Object arg) : this(new Arguments(arg), null) {
+        public MakeObj(Object arg, object optArgs = null) : this(new Arguments(arg), optArgs) {
 
         }
-        public MakeObj(OptArgs opts) : this(new Arguments(), opts) {
-        }
+
         public MakeObj(Arguments args) : this(args, null) {
         }
-        public MakeObj(Arguments args, OptArgs optargs) : 
+        public MakeObj(Arguments args, object optargs) : 
                this(TermType.MAKE_OBJ, args, optargs) {
         }
-        protected MakeObj(TermType termType, Arguments args, OptArgs optargs)
+        protected MakeObj(TermType termType, Arguments args, object optargs)
               : base(termType, args, optargs){
 
         }
@@ -63,13 +63,13 @@ namespace RethinkDb.Driver.Ast {
 
 
 
-
+    
 
 
 
     
         public static MakeObj fromMap(Dictionary<string, ReqlAst> map){
-            return new MakeObj(OptArgs.fromMap(map));
+             return new MakeObj(new Arguments(), map);
         }
 
 

@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(r.epoch_time(896571240)) */
                  var obtained = runOrCatch( r.expr(r.epochTime(896571240L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr({'stuff':r.epoch_time(896571240), 'more':[r.epoch_time(996571240)]}) */
                  var obtained = runOrCatch( r.expr(r.hashMap("stuff", r.epochTime(896571240L)).with("more", r.array(r.epochTime(996571240L)))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([r.epoch_time(796571240), r.epoch_time(896571240), {'stuff':r.epoch_time(996571240)}]) */
                  var obtained = runOrCatch( r.expr(r.array(r.epochTime(796571240L), r.epochTime(896571240L), r.hashMap("stuff", r.epochTime(996571240L)))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -89,8 +89,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr({'nested':{'time':r.epoch_time(896571240)}}) */
                  var obtained = runOrCatch( r.expr(r.hashMap("nested", r.hashMap("time", r.epochTime(896571240L)))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([1, "two", ["a", r.epoch_time(896571240), 3]]) */
                  var obtained = runOrCatch( r.expr(r.array(1L, "two", r.array("a", r.epochTime(896571240L), 3L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -119,8 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(1).to_epoch_time() */
                  var obtained = runOrCatch( r.epochTime(1L).toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -134,8 +134,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(-1).to_epoch_time() */
                  var obtained = runOrCatch( r.epochTime(-1L).toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -149,8 +149,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(1.4444445).to_epoch_time() */
                  var obtained = runOrCatch( r.epochTime(1.4444445).toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
@@ -164,8 +164,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(1.4444445).to_iso8601() */
                  var obtained = runOrCatch( r.epochTime(1.4444445).toIso8601() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -179,8 +179,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(1.4444445).seconds() */
                  var obtained = runOrCatch( r.epochTime(1.4444445).seconds() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
@@ -194,8 +194,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(253430000000).year() */
                  var obtained = runOrCatch( r.epochTime(253430000000L).year() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -209,8 +209,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(253430000000).to_iso8601() */
                  var obtained = runOrCatch( r.epochTime(253430000000L).toIso8601() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -224,8 +224,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(253440000000).year() */
                  var obtained = runOrCatch( r.epochTime(253440000000L).year() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -239,8 +239,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(253440000000).to_epoch_time() */
                  var obtained = runOrCatch( r.epochTime(253440000000L).toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -254,8 +254,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(-17980000000).year() */
                  var obtained = runOrCatch( r.epochTime(-17980000000L).year() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -269,8 +269,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(-17990000000).year() */
                  var obtained = runOrCatch( r.epochTime(-17990000000L).year() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -284,8 +284,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.epoch_time(-17990000000).to_epoch_time() */
                  var obtained = runOrCatch( r.epochTime(-17990000000L).toEpochTime() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

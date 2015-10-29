@@ -14,9 +14,9 @@ namespace RethinkDb.Driver.Ast
 	    public QueryType Type { get; }
 	    public long Token { get; }
 	    public ReqlAst Term { get; }
-	    public OptArgs GlobalOptions { get; }
+	    public JObject GlobalOptions { get; }
 
-	    public Query(QueryType type, long token, ReqlAst term, OptArgs globalOptions)
+	    public Query(QueryType type, long token, ReqlAst term, JObject globalOptions)
 		{
 			this.Type = type;
 			this.Token = token;
@@ -24,28 +24,28 @@ namespace RethinkDb.Driver.Ast
 			this.GlobalOptions = globalOptions;
 		}
 
-		public Query(QueryType type, long token) : this(type, token, null, new OptArgs())
+		public Query(QueryType type, long token) : this(type, token, null, null)
 		{
 		}
 
 		public static Query Stop(long token)
 		{
-			return new Query(QueryType.STOP, token, null, new OptArgs());
+			return new Query(QueryType.STOP, token, null, null);
 		}
 
 		public static Query Continue(long token)
 		{
-			return new Query(QueryType.CONTINUE, token, null, new OptArgs());
+			return new Query(QueryType.CONTINUE, token, null, null);
 		}
 
-		public static Query Start(long token, ReqlAst term, OptArgs globalOptions)
+		public static Query Start(long token, ReqlAst term, JObject globalOptions)
 		{
 			return new Query(QueryType.START, token, term, globalOptions);
 		}
 
 		public static Query NoReplyWait(long token)
 		{
-			return new Query(QueryType.NOREPLY_WAIT, token, null, new OptArgs());
+			return new Query(QueryType.NOREPLY_WAIT, token, null, null);
 		}
 
 		public virtual string Serialize()
@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Ast
 		    }
 		    if( GlobalOptions != null )
 		    {
-		        queryArr.Add(ReqlAst.buildOptarg(GlobalOptions));
+		        queryArr.Add(GlobalOptions);
 		    }
 
             string queryJson = queryArr.ToString(Formatting.None);

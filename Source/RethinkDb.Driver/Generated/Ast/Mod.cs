@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)
 /// </code></example>
-        public Mod (Arguments args, OptArgs optargs)
+        public Mod (Arguments args, object optargs)
              : this(TermType.MOD, args, optargs) {
         }
 
-    protected Mod (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Mod (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

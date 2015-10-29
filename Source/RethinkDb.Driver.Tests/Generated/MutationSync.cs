@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db('test').table_create('test1') */
                  var obtained = runOrCatch( r.db("test").tableCreate("test1") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db('test').table_create('test1soft') */
                  var obtained = runOrCatch( r.db("test").tableCreate("test1soft") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db('test').table('test1soft').config().update({'durability':'soft'}) */
                  var obtained = runOrCatch( r.db("test").table("test1soft").config().update(r.hashMap("durability", "soft")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -101,8 +101,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.index_create('x') */
                  var obtained = runOrCatch( tbl.indexCreate("x") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -116,8 +116,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.index_wait('x').pluck('index', 'ready') */
                  var obtained = runOrCatch( tbl.indexWait("x").pluck("index", "ready") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -131,8 +131,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.sync() */
                  var obtained = runOrCatch( tbl.sync() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -146,8 +146,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl_soft.sync() */
                  var obtained = runOrCatch( tbl_soft.sync() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -161,9 +161,9 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.sync() */
                  var obtained = runOrCatch( tbl.sync() ,
-                                            new OptArgs()
-                     .with("durability", "soft")
-                    , conn);
+                                            new {
+                     durability = "soft" ,
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -177,9 +177,9 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.sync() */
                  var obtained = runOrCatch( tbl.sync() ,
-                                            new OptArgs()
-                     .with("durability", "hard")
-                    , conn);
+                                            new {
+                     durability = "hard" ,
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -193,8 +193,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db('test').table_drop('test1') */
                  var obtained = runOrCatch( r.db("test").tableDrop("test1") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -208,8 +208,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db('test').table_drop('test1soft') */
                  var obtained = runOrCatch( r.db("test").tableDrop("test1soft") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

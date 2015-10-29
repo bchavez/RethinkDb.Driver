@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return user("birthdate").year().eq(1986)
 /// }).run(conn, callback)
 /// </code></example>
-        public Year (Arguments args, OptArgs optargs)
+        public Year (Arguments args, object optargs)
              : this(TermType.YEAR, args, optargs) {
         }
 
-    protected Year (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Year (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).default(2) */
                  var obtained = runOrCatch( r.expr(1L).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(null).default(2) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr({})['b'].default(2) */
                  var obtained = runOrCatch( r.expr(r.hashMap()).bracket("b").default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -89,8 +89,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(r.expr('a')['b']).default(2) */
                  var obtained = runOrCatch( r.expr(r.expr("a").bracket("b")).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([]).reduce(lambda a,b:a+b).default(2) */
                  var obtained = runOrCatch( r.expr(r.array()).reduce((a, b) => r.add(a, b)).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -119,8 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([]).union([]).reduce(lambda a,b:a+b).default(2) */
                  var obtained = runOrCatch( r.expr(r.array()).union(r.array()).reduce((a, b) => r.add(a, b)).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -134,8 +134,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('a').reduce(lambda a,b:a+b).default(2) */
                  var obtained = runOrCatch( r.expr("a").reduce((a, b) => r.add(a, b)).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -149,8 +149,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (r.expr(null) + 5).default(2) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).add(5L).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -164,8 +164,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (5 + r.expr(null)).default(2) */
                  var obtained = runOrCatch( r.add(5L, r.expr((ReqlExpr) null)).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -179,8 +179,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (5 - r.expr(null)).default(2) */
                  var obtained = runOrCatch( r.sub(5L, r.expr((ReqlExpr) null)).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -194,8 +194,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (r.expr(null) - 5).default(2) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).sub(5L).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -209,8 +209,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (r.expr('a') + 5).default(2) */
                  var obtained = runOrCatch( r.expr("a").add(5L).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -224,8 +224,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (5 + r.expr('a')).default(2) */
                  var obtained = runOrCatch( r.add(5L, r.expr("a")).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -239,8 +239,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (r.expr('a') - 5).default(2) */
                  var obtained = runOrCatch( r.expr("a").sub(5L).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -254,8 +254,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (5 - r.expr('a')).default(2) */
                  var obtained = runOrCatch( r.sub(5L, r.expr("a")).default_(2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -269,8 +269,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).default(r.error()) */
                  var obtained = runOrCatch( r.expr(1L).default_(r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -284,8 +284,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(null).default(r.error()) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).default_(r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -299,8 +299,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr({})['b'].default(r.error()) */
                  var obtained = runOrCatch( r.expr(r.hashMap()).bracket("b").default_(r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -314,8 +314,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([]).reduce(lambda a,b:a+b).default(r.error) */
                  var obtained = runOrCatch( r.expr(r.array()).reduce((a, b) => r.add(a, b)).default_(r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -329,8 +329,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([]).union([]).reduce(lambda a,b:a+b).default(r.error) */
                  var obtained = runOrCatch( r.expr(r.array()).union(r.array()).reduce((a, b) => r.add(a, b)).default_(r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -344,8 +344,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (r.expr(null) + 5).default(r.error) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).add(5L).default_(r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -359,8 +359,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (5 + r.expr(null)).default(r.error) */
                  var obtained = runOrCatch( r.add(5L, r.expr((ReqlExpr) null)).default_(r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -374,8 +374,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (5 - r.expr(null)).default(r.error) */
                  var obtained = runOrCatch( r.sub(5L, r.expr((ReqlExpr) null)).default_(r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -389,8 +389,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (r.expr(null) - 5).default(r.error) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).sub(5L).default_(r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -404,8 +404,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).default(lambda e:e) */
                  var obtained = runOrCatch( r.expr(1L).default_(e => e) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -419,8 +419,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(null).default(lambda e:e) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).default_(e => e) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -434,8 +434,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr({})['b'].default(lambda e:e) */
                  var obtained = runOrCatch( r.expr(r.hashMap()).bracket("b").default_(e => e) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -449,8 +449,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([]).reduce(lambda a,b:a+b).default(lambda e:e) */
                  var obtained = runOrCatch( r.expr(r.array()).reduce((a, b) => r.add(a, b)).default_(e => e) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -464,8 +464,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr([]).union([]).reduce(lambda a,b:a+b).default(lambda e:e) */
                  var obtained = runOrCatch( r.expr(r.array()).union(r.array()).reduce((a, b) => r.add(a, b)).default_(e => e) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -479,8 +479,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (r.expr(null) + 5).default(lambda e:e) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).add(5L).default_(e => e) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -494,8 +494,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (5 + r.expr(null)).default(lambda e:e) */
                  var obtained = runOrCatch( r.add(5L, r.expr((ReqlExpr) null)).default_(e => e) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -509,8 +509,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (5 - r.expr(null)).default(lambda e:e) */
                  var obtained = runOrCatch( r.sub(5L, r.expr((ReqlExpr) null)).default_(e => e) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -524,8 +524,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: (r.expr(null) - 5).default(lambda e:e) */
                  var obtained = runOrCatch( r.expr((ReqlExpr) null).sub(5L).default_(e => e) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -545,8 +545,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1)) */
                  var obtained = runOrCatch( arr.filter(x => x.bracket("a").eq(1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -560,8 +560,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=False) */
                  var obtained = runOrCatch( arr.filter(x => x.bracket("a").eq(1L)).optArg("default", false) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -575,8 +575,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=True) */
                  var obtained = runOrCatch( arr.filter(x => x.bracket("a").eq(1L)).optArg("default", true) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -590,8 +590,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=r.js('true')) */
                  var obtained = runOrCatch( arr.filter(x => x.bracket("a").eq(1L)).optArg("default", r.js("true")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -605,8 +605,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=r.js('false')) */
                  var obtained = runOrCatch( arr.filter(x => x.bracket("a").eq(1L)).optArg("default", r.js("false")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -620,8 +620,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:x['a'].eq(1), default=r.error()) */
                  var obtained = runOrCatch( arr.filter(x => x.bracket("a").eq(1L)).optArg("default", r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -635,8 +635,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(False).do(lambda d:arr.filter(lambda x:x['a'].eq(1), default=d)) */
                  var obtained = runOrCatch( r.expr(false).do_(d => arr.filter(x => x.bracket("a").eq(1L)).optArg("default", d)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -650,8 +650,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(True).do(lambda d:arr.filter(lambda x:x['a'].eq(1), default=d)).order_by('a') */
                  var obtained = runOrCatch( r.expr(true).do_(d => arr.filter(x => x.bracket("a").eq(1L)).optArg("default", d)).orderBy("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -665,8 +665,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:x['a'].default(0).eq(1)) */
                  var obtained = runOrCatch( arr.filter(x => x.bracket("a").default_(0L).eq(1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -680,8 +680,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:x['a'].default(1).eq(1)).order_by('a') */
                  var obtained = runOrCatch( arr.filter(x => x.bracket("a").default_(1L).eq(1L)).orderBy("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -695,8 +695,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:x['a'].default(r.error()).eq(1)) */
                  var obtained = runOrCatch( arr.filter(x => x.bracket("a").default_(r.error()).eq(1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -710,8 +710,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(0).do(lambda i:arr.filter(lambda x:x['a'].default(i).eq(1))) */
                  var obtained = runOrCatch( r.expr(0L).do_(i => arr.filter(x => x.bracket("a").default_(i).eq(1L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -725,8 +725,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).do(lambda i:arr.filter(lambda x:x['a'].default(i).eq(1))).order_by('a') */
                  var obtained = runOrCatch( r.expr(1L).do_(i => arr.filter(x => x.bracket("a").default_(i).eq(1L))).orderBy("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -740,8 +740,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2))) */
                  var obtained = runOrCatch( arr.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -755,8 +755,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=False) */
                  var obtained = runOrCatch( arr.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", false) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -770,8 +770,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=True).order_by('a') */
                  var obtained = runOrCatch( arr.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", true).orderBy("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -785,8 +785,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: arr.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=r.error()) */
                  var obtained = runOrCatch( arr.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -800,8 +800,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.table_create('default_test') */
                  var obtained = runOrCatch( r.tableCreate("default_test") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -815,8 +815,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.table('default_test').insert(arr) */
                  var obtained = runOrCatch( r.table("default_test").insert(arr) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -836,8 +836,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda x:x['a'].eq(1)) */
                  var obtained = runOrCatch( tbl.filter(x => x.bracket("a").eq(1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -851,8 +851,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda x:x['a'].eq(1), default=False) */
                  var obtained = runOrCatch( tbl.filter(x => x.bracket("a").eq(1L)).optArg("default", false) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -866,8 +866,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda x:x['a'].eq(1), default=True) */
                  var obtained = runOrCatch( tbl.filter(x => x.bracket("a").eq(1L)).optArg("default", true) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -881,8 +881,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda x:x['a'].eq(1), default=r.error()) */
                  var obtained = runOrCatch( tbl.filter(x => x.bracket("a").eq(1L)).optArg("default", r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -896,8 +896,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(False).do(lambda d:tbl.filter(lambda x:x['a'].eq(1), default=d)) */
                  var obtained = runOrCatch( r.expr(false).do_(d => tbl.filter(x => x.bracket("a").eq(1L)).optArg("default", d)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -911,8 +911,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(True).do(lambda d:tbl.filter(lambda x:x['a'].eq(1), default=d)).order_by('a') */
                  var obtained = runOrCatch( r.expr(true).do_(d => tbl.filter(x => x.bracket("a").eq(1L)).optArg("default", d)).orderBy("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -926,8 +926,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda x:x['a'].default(0).eq(1)) */
                  var obtained = runOrCatch( tbl.filter(x => x.bracket("a").default_(0L).eq(1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -941,8 +941,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda x:x['a'].default(1).eq(1)).order_by('a') */
                  var obtained = runOrCatch( tbl.filter(x => x.bracket("a").default_(1L).eq(1L)).orderBy("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -956,8 +956,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda x:x['a'].default(r.error()).eq(1)) */
                  var obtained = runOrCatch( tbl.filter(x => x.bracket("a").default_(r.error()).eq(1L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -971,8 +971,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(0).do(lambda i:tbl.filter(lambda x:x['a'].default(i).eq(1))) */
                  var obtained = runOrCatch( r.expr(0L).do_(i => tbl.filter(x => x.bracket("a").default_(i).eq(1L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -986,8 +986,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(1).do(lambda i:tbl.filter(lambda x:x['a'].default(i).eq(1))).order_by('a') */
                  var obtained = runOrCatch( r.expr(1L).do_(i => tbl.filter(x => x.bracket("a").default_(i).eq(1L))).orderBy("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1001,8 +1001,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2))) */
                  var obtained = runOrCatch( tbl.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1016,8 +1016,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=False) */
                  var obtained = runOrCatch( tbl.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", false) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1031,8 +1031,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=True).order_by('a') */
                  var obtained = runOrCatch( tbl.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", true).orderBy("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1046,8 +1046,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda x:r.or_(x['a'].eq(1), x['a']['b'].eq(2)), default=r.error()) */
                  var obtained = runOrCatch( tbl.filter(x => r.or(x.bracket("a").eq(1L), x.bracket("a").bracket("b").eq(2L))).optArg("default", r.error()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1061,8 +1061,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.table_drop('default_test') */
                  var obtained = runOrCatch( r.tableDrop("default_test") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

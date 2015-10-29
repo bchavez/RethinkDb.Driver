@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.js('while(true) {}') */
                  var obtained = runOrCatch( r.js("while(true) {}") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.js('while(true) {}', timeout=1.3) */
                  var obtained = runOrCatch( r.js("while(true) {}").optArg("timeout", 1.3) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.js('while(true) {}', timeout=8) */
                  var obtained = runOrCatch( r.js("while(true) {}").optArg("timeout", 8L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -89,8 +89,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('foo').do(r.js('(function(x) { while(true) {} })')) */
                  var obtained = runOrCatch( r.expr("foo").do_(r.js("(function(x) { while(true) {} })")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('foo').do(r.js('(function(x) { while(true) {} })', timeout=1.3)) */
                  var obtained = runOrCatch( r.expr("foo").do_(r.js("(function(x) { while(true) {} })").optArg("timeout", 1.3)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -119,8 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('foo').do(r.js('(function(x) { while(true) {} })', timeout=8)) */
                  var obtained = runOrCatch( r.expr("foo").do_(r.js("(function(x) { while(true) {} })").optArg("timeout", 8L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -134,8 +134,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.http('httpbin.org/delay/10', timeout=0.8) */
                  var obtained = runOrCatch( r.http("httpbin.org/delay/10").optArg("timeout", 0.8) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -149,8 +149,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.http('httpbin.org/delay/10', method='PUT', timeout=0.0) */
                  var obtained = runOrCatch( r.http("httpbin.org/delay/10").optArg("method", "PUT").optArg("timeout", 0.0) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

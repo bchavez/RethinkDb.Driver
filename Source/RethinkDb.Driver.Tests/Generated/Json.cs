@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.json("[1,2,3]") */
                  var obtained = runOrCatch( r.json("[1,2,3]") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.json("1") */
                  var obtained = runOrCatch( r.json("1") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.json("{}") */
                  var obtained = runOrCatch( r.json("{}") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -89,8 +89,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.json('"foo"') */
                  var obtained = runOrCatch( r.json("\"foo\"") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.json("[1,2") */
                  var obtained = runOrCatch( r.json("[1,2") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -119,8 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.json("[1,2,3]").to_json_string() */
                  var obtained = runOrCatch( r.json("[1,2,3]").toJsonString() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -134,8 +134,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.json("[1,2,3]").to_json() */
                  var obtained = runOrCatch( r.json("[1,2,3]").toJson() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -149,8 +149,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.json("{\"foo\":4}").to_json_string() */
                  var obtained = runOrCatch( r.json("{\"foo\":4}").toJsonString() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -164,8 +164,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.json("{\"foo\":4}").to_json() */
                  var obtained = runOrCatch( r.json("{\"foo\":4}").toJson() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -191,8 +191,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.json(text).to_json_string() */
                  var obtained = runOrCatch( r.json(text).toJsonString() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -206,8 +206,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(r.minval).to_json_string() */
                  var obtained = runOrCatch( r.expr(r.minval()).toJsonString() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -221,8 +221,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(r.maxval).to_json_string() */
                  var obtained = runOrCatch( r.expr(r.maxval()).toJsonString() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -236,8 +236,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(r.minval).coerce_to('string') */
                  var obtained = runOrCatch( r.expr(r.minval()).coerceTo("string") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -251,8 +251,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(r.maxval).coerce_to('string') */
                  var obtained = runOrCatch( r.expr(r.maxval()).coerceTo("string") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -266,9 +266,9 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2014,9,11, 'Z') */
                  var obtained = runOrCatch( r.time(2014L, 9L, 11L, "Z") ,
-                                            new OptArgs()
-                     .with("time_format", "raw")
-                    , conn);
+                                            new {
+                     time_format = "raw" ,
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -282,8 +282,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.time(2014,9,11, 'Z').to_json_string() */
                  var obtained = runOrCatch( r.time(2014L, 9L, 11L, "Z").toJsonString() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -297,8 +297,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(0,0) */
                  var obtained = runOrCatch( r.point(0L, 0L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -312,8 +312,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.point(0,0).to_json_string() */
                  var obtained = runOrCatch( r.point(0L, 0L).toJsonString() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -333,8 +333,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.binary(s) */
                  var obtained = runOrCatch( r.binary(s) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertArrayEquals(expected_, (byte[]) obtained);
              }
@@ -348,8 +348,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr("foo").coerce_to("binary").to_json_string() */
                  var obtained = runOrCatch( r.expr("foo").coerceTo("binary").toJsonString() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

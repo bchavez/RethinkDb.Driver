@@ -46,8 +46,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr("abcdefg").match("a(b.e)|b(c.e)") */
                  var obtained = runOrCatch( r.expr("abcdefg").match("a(b.e)|b(c.e)") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -61,8 +61,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr("abcdefg").match("a(b.e)|B(c.e)") */
                  var obtained = runOrCatch( r.expr("abcdefg").match("a(b.e)|B(c.e)") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -76,8 +76,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr("abcdefg").match("(?i)a(b.e)|B(c.e)") */
                  var obtained = runOrCatch( r.expr("abcdefg").match("(?i)a(b.e)|B(c.e)") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -91,8 +91,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(["aba", "aca", "ada", "aea"]).filter(lambda row:row.match("a(.)a")['groups'][0]['str'].match("[cd]")) */
                  var obtained = runOrCatch( r.expr(r.array("aba", "aca", "ada", "aea")).filter(row => row.match("a(.)a").bracket("groups").bracket(0L).bracket("str").match("[cd]")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -106,8 +106,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert([{'id':0,'a':'abc'},{'id':1,'a':'ab'},{'id':2,'a':'bc'}]) */
                  var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 0L).with("a", "abc"), r.hashMap("id", 1L).with("a", "ab"), r.hashMap("id", 2L).with("a", "bc"))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -121,8 +121,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda row:row['a'].match('b')).order_by('id') */
                  var obtained = runOrCatch( tbl.filter(row => row.bracket("a").match("b")).orderBy("id") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -136,8 +136,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda row:row['a'].match('ab')).order_by('id') */
                  var obtained = runOrCatch( tbl.filter(row => row.bracket("a").match("ab")).orderBy("id") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -151,8 +151,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda row:row['a'].match('ab$')).order_by('id') */
                  var obtained = runOrCatch( tbl.filter(row => row.bracket("a").match("ab$")).orderBy("id") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -166,8 +166,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.filter(lambda row:row['a'].match('^b$')).order_by('id') */
                  var obtained = runOrCatch( tbl.filter(row => row.bracket("a").match("^b$")).orderBy("id") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -181,8 +181,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr("").match("ab\\9") */
                  var obtained = runOrCatch( r.expr("").match("ab\\9") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

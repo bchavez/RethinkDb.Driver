@@ -129,7 +129,7 @@ namespace RethinkDb.Driver.Test.Generated {
             
             #line default
             #line hidden
-WriteLiteral("\n\r\n    [TestFixture]\r\n    public class ");
+WriteLiteral("\r\n\r\n    [TestFixture]\r\n    public class ");
 
 
             
@@ -547,7 +547,7 @@ WriteLiteral(" ,\r\n");
 
 WriteLiteral("                 ");
 
-WriteLiteral("                           new OptArgs()\r\n");
+WriteLiteral("                           new {\r\n");
 
 
             
@@ -560,27 +560,25 @@ WriteLiteral("                           new OptArgs()\r\n");
             #line hidden
 WriteLiteral("                     ");
 
-WriteLiteral(".with(\"");
-
 
             
             #line 97 "..\..\CodeGen\TestTemplate.cshtml"
-                         Write(opt.Key);
+                  Write(opt.Key);
 
             
             #line default
             #line hidden
-WriteLiteral("\", ");
+WriteLiteral(" = ");
 
 
             
             #line 97 "..\..\CodeGen\TestTemplate.cshtml"
-                                     Write(opt.Val.IsNumber(0) || opt.Val.IsNumber(1) ?  opt.Val : "\"" + opt.Val + "\"" );
+                              Write(opt.Val.IsNumber(0) || opt.Val.IsNumber(1) ?  opt.Val : "\"" + opt.Val + "\"" );
 
             
             #line default
             #line hidden
-WriteLiteral(")\r\n");
+WriteLiteral(" ,\r\n");
 
 
             
@@ -592,7 +590,7 @@ WriteLiteral(")\r\n");
             #line hidden
 WriteLiteral("                 ");
 
-WriteLiteral("   , conn);\r\n");
+WriteLiteral("   }, conn);\r\n");
 
 
             

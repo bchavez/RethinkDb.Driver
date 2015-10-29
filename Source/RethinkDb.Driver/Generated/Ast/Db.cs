@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Explicitly specify a database for a query.</para>
 /// <code>r.db('heroes').table('marvel').run(conn, callback)
 /// </code></example>
-        public Db (Arguments args, OptArgs optargs)
+        public Db (Arguments args, object optargs)
              : this(TermType.DB, args, optargs) {
         }
 
-    protected Db (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Db (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -84,7 +85,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(expr);
-                        return new Table (arguments);
+                        return new Table (arguments );
                         }
 /// <summary>
 /// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
@@ -96,7 +97,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(expr);
-                        return new TableCreate (arguments);
+                        return new TableCreate (arguments );
                         }
 /// <summary>
 /// <para>Drop a table. The table and all its data will be deleted.</para>
@@ -108,7 +109,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(expr);
-                        return new TableDrop (arguments);
+                        return new TableDrop (arguments );
                         }
 /// <summary>
 /// <para>List all table names in a database. The result is a list of strings.</para>
@@ -119,7 +120,7 @@ namespace RethinkDb.Driver.Ast {
                         public TableList tableList (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new TableList (arguments);
+                        return new TableList (arguments );
                         }
 /// <summary>
 /// <para>Query (read and/or update) the configurations for individual tables or databases.</para>
@@ -130,7 +131,7 @@ namespace RethinkDb.Driver.Ast {
                         public Config config (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Config (arguments);
+                        return new Config (arguments );
                         }
 /// <summary>
 /// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
@@ -141,7 +142,7 @@ namespace RethinkDb.Driver.Ast {
                         public Wait wait_ (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Wait (arguments);
+                        return new Wait (arguments );
                         }
 /// <summary>
 /// <para>Reconfigure a table's sharding and replication.</para>
@@ -152,7 +153,7 @@ namespace RethinkDb.Driver.Ast {
                         public Reconfigure reconfigure (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Reconfigure (arguments);
+                        return new Reconfigure (arguments );
                         }
 /// <summary>
 /// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
@@ -163,7 +164,7 @@ namespace RethinkDb.Driver.Ast {
                         public Rebalance rebalance (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Rebalance (arguments);
+                        return new Rebalance (arguments );
                         }
 /// <summary>
 /// <para>Get information about a ReQL value.</para>
@@ -174,7 +175,7 @@ namespace RethinkDb.Driver.Ast {
                         public Info info (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Info (arguments);
+                        return new Info (arguments );
                         }
 
     

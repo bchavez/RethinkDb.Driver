@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: List all databases.</para>
 /// <code>r.dbList().run(conn, callback)
 /// </code></example>
-        public DbList (Arguments args, OptArgs optargs)
+        public DbList (Arguments args, object optargs)
              : this(TermType.DB_LIST, args, optargs) {
         }
 
-    protected DbList (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected DbList (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

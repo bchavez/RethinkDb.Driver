@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 ///     r.row('date').during(r.time(2013, 12, 1), r.time(2013, 12, 10))
 /// ).run(conn, callback)
 /// </code></example>
-        public During (Arguments args, OptArgs optargs)
+        public During (Arguments args, object optargs)
              : this(TermType.DURING, args, optargs) {
         }
 
-    protected During (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected During (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -77,10 +78,28 @@ namespace RethinkDb.Driver.Ast {
 /// "left_bound": "E_BOUND",
 ///  "right_bound": "E_BOUND"
 ///</summary>
-        public During optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new During (this.Args, newOptargs);
+        public During this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new During (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "left_bound": "E_BOUND",
+///  "right_bound": "E_BOUND"
+///</summary>
+        public During optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new During (this.Args, optArgs);
         }
 
 

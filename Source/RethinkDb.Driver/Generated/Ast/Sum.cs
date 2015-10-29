@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -68,11 +69,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's 3 + 5 + 7?</para>
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
-        public Sum (Arguments args, OptArgs optargs)
+        public Sum (Arguments args, object optargs)
              : this(TermType.SUM, args, optargs) {
         }
 
-    protected Sum (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Sum (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

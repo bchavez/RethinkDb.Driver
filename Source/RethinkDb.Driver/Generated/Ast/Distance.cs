@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -65,11 +66,11 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback 
 /// 734.1252496021841
 /// </code></example>
-        public Distance (Arguments args, OptArgs optargs)
+        public Distance (Arguments args, object optargs)
              : this(TermType.DISTANCE, args, optargs) {
         }
 
-    protected Distance (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Distance (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -83,10 +84,28 @@ namespace RethinkDb.Driver.Ast {
 /// "geo_system": "E_GEO_SYSTEM",
 ///  "unit": "E_UNIT"
 ///</summary>
-        public Distance optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new Distance (this.Args, newOptargs);
+        public Distance this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new Distance (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "geo_system": "E_GEO_SYSTEM",
+///  "unit": "E_UNIT"
+///</summary>
+        public Distance optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new Distance (this.Args, optArgs);
         }
 
 

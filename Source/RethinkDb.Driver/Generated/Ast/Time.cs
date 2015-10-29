@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -89,11 +90,11 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
 ///     .run(conn, callback)
 /// </code></example>
-        public Time (Arguments args, OptArgs optargs)
+        public Time (Arguments args, object optargs)
              : this(TermType.TIME, args, optargs) {
         }
 
-    protected Time (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Time (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setInsert('newBoots').run(conn, callback)
 /// </code></example>
-        public SetInsert (Arguments args, OptArgs optargs)
+        public SetInsert (Arguments args, object optargs)
              : this(TermType.SET_INSERT, args, optargs) {
         }
 
-    protected SetInsert (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected SetInsert (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

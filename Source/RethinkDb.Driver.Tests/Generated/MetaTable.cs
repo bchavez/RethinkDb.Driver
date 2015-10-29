@@ -50,8 +50,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_list() */
                  var obtained = runOrCatch( db.tableList() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -65,8 +65,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db('rethinkdb').info() */
                  var obtained = runOrCatch( r.db("rethinkdb").info() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -82,8 +82,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db('rethinkdb').table('stats').info() */
                  var obtained = runOrCatch( r.db("rethinkdb").table("stats").info() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -97,8 +97,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('a') */
                  var obtained = runOrCatch( db.tableCreate("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -112,8 +112,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_list() */
                  var obtained = runOrCatch( db.tableList() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -127,8 +127,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('b') */
                  var obtained = runOrCatch( db.tableCreate("b") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -142,8 +142,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_list() */
                  var obtained = runOrCatch( db.tableList() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -157,8 +157,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('a') */
                  var obtained = runOrCatch( db.tableDrop("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -172,8 +172,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_list() */
                  var obtained = runOrCatch( db.tableList() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -187,8 +187,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('b') */
                  var obtained = runOrCatch( db.tableDrop("b") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -202,8 +202,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_list() */
                  var obtained = runOrCatch( db.tableList() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -217,8 +217,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('ab', durability='soft') */
                  var obtained = runOrCatch( db.tableCreate("ab").optArg("durability", "soft") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -232,8 +232,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('ab') */
                  var obtained = runOrCatch( db.tableDrop("ab") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -247,8 +247,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('ab', durability='hard') */
                  var obtained = runOrCatch( db.tableCreate("ab").optArg("durability", "hard") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -262,8 +262,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('ab') */
                  var obtained = runOrCatch( db.tableDrop("ab") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -277,8 +277,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('ab', durability='fake') */
                  var obtained = runOrCatch( db.tableCreate("ab").optArg("durability", "fake") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -292,8 +292,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('ab', primary_key='bar', shards=2, replicas=1) */
                  var obtained = runOrCatch( db.tableCreate("ab").optArg("primary_key", "bar").optArg("shards", 2L).optArg("replicas", 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -307,8 +307,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('ab') */
                  var obtained = runOrCatch( db.tableDrop("ab") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -322,8 +322,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('ab', primary_key='bar', primary_replica_tag='default') */
                  var obtained = runOrCatch( db.tableCreate("ab").optArg("primary_key", "bar").optArg("primary_replica_tag", "default") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -337,8 +337,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('ab') */
                  var obtained = runOrCatch( db.tableDrop("ab") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -352,8 +352,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('ab', nonvoting_replica_tags=['default']) */
                  var obtained = runOrCatch( db.tableCreate("ab").optArg("nonvoting_replica_tags", r.array("default")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -367,8 +367,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('ab') */
                  var obtained = runOrCatch( db.tableDrop("ab") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -382,8 +382,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('a') */
                  var obtained = runOrCatch( db.tableCreate("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -397,8 +397,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=1, replicas=1) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -412,8 +412,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=1, replicas={"default":1}, nonvoting_replica_tags=['default'], primary_replica_tag='default') */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", 1L)).optArg("nonvoting_replica_tags", r.array("default")).optArg("primary_replica_tag", "default") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -427,8 +427,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=1, replicas=1, dry_run=True) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", 1L).optArg("dry_run", true) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -442,8 +442,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback") */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -457,8 +457,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback", dry_run=True) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback").optArg("dry_run", true) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -472,8 +472,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback_or_erase") */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback_or_erase") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -487,8 +487,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(emergency_repair=None, shards=1, replicas=1, dry_run=True) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", null).optArg("shards", 1L).optArg("replicas", 1L).optArg("dry_run", true) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -502,8 +502,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('a') */
                  var obtained = runOrCatch( db.tableDrop("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -517,8 +517,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('foo') */
                  var obtained = runOrCatch( db.tableCreate("foo") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -532,8 +532,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('foo') */
                  var obtained = runOrCatch( db.tableCreate("foo") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -547,8 +547,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('foo') */
                  var obtained = runOrCatch( db.tableDrop("foo") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -562,8 +562,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('foo') */
                  var obtained = runOrCatch( db.tableDrop("foo") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -577,8 +577,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('nonsense', foo='bar') */
                  var obtained = runOrCatch( db.tableCreate("nonsense").optArg("foo", "bar") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -592,8 +592,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('a') */
                  var obtained = runOrCatch( db.tableCreate("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -607,8 +607,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=0, replicas=1) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 0L).optArg("replicas", 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -622,8 +622,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=1, replicas={"default":1}, primary_replica_tag="foo") */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", 1L)).optArg("primary_replica_tag", "foo") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -637,8 +637,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=1, replicas={"default":1}, primary_replica_tag="default", nonvoting_replica_tags=["foo"]) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", 1L)).optArg("primary_replica_tag", "default").optArg("nonvoting_replica_tags", r.array("foo")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -652,8 +652,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=1, replicas={"foo":0}, primary_replica_tag="foo") */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("foo", 0L)).optArg("primary_replica_tag", "foo") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -667,8 +667,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=1, replicas={"default":0}) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -682,8 +682,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=1, replicas={"default":-3}, primary_replica_tag='default') */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", -3L)).optArg("primary_replica_tag", "default") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -697,8 +697,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=1, replicas=3, primary_replica_tag='foo') */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", 3L).optArg("primary_replica_tag", "foo") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -712,8 +712,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=1, replicas=3, nonvoting_replica_tags=['foo']) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", 3L).optArg("nonvoting_replica_tags", r.array("foo")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -727,8 +727,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.reconfigure(emergency_repair="unsafe_rollback") */
                  var obtained = runOrCatch( db.reconfigure().optArg("emergency_repair", "unsafe_rollback") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -742,8 +742,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(emergency_repair="foo") */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", "foo") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -757,8 +757,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(emergency_repair="unsafe_rollback", shards=1, replicas=1) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("emergency_repair", "unsafe_rollback").optArg("shards", 1L).optArg("replicas", 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -772,8 +772,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=2, replicas=1) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 2L).optArg("replicas", 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -787,8 +787,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').wait() */
                  var obtained = runOrCatch( db.table("a").wait_() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -802,8 +802,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').insert([{"id":1}, {"id":2}, {"id":3}, {"id":4}]) */
                  var obtained = runOrCatch( db.table("a").insert(r.array(r.hashMap("id", 1L), r.hashMap("id", 2L), r.hashMap("id", 3L), r.hashMap("id", 4L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -817,8 +817,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=2, replicas=1) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 2L).optArg("replicas", 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -832,8 +832,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').reconfigure(shards=1, replicas=2) */
                  var obtained = runOrCatch( db.table("a").reconfigure().optArg("shards", 1L).optArg("replicas", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -847,8 +847,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').wait() */
                  var obtained = runOrCatch( db.table("a").wait_() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -862,8 +862,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table('a').rebalance() */
                  var obtained = runOrCatch( db.table("a").rebalance() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -877,8 +877,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.wait() */
                  var obtained = runOrCatch( db.wait_() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -892,8 +892,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.rebalance() */
                  var obtained = runOrCatch( db.rebalance() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -907,8 +907,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.wait() */
                  var obtained = runOrCatch( r.wait_() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -922,8 +922,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.rebalance() */
                  var obtained = runOrCatch( r.rebalance() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -937,8 +937,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('a') */
                  var obtained = runOrCatch( db.tableDrop("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -952,8 +952,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('a') */
                  var obtained = runOrCatch( db.tableCreate("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -967,8 +967,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('b') */
                  var obtained = runOrCatch( db.tableCreate("b") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -982,8 +982,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create('c') */
                  var obtained = runOrCatch( db.tableCreate("c") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -997,8 +997,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.reconfigure(shards=0, replicas=1) */
                  var obtained = runOrCatch( db.reconfigure().optArg("shards", 0L).optArg("replicas", 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1012,8 +1012,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.reconfigure(shards=1, replicas={"default":0}) */
                  var obtained = runOrCatch( db.reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", 0L)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1027,8 +1027,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.reconfigure(shards=1, replicas={"default":-3}, primary_replica_tag='default') */
                  var obtained = runOrCatch( db.reconfigure().optArg("shards", 1L).optArg("replicas", r.hashMap("default", -3L)).optArg("primary_replica_tag", "default") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1042,8 +1042,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.reconfigure(shards=1, replicas=3, primary_replica_tag='foo') */
                  var obtained = runOrCatch( db.reconfigure().optArg("shards", 1L).optArg("replicas", 3L).optArg("primary_replica_tag", "foo") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1057,8 +1057,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.reconfigure(shards=2, replicas=1) */
                  var obtained = runOrCatch( db.reconfigure().optArg("shards", 2L).optArg("replicas", 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1072,8 +1072,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('a') */
                  var obtained = runOrCatch( db.tableDrop("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1087,8 +1087,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('b') */
                  var obtained = runOrCatch( db.tableDrop("b") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1102,8 +1102,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('c') */
                  var obtained = runOrCatch( db.tableDrop("c") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1117,8 +1117,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db_create("test2") */
                  var obtained = runOrCatch( r.dbCreate("test2") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1138,8 +1138,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create("testA") */
                  var obtained = runOrCatch( db.tableCreate("testA") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1153,8 +1153,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_create("testB") */
                  var obtained = runOrCatch( db.tableCreate("testB") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1168,8 +1168,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db2.table_create("test2B") */
                  var obtained = runOrCatch( db2.tableCreate("test2B") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1183,8 +1183,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.table('testA').config().pluck('db','name') */
                  var obtained = runOrCatch( r.table("testA").config().pluck("db", "name") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1198,8 +1198,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.table('doesntexist').config() */
                  var obtained = runOrCatch( r.table("doesntexist").config() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1213,8 +1213,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.table('test2B').config() */
                  var obtained = runOrCatch( r.table("test2B").config() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1228,8 +1228,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db('rethinkdb').table('table_config').filter({'name':'testA'}).nth(0).eq(r.table('testA').config()) */
                  var obtained = runOrCatch( r.db("rethinkdb").table("table_config").filter(r.hashMap("name", "testA")).nth(0L).eq(r.table("testA").config()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1243,8 +1243,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db('rethinkdb').table('table_status').filter({'name':'testA'}).nth(0).eq(r.table('testA').status()) */
                  var obtained = runOrCatch( r.db("rethinkdb").table("table_status").filter(r.hashMap("name", "testA")).nth(0L).eq(r.table("testA").status()) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1258,8 +1258,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db('rethinkdb').table('table_config', identifier_format='uuid').nth(0)["db"] */
                  var obtained = runOrCatch( r.db("rethinkdb").table("table_config").optArg("identifier_format", "uuid").nth(0L).bracket("db") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1273,8 +1273,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.table('testA', identifier_format='uuid').count() */
                  var obtained = runOrCatch( r.table("testA").optArg("identifier_format", "uuid").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1288,8 +1288,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.wait(wait_for='all_replicas_ready', timeout=5) */
                  var obtained = runOrCatch( r.wait_().optArg("wait_for", "all_replicas_ready").optArg("timeout", 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1303,8 +1303,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('testA') */
                  var obtained = runOrCatch( db.tableDrop("testA") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1318,8 +1318,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: db.table_drop('testB') */
                  var obtained = runOrCatch( db.tableDrop("testB") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1333,8 +1333,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db_drop('test2') */
                  var obtained = runOrCatch( r.dbDrop("test2") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

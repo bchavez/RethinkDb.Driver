@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 ///     r.row("date").timeOfDay().le(12*60*60)
 /// ).run(conn, callback)
 /// </code></example>
-        public TimeOfDay (Arguments args, OptArgs optargs)
+        public TimeOfDay (Arguments args, object optargs)
              : this(TermType.TIME_OF_DAY, args, optargs) {
         }
 
-    protected TimeOfDay (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected TimeOfDay (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

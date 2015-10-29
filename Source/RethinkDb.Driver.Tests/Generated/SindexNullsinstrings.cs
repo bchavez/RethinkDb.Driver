@@ -46,8 +46,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.index_create("key") */
                  var obtained = runOrCatch( tbl.indexCreate("key") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -61,8 +61,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.index_wait().pluck("ready") */
                  var obtained = runOrCatch( tbl.indexWait().pluck("ready") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -76,8 +76,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert([{"id":1,"key":["a","b"]},{"id":2,"key":["a\u0000Sb"]}]).pluck("inserted") */
                  var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", 1L).with("key", r.array("a", "b")), r.hashMap("id", 2L).with("key", r.array("a\u0000Sb")))).pluck("inserted") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -91,8 +91,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.get_all(["a\u0000Sb"], index="key").pluck("id") */
                  var obtained = runOrCatch( tbl.getAll(r.array("a\u0000Sb")).optArg("index", "key").pluck("id") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -106,8 +106,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.get_all(["a","b"], index="key").pluck("id") */
                  var obtained = runOrCatch( tbl.getAll(r.array("a", "b")).optArg("index", "key").pluck("id") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

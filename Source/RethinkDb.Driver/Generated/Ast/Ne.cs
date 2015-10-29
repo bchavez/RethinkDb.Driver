@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Does 2 not equal 2?</para>
 /// <code>r.expr(2).ne(2).run(conn, callback)
 /// </code></example>
-        public Ne (Arguments args, OptArgs optargs)
+        public Ne (Arguments args, object optargs)
              : this(TermType.NE, args, optargs) {
         }
 
-    protected Ne (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Ne (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

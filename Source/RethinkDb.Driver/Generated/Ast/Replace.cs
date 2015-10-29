@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -74,11 +75,11 @@ namespace RethinkDb.Driver.Ast {
 ///     status: "draft"
 /// }).run(conn, callback)
 /// </code></example>
-        public Replace (Arguments args, OptArgs optargs)
+        public Replace (Arguments args, object optargs)
              : this(TermType.REPLACE, args, optargs) {
         }
 
-    protected Replace (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Replace (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -96,10 +97,32 @@ namespace RethinkDb.Driver.Ast {
 ///  ],
 ///  "non_atomic": "T_BOOL"
 ///</summary>
-        public Replace optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new Replace (this.Args, newOptargs);
+        public Replace this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new Replace (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "durability": "E_DURABILITY",
+///  "return_changes": [
+///    "T_BOOL",
+///    "always"
+///  ],
+///  "non_atomic": "T_BOOL"
+///</summary>
+        public Replace optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new Replace (this.Args, optArgs);
         }
 
 

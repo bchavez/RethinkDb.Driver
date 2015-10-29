@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.geojson({'coordinates':[0, 0], 'type':'Point'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(0L, 0L)).with("type", "Point")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.geojson({'coordinates':[[0,0], [0,1]], 'type':'LineString'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(r.array(0L, 0L), r.array(0L, 1L))).with("type", "LineString")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.geojson({'coordinates':[[[0,0], [0,1], [1,0], [0,0]]], 'type':'Polygon'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(r.array(r.array(0L, 0L), r.array(0L, 1L), r.array(1L, 0L), r.array(0L, 0L)))).with("type", "Polygon")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -89,8 +89,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.geojson({'coordinates':[[], 0], 'type':'Point'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(r.array(), 0L)).with("type", "Point")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.geojson({'coordinates':true, 'type':'Point'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", true).with("type", "Point")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -119,8 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.geojson({'type':'Point'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("type", "Point")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -134,8 +134,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.geojson({'coordinates':[0, 0]}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(0L, 0L))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -149,8 +149,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.geojson({'coordinates':[0, 0], 'type':'foo'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(0L, 0L)).with("type", "foo")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -164,8 +164,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.geojson({'coordinates':[0, 0], 'type':'Point', 'foo':'wrong'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(0L, 0L)).with("type", "Point").with("foo", "wrong")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -179,8 +179,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.geojson({'coordinates':[0, 0], 'type':'Point', 'crs':null}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(0L, 0L)).with("type", "Point").with("crs", null)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -194,8 +194,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.geojson({'coordinates':[0, 0], 'type':'MultiPoint'}) */
                  var obtained = runOrCatch( r.geojson(r.hashMap("coordinates", r.array(0L, 0L)).with("type", "MultiPoint")) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

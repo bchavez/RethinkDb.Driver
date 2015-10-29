@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('str') */
                  var obtained = runOrCatch( r.expr("str") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr("str") */
                  var obtained = runOrCatch( r.expr("str") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(u'str') */
                  var obtained = runOrCatch( r.expr("str") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -89,8 +89,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(u'こんにちは') */
                  var obtained = runOrCatch( r.expr("\u3053\u3093\u306b\u3061\u306f") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('foo').type_of() */
                  var obtained = runOrCatch( r.expr("foo").typeOf() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -119,8 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('foo').coerce_to('string') */
                  var obtained = runOrCatch( r.expr("foo").coerceTo("string") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -134,8 +134,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('-1.2').coerce_to('NUMBER') */
                  var obtained = runOrCatch( r.expr("-1.2").coerceTo("NUMBER") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
@@ -149,8 +149,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('--1.2').coerce_to('NUMBER') */
                  var obtained = runOrCatch( r.expr("--1.2").coerceTo("NUMBER") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -164,8 +164,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('-1.2-').coerce_to('NUMBER') */
                  var obtained = runOrCatch( r.expr("-1.2-").coerceTo("NUMBER") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -179,8 +179,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('0xa').coerce_to('NUMBER') */
                  var obtained = runOrCatch( r.expr("0xa").coerceTo("NUMBER") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -194,8 +194,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('inf').coerce_to('NUMBER') */
                  var obtained = runOrCatch( r.expr("inf").coerceTo("NUMBER") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -209,8 +209,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('').split() */
                  var obtained = runOrCatch( r.expr("").split() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -224,8 +224,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('').split(null) */
                  var obtained = runOrCatch( r.expr("").split((ReqlExpr) null) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -239,8 +239,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('').split(' ') */
                  var obtained = runOrCatch( r.expr("").split(" ") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -254,8 +254,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('').split('') */
                  var obtained = runOrCatch( r.expr("").split("") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -269,8 +269,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('').split(null, 5) */
                  var obtained = runOrCatch( r.expr("").split((ReqlExpr) null, 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -284,8 +284,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('').split(' ', 5) */
                  var obtained = runOrCatch( r.expr("").split(" ", 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -299,8 +299,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('').split('', 5) */
                  var obtained = runOrCatch( r.expr("").split("", 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -314,8 +314,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split() */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -329,8 +329,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split(null) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -344,8 +344,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split(' ') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -359,8 +359,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split('') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -374,8 +374,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split('b') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -389,8 +389,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split('bb') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -404,8 +404,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -419,8 +419,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -434,8 +434,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -449,8 +449,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ') */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -464,8 +464,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split(null, 3) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 3L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -479,8 +479,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split(' ', 5) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -494,8 +494,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split('', 5) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -509,8 +509,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split('b', 5) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -524,8 +524,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split('bb', 3) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 3L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -539,8 +539,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -554,8 +554,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -569,8 +569,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -584,8 +584,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -599,8 +599,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split(null, 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -614,8 +614,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr("a  b  ").split(null, 2) */
                  var obtained = runOrCatch( r.expr("a  b  ").split((ReqlExpr) null, 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -629,8 +629,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split(' ', 4) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 4L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -644,8 +644,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split('', 4) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 4L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -659,8 +659,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split('b', 4) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 4L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -674,8 +674,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split('bb', 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -689,8 +689,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 1) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -704,8 +704,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -719,8 +719,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -734,8 +734,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -749,8 +749,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split(null, 1) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split((ReqlExpr) null, 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -764,8 +764,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split(' ', 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -779,8 +779,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split('', 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -794,8 +794,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split('b', 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("b", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -809,8 +809,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split('bb', 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split("bb", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -824,8 +824,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc ').split(' bbbb  ', 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc ").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -839,8 +839,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -854,8 +854,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -869,8 +869,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
                  var obtained = runOrCatch( r.expr("aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -884,8 +884,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  ').split() */
                  var obtained = runOrCatch( r.expr("  ").split() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -899,8 +899,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  ').split(null) */
                  var obtained = runOrCatch( r.expr("  ").split((ReqlExpr) null) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -914,8 +914,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  ').split(' ') */
                  var obtained = runOrCatch( r.expr("  ").split(" ") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -929,8 +929,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  ').split(null, 5) */
                  var obtained = runOrCatch( r.expr("  ").split((ReqlExpr) null, 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -944,8 +944,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  ').split(' ', 5) */
                  var obtained = runOrCatch( r.expr("  ").split(" ", 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -959,8 +959,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split() */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -974,8 +974,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split(null) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -989,8 +989,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split(' ') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1004,8 +1004,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split('b') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1019,8 +1019,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split('bb') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1034,8 +1034,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1049,8 +1049,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1064,8 +1064,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1079,8 +1079,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ') */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1094,8 +1094,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split(null, 3) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 3L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1109,8 +1109,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split(' ', 5) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1124,8 +1124,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split('b', 5) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1139,8 +1139,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split('bb', 3) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 3L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1154,8 +1154,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1169,8 +1169,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 6) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 6L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1184,8 +1184,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1199,8 +1199,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 3) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 3L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1214,8 +1214,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split(null, 2) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1229,8 +1229,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr("a  b  ").split(null, 2) */
                  var obtained = runOrCatch( r.expr("a  b  ").split((ReqlExpr) null, 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1244,8 +1244,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split(' ', 4) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 4L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1259,8 +1259,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split('b', 4) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 4L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1274,8 +1274,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1289,8 +1289,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 1) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1304,8 +1304,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 5) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 5L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1319,8 +1319,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 1) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1334,8 +1334,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1349,8 +1349,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split(null, 1) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split((ReqlExpr) null, 1L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1364,8 +1364,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split(' ', 2) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1379,8 +1379,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split('b', 2) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("b", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1394,8 +1394,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split('bb', 2) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split("bb", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1409,8 +1409,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc ').split(' bbbb  ', 2) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc ").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1424,8 +1424,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split('bb', 2) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split("bb", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1439,8 +1439,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb f').split(' bbbb  ', 2) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1454,8 +1454,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr('  aaaa bbbb  cccc b d bb e bbbb  f').split(' bbbb  ', 2) */
                  var obtained = runOrCatch( r.expr("  aaaa bbbb  cccc b d bb e bbbb  f").split(" bbbb  ", 2L) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1469,8 +1469,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr("abc-dEf-GHJ").upcase() */
                  var obtained = runOrCatch( r.expr("abc-dEf-GHJ").upcase() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1484,8 +1484,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr("abc-dEf-GHJ").downcase() */
                  var obtained = runOrCatch( r.expr("abc-dEf-GHJ").downcase() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1499,8 +1499,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(u"f\u00e9oo").split("") */
                  var obtained = runOrCatch( r.expr("f\u00e9oo").split("") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1514,8 +1514,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(u"fe\u0301oo").split("") */
                  var obtained = runOrCatch( r.expr("fe\u0301oo").split("") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1529,8 +1529,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(u"foo bar\tbaz\nquux\rfred\u000bbarney\u000cwilma").split() */
                  var obtained = runOrCatch( r.expr("foo bar\tbaz\nquux\rfred\u000bbarney\u000cwilma").split() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -1544,8 +1544,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.expr(u"foo\u00a0bar\u2001baz\u2060quux\u2028fred\u2028barney\u2029wilma\u0085betty\u200b").split() */
                  var obtained = runOrCatch( r.expr("foo\u00a0bar\u2001baz\u2060quux\u2028fred\u2028barney\u2029wilma\u0085betty\u200b").split() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

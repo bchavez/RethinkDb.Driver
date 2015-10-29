@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
-        public Rebalance (Arguments args, OptArgs optargs)
+        public Rebalance (Arguments args, object optargs)
              : this(TermType.REBALANCE, args, optargs) {
         }
 
-    protected Rebalance (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Rebalance (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return today's day of week.</para>
 /// <code>r.now().dayOfWeek().run(conn, callback)
 /// </code></example>
-        public DayOfWeek (Arguments args, OptArgs optargs)
+        public DayOfWeek (Arguments args, object optargs)
              : this(TermType.DAY_OF_WEEK, args, optargs) {
         }
 
-    protected DayOfWeek (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected DayOfWeek (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

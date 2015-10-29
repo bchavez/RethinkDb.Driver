@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback
 /// '{"id": 1, "name": "Batman", "city": "Gotham", "powers": ["martial arts", "cinematic entrances"]}'
 /// </code></example>
-        public ToJsonString (Arguments args, OptArgs optargs)
+        public ToJsonString (Arguments args, object optargs)
              : this(TermType.TO_JSON_STRING, args, optargs) {
         }
 
-    protected ToJsonString (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected ToJsonString (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

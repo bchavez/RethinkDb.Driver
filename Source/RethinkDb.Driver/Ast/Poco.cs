@@ -16,7 +16,7 @@ namespace RethinkDb.Driver.Ast
             this.obj = obj;
         }
 
-        public Poco(TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+        public Poco(TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
         {
         }
 

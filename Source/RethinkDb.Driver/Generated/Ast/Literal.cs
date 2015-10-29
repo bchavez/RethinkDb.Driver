@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
-        public Literal (Arguments args, OptArgs optargs)
+        public Literal (Arguments args, object optargs)
              : this(TermType.LITERAL, args, optargs) {
         }
 
-    protected Literal (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Literal (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

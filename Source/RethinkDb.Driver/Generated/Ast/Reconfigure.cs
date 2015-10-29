@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
-        public Reconfigure (Arguments args, OptArgs optargs)
+        public Reconfigure (Arguments args, object optargs)
              : this(TermType.RECONFIGURE, args, optargs) {
         }
 
-    protected Reconfigure (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Reconfigure (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -78,10 +79,35 @@ namespace RethinkDb.Driver.Ast {
 ///  "nonvoting_replica_tags": "T_ARRAY",
 ///  "emergency_repair": "E_EMERGENCY_REPAIR"
 ///</summary>
-        public Reconfigure optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new Reconfigure (this.Args, newOptargs);
+        public Reconfigure this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new Reconfigure (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "shards": "T_NUM",
+///  "replicas": [
+///    "T_OBJECT",
+///    "T_NUM"
+///  ],
+///  "primary_replica_tag": "T_STR",
+///  "dry_run": "T_BOOL",
+///  "nonvoting_replica_tags": "T_ARRAY",
+///  "emergency_repair": "E_EMERGENCY_REPAIR"
+///</summary>
+        public Reconfigure optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new Reconfigure (this.Args, optArgs);
         }
 
 

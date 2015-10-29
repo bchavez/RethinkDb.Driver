@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyAttributes.cs" />
+    <Compile Include="Ast\ExtensionHelper.cs" />
     <Compile Include="Ast\Poco.cs" />
     <Compile Include="Ast\Query.cs" />
     <Compile Include="Ast\ReqlAst.cs" />
@@ -279,7 +280,6 @@
     <Compile Include="Model\Backtrace.cs" />
     <Compile Include="Model\GroupedResult.cs" />
     <Compile Include="Model\MapObject.cs" />
-    <Compile Include="Model\OptArgs.cs" />
     <Compile Include="Model\PathSpec.cs" />
     <Compile Include="Model\Profile.cs" />
     <Compile Include="Model\ReqlLambda.cs" />

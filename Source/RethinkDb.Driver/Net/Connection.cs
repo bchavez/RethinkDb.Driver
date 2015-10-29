@@ -211,41 +211,42 @@ namespace RethinkDb.Driver.Net
             RunQuery<object>(Query.NoReplyWait(NewToken()));
         }
 
-        private Query PrepareQuery(ReqlAst term, OptArgs globalOpts)
+        private Query PrepareQuery(ReqlAst term, JObject globalOpts)
         {
             SetDefaultDb(globalOpts);
             Query q = Query.Start(NewToken(), term, globalOpts);
-            if (globalOpts.ContainsKey("noreply"))
+            if (globalOpts?["noreply"] != null)
             {
                 throw new ReqlDriverError("Don't provide the noreply option as an optarg. Use `.runNoReply` instead of `.run`");
             }
             return q;
         }
-        public virtual dynamic run<T>(ReqlAst term, OptArgs globalOpts)
+        public virtual dynamic run<T>(ReqlAst term, object globalOpts)
         {
-            Query q = PrepareQuery(term, globalOpts);   
+            Query q = PrepareQuery(term, globalOpts.ToJObject());
             return RunQuery<T>(q);
         }
 
-        public virtual Cursor<T> runCursor<T>(ReqlAst term, OptArgs globalOpts)
+        public virtual Cursor<T> runCursor<T>(ReqlAst term, object globalOpts)
         {
-            Query q = PrepareQuery(term, globalOpts);
+            Query q = PrepareQuery(term, globalOpts.ToJObject());
             return RunQueryCursor<T>(q);
         }
 
-        private void SetDefaultDb(OptArgs globalOpts)
+        private void SetDefaultDb(JObject globalOpts)
         {
-            if( !globalOpts.ContainsKey("db") && this.dbname != null )
+            if( globalOpts?["db"] != null && this.dbname != null )
             {
-                globalOpts.with("db", this.dbname);
+                globalOpts["db"] = this.dbname;
             }
         }
 
-        public void runNoReply(ReqlAst term, OptArgs globalOpts)
+        public void runNoReply(ReqlAst term, object globalOpts)
         {
-            SetDefaultDb(globalOpts);
-            globalOpts.with("noreply", true);
-            RunQueryNoreply(Query.Start(NewToken(), term, globalOpts));
+            var opts = globalOpts?.ToJObject() ?? new JObject();
+            SetDefaultDb(opts);
+            opts["noreply"] = true;
+            RunQueryNoreply(Query.Start(NewToken(), term, opts));
         }
 
         internal virtual void Continue(ICursor cursor)

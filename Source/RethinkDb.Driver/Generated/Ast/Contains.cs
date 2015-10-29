@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-        public Contains (Arguments args, OptArgs optargs)
+        public Contains (Arguments args, object optargs)
              : this(TermType.CONTAINS, args, optargs) {
         }
 
-    protected Contains (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Contains (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
 /// </code></example>
-        public Not (Arguments args, OptArgs optargs)
+        public Not (Arguments args, object optargs)
              : this(TermType.NOT, args, optargs) {
         }
 
-    protected Not (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Not (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

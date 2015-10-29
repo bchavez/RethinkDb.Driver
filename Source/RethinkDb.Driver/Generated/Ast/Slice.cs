@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -56,11 +57,11 @@ namespace RethinkDb.Driver.Ast {
 /// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
-        public Slice (Arguments args, OptArgs optargs)
+        public Slice (Arguments args, object optargs)
              : this(TermType.SLICE, args, optargs) {
         }
 
-    protected Slice (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Slice (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -74,10 +75,28 @@ namespace RethinkDb.Driver.Ast {
 /// "left_bound": "E_BOUND",
 ///  "right_bound": "E_BOUND"
 ///</summary>
-        public Slice optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new Slice (this.Args, newOptargs);
+        public Slice this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new Slice (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "left_bound": "E_BOUND",
+///  "right_bound": "E_BOUND"
+///</summary>
+        public Slice optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new Slice (this.Args, optArgs);
         }
 
 

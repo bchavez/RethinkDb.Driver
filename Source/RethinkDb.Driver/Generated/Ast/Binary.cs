@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
     using RethinkDb.Driver.Net;
@@ -44,10 +45,10 @@ namespace RethinkDb.Driver.Ast {
     public Binary (Arguments args) : this(args, null){
 
     }
-    public Binary (Arguments args, OptArgs optargs) : this(TermType.BINARY, args, optargs) {
+    public Binary (Arguments args, object optargs) : this(TermType.BINARY, args, optargs) {
         
     }
-    protected Binary (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs){
+    protected Binary (TermType termType, Arguments args, object optargs) : base(termType, args, optargs){
         
     }
 

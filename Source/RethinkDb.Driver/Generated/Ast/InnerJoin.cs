@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).zip().run(conn, callback)
 /// </code></example>
-        public InnerJoin (Arguments args, OptArgs optargs)
+        public InnerJoin (Arguments args, object optargs)
              : this(TermType.INNER_JOIN, args, optargs) {
         }
 
-    protected InnerJoin (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected InnerJoin (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 13.0
 /// </code></example>
-        public Ceil (Arguments args, OptArgs optargs)
+        public Ceil (Arguments args, object optargs)
              : this(TermType.CEIL, args, optargs) {
         }
 
-    protected Ceil (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Ceil (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

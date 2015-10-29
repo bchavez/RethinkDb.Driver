@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -89,11 +90,11 @@ namespace RethinkDb.Driver.Ast {
 /// <para>You can also select a descending ordering:</para>
 /// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
 /// </code></example>
-        public OrderBy (Arguments args, OptArgs optargs)
+        public OrderBy (Arguments args, object optargs)
              : this(TermType.ORDER_BY, args, optargs) {
         }
 
-    protected OrderBy (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected OrderBy (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -106,10 +107,27 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "index": "T_EXPR"
 ///</summary>
-        public OrderBy optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new OrderBy (this.Args, newOptargs);
+        public OrderBy this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new OrderBy (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "index": "T_EXPR"
+///</summary>
+        public OrderBy optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new OrderBy (this.Args, optArgs);
         }
 
 

@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -65,11 +66,11 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-        public Map (Arguments args, OptArgs optargs)
+        public Map (Arguments args, object optargs)
              : this(TermType.MAP, args, optargs) {
         }
 
-    protected Map (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Map (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

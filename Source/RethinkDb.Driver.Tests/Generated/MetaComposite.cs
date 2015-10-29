@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.db_drop('test') */
                  var obtained = runOrCatch( r.dbDrop("test") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -60,8 +60,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  /* Original: r.expr([1,2,3]).for_each(lambda row:
 r.db_create('db_' + row.coerce_to('string'))) */
                  var obtained = runOrCatch( r.expr(r.array(1L, 2L, 3L)).forEach(row => r.dbCreate(r.add("db_", row.coerceTo("string")))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -77,8 +77,8 @@ r.db_create('db_' + row.coerce_to('string'))) */
 r.expr([1,2,3]).for_each(lambda i:
 r.db(db_name).table_create('tbl_' + i.coerce_to('string')))) */
                  var obtained = runOrCatch( r.dbList().setDifference(r.array("rethinkdb")).forEach(db_name => r.expr(r.array(1L, 2L, 3L)).forEach(i => r.db(db_name).tableCreate(r.add("tbl_", i.coerceTo("string"))))) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -93,8 +93,8 @@ r.db(db_name).table_create('tbl_' + i.coerce_to('string')))) */
                  /* Original: r.db_list().set_difference(["rethinkdb"]).for_each(lambda row:
 r.db_drop(row)) */
                  var obtained = runOrCatch( r.dbList().setDifference(r.array("rethinkdb")).forEach(row => r.dbDrop(row)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -108,8 +108,8 @@ r.db_drop(row)) */
                  
                  /* Original: r.db_create('test') */
                  var obtained = runOrCatch( r.dbCreate("test") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

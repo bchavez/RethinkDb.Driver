@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -65,11 +66,11 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback 
 /// true
 /// </code></example>
-        public Intersects (Arguments args, OptArgs optargs)
+        public Intersects (Arguments args, object optargs)
              : this(TermType.INTERSECTS, args, optargs) {
         }
 
-    protected Intersects (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Intersects (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

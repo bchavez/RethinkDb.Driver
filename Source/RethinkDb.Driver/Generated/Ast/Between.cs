@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -68,11 +69,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Find all users with primary key &gt;= 10 and &lt; 20 (a normal half-open interval).</para>
 /// <code>r.table('marvel').between(10, 20).run(conn, callback)
 /// </code></example>
-        public Between (Arguments args, OptArgs optargs)
+        public Between (Arguments args, object optargs)
              : this(TermType.BETWEEN, args, optargs) {
         }
 
-    protected Between (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Between (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -87,10 +88,29 @@ namespace RethinkDb.Driver.Ast {
 ///  "left_bound": "E_BOUND",
 ///  "right_bound": "E_BOUND"
 ///</summary>
-        public Between optArg(string optname, object value) {
-             var newOptargs = OptArgs.fromMap(this.OptArgs)
-                                     .with(optname, value);
-             return new Between (this.Args, newOptargs);
+        public Between this[object optArgs] {
+            get
+            {
+                if(this.OptArgs is Hashtable)
+                    throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+                return new Between (this.Args, optArgs);
+            }
+        }
+        
+///<summary>
+/// "index": "T_STR",
+///  "left_bound": "E_BOUND",
+///  "right_bound": "E_BOUND"
+///</summary>
+        public Between optArg(string key, object val){
+            if (this.OptArgs != null && !(this.OptArgs is Hashtable))
+                throw new ReqlError("Either use .optArg() methods or anonymous optArgs types but not both.");
+        
+            var optArgs = this.OptArgs as Hashtable ?? new Hashtable();
+            optArgs[key] = val;
+        
+            return new Between (this.Args, optArgs);
         }
 
 

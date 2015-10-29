@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Ast {
 ///     r.row("birthdate").month().eq(11)
 /// )
 /// </code></example>
-        public Month (Arguments args, OptArgs optargs)
+        public Month (Arguments args, object optargs)
              : this(TermType.MONTH, args, optargs) {
         }
 
-    protected Month (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Month (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

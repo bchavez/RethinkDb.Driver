@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Retrieve Iron Man's equipment list with the addition of some new boots and an arc reactor.</para>
 /// <code>r.table('marvel').get('IronMan')('equipment').setUnion(['newBoots', 'arc_reactor']).run(conn, callback)
 /// </code></example>
-        public SetUnion (Arguments args, OptArgs optargs)
+        public SetUnion (Arguments args, object optargs)
              : this(TermType.SET_UNION, args, optargs) {
         }
 
-    protected SetUnion (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected SetUnion (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

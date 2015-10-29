@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -53,11 +54,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Hulk decides to join the avengers.</para>
 /// <code>r.expr(["Iron Man", "Spider-Man"]).insertAt(1, "Hulk").run(conn, callback)
 /// </code></example>
-        public InsertAt (Arguments args, OptArgs optargs)
+        public InsertAt (Arguments args, object optargs)
              : this(TermType.INSERT_AT, args, optargs) {
         }
 
-    protected InsertAt (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected InsertAt (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

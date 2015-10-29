@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -77,11 +78,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Split on whitespace.</para>
 /// <code>r.expr("foo  bar bax").split().run(conn, callback)
 /// </code></example>
-        public Split (Arguments args, OptArgs optargs)
+        public Split (Arguments args, object optargs)
              : this(TermType.SPLIT, args, optargs) {
         }
 
-    protected Split (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Split (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

@@ -94,8 +94,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert(trows)['inserted'] */
                  var obtained = runOrCatch( tbl.insert(trows).bracket("inserted") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -115,8 +115,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert(bad_insert)['first_error'] */
                  var obtained = runOrCatch( tbl.insert(bad_insert).bracket("first_error") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -130,8 +130,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(ts, te).count() */
                  var obtained = runOrCatch( tbl.between(ts, te).count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -145,8 +145,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(t1, t4).count() */
                  var obtained = runOrCatch( tbl.between(t1, t4).count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -160,8 +160,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(t1, t4, right_bound='closed').count() */
                  var obtained = runOrCatch( tbl.between(t1, t4).optArg("right_bound", "closed").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -175,8 +175,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(r.expr(ts).in_timezone("+06:00"), te).count() */
                  var obtained = runOrCatch( tbl.between(r.expr(ts).inTimezone("+06:00"), te).count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -190,8 +190,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(t1, r.expr(t4).in_timezone("+08:00")).count() */
                  var obtained = runOrCatch( tbl.between(t1, r.expr(t4).inTimezone("+08:00")).count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -205,8 +205,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(r.expr(t1).in_timezone("Z"), t4, right_bound='closed').count() */
                  var obtained = runOrCatch( tbl.between(r.expr(t1).inTimezone("Z"), t4).optArg("right_bound", "closed").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -220,8 +220,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.update(lambda row:{'a':row['id']})['replaced'] */
                  var obtained = runOrCatch( tbl.update(row => r.hashMap("a", row.bracket("id"))).bracket("replaced") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -235,8 +235,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.index_create('a') */
                  var obtained = runOrCatch( tbl.indexCreate("a") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -250,8 +250,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.index_wait('a').count() */
                  var obtained = runOrCatch( tbl.indexWait("a").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -265,8 +265,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(ts, te, index='a').count() */
                  var obtained = runOrCatch( tbl.between(ts, te).optArg("index", "a").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -280,8 +280,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(t1, t4, index='a').count() */
                  var obtained = runOrCatch( tbl.between(t1, t4).optArg("index", "a").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -295,8 +295,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(t1, t4, right_bound='closed', index='a').count() */
                  var obtained = runOrCatch( tbl.between(t1, t4).optArg("right_bound", "closed").optArg("index", "a").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -310,8 +310,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(r.expr(ts).in_timezone("+06:00"), te, index='a').count() */
                  var obtained = runOrCatch( tbl.between(r.expr(ts).inTimezone("+06:00"), te).optArg("index", "a").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -325,8 +325,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(t1, r.expr(t4).in_timezone("+08:00"), index='a').count() */
                  var obtained = runOrCatch( tbl.between(t1, r.expr(t4).inTimezone("+08:00")).optArg("index", "a").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -340,8 +340,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(r.expr(t1).in_timezone("Z"), t4, right_bound='closed', index='a').count() */
                  var obtained = runOrCatch( tbl.between(r.expr(t1).inTimezone("Z"), t4).optArg("right_bound", "closed").optArg("index", "a").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -355,8 +355,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.index_create('b', lambda row:r.branch(row['id'] < t4, row['a'], null)) */
                  var obtained = runOrCatch( tbl.indexCreate("b", row => r.branch(row.bracket("id").lt(t4), row.bracket("a"), (ReqlExpr) null)) ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -370,8 +370,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.index_wait('b').count() */
                  var obtained = runOrCatch( tbl.indexWait("b").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -385,8 +385,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.index_wait('b').count() */
                  var obtained = runOrCatch( tbl.indexWait("b").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -400,8 +400,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(ts, te, index='b').count() */
                  var obtained = runOrCatch( tbl.between(ts, te).optArg("index", "b").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -415,8 +415,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(t1, t4, index='b').count() */
                  var obtained = runOrCatch( tbl.between(t1, t4).optArg("index", "b").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -430,8 +430,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(t1, t4, right_bound='closed', index='b').count() */
                  var obtained = runOrCatch( tbl.between(t1, t4).optArg("right_bound", "closed").optArg("index", "b").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -445,8 +445,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(r.expr(ts).in_timezone("+06:00"), te, index='b').count() */
                  var obtained = runOrCatch( tbl.between(r.expr(ts).inTimezone("+06:00"), te).optArg("index", "b").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -460,8 +460,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(t1, r.expr(t4).in_timezone("+08:00"), index='b').count() */
                  var obtained = runOrCatch( tbl.between(t1, r.expr(t4).inTimezone("+08:00")).optArg("index", "b").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -475,8 +475,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.between(r.expr(t1).in_timezone("Z"), t4, right_bound='closed', index='b').count() */
                  var obtained = runOrCatch( tbl.between(r.expr(t1).inTimezone("Z"), t4).optArg("right_bound", "closed").optArg("index", "b").count() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -502,8 +502,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.insert([{'id':oldtime}])['inserted'] */
                  var obtained = runOrCatch( tbl.insert(r.array(r.hashMap("id", oldtime))).bracket("inserted") ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }
@@ -517,8 +517,8 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: tbl.get(oldtime)['id'].type_of() */
                  var obtained = runOrCatch( tbl.get(oldtime).bracket("id").typeOf() ,
-                                            new OptArgs()
-                    , conn);
+                                            new {
+                    }, conn);
                  
                      assertEquals(expected_, obtained);                 
              }

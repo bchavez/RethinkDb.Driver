@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -65,11 +66,11 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback 
 /// true
 /// </code></example>
-        public Includes (Arguments args, OptArgs optargs)
+        public Includes (Arguments args, object optargs)
              : this(TermType.INCLUDES, args, optargs) {
         }
 
-    protected Includes (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Includes (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

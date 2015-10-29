@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -32,7 +33,7 @@ namespace RethinkDb.Driver.Ast {
     
     
 
-    protected ReqlExpr (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected ReqlExpr (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 
@@ -59,7 +60,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Eq (arguments);
+                        return new Eq (arguments );
                         }
 /// <summary>
 /// <para>Test if two values are not equal.</para>
@@ -72,7 +73,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Ne (arguments);
+                        return new Ne (arguments );
                         }
 /// <summary>
 /// <para>Test if the first value is less than other.</para>
@@ -85,7 +86,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Lt (arguments);
+                        return new Lt (arguments );
                         }
 /// <summary>
 /// <para>Test if the first value is less than or equal to other.</para>
@@ -98,7 +99,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Le (arguments);
+                        return new Le (arguments );
                         }
 /// <summary>
 /// <para>Test if the first value is greater than other.</para>
@@ -111,7 +112,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Gt (arguments);
+                        return new Gt (arguments );
                         }
 /// <summary>
 /// <para>Test if the first value is greater than or equal to other.</para>
@@ -124,7 +125,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Ge (arguments);
+                        return new Ge (arguments );
                         }
 /// <summary>
 /// <para>Compute the logical inverse (not) of an expression.</para>
@@ -137,7 +138,7 @@ namespace RethinkDb.Driver.Ast {
                         public Not not (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Not (arguments);
+                        return new Not (arguments );
                         }
 /// <summary>
 /// <para>Sum two numbers, concatenate two strings, or concatenate 2 arrays.</para>
@@ -149,7 +150,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Add (arguments);
+                        return new Add (arguments );
                         }
 /// <summary>
 /// <para>Subtract two numbers.</para>
@@ -161,7 +162,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Sub (arguments);
+                        return new Sub (arguments );
                         }
 /// <summary>
 /// <para>Multiply two numbers, or make a periodic array.</para>
@@ -173,7 +174,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Mul (arguments);
+                        return new Mul (arguments );
                         }
 /// <summary>
 /// <para>Divide two numbers.</para>
@@ -185,7 +186,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Div (arguments);
+                        return new Div (arguments );
                         }
 /// <summary>
 /// <para>Find the remainder when dividing two numbers.</para>
@@ -197,7 +198,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Mod (arguments);
+                        return new Mod (arguments );
                         }
 /// <summary>
 /// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
@@ -210,7 +211,7 @@ namespace RethinkDb.Driver.Ast {
                         public Floor floor (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Floor (arguments);
+                        return new Floor (arguments );
                         }
 /// <summary>
 /// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
@@ -223,7 +224,7 @@ namespace RethinkDb.Driver.Ast {
                         public Ceil ceil (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Ceil (arguments);
+                        return new Ceil (arguments );
                         }
 /// <summary>
 /// <para>Rounds the given value to the nearest whole integer.</para>
@@ -236,7 +237,7 @@ namespace RethinkDb.Driver.Ast {
                         public Round round (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Round (arguments);
+                        return new Round (arguments );
                         }
 /// <summary>
 /// <para>Append a value to an array.</para>
@@ -248,7 +249,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Append (arguments);
+                        return new Append (arguments );
                         }
 /// <summary>
 /// <para>Prepend a value to an array.</para>
@@ -260,7 +261,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Prepend (arguments);
+                        return new Prepend (arguments );
                         }
 /// <summary>
 /// <para>Remove the elements of one array from another array.</para>
@@ -272,7 +273,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Difference (arguments);
+                        return new Difference (arguments );
                         }
 /// <summary>
 /// <para>Add a value to an array and return it as a set (an array with distinct values).</para>
@@ -284,7 +285,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new SetInsert (arguments);
+                        return new SetInsert (arguments );
                         }
 /// <summary>
 /// <para>Intersect two arrays returning values that occur in both of them as a set (an array with
@@ -297,7 +298,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new SetIntersection (arguments);
+                        return new SetIntersection (arguments );
                         }
 /// <summary>
 /// <para>Add a several values to an array and return it as a set (an array with distinct values).</para>
@@ -309,7 +310,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new SetUnion (arguments);
+                        return new SetUnion (arguments );
                         }
 /// <summary>
 /// <para>Remove the elements of one array from another and return them as a set (an array with
@@ -322,7 +323,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new SetDifference (arguments);
+                        return new SetDifference (arguments );
                         }
 /// <summary>
 /// <para>Return the elements of a sequence within the specified range.</para>
@@ -335,7 +336,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Slice (arguments);
+                        return new Slice (arguments );
                         }
 /// <summary>
 /// <para>Return the elements of a sequence within the specified range.</para>
@@ -349,7 +350,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Slice (arguments);
+                        return new Slice (arguments );
                         }
 /// <summary>
 /// <para>Skip a number of elements from the head of the sequence.</para>
@@ -361,7 +362,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Skip (arguments);
+                        return new Skip (arguments );
                         }
 /// <summary>
 /// <para>End the sequence after the given number of elements.</para>
@@ -373,7 +374,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Limit (arguments);
+                        return new Limit (arguments );
                         }
 /// <summary>
 /// <para>Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.</para>
@@ -385,7 +386,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new OffsetsOf (arguments);
+                        return new OffsetsOf (arguments );
                         }
 /// <summary>
 /// <para>Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.</para>
@@ -397,7 +398,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new OffsetsOf (arguments);
+                        return new OffsetsOf (arguments );
                         }
 /// <summary>
 /// <para>Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.</para>
@@ -409,7 +410,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new OffsetsOf (arguments);
+                        return new OffsetsOf (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -422,7 +423,7 @@ namespace RethinkDb.Driver.Ast {
                         public Contains contains (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -436,7 +437,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -451,7 +452,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -467,7 +468,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -484,7 +485,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
                                 arguments.CoerceAndAdd(jsC);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -501,7 +502,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -517,7 +518,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -534,7 +535,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -551,7 +552,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -566,7 +567,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -582,7 +583,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -599,7 +600,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -616,7 +617,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -632,7 +633,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -649,7 +650,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -666,7 +667,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -680,7 +681,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -695,7 +696,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -711,7 +712,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -728,7 +729,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -745,7 +746,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -761,7 +762,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -778,7 +779,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -795,7 +796,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -810,7 +811,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -826,7 +827,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -843,7 +844,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -860,7 +861,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -876,7 +877,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -893,7 +894,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(js);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -910,7 +911,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(exprD);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -927,7 +928,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(func1);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -943,7 +944,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -960,7 +961,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -977,7 +978,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -992,7 +993,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1008,7 +1009,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1025,7 +1026,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1042,7 +1043,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1058,7 +1059,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1075,7 +1076,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1092,7 +1093,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1106,7 +1107,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1121,7 +1122,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1137,7 +1138,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1154,7 +1155,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1171,7 +1172,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1187,7 +1188,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1204,7 +1205,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1221,7 +1222,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1236,7 +1237,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1252,7 +1253,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1269,7 +1270,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1286,7 +1287,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1B);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1302,7 +1303,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1319,7 +1320,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1336,7 +1337,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
                                 arguments.CoerceAndAdd(func1C);
-                        return new Contains (arguments);
+                        return new Contains (arguments );
                         }
 /// <summary>
 /// <para>Get a single field from an object. If called on a sequence, gets that field from every
@@ -1349,7 +1350,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new GetField (arguments);
+                        return new GetField (arguments );
                         }
 /// <summary>
 /// <para>Get a single field from an object. If called on a sequence, gets that field from every
@@ -1362,7 +1363,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new GetField (arguments);
+                        return new GetField (arguments );
                         }
 /// <summary>
 /// <para>Return an array containing all of the object's keys.</para>
@@ -1373,7 +1374,7 @@ namespace RethinkDb.Driver.Ast {
                         public Keys keys (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Keys (arguments);
+                        return new Keys (arguments );
                         }
 /// <summary>
 /// <para>Test if an object has one or more fields. An object has a field if it has that key and the key has a non-null value. For instance, the object <code>{'a': 1,'b': 2,'c': null}</code> has the fields <code>a</code> and <code>b</code>.</para>
@@ -1385,7 +1386,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new HasFields (arguments);
+                        return new HasFields (arguments );
                         }
 /// <summary>
 /// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.</para>
@@ -1397,7 +1398,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new WithFields (arguments);
+                        return new WithFields (arguments );
                         }
 /// <summary>
 /// <para>Plucks out one or more attributes from either an object or a sequence of objects
@@ -1411,7 +1412,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Pluck (arguments);
+                        return new Pluck (arguments );
                         }
 /// <summary>
 /// <para>The opposite of pluck; takes an object or a sequence of objects, and returns them with
@@ -1425,7 +1426,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Without (arguments);
+                        return new Without (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1439,7 +1440,7 @@ namespace RethinkDb.Driver.Ast {
                         public Merge merge (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1454,7 +1455,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1470,7 +1471,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1487,7 +1488,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1505,7 +1506,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
                                 arguments.CoerceAndAdd(jsC);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1523,7 +1524,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1540,7 +1541,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1558,7 +1559,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1576,7 +1577,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1592,7 +1593,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1609,7 +1610,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1627,7 +1628,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1645,7 +1646,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1662,7 +1663,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1680,7 +1681,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1698,7 +1699,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1713,7 +1714,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1729,7 +1730,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1746,7 +1747,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1764,7 +1765,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1782,7 +1783,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1799,7 +1800,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1817,7 +1818,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1835,7 +1836,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1851,7 +1852,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1868,7 +1869,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1886,7 +1887,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1904,7 +1905,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1921,7 +1922,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1939,7 +1940,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(js);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1957,7 +1958,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(exprD);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1975,7 +1976,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(func1);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1992,7 +1993,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2010,7 +2011,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2028,7 +2029,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2044,7 +2045,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2061,7 +2062,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2079,7 +2080,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2097,7 +2098,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2114,7 +2115,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2132,7 +2133,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2150,7 +2151,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2165,7 +2166,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2181,7 +2182,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2198,7 +2199,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2216,7 +2217,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2234,7 +2235,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2251,7 +2252,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2269,7 +2270,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2287,7 +2288,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2303,7 +2304,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2320,7 +2321,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2338,7 +2339,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2356,7 +2357,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1B);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2373,7 +2374,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2391,7 +2392,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2409,7 +2410,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
                                 arguments.CoerceAndAdd(func1C);
-                        return new Merge (arguments);
+                        return new Merge (arguments );
                         }
 /// <summary>
 /// <para>Get all documents between two keys. Accepts three optional arguments: <code>index</code>,
@@ -2427,7 +2428,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Between (arguments);
+                        return new Between (arguments );
                         }
 /// <summary>
 /// <para>Produce a single value from a sequence through repeated application of a reduction
@@ -2444,7 +2445,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Reduce (arguments);
+                        return new Reduce (arguments );
                         }
 /// <summary>
 /// <para>Produce a single value from a sequence through repeated application of a reduction
@@ -2461,7 +2462,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func2);
-                        return new Reduce (arguments);
+                        return new Reduce (arguments );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -2477,7 +2478,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Map (arguments);
+                        return new Map (arguments );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -2494,7 +2495,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
-                        return new Map (arguments);
+                        return new Map (arguments );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -2512,7 +2513,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
-                        return new Map (arguments);
+                        return new Map (arguments );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -2531,7 +2532,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(js);
-                        return new Map (arguments);
+                        return new Map (arguments );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -2550,7 +2551,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(func4);
-                        return new Map (arguments);
+                        return new Map (arguments );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -2568,7 +2569,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func3);
-                        return new Map (arguments);
+                        return new Map (arguments );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -2585,7 +2586,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func2);
-                        return new Map (arguments);
+                        return new Map (arguments );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -2601,7 +2602,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func0);
-                        return new Map (arguments);
+                        return new Map (arguments );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -2617,7 +2618,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Map (arguments);
+                        return new Map (arguments );
                         }
 /// <summary>
 /// <para>Get all the documents for which the given predicate is true.</para>
@@ -2637,7 +2638,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Filter (arguments);
+                        return new Filter (arguments );
                         }
 /// <summary>
 /// <para>Get all the documents for which the given predicate is true.</para>
@@ -2657,7 +2658,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Filter (arguments);
+                        return new Filter (arguments );
                         }
 /// <summary>
 /// <para>Get all the documents for which the given predicate is true.</para>
@@ -2677,7 +2678,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Filter (arguments);
+                        return new Filter (arguments );
                         }
 /// <summary>
 /// <para>Concatenate one or more elements into a single sequence using a mapping function.</para>
@@ -2691,7 +2692,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new ConcatMap (arguments);
+                        return new ConcatMap (arguments );
                         }
 /// <summary>
 /// <para>Concatenate one or more elements into a single sequence using a mapping function.</para>
@@ -2705,7 +2706,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new ConcatMap (arguments);
+                        return new ConcatMap (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -2728,7 +2729,7 @@ namespace RethinkDb.Driver.Ast {
                         public OrderBy orderBy (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -2752,7 +2753,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -2777,7 +2778,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -2803,7 +2804,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -2830,7 +2831,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
                                 arguments.CoerceAndAdd(jsC);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -2857,7 +2858,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
                                 arguments.CoerceAndAdd(exprA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -2883,7 +2884,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -2910,7 +2911,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -2937,7 +2938,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -2962,7 +2963,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -2988,7 +2989,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3015,7 +3016,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3042,7 +3043,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3068,7 +3069,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3095,7 +3096,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(jsA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3122,7 +3123,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3146,7 +3147,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3171,7 +3172,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3197,7 +3198,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3224,7 +3225,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3251,7 +3252,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3277,7 +3278,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3304,7 +3305,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(jsA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3331,7 +3332,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3356,7 +3357,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3382,7 +3383,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3409,7 +3410,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3436,7 +3437,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprC);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3462,7 +3463,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3489,7 +3490,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(js);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3516,7 +3517,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(exprD);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3543,7 +3544,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(func1);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3569,7 +3570,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3596,7 +3597,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprC);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3623,7 +3624,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3648,7 +3649,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3674,7 +3675,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3701,7 +3702,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3728,7 +3729,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1A);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3754,7 +3755,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3781,7 +3782,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3808,7 +3809,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3832,7 +3833,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3857,7 +3858,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3883,7 +3884,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3910,7 +3911,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3937,7 +3938,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1A);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3963,7 +3964,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1A);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3990,7 +3991,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4017,7 +4018,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4042,7 +4043,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4068,7 +4069,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4095,7 +4096,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4122,7 +4123,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1B);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4148,7 +4149,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4175,7 +4176,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
                                 arguments.CoerceAndAdd(exprA);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4202,7 +4203,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
                                 arguments.CoerceAndAdd(func1C);
-                        return new OrderBy (arguments);
+                        return new OrderBy (arguments );
                         }
 /// <summary>
 /// <para>Remove duplicate elements from the sequence.</para>
@@ -4215,7 +4216,7 @@ namespace RethinkDb.Driver.Ast {
                         public Distinct distinct (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Distinct (arguments);
+                        return new Distinct (arguments );
                         }
 /// <summary>
 /// <para>Count the number of elements in the sequence. With a single argument, count the number
@@ -4228,7 +4229,7 @@ namespace RethinkDb.Driver.Ast {
                         public Count count (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Count (arguments);
+                        return new Count (arguments );
                         }
 /// <summary>
 /// <para>Count the number of elements in the sequence. With a single argument, count the number
@@ -4242,7 +4243,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Count (arguments);
+                        return new Count (arguments );
                         }
 /// <summary>
 /// <para>Count the number of elements in the sequence. With a single argument, count the number
@@ -4256,7 +4257,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Count (arguments);
+                        return new Count (arguments );
                         }
 /// <summary>
 /// <para>Count the number of elements in the sequence. With a single argument, count the number
@@ -4270,7 +4271,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Count (arguments);
+                        return new Count (arguments );
                         }
 /// <summary>
 /// <para>Test if a sequence is empty.</para>
@@ -4281,7 +4282,7 @@ namespace RethinkDb.Driver.Ast {
                         public IsEmpty isEmpty (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new IsEmpty (arguments);
+                        return new IsEmpty (arguments );
                         }
 /// <summary>
 /// <para>Concatenate two or more sequences.</para>
@@ -4293,7 +4294,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Union (arguments);
+                        return new Union (arguments );
                         }
 /// <summary>
 /// <para>Get the <em>nth</em> element of a sequence, counting from zero. If the argument is negative, count from the last element.</para>
@@ -4305,7 +4306,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Nth (arguments);
+                        return new Nth (arguments );
                         }
 /// <summary>
 /// <para>Get a single field from an object or a single element from a sequence.</para>
@@ -4317,7 +4318,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Bracket (arguments);
+                        return new Bracket (arguments );
                         }
 /// <summary>
 /// <para>Returns an inner join of two sequences.</para>
@@ -4332,7 +4333,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
-                        return new InnerJoin (arguments);
+                        return new InnerJoin (arguments );
                         }
 /// <summary>
 /// <para>Returns an inner join of two sequences.</para>
@@ -4347,7 +4348,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func2);
-                        return new InnerJoin (arguments);
+                        return new InnerJoin (arguments );
                         }
 /// <summary>
 /// <para>Returns a left outer join of two sequences.</para>
@@ -4362,7 +4363,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
-                        return new OuterJoin (arguments);
+                        return new OuterJoin (arguments );
                         }
 /// <summary>
 /// <para>Returns a left outer join of two sequences.</para>
@@ -4377,7 +4378,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func2);
-                        return new OuterJoin (arguments);
+                        return new OuterJoin (arguments );
                         }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
@@ -4391,7 +4392,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
-                        return new EqJoin (arguments);
+                        return new EqJoin (arguments );
                         }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
@@ -4405,7 +4406,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new EqJoin (arguments);
+                        return new EqJoin (arguments );
                         }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
@@ -4419,7 +4420,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
-                        return new EqJoin (arguments);
+                        return new EqJoin (arguments );
                         }
 /// <summary>
 /// <para>Used to 'zip' up the result of a join by merging the 'right' fields into 'left' fields of each member of the sequence.</para>
@@ -4431,7 +4432,7 @@ namespace RethinkDb.Driver.Ast {
                         public Zip zip (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Zip (arguments);
+                        return new Zip (arguments );
                         }
 /// <summary>
 /// <para>Insert a value in to an array at a given index. Returns the modified array.</para>
@@ -4444,7 +4445,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new InsertAt (arguments);
+                        return new InsertAt (arguments );
                         }
 /// <summary>
 /// <para>Remove one or more elements from an array at a given index. Returns the modified array.</para>
@@ -4458,7 +4459,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new DeleteAt (arguments);
+                        return new DeleteAt (arguments );
                         }
 /// <summary>
 /// <para>Remove one or more elements from an array at a given index. Returns the modified array.</para>
@@ -4473,7 +4474,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new DeleteAt (arguments);
+                        return new DeleteAt (arguments );
                         }
 /// <summary>
 /// <para>Change a value in an array at a given index. Returns the modified array.</para>
@@ -4486,7 +4487,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new ChangeAt (arguments);
+                        return new ChangeAt (arguments );
                         }
 /// <summary>
 /// <para>Insert several values in to an array at a given index. Returns the modified array.</para>
@@ -4499,7 +4500,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new SpliceAt (arguments);
+                        return new SpliceAt (arguments );
                         }
 /// <summary>
 /// <para>Convert a value of one type into another.</para>
@@ -4513,7 +4514,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new CoerceTo (arguments);
+                        return new CoerceTo (arguments );
                         }
 /// <summary>
 /// <para>Gets the type of a value.</para>
@@ -4524,7 +4525,7 @@ namespace RethinkDb.Driver.Ast {
                         public TypeOf typeOf (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new TypeOf (arguments);
+                        return new TypeOf (arguments );
                         }
 /// <summary>
 /// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
@@ -4538,7 +4539,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Update (arguments);
+                        return new Update (arguments );
                         }
 /// <summary>
 /// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
@@ -4552,7 +4553,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Update (arguments);
+                        return new Update (arguments );
                         }
 /// <summary>
 /// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
@@ -4566,7 +4567,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Update (arguments);
+                        return new Update (arguments );
                         }
 /// <summary>
 /// <para>Delete one or more documents from a table.</para>
@@ -4577,7 +4578,7 @@ namespace RethinkDb.Driver.Ast {
                         public Delete delete (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Delete (arguments);
+                        return new Delete (arguments );
                         }
 /// <summary>
 /// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
@@ -4596,7 +4597,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Replace (arguments);
+                        return new Replace (arguments );
                         }
 /// <summary>
 /// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
@@ -4615,7 +4616,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Replace (arguments);
+                        return new Replace (arguments );
                         }
 /// <summary>
 /// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
@@ -4634,20 +4635,20 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Replace (arguments);
+                        return new Replace (arguments );
                         }
                         public Funcall do_ ( Javascript js )
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Funcall (arguments);
+                        return new Funcall (arguments );
                         }
                         public Funcall do_ ( Object exprA, Javascript js )
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
-                        return new Funcall (arguments);
+                        return new Funcall (arguments );
                         }
                         public Funcall do_ ( Object exprA, Object exprB, Javascript js )
                         {
@@ -4655,7 +4656,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
-                        return new Funcall (arguments);
+                        return new Funcall (arguments );
                         }
                         public Funcall do_ ( Object exprA, Object exprB, ReqlFunction3 func3 )
                         {
@@ -4663,26 +4664,26 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func3);
-                        return new Funcall (arguments);
+                        return new Funcall (arguments );
                         }
                         public Funcall do_ ( Object exprA, ReqlFunction2 func2 )
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func2);
-                        return new Funcall (arguments);
+                        return new Funcall (arguments );
                         }
                         public Funcall do_ ( params object[] exprs )
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Funcall (arguments);
+                        return new Funcall (arguments );
                         }
                         public Funcall do_ ( ReqlFunction1 func1 )
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Funcall (arguments);
+                        return new Funcall (arguments );
                         }
 /// <summary>
 /// <para>Compute the logical "or" of two or more values.</para>
@@ -4698,7 +4699,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new Or (arguments);
+                        return new Or (arguments );
                         }
 /// <summary>
 /// <para>Compute the logical "and" of two or more values.</para>
@@ -4713,7 +4714,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAddAll(exprs);
-                        return new And (arguments);
+                        return new And (arguments );
                         }
 /// <summary>
 /// <para>Loop over a sequence, evaluating the given write query for each element.</para>
@@ -4727,7 +4728,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new ForEach (arguments);
+                        return new ForEach (arguments );
                         }
 /// <summary>
 /// <para>Loop over a sequence, evaluating the given write query for each element.</para>
@@ -4741,7 +4742,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func0);
-                        return new ForEach (arguments);
+                        return new ForEach (arguments );
                         }
 /// <summary>
 /// <para>Loop over a sequence, evaluating the given write query for each element.</para>
@@ -4755,7 +4756,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new ForEach (arguments);
+                        return new ForEach (arguments );
                         }
 /// <summary>
 /// <para>Get information about a ReQL value.</para>
@@ -4766,7 +4767,7 @@ namespace RethinkDb.Driver.Ast {
                         public Info info (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Info (arguments);
+                        return new Info (arguments );
                         }
 /// <summary>
 /// <para>Matches against a regular expression. If there is a match, returns an object with the fields:</para>
@@ -4787,7 +4788,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Match (arguments);
+                        return new Match (arguments );
                         }
 /// <summary>
 /// <para>Uppercases a string.</para>
@@ -4798,7 +4799,7 @@ namespace RethinkDb.Driver.Ast {
                         public Upcase upcase (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Upcase (arguments);
+                        return new Upcase (arguments );
                         }
 /// <summary>
 /// <para>Lowercases a string.</para>
@@ -4809,7 +4810,7 @@ namespace RethinkDb.Driver.Ast {
                         public Downcase downcase (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Downcase (arguments);
+                        return new Downcase (arguments );
                         }
 /// <summary>
 /// <para>Select a given number of elements from a sequence with uniform random distribution. Selection is done without replacement.</para>
@@ -4821,7 +4822,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Sample (arguments);
+                        return new Sample (arguments );
                         }
 /// <summary>
 /// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
@@ -4844,7 +4845,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Default (arguments);
+                        return new Default (arguments );
                         }
 /// <summary>
 /// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
@@ -4867,7 +4868,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Default (arguments);
+                        return new Default (arguments );
                         }
 /// <summary>
 /// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
@@ -4890,7 +4891,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Default (arguments);
+                        return new Default (arguments );
                         }
 /// <summary>
 /// <para>Convert a ReQL value or object to a JSON string. You may use either <code>toJsonString</code> or <code>toJSON</code>.</para>
@@ -4903,7 +4904,7 @@ namespace RethinkDb.Driver.Ast {
                         public ToJsonString toJsonString (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new ToJsonString (arguments);
+                        return new ToJsonString (arguments );
                         }
 /// <summary>
 /// <para>Convert a ReQL value or object to a JSON string. You may use either <code>toJsonString</code> or <code>toJSON</code>.</para>
@@ -4916,7 +4917,7 @@ namespace RethinkDb.Driver.Ast {
                         public ToJsonString toJson (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new ToJsonString (arguments);
+                        return new ToJsonString (arguments );
                         }
 /// <summary>
 /// <para>Convert a time object to a string in ISO 8601 format.</para>
@@ -4929,7 +4930,7 @@ namespace RethinkDb.Driver.Ast {
                         public ToIso8601 toIso8601 (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new ToIso8601 (arguments);
+                        return new ToIso8601 (arguments );
                         }
 /// <summary>
 /// <para>Convert a time object to its epoch time.</para>
@@ -4940,7 +4941,7 @@ namespace RethinkDb.Driver.Ast {
                         public ToEpochTime toEpochTime (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new ToEpochTime (arguments);
+                        return new ToEpochTime (arguments );
                         }
 /// <summary>
 /// <para>Return a new time object with a different timezone. While the time stays the same, the results returned by methods such as hours() will change since they take the timezone into account. The timezone argument has to be of the ISO 8601 format.</para>
@@ -4952,7 +4953,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new InTimezone (arguments);
+                        return new InTimezone (arguments );
                         }
 /// <summary>
 /// <para>Return if a time is between two other times (by default, inclusive for the start, exclusive for the end).</para>
@@ -4967,7 +4968,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new During (arguments);
+                        return new During (arguments );
                         }
 /// <summary>
 /// <para>Return a new time object only based on the day, month and year (ie. the same day at 00:00).</para>
@@ -4980,7 +4981,7 @@ namespace RethinkDb.Driver.Ast {
                         public Date date (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Date (arguments);
+                        return new Date (arguments );
                         }
 /// <summary>
 /// <para>Return the number of seconds elapsed since the beginning of the day stored in the time object.</para>
@@ -4993,7 +4994,7 @@ namespace RethinkDb.Driver.Ast {
                         public TimeOfDay timeOfDay (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new TimeOfDay (arguments);
+                        return new TimeOfDay (arguments );
                         }
 /// <summary>
 /// <para>Return the timezone of the time object.</para>
@@ -5006,7 +5007,7 @@ namespace RethinkDb.Driver.Ast {
                         public Timezone timezone (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Timezone (arguments);
+                        return new Timezone (arguments );
                         }
 /// <summary>
 /// <para>Return the year of a time object.</para>
@@ -5019,7 +5020,7 @@ namespace RethinkDb.Driver.Ast {
                         public Year year (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Year (arguments);
+                        return new Year (arguments );
                         }
 /// <summary>
 /// <para>Return the month of a time object as a number between 1 and 12. For your convenience, the terms r.january, r.february etc. are defined and map to the appropriate integer.</para>
@@ -5032,7 +5033,7 @@ namespace RethinkDb.Driver.Ast {
                         public Month month (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Month (arguments);
+                        return new Month (arguments );
                         }
 /// <summary>
 /// <para>Return the day of a time object as a number between 1 and 31.</para>
@@ -5045,7 +5046,7 @@ namespace RethinkDb.Driver.Ast {
                         public Day day (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Day (arguments);
+                        return new Day (arguments );
                         }
 /// <summary>
 /// <para>Return the day of week of a time object as a number between 1 and 7 (following ISO 8601 standard). For your convenience, the terms r.monday, r.tuesday etc. are defined and map to the appropriate integer.</para>
@@ -5056,7 +5057,7 @@ namespace RethinkDb.Driver.Ast {
                         public DayOfWeek dayOfWeek (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new DayOfWeek (arguments);
+                        return new DayOfWeek (arguments );
                         }
 /// <summary>
 /// <para>Return the day of the year of a time object as a number between 1 and 366 (following ISO 8601 standard).</para>
@@ -5069,7 +5070,7 @@ namespace RethinkDb.Driver.Ast {
                         public DayOfYear dayOfYear (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new DayOfYear (arguments);
+                        return new DayOfYear (arguments );
                         }
 /// <summary>
 /// <para>Return the hour in a time object as a number between 0 and 23.</para>
@@ -5082,7 +5083,7 @@ namespace RethinkDb.Driver.Ast {
                         public Hours hours (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Hours (arguments);
+                        return new Hours (arguments );
                         }
 /// <summary>
 /// <para>Return the minute in a time object as a number between 0 and 59.</para>
@@ -5095,7 +5096,7 @@ namespace RethinkDb.Driver.Ast {
                         public Minutes minutes (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Minutes (arguments);
+                        return new Minutes (arguments );
                         }
 /// <summary>
 /// <para>Return the seconds in a time object as a number between 0 and 59.999 (double precision).</para>
@@ -5108,7 +5109,7 @@ namespace RethinkDb.Driver.Ast {
                         public Seconds seconds (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Seconds (arguments);
+                        return new Seconds (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5121,7 +5122,7 @@ namespace RethinkDb.Driver.Ast {
                         public Group group (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5135,7 +5136,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5150,7 +5151,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5166,7 +5167,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5183,7 +5184,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
                                 arguments.CoerceAndAdd(jsC);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5200,7 +5201,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5216,7 +5217,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5233,7 +5234,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5250,7 +5251,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5265,7 +5266,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5281,7 +5282,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5298,7 +5299,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5315,7 +5316,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5331,7 +5332,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5348,7 +5349,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5365,7 +5366,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5379,7 +5380,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5394,7 +5395,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5410,7 +5411,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5427,7 +5428,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5444,7 +5445,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5460,7 +5461,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5477,7 +5478,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5494,7 +5495,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5509,7 +5510,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5525,7 +5526,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5542,7 +5543,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5559,7 +5560,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5575,7 +5576,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5592,7 +5593,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(js);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5609,7 +5610,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(exprD);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5626,7 +5627,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 arguments.CoerceAndAdd(func1);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5642,7 +5643,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5659,7 +5660,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5676,7 +5677,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5691,7 +5692,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5707,7 +5708,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5724,7 +5725,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5741,7 +5742,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5757,7 +5758,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5774,7 +5775,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5791,7 +5792,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5805,7 +5806,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5820,7 +5821,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5836,7 +5837,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5853,7 +5854,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5870,7 +5871,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5886,7 +5887,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5903,7 +5904,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5920,7 +5921,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5935,7 +5936,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5951,7 +5952,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5968,7 +5969,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -5985,7 +5986,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1B);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6001,7 +6002,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6018,7 +6019,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6035,7 +6036,7 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func1A);
                                 arguments.CoerceAndAdd(func1B);
                                 arguments.CoerceAndAdd(func1C);
-                        return new Group (arguments);
+                        return new Group (arguments );
                         }
 /// <summary>
 /// <para>Sums all the elements of a sequence.  If called with a field name,
@@ -6051,7 +6052,7 @@ namespace RethinkDb.Driver.Ast {
                         public Sum sum (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Sum (arguments);
+                        return new Sum (arguments );
                         }
 /// <summary>
 /// <para>Sums all the elements of a sequence.  If called with a field name,
@@ -6068,7 +6069,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Sum (arguments);
+                        return new Sum (arguments );
                         }
 /// <summary>
 /// <para>Sums all the elements of a sequence.  If called with a field name,
@@ -6085,7 +6086,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Sum (arguments);
+                        return new Sum (arguments );
                         }
 /// <summary>
 /// <para>Sums all the elements of a sequence.  If called with a field name,
@@ -6102,7 +6103,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Sum (arguments);
+                        return new Sum (arguments );
                         }
 /// <summary>
 /// <para>Averages all the elements of a sequence.  If called with a field name,
@@ -6118,7 +6119,7 @@ namespace RethinkDb.Driver.Ast {
                         public Avg avg (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Avg (arguments);
+                        return new Avg (arguments );
                         }
 /// <summary>
 /// <para>Averages all the elements of a sequence.  If called with a field name,
@@ -6135,7 +6136,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Avg (arguments);
+                        return new Avg (arguments );
                         }
 /// <summary>
 /// <para>Averages all the elements of a sequence.  If called with a field name,
@@ -6152,7 +6153,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Avg (arguments);
+                        return new Avg (arguments );
                         }
 /// <summary>
 /// <para>Averages all the elements of a sequence.  If called with a field name,
@@ -6169,7 +6170,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Avg (arguments);
+                        return new Avg (arguments );
                         }
 /// <summary>
 /// <para>Finds the minimum element of a sequence.</para>
@@ -6180,7 +6181,7 @@ namespace RethinkDb.Driver.Ast {
                         public Min min (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Min (arguments);
+                        return new Min (arguments );
                         }
 /// <summary>
 /// <para>Finds the minimum element of a sequence.</para>
@@ -6192,7 +6193,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Min (arguments);
+                        return new Min (arguments );
                         }
 /// <summary>
 /// <para>Finds the minimum element of a sequence.</para>
@@ -6204,7 +6205,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Min (arguments);
+                        return new Min (arguments );
                         }
 /// <summary>
 /// <para>Finds the minimum element of a sequence.</para>
@@ -6216,7 +6217,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Min (arguments);
+                        return new Min (arguments );
                         }
 /// <summary>
 /// <para>Finds the maximum element of a sequence.</para>
@@ -6227,7 +6228,7 @@ namespace RethinkDb.Driver.Ast {
                         public Max max (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Max (arguments);
+                        return new Max (arguments );
                         }
 /// <summary>
 /// <para>Finds the maximum element of a sequence.</para>
@@ -6239,7 +6240,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(js);
-                        return new Max (arguments);
+                        return new Max (arguments );
                         }
 /// <summary>
 /// <para>Finds the maximum element of a sequence.</para>
@@ -6251,7 +6252,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Max (arguments);
+                        return new Max (arguments );
                         }
 /// <summary>
 /// <para>Finds the maximum element of a sequence.</para>
@@ -6263,7 +6264,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(func1);
-                        return new Max (arguments);
+                        return new Max (arguments );
                         }
 /// <summary>
 /// <para>Splits a string into substrings.  Splits on whitespace when called
@@ -6282,7 +6283,7 @@ namespace RethinkDb.Driver.Ast {
                         public Split split (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Split (arguments);
+                        return new Split (arguments );
                         }
 /// <summary>
 /// <para>Splits a string into substrings.  Splits on whitespace when called
@@ -6302,7 +6303,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Split (arguments);
+                        return new Split (arguments );
                         }
 /// <summary>
 /// <para>Splits a string into substrings.  Splits on whitespace when called
@@ -6323,7 +6324,7 @@ namespace RethinkDb.Driver.Ast {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
-                        return new Split (arguments);
+                        return new Split (arguments );
                         }
 /// <summary>
 /// <para>Takes a grouped stream or grouped data and turns it into an array of
@@ -6341,7 +6342,7 @@ namespace RethinkDb.Driver.Ast {
                         public Ungroup ungroup (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Ungroup (arguments);
+                        return new Ungroup (arguments );
                         }
 /// <summary>
 /// <para>Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.</para>
@@ -6354,7 +6355,7 @@ namespace RethinkDb.Driver.Ast {
                         public Changes changes (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Changes (arguments);
+                        return new Changes (arguments );
                         }
 /// <summary>
 /// <para>Convert a ReQL geometry object to a [GeoJSON][] object.</para>
@@ -6370,7 +6371,7 @@ namespace RethinkDb.Driver.Ast {
                         public ToGeojson toGeojson (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new ToGeojson (arguments);
+                        return new ToGeojson (arguments );
                         }
 /// <summary>
 /// <para>Compute the distance between a point and another geometry object. At least one of the geometry objects specified must be a point.</para>
@@ -6386,7 +6387,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Distance (arguments);
+                        return new Distance (arguments );
                         }
 /// <summary>
 /// <para>Tests whether two geometry objects intersect with one another. When applied to a sequence of geometry objects, <code>intersects</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that intersect with the argument.</para>
@@ -6402,7 +6403,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Intersects (arguments);
+                        return new Intersects (arguments );
                         }
 /// <summary>
 /// <para>Tests whether a geometry object is completely contained within another. When applied to a sequence of geometry objects, <code>includes</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that include the argument.</para>
@@ -6418,7 +6419,7 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new Includes (arguments);
+                        return new Includes (arguments );
                         }
 /// <summary>
 /// <para>Convert a Line object into a Polygon object. If the last point does not specify the same coordinates as the first point, <code>polygon</code> will close the polygon by connecting them.</para>
@@ -6441,7 +6442,7 @@ namespace RethinkDb.Driver.Ast {
                         public Fill fill (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Fill (arguments);
+                        return new Fill (arguments );
                         }
 /// <summary>
 /// <para>Use <code>polygon2</code> to "punch out" a hole in <code>polygon1</code>. <code>polygon2</code> must be completely contained within <code>polygon1</code> and must have no holes itself (it must not be the output of <code>polygonSub</code> itself).</para>
@@ -6465,12 +6466,12 @@ namespace RethinkDb.Driver.Ast {
                         {
                         Arguments arguments = new Arguments(this);
                                 arguments.CoerceAndAdd(exprA);
-                        return new PolygonSub (arguments);
+                        return new PolygonSub (arguments );
                         }
                         public Values values (  )
                         {
                         Arguments arguments = new Arguments(this);
-                        return new Values (arguments);
+                        return new Values (arguments );
                         }
 
     

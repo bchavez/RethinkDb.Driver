@@ -21,6 +21,7 @@ using System;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -65,11 +66,11 @@ namespace RethinkDb.Driver.Ast {
 /// until these changes are persisted.</para>
 /// <code>r.table('marvel').sync().run(conn, callback)
 /// </code></example>
-        public Sync (Arguments args, OptArgs optargs)
+        public Sync (Arguments args, object optargs)
              : this(TermType.SYNC, args, optargs) {
         }
 
-    protected Sync (TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
+    protected Sync (TermType termType, Arguments args, object optargs) : base(termType, args, optargs)
     {
     }
 

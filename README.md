@@ -155,8 +155,9 @@ r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback
 ```
 The **Java** driver (and **C#** driver supports) the use of `.optArg()` method calls to specify optional arguments. The equivalent query in **Java** (and **C#**) is shown below:
 ```csharp
-Cursor<Foo> foo = r.db(DbName).table("marvel").getAll("man_of_steel")
-                   .optArg("index", "code_name")
+Cursor<Foo> foo = r.db(DbName).table("marvel")
+                   .getAll("man_of_steel")
+                       .optArg("index", "code_name")
                    .run<Foo>(conn);
 ```
 The **C#** driver also supports anonymous typed optional arguments. ReQL expressions in other drivers usually specify optional arguments last. The following syntax follows this convention via indexers. The equivalent query above can also be written as:

@@ -35,7 +35,7 @@ namespace Builder
                .Version( BuildContext.Version )
                .FileVersion( BuildContext.Version )
                .InformationalVersion( $"{BuildContext.FullVersion} built on {DateTime.UtcNow} UTC" )
-               .Trademark( "MIT License" )
+               .Trademark("Apache License v2.0")
                .Description( "http://www.github.com/bchavez/RethinkDb.Driver" )
                .ComVisible(false);
         }

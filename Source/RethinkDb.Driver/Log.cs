@@ -1,4 +1,4 @@
-﻿#if DOTNET
+#if DOTNET
 using Microsoft.Extensions.Logging;
 #else
 using Common.Logging;

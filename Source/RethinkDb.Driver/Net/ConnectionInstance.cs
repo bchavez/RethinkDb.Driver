@@ -56,18 +56,6 @@ namespace RethinkDb.Driver.Net
 
             long token = query.Token;
 
-            /*
-				if (headerInProgress == null)
-				{
-					headerInProgress = sock.recvall(12, deadline);
-				}
-				long resToken = headerInProgress.get().Long;
-				int resLen = headerInProgress.get().Int;
-				ByteBuffer resBuf = sock.recvall(resLen, deadline);
-			    headerInProgress = null;
-
-				var res = Response.parseFrom(resToken, resBuf);*/
-
             while( true )
             {
                 //may or maynot be the token we're looking for.

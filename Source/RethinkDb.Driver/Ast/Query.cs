@@ -8,9 +8,9 @@ using RethinkDb.Driver.Proto;
 namespace RethinkDb.Driver.Ast
 {
     /* An instance for a query that has been sent to the server. Keeps
-	 * track of its token, the args to .run() it was called with, and its
-	 * query type.
-	*/
+     * track of its token, the args to .run() it was called with, and its
+     * query type.
+    */
 
     public class Query
     {

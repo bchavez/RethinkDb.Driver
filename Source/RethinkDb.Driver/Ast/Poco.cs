@@ -1,17 +1,16 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
+using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver.Ast
 {
     public class Poco : ReqlAst
     {
-        public static Func<object, JObject> Converter = DefaultConverter;
-
         private readonly object obj;
 
-        public Poco(object obj)
+        public Poco(object obj) : base(new TermType(), null)
         {
             this.obj = obj;
         }
@@ -26,12 +25,7 @@ namespace RethinkDb.Driver.Ast
 
         protected internal override object Build()
         {
-            return Converter(obj);
-        }
-
-        public static JObject DefaultConverter(object value)
-        {
-            return JObject.FromObject(value);
+            return Converter3.PocoConverter(obj);
         }
     }
 }

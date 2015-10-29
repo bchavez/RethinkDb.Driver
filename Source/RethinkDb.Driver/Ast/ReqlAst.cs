@@ -35,11 +35,6 @@ namespace RethinkDb.Driver.Ast
         {
         }
 
-        protected internal ReqlAst()
-        {
-
-        }
-
         protected internal virtual object Build()
         {
             // Create a JSON object from the Ast

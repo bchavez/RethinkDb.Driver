@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
+using RethinkDb.Driver.Net;
 
 namespace RethinkDb.Driver.Ast
 {
@@ -37,8 +39,7 @@ namespace RethinkDb.Driver.Ast
 		        return ast;
 		    }
 
-
-		    var lst = val as IList;
+            var lst = val as IList;
 		    if( lst != null )
 		    {
 		        Arguments innerValues = new Arguments();
@@ -48,8 +49,7 @@ namespace RethinkDb.Driver.Ast
 		        }
 		        return new MakeArray(innerValues, null);
 		    }
-
-
+            
 		    var dict = val as IDictionary;
 		    if( dict != null )
 		    {
@@ -59,15 +59,14 @@ namespace RethinkDb.Driver.Ast
 		            var key = keyObj as string;
 		            if( key == null )
 		            {
-		                throw new ReqlDriverCompileError("Object key can only be strings");
+		                throw new ReqlDriverCompileError("Object keys can only be strings");
 		            }
 
 		            obj[key] = ToReqlAst(dict[keyObj]);
 		        }
 		        return MakeObj.fromMap(obj);
 		    }
-
-
+            
 		    var del = val as Delegate;
 		    if( del != null )
 		    {
@@ -117,7 +116,6 @@ namespace RethinkDb.Driver.Ast
 		    }
 
 		    return new Poco(val);
-		    //throw new ReqlDriverError($"Can't convert {val} to a ReqlAst");
 		}
 
         public static bool IsNumber(object value)

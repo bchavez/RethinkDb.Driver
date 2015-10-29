@@ -92,7 +92,7 @@ namespace RethinkDb.Driver.Tests
                 .timeout(60)
                 .connect();
 
-            var result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
+            int result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
             Console.WriteLine(result);
             result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
         }
@@ -143,8 +143,8 @@ namespace RethinkDb.Driver.Tests
         [Test]
         public void insert_test_without_id()
         {
-            var obj = new Foo { Bar = 1, Baz = 2};
-            var result = r.db(DbName).table(TableName).insert(obj).run(conn);
+            var obj = new Foo { Bar = 1, Baz = 2, Tim = DateTimeOffset.Now};
+            JObject result = r.db(DbName).table(TableName).insert(obj).run(conn);
             result.Dump();
         }
 
@@ -166,6 +166,15 @@ namespace RethinkDb.Driver.Tests
         {
             var foo = r.db(DbName).table(TableName).get("a").run<Foo>(conn);
             foo.Dump();
+        }
+
+        [Test]
+        public void get_with_time()
+        {
+            Foo foo = r.db(DbName).table(TableName).get("4d4ba69e-048c-43b7-b842-c7b49dc6691c")
+                .run<Foo>(conn);
+
+            foo.Tim.Dump();
         }
 
         [Test]
@@ -211,19 +220,10 @@ namespace RethinkDb.Driver.Tests
         public void getall_indexer_opt_args()
         {
             var all = r.db(DbName).table(TableName)
-                .getAll("foo")
+                .getAll("foo")[new {index = "foo"}]
                 .run<Foo>(conn);
         }
 
-        [Test]
-        public void Test()
-        {
-
-            Poco.Converter = o =>
-                {
-                    return JObject.FromObject(o, new JsonSerializer() {Formatting = Formatting.Indented});
-                };
-        }
         
     }
 
@@ -233,6 +233,7 @@ namespace RethinkDb.Driver.Tests
         public string id { get; set; }
         public int Bar { get; set; }
         public int Baz { get; set; }
+        public DateTimeOffset Tim { get; set; }
     }
 
 }

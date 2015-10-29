@@ -245,6 +245,7 @@ namespace RethinkDb.Driver.Net
             }
             if( globalOpts?.ContainsKey("db") == true )
             {
+                // The db arg must be wrapped in a db ast object
                 globalOpts.with("db", new Db(Arguments.Make(globalOpts["db"])));
             }
         }

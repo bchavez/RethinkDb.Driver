@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
@@ -89,6 +90,37 @@ namespace RethinkDb.Driver.Net
             mob.with(PseudoTypeKey, Binary);
             mob.with("data", Convert.ToBase64String(data));
             return mob;
+        }
+
+        public static Func<object, JObject> PocoConverter = DefaultPocoConverter;
+        public static JObject DefaultPocoConverter(object value)
+        {
+            return JObject.FromObject(value, JsonSerializer.CreateDefault(new JsonSerializerSettings()
+                {
+                    Converters = new[] {TimeConverter}
+                }));
+        }
+
+        public static JsonConverter TimeConverter = new PocoIso8601Converter();
+    }
+
+    internal class PocoIso8601Converter : JsonConverter
+    {
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            var ast = Util.ToReqlAst(value);
+            serializer.Serialize(writer, ast.Build());
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType == typeof(DateTime) ||
+                   objectType == typeof(DateTimeOffset);
         }
     }
 

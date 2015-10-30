@@ -39,7 +39,26 @@ namespace RethinkDb.Driver.Tests
             var err = expected as Err;
             if( err != null )
             {
-                err.Equals(obtained);
+                err.Equals(obtained)
+                    .Should().BeTrue();
+
+                return;
+            }
+
+            var intCmp = expected as IntCmp;
+            if( intCmp != null )
+            {
+                intCmp.Equals(obtained)
+                    .Should().BeTrue();
+
+                return;
+            }
+
+            var floatCmp = expected as FloatCmp;
+            if( floatCmp != null )
+            {
+                floatCmp.Equals(obtained)
+                    .Should().BeTrue();
 
                 return;
             }
@@ -48,11 +67,11 @@ namespace RethinkDb.Driver.Tests
             {
                 var obtainedDct = obtained as JObject;
 
-                ((PartialDct)expected).Equals(obtainedDct.ToSortedDictionary());
+                ((PartialDct)expected).Equals(obtainedDct.ToSortedDictionary())
+                    .Should().BeTrue();
 
                 return;
             }
-
 
             var map = expected as MapObject;
             if( map != null )
@@ -425,16 +444,19 @@ namespace RethinkDb.Driver.Tests
 
         public class IntCmp
         {
-            private int nbr;
+            private long nbr;
 
             public IntCmp(double nbr)
             {
-                this.nbr = (int)nbr;
+                this.nbr = (long)nbr;
             }
 
             public override bool Equals(Object other)
             {
-                return nbr.Equals(other);
+                var isValid = nbr.Equals(other);
+                isValid.Should().BeTrue();
+
+                return isValid;
             }
         }
 
@@ -454,7 +476,9 @@ namespace RethinkDb.Driver.Tests
 
             public override bool Equals(Object other)
             {
-                return nbr.Equals(other);
+                var isValid = nbr.Equals(other);
+                isValid.Should().BeTrue();
+                return isValid;
             }
         }
 

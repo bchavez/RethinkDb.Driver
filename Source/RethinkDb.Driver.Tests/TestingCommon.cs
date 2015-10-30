@@ -224,10 +224,19 @@ namespace RethinkDb.Driver.Tests
                     otherMessage = assertionMatch.Result("${message}");
                 }
 
-                isValid = this.errorMessage.Equals(otherMessage);
+                isValid = Clean(this.errorMessage)
+                    .Equals(Clean(otherMessage));
+
+                //isValid = this.errorMessage.Equals(otherMessage);
                 isValid.Should().BeTrue();
 
                 return isValid;
+            }
+
+            private string Clean(string str)
+            {
+                return str.Replace("`", "")
+                    .Replace("\"", "");
             }
 
             public override string ToString()
@@ -458,7 +467,15 @@ namespace RethinkDb.Driver.Tests
         {
             public override bool Equals(Object other)
             {
-                var str = ((JValue)other).ToObject<string>();
+                string str = string.Empty;
+                if( other is JValue )
+                {
+                    str = ((JValue)other).ToObject<string>();
+                }
+                if( other is string )
+                {
+                    str = other as string;
+                }
 
                 Guid val;
                 return Guid.TryParse(str, out val);

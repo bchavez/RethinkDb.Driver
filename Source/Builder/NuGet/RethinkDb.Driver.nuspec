@@ -24,6 +24,8 @@
         * Times Constructors unit tests passing.
         * DatumNumber unit tests passing.
         * Default unit tests passing.
+        * DatumObject unit tests passing.
+        * Json unit tests passing.
         
         
         v0.0.5-alpha3

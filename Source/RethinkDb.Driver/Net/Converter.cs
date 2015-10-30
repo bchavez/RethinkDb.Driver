@@ -45,6 +45,16 @@ namespace RethinkDb.Driver.Net
                         continue;
                     convertedValue = new JArray(GetBinary(pesudoObject));
                 }
+                else if( reqlType == Geometry )
+                {
+                    // Nothing specific here
+                    continue;
+                }
+                else
+                {
+                    // Just leave unknown pseudo-types alone
+                    continue;
+                }
 
                 pesudoObject.Replace(convertedValue);
             }

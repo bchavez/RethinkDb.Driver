@@ -91,7 +91,8 @@ namespace RethinkDb.Driver.Tests
                     var valExpected = map[kvp.Key];
                     var valObtained = oobj[kvp.Key];
 
-                    
+                    if( valExpected == null && valObtained.Type == JTokenType.Null )
+                        continue;
                     if(JToken.DeepEquals(JToken.FromObject(valExpected), valObtained))
                         continue;
                     if( valExpected.Equals(valObtained) )

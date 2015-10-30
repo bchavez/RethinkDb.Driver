@@ -26,6 +26,7 @@
         * Default unit tests passing.
         * DatumObject unit tests passing.
         * Json unit tests passing.
+        * Geo constructors unit tests passing.
         
         
         v0.0.5-alpha3

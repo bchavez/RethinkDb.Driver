@@ -22,6 +22,7 @@
         * Fixed bugs in r.binary() when building AST.
         * Binary unit tests passing.
         * Times Constructors unit tests passing.
+        * DatumNumber unit tests passing.
         
         
         v0.0.5-alpha3

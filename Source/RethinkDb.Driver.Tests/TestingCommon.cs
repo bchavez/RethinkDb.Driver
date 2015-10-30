@@ -73,6 +73,15 @@ namespace RethinkDb.Driver.Tests
                 return;
             }
 
+            var uuid = expected as Uuid;
+            if( expected is Uuid )
+            {
+                uuid.Equals(obtained)
+                    .Should().BeTrue();
+
+                return;
+            }
+
             var map = expected as MapObject;
             if( map != null )
             {

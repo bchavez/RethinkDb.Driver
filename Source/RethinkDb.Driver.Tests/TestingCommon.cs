@@ -91,7 +91,15 @@ namespace RethinkDb.Driver.Tests
                     var valExpected = map[kvp.Key];
                     var valObtained = oobj[kvp.Key];
 
+                    
+                    if(JToken.DeepEquals(JToken.FromObject(valExpected), valObtained))
+                        continue;
+                    if( valExpected.Equals(valObtained) )
+                        continue;
+
+                    //else keep checking
                     CheckEquals(valExpected, valObtained);
+
                 }
 
                 return;
@@ -176,6 +184,9 @@ namespace RethinkDb.Driver.Tests
             private object obj;
             private Type clazz;
 
+            private Regex inRegex = new Regex("^(?<message>[^\n]*?)(?: in)?:\n.*$", RegexOptions.Singleline);
+            private Regex assertionRegex = new Regex("^(?<message>[^\n]*?)\nFailed assertion:.*$", RegexOptions.Singleline);
+
             public Err(string errorType, string errorMessage, object obj)
             {
                 this.errorType = errorType;
@@ -195,10 +206,28 @@ namespace RethinkDb.Driver.Tests
                 }
 
                 var otherMessage = ((Exception)obj).Message;
-                otherMessage.Trim().Should().BeEquivalentTo(
-                    this.errorMessage.Trim());
 
-                return true;
+                var isValid = this.errorMessage.Equals(otherMessage);
+                if ( isValid )
+                {
+                    return true;
+                }//else keep matching
+
+                var inMatch = inRegex.Match(otherMessage);
+                if( inMatch.Success )
+                {
+                    otherMessage = inMatch.Result("${message}:");
+                }
+                var assertionMatch = assertionRegex.Match(otherMessage);
+                if( assertionMatch.Success )
+                {
+                    otherMessage = assertionMatch.Result("${message}");
+                }
+
+                isValid = this.errorMessage.Equals(otherMessage);
+                isValid.Should().BeTrue();
+
+                return isValid;
             }
 
             public override string ToString()
@@ -429,14 +458,10 @@ namespace RethinkDb.Driver.Tests
         {
             public override bool Equals(Object other)
             {
-                if( !(other is String) )
-                {
-                    Console.WriteLine("Not compared to a string! Got:" + other);
-                    return false;
-                }
+                var str = ((JValue)other).ToObject<string>();
 
                 Guid val;
-                return Guid.TryParse(other as string, out val);
+                return Guid.TryParse(str, out val);
             }
 
             public override string ToString()

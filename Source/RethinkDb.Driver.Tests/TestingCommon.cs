@@ -236,7 +236,8 @@ namespace RethinkDb.Driver.Tests
             private string Clean(string str)
             {
                 return str.Replace("`", "")
-                    .Replace("\"", "");
+                    .Replace("\"", "")
+                    .ToLowerInvariant();
             }
 
             public override string ToString()

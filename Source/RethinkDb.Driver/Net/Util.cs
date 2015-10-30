@@ -4,9 +4,9 @@ namespace RethinkDb.Driver.Net
 {
     public class NetUtil
     {
-        public static long Deadline(TimeSpan? timeout)
+        public static long? Deadline(TimeSpan? timeout)
         {
-            return DateTime.UtcNow.Add(timeout.Value).Ticks;
+            return timeout == null ? (long?)null : DateTime.UtcNow.Add(timeout.Value).Ticks;
         }
     }
 }

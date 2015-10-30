@@ -44,6 +44,14 @@ namespace RethinkDb.Driver.Tests
 
                 return;
             }
+            var errregex = expected as ErrRegex;
+            if( errregex != null )
+            {
+                errregex.Equals(obtained)
+                    .Should().BeTrue();
+
+                return;
+            }
 
             var intCmp = expected as IntCmp;
             if( intCmp != null )
@@ -115,6 +123,19 @@ namespace RethinkDb.Driver.Tests
                 return;
             }
 
+            if( expected is IList )
+            {
+                var el = expected as IList;
+                var ol = obtained as JArray;
+
+                for( int i = 0; i < el.Count; i++ )
+                {
+                    assertEquals(el[i], ol[i]);
+                }
+
+                return;
+            }
+
             
             CheckEquals(expected, obtained);
 
@@ -161,7 +182,7 @@ namespace RethinkDb.Driver.Tests
                 if( res is ICursor )
                 {
                     var cur = (ICursor)res;
-                    var list = new ArrayList();
+                    var list = new JArray();
                     foreach( var obj in cur )
                     {
                         list.Add(obj);
@@ -559,15 +580,14 @@ namespace RethinkDb.Driver.Tests
 
             public override bool Equals(Object other)
             {
-                if( !(other is ErrRegex) )
-                {
-                    return false;
-                }
-                var errRegex = other as ErrRegex;
-                if( errRegex.clazz != this.clazz )
+                var otherClass = other.GetType().Name;
+
+                if( !otherClass.EndsWith(this.clazz) )
                     return false;
 
-                return Regex.Match(message_rgx, errRegex.message_rgx).Success;
+                var otherMessage = ((Exception)other).Message;
+
+                return Regex.Match(otherMessage, this.message_rgx).Success;
             }
         }
 

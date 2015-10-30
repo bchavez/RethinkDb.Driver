@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Net
@@ -26,7 +27,7 @@ namespace RethinkDb.Driver.Net
         public virtual void Close()
         {
             closing = true;
-            foreach( var cursor in cursorCache.Values )
+            foreach( var cursor in cursorCache.Values.ToList() )
             {
                 cursor.SetError("Connection is closed.");
             }

@@ -20,6 +20,7 @@
         * AST: added uuid(expr)
         * Feature: Anonymous typed args. Example: getAll(...)[new {index = "foo"}].run()
         * Fixed bugs in r.binary() when building AST.
+        * Fixed bugs in geometry deserialization.
         * Binary unit tests passing.
         * Times Constructors unit tests passing.
         * DatumNumber unit tests passing.
@@ -27,7 +28,10 @@
         * DatumObject unit tests passing.
         * Json unit tests passing.
         * Geo constructors unit tests passing.
-        
+        * GeoGeo json unit tests passing.
+        * GeoOperations unit tests passing.
+        * GeoPrimitives unit tests passing.
+        * Match unit tests passing.
         
         v0.0.5-alpha3
         * Cursor support for sequence / partial results (example getAll).

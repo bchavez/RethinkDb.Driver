@@ -169,7 +169,7 @@ namespace RethinkDb.Driver.Net
         {
             var inst = checkOpen();
             if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
-            inst.Socket.WriteStringWithLength(query.Serialize());
+            inst.Socket.WriteQuery(query.Token, query.Serialize());
         }
 
         internal virtual dynamic RunQuery<T>(Query query)

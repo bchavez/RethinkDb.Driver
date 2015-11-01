@@ -38,8 +38,8 @@ namespace RethinkDb.Driver.Net
             this.Token = query.Token;
             this.IsFeed = firstResponse.IsFeed;
             connection.AddToCache(query.Token, this);
-            ExtendInternal(firstResponse);
             MaybeSendContinue();
+            ExtendInternal(firstResponse);
         }
 
 

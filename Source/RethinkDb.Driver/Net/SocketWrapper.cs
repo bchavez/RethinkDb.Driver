@@ -106,13 +106,6 @@ namespace RethinkDb.Driver.Net
             this.bw.Write(jsonBytes);
         }
 
-        public virtual void WriteStringWithLength(string s)
-        {
-            var buffer = Encoding.UTF8.GetBytes(s);
-            this.bw.Write(buffer.Length);
-            this.bw.Write(buffer);
-        }
-
         public virtual bool Closed => !socketChannel.Connected;
 
         public virtual bool Open => socketChannel.Connected;

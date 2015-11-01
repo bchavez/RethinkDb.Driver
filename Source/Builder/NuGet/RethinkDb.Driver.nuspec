@@ -21,6 +21,7 @@
         * Feature: Anonymous typed args. Example: getAll(...)[new {index = "foo"}].run()
         * Fixed bugs in r.binary() when building AST.
         * Fixed bugs in geometry deserialization.
+        * Fixed Cursor bug in cursor continuation.
         * Binary unit tests passing.
         * Times Constructors unit tests passing.
         * DatumNumber unit tests passing.
@@ -32,7 +33,7 @@
         * GeoOperations unit tests passing.
         * GeoPrimitives unit tests passing.
         * Match unit tests passing.
-        
+
         v0.0.5-alpha3
         * Cursor support for sequence / partial results (example getAll).
         * Make .run dynamic.

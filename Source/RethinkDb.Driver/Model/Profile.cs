@@ -14,7 +14,7 @@ namespace RethinkDb.Driver.Model
 
         public static Profile FromJsonArray(JArray profileObj)
         {
-            if( profileObj == null && profileObj.Count == 0 )
+            if( profileObj == null || profileObj.Count == 0 )
             {
                 return null;
             }

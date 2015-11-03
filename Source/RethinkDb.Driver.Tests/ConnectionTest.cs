@@ -8,6 +8,7 @@ using RethinkDb.Driver.Net;
 using System.Text;
 using Newtonsoft.Json;
 using RethinkDb.Driver.Ast;
+using RethinkDb.Driver.Model;
 using Templates.Utils;
 using Z.ExtensionMethods;
 
@@ -151,7 +152,7 @@ namespace RethinkDb.Driver.Tests
         public void insert_test_without_id()
         {
             var obj = new Foo {Bar = 1, Baz = 2, Tim = DateTimeOffset.Now};
-            JObject result = r.db(DbName).table(TableName).insert(obj).run(conn);
+            Result result = r.db(DbName).table(TableName).insert(obj).run(conn);
             result.Dump();
         }
 

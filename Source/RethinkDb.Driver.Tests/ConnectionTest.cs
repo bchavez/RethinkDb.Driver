@@ -249,6 +249,27 @@ namespace RethinkDb.Driver.Tests
             long bazInFooC = r.db(DbName).table(TableName).get("c")["Baz"].run(conn);
             bazInFooC.Should().Be(3);
         }
+
+        [Test]
+        public void test_overloading()
+        {
+            r.db(DbName).table(TableName).delete().run(conn);
+            var arr = new[]
+                {
+                    new Foo {id = "a", Baz = 1, Bar = 1, Tim = DateTimeOffset.Now},
+                    new Foo {id = "b", Baz = 2, Bar = 2, Tim = DateTimeOffset.Now},
+                    new Foo {id = "c", Baz = 3, Bar = 3, Tim = DateTimeOffset.Now}
+                };
+            Result result = r.db(DbName).table(TableName).insert(arr).run<Result>(conn);
+            result.Dump();
+            result.Inserted.Should().Be(3);
+
+            var expA = r.db(DbName).table(TableName).get("a")["Baz"];
+            var expB = r.db(DbName).table(TableName).get("b")["Bar"];
+
+            int add = (expA + expB).run<int>(conn);
+            add.Should().Be(3);
+        }
     }
 
     public class Foo

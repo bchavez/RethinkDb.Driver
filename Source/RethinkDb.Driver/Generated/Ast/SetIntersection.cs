@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class SetIntersection : ReqlExpr {
+    public partial class SetIntersection : ReqlExpr {
 
     
     

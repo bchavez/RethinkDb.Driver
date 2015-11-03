@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class GetNearest : ReqlExpr {
+    public partial class GetNearest : ReqlExpr {
 
     
     

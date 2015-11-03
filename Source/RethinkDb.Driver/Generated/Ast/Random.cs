@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Random : ReqlExpr {
+    public partial class Random : ReqlExpr {
 
     
     

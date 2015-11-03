@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Funcall : ReqlExpr {
+    public partial class Funcall : ReqlExpr {
 
     
         private bool swappedArgs = false;

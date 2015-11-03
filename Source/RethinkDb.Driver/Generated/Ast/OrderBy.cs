@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class OrderBy : ReqlExpr {
+    public partial class OrderBy : ReqlExpr {
 
     
     

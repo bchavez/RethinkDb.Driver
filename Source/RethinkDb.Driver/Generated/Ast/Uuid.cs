@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Uuid : ReqlExpr {
+    public partial class Uuid : ReqlExpr {
 
     
     

@@ -231,6 +231,24 @@ namespace RethinkDb.Driver.Tests
                 .getAll("foo")[new {index = "foo"}]
                 .run<Foo>(conn);
         }
+
+        [Test]
+        public void getfield_expression_test()
+        {
+            r.db(DbName).table(TableName).delete().run(conn);
+            var arr = new[]
+                {
+                    new Foo {id = "a", Baz = 1, Bar = 1, Tim = DateTimeOffset.Now},
+                    new Foo {id = "b", Baz = 2, Bar = 2, Tim = DateTimeOffset.Now},
+                    new Foo {id = "c", Baz = 3, Bar = 3, Tim = DateTimeOffset.Now}
+                };
+            Result result = r.db(DbName).table(TableName).insert(arr).run<Result>(conn);
+            result.Dump();
+            result.Inserted.Should().Be(3);
+
+            long bazInFooC = r.db(DbName).table(TableName).get("c")["Baz"].run(conn);
+            bazInFooC.Should().Be(3);
+        }
     }
 
     public class Foo

@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Geojson : ReqlExpr {
+    public partial class Geojson : ReqlExpr {
 
     
     

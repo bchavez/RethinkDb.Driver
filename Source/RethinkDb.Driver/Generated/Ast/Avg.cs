@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Avg : ReqlExpr {
+    public partial class Avg : ReqlExpr {
 
     
     

@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class ForEach : ReqlExpr {
+    public partial class ForEach : ReqlExpr {
 
     
     

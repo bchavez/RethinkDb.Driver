@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class ToEpochTime : ReqlExpr {
+    public partial class ToEpochTime : ReqlExpr {
 
     
     

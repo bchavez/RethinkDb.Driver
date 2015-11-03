@@ -57,6 +57,7 @@
     <Compile Include="Ast\PropertyHelper.cs" />
     <Compile Include="Ast\Query.cs" />
     <Compile Include="Ast\ReqlAst.cs" />
+    <Compile Include="Ast\ReqlExpr.cs" />
     <Compile Include="Ast\Util.cs" />
     <Compile Include="ErrorBuilder.cs" />
     <Compile Include="Generated\Ast\Add.cs" />

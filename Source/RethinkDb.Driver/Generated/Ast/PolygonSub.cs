@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class PolygonSub : ReqlExpr {
+    public partial class PolygonSub : ReqlExpr {
 
     
     

@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class SetInsert : ReqlExpr {
+    public partial class SetInsert : ReqlExpr {
 
     
     

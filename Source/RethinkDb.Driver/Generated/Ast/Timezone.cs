@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Timezone : ReqlExpr {
+    public partial class Timezone : ReqlExpr {
 
     
     

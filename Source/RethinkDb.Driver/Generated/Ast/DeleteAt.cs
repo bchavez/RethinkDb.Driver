@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class DeleteAt : ReqlExpr {
+    public partial class DeleteAt : ReqlExpr {
 
     
     

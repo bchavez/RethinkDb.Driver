@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Sync : ReqlExpr {
+    public partial class Sync : ReqlExpr {
 
     
     

@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Difference : ReqlExpr {
+    public partial class Difference : ReqlExpr {
 
     
     

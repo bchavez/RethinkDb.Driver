@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class June : ReqlExpr {
+    public partial class June : ReqlExpr {
 
     
     

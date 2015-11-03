@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class IndexCreate : ReqlExpr {
+    public partial class IndexCreate : ReqlExpr {
 
     
     

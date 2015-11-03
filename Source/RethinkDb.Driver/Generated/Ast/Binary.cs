@@ -30,7 +30,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Binary : ReqlExpr {
+    public partial class Binary : ReqlExpr {
 
     
     byte[] b64Data = null;

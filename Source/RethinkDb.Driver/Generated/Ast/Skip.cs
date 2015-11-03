@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Skip : ReqlExpr {
+    public partial class Skip : ReqlExpr {
 
     
     

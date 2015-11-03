@@ -119,7 +119,7 @@ namespace RethinkDb.Driver.Ast
         public static bool IsNumber(object value)
         {
             return value is sbyte
-                   || value is byte
+                   || value is byte //maybe have char here?
                    || value is short
                    || value is ushort
                    || value is int

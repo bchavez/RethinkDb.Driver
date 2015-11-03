@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class OffsetsOf : ReqlExpr {
+    public partial class OffsetsOf : ReqlExpr {
 
     
     

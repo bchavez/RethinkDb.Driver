@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Ungroup : ReqlExpr {
+    public partial class Ungroup : ReqlExpr {
 
     
     

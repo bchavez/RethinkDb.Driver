@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Between : ReqlExpr {
+    public partial class Between : ReqlExpr {
 
     
     

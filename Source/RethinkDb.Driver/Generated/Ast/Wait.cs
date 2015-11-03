@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Wait : ReqlExpr {
+    public partial class Wait : ReqlExpr {
 
     
     

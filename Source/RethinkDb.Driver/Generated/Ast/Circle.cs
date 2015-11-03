@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Circle : ReqlExpr {
+    public partial class Circle : ReqlExpr {
 
     
     

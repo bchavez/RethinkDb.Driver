@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class EqJoin : ReqlExpr {
+    public partial class EqJoin : ReqlExpr {
 
     
     

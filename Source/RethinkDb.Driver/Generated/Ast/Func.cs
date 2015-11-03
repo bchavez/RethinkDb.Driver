@@ -29,7 +29,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Func : ReqlExpr {
+    public partial class Func : ReqlExpr {
 
     
         private static int VarId = 0;

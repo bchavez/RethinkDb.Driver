@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Maxval : ReqlExpr {
+    public partial class Maxval : ReqlExpr {
 
     
     

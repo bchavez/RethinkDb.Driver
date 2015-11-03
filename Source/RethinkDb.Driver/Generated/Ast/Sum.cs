@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Sum : ReqlExpr {
+    public partial class Sum : ReqlExpr {
 
     
     

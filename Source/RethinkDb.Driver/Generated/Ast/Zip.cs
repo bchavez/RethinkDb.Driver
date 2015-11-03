@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Zip : ReqlExpr {
+    public partial class Zip : ReqlExpr {
 
     
     

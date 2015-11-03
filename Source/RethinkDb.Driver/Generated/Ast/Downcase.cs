@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Downcase : ReqlExpr {
+    public partial class Downcase : ReqlExpr {
 
     
     

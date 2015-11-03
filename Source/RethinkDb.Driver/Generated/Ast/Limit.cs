@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public class Limit : ReqlExpr {
+    public partial class Limit : ReqlExpr {
 
     
     

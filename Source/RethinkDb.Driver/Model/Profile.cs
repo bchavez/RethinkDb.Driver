@@ -5,13 +5,20 @@ namespace RethinkDb.Driver.Model
 {
     public class Profile
     {
+        public Profile(JArray profileObj)
+        {
+            this.ProfileObj = profileObj;
+        }
+
+        public JArray ProfileObj { get; }
+
         public static Profile FromJsonArray(JArray profileObj)
         {
-            if( profileObj == null )
+            if( profileObj == null && profileObj.Count == 0 )
             {
                 return null;
             }
-            throw new Exception("fromJSONArray not implemented");
+            return new Profile(profileObj);
         }
     }
 }

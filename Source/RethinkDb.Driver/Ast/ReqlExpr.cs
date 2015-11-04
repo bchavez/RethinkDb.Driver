@@ -1,3 +1,5 @@
+using System;
+
 namespace RethinkDb.Driver.Ast
 {
     //Partial class for overloads expression overloads! :) 
@@ -72,7 +74,6 @@ namespace RethinkDb.Driver.Ast
         }
 
 
-
         //&& and || might be a bit tricky here.
         public static bool operator false(ReqlExpr a)
         {
@@ -93,6 +94,65 @@ namespace RethinkDb.Driver.Ast
         public static ReqlExpr operator |(ReqlExpr a, ReqlExpr b)
         {
             return a.or(b);
+        }
+
+
+
+
+
+        //Can we do implicit operators???
+        public static implicit operator ReqlExpr(string a)
+        {
+            return Util.ToReqlExpr(a);
+        }
+        public static implicit operator ReqlExpr(int a)
+        {
+            return Util.ToReqlExpr(a);
+        }
+
+        public static implicit operator ReqlExpr(uint a)
+        {
+            return Util.ToReqlExpr(a);
+        }
+        public static implicit operator ReqlExpr(byte a)
+        {
+            return Util.ToReqlExpr(a);
+        }
+        public static implicit operator ReqlExpr(sbyte a)
+        {
+            return Util.ToReqlExpr(a);
+        }
+        public static implicit operator ReqlExpr(long a)
+        {
+            return Util.ToReqlExpr(a);
+        }
+        public static implicit operator ReqlExpr(ulong a)
+        {
+            return Util.ToReqlExpr(a);
+        }
+        public static implicit operator ReqlExpr(double a)
+        {
+            return Util.ToReqlExpr(a);
+        }
+        public static implicit operator ReqlExpr(decimal a)
+        {
+            return Util.ToReqlExpr(a);
+        }
+        public static implicit operator ReqlExpr(float a)
+        {
+            return Util.ToReqlExpr(a);
+        }
+        public static implicit operator ReqlExpr(DateTime a)
+        {
+            return Util.ToReqlExpr(a);
+        }
+        public static implicit operator ReqlExpr(DateTimeOffset a)
+        {
+            return Util.ToReqlExpr(a);
+        }
+        public static implicit operator ReqlExpr(Delegate a)
+        {
+            return Util.ToReqlExpr(a);
         }
     }
 }

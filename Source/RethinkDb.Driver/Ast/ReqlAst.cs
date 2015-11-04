@@ -73,6 +73,15 @@ namespace RethinkDb.Driver.Ast
             return run<dynamic>(conn, globalOpts);
         }
 
+        /// <summary>
+        /// Use this method if you're expecting a cursor from your query. This
+        /// method offers a slight edge in performance without the need for the
+        /// dynamic language runtime like the run() method uses.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="conn">connection</param>
+        /// <param name="globalOpts">global anonymous type optional arguments</param>
+        /// <returns>A Cursor</returns>
         public virtual Cursor<T> runCursor<T>(Connection conn, object globalOpts = null)
         {
             return conn.runCursor<T>(this, globalOpts);
@@ -82,5 +91,9 @@ namespace RethinkDb.Driver.Ast
         {
             conn.runNoReply(this, globalOpts);
         }
+
+
+
+
     }
 }

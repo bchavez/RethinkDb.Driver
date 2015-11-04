@@ -267,9 +267,17 @@ namespace RethinkDb.Driver.Tests
             var expA = r.db(DbName).table(TableName).get("a")["Baz"];
             var expB = r.db(DbName).table(TableName).get("b")["Bar"];
 
-            int add = (expA + expB).run<int>(conn);
-            add.Should().Be(3);
+            int add = (expA + expB + 1).run<int>(conn);
+            add.Should().Be(4);
         }
+
+        [Test]
+        public void test_implicit_operator_overload()
+        {
+            int x = (r.expr(1) + 1).run<int>(conn); //everything between () actually gets executed on the server
+            x.Should().Be(2);
+        }
+
     }
 
     public class Foo

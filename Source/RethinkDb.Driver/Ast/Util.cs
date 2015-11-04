@@ -18,7 +18,7 @@ namespace RethinkDb.Driver.Ast
         {
             var converted = ToReqlAst(val);
             var reqlAst = converted as ReqlExpr;
-            if( reqlAst != null )
+            if( !ReferenceEquals(reqlAst, null))
             {
                 return reqlAst;
             }
@@ -32,7 +32,7 @@ namespace RethinkDb.Driver.Ast
                 throw new ReqlDriverCompileError("Recursion limit reached converting to ReqlAst");
             }
             var ast = val as ReqlAst;
-            if( ast != null )
+            if( !ReferenceEquals(ast, null) )
             {
                 return ast;
             }

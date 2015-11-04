@@ -274,8 +274,19 @@ namespace RethinkDb.Driver.Tests
         [Test]
         public void test_implicit_operator_overload()
         {
-            int x = (r.expr(1) + 1).run<int>(conn); //everything between () actually gets executed on the server
+            long x = (r.expr(1) + 1).run(conn); //everything between () actually gets executed on the server
             x.Should().Be(2);
+        }
+
+        [Test]
+        public void test_loop()
+        {
+            Cursor<int> result = r.range(1, 4).runCursor<int>(conn);
+
+            foreach( var i in result )
+            {
+                Console.WriteLine(i);
+            }
         }
 
     }

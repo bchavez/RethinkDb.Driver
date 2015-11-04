@@ -20,6 +20,7 @@
         * More work on Result helper.
         * Feature: .getField() overload helper. Example: .get("id")["Name"] returns field Name.
         * Feature: +,-,*,/,&gt;,&lt; etc.. expression operator overloading.
+        * Feature: Implicit operator overrides. Example: (r.expr(1) + 1).run().
 
         v0.0.5-alpha5
         * Fixed #8: NullReference exception when querying non-existant DB.

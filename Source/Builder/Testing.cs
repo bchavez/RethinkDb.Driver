@@ -1,5 +1,10 @@
+using System;
+using System.Linq;
+using System.Net.NetworkInformation;
 using FluentBuild;
+using FluentBuild.BuildExe;
 using NUnit.Framework;
+using Templates.Utils;
 
 namespace Builder
 {
@@ -18,6 +23,8 @@ namespace Builder
         [Explicit]
         public void Test()
         {
+            Environment.SetEnvironmentVariable("test_token", "");
+            BauBuild.Main(new [] { "citest"});
         }
     }
 }

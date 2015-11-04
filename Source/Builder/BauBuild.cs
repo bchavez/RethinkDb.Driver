@@ -1,6 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Net;
+using System.Net.Sockets;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting;
+using System.Threading;
 using BauCore;
 using BauMSBuild;
 using BauNuGet;
@@ -8,7 +13,14 @@ using BauExec;
 using Builder.Extensions;
 using FluentAssertions;
 using FluentBuild;
+using Microsoft.Owin.Hosting;
+using Nancy;
+using Nancy.Responses;
+using Owin;
+using RestSharp;
 using Templates.Metadata;
+using Z.ExtensionMethods;
+using HttpStatusCode = System.Net.HttpStatusCode;
 
 namespace Builder
 {
@@ -29,6 +41,7 @@ namespace Builder
         public const string Push = "push";
 
         public const string ci = "ci";
+        public const string citest = "citest";
 
         public static void Main(string[] args)
         {
@@ -43,7 +56,7 @@ namespace Builder
 
             var nugetExe = FindNugetExe();
 
-            var bau = new Bau(Arguments.Parse(args));
+            bau = new Bau(Arguments.Parse(args));
 
             //By default, no build arguments...
             bau.DependsOn(Clean, Restore, MsBuild)
@@ -97,7 +110,7 @@ namespace Builder
                 .Task(BuildInfo).Desc("Creates dynamic AssemblyInfos for projects")
                 .Do(() =>
                     {
-                        bau.CurrentTask.LogInfo("Injecting AssemblyInfo.cs");
+                        task.LogInfo("Injecting AssemblyInfo.cs");
                         Task.CreateAssemblyInfo.Language.CSharp(aid =>
                             {
                                 Projects.DriverProject.AssemblyInfo(aid);
@@ -106,7 +119,7 @@ namespace Builder
                                 aid.OutputPath(outputPath);
                             });
 
-                        bau.CurrentTask.LogInfo("Injecting DNX project.json with Nuspec");
+                        task.LogInfo("Injecting DNX project.json with Nuspec");
                         //version
                         WriteJson.Value(Projects.DriverProject.DnxProjectFile.ToString(), "version", BuildContext.FullVersion);
                         //description
@@ -217,11 +230,50 @@ namespace Builder
                         //We just use this task to depend on Pack (dnx build) and MSBuild
                         //to ensure MS build gets called so we know *everything* compiles, including
                         //unit tests.
+                    })
+
+                .Task(citest).Desc("Temporarily hosts build artifacts for testing.")
+                .Do(() =>
+                    {
+                        while( true )
+                        {
+                            var hosturl = WebTestHost.RandomHostUrl();
+                            try
+                            {
+                                using( WebApp.Start<Startup>(hosturl) )
+                                {
+                                    var hostEndpoint = hosturl.Replace("+", WebTestHost.GetPreferedIp());
+                                    task.LogInfo($"WebTesthost on port: {hostEndpoint}");
+
+                                    //Trigger Remote Test System
+                                    var client = WebTestHost.GetRestClient();
+                                    var test = WebTestHost.RequestUnitTests(hostEndpoint);
+                                    var response = client.Execute(test);
+
+                                    if ( response.StatusCode != HttpStatusCode.Accepted )
+                                    {
+                                        throw new RemotingException("Couldn't successfully trigger unit tests in remote system.");
+                                    }
+
+                                    while( !WebTestHost.Done )
+                                    {
+                                        Thread.Sleep(5000);
+                                    }
+                                }
+                            }
+                            catch(Exception e)
+                            {
+                                throw e;
+                            }
+                        }
+
                     });
 
 
             bau.Run();
         }
+
+        
 
         private static FileInfo FindNugetExe()
         {
@@ -233,6 +285,82 @@ namespace Builder
             Directory.SetCurrentDirectory(Folders.WorkingFolder.ToString());
 
             return nugetExe;
+        }
+
+        private static Bau bau;
+
+        public static IBauTask task => bau.CurrentTask;
+    }
+
+    public class WebTestHost : NancyModule
+    {
+        public WebTestHost()
+        {
+            GenericFileResponse.SafePaths.Add(Folders.Package.ToString());
+
+            Get["/download"] = p => Response.AsFile(Projects.DriverProject.Zip.ToString());
+
+            Post["/result"] = p =>
+                {
+                    Done = true;
+                    return "OK";
+                };
+        }
+
+
+        public static Random r = new Random();
+        public static string RandomHostUrl()
+        {
+            var newPort = r.Next(49152, 65535);
+            return $"http://+:{newPort}";
+        }
+
+        public static string GetPreferedIp()
+        {
+            using( var s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0) )
+            {
+                s.Connect("111.111.111.111", 65530);
+                var endPoint = s.LocalEndPoint as IPEndPoint;
+                return endPoint.Address.ToString();
+            }
+
+        }
+
+        public static RestClient GetRestClient()
+        {
+            return new RestClient("https://circleci.com/api/v1/")
+                {
+                    Proxy = new WebProxy("http://localhost:8888"),
+                };
+        }
+        public static RestRequest RequestUnitTests(string webhostUrl)
+        {
+            var req = new RestRequest($"/project/bchavez/RethinkDb.Driver/tree/master", Method.POST);
+
+            req.AddQueryParameter("circle-token", Environment.GetEnvironmentVariable("test_token"));
+
+            var body = new
+                {
+                    build_parameters = new
+                        {
+                            webhost = webhostUrl
+                        }
+                };
+
+            req.AddJsonBody(body);
+
+            return req;
+        }
+
+        public static bool Done { get; private set; }
+    }
+
+    public class Startup
+    {
+        public void Configuration(IAppBuilder app)
+        {
+            var p = app.Properties;
+            app.UseNancy();
         }
     }
 }

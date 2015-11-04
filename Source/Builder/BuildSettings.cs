@@ -57,6 +57,8 @@ namespace Builder
             public static readonly File NugetSpec = Folders.Builder.SubFolder("NuGet").File($"{Name}.nuspec");
             public static readonly File NugetNupkg = Folders.Package.File($"{Name}.{BuildContext.FullVersion}.nupkg");
 
+            public static readonly File Zip = Folders.Package.File($"{Name}.zip");
+
             public static readonly Action<IAssemblyInfoDetails> AssemblyInfo =
                 i =>
                     {

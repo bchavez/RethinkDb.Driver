@@ -1,5 +1,9 @@
 version: '{build}'
 
+environment:
+  test_token:
+    secure: yZJYlhNNEFmeZtRQg41ZyhlEBBUeO9+1NGXKWf43dR958gMNskGCucokVRGJkmJC
+
 skip_commits:
   message: /read\W{0,1}me*/
 
@@ -14,13 +18,14 @@ init:
 
 build_script: build.cmd ci
 
-test: off
-#  assemblies:
-#    - __compile\RethinkDb.Driver.Tests.dll
-
 after_build:
     - robocopy Source\RethinkDb.Driver\bin\Release __compile\RethinkDb.Driver\Release\other\ Common.Logging* Newtonsoft.Json* & if %errorlevel% LSS 8 exit /b 0 else exit /b 1
     - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver\Release\**
+
+before_test:
+
+test: off
+
 
 artifacts:
     - path: __package\*.nupkg

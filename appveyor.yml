@@ -60,5 +60,5 @@ deploy:
 on_failure:
     - ps: |
             # Enables RDP for debugging and setup some tools
-            #$blockRdp = $true; choco install notepad2; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+            $blockRdp = $true; choco install notepad2; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
             

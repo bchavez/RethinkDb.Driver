@@ -22,9 +22,15 @@ after_build:
     - robocopy Source\RethinkDb.Driver\bin\Release __compile\RethinkDb.Driver\Release\other\ Common.Logging* Newtonsoft.Json* & if %errorlevel% LSS 8 exit /b 0 else exit /b 1
     - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver\Release\**
 
-before_test:
 
-test: off
+
+before_test:
+    - ps: |
+            # Enables RDP for debugging and setup some tools
+            $blockRdp = $true; choco install notepad2; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+test_script:
+  - build.cmd citest
 
 
 artifacts:

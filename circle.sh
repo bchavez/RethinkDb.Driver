@@ -1,3 +1,14 @@
+
+
+function RunTests
+
+        http "https://ci.appveyor.com/api/buildjobs/$AppVeyorJobId/artifacts/RethinkDb.Driver.Tests.zip" Authorization:"Bearer $AppVeyorToken" > DriverTests.zip
+        unzip DriverTests.zip -d DriverTests
+        cd DriverTests
+        mono Runner/nunit-console.exe UnitTests/RethinkDb.Tests.dll
+
+end
+
 function Setup
 
       set -x DISTRIB_CODENAME precise
@@ -30,21 +41,13 @@ function Setup
 
 end
 
-function RunTests
-
-        http "https://ci.appveyor.com/api/buildjobs/$AppVeyorJobId/artifacts/RethinkDb.Driver.Tests.zip" Authorization:"Bearer $AppVeyorToken" > DriverTests.zip
-        unzip DriverTests.zip -d DriverTests
-        cd DriverTests
-        mono Runner/nunit-console.exe UnitTests/RethinkDb.Tests.dll
-
-end
-
 if test $AppVeyorJobId
         if test $argv[1] = "Setup"
                 Setup
         else if test $argv[1] = "RunTests"
                 RunTests
         else
+            echo "Invalid command"
         end
 else
      echo "No webhost defined"

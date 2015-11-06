@@ -24,8 +24,8 @@ namespace RethinkDb.Driver.Tests
             if( conn == null )
             {
                 this.conn = r.connection()
-                    .hostname("192.168.0.11")
-                    .port(RethinkDBConstants.DEFAULT_PORT)
+                    .hostname(TestSettings.TestHost)
+                    .port(TestSettings.TestPort)
                     .connect();
             }
         }
@@ -80,6 +80,7 @@ namespace RethinkDb.Driver.Tests
         }
 
         [Test]
+        [Explicit]
         public void can_connect()
         {
             var c = r.connection()
@@ -110,7 +111,7 @@ namespace RethinkDb.Driver.Tests
         [Test]
         public void test_time_pesudo_type()
         {
-            var t = r.now().run<DateTimeOffset>(conn);
+            DateTimeOffset t = r.now().run<DateTimeOffset>(conn);
             //ten minute limit for clock drift.
             t.Should().BeCloseTo(DateTimeOffset.UtcNow, 600000);
         }
@@ -119,7 +120,7 @@ namespace RethinkDb.Driver.Tests
         public void test_datetime()
         {
             var date = DateTime.Now;
-            var result = r.expr(date).run<DateTime>(conn);
+            DateTime result = r.expr(date).run<DateTime>(conn);
             //(date - result).Dump();
             //result.Should().Be(date);
             result.Should().BeCloseTo(date, 1); // must be within 1ms of each other
@@ -128,7 +129,7 @@ namespace RethinkDb.Driver.Tests
         [Test]
         public void test_jvalue()
         {
-            var t = r.now().run<JValue>(conn);
+            JValue t = r.now().run<JValue>(conn);
             //ten minute limit for clock drift.
             t.Dump();
         }
@@ -147,7 +148,7 @@ namespace RethinkDb.Driver.Tests
         public void insert_test_without_id()
         {
             var obj = new Foo {Bar = 1, Baz = 2, Tim = DateTimeOffset.Now};
-            Result result = r.db(DbName).table(TableName).insert(obj).run(conn);
+            Result result = r.db(DbName).table(TableName).insert(obj).run<Result>(conn);
             result.Dump();
         }
 
@@ -160,14 +161,14 @@ namespace RethinkDb.Driver.Tests
                     new Foo {id = "b", Baz = 2, Bar = 2},
                     new Foo {id = "c", Baz = 3, Bar = 3}
                 };
-            var result = r.db(DbName).table(TableName).insert(arr).run(conn);
+            Result result = r.db(DbName).table(TableName).insert(arr).run<Result>(conn);
             result.Dump();
         }
 
         [Test]
         public void get_test()
         {
-            var foo = r.db(DbName).table(TableName).get("a").run<Foo>(conn);
+            Foo foo = r.db(DbName).table(TableName).get("a").run<Foo>(conn);
             foo.Dump();
         }
 
@@ -293,6 +294,6 @@ namespace RethinkDb.Driver.Tests
 
         public int Bar { get; set; }
         public int Baz { get; set; }
-        public DateTimeOffset Tim { get; set; }
+        public DateTimeOffset? Tim { get; set; }
     }
 }

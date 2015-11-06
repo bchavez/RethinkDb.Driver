@@ -15,7 +15,6 @@ using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
-using Z.ExtensionMethods;
 
 namespace RethinkDb.Driver.Tests
 {
@@ -29,27 +28,6 @@ namespace RethinkDb.Driver.Tests
         protected Connection conn;
 
         protected List<string> tableVars = new List<string>();
-
-        public string GetTestHost()
-        {
-            if( Environment.GetEnvironmentVariable("CI").IsNotNullOrWhiteSpace() )
-            {
-                //CI is testing.
-                return "localhost";
-            }
-            return System.Configuration.ConfigurationManager.AppSettings["TestServer"];
-        }
-
-        public int GetTestPort()
-        {
-            if (Environment.GetEnvironmentVariable("CI").IsNotNullOrWhiteSpace())
-            {
-                //CI is testing.
-                return 28015;
-            }
-            var port = System.Configuration.ConfigurationManager.AppSettings["TestPort"];
-            return int.Parse(port);
-        }
 
 
         [TestFixtureSetUp]
@@ -72,8 +50,8 @@ namespace RethinkDb.Driver.Tests
             FixtureWaitHandle.WaitOne();
 
             conn = r.connection()
-                .hostname(GetTestHost())
-                .port(GetTestPort())
+                .hostname(TestSettings.TestHost)
+                .port(TestSettings.TestPort)
                 .connect();
 
             try

@@ -243,7 +243,7 @@ namespace Builder
 
 
                         var client = CircleCi.GetRestClient();
-                        var testReq = CircleCi.GetTestRequest(circleToken);
+                        var testReq = CircleCi.GetTestRequest(jobId, circleToken);
                         var startTestResp = client.Execute(testReq);
 
                         if (startTestResp.StatusCode != HttpStatusCode.Created)

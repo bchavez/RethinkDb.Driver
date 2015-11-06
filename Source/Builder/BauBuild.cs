@@ -234,11 +234,13 @@ namespace Builder
                         //unit tests.
                     })
 
-                .Task(citest).Desc("Temporarily hosts build artifacts for testing.")
+                .Task(citest).Desc("Triggers unit tests.")
                 .Do(() =>
                     {
-                        Debugger.Break();
+                        task.LogInfo("Triggering unit test system.");
                         var circleToken = Environment.GetEnvironmentVariable("circleci_token");
+                        var jobId = Environment.GetEnvironmentVariable("APPVEYOR_JOB_ID");
+
 
                         var client = CircleCi.GetRestClient();
                         var testReq = CircleCi.GetTestRequest(circleToken);
@@ -249,8 +251,11 @@ namespace Builder
                             throw new RemotingException("Couldn't successfully trigger unit tests in remote system.");
                         }
 
+
                         var startTest = JObject.Parse(startTestResp.Content);
 
+                        var buildUrl = startTest["build_url"].ToObject<string>();
+                        task.LogInfo($"Test System URL: {buildUrl}");
 
                         var buildNum = startTest["build_num"].ToObject<int>();
 
@@ -269,11 +274,13 @@ namespace Builder
                                     break;
                                 }
                             }
-
+                            task.LogInfo("Waiting for unit tests to complete.");
                             Thread.Sleep(10000);
                         }
 
-                        Console.WriteLine("test result url. "+ testResults);
+                        task.LogInfo($"Got results: {testResults}");
+
+                        
 
                     });
 
@@ -298,19 +305,30 @@ namespace Builder
         public static IBauTask task => bau.CurrentTask;
     }
 
+    public static class AppVeyor
+    {
+        public static void UploadTestResults(string jobId, string xmlResultsUrl)
+        {
+            const string FileName = "TestResults.xml";
+            var web = new WebClient();
+            web.DownloadFile(xmlResultsUrl, FileName); //download from circle CI
+            var uploadUrl = $"https://ci.appveyor.com/api/testresults/nunit/{jobId}";
+            web.UploadFile(uploadUrl, FileName); //upload to AppVeyor
+        }
+    }
+
     public static class CircleCi
     {
         public static RestClient GetRestClient()
         {
             return new RestClient("https://circleci.com/api/v1/")
-            {
-                Proxy = new WebProxy("http://localhost:8888"),
-            };
+                {
+                    //Proxy = new WebProxy("http://localhost:8888"),
+                };
         }
 
-        public static RestRequest GetTestRequest(string circleciToken)
+        public static RestRequest GetTestRequest(string jobId, string circleciToken)
         {
-            var jobId = Environment.GetEnvironmentVariable("APPVEYOR_JOB_ID");
 
             var body = new
                 {

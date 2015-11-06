@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
-using System.Net.Sockets;
-using System.Runtime.CompilerServices;
 using System.Runtime.Remoting;
 using System.Threading;
 using BauCore;
@@ -14,15 +10,10 @@ using BauExec;
 using Builder.Extensions;
 using FluentAssertions;
 using FluentBuild;
-using Microsoft.Owin.Hosting;
-using Nancy;
-using Nancy.Responses;
 using Newtonsoft.Json.Linq;
-using Owin;
 using RestSharp;
 using Templates.Metadata;
-using Z.ExtensionMethods;
-using HttpStatusCode = System.Net.HttpStatusCode;
+
 
 namespace Builder
 {

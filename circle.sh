@@ -6,7 +6,10 @@ function RunTests
         unzip DriverTests.zip -d DriverTests
         cd DriverTests
         mono Runner/nunit-console.exe UnitTests/RethinkDb.Driver.Tests.dll
-
+        
+        if[ -e "TestResult.xml" ]
+            cp TestResult.xml $CIRCLE_ARTIFACTS
+        end
 end
 
 function Setup

@@ -23,7 +23,6 @@ namespace Builder
         [Explicit]
         public void Test()
         {
-            Environment.SetEnvironmentVariable("test_token", "");
             BauBuild.Main(new [] { "citest"});
         }
     }

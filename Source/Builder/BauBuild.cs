@@ -17,6 +17,7 @@ using FluentBuild;
 using Microsoft.Owin.Hosting;
 using Nancy;
 using Nancy.Responses;
+using Newtonsoft.Json.Linq;
 using Owin;
 using RestSharp;
 using Templates.Metadata;
@@ -236,21 +237,43 @@ namespace Builder
                 .Task(citest).Desc("Temporarily hosts build artifacts for testing.")
                 .Do(() =>
                     {
+                        Debugger.Break();
+                        var circleToken = Environment.GetEnvironmentVariable("circleci_token");
 
                         var client = CircleCi.GetRestClient();
-                        var test = CircleCi.GetTestRequest();
-                        var response = client.Execute(test);
+                        var testReq = CircleCi.GetTestRequest(circleToken);
+                        var startTestResp = client.Execute(testReq);
 
-                        if (response.StatusCode != HttpStatusCode.Accepted)
+                        if (startTestResp.StatusCode != HttpStatusCode.Created)
                         {
                             throw new RemotingException("Couldn't successfully trigger unit tests in remote system.");
                         }
 
+                        var startTest = JObject.Parse(startTestResp.Content);
 
+
+                        var buildNum = startTest["build_num"].ToObject<int>();
+
+                        string testResults;
                         while ( true )
                         {
-                            Thread.Sleep(5000);
+                            var atrifactsReq = CircleCi.GetTestArtifacts(buildNum, circleToken);
+                            var artifactsResp = client.Execute(atrifactsReq);
+
+                            if( artifactsResp.StatusCode == HttpStatusCode.OK )
+                            {
+                                var artifacts = JArray.Parse(artifactsResp.Content);
+                                if( artifacts.Count > 0 )
+                                {
+                                    testResults = artifacts[0]["url"].ToString();
+                                    break;
+                                }
+                            }
+
+                            Thread.Sleep(10000);
                         }
+
+                        Console.WriteLine("test result url. "+ testResults);
 
                     });
 
@@ -285,10 +308,9 @@ namespace Builder
             };
         }
 
-        public static RestRequest GetTestRequest()
+        public static RestRequest GetTestRequest(string circleciToken)
         {
             var jobId = Environment.GetEnvironmentVariable("APPVEYOR_JOB_ID");
-            var circleciToken = Environment.GetEnvironmentVariable("circleci_token");
 
             var body = new
                 {
@@ -299,7 +321,7 @@ namespace Builder
                 };
 
 
-            var req = new RestRequest($"/project/bchavez/RethinkDb.Driver/tree/master", Method.POST);
+            var req = new RestRequest("/project/bchavez/RethinkDb.Driver/tree/master", Method.POST);
 
             req.AddQueryParameter("circle-token", circleciToken);
 
@@ -307,6 +329,15 @@ namespace Builder
 
             return req;
 
+        }
+
+        public static RestRequest GetTestArtifacts(int buildNum, string circleciToken)
+        {
+            var req = new RestRequest("/project/bchavez/RethinkDb.Driver/{build_num}/artifacts");
+            req.AddUrlSegment("build_num", buildNum.ToString());
+
+            req.AddQueryParameter("circle-token", circleciToken);
+            return req;
         }
     }
 

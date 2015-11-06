@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RethinkDb.Driver.Tests</RootNamespace>
     <AssemblyName>RethinkDb.Driver.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,6 +59,10 @@
       <HintPath>..\packages\NLog.4.2.0\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NodaTime, Version=1.3.0.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NodaTime.1.3.1\lib\net35-Client\NodaTime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -78,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionTest.cs" />
+    <Compile Include="ExtensionsForTesting.cs" />
     <Compile Include="GeneratedTest.cs" />
     <Compile Include="Generated\ChangefeedsIncludeStates.cs" />
     <Compile Include="Generated\ChangefeedsSindex.cs" />
@@ -147,10 +153,6 @@
     <ProjectReference Include="..\RethinkDb.Driver\RethinkDb.Driver.csproj">
       <Project>{bf0e5a4a-4e2d-48b9-bcaa-054506396524}</Project>
       <Name>RethinkDb.Driver</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Templates\Templates.csproj">
-      <Project>{37c1ccf5-f8da-4f56-93ab-c2f6bafb01b4}</Project>
-      <Name>Templates</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

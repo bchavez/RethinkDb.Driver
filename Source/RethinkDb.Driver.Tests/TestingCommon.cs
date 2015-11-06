@@ -10,6 +10,7 @@ using FluentAssertions;
 using FluentAssertions.Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NodaTime;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
@@ -665,8 +666,8 @@ namespace RethinkDb.Driver.Tests
 
             public static DateTimeOffset fromtimestamp(double seconds, TimeSpan offset)
             {
-                var dt = DateTimeOffset.FromUnixTimeMilliseconds((long)(seconds * 1000));
-                return dt.ToOffset(offset);
+                var dt = Instant.FromMillisecondsSinceUnixEpoch((long)(seconds * 1000));
+                return dt.ToDateTimeOffset().ToOffset(offset);
             }
         }
 

@@ -1,16 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
-using System.Text;
 using Newtonsoft.Json;
-using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
-using Templates.Utils;
-using Z.ExtensionMethods;
 
 namespace RethinkDb.Driver.Tests
 {

@@ -5,7 +5,7 @@ function RunTests
         http "https://ci.appveyor.com/api/buildjobs/$AppVeyorJobId/artifacts/RethinkDb.Driver.Tests.zip" Authorization:"Bearer $AppVeyorToken" > DriverTests.zip
         unzip DriverTests.zip -d DriverTests
         cd DriverTests
-        mono Runner/nunit-console.exe UnitTests/RethinkDb.Tests.dll
+        mono Runner/nunit-console.exe UnitTests/RethinkDb.Driver.Tests.dll
 
 end
 

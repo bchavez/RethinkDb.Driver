@@ -32,10 +32,10 @@ end
 
 function dotest
 
-        http "$webhost/download" > UnitTests.zip
-        unzip UnitTests.zip
-        cd UnitTests
-        mono Runner/nunit-console.exe RethinkDb.Tests.dll
+        http "$webhost/download" > DriverTests.zip
+        unzip DriverTests.zip
+        cd DriverTests
+        mono Runner/nunit-console.exe UnitTests/RethinkDb.Tests.dll
 
 end
 

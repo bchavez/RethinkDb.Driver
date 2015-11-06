@@ -79,7 +79,11 @@ namespace Builder
 
         public class Tests
         {
-            public static readonly Directory Folder = Folders.Source.SubFolder("RethinkDb.Driver.Tests");
+            public const string Name = "RethinkDb.Driver.Tests";
+            public static readonly Directory Folder = Folders.Source.SubFolder(Name);
+            public static readonly Directory OutputDirectory = Folders.CompileOutput.SubFolder(Name);
+
+            public static readonly File Zip = Folders.Package.File($"{Name}.zip");
         }
     }
 }

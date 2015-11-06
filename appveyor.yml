@@ -25,6 +25,9 @@ after_build:
 
 
 before_test:
+    - robocopy Source\RethinkDb.Driver.Tests\bin\Release __compile\RethinkDb.Driver.Tests\UnitTests /E & if %errorlevel% LSS 8 exit /b 0 else exit /b 1
+    - robocopy Source\packages\NUnit.Runners.2.6.4\tools __compile\RethinkDb.Driver.Tests\Runner /E & if %errorlevel% LSS 8 exit /b 0 else exit /b 1
+    - 7z a __package\RethinkDb.Driver.Tests.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver.Tests\**
     - ps: |
             # Enables RDP for debugging and setup some tools
             $blockRdp = $true; choco install notepad2; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

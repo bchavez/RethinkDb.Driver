@@ -34,17 +34,7 @@ namespace RethinkDb.Driver.Tests
         public void BeforeRunningTestSession()
         {
             EnsureConnection();
-            //try
-            //{
-            //    r.dbCreate(DbName).run(conn);
 
-            //    r.db(DbName).wait_().run(conn);
-            //    r.db(DbName).tableCreate(TableName).run(conn);
-            //    r.db(DbName).table(TableName).wait_().run(conn);
-            //}
-            //catch
-            //{
-            //}
         }
 
         [TestFixtureTearDown]

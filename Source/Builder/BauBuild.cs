@@ -13,6 +13,7 @@ using FluentBuild;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using Templates.Metadata;
+using Z.ExtensionMethods;
 
 
 namespace Builder
@@ -231,6 +232,12 @@ namespace Builder
                         task.LogInfo("Triggering unit test system.");
                         var circleToken = Environment.GetEnvironmentVariable("circleci_token");
                         var jobId = Environment.GetEnvironmentVariable("APPVEYOR_JOB_ID");
+
+                        if ( circleToken.IsNullOrWhiteSpace() )
+                        {
+                            task.LogInfo("Skipping Unit tests. This must be a pull request. Encrypted test token isn't available.");
+                            return;
+                        }
 
 
                         var client = CircleCi.GetRestClient();

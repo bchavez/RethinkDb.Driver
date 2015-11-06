@@ -44,6 +44,7 @@ if test $AppVeyorJobId
                 Setup
         else if test $argv[1] = "RunTests"
                 RunTests
+        else
         end
 else
      echo "No webhost defined"

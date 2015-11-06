@@ -10,6 +10,7 @@ using FluentAssertions;
 using FluentAssertions.Common;
 using Newtonsoft.Json.Linq;
 using NLog;
+using NLog.Internal;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
@@ -23,13 +24,32 @@ namespace RethinkDb.Driver.Tests
     {
         protected static int TestCounter = 0;
         protected const string DbName = "test";
-        protected const string Hostname = "192.168.0.11";
-        protected const int Port = RethinkDb.Driver.RethinkDBConstants.DEFAULT_PORT;
 
         protected static RethinkDB r = RethinkDB.r;
         protected Connection conn;
 
         protected List<string> tableVars = new List<string>();
+
+        public string GetTestHost()
+        {
+            if( Environment.GetEnvironmentVariable("CI").IsNotNullOrWhiteSpace() )
+            {
+                //CI is testing.
+                return "localhost";
+            }
+            return System.Configuration.ConfigurationManager.AppSettings["TestServer"];
+        }
+
+        public int GetTestPort()
+        {
+            if (Environment.GetEnvironmentVariable("CI").IsNotNullOrWhiteSpace())
+            {
+                //CI is testing.
+                return 28015;
+            }
+            var port = System.Configuration.ConfigurationManager.AppSettings["TestPort"];
+            return int.Parse(port);
+        }
 
 
         [TestFixtureSetUp]
@@ -52,8 +72,8 @@ namespace RethinkDb.Driver.Tests
             FixtureWaitHandle.WaitOne();
 
             conn = r.connection()
-                .hostname(Hostname)
-                .port(Port)
+                .hostname(GetTestHost())
+                .port(GetTestPort())
                 .connect();
 
             try

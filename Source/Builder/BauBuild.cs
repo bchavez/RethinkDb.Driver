@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -235,36 +236,20 @@ namespace Builder
                 .Task(citest).Desc("Temporarily hosts build artifacts for testing.")
                 .Do(() =>
                     {
-                        while( true )
+
+                        var client = CircleCi.GetRestClient();
+                        var test = CircleCi.GetTestRequest();
+                        var response = client.Execute(test);
+
+                        if (response.StatusCode != HttpStatusCode.Accepted)
                         {
-                            var hosturl = WebTestHost.RandomHostUrl();
-                            try
-                            {
-                                using( WebApp.Start<Startup>(hosturl) )
-                                {
-                                    var hostEndpoint = hosturl.Replace("+", WebTestHost.GetPreferedIp());
-                                    task.LogInfo($"WebTesthost on port: {hostEndpoint}");
+                            throw new RemotingException("Couldn't successfully trigger unit tests in remote system.");
+                        }
 
-                                    //Trigger Remote Test System
-                                    var client = WebTestHost.GetRestClient();
-                                    var test = WebTestHost.RequestUnitTests(hostEndpoint);
-                                    var response = client.Execute(test);
 
-                                    if ( response.StatusCode != HttpStatusCode.Accepted )
-                                    {
-                                        throw new RemotingException("Couldn't successfully trigger unit tests in remote system.");
-                                    }
-
-                                    while( !WebTestHost.Done )
-                                    {
-                                        Thread.Sleep(5000);
-                                    }
-                                }
-                            }
-                            catch(Exception e)
-                            {
-                                throw e;
-                            }
+                        while ( true )
+                        {
+                            Thread.Sleep(5000);
                         }
 
                     });
@@ -272,8 +257,6 @@ namespace Builder
 
             bau.Run();
         }
-
-        
 
         private static FileInfo FindNugetExe()
         {
@@ -292,75 +275,39 @@ namespace Builder
         public static IBauTask task => bau.CurrentTask;
     }
 
-    public class WebTestHost : NancyModule
+    public static class CircleCi
     {
-        public WebTestHost()
-        {
-            GenericFileResponse.SafePaths.Add(Folders.Package.ToString());
-
-            Get["/download"] = p => Response.AsFile(Projects.DriverProject.Zip.ToString());
-
-            Post["/result"] = p =>
-                {
-                    Done = true;
-                    return "OK";
-                };
-        }
-
-
-        public static Random r = new Random();
-        public static string RandomHostUrl()
-        {
-            var newPort = r.Next(49152, 65535);
-            return $"http://+:{newPort}";
-        }
-
-        public static string GetPreferedIp()
-        {
-            using( var s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0) )
-            {
-                s.Connect("111.111.111.111", 65530);
-                var endPoint = s.LocalEndPoint as IPEndPoint;
-                return endPoint.Address.ToString();
-            }
-
-        }
-
         public static RestClient GetRestClient()
         {
             return new RestClient("https://circleci.com/api/v1/")
-                {
-                    Proxy = new WebProxy("http://localhost:8888"),
-                };
+            {
+                Proxy = new WebProxy("http://localhost:8888"),
+            };
         }
-        public static RestRequest RequestUnitTests(string webhostUrl)
-        {
-            var req = new RestRequest($"/project/bchavez/RethinkDb.Driver/tree/master", Method.POST);
 
-            req.AddQueryParameter("circle-token", Environment.GetEnvironmentVariable("test_token"));
+        public static RestRequest GetTestRequest()
+        {
+            var jobId = Environment.GetEnvironmentVariable("APPVEYOR_JOB_ID");
+            var circleciToken = Environment.GetEnvironmentVariable("circleci_token");
 
             var body = new
                 {
                     build_parameters = new
                         {
-                            webhost = webhostUrl
+                            AppVeyorJobId = jobId
                         }
                 };
+
+
+            var req = new RestRequest($"/project/bchavez/RethinkDb.Driver/tree/master", Method.POST);
+
+            req.AddQueryParameter("circle-token", circleciToken);
 
             req.AddJsonBody(body);
 
             return req;
-        }
 
-        public static bool Done { get; private set; }
-    }
-
-    public class Startup
-    {
-        public void Configuration(IAppBuilder app)
-        {
-            var p = app.Properties;
-            app.UseNancy();
         }
     }
+
 }

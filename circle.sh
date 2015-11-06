@@ -1,6 +1,6 @@
 #!/usr/bin/fish
 
-function setup
+function Setup
 
       #Sane HTTP
       sudo pip install -U httpie
@@ -30,20 +30,20 @@ function setup
 
 end
 
-function dotest
+function RunTests
 
-        http "$webhost/download" > DriverTests.zip
-        unzip DriverTests.zip
+        http "https://ci.appveyor.com/api/buildjobs/$AppVeyorJobId/artifacts/RethinkDb.Driver.Tests.zip" Authorization:"Bearer $AppVeyorToken" > DriverTests.zip
+        unzip DriverTests.zip -d DriverTests
         cd DriverTests
         mono Runner/nunit-console.exe UnitTests/RethinkDb.Tests.dll
 
 end
 
-if test $webhost
-        if test $argv[1] = "setup"
-                echo "SETUP"
-        else if test $argv[1] = "test"
-                echo "DO TEST"
+if test $AppVeyorJobId
+        if test $argv[1] = "Setup"
+                Setup
+        else if test $argv[1] = "RunTests"
+                RunTests
         end
 else
      echo "No webhost defined"

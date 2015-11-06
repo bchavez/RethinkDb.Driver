@@ -1,8 +1,8 @@
 version: '{build}'
 
 environment:
-  test_token:
-    secure: yZJYlhNNEFmeZtRQg41ZyhlEBBUeO9+1NGXKWf43dR958gMNskGCucokVRGJkmJC
+  circleci_token:
+    secure: qe9KQDwgVgk0LSU5XdcfTFIqpMaHc87pnRtsdsjbfrrvYecFS9qJZ+J6VdsKGtnb
 
 skip_commits:
   message: /read\W{0,1}me*/

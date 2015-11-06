@@ -44,7 +44,8 @@ end
 if test $AppVeyorJobId
         if test $argv[1] = "Setup"
                 Setup
-        else if test $argv[1] = "RunTests"
+        end
+        if test $argv[1] = "RunTests"
                 RunTests
         else
             echo "Invalid command"

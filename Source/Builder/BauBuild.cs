@@ -280,7 +280,7 @@ namespace Builder
 
                         task.LogInfo($"Got results: {testResults}");
 
-                        
+                        AppVeyor.UploadTestResults(jobId, testResults);
 
                     });
 

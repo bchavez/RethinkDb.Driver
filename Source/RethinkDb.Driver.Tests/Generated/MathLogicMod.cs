@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Test.Generated {
     // Tests for the basic usage of the mod operation
 
     [TestFixture]
-    public class MathLogicMod : GeneratedTest {
+    public class MathLogicMod : YamlTestFixture {
 
         public MathLogicMod (){
         }
@@ -35,9 +35,8 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9tb2QueWFtbCIsIkxpbmVOdW0iOiI2IiwiT3JpZ2luYWwiOiJyLmV4cHIoMTApICUgMyIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZXhwcigxMEwpLm1vZCgzTCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiMSIsIkV4cGVjdGVkVHlwZSI6ImxvbmciLCJFeHBlY3RlZEphdmEiOiIxTCIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, math_logic/mod.yaml, #6
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
@@ -50,9 +49,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9tb2QueWFtbCIsIkxpbmVOdW0iOiI3IiwiT3JpZ2luYWwiOiIxMCAlIHIuZXhwcigzKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIubW9kKDEwTCwgci5leHByKDNMKSkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiMSIsIkV4cGVjdGVkVHlwZSI6ImxvbmciLCJFeHBlY3RlZEphdmEiOiIxTCIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, math_logic/mod.yaml, #7
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
@@ -65,9 +63,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9tb2QueWFtbCIsIkxpbmVOdW0iOiI4IiwiT3JpZ2luYWwiOiJyLmV4cHIoMTApLm1vZCgzKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZXhwcigxMEwpLm1vZCgzTCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiMSIsIkV4cGVjdGVkVHlwZSI6ImxvbmciLCJFeHBlY3RlZEphdmEiOiIxTCIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, math_logic/mod.yaml, #8
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
@@ -80,9 +77,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9tb2QueWFtbCIsIkxpbmVOdW0iOiIxNiIsIk9yaWdpbmFsIjoici5leHByKC0xMCkgJSAtMyIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZXhwcigtMTBMKS5tb2QoLTNMKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiItMSIsIkV4cGVjdGVkVHlwZSI6ImxvbmciLCJFeHBlY3RlZEphdmEiOiItMUwiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, math_logic/mod.yaml, #16
                  /* ExpectedOriginal: -1 */
                  var expected_ = -1L;
@@ -95,9 +91,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9tb2QueWFtbCIsIkxpbmVOdW0iOiIyMiIsIk9yaWdpbmFsIjoici5leHByKDQpICUgJ2EnIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKDRMKS5tb2QoXCJhXCIpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6ImVycignUmVxbFF1ZXJ5TG9naWNFcnJvcicsICdFeHBlY3RlZCB0eXBlIE5VTUJFUiBidXQgZm91bmQgU1RSSU5HLicsIFsxXSkiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIFNUUklORy5cIiwgci5hcnJheSgxTCkpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, math_logic/mod.yaml, #22
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1L));
@@ -110,9 +105,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9tb2QueWFtbCIsIkxpbmVOdW0iOiIyNyIsIk9yaWdpbmFsIjoici5leHByKCdhJykgJSAxIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKFwiYVwiKS5tb2QoMUwpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6ImVycignUmVxbFF1ZXJ5TG9naWNFcnJvcicsICdFeHBlY3RlZCB0eXBlIE5VTUJFUiBidXQgZm91bmQgU1RSSU5HLicsIFswXSkiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIFNUUklORy5cIiwgci5hcnJheSgwTCkpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, math_logic/mod.yaml, #27
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
@@ -125,9 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9tb2QueWFtbCIsIkxpbmVOdW0iOiIzMiIsIk9yaWdpbmFsIjoici5leHByKCdhJykgJSAnYiciLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmV4cHIoXCJhXCIpLm1vZChcImJcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0V4cGVjdGVkIHR5cGUgTlVNQkVSIGJ1dCBmb3VuZCBTVFJJTkcuJywgWzBdKSIsIkV4cGVjdGVkVHlwZSI6IkVyciIsIkV4cGVjdGVkSmF2YSI6ImVycihcIlJlcWxRdWVyeUxvZ2ljRXJyb3JcIiwgXCJFeHBlY3RlZCB0eXBlIE5VTUJFUiBidXQgZm91bmQgU1RSSU5HLlwiLCByLmFycmF5KDBMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, math_logic/mod.yaml, #32
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));

@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace RethinkDb.Driver.Tests
+namespace RethinkDb.Driver.Tests.Utils
 {
     internal static class ExtensionsForTesting
     {

@@ -21,7 +21,7 @@ namespace RethinkDb.Driver.Net
 
         public static Response ParseFrom(long token, string buf)
         {
-            Log.Trace("JSON Received: " + buf);
+            Log.Trace("JSON Recv: " + buf);
             var jsonResp = JObject.Parse(buf);
             var responseType = jsonResp["t"].ToObject<ResponseType>();
             var responseNotes = jsonResp["n"]?.ToObject<List<ResponseNote>>() ?? new List<ResponseNote>();

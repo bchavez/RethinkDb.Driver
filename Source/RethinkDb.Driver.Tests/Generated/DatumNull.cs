@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Test.Generated {
     // Tests of conversion to and from the RQL null type
 
     [TestFixture]
-    public class DatumNull : GeneratedTest {
+    public class DatumNull : YamlTestFixture {
 
         public DatumNull (){
         }
@@ -35,9 +35,8 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZGF0dW0vbnVsbC55YW1sIiwiTGluZU51bSI6IjYiLCJPcmlnaW5hbCI6InIuZXhwcihudWxsKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZXhwcigoUmVxbEV4cHIpIG51bGwpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IihudWxsKSIsIkV4cGVjdGVkVHlwZSI6Ik9iamVjdCIsIkV4cGVjdGVkSmF2YSI6bnVsbCwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, datum/null.yaml, #6
                  /* ExpectedOriginal: (null) */
                  var expected_ = null as object;
@@ -50,9 +49,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZGF0dW0vbnVsbC55YW1sIiwiTGluZU51bSI6IjkiLCJPcmlnaW5hbCI6InIuZXhwcihudWxsKS50eXBlX29mKCkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmV4cHIoKFJlcWxFeHByKSBudWxsKS50eXBlT2YoKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJOVUxMIiwiRXhwZWN0ZWRUeXBlIjoiU3RyaW5nIiwiRXhwZWN0ZWRKYXZhIjoiXCJOVUxMXCIiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, datum/null.yaml, #9
                  /* ExpectedOriginal: NULL */
                  var expected_ = "NULL";
@@ -65,9 +63,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZGF0dW0vbnVsbC55YW1sIiwiTGluZU51bSI6IjE0IiwiT3JpZ2luYWwiOiJyLmV4cHIobnVsbCkuY29lcmNlX3RvKCdzdHJpbmcnKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZXhwcigoUmVxbEV4cHIpIG51bGwpLmNvZXJjZVRvKFwic3RyaW5nXCIpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6Im51bGwiLCJFeHBlY3RlZFR5cGUiOiJTdHJpbmciLCJFeHBlY3RlZEphdmEiOiJcIm51bGxcIiIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, datum/null.yaml, #14
                  /* ExpectedOriginal: null */
                  var expected_ = "null";
@@ -80,9 +77,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZGF0dW0vbnVsbC55YW1sIiwiTGluZU51bSI6IjE3IiwiT3JpZ2luYWwiOiJyLmV4cHIobnVsbCkuY29lcmNlX3RvKCdudWxsJykiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmV4cHIoKFJlcWxFeHByKSBudWxsKS5jb2VyY2VUbyhcIm51bGxcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjpudWxsLCJFeHBlY3RlZFR5cGUiOiJPYmplY3QiLCJFeHBlY3RlZEphdmEiOm51bGwsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, datum/null.yaml, #17
                  /* ExpectedOriginal:  */
                  var expected_ = null as object;

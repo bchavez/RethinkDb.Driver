@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Test.Generated {
     // Tests for the basic usage of the division operation
 
     [TestFixture]
-    public class MathLogicDiv : GeneratedTest {
+    public class MathLogicDiv : YamlTestFixture {
 
         public MathLogicDiv (){
         }
@@ -35,9 +35,8 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiI2IiwiT3JpZ2luYWwiOiJyLmV4cHIoNCkgLyAyIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKDRMKS5kaXYoMkwpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjIiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiMkwiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, math_logic/div.yaml, #6
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
@@ -50,9 +49,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiI3IiwiT3JpZ2luYWwiOiI0IC8gci5leHByKDIpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5kaXYoNEwsIHIuZXhwcigyTCkpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjIiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiMkwiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, math_logic/div.yaml, #7
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
@@ -65,9 +63,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiI4IiwiT3JpZ2luYWwiOiJyLmV4cHIoNCkuZGl2KDIpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKDRMKS5kaXYoMkwpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjIiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiMkwiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, math_logic/div.yaml, #8
                  /* ExpectedOriginal: 2 */
                  var expected_ = 2L;
@@ -80,9 +77,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiIxNSIsIk9yaWdpbmFsIjoici5leHByKC0xKSAvIC0yIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKC0xTCkuZGl2KC0yTCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiMC41IiwiRXhwZWN0ZWRUeXBlIjoiZG91YmxlIiwiRXhwZWN0ZWRKYXZhIjoiMC41IiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, math_logic/div.yaml, #15
                  /* ExpectedOriginal: 0.5 */
                  var expected_ = 0.5;
@@ -95,9 +91,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiIyMCIsIk9yaWdpbmFsIjoici5leHByKDQuOSkgLyAwLjciLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmV4cHIoNC45KS5kaXYoMC43KSIsIkV4cGVjdGVkT3JpZ2luYWwiOiI0LjkgLyAwLjciLCJFeHBlY3RlZFR5cGUiOiJkb3VibGUiLCJFeHBlY3RlZEphdmEiOiI0LjkgLyAwLjciLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, math_logic/div.yaml, #20
                  /* ExpectedOriginal: 4.9 / 0.7 */
                  var expected_ = 4.9 / 0.7;
@@ -110,9 +105,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiIyNSIsIk9yaWdpbmFsIjoici5leHByKDEpLmRpdigyLDMsNCw1KSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZXhwcigxTCkuZGl2KDJMLCAzTCwgNEwsIDVMKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIxLjAvMTIwIiwiRXhwZWN0ZWRUeXBlIjoiZG91YmxlIiwiRXhwZWN0ZWRKYXZhIjoiMS4wIC8gMTIwTCIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, math_logic/div.yaml, #25
                  /* ExpectedOriginal: 1.0/120 */
                  var expected_ = 1.0 / 120L;
@@ -125,9 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiIzNyIsIk9yaWdpbmFsIjoici5leHByKDEpIC8gMCIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZXhwcigxTCkuZGl2KDBMKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnQ2Fubm90IGRpdmlkZSBieSB6ZXJvLicsIFsxXSkiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiQ2Fubm90IGRpdmlkZSBieSB6ZXJvLlwiLCByLmFycmF5KDFMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, math_logic/div.yaml, #37
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1L));
@@ -140,9 +133,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiIzOCIsIk9yaWdpbmFsIjoici5leHByKDIuMCkgLyAwIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKDIuMCkuZGl2KDBMKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnQ2Fubm90IGRpdmlkZSBieSB6ZXJvLicsIFsxXSkiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiQ2Fubm90IGRpdmlkZSBieSB6ZXJvLlwiLCByLmFycmF5KDFMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, math_logic/div.yaml, #38
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1L));
@@ -155,9 +147,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiIzOSIsIk9yaWdpbmFsIjoici5leHByKDMpIC8gMC4wIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKDNMKS5kaXYoMC4wKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnQ2Fubm90IGRpdmlkZSBieSB6ZXJvLicsIFsxXSkiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiQ2Fubm90IGRpdmlkZSBieSB6ZXJvLlwiLCByLmFycmF5KDFMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, math_logic/div.yaml, #39
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1L));
@@ -170,9 +161,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiI0MCIsIk9yaWdpbmFsIjoici5leHByKDQuMCkgLyAwLjAiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmV4cHIoNC4wKS5kaXYoMC4wKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnQ2Fubm90IGRpdmlkZSBieSB6ZXJvLicsIFsxXSkiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiQ2Fubm90IGRpdmlkZSBieSB6ZXJvLlwiLCByLmFycmF5KDFMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, math_logic/div.yaml, #40
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1L));
@@ -185,9 +175,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiI0MSIsIk9yaWdpbmFsIjoici5leHByKDApIC8gMCIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZXhwcigwTCkuZGl2KDBMKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnQ2Fubm90IGRpdmlkZSBieSB6ZXJvLicsIFsxXSkiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiQ2Fubm90IGRpdmlkZSBieSB6ZXJvLlwiLCByLmFycmF5KDFMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, math_logic/div.yaml, #41
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1L));
@@ -200,9 +189,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiI0MiIsIk9yaWdpbmFsIjoici5leHByKDAuMCkgLyAwLjAiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmV4cHIoMC4wKS5kaXYoMC4wKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnQ2Fubm90IGRpdmlkZSBieSB6ZXJvLicsIFsxXSkiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiQ2Fubm90IGRpdmlkZSBieSB6ZXJvLlwiLCByLmFycmF5KDFMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, math_logic/div.yaml, #42
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Cannot divide by zero.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Cannot divide by zero.", r.array(1L));
@@ -215,9 +203,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiI0NiIsIk9yaWdpbmFsIjoici5leHByKCdhJykgLyAwLjgiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmV4cHIoXCJhXCIpLmRpdigwLjgpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6ImVycignUmVxbFF1ZXJ5TG9naWNFcnJvcicsICdFeHBlY3RlZCB0eXBlIE5VTUJFUiBidXQgZm91bmQgU1RSSU5HLicsIFswXSkiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIFNUUklORy5cIiwgci5hcnJheSgwTCkpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, math_logic/div.yaml, #46
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(0L));
@@ -230,9 +217,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9kaXYueWFtbCIsIkxpbmVOdW0iOiI1MCIsIk9yaWdpbmFsIjoici5leHByKDEpIC8gJ2EnIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKDFMKS5kaXYoXCJhXCIpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6ImVycignUmVxbFF1ZXJ5TG9naWNFcnJvcicsICdFeHBlY3RlZCB0eXBlIE5VTUJFUiBidXQgZm91bmQgU1RSSU5HLicsIFsxXSkiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiRXhwZWN0ZWQgdHlwZSBOVU1CRVIgYnV0IGZvdW5kIFNUUklORy5cIiwgci5hcnJheSgxTCkpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, math_logic/div.yaml, #50
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type NUMBER but found STRING.', [1]) */
                  var expected_ = err("ReqlQueryLogicError", "Expected type NUMBER but found STRING.", r.array(1L));

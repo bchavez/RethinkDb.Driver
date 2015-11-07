@@ -9,6 +9,7 @@ using Z.ExtensionMethods;
 namespace RethinkDb.Driver.Tests
 {
     [TestFixture]
+    [Explicit]
     public class TestDebugger
     {
         //crazy i know right... :)

@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Test.Generated {
     // secondary indexes on times
 
     [TestFixture]
-    public class TimesIndex : GeneratedTest {
+    public class TimesIndex : YamlTestFixture {
 
         public TimesIndex (){
                 tableVars.Add( "tbl" );
@@ -85,9 +85,8 @@ namespace RethinkDb.Driver.Test.Generated {
              
                  var trows = (IList) (r.array(r.hashMap("id", t1), r.hashMap("id", t2), r.hashMap("id", t3), r.hashMap("id", t4), r.hashMap("id", t5)));
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiIzNyIsIk9yaWdpbmFsIjoidGJsLmluc2VydCh0cm93cylbJ2luc2VydGVkJ10iLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuaW5zZXJ0KHRyb3dzKS5icmFja2V0KFwiaW5zZXJ0ZWRcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiNSIsIkV4cGVjdGVkVHlwZSI6ImxvbmciLCJFeHBlY3RlZEphdmEiOiI1TCIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/index.yaml, #37
                  /* ExpectedOriginal: 5 */
                  var expected_ = 5L;
@@ -106,9 +105,8 @@ namespace RethinkDb.Driver.Test.Generated {
              
                  var bad_insert = (IList) (r.array(r.hashMap("id", r.expr(t1).inTimezone("Z"))));
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI0MiIsIk9yaWdpbmFsIjoidGJsLmluc2VydChiYWRfaW5zZXJ0KVsnZmlyc3RfZXJyb3InXSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InRibC5pbnNlcnQoYmFkX2luc2VydCkuYnJhY2tldChcImZpcnN0X2Vycm9yXCIpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IihcIkR1cGxpY2F0ZSBwcmltYXJ5IGtleSBgaWRgOlxcbntcXG5cXHRcXFwiaWRcXFwiOlxcdHtcXG5cXHRcXHRcXFwiJHJlcWxfdHlwZSRcXFwiOlxcdFxcXCJUSU1FXFxcIixcXG5cXHRcXHRcXFwiZXBvY2hfdGltZVxcXCI6XFx0MTM3NTQ0NTE2My4wODcsXFxuXFx0XFx0XFxcInRpbWV6b25lXFxcIjpcXHRcXFwiLTA3OjAwXFxcIlxcblxcdH1cXG59XFxue1xcblxcdFxcXCJpZFxcXCI6XFx0e1xcblxcdFxcdFxcXCIkcmVxbF90eXBlJFxcXCI6XFx0XFxcIlRJTUVcXFwiLFxcblxcdFxcdFxcXCJlcG9jaF90aW1lXFxcIjpcXHQxMzc1NDQ1MTYzLjA4NyxcXG5cXHRcXHRcXFwidGltZXpvbmVcXFwiOlxcdFxcXCIrMDA6MDBcXFwiXFxuXFx0fVxcbn1cIikiLCJFeHBlY3RlZFR5cGUiOiJTdHJpbmciLCJFeHBlY3RlZEphdmEiOiJcIkR1cGxpY2F0ZSBwcmltYXJ5IGtleSBgaWRgOlxcbntcXG5cXHRcXFwiaWRcXFwiOlxcdHtcXG5cXHRcXHRcXFwiJHJlcWxfdHlwZSRcXFwiOlxcdFxcXCJUSU1FXFxcIixcXG5cXHRcXHRcXFwiZXBvY2hfdGltZVxcXCI6XFx0MTM3NTQ0NTE2My4wODcsXFxuXFx0XFx0XFxcInRpbWV6b25lXFxcIjpcXHRcXFwiLTA3OjAwXFxcIlxcblxcdH1cXG59XFxue1xcblxcdFxcXCJpZFxcXCI6XFx0e1xcblxcdFxcdFxcXCIkcmVxbF90eXBlJFxcXCI6XFx0XFxcIlRJTUVcXFwiLFxcblxcdFxcdFxcXCJlcG9jaF90aW1lXFxcIjpcXHQxMzc1NDQ1MTYzLjA4NyxcXG5cXHRcXHRcXFwidGltZXpvbmVcXFwiOlxcdFxcXCIrMDA6MDBcXFwiXFxuXFx0fVxcbn1cIiIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/index.yaml, #42
                  /* ExpectedOriginal: ("Duplicate primary key `id`:\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"-07:00\"\n\t}\n}\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"+00:00\"\n\t}\n}") */
                  var expected_ = "Duplicate primary key `id`:\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"-07:00\"\n\t}\n}\n{\n\t\"id\":\t{\n\t\t\"$reql_type$\":\t\"TIME\",\n\t\t\"epoch_time\":\t1375445163.087,\n\t\t\"timezone\":\t\"+00:00\"\n\t}\n}";
@@ -121,9 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI0NiIsIk9yaWdpbmFsIjoidGJsLmJldHdlZW4odHMsIHRlKS5jb3VudCgpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidGJsLmJldHdlZW4odHMsIHRlKS5jb3VudCgpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjUiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiNUwiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/index.yaml, #46
                  /* ExpectedOriginal: 5 */
                  var expected_ = 5L;
@@ -136,9 +133,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI0OCIsIk9yaWdpbmFsIjoidGJsLmJldHdlZW4odDEsIHQ0KS5jb3VudCgpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidGJsLmJldHdlZW4odDEsIHQ0KS5jb3VudCgpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjMiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiM0wiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/index.yaml, #48
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
@@ -151,9 +147,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI1MSIsIk9yaWdpbmFsIjoidGJsLmJldHdlZW4odDEsIHQ0LCByaWdodF9ib3VuZD0nY2xvc2VkJykuY291bnQoKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InRibC5iZXR3ZWVuKHQxLCB0NCkub3B0QXJnKFwicmlnaHRfYm91bmRcIiwgXCJjbG9zZWRcIikuY291bnQoKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiI0IiwiRXhwZWN0ZWRUeXBlIjoibG9uZyIsIkV4cGVjdGVkSmF2YSI6IjRMIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/index.yaml, #51
                  /* ExpectedOriginal: 4 */
                  var expected_ = 4L;
@@ -166,9 +161,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI1NCIsIk9yaWdpbmFsIjoidGJsLmJldHdlZW4oci5leHByKHRzKS5pbl90aW1lem9uZShcIiswNjowMFwiKSwgdGUpLmNvdW50KCkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuYmV0d2VlbihyLmV4cHIodHMpLmluVGltZXpvbmUoXCIrMDY6MDBcIiksIHRlKS5jb3VudCgpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjUiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiNUwiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/index.yaml, #54
                  /* ExpectedOriginal: 5 */
                  var expected_ = 5L;
@@ -181,9 +175,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI1NiIsIk9yaWdpbmFsIjoidGJsLmJldHdlZW4odDEsIHIuZXhwcih0NCkuaW5fdGltZXpvbmUoXCIrMDg6MDBcIikpLmNvdW50KCkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuYmV0d2Vlbih0MSwgci5leHByKHQ0KS5pblRpbWV6b25lKFwiKzA4OjAwXCIpKS5jb3VudCgpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjMiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiM0wiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/index.yaml, #56
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
@@ -196,9 +189,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI1OSIsIk9yaWdpbmFsIjoidGJsLmJldHdlZW4oci5leHByKHQxKS5pbl90aW1lem9uZShcIlpcIiksIHQ0LCByaWdodF9ib3VuZD0nY2xvc2VkJykuY291bnQoKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InRibC5iZXR3ZWVuKHIuZXhwcih0MSkuaW5UaW1lem9uZShcIlpcIiksIHQ0KS5vcHRBcmcoXCJyaWdodF9ib3VuZFwiLCBcImNsb3NlZFwiKS5jb3VudCgpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjQiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiNEwiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/index.yaml, #59
                  /* ExpectedOriginal: 4 */
                  var expected_ = 4L;
@@ -211,9 +203,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI2NCIsIk9yaWdpbmFsIjoidGJsLnVwZGF0ZShsYW1iZGEgcm93OnsnYSc6cm93WydpZCddfSlbJ3JlcGxhY2VkJ10iLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwudXBkYXRlKHJvdyA9PiByLmhhc2hNYXAoXCJhXCIsIHJvdy5icmFja2V0KFwiaWRcIikpKS5icmFja2V0KFwicmVwbGFjZWRcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiNSIsIkV4cGVjdGVkVHlwZSI6ImxvbmciLCJFeHBlY3RlZEphdmEiOiI1TCIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/index.yaml, #64
                  /* ExpectedOriginal: 5 */
                  var expected_ = 5L;
@@ -226,9 +217,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI2NyIsIk9yaWdpbmFsIjoidGJsLmluZGV4X2NyZWF0ZSgnYScpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidGJsLmluZGV4Q3JlYXRlKFwiYVwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIoeydjcmVhdGVkJzoxfSkiLCJFeHBlY3RlZFR5cGUiOiJNYXAiLCJFeHBlY3RlZEphdmEiOiJyLmhhc2hNYXAoXCJjcmVhdGVkXCIsIDFMKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/index.yaml, #67
                  /* ExpectedOriginal: ({'created':1}) */
                  var expected_ = r.hashMap("created", 1L);
@@ -241,9 +231,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI2OSIsIk9yaWdpbmFsIjoidGJsLmluZGV4X3dhaXQoJ2EnKS5jb3VudCgpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidGJsLmluZGV4V2FpdChcImFcIikuY291bnQoKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIxIiwiRXhwZWN0ZWRUeXBlIjoibG9uZyIsIkV4cGVjdGVkSmF2YSI6IjFMIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/index.yaml, #69
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
@@ -256,9 +245,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI3MyIsIk9yaWdpbmFsIjoidGJsLmJldHdlZW4odHMsIHRlLCBpbmRleD0nYScpLmNvdW50KCkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuYmV0d2Vlbih0cywgdGUpLm9wdEFyZyhcImluZGV4XCIsIFwiYVwiKS5jb3VudCgpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjUiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiNUwiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/index.yaml, #73
                  /* ExpectedOriginal: 5 */
                  var expected_ = 5L;
@@ -271,9 +259,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI3NyIsIk9yaWdpbmFsIjoidGJsLmJldHdlZW4odDEsIHQ0LCBpbmRleD0nYScpLmNvdW50KCkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuYmV0d2Vlbih0MSwgdDQpLm9wdEFyZyhcImluZGV4XCIsIFwiYVwiKS5jb3VudCgpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjMiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiM0wiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/index.yaml, #77
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
@@ -286,9 +273,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI4MSIsIk9yaWdpbmFsIjoidGJsLmJldHdlZW4odDEsIHQ0LCByaWdodF9ib3VuZD0nY2xvc2VkJywgaW5kZXg9J2EnKS5jb3VudCgpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidGJsLmJldHdlZW4odDEsIHQ0KS5vcHRBcmcoXCJyaWdodF9ib3VuZFwiLCBcImNsb3NlZFwiKS5vcHRBcmcoXCJpbmRleFwiLCBcImFcIikuY291bnQoKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiI0IiwiRXhwZWN0ZWRUeXBlIjoibG9uZyIsIkV4cGVjdGVkSmF2YSI6IjRMIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/index.yaml, #81
                  /* ExpectedOriginal: 4 */
                  var expected_ = 4L;
@@ -301,9 +287,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI4NSIsIk9yaWdpbmFsIjoidGJsLmJldHdlZW4oci5leHByKHRzKS5pbl90aW1lem9uZShcIiswNjowMFwiKSwgdGUsIGluZGV4PSdhJykuY291bnQoKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InRibC5iZXR3ZWVuKHIuZXhwcih0cykuaW5UaW1lem9uZShcIiswNjowMFwiKSwgdGUpLm9wdEFyZyhcImluZGV4XCIsIFwiYVwiKS5jb3VudCgpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjUiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiNUwiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/index.yaml, #85
                  /* ExpectedOriginal: 5 */
                  var expected_ = 5L;
@@ -316,9 +301,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI4OSIsIk9yaWdpbmFsIjoidGJsLmJldHdlZW4odDEsIHIuZXhwcih0NCkuaW5fdGltZXpvbmUoXCIrMDg6MDBcIiksIGluZGV4PSdhJykuY291bnQoKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InRibC5iZXR3ZWVuKHQxLCByLmV4cHIodDQpLmluVGltZXpvbmUoXCIrMDg6MDBcIikpLm9wdEFyZyhcImluZGV4XCIsIFwiYVwiKS5jb3VudCgpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjMiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiM0wiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/index.yaml, #89
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
@@ -331,9 +315,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI5MyIsIk9yaWdpbmFsIjoidGJsLmJldHdlZW4oci5leHByKHQxKS5pbl90aW1lem9uZShcIlpcIiksIHQ0LCByaWdodF9ib3VuZD0nY2xvc2VkJywgaW5kZXg9J2EnKS5jb3VudCgpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidGJsLmJldHdlZW4oci5leHByKHQxKS5pblRpbWV6b25lKFwiWlwiKSwgdDQpLm9wdEFyZyhcInJpZ2h0X2JvdW5kXCIsIFwiY2xvc2VkXCIpLm9wdEFyZyhcImluZGV4XCIsIFwiYVwiKS5jb3VudCgpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IjQiLCJFeHBlY3RlZFR5cGUiOiJsb25nIiwiRXhwZWN0ZWRKYXZhIjoiNEwiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/index.yaml, #93
                  /* ExpectedOriginal: 4 */
                  var expected_ = 4L;
@@ -346,9 +329,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiI5OCIsIk9yaWdpbmFsIjoidGJsLmluZGV4X2NyZWF0ZSgnYicsIGxhbWJkYSByb3c6ci5icmFuY2gocm93WydpZCddIDwgdDQsIHJvd1snYSddLCBudWxsKSkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuaW5kZXhDcmVhdGUoXCJiXCIsIHJvdyA9PiByLmJyYW5jaChyb3cuYnJhY2tldChcImlkXCIpLmx0KHQ0KSwgcm93LmJyYWNrZXQoXCJhXCIpLCAoUmVxbEV4cHIpIG51bGwpKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIoeydjcmVhdGVkJzoxfSkiLCJFeHBlY3RlZFR5cGUiOiJNYXAiLCJFeHBlY3RlZEphdmEiOiJyLmhhc2hNYXAoXCJjcmVhdGVkXCIsIDFMKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/index.yaml, #98
                  /* ExpectedOriginal: ({'created':1}) */
                  var expected_ = r.hashMap("created", 1L);
@@ -361,9 +343,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiIxMDEiLCJPcmlnaW5hbCI6InRibC5pbmRleF93YWl0KCdiJykuY291bnQoKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InRibC5pbmRleFdhaXQoXCJiXCIpLmNvdW50KCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiMSIsIkV4cGVjdGVkVHlwZSI6ImxvbmciLCJFeHBlY3RlZEphdmEiOiIxTCIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/index.yaml, #101
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
@@ -376,9 +357,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiIxMDUiLCJPcmlnaW5hbCI6InRibC5pbmRleF93YWl0KCdiJykuY291bnQoKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InRibC5pbmRleFdhaXQoXCJiXCIpLmNvdW50KCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiMSIsIkV4cGVjdGVkVHlwZSI6ImxvbmciLCJFeHBlY3RlZEphdmEiOiIxTCIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/index.yaml, #105
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
@@ -391,9 +371,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiIxMDkiLCJPcmlnaW5hbCI6InRibC5iZXR3ZWVuKHRzLCB0ZSwgaW5kZXg9J2InKS5jb3VudCgpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidGJsLmJldHdlZW4odHMsIHRlKS5vcHRBcmcoXCJpbmRleFwiLCBcImJcIikuY291bnQoKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIzIiwiRXhwZWN0ZWRUeXBlIjoibG9uZyIsIkV4cGVjdGVkSmF2YSI6IjNMIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/index.yaml, #109
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
@@ -406,9 +385,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiIxMTMiLCJPcmlnaW5hbCI6InRibC5iZXR3ZWVuKHQxLCB0NCwgaW5kZXg9J2InKS5jb3VudCgpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidGJsLmJldHdlZW4odDEsIHQ0KS5vcHRBcmcoXCJpbmRleFwiLCBcImJcIikuY291bnQoKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIzIiwiRXhwZWN0ZWRUeXBlIjoibG9uZyIsIkV4cGVjdGVkSmF2YSI6IjNMIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/index.yaml, #113
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
@@ -421,9 +399,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiIxMTciLCJPcmlnaW5hbCI6InRibC5iZXR3ZWVuKHQxLCB0NCwgcmlnaHRfYm91bmQ9J2Nsb3NlZCcsIGluZGV4PSdiJykuY291bnQoKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InRibC5iZXR3ZWVuKHQxLCB0NCkub3B0QXJnKFwicmlnaHRfYm91bmRcIiwgXCJjbG9zZWRcIikub3B0QXJnKFwiaW5kZXhcIiwgXCJiXCIpLmNvdW50KCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiMyIsIkV4cGVjdGVkVHlwZSI6ImxvbmciLCJFeHBlY3RlZEphdmEiOiIzTCIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/index.yaml, #117
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
@@ -436,9 +413,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiIxMjEiLCJPcmlnaW5hbCI6InRibC5iZXR3ZWVuKHIuZXhwcih0cykuaW5fdGltZXpvbmUoXCIrMDY6MDBcIiksIHRlLCBpbmRleD0nYicpLmNvdW50KCkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuYmV0d2VlbihyLmV4cHIodHMpLmluVGltZXpvbmUoXCIrMDY6MDBcIiksIHRlKS5vcHRBcmcoXCJpbmRleFwiLCBcImJcIikuY291bnQoKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIzIiwiRXhwZWN0ZWRUeXBlIjoibG9uZyIsIkV4cGVjdGVkSmF2YSI6IjNMIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/index.yaml, #121
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
@@ -451,9 +427,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiIxMjUiLCJPcmlnaW5hbCI6InRibC5iZXR3ZWVuKHQxLCByLmV4cHIodDQpLmluX3RpbWV6b25lKFwiKzA4OjAwXCIpLCBpbmRleD0nYicpLmNvdW50KCkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuYmV0d2Vlbih0MSwgci5leHByKHQ0KS5pblRpbWV6b25lKFwiKzA4OjAwXCIpKS5vcHRBcmcoXCJpbmRleFwiLCBcImJcIikuY291bnQoKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIzIiwiRXhwZWN0ZWRUeXBlIjoibG9uZyIsIkV4cGVjdGVkSmF2YSI6IjNMIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/index.yaml, #125
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
@@ -466,9 +441,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiIxMjkiLCJPcmlnaW5hbCI6InRibC5iZXR3ZWVuKHIuZXhwcih0MSkuaW5fdGltZXpvbmUoXCJaXCIpLCB0NCwgcmlnaHRfYm91bmQ9J2Nsb3NlZCcsIGluZGV4PSdiJykuY291bnQoKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InRibC5iZXR3ZWVuKHIuZXhwcih0MSkuaW5UaW1lem9uZShcIlpcIiksIHQ0KS5vcHRBcmcoXCJyaWdodF9ib3VuZFwiLCBcImNsb3NlZFwiKS5vcHRBcmcoXCJpbmRleFwiLCBcImJcIikuY291bnQoKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIzIiwiRXhwZWN0ZWRUeXBlIjoibG9uZyIsIkV4cGVjdGVkSmF2YSI6IjNMIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/index.yaml, #129
                  /* ExpectedOriginal: 3 */
                  var expected_ = 3L;
@@ -493,9 +467,8 @@ namespace RethinkDb.Driver.Test.Generated {
              
                  var curtime = (DateTimeOffset) (datetime.now());
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiIxNDIiLCJPcmlnaW5hbCI6InRibC5pbnNlcnQoW3snaWQnOm9sZHRpbWV9XSlbJ2luc2VydGVkJ10iLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuaW5zZXJ0KHIuYXJyYXkoci5oYXNoTWFwKFwiaWRcIiwgb2xkdGltZSkpKS5icmFja2V0KFwiaW5zZXJ0ZWRcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiMSIsIkV4cGVjdGVkVHlwZSI6ImxvbmciLCJFeHBlY3RlZEphdmEiOiIxTCIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/index.yaml, #142
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;
@@ -508,9 +481,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvaW5kZXgueWFtbCIsIkxpbmVOdW0iOiIxNDgiLCJPcmlnaW5hbCI6InRibC5nZXQob2xkdGltZSlbJ2lkJ10udHlwZV9vZigpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidGJsLmdldChvbGR0aW1lKS5icmFja2V0KFwiaWRcIikudHlwZU9mKCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiKFwiUFRZUEU8VElNRT5cIikiLCJFeHBlY3RlZFR5cGUiOiJTdHJpbmciLCJFeHBlY3RlZEphdmEiOiJcIlBUWVBFPFRJTUU+XCIiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/index.yaml, #148
                  /* ExpectedOriginal: ("PTYPE<TIME>") */
                  var expected_ = "PTYPE<TIME>";

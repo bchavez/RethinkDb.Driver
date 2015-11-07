@@ -82,9 +82,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettings.cs" />
     <Compile Include="ConnectionTest.cs" />
-    <Compile Include="ExtensionsForTesting.cs" />
-    <Compile Include="GeneratedTest.cs" />
+    <Compile Include="Examples.cs" />
+    <Compile Include="OtherTests.cs" />
+    <Compile Include="QueryTest.cs" />
+    <Compile Include="Utils\ExtensionsForTesting.cs" />
     <Compile Include="Generated\ChangefeedsIncludeStates.cs" />
     <Compile Include="Generated\ChangefeedsSindex.cs" />
     <Compile Include="Generated\ChangefeedsTable.cs" />
@@ -136,7 +139,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDebugger.cs" />
     <Compile Include="TestingCommon.cs" />
-    <Compile Include="TestSettings.cs" />
+    <Compile Include="YamlTestContext.cs" />
+    <Compile Include="YamlTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -148,7 +152,9 @@
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RethinkDb.Driver\RethinkDb.Driver.csproj">

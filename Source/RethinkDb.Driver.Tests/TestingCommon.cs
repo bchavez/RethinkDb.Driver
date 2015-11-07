@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -40,17 +41,13 @@ namespace RethinkDb.Driver.Tests
             var err = expected as Err;
             if( err != null )
             {
-                err.Equals(obtained)
-                    .Should().BeTrue();
-
+                err.Equals(obtained).Should().BeTrue();
                 return;
             }
             var errregex = expected as ErrRegex;
             if( errregex != null )
             {
-                errregex.Equals(obtained)
-                    .Should().BeTrue();
-
+                errregex.Equals(obtained).Should().BeTrue("ErrRegex Match Failed.");
                 return;
             }
 
@@ -199,7 +196,6 @@ namespace RethinkDb.Driver.Tests
             }
         }
 
-
         public class Err
         {
             private string errorMessage;
@@ -247,13 +243,8 @@ namespace RethinkDb.Driver.Tests
                     otherMessage = assertionMatch.Result("${message}");
                 }
 
-                isValid = Clean(this.errorMessage)
-                    .Equals(Clean(otherMessage));
-
-                //isValid = this.errorMessage.Equals(otherMessage);
-                isValid.Should().BeTrue();
-
-                return isValid;
+                Clean(this.errorMessage).Should().Be(Clean(otherMessage));
+                return true;
             }
 
             private string Clean(string str)
@@ -502,7 +493,10 @@ namespace RethinkDb.Driver.Tests
                 }
 
                 Guid val;
-                return Guid.TryParse(str, out val);
+                var success = Guid.TryParse(str, out val);
+                success.Should().BeTrue($"The UUID should be able to be parsed by Guid.TryParse(): {str}.");
+
+                return success;
             }
 
             public override string ToString()
@@ -528,10 +522,8 @@ namespace RethinkDb.Driver.Tests
 
             public override bool Equals(Object other)
             {
-                var isValid = nbr.Equals(other);
-                isValid.Should().BeTrue();
-
-                return isValid;
+                nbr.Should().Be(Convert.ToInt64(other));
+                return true;
             }
         }
 
@@ -551,9 +543,8 @@ namespace RethinkDb.Driver.Tests
 
             public override bool Equals(Object other)
             {
-                var isValid = nbr.Equals(other);
-                isValid.Should().BeTrue();
-                return isValid;
+                nbr.Should().Be(Convert.ToDouble(other));
+                return true;
             }
         }
 
@@ -584,7 +575,10 @@ namespace RethinkDb.Driver.Tests
                 var otherClass = other.GetType().Name;
 
                 if( !otherClass.EndsWith(this.clazz) )
+                {
+                    otherClass.Should().EndWith(this.clazz);
                     return false;
+                }
 
                 var otherMessage = ((Exception)other).Message;
 

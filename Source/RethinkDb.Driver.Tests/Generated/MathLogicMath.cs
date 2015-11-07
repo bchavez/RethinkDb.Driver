@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Test.Generated {
     // Tests of nested arithmetic expressions
 
     [TestFixture]
-    public class MathLogicMath : GeneratedTest {
+    public class MathLogicMath : YamlTestFixture {
 
         public MathLogicMath (){
         }
@@ -35,9 +35,8 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWF0aF9sb2dpYy9tYXRoLnlhbWwiLCJMaW5lTnVtIjoiNCIsIk9yaWdpbmFsIjoiKCgoNCArIDIgKiAoci5leHByKDI2KSAlIDE4KSkgLyA1KSAtIDMpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5hZGQoNEwsIHIubXVsKDJMLCByLmV4cHIoMjZMKS5tb2QoMThMKSkpLmRpdig1TCkuc3ViKDNMKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIxIiwiRXhwZWN0ZWRUeXBlIjoibG9uZyIsIkV4cGVjdGVkSmF2YSI6IjFMIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, math_logic/math.yaml, #4
                  /* ExpectedOriginal: 1 */
                  var expected_ = 1L;

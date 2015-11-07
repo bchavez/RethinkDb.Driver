@@ -3,7 +3,7 @@ using Z.ExtensionMethods;
 
 namespace RethinkDb.Driver.Tests
 {
-    public static class TestSettings
+    public static class AppSettings
     {
         public static string TestHost
         {

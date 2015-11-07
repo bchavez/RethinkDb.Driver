@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Test.Generated {
     // Test the native shims.
 
     [TestFixture]
-    public class TimesShim : GeneratedTest {
+    public class TimesShim : YamlTestFixture {
 
         public TimesShim (){
         }
@@ -41,9 +41,8 @@ namespace RethinkDb.Driver.Test.Generated {
              
                  var t = (double) (1375147296.68);
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvc2hpbS55YW1sIiwiTGluZU51bSI6IjgiLCJPcmlnaW5hbCI6InIuZXhwcihkYXRldGltZS5mcm9tdGltZXN0YW1wKHQsIFBhY2lmaWNUaW1lWm9uZSgpKSkudG9faXNvODYwMSgpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKGRhdGV0aW1lLmZyb210aW1lc3RhbXAodCwgUGFjaWZpY1RpbWVab25lKCkpKS50b0lzbzg2MDEoKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIoXCIyMDEzLTA3LTI5VDE4OjIxOjM2LjY4MC0wNzowMFwiKSIsIkV4cGVjdGVkVHlwZSI6IlN0cmluZyIsIkV4cGVjdGVkSmF2YSI6IlwiMjAxMy0wNy0yOVQxODoyMTozNi42ODAtMDc6MDBcIiIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/shim.yaml, #8
                  /* ExpectedOriginal: ("2013-07-29T18:21:36.680-07:00") */
                  var expected_ = "2013-07-29T18:21:36.680-07:00";
@@ -56,9 +55,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvc2hpbS55YW1sIiwiTGluZU51bSI6IjEyIiwiT3JpZ2luYWwiOiJyLmV4cHIoZGF0ZXRpbWUuZnJvbXRpbWVzdGFtcCh0LCBVVENUaW1lWm9uZSgpKSkudG9faXNvODYwMSgpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKGRhdGV0aW1lLmZyb210aW1lc3RhbXAodCwgVVRDVGltZVpvbmUoKSkpLnRvSXNvODYwMSgpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IihcIjIwMTMtMDctMzBUMDE6MjE6MzYuNjgwKzAwOjAwXCIpIiwiRXhwZWN0ZWRUeXBlIjoiU3RyaW5nIiwiRXhwZWN0ZWRKYXZhIjoiXCIyMDEzLTA3LTMwVDAxOjIxOjM2LjY4MCswMDowMFwiIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/shim.yaml, #12
                  /* ExpectedOriginal: ("2013-07-30T01:21:36.680+00:00") */
                  var expected_ = "2013-07-30T01:21:36.680+00:00";
@@ -71,9 +69,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvc2hpbS55YW1sIiwiTGluZU51bSI6IjE2IiwiT3JpZ2luYWwiOiJyLmV4cHIoZGF0ZXRpbWUuZnJvbXRpbWVzdGFtcCh0LCBQYWNpZmljVGltZVpvbmUoKSkpLnRvX2Vwb2NoX3RpbWUoKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZXhwcihkYXRldGltZS5mcm9tdGltZXN0YW1wKHQsIFBhY2lmaWNUaW1lWm9uZSgpKSkudG9FcG9jaFRpbWUoKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIoMTM3NTE0NzI5Ni42OCkiLCJFeHBlY3RlZFR5cGUiOiJkb3VibGUiLCJFeHBlY3RlZEphdmEiOiIxMzc1MTQ3Mjk2LjY4IiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/shim.yaml, #16
                  /* ExpectedOriginal: (1375147296.68) */
                  var expected_ = 1375147296.68;
@@ -86,9 +83,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals((double) expected_, (double) obtained, 0.00000000001);
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvc2hpbS55YW1sIiwiTGluZU51bSI6IjIwIiwiT3JpZ2luYWwiOiJyLmV4cHIoZGF0ZXRpbWUuZnJvbXRpbWVzdGFtcCh0LCBVVENUaW1lWm9uZSgpKSkudG9fZXBvY2hfdGltZSgpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKGRhdGV0aW1lLmZyb210aW1lc3RhbXAodCwgVVRDVGltZVpvbmUoKSkpLnRvRXBvY2hUaW1lKCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiKDEzNzUxNDcyOTYuNjgpIiwiRXhwZWN0ZWRUeXBlIjoiZG91YmxlIiwiRXhwZWN0ZWRKYXZhIjoiMTM3NTE0NzI5Ni42OCIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/shim.yaml, #20
                  /* ExpectedOriginal: (1375147296.68) */
                  var expected_ = 1375147296.68;

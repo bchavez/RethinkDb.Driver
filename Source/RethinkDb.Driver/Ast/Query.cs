@@ -68,7 +68,7 @@ namespace RethinkDb.Driver.Ast
 
             string queryJson = queryArr.ToString(Formatting.None);
 
-            Log.Trace($"Sending: Token: {Token}, JSON: {queryJson}");
+            Log.Trace($"JSON Send: Token: {Token}, JSON: {queryJson}");
 
             return queryJson;
         }

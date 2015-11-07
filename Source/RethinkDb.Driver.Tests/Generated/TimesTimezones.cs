@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Test.Generated {
     // Test basic timezone manipulation
 
     [TestFixture]
-    public class TimesTimezones : GeneratedTest {
+    public class TimesTimezones : YamlTestFixture {
 
         public TimesTimezones (){
         }
@@ -119,9 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
              
                  var ts = (Union) (tutcs.union(tms).union(tps).union(r.array(t1)));
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiMjMiLCJPcmlnaW5hbCI6InR1dGNzLm1hcChsYW1iZGEgeDpbeC50aW1lem9uZSgpLCB4LmRheSgpXSkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0dXRjcy5tYXAoeCA9PiByLmFycmF5KHgudGltZXpvbmUoKSwgeC5kYXkoKSkpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IihbW1wiKzAwOjAwXCIsIDI5XSwgW1wiKzAwOjAwXCIsIDI5XSwgW1wiKzAwOjAwXCIsIDI5XV0pIiwiRXhwZWN0ZWRUeXBlIjoiTGlzdCIsIkV4cGVjdGVkSmF2YSI6InIuYXJyYXkoci5hcnJheShcIiswMDowMFwiLCAyOUwpLCByLmFycmF5KFwiKzAwOjAwXCIsIDI5TCksIHIuYXJyYXkoXCIrMDA6MDBcIiwgMjlMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/timezones.yaml, #23
                  /* ExpectedOriginal: ([["+00:00", 29], ["+00:00", 29], ["+00:00", 29]]) */
                  var expected_ = r.array(r.array("+00:00", 29L), r.array("+00:00", 29L), r.array("+00:00", 29L));
@@ -134,9 +133,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiMjciLCJPcmlnaW5hbCI6InRtcy5tYXAobGFtYmRhIHg6W3gudGltZXpvbmUoKSwgeC5kYXkoKV0pIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidG1zLm1hcCh4ID0+IHIuYXJyYXkoeC50aW1lem9uZSgpLCB4LmRheSgpKSkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiKFtbXCItMDA6NTlcIiwgMjldLCBbXCItMDE6MDBcIiwgMjldLCBbXCItMDE6MDFcIiwgMjldXSkiLCJFeHBlY3RlZFR5cGUiOiJMaXN0IiwiRXhwZWN0ZWRKYXZhIjoici5hcnJheShyLmFycmF5KFwiLTAwOjU5XCIsIDI5TCksIHIuYXJyYXkoXCItMDE6MDBcIiwgMjlMKSwgci5hcnJheShcIi0wMTowMVwiLCAyOUwpKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/timezones.yaml, #27
                  /* ExpectedOriginal: ([["-00:59", 29], ["-01:00", 29], ["-01:01", 29]]) */
                  var expected_ = r.array(r.array("-00:59", 29L), r.array("-01:00", 29L), r.array("-01:01", 29L));
@@ -149,9 +147,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiMzEiLCJPcmlnaW5hbCI6InRwcy5tYXAobGFtYmRhIHg6W3gudGltZXpvbmUoKSwgeC5kYXkoKV0pIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidHBzLm1hcCh4ID0+IHIuYXJyYXkoeC50aW1lem9uZSgpLCB4LmRheSgpKSkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiKFtbXCIrMDA6NTlcIiwgMzBdLCBbXCIrMDE6MDBcIiwgMzBdLCBbXCIrMDE6MDFcIiwgMzBdXSkiLCJFeHBlY3RlZFR5cGUiOiJMaXN0IiwiRXhwZWN0ZWRKYXZhIjoici5hcnJheShyLmFycmF5KFwiKzAwOjU5XCIsIDMwTCksIHIuYXJyYXkoXCIrMDE6MDBcIiwgMzBMKSwgci5hcnJheShcIiswMTowMVwiLCAzMEwpKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/timezones.yaml, #31
                  /* ExpectedOriginal: ([["+00:59", 30], ["+01:00", 30], ["+01:01", 30]]) */
                  var expected_ = r.array(r.array("+00:59", 30L), r.array("+01:00", 30L), r.array("+01:01", 30L));
@@ -164,9 +161,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiMzgiLCJPcmlnaW5hbCI6InRzLmNvbmNhdF9tYXAobGFtYmRhIHg6dHMubWFwKGxhbWJkYSB5OnggLSB5KSkuZGlzdGluY3QoKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InRzLmNvbmNhdE1hcCh4ID0+IHRzLm1hcCh5ID0+IHIuc3ViKHgsIHkpKSkuZGlzdGluY3QoKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIoWzBdKSIsIkV4cGVjdGVkVHlwZSI6Ikxpc3QiLCJFeHBlY3RlZEphdmEiOiJyLmFycmF5KDBMKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/timezones.yaml, #38
                  /* ExpectedOriginal: ([0]) */
                  var expected_ = r.array(0L);
@@ -179,9 +175,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiNDQiLCJPcmlnaW5hbCI6InIubm93KCkuaW5fdGltZXpvbmUoXCJcIikiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLm5vdygpLmluVGltZXpvbmUoXCJcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RpbWV6b25lIGBgIGRvZXMgbm90IHN0YXJ0IHdpdGggYC1gIG9yIGArYC4nKSIsIkV4cGVjdGVkVHlwZSI6IkVyciIsIkV4cGVjdGVkSmF2YSI6ImVycihcIlJlcWxRdWVyeUxvZ2ljRXJyb3JcIiwgXCJUaW1lem9uZSBgYCBkb2VzIG5vdCBzdGFydCB3aXRoIGAtYCBvciBgK2AuXCIpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/timezones.yaml, #44
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `` does not start with `-` or `+`.') */
                  var expected_ = err("ReqlQueryLogicError", "Timezone `` does not start with `-` or `+`.");
@@ -194,9 +189,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiNDciLCJPcmlnaW5hbCI6InIubm93KCkuaW5fdGltZXpvbmUoXCItMDBcIikiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLm5vdygpLmluVGltZXpvbmUoXCItMDBcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ2AtMDBgIGlzIG5vdCBhIHZhbGlkIHRpbWUgb2Zmc2V0LicpIiwiRXhwZWN0ZWRUeXBlIjoiRXJyIiwiRXhwZWN0ZWRKYXZhIjoiZXJyKFwiUmVxbFF1ZXJ5TG9naWNFcnJvclwiLCBcImAtMDBgIGlzIG5vdCBhIHZhbGlkIHRpbWUgb2Zmc2V0LlwiKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/timezones.yaml, #47
                  /* ExpectedOriginal: err('ReqlQueryLogicError', '`-00` is not a valid time offset.') */
                  var expected_ = err("ReqlQueryLogicError", "`-00` is not a valid time offset.");
@@ -209,9 +203,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiNTAiLCJPcmlnaW5hbCI6InIubm93KCkuaW5fdGltZXpvbmUoXCItMDA6MDBcIikiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLm5vdygpLmluVGltZXpvbmUoXCItMDA6MDBcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ2AtMDA6MDBgIGlzIG5vdCBhIHZhbGlkIHRpbWUgb2Zmc2V0LicpIiwiRXhwZWN0ZWRUeXBlIjoiRXJyIiwiRXhwZWN0ZWRKYXZhIjoiZXJyKFwiUmVxbFF1ZXJ5TG9naWNFcnJvclwiLCBcImAtMDA6MDBgIGlzIG5vdCBhIHZhbGlkIHRpbWUgb2Zmc2V0LlwiKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/timezones.yaml, #50
                  /* ExpectedOriginal: err('ReqlQueryLogicError', '`-00:00` is not a valid time offset.') */
                  var expected_ = err("ReqlQueryLogicError", "`-00:00` is not a valid time offset.");
@@ -224,9 +217,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiNTMiLCJPcmlnaW5hbCI6InIubm93KCkuaW5fdGltZXpvbmUoXCJVVEMrMDBcIikiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLm5vdygpLmluVGltZXpvbmUoXCJVVEMrMDBcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1RpbWV6b25lIGBVVEMrMDBgIGRvZXMgbm90IHN0YXJ0IHdpdGggYC1gIG9yIGArYC4nKSIsIkV4cGVjdGVkVHlwZSI6IkVyciIsIkV4cGVjdGVkSmF2YSI6ImVycihcIlJlcWxRdWVyeUxvZ2ljRXJyb3JcIiwgXCJUaW1lem9uZSBgVVRDKzAwYCBkb2VzIG5vdCBzdGFydCB3aXRoIGAtYCBvciBgK2AuXCIpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/timezones.yaml, #53
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `UTC+00` does not start with `-` or `+`.') */
                  var expected_ = err("ReqlQueryLogicError", "Timezone `UTC+00` does not start with `-` or `+`.");
@@ -239,9 +231,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiNTYiLCJPcmlnaW5hbCI6InIubm93KCkuaW5fdGltZXpvbmUoXCIrMDA6NjBcIikiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLm5vdygpLmluVGltZXpvbmUoXCIrMDA6NjBcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ01pbnV0ZXMgb3V0IG9mIHJhbmdlIGluIGArMDA6NjBgLicpIiwiRXhwZWN0ZWRUeXBlIjoiRXJyIiwiRXhwZWN0ZWRKYXZhIjoiZXJyKFwiUmVxbFF1ZXJ5TG9naWNFcnJvclwiLCBcIk1pbnV0ZXMgb3V0IG9mIHJhbmdlIGluIGArMDA6NjBgLlwiKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, times/timezones.yaml, #56
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Minutes out of range in `+00:60`.') */
                  var expected_ = err("ReqlQueryLogicError", "Minutes out of range in `+00:60`.");
@@ -254,9 +245,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiNTkiLCJPcmlnaW5hbCI6InIubm93KCkuaW5fdGltZXpvbmUoXCIrMjU6MDBcIikiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLm5vdygpLmluVGltZXpvbmUoXCIrMjU6MDBcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ0hvdXJzIG91dCBvZiByYW5nZSBpbiBgKzI1OjAwYC4nKSIsIkV4cGVjdGVkVHlwZSI6IkVyciIsIkV4cGVjdGVkSmF2YSI6ImVycihcIlJlcWxRdWVyeUxvZ2ljRXJyb3JcIiwgXCJIb3VycyBvdXQgb2YgcmFuZ2UgaW4gYCsyNTowMGAuXCIpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/timezones.yaml, #59
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Hours out of range in `+25:00`.') */
                  var expected_ = err("ReqlQueryLogicError", "Hours out of range in `+25:00`.");
@@ -269,9 +259,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiNjMiLCJPcmlnaW5hbCI6InIudGltZSgyMDEzLCAxLCAxLCBcIlwiKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIudGltZSgyMDEzTCwgMUwsIDFMLCBcIlwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnVGltZXpvbmUgYGAgZG9lcyBub3Qgc3RhcnQgd2l0aCBgLWAgb3IgYCtgLicpIiwiRXhwZWN0ZWRUeXBlIjoiRXJyIiwiRXhwZWN0ZWRKYXZhIjoiZXJyKFwiUmVxbFF1ZXJ5TG9naWNFcnJvclwiLCBcIlRpbWV6b25lIGBgIGRvZXMgbm90IHN0YXJ0IHdpdGggYC1gIG9yIGArYC5cIikiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/timezones.yaml, #63
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `` does not start with `-` or `+`.') */
                  var expected_ = err("ReqlQueryLogicError", "Timezone `` does not start with `-` or `+`.");
@@ -284,9 +273,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiNjYiLCJPcmlnaW5hbCI6InIudGltZSgyMDEzLCAxLCAxLCBcIi0wMFwiKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIudGltZSgyMDEzTCwgMUwsIDFMLCBcIi0wMFwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnYC0wMGAgaXMgbm90IGEgdmFsaWQgdGltZSBvZmZzZXQuJykiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiYC0wMGAgaXMgbm90IGEgdmFsaWQgdGltZSBvZmZzZXQuXCIpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/timezones.yaml, #66
                  /* ExpectedOriginal: err('ReqlQueryLogicError', '`-00` is not a valid time offset.') */
                  var expected_ = err("ReqlQueryLogicError", "`-00` is not a valid time offset.");
@@ -299,9 +287,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiNjkiLCJPcmlnaW5hbCI6InIudGltZSgyMDEzLCAxLCAxLCBcIi0wMDowMFwiKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIudGltZSgyMDEzTCwgMUwsIDFMLCBcIi0wMDowMFwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnYC0wMDowMGAgaXMgbm90IGEgdmFsaWQgdGltZSBvZmZzZXQuJykiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiYC0wMDowMGAgaXMgbm90IGEgdmFsaWQgdGltZSBvZmZzZXQuXCIpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/timezones.yaml, #69
                  /* ExpectedOriginal: err('ReqlQueryLogicError', '`-00:00` is not a valid time offset.') */
                  var expected_ = err("ReqlQueryLogicError", "`-00:00` is not a valid time offset.");
@@ -314,9 +301,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiNzIiLCJPcmlnaW5hbCI6InIudGltZSgyMDEzLCAxLCAxLCBcIlVUQyswMFwiKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIudGltZSgyMDEzTCwgMUwsIDFMLCBcIlVUQyswMFwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnVGltZXpvbmUgYFVUQyswMGAgZG9lcyBub3Qgc3RhcnQgd2l0aCBgLWAgb3IgYCtgLicpIiwiRXhwZWN0ZWRUeXBlIjoiRXJyIiwiRXhwZWN0ZWRKYXZhIjoiZXJyKFwiUmVxbFF1ZXJ5TG9naWNFcnJvclwiLCBcIlRpbWV6b25lIGBVVEMrMDBgIGRvZXMgbm90IHN0YXJ0IHdpdGggYC1gIG9yIGArYC5cIikiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/timezones.yaml, #72
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Timezone `UTC+00` does not start with `-` or `+`.') */
                  var expected_ = err("ReqlQueryLogicError", "Timezone `UTC+00` does not start with `-` or `+`.");
@@ -329,9 +315,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiNzUiLCJPcmlnaW5hbCI6InIudGltZSgyMDEzLCAxLCAxLCBcIiswMDo2MFwiKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIudGltZSgyMDEzTCwgMUwsIDFMLCBcIiswMDo2MFwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnTWludXRlcyBvdXQgb2YgcmFuZ2UgaW4gYCswMDo2MGAuJykiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiTWludXRlcyBvdXQgb2YgcmFuZ2UgaW4gYCswMDo2MGAuXCIpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/timezones.yaml, #75
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Minutes out of range in `+00:60`.') */
                  var expected_ = err("ReqlQueryLogicError", "Minutes out of range in `+00:60`.");
@@ -344,9 +329,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiNzgiLCJPcmlnaW5hbCI6InIudGltZSgyMDEzLCAxLCAxLCBcIisyNTowMFwiKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIudGltZSgyMDEzTCwgMUwsIDFMLCBcIisyNTowMFwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnSG91cnMgb3V0IG9mIHJhbmdlIGluIGArMjU6MDBgLicpIiwiRXhwZWN0ZWRUeXBlIjoiRXJyIiwiRXhwZWN0ZWRKYXZhIjoiZXJyKFwiUmVxbFF1ZXJ5TG9naWNFcnJvclwiLCBcIkhvdXJzIG91dCBvZiByYW5nZSBpbiBgKzI1OjAwYC5cIikiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, times/timezones.yaml, #78
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Hours out of range in `+25:00`.') */
                  var expected_ = err("ReqlQueryLogicError", "Hours out of range in `+25:00`.");
@@ -359,9 +343,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiODEiLCJPcmlnaW5hbCI6InIuZXBvY2hfdGltZSgxNDM2NDI4NDIyLjMzOSkuaW5fdGltZXpvbmUoJy0wODowMCcpLmRhdGUoKS50b19pc284NjAxKCkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmVwb2NoVGltZSgxNDM2NDI4NDIyLjMzOSkuaW5UaW1lem9uZShcIi0wODowMFwiKS5kYXRlKCkudG9Jc284NjAxKCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiKFwiMjAxNS0wNy0wOFQwMDowMDowMC0wODowMFwiKSIsIkV4cGVjdGVkVHlwZSI6IlN0cmluZyIsIkV4cGVjdGVkSmF2YSI6IlwiMjAxNS0wNy0wOFQwMDowMDowMC0wODowMFwiIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/timezones.yaml, #81
                  /* ExpectedOriginal: ("2015-07-08T00:00:00-08:00") */
                  var expected_ = "2015-07-08T00:00:00-08:00";
@@ -374,9 +357,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvdGltZXpvbmVzLnlhbWwiLCJMaW5lTnVtIjoiODUiLCJPcmlnaW5hbCI6InIuZXBvY2hfdGltZSgxNDM2NDI4NDIyLjMzOSkuaW5fdGltZXpvbmUoJy0wNzowMCcpLmRhdGUoKS50b19pc284NjAxKCkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmVwb2NoVGltZSgxNDM2NDI4NDIyLjMzOSkuaW5UaW1lem9uZShcIi0wNzowMFwiKS5kYXRlKCkudG9Jc284NjAxKCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiKFwiMjAxNS0wNy0wOVQwMDowMDowMC0wNzowMFwiKSIsIkV4cGVjdGVkVHlwZSI6IlN0cmluZyIsIkV4cGVjdGVkSmF2YSI6IlwiMjAxNS0wNy0wOVQwMDowMDowMC0wNzowMFwiIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, times/timezones.yaml, #85
                  /* ExpectedOriginal: ("2015-07-09T00:00:00-07:00") */
                  var expected_ = "2015-07-09T00:00:00-07:00";

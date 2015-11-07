@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Test.Generated {
     // Tests meta operations in composite queries
 
     [TestFixture]
-    public class MetaComposite : GeneratedTest {
+    public class MetaComposite : YamlTestFixture {
 
         public MetaComposite (){
         }
@@ -35,9 +35,8 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWV0YS9jb21wb3NpdGUueWFtbCIsIkxpbmVOdW0iOiI1IiwiT3JpZ2luYWwiOiJyLmRiX2Ryb3AoJ3Rlc3QnKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZGJEcm9wKFwidGVzdFwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJwYXJ0aWFsKHsnZGJzX2Ryb3BwZWQnOjF9KSIsIkV4cGVjdGVkVHlwZSI6IlBhcnRpYWwiLCJFeHBlY3RlZEphdmEiOiJwYXJ0aWFsKHIuaGFzaE1hcChcImRic19kcm9wcGVkXCIsIDFMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, meta/composite.yaml, #5
                  /* ExpectedOriginal: partial({'dbs_dropped':1}) */
                  var expected_ = partial(r.hashMap("dbs_dropped", 1L));
@@ -50,9 +49,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWV0YS9jb21wb3NpdGUueWFtbCIsIkxpbmVOdW0iOiI5IiwiT3JpZ2luYWwiOiJyLmV4cHIoWzEsMiwzXSkuZm9yX2VhY2gobGFtYmRhIHJvdzpcbnIuZGJfY3JlYXRlKCdkYl8nICsgcm93LmNvZXJjZV90bygnc3RyaW5nJykpKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZXhwcihyLmFycmF5KDFMLCAyTCwgM0wpKS5mb3JFYWNoKHJvdyA9PiByLmRiQ3JlYXRlKHIuYWRkKFwiZGJfXCIsIHJvdy5jb2VyY2VUbyhcInN0cmluZ1wiKSkpKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIoeydkYnNfY3JlYXRlZCc6MywnY29uZmlnX2NoYW5nZXMnOmFycmxlbigzKX0pIiwiRXhwZWN0ZWRUeXBlIjoiTWFwIiwiRXhwZWN0ZWRKYXZhIjoici5oYXNoTWFwKFwiZGJzX2NyZWF0ZWRcIiwgM0wpLndpdGgoXCJjb25maWdfY2hhbmdlc1wiLCBhcnJsZW4oM0wpKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, meta/composite.yaml, #9
                  /* ExpectedOriginal: ({'dbs_created':3,'config_changes':arrlen(3)}) */
                  var expected_ = r.hashMap("dbs_created", 3L).with("config_changes", arrlen(3L));
@@ -66,9 +64,8 @@ r.db_create('db_' + row.coerce_to('string'))) */
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWV0YS9jb21wb3NpdGUueWFtbCIsIkxpbmVOdW0iOiIxNCIsIk9yaWdpbmFsIjoici5kYl9saXN0KCkuc2V0X2RpZmZlcmVuY2UoW1wicmV0aGlua2RiXCJdKS5mb3JfZWFjaChsYW1iZGEgZGJfbmFtZTpcbnIuZXhwcihbMSwyLDNdKS5mb3JfZWFjaChsYW1iZGEgaTpcbnIuZGIoZGJfbmFtZSkudGFibGVfY3JlYXRlKCd0YmxfJyArIGkuY29lcmNlX3RvKCdzdHJpbmcnKSkpKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZGJMaXN0KCkuc2V0RGlmZmVyZW5jZShyLmFycmF5KFwicmV0aGlua2RiXCIpKS5mb3JFYWNoKGRiX25hbWUgPT4gci5leHByKHIuYXJyYXkoMUwsIDJMLCAzTCkpLmZvckVhY2goaSA9PiByLmRiKGRiX25hbWUpLnRhYmxlQ3JlYXRlKHIuYWRkKFwidGJsX1wiLCBpLmNvZXJjZVRvKFwic3RyaW5nXCIpKSkpKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJwYXJ0aWFsKHsndGFibGVzX2NyZWF0ZWQnOjl9KSIsIkV4cGVjdGVkVHlwZSI6IlBhcnRpYWwiLCJFeHBlY3RlZEphdmEiOiJwYXJ0aWFsKHIuaGFzaE1hcChcInRhYmxlc19jcmVhdGVkXCIsIDlMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, meta/composite.yaml, #14
                  /* ExpectedOriginal: partial({'tables_created':9}) */
                  var expected_ = partial(r.hashMap("tables_created", 9L));
@@ -83,9 +80,8 @@ r.db(db_name).table_create('tbl_' + i.coerce_to('string')))) */
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWV0YS9jb21wb3NpdGUueWFtbCIsIkxpbmVOdW0iOiIyMCIsIk9yaWdpbmFsIjoici5kYl9saXN0KCkuc2V0X2RpZmZlcmVuY2UoW1wicmV0aGlua2RiXCJdKS5mb3JfZWFjaChsYW1iZGEgcm93Olxuci5kYl9kcm9wKHJvdykpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5kYkxpc3QoKS5zZXREaWZmZXJlbmNlKHIuYXJyYXkoXCJyZXRoaW5rZGJcIikpLmZvckVhY2gocm93ID0+IHIuZGJEcm9wKHJvdykpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6InBhcnRpYWwoeydkYnNfZHJvcHBlZCc6MywndGFibGVzX2Ryb3BwZWQnOjl9KSIsIkV4cGVjdGVkVHlwZSI6IlBhcnRpYWwiLCJFeHBlY3RlZEphdmEiOiJwYXJ0aWFsKHIuaGFzaE1hcChcImRic19kcm9wcGVkXCIsIDNMKS53aXRoKFwidGFibGVzX2Ryb3BwZWRcIiwgOUwpKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, meta/composite.yaml, #20
                  /* ExpectedOriginal: partial({'dbs_dropped':3,'tables_dropped':9}) */
                  var expected_ = partial(r.hashMap("dbs_dropped", 3L).with("tables_dropped", 9L));
@@ -99,9 +95,8 @@ r.db_drop(row)) */
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWV0YS9jb21wb3NpdGUueWFtbCIsIkxpbmVOdW0iOiIyNSIsIk9yaWdpbmFsIjoici5kYl9jcmVhdGUoJ3Rlc3QnKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZGJDcmVhdGUoXCJ0ZXN0XCIpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6InBhcnRpYWwoeydkYnNfY3JlYXRlZCc6MX0pIiwiRXhwZWN0ZWRUeXBlIjoiUGFydGlhbCIsIkV4cGVjdGVkSmF2YSI6InBhcnRpYWwoci5oYXNoTWFwKFwiZGJzX2NyZWF0ZWRcIiwgMUwpKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, meta/composite.yaml, #25
                  /* ExpectedOriginal: partial({'dbs_created':1}) */
                  var expected_ = partial(r.hashMap("dbs_created", 1L));

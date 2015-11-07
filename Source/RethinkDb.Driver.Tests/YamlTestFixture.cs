@@ -1,25 +1,17 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
+using System.Runtime.Remoting.Messaging;
 using System.Threading;
-using FluentAssertions;
-using FluentAssertions.Common;
-using Newtonsoft.Json.Linq;
-using NLog;
-using NLog.Internal;
+
+using Newtonsoft.Json;
 using NUnit.Framework;
-using RethinkDb.Driver.Ast;
-using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
+using Z.ExtensionMethods;
 
 namespace RethinkDb.Driver.Tests
 {
     [TestFixture]
-    public class GeneratedTest
+    public abstract class YamlTestFixture
     {
         protected static int TestCounter = 0;
         protected const string DbName = "test";
@@ -29,6 +21,42 @@ namespace RethinkDb.Driver.Tests
 
         protected List<string> tableVars = new List<string>();
 
+        public YamlTestFixture()
+        {
+            //Hook into FluentAssertion so we see very useful 
+            //YamlTest context information. TestLine, expected, got, etc...
+            FluentAssertions.Common.Services.Initialize();
+            var hook = FluentAssertions.Common.Services.ThrowException;
+            FluentAssertions.Common.Services.ThrowException = s =>
+                {
+                    var context = Context.ToString();
+                    hook(context + s);
+                };
+        }
+
+        protected void SetContext( string testContext )
+        {
+            var json = testContext.DecodeBase64();
+            var ctx = JsonConvert.DeserializeObject<YamlTestContext>(json);
+
+            TestCounter++;
+
+            Context = ctx;
+        }
+
+        public static void LogInContext(string message)
+        {
+            Context?.OtherLines.Add(message);
+        }
+
+        public static YamlTestContext Context
+        {
+            get
+            {
+                return CallContext.GetData("YamlTestContext") as YamlTestContext;
+            }
+            set { CallContext.SetData("YamlTestContext", value); }
+        }
 
         [TestFixtureSetUp]
         public void BeforeRunningTestSession()
@@ -38,7 +66,6 @@ namespace RethinkDb.Driver.Tests
         [TestFixtureTearDown]
         public void AfterRunningTestSession()
         {
-            Console.WriteLine($"TOTAL TESTS: {TestCounter}");
         }
 
         private ManualResetEvent FixtureWaitHandle = new ManualResetEvent(true);
@@ -46,12 +73,11 @@ namespace RethinkDb.Driver.Tests
         [SetUp]
         public void BeforeEachTest()
         {
-            Log.Trace(">>>>>>>>>>>>>> SET UP");
             FixtureWaitHandle.WaitOne();
-
+            
             conn = r.connection()
-                .hostname(TestSettings.TestHost)
-                .port(TestSettings.TestPort)
+                .hostname(AppSettings.TestHost)
+                .port(AppSettings.TestPort)
                 .connect();
 
             try
@@ -79,8 +105,6 @@ namespace RethinkDb.Driver.Tests
         [TearDown]
         public void AfterEachTest()
         {
-            Log.Trace(">>>>>>>>>>>>>> TARE DOWN");
-
             r.db("rethinkdb").table("_debug_scratch").delete().run(conn);
             if( !conn.Open )
             {

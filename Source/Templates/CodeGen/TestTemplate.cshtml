@@ -1,6 +1,8 @@
+@using System
 @using System.Collections.Generic
 @using System.Linq
 @using Humanizer
+@using Newtonsoft.Json
 @using Newtonsoft.Json.Linq
 @using NUnit.Framework.Constraints
 @using Templates
@@ -37,7 +39,7 @@ namespace RethinkDb.Driver.Test.Generated {
     // @YamlTest.Description
 
     [TestFixture]
-    public class @YamlTest.ModuleName : GeneratedTest {
+    public class @YamlTest.ModuleName : YamlTestFixture {
 
         public @YamlTest.ModuleName (){
             @foreach (var table in this.YamlTest.TableVarNames)
@@ -82,9 +84,8 @@ namespace RethinkDb.Driver.Test.Generated {
          }
          else if( test.TestType == "JavaQuery" )
          {
-             @:TestCounter++;
-             @:
              @:{
+                 @:SetContext( "@(JsonConvert.SerializeObject(test).EncodeBase64())" );
                  @://JavaQuery, @test.TestFile, #@test.LineNum
                  @:/* ExpectedOriginal: @test.ExpectedOriginal */
                  @:var expected_ = @(test.ExpectedJava ?? "null as object");
@@ -94,7 +95,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  @:                           new {
                  foreach( var opt in test.RunOpts )
                  {
-                     @:@opt.Key = @(opt.Val.IsNumber(0) || opt.Val.IsNumber(1) ?  opt.Val : "\"" + opt.Val + "\"" ) ,
+                     @:@opt.Key = @(opt.Val.IsNumber(0) || opt.Val.IsNumber(1) ?  opt.Val : $"\"{opt.Val}\"" ) ,
                  }
                  @:   }, conn);
                  

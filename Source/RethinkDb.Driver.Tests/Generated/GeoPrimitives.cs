@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Test.Generated {
     // Test geometric primitive constructors
 
     [TestFixture]
-    public class GeoPrimitives : GeneratedTest {
+    public class GeoPrimitives : YamlTestFixture {
 
         public GeoPrimitives (){
         }
@@ -35,9 +35,8 @@ namespace RethinkDb.Driver.Test.Generated {
         [Test]
         public void YamlTest(){
 
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZ2VvL3ByaW1pdGl2ZXMueWFtbCIsIkxpbmVOdW0iOiI1IiwiT3JpZ2luYWwiOiJyLmNpcmNsZShbMCwwXSwgMSwgbnVtX3ZlcnRpY2VzPTMpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5jaXJjbGUoci5hcnJheSgwTCwgMEwpLCAxTCkub3B0QXJnKFwibnVtX3ZlcnRpY2VzXCIsIDNMKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIoeyckcmVxbF90eXBlJCc6J0dFT01FVFJZJywgJ2Nvb3JkaW5hdGVzJzpbW1swLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDZdLCBbLTcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNl0sIFs3Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDZdLCBbMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2XV1dLCAndHlwZSc6J1BvbHlnb24nfSkiLCJFeHBlY3RlZFR5cGUiOiJNYXAiLCJFeHBlY3RlZEphdmEiOiJyLmhhc2hNYXAoXCIkcmVxbF90eXBlJFwiLCBcIkdFT01FVFJZXCIpLndpdGgoXCJjb29yZGluYXRlc1wiLCByLmFycmF5KHIuYXJyYXkoci5hcnJheSgwTCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2KSwgci5hcnJheSgtNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2KSwgci5hcnJheSg3Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDYpLCByLmFycmF5KDBMLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDYpKSkpLndpdGgoXCJ0eXBlXCIsIFwiUG9seWdvblwiKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, geo/primitives.yaml, #5
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'}) */
                  var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0L, -9.04369477050382e-06), r.array(-7.779638566553426e-06, 4.5218473852518965e-06), r.array(7.779638566553426e-06, 4.5218473852518965e-06), r.array(0L, -9.04369477050382e-06)))).with("type", "Polygon");
@@ -50,9 +49,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZ2VvL3ByaW1pdGl2ZXMueWFtbCIsIkxpbmVOdW0iOiIxMCIsIk9yaWdpbmFsIjoici5jaXJjbGUoci5wb2ludCgwLDApLCAxLCBudW1fdmVydGljZXM9MykiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmNpcmNsZShyLnBvaW50KDBMLCAwTCksIDFMKS5vcHRBcmcoXCJudW1fdmVydGljZXNcIiwgM0wpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6Iih7JyRyZXFsX3R5cGUkJzonR0VPTUVUUlknLCAnY29vcmRpbmF0ZXMnOltbWzAsIC05LjA0MzY5NDc3MDUwMzgyZS0wNl0sIFstNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2XSwgWzcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNl0sIFswLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDZdXV0sICd0eXBlJzonUG9seWdvbid9KSIsIkV4cGVjdGVkVHlwZSI6Ik1hcCIsIkV4cGVjdGVkSmF2YSI6InIuaGFzaE1hcChcIiRyZXFsX3R5cGUkXCIsIFwiR0VPTUVUUllcIikud2l0aChcImNvb3JkaW5hdGVzXCIsIHIuYXJyYXkoci5hcnJheShyLmFycmF5KDBMLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDYpLCByLmFycmF5KC03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDYpLCByLmFycmF5KDcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNiksIHIuYXJyYXkoMEwsIC05LjA0MzY5NDc3MDUwMzgyZS0wNikpKSkud2l0aChcInR5cGVcIiwgXCJQb2x5Z29uXCIpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, geo/primitives.yaml, #10
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'}) */
                  var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0L, -9.04369477050382e-06), r.array(-7.779638566553426e-06, 4.5218473852518965e-06), r.array(7.779638566553426e-06, 4.5218473852518965e-06), r.array(0L, -9.04369477050382e-06)))).with("type", "Polygon");
@@ -65,9 +63,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZ2VvL3ByaW1pdGl2ZXMueWFtbCIsIkxpbmVOdW0iOiIxNSIsIk9yaWdpbmFsIjoici5jaXJjbGUoWzAsMF0sIDEsIG51bV92ZXJ0aWNlcz0zLCBmaWxsPWZhbHNlKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuY2lyY2xlKHIuYXJyYXkoMEwsIDBMKSwgMUwpLm9wdEFyZyhcIm51bV92ZXJ0aWNlc1wiLCAzTCkub3B0QXJnKFwiZmlsbFwiLCBmYWxzZSkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiKHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1swLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDZdLCBbLTcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNl0sIFs3Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDZdLCBbMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2XV0sICd0eXBlJzonTGluZVN0cmluZyd9KSIsIkV4cGVjdGVkVHlwZSI6Ik1hcCIsIkV4cGVjdGVkSmF2YSI6InIuaGFzaE1hcChcIiRyZXFsX3R5cGUkXCIsIFwiR0VPTUVUUllcIikud2l0aChcImNvb3JkaW5hdGVzXCIsIHIuYXJyYXkoci5hcnJheSgwTCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2KSwgci5hcnJheSgtNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2KSwgci5hcnJheSg3Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDYpLCByLmFycmF5KDBMLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDYpKSkud2l0aChcInR5cGVcIiwgXCJMaW5lU3RyaW5nXCIpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, geo/primitives.yaml, #15
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]], 'type':'LineString'}) */
                  var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(0L, -9.04369477050382e-06), r.array(-7.779638566553426e-06, 4.5218473852518965e-06), r.array(7.779638566553426e-06, 4.5218473852518965e-06), r.array(0L, -9.04369477050382e-06))).with("type", "LineString");
@@ -80,9 +77,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZ2VvL3ByaW1pdGl2ZXMueWFtbCIsIkxpbmVOdW0iOiIyMCIsIk9yaWdpbmFsIjoici5jaXJjbGUoWzAsMF0sIDE0MDAwMDAwLCBudW1fdmVydGljZXM9MykiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmNpcmNsZShyLmFycmF5KDBMLCAwTCksIDE0MDAwMDAwTCkub3B0QXJnKFwibnVtX3ZlcnRpY2VzXCIsIDNMKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJlcnIoJ1JlcWxRdWVyeUxvZ2ljRXJyb3InLCAnUmFkaXVzIG11c3QgYmUgc21hbGxlciB0aGFuIGEgcXVhcnRlciBvZiB0aGUgY2lyY3VtZmVyZW5jZSBhbG9uZyB0aGUgbWlub3IgYXhpcyBvZiB0aGUgcmVmZXJlbmNlIGVsbGlwc29pZC4gIEdvdCAxNDAwMDAwMG0sIGJ1dCBtdXN0IGJlIHNtYWxsZXIgdGhhbiA5OTg1MTYzLjE4NTU2MTI4NjI4NTVtLicsIFswXSkiLCJFeHBlY3RlZFR5cGUiOiJFcnIiLCJFeHBlY3RlZEphdmEiOiJlcnIoXCJSZXFsUXVlcnlMb2dpY0Vycm9yXCIsIFwiUmFkaXVzIG11c3QgYmUgc21hbGxlciB0aGFuIGEgcXVhcnRlciBvZiB0aGUgY2lyY3VtZmVyZW5jZSBhbG9uZyB0aGUgbWlub3IgYXhpcyBvZiB0aGUgcmVmZXJlbmNlIGVsbGlwc29pZC4gIEdvdCAxNDAwMDAwMG0sIGJ1dCBtdXN0IGJlIHNtYWxsZXIgdGhhbiA5OTg1MTYzLjE4NTU2MTI4NjI4NTVtLlwiLCByLmFycmF5KDBMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, geo/primitives.yaml, #20
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Radius must be smaller than a quarter of the circumference along the minor axis of the reference ellipsoid.  Got 14000000m, but must be smaller than 9985163.1855612862855m.', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Radius must be smaller than a quarter of the circumference along the minor axis of the reference ellipsoid.  Got 14000000m, but must be smaller than 9985163.1855612862855m.", r.array(0L));
@@ -95,9 +91,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZ2VvL3ByaW1pdGl2ZXMueWFtbCIsIkxpbmVOdW0iOiIyNSIsIk9yaWdpbmFsIjoici5jaXJjbGUoWzAsMF0sIDEsIG51bV92ZXJ0aWNlcz0zLCBnZW9fc3lzdGVtPSdXR1M4NCcpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5jaXJjbGUoci5hcnJheSgwTCwgMEwpLCAxTCkub3B0QXJnKFwibnVtX3ZlcnRpY2VzXCIsIDNMKS5vcHRBcmcoXCJnZW9fc3lzdGVtXCIsIFwiV0dTODRcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiKHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1tbMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2XSwgWy03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDZdLCBbNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2XSwgWzAsIC05LjA0MzY5NDc3MDUwMzgyZS0wNl1dXSwgJ3R5cGUnOidQb2x5Z29uJ30pIiwiRXhwZWN0ZWRUeXBlIjoiTWFwIiwiRXhwZWN0ZWRKYXZhIjoici5oYXNoTWFwKFwiJHJlcWxfdHlwZSRcIiwgXCJHRU9NRVRSWVwiKS53aXRoKFwiY29vcmRpbmF0ZXNcIiwgci5hcnJheShyLmFycmF5KHIuYXJyYXkoMEwsIC05LjA0MzY5NDc3MDUwMzgyZS0wNiksIHIuYXJyYXkoLTcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNiksIHIuYXJyYXkoNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2KSwgci5hcnJheSgwTCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2KSkpKS53aXRoKFwidHlwZVwiLCBcIlBvbHlnb25cIikiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, geo/primitives.yaml, #25
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'}) */
                  var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0L, -9.04369477050382e-06), r.array(-7.779638566553426e-06, 4.5218473852518965e-06), r.array(7.779638566553426e-06, 4.5218473852518965e-06), r.array(0L, -9.04369477050382e-06)))).with("type", "Polygon");
@@ -110,9 +105,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZ2VvL3ByaW1pdGl2ZXMueWFtbCIsIkxpbmVOdW0iOiIzMCIsIk9yaWdpbmFsIjoici5jaXJjbGUoWzAsMF0sIDIsIG51bV92ZXJ0aWNlcz0zLCBnZW9fc3lzdGVtPSd1bml0X3NwaGVyZScpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5jaXJjbGUoci5hcnJheSgwTCwgMEwpLCAyTCkub3B0QXJnKFwibnVtX3ZlcnRpY2VzXCIsIDNMKS5vcHRBcmcoXCJnZW9fc3lzdGVtXCIsIFwidW5pdF9zcGhlcmVcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiZXJyKCdSZXFsUXVlcnlMb2dpY0Vycm9yJywgJ1JhZGl1cyBtdXN0IGJlIHNtYWxsZXIgdGhhbiBhIHF1YXJ0ZXIgb2YgdGhlIGNpcmN1bWZlcmVuY2UgYWxvbmcgdGhlIG1pbm9yIGF4aXMgb2YgdGhlIHJlZmVyZW5jZSBlbGxpcHNvaWQuICBHb3QgMm0sIGJ1dCBtdXN0IGJlIHNtYWxsZXIgdGhhbiAxLjU3MDc5NjMyNjc5NDg5NjU1OG0uJywgWzBdKSIsIkV4cGVjdGVkVHlwZSI6IkVyciIsIkV4cGVjdGVkSmF2YSI6ImVycihcIlJlcWxRdWVyeUxvZ2ljRXJyb3JcIiwgXCJSYWRpdXMgbXVzdCBiZSBzbWFsbGVyIHRoYW4gYSBxdWFydGVyIG9mIHRoZSBjaXJjdW1mZXJlbmNlIGFsb25nIHRoZSBtaW5vciBheGlzIG9mIHRoZSByZWZlcmVuY2UgZWxsaXBzb2lkLiAgR290IDJtLCBidXQgbXVzdCBiZSBzbWFsbGVyIHRoYW4gMS41NzA3OTYzMjY3OTQ4OTY1NThtLlwiLCByLmFycmF5KDBMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, geo/primitives.yaml, #30
                  /* ExpectedOriginal: err('ReqlQueryLogicError', 'Radius must be smaller than a quarter of the circumference along the minor axis of the reference ellipsoid.  Got 2m, but must be smaller than 1.570796326794896558m.', [0]) */
                  var expected_ = err("ReqlQueryLogicError", "Radius must be smaller than a quarter of the circumference along the minor axis of the reference ellipsoid.  Got 2m, but must be smaller than 1.570796326794896558m.", r.array(0L));
@@ -125,9 +119,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZ2VvL3ByaW1pdGl2ZXMueWFtbCIsIkxpbmVOdW0iOiIzNSIsIk9yaWdpbmFsIjoici5jaXJjbGUoWzAsMF0sIDAuMSwgbnVtX3ZlcnRpY2VzPTMsIGdlb19zeXN0ZW09J3VuaXRfc3BoZXJlJykiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmNpcmNsZShyLmFycmF5KDBMLCAwTCksIDAuMSkub3B0QXJnKFwibnVtX3ZlcnRpY2VzXCIsIDNMKS5vcHRBcmcoXCJnZW9fc3lzdGVtXCIsIFwidW5pdF9zcGhlcmVcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiKHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6W1tbMCwgLTUuNzI5NTc3OTUxMzA4MjMyXSwgWy00Ljk2NjA5Mjk0NzQ0NDg1NywgMi44NjEyMDU3NTQ0OTU3MDFdLCBbNC45NjYwOTI5NDc0NDQ4NTcsIDIuODYxMjA1NzU0NDk1NzAxXSwgWzAsIC01LjcyOTU3Nzk1MTMwODIzMl1dXSwgJ3R5cGUnOidQb2x5Z29uJ30pIiwiRXhwZWN0ZWRUeXBlIjoiTWFwIiwiRXhwZWN0ZWRKYXZhIjoici5oYXNoTWFwKFwiJHJlcWxfdHlwZSRcIiwgXCJHRU9NRVRSWVwiKS53aXRoKFwiY29vcmRpbmF0ZXNcIiwgci5hcnJheShyLmFycmF5KHIuYXJyYXkoMEwsIC01LjcyOTU3Nzk1MTMwODIzMiksIHIuYXJyYXkoLTQuOTY2MDkyOTQ3NDQ0ODU3LCAyLjg2MTIwNTc1NDQ5NTcwMSksIHIuYXJyYXkoNC45NjYwOTI5NDc0NDQ4NTcsIDIuODYxMjA1NzU0NDk1NzAxKSwgci5hcnJheSgwTCwgLTUuNzI5NTc3OTUxMzA4MjMyKSkpKS53aXRoKFwidHlwZVwiLCBcIlBvbHlnb25cIikiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, geo/primitives.yaml, #35
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -5.729577951308232], [-4.966092947444857, 2.861205754495701], [4.966092947444857, 2.861205754495701], [0, -5.729577951308232]]], 'type':'Polygon'}) */
                  var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0L, -5.729577951308232), r.array(-4.966092947444857, 2.861205754495701), r.array(4.966092947444857, 2.861205754495701), r.array(0L, -5.729577951308232)))).with("type", "Polygon");
@@ -140,9 +133,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZ2VvL3ByaW1pdGl2ZXMueWFtbCIsIkxpbmVOdW0iOiI0MiIsIk9yaWdpbmFsIjoici5jaXJjbGUoWzAsMF0sIDEuMC8xMDAwLjAsIG51bV92ZXJ0aWNlcz0zLCB1bml0PSdrbScpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5jaXJjbGUoci5hcnJheSgwTCwgMEwpLCByLmRpdigxLjAsIDEwMDAuMCkpLm9wdEFyZyhcIm51bV92ZXJ0aWNlc1wiLCAzTCkub3B0QXJnKFwidW5pdFwiLCBcImttXCIpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6Iih7JyRyZXFsX3R5cGUkJzonR0VPTUVUUlknLCAnY29vcmRpbmF0ZXMnOltbWzAsIC05LjA0MzY5NDc3MDUwMzgyZS0wNl0sIFstNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2XSwgWzcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNl0sIFswLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDZdXV0sICd0eXBlJzonUG9seWdvbid9KSIsIkV4cGVjdGVkVHlwZSI6Ik1hcCIsIkV4cGVjdGVkSmF2YSI6InIuaGFzaE1hcChcIiRyZXFsX3R5cGUkXCIsIFwiR0VPTUVUUllcIikud2l0aChcImNvb3JkaW5hdGVzXCIsIHIuYXJyYXkoci5hcnJheShyLmFycmF5KDBMLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDYpLCByLmFycmF5KC03Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDYpLCByLmFycmF5KDcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNiksIHIuYXJyYXkoMEwsIC05LjA0MzY5NDc3MDUwMzgyZS0wNikpKSkud2l0aChcInR5cGVcIiwgXCJQb2x5Z29uXCIpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
                  //JavaQuery, geo/primitives.yaml, #42
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'}) */
                  var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0L, -9.04369477050382e-06), r.array(-7.779638566553426e-06, 4.5218473852518965e-06), r.array(7.779638566553426e-06, 4.5218473852518965e-06), r.array(0L, -9.04369477050382e-06)))).with("type", "Polygon");
@@ -155,9 +147,8 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
-             TestCounter++;
-             
              {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZ2VvL3ByaW1pdGl2ZXMueWFtbCIsIkxpbmVOdW0iOiI0NyIsIk9yaWdpbmFsIjoici5jaXJjbGUoWzAsMF0sIDEuMC8xNjA5LjM0NCwgbnVtX3ZlcnRpY2VzPTMsIHVuaXQ9J21pJykiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmNpcmNsZShyLmFycmF5KDBMLCAwTCksIHIuZGl2KDEuMCwgMTYwOS4zNDQpKS5vcHRBcmcoXCJudW1fdmVydGljZXNcIiwgM0wpLm9wdEFyZyhcInVuaXRcIiwgXCJtaVwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiIoeyckcmVxbF90eXBlJCc6J0dFT01FVFJZJywgJ2Nvb3JkaW5hdGVzJzpbW1swLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDZdLCBbLTcuNzc5NjM4NTY2NTUzNDI2ZS0wNiwgNC41MjE4NDczODUyNTE4OTY1ZS0wNl0sIFs3Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDZdLCBbMCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2XV1dLCAndHlwZSc6J1BvbHlnb24nfSkiLCJFeHBlY3RlZFR5cGUiOiJNYXAiLCJFeHBlY3RlZEphdmEiOiJyLmhhc2hNYXAoXCIkcmVxbF90eXBlJFwiLCBcIkdFT01FVFJZXCIpLndpdGgoXCJjb29yZGluYXRlc1wiLCByLmFycmF5KHIuYXJyYXkoci5hcnJheSgwTCwgLTkuMDQzNjk0NzcwNTAzODJlLTA2KSwgci5hcnJheSgtNy43Nzk2Mzg1NjY1NTM0MjZlLTA2LCA0LjUyMTg0NzM4NTI1MTg5NjVlLTA2KSwgci5hcnJheSg3Ljc3OTYzODU2NjU1MzQyNmUtMDYsIDQuNTIxODQ3Mzg1MjUxODk2NWUtMDYpLCByLmFycmF5KDBMLCAtOS4wNDM2OTQ3NzA1MDM4MmUtMDYpKSkpLndpdGgoXCJ0eXBlXCIsIFwiUG9seWdvblwiKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
                  //JavaQuery, geo/primitives.yaml, #47
                  /* ExpectedOriginal: ({'$reql_type$':'GEOMETRY', 'coordinates':[[[0, -9.04369477050382e-06], [-7.779638566553426e-06, 4.5218473852518965e-06], [7.779638566553426e-06, 4.5218473852518965e-06], [0, -9.04369477050382e-06]]], 'type':'Polygon'}) */
                  var expected_ = r.hashMap("$reql_type$", "GEOMETRY").with("coordinates", r.array(r.array(r.array(0L, -9.04369477050382e-06), r.array(-7.779638566553426e-06, 4.5218473852518965e-06), r.array(7.779638566553426e-06, 4.5218473852518965e-06), r.array(0L, -9.04369477050382e-06)))).with("type", "Polygon");

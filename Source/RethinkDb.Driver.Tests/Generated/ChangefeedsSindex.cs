@@ -24,7 +24,7 @@ namespace RethinkDb.Driver.Test.Generated {
     // Test basic changefeed operations
 
     [TestFixture]
-    public class ChangefeedsSindex : GeneratedTest {
+    public class ChangefeedsSindex : YamlTestFixture {
 
         public ChangefeedsSindex (){
                 tableVars.Add( "tbl" );

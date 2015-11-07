@@ -69,6 +69,14 @@ namespace RethinkDb.Driver.Tests
                 return;
             }
 
+            var bag = expected as Bag;
+            if( bag != null )
+            {
+                bag.Equals(obtained)
+                    .Should().BeTrue();
+                return;
+            }
+
             if (expected is PartialDct)
             {
                 var obtainedDct = obtained as JObject;
@@ -298,12 +306,11 @@ namespace RethinkDb.Driver.Tests
 
         public class Bag
         {
-            private IList lst;
+            private IList<string> lst;
 
             public Bag(IList lst)
             {
                 var newlist = lst.OfType<string>().ToList();
-                newlist.Sort();
                 this.lst = newlist;
             }
 
@@ -311,8 +318,20 @@ namespace RethinkDb.Driver.Tests
             {
                 if( !(other is IList) )
                 {
+                    other.GetType().Should().Be(typeof(IList));
                     return false;
                 }
+
+                if ( other is JArray )
+                {
+                    //get a list of strings?
+                    var jarr = other as JArray;
+                    var values = jarr.ToObject<string[]>();
+                    values.Should().Contain(values);
+                    return true;
+                }
+                //else keep matching.
+
                 var otherList = ((IList)other).OfType<object>().ToList();
                 otherList.Sort();
                 return lst.Equals(otherList);
@@ -391,18 +410,34 @@ namespace RethinkDb.Driver.Tests
                     var key = entry;
                     var val = dct[key];
 
+
                     otherDict.Contains(key).Should()
                         .BeTrue($"The key {key} must exist in the obtained.");
                     
                     var otherVal = otherDict[key];
 
-                    if( val == null && otherVal == null )
+                    if (val is IList)
+                    {
+                        assertEquals(val, otherVal);
+                        continue;
+                    }
+                    if( val is PartialDct )
+                    {
+                        assertEquals(val, otherVal);
+                        continue;
+                    }
+
+                    if ( val == null && otherVal == null )
+                        continue;
+
+                    if( val == null && otherVal is JToken && ((JToken)otherVal).Type == JTokenType.Null)
                         continue;
 
                     if( val == null && otherVal != null ||
                         val != null && otherVal == null )
                     {
                         Console.WriteLine($"One was null and the other wasn't for key {key}");
+                        Debugger.Break();
                         return false;
                     }
 

@@ -249,7 +249,6 @@ namespace Builder
                             throw new RemotingException("Couldn't successfully trigger unit tests in remote system.");
                         }
 
-
                         var startTest = JObject.Parse(startTestResp.Content);
 
                         var buildUrl = startTest["build_url"].ToObject<string>();
@@ -257,28 +256,52 @@ namespace Builder
 
                         var buildNum = startTest["build_num"].ToObject<int>();
 
-                        string testResults;
+                        var initialWait = TimeSpan.FromMinutes(1);
+                        task.LogInfo($"Waiting for about {initialWait}.");
+                        Thread.Sleep(initialWait);
+
+                       
                         while ( true )
                         {
-                            var atrifactsReq = CircleCi.GetTestArtifacts(buildNum, circleToken);
-                            var artifactsResp = client.Execute(atrifactsReq);
+                            var statusReq = CircleCi.GetBuildStatus(buildNum, circleToken);
+                            var statusResp = client.Execute(statusReq);
 
-                            if( artifactsResp.StatusCode == HttpStatusCode.OK )
+                            var summary = JObject.Parse(statusResp.Content);
+                            var status = summary["status"].ToObject<string>();
+
+                            if( status != "running" )
                             {
-                                var artifacts = JArray.Parse(artifactsResp.Content);
-                                if( artifacts.Count > 0 )
-                                {
-                                    testResults = artifacts[0]["url"].ToString();
-                                    break;
-                                }
+                                task.LogInfo($"Done waiting. Test system status: {status}");
+                                break;
                             }
+                                                        
                             task.LogInfo("Waiting for unit tests to complete.");
                             Thread.Sleep(10000);
                         }
 
-                        task.LogInfo($"Got results: {testResults}");
+                        var testResultsUrl = string.Empty;
+                        var atrifactsReq = CircleCi.GetTestArtifacts(buildNum, circleToken);
+                        var artifactsResp = client.Execute(atrifactsReq);
 
-                        AppVeyor.UploadTestResults(jobId, testResults);
+                        if (artifactsResp.StatusCode == HttpStatusCode.OK)
+                        {
+                            var artifacts = JArray.Parse(artifactsResp.Content);
+                            if (artifacts.Count > 0)
+                            {
+                                testResultsUrl = artifacts[0]["url"].ToString();
+                            }
+                        }
+
+                        if( !testResultsUrl.IsNullOrWhiteSpace() )
+                        {
+                            task.LogInfo($"Got results: {testResultsUrl}");
+
+                            AppVeyor.UploadTestResults(jobId, testResultsUrl);
+                        }
+                        else
+                        {
+                            task.LogWarn("Couldn't find any tests results.");
+                        }
 
                     });
 
@@ -345,6 +368,14 @@ namespace Builder
 
             return req;
 
+        }
+
+        public static RestRequest GetBuildStatus(int buildNum, string circleciToken)
+        {
+            var req = new RestRequest("/project/bchavez/RethinkDb.Driver/{build_num}", Method.GET);
+            req.AddUrlSegment("build_num", buildNum.ToString());
+            req.AddQueryParameter("circle-token", circleciToken);
+            return req;
         }
 
         public static RestRequest GetTestArtifacts(int buildNum, string circleciToken)

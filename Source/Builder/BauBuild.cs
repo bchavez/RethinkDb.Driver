@@ -263,10 +263,16 @@ namespace Builder
                        
                         while ( true )
                         {
-                            var statusReq = CircleCi.GetBuildStatus(buildNum, circleToken);
-                            var statusResp = client.Execute(statusReq);
+                            var summaryReq = CircleCi.GetBuildStatus(buildNum, circleToken);
+                            var summaryResp = client.Execute(summaryReq);
 
-                            var summary = JObject.Parse(statusResp.Content);
+                            if( summaryResp.StatusCode != HttpStatusCode.OK )
+                            {
+                                task.LogError("Problem getting build summary.");
+                                break;
+                            }
+
+                            var summary = JObject.Parse(summaryResp.Content);
                             var status = summary["status"].ToObject<string>();
 
                             if( status != "running" )

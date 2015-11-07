@@ -21,19 +21,6 @@ namespace RethinkDb.Driver.Tests
 
         protected List<string> tableVars = new List<string>();
 
-        public YamlTestFixture()
-        {
-            //Hook into FluentAssertion so we see very useful 
-            //YamlTest context information. TestLine, expected, got, etc...
-            FluentAssertions.Common.Services.Initialize();
-            var hook = FluentAssertions.Common.Services.ThrowException;
-            FluentAssertions.Common.Services.ThrowException = s =>
-                {
-                    var context = Context.ToString();
-                    hook(context + s);
-                };
-        }
-
         protected void SetContext( string testContext )
         {
             var json = testContext.DecodeBase64();
@@ -61,6 +48,15 @@ namespace RethinkDb.Driver.Tests
         [TestFixtureSetUp]
         public void BeforeRunningTestSession()
         {
+            //Hook into FluentAssertion so we see very useful 
+            //YamlTest context information. TestLine, expected, got, etc...
+            FluentAssertions.Common.Services.ResetToDefaults();
+            var hook = FluentAssertions.Common.Services.ThrowException;
+            FluentAssertions.Common.Services.ThrowException = s =>
+            {
+                var context = Context.ToString();
+                hook(context + s);
+            };
         }
 
         [TestFixtureTearDown]

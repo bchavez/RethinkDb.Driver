@@ -74,7 +74,7 @@ public void can_connect()
         .timeout(60)
         .connect();
     
-    var result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
+    int result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
     Console.WriteLine(result);
     result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
 }
@@ -105,13 +105,13 @@ public void insert_poco_without_id()
 [Test]
 public void insert_an_array_of_pocos()
 {
-    var arr = new[]
+    var list = new[]
         {
             new Foo {id = "a", Baz = 1, Bar = 1},
             new Foo {id = "b", Baz = 2, Bar = 2},
             new Foo {id = "c", Baz = 3, Bar = 3}
         };
-    var result = r.db(DbName).table(TableName).insert(arr).run(conn);
+    var result = r.db(DbName).table(TableName).insert(list).run(conn);
     result.Dump();
 }
 /*
@@ -130,7 +130,7 @@ public void insert_an_array_of_pocos()
 [Test]
 public void get_a_poco()
 {
-    var foo = r.db(DbName).table(TableName).get("abc").run<Foo>(conn);
+    Foo foo = r.db(DbName).table(TableName).get("abc").run<Foo>(conn);
     foo.Dump();
 }
 //Foo Object
@@ -142,7 +142,7 @@ public void get_a_poco()
     }
 */
 ```
-[**Check our Wiki for more documentation**](https://github.com/bchavez/RethinkDb.Driver/wiki).
+[**Check our Wiki for more Examples and Documentation**](https://github.com/bchavez/RethinkDb.Driver/wiki).
 
 
 Contributing

@@ -134,7 +134,7 @@ namespace RethinkDb.Driver.Tests
         }
 
         [Test]
-        public void getall_indexer_opt_args()
+        public void getall_using_an_index_with_optarg_indexer()
         {
             const string IndexName = "Idx";
 
@@ -149,19 +149,24 @@ namespace RethinkDb.Driver.Tests
                 .table(TableName)
                 .indexWait(IndexName).run(conn);
 
-            var insert = new[]
+            var foos = new[]
                 {
                     new Foo {id = "a", Baz = 1, Bar = 1, Idx = "qux"},
                     new Foo {id = "b", Baz = 2, Bar = 2, Idx = "bub"},
                     new Foo {id = "c", Baz = 3, Bar = 3, Idx = "qux"}
                 };
 
+            r.db(DbName).table(TableName).insert(foos).run(conn);
+
             Cursor<Foo> all = r.db(DbName).table(TableName)
                 .getAll("qux")[new { index = "Idx" }]
                 .run<Foo>(conn);
 
             var results = all.ToArray();
-            results.Should().Equal(insert.Take(1).Skip(1).Take(1).ToArray());
+
+            var onlyQux = foos.Where(f => f.Idx == "qux");
+
+            results.ShouldAllBeEquivalentTo(onlyQux);
         }
 
         [Test]

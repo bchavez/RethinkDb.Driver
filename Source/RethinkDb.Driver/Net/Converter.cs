@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
@@ -43,7 +44,7 @@ namespace RethinkDb.Driver.Net
                 {
                     if( fmt.RawBinary )
                         continue;
-                    convertedValue = new JArray(GetBinary(pesudoObject));
+                    convertedValue = pesudoObject["data"];
                 }
                 else if( reqlType == Geometry )
                 {
@@ -108,11 +109,12 @@ namespace RethinkDb.Driver.Net
         {
             return JObject.FromObject(value, JsonSerializer.CreateDefault(new JsonSerializerSettings()
                 {
-                    Converters = new[] {TimeConverter}
+                    Converters = new[] {TimeConverter, BinaryConverter}
                 }));
         }
 
         public static JsonConverter TimeConverter = new PocoIso8601Converter();
+        public static JsonConverter BinaryConverter = new PocoBinaryConverter();
     }
 
     public class PocoIso8601Converter : JsonConverter
@@ -132,6 +134,38 @@ namespace RethinkDb.Driver.Net
         {
             return objectType == typeof(DateTime) ||
                    objectType == typeof(DateTimeOffset);
+        }
+    }
+
+    public class PocoBinaryConverter : BinaryConverter
+    {
+        private bool useInternal = false;
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteStartObject(); //convert to $reql_type$
+            writer.WritePropertyName(Converter.PseudoTypeKey);
+            writer.WriteValue(Converter.Binary);
+            writer.WritePropertyName("data");
+            if( useInternal )
+            {
+                base.WriteJson(writer, value, serializer);
+            }
+            else
+            {
+                writer.WriteValue(value);
+            }
+            writer.WriteEndObject();
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool CanConvert(Type objectType)
+        {
+            useInternal = base.CanConvert(objectType);
+            return useInternal || objectType == typeof(byte[]);
         }
     }
 

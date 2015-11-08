@@ -226,6 +226,60 @@ namespace RethinkDb.Driver.Tests
             }
         }
 
+        public class Avatar
+        {
+            public string id { get; set; }
+            public byte[] ImageData { get; set; }
+        }
+
+        [Test]
+        public void insert_some_binary_data()
+        {
+            var data = Enumerable.Range(0, 256)
+                .Select(i => Convert.ToByte(i))
+                .ToArray();
+
+            var avatar = new Avatar
+                {
+                    id = "myavatar",
+                    ImageData = data
+                };
+
+            r.db(DbName).table(TableName)
+                .insert(avatar).run(conn);
+
+
+            Avatar fromDb = r.db(DbName).table(TableName)
+                .get("myavatar").run<Avatar>(conn);
+
+
+            fromDb.id.Should().Be(avatar.id);
+            fromDb.ImageData.Should().Equal(data);
+        }
+
+        [Test]
+        public void insert_some_binary_the_java_way()
+        {
+            var data = Enumerable.Range(0, 256)
+                .Select(Convert.ToByte)
+                .ToArray();
+
+            var myObject = new MapObject()
+                {
+                    {"id", "javabin"},
+                    {"the_data", r.binary(data)}
+                };
+
+            r.db(DbName).table(TableName)
+                .insert(myObject).run(conn);
+
+            var result = r.db(DbName).table(TableName)
+                .get("javabin").run(conn);
+
+            ExtensionsForTesting.Dump(result.the_data);
+
+        }
+
     }
 
 }

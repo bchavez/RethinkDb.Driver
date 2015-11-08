@@ -23,6 +23,7 @@
         * Feature: Implicit operator overrides. Example: (r.expr(1) + 1).run().
         * ChangeFeeds unit tests passing.
         * MetaDbs unit tests passing.
+        * Better support for POCO byte[] binary.
 
         v0.0.5-alpha5
         * Fixed #8: NullReference exception when querying non-existant DB.

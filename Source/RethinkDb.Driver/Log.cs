@@ -1,15 +1,14 @@
-#if DOTNET
+#if DNX
 using Microsoft.Extensions.Logging;
 #else
 using Common.Logging;
-
 #endif
 
 namespace RethinkDb.Driver
 {
     public static class Log
     {
-#if DOTNET
+#if DNX
         public static ILogger Instance = new LoggerFactory().CreateLogger("RethinkDb.Driver");
 #else
         public static ILog Instance = LogManager.GetLogger("RethinkDb.Driver");
@@ -18,7 +17,7 @@ namespace RethinkDb.Driver
 
         public static void Trace(string msg)
         {
-#if DOTNET
+#if DNX
             Instance.LogDebug(msg);
 #else
             Instance.Trace(msg);
@@ -27,7 +26,7 @@ namespace RethinkDb.Driver
 
         public static void Debug(string msg)
         {
-#if DOTNET
+#if DNX
             Instance.LogDebug(msg);
 #else
             Instance.Debug(msg);

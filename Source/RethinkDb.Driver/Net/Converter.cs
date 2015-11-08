@@ -137,7 +137,12 @@ namespace RethinkDb.Driver.Net
         }
     }
 
-    public class PocoBinaryConverter : BinaryConverter
+    public class PocoBinaryConverter :
+#if DNX
+        JsonConverter
+#else
+        BinaryConverter
+#endif
     {
         private bool useInternal = false;
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -148,7 +153,9 @@ namespace RethinkDb.Driver.Net
             writer.WritePropertyName("data");
             if( useInternal )
             {
+#if !DNX
                 base.WriteJson(writer, value, serializer);
+#endif
             }
             else
             {
@@ -164,7 +171,9 @@ namespace RethinkDb.Driver.Net
 
         public override bool CanConvert(Type objectType)
         {
+#if !DNX
             useInternal = base.CanConvert(objectType);
+#endif
             return useInternal || objectType == typeof(byte[]);
         }
     }

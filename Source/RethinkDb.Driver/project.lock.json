@@ -133,23 +133,6 @@
           "lib/dotnet/System.Collections.Concurrent.dll": {}
         }
       },
-      "System.Collections.NonGeneric/4.0.1-beta-23405": {
-        "type": "package",
-        "dependencies": {
-          "System.Diagnostics.Debug": "4.0.10",
-          "System.Globalization": "4.0.10",
-          "System.Resources.ResourceManager": "4.0.0",
-          "System.Runtime": "4.0.20",
-          "System.Runtime.Extensions": "4.0.10",
-          "System.Threading": "4.0.10"
-        },
-        "compile": {
-          "ref/dotnet/System.Collections.NonGeneric.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/System.Collections.NonGeneric.dll": {}
-        }
-      },
       "System.ComponentModel/4.0.1-beta-23405": {
         "type": "package",
         "dependencies": {
@@ -533,38 +516,6 @@
         "System.Collections.Concurrent.4.0.10.nupkg",
         "System.Collections.Concurrent.4.0.10.nupkg.sha512",
         "System.Collections.Concurrent.nuspec"
-      ]
-    },
-    "System.Collections.NonGeneric/4.0.1-beta-23405": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "LsRWMYO3nyaVPi7wh1U0K0wyb9dTjVFi+rVxvyGQlCKYwx7dzBi4pORM41AgcuF5XroGN7ucnYymy9H7SvrndA==",
-      "files": [
-        "lib/dotnet/de/System.Collections.NonGeneric.xml",
-        "lib/dotnet/es/System.Collections.NonGeneric.xml",
-        "lib/dotnet/fr/System.Collections.NonGeneric.xml",
-        "lib/dotnet/it/System.Collections.NonGeneric.xml",
-        "lib/dotnet/ja/System.Collections.NonGeneric.xml",
-        "lib/dotnet/ko/System.Collections.NonGeneric.xml",
-        "lib/dotnet/ru/System.Collections.NonGeneric.xml",
-        "lib/dotnet/System.Collections.NonGeneric.dll",
-        "lib/dotnet/System.Collections.NonGeneric.xml",
-        "lib/dotnet/zh-hans/System.Collections.NonGeneric.xml",
-        "lib/dotnet/zh-hant/System.Collections.NonGeneric.xml",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net46/System.Collections.NonGeneric.dll",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "ref/dotnet/System.Collections.NonGeneric.dll",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net46/System.Collections.NonGeneric.dll",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "System.Collections.NonGeneric.4.0.1-beta-23405.nupkg",
-        "System.Collections.NonGeneric.4.0.1-beta-23405.nupkg.sha512",
-        "System.Collections.NonGeneric.nuspec"
       ]
     },
     "System.ComponentModel/4.0.1-beta-23405": {
@@ -1218,7 +1169,6 @@
       "System.IO >= 4.0.11-beta-23225",
       "System.ComponentModel >= 4.0.1-beta-23405",
       "System.Reflection.Extensions >= 4.0.1-beta-23225",
-      "System.Collections.NonGeneric >= 4.0.1-beta-23405",
       "Microsoft.Extensions.Logging >= 1.0.0-rc1-15673",
       "System.Net.Sockets >= 4.0.10-beta-23109"
     ]

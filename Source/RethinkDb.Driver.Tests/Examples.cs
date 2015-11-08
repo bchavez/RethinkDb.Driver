@@ -236,7 +236,7 @@ namespace RethinkDb.Driver.Tests
         public void insert_some_binary_data()
         {
             var data = Enumerable.Range(0, 256)
-                .Select(i => Convert.ToByte(i))
+                .Select(Convert.ToByte)
                 .ToArray();
 
             var avatar = new Avatar

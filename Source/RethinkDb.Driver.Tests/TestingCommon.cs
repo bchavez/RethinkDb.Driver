@@ -129,7 +129,7 @@ namespace RethinkDb.Driver.Tests
             if( expected is IList )
             {
                 var el = expected as IList;
-                var ol = obtained as JArray;
+                var ol = obtained as IList;
 
                 for( int i = 0; i < el.Count; i++ )
                 {
@@ -303,12 +303,11 @@ namespace RethinkDb.Driver.Tests
 
         public class Bag
         {
-            private IList<string> lst;
+            private IList lst;
 
             public Bag(IList lst)
             {
-                var newlist = lst.OfType<string>().ToList();
-                this.lst = newlist;
+                this.lst = lst;
             }
 
             public override bool Equals(object other)
@@ -319,19 +318,49 @@ namespace RethinkDb.Driver.Tests
                     return false;
                 }
 
-                if ( other is JArray )
+               /* if( this.lst.Count > 0 &&
+                    this.lst[0] is string &&
+                    other is JArray )
                 {
                     //get a list of strings?
                     var jarr = other as JArray;
                     var values = jarr.ToObject<string[]>();
                     values.Should().Contain(values);
                     return true;
-                }
+                }*/
                 //else keep matching.
 
-                var otherList = ((IList)other).OfType<object>().ToList();
-                otherList.Sort();
-                return lst.Equals(otherList);
+                for( var i = 0; i < this.lst.Count; i++ )
+                {
+                    var current = this.lst[i];
+                    var jrr = other as IList;
+                    var anyMatch = false;
+                    //do any asserts pass?
+                    for( var j = 0; j < jrr.Count; j++ )
+                    {
+                        var obtained = jrr[j];
+                        try
+                        {
+                            assertEquals(current, obtained);
+                            anyMatch = true;
+                            break;
+                        }
+                        catch
+                        {
+                            
+                        }
+                    }
+                    if( !anyMatch )
+                    {
+                        //nothing matched in that run. so throw.
+                        return false;
+                    }
+                }
+
+                return true;
+                //var otherList = ((IList)other).OfType<object>().ToList();
+                //otherList.Sort();
+                //return lst.Equals(otherList);
             }
 
             public override string ToString()

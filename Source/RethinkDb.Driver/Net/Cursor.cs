@@ -135,11 +135,9 @@ namespace RethinkDb.Driver.Net
 
         private class DefaultCursor<T> : Cursor<T>
         {
-            private FormatOptions fmt;
-
             public DefaultCursor(Connection connection, Query query, Response firstResponse) : base(connection, query, firstResponse)
             {
-                this.fmt = new FormatOptions(query.GlobalOptions);
+
             }
 
             private TimeSpan? timeout;
@@ -170,7 +168,7 @@ namespace RethinkDb.Driver.Net
 
             protected override T Convert(JToken token)
             {
-                return Converter.ConvertPesudoTypes(token, fmt).ToObject<T>();
+                return token.ToObject<T>(Converter.Seralizer);
             }
 
             public override T Current => this.current;

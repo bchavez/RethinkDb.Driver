@@ -110,7 +110,8 @@ namespace RethinkDb.Driver.Tests
                         continue;
 
                     //else keep checking
-                    CheckEquals(valExpected, valObtained);
+                    //CheckEquals(valExpected, valObtained);
+                    assertEquals(valExpected, valObtained);
 
                 }
 
@@ -139,6 +140,11 @@ namespace RethinkDb.Driver.Tests
                 return;
             }
 
+            if( expected is AnythingIsFineBro )
+            {
+                return;
+            }
+
             
             CheckEquals(expected, obtained);
 
@@ -152,6 +158,19 @@ namespace RethinkDb.Driver.Tests
 
         public static void CheckEquals(object expected, object obtained)
         {
+            if( obtained is JObject )
+            {
+                var jobj = obtained as JObject;
+                JToken reql_type;
+                if( jobj.TryGetValue("$reql_type$", out reql_type ) )
+                {
+                    if( reql_type.Value<string>() == Converter.Time )
+                    {
+                        obtained = jobj.ToObject<DateTimeOffset>(Converter.Seralizer);
+                    }
+                }
+            }
+
             var ej = JsonConvert.SerializeObject(expected);
             var oj = JsonConvert.SerializeObject(obtained);
 

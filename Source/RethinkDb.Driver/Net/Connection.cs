@@ -186,11 +186,9 @@ namespace RethinkDb.Driver.Net
             {
                 try
                 {
-                    var fmt = new FormatOptions(query.GlobalOptions);
-                    return Converter.ConvertPesudoTypes(res.Data, fmt)[0].ToObject<T>();
-                    //return res.Data[0].ToObject<T>(Converter5.Seralizer);
+                    return res.Data[0].ToObject(typeof(T), Converter.Seralizer);
                 }
-                catch( System.IndexOutOfRangeException ex )
+                catch( IndexOutOfRangeException ex )
                 {
                     throw new ReqlDriverError("Atom response was empty!", ex);
                 }

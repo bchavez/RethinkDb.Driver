@@ -292,8 +292,11 @@
     <Compile Include="Net\Connection.cs" />
     <Compile Include="Net\ConnectionInstance.cs" />
     <Compile Include="Net\Converter.cs" />
-    <Compile Include="Net\Converter5.cs" />
     <Compile Include="Net\Cursor.cs" />
+    <Compile Include="Net\JsonConverters\ExtensionsForJsonConverters.cs" />
+    <Compile Include="Net\JsonConverters\ReqlBinaryConverter.cs" />
+    <Compile Include="Net\JsonConverters\ReqlDateTimeConverter.cs" />
+    <Compile Include="Net\JsonConverters\ReqlGroupingConverter.cs" />
     <Compile Include="Net\Response.cs" />
     <Compile Include="Net\SocketWrapper.cs" />
     <Compile Include="Net\Util.cs" />

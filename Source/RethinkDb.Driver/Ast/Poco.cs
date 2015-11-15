@@ -25,7 +25,7 @@ namespace RethinkDb.Driver.Ast
 
         protected internal override object Build()
         {
-            return Converter.PocoConverter(obj);
+            return JToken.FromObject(obj, Converter.Seralizer);
         }
     }
 }

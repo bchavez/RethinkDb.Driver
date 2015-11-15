@@ -202,7 +202,8 @@ namespace RethinkDb.Driver.Tests
 
         public class Avatar
         {
-            public string id { get; set; }
+            [JsonProperty("id")]
+            public string Id { get; set; }
             public byte[] ImageData { get; set; }
         }
 
@@ -215,9 +216,12 @@ namespace RethinkDb.Driver.Tests
 
             var avatar = new Avatar
                 {
-                    id = "myavatar",
-                    ImageData = data
+                    Id = "myavatar",
+                    ImageData = data,
                 };
+
+
+            r.db(DbName).table(TableName).delete().run(conn);
 
             r.db(DbName).table(TableName)
                 .insert(avatar).run(conn);
@@ -227,7 +231,7 @@ namespace RethinkDb.Driver.Tests
                 .get("myavatar").run<Avatar>(conn);
 
 
-            fromDb.id.Should().Be(avatar.id);
+            fromDb.Id.Should().Be(avatar.Id);
             fromDb.ImageData.Should().Equal(data);
         }
 
@@ -251,9 +255,9 @@ namespace RethinkDb.Driver.Tests
                 .get("javabin").run(conn);
 
             ExtensionsForTesting.Dump(result.the_data);
-
         }
 
     }
+
 
 }

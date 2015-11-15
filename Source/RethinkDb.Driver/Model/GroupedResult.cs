@@ -1,16 +1,31 @@
+using System.Collections;
 using System.Collections.Generic;
+using RethinkDb.Driver.Ast;
+using System.Linq;
+using Newtonsoft.Json.Linq;
+using RethinkDb.Driver.Net;
 
 namespace RethinkDb.Driver.Model
 {
-    public class GroupedResult
+    public class GroupedResult<TKey, TElement> : IGrouping<TKey, TElement>
     {
-        public object Group { get; }
-        public List<object> Values { get; }
-
-        public GroupedResult(object @group, List<object> values)
+        public GroupedResult(JToken key, JArray items)
         {
-            Group = @group;
-            Values = values;
+            this.Key = key.ToObject<TKey>(Converter.Seralizer);
+            this.Items = items.ToObject<List<TElement>>(Converter.Seralizer);
         }
+
+        public IEnumerator<TElement> GetEnumerator()
+        {
+            return this.Items.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public TKey Key { get; }
+        public List<TElement> Items { get; set; }
     }
 }

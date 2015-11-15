@@ -25,6 +25,8 @@
         * MetaDbs unit tests passing.
         * Better support for POCO byte[] binary.
         * Fixed bug in Cursor[T].BufferedItems. Respects native reql_type.
+        * Better support for group()-ed results.
+        * Moved reql_type converters to Newtonsoft's JsonConverter engine.
 
         v0.0.5-alpha5
         * Fixed #8: NullReference exception when querying non-existent DB.

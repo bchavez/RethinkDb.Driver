@@ -88,6 +88,7 @@
     <Compile Include="DateAndTimeTests.cs" />
     <Compile Include="Examples.cs" />
     <Compile Include="GitHubIssues.cs" />
+    <Compile Include="GroupingTests.cs" />
     <Compile Include="OtherTests.cs" />
     <Compile Include="QueryTest.cs" />
     <Compile Include="Utils\ExtensionsForTesting.cs" />

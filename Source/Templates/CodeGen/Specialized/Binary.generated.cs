@@ -193,7 +193,7 @@ WriteLiteral(@"
     
         protected internal override object Build() {
             if( b64Data != null){
-                return JObject.FromObject(Converter.ToBinary(b64Data));
+                return JObject.FromObject(b64data, Converter.Seralizer);
             }
             else{
                 return base.Build();

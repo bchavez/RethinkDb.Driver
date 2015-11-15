@@ -24,7 +24,7 @@
         * ChangeFeeds unit tests passing.
         * MetaDbs unit tests passing.
         * Better support for POCO byte[] binary.
-        * Fixed bug in Cursor[T].BufferedItems. Respects native $reql_type$.
+        * Fixed bug in Cursor[T].BufferedItems. Respects native &dollar;reql_type&dollar;.
 
         v0.0.5-alpha5
         * Fixed #8: NullReference exception when querying non-existent DB.

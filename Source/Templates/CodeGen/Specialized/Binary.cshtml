@@ -44,7 +44,7 @@
     
         protected internal override object Build() {
             if( b64Data != null){
-                return JObject.FromObject(b64data, Converter.Seralizer);
+                return JObject.FromObject(b64Data, Converter.Seralizer);
             }
             else{
                 return base.Build();

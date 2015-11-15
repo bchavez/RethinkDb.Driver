@@ -70,8 +70,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
 
         public override bool CanConvert(Type objectType)
         {
-            var canConvert = objectType.IsGenericType &&
-                             objectType.GetGenericTypeDefinition() == typeof(GroupedResult<,>);
+            var canConvert = objectType.GetGenericTypeDefinition() == typeof(GroupedResult<,>);
 
             return canConvert;
         }

@@ -51,10 +51,13 @@ namespace RethinkDb.Driver.Net.JsonConverters
             }
 
             reader.ReadAndAssertProperty("data");
-            if( useInternal )
+
+            if (useInternal)
             {
+#if !DNX
                 reader.ReadAndAssert();
                 return base.ReadJson(reader, objectType, existingValue, serializer);
+#endif
             }
 
             var data = reader.ReadAsBytes();

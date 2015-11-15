@@ -292,6 +292,7 @@
     <Compile Include="Net\Connection.cs" />
     <Compile Include="Net\ConnectionInstance.cs" />
     <Compile Include="Net\Converter.cs" />
+    <Compile Include="Net\Converter5.cs" />
     <Compile Include="Net\Cursor.cs" />
     <Compile Include="Net\Response.cs" />
     <Compile Include="Net\SocketWrapper.cs" />

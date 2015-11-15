@@ -24,9 +24,10 @@
         * ChangeFeeds unit tests passing.
         * MetaDbs unit tests passing.
         * Better support for POCO byte[] binary.
+        * Fixed bug in Cursor[T].BufferedItems. Respects native $reql_type$.
 
         v0.0.5-alpha5
-        * Fixed #8: NullReference exception when querying non-existant DB.
+        * Fixed #8: NullReference exception when querying non-existent DB.
 
         v0.0.5-alpha4
         * AST: added uuid(expr)

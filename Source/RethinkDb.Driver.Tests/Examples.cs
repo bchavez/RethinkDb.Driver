@@ -32,32 +32,6 @@ namespace RethinkDb.Driver.Tests
         }
 
         [Test]
-        public void test_time_pesudo_type()
-        {
-            DateTimeOffset t = r.now().run<DateTimeOffset>(conn);
-            //ten minute limit for clock drift.
-            t.Should().BeCloseTo(DateTimeOffset.UtcNow, 600000);
-        }
-
-        [Test]
-        public void test_datetime()
-        {
-            var date = DateTime.Now;
-            DateTime result = r.expr(date).run<DateTime>(conn);
-            //(date - result).Dump();
-            //result.Should().Be(date);
-            result.Should().BeCloseTo(date, 1); // must be within 1ms of each other
-        }
-
-        [Test]
-        public void test_jvalue()
-        {
-            JValue t = r.now().run<JValue>(conn);
-            //ten minute limit for clock drift.
-            t.Dump();
-        }
-
-        [Test]
         public void insert_test_without_id()
         {
             var obj = new Foo { Bar = 1, Baz = 2, Tim = DateTimeOffset.Now };

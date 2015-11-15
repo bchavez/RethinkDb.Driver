@@ -83,8 +83,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="BinaryTests.cs" />
     <Compile Include="ConnectionTest.cs" />
+    <Compile Include="DateAndTimeTests.cs" />
     <Compile Include="Examples.cs" />
+    <Compile Include="GitHubIssues.cs" />
     <Compile Include="OtherTests.cs" />
     <Compile Include="QueryTest.cs" />
     <Compile Include="Utils\ExtensionsForTesting.cs" />

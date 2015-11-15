@@ -58,7 +58,7 @@ namespace RethinkDb.Driver.Net
 
         public int BufferedSize => this.items.Count;
 
-        public List<T> BufferedItems => items.Select(t => t.ToObject<T>()).ToList();
+        public List<T> BufferedItems => items.Select(Convert).ToList();
 
         private void ExtendInternal(Response response)
         {
@@ -161,11 +161,16 @@ namespace RethinkDb.Driver.Net
                 {
                     var element = items[0];
                     items.RemoveAt(0);
-                    this.current = Converter.ConvertPesudoTypes(element, fmt).ToObject<T>();
+                    this.current = Convert(element);
                     return true;
                 }
 
                 return false;
+            }
+
+            protected override T Convert(JToken token)
+            {
+                return Converter.ConvertPesudoTypes(token, fmt).ToObject<T>();
             }
 
             public override T Current => this.current;
@@ -188,6 +193,7 @@ namespace RethinkDb.Driver.Net
         }
 
         public abstract bool MoveNext();
+        protected abstract T Convert(JToken token);
 
         public void Reset()
         {

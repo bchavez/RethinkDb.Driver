@@ -37,24 +37,24 @@ dnu restore --fallbacksource https://www.myget.org/F/aspnetvnext/api/v2/
 	<th><img src='https://github.com/Turbo87/Font-Awesome/raw/platform-icons/svg/apple.png'/> Mac OS X</th>
 </tr>
 <tr>
- <td><strong>.NET Framework</strong</td>
- <td align='center'><strong>v4.5</strong></td>
- <td align='center'>n/a</td>
- <td align='center'>n/a</td>
+ <td><strong>Mono</strong></td>
+ <td colspan='3' align='center'>All platforms <strong>4.0.2 SR2</strong> or higher</td>
 </tr>
 <tr>
  <td><strong>CoreCLR</strong></td>
  <td colspan='3' align='center'>All platforms <strong>1.0.0-beta7</strong> or higher</td>
 </tr>
 <tr>
- <td><strong>Mono</strong></td>
- <td colspan='3' align='center'>All platforms <strong>4.0.2 SR2</strong> or higher</td>
+ <td><strong>.NET Framework</strong</td>
+ <td align='center'><strong>v4.5</strong></td>
+ <td align='center'>n/a</td>
+ <td align='center'>n/a</td>
 </tr>
 <tr>
 	<td colspan='4'></td>
 </tr>
 <tr>
-     <td colspan='4' align='center'><strong>RethinkDB</strong> server <strong>2.1.5</strong> or higher</td>
+     <td colspan='4' align='center'><strong>RethinkDB</strong> server <strong>2.2.0</strong> or higher</td>
 </tr>
 </table>
 

@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using NUnit.Framework;
 using RethinkDb.Driver.Model;
+using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Tests.Utils;
 
 namespace RethinkDb.Driver.Tests
@@ -41,5 +43,4 @@ namespace RethinkDb.Driver.Tests
             }
         }
     }
-
 }

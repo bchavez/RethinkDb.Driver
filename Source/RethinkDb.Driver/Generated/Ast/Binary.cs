@@ -80,7 +80,7 @@ namespace RethinkDb.Driver.Ast {
     
         protected internal override object Build() {
             if( b64Data != null){
-                return JObject.FromObject(b64Data, Converter.Seralizer);
+                return JObject.FromObject(b64Data, Converter.Serializer);
             }
             else{
                 return base.Build();

@@ -16,6 +16,10 @@
     
     <releaseNotes>
         History
+        v0.0.5-alpha7
+        * Fixed POCO serialization issues
+        * ReqlExpr[] uses r.bracket() instead of r.getField();
+        
         v0.0.5-alpha6
         * More work on Result helper.
         * Feature: .getField() overload helper. Example: .get("id")["Name"] returns field Name.

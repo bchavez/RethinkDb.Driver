@@ -87,6 +87,7 @@
     <Compile Include="ConnectionTest.cs" />
     <Compile Include="DateAndTimeTests.cs" />
     <Compile Include="Examples.cs" />
+    <Compile Include="ExperimentalTests.cs" />
     <Compile Include="GitHubIssues.cs" />
     <Compile Include="GroupingTests.cs" />
     <Compile Include="OtherTests.cs" />

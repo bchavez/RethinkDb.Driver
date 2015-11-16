@@ -186,7 +186,7 @@ namespace RethinkDb.Driver.Net
             {
                 try
                 {
-                    return res.Data[0].ToObject(typeof(T), Converter.Seralizer);
+                    return res.Data[0].ToObject(typeof(T), Converter.Deserializer);
                 }
                 catch( IndexOutOfRangeException ex )
                 {

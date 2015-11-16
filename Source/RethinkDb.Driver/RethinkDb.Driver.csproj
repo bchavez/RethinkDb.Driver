@@ -294,6 +294,7 @@
     <Compile Include="Net\Converter.cs" />
     <Compile Include="Net\Cursor.cs" />
     <Compile Include="Net\JsonConverters\ExtensionsForJsonConverters.cs" />
+    <Compile Include="Net\JsonConverters\PocoArrayConverter.cs" />
     <Compile Include="Net\JsonConverters\ReqlBinaryConverter.cs" />
     <Compile Include="Net\JsonConverters\ReqlDateTimeConverter.cs" />
     <Compile Include="Net\JsonConverters\ReqlGroupingConverter.cs" />

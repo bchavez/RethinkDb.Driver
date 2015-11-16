@@ -41,6 +41,10 @@ namespace RethinkDb.Driver.Net.JsonConverters
             reader.ReadAndAssertProperty("timezone");
             var timezone = reader.ReadAsString();
 
+            //realign and get out of the pseudo type
+            //one more post read to align out of { reql_type:TIME,  .... } 
+            reader.ReadAndAssert();
+
             var tz = TimeSpan.Parse(timezone.Substring(1));
             if( !timezone.StartsWith("+") )
                 tz = -tz;

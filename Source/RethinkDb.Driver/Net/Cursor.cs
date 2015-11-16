@@ -168,7 +168,7 @@ namespace RethinkDb.Driver.Net
 
             protected override T Convert(JToken token)
             {
-                return token.ToObject<T>(Converter.Seralizer);
+                return token.ToObject<T>(Converter.Deserializer);
             }
 
             public override T Current => this.current;

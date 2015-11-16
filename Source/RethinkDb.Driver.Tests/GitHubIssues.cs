@@ -20,10 +20,27 @@ namespace RethinkDb.Driver.Tests
                 .insert(new User
                     {
                         Birthday = new DateTime(1990, 8, 18, 0, 0, 0, DateTimeKind.Utc),
+                        FirstName = null,
                         DisplayName = "Filip",
                         LastName = "Tomren",
                         MiddleName = "Andre Larsen",
                         Phone = "+47123455678",
+                        NickNames =
+                            {
+                                "Foo",
+                                "Bar"
+                            },
+                        Address = new Address
+                            {
+                                Street = "1234 Test Ave",
+                                Zipcode = "54321"
+                            },
+                        ShippingAddresses =
+                            {
+                                {new Address {Street = "Shipping 1", Zipcode = "Zip 1"}},
+                                {new Address {Street = "Shipping 2", Zipcode = "Zip 2"}},
+                                {new Address {Street = "Shipping 3", Zipcode = "Zip 3"}}
+                            }
                     }).run(conn);
 
             
@@ -36,6 +53,17 @@ namespace RethinkDb.Driver.Tests
 
             var user = bufferedItems[0];
             user.Birthday.Should().BeCloseTo(new DateTime(1990, 8, 18, 0, 0, 0, DateTimeKind.Utc));
+            user.DisplayName.Should().Be("Filip");
+            user.MiddleName.Should().Be("Andre Larsen");
+            user.Phone.Should().Be("+47123455678");
+            user.NickNames.Should().Equal("Foo", "Bar");
+            user.Address.ShouldBeEquivalentTo(new Address {Street = "1234 Test Ave", Zipcode = "54321"});
+            user.ShippingAddresses.ShouldBeEquivalentTo(new Address[]
+                {
+                    new Address {Street = "Shipping 1", Zipcode = "Zip 1"},
+                    new Address {Street = "Shipping 2", Zipcode = "Zip 2"},
+                    new Address {Street = "Shipping 3", Zipcode = "Zip 3"}
+                });
         }
     }
 
@@ -51,10 +79,13 @@ namespace RethinkDb.Driver.Tests
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public Address Address { get; set; }
+        public List<string> NickNames { get; set; } = new List<string>();
+        public List<Address> ShippingAddresses { get; set; } = new List<Address>();
     }
 
     public class Address
     {
-
+        public string Street { get; set; }
+        public string Zipcode { get; set; }
     }
 }

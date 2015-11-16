@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
+using RethinkDb.Driver.Proto;
 
 #if DNX
 //Needed for GetTypeInfo()
@@ -12,6 +14,7 @@ using System.Reflection;
 
 namespace RethinkDb.Driver.Net.JsonConverters
 {
+
     public class ReqlGroupingConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -49,7 +52,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
             {
                 throw new JsonSerializationException($"Expected {Converter.PseudoTypeKey} should be {Converter.GroupedData} but got {reql_type}.");
             }
-
+            
             reader.ReadAndAssertProperty("data");
 
             //move reader to property value

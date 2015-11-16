@@ -9,8 +9,14 @@ namespace RethinkDb.Driver.Ast
         /// <summary>
         /// Get a single field from an object. If called on a sequence, gets that field from every object in the sequence, skipping objects that lack it.
         /// </summary>
-        /// <param name="getField"></param>
-        public GetField this[string getField] => this.getField(getField);
+        /// <param name="bracket"></param>
+        public Bracket this[string bracket] => this.bracket(bracket);
+        /// <summary>
+        /// Get the nth element of a sequence, counting from zero. If the argument is negative, count from the last element.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public Bracket this[int index] => this.bracket(index);
 
 
         public static ReqlExpr operator >(ReqlExpr a, ReqlExpr b)

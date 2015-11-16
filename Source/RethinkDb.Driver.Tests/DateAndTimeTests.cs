@@ -70,18 +70,18 @@ namespace RethinkDb.Driver.Tests
         {
             var date = new DateTime(2015, 11, 14, 1, 2, 3, DateTimeKind.Unspecified);
 
-            var default_timezone = new {default_timezone = "-08:00"};
+            var default_timezone = new {default_timezone = "-09:00"};
 
             DateTime result = (r.expr(date) as Iso8601)[default_timezone].run<DateTime>(conn);
 
-            var dateWithLocalTime = new DateTime(2015, 11, 14, 1, 2, 3, DateTimeKind.Local);
+            var dateTimeUtc = new DateTime(2015, 11, 14, 1, 2, 3) + TimeSpan.FromHours(9);
 
-            result.Should().BeCloseTo(dateWithLocalTime, 1);
+            result.ToUniversalTime().Should().BeCloseTo(dateTimeUtc, 1);
 
             var withoutTimezone = date.ToString("o");
             DateTime result2 = r.iso8601(withoutTimezone)[default_timezone].run<DateTime>(conn);
 
-            result2.Should().BeCloseTo(dateWithLocalTime, 1);
+            result2.ToUniversalTime().Should().BeCloseTo(dateTimeUtc, 1);
 
         }
 

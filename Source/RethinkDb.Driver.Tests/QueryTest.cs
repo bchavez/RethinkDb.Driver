@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
 
@@ -24,9 +24,24 @@ namespace RethinkDb.Driver.Tests
             }
         }
 
+
+        private void SetupFluentAssertion()
+        {
+            //Hook into FluentAssertion so we see very useful 
+            //YamlTest context information. TestLine, expected, got, etc...
+            FluentAssertions.Common.Services.ResetToDefaults();
+            var hook = FluentAssertions.Common.Services.ThrowException;
+            FluentAssertions.Common.Services.ThrowException = s =>
+                {
+                    var logContext = TestLogContext.Context.ToString();
+                    hook(logContext + s);
+                };
+        }
+
         [TestFixtureSetUp]
         public void BeforeRunningTestSession()
         {
+            SetupFluentAssertion();
             EnsureConnection();
 
             try
@@ -62,6 +77,7 @@ namespace RethinkDb.Driver.Tests
             catch
             {
             }
+            TestLogContext.ResetContext();
         }
 
         [TearDown]

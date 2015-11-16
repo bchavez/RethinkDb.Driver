@@ -91,6 +91,7 @@
     <Compile Include="GroupingTests.cs" />
     <Compile Include="OtherTests.cs" />
     <Compile Include="QueryTest.cs" />
+    <Compile Include="TestLogContext.cs" />
     <Compile Include="Utils\ExtensionsForTesting.cs" />
     <Compile Include="Generated\ChangefeedsIncludeStates.cs" />
     <Compile Include="Generated\ChangefeedsSindex.cs" />

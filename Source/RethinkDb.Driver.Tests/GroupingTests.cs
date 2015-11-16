@@ -30,7 +30,9 @@ namespace RethinkDb.Driver.Tests
                     new Game { id=12, player = "Alice", points = 2, type = "free"},
                 };
 
-            IEnumerable<GroupedResult<string,Game>> result = r.expr(games).group("player").run<GroupedResult<string, Game>>(conn);
+            IEnumerable<GroupedResult<string,Game>> result = 
+                r.expr(games).group("player")
+                .run<GroupedResult<string, Game>>(conn);
 
             foreach( var group in result )
             {

@@ -13,7 +13,6 @@ namespace RethinkDb.Driver.Tests
         public string Original { get; set; }
         public string Java { get; set; }
         public List<RunOpt> RunOpts { get; set; }
-        public List<string> OtherLines = new List<string>();
 
         public class RunOpt
         {
@@ -36,11 +35,7 @@ namespace RethinkDb.Driver.Tests
             sb.AppendLine("Run C#/Java:");
             sb.AppendLine($"\t{Java}");
             sb.AppendLine($"RunOpts: {JsonConvert.SerializeObject(RunOpts)}");
-            sb.AppendLine("Log In Context:");
-            foreach( var otherLine in OtherLines )
-            {
-                sb.AppendLine("\t" + otherLine);
-            }
+            sb.AppendLine(TestLogContext.Context.ToString());
             sb.AppendLine();
             sb.AppendLine("PROBLEM:");
             return sb.ToString();

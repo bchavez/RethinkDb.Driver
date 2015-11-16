@@ -23,17 +23,13 @@ namespace RethinkDb.Driver.Tests
 
         protected void SetContext( string testContext )
         {
+            TestLogContext.ResetContext();
             var json = testContext.DecodeBase64();
             var ctx = JsonConvert.DeserializeObject<YamlTestContext>(json);
 
             TestCounter++;
 
             Context = ctx;
-        }
-
-        public static void LogInContext(string message)
-        {
-            Context?.OtherLines.Add(message);
         }
 
         public static YamlTestContext Context
@@ -45,18 +41,23 @@ namespace RethinkDb.Driver.Tests
             set { CallContext.SetData("YamlTestContext", value); }
         }
 
-        [TestFixtureSetUp]
-        public void BeforeRunningTestSession()
+        private void SetupFluentAssertion()
         {
             //Hook into FluentAssertion so we see very useful 
             //YamlTest context information. TestLine, expected, got, etc...
             FluentAssertions.Common.Services.ResetToDefaults();
             var hook = FluentAssertions.Common.Services.ThrowException;
             FluentAssertions.Common.Services.ThrowException = s =>
-            {
-                var context = Context.ToString();
-                hook(context + s);
-            };
+                {
+                    var context = Context.ToString();
+                    hook(context + s);
+                };
+        }
+
+        [TestFixtureSetUp]
+        public void BeforeRunningTestSession()
+        {
+            SetupFluentAssertion();
         }
 
         [TestFixtureTearDown]

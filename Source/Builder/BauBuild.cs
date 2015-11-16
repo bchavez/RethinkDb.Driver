@@ -256,7 +256,7 @@ namespace Builder
 
                         var buildNum = startTest["build_num"].ToObject<int>();
 
-                        var initialWait = TimeSpan.FromMinutes(1);
+                        var initialWait = TimeSpan.FromMinutes(5);
                         task.LogInfo($"Waiting for about {initialWait}.");
                         Thread.Sleep(initialWait);
 

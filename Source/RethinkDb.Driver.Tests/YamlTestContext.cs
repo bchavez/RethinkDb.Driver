@@ -37,7 +37,6 @@ namespace RethinkDb.Driver.Tests
             sb.AppendLine($"RunOpts: {JsonConvert.SerializeObject(RunOpts)}");
             sb.AppendLine(TestLogContext.Context.ToString());
             sb.AppendLine();
-            sb.AppendLine("PROBLEM:");
             return sb.ToString();
         }
     }

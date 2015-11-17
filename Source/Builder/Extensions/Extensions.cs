@@ -25,6 +25,14 @@ namespace Builder.Extensions
         }
     }
 
+    public static class ExtensionsForFile
+    {
+        public static File WithExt(this File f, string ext)
+        {
+            return new File(System.IO.Path.ChangeExtension(f.ToString(), ext));
+        }
+    }
+
     public static class ExtensionsForBuildContext
     {
         public static string WithoutPreReleaseName(this string version)
@@ -88,6 +96,25 @@ namespace Builder.Extensions
             var xdoc = XDocument.Load(filename);
             var obj = JObject.FromObject(xdoc);
             return obj.SelectToken(jsonPath).ToString();
+        }
+    }
+
+    public static class History
+    {
+        public static string All()
+        {
+            return System.IO.File.ReadAllText(Files.History.ToString());
+        }
+
+        public static string NugetText()
+        {
+            return System.Security.SecurityElement.Escape(All());
+        }
+
+        public static string ReleaseNotes(string fullVersion)
+        {
+            var all = All();
+            return all.GetAfter(fullVersion).GetBefore("## ");
         }
     }
 }

@@ -48,7 +48,7 @@ deploy:
     - provider: GitHub
       release: 'Release $(APPVEYOR_REPO_TAG_NAME) build $(APPVEYOR_BUILD_VERSION)'
       tag: $(APPVEYOR_REPO_TAG_NAME)
-      description: $(APPVEYOR_REPO_COMMIT_MESSAGE)
+      description: $(RELEASE_NOTES)
       prerelease: $(IsPreRelease)
       artifact: Zip, NuGet
       auth_token:

@@ -64,11 +64,6 @@ namespace RethinkDb.Driver.Ast {
                 var appliedFunction = func1(
                     new Var(var1) 
                 );
-                //var final = appliedFunction;
-                //if( !(final is ReqlAst) )
-                //{
-                //    final = MapObject.fromAnonType(final);
-                //}
                 return new Func(Arguments.Make(
                         new MakeArray(varIds),
                         Util.ToReqlAst(appliedFunction)

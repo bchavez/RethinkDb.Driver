@@ -12,11 +12,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{BBBED03D-30BD-4F0F-8724-7541FF090361}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		..\.gitignore = ..\.gitignore
 		..\appveyor.yml = ..\appveyor.yml
 		..\build.cmd = ..\build.cmd
 		..\circle.sh = ..\circle.sh
 		..\circle.yml = ..\circle.yml
 		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
+		..\HISTORY.md = ..\HISTORY.md
 		..\LICENSE = ..\LICENSE
 		RethinkDb.Driver\project.json = RethinkDb.Driver\project.json
 		..\README.md = ..\README.md

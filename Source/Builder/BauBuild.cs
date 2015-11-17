@@ -10,10 +10,12 @@ using BauExec;
 using Builder.Extensions;
 using FluentAssertions;
 using FluentBuild;
+using FluentFs.Core;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using Templates.Metadata;
 using Z.ExtensionMethods;
+using Directory = System.IO.Directory;
 
 
 namespace Builder
@@ -189,7 +191,16 @@ namespace Builder
                 .NuGet(Pack).Desc("Packs NuGet packages")
                 .DependsOn(DnxBuild).Do(ng =>
                     {
-                        ng.Pack(Projects.DriverProject.NugetSpec.ToString(),
+                        var nuspec = Projects.DriverProject.NugetSpec.WithExt("history.nuspec");
+                        nuspec.Delete(OnError.Continue);
+
+                        Projects.DriverProject.NugetSpec
+                            .Copy
+                            .ReplaceToken("history")
+                            .With(History.NugetText())
+                            .To(nuspec.ToString());
+
+                        ng.Pack(nuspec.ToString(),
                             p =>
                                 {
                                     p.BasePath = Projects.DriverProject.OutputDirectory.ToString();
@@ -224,6 +235,13 @@ namespace Builder
                         //We just use this task to depend on Pack (dnx build) and MSBuild
                         //to ensure MS build gets called so we know *everything* compiles, including
                         //unit tests.
+                        var tag = Environment.GetEnvironmentVariable("APPVEYOR_REPO_TAG_NAME");
+                        if( tag.IsNotNullOrWhiteSpace() )
+                        {
+                            task.LogInfo("Getting release notes...");
+                            var releaseNotes = History.ReleaseNotes(tag);
+                            AppVeyor.SetBuildVariable("RELEASE_NOTES", releaseNotes);
+                        }
                     })
 
                 .Task(citest).Desc("Triggers unit tests.")
@@ -341,6 +359,21 @@ namespace Builder
             web.DownloadFile(xmlResultsUrl, FileName); //download from circle CI
             var uploadUrl = $"https://ci.appveyor.com/api/testresults/nunit/{jobId}";
             web.UploadFile(uploadUrl, FileName); //upload to AppVeyor
+        }
+
+
+        private static RestClient GetClient()
+        {
+            var api = Environment.GetEnvironmentVariable("APPVEYOR_API_URL");
+            var client = new RestClient(api);
+            return client;
+        }
+        public static void SetBuildVariable(string name, string value)
+        {
+            var client = GetClient();
+            var req = new RestRequest("api/build/variables", Method.POST);
+            req.AddJsonBody(new {name, value});
+            var resp = client.Execute(req);
         }
     }
 

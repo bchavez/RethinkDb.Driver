@@ -23,7 +23,7 @@ namespace Builder
         [Explicit]
         public void Test()
         {
-            BauBuild.Main(new [] { "citest"});
+            BauBuild.Main(new [] { "pack"});
         }
     }
 }

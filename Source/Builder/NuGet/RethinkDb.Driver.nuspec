@@ -18,6 +18,7 @@
         History
         v0.0.5-alpha8
         * .map() projections with anonymous types. IE: r.filter().map( g => new {points = g["points"]} )
+        * Converter.Serializer main configuration point for Newtonsoft.
         
         v0.0.5-alpha7
         * Fixed POCO serialization issues

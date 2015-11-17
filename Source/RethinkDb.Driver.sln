@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{BBBED03D-3
 		..\build.cmd = ..\build.cmd
 		..\circle.sh = ..\circle.sh
 		..\circle.yml = ..\circle.yml
+		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
 		..\LICENSE = ..\LICENSE
 		RethinkDb.Driver\project.json = RethinkDb.Driver\project.json
 		..\README.md = ..\README.md

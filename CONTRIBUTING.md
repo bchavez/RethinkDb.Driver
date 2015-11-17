@@ -1,5 +1,10 @@
+Submitting Issues
+------------
+When submitting issues, here are some things that help us debug your issue.
 
-Contributing
+* :heavy_check_mark: **CONSIDER** including [JSON protocol traces](https://github.com/bchavez/RethinkDb.Driver/wiki/Protocol-Debugging) in your issue.
+
+Pull Requests
 ------------
 Here are some helpful guidelines to keep in mind when contributing.  While following them isn't absolutely required, it does help everyone to accept your pull-requests with maximum awesomeness.
 

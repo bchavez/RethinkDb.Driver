@@ -14,9 +14,9 @@ namespace RethinkDb.Driver.Ast
         /// <summary>
         /// Get the nth element of a sequence, counting from zero. If the argument is negative, count from the last element.
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="bracket"></param>
         /// <returns></returns>
-        public Bracket this[int index] => this.bracket(index);
+        public Bracket this[int bracket] => this.bracket(bracket);
 
 
         public static ReqlExpr operator >(ReqlExpr a, ReqlExpr b)

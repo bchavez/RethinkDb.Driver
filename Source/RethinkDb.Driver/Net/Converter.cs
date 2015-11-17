@@ -3,6 +3,9 @@ using RethinkDb.Driver.Net.JsonConverters;
 
 namespace RethinkDb.Driver.Net
 {
+    /// <summary>
+    /// Configuration for RethinkDB's JSON serializer
+    /// </summary>
     public static class Converter
     {
         static Converter()

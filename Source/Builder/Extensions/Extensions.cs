@@ -114,7 +114,7 @@ namespace Builder.Extensions
         public static string ReleaseNotes(string fullVersion)
         {
             var all = All();
-            return all.GetAfter(fullVersion).GetBefore("## ");
+            return all.GetAfter(fullVersion).GetBefore("## ").Trim();
         }
     }
 }

@@ -1,6 +1,6 @@
 Submitting Issues
 ------------
-When submitting issues, here are some things that help us debug your issue.
+Here are some helpful tips to keep in mind when submitting issues:
 
 * :heavy_check_mark: **CONSIDER** including [JSON protocol traces](https://github.com/bchavez/RethinkDb.Driver/wiki/Protocol-Debugging) in your issue.
 

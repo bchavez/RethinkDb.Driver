@@ -1,3 +1,6 @@
+## v0.0.7-alpha1
+* Test
+
 ## v0.0.5-alpha9
 * .map() projections with anonymous types. IE: r.filter().map( g => new {points = g["points"]} )
 * Converter.Serializer main configuration point for Newtonsoft.

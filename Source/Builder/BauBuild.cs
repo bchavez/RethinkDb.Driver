@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Runtime.Remoting;
@@ -371,7 +372,7 @@ namespace Builder
         public static void SetBuildVariable(string name, string value)
         {
             var client = GetClient();
-            var req = new RestRequest("api/build/variables", Method.POST);
+            var req = new RestRequest("/api/build/variables", Method.POST);
             req.AddJsonBody(new {name, value});
             var resp = client.Execute(req);
         }

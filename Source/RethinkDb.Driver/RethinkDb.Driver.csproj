@@ -297,6 +297,7 @@
     <Compile Include="Net\JsonConverters\PocoArrayConverter.cs" />
     <Compile Include="Net\JsonConverters\ReqlBinaryConverter.cs" />
     <Compile Include="Net\JsonConverters\ReqlDateTimeConverter.cs" />
+    <Compile Include="Net\JsonConverters\ReqlExprConverter.cs" />
     <Compile Include="Net\JsonConverters\ReqlGroupingConverter.cs" />
     <Compile Include="Net\Response.cs" />
     <Compile Include="Net\SocketWrapper.cs" />

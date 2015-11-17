@@ -1,15 +1,14 @@
 ﻿using System;
 using FluentAssertions;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Tests.Utils;
 
-namespace RethinkDb.Driver.Tests
+namespace RethinkDb.Driver.Tests.ReQL
 {
     [TestFixture]
-    public class DateAndTimeTests : QueryTest
+    public class DateAndTimeTests : QueryTestFixture
     {
         [Test]
         public void datetimeoffset_pesudo_type_r_now()

@@ -1,11 +1,10 @@
-using Newtonsoft.Json;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
 
 namespace RethinkDb.Driver.Tests
 {
     [TestFixture]
-    public abstract class QueryTest
+    public abstract class QueryTestFixture
     {
         protected const string DbName = "CSharpDriverTests";
         protected const string TableName = "TableA";

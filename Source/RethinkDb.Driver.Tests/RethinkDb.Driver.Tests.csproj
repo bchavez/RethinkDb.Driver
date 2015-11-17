@@ -83,15 +83,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
-    <Compile Include="BinaryTests.cs" />
-    <Compile Include="ConnectionTest.cs" />
-    <Compile Include="DateAndTimeTests.cs" />
-    <Compile Include="Examples.cs" />
-    <Compile Include="ExperimentalTests.cs" />
-    <Compile Include="GitHubIssues.cs" />
-    <Compile Include="GroupingTests.cs" />
-    <Compile Include="OtherTests.cs" />
-    <Compile Include="QueryTest.cs" />
+    <Compile Include="Network\ConnectionTest.cs" />
+    <Compile Include="QueryTestFixture.cs" />
+    <Compile Include="ReQL\DateAndTimeTests.cs" />
+    <Compile Include="ReQL\Examples.cs" />
+    <Compile Include="ReQL\ExperimentalTests.cs" />
+    <Compile Include="ReQL\GroupingTests.cs" />
+    <Compile Include="ReQL\MapTests.cs" />
+    <Compile Include="ReQL\OtherTests.cs" />
+    <Compile Include="ReQL\PocoTests.cs" />
+    <Compile Include="ReQL\BinaryTests.cs" />
     <Compile Include="TestLogContext.cs" />
     <Compile Include="Utils\ExtensionsForTesting.cs" />
     <Compile Include="Generated\ChangefeedsIncludeStates.cs" />

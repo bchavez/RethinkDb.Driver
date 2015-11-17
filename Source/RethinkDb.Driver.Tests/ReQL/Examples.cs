@@ -2,13 +2,12 @@
 using System.Linq;
 using FluentAssertions;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Tests.Utils;
 
-namespace RethinkDb.Driver.Tests
+namespace RethinkDb.Driver.Tests.ReQL
 {
     public class Foo
     {
@@ -22,7 +21,7 @@ namespace RethinkDb.Driver.Tests
     }
 
     [TestFixture]
-    public class Examples : QueryTest
+    public class Examples : QueryTestFixture
     {
         [Test]
         public void test_booleans()

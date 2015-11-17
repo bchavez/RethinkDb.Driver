@@ -16,6 +16,9 @@
     
     <releaseNotes>
         History
+        v0.0.5-alpha8
+        * .map() projections with anonymous types. IE: r.filter().map( g => new {points = g["points"]} )
+        
         v0.0.5-alpha7
         * Fixed POCO serialization issues
         * ReqlExpr[] uses r.bracket() instead of r.getField();

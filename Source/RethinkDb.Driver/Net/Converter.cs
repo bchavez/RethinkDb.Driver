@@ -11,6 +11,7 @@ namespace RethinkDb.Driver.Net
             BinaryConverter = new ReqlBinaryConverter();
             GroupingConverter = new ReqlGroupingConverter();
             PocoArrayConverter = new PocoArrayConverter();
+            PocoExprConverter = new PocoExprConverter();
 
             var deserSettings = new JsonSerializerSettings()
                 {
@@ -26,7 +27,7 @@ namespace RethinkDb.Driver.Net
                 {
                     Converters = new JsonConverter[]
                         {
-                            DateTimeConverter, BinaryConverter, PocoArrayConverter
+                            DateTimeConverter, BinaryConverter, PocoArrayConverter, PocoExprConverter
                         }
                 };
             Serializer = JsonSerializer.CreateDefault(serSettings);
@@ -35,10 +36,12 @@ namespace RethinkDb.Driver.Net
         public static JsonSerializer Serializer { get; set; }
         public static JsonSerializer Deserializer { get; set; }
 
-        public static PocoArrayConverter PocoArrayConverter { get; set; }
         public static ReqlDateTimeConverter DateTimeConverter { get; set; }
         public static ReqlBinaryConverter BinaryConverter { get; set; }
         public static ReqlGroupingConverter GroupingConverter { get; set; }
+
+        public static PocoArrayConverter PocoArrayConverter { get; set; }
+        public static PocoExprConverter PocoExprConverter { get; set; }
 
         public const string PseudoTypeKey = "$reql_type$";
         public const string Time = "TIME";

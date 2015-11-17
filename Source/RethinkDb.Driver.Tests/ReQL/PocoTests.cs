@@ -5,10 +5,32 @@ using NUnit.Framework;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Tests.Utils;
 
-namespace RethinkDb.Driver.Tests
+namespace RethinkDb.Driver.Tests.ReQL
 {
+    public class User
+    {
+        public IList<object> TenantPermissions { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Picture { get; set; }
+        public DateTime Birthday { get; set; }
+        public string DisplayName { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public Address Address { get; set; }
+        public List<string> NickNames { get; set; } = new List<string>();
+        public List<Address> ShippingAddresses { get; set; } = new List<Address>();
+    }
+
+    public class Address
+    {
+        public string Street { get; set; }
+        public string Zipcode { get; set; }
+    }
+
     [TestFixture]
-    public class GitHubIssues : QueryTest
+    public class PocoTests : QueryTestFixture
     {
         [Test]
         public void issue_10()
@@ -58,34 +80,12 @@ namespace RethinkDb.Driver.Tests
             user.Phone.Should().Be("+47123455678");
             user.NickNames.Should().Equal("Foo", "Bar");
             user.Address.ShouldBeEquivalentTo(new Address {Street = "1234 Test Ave", Zipcode = "54321"});
-            user.ShippingAddresses.ShouldBeEquivalentTo(new Address[]
+            user.ShippingAddresses.ShouldBeEquivalentTo(new[]
                 {
                     new Address {Street = "Shipping 1", Zipcode = "Zip 1"},
                     new Address {Street = "Shipping 2", Zipcode = "Zip 2"},
                     new Address {Street = "Shipping 3", Zipcode = "Zip 3"}
                 });
         }
-    }
-
-    public class User
-    {
-        public IList<object> TenantPermissions { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Picture { get; set; }
-        public DateTime Birthday { get; set; }
-        public string DisplayName { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
-        public Address Address { get; set; }
-        public List<string> NickNames { get; set; } = new List<string>();
-        public List<Address> ShippingAddresses { get; set; } = new List<Address>();
-    }
-
-    public class Address
-    {
-        public string Street { get; set; }
-        public string Zipcode { get; set; }
     }
 }

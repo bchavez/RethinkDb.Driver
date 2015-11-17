@@ -1,12 +1,12 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
 
-namespace RethinkDb.Driver.Tests
+namespace RethinkDb.Driver.Tests.ReQL
 {
     [TestFixture]
-    public class BinaryTests : QueryTest
+    public class BinaryTests : QueryTestFixture
     {
         [Test]
         public void binary_echo()

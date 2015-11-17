@@ -2,10 +2,10 @@ using System;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests.Utils;
 
-namespace RethinkDb.Driver.Tests
+namespace RethinkDb.Driver.Tests.ReQL
 {
     [TestFixture]
-    public class OtherTests : QueryTest
+    public class OtherTests : QueryTestFixture
     {
         [Test]
         public void test_timezone()

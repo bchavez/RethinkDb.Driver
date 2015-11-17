@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests.Utils;
 
-namespace RethinkDb.Driver.Tests
+namespace RethinkDb.Driver.Tests.ReQL
 {
     [TestFixture]
-    [Explicit]
-    public class ExperimentalTests : QueryTest
+    public class MapTests : QueryTestFixture
     {
-        //* .map() projections with anonymous types. games.map( g => new {points = g["points"]} )
-
+        public class TopPlayer
+        {
+            public int PlayerId { get; set; }
+        }
         [Test]
         public void mapping_test()
         {
@@ -22,17 +23,21 @@ namespace RethinkDb.Driver.Tests
                     new Game {id = 12, player = "Alice", points = 2, type = "free"},
                 };
 
-            List<JObject> result =
+            List<TopPlayer> result =
                 r.expr(games)
                     .filter(g => g["points"].gt(9))
-                    .map(g => new { dodad = g["id"] })
-                    .run<List<JObject>>(conn);
+                    .map(g => new { PlayerId = g["id"] })
+                    .run<List<TopPlayer>>(conn);
 
-            foreach (var item in result)
-            {
-                item.Dump();
-            }
+            result.Dump();
+
+            result.ShouldBeEquivalentTo(new[]
+                {
+                    new TopPlayer {PlayerId = 2},
+                    new TopPlayer {PlayerId = 11}
+                });
         }
+
 
         [Test]
         public void mapping_test_2()
@@ -42,6 +47,8 @@ namespace RethinkDb.Driver.Tests
                 .run<List<int>>(conn);
 
             result.Dump();
+
+            result.Should().Equal(1, 4, 9, 16, 25);
         }
     }
 }

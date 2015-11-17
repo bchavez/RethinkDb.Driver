@@ -2,7 +2,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
 
-namespace RethinkDb.Driver.Tests
+namespace RethinkDb.Driver.Tests.Network
 {
     [TestFixture]
     public class ConnectionTest

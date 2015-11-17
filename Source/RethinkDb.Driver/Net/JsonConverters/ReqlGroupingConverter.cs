@@ -69,6 +69,8 @@ namespace RethinkDb.Driver.Net.JsonConverters
             return list;
         }
 
+        public override bool CanWrite => false;
+
         public override bool CanConvert(Type objectType)
         {
             var canConvert = objectType.IsGenericType() &&

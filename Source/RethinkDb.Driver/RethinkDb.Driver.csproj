@@ -60,6 +60,7 @@
     <Compile Include="Ast\ReqlExpr.cs" />
     <Compile Include="Ast\Util.cs" />
     <Compile Include="ErrorBuilder.cs" />
+    <Compile Include="Utils\ExtensionsForType.cs" />
     <Compile Include="Generated\Ast\Add.cs" />
     <Compile Include="Generated\Ast\And.cs" />
     <Compile Include="Generated\Ast\Append.cs" />
@@ -309,6 +310,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

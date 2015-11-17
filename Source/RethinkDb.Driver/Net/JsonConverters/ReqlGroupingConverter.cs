@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
-using RethinkDb.Driver.Proto;
-
-#if DNX
-//Needed for GetTypeInfo()
-using System.Reflection;
-#endif
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net.JsonConverters
 {
-
     public class ReqlGroupingConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -78,13 +71,8 @@ namespace RethinkDb.Driver.Net.JsonConverters
 
         public override bool CanConvert(Type objectType)
         {
-            var canConvert =
-#if DNX
-                objectType.GetTypeInfo().IsGenericType
-#else
-                objectType.IsGenericType
-#endif
-                && objectType.GetGenericTypeDefinition() == typeof(GroupedResult<,>);
+            var canConvert = objectType.IsGenericType() &&
+                             objectType.GetGenericTypeDefinition() == typeof(GroupedResult<,>);
 
             return canConvert;
         }

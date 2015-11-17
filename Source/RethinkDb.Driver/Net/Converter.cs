@@ -13,28 +13,21 @@ namespace RethinkDb.Driver.Net
             PocoArrayConverter = new PocoArrayConverter();
             PocoExprConverter = new PocoExprConverter();
 
-            var deserSettings = new JsonSerializerSettings()
+            var settings = new JsonSerializerSettings()
                 {
                     Converters = new JsonConverter[]
                         {
-                            DateTimeConverter, BinaryConverter, GroupingConverter
+                            DateTimeConverter,
+                            BinaryConverter,
+                            GroupingConverter,
+                            PocoArrayConverter,
+                            PocoExprConverter
                         }
                 };
-
-            Deserializer = JsonSerializer.CreateDefault(deserSettings);
-
-            var serSettings = new JsonSerializerSettings()
-                {
-                    Converters = new JsonConverter[]
-                        {
-                            DateTimeConverter, BinaryConverter, PocoArrayConverter, PocoExprConverter
-                        }
-                };
-            Serializer = JsonSerializer.CreateDefault(serSettings);
+            Serializer = JsonSerializer.CreateDefault(settings);
         }
 
         public static JsonSerializer Serializer { get; set; }
-        public static JsonSerializer Deserializer { get; set; }
 
         public static ReqlDateTimeConverter DateTimeConverter { get; set; }
         public static ReqlBinaryConverter BinaryConverter { get; set; }

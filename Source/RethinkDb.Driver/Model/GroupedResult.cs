@@ -11,8 +11,8 @@ namespace RethinkDb.Driver.Model
     {
         public GroupedResult(JToken key, JArray items)
         {
-            this.Key = key.ToObject<TKey>(Converter.Deserializer);
-            this.Items = items.ToObject<List<TElement>>(Converter.Deserializer);
+            this.Key = key.ToObject<TKey>(Converter.Serializer);
+            this.Items = items.ToObject<List<TElement>>(Converter.Serializer);
         }
 
         public IEnumerator<TElement> GetEnumerator()

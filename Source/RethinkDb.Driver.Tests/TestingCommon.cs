@@ -166,7 +166,7 @@ namespace RethinkDb.Driver.Tests
                 {
                     if( reql_type.Value<string>() == Converter.Time )
                     {
-                        obtained = jobj.ToObject<DateTimeOffset>(Converter.Deserializer);
+                        obtained = jobj.ToObject<DateTimeOffset>(Converter.Serializer);
                     }
                 }
             }

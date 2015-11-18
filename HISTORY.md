@@ -1,5 +1,5 @@
 ## v0.0.7-alpha1
-* Test
+* Allow logging in CoreCLR - In startup: loggerFactory.EnableRethinkDbLogging();
 
 ## v0.0.5-alpha9
 * .map() projections with anonymous types. IE: r.filter().map( g => new {points = g["points"]} )

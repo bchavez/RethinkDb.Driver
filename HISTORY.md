@@ -1,4 +1,4 @@
-## v0.0.7-alpha1
+## v0.0.7-alpha2
 * Allow logging in CoreCLR - In startup: loggerFactory.EnableRethinkDbLogging();
 
 ## v0.0.5-alpha9

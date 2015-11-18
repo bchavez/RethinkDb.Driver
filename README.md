@@ -58,9 +58,21 @@ dnu restore --fallbacksource https://www.myget.org/F/aspnetvnext/api/v2/
 </tr>
 </table>
 
+Documentation
+-----
+* [Home](https://github.com/bchavez/RethinkDb.Driver/wiki)
+* [Query Examples](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/RethinkDb.Driver.Tests/ReQL)
+* [Extra C# Features](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features)
+  * [Optional Arguments](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#optional-arguments)
+  * [Bracket](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#bracket)
+  * [DLR Integration](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#dynamic-language-runtime-dlr-integration)
+  * [POCO Support](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#poco-support)
+  * [Anon Type Projection](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#anonymous-type-map-projection)
+  * [Cursor[T]](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#cursort-support)
+  * [Implicit Operators](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#implicit-conversion-operator-overload)
+* [Differences](https://github.com/bchavez/RethinkDb.Driver/wiki/Differences-Between-C%23-and-Java-driver)
 
-
-Usage
+Quick Examples
 -----
 ```csharp
 public static RethinkDB r = RethinkDB.r;
@@ -68,13 +80,13 @@ public static RethinkDB r = RethinkDB.r;
 [Test]
 public void can_connect()
 {
-    var c = r.connection()
-        .hostname("192.168.0.11")
-        .port(RethinkDBConstants.DEFAULT_PORT)
-        .timeout(60)
-        .connect();
-    
-    int result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
+var c = r.connection()
+         .hostname("192.168.0.11")
+         .port(RethinkDBConstants.DEFAULT_PORT)
+         .timeout(60)
+         .connect();
+
+int result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
     Console.WriteLine(result);
     result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
 }
@@ -142,8 +154,6 @@ public void get_a_poco()
     }
 */
 ```
-[**Check our Wiki for more Examples and Documentation**](https://github.com/bchavez/RethinkDb.Driver/wiki).
-
 
 Contributing
 ------------

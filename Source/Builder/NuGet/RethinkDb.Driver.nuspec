@@ -61,13 +61,13 @@
     <file src="Release\net45\RethinkDb.Driver.pdb" target="lib\net45" />
     <file src="Release\net45\RethinkDb.Driver.XML" target="lib\net45" />
 
-    <file src="Release\dotnet\RethinkDb.Driver.dll" target="lib\dnx451" />
-    <file src="Release\dotnet\RethinkDb.Driver.pdb" target="lib\dnx451" />
-    <file src="Release\dotnet\RethinkDb.Driver.XML" target="lib\dnx451" />
+    <file src="Release\dnx451\RethinkDb.Driver.dll" target="lib\dnx451" />
+    <file src="Release\dnx451\RethinkDb.Driver.pdb" target="lib\dnx451" />
+    <file src="Release\dnx451\RethinkDb.Driver.XML" target="lib\dnx451" />
       
-    <file src="Release\dotnet\RethinkDb.Driver.dll" target="lib\dnxcore50" />
-    <file src="Release\dotnet\RethinkDb.Driver.pdb" target="lib\dnxcore50" />
-    <file src="Release\dotnet\RethinkDb.Driver.XML" target="lib\dnxcore50" />
+    <file src="Release\dnxcore50\RethinkDb.Driver.dll" target="lib\dnxcore50" />
+    <file src="Release\dnxcore50\RethinkDb.Driver.pdb" target="lib\dnxcore50" />
+    <file src="Release\dnxcore50\RethinkDb.Driver.XML" target="lib\dnxcore50" />
 
     <file src="..\..\Source\RethinkDb.Driver\**\*.cs"
             exclude="..\..\Source\RethinkDb.Driver\obj\**" target="src" />

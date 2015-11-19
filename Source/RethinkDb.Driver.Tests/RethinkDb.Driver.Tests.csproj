@@ -88,6 +88,7 @@
     <Compile Include="ReQL\DateAndTimeTests.cs" />
     <Compile Include="ReQL\Examples.cs" />
     <Compile Include="ReQL\ExperimentalTests.cs" />
+    <Compile Include="ReQL\GitHubIssues.cs" />
     <Compile Include="ReQL\GroupingTests.cs" />
     <Compile Include="ReQL\MapTests.cs" />
     <Compile Include="ReQL\OtherTests.cs" />

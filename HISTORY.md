@@ -1,4 +1,4 @@
-## v0.0.7-alpha3
+## v0.0.7-alpha4
 * Better DNX compatibility with dnx451 and dnxcore50.
 * Requires DNX RC1.
 

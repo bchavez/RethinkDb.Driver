@@ -1,9 +1,16 @@
-﻿using FluentAssertions;
+﻿using System.Collections.Generic;
+using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests.Utils;
 
 namespace RethinkDb.Driver.Tests.ReQL
 {
+    public class Basket
+    {
+        public int id { get; set; }
+        public List<string> Items { get; set; }
+    }
+
     [TestFixture]
     [Explicit]
     public class GitHubIssues : QueryTestFixture
@@ -14,20 +21,25 @@ namespace RethinkDb.Driver.Tests.ReQL
             var table = r.db(DbName).table(TableName);
             table.delete().run(conn);
 
-            var game = new Game {id = 99, player = "cowboy", points = 5, type = "open"};
+            var basket = new Basket {id = 99};
 
-            table.insert(game).run(conn);
+            table.insert(basket).run(conn);
 
-            game.type = "close";
+            basket.Items = new List<string>
+                {
+                    "Apple",
+                    "Orange",
+                    "Kiwi"
+                };
 
-            table.update(game).run(conn);
+            table.update(basket).run(conn);
 
-            Game fromDb = table.get(99).run<Game>(conn);
+            Basket fromDb = table.get(99).run<Basket>(conn);
 
             fromDb.Dump();
 
             fromDb.id.Should().Be(99);
-            fromDb.type.Should().Be("close");
+            fromDb.Items.Should().Equal("Apple", "Orange", "Kiwi");
         }
     }
 

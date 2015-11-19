@@ -1,5 +1,5 @@
 #if DNX
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.Logging;
 #else
 using Common.Logging;
 #endif

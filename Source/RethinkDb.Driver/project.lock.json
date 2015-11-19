@@ -240,7 +240,7 @@
           "lib/DNXCore50/System.Globalization.dll": {}
         }
       },
-      "System.IO/4.0.11-rc2-23513": {
+      "System.IO/4.0.11-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.20",
@@ -330,6 +330,16 @@
         },
         "runtime": {
           "lib/DNXCore50/System.Linq.Expressions.dll": {}
+        }
+      },
+      "System.Net.Primitives/4.0.11-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.0",
+          "System.Runtime.Handles": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Net.Primitives.dll": {}
         }
       },
       "System.Net.Sockets/4.0.10-beta-23123": {
@@ -762,6 +772,18 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
+      "runtime.win7.System.Net.Primitives/4.0.11-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.Networking": "4.0.1-beta-23516"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Net.Primitives.dll": {}
+        }
+      },
       "runtime.win7.System.Private.Uri/4.0.1-beta-23516": {
         "type": "package",
         "compile": {
@@ -918,7 +940,7 @@
           "lib/DNXCore50/System.Globalization.dll": {}
         }
       },
-      "System.IO/4.0.11-rc2-23513": {
+      "System.IO/4.0.11-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.20",
@@ -1010,6 +1032,16 @@
           "lib/DNXCore50/System.Linq.Expressions.dll": {}
         }
       },
+      "System.Net.Primitives/4.0.11-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.0",
+          "System.Runtime.Handles": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Net.Primitives.dll": {}
+        }
+      },
       "System.Net.Sockets/4.0.10-beta-23123": {
         "type": "package",
         "dependencies": {
@@ -1038,7 +1070,7 @@
           "lib/dotnet/System.ObjectModel.dll": {}
         }
       },
-      "System.Private.Networking/4.0.0": {
+      "System.Private.Networking/4.0.1-beta-23516": {
         "type": "package",
         "dependencies": {
           "Microsoft.Win32.Primitives": "4.0.0",
@@ -1057,6 +1089,8 @@
           "System.Runtime.Extensions": "4.0.10",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23516",
+          "System.Security.Principal": "4.0.0",
           "System.Threading": "4.0.10",
           "System.Threading.Overlapped": "4.0.0",
           "System.Threading.Tasks": "4.0.10"
@@ -1231,6 +1265,36 @@
         },
         "runtime": {
           "lib/DNXCore50/System.Runtime.InteropServices.dll": {}
+        }
+      },
+      "System.Security.Cryptography.Primitives/4.0.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Diagnostics.Debug": "4.0.0",
+          "System.Globalization": "4.0.0",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Threading": "4.0.0",
+          "System.Threading.Tasks": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.1/System.Security.Cryptography.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Security.Cryptography.Primitives.dll": {}
+        }
+      },
+      "System.Security.Principal/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/System.Security.Principal.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/System.Security.Principal.dll": {}
         }
       },
       "System.Text.Encoding/4.0.11-beta-23516": {
@@ -1339,6 +1403,18 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
+      "runtime.win7.System.Net.Primitives/4.0.11-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.Networking": "4.0.1-beta-23516"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Net.Primitives.dll": {}
+        }
+      },
       "runtime.win7.System.Private.Uri/4.0.1-beta-23516": {
         "type": "package",
         "compile": {
@@ -1495,7 +1571,7 @@
           "lib/DNXCore50/System.Globalization.dll": {}
         }
       },
-      "System.IO/4.0.11-rc2-23513": {
+      "System.IO/4.0.11-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.20",
@@ -1587,6 +1663,16 @@
           "lib/DNXCore50/System.Linq.Expressions.dll": {}
         }
       },
+      "System.Net.Primitives/4.0.11-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.0",
+          "System.Runtime.Handles": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Net.Primitives.dll": {}
+        }
+      },
       "System.Net.Sockets/4.0.10-beta-23123": {
         "type": "package",
         "dependencies": {
@@ -1615,7 +1701,7 @@
           "lib/dotnet/System.ObjectModel.dll": {}
         }
       },
-      "System.Private.Networking/4.0.0": {
+      "System.Private.Networking/4.0.1-beta-23516": {
         "type": "package",
         "dependencies": {
           "Microsoft.Win32.Primitives": "4.0.0",
@@ -1634,6 +1720,8 @@
           "System.Runtime.Extensions": "4.0.10",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23516",
+          "System.Security.Principal": "4.0.0",
           "System.Threading": "4.0.10",
           "System.Threading.Overlapped": "4.0.0",
           "System.Threading.Tasks": "4.0.10"
@@ -1808,6 +1896,36 @@
         },
         "runtime": {
           "lib/DNXCore50/System.Runtime.InteropServices.dll": {}
+        }
+      },
+      "System.Security.Cryptography.Primitives/4.0.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Diagnostics.Debug": "4.0.0",
+          "System.Globalization": "4.0.0",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Threading": "4.0.0",
+          "System.Threading.Tasks": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.1/System.Security.Cryptography.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Security.Cryptography.Primitives.dll": {}
+        }
+      },
+      "System.Security.Principal/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/System.Security.Principal.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/System.Security.Principal.dll": {}
         }
       },
       "System.Text.Encoding/4.0.11-beta-23516": {
@@ -1977,6 +2095,19 @@
         "Newtonsoft.Json.7.0.1.nupkg.sha512",
         "Newtonsoft.Json.nuspec",
         "tools/install.ps1"
+      ]
+    },
+    "runtime.win7.System.Net.Primitives/4.0.11-beta-23516": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "V4bv5VTaBcy0FekQbKgJKP+c+RJhNxOacpngLGADf9kUqoNkSJLj083d4I0L5iTKMWALlAN/tfzAlRm0VxiDeA==",
+      "files": [
+        "lib/DNXCore50/System.Net.Primitives.dll",
+        "ref/dotnet/_._",
+        "runtime.win7.System.Net.Primitives.4.0.11-beta-23516.nupkg",
+        "runtime.win7.System.Net.Primitives.4.0.11-beta-23516.nupkg.sha512",
+        "runtime.win7.System.Net.Primitives.nuspec",
+        "runtimes/win7/lib/netcore50/System.Net.Primitives.dll"
       ]
     },
     "runtime.win7.System.Private.Uri/4.0.1-beta-23516": {
@@ -2426,10 +2557,10 @@
         "System.Globalization.nuspec"
       ]
     },
-    "System.IO/4.0.11-rc2-23513": {
+    "System.IO/4.0.11-beta-23516": {
       "type": "package",
       "serviceable": true,
-      "sha512": "D1ojIZ7S+o7NIrPqFvGFu3EYlWMR3kLcscZHzP03RnLdk1CbmPPHisaVTif8TokkiptWVup/PTzhCfXydRF7aQ==",
+      "sha512": "dR1DaWrF0zsV2z/GVs8xVvMds6xu0ykuwv+VPou8wbpJ1XxGBK9g6v5F84DWL8Q1qi+6Kyb56wbZYdYQO8OMew==",
       "files": [
         "lib/DNXCore50/System.IO.dll",
         "lib/MonoAndroid10/_._",
@@ -2483,8 +2614,8 @@
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "runtimes/win8-aot/lib/netcore50/System.IO.dll",
-        "System.IO.4.0.11-rc2-23513.nupkg",
-        "System.IO.4.0.11-rc2-23513.nupkg.sha512",
+        "System.IO.4.0.11-beta-23516.nupkg",
+        "System.IO.4.0.11-beta-23516.nupkg.sha512",
         "System.IO.nuspec"
       ]
     },
@@ -2630,6 +2761,77 @@
         "System.Linq.Expressions.nuspec"
       ]
     },
+    "System.Net.Primitives/4.0.11-beta-23516": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "lEMwORLJNk7tEAO+4RJ/aPjF2KlismwYxCYgqJZza3ArRznAqrzKeCpcnBlo3zJPHjR1tSNhRWk9SLRGGV2K3Q==",
+      "files": [
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet5.1/de/System.Net.Primitives.xml",
+        "ref/dotnet5.1/es/System.Net.Primitives.xml",
+        "ref/dotnet5.1/fr/System.Net.Primitives.xml",
+        "ref/dotnet5.1/it/System.Net.Primitives.xml",
+        "ref/dotnet5.1/ja/System.Net.Primitives.xml",
+        "ref/dotnet5.1/ko/System.Net.Primitives.xml",
+        "ref/dotnet5.1/ru/System.Net.Primitives.xml",
+        "ref/dotnet5.1/System.Net.Primitives.dll",
+        "ref/dotnet5.1/System.Net.Primitives.xml",
+        "ref/dotnet5.1/zh-hans/System.Net.Primitives.xml",
+        "ref/dotnet5.1/zh-hant/System.Net.Primitives.xml",
+        "ref/dotnet5.2/de/System.Net.Primitives.xml",
+        "ref/dotnet5.2/es/System.Net.Primitives.xml",
+        "ref/dotnet5.2/fr/System.Net.Primitives.xml",
+        "ref/dotnet5.2/it/System.Net.Primitives.xml",
+        "ref/dotnet5.2/ja/System.Net.Primitives.xml",
+        "ref/dotnet5.2/ko/System.Net.Primitives.xml",
+        "ref/dotnet5.2/ru/System.Net.Primitives.xml",
+        "ref/dotnet5.2/System.Net.Primitives.dll",
+        "ref/dotnet5.2/System.Net.Primitives.xml",
+        "ref/dotnet5.2/zh-hans/System.Net.Primitives.xml",
+        "ref/dotnet5.2/zh-hant/System.Net.Primitives.xml",
+        "ref/dotnet5.4/de/System.Net.Primitives.xml",
+        "ref/dotnet5.4/es/System.Net.Primitives.xml",
+        "ref/dotnet5.4/fr/System.Net.Primitives.xml",
+        "ref/dotnet5.4/it/System.Net.Primitives.xml",
+        "ref/dotnet5.4/ja/System.Net.Primitives.xml",
+        "ref/dotnet5.4/ko/System.Net.Primitives.xml",
+        "ref/dotnet5.4/ru/System.Net.Primitives.xml",
+        "ref/dotnet5.4/System.Net.Primitives.dll",
+        "ref/dotnet5.4/System.Net.Primitives.xml",
+        "ref/dotnet5.4/zh-hans/System.Net.Primitives.xml",
+        "ref/dotnet5.4/zh-hant/System.Net.Primitives.xml",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/netcore50/de/System.Net.Primitives.xml",
+        "ref/netcore50/es/System.Net.Primitives.xml",
+        "ref/netcore50/fr/System.Net.Primitives.xml",
+        "ref/netcore50/it/System.Net.Primitives.xml",
+        "ref/netcore50/ja/System.Net.Primitives.xml",
+        "ref/netcore50/ko/System.Net.Primitives.xml",
+        "ref/netcore50/ru/System.Net.Primitives.xml",
+        "ref/netcore50/System.Net.Primitives.dll",
+        "ref/netcore50/System.Net.Primitives.xml",
+        "ref/netcore50/zh-hans/System.Net.Primitives.xml",
+        "ref/netcore50/zh-hant/System.Net.Primitives.xml",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "runtime.json",
+        "System.Net.Primitives.4.0.11-beta-23516.nupkg",
+        "System.Net.Primitives.4.0.11-beta-23516.nupkg.sha512",
+        "System.Net.Primitives.nuspec"
+      ]
+    },
     "System.Net.Sockets/4.0.10-beta-23123": {
       "type": "package",
       "sha512": "J6O9EyPZuOiL3tvTPY8j745In3d7bb5D255WopeY3RVvxvTtAzBIUaN1Z19wBGWoa0gT19uqQE62E6fO0zODyg==",
@@ -2702,6 +2904,20 @@
         "ref/netcore50/_._",
         "System.Private.Networking.4.0.0.nupkg",
         "System.Private.Networking.4.0.0.nupkg.sha512",
+        "System.Private.Networking.nuspec"
+      ]
+    },
+    "System.Private.Networking/4.0.1-beta-23516": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "YjBc3HcJBVtoeFNe9cY33dyTGME2T7B5mwuh/wBpxuGuvBMBWqrRKWkSOmnUT7ON7/U2SkpVeM5FCeqE3QRMNw==",
+      "files": [
+        "lib/DNXCore50/System.Private.Networking.dll",
+        "lib/netcore50/System.Private.Networking.dll",
+        "ref/dnxcore50/_._",
+        "ref/netcore50/_._",
+        "System.Private.Networking.4.0.1-beta-23516.nupkg",
+        "System.Private.Networking.4.0.1-beta-23516.nupkg.sha512",
         "System.Private.Networking.nuspec"
       ]
     },
@@ -3204,6 +3420,61 @@
         "System.Runtime.InteropServices.nuspec"
       ]
     },
+    "System.Security.Cryptography.Primitives/4.0.0-beta-23516": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "YEHmq6x6u2grEuZFAX9au+6uY8SCIkA6lu4wbrt2C71RFQKWEyO5G9+pk1v0QcNPqay/38aSm9v/BoTFNQii1Q==",
+      "files": [
+        "lib/dotnet5.4/System.Security.Cryptography.Primitives.dll",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Security.Cryptography.Primitives.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet5.1/System.Security.Cryptography.Primitives.dll",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Security.Cryptography.Primitives.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "System.Security.Cryptography.Primitives.4.0.0-beta-23516.nupkg",
+        "System.Security.Cryptography.Primitives.4.0.0-beta-23516.nupkg.sha512",
+        "System.Security.Cryptography.Primitives.nuspec"
+      ]
+    },
+    "System.Security.Principal/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "FOhq3jUOONi6fp5j3nPYJMrKtSJlqAURpjiO3FaDIV4DJNEYymWW5uh1pfxySEB8dtAW+I66IypzNge/w9OzZQ==",
+      "files": [
+        "lib/dotnet/System.Security.Principal.dll",
+        "lib/net45/_._",
+        "lib/netcore50/System.Security.Principal.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "ref/dotnet/de/System.Security.Principal.xml",
+        "ref/dotnet/es/System.Security.Principal.xml",
+        "ref/dotnet/fr/System.Security.Principal.xml",
+        "ref/dotnet/it/System.Security.Principal.xml",
+        "ref/dotnet/ja/System.Security.Principal.xml",
+        "ref/dotnet/ko/System.Security.Principal.xml",
+        "ref/dotnet/ru/System.Security.Principal.xml",
+        "ref/dotnet/System.Security.Principal.dll",
+        "ref/dotnet/System.Security.Principal.xml",
+        "ref/dotnet/zh-hans/System.Security.Principal.xml",
+        "ref/dotnet/zh-hant/System.Security.Principal.xml",
+        "ref/net45/_._",
+        "ref/netcore50/System.Security.Principal.dll",
+        "ref/netcore50/System.Security.Principal.xml",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
+        "System.Security.Principal.4.0.0.nupkg",
+        "System.Security.Principal.4.0.0.nupkg.sha512",
+        "System.Security.Principal.nuspec"
+      ]
+    },
     "System.Text.Encoding/4.0.11-beta-23516": {
       "type": "package",
       "serviceable": true,
@@ -3406,11 +3677,12 @@
     "DNXCore,Version=v5.0": [
       "System.Text.Encoding >= 4.0.11-beta-23516",
       "System.Dynamic.Runtime >= 4.0.11-rc2-23513",
-      "System.IO >= 4.0.11-rc2-23513",
+      "System.IO >= 4.0.11-beta-23516",
       "System.ComponentModel >= 4.0.1-beta-23516",
       "System.Reflection.Extensions >= 4.0.1-beta-23516",
       "Microsoft.Extensions.Logging.Abstractions >= 1.0.0-rc1-final",
-      "System.Net.Sockets >= 4.0.10-beta-23123"
+      "System.Net.Sockets >= 4.0.10-beta-23123",
+      "System.Net.Primitives >= 4.0.11-beta-23516"
     ]
   }
 }

@@ -1,49 +1,60 @@
 {
-  "version": "0.0.0-localbuild",
-  "description": "A RethinkDB database driver written in C# striving for 100% ReQL API compatibility and completeness. Architecturally, this driver is a one-to-one port of the official Java driver.",
-  "authors": [
-    "Brian Chavez"
-  ],
-  "tags": [
-    ""
-  ],
-  "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
-  "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
-  "configurations": {
-    "Debug": {
-      "compilationOptions": {}
+    "version": "0.0.0-localbuild",
+    "description": "A RethinkDB database driver written in C# striving for 100% ReQL API compatibility and completeness. Architecturally, this driver is a one-to-one port of the official Java driver.",
+    "releaseNotes": "JJJJ",
+    "authors": [
+        "Brian Chavez"
+    ],
+    "tags": [
+        ""
+    ],
+    "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
+    "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
+    "configurations": {
+        "Debug": {
+            "compilationOptions": { }
+        },
+        "Release": {
+            "compilationOptions": {
+                "optimize": true
+            }
+        }
     },
-    "Release": {
-      "compilationOptions": {
-        "optimize": true
-      }
-    }
-  },
-  "dependencies": {
-    "Newtonsoft.Json": "7.0.1"
-  },
-  "frameworks": {
-    "net45": {
-      "dependencies": {
-        "Common.Logging": "3.3.0"
-      },
-      "frameworkAssemblies": {}
+    "dependencies": {
+        "Newtonsoft.Json": "7.0.1"
     },
-    "dotnet": {
-      "dependencies": {
-        "System.Text.Encoding": "4.0.11-beta-23405",
-        "System.Dynamic.Runtime": "4.0.10-beta-23109",
-        "System.IO": "4.0.11-beta-23225",
-        "System.ComponentModel": "4.0.1-beta-23405",
-        "System.Reflection.Extensions": "4.0.1-beta-23225",
-        "Microsoft.Framework.Logging.Abstractions": "1.0.0-beta8",
-        "System.Net.Sockets": "4.0.10-beta-23109"
-      },
-      "compilationOptions": {
-        "define": [
-          "DNX"
-        ]
-      }
+    "frameworks": {
+        "net45": {
+            "dependencies": {
+                "Common.Logging": "3.3.0"
+            },
+            "frameworkAssemblies": { }
+        },
+        "dnx451": {
+            "dependencies": {
+                "Microsoft.Framework.Logging.Abstractions": "1.0.0-rc1-15644"
+            },
+            "compilationOptions": {
+                "define": [
+                    "DNX"
+                ]
+            }
+        },
+        "dnxcore50": {
+            "dependencies": {
+                "System.Text.Encoding": "4.0.11-rc2-23513",
+                "System.Dynamic.Runtime": "4.0.11-rc2-23513",
+                "System.IO": "4.0.11-rc2-23513",
+                "System.ComponentModel": "4.0.1-rc2-23513",
+                "System.Reflection.Extensions": "4.0.1-rc2-23513",
+                "Microsoft.Framework.Logging.Abstractions": "1.0.0-rc1-15644",
+                "System.Net.Sockets": "4.1.0-rc2-23513"
+            },
+            "compilationOptions": {
+                "define": [
+                    "DNX"
+                ]
+            }
+        }
     }
-  }
 }

@@ -19,22 +19,41 @@
     </releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>rethinkdb database driver reql</tags>
-    <dependencies>
-      <group targetFramework="net45">
-        <dependency id="Newtonsoft.Json" version="[7,8)" />
-        <dependency id="Common.Logging" version="3.3.0" />
-      </group>
-      <group targetFramework=".NETPlatform5.0">
-        <dependency id="Newtonsoft.Json" version="7.0.1" />
-        <dependency id="System.Text.Encoding" version="4.0.11-beta-23405" />
-        <dependency id="System.Dynamic.Runtime" version="4.0.10-beta-23109" />
-        <dependency id="System.IO" version="4.0.11-beta-23225" />
-        <dependency id="System.Reflection.Extensions" version="4.0.1-beta-23225" />
-        <dependency id="System.ComponentModel" version="4.0.1-beta-23405" />
-        <dependency id="Microsoft.Framework.Logging.Abstractions" version="1.0.0-beta8" />
-        <dependency id="System.Net.Sockets" version="4.0.10-beta-23109" />
-      </group>
+      <dependencies>
+          
+          <group targetFramework="net45">
+              <dependency id="Newtonsoft.Json" version="[7,8)" />
+              <dependency id="Common.Logging" version="3.3.0" />
+          </group>
+
+        <group targetFramework="DNX4.5.1">
+            <dependency id="Newtonsoft.Json" version="[7,8)" />
+            <dependency id="Microsoft.Framework.Logging.Abstractions" version="1.0.0-rc1-15644" />
+        </group>
+        <group targetFramework="DNXCore5.0">
+            <dependency id="Newtonsoft.Json" version="[7,8)" />
+            <dependency id="System.Text.Encoding" version="4.0.11-rc2-23513" />
+            <dependency id="System.Dynamic.Runtime" version="4.0.11-rc2-23513" />
+            <dependency id="System.IO" version="4.0.11-rc2-23513" />
+            <dependency id="System.ComponentModel" version="4.0.1-rc2-23513" />
+            <dependency id="System.Reflection.Extensions" version="4.0.1-rc2-23513" />
+            <dependency id="Microsoft.Framework.Logging.Abstractions" version="1.0.0-rc1-15644" />
+            <dependency id="System.Net.Sockets" version="4.1.0-rc2-23513" />
+        </group>
+      
     </dependencies>
+
+      <frameworkAssemblies>
+          <frameworkAssembly assemblyName="mscorlib" targetFramework=".NETFramework4.5" />
+          <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.5" />
+          <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.5" />
+          <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.5" />
+          <frameworkAssembly assemblyName="mscorlib" targetFramework="DNX4.5.1" />
+          <frameworkAssembly assemblyName="System" targetFramework="DNX4.5.1" />
+          <frameworkAssembly assemblyName="System.Core" targetFramework="DNX4.5.1" />
+          <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="DNX4.5.1" />
+      </frameworkAssemblies>
+
   </metadata>
 
   <files>
@@ -42,9 +61,13 @@
     <file src="Release\net45\RethinkDb.Driver.pdb" target="lib\net45" />
     <file src="Release\net45\RethinkDb.Driver.XML" target="lib\net45" />
 
-    <file src="Release\dotnet\RethinkDb.Driver.dll" target="lib\dotnet" />
-    <file src="Release\dotnet\RethinkDb.Driver.pdb" target="lib\dotnet" />
-    <file src="Release\dotnet\RethinkDb.Driver.XML" target="lib\dotnet" />
+    <file src="Release\dotnet\RethinkDb.Driver.dll" target="lib\dnx451" />
+    <file src="Release\dotnet\RethinkDb.Driver.pdb" target="lib\dnx451" />
+    <file src="Release\dotnet\RethinkDb.Driver.XML" target="lib\dnx451" />
+      
+    <file src="Release\dotnet\RethinkDb.Driver.dll" target="lib\dnxcore50" />
+    <file src="Release\dotnet\RethinkDb.Driver.pdb" target="lib\dnxcore50" />
+    <file src="Release\dotnet\RethinkDb.Driver.XML" target="lib\dnxcore50" />
 
     <file src="..\..\Source\RethinkDb.Driver\**\*.cs"
             exclude="..\..\Source\RethinkDb.Driver\obj\**" target="src" />

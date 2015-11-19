@@ -114,7 +114,7 @@ namespace RethinkDb.Driver.Net
         {
             try
             {
-#if DOTNET
+#if DNXCORE50
                 socketChannel.Dispose();
 #else
                 socketChannel.Close();

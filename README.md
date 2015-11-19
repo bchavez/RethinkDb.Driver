@@ -18,7 +18,7 @@ The basic mechanics and architecture of both drivers are the same.
 ```
 Install-Package RethinkDb.Driver -Pre
 ```
-While CoreCLR is still in beta, an additional restore fallback source is needed to restore `Microsoft.Framework.Logging.Abstractions` reference:
+While **CoreCLR** is still in beta, an additional restore fallback source is needed to restore `Microsoft.Framework.Logging.Abstractions` reference:
 ```
 dnu restore --fallbacksource https://www.myget.org/F/aspnetvnext/api/v2/
 ```
@@ -41,7 +41,7 @@ dnu restore --fallbacksource https://www.myget.org/F/aspnetvnext/api/v2/
 </tr>
 <tr>
  <td><strong>CoreCLR</strong></td>
- <td colspan='3' align='center'>All platforms <strong>1.0.0-beta7</strong> or higher</td>
+ <td colspan='3' align='center'>All platforms <strong>1.0.0-rc1-final</strong> or higher</td>
 </tr>
 <tr>
  <td><strong>.NET Framework</strong</td>

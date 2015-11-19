@@ -1,5 +1,6 @@
 ## v0.0.7-alpha3
 * Better DNX compatibility with dnx451 and dnxcore50.
+* Requires DNX RC1.
 
 ## v0.0.7-alpha2
 * Allow logging in CoreCLR - In startup: loggerFactory.EnableRethinkDbLogging();

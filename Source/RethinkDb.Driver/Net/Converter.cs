@@ -1,4 +1,7 @@
+using System;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using RethinkDb.Driver.Net.JsonConverters;
 
 namespace RethinkDb.Driver.Net
@@ -28,6 +31,8 @@ namespace RethinkDb.Driver.Net
                         }
                 };
             Serializer = JsonSerializer.CreateDefault(settings);
+
+
         }
 
         public static JsonSerializer Serializer { get; set; }

@@ -9,10 +9,16 @@ namespace RethinkDb.Driver.Tests.ReQL
     {
         public int id { get; set; }
         public List<string> Items { get; set; }
+        public List<Revision> Revisions { get; set; }
+        public int[][] ArrayOfInts { get; set; }
+    }
+
+    public class Revision
+    {
+        public byte[] Bytes { get; set; }
     }
 
     [TestFixture]
-    [Explicit]
     public class GitHubIssues : QueryTestFixture
     {
         [Test]
@@ -32,6 +38,13 @@ namespace RethinkDb.Driver.Tests.ReQL
                     "Kiwi"
                 };
 
+            basket.Revisions = new List<Revision>
+                {
+                    new Revision {Bytes = new byte[] {1, 2, 3}}
+                };
+
+            basket.ArrayOfInts = new[] {new[] {1, 2, 3}, new[] {4, 5, 6}};
+
             table.update(basket).run(conn);
 
             Basket fromDb = table.get(99).run<Basket>(conn);
@@ -40,6 +53,8 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             fromDb.id.Should().Be(99);
             fromDb.Items.Should().Equal("Apple", "Orange", "Kiwi");
+            fromDb.Revisions.ShouldBeEquivalentTo(basket.Revisions);
+            fromDb.ArrayOfInts.ShouldBeEquivalentTo(new[] { new[] {1, 2, 3}, new[] {4, 5, 6}});
         }
     }
 

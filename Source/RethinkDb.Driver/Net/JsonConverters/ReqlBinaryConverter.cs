@@ -1,33 +1,19 @@
 using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Net.JsonConverters
 {
-    public class ReqlBinaryConverter :
-#if DNX
-        JsonConverter
-#else
-        BinaryConverter
-#endif
+    public class ReqlBinaryConverter : JsonConverter
     {
-        private bool useInternal = false;
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             writer.WriteStartObject(); //convert to $reql_type$
             writer.WritePropertyName(Converter.PseudoTypeKey);
             writer.WriteValue(Converter.Binary);
             writer.WritePropertyName("data");
-            if (useInternal)
-            {
-#if !DNX
-                base.WriteJson(writer, value, serializer);
-#endif
-            }
-            else
-            {
-                writer.WriteValue(value);
-            }
+
+            writer.WriteValue(Convert.ToBase64String((byte[])value));
+
             writer.WriteEndObject();
         }
 
@@ -52,14 +38,6 @@ namespace RethinkDb.Driver.Net.JsonConverters
 
             reader.ReadAndAssertProperty("data");
 
-            if (useInternal)
-            {
-#if !DNX
-                reader.ReadAndAssert();
-                return base.ReadJson(reader, objectType, existingValue, serializer);
-#endif
-            }
-
             var data = reader.ReadAsBytes();
 
             //realign and get out of the pseudo type
@@ -71,10 +49,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
 
         public override bool CanConvert(Type objectType)
         {
-#if !DNX
-            useInternal = base.CanConvert(objectType);
-#endif
-            return useInternal || objectType == typeof(byte[]);
+            return objectType == typeof(byte[]);
         }
     }
 }

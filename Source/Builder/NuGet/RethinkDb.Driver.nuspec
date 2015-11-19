@@ -28,17 +28,17 @@
 
         <group targetFramework="DNX4.5.1">
             <dependency id="Newtonsoft.Json" version="[7,8)" />
-            <dependency id="Microsoft.Framework.Logging.Abstractions" version="1.0.0-rc1-15644" />
+            <dependency id="Microsoft.Extensions.Logging.Abstractions" version="1.0.0-rc1-final" />
         </group>
         <group targetFramework="DNXCore5.0">
             <dependency id="Newtonsoft.Json" version="[7,8)" />
-            <dependency id="System.Text.Encoding" version="4.0.11-rc2-23513" />
+            <dependency id="System.Text.Encoding" version="4.0.11-beta-23516" />
             <dependency id="System.Dynamic.Runtime" version="4.0.11-rc2-23513" />
-            <dependency id="System.IO" version="4.0.11-rc2-23513" />
-            <dependency id="System.ComponentModel" version="4.0.1-rc2-23513" />
-            <dependency id="System.Reflection.Extensions" version="4.0.1-rc2-23513" />
-            <dependency id="Microsoft.Framework.Logging.Abstractions" version="1.0.0-rc1-15644" />
-            <dependency id="System.Net.Sockets" version="4.1.0-rc2-23513" />
+            <dependency id="System.IO" version="4.0.11-beta-23516" />
+            <dependency id="System.ComponentModel" version="4.0.1-beta-23516" />
+            <dependency id="System.Reflection.Extensions" version="4.0.1-beta-23516" />
+            <dependency id="Microsoft.Extensions.Logging.Abstractions" version="1.0.0-rc1-final" />
+            <dependency id="System.Net.Sockets" version="4.0.10-beta-23123" />
         </group>
       
     </dependencies>

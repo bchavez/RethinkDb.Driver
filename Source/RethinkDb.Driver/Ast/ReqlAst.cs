@@ -87,6 +87,22 @@ namespace RethinkDb.Driver.Ast
             return conn.runCursor<T>(this, globalOpts);
         }
 
+        /// <summary>
+        /// Helper shortcut for DML type of queries that returns # of inserts, deletes, errors.
+        /// </summary>
+        public virtual Result runResult(Connection conn, object globalOpts = null)
+        {
+            return conn.run<Result>(this, globalOpts) as Result;
+        }
+        /// <summary>
+        /// Helper shortcut for change feeds, use if your query is expecting an infinite changes() stream.
+        /// </summary>
+        /// <typeparam name="T">The document type of new/old value</typeparam>
+        public virtual Cursor<Change<T>> runChanges<T>(Connection conn, object globalOpts = null)
+        {
+            return conn.runCursor<Change<T>>(this, globalOpts);
+        }
+
         public void runNoReply(Connection conn, object globalOpts = null)
         {
             conn.runNoReply(this, globalOpts);

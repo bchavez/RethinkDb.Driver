@@ -1,3 +1,9 @@
+## v0.0.7-alpha6
+* Added run helpers: runResult(), runChanges<T>()
+* Added EnsureSuccess() to help ensure query execution has no errors. Example: insert().runResult().EnsureSuccess(); throws if errors.
+* Change[T] class helper to help with change feeds.
+* Reactive Extensions .ToObservable() compatibility with .NET 4.5 framework and change feeds.
+
 ## v0.0.7-alpha5
 * Issue 13: Fixed POCO:byte[] not serializing correctly
 

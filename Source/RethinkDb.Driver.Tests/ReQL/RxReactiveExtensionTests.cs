@@ -19,7 +19,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             var result = r.db(DbName).table(TableName)
                 .delete()[new {return_changes = true}]
                 .runResult(conn)
-                .EnsureSuccess();
+                .AssertNoErrors();
 
             result.Dump();
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
 namespace RethinkDb.Driver.Model
@@ -82,34 +81,5 @@ namespace RethinkDb.Driver.Model
         public uint TablesCreated { get; set; }
         [JsonProperty("tables_dropped")]
         public uint TablesDropped { get; set; }
-    }
-
-    public static class ExtensionsForResult
-    {
-        public static Result EnsureSuccess(this Result result)
-        {
-            if( result.Errors != 0 )
-            {
-                throw new ReqlError(result.FirstError);
-            }
-            return result;
-        }
-    }
-
-    public class Change<T>
-    {
-        [JsonProperty("old_val")]
-        public T OldValue { get; set; }
-        [JsonProperty("new_val")]
-        public T NewValue { get; set; }
-
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ChangeState? State { get; set; }
-    }
-
-    public enum ChangeState
-    {
-        Initializing = 1,
-        Ready
     }
 }

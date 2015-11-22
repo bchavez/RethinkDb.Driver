@@ -223,6 +223,13 @@ namespace RethinkDb.Driver.Net
             this.pump?.Cancel();
             try
             {
+                this.br.Close();
+
+            }
+            catch { }
+
+    try
+            {
 #if DNXCORE50
                 socketChannel.Dispose();
 #else

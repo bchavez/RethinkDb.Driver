@@ -5,6 +5,7 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Proto;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
@@ -152,7 +153,12 @@ namespace RethinkDb.Driver.Net
                     if( error != null )
                         return false; //we don't throw in .net
 
-                    connection.ReadResponse(query, NetUtil.Deadline(timeout));
+                    //connection.ReadResponse(query, NetUtil.Deadline(timeout));
+                    //we're going to need to extend our own cursor once we've
+                    //finished awaiting.
+                    var result = connection.AwaitResponseAsync(query, NetUtil.Deadline(timeout))
+                        .RunSync();
+                    this.Extend(result);
                 }
 
                 if( this.items.Count > 0 )

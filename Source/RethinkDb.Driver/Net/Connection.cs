@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
@@ -43,7 +44,7 @@ namespace RethinkDb.Driver.Net
             }
 
             hostname = builder._hostmame ?? "localhost";
-            port = builder._port ?? 28015;
+            port = builder._port ?? RethinkDBConstants.DEFAULT_PORT;
             connectTimeout = builder._timeout;
 
             instanceMaker = builder.instanceMaker;
@@ -126,7 +127,8 @@ namespace RethinkDb.Driver.Net
                 {
                     if( shouldNoReplyWait )
                     {
-                        noreplyWait();
+                        var task = noreplyWaitAsync();
+                        task.Wait();
                     }
                 }
                 finally
@@ -143,22 +145,17 @@ namespace RethinkDb.Driver.Net
             return Interlocked.Increment(ref nextToken);
         }
 
-        internal virtual Response ReadResponse(Query query)
+        internal virtual async Task<Response> AwaitResponseAsync(Query query, long? deadline = null)
         {
-            return ReadResponse(query, null);
+            return await checkOpen().AwaitResponseAsync(query, deadline);
         }
 
-        internal virtual Response ReadResponse(Query query, long? deadline)
-        {
-            return checkOpen().ReadResponse(query, deadline);
-        }
-
-        internal virtual Cursor<T> RunQueryCursor<T>(Query query)
+        internal async virtual Task<Cursor<T>> RunQueryCursorAsync<T>(Query query)
         {
             var inst = checkOpen();
             if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
             inst.Socket.WriteQuery(query.Token, query.Serialize());
-            Response res = inst.ReadResponse(query);
+            Response res = await inst.AwaitResponseAsync(query);
             if( res.IsPartial || res.IsSequence )
             {
                 return Cursor<T>.create(this, query, res);
@@ -166,21 +163,21 @@ namespace RethinkDb.Driver.Net
             throw new ReqlDriverError("The query response can't be converted to a Cursor<T>. The response is not a sequence or partial. Use `.run` instead.");
         }
 
-        internal virtual void RunQueryNoreply(Query query)
+        internal virtual void RunQueryNoreply(Query query, bool assignAwaiter)
         {
             var inst = checkOpen();
             if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
-            inst.Socket.WriteQuery(query.Token, query.Serialize());
+            inst.Socket.WriteQuery(query.Token, query.Serialize(), assignAwaiter);
         }
 
-        internal virtual dynamic RunQuery<T>(Query query)
+        internal async virtual Task<dynamic> RunQueryAsync<T>(Query query)
         {
             var inst = checkOpen();
             if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
 
             inst.Socket.WriteQuery(query.Token, query.Serialize());
 
-            Response res = inst.ReadResponse(query);
+            Response res = await inst.AwaitResponseAsync(query);
 
             if( res.IsAtom )
             {
@@ -208,9 +205,9 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-        public virtual void noreplyWait()
+        public async virtual Task noreplyWaitAsync()
         {
-            RunQuery<object>(Query.NoReplyWait(NewToken()));
+            await RunQueryAsync<object>(Query.NoReplyWait(NewToken()));
         }
 
         private Query PrepareQuery(ReqlAst term, OptArgs globalOpts)
@@ -224,16 +221,16 @@ namespace RethinkDb.Driver.Net
             return q;
         }
 
-        public virtual dynamic run<T>(ReqlAst term, object globalOpts)
+        public async virtual Task<dynamic> runAsync<T>(ReqlAst term, object globalOpts)
         {
             Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
-            return RunQuery<T>(q);
+            return await RunQueryAsync<T>(q);
         }
 
-        public virtual Cursor<T> runCursor<T>(ReqlAst term, object globalOpts)
+        public async virtual Task<Cursor<T>> runCursorAsync<T>(ReqlAst term, object globalOpts)
         {
             Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
-            return RunQueryCursor<T>(q);
+            return await RunQueryCursorAsync<T>(q);
         }
 
         private void SetDefaultDb(OptArgs globalOpts)
@@ -256,17 +253,17 @@ namespace RethinkDb.Driver.Net
             var opts = OptArgs.fromAnonType(globalOpts);
             SetDefaultDb(opts);
             opts.with("noreply", true);
-            RunQueryNoreply(Query.Start(NewToken(), term, opts));
+            RunQueryNoreply(Query.Start(NewToken(), term, opts), assignAwaiter: false);
         }
 
         internal virtual void Continue(ICursor cursor)
         {
-            RunQueryNoreply(Query.Continue(cursor.Token));
+            RunQueryNoreply(Query.Continue(cursor.Token), assignAwaiter: true);
         }
 
         internal virtual void Stop(ICursor cursor)
         {
-            RunQueryNoreply(Query.Stop(cursor.Token));
+            RunQueryNoreply(Query.Stop(cursor.Token), assignAwaiter: false);
         }
 
 

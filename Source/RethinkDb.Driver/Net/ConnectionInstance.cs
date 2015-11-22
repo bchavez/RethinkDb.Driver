@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace RethinkDb.Driver.Net
     {
         internal SocketWrapper Socket { get; private set; }
 
-        private readonly Dictionary<long, ICursor> cursorCache = new Dictionary<long, ICursor>();
+        private readonly ConcurrentDictionary<long, ICursor> cursorCache = new ConcurrentDictionary<long, ICursor>();
         private bool closing = false;
 
         public virtual void Connect(string hostname, int port, byte[] handshake, TimeSpan? timeout)
@@ -43,45 +44,21 @@ namespace RethinkDb.Driver.Net
 
         internal virtual void RemoveFromCache(long token)
         {
-            cursorCache.Remove(token);
+            ICursor removed;
+            if( !cursorCache.TryRemove(token, out removed) )
+            {
+                Log.Trace($"Could not remove cursor token {token} from cursorCache.");
+            }
         }
 
-        internal virtual Response ReadResponse(Query query)
-        {
-            return ReadResponse(query, null);
-        }
-
-        internal virtual Response ReadResponse(Query query, long? deadline)
+        internal virtual async Task<Response> AwaitResponseAsync(Query query, long? deadline = null)
         {
             if( Socket == null )
                 throw new ReqlError("Socket not open");
 
             long token = query.Token;
-
-            while( true )
-            {
-                //may or maynot be the token we're looking for.
-                var res = this.Socket.Read();
-
-                ICursor cursor;
-                if( cursorCache.TryGetValue(res.Token, out cursor) )
-                {
-                    cursor.Extend(res);
-                    if( res.Token == token )
-                    {
-                        return null;
-                    }
-                }
-                else if( res.Token == token )
-                {
-                    return res;
-                }
-                else if( !closing )
-                {
-                    Close();
-                    throw new ReqlDriverError($"Unexpected response received: {res}");
-                }
-            }
+            //we always get the response we're looking for. :)
+            return await this.Socket.AwaitResponseAsync(token);
         }
     }
 }

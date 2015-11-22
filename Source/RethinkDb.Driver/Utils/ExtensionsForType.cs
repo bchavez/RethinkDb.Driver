@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace RethinkDb.Driver.Utils
 {
@@ -19,6 +20,15 @@ namespace RethinkDb.Driver.Utils
 #else
             return type.IsGenericType;
 #endif
+        }
+    }
+
+    public static class ExtensionsForTask
+    {
+        public static T RunSync<T>(this Task<T> task)
+        {
+            task.Wait();
+            return task.Result;
         }
     }
 }

@@ -221,7 +221,7 @@ namespace RethinkDb.Driver.Net
             this.pump?.Cancel();
             try
             {
-                this.br.Dispose();
+                this.br?.Dispose();
 
             }
             catch { }

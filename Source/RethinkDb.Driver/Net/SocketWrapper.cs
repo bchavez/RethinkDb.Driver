@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -8,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace RethinkDb.Driver.Net
 {
+    public class Awaiter : TaskCompletionSource<Response>
+    {
+        public bool IsWaiting { get; set; }
+    }
+
     public class SocketWrapper
     {
         private readonly TcpClient socketChannel;
@@ -105,42 +111,53 @@ namespace RethinkDb.Driver.Net
         {
             pump = new CancellationTokenSource();
 
+            var marker = new object();
+
             using( pump )
             {
                 while( true )
                 {
                     if( pump.Token.IsCancellationRequested )
                     {
-                        Log.Trace("Response Loop: shutting down. Cancel is requested.");
+                        Log.Trace("Response Pump: shutting down. Cancel is requested.");
                         break;
                     }
                     if( this.Closed )
                     {
-                        Log.Trace("Response Loop: The connected socket is not open. Response Loop exiting.");
+                        Log.Trace("Response Pump: The connected socket is not open. Response Loop exiting.");
                         break;
                     }
 
                     try
                     {
                         var response = this.Read();
-                        Log.Trace($"Message Pump: Read {response.Token}");
-                        TaskCompletionSource<Response> awaitingTask;
-                        if( awaiters.TryRemove(response.Token, out awaitingTask) )
+                        Awaiter awaitingTask;
+                        if( awaiters.TryGetValue(response.Token, out awaitingTask) )
                         {
-                            //Push, don't block.
-                            Task.Run(() => awaitingTask.SetResult(response));
-                            //See ya later alligator
+                            if( awaitingTask.IsWaiting )
+                            {
+                                awaitingTask.IsWaiting = false;
+                                //Push, don't block.
+                                Task.Run(() => awaitingTask.SetResult(response));
+                                //See ya later alligator
+                            }
+                            else
+                            {
+                                Log.Debug($"Response Pump: An attempt SetResult on an awaiter that is not waiting {response.Token} token. Are we out of sync?");
+                                //Wow, we already set this awaiter. Why are we here? Are we out of sync?
+                                Debugger.Break();
+                            }
                         }
                         else
                         {
                             //Wow, there's nobody waiting for this response.
-                            Log.Debug($"Response Loop: There are no awaiters waiting for {response.Token} token.");
+                            Log.Debug($"Response Pump: There are no awaiters waiting for {response.Token} token.");
                             //I guess we'll ignore for now, perhaps a cursor was killed
                         }
                     }
                     catch( Exception e ) when( !pump.Token.IsCancellationRequested )
                     {
-                        Log.Debug($"Response Loop: Exception - {e.Message}");
+                        Log.Debug($"Response Pump: Exception - {e.Message}");
                     }
                 }
             }
@@ -157,7 +174,7 @@ namespace RethinkDb.Driver.Net
             return Response.ParseFrom(token, Encoding.UTF8.GetString(response));
         }
 
-        private ConcurrentDictionary<long, TaskCompletionSource<Response>> awaiters = new ConcurrentDictionary<long, TaskCompletionSource<Response>>();
+        private ConcurrentDictionary<long, Awaiter> awaiters = new ConcurrentDictionary<long, Awaiter>();
 
         public virtual Task<Response> AwaitResponseAsync(long token)
         {
@@ -166,7 +183,15 @@ namespace RethinkDb.Driver.Net
             //If they indeed requested it, they should be waiting for the response.
             //So, all we're doing is giving them the Task that they were assigned 
             //when they wrote the query.
-            return awaiters[token].Task;
+            var task = awaiters[token].Task.ContinueWith(r =>
+                {
+                    //and,.... after you're done, finish by
+                    //removing yourself from the list of awaiters.
+                    Awaiter finished;
+                    awaiters.TryRemove(token, out finished);
+                    return r.Result;
+                });
+            return task;
         }
 
         private object writeLock = new object();
@@ -176,7 +201,7 @@ namespace RethinkDb.Driver.Net
             if( assignAwaiter )
             {
                 //Thanks for your query, you get assigned a TCS as well.
-                var tcs = new TaskCompletionSource<Response>();
+                var tcs = new Awaiter {IsWaiting = true};
                 awaiters[token] = tcs;
             }
 

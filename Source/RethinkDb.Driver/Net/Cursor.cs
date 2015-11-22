@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Proto;
@@ -31,6 +32,7 @@ namespace RethinkDb.Driver.Net
         protected internal int threshold = 1;
         protected internal Exception error = null;
         public bool IsFeed { get; }
+
 
         protected Cursor(Connection connection, Query query, Response firstResponse)
         {
@@ -158,6 +160,10 @@ namespace RethinkDb.Driver.Net
                     //finished awaiting.
                     var result = connection.AwaitResponseAsync(query, NetUtil.Deadline(timeout))
                         .RunSync();
+
+                    //there's a problem here....... with change feed types, 
+                    //of cursors, data can arrive without having to "send";
+
                     this.Extend(result);
                 }
 

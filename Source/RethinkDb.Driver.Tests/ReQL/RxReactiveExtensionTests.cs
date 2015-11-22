@@ -26,7 +26,8 @@ namespace RethinkDb.Driver.Tests.ReQL
             result.ChangesAs<JObject>().Dump();
 
             var changes = r.db(DbName).table(TableName)
-                .changes()[new {include_states = true, include_initial = true}]
+                //.changes()[new {include_states = true, include_initial = true}]
+                .changes()[new { include_states = true }]
                 //.runCursor<Change<JObject>>(conn);
                 .runChanges<JObject>(conn);
 

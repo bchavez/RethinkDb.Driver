@@ -58,7 +58,7 @@ namespace RethinkDb.Driver.Net
                     throw new ReqlDriverError($"Server dropped connection with message: '{msg}'");
                 }
 
-                Task.Factory.StartNew(ResponseLoop, TaskCreationOptions.LongRunning);
+                Task.Factory.StartNew(ResponsePump, TaskCreationOptions.LongRunning);
             }
             catch when( !taskComplete )
             {
@@ -101,43 +101,47 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// Started just after connect.
         /// </summary>
-        private void ResponseLoop()
+        private void ResponsePump()
         {
             pump = new CancellationTokenSource();
 
-            while( true )
+            using( pump )
             {
-                if( pump.Token.IsCancellationRequested )
+                while( true )
                 {
-                    Log.Trace("Response Loop: shutting down. Cancel is requested.");
-                    break;
-                }
-                if( this.Closed )
-                {
-                    Log.Trace("Response Loop: The connected socket is not open. Response Loop exiting.");
-                    break;
-                }
+                    if( pump.Token.IsCancellationRequested )
+                    {
+                        Log.Trace("Response Loop: shutting down. Cancel is requested.");
+                        break;
+                    }
+                    if( this.Closed )
+                    {
+                        Log.Trace("Response Loop: The connected socket is not open. Response Loop exiting.");
+                        break;
+                    }
 
-                try
-                {
-                    var response = this.Read();
-                    TaskCompletionSource<Response> awaitingTask;
-                    if( awaiters.TryRemove(response.Token, out awaitingTask) )
+                    try
                     {
-                        //Push, don't block.
-                        Task.Run(() => awaitingTask.SetResult(response));
-                        //See ya...
+                        var response = this.Read();
+                        Log.Trace($"Message Pump: Read {response.Token}");
+                        TaskCompletionSource<Response> awaitingTask;
+                        if( awaiters.TryRemove(response.Token, out awaitingTask) )
+                        {
+                            //Push, don't block.
+                            Task.Run(() => awaitingTask.SetResult(response));
+                            //See ya later alligator
+                        }
+                        else
+                        {
+                            //Wow, there's nobody waiting for this response.
+                            Log.Debug($"Response Loop: There are no awaiters waiting for {response.Token} token.");
+                            //I guess we'll ignore for now, perhaps a cursor was killed
+                        }
                     }
-                    else
+                    catch( Exception e ) when( !pump.Token.IsCancellationRequested )
                     {
-                        //Wow, there's nobody waiting for this response.
-                        Log.Debug($"Response Loop: There are no awaiters waiting for {response.Token} token.");
-                        //I guess we'll ignore for now, perhaps a cursor was killed
+                        Log.Debug($"Response Loop: Exception - {e.Message}");
                     }
-                }
-                catch( Exception e ) when( !pump.Token.IsCancellationRequested )
-                {
-                    Log.Debug($"Response Loop: Exception - {e.Message}");
                 }
             }
 
@@ -191,7 +195,7 @@ namespace RethinkDb.Driver.Net
 
         public virtual void Close()
         {
-            this.pump.Cancel();
+            this.pump?.Cancel();
             try
             {
 #if DNXCORE50

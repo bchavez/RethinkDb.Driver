@@ -242,6 +242,10 @@ namespace RethinkDb.Driver.Tests
 
             public override bool Equals(object obj)
             {
+                if( obj is AggregateException )
+                {
+                    obj = (obj as AggregateException).InnerException;
+                }
                 if( obj.GetType() != this.clazz )
                 {
                     obj.GetType().Should().Be(this.clazz);
@@ -652,6 +656,10 @@ namespace RethinkDb.Driver.Tests
 
             public override bool Equals(Object other)
             {
+                if( other is AggregateException )
+                {
+                    other = (other as AggregateException).InnerException;
+                }
                 var otherClass = other.GetType().Name;
 
                 if( !otherClass.EndsWith(this.clazz) )

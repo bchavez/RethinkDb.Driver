@@ -111,8 +111,6 @@ namespace RethinkDb.Driver.Net
         {
             pump = new CancellationTokenSource();
 
-            var marker = new object();
-
             using( pump )
             {
                 while( true )
@@ -223,7 +221,7 @@ namespace RethinkDb.Driver.Net
             this.pump?.Cancel();
             try
             {
-                this.br.Close();
+                this.br.Dispose();
 
             }
             catch { }

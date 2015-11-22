@@ -64,7 +64,8 @@ namespace RethinkDb.Driver.Net
                     throw new ReqlDriverError($"Server dropped connection with message: '{msg}'");
                 }
 
-                Task.Factory.StartNew(ResponsePump, TaskCreationOptions.LongRunning);
+                pump = new CancellationTokenSource();
+                Task.Run(() => ResponsePump(pump.Token), pump.Token);
             }
             catch when( !taskComplete )
             {
@@ -107,56 +108,51 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// Started just after connect.
         /// </summary>
-        private void ResponsePump()
+        private void ResponsePump(CancellationToken signal)
         {
-            pump = new CancellationTokenSource();
-
-            using( pump )
+            while( true )
             {
-                while( true )
+                if( signal.IsCancellationRequested )
                 {
-                    if( pump.Token.IsCancellationRequested )
-                    {
-                        Log.Trace("Response Pump: shutting down. Cancel is requested.");
-                        break;
-                    }
-                    if( this.Closed )
-                    {
-                        Log.Trace("Response Pump: The connected socket is not open. Response Loop exiting.");
-                        break;
-                    }
+                    Log.Trace("Response Pump: shutting down. Cancel is requested.");
+                    break;
+                }
+                if( this.Closed )
+                {
+                    Log.Trace("Response Pump: The connected socket is not open. Response Loop exiting.");
+                    break;
+                }
 
-                    try
+                try
+                {
+                    var response = this.Read();
+                    Awaiter awaitingTask;
+                    if( awaiters.TryGetValue(response.Token, out awaitingTask) )
                     {
-                        var response = this.Read();
-                        Awaiter awaitingTask;
-                        if( awaiters.TryGetValue(response.Token, out awaitingTask) )
+                        if( awaitingTask.IsWaiting )
                         {
-                            if( awaitingTask.IsWaiting )
-                            {
-                                awaitingTask.IsWaiting = false;
-                                //Push, don't block.
-                                Task.Run(() => awaitingTask.SetResult(response));
-                                //See ya later alligator
-                            }
-                            else
-                            {
-                                Log.Debug($"Response Pump: An attempt SetResult on an awaiter that is not waiting {response.Token} token. Are we out of sync?");
-                                //Wow, we already set this awaiter. Why are we here? Are we out of sync?
-                                Debugger.Break();
-                            }
+                            awaitingTask.IsWaiting = false;
+                            //Push, don't block.
+                            Task.Run(() => awaitingTask.SetResult(response));
+                            //See ya later alligator
                         }
                         else
                         {
-                            //Wow, there's nobody waiting for this response.
-                            Log.Debug($"Response Pump: There are no awaiters waiting for {response.Token} token.");
-                            //I guess we'll ignore for now, perhaps a cursor was killed
+                            Log.Debug($"Response Pump: An attempt SetResult on an awaiter that is not waiting {response.Token} token. Are we out of sync?");
+                            //Wow, we already set this awaiter. Why are we here? Are we out of sync?
+                            Debugger.Break();
                         }
                     }
-                    catch( Exception e ) when( !pump.Token.IsCancellationRequested )
+                    else
                     {
-                        Log.Debug($"Response Pump: Exception - {e.Message}");
+                        //Wow, there's nobody waiting for this response.
+                        Log.Debug($"Response Pump: There are no awaiters waiting for {response.Token} token.");
+                        //I guess we'll ignore for now, perhaps a cursor was killed
                     }
+                }
+                catch( Exception e ) when( !signal.IsCancellationRequested )
+                {
+                    Log.Debug($"Response Pump: Exception - {e.Message}");
                 }
             }
 

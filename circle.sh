@@ -5,8 +5,10 @@ function RunTests
         http -o DriverTests.zip --download "https://ci.appveyor.com/api/buildjobs/$AppVeyorJobId/artifacts/RethinkDb.Driver.Tests.zip" Authorization:"Bearer $AppVeyorToken"
         unzip DriverTests.zip -d DriverTests
         cd DriverTests
-        mono Runner/nunit-console.exe UnitTests/RethinkDb.Driver.Tests.dll
-        
+        mono Runner/nunit-console.exe UnitTests/RethinkDb.Driver.Tests.dll &
+
+        inotifywait "." -e create && sudo killall mono
+                
         if [ -e "TestResult.xml" ]
             cp TestResult.xml $CIRCLE_ARTIFACTS
         end
@@ -41,6 +43,8 @@ function Setup
       sudo apt-get update -qq
 
       sudo aptitude install mono-devel -y
+
+      sudo aptitude install inotify-tools -y
 
 end
 

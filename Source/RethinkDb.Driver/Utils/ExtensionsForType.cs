@@ -27,7 +27,7 @@ namespace RethinkDb.Driver.Utils
     {
         public static T RunSync<T>(this Task<T> task)
         {
-            task.Wait(10000);
+            task.Wait();
             return task.Result;
         }
     }

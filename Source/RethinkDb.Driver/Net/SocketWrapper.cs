@@ -205,14 +205,15 @@ namespace RethinkDb.Driver.Net
 
         public virtual void WriteQuery(long token, string json, bool assignAwaiter = true)
         {
-            if( assignAwaiter )
+            if( assignAwaiter && !awaiters.ContainsKey(token) )
             {
-                //Thanks for your query, you get assigned a TCS as well.
+                //Assign a new awaiter for this token.
+                //Thanks for your query
                 var tcs = new Awaiter {IsWaiting = true};
                 awaiters[token] = tcs;
             }
-            lock( writeLock ) // Everyone can write their query as fast as they can; block if needed.
-            {
+            lock( writeLock )
+            {   // Everyone can write their query as fast as they can; block if needed.
                 try
                 {
                     this.bw.Write(token);

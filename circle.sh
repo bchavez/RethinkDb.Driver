@@ -5,9 +5,11 @@ function RunTests
         http -o DriverTests.zip --download "https://ci.appveyor.com/api/buildjobs/$AppVeyorJobId/artifacts/RethinkDb.Driver.Tests.zip" Authorization:"Bearer $AppVeyorToken"
         unzip DriverTests.zip -d DriverTests
         cd DriverTests
-        mono Runner/nunit-console.exe UnitTests/RethinkDb.Driver.Tests.dll &
+        
+        #Mono + NUnit has an issue shutting down after tests are done... :/
+        bash -c "mono Runner/nunit-console.exe UnitTests/RethinkDb.Driver.Tests.dll &"
 
-        inotifywait "." -e create && sudo killall mono
+        inotifywait "." -e create; and sudo killall mono
                 
         if [ -e "TestResult.xml" ]
             cp TestResult.xml $CIRCLE_ARTIFACTS

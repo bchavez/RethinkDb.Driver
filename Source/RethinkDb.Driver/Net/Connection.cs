@@ -128,7 +128,7 @@ namespace RethinkDb.Driver.Net
                     if( shouldNoReplyWait )
                     {
                         var task = noreplyWaitAsync();
-                        task.Wait();
+                        task.Wait(1000);
                     }
                 }
                 finally

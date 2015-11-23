@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
 
@@ -62,6 +63,14 @@ namespace RethinkDb.Driver.Tests
             catch
             {
             }
+
+            try
+            {
+                conn.close(false);
+            }
+            catch
+            {
+            }
         }
 
         [SetUp]
@@ -83,11 +92,6 @@ namespace RethinkDb.Driver.Tests
         public void AfterEachTest()
         {
             r.db("rethinkdb").table("_debug_scratch").delete().run(conn);
-            if (!conn.Open)
-            {
-                conn.close();
-                conn.reconnect();
-            }
             conn.close(false);
         }
 

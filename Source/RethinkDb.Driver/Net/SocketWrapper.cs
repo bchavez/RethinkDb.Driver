@@ -43,13 +43,17 @@ namespace RethinkDb.Driver.Net
             try
             {
                 socketChannel.NoDelay = true;
-                socketChannel.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
-                socketChannel.Client.Blocking = true;
+                //socketChannel.LingerState.Enabled = false;
+                //socketChannel.LingerState.LingerTime = 500;
+                //socketChannel.ReceiveTimeout = 250;
+                //socketChannel.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+                //socketChannel.Client.Blocking = true;
                 taskComplete = socketChannel.ConnectAsync(this.hostname, this.port).Wait(this.timeout);
                 if( deadline < DateTime.UtcNow.Ticks || (taskComplete && !socketChannel.Connected) )
                 {
                     throw new ReqlDriverError("Connection timed out.");
                 }
+                
                 this.ns = socketChannel.GetStream();
                 this.bw = new BinaryWriter(this.ns);
                 this.br = new BinaryReader(this.ns);
@@ -63,9 +67,8 @@ namespace RethinkDb.Driver.Net
                 {
                     throw new ReqlDriverError($"Server dropped connection with message: '{msg}'");
                 }
-
-                pump = new CancellationTokenSource();
-                Task.Run(() => ResponsePump(pump.Token), pump.Token);
+                
+                Task.Run(() => ResponsePump());
             }
             catch when( !taskComplete )
             {
@@ -108,11 +111,13 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// Started just after connect.
         /// </summary>
-        private void ResponsePump(CancellationToken signal)
+        private void ResponsePump()
         {
-            while( true )
+            pump = new CancellationTokenSource();
+
+            while ( true )
             {
-                if( signal.IsCancellationRequested )
+                if( pump.IsCancellationRequested )
                 {
                     Log.Trace("Response Pump: shutting down. Cancel is requested.");
                     break;
@@ -150,14 +155,19 @@ namespace RethinkDb.Driver.Net
                         //I guess we'll ignore for now, perhaps a cursor was killed
                     }
                 }
-                catch( Exception e ) when( !signal.IsCancellationRequested )
+                catch( Exception e ) when( !pump.IsCancellationRequested )
                 {
-                    Log.Debug($"Response Pump: Exception - {e.Message}");
+                    Log.Trace($"Response Pump: Exception - {e.Message}");
                 }
             }
 
+            Log.Trace("Cleaning up Response Pump awaiters.");
             //clean up.
-            awaiters.Clear();
+            foreach( var a in awaiters.Values )
+            {
+                a.TrySetCanceled();
+            }
+            awaiters.Clear(); 
         }
 
         private Response Read()
@@ -172,6 +182,10 @@ namespace RethinkDb.Driver.Net
 
         public virtual Task<Response> AwaitResponseAsync(long token)
         {
+            if( pump.IsCancellationRequested )
+            {
+                throw new ReqlDriverError($"Threads may not {nameof(AwaitResponseAsync)} because the connection is shutting down.");
+            }
             //The token in awaiters should already be available
             //because it was set when the query was written by the original thread.
             //If they indeed requested it, they should be waiting for the response.
@@ -198,13 +212,19 @@ namespace RethinkDb.Driver.Net
                 var tcs = new Awaiter {IsWaiting = true};
                 awaiters[token] = tcs;
             }
-
             lock( writeLock ) // Everyone can write their query as fast as they can; block if needed.
             {
-                this.bw.Write(token);
-                var jsonBytes = Encoding.UTF8.GetBytes(json);
-                this.bw.Write(jsonBytes.Length);
-                this.bw.Write(jsonBytes);
+                try
+                {
+                    this.bw.Write(token);
+                    var jsonBytes = Encoding.UTF8.GetBytes(json);
+                    this.bw.Write(jsonBytes.Length);
+                    this.bw.Write(jsonBytes);
+                }
+                catch
+                {
+                    Log.Trace($"Write Query failed for Token {token}.");
+                }
             }
         }
 
@@ -215,14 +235,16 @@ namespace RethinkDb.Driver.Net
         public virtual void Close()
         {
             this.pump?.Cancel();
+
             try
             {
-                this.br?.Dispose();
-
+                this.ns.Dispose();
             }
-            catch { }
+            catch
+            {
+            }
 
-    try
+            try
             {
 #if DNXCORE50
                 socketChannel.Dispose();
@@ -230,10 +252,7 @@ namespace RethinkDb.Driver.Net
                 socketChannel.Close();
 #endif
             }
-            catch( IOException e )
-            {
-                throw new ReqlError(e);
-            }
+            catch { }
         }
     }
 }

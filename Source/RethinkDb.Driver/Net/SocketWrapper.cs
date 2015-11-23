@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Concurrent;
-using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -145,7 +144,7 @@ namespace RethinkDb.Driver.Net
                         {
                             Log.Debug($"Response Pump: An attempt SetResult on an awaiter that is not waiting {response.Token} token. Are we out of sync?");
                             //Wow, we already set this awaiter. Why are we here? Are we out of sync?
-                            Debugger.Break();
+                            //Debugger.Break();
                         }
                     }
                     else

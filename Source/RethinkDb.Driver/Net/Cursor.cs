@@ -2,16 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Proto;
-using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
     internal interface ICursor : IEnumerable, IEnumerator
     {
-        void Extend(Response response);
         void SetError(string msg);
         long Token { get; }
     }
@@ -30,6 +30,8 @@ namespace RethinkDb.Driver.Net
         protected internal int outstandingRequests = 0;
         protected internal int threshold = 1;
         protected internal Exception error = null;
+        protected internal Task<Response> awaitingContinue = null;
+        protected internal CancellationTokenSource awaitingCloser = null;
         public bool IsFeed { get; }
 
 
@@ -39,6 +41,7 @@ namespace RethinkDb.Driver.Net
             this.query = query;
             this.Token = query.Token;
             this.IsFeed = firstResponse.IsFeed;
+            this.awaitingCloser = new CancellationTokenSource();
             connection.AddToCache(query.Token, this);
             MaybeSendContinue();
             ExtendInternal(firstResponse);
@@ -47,6 +50,7 @@ namespace RethinkDb.Driver.Net
 
         public virtual void close()
         {
+            awaitingCloser.Cancel();
             if( error == null )
             {
                 error = new Exception("No such element.");
@@ -89,7 +93,7 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-        public virtual void Extend(Response response)
+        private void Extend(Response response)
         {
             outstandingRequests -= 1;
             MaybeSendContinue();
@@ -113,7 +117,7 @@ namespace RethinkDb.Driver.Net
             if( error == null && items.Count < threshold && outstandingRequests == 0 )
             {
                 outstandingRequests += 1;
-                connection.Continue(this);
+                awaitingContinue = connection.Continue(this);
             }
         }
 
@@ -141,32 +145,50 @@ namespace RethinkDb.Driver.Net
             {
 
             }
-
-            private TimeSpan? timeout;
             private T current;
 
             public override bool MoveNext()
             {
-                while( items.Count == 0 )
+                return MoveNext(null);
+            }
+
+            public override bool MoveNext(TimeSpan? timeout)
+            {
+                while (items.Count == 0)
                 {
                     //if we're out of buffered items, poll until we get more.
                     MaybeSendContinue();
-                    if( error != null )
+                    if (error != null)
                         return false; //we don't throw in .net
 
-                    //connection.ReadResponse(query, NetUtil.Deadline(timeout));
                     //we're going to need to extend our own cursor once we've
                     //finished awaiting.
-                    var result = connection.AwaitResponseAsync(query, NetUtil.Deadline(timeout))
-                        .RunSync();
+                    if( timeout == null )
+                    {
+                        //block until we're closed. will not throw exception.
+                        try
+                        {
+                            this.awaitingContinue.Wait(awaitingCloser.Token);
+                        }
+                        catch( Exception ) when( awaitingCloser.IsCancellationRequested )
+                        {
+                            //if we're getting an exception because of a close signal
+                            //then just exit cleanly.
+                            return false; //no more items
+                        }
+                    }
+                    else
+                    {
+                        //block with a timeout. will throw exception.
+                        this.awaitingContinue.Wait(timeout.Value);
+                    }
 
-                    //there's a problem here....... with change feed types, 
-                    //of cursors, data can arrive without having to "send";
+                    var result = awaitingContinue.Result;
 
                     this.Extend(result);
                 }
 
-                if( this.items.Count > 0 )
+                if (this.items.Count > 0)
                 {
                     var element = items[0];
                     items.RemoveAt(0);
@@ -201,7 +223,20 @@ namespace RethinkDb.Driver.Net
             this.close();
         }
 
+        /// <summary>
+        /// Advances the cursor to the next batch of items. This is a blocking operation until a response
+        /// from the server is received.
+        /// </summary>
         public abstract bool MoveNext();
+
+        /// <summary>
+        /// Advances the cursor to the next batch of items. If a timeout is specified,
+        /// MoveNext will throw a timeout exception if a response is not received in the specified
+        /// time frame. However, if timeout is null, MoveNext() will block indefinitely,
+        /// until Cursor.close() is called.
+        /// </summary>
+        /// <param name="timeout">The amount of time to wait for a response. If timeout is null, blocks until a response is received.</param>
+        public abstract bool MoveNext(TimeSpan? timeout);
         protected abstract T Convert(JToken token);
 
         public void Reset()

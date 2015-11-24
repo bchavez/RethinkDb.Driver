@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
-using System.Threading.Tasks;
-using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Net
 {
@@ -20,10 +18,7 @@ namespace RethinkDb.Driver.Net
             Socket = sock;
         }
 
-        public virtual bool Open
-        {
-            get { return Socket?.Open ?? false; }
-        }
+        public virtual bool Open => this.Socket?.Open ?? false;
 
         public virtual void Close()
         {
@@ -50,14 +45,5 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-        internal virtual async Task<Response> AwaitResponseAsync(Query query, long? deadline = null)
-        {
-            if( Socket == null )
-                throw new ReqlError("Socket not open");
-
-            long token = query.Token;
-            //we always get the response we're looking for. :)
-            return await this.Socket.AwaitResponseAsync(token);
-        }
     }
 }

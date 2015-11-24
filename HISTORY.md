@@ -3,7 +3,8 @@
 * Database connection thread-safety.
 * EnsureSuccess() renamed to AssertNoErrors()
 * Assert: Deleted(), Inserted(), skipped(), replaced, etc.. helpers.
-*  
+* Better Reactive Extension (Rx) compatibility.
+* Added Cursor.MoveNext(Timeout) for manual cursor movement.
 
 ## v0.0.7-alpha6
 * Added run helpers: runResult(), runChanges<T>()

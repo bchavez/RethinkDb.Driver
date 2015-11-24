@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 
@@ -35,10 +32,10 @@ namespace RethinkDb.Driver.Net
             using( var ms = new MemoryStream() )
             using( var bw = new BinaryWriter(ms) )
             {
-                bw.Write((int)RethinkDb.Driver.Proto.Version.V0_4);
+                bw.Write((int)Proto.Version.V0_4);
                 bw.Write(authKeyBytes.Length);
                 bw.Write(authKeyBytes);
-                bw.Write((int)RethinkDb.Driver.Proto.Protocol.JSON);
+                bw.Write((int)Proto.Protocol.JSON);
                 bw.Flush();
                 handshake = ms.ToArray();
             }
@@ -145,17 +142,9 @@ namespace RethinkDb.Driver.Net
             return Interlocked.Increment(ref nextToken);
         }
 
-        internal virtual async Task<Response> AwaitResponseAsync(Query query, long? deadline = null)
-        {
-            return await checkOpen().AwaitResponseAsync(query, deadline);
-        }
-
         internal async virtual Task<Cursor<T>> RunQueryCursorAsync<T>(Query query)
         {
-            var inst = checkOpen();
-            if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
-            inst.Socket.WriteQuery(query.Token, query.Serialize());
-            Response res = await inst.AwaitResponseAsync(query);
+            var res = await RunQuery(query, awaitResponse: true);
             if( res.IsPartial || res.IsSequence )
             {
                 return Cursor<T>.create(this, query, res);
@@ -163,21 +152,26 @@ namespace RethinkDb.Driver.Net
             throw new ReqlDriverError("The query response can't be converted to a Cursor<T>. The response is not a sequence or partial. Use `.run` instead.");
         }
 
-        internal virtual void RunQueryNoreply(Query query, bool assignAwaiter)
+        private Task<Response> RunQuery(Query query, bool awaitResponse)
         {
             var inst = checkOpen();
             if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
-            inst.Socket.WriteQuery(query.Token, query.Serialize(), assignAwaiter);
+            return inst.Socket.SendQuery(query.Token, query.Serialize(), awaitResponse);
+        }
+
+        internal virtual Task<Response> RunQueryReply(Query query)
+        {
+            return RunQuery(query, awaitResponse: true);
+        }
+
+        internal virtual void RunQueryNoReply(Query query)
+        {
+            RunQuery(query, awaitResponse: false);
         }
 
         internal async virtual Task<dynamic> RunQueryAsync<T>(Query query)
         {
-            var inst = checkOpen();
-            if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
-
-            inst.Socket.WriteQuery(query.Token, query.Serialize());
-
-            Response res = await inst.AwaitResponseAsync(query);
+            var res = await RunQuery(query, awaitResponse: true);
 
             if( res.IsAtom )
             {
@@ -253,17 +247,23 @@ namespace RethinkDb.Driver.Net
             var opts = OptArgs.fromAnonType(globalOpts);
             SetDefaultDb(opts);
             opts.with("noreply", true);
-            RunQueryNoreply(Query.Start(NewToken(), term, opts), assignAwaiter: false);
+            RunQueryNoReply(Query.Start(NewToken(), term, opts));
         }
 
-        internal virtual void Continue(ICursor cursor)
+        internal virtual Task<Response> Continue(ICursor cursor)
         {
-            RunQueryNoreply(Query.Continue(cursor.Token), assignAwaiter: true);
+            return RunQueryReply(Query.Continue(cursor.Token));
         }
 
-        internal virtual void Stop(ICursor cursor)
+        internal virtual Task<Response> Stop(ICursor cursor)
         {
-            RunQueryNoreply(Query.Stop(cursor.Token), assignAwaiter: false);
+            /*
+            neumino: The END query itself doesn't come back with a response
+            cowboy: ..... a Query[token,STOP], is like sending a very last CONTINUE, r:[] would contain the last bits of the finished seq
+            neumino: Yes a STOP is like a very last CONTINUE
+            neumino: If you have a pending CONTINUE, and send a STOP, you should get back two SUCCESS_SEQUENCE
+            */
+            return RunQueryReply(Query.Stop(cursor.Token));
         }
 
 

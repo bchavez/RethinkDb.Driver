@@ -44,6 +44,8 @@ namespace RethinkDb.Driver.Tests.ReQL
                     () => OnCompleted(ref onCompleted)
                 );
 
+
+            //Next simulate 3 inserts into the table.
             Thread.Sleep(3000);
 
             Task.Run(() =>

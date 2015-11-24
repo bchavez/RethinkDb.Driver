@@ -69,6 +69,12 @@ Documentation
   * [DLR Integration](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#dynamic-language-runtime-dlr-integration)
   * [Cursor[T]](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#cursort-support)
   * [Run Helpers](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#run-helpers)
+     * [`.runAtom`](https://github.com/bchavez/RethinkDb.Driver/wiki/Run-Helpers#runatom)
+     * [`.runCursor`](https://github.com/bchavez/RethinkDb.Driver/wiki/Run-Helpers#runcursor)
+     * [`.runResult`](https://github.com/bchavez/RethinkDb.Driver/wiki/Run-Helpers#runresult)
+     * [`.runChanges`](https://github.com/bchavez/RethinkDb.Driver/wiki/Run-Helpers#runchangest)
+     * [`.runGrouping`](https://github.com/bchavez/RethinkDb.Driver/wiki/Run-Helpers#rungroupingtkeytitem)
+  * [Async/Await Support](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#asyncawait-support)
   * [POCO Support](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#poco-support)
   * [Reactive Extensions](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#reactive-extensions-rx-support)
   * [Anon Type Projection](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#anonymous-type-map-projection)
@@ -166,7 +172,7 @@ If you'd like to contribute, please consider reading some [helpful tips before m
  
 Contributors
 ---------
-Created by [Brian Chavez](http://bchavez.bitarmory.com). Originally ported from the Java Driver by [Josh Kuhn](https://github.com/deontologician).
+Created by [Brian Chavez](http://bchavez.bitarmory.com). Originally ported from the Java Driver by [Josh Kuhn](https://github.com/deontologician). Special thanks to the rest of the RethinkDB team (AtnNn, danielmewes, neumino) for answering some crazy ReQL protocol questions.
 
 A big thanks to GitHub and all contributors:
 

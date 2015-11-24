@@ -100,20 +100,6 @@ namespace RethinkDb.Driver.Tests.ReQL
             onNext++;
         }
 
-        [Test]
-        [Explicit]
-        public void change_feeds_without_rx()
-        {
-            var result = r.db(DbName).table(TableName)
-                .delete()[new {return_changes = true}]
-                .runResult(conn)
-                .AssertNoErrors();
-
-            var changes = r.db(DbName).table(TableName)
-                .changes()[new {include_states = true}]
-                .runChanges<JObject>(conn);
-
-            changes.close();
-        }
+    
     }
 }

@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using RethinkDb.Driver.Ast;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Net;
@@ -27,5 +27,11 @@ namespace RethinkDb.Driver.Model
 
         public TKey Key { get; }
         public List<TElement> Items { get; set; }
+    }
+
+    public class GroupedResultSet<TKey, TItem> : List< GroupedResult<TKey, TItem>>
+    {
+        public Type ItemType => typeof(TItem);
+        public Type KeyType => typeof(TKey);
     }
 }

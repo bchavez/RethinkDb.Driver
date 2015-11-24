@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
@@ -55,19 +56,6 @@ namespace RethinkDb.Driver.Net
         public virtual string db()
         {
             return dbname;
-        }
-
-        internal virtual void AddToCache<T>(long token, Cursor<T> cursor)
-        {
-            if( instance == null )
-                throw new ReqlDriverError("Can't add to cache when not connected.");
-
-            instance?.AddToCache(token, cursor);
-        }
-
-        internal virtual void RemoveFromCache(long token)
-        {
-            instance?.RemoveFromCache(token);
         }
 
         public virtual void use(string db)
@@ -137,41 +125,121 @@ namespace RethinkDb.Driver.Net
             }
         }
 
+        public virtual void noreplyWait()
+        {
+            noreplyWaitAsync().WaitSync();
+        }
+
+        public virtual Task noreplyWaitAsync()
+        {
+            return RunQueryWaitAsync(Query.NoReplyWait(NewToken()));
+        }
+
+
+
+        
         private long NewToken()
         {
             return Interlocked.Increment(ref nextToken);
         }
 
-        internal async virtual Task<Cursor<T>> RunQueryCursorAsync<T>(Query query)
+        protected virtual Task<Response> RunQueryReply(Query query)
         {
-            var res = await RunQuery(query, awaitResponse: true);
+            return SendQuery(query, awaitResponse: true);
+        }
+
+        protected virtual void RunQueryNoReply(Query query)
+        {
+            SendQuery(query, awaitResponse: false);
+        }
+
+        protected async virtual Task<Cursor<T>> RunQueryCursorAsync<T>(Query query)
+        {
+            //If you need to continue after an await, **while inside the driver**, 
+            //as a library writer, you must use ConfigureAwait(false) on *your*
+            //await to tell the compiler NOT to resume
+            //on synchronization context (if one is present).
+            //
+            //The top most await (your user) will capture the correct synchronization context
+            //(if any) when they await on a query's run.
+            //
+            // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-
+            // http://blogs.msdn.com/b/lucian/archive/2013/11/23/talk-mvp-summit-async-best-practices.aspx
+            //
+            var res = await SendQuery(query, awaitResponse: true).UseInternalAwait();
             if( res.IsPartial || res.IsSequence )
             {
                 return Cursor<T>.create(this, query, res);
             }
-            throw new ReqlDriverError("The query response can't be converted to a Cursor<T>. The response is not a sequence or partial. Use `.run` instead.");
+            throw new ReqlDriverError($"The query response can't be converted to a Cursor<T>. The query response is not a SUCCESS_SEQUENCE or SUCCESS_PARTIAL. The response received was {res.Type}. Use `.run` and inspect the object manually. Ensure your query result is a stream that can be turned into a Cursor<T>. Most likely, your query returns an ATOM of object T and you should be using `.runAtom` instead.");
         }
 
-        private Task<Response> RunQuery(Query query, bool awaitResponse)
+        /// <summary>
+        /// Fast ATOM conversion without the DLR dynamic
+        /// </summary>
+        protected async virtual Task<T> RunQueryAtomAsync<T>(Query query)
         {
-            var inst = checkOpen();
-            if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
-            return inst.Socket.SendQuery(query.Token, query.Serialize(), awaitResponse);
+            //If you need to continue after an await, **while inside the driver**, 
+            //as a library writer, you must use ConfigureAwait(false) on *your*
+            //await to tell the compiler NOT to resume
+            //on synchronization context (if one is present).
+            //
+            //The top most await (your user) will capture the correct synchronization context
+            //(if any) when they await on a query's run.
+            //
+            // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-
+            // http://blogs.msdn.com/b/lucian/archive/2013/11/23/talk-mvp-summit-async-best-practices.aspx
+            //
+            var res = await SendQuery(query, awaitResponse: true).UseInternalAwait();
+            if (res.IsAtom)
+            {
+                try
+                {
+                    return res.Data[0].ToObject<T>(Converter.Serializer);
+                }
+                catch (IndexOutOfRangeException ex)
+                {
+                    throw new ReqlDriverError("Atom response was empty!", ex);
+                }
+            }
+            throw new ReqlDriverError($"The query response can't be converted to an object of T. The query response is not SUCCESS_ATOM. The response received was {res.Type}. Use `.run` and inspect the response manually. Ensure that your query result is something that can be converted to an object of T.  Most likely your query returns a STREAM and you should be using `.runCursor`.");
         }
 
-        internal virtual Task<Response> RunQueryReply(Query query)
+        protected async virtual Task RunQueryWaitAsync(Query query)
         {
-            return RunQuery(query, awaitResponse: true);
+            //If you need to continue after an await, **while inside the driver**, 
+            //as a library writer, you must use ConfigureAwait(false) on *your*
+            //await to tell the compiler NOT to resume
+            //on synchronization context (if one is present).
+            //
+            //The top most await (your user) will capture the correct synchronization context
+            //(if any) when they await on a query's run.
+            //
+            // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-
+            // http://blogs.msdn.com/b/lucian/archive/2013/11/23/talk-mvp-summit-async-best-practices.aspx
+            //
+            var res = await SendQuery(query, awaitResponse: true).UseInternalAwait();
+            if( res.IsWaitComplete )
+            {
+                return;
+            }
+            throw new ReqlDriverError($"The query response is not WAIT_COMPLETE. The returned query is {res.Type}. You need to call the appropriate run method that handles the response type for your query.");
         }
 
-        internal virtual void RunQueryNoReply(Query query)
+        protected async Task<dynamic> RunQueryAsync<T>(Query query)
         {
-            RunQuery(query, awaitResponse: false);
-        }
-
-        internal async virtual Task<dynamic> RunQueryAsync<T>(Query query)
-        {
-            var res = await RunQuery(query, awaitResponse: true);
+            //If you need to continue after an await, **while inside the driver**, 
+            //as a library writer, you must use ConfigureAwait(false) on *your*
+            //await to tell the compiler NOT to resume
+            //on synchronization context (if one is present).
+            //
+            //The top most await (your user) will capture the correct synchronization context
+            //(if any) when they await on a query's run.
+            //
+            // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-
+            // http://blogs.msdn.com/b/lucian/archive/2013/11/23/talk-mvp-summit-async-best-practices.aspx
+            //
+            var res = await SendQuery(query, awaitResponse: true).UseInternalAwait();
 
             if( res.IsAtom )
             {
@@ -199,12 +267,14 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-        public async virtual Task noreplyWaitAsync()
+        protected Task<Response> SendQuery(Query query, bool awaitResponse)
         {
-            await RunQueryAsync<object>(Query.NoReplyWait(NewToken()));
+            var inst = checkOpen();
+            if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
+            return inst.Socket.SendQuery(query.Token, query.Serialize(), awaitResponse);
         }
-
-        private Query PrepareQuery(ReqlAst term, OptArgs globalOpts)
+        
+        protected Query PrepareQuery(ReqlAst term, OptArgs globalOpts)
         {
             SetDefaultDb(globalOpts);
             Query q = Query.Start(NewToken(), term, globalOpts);
@@ -215,40 +285,59 @@ namespace RethinkDb.Driver.Net
             return q;
         }
 
-        public async virtual Task<dynamic> runAsync<T>(ReqlAst term, object globalOpts)
+        protected void SetDefaultDb(OptArgs globalOpts)
         {
-            Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
-            return await RunQueryAsync<T>(q);
-        }
-
-        public async virtual Task<Cursor<T>> runCursorAsync<T>(ReqlAst term, object globalOpts)
-        {
-            Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
-            return await RunQueryCursorAsync<T>(q);
-        }
-
-        private void SetDefaultDb(OptArgs globalOpts)
-        {
-            if( globalOpts?.ContainsKey("db") == false && this.dbname != null )
+            if (globalOpts?.ContainsKey("db") == false && this.dbname != null)
             {
                 // Only override the db global arg if the user hasn't
                 // specified one already and one is specified on the connection
                 globalOpts.with("db", this.dbname);
             }
-            if( globalOpts?.ContainsKey("db") == true )
+            if (globalOpts?.ContainsKey("db") == true)
             {
                 // The db arg must be wrapped in a db ast object
                 globalOpts.with("db", new Db(Arguments.Make(globalOpts["db"])));
             }
         }
 
-        public void runNoReply(ReqlAst term, object globalOpts)
+
+
+
+        #region REQL AST RUNNERS
+        //Typically called by the surface API of ReqlAst.
+        internal virtual Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts)
+        {
+            Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
+            return RunQueryAsync<T>(q);
+        }
+
+        internal virtual Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts)
+        {
+            Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
+            return RunQueryCursorAsync<T>(q);
+        }
+
+        internal virtual Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts)
+        {
+            Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
+            return RunQueryAtomAsync<T>(q);
+        }
+
+        internal void RunNoReply(ReqlAst term, object globalOpts)
         {
             var opts = OptArgs.fromAnonType(globalOpts);
             SetDefaultDb(opts);
             opts.with("noreply", true);
             RunQueryNoReply(Query.Start(NewToken(), term, opts));
         }
+
+        #endregion
+        
+
+
+
+
+        #region CURSOR SUPPORT
 
         internal virtual Task<Response> Continue(ICursor cursor)
         {
@@ -265,6 +354,25 @@ namespace RethinkDb.Driver.Net
             */
             return RunQueryReply(Query.Stop(cursor.Token));
         }
+
+        internal virtual void RemoveFromCache(long token)
+        {
+            instance?.RemoveFromCache(token);
+        }
+
+        internal virtual void AddToCache<T>(long token, Cursor<T> cursor)
+        {
+            if (instance == null)
+                throw new ReqlDriverError("Can't add to cache when not connected.");
+
+            instance?.AddToCache(token, cursor);
+        }
+
+        #endregion
+
+
+
+
 
 
         public class Builder

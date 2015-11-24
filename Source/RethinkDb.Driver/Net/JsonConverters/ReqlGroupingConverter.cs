@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
@@ -52,12 +54,22 @@ namespace RethinkDb.Driver.Net.JsonConverters
             reader.ReadAndAssert();
 
             //... probably find a better way to do this.
-            var listType = typeof(List<>).MakeGenericType(objectType);
-
-            var list = (IList)Activator.CreateInstance(listType);
+            var genType = objectType.GetGenericTypeDefinition();
+            IList list;
+            if( genType == typeof(GroupedResultSet<,>) )
+            {
+                list = (IList)Activator.CreateInstance(objectType);
+                objectType = objectType.BaseType.GenericTypeArguments[0];
+            }
+            else
+            {
+                var listType = typeof(List<>).MakeGenericType(objectType);
+                list = (IList)Activator.CreateInstance(listType);
+            }
 
             var data = serializer.Deserialize<List<JArray>>(reader);
-            foreach( var group in data )
+
+            foreach ( var group in data )
             {
                 var key = group[0]; //key, group value in common
                 var items = group[1]; //the grouped items
@@ -73,10 +85,13 @@ namespace RethinkDb.Driver.Net.JsonConverters
 
         public override bool CanConvert(Type objectType)
         {
-            var canConvert = objectType.IsGenericType() &&
-                             objectType.GetGenericTypeDefinition() == typeof(GroupedResult<,>);
-
-            return canConvert;
+            if( objectType.IsGenericType() )
+            {
+                var genType = objectType.GetGenericTypeDefinition();
+                return genType == typeof(GroupedResult<,>) ||
+                       genType == typeof(GroupedResultSet<,>);
+            }
+            return false;
         }
     }
 }

@@ -102,6 +102,7 @@
     <Compile Include="Network\ConnectionTest.cs" />
     <Compile Include="QueryTestFixture.cs" />
     <Compile Include="ReQL\AsyncAwaitTests.cs" />
+    <Compile Include="ReQL\ChangeFeedTests.cs" />
     <Compile Include="ReQL\DateAndTimeTests.cs" />
     <Compile Include="ReQL\Examples.cs" />
     <Compile Include="ReQL\ExperimentalTests.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="ReQL\OtherTests.cs" />
     <Compile Include="ReQL\PocoTests.cs" />
     <Compile Include="ReQL\BinaryTests.cs" />
+    <Compile Include="ReQL\RunHelperTests.cs" />
     <Compile Include="ReQL\RxReactiveExtensionTests.cs" />
     <Compile Include="TestLogContext.cs" />
     <Compile Include="Utils\ExtensionsForTesting.cs" />

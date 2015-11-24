@@ -18,7 +18,8 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public async void async_insert()
         {
-            ClearDefaultTable();
+            //ClearDefaultTable();
+            r.db(DbName).table(TableName).delete().run(conn);
 
             var games = new[]
                 {
@@ -29,21 +30,10 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
 
             var result = await r.db(DbName).table(TableName)
-                .insert(games).runResultAsync(conn);
+                                .insert(games)
+                                .runResultAsync(conn);
 
             result.AssertInserted(4);
         }
     }
-
-
-    [TestFixture]
-    public class ChangeFeedTests : QueryTestFixture
-    {  
-        [Test]
-        public void Test()
-        {
-            
-        }
-    }
-
 }

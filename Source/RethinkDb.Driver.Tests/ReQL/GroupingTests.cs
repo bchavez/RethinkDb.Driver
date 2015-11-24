@@ -38,5 +38,47 @@ namespace RethinkDb.Driver.Tests.ReQL
                 group.Dump();
             }
         }
+
+        [Test]
+        public void can_group_with_helper()
+        {
+            var games = new[]
+                {
+                    new Game { id=2, player = "Bob", points = 15, type = "ranked"},
+                    new Game { id=5, player = "Alice", points = 7, type = "free"},
+                    new Game { id=11, player = "Bob", points = 10, type = "free"},
+                    new Game { id=12, player = "Alice", points = 2, type = "free"},
+                };
+
+            var result = r.expr(games).group("player")
+                .runGrouping<string, Game>(conn);
+
+            foreach (var group in result)
+            {
+                Console.WriteLine($">>>> KEY:{group.Key}");
+                group.Dump();
+            }
+        }
+
+        [Test]
+        public async void can_group_with_async_helper()
+        {
+            var games = new[]
+                {
+                    new Game { id=2, player = "Bob", points = 15, type = "ranked"},
+                    new Game { id=5, player = "Alice", points = 7, type = "free"},
+                    new Game { id=11, player = "Bob", points = 10, type = "free"},
+                    new Game { id=12, player = "Alice", points = 2, type = "free"},
+                };
+
+            var result = await r.expr(games).group("player")
+                .runGroupingAsync<string, Game>(conn);
+
+            foreach (var group in result)
+            {
+                Console.WriteLine($">>>> KEY:{group.Key}");
+                group.Dump();
+            }
+        }
     }
 }

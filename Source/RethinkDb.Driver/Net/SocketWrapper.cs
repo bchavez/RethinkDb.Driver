@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
@@ -132,7 +133,10 @@ namespace RethinkDb.Driver.Net
                     Awaiter awaitingTask;
                     if( awaiters.TryRemove(response.Token, out awaitingTask) )
                     {
-                        Task.Run(() => awaitingTask.SetResult(response));
+                        Task.Run(() =>
+                            {
+                                awaitingTask.SetResult(response);
+                            });
                     }
                     else
                     {
@@ -197,7 +201,7 @@ namespace RethinkDb.Driver.Net
                     Log.Trace($"Write Query failed for Token {token}.");
                 }
             }
-            return awaiter?.Task ?? Task.FromResult<Response>(null);
+            return awaiter?.Task ?? TaskHelper.CompletedResponse;
         }
 
         public virtual bool Closed => !socketChannel.Connected;

@@ -98,7 +98,7 @@ namespace RethinkDb.Driver.Tests
 
         protected void ClearDefaultTable()
         {
-            ClearTable(DbName, TableName);
+            r.db(DbName).table(TableName).delete().run(conn);
         }
 
         protected void ClearTable(string dbName, string tableName)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 #if DNX
 using System.Reflection;
@@ -21,6 +22,15 @@ namespace RethinkDb.Driver.Utils
             return type.GetTypeInfo().IsGenericType;
 #else
             return type.IsGenericType;
+#endif
+        }
+
+        public static Type BaseType(this Type type)
+        {
+#if DNX
+            return type.GetTypeInfo().BaseType;
+#else
+            return type.BaseType;
 #endif
         }
     }

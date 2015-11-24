@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
             if( genType == typeof(GroupedResultSet<,>) )
             {
                 list = (IList)Activator.CreateInstance(objectType);
-                objectType = objectType.BaseType.GenericTypeArguments[0];
+                objectType = objectType.BaseType().GenericTypeArguments[0];
             }
             else
             {

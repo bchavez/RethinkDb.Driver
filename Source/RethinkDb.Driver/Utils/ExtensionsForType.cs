@@ -1,5 +1,9 @@
 ﻿using System;
 
+#if DNX
+using System.Reflection;
+#endif
+
 namespace RethinkDb.Driver.Utils
 {
     internal static class ExtensionsForType

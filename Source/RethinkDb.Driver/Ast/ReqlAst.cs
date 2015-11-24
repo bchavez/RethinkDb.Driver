@@ -151,8 +151,24 @@ namespace RethinkDb.Driver.Ast
             conn.runNoReply(this, globalOpts);
         }
 
-
-
+        /// <summary>
+        /// Helper shortcut for grouping queries.
+        /// </summary>
+        /// <typeparam name="TKey">The key type of how items are grouped</typeparam>
+        /// <typeparam name="TItem">The type of items</typeparam>
+        public async virtual Task<IEnumerable<GroupedResult<TKey, TItem>>> runGroupingAsync<TKey, TItem>(Connection conn, object globalOpts = null)
+        {
+            return await runAsync<GroupedResult<TKey, TItem>>(conn, globalOpts);
+        }
+        /// <summary>
+        /// Helper shortcut for grouping queries.
+        /// </summary>
+        /// <typeparam name="TKey">The key type of how items are grouped</typeparam>
+        /// <typeparam name="TItem">The type of items</typeparam>
+        public virtual IEnumerable<GroupedResult<TKey, TItem>> runGrouping<TKey, TItem>(Connection conn, object globalOpts = null)
+        {
+            return runAsync<GroupedResult<TKey, TItem>>(conn, globalOpts).RunSync();
+        }
 
     }
 }

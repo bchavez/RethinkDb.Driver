@@ -95,6 +95,18 @@ namespace RethinkDb.Driver.Tests
             conn.close(false);
         }
 
+
+        protected void ClearDefaultTable()
+        {
+            ClearTable(DbName, TableName);
+        }
+
+        protected void ClearTable(string dbName, string tableName)
+        {
+            DropTable(dbName, tableName);
+            CreateTable(dbName, tableName);
+        }
+
         protected void CreateDb(string dbName)
         {
             r.dbCreate(dbName).run(conn);

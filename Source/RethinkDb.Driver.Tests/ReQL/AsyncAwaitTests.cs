@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
+using RethinkDb.Driver.Model;
 
 namespace RethinkDb.Driver.Tests.ReQL
 {
@@ -17,13 +18,20 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public async void async_insert()
         {
-            
-        }
+            ClearDefaultTable();
 
-        [Test]
-        public void asnync_()
-        {
-            
+            var games = new[]
+                {
+                    new Game {id = 2, player = "Bob", points = 15, type = "ranked"},
+                    new Game {id = 5, player = "Alice", points = 7, type = "free"},
+                    new Game {id = 11, player = "Bob", points = 10, type = "free"},
+                    new Game {id = 12, player = "Alice", points = 2, type = "free"},
+                };
+
+            var result = await r.db(DbName).table(TableName)
+                .insert(games).runResultAsync(conn);
+
+            result.AssertInserted(4);
         }
     }
 

@@ -75,6 +75,8 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             changes.close();
 
+            Thread.Sleep(3000);
+
             onCompleted.Should().Be(1);
             onNext.Should().Be(3);
             onError.Should().Be(0);

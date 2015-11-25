@@ -13,6 +13,7 @@ namespace RethinkDb.Driver.Proto {
         CONTINUE = 2,
         STOP = 3,
         NOREPLY_WAIT = 4,
+        SERVER_INFO = 5,
     }
 
     

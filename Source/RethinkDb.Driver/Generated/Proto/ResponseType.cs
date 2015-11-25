@@ -13,6 +13,7 @@ namespace RethinkDb.Driver.Proto {
         SUCCESS_SEQUENCE = 2,
         SUCCESS_PARTIAL = 3,
         WAIT_COMPLETE = 4,
+        SERVER_INFO = 5,
         CLIENT_ERROR = 16,
         COMPILE_ERROR = 17,
         RUNTIME_ERROR = 18,

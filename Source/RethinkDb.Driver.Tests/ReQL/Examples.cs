@@ -256,6 +256,15 @@ namespace RethinkDb.Driver.Tests.ReQL
             ExtensionsForTesting.Dump(result.the_data);
         }
 
+        [Test]
+        public void server_info()
+        {
+            var server = conn.server();
+
+            server.Id.Should().NotBeEmpty();
+            server.Name.Should().NotBeNullOrWhiteSpace();
+        }
+
     }
 
 

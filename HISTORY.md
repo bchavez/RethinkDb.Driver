@@ -1,3 +1,6 @@
+## v0.0.7-alpha8
+* conn.server() and conn.serverAsync(): SERVER_INFO implemented.
+
 ## v0.0.7-alpha7
 * async/await run() implementations.
 * Database connection thread-safety.

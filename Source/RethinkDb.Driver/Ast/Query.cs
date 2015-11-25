@@ -44,6 +44,11 @@ namespace RethinkDb.Driver.Ast
             return new Query(QueryType.START, token, term, globalOptions);
         }
 
+        public static Query ServerInfo(long token)
+        {
+            return new Query(QueryType.SERVER_INFO, token, null, null);
+        }
+
         public static Query NoReplyWait(long token)
         {
             return new Query(QueryType.NOREPLY_WAIT, token, null, null);

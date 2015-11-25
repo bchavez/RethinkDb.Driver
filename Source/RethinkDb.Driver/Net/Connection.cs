@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
+using RethinkDb.Driver.Proto;
 using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
@@ -133,6 +134,21 @@ namespace RethinkDb.Driver.Net
         public virtual Task noreplyWaitAsync()
         {
             return RunQueryWaitAsync(Query.NoReplyWait(NewToken()));
+        }
+
+        public async virtual Task<Server> serverAsync()
+        {
+            var response = await SendQuery(Query.ServerInfo(NewToken()), awaitResponse: true).UseInternalAwait();
+            if( response.Type == ResponseType.SERVER_INFO )
+            {
+                return response.Data[0].ToObject<Server>(Converter.Serializer);
+            }
+            throw new ReqlDriverError("Did not receive a SERVER_INFO response.");
+        }
+
+        public virtual Server server()
+        {
+            return serverAsync().WaitSync();
         }
 
 

@@ -106,6 +106,36 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaDef
   TestFile: changefeeds/table.yaml
+  LineNum: 59
+  Original: overflow = tbl.changes()
+  VarName: overflow
+  VarType: Changes
+  RunIfQuery: true
+  Value: (Changes) (tbl.changes())
+  Java: Changes overflow = (Changes) (tbl.changes());
+  RunOpts:
+  - Key: changefeed_queue_size
+    Val: 100L
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  LineNum: 64
+  Original: 'tbl.insert(r.range(200).map(lambda x: {}))'
+  Java: tbl.insert(r.range(200L).map(x -> r.hashMap()))
+  ExpectedOriginal: AnythingIsFine
+  ExpectedType: Object
+  ExpectedJava: AnythingIsFine
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: changefeeds/table.yaml
+  LineNum: 66
+  Original: fetch(overflow, 90)
+  Java: fetch(overflow, 90L)
+  ExpectedOriginal: 'partial([{''error'': regex(''Changefeed cache over array size limit, skipped \d+ elements.'')}])'
+  ExpectedType: Partial
+  ExpectedJava: partial(r.array(r.hashMap("error", regex("Changefeed cache over array size limit, skipped \\d+ elements."))))
+  RunOpts: []
+- TestType: JavaDef
+  TestFile: changefeeds/table.yaml
   LineNum: 71
   Original: vtbl = r.db('rethinkdb').table('_debug_scratch')
   VarName: vtbl

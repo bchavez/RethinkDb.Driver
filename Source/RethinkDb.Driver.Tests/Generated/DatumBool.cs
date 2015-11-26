@@ -105,6 +105,104 @@ namespace RethinkDb.Driver.Test.Generated {
                      assertEquals(expected_, obtained);                 
              }
              
+             {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZGF0dW0vYm9vbC55YW1sIiwiTGluZU51bSI6IjI3IiwiT3JpZ2luYWwiOiJyLmV4cHIoRmFsc2UpLmNvZXJjZV90bygnYm9vbCcpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKGZhbHNlKS5jb2VyY2VUbyhcImJvb2xcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiRmFsc2UiLCJFeHBlY3RlZFR5cGUiOiJib29sIiwiRXhwZWN0ZWRKYXZhIjoiZmFsc2UiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
+                 //JavaQuery, datum/bool.yaml, #27
+                 /* ExpectedOriginal: False */
+                 var expected_ = false;
+                 
+                 /* Original: r.expr(False).coerce_to('bool') */
+                 var obtained = runOrCatch( r.expr(false).coerceTo("bool") ,
+                                            new {
+                    }, conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZGF0dW0vYm9vbC55YW1sIiwiTGluZU51bSI6IjMwIiwiT3JpZ2luYWwiOiJyLmV4cHIobnVsbCkuY29lcmNlX3RvKCdib29sJykiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmV4cHIoKFJlcWxFeHByKSBudWxsKS5jb2VyY2VUbyhcImJvb2xcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiRmFsc2UiLCJFeHBlY3RlZFR5cGUiOiJib29sIiwiRXhwZWN0ZWRKYXZhIjoiZmFsc2UiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
+                 //JavaQuery, datum/bool.yaml, #30
+                 /* ExpectedOriginal: False */
+                 var expected_ = false;
+                 
+                 /* Original: r.expr(null).coerce_to('bool') */
+                 var obtained = runOrCatch( r.expr((ReqlExpr) null).coerceTo("bool") ,
+                                            new {
+                    }, conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZGF0dW0vYm9vbC55YW1sIiwiTGluZU51bSI6IjMzIiwiT3JpZ2luYWwiOiJyLmV4cHIoMCkuY29lcmNlX3RvKCdib29sJykiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmV4cHIoMEwpLmNvZXJjZVRvKFwiYm9vbFwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJUcnVlIiwiRXhwZWN0ZWRUeXBlIjoiYm9vbCIsIkV4cGVjdGVkSmF2YSI6InRydWUiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
+                 //JavaQuery, datum/bool.yaml, #33
+                 /* ExpectedOriginal: True */
+                 var expected_ = true;
+                 
+                 /* Original: r.expr(0).coerce_to('bool') */
+                 var obtained = runOrCatch( r.expr(0L).coerceTo("bool") ,
+                                            new {
+                    }, conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZGF0dW0vYm9vbC55YW1sIiwiTGluZU51bSI6IjM2IiwiT3JpZ2luYWwiOiJyLmV4cHIoJ2ZhbHNlJykuY29lcmNlX3RvKCdib29sJykiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLmV4cHIoXCJmYWxzZVwiKS5jb2VyY2VUbyhcImJvb2xcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiVHJ1ZSIsIkV4cGVjdGVkVHlwZSI6ImJvb2wiLCJFeHBlY3RlZEphdmEiOiJ0cnVlIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
+                 //JavaQuery, datum/bool.yaml, #36
+                 /* ExpectedOriginal: True */
+                 var expected_ = true;
+                 
+                 /* Original: r.expr('false').coerce_to('bool') */
+                 var obtained = runOrCatch( r.expr("false").coerceTo("bool") ,
+                                            new {
+                    }, conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZGF0dW0vYm9vbC55YW1sIiwiTGluZU51bSI6IjM5IiwiT3JpZ2luYWwiOiJyLmV4cHIoJ2ZvbycpLmNvZXJjZV90bygnYm9vbCcpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKFwiZm9vXCIpLmNvZXJjZVRvKFwiYm9vbFwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJUcnVlIiwiRXhwZWN0ZWRUeXBlIjoiYm9vbCIsIkV4cGVjdGVkSmF2YSI6InRydWUiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
+                 //JavaQuery, datum/bool.yaml, #39
+                 /* ExpectedOriginal: True */
+                 var expected_ = true;
+                 
+                 /* Original: r.expr('foo').coerce_to('bool') */
+                 var obtained = runOrCatch( r.expr("foo").coerceTo("bool") ,
+                                            new {
+                    }, conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZGF0dW0vYm9vbC55YW1sIiwiTGluZU51bSI6IjQyIiwiT3JpZ2luYWwiOiJyLmV4cHIoW10pLmNvZXJjZV90bygnYm9vbCcpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKHIuYXJyYXkoKSkuY29lcmNlVG8oXCJib29sXCIpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IlRydWUiLCJFeHBlY3RlZFR5cGUiOiJib29sIiwiRXhwZWN0ZWRKYXZhIjoidHJ1ZSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
+                 //JavaQuery, datum/bool.yaml, #42
+                 /* ExpectedOriginal: True */
+                 var expected_ = true;
+                 
+                 /* Original: r.expr([]).coerce_to('bool') */
+                 var obtained = runOrCatch( r.expr(r.array()).coerceTo("bool") ,
+                                            new {
+                    }, conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZGF0dW0vYm9vbC55YW1sIiwiTGluZU51bSI6IjQ1IiwiT3JpZ2luYWwiOiJyLmV4cHIoe30pLmNvZXJjZV90bygnYm9vbCcpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5leHByKHIuaGFzaE1hcCgpKS5jb2VyY2VUbyhcImJvb2xcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoiVHJ1ZSIsIkV4cGVjdGVkVHlwZSI6ImJvb2wiLCJFeHBlY3RlZEphdmEiOiJ0cnVlIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
+                 //JavaQuery, datum/bool.yaml, #45
+                 /* ExpectedOriginal: True */
+                 var expected_ = true;
+                 
+                 /* Original: r.expr({}).coerce_to('bool') */
+                 var obtained = runOrCatch( r.expr(r.hashMap()).coerceTo("bool") ,
+                                            new {
+                    }, conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
 
         }
     }

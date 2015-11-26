@@ -7,8 +7,8 @@ namespace RethinkDb.Driver.Tests
     [TestFixture]
     public abstract class QueryTestFixture
     {
-        protected const string DbName = "CSharpDriverTests";
-        protected const string TableName = "TableA";
+        protected const string DbName = "query";
+        protected const string TableName = "test";
 
         public static RethinkDB r = RethinkDB.r;
 

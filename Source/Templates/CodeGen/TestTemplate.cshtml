@@ -72,7 +72,12 @@ namespace RethinkDb.Driver.Test.Generated {
              }
              else if( test.RunIfQuery )
              {
-                 @:var @test.VarName = maybeRun( @test.Value , conn);
+                 @:var @test.VarName = maybeRun( @test.Value , conn, new {
+                 foreach (var opt in test.RunOpts)
+                 {
+                    @:@opt.Key = @(opt.Val.IsNumber(0) || opt.Val.IsNumber(1) ? opt.Val : $"\"{opt.Val}\"" ) ,
+                 }
+                 @: } );
                  renderedVars.Add(@test.VarName);
              }
              else

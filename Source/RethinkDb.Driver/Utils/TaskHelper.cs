@@ -20,11 +20,6 @@ namespace RethinkDb.Driver.Utils
             task.Wait();
         }
 
-        public static ConfiguredTaskAwaitable<T> UseInternalAwait<T>(this Task<T> task)
-        {
-            return task.ConfigureAwait(false);
-        }
-
         public static Task CompletedTask => Task.FromResult(true);
         public static Task<Response> CompletedResponse => Task.FromResult<Response>(null);
     }

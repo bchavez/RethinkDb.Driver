@@ -850,6 +850,15 @@ DefsAndTests:
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
   LineNum: 287
+  Original: r.binary(a).coerce_to('bool')
+  Java: r.binary(a).coerceTo("bool")
+  ExpectedOriginal: True
+  ExpectedType: Boolean
+  ExpectedJava: true
+  RunOpts: []
+- TestType: JavaQuery
+  TestFile: datum/binary.yaml
+  LineNum: 290
   Original: r.binary(b'foo').coerce_to('binary')
   Java: r.binary(new byte[]{102, 111, 111}).coerceTo("binary")
   ExpectedOriginal: b'foo'
@@ -858,7 +867,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 291
+  LineNum: 294
   Original: r.binary(b'abcdefg').slice(-3,-1)
   Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-3L, -1L)
   ExpectedOriginal: b'ef'
@@ -867,7 +876,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 293
+  LineNum: 296
   Original: r.binary(b'abcdefg').slice(0, 2)
   Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(0L, 2L)
   ExpectedOriginal: b'ab'
@@ -876,7 +885,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 295
+  LineNum: 298
   Original: r.binary(b'abcdefg').slice(3, -1)
   Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(3L, -1L)
   ExpectedOriginal: b'def'
@@ -885,7 +894,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 297
+  LineNum: 300
   Original: r.binary(b'abcdefg').slice(-5, 5)
   Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-5L, 5L)
   ExpectedOriginal: b'cde'
@@ -894,7 +903,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 299
+  LineNum: 302
   Original: r.binary(b'abcdefg').slice(-8, 2)
   Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-8L, 2L)
   ExpectedOriginal: b'ab'
@@ -903,7 +912,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 301
+  LineNum: 304
   Original: r.binary(b'abcdefg').slice(5, 7)
   Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(5L, 7L)
   ExpectedOriginal: b'fg'
@@ -912,7 +921,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 305
+  LineNum: 308
   Original: r.binary(b'abcdefg').slice(-9, 2)
   Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(-9L, 2L)
   ExpectedOriginal: b'ab'
@@ -921,7 +930,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 309
+  LineNum: 312
   Original: r.binary(b'abcdefg').slice(5, 9)
   Java: r.binary(new byte[]{97, 98, 99, 100, 101, 102, 103}).slice(5L, 9L)
   ExpectedOriginal: b'fg'
@@ -930,7 +939,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 313
+  LineNum: 316
   Original: r.binary(b)
   Java: r.binary(b)
   ExpectedOriginal: b
@@ -941,7 +950,7 @@ DefsAndTests:
     Val: native
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 317
+  LineNum: 320
   Original: r.binary(b)
   Java: r.binary(b)
   ExpectedOriginal: '{''$reql_type$'':''BINARY'',''data'':''AAE=''}'
@@ -952,7 +961,7 @@ DefsAndTests:
     Val: raw
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 323
+  LineNum: 326
   Original: r.binary(r.expr("data"))
   Java: r.binary(r.expr("data"))
   ExpectedOriginal: b"data"
@@ -961,7 +970,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 329
+  LineNum: 332
   Original: r.binary(r.expr({}))
   Java: r.binary(r.expr(r.hashMap()))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type STRING but found OBJECT.', [])
@@ -970,7 +979,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 332
+  LineNum: 335
   Original: r.binary(r.expr([]))
   Java: r.binary(r.expr(r.array()))
   ExpectedOriginal: err('ReqlQueryLogicError', 'Expected type STRING but found ARRAY.', [])
@@ -979,7 +988,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 338
+  LineNum: 341
   Original: r.expr({'$reql_type$':'BINARY'})
   Java: r.expr(r.hashMap("$reql_type$", "BINARY"))
   ExpectedOriginal: err('ReqlQueryLogicError','Invalid binary pseudotype:'+' lacking `data` key.',[])
@@ -988,7 +997,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 343
+  LineNum: 346
   Original: r.expr({'$reql_type$':'BINARY','data':'ABCDEFGH==AA'})
   Java: r.expr(r.hashMap("$reql_type$", "BINARY").with("data", "ABCDEFGH==AA"))
   ExpectedOriginal: err('ReqlQueryLogicError','Invalid base64 format, data found after padding character \'=\'.',[])
@@ -997,7 +1006,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 345
+  LineNum: 348
   Original: r.expr({'$reql_type$':'BINARY','data':'ABCDEF==$'})
   Java: r.expr(r.hashMap("$reql_type$", "BINARY").with("data", "ABCDEF==$"))
   ExpectedOriginal: err('ReqlQueryLogicError','Invalid base64 format, data found after padding character \'=\'.',[])
@@ -1006,7 +1015,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 347
+  LineNum: 350
   Original: r.expr({'$reql_type$':'BINARY','data':'A^CDEFGH'})
   Java: r.expr(r.hashMap("$reql_type$", "BINARY").with("data", "A^CDEFGH"))
   ExpectedOriginal: err('ReqlQueryLogicError','Invalid base64 character found:'+' \'^\'.',[])
@@ -1015,7 +1024,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 349
+  LineNum: 352
   Original: r.expr({'$reql_type$':'BINARY','data':'ABCDE'})
   Java: r.expr(r.hashMap("$reql_type$", "BINARY").with("data", "ABCDE"))
   ExpectedOriginal: err('ReqlQueryLogicError','Invalid base64 length:'+' 1 character remaining, cannot decode a full byte.',[])
@@ -1024,7 +1033,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 353
+  LineNum: 356
   Original: r.binary(a).coerce_to('array')
   Java: r.binary(a).coerceTo("array")
   ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to ARRAY.',[])
@@ -1033,7 +1042,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 355
+  LineNum: 358
   Original: r.binary(a).coerce_to('object')
   Java: r.binary(a).coerceTo("object")
   ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to OBJECT.',[])
@@ -1042,16 +1051,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 357
-  Original: r.binary(a).coerce_to('bool')
-  Java: r.binary(a).coerceTo("bool")
-  ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to BOOL.',[])
-  ExpectedType: Err
-  ExpectedJava: err("ReqlQueryLogicError", "Cannot coerce BINARY to BOOL.", r.array())
-  RunOpts: []
-- TestType: JavaQuery
-  TestFile: datum/binary.yaml
-  LineNum: 359
+  LineNum: 360
   Original: r.binary(a).coerce_to('number')
   Java: r.binary(a).coerceTo("number")
   ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to NUMBER.',[])
@@ -1060,7 +1060,7 @@ DefsAndTests:
   RunOpts: []
 - TestType: JavaQuery
   TestFile: datum/binary.yaml
-  LineNum: 361
+  LineNum: 362
   Original: r.binary(a).coerce_to('nu'+'ll')
   Java: r.binary(a).coerceTo(r.add("nu", "ll"))
   ExpectedOriginal: err('ReqlQueryLogicError','Cannot coerce BINARY to NULL.',[])

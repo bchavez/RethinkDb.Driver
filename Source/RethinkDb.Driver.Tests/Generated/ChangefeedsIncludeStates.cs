@@ -111,7 +111,8 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, changefeeds/include_states.yaml, #26
              //Original: tblchanges = tbl.changes(squash=true, include_states=true)
              
-                 var tblchanges = maybeRun( (Changes) (tbl.changes().optArg("squash", true).optArg("include_states", true)) , conn);
+                 var tblchanges = maybeRun( (Changes) (tbl.changes().optArg("squash", true).optArg("include_states", true)) , conn, new {
+                  } );
              
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiY2hhbmdlZmVlZHMvaW5jbHVkZV9zdGF0ZXMueWFtbCIsIkxpbmVOdW0iOiIzMCIsIk9yaWdpbmFsIjoidGJsLmluc2VydCh7J2lkJzoyfSkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuaW5zZXJ0KHIuaGFzaE1hcChcImlkXCIsIDJMKSkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiQW55dGhpbmdJc0ZpbmUiLCJFeHBlY3RlZFR5cGUiOiJPYmplY3QiLCJFeHBlY3RlZEphdmEiOiJBbnl0aGluZ0lzRmluZSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
@@ -145,7 +146,8 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, changefeeds/include_states.yaml, #35
              //Original: getchanges = tbl.get(2).changes(include_states=true, include_initial=true)
              
-                 var getchanges = maybeRun( (Changes) (tbl.get(2L).changes().optArg("include_states", true).optArg("include_initial", true)) , conn);
+                 var getchanges = maybeRun( (Changes) (tbl.get(2L).changes().optArg("include_states", true).optArg("include_initial", true)) , conn, new {
+                  } );
              
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiY2hhbmdlZmVlZHMvaW5jbHVkZV9zdGF0ZXMueWFtbCIsIkxpbmVOdW0iOiIzOSIsIk9yaWdpbmFsIjoidGJsLmdldCgyKS51cGRhdGUoeydhJzoxfSkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuZ2V0KDJMKS51cGRhdGUoci5oYXNoTWFwKFwiYVwiLCAxTCkpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6IkFueXRoaW5nSXNGaW5lIiwiRXhwZWN0ZWRUeXBlIjoiT2JqZWN0IiwiRXhwZWN0ZWRKYXZhIjoiQW55dGhpbmdJc0ZpbmUiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
@@ -179,13 +181,15 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, changefeeds/include_states.yaml, #44
              //Original: limitchanges = tbl.order_by(index='id').limit(10).changes(include_states=true, include_initial=true)
              
-                 var limitchanges = maybeRun( (Changes) (tbl.orderBy().optArg("index", "id").limit(10L).changes().optArg("include_states", true).optArg("include_initial", true)) , conn);
+                 var limitchanges = maybeRun( (Changes) (tbl.orderBy().optArg("index", "id").limit(10L).changes().optArg("include_states", true).optArg("include_initial", true)) , conn, new {
+                  } );
              
              
              //JavaDef, changefeeds/include_states.yaml, #48
              //Original: limitchangesdesc = tbl.order_by(index=r.desc('id')).limit(10).changes(include_states=true, include_initial=true)
              
-                 var limitchangesdesc = maybeRun( (Changes) (tbl.orderBy().optArg("index", r.desc("id")).limit(10L).changes().optArg("include_states", true).optArg("include_initial", true)) , conn);
+                 var limitchangesdesc = maybeRun( (Changes) (tbl.orderBy().optArg("index", r.desc("id")).limit(10L).changes().optArg("include_states", true).optArg("include_initial", true)) , conn, new {
+                  } );
              
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiY2hhbmdlZmVlZHMvaW5jbHVkZV9zdGF0ZXMueWFtbCIsIkxpbmVOdW0iOiI1MiIsIk9yaWdpbmFsIjoidGJsLmluc2VydCh7J2lkJzozfSkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuaW5zZXJ0KHIuaGFzaE1hcChcImlkXCIsIDNMKSkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiQW55dGhpbmdJc0ZpbmUiLCJFeHBlY3RlZFR5cGUiOiJPYmplY3QiLCJFeHBlY3RlZEphdmEiOiJBbnl0aGluZ0lzRmluZSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );

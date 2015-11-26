@@ -63,6 +63,7 @@ namespace RethinkDb.Driver.Tests
         [TestFixtureTearDown]
         public void AfterRunningTestSession()
         {
+            Console.WriteLine($"YAML TEST COUNTER: {TestCounter}");
         }
 
         private ManualResetEvent FixtureWaitHandle = new ManualResetEvent(true);

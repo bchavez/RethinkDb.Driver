@@ -138,7 +138,7 @@ namespace RethinkDb.Driver.Net
 
         public async virtual Task<Server> serverAsync()
         {
-            var response = await SendQuery(Query.ServerInfo(NewToken()), awaitResponse: true).UseInternalAwait();
+            var response = await SendQuery(Query.ServerInfo(NewToken()), awaitResponse: true).ConfigureAwait(false);
             if( response.Type == ResponseType.SERVER_INFO )
             {
                 return response.Data[0].ToObject<Server>(Converter.Serializer);
@@ -182,7 +182,7 @@ namespace RethinkDb.Driver.Net
             // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-
             // http://blogs.msdn.com/b/lucian/archive/2013/11/23/talk-mvp-summit-async-best-practices.aspx
             //
-            var res = await SendQuery(query, awaitResponse: true).UseInternalAwait();
+            var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
             if( res.IsPartial || res.IsSequence )
             {
                 return Cursor<T>.create(this, query, res);
@@ -206,7 +206,7 @@ namespace RethinkDb.Driver.Net
             // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-
             // http://blogs.msdn.com/b/lucian/archive/2013/11/23/talk-mvp-summit-async-best-practices.aspx
             //
-            var res = await SendQuery(query, awaitResponse: true).UseInternalAwait();
+            var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
             if (res.IsAtom)
             {
                 try
@@ -234,7 +234,7 @@ namespace RethinkDb.Driver.Net
             // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-
             // http://blogs.msdn.com/b/lucian/archive/2013/11/23/talk-mvp-summit-async-best-practices.aspx
             //
-            var res = await SendQuery(query, awaitResponse: true).UseInternalAwait();
+            var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
             if( res.IsWaitComplete )
             {
                 return;
@@ -255,7 +255,7 @@ namespace RethinkDb.Driver.Net
             // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-
             // http://blogs.msdn.com/b/lucian/archive/2013/11/23/talk-mvp-summit-async-best-practices.aspx
             //
-            var res = await SendQuery(query, awaitResponse: true).UseInternalAwait();
+            var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
 
             if( res.IsAtom )
             {

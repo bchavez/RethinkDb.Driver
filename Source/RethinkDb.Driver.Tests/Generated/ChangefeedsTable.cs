@@ -41,7 +41,8 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, changefeeds/table.yaml, #9
              //Original: all = tbl.changes()
              
-                 var all = maybeRun( (Changes) (tbl.changes()) , conn);
+                 var all = maybeRun( (Changes) (tbl.changes()) , conn, new {
+                  } );
              
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiY2hhbmdlZmVlZHMvdGFibGUueWFtbCIsIkxpbmVOdW0iOiIxNSIsIk9yaWdpbmFsIjoidGJsLmluc2VydChbeydpZCc6MX0sIHsnaWQnOjJ9XSkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuaW5zZXJ0KHIuYXJyYXkoci5oYXNoTWFwKFwiaWRcIiwgMUwpLCByLmhhc2hNYXAoXCJpZFwiLCAyTCkpKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJwYXJ0aWFsKHsnZXJyb3JzJzowLCAnaW5zZXJ0ZWQnOjJ9KSIsIkV4cGVjdGVkVHlwZSI6IlBhcnRpYWwiLCJFeHBlY3RlZEphdmEiOiJwYXJ0aWFsKHIuaGFzaE1hcChcImVycm9yc1wiLCAwTCkud2l0aChcImluc2VydGVkXCIsIDJMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
@@ -131,7 +132,8 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, changefeeds/table.yaml, #36
              //Original: pluck = tbl.changes().pluck({'new_val':['version']})
              
-                 var pluck = maybeRun( (Pluck) (tbl.changes().pluck(r.hashMap("new_val", r.array("version")))) , conn);
+                 var pluck = maybeRun( (Pluck) (tbl.changes().pluck(r.hashMap("new_val", r.array("version")))) , conn, new {
+                  } );
              
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiY2hhbmdlZmVlZHMvdGFibGUueWFtbCIsIkxpbmVOdW0iOiIzNyIsIk9yaWdpbmFsIjoidGJsLmluc2VydChbeydpZCc6NSwgJ3ZlcnNpb24nOjV9XSkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuaW5zZXJ0KHIuYXJyYXkoci5oYXNoTWFwKFwiaWRcIiwgNUwpLndpdGgoXCJ2ZXJzaW9uXCIsIDVMKSkpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6InBhcnRpYWwoeydlcnJvcnMnOjAsICdpbnNlcnRlZCc6MX0pIiwiRXhwZWN0ZWRUeXBlIjoiUGFydGlhbCIsIkV4cGVjdGVkSmF2YSI6InBhcnRpYWwoci5oYXNoTWFwKFwiZXJyb3JzXCIsIDBMKS53aXRoKFwiaW5zZXJ0ZWRcIiwgMUwpKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
@@ -176,6 +178,42 @@ namespace RethinkDb.Driver.Test.Generated {
              }
              
              
+             //JavaDef, changefeeds/table.yaml, #59
+             //Original: overflow = tbl.changes()
+             
+                 var overflow = maybeRun( (Changes) (tbl.changes()) , conn, new {
+                    changefeed_queue_size = 100L ,
+                  } );
+             
+             {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiY2hhbmdlZmVlZHMvdGFibGUueWFtbCIsIkxpbmVOdW0iOiI2NCIsIk9yaWdpbmFsIjoidGJsLmluc2VydChyLnJhbmdlKDIwMCkubWFwKGxhbWJkYSB4OiB7fSkpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidGJsLmluc2VydChyLnJhbmdlKDIwMEwpLm1hcCh4ID0+IHIuaGFzaE1hcCgpKSkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiQW55dGhpbmdJc0ZpbmUiLCJFeHBlY3RlZFR5cGUiOiJPYmplY3QiLCJFeHBlY3RlZEphdmEiOiJBbnl0aGluZ0lzRmluZSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
+                 //JavaQuery, changefeeds/table.yaml, #64
+                 /* ExpectedOriginal: AnythingIsFine */
+                 var expected_ = AnythingIsFine;
+                 
+                 /* Original: tbl.insert(r.range(200).map(lambda x: {})) */
+                 var obtained = runOrCatch( tbl.insert(r.range(200L).map(x => r.hashMap())) ,
+                                            new {
+                    }, conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             {
+                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiY2hhbmdlZmVlZHMvdGFibGUueWFtbCIsIkxpbmVOdW0iOiI2NiIsIk9yaWdpbmFsIjoiZmV0Y2gob3ZlcmZsb3csIDkwKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6ImZldGNoKG92ZXJmbG93LCA5MEwpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6InBhcnRpYWwoW3snZXJyb3InOiByZWdleCgnQ2hhbmdlZmVlZCBjYWNoZSBvdmVyIGFycmF5IHNpemUgbGltaXQsIHNraXBwZWQgXFxkKyBlbGVtZW50cy4nKX1dKSIsIkV4cGVjdGVkVHlwZSI6IlBhcnRpYWwiLCJFeHBlY3RlZEphdmEiOiJwYXJ0aWFsKHIuYXJyYXkoci5oYXNoTWFwKFwiZXJyb3JcIiwgcmVnZXgoXCJDaGFuZ2VmZWVkIGNhY2hlIG92ZXIgYXJyYXkgc2l6ZSBsaW1pdCwgc2tpcHBlZCBcXFxcZCsgZWxlbWVudHMuXCIpKSkpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
+                 //JavaQuery, changefeeds/table.yaml, #66
+                 /* ExpectedOriginal: partial([{'error': regex('Changefeed cache over array size limit, skipped \d+ elements.')}]) */
+                 var expected_ = partial(r.array(r.hashMap("error", regex("Changefeed cache over array size limit, skipped \\d+ elements."))));
+                 
+                 /* Original: fetch(overflow, 90) */
+                 var obtained = runOrCatch( fetch(overflow, 90L) ,
+                                            new {
+                    }, conn);
+                 
+                     assertEquals(expected_, obtained);                 
+             }
+             
+             
              //JavaDef, changefeeds/table.yaml, #71
              //Original: vtbl = r.db('rethinkdb').table('_debug_scratch')
              
@@ -185,7 +223,8 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, changefeeds/table.yaml, #72
              //Original: allVirtual = vtbl.changes()
              
-                 var allVirtual = maybeRun( (Changes) (vtbl.changes()) , conn);
+                 var allVirtual = maybeRun( (Changes) (vtbl.changes()) , conn, new {
+                  } );
              
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiY2hhbmdlZmVlZHMvdGFibGUueWFtbCIsIkxpbmVOdW0iOiI3NiIsIk9yaWdpbmFsIjoidnRibC5pbnNlcnQoW3snaWQnOjF9LCB7J2lkJzoyfV0pIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidnRibC5pbnNlcnQoci5hcnJheShyLmhhc2hNYXAoXCJpZFwiLCAxTCksIHIuaGFzaE1hcChcImlkXCIsIDJMKSkpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6InBhcnRpYWwoeydlcnJvcnMnOjAsICdpbnNlcnRlZCc6Mn0pIiwiRXhwZWN0ZWRUeXBlIjoiUGFydGlhbCIsIkV4cGVjdGVkSmF2YSI6InBhcnRpYWwoci5oYXNoTWFwKFwiZXJyb3JzXCIsIDBMKS53aXRoKFwiaW5zZXJ0ZWRcIiwgMkwpKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
@@ -275,7 +314,8 @@ namespace RethinkDb.Driver.Test.Generated {
              //JavaDef, changefeeds/table.yaml, #97
              //Original: vpluck = vtbl.changes().pluck({'new_val':['version']})
              
-                 var vpluck = maybeRun( (Pluck) (vtbl.changes().pluck(r.hashMap("new_val", r.array("version")))) , conn);
+                 var vpluck = maybeRun( (Pluck) (vtbl.changes().pluck(r.hashMap("new_val", r.array("version")))) , conn, new {
+                  } );
              
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiY2hhbmdlZmVlZHMvdGFibGUueWFtbCIsIkxpbmVOdW0iOiI5OCIsIk9yaWdpbmFsIjoidnRibC5pbnNlcnQoW3snaWQnOjUsICd2ZXJzaW9uJzo1fV0pIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoidnRibC5pbnNlcnQoci5hcnJheShyLmhhc2hNYXAoXCJpZFwiLCA1TCkud2l0aChcInZlcnNpb25cIiwgNUwpKSkiLCJFeHBlY3RlZE9yaWdpbmFsIjoicGFydGlhbCh7J2Vycm9ycyc6MCwgJ2luc2VydGVkJzoxfSkiLCJFeHBlY3RlZFR5cGUiOiJQYXJ0aWFsIiwiRXhwZWN0ZWRKYXZhIjoicGFydGlhbChyLmhhc2hNYXAoXCJlcnJvcnNcIiwgMEwpLndpdGgoXCJpbnNlcnRlZFwiLCAxTCkpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );

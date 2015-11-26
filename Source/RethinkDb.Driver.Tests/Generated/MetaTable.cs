@@ -24,7 +24,6 @@ namespace RethinkDb.Driver.Test.Generated {
     // Tests meta queries for creating and deleting tables
 
     [TestFixture]
-    [Explicit("Java tests fail, so, we'll skip these for now.")]
     public class MetaTable : YamlTestFixture {
 
         public MetaTable (){

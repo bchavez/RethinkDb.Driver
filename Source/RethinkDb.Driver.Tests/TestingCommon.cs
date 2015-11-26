@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Common.Logging.Factory;
 using FluentAssertions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -41,6 +42,14 @@ namespace RethinkDb.Driver.Tests
                 err.Equals(obtained).Should().BeTrue();
                 return;
             }
+
+            var regex = expected as RegeX;
+            if( regex != null )
+            {
+                regex.Equals(obtained).Should().BeTrue("Regex Match Failed");
+                return;
+            }
+
             var errregex = expected as ErrRegex;
             if( errregex != null )
             {
@@ -71,6 +80,15 @@ namespace RethinkDb.Driver.Tests
             {
                 bag.Equals(obtained)
                     .Should().BeTrue();
+                return;
+            }
+
+            if( expected is PartialLst )
+            {
+                var obtainedList = obtained as IList;
+                ((PartialLst)expected).Equals(obtainedList)
+                    .Should().BeTrue();
+
                 return;
             }
 
@@ -177,11 +195,11 @@ namespace RethinkDb.Driver.Tests
             oj.Should().Be(ej);
         }
 
-        public static dynamic maybeRun(object query, Connection conn)
+        public static dynamic maybeRun(object query, Connection conn, object runOpts)
         {
             if( query is ReqlAst )
             {
-                return ((ReqlAst)query).run(conn);
+                return ((ReqlAst)query).run(conn, runOpts);
             }
             else
             {
@@ -421,12 +439,24 @@ namespace RethinkDb.Driver.Tests
                 {
                     return false;
                 }
-                foreach( var item in lst )
+
+                foreach( var expectedItem in this.lst )
                 {
-                    if( otherList.IndexOf(item) == -1 )
-                    {
+
+                    var anyMatch = otherList.OfType<object>().Any(obtainedItem =>
+                        {
+                            try
+                            {
+                                assertEquals(expectedItem, obtainedItem);
+                                return true;
+                            }
+                            catch
+                            {
+                                return false;
+                            }
+                        });
+                    if( !anyMatch )
                         return false;
-                    }
                 }
                 return true;
             }
@@ -471,6 +501,11 @@ namespace RethinkDb.Driver.Tests
                         continue;
                     }
                     if( val is PartialDct )
+                    {
+                        assertEquals(val, otherVal);
+                        continue;
+                    }
+                    if( val is RegeX )
                     {
                         assertEquals(val, otherVal);
                         continue;
@@ -642,6 +677,30 @@ namespace RethinkDb.Driver.Tests
             return new FloatCmp(nbr);
         }
 
+        public class RegeX
+        {
+            private readonly string regexString;
+
+            public RegeX(string regexString)
+            {
+                this.regexString = regexString;
+            }
+
+            public override string ToString()
+            {
+                return $"Regex({regexString})";
+            }
+
+            public override bool Equals(object obj)
+            {
+                return Regex.IsMatch(obj?.ToString() ?? string.Empty, this.regexString);
+            }
+        }
+
+        public static RegeX regex(string regexString)
+        {
+            return new RegeX(regexString);
+        }
 
         public class ErrRegex
         {

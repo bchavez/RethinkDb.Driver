@@ -1,4 +1,12 @@
-Submitting Issues
+General Help
+------------
+General help with ReQL questions can be found on:
+
+* **Freenode**: Use [WebChat](http://webchat.freenode.net/?channels=rethinkdb) and join `#rethinkdb` channel. There are many online that can help answer general ReQL questions. Alternatively, [HexChat](https://hexchat.github.io/) is a native windows IRC client. 
+* **Gitter**: For questions that relate to this C# driver we have a **Gitter** channel: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bchavez/RethinkDb.Driver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+  
+
+Issues
 ------------
 Here are some helpful tips to keep in mind when submitting issues:
 

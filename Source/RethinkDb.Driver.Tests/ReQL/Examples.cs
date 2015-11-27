@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Xml.XPath;
 using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -263,6 +265,33 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             server.Id.Should().NotBeEmpty();
             server.Name.Should().NotBeNullOrWhiteSpace();
+        }
+
+        [Test]
+        public void check_if_table_exists()
+        {
+            var result = r.db(DbName).tableList().runAtom<List<string>>(conn);
+
+            if( result.Contains("test") )
+            {
+                //exists
+            }
+            else
+            {
+                //doesnt exist
+            }
+
+            var newTableResult = r.db(DbName).tableList().contains("newTable")
+                .do_(tableExists =>
+                    {
+                        return r.branch(
+                            tableExists, /* The test */
+                            new {tables_created = 0}, /* If False */
+                            r.db(DbName).tableCreate("newTable") /* If true */
+                            );
+                    }).runResult(conn);
+
+            newTableResult.Dump();
         }
 
     }

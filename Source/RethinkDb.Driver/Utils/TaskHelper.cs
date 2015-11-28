@@ -20,7 +20,14 @@ namespace RethinkDb.Driver.Utils
             task.Wait();
         }
 
-        public static Task CompletedTask => Task.FromResult(true);
-        public static Task<Response> CompletedResponse => Task.FromResult<Response>(null);
+
+        static TaskHelper()
+        {
+            CompletedTask = Task.FromResult(true);
+            CompletedResponse = Task.FromResult<Response>(null);
+        }
+
+        public static Task CompletedTask { get; private set; }
+        public static Task<Response> CompletedResponse { get; private set; }
     }
 }

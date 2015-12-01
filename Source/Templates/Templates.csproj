@@ -245,7 +245,6 @@
     <None Include="UnitTests\MathLogicMod.yaml" />
     <None Include="UnitTests\MathLogicMul.yaml" />
     <None Include="UnitTests\MathLogicSub.yaml" />
-    <None Include="UnitTests\MetaComposite.yaml" />
     <None Include="UnitTests\MetaDbs.yaml" />
     <None Include="UnitTests\MetaTable.yaml" />
     <None Include="UnitTests\MutationAtomicGetSet.yaml" />

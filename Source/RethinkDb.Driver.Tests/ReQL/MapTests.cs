@@ -8,10 +8,6 @@ namespace RethinkDb.Driver.Tests.ReQL
     [TestFixture]
     public class MapTests : QueryTestFixture
     {
-        public class TopPlayer
-        {
-            public int PlayerId { get; set; }
-        }
         [Test]
         public void mapping_test()
         {
@@ -50,5 +46,10 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             result.Should().Equal(1, 4, 9, 16, 25);
         }
+    }
+
+    public class TopPlayer
+    {
+        public int PlayerId { get; set; }
     }
 }

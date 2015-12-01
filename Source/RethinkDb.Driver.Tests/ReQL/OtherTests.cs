@@ -23,5 +23,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             var dt2 = TestingCommon.datetime.fromtimestamp(1375147296.681, TestingCommon.ast.rqlTzinfo("-07:00"));
             dt2.Dump();
         }
+
     }
+
 }

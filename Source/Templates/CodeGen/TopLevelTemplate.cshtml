@@ -4,6 +4,7 @@
 @using Newtonsoft.Json.Linq
 @using Templates.CodeGen.Util
 @using Templates.Metadata
+@using Z.ExtensionMethods
 
 @inherits Templates.CodeGen.BaseTemplate
 
@@ -72,7 +73,7 @@ namespace RethinkDb.Driver.Ast {
                 {
                     foreach( var sig in term["signatures"].ToObject<Signature[]>() )
                     {
-                        if( sig.FirstArg != "Db" )
+                        if( sig.FirstArg.NotIn("Db", "Table") )
                         {
                             var parameters = sig.Args.Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
 

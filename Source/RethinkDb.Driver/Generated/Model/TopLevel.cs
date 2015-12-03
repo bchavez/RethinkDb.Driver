@@ -683,18 +683,6 @@ namespace RethinkDb.Driver.Ast {
                                 return new Wait (arguments);
                             }
 /// <summary>
-/// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
-///</summary>
-/// <example><para>Example: Wait for a table to be ready.</para>
-/// <code>&gt; r.table('superheroes').wait().run(conn, callback);
-/// </code></example>
-                            public Wait wait_ ( Table table )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(table);
-                                return new Wait (arguments);
-                            }
-/// <summary>
 /// <para>Reconfigure a table's sharding and replication.</para>
 ///</summary>
 /// <example><para>Example: Reconfigure a table.</para>
@@ -706,18 +694,6 @@ namespace RethinkDb.Driver.Ast {
                                 return new Reconfigure (arguments);
                             }
 /// <summary>
-/// <para>Reconfigure a table's sharding and replication.</para>
-///</summary>
-/// <example><para>Example: Reconfigure a table.</para>
-/// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
-/// </code></example>
-                            public Reconfigure reconfigure ( Table table )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(table);
-                                return new Reconfigure (arguments);
-                            }
-/// <summary>
 /// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
 ///</summary>
 /// <example><para>Example: Rebalance a table.</para>
@@ -726,18 +702,6 @@ namespace RethinkDb.Driver.Ast {
                             public Rebalance rebalance (  )
                             {
                                 Arguments arguments = new Arguments();
-                                return new Rebalance (arguments);
-                            }
-/// <summary>
-/// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
-///</summary>
-/// <example><para>Example: Rebalance a table.</para>
-/// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
-/// </code></example>
-                            public Rebalance rebalance ( Table table )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(table);
                                 return new Rebalance (arguments);
                             }
                             public Funcall do_ ( Javascript js )

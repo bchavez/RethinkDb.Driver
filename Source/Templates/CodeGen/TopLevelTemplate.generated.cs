@@ -50,12 +50,18 @@ namespace Templates.CodeGen
     #line default
     #line hidden
     
+    #line 7 "..\..\CodeGen\TopLevelTemplate.cshtml"
+    using Z.ExtensionMethods;
+    
+    #line default
+    #line hidden
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
     public partial class TopLevelTemplate : Templates.CodeGen.BaseTemplate
     {
 #line hidden
 
-        #line 10 "..\..\CodeGen\TopLevelTemplate.cshtml"
+        #line 11 "..\..\CodeGen\TopLevelTemplate.cshtml"
 
     public Dictionary<string, JObject> AllTerms { get; set; }
 
@@ -69,7 +75,7 @@ return new System.Web.WebPages.HelperResult(__razor_helper_writer => {
 
 
 
-#line 16 "..\..\CodeGen\TopLevelTemplate.cshtml"
+#line 17 "..\..\CodeGen\TopLevelTemplate.cshtml"
  
     Documentation doc;
     if (MetaDb.Docs.TryGetValue(term, out doc))
@@ -86,7 +92,7 @@ WriteLiteralTo(@__razor_helper_writer, "/// ");
 
 
 
-#line 21 "..\..\CodeGen\TopLevelTemplate.cshtml"
+#line 22 "..\..\CodeGen\TopLevelTemplate.cshtml"
 WriteTo(@__razor_helper_writer, doc.Description);
 
 #line default
@@ -104,7 +110,7 @@ WriteLiteralTo(@__razor_helper_writer, "/// <example>");
 
 
 
-#line 23 "..\..\CodeGen\TopLevelTemplate.cshtml"
+#line 24 "..\..\CodeGen\TopLevelTemplate.cshtml"
 WriteTo(@__razor_helper_writer, doc.Example);
 
 #line default
@@ -114,7 +120,7 @@ WriteLiteralTo(@__razor_helper_writer, "</example>\r\n");
 
 
 
-#line 24 "..\..\CodeGen\TopLevelTemplate.cshtml"
+#line 25 "..\..\CodeGen\TopLevelTemplate.cshtml"
     };
 
 #line default
@@ -127,6 +133,7 @@ WriteLiteralTo(@__razor_helper_writer, "</example>\r\n");
 
         public override void Execute()
         {
+
 
 
 
@@ -188,7 +195,7 @@ namespace RethinkDb.Driver.Ast {
 
 
             
-            #line 66 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 67 "..\..\CodeGen\TopLevelTemplate.cshtml"
          foreach (var termInfo in AllTerms)
         {
             var term = termInfo.Value;
@@ -198,7 +205,7 @@ namespace RethinkDb.Driver.Ast {
                 {
                     foreach( var sig in term["signatures"].ToObject<Signature[]>() )
                     {
-                        if( sig.FirstArg != "Db" )
+                        if( sig.FirstArg.NotIn("Db", "Table") )
                         {
                             var parameters = sig.Args.Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
 
@@ -207,14 +214,14 @@ namespace RethinkDb.Driver.Ast {
             #line default
             #line hidden
             
-            #line 79 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 80 "..\..\CodeGen\TopLevelTemplate.cshtml"
                        Write(RenderMethodXmlDoc(termInfo.Key));
 
             
             #line default
             #line hidden
             
-            #line 79 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 80 "..\..\CodeGen\TopLevelTemplate.cshtml"
                                                              
 
             
@@ -226,7 +233,7 @@ WriteLiteral("public ");
 
 
             
-            #line 80 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 81 "..\..\CodeGen\TopLevelTemplate.cshtml"
                                 Write(Class(term["classname"].ToString()));
 
             
@@ -236,7 +243,7 @@ WriteLiteral(" ");
 
 
             
-            #line 80 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 81 "..\..\CodeGen\TopLevelTemplate.cshtml"
                                                                      Write(Method(methodname));
 
             
@@ -246,7 +253,7 @@ WriteLiteral(" ( ");
 
 
             
-            #line 80 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 81 "..\..\CodeGen\TopLevelTemplate.cshtml"
                                                                                            Write(string.Join(", ", parameters.ToArray()));
 
             
@@ -262,7 +269,7 @@ WriteLiteral("{\r\n");
 
 
             
-            #line 82 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 83 "..\..\CodeGen\TopLevelTemplate.cshtml"
 
                             if (methodname == "binary")
                             {
@@ -277,7 +284,7 @@ WriteLiteral("   var byteArray = ");
 
 
             
-            #line 86 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 87 "..\..\CodeGen\TopLevelTemplate.cshtml"
                                                 Write(firstArg);
 
             
@@ -305,7 +312,7 @@ WriteLiteral("   }\r\n");
 
 
             
-            #line 90 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 91 "..\..\CodeGen\TopLevelTemplate.cshtml"
                             }
 
             
@@ -317,7 +324,7 @@ WriteLiteral("    Arguments arguments = new Arguments();\r\n");
 
 
             
-            #line 92 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 93 "..\..\CodeGen\TopLevelTemplate.cshtml"
                             foreach( var param in sig.Args )
                             {
                                 if( param.Type == "Object..." )
@@ -332,7 +339,7 @@ WriteLiteral("arguments.CoerceAndAddAll(");
 
 
             
-            #line 96 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 97 "..\..\CodeGen\TopLevelTemplate.cshtml"
                                                        Write(ArgumentVariable(param.Var));
 
             
@@ -342,7 +349,7 @@ WriteLiteral(");\r\n");
 
 
             
-            #line 97 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 98 "..\..\CodeGen\TopLevelTemplate.cshtml"
                                 }
                                 else
                                 {
@@ -356,7 +363,7 @@ WriteLiteral("arguments.CoerceAndAdd(");
 
 
             
-            #line 100 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 101 "..\..\CodeGen\TopLevelTemplate.cshtml"
                                                     Write(ArgumentVariable(param.Var));
 
             
@@ -366,7 +373,7 @@ WriteLiteral(");\r\n");
 
 
             
-            #line 101 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 102 "..\..\CodeGen\TopLevelTemplate.cshtml"
                                 }
                             }
 
@@ -379,7 +386,7 @@ WriteLiteral("    return new ");
 
 
             
-            #line 103 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 104 "..\..\CodeGen\TopLevelTemplate.cshtml"
                                         Write(Class(term["classname"].ToString()));
 
             
@@ -395,7 +402,7 @@ WriteLiteral("}\r\n");
 
 
             
-            #line 105 "..\..\CodeGen\TopLevelTemplate.cshtml"
+            #line 106 "..\..\CodeGen\TopLevelTemplate.cshtml"
 
                         }
                     }

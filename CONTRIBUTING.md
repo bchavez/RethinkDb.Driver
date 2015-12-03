@@ -11,6 +11,8 @@ Reporting Issues
 Here are some helpful tips to keep in mind when reporting issues:
 
 * :heavy_check_mark: **CONSIDER** including [JSON protocol traces](https://github.com/bchavez/RethinkDb.Driver/wiki/Protocol-Debugging) in your issue.
+* :heavy_check_mark: **CONSIDER** including any **ReQL** queries (and any associated classes) in your issue.
+* :heavy_check_mark: **CONSIDER** describing the OS and run-time platform you're using.
 
 Pull Requests
 ------------

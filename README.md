@@ -81,6 +81,12 @@ Documentation
   * [Implicit Operators](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#implicit-conversion-operator-overload)
 * [Differences](https://github.com/bchavez/RethinkDb.Driver/wiki/Differences-Between-C%23-and-Java-driver)
 
+* ##### Driver Development
+  * [Contributing](https://github.com/bchavez/RethinkDb.Driver/blob/master/CONTRIBUTING.md)
+  * [Getting Started](https://github.com/bchavez/RethinkDb.Driver/wiki/Getting-Started)
+  * [Unit Tests](https://github.com/bchavez/RethinkDb.Driver/wiki/Unit-Tests)
+  * [Protocol Debugging](https://github.com/bchavez/RethinkDb.Driver/wiki/Protocol-Debugging)
+
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bchavez/RethinkDb.Driver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Quick Examples

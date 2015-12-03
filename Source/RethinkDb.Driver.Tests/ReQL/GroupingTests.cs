@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Tests.Utils;
@@ -32,11 +33,23 @@ namespace RethinkDb.Driver.Tests.ReQL
                 r.expr(games).group("player")
                 .run<GroupedResult<string, Game>>(conn);
 
+            var groups = 0;
             foreach( var group in result )
             {
                 Console.WriteLine($">>>> KEY:{group.Key}");
                 group.Dump();
+                groups++;
+
+                if( group.Key == "Bob" )
+                {
+                    group.Items.ShouldBeEquivalentTo(new[] {games[0], games[2]});
+                }
+                else
+                {
+                    group.Items.ShouldBeEquivalentTo(new[] {games[1], games[3]});
+                }
             }
+            groups.Should().Be(2);
         }
 
         [Test]
@@ -53,11 +66,23 @@ namespace RethinkDb.Driver.Tests.ReQL
             var result = r.expr(games).group("player")
                 .runGrouping<string, Game>(conn);
 
+            var groups = 0;
             foreach (var group in result)
             {
                 Console.WriteLine($">>>> KEY:{group.Key}");
                 group.Dump();
+
+                if (group.Key == "Bob")
+                {
+                    group.Items.ShouldBeEquivalentTo(new[] { games[0], games[2] });
+                }
+                else
+                {
+                    group.Items.ShouldBeEquivalentTo(new[] { games[1], games[3] });
+                }
+                groups++;
             }
+            groups.Should().Be(2);
         }
 
         [Test]
@@ -74,11 +99,22 @@ namespace RethinkDb.Driver.Tests.ReQL
             var result = await r.expr(games).group("player")
                 .runGroupingAsync<string, Game>(conn);
 
+            var groups = 0;
             foreach (var group in result)
             {
                 Console.WriteLine($">>>> KEY:{group.Key}");
                 group.Dump();
+                if (group.Key == "Bob")
+                {
+                    group.Items.ShouldBeEquivalentTo(new[] { games[0], games[2] });
+                }
+                else
+                {
+                    group.Items.ShouldBeEquivalentTo(new[] { games[1], games[3] });
+                }
+                groups++;
             }
+            groups.Should().Be(2);
         }
     }
 }

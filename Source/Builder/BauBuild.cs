@@ -236,13 +236,7 @@ namespace Builder
                         //We just use this task to depend on Pack (dnx build) and MSBuild
                         //to ensure MS build gets called so we know *everything* compiles, including
                         //unit tests.
-                        var tag = Environment.GetEnvironmentVariable("APPVEYOR_REPO_TAG_NAME");
-                        if( tag.IsNotNullOrWhiteSpace() )
-                        {
-                            task.LogInfo("Setting HISTORY_ID notes...");
-                            var historyId = BuildContext.FullVersion.Replace(".", "");
-                            AppVeyor.SetBuildVariable("HISTORY_ID", historyId);
-                        }
+
                     })
 
                 .Task(citest).Desc("Triggers unit tests.")

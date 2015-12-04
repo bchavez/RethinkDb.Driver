@@ -56,7 +56,7 @@ deploy:
     - provider: GitHub
       release: 'Release $(APPVEYOR_REPO_TAG_NAME) build $(APPVEYOR_BUILD_VERSION)'
       tag: $(APPVEYOR_REPO_TAG_NAME)
-      description: '[CHANGE LOG](https://github.com/bchavez/RethinkDb.Driver/blob/master/HISTORY.md#${HISTORY_ID})'
+      description: '[**CHANGE LOG**](https://github.com/bchavez/RethinkDb.Driver/blob/master/HISTORY.md)'
       prerelease: $(IsPreRelease)
       artifact: Zip, NuGet
       auth_token:

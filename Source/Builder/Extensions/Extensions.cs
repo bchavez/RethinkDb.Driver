@@ -111,7 +111,7 @@ namespace Builder.Extensions
             return System.Security.SecurityElement.Escape(All());
         }
 
-        public static string ReleaseNotes(string fullVersion)
+        public static string ChangesFor(string fullVersion)
         {
             var all = All();
             return all.GetAfter(fullVersion).GetBefore("## ").Trim();

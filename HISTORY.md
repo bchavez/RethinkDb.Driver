@@ -1,4 +1,4 @@
-## v2.2.0-beta1
+## v0.0.7-beta-8
 * conn.server() and conn.serverAsync(): SERVER_INFO implemented.
 * TopLevel AST adjustments for Table: rebalance, reconfigure, and wait_
 * Slight adjustment to System.Dynamic.Runtime dependency so no fallback source is needed.
@@ -12,7 +12,7 @@
 * Added Cursor.MoveNext(Timeout) for manual cursor movement.
 * Added new helper: runGrouping<TKey,TItem>()
 * Added new helper: runAtom<T>()
-* See project page documentation
+* See project documentation wiki
 
 ## v0.0.7-alpha6
 * Added run helpers: runResult(), runChanges<T>()

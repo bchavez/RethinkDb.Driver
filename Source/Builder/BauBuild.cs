@@ -239,9 +239,9 @@ namespace Builder
                         var tag = Environment.GetEnvironmentVariable("APPVEYOR_REPO_TAG_NAME");
                         if( tag.IsNotNullOrWhiteSpace() )
                         {
-                            task.LogInfo("Getting release notes...");
-                            var releaseNotes = History.ReleaseNotes(tag);
-                            AppVeyor.SetBuildVariable("RELEASE_NOTES", releaseNotes);
+                            task.LogInfo("Setting HISTORY_ID notes...");
+                            var historyId = BuildContext.FullVersion.Replace(".", "");
+                            AppVeyor.SetBuildVariable("HISTORY_ID", historyId);
                         }
                     })
 

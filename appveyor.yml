@@ -45,18 +45,18 @@ artifacts:
 nuget:
     disable_publish_on_pr: true
 
-before_deploy:
-    - ps: |
-            Write-Host "~~~~~~~~~~~~~~~~~~"
-            Write-Host "  Release Notes   "
-            Write-Host "~~~~~~~~~~~~~~~~~~"
-            Write-Host $Env:RELEASE_NOTES
+#before_deploy:
+#    - ps: |
+#            Write-Host "~~~~~~~~~~~~~~~~~~"
+#            Write-Host "  Release Notes   "
+#            Write-Host "~~~~~~~~~~~~~~~~~~"
+#            Write-Host $Env:RELEASE_NOTES
 
 deploy:
     - provider: GitHub
       release: 'Release $(APPVEYOR_REPO_TAG_NAME) build $(APPVEYOR_BUILD_VERSION)'
       tag: $(APPVEYOR_REPO_TAG_NAME)
-      description: $(RELEASE_NOTES)
+      description: '[CHANGE LOG](https://github.com/bchavez/RethinkDb.Driver/blob/master/HISTORY.md#${HISTORY_ID})'
       prerelease: $(IsPreRelease)
       artifact: Zip, NuGet
       auth_token:

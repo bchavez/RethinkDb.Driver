@@ -97,8 +97,7 @@ namespace Builder
                                     .WithArguments(
                                         "dnvm update-self;",
                                         $"dnvm install {Projects.DnmvVersion} -r clr;",
-                                        $"dnvm use {Projects.DnmvVersion} -r clr -p;",
-                                        "dnu restore --fallbacksource https://www.myget.org/F/aspnetvnext/api/v2/"
+                                        $"dnvm use {Projects.DnmvVersion} -r clr -p;"
                                     ).InWorkingDirectory(Projects.DriverProject.Folder);
                             });
                     })

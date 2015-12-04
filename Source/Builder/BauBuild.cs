@@ -97,7 +97,8 @@ namespace Builder
                                     .WithArguments(
                                         "dnvm update-self;",
                                         $"dnvm install {Projects.DnmvVersion} -r clr;",
-                                        $"dnvm use {Projects.DnmvVersion} -r clr -p;"
+                                        $"dnvm use {Projects.DnmvVersion} -r clr -p;",
+                                        "dnu restore"
                                     ).InWorkingDirectory(Projects.DriverProject.Folder);
                             });
                     })

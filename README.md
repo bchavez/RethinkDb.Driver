@@ -8,7 +8,7 @@ RethinkDb.Driver
 
 Project Description
 -------------------
-A RethinkDB database driver written in C# striving for 100% API compatibility and completeness.
+A [**RethinkDB**](http://rethinkdb.com/) database driver written in C# striving for 100% API compatibility and completeness.
 
 This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/next/drivers/java). This driver and the official Java Driver are *still under active development*.
 

@@ -42,7 +42,7 @@
     "dnxcore50": {
       "dependencies": {
         "System.Text.Encoding": "4.0.11-beta-23516",
-        "System.Dynamic.Runtime": "4.0.11-rc2-23513",
+        "System.Dynamic.Runtime": "4.0.11-beta-23516",
         "System.IO": "4.0.11-beta-23516",
         "System.ComponentModel": "4.0.1-beta-23516",
         "System.Reflection.Extensions": "4.0.1-beta-23516",

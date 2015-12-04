@@ -202,7 +202,7 @@
           "lib/DNXCore50/System.Diagnostics.Tracing.dll": {}
         }
       },
-      "System.Dynamic.Runtime/4.0.11-rc2-23513": {
+      "System.Dynamic.Runtime/4.0.11-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -902,7 +902,7 @@
           "lib/DNXCore50/System.Diagnostics.Tracing.dll": {}
         }
       },
-      "System.Dynamic.Runtime/4.0.11-rc2-23513": {
+      "System.Dynamic.Runtime/4.0.11-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -1533,7 +1533,7 @@
           "lib/DNXCore50/System.Diagnostics.Tracing.dll": {}
         }
       },
-      "System.Dynamic.Runtime/4.0.11-rc2-23513": {
+      "System.Dynamic.Runtime/4.0.11-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -2433,10 +2433,10 @@
         "System.Diagnostics.Tracing.nuspec"
       ]
     },
-    "System.Dynamic.Runtime/4.0.11-rc2-23513": {
+    "System.Dynamic.Runtime/4.0.11-beta-23516": {
       "type": "package",
       "serviceable": true,
-      "sha512": "splyZFe5lmY77t6vXEVxYTITecrmqMNJmSo+JrKxb5BMlwEL9pZUeCtwNxhXt3GIdIrZPRPkA2po+Km0qugjLw==",
+      "sha512": "ypkxS0e+yUw7F6JEwuB22u0qqruMeZFOmtcImh2efDHpTAuhF2FOqCDJ7f4qLf9yomVvB4kjkZ6xGunbIQryxQ==",
       "files": [
         "lib/DNXCore50/System.Dynamic.Runtime.dll",
         "lib/MonoAndroid10/_._",
@@ -2490,8 +2490,8 @@
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "runtimes/win8-aot/lib/netcore50/System.Dynamic.Runtime.dll",
-        "System.Dynamic.Runtime.4.0.11-rc2-23513.nupkg",
-        "System.Dynamic.Runtime.4.0.11-rc2-23513.nupkg.sha512",
+        "System.Dynamic.Runtime.4.0.11-beta-23516.nupkg",
+        "System.Dynamic.Runtime.4.0.11-beta-23516.nupkg.sha512",
         "System.Dynamic.Runtime.nuspec"
       ]
     },
@@ -3676,7 +3676,7 @@
     ],
     "DNXCore,Version=v5.0": [
       "System.Text.Encoding >= 4.0.11-beta-23516",
-      "System.Dynamic.Runtime >= 4.0.11-rc2-23513",
+      "System.Dynamic.Runtime >= 4.0.11-beta-23516",
       "System.IO >= 4.0.11-beta-23516",
       "System.ComponentModel >= 4.0.1-beta-23516",
       "System.Reflection.Extensions >= 4.0.1-beta-23516",

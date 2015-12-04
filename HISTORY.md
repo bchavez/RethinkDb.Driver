@@ -1,6 +1,7 @@
 ## v0.0.7-alpha8
 * conn.server() and conn.serverAsync(): SERVER_INFO implemented.
 * TopLevel AST adjustments for Table: rebalance, reconfigure, and wait_
+* Slight adjustment to System.Dynamic.Runtime dependency so no fallback source is needed.
 
 ## v0.0.7-alpha7
 * async/await run() implementations.

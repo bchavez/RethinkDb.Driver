@@ -61,7 +61,12 @@
     <Compile Include="Ast\Util.cs" />
     <Compile Include="ErrorBuilder.cs" />
     <Compile Include="Model\Server.cs" />
+    <Compile Include="Net\Clustering\EpsilonGreedy.cs" />
+    <Compile Include="Net\Clustering\EpsilonHostPoolResponse.cs" />
+    <Compile Include="Net\Clustering\EpsilonValueCalculator.cs" />
+    <Compile Include="Net\Clustering\HostEntry.cs" />
     <Compile Include="Net\Clustering\HostPool.cs" />
+    <Compile Include="Net\Clustering\HostPoolResponse.cs" />
     <Compile Include="Utils\NonBlocking\ConcurrentDictionary\ConcurrentDictionary.cs" />
     <Compile Include="Utils\NonBlocking\ConcurrentDictionary\DictionaryImpl.cs" />
     <Compile Include="Utils\NonBlocking\ConcurrentDictionary\DictionaryImpl.Enumerators.cs" />

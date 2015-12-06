@@ -5,7 +5,7 @@ environment:
     secure: qe9KQDwgVgk0LSU5XdcfTFIqpMaHc87pnRtsdsjbfrrvYecFS9qJZ+J6VdsKGtnb
 
 skip_commits:
-  message: /read\W{0,1}me*/
+  message: /(//skip\W*ci)|(read\W*me)/
 
 init:
     - ps: |

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Runtime.Remoting;
+using System.Text.RegularExpressions;
 using System.Threading;
 using BauCore;
 using BauMSBuild;
@@ -242,6 +243,14 @@ namespace Builder
                 .Task(citest).Desc("Triggers unit tests.")
                 .Do(() =>
                     {
+                        //check if if we need to skip.
+                        var commitMessage = Environment.GetEnvironmentVariable("APPVEYOR_REPO_COMMIT_MESSAGE");
+                        if( Regex.IsMatch(commitMessage, @"//skip\W*test") )
+                        {
+                            task.LogInfo("Request to skip tests based on commit message.");
+                            return;
+                        }
+
                         task.LogInfo("Triggering unit test system.");
                         var circleToken = Environment.GetEnvironmentVariable("circleci_token");
                         var jobId = Environment.GetEnvironmentVariable("APPVEYOR_JOB_ID");

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -61,6 +61,18 @@
     <Compile Include="Ast\Util.cs" />
     <Compile Include="ErrorBuilder.cs" />
     <Compile Include="Model\Server.cs" />
+    <Compile Include="Net\Clustering\HostPool.cs" />
+    <Compile Include="Utils\NonBlocking\ConcurrentDictionary\ConcurrentDictionary.cs" />
+    <Compile Include="Utils\NonBlocking\ConcurrentDictionary\DictionaryImpl.cs" />
+    <Compile Include="Utils\NonBlocking\ConcurrentDictionary\DictionaryImpl.Enumerators.cs" />
+    <Compile Include="Utils\NonBlocking\ConcurrentDictionary\DictionaryImplBoxed.cs" />
+    <Compile Include="Utils\NonBlocking\ConcurrentDictionary\DictionaryImplInt.cs" />
+    <Compile Include="Utils\NonBlocking\ConcurrentDictionary\DictionaryImplLong.cs" />
+    <Compile Include="Utils\NonBlocking\ConcurrentDictionary\DictionaryImplRef.cs" />
+    <Compile Include="Utils\NonBlocking\ConcurrentDictionary\DictionaryImpl`2.cs" />
+    <Compile Include="Utils\NonBlocking\ConcurrentDictionary\DictionaryImpl`3.cs" />
+    <Compile Include="Utils\NonBlocking\Counter\Counter32.cs" />
+    <Compile Include="Utils\NonBlocking\Counter\Counter64.cs" />
     <Compile Include="ReqlAssertFailure.cs" />
     <Compile Include="Model\Change[T].cs" />
     <Compile Include="Model\ExtensionsForResult.cs" />
@@ -311,9 +323,6 @@
     <Compile Include="RethinkDB.cs" />
     <Compile Include="RethinkDBConstants.cs" />
     <Compile Include="Utils\TaskHelper.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

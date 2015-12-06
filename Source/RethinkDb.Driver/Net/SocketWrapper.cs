@@ -68,7 +68,8 @@ namespace RethinkDb.Driver.Net
                 }
 
                 //http://blog.i3arnon.com/2015/07/02/task-run-long-running/
-                //LongRunning creates a new thread and marks it as a background thread.
+                //LongRunning creates a new thread and marks it as a background thread
+                //(ie: does not block application shutdown, when all foreground threads finish)
                 Task.Factory.StartNew(ResponsePump, TaskCreationOptions.LongRunning);
             }
             catch when( !taskComplete )

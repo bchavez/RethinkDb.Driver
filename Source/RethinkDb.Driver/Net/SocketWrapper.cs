@@ -66,8 +66,10 @@ namespace RethinkDb.Driver.Net
                 {
                     throw new ReqlDriverError($"Server dropped connection with message: '{msg}'");
                 }
-                
-                Task.Run(() => ResponsePump());
+
+                //http://blog.i3arnon.com/2015/07/02/task-run-long-running/
+                //LongRunning creates a new thread and marks it as a background thread.
+                Task.Factory.StartNew(ResponsePump, TaskCreationOptions.LongRunning);
             }
             catch when( !taskComplete )
             {
@@ -108,7 +110,9 @@ namespace RethinkDb.Driver.Net
         private CancellationTokenSource pump = null;
 
         /// <summary>
-        /// Started just after connect.
+        /// Started just after connect. Do not use or async/await code in this pump
+        /// because it is a long-running task.
+        /// http://blog.i3arnon.com/2015/07/02/task-run-long-running/
         /// </summary>
         private void ResponsePump()
         {
@@ -129,6 +133,9 @@ namespace RethinkDb.Driver.Net
 
                 try
                 {
+                    //WARN: Do not use or async/await code in this pump; because it is a
+                    //long-running task.
+                    //http://blog.i3arnon.com/2015/07/02/task-run-long-running/
                     var response = this.Read();
                     Awaiter awaitingTask;
                     if( awaiters.TryRemove(response.Token, out awaitingTask) )
@@ -160,6 +167,10 @@ namespace RethinkDb.Driver.Net
             awaiters.Clear(); 
         }
 
+
+        /// <summary>
+        /// Blocking Read by the ResponsePump
+        /// </summary>
         private Response Read()
         {
             var token = this.br.ReadInt64();

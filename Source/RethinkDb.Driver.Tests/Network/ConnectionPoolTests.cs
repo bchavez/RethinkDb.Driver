@@ -173,8 +173,8 @@ namespace RethinkDb.Driver.Tests.Network
                     {"b", 0}
                 };
 
-            var iterations = 12000;
-            var changeTimingsAt = 6000;
+            var iterations = 120000;
+            var changeTimingsAt = 60000;
 
             var sw = Stopwatch.StartNew();
             for (var i = 0; i < iterations; i++)
@@ -198,7 +198,8 @@ namespace RethinkDb.Driver.Tests.Network
             }
             sw.Stop();
 
-            //TOTAL TIME: 85 milliseconds
+
+            //TOTAL TIME: 864 milliseconds
             Console.WriteLine($"TOTAL TIME: {sw.Elapsed.Humanize()}");
 
             foreach (var host in hitCounts)
@@ -221,7 +222,7 @@ namespace RethinkDb.Driver.Tests.Network
                     {"c", 0}
                 };
 
-            var iterations = 12000;
+            var iterations = 120000;
 
             var sw = Stopwatch.StartNew();
             for ( var x = 0; x < iterations; x++ )
@@ -237,7 +238,7 @@ namespace RethinkDb.Driver.Tests.Network
                 Console.WriteLine($"Host {host.Key} hit {host.Value} times {((double)host.Value / iterations):P}");
             }
 
-            //TOTAL TIME: 17 milliseconds
+            //TOTAL TIME: 60 milliseconds
             Console.WriteLine($"TOTAL TIME: {sw.Elapsed.Humanize()}");
 
         }

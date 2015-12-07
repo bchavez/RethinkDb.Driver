@@ -33,7 +33,7 @@ namespace RethinkDb.Driver.Net.Clustering
         private double epsilon;
         private TimeSpan decayDuration;
         private EpsilonValueCalculator calc;
-        private double[] weights = null;
+        private float[] weights = null;
 
         private Timer timer;
 
@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.Net.Clustering
             this.calc = calc;
             this.epsilon = InitialEpsilon;
             this.weights = Enumerable.Range(1, EpsilonBuckets)
-                .Select(i => i / Convert.ToDouble(EpsilonBuckets))
+                .Select(i => i / Convert.ToSingle(EpsilonBuckets))
                 .ToArray();
         }
 
@@ -87,10 +87,10 @@ namespace RethinkDb.Driver.Net.Clustering
             return new EpsilonHostPoolResponse {Started = started, Host = h, HostPool = this};
         }
 
-        private double GetWeightedAverageResponseTime(HostEntry h)
+        private float GetWeightedAverageResponseTime(HostEntry h)
         {
-            var value = 0d;
-            var lastValue = 0d;
+            var value = 0f;
+            var lastValue = 0f;
             var epsilonIndex = h.EpsilonIndex; //capture the current index
 
             for (var i = 1; i <= EpsilonBuckets; i++)
@@ -102,7 +102,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 if (counts > 0)
                 {
                     //the average 
-                    var currentValue = h.EpsilonValues[pos] / Convert.ToDouble(counts);
+                    var currentValue = h.EpsilonValues[pos] / Convert.ToSingle(counts);
                     value += currentValue * weight;
                     lastValue = currentValue;
                 }
@@ -131,7 +131,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
             // calculate values for each host in the 0..1 range (but not normalized)
             var now = DateTime.Now;
-            var sumValues = 0.0d;
+            var sumValues = 0.0f;
             var hlist = this.hostList;
             for( var ix = 0; ix < hlist.Length; ix++ )
             {

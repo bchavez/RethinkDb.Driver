@@ -187,14 +187,14 @@ namespace RethinkDb.Driver.Tests.Network
                     return Task.Run(() =>
                         {
                             //Initially, A is faster than B;
-                            var timingA = 200;
-                            var timingB = 300;
+                            var timingA = 200; //60% = 2/5
+                            var timingB = 300; //40% = 3/5
 
                             for( var i = 0; i < iterations; i++ )
                             {
                                 var at = Interlocked.Increment(ref total);
                                 maybeReset(at);
-
+                                
                                 var hostR = p.Get(); // as EpsilonHostPoolResponse;
                                 var host = hostR.Host;
                                 if( host == "a" )
@@ -207,12 +207,12 @@ namespace RethinkDb.Driver.Tests.Network
                                 hostR.Ended = hostR.Started.Add(TimeSpan.FromMilliseconds(timing));
                                 hostR.Mark(null);
 
-                                if( changeTimingsAt == i )
-                                {
-                                    //Half way, B is faster than A;
-                                    timingA = 500;
-                                    timingB = 100;
-                                }
+                                //if( changeTimingsAt == i )
+                                //{
+                                //    //Half way, B is faster than A;
+                                //    timingA = 500;
+                                //    timingB = 100;
+                                //}
                             }
                         });
                 });

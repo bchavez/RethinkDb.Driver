@@ -10,6 +10,7 @@ namespace RethinkDb.Driver.Net.Clustering
             this.Host = host;
             this.EpsilonValues = new long[EpsilonGreedy.EpsilonBuckets];
             this.EpsilonCounts = new long[EpsilonGreedy.EpsilonBuckets];
+            this.EpsilonAvg = new float[EpsilonGreedy.EpsilonBuckets];
         }
 
         public string Host { get; set; }
@@ -19,11 +20,12 @@ namespace RethinkDb.Driver.Net.Clustering
         public bool Dead { get; set; }
         public long[] EpsilonCounts { get; set; }
         public long[] EpsilonValues { get; set; }
+        public float[] EpsilonAvg { get; set; }
         public int EpsilonIndex { get; set; }
 
-        public ThreadLocal<double> EpsilonValue = new ThreadLocal<double>();
-        public ThreadLocal<double> EpsilonPercentage = new ThreadLocal<double>();
-        public ThreadLocal<double> EpsilonWeightAverage = new ThreadLocal<double>();
+        public ThreadLocal<float> EpsilonValue = new ThreadLocal<float>();
+        public ThreadLocal<float> EpsilonPercentage = new ThreadLocal<float>();
+        public ThreadLocal<float> EpsilonWeightAverage = new ThreadLocal<float>();
 
         public bool CanTryHost(DateTime now)
         {

@@ -9,27 +9,27 @@ namespace RethinkDb.Driver.Net.Clustering
     // decreasing function from the positive reals to the positive reals should work.
     public abstract class EpsilonValueCalculator
     {
-        public abstract double CalcValueFromAvgResponseTime(double v);
+        public abstract float CalcValueFromAvgResponseTime(float v);
 
-        public static double LinearEpsilonValueCalculator(double v)
+        public static float LinearEpsilonValueCalculator(float v)
         {
-            return 1.0 / v;
+            return 1.0f / v;
         }
-        public static double LogEpsilonValueCalculator(double v)
+        public static float LogEpsilonValueCalculator(float v)
         {
-            return LinearEpsilonValueCalculator(Math.Log(v + 1.0));
+            return LinearEpsilonValueCalculator(Convert.ToSingle(Math.Log(v + 1.0d)));
         }
 
-        public static double PolynomialEpsilonValueCalculator(double v, double exp)
+        public static float PolynomialEpsilonValueCalculator(float v, float exp)
         {
-            return LinearEpsilonValueCalculator(Math.Pow(v, exp));
+            return LinearEpsilonValueCalculator(Convert.ToSingle(Math.Pow(v, exp)));
         }
     }
 
 
     public class LinearEpsilonValueCalculator : EpsilonValueCalculator
     {
-        public override double CalcValueFromAvgResponseTime(double v)
+        public override float CalcValueFromAvgResponseTime(float v)
         {
             return LinearEpsilonValueCalculator(v);
         }
@@ -37,7 +37,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
     public class LogEpsilonValueCalculator : EpsilonValueCalculator
     {
-        public override double CalcValueFromAvgResponseTime(double v)
+        public override float CalcValueFromAvgResponseTime(float v)
         {
             return LogEpsilonValueCalculator(v);
         }
@@ -45,14 +45,14 @@ namespace RethinkDb.Driver.Net.Clustering
 
     public class PolynomialEpsilonValueCalculator : EpsilonValueCalculator
     {
-        private readonly double exponent;
+        private readonly float exponent;
 
-        public PolynomialEpsilonValueCalculator(double exponent)
+        public PolynomialEpsilonValueCalculator(float exponent)
         {
             this.exponent = exponent;
         }
 
-        public override double CalcValueFromAvgResponseTime(double v)
+        public override float CalcValueFromAvgResponseTime(float v)
         {
             return PolynomialEpsilonValueCalculator(v, exponent);
         }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.Tests", "RethinkDb.Driver.Tests\RethinkDb.Driver.Tests.csproj", "{40037F4C-E867-462A-B3E6-AFED77582442}"
 EndProject
@@ -20,7 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{BBBED03D-3
 		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
 		..\HISTORY.md = ..\HISTORY.md
 		..\LICENSE = ..\LICENSE
-		RethinkDb.Driver\project.json = RethinkDb.Driver\project.json
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject

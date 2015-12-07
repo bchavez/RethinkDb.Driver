@@ -6,21 +6,40 @@ namespace RethinkDb.Driver.Net.Clustering
     // hostname by calling Host(), and after making a request to the host you should
     // call Mark with any error encountered, which will inform the HostPool issuing
     // the HostPoolResponse of what happened to the request and allow it to update.
-    public class HostPoolResponse
+    public struct RoundRobinHostPoolResponse
     {
         public string Host { get; set; }
+        public RoundRobinHostPool HostPool { get; set; }
 
-        private bool marked = false;
-
-        public virtual void Mark(Exception error)
+        public void Mark(Exception e)
         {
-            if( !marked )
+            if( e == null )
             {
-                this.HostPool.DoMark(error, this);
-                marked = true;
+                HostPool.MarkSuccess(this);
+            }
+            else
+            {
+                HostPool.MarkFailed(this);
             }
         }
+    }
+    public struct EpsilonHostPoolResponse
+    {
+        public string Host { get; set; }
+        public EpsilonGreedy HostPool { get; set; }
+        public DateTime Started { get; set; }
+        public DateTime? Ended { get; set; }
 
-        public HostPool HostPool { get; set; }
+        public void Mark(Exception e)
+        {
+            if (e == null)
+            {
+                HostPool.MarkSuccess(this);
+            }
+            else
+            {
+                HostPool.MarkFailed(this);
+            }
+        }
     }
 }

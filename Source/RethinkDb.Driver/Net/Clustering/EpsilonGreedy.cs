@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace RethinkDb.Driver.Net.Clustering
 {
@@ -32,6 +33,7 @@ namespace RethinkDb.Driver.Net.Clustering
         private double epsilon;
         private TimeSpan decayDuration;
         private EpsilonValueCalculator calc;
+        private double[] weights = null;
 
         private Timer timer;
 
@@ -47,30 +49,14 @@ namespace RethinkDb.Driver.Net.Clustering
             this.decayDuration = decayDuration ?? DefaultDecayDuration;
             this.calc = calc;
             this.epsilon = InitialEpsilon;
-
-            foreach( var h in hostList )
-            {
-                h.EpsilonCounts = new ulong[EpsilonBuckets];
-                h.EpsilonValues = new ulong[EpsilonBuckets];
-            }
+            this.weights = Enumerable.Range(1, EpsilonBuckets)
+                .Select(i => i / Convert.ToDouble(EpsilonBuckets))
+                .ToArray();
         }
 
         public void SetEpsilon(float epsilon)
         {
             this.epsilon = epsilon;
-        }
-
-        public override void SetHosts(string[] hosts)
-        {
-            lock( locker )
-            {
-                base.SetHosts(hosts);
-                foreach( var h in hostList )
-                {
-                    h.EpsilonCounts = new ulong[EpsilonBuckets];
-                    h.EpsilonValues = new ulong[EpsilonBuckets];
-                }
-            }
         }
 
         public void EpsilonGreedyDecay()
@@ -85,42 +71,38 @@ namespace RethinkDb.Driver.Net.Clustering
         internal void PerformEpsilonGreedyDecay(object state)
         {
             //basically advance the index
-            lock( locker )
+            foreach( var h in hostList )
             {
-                foreach( var h in hostList )
-                {
-                    h.EpsilonIndex += 1;
-                    h.EpsilonIndex = h.EpsilonIndex % EpsilonBuckets;
-                    h.EpsilonCounts[h.EpsilonIndex] = 0;
-                    h.EpsilonValues[h.EpsilonIndex] = 0;
-                }
+                var nextIndex = (h.EpsilonIndex + 1) % EpsilonBuckets;
+                h.EpsilonCounts[nextIndex] = 0; //write ahead, before other threads
+                h.EpsilonValues[nextIndex] = 0; //see the next index
+                h.EpsilonIndex = nextIndex; //trigger the next index.
             }
         }
 
-        public override HostPoolResponse Get()
+        public EpsilonHostPoolResponse Get()
         {
-            lock( locker )
-            {
-                var h = GetEpsilonGreedy();
-                var started = DateTime.Now;
-                return new EpsilonHostPoolResponse {Started = started, Host = h, HostPool = this};
-            }
+            var h = GetEpsilonGreedy();
+            var started = DateTime.Now;
+            return new EpsilonHostPoolResponse {Started = started, Host = h, HostPool = this};
         }
 
         private double GetWeightedAverageResponseTime(HostEntry h)
         {
             var value = 0d;
             var lastValue = 0d;
+            var epsilonIndex = h.EpsilonIndex; //capture the current index
 
             for (var i = 1; i <= EpsilonBuckets; i++)
             {
-                var pos = (h.EpsilonIndex + i) % EpsilonBuckets;
-                var bucketCount = h.EpsilonCounts[pos];
+                var pos = (epsilonIndex + i) % EpsilonBuckets;
+                var counts = h.EpsilonCounts[pos];
                 // Changing the line below to what I think it should be to get the weights right
-                var weight = i / Convert.ToDouble(EpsilonBuckets);
-                if (bucketCount > 0)
+                var weight = weights[i - 1];
+                if (counts > 0)
                 {
-                    var currentValue = h.EpsilonValues[pos] / Convert.ToDouble(bucketCount);
+                    //the average 
+                    var currentValue = h.EpsilonValues[pos] / Convert.ToDouble(counts);
                     value += currentValue * weight;
                     lastValue = currentValue;
                 }
@@ -148,38 +130,45 @@ namespace RethinkDb.Driver.Net.Clustering
             }
 
             // calculate values for each host in the 0..1 range (but not normalized)
-            var possibleHosts = new List<HostEntry>();
             var now = DateTime.Now;
             var sumValues = 0.0d;
-            foreach( var h in this.hostList )
+            var hlist = this.hostList;
+            for( var ix = 0; ix < hlist.Length; ix++ )
             {
+                var h = hlist[ix];
+
                 if( h.CanTryHost(now) )
                 {
                     var v = GetWeightedAverageResponseTime(h);
+                    h.EpsilonWeightAverage.Value = v;
                     if( v > 0 )
                     {
                         var ev = this.calc.CalcValueFromAvgResponseTime(v);
-                        h.EpsilonValue = ev;
+                        h.EpsilonValue.Value = ev;
                         sumValues += ev;
-                        possibleHosts.Add(h);
                     }
                 }
             }
-            if( possibleHosts.Any() )
+            //now normalize the 0..1 range to get percentage
+            for ( var ix = 0; ix < hlist.Length; ix++ )
             {
-                //now normalize the 0..1 range to get percentage
-                foreach( var h in possibleHosts )
+                var h = hlist[ix];
+                if( h.EpsilonWeightAverage.Value > 0 )
                 {
-                    h.EpsilonPercentage = h.EpsilonValue / sumValues;
+                    h.EpsilonPercentage.Value = h.EpsilonValue.Value / sumValues;
                 }
+            }
 
-                //do a weighted random choice among hosts
+            var ceiling = 0.0d;
+            var pickPercentage = Random.NextDouble();
 
-                var ceiling = 0.0d;
-                var pickPercentage = Random.NextDouble();
-                foreach( var h in possibleHosts )
+            //find best.
+            for (var ix = 0; ix < hlist.Length; ix++)
+            {
+                var h = hlist[ix];
+                if( h.EpsilonWeightAverage.Value > 0 )
                 {
-                    ceiling += h.EpsilonPercentage;
+                    ceiling += h.EpsilonPercentage.Value;
                     if( pickPercentage <= ceiling )
                     {
                         hostToUse = h;
@@ -187,12 +176,13 @@ namespace RethinkDb.Driver.Net.Clustering
                     }
                 }
             }
+
             if( hostToUse == null )
             {
-                if( possibleHosts.Any() )
-                {
+                //if( possibleHosts.Any() )
+                //{
                     Log.Trace("Failed to randomly chose a host");
-                }
+                //}
                 return this.GetRoundRobin();
             }
             if( hostToUse.Dead )
@@ -202,21 +192,24 @@ namespace RethinkDb.Driver.Net.Clustering
             return hostToUse.Host;
         }
 
-        public override void MarkSuccess(HostPoolResponse hostR)
+        public void MarkSuccess(EpsilonHostPoolResponse eHostR)
         {
-            base.MarkSuccess(hostR);
-
-            var eHostR = hostR as EpsilonHostPoolResponse;
+            MarkSuccessInternal(eHostR.Host);
 
             var host = eHostR.Host;
 
             var duration =  eHostR.Ended.Value - eHostR.Started;
-            lock( locker )
-            {
-                var h = hosts[host];
-                h.EpsilonCounts[h.EpsilonIndex]++;
-                h.EpsilonValues[h.EpsilonIndex] += Convert.ToUInt64(duration.TotalMilliseconds);
-            }
+            var h = hosts[host];
+            var index = h.EpsilonIndex;
+            var counts = h.EpsilonCounts;
+            Interlocked.Increment(ref counts[index]);
+            var values = h.EpsilonValues;
+            Interlocked.Add(ref values[index], Convert.ToInt64(duration.TotalMilliseconds));
+        }
+
+        public void MarkFailed(EpsilonHostPoolResponse eHostR)
+        {
+            MarkFailedInternal(eHostR.Host);
         }
     }
 }

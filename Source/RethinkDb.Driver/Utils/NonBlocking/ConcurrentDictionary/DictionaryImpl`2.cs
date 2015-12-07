@@ -22,7 +22,7 @@ namespace RethinkDb.Driver.Utils.NonBlocking.ConcurrentDictionary
                     GetMethod("CreateRef", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static).
                     MakeGenericMethod(new Type[] { typeof(TKey), typeof(TValue) });
 
-                var del = (Func<ConcurrentDictionary<TKey, TValue>, int, DictionaryImpl<TKey, TValue>>)method.CreateDelegate(
+                var del = (Func<ConcurrentDictionary<TKey, TValue>, int, DictionaryImpl<TKey, TValue>>)Delegate.CreateDelegate(
                     typeof(Func<ConcurrentDictionary<TKey, TValue>, int, DictionaryImpl<TKey, TValue>>),
                     method);
 

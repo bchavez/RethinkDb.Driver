@@ -21,6 +21,6 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
-        public RoundRobinHostPool HostPool { get; set; }
+        public HostPool HostPool { get; set; }
     }
 }

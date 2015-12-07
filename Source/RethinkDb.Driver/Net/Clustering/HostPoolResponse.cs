@@ -10,11 +10,17 @@ namespace RethinkDb.Driver.Net.Clustering
     {
         public string Host { get; set; }
 
-        public void Mark(Exception error)
+        private bool marked = false;
+
+        public virtual void Mark(Exception error)
         {
-            this.HostPool.DoMark(error, this);
+            if( !marked )
+            {
+                this.HostPool.DoMark(error, this);
+                marked = true;
+            }
         }
 
-        public HostPool HostPool { get; set; }
+        public RoundRobinHostPool HostPool { get; set; }
     }
 }

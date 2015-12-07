@@ -7,7 +7,7 @@ namespace RethinkDb.Driver.Net.Clustering
     // This is the main HostPool interface. Structs implementing this interface
     // allow you to Get a HostPoolResponse (which includes a hostname to use),
     // get the list of all Hosts, and use ResetAll to reset state.
-    public class HostPool
+    public class RoundRobinHostPool
     {
         protected TimeSpan initialRetryDelay;
         protected TimeSpan maxRetryInterval;
@@ -15,7 +15,7 @@ namespace RethinkDb.Driver.Net.Clustering
         protected Dictionary<string, HostEntry> hosts;
         protected HostEntry[] hostList;
 
-        public HostPool(string[] hosts)
+        public RoundRobinHostPool(string[] hosts)
         {
             SetHosts(hosts);
 
@@ -88,7 +88,7 @@ namespace RethinkDb.Driver.Net.Clustering
             var now = DateTime.Now;
             var hostCount = this.hostList.Length;
 
-            for( var i = 0; i < hostCount - 1; i++ )
+            for( var i = 0; i < hostCount; i++ )
             {
                 var currentIndex = (i + nextHostIndex) % hostCount;
 

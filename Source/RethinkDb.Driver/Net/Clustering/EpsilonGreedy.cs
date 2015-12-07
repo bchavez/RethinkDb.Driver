@@ -21,7 +21,7 @@ namespace RethinkDb.Driver.Net.Clustering
     /// `decayDuration`. decayDuration may be set to 0 to use the default value of 5 minutes
     /// We then use the supplied EpsilonValueCalculator to calculate a score from that weighted average response time.
     /// </summary>
-    public class EpsilonGreedy : HostPool
+    public class EpsilonGreedy : RoundRobinHostPool
     {
         protected static readonly TimeSpan DefaultDecayDuration = TimeSpan.FromMinutes(5);
         protected const double InitialEpsilon = 0.3;
@@ -34,7 +34,13 @@ namespace RethinkDb.Driver.Net.Clustering
         private EpsilonValueCalculator calc;
 
         private Timer timer;
-        private Random rand;
+
+        public static Random Random { get; set; }
+
+        static EpsilonGreedy()
+        {
+            Random = new Random();
+        }
 
         public EpsilonGreedy(string[] hosts, TimeSpan? decayDuration, EpsilonValueCalculator calc) : base(hosts)
         {
@@ -47,7 +53,6 @@ namespace RethinkDb.Driver.Net.Clustering
                 h.EpsilonCounts = new ulong[EpsilonBuckets];
                 h.EpsilonValues = new ulong[EpsilonBuckets];
             }
-            this.rand = new Random();
         }
 
         public void SetEpsilon(float epsilon)
@@ -77,7 +82,7 @@ namespace RethinkDb.Driver.Net.Clustering
             this.timer.Change(TimeSpan.Zero, durationPerBucket);
         }
 
-        private void PerformEpsilonGreedyDecay(object state)
+        internal void PerformEpsilonGreedyDecay(object state)
         {
             //basically advance the index
             lock( locker )
@@ -107,7 +112,7 @@ namespace RethinkDb.Driver.Net.Clustering
             var value = 0d;
             var lastValue = 0d;
 
-            for (var i = 1; i < EpsilonBuckets; i++)
+            for (var i = 1; i <= EpsilonBuckets; i++)
             {
                 var pos = (h.EpsilonIndex + i) % EpsilonBuckets;
                 var bucketCount = h.EpsilonCounts[pos];
@@ -132,7 +137,7 @@ namespace RethinkDb.Driver.Net.Clustering
             HostEntry hostToUse = null;
 
             //this is our exploration phase
-            if( rand.NextDouble() < this.epsilon )
+            if( Random.NextDouble() < this.epsilon )
             {
                 this.epsilon = this.epsilon * EpsilonDecay;
                 if( this.epsilon < MinEpsilon )
@@ -171,7 +176,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 //do a weighted random choice among hosts
 
                 var ceiling = 0.0d;
-                var pickPercentage = this.rand.NextDouble();
+                var pickPercentage = Random.NextDouble();
                 foreach( var h in possibleHosts )
                 {
                     ceiling += h.EpsilonPercentage;
@@ -205,12 +210,12 @@ namespace RethinkDb.Driver.Net.Clustering
 
             var host = eHostR.Host;
 
-            var duration = eHostR.Started - DateTime.Now;
+            var duration =  eHostR.Ended.Value - eHostR.Started;
             lock( locker )
             {
                 var h = hosts[host];
                 h.EpsilonCounts[h.EpsilonIndex]++;
-                h.EpsilonValues[h.EpsilonIndex] += Convert.ToUInt64(duration.Ticks);
+                h.EpsilonValues[h.EpsilonIndex] += Convert.ToUInt64(duration.TotalMilliseconds);
             }
         }
     }

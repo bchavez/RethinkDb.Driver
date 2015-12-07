@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
         public void WillRetryHost(TimeSpan maxRetryInterval)
         {
-            this.RetryCount ++;
+            this.RetryCount += 1;
             var newDelay = TimeSpan.FromTicks(this.RetryDelay.Ticks * 2);
             if( newDelay < maxRetryInterval )
             {

@@ -206,7 +206,7 @@ namespace RethinkDb.Driver.Tests.Network
 
                                 hostR.Ended = hostR.Started.Add(TimeSpan.FromMilliseconds(timing));
                                 hostR.Mark(null);
-
+                                Task.Delay(EpsilonGreedy.Random.Next(500));
                                 //if( changeTimingsAt == i )
                                 //{
                                 //    //Half way, B is faster than A;
@@ -233,6 +233,8 @@ namespace RethinkDb.Driver.Tests.Network
             {
                 Console.WriteLine($"Host {host.Key} hit {host.Value} times {((double)host.Value / (iterations * threads)):P}");
             }
+
+            Console.WriteLine($"Misses: {p.Misses}, TakeA: {p.TakenA}, TakenB: {p.TakenB}");
 
         }
 

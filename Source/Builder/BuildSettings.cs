@@ -23,7 +23,6 @@ namespace Builder
     public class Files
     {
         public static readonly File History = Folders.WorkingFolder.File("HISTORY.md");
-        public static readonly File Changes = Folders.Package.File("CHANGES.txt");
     }
 
     public class BuildContext

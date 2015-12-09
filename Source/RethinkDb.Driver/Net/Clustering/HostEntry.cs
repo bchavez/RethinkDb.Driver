@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Net.Clustering
 {
@@ -21,11 +22,12 @@ namespace RethinkDb.Driver.Net.Clustering
         public long[] EpsilonCounts { get; set; }
         public long[] EpsilonValues { get; set; }
         public float[] EpsilonAvg { get; set; }
-        public int EpsilonIndex { get; set; }
 
-        public ThreadLocal<float> EpsilonValue = new ThreadLocal<float>();
-        public ThreadLocal<float> EpsilonPercentage = new ThreadLocal<float>();
-        public ThreadLocal<float> EpsilonWeightAverage = new ThreadLocal<float>();
+        public int EpsilonIndex;
+
+        public float EpsilonValue;
+        public float EpsilonPercentage;
+        public float EpsilonWeightAverage ;
 
         public bool CanTryHost(DateTime now)
         {

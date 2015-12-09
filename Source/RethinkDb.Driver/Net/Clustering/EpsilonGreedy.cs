@@ -76,7 +76,9 @@ namespace RethinkDb.Driver.Net.Clustering
                 var nextIndex = (h.EpsilonIndex + 1) % EpsilonBuckets;
                 h.EpsilonCounts[nextIndex] = 0; //write ahead, before other threads
                 h.EpsilonValues[nextIndex] = 0; //see the next index
-                h.EpsilonIndex = nextIndex; //trigger the next index.
+                //h.EpsilonIndex = nextIndex; //trigger the next index.
+
+                Interlocked.Increment(ref h.EpsilonIndex);
             }
         }
 
@@ -87,39 +89,14 @@ namespace RethinkDb.Driver.Net.Clustering
             return new EpsilonHostPoolResponse {Started = started, Host = h, HostPool = this};
         }
 
-        private float GetWeightedAverageResponseTime(HostEntry h)
-        {
-            var value = 0f;
-            var lastValue = 0f;
-            var epsilonIndex = h.EpsilonIndex; //capture the current index
-
-            for (var i = 1; i <= EpsilonBuckets; i++)
-            {
-                var pos = (epsilonIndex + i) % EpsilonBuckets;
-                var counts = h.EpsilonCounts[pos];
-                // Changing the line below to what I think it should be to get the weights right
-                var weight = weights[i - 1];
-                if (counts > 0)
-                {
-                    //the average 
-                    var currentValue = h.EpsilonValues[pos] / Convert.ToSingle(counts);
-                    value += currentValue * weight;
-                    lastValue = currentValue;
-                }
-                else
-                {
-                    value += lastValue * weight;
-                }
-            }
-            return value;
-        }
 
         private string GetEpsilonGreedy()
         {
             HostEntry hostToUse = null;
 
             //this is our exploration phase
-            if( Random.NextDouble() < this.epsilon )
+            var rand = Random.NextDouble();
+            if( rand < this.epsilon )
             {
                 this.epsilon = this.epsilon * EpsilonDecay;
                 if( this.epsilon < MinEpsilon )
@@ -129,47 +106,18 @@ namespace RethinkDb.Driver.Net.Clustering
                 return this.GetRoundRobin();
             }
 
-            // calculate values for each host in the 0..1 range (but not normalized)
-            var now = DateTime.Now;
-            var sumValues = 0.0f;
             var hlist = this.hostList;
-            for( var ix = 0; ix < hlist.Length; ix++ )
-            {
-                var h = hlist[ix];
-
-                if( h.CanTryHost(now) )
-                {
-                    var v = GetWeightedAverageResponseTime(h);
-                    h.EpsilonWeightAverage.Value = v;
-                    if( v > 0 )
-                    {
-                        var ev = this.calc.CalcValueFromAvgResponseTime(v);
-                        h.EpsilonValue.Value = ev;
-                        sumValues += ev;
-                    }
-                }
-            }
-            //now normalize the 0..1 range to get percentage
-            for ( var ix = 0; ix < hlist.Length; ix++ )
-            {
-                var h = hlist[ix];
-                if( h.EpsilonWeightAverage.Value > 0 )
-                {
-                    h.EpsilonPercentage.Value = h.EpsilonValue.Value / sumValues;
-                }
-            }
-
+            
             var ceiling = 0.0d;
-            var pickPercentage = Random.NextDouble();
-
+            
             //find best.
-            for (var ix = 0; ix < hlist.Length; ix++)
+            for (var i = 0; i < hlist.Length; i++)
             {
-                var h = hlist[ix];
-                if( h.EpsilonWeightAverage.Value > 0 )
+                var h = hlist[i];
+                if( h.EpsilonWeightAverage > 0 )
                 {
-                    ceiling += h.EpsilonPercentage.Value;
-                    if( pickPercentage <= ceiling )
+                    ceiling += h.EpsilonPercentage;
+                    if( rand <= ceiling )
                     {
                         hostToUse = h;
                         break;
@@ -181,7 +129,7 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 //if( possibleHosts.Any() )
                 //{
-                    Log.Trace("Failed to randomly chose a host");
+                    //Log.Trace("Failed to randomly chose a host");
                 //}
                 return this.GetRoundRobin();
             }
@@ -192,6 +140,42 @@ namespace RethinkDb.Driver.Net.Clustering
             return hostToUse.Host;
         }
 
+        private void SetWeightedAverageResponseTime(HostEntry h)
+        {
+            var value = 0f;
+            var lastValue = 0f;
+            var epsilonIndex = h.EpsilonIndex % EpsilonBuckets; //capture the current index
+
+            for( var i = 1; i <= EpsilonBuckets; i++ )
+            {
+                var pos = (epsilonIndex + i) % EpsilonBuckets;
+                var counts = h.EpsilonCounts[pos];
+                // Changing the line below to what I think it should be to get the weights right
+                var weight = weights[i - 1];
+                if( counts > 0 )
+                {
+                    //the average 
+                    //var currentValue = h.EpsilonValues[pos] / Convert.ToSingle(counts);
+                    var currentValue = h.EpsilonAvg[pos];
+                    value += currentValue * weight;
+                    lastValue = currentValue;
+                }
+                else
+                {
+                    value += lastValue * weight;
+                }
+            }
+            h.EpsilonWeightAverage = value;
+        }
+
+        private void SetEpsilonValue(HostEntry h)
+        {
+            h.EpsilonValue = this.calc.CalcValueFromAvgResponseTime(h.EpsilonWeightAverage);
+        }
+
+        //public object locker = new object();
+        public int locker = 0;
+
         public void MarkSuccess(EpsilonHostPoolResponse eHostR)
         {
             MarkSuccessInternal(eHostR.Host);
@@ -200,11 +184,66 @@ namespace RethinkDb.Driver.Net.Clustering
 
             var duration =  eHostR.Ended.Value - eHostR.Started;
             var h = hosts[host];
-            var index = h.EpsilonIndex;
+            var index = h.EpsilonIndex % EpsilonBuckets;
             var counts = h.EpsilonCounts;
-            Interlocked.Increment(ref counts[index]);
             var values = h.EpsilonValues;
-            Interlocked.Add(ref values[index], Convert.ToInt64(duration.TotalMilliseconds));
+            var averages = h.EpsilonAvg;
+
+            var newCount = Interlocked.Increment(ref counts[index]);
+            var newValue = Interlocked.Add(ref values[index], Convert.ToInt64(duration.TotalMilliseconds));
+
+            if( Interlocked.CompareExchange(ref locker, 1, 0) == 0 /*returned value before exchange*/ )
+            {
+                if( host == "a" )
+                    TakenA++;
+                else
+                    TakenB++;
+
+                //calcualte the average?
+                averages[index] = newValue / Convert.ToSingle(newCount);
+                Update();
+                Interlocked.Decrement(ref locker);
+            }
+            else
+            {
+                Interlocked.Increment(ref Misses);
+            }
+        }
+
+        public int Misses = 0;
+        public int TakenA = 0;
+        public int TakenB = 0;
+
+        public void Update()
+        {
+            var hlist = this.hostList;
+            var now = DateTime.Now;
+            var sumValues = 0f;
+
+            // calculate values for each host in the 0..1 range (but not normalized)
+            for ( int i = 0; i <hlist.Length ; i++ )
+            {
+                var h = hlist[i];
+                SetWeightedAverageResponseTime(h);
+                SetEpsilonValue(h);
+                if( h.CanTryHost(now) )
+                {
+                    if( h.EpsilonWeightAverage > 0 )
+                    {
+                        sumValues += h.EpsilonValue;
+                    }
+                }
+            }
+            //now normalize the 0..1 range to get percentage
+            //need to know the sum before normalizing
+            for ( int i = 0; i < hlist.Length; i++ )
+            {
+                var h = hlist[i];
+                if( h.EpsilonWeightAverage > 0 )
+                {
+                    h.EpsilonPercentage = h.EpsilonValue / sumValues;
+                }
+            }
         }
 
         public void MarkFailed(EpsilonHostPoolResponse eHostR)

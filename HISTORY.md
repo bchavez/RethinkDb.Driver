@@ -1,3 +1,6 @@
+## v2.2.0
+* release to nuget
+
 ## v2.2.0-beta-1
 * conn.server() and conn.serverAsync(): SERVER_INFO implemented.
 * TopLevel AST adjustments for Table: rebalance, reconfigure, and wait_

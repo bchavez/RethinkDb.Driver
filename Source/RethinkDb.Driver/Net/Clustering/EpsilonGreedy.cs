@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Policy;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -75,11 +77,25 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 var nextIndex = (h.EpsilonIndex + 1) % EpsilonBuckets;
                 h.EpsilonCounts[nextIndex] = 0; //write ahead, before other threads
-                h.EpsilonValues[nextIndex] = 0; //see the next index
-                //h.EpsilonIndex = nextIndex; //trigger the next index.
+                h.EpsilonValues[nextIndex] = 0; //before they see the next index
+                h.EpsilonAvg[nextIndex] = 0;
 
-                Interlocked.Increment(ref h.EpsilonIndex);
+                //advance the index, so all threads begin writing
+                //and recording their speed results to the new bucket
+                var currentIndex = Interlocked.Increment(ref h.EpsilonIndex);
+                
+                //not done yet....
+                //now calculate the new average for the previous index now
+                //that threads have advanced to the new epsilon index bucket
+                var prevIndex = (currentIndex - 1) % EpsilonBuckets;
+                var averages = h.EpsilonAvg;
+                if( h.EpsilonCounts[prevIndex] > 0 )
+                {
+                    averages[prevIndex] = h.EpsilonValues[prevIndex] / Convert.ToSingle(h.EpsilonCounts[prevIndex]);
+                }
             }
+            //finally, update percentages
+            Update();
         }
 
         public EpsilonHostPoolResponse Get()
@@ -144,11 +160,12 @@ namespace RethinkDb.Driver.Net.Clustering
         {
             var value = 0f;
             var lastValue = 0f;
-            var epsilonIndex = h.EpsilonIndex % EpsilonBuckets; //capture the current index
+            var prevIndex = (h.EpsilonIndex -1)% EpsilonBuckets; //capture the current index
 
-            for( var i = 1; i <= EpsilonBuckets; i++ )
+            //start from 2, skipping the current epsilon index
+            for( var i = 2; i <= EpsilonBuckets; i++ )
             {
-                var pos = (epsilonIndex + i) % EpsilonBuckets;
+                var pos = (prevIndex + i) % EpsilonBuckets;
                 var counts = h.EpsilonCounts[pos];
                 // Changing the line below to what I think it should be to get the weights right
                 var weight = weights[i - 1];
@@ -187,32 +204,10 @@ namespace RethinkDb.Driver.Net.Clustering
             var index = h.EpsilonIndex % EpsilonBuckets;
             var counts = h.EpsilonCounts;
             var values = h.EpsilonValues;
-            var averages = h.EpsilonAvg;
 
-            var newCount = Interlocked.Increment(ref counts[index]);
-            var newValue = Interlocked.Add(ref values[index], Convert.ToInt64(duration.TotalMilliseconds));
-
-            if( Interlocked.CompareExchange(ref locker, 1, 0) == 0 /*returned value before exchange*/ )
-            {
-                if( host == "a" )
-                    TakenA++;
-                else
-                    TakenB++;
-
-                //calcualte the average?
-                averages[index] = newValue / Convert.ToSingle(newCount);
-                Update();
-                Interlocked.Decrement(ref locker);
-            }
-            else
-            {
-                Interlocked.Increment(ref Misses);
-            }
+            Interlocked.Increment(ref counts[index]);
+            Interlocked.Add(ref values[index], Convert.ToInt64(duration.TotalMilliseconds));
         }
-
-        public int Misses = 0;
-        public int TakenA = 0;
-        public int TakenB = 0;
 
         public void Update()
         {

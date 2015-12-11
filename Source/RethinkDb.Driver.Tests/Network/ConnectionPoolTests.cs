@@ -163,21 +163,29 @@ namespace RethinkDb.Driver.Tests.Network
 
             var p = new EpsilonGreedy(new[] { "a", "b" }, null, new LinearEpsilonValueCalculator());
 
-            var hitA = 0;
-            var hitB = 0;
+            //var hitA = 0;
+            //var hitB = 0;
 
             var iterations = 120000;
             var changeTimingsAt = 60000;
 
             var threads = 5;
 
+
+            var hitA = new int[threads];
+            var hitB = new int[threads];
+
             var total = 0;
 
-            Action<int> maybeReset = (i) =>
+            var locker = 0;
+
+            Action<int> maybeReset = (iTotal) =>
                 {
-                    if( (i != 0) && (i % 100) == 0 )
+                    if( (iTotal != 0) && (iTotal % 100) == 0 &&
+                    Interlocked.CompareExchange(ref locker, 1, 0) == 0)
                     {
                         p.PerformEpsilonGreedyDecay(null);
+                        Interlocked.Decrement(ref locker);
                     }
                 };
 
@@ -198,9 +206,9 @@ namespace RethinkDb.Driver.Tests.Network
                                 var hostR = p.Get(); // as EpsilonHostPoolResponse;
                                 var host = hostR.Host;
                                 if( host == "a" )
-                                    Interlocked.Increment(ref hitA);
+                                    Interlocked.Increment(ref hitA[t-1]);
                                 else
-                                    Interlocked.Increment(ref hitB);
+                                    Interlocked.Increment(ref hitB[t-1]);
 
                                 var timing = host == "a" ? timingA : timingB;
 
@@ -223,19 +231,15 @@ namespace RethinkDb.Driver.Tests.Network
             //TOTAL TIME: 864 milliseconds
             Console.WriteLine($"TOTAL TIME: {sw.Elapsed.Humanize()}");
 
-            var hitCounts = new Dictionary<string, long>()
-                {
-                    {"a", hitA},
-                    {"b", hitB}
-                };
-            
-            foreach (var host in hitCounts)
+
+            for( int t = 0; t < threads; t++ )
             {
-                Console.WriteLine($"Host {host.Key} hit {host.Value} times {((double)host.Value / (iterations * threads)):P}");
+                var totalHits = hitA[t] + hitB[t];
+                Console.WriteLine($"Thread {t} HitA: {hitA[t]} ({hitA[t] / (float)totalHits:P}), HitB: {hitB[t]} ({hitB[t] / (float)totalHits:p}), Total: {totalHits}, ");
             }
+            
 
-            Console.WriteLine($"Misses: {p.Misses}, TakeA: {p.TakenA}, TakenB: {p.TakenB}");
-
+            Console.WriteLine($"Global Total: {total}");
         }
 
         [Test]

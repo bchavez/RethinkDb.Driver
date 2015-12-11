@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Net.Clustering
         public void EpsilonGreedyDecay()
         {
             var durationPerBucket = TimeSpan.FromTicks(decayDuration.Ticks / EpsilonBuckets);
-            this.timer = new Timer(PerformEpsilonGreedyDecay);
+            this.timer = new Timer(PerformEpsilonGreedyDecay, null, Timeout.Infinite, Timeout.Infinite);
 
             //fire now.
             this.timer.Change(TimeSpan.Zero, durationPerBucket);

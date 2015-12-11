@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Security.Policy;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace RethinkDb.Driver.Net.Clustering
 {

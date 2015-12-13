@@ -8,7 +8,8 @@ namespace RethinkDb.Driver.Net.Clustering
 {
     public interface IPoolingStrategy
     {
-        
+        void MarkSuccess();
+        void MarkFailure();
     }
 
     public abstract class HostPool
@@ -24,42 +25,25 @@ namespace RethinkDb.Driver.Net.Clustering
         //over the length of the list.
         protected HostEntry[] hostList;
 
-        //protected object locker = new object();
-
         public HostPool()
         {
             initialRetryDelay = TimeSpan.FromSeconds(30);
             maxRetryInterval = TimeSpan.FromSeconds(900);
         }
 
-
         public virtual void ResetAll()
-        {
-            DoResetAll();
-        }
-
-        public virtual void DoResetAll()
         {
             foreach (var h in hosts.Values)
             {
-                h.Dead = true;
+                h.Dead = false;
             }
         }
-
-        public string[] Hosts => this.hosts.Keys.ToArray();
-
-
+        
         public virtual void SetHosts(string[] hosts)
-        {
-
-            DoSetHosts(hosts);
-        }
-
-        protected void DoSetHosts(string[] hosts)
         {
             this.hosts = new ConcurrentDictionary<string, HostEntry>();
             this.hostList = new HostEntry[hosts.Length];
-            for( int i = 0; i < hosts.Length; i++ )
+            for (int i = 0; i < hosts.Length; i++)
             {
                 var h = hosts[i];
                 var he = new HostEntry(h);
@@ -109,7 +93,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 }
             }
 
-            DoResetAll();
+            ResetAll();
 
             return hostList[0].Host;
         }

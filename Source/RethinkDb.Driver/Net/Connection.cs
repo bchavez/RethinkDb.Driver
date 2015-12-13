@@ -10,7 +10,14 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
-    public class Connection
+    public interface IConnection
+    {
+        Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts);
+        Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts);
+        Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts);
+        void RunNoReply(ReqlAst term, object globalOpts);
+    }
+    public class Connection : IConnection
     {
         // public immutable
         public readonly string hostname;
@@ -47,11 +54,6 @@ namespace RethinkDb.Driver.Net
             connectTimeout = builder._timeout;
 
             instanceMaker = builder.instanceMaker;
-        }
-
-        public static Builder build()
-        {
-            return new Builder(() => new ConnectionInstance());
         }
 
         public virtual string db()
@@ -152,8 +154,6 @@ namespace RethinkDb.Driver.Net
         }
 
 
-
-        
         private long NewToken()
         {
             return Interlocked.Increment(ref nextToken);
@@ -289,7 +289,7 @@ namespace RethinkDb.Driver.Net
             if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
             return inst.Socket.SendQuery(query.Token, query.Serialize(), awaitResponse);
         }
-        
+
         protected Query PrepareQuery(ReqlAst term, OptArgs globalOpts)
         {
             SetDefaultDb(globalOpts);
@@ -316,30 +316,29 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-
-
-
         #region REQL AST RUNNERS
+
         //Typically called by the surface API of ReqlAst.
-        internal virtual Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts)
+
+        Task<dynamic> IConnection.RunAsync<T>(ReqlAst term, object globalOpts)
         {
             Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
             return RunQueryAsync<T>(q);
         }
 
-        internal virtual Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts)
+        Task<Cursor<T>> IConnection.RunCursorAsync<T>(ReqlAst term, object globalOpts)
         {
             Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
             return RunQueryCursorAsync<T>(q);
         }
 
-        internal virtual Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts)
+        Task<T> IConnection.RunAtomAsync<T>(ReqlAst term, object globalOpts)
         {
             Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
             return RunQueryAtomAsync<T>(q);
         }
 
-        internal void RunNoReply(ReqlAst term, object globalOpts)
+        void IConnection.RunNoReply(ReqlAst term, object globalOpts)
         {
             var opts = OptArgs.fromAnonType(globalOpts);
             SetDefaultDb(opts);
@@ -348,10 +347,6 @@ namespace RethinkDb.Driver.Net
         }
 
         #endregion
-        
-
-
-
 
         #region CURSOR SUPPORT
 
@@ -386,10 +381,10 @@ namespace RethinkDb.Driver.Net
 
         #endregion
 
-
-
-
-
+        public static Builder build()
+        {
+            return new Builder(() => new ConnectionInstance());
+        }
 
         public class Builder
         {

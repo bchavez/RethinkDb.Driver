@@ -76,7 +76,7 @@ namespace RethinkDb.Driver.Ast
         /// dynamic language runtime execution engine.
         /// </summary>
         /// <returns>Returns T or Cursor[T]</returns>
-        public virtual Task<dynamic> runAsync<T>(Connection conn, object runOpts = null)
+        public virtual Task<dynamic> runAsync<T>(IConnection conn, object runOpts = null)
         {
             return conn.RunAsync<T>(this, runOpts);
         }
@@ -102,7 +102,7 @@ namespace RethinkDb.Driver.Ast
         /// dynamic language runtime execution engine.
         /// </summary>
         /// <returns>Returns T or Cursor[T]</returns>
-        public virtual dynamic run<T>(Connection conn, object runOpts = null)
+        public virtual dynamic run<T>(IConnection conn, object runOpts = null)
         {
             return conn.RunAsync<T>(this, runOpts).WaitSync();
         }
@@ -132,7 +132,7 @@ namespace RethinkDb.Driver.Ast
         /// <summary>
         /// Executes a query with no expected response. Useful for fire-and-forget queries like insert, update.
         /// </summary>
-        public void runNoReply(Connection conn, object runOpts = null)
+        public void runNoReply(IConnection conn, object runOpts = null)
         {
             conn.RunNoReply(this, runOpts);
         }
@@ -146,7 +146,7 @@ namespace RethinkDb.Driver.Ast
         /// <param name="conn">connection</param>
         /// <param name="runOpts">global anonymous type optional arguments</param>
         /// <returns>A Cursor</returns>
-        public virtual Task<Cursor<T>> runCursorAsync<T>(Connection conn, object runOpts = null)
+        public virtual Task<Cursor<T>> runCursorAsync<T>(IConnection conn, object runOpts = null)
         {
             return conn.RunCursorAsync<T>(this, runOpts);
         }
@@ -160,7 +160,7 @@ namespace RethinkDb.Driver.Ast
         /// <param name="conn">connection</param>
         /// <param name="runOpts">global anonymous type optional arguments</param>
         /// <returns>A Cursor</returns>
-        public virtual Cursor<T> runCursor<T>(Connection conn, object runOpts = null)
+        public virtual Cursor<T> runCursor<T>(IConnection conn, object runOpts = null)
         {
             return conn.RunCursorAsync<T>(this, runOpts).WaitSync();
         }
@@ -170,7 +170,7 @@ namespace RethinkDb.Driver.Ast
         /// method offers a slight edge in performance without the need for the
         /// dynamic language runtime like the run() method uses.
         /// </summary>
-        public virtual Task<T> runAtomAsync<T>(Connection conn, object runOpts = null)
+        public virtual Task<T> runAtomAsync<T>(IConnection conn, object runOpts = null)
         {
             return conn.RunAtomAsync<T>(this, runOpts);
         }
@@ -194,7 +194,7 @@ namespace RethinkDb.Driver.Ast
         /// Helper shortcut for DML type of queries that returns # of inserts, deletes, errors.
         /// This method bypasses the dynamic language runtime for extra performance.
         /// </summary>
-        public virtual Task<Result> runResultAsync(Connection conn, object runOpts = null)
+        public virtual Task<Result> runResultAsync(IConnection conn, object runOpts = null)
         {
             return conn.RunAtomAsync<Result>(this, runOpts);
         }
@@ -213,7 +213,7 @@ namespace RethinkDb.Driver.Ast
         /// This method bypasses the dynamic language runtime for extra performance.
         /// </summary>
         /// <typeparam name="T">The document type of new/old value</typeparam>
-        public virtual Task<Cursor<Change<T>>> runChangesAsync<T>(Connection conn, object runOpts = null)
+        public virtual Task<Cursor<Change<T>>> runChangesAsync<T>(IConnection conn, object runOpts = null)
         {
             return conn.RunCursorAsync<Change<T>>(this, runOpts);
         }
@@ -223,7 +223,7 @@ namespace RethinkDb.Driver.Ast
         /// This method bypasses the dynamic language runtime for extra performance.
         /// </summary>
         /// <typeparam name="T">The document type of new/old value</typeparam>
-        public virtual Cursor<Change<T>> runChanges<T>(Connection conn, object runOpts = null)
+        public virtual Cursor<Change<T>> runChanges<T>(IConnection conn, object runOpts = null)
         {
             return conn.RunCursorAsync<Change<T>>(this, runOpts).WaitSync();
         }

@@ -1,6 +1,6 @@
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Net;
-using RethinkDb.Driver.Proto;
+using RethinkDb.Driver.Net.Clustering;
 
 namespace RethinkDb.Driver
 {
@@ -14,6 +14,11 @@ namespace RethinkDb.Driver
         public virtual Connection.Builder connection()
         {
             return Connection.build();
+        }
+
+        public virtual ConnectionPool.Builder hostpool()
+        {
+            return ConnectionPool.build();
         }
     }
 }

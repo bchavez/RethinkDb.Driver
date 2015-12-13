@@ -21,7 +21,7 @@ namespace RethinkDb.Driver.Net.Clustering
     /// `decayDuration`. decayDuration may be set to 0 to use the default value of 5 minutes
     /// We then use the supplied EpsilonValueCalculator to calculate a score from that weighted average response time.
     /// </summary>
-    public class EpsilonGreedy : RoundRobinHostPool
+    public class EpsilonGreedyHostPool : RoundRobinHostPool
     {
         protected static readonly TimeSpan DefaultDecayDuration = TimeSpan.FromMinutes(5);
         protected const double InitialEpsilon = 0.3;
@@ -38,12 +38,12 @@ namespace RethinkDb.Driver.Net.Clustering
 
         public static Random Random { get; set; }
 
-        static EpsilonGreedy()
+        static EpsilonGreedyHostPool()
         {
             Random = new Random();
         }
 
-        public EpsilonGreedy(string[] hosts, TimeSpan? decayDuration, EpsilonValueCalculator calc) : base(hosts)
+        public EpsilonGreedyHostPool(string[] hosts, TimeSpan? decayDuration, EpsilonValueCalculator calc) : base(hosts)
         {
             this.decayDuration = decayDuration ?? DefaultDecayDuration;
             this.calc = calc;
@@ -187,9 +187,6 @@ namespace RethinkDb.Driver.Net.Clustering
         {
             h.EpsilonValue = this.calc.CalcValueFromAvgResponseTime(h.EpsilonWeightAverage);
         }
-
-        //public object locker = new object();
-        public int locker = 0;
 
         public void MarkSuccess(EpsilonHostPoolResponse eHostR)
         {

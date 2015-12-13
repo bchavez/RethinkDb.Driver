@@ -9,9 +9,9 @@ namespace RethinkDb.Driver.Net.Clustering
         public HostEntry(string host)
         {
             this.Host = host;
-            this.EpsilonValues = new long[EpsilonGreedy.EpsilonBuckets];
-            this.EpsilonCounts = new long[EpsilonGreedy.EpsilonBuckets];
-            this.EpsilonAvg = new float[EpsilonGreedy.EpsilonBuckets];
+            this.EpsilonValues = new long[EpsilonGreedyHostPool.EpsilonBuckets];
+            this.EpsilonCounts = new long[EpsilonGreedyHostPool.EpsilonBuckets];
+            this.EpsilonAvg = new float[EpsilonGreedyHostPool.EpsilonBuckets];
         }
 
         public string Host { get; set; }

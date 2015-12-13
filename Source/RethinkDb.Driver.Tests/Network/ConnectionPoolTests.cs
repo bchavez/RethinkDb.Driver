@@ -40,22 +40,22 @@ namespace RethinkDb.Driver.Tests.Network
             // get again, and verify that it's still c
             p.Get().Host.Should().Be("c");
 
-            // now try to mark b as success; should fail because already marked
-            //respB.Mark(null);
+            //now try to mark b as success; should fail because already marked
+            respB.Mark(null);
 
-            //p.Get().Host.Should().Be("c");
+            p.Get().Host.Should().Be("c");
 
-            //respA = new HostPoolResponse {Host = "a", HostPool = p};
-            //respA.Mark(null);
+            respA = new RoundRobinHostPoolResponse { Host = "a", HostPool = p };
+            respA.Mark(null);
 
-            //p.Get().Host.Should().Be("a");
-            //p.Get().Host.Should().Be("c");
+            p.Get().Host.Should().Be("a");
+            p.Get().Host.Should().Be("c");
 
-            //new[] {"a", "b", "c"}.ForEach(host =>
-            //    {
-            //        var response = new HostPoolResponse {Host = host, HostPool = p};
-            //        response.Mark(dummyErr);
-            //    });
+            new[] { "a", "b", "c" }.ForEach(host =>
+                  {
+                      var response = new RoundRobinHostPoolResponse { Host = host, HostPool = p };
+                      response.Mark(dummyErr);
+                  });
 
             var resp = p.Get();
             resp.Should().NotBeNull();
@@ -69,9 +69,9 @@ namespace RethinkDb.Driver.Tests.Network
         public void epsilon_test()
         {
             var sw = Stopwatch.StartNew();
-            EpsilonGreedy.Random = new Random(10);
+            EpsilonGreedyHostPool.Random = new Random(10);
 
-            var p = new EpsilonGreedy(new [] { "a", "b"}, null, new LinearEpsilonValueCalculator());
+            var p = new EpsilonGreedyHostPool(new [] { "a", "b"}, null, new LinearEpsilonValueCalculator());
 
             //Initially, A is faster than B;
             var timings = new Dictionary<string, long>()
@@ -159,9 +159,9 @@ namespace RethinkDb.Driver.Tests.Network
         [Test]
         public void benchmark_epsilon()
         {
-            EpsilonGreedy.Random = new Random(10);
+            EpsilonGreedyHostPool.Random = new Random(10);
 
-            var p = new EpsilonGreedy(new[] { "a", "b" }, null, new LinearEpsilonValueCalculator());
+            var p = new EpsilonGreedyHostPool(new[] { "a", "b" }, null, new LinearEpsilonValueCalculator());
 
             //var hitA = 0;
             //var hitB = 0;

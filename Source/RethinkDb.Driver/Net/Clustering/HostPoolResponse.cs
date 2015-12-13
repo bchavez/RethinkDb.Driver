@@ -26,7 +26,7 @@ namespace RethinkDb.Driver.Net.Clustering
     public struct EpsilonHostPoolResponse
     {
         public string Host { get; set; }
-        public EpsilonGreedy HostPool { get; set; }
+        public EpsilonGreedyHostPool HostPool { get; set; }
         public DateTime Started { get; set; }
         public DateTime? Ended { get; set; }
 

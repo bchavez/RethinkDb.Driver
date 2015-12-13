@@ -5,6 +5,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace RethinkDb.Driver.Utils.NonBlocking.ConcurrentDictionary
 {
@@ -21,10 +22,8 @@ namespace RethinkDb.Driver.Utils.NonBlocking.ConcurrentDictionary
                     GetMethod("CreateRef", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static).
                     MakeGenericMethod(new Type[] { typeof(TKey), typeof(TValue) });
 
-
-                var del = (Func<ConcurrentDictionary<TKey, TValue>, int, DictionaryImpl<TKey, TValue>>)Delegate.CreateDelegate(
-                    typeof(Func<ConcurrentDictionary<TKey, TValue>, int, DictionaryImpl<TKey, TValue>>),
-                    method);
+                var del = (Func<ConcurrentDictionary<TKey, TValue>, int, DictionaryImpl<TKey, TValue>>)method
+                    .CreateDelegate(typeof(Func<ConcurrentDictionary<TKey, TValue>, int, DictionaryImpl<TKey, TValue>>));
 
                 var result = del(topDict, capacity);
                 CreateRefUnsafe = del;

@@ -61,6 +61,7 @@
     <Compile Include="Ast\Util.cs" />
     <Compile Include="ErrorBuilder.cs" />
     <Compile Include="Model\Server.cs" />
+    <Compile Include="Net\Clustering\ConnectionPool.cs" />
     <Compile Include="Net\Clustering\EpsilonGreedy.cs" />
     <Compile Include="Net\Clustering\EpsilonValueCalculator.cs" />
     <Compile Include="Net\Clustering\HostEntry.cs" />

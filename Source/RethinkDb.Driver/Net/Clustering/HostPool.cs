@@ -2,72 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
-using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Utils.NonBlocking.ConcurrentDictionary;
 
 namespace RethinkDb.Driver.Net.Clustering
 {
-    public class ConnectionPool : IConnection
+    public interface IPoolingStrategy
     {
-        Task<dynamic> IConnection.RunAsync<T>(ReqlAst term, object globalOpts)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Cursor<T>> IConnection.RunCursorAsync<T>(ReqlAst term, object globalOpts)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<T> IConnection.RunAtomAsync<T>(ReqlAst term, object globalOpts)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IConnection.RunNoReply(ReqlAst term, object globalOpts)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal ConnectionPool()
-        {
-        }
-
-
-        public static Builder build()
-        {
-            return new Builder();
-        }
-
-        public class Builder
-        {
-            internal bool _discover;
-            private string[] seeds;
-
-            /// <summary>
-            /// Should be strings of the form "Host:Port".
-            /// </summary>
-            public Builder seed(string[] seeds)
-            {
-                this.seeds = seeds;
-                return this;
-            }
-
-            /// <summary>
-            /// discover() is used to enable host discovery, when true the driver
-            /// will attempt to discover any new nodes added to the cluster and then
-            /// start sending queries to these new nodes.
-            /// </summary>
-            public Builder discover(bool discoverNewHosts)
-            {
-                this._discover = discoverNewHosts;
-                return this;
-            }
-        }
-
+        
     }
-
 
     public abstract class HostPool
     {

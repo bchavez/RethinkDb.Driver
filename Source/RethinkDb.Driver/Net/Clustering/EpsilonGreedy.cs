@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace RethinkDb.Driver.Net.Clustering
 {
@@ -68,6 +69,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
         internal void PerformEpsilonGreedyDecay(object state)
         {
+            //Parallel.For()
             //basically advance the index
             foreach( var h in hostList )
             {
@@ -212,14 +214,14 @@ namespace RethinkDb.Driver.Net.Clustering
             var sumValues = 0f;
 
             // calculate values for each host in the 0..1 range (but not normalized)
-            for ( int i = 0; i <hlist.Length ; i++ )
+            for (int i = 0; i < hlist.Length; i++)
             {
                 var h = hlist[i];
                 SetWeightedAverageResponseTime(h);
                 SetEpsilonValue(h);
-                if( h.CanTryHost(now) )
+                if (h.CanTryHost(now))
                 {
-                    if( h.EpsilonWeightAverage > 0 )
+                    if (h.EpsilonWeightAverage > 0)
                     {
                         sumValues += h.EpsilonValue;
                     }

@@ -195,26 +195,34 @@ namespace RethinkDb.Driver.Tests.Network
                     return Task.Run(() =>
                         {
                             //Initially, A is faster than B;
-                            var timingA = 200; //60% = 2/5
-                            var timingB = 300; //40% = 3/5
+                            var timingA = 200; //60% = 1 - 2/5
+                            var timingB = 300; //40% = 1 - 3/5
 
                             for( var i = 0; i < iterations; i++ )
                             {
                                 var at = Interlocked.Increment(ref total);
                                 maybeReset(at);
-                                
-                                var hostR = p.Get(); // as EpsilonHostPoolResponse;
-                                var host = hostR.Host;
-                                if( host == "a" )
-                                    Interlocked.Increment(ref hitA[t-1]);
-                                else
-                                    Interlocked.Increment(ref hitB[t-1]);
 
-                                var timing = host == "a" ? timingA : timingB;
+                                EpsilonHostPoolResponse hostR;
+
+                                hostR = p.Get(); // as EpsilonHostPoolResponse;
+
+                                var host = hostR.Host;
+                                var timing = 0;
+                                if( host == "a" )
+                                {
+                                    Interlocked.Increment(ref hitA[t - 1]);
+                                    timing = timingA;
+                                }
+                                else if( host == "b" )
+                                {
+                                    Interlocked.Increment(ref hitB[t - 1]);
+                                    timing = timingB;
+                                }
+                                
 
                                 hostR.Ended = hostR.Started.Add(TimeSpan.FromMilliseconds(timing));
                                 hostR.Mark(null);
-                                Task.Delay(EpsilonGreedy.Random.Next(500));
                                 //if( changeTimingsAt == i )
                                 //{
                                 //    //Half way, B is faster than A;
@@ -235,7 +243,7 @@ namespace RethinkDb.Driver.Tests.Network
             for( int t = 0; t < threads; t++ )
             {
                 var totalHits = hitA[t] + hitB[t];
-                Console.WriteLine($"Thread {t} HitA: {hitA[t]} ({hitA[t] / (float)totalHits:P}), HitB: {hitB[t]} ({hitB[t] / (float)totalHits:p}), Total: {totalHits}, ");
+                Console.WriteLine($"Thread {t} HitA: {hitA[t]} ({hitA[t] / (float)totalHits:P}), HitB: {hitB[t]} ({hitB[t] / (float)totalHits:p}), Total: {totalHits}");
             }
             
 

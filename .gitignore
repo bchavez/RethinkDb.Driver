@@ -3,6 +3,7 @@
 
 # custom
 /Source/Builder/NuGet/RethinkDb.Driver.history.nuspec
+**.lock.json
 
 # User-specific files
 *.suo

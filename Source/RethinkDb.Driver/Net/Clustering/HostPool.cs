@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using RethinkDb.Driver.Utils.NonBlocking.ConcurrentDictionary;
+using System.Threading.Tasks;
+using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Net.Clustering
 {
-    public interface IPoolingStrategy
+    public interface IPoolingStrategy : IConnection
     {
-        void MarkSuccess();
-        void MarkFailure();
+        void AddHost(string host, Connection conn);
     }
 
-    public abstract class HostPool
+    public abstract class HostPool : IPoolingStrategy
     {
         protected TimeSpan initialRetryDelay;
         protected TimeSpan maxRetryInterval;
 
-        //protected Dictionary<string, HostEntry> hosts;
-        protected ConcurrentDictionary<string, HostEntry> hosts;
-
-        //this list should be monotonically increasing, to avoid 
+        //this array should be monotonically increasing, to avoid 
         //unnecessary thread locking and synch problems when iterating
         //over the length of the list.
         protected HostEntry[] hostList;
@@ -33,24 +30,36 @@ namespace RethinkDb.Driver.Net.Clustering
 
         public virtual void ResetAll()
         {
-            foreach (var h in hosts.Values)
+            lock( hostLock )
             {
-                h.Dead = false;
+                foreach (var h in hostList)
+                {
+                    h.Dead = false;
+                }
             }
         }
-        
-        public virtual void SetHosts(string[] hosts)
+
+        private object hostLock = new object();
+
+        public void AddHost(string host, Connection conn)
         {
-            this.hosts = new ConcurrentDictionary<string, HostEntry>();
-            this.hostList = new HostEntry[hosts.Length];
-            for (int i = 0; i < hosts.Length; i++)
+            lock( hostLock )
             {
-                var h = hosts[i];
-                var he = new HostEntry(h);
-                this.hosts[h] = he;
-                this.hostList[i] = he;
+                var oldHostList = this.hostList;
+                var nextHostList = new HostEntry[oldHostList.Length + 1];
+                Array.Copy(oldHostList, nextHostList, oldHostList.Length);
+
+                //add new host to the end of the array.
+                var he = new HostEntry(host, maxRetryInterval) { conn = conn };
+                nextHostList[nextHostList.Length - 1] = he;
+                this.hostList = nextHostList;
             }
         }
+
+        public abstract Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts);
+        public abstract Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts);
+        public abstract Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts);
+        public abstract void RunNoReply(ReqlAst term, object globalOpts);
     }
 
     // This is the main HostPool interface. Structs implementing this interface
@@ -60,18 +69,11 @@ namespace RethinkDb.Driver.Net.Clustering
     {
         protected int nextHostIndex;
 
-        public RoundRobinHostPool(string[] hosts)
+        public RoundRobinHostPool()
         {
-            SetHosts(hosts);
         }
 
-        public RoundRobinHostPoolResponse Get()
-        {
-            var host = GetRoundRobin();
-            return new RoundRobinHostPoolResponse {Host = host, HostPool = this};
-        }
-
-        public virtual string GetRoundRobin()
+        public virtual HostEntry GetRoundRobin()
         {
             var now = DateTime.Now;
             var hostCount = this.hostList.Length; //thread capture
@@ -84,76 +86,81 @@ namespace RethinkDb.Driver.Net.Clustering
                 var h = hostList[currentIndex];
                 if( !h.Dead )
                 {
-                    return h.Host;
-                }
-                if( h.NextRetry < now )
-                {
-                    h.WillRetryHost(maxRetryInterval);
-                    return h.Host;
+                    return h;
                 }
             }
 
             ResetAll();
 
-            return hostList[0].Host;
+            return hostList[0];
         }
 
-
-        // keep the marks separate so we can override independently
-        public virtual void MarkSuccess(RoundRobinHostPoolResponse hostR)
+        protected internal void MarkFailed(HostEntry h)
         {
-            var host = hostR.Host;
-            MarkSuccessInternal(host);
-        }
-
-        internal void MarkSuccessInternal(string host)
-        {
-            HostEntry h;
-            if( !hosts.TryGetValue(host, out h) )
-            {
-                //log error, hosts not in host pool.
-                Log.Debug($"Host {host} not in HostPool");
-                return;
-            }
-            h.Dead = false;
-        }
-
-        public virtual void MarkFailed(RoundRobinHostPoolResponse hostR)
-        {
-            var host = hostR.Host;
-            MarkFailedInternal(host);
-        }
-
-        internal void MarkFailedInternal(string host)
-        {
-            HostEntry h;
-            if( !hosts.TryGetValue(host, out h) )
-            {
-                Log.Debug($"Host {host} not in HostPool");
-                return;
-            }
-
             if( !h.Dead )
             {
-                h.Dead = true;
                 h.RetryCount = 0;
                 h.RetryDelay = initialRetryDelay;
                 h.NextRetry = DateTime.Now.Add(h.RetryDelay);
+                h.Dead = true;
             }
         }
 
-        public virtual void DoMark(Exception e, RoundRobinHostPoolResponse r)
+        public override Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts)
         {
-            if (e == null)
+            HostEntry host = GetRoundRobin();
+            try
             {
-                r.HostPool.MarkSuccess(r);
+                return host.conn.RunAsync<T>(term, globalOpts);
             }
-            else
+            catch
             {
-                r.HostPool.MarkFailed(r);
+                MarkFailed(host);
+                throw;
             }
         }
 
+        public override Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts)
+        {
+            HostEntry host = GetRoundRobin();
+            try
+            {
+                return host.conn.RunCursorAsync<T>(term, globalOpts);
+            }
+            catch
+            {
+                MarkFailed(host);
+                throw;
+            }
+        }
+
+        public override Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts)
+        {
+            HostEntry host = GetRoundRobin();
+            try
+            {
+                return host.conn.RunAtomAsync<T>(term, globalOpts);
+            }
+            catch
+            {
+                MarkFailed(host);
+                throw;
+            }
+        }
+
+        public override void RunNoReply(ReqlAst term, object globalOpts)
+        {
+            HostEntry host = GetRoundRobin();
+            try
+            {
+                host.conn.RunNoReply(term, globalOpts);
+            }
+            catch
+            {
+                MarkFailed(host);
+                throw;
+            }
+        }
     }
 
 }

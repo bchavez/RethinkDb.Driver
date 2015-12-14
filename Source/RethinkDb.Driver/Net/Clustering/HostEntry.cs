@@ -6,8 +6,12 @@ namespace RethinkDb.Driver.Net.Clustering
 {
     public class HostEntry
     {
-        public HostEntry(string host)
+        private readonly TimeSpan maxRetryInterval;
+        public IConnection conn;
+
+        public HostEntry(string host, TimeSpan maxRetryInterval)
         {
+            this.maxRetryInterval = maxRetryInterval;
             this.Host = host;
             this.EpsilonValues = new long[EpsilonGreedyHostPool.EpsilonBuckets];
             this.EpsilonCounts = new long[EpsilonGreedyHostPool.EpsilonBuckets];
@@ -29,20 +33,7 @@ namespace RethinkDb.Driver.Net.Clustering
         public float EpsilonPercentage;
         public float EpsilonWeightAverage ;
 
-        public bool CanTryHost(DateTime now)
-        {
-            if( !this.Dead )
-            {
-                return true;
-            }
-            if( this.NextRetry < now )
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public void WillRetryHost(TimeSpan maxRetryInterval)
+        public void UpdateRetry()
         {
             this.RetryCount += 1;
             var newDelay = TimeSpan.FromTicks(this.RetryDelay.Ticks * 2);

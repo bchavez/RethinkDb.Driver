@@ -203,9 +203,9 @@ namespace RethinkDb.Driver.Tests.Network
                                 var at = Interlocked.Increment(ref total);
                                 maybeReset(at);
 
-                                EpsilonHostPoolResponse hostR;
+                                HostEntry hostR;
 
-                                hostR = p.Get(); // as EpsilonHostPoolResponse;
+                                hostR = p.GetEpsilonGreedy(); // as EpsilonHostPoolResponse;
 
                                 var host = hostR.Host;
                                 var timing = 0;

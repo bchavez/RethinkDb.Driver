@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using RethinkDb.Driver.Ast;
 
@@ -6,39 +7,77 @@ namespace RethinkDb.Driver.Net.Clustering
 {
     public class ConnectionPool : IConnection
     {
+        private string authKey;
+        private string dbname;
+        private string[] seeds;
+        private bool discover;
+        private IPoolingStrategy poolingStrategy;
+
+        private Func<ReqlAst, object, Task> RunAtom;
+
         #region REQL AST RUNNERS
 
         Task<dynamic> IConnection.RunAsync<T>(ReqlAst term, object globalOpts)
         {
-            throw new NotImplementedException();
+            return poolingStrategy.RunAsync<T>(term, globalOpts);
         }
 
         Task<Cursor<T>> IConnection.RunCursorAsync<T>(ReqlAst term, object globalOpts)
         {
-            throw new NotImplementedException();
+            return poolingStrategy.RunCursorAsync<T>(term, globalOpts);
         }
 
         Task<T> IConnection.RunAtomAsync<T>(ReqlAst term, object globalOpts)
         {
-            throw new NotImplementedException();
+            return poolingStrategy.RunAtomAsync<T>(term, globalOpts);
         }
 
         void IConnection.RunNoReply(ReqlAst term, object globalOpts)
         {
-            throw new NotImplementedException();
+            poolingStrategy.RunNoReply(term, globalOpts);
         }
 
         #endregion
 
         internal ConnectionPool(Builder builder)
         {
+            authKey = builder._authKey;
+            dbname = builder._dbname;
+            seeds = builder.seeds;
+            discover = builder._discover;
+            poolingStrategy = builder.hostpool;
         }
-
 
         protected virtual void StartPool()
         {
-            
+            var initialSeeds = this.seeds.Select(s =>
+                {
+                    var parts = s.Split(new[] {':'}, StringSplitOptions.RemoveEmptyEntries);
+                    var host = parts[0];
+
+                    var port = parts.Length == 2 ? int.Parse(parts[1]) : RethinkDBConstants.DEFAULT_PORT;
+
+                    var conn = NewConnection(host, port);
+                    return new {conn, host = s};
+                });
+
+            foreach( var conn in initialSeeds )
+            {
+                this.poolingStrategy.AddHost(conn.host, conn.conn);
+            }
         }
+
+        protected virtual Connection NewConnection(string hostname, int port)
+        {
+            return new Connection(new Connection.Builder(() => new ConnectionInstance())
+                {
+                    _authKey = authKey,
+                    _dbname = dbname,
+                    _hostname = hostname,
+                    _port = port
+                });
+        }
+
 
         public static Builder build()
         {
@@ -48,10 +87,10 @@ namespace RethinkDb.Driver.Net.Clustering
         public class Builder
         {
             internal bool _discover;
-            private string[] seeds;
-            private string _dbname;
-            private string _authKey;
-            private IPoolingStrategy hostpool;
+            internal string[] seeds;
+            internal string _dbname;
+            internal string _authKey;
+            internal IPoolingStrategy hostpool;
 
             /// <summary>
             /// Should be strings of the form "Host:Port".

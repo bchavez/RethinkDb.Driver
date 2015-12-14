@@ -34,12 +34,12 @@ namespace RethinkDb.Driver.Net
 
         internal Connection(Builder builder)
         {
-            dbname = builder.dbname;
+            dbname = builder._dbname;
             var authKey = builder._authKey ?? string.Empty;
             var authKeyBytes = Encoding.ASCII.GetBytes(authKey);
 
-            using( var ms = new MemoryStream() )
-            using( var bw = new BinaryWriter(ms) )
+            using (var ms = new MemoryStream())
+            using (var bw = new BinaryWriter(ms))
             {
                 bw.Write((int)Proto.Version.V0_4);
                 bw.Write(authKeyBytes.Length);
@@ -49,11 +49,11 @@ namespace RethinkDb.Driver.Net
                 handshake = ms.ToArray();
             }
 
-            hostname = builder._hostmame ?? "localhost";
+            hostname = builder._hostname ?? "localhost";
             port = builder._port ?? RethinkDBConstants.DEFAULT_PORT;
             connectTimeout = builder._timeout;
 
-            instanceMaker = builder.instanceMaker;
+            instanceMaker = builder._instanceMaker;
         }
 
         public virtual string db()
@@ -388,21 +388,21 @@ namespace RethinkDb.Driver.Net
 
         public class Builder
         {
-            internal readonly Func<ConnectionInstance> instanceMaker;
-            internal string _hostmame = null;
+            internal readonly Func<ConnectionInstance> _instanceMaker;
+            internal string _hostname = null;
             internal int? _port = null;
-            internal string dbname = null;
+            internal string _dbname = null;
             internal string _authKey = null;
             internal TimeSpan? _timeout = null;
 
             public Builder(Func<ConnectionInstance> instanceMaker)
             {
-                this.instanceMaker = instanceMaker;
+                this._instanceMaker = instanceMaker;
             }
 
             public virtual Builder hostname(string val)
             {
-                this._hostmame = val;
+                this._hostname = val;
                 return this;
             }
 
@@ -414,7 +414,7 @@ namespace RethinkDb.Driver.Net
 
             public virtual Builder db(string val)
             {
-                this.dbname = val;
+                this._dbname = val;
                 return this;
             }
 

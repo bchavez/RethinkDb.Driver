@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using RethinkDb.Driver.Ast;
+using Random = System.Random;
 
 namespace RethinkDb.Driver.Net.Clustering
 {
@@ -43,7 +45,7 @@ namespace RethinkDb.Driver.Net.Clustering
             Random = new Random();
         }
 
-        public EpsilonGreedyHostPool(string[] hosts, TimeSpan? decayDuration, EpsilonValueCalculator calc) : base(hosts)
+        public EpsilonGreedyHostPool(TimeSpan? decayDuration, EpsilonValueCalculator calc)
         {
             this.decayDuration = decayDuration ?? DefaultDecayDuration;
             this.calc = calc;
@@ -71,7 +73,8 @@ namespace RethinkDb.Driver.Net.Clustering
         {
             //Parallel.For()
             //basically advance the index
-            foreach( var h in hostList )
+            var hlist = this.hostList;
+            foreach( var h in hlist )
             {
                 var nextIndex = (h.EpsilonIndex + 1) % EpsilonBuckets;
                 h.EpsilonCounts[nextIndex] = 0; //write ahead, before other threads
@@ -96,15 +99,7 @@ namespace RethinkDb.Driver.Net.Clustering
             Update();
         }
 
-        public EpsilonHostPoolResponse Get()
-        {
-            var h = GetEpsilonGreedy();
-            var started = DateTime.Now;
-            return new EpsilonHostPoolResponse {Started = started, Host = h, HostPool = this};
-        }
-
-
-        private string GetEpsilonGreedy()
+        public virtual HostEntry GetEpsilonGreedy()
         {
             HostEntry hostToUse = null;
 
@@ -128,7 +123,7 @@ namespace RethinkDb.Driver.Net.Clustering
             for (var i = 0; i < hlist.Length; i++)
             {
                 var h = hlist[i];
-                if( h.EpsilonWeightAverage > 0 )
+                if( !h.Dead && h.EpsilonWeightAverage > 0)
                 {
                     ceiling += h.EpsilonPercentage;
                     if( rand <= ceiling )
@@ -139,19 +134,12 @@ namespace RethinkDb.Driver.Net.Clustering
                 }
             }
 
-            if( hostToUse == null )
+            if( hostToUse == null || hostToUse.Dead )
             {
-                //if( possibleHosts.Any() )
-                //{
-                    //Log.Trace("Failed to randomly chose a host");
-                //}
                 return this.GetRoundRobin();
             }
-            if( hostToUse.Dead )
-            {
-                hostToUse.WillRetryHost(maxRetryInterval);
-            }
-            return hostToUse.Host;
+            
+            return hostToUse;
         }
 
         private void SetWeightedAverageResponseTime(HostEntry h)
@@ -188,14 +176,9 @@ namespace RethinkDb.Driver.Net.Clustering
             h.EpsilonValue = this.calc.CalcValueFromAvgResponseTime(h.EpsilonWeightAverage);
         }
 
-        public void MarkSuccess(EpsilonHostPoolResponse eHostR)
+        public void MarkSuccess( HostEntry h, long start, long end )
         {
-            MarkSuccessInternal(eHostR.Host);
-
-            var host = eHostR.Host;
-
-            var duration =  eHostR.Ended.Value - eHostR.Started;
-            var h = hosts[host];
+            var duration = TimeSpan.FromTicks(end - start);
             var index = h.EpsilonIndex % EpsilonBuckets;
             var counts = h.EpsilonCounts;
             var values = h.EpsilonValues;
@@ -207,21 +190,17 @@ namespace RethinkDb.Driver.Net.Clustering
         public void Update()
         {
             var hlist = this.hostList;
-            var now = DateTime.Now;
             var sumValues = 0f;
 
             // calculate values for each host in the 0..1 range (but not normalized)
-            for (int i = 0; i < hlist.Length; i++)
+            for( int i = 0; i < hlist.Length; i++ )
             {
                 var h = hlist[i];
                 SetWeightedAverageResponseTime(h);
                 SetEpsilonValue(h);
-                if (h.CanTryHost(now))
+                if( !h.Dead && h.EpsilonWeightAverage > 0 )
                 {
-                    if (h.EpsilonWeightAverage > 0)
-                    {
-                        sumValues += h.EpsilonValue;
-                    }
+                    sumValues += h.EpsilonValue;
                 }
             }
             //now normalize the 0..1 range to get percentage
@@ -229,16 +208,82 @@ namespace RethinkDb.Driver.Net.Clustering
             for ( int i = 0; i < hlist.Length; i++ )
             {
                 var h = hlist[i];
-                if( h.EpsilonWeightAverage > 0 )
+                if( !h.Dead && h.EpsilonWeightAverage > 0 )
                 {
                     h.EpsilonPercentage = h.EpsilonValue / sumValues;
                 }
             }
         }
 
-        public void MarkFailed(EpsilonHostPoolResponse eHostR)
+        public override async Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts)
         {
-            MarkFailedInternal(eHostR.Host);
+            HostEntry host = GetEpsilonGreedy();
+            try
+            {
+                var start = DateTime.Now.Ticks;
+                var result = await host.conn.RunAsync<T>(term, globalOpts).ConfigureAwait(false);
+                var end = DateTime.Now.Ticks;
+                MarkSuccess(host, start, end);
+                return result;
+            }
+            catch
+            {
+                MarkFailed(host);
+                throw;
+            }
+        }
+
+        public override async Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts)
+        {
+            HostEntry host = GetEpsilonGreedy();
+            try
+            {
+                var start = DateTime.Now.Ticks;
+                var result = await host.conn.RunAtomAsync<T>(term, globalOpts).ConfigureAwait(false);
+                var end = DateTime.Now.Ticks;
+                MarkSuccess(host, start, end);
+                return result;
+            }
+            catch
+            {
+                MarkFailed(host);
+                throw;
+            }
+        }
+
+        public override void RunNoReply(ReqlAst term, object globalOpts)
+        {
+            HostEntry host = GetEpsilonGreedy();
+            try
+            {
+                var start = DateTime.Now.Ticks;
+                host.conn.RunNoReply(term, globalOpts);
+                var end = DateTime.Now.Ticks;
+                MarkSuccess(host, start, end);
+            }
+            catch
+            {
+                MarkFailed(host);
+                throw;
+            }
+        }
+
+        public override async Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts)
+        {
+            HostEntry host = GetEpsilonGreedy();
+            try
+            {
+                var start = DateTime.Now.Ticks;
+                var result = await host.conn.RunCursorAsync<T>(term, globalOpts).ConfigureAwait(false);
+                var end = DateTime.Now.Ticks;
+                MarkSuccess(host, start, end);
+                return result;
+            }
+            catch
+            {
+                MarkFailed(host);
+                throw;
+            }
         }
     }
 }

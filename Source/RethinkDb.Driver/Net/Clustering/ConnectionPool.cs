@@ -85,7 +85,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
                     var port = parts.Length == 2 ? int.Parse(parts[1]) : RethinkDBConstants.DEFAULT_PORT;
 
-                    var conn = NewConnection(host, port);
+                    var conn = NewPoolConnection(host, port);
                     return new {conn, host = s};
                 });
 
@@ -136,7 +136,8 @@ namespace RethinkDb.Driver.Net.Clustering
                         {
                             //Ok, could be initial or new host.
                             //either way, see if we need to add
-                            //the connection.
+                            //the connection if it has not been
+                            //discovered.
 
                             var server = change.NewValue;
                             var port = server.Network.ReqlPort;
@@ -152,11 +153,13 @@ namespace RethinkDb.Driver.Net.Clustering
                             //the host list?
                             var hlist = poolingStrategy.HostList;
 
+                            //has it been discovered?
                             if( !realAddresses.Any(ip => hlist.Any(s => s.Host.Contains(ip))) )
                             {
                                 //the host IP is not found, so, see if we can connect?
                                 foreach( var ip in realAddresses )
                                 {
+                                    //can we connect to this IP?
                                     var client = new TcpClient();
                                     try
                                     {
@@ -164,22 +167,29 @@ namespace RethinkDb.Driver.Net.Clustering
                                     }
                                     catch
                                     {
+                                        try
+                                        {
+                                            client.Shutdown();
+                                        }
+                                        catch
+                                        {
+                                        }
                                         continue;
                                     }
                                     if( client.Connected )
                                     {
                                         client.Shutdown();
-                                        //good chance we can connect to it then.
-                                        var conn = NewConnection(ip, port);
+                                        //good chance we can connect to it.
+                                        var conn = NewPoolConnection(ip, port);
                                         var host = $"{ip}:{port}";
                                         this.poolingStrategy.AddHost(host, conn);
-                                        Log.Trace($"{nameof(DiscoverNewHosts)}: Server {server.Name} ({host}) was added to the host pool.");
+                                        Log.Trace($"{nameof(DiscoverNewHosts)}: Server '{server.Name}' ({host}) was added to the host pool. The supervisor will bring up the connection later.");
                                     }
                                 }
                             }
                             else
                             {
-                                Log.Trace($"{nameof(DiscoverNewHosts)}: Server {server.Name} is back, but doesn't need to be added to the pool.");
+                                Log.Trace($"{nameof(DiscoverNewHosts)}: Server '{server.Name}' is back, but doesn't need to be added to the pool. The supervisor will re-establish the connection later.");
                             }
                         }
                     }
@@ -187,6 +197,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 catch
                 {
                     Log.Trace($"{nameof(DiscoverNewHosts)}: Change feed broke.");
+                    Thread.Sleep(1000);
                 }
             }
         }
@@ -218,10 +229,12 @@ namespace RethinkDb.Driver.Net.Clustering
 
                                 if( conn.Open )
                                 {
+                                    Log.Debug($"{nameof(SuperviseDeadHosts)}: Server '{he.Host}' is UP.");
                                     he.Dead = false;
                                 }
                                 else
                                 {
+                                    Log.Debug($"{nameof(SuperviseDeadHosts)}: Server '{he.Host}' is DOWN.");
                                     he.UpdateRetry();
                                 }
                             });
@@ -241,7 +254,7 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
-        protected virtual Connection NewConnection(string hostname, int port)
+        protected virtual Connection NewPoolConnection(string hostname, int port)
         {
             return new Connection(new Connection.Builder(() => new ConnectionInstance())
                 {

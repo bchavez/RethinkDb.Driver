@@ -89,7 +89,7 @@ namespace RethinkDb.Driver.Ast
         /// dynamic language runtime execution engine.
         /// </summary>
         /// <returns>Returns T or Cursor[T]</returns>
-        public virtual Task<dynamic> runAsync(Connection conn, object runOpts = null)
+        public virtual Task<dynamic> runAsync(IConnection conn, object runOpts = null)
         {
             return runAsync<dynamic>(conn, runOpts);
         }
@@ -115,7 +115,7 @@ namespace RethinkDb.Driver.Ast
         /// dynamic language runtime execution engine.
         /// </summary>
         /// <returns>Returns T or Cursor[T]</returns>
-        public virtual dynamic run(Connection conn, object runOpts = null)
+        public virtual dynamic run(IConnection conn, object runOpts = null)
         {
             return run<dynamic>(conn, runOpts);
         }
@@ -237,7 +237,7 @@ namespace RethinkDb.Driver.Ast
         /// </summary>
         /// <typeparam name="TKey">The key type of how items are grouped</typeparam>
         /// <typeparam name="TItem">The type of items</typeparam>
-        public async virtual Task<IEnumerable<GroupedResult<TKey, TItem>>> runGroupingAsync<TKey, TItem>(Connection conn, object runOpts = null)
+        public async virtual Task<IEnumerable<GroupedResult<TKey, TItem>>> runGroupingAsync<TKey, TItem>(IConnection conn, object runOpts = null)
         {
             var tsk = await runAtomAsync<GroupedResultSet<TKey, TItem>>(conn, runOpts).ConfigureAwait(false);
             return tsk;
@@ -248,7 +248,7 @@ namespace RethinkDb.Driver.Ast
         /// </summary>
         /// <typeparam name="TKey">The key type of how items are grouped</typeparam>
         /// <typeparam name="TItem">The type of items</typeparam>
-        public virtual IEnumerable<GroupedResult<TKey, TItem>> runGrouping<TKey, TItem>(Connection conn, object runOpts = null)
+        public virtual IEnumerable<GroupedResult<TKey, TItem>> runGrouping<TKey, TItem>(IConnection conn, object runOpts = null)
         {
             return runAtomAsync<GroupedResultSet<TKey, TItem>>(conn, runOpts).WaitSync();
         }

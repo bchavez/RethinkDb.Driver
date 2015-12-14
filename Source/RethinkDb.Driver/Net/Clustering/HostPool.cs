@@ -9,7 +9,9 @@ namespace RethinkDb.Driver.Net.Clustering
 {
     public interface IPoolingStrategy : IConnection
     {
+        HostEntry[] HostList { get; }
         void AddHost(string host, Connection conn);
+        void Shutdown();
     }
 
     public abstract class HostPool : IPoolingStrategy
@@ -20,7 +22,7 @@ namespace RethinkDb.Driver.Net.Clustering
         //this array should be monotonically increasing, to avoid 
         //unnecessary thread locking and synch problems when iterating
         //over the length of the list.
-        protected HostEntry[] hostList;
+        public HostEntry[] hostList;
 
         public HostPool()
         {
@@ -42,10 +44,14 @@ namespace RethinkDb.Driver.Net.Clustering
 
         private object hostLock = new object();
 
+        public HostEntry[] HostList => hostList;
+
         public void AddHost(string host, Connection conn)
         {
             lock( hostLock )
             {
+                if( shuttingDown ) return;
+
                 var oldHostList = this.hostList;
                 var nextHostList = new HostEntry[oldHostList.Length + 1];
                 Array.Copy(oldHostList, nextHostList, oldHostList.Length);
@@ -54,6 +60,27 @@ namespace RethinkDb.Driver.Net.Clustering
                 var he = new HostEntry(host, maxRetryInterval) { conn = conn };
                 nextHostList[nextHostList.Length - 1] = he;
                 this.hostList = nextHostList;
+            }
+        }
+
+        protected bool shuttingDown = false;
+
+        public virtual void Shutdown()
+        {
+            lock( hostLock )
+            {
+                shuttingDown = true;
+            }
+        }
+
+        protected internal void MarkFailed(HostEntry h)
+        {
+            if (!h.Dead)
+            {
+                h.RetryCount = 0;
+                h.RetryDelay = initialRetryDelay;
+                h.NextRetry = DateTime.Now.Add(h.RetryDelay);
+                h.Dead = true;
             }
         }
 
@@ -94,17 +121,6 @@ namespace RethinkDb.Driver.Net.Clustering
             ResetAll();
 
             return hostList[0];
-        }
-
-        protected internal void MarkFailed(HostEntry h)
-        {
-            if( !h.Dead )
-            {
-                h.RetryCount = 0;
-                h.RetryDelay = initialRetryDelay;
-                h.NextRetry = DateTime.Now.Add(h.RetryDelay);
-                h.Dead = true;
-            }
         }
 
         public override Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts)

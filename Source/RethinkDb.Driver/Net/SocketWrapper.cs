@@ -245,11 +245,7 @@ namespace RethinkDb.Driver.Net
 
             try
             {
-#if DNXCORE50
-                socketChannel.Dispose();
-#else
-                socketChannel.Close();
-#endif
+                socketChannel.Shutdown();
             }
             catch { }
         }

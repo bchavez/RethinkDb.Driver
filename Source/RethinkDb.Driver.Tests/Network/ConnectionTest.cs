@@ -25,6 +25,7 @@ namespace RethinkDb.Driver.Tests.Network
         }
 
         [Test]
+        [Explicit]
         public void can_connect_to_cluster()
         {
             var c = r.hostpool()

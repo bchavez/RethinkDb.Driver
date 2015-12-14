@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Sockets;
 using System.Reflection;
 
 #if DNX
@@ -32,6 +33,18 @@ namespace RethinkDb.Driver.Utils
 #else
             return type.BaseType;
 #endif
+        }
+    }
+
+    internal static class ExtensionsForTcpClient
+    {
+        public static void Shutdown(this TcpClient tcp)
+        {
+#if DNXCORE50
+            tcp.Dispose();
+#else
+            tcp.Close();
+#endif   
         }
     }
 }

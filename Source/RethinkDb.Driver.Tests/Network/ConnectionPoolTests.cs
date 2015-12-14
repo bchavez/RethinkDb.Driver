@@ -8,11 +8,13 @@ using FluentAssertions;
 using Humanizer;
 using NUnit.Framework;
 using RethinkDb.Driver.Net.Clustering;
+using RethinkDb.Driver.Tests.Utils;
 using Z.ExtensionMethods;
 
 namespace RethinkDb.Driver.Tests.Network
 {
     [TestFixture]
+    [Explicit]
     public class ConnectionPoolTests
     {
         [Test]
@@ -287,6 +289,40 @@ namespace RethinkDb.Driver.Tests.Network
             
             //TOTAL TIME: 60 milliseconds
             Console.WriteLine($"TOTAL TIME: {sw.Elapsed.Humanize()}");
+        }
+
+        [Test]
+        [Explicit]
+        public void check_model()
+        {
+            var r = RethinkDB.r;
+            var conn = r.connection()
+                .hostname(AppSettings.TestHost)
+                .port(AppSettings.TestPort)
+                .timeout(60)
+                .connect();
+
+            var result = r.db("rethinkdb").table("server_status")
+                 .runCursor<Server>(conn);
+
+            var servers = result.ToList();
+
+            //servers.Dump();
+
+            var server = servers[0];
+
+            var realAddresses = server.Network.CanonicalAddress
+                .Where(s => // no localhost and no ipv6. for now.
+                    !s.Host.StartsWith("127.0.0.1") &&
+                    !s.Host.Contains(":"))
+                .Select(c => c.Host);
+
+            realAddresses.Dump();
+
+
+            var now = new[] {"192.168.0.12", "192.168.0.13"};
+
+            realAddresses.Any(ip => now.Any(s => s.Contains(ip))).Dump();
 
         }
     }

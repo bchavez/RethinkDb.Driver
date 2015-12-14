@@ -71,19 +71,7 @@ namespace RethinkDb.Driver.Net
             return connectTimeout;
         }
 
-        public virtual Connection reconnect()
-        {
-            try
-            {
-                return reconnect(false, null);
-            }
-            catch( Exception e )
-            {
-                throw e;
-            }
-        }
-
-        public virtual Connection reconnect(bool noreplyWait, TimeSpan? timeout)
+        public virtual Connection reconnect(bool noreplyWait = false, TimeSpan? timeout = null)
         {
             if( !timeout.HasValue )
             {
@@ -93,6 +81,15 @@ namespace RethinkDb.Driver.Net
             ConnectionInstance inst = instanceMaker();
             instance = inst;
             inst.Connect(hostname, port, handshake, timeout);
+            return this;
+        }
+
+        public virtual async Task<Connection> reconnectAsync(bool noreplyWait = false)
+        {
+            close(noreplyWait);
+            ConnectionInstance inst = instanceMaker();
+            instance = inst;
+            await inst.ConnectAsync(hostname, port, handshake);
             return this;
         }
 
@@ -424,6 +421,11 @@ namespace RethinkDb.Driver.Net
                 return this;
             }
 
+            /// <summary>
+            /// Note: Timeout is not used when using connectAsync();
+            /// </summary>
+            /// <param name="val"></param>
+            /// <returns></returns>
             public virtual Builder timeout(int val)
             {
                 this._timeout = TimeSpan.FromSeconds(val);
@@ -435,6 +437,12 @@ namespace RethinkDb.Driver.Net
                 var conn = new Connection(this);
                 conn.reconnect();
                 return conn;
+            }
+
+            public virtual Task<Connection> connectAsync()
+            {
+                var conn = new Connection(this);
+                return conn.reconnectAsync();
             }
         }
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace RethinkDb.Driver.Net
 {
@@ -15,6 +16,13 @@ namespace RethinkDb.Driver.Net
         {
             var sock = new SocketWrapper(hostname, port, timeout);
             sock.Connect(handshake);
+            Socket = sock;
+        }
+
+        public virtual async Task ConnectAsync(string hostname, int port, byte[] handshake)
+        {
+            var sock = new SocketWrapper(hostname, port, null);
+            await sock.ConnectAsync(handshake).ConfigureAwait(false);
             Socket = sock;
         }
 

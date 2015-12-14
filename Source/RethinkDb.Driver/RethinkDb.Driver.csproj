@@ -311,7 +311,6 @@
     <Compile Include="Net\JsonConverters\ReqlGroupingConverter.cs" />
     <Compile Include="Net\Response.cs" />
     <Compile Include="Net\SocketWrapper.cs" />
-    <Compile Include="Net\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RethinkDB.cs" />
     <Compile Include="RethinkDBConstants.cs" />

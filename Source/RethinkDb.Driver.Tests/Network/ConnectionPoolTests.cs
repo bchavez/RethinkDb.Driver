@@ -21,43 +21,30 @@ namespace RethinkDb.Driver.Tests.Network
             var sw = Stopwatch.StartNew();
             var dummyErr = new Exception("dummy error");
 
-            var p = new RoundRobinHostPool(new[] {"a", "b", "c"});
+            var p = new RoundRobinHostPool();
+            p.AddHost("a", null);
+            p.AddHost("b", null);
+            p.AddHost("c", null);
 
-            p.Get().Host.Should().Be("a");
-            p.Get().Host.Should().Be("b");
-            p.Get().Host.Should().Be("c");
-            var respA = p.Get();
+            p.GetRoundRobin().Host.Should().Be("a");
+            p.GetRoundRobin().Host.Should().Be("b");
+            p.GetRoundRobin().Host.Should().Be("c");
+            var respA = p.GetRoundRobin();
             respA.Host.Should().Be("a");
 
-
-            respA.Mark(dummyErr);
-            var respB = p.Get();
-            respB.Mark(dummyErr);
-            var respC = p.Get();
+            p.MarkFailed(respA);
+            var respB = p.GetRoundRobin();
+            p.MarkFailed(respB);
+            var respC = p.GetRoundRobin();
             respC.Host.Should().Be("c");
-            respC.Mark(null);
 
             // get again, and verify that it's still c
-            p.Get().Host.Should().Be("c");
+            p.GetRoundRobin().Host.Should().Be("c");
+            p.GetRoundRobin().Host.Should().Be("c");
+            p.GetRoundRobin().Host.Should().Be("a");
+            p.GetRoundRobin().Host.Should().Be("c");
 
-            //now try to mark b as success; should fail because already marked
-            respB.Mark(null);
-
-            p.Get().Host.Should().Be("c");
-
-            respA = new RoundRobinHostPoolResponse { Host = "a", HostPool = p };
-            respA.Mark(null);
-
-            p.Get().Host.Should().Be("a");
-            p.Get().Host.Should().Be("c");
-
-            new[] { "a", "b", "c" }.ForEach(host =>
-                  {
-                      var response = new RoundRobinHostPoolResponse { Host = host, HostPool = p };
-                      response.Mark(dummyErr);
-                  });
-
-            var resp = p.Get();
+            var resp = p.GetRoundRobin();
             resp.Should().NotBeNull();
             sw.Stop();
             //TOTAL TIME: 17 milliseconds
@@ -71,8 +58,10 @@ namespace RethinkDb.Driver.Tests.Network
             var sw = Stopwatch.StartNew();
             EpsilonGreedyHostPool.Random = new Random(10);
 
-            var p = new EpsilonGreedyHostPool(new [] { "a", "b"}, null, new LinearEpsilonValueCalculator());
-
+            var p = new EpsilonGreedyHostPool(null, new LinearEpsilonValueCalculator());
+            p.AddHost("a", null);
+            p.AddHost("b", null);
+            
             //Initially, A is faster than B;
             var timings = new Dictionary<string, long>()
                 {
@@ -94,12 +83,11 @@ namespace RethinkDb.Driver.Tests.Network
                 {
                     p.PerformEpsilonGreedyDecay(null);
                 }
-                var hostR = p.Get();// as EpsilonHostPoolResponse;
+                var hostR = p.GetEpsilonGreedy();// as EpsilonHostPoolResponse;
                 var host = hostR.Host;
                 hitCounts[host]++;
                 var timing = timings[host];
-                hostR.Ended = hostR.Started.Add(TimeSpan.FromMilliseconds(timing));
-                hostR.Mark(null);
+                p.MarkSuccess(hostR, 0, TimeSpan.FromMilliseconds(timing).Ticks);
             }
 
             foreach( var host in hitCounts )
@@ -130,12 +118,11 @@ namespace RethinkDb.Driver.Tests.Network
                 {
                     p.PerformEpsilonGreedyDecay(null);
                 }
-                var hostR = p.Get();// as EpsilonHostPoolResponse;
+                var hostR = p.GetEpsilonGreedy();// as EpsilonHostPoolResponse;
                 var host = hostR.Host;
                 hitCounts[host]++;
                 var timing = timings[host];
-                hostR.Ended = hostR.Started.Add(TimeSpan.FromMilliseconds(timing));
-                hostR.Mark(null);
+                p.MarkSuccess(hostR, 0, TimeSpan.FromMilliseconds(timing).Ticks);
             }
 
             //TOTAL TIME: 177 milliseconds
@@ -161,7 +148,9 @@ namespace RethinkDb.Driver.Tests.Network
         {
             EpsilonGreedyHostPool.Random = new Random(10);
 
-            var p = new EpsilonGreedyHostPool(new[] { "a", "b" }, null, new LinearEpsilonValueCalculator());
+            var p = new EpsilonGreedyHostPool(null, new LinearEpsilonValueCalculator());
+            p.AddHost("a", null);
+            p.AddHost("b", null);
 
             //var hitA = 0;
             //var hitB = 0;
@@ -220,9 +209,7 @@ namespace RethinkDb.Driver.Tests.Network
                                     timing = timingB;
                                 }
                                 
-
-                                hostR.Ended = hostR.Started.Add(TimeSpan.FromMilliseconds(timing));
-                                hostR.Mark(null);
+                                p.MarkSuccess(hostR, 0, TimeSpan.FromMilliseconds(timing).Ticks);
                                 //if( changeTimingsAt == i )
                                 //{
                                 //    //Half way, B is faster than A;
@@ -253,7 +240,10 @@ namespace RethinkDb.Driver.Tests.Network
         [Test]
         public void bechmark_round_robin()
         {
-            var p = new RoundRobinHostPool(new[] { "a", "b", "c" });
+            var p = new RoundRobinHostPool();
+            p.AddHost("a", null);
+            p.AddHost("b", null);
+            p.AddHost("c", null);
 
             var hitA = 0;
             var hitB = 0;
@@ -269,7 +259,7 @@ namespace RethinkDb.Driver.Tests.Network
                         {
                             for( var x = 0; x < iterations; x++ )
                             {
-                                var h = p.Get();
+                                var h = p.GetRoundRobin();
 
                                 if( h.Host == "a" )
                                     Interlocked.Increment(ref hitA);
@@ -277,8 +267,6 @@ namespace RethinkDb.Driver.Tests.Network
                                     Interlocked.Increment(ref hitB);
                                 else
                                     Interlocked.Increment(ref hitC);
-
-                                h.Mark(null);
                             }
                         });
                 });

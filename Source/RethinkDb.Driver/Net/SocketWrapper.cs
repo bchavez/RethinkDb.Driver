@@ -35,10 +35,8 @@ namespace RethinkDb.Driver.Net
             this.socketChannel = new TcpClient();
         }
 
-        public virtual void Connect(byte[] handshake)
+        public virtual async Task ConnectAsync(byte[] handshake)
         {
-            var deadline = NetUtil.Deadline(this.timeout);
-            var taskComplete = false;
             try
             {
                 socketChannel.NoDelay = true;
@@ -47,11 +45,8 @@ namespace RethinkDb.Driver.Net
                 //socketChannel.ReceiveTimeout = 250;
                 //socketChannel.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
                 //socketChannel.Client.Blocking = true;
-                taskComplete = socketChannel.ConnectAsync(this.hostname, this.port).Wait(this.timeout);
-                if( deadline < DateTime.UtcNow.Ticks || (taskComplete && !socketChannel.Connected) )
-                {
-                    throw new ReqlDriverError("Connection timed out.");
-                }
+                
+                await socketChannel.ConnectAsync(this.hostname, this.port).ConfigureAwait(false);
                 
                 this.ns = socketChannel.GetStream();
                 this.bw = new BinaryWriter(this.ns);
@@ -62,7 +57,7 @@ namespace RethinkDb.Driver.Net
 
                 var msg = this.ReadNullTerminatedString(timeout);
 
-                if( !msg.Equals("SUCCESS") )
+                if (!msg.Equals("SUCCESS"))
                 {
                     throw new ReqlDriverError($"Server dropped connection with message: '{msg}'");
                 }
@@ -72,11 +67,12 @@ namespace RethinkDb.Driver.Net
                 //(ie: does not block application shutdown, when all foreground threads finish)
                 Task.Factory.StartNew(ResponsePump, TaskCreationOptions.LongRunning);
             }
-            catch when( !taskComplete )
+            catch
             {
                 try
                 {
                     this.Close();
+                    
                 }
                 catch
                 {
@@ -84,6 +80,21 @@ namespace RethinkDb.Driver.Net
                     // and re-throw the original exception
                 }
                 throw;
+            }
+        }
+
+        public virtual void Connect(byte[] handshake)
+        {
+            if( !ConnectAsync(handshake).Wait(this.timeout) )
+            {
+                try
+                {
+                    this.Close();
+                }
+                catch
+                {
+                }
+                throw new ReqlDriverError("Connection timed out.");
             }
         }
 

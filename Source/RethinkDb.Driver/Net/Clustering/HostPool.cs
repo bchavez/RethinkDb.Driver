@@ -26,6 +26,7 @@ namespace RethinkDb.Driver.Net.Clustering
         {
             initialRetryDelay = TimeSpan.FromSeconds(30);
             maxRetryInterval = TimeSpan.FromSeconds(900);
+            hostList = new HostEntry[0];
         }
 
         public virtual void ResetAll()

@@ -123,7 +123,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 catch
                 {
                     Log.Trace($"{nameof(DiscoverNewHosts)}: Pool is not ready to discover new hosts.");
-                    Task.Delay(1000).Wait();
+                    Thread.Sleep(1000);
                 }
 
                 try
@@ -197,7 +197,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 catch
                 {
                     Log.Trace($"{nameof(DiscoverNewHosts)}: Change feed broke.");
-                    Task.Delay(1000).Wait();
+                    Thread.Sleep(1000);
                 }
             }
         }
@@ -249,7 +249,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 }
                 else
                 {
-                    Task.Delay(1000).Wait();
+                    Thread.Sleep(1000);
                 }
             }
         }

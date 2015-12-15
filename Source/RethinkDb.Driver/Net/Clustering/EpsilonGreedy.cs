@@ -8,19 +8,15 @@ using Random = System.Random;
 namespace RethinkDb.Driver.Net.Clustering
 {
     /// <summary>
-    /// Construct an Epsilon Greedy HostPool
-    ///
     /// Epsilon Greedy is an algorithm that allows HostPool not only to track failure state,
     /// but also to learn about "better" options in terms of speed, and to pick from available hosts
     /// based on how well they perform. This gives a weighted request rate to better
     /// performing hosts, while still distributing requests to all hosts (proportionate to their performance).
-    /// The interface is the same as the standard HostPool, but be sure to mark the HostResponse immediately
-    /// after executing the request to the host, as that will stop the implicitly running request timer.
     ///
     /// A good overview of Epsilon Greedy is here http://stevehanov.ca/blog/index.php?id=132
     ///
     /// To compute the weighting scores, we perform a weighted average of recent response times, over the course of
-    /// `decayDuration`. decayDuration may be set to 0 to use the default value of 5 minutes
+    /// `decayDuration`. decayDuration may be set to null to use the default value of 5 minutes
     /// We then use the supplied EpsilonValueCalculator to calculate a score from that weighted average response time.
     /// </summary>
     public class EpsilonGreedyHostPool : RoundRobinHostPool
@@ -29,8 +25,15 @@ namespace RethinkDb.Driver.Net.Clustering
         protected const double InitialEpsilon = 0.3;
         protected const double MinEpsilon = 0.01; // explore one percent of the time
         protected const double EpsilonDecay = 0.90; // decay the exploration rate
-        public const int EpsilonBuckets = 120;
-        
+        public const int EpsilonBuckets = 120; //measurement slots
+
+        /// <summary>
+        /// Epsilon threshold that controls exploration. If a random double is
+        /// less than &lt; (or below) epsilon, then an round-robin exploration is performed.
+        /// IE: Higher the epsilon, the more chances for exploration of other hosts.
+        /// In the long run, epsilon will EpsilonDecay on each exploration until reaching MinEpsilon.
+        /// Additionally, in the long run, exploration will only take place MinEpsilon % of the time.
+        /// </summary>
         private double epsilon;
         private TimeSpan decayDuration;
         private EpsilonValueCalculator calc;
@@ -45,7 +48,34 @@ namespace RethinkDb.Driver.Net.Clustering
             Random = new Random();
         }
 
-        public EpsilonGreedyHostPool(TimeSpan? decayDuration, EpsilonValueCalculator calc)
+        /// <summary>
+        /// Construct an Epsilon Greedy HostPool
+        ///
+        /// Epsilon Greedy is an algorithm that allows HostPool not only to track failure state,
+        /// but also to learn about "better" options in terms of speed, and to pick from available hosts
+        /// based on how well they perform. This gives a weighted request rate to better
+        /// performing hosts, while still distributing requests to all hosts (proportionate to their performance).
+        ///
+        /// A good overview of Epsilon Greedy is here http://stevehanov.ca/blog/index.php?id=132
+        ///
+        /// To compute the weighting scores, we perform a weighted average of recent response times, over the course of
+        /// `decayDuration`. decayDuration may be set to null to use the default value of 5 minutes
+        /// We then use the supplied EpsilonValueCalculator to calculate a score from that weighted average response time.
+        /// </summary>
+        /// <param name="retryDelayInitial">The initial retry delay when a host goes down. Default, null, is 30 seconds.</param>
+        /// <param name="retryDelayMax">The maximum retry delay when a host goes down. Default, null, is 15 minutes.</param>
+        /// <param name="decayDuration">The amount of time to cycle though all EpsilonBuckets (0...120). 
+        /// This decay duration is divided by EpsilonBuckets (default: 5 min / 120 buckets = 2.5 seconds per bucket).
+        /// IE: The average will be taken every decayDuration/EpsilonBuckets seconds.</param>
+        /// <param name="calc">Given the weighted average among EpsilonBuckets slot measurements, calculate the host's EpsilonValue using EpsilonCalculators.Linear/Logarithmic/Polynomial(exponent)</param>
+        /// <param name="autoStartDecayTimer">Automatically starts the decay timer. If false, you need to call StartDecayTimer manually for epsilon values to be calculated correctly.</param>
+        public EpsilonGreedyHostPool(
+            TimeSpan? retryDelayInitial,
+            TimeSpan? retryDelayMax,
+            TimeSpan? decayDuration,
+            EpsilonValueCalculator calc,
+            bool autoStartDecayTimer = true)
+            : base(retryDelayInitial, retryDelayMax)
         {
             this.decayDuration = decayDuration ?? DefaultDecayDuration;
             this.calc = calc;
@@ -53,14 +83,58 @@ namespace RethinkDb.Driver.Net.Clustering
             this.weights = Enumerable.Range(1, EpsilonBuckets)
                 .Select(i => i / Convert.ToSingle(EpsilonBuckets))
                 .ToArray();
+
+            if( autoStartDecayTimer )
+            {
+                StartDecayTimer();
+            }
         }
 
+        /// <summary>
+        /// Construct an Epsilon Greedy HostPool
+        ///
+        /// Epsilon Greedy is an algorithm that allows HostPool not only to track failure state,
+        /// but also to learn about "better" options in terms of speed, and to pick from available hosts
+        /// based on how well they perform. This gives a weighted request rate to better
+        /// performing hosts, while still distributing requests to all hosts (proportionate to their performance).
+        ///
+        /// A good overview of Epsilon Greedy is here http://stevehanov.ca/blog/index.php?id=132
+        ///
+        /// To compute the weighting scores, we perform a weighted average of recent response times, over the course of
+        /// `decayDuration`. decayDuration may be set to null to use the default value of 5 minutes
+        /// We then use the supplied EpsilonValueCalculator to calculate a score from that weighted average response time.
+        /// </summary>
+        /// <param name="decayDuration">The amount of time to cycle though all EpsilonBuckets (0...120). 
+        /// This decay duration is divided by EpsilonBuckets (default: 5 min / 120 buckets = 2.5 seconds per bucket).
+        /// IE: The average will be taken every decayDuration/EpsilonBuckets seconds.</param>
+        /// <param name="calc">Given the weighted average among EpsilonBuckets slot measurements, calculate the host's EpsilonValue using EpsilonCalculators.Linear/Logarithmic/Polynomial(exponent)</param>
+        /// <param name="autoStartDecayTimer">Automatically starts the decay timer. If false, you need to call StartDecayTimer manually for epsilon values to be calculated correctly.</param>
+        public EpsilonGreedyHostPool(TimeSpan? decayDuration,
+            EpsilonValueCalculator calc,
+            bool autoStartDecayTimer = true) :
+            this(null, null, decayDuration, calc)
+        {
+            
+        }
+
+
+        /// <summary>
+        /// Epsilon threshold that controls exploration. If a random double is
+        /// less than &lt; (or below) epsilon, then an round-robin exploration is performed.
+        /// IE: Higher the epsilon, the more chances for exploration of other hosts.
+        /// In the long run, epsilon will EpsilonDecay on each exploration to MinEpsilon.
+        /// </summary>
         public void SetEpsilon(float epsilon)
         {
             this.epsilon = epsilon;
         }
 
-        public void EpsilonGreedyDecay()
+
+        /// <summary>
+        /// If the autoStartDecayTimer was false, you need to start
+        /// the decay timer manually using this method.
+        /// </summary>
+        public void StartDecayTimer()
         {
             var durationPerBucket = TimeSpan.FromTicks(decayDuration.Ticks / EpsilonBuckets);
             this.timer = new Timer(PerformEpsilonGreedyDecay, null, Timeout.Infinite, Timeout.Infinite);
@@ -215,6 +289,8 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
+        #region CONNECTION RUNNERS
+
         public override async Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts)
         {
             HostEntry host = GetEpsilonGreedy();
@@ -228,7 +304,7 @@ namespace RethinkDb.Driver.Net.Clustering
             }
             catch
             {
-                MarkFailed(host);
+                host.MarkFailed();
                 throw;
             }
         }
@@ -246,7 +322,7 @@ namespace RethinkDb.Driver.Net.Clustering
             }
             catch
             {
-                MarkFailed(host);
+                host.MarkFailed();
                 throw;
             }
         }
@@ -263,7 +339,7 @@ namespace RethinkDb.Driver.Net.Clustering
             }
             catch
             {
-                MarkFailed(host);
+                host.MarkFailed();
                 throw;
             }
         }
@@ -281,9 +357,11 @@ namespace RethinkDb.Driver.Net.Clustering
             }
             catch
             {
-                MarkFailed(host);
+                host.MarkFailed();
                 throw;
             }
         }
+
+        #endregion
     }
 }

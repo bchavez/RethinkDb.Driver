@@ -225,7 +225,7 @@ namespace RethinkDb.Driver.Net.Clustering
                     var he = hlist[i];
                     var conn = he.conn as Connection;
 
-                    if ( he.Dead && he.NextRetry < DateTime.Now )
+                    if ( he.NeedsRetry() )
                     {
 
                         var worker = Task.Run(() =>
@@ -241,7 +241,7 @@ namespace RethinkDb.Driver.Net.Clustering
                                 else
                                 {
                                     Log.Debug($"{nameof(Supervisor)}: Server '{he.Host}' is DOWN.");
-                                    he.UpdateRetry();
+                                    he.RetryFailed();
                                 }
                             });
 
@@ -250,7 +250,8 @@ namespace RethinkDb.Driver.Net.Clustering
                     else if( !he.Dead && conn.HasError)
                     {
                         //not dead, but has error, mark it dead.
-                        poolingStrategy.MarkFailed(he);
+                        he.MarkFailed();
+                        Log.Trace($"Host {he.Host} is DOWN.");
                     }
                 }
 
@@ -289,7 +290,7 @@ namespace RethinkDb.Driver.Net.Clustering
             internal string _dbname;
             internal string _authKey;
             internal IPoolingStrategy hostpool;
-            internal TimeSpan _retrywait;
+            internal TimeSpan _supervisePeriod;
 
             /// <summary>
             /// Should be strings of the form "Host:Port".
@@ -323,11 +324,11 @@ namespace RethinkDb.Driver.Net.Clustering
                 return this;
             }
 
-            //public virtual Builder retry(TimeSpan retryWait)
-            //{
-            //    this._retrywait = retryWait;
-            //    return this;
-            //}
+            public virtual Builder superviseEvery(TimeSpan period)
+            {
+                this._supervisePeriod = period;
+                return this;
+            }
 
             /// <summary>
             /// The selection strategy to for selecting a connection. IE: RoundRobin, HeartBeat, or EpsilonGreedy.

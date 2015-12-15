@@ -6,23 +6,26 @@ namespace RethinkDb.Driver.Net.Clustering
 {
     public class HostEntry
     {
-        private readonly TimeSpan maxRetryInterval;
-        public IConnection conn;
+        public TimeSpan RetryDelayInitial { get; set; }
+        public TimeSpan RetryDelayMax { get; set; }
 
-        public HostEntry(string host, TimeSpan maxRetryInterval)
+        public HostEntry(string host)
         {
-            this.maxRetryInterval = maxRetryInterval;
             this.Host = host;
             this.EpsilonValues = new long[EpsilonGreedyHostPool.EpsilonBuckets];
             this.EpsilonCounts = new long[EpsilonGreedyHostPool.EpsilonBuckets];
             this.EpsilonAvg = new float[EpsilonGreedyHostPool.EpsilonBuckets];
         }
 
+        public IConnection conn;
         public string Host { get; set; }
+        public bool Dead { get; set; }
+        public object Tag { get; set; }
+        
         public DateTime NextRetry { get; set; }
         public int RetryCount { get; set; }
         public TimeSpan RetryDelay { get; set; }
-        public bool Dead { get; set; }
+
         public long[] EpsilonCounts { get; set; }
         public long[] EpsilonValues { get; set; }
         public float[] EpsilonAvg { get; set; }
@@ -33,19 +36,29 @@ namespace RethinkDb.Driver.Net.Clustering
         public float EpsilonPercentage;
         public float EpsilonWeightAverage ;
 
-        public void UpdateRetry()
+        public virtual void RetryFailed()
         {
             this.RetryCount += 1;
-            var newDelay = TimeSpan.FromTicks(this.RetryDelay.Ticks * 2);
-            if( newDelay < maxRetryInterval )
-            {
-                this.RetryDelay = newDelay;
-            }
-            else
-            {
-                this.RetryDelay = maxRetryInterval;
-            }
+            //double the retry delay
+            var newDelay = this.RetryDelay.Add(this.RetryDelay);
+            this.RetryDelay = newDelay < this.RetryDelayMax ? newDelay : this.RetryDelayMax;
             this.NextRetry = DateTime.Now + this.RetryDelay;
+        }
+
+        public virtual bool NeedsRetry()
+        {
+            return this.Dead && this.NextRetry < DateTime.Now;
+        }
+
+        public virtual void MarkFailed()
+        {
+            if (!this.Dead)
+            {
+                this.RetryCount = 0;
+                this.RetryDelay = this.RetryDelayInitial;
+                this.NextRetry = DateTime.Now.Add(this.RetryDelay);
+                this.Dead = true;
+            }
         }
     }
 }

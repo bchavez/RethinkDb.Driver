@@ -66,7 +66,9 @@
     <Compile Include="Net\Clustering\EpsilonValueCalculator.cs" />
     <Compile Include="Net\Clustering\HostEntry.cs" />
     <Compile Include="Net\Clustering\HostPool.cs" />
-    <Compile Include="Net\Clustering\Model.cs" />
+    <Compile Include="Net\Clustering\IPoolingStrategy.cs" />
+    <Compile Include="Net\Clustering\RoundRobinHostPool.cs" />
+    <Compile Include="Net\Clustering\Server.cs" />
     <Compile Include="ReqlAssertFailure.cs" />
     <Compile Include="Model\Change[T].cs" />
     <Compile Include="Model\ExtensionsForResult.cs" />

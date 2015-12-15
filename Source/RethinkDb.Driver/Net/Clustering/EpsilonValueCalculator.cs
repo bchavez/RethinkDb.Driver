@@ -2,11 +2,14 @@ using System;
 
 namespace RethinkDb.Driver.Net.Clustering
 {
-    // Structs implementing this interface are used to convert the average response time for a host
-    // into a score that can be used to weight hosts in the epsilon greedy hostpool. Lower response
-    // times should yield higher scores (we want to select the faster hosts more often) The default
-    // LinearEpsilonValueCalculator just uses the reciprocal of the response time. In practice, any
-    // decreasing function from the positive reals to the positive reals should work.
+
+    /// <summary>
+    /// Classes implementing this interface are used to convert the average response time for a host
+    /// into a score that can be used to weight hosts in the epsilon greedy hostpool. Lower response
+    /// times should yield higher scores (we want to select the faster hosts more often) The default
+    /// LinearEpsilonValueCalculator just uses the reciprocal of the response time. In practice, any
+    /// decreasing function from the positive reals to the positive reals should work.
+    /// </summary>
     public abstract class EpsilonValueCalculator
     {
         public abstract float CalcValueFromAvgResponseTime(float v);
@@ -55,6 +58,56 @@ namespace RethinkDb.Driver.Net.Clustering
         public override float CalcValueFromAvgResponseTime(float v)
         {
             return PolynomialEpsilonValueCalculator(v, exponent);
+        }
+    }
+
+
+    /// <summary>
+    /// Classes implementing this interface are used to convert the average response time for a host
+    /// into a score that can be used to weight hosts in the epsilon greedy hostpool. Lower response
+    /// times should yield higher scores (we want to select the faster hosts more often) The default
+    /// LinearEpsilonValueCalculator just uses the reciprocal of the response time. In practice, any
+    /// decreasing function from the positive reals to the positive reals should work.
+    /// </summary>
+    public static class EpsilonCalculator
+    {
+
+        /// <summary>
+        /// Linear calculator to convert the average response time for a host
+        /// into a score that can be used to weight hosts in the epsilon greedy hostpool. Lower response
+        /// times should yield higher scores (we want to select the faster hosts more often) The default
+        /// LinearEpsilonValueCalculator just uses the reciprocal of the response time. In practice, any
+        /// decreasing function from the positive reals to the positive reals should work.
+        /// </summary>
+        public static EpsilonValueCalculator Linear()
+        {
+            return new LinearEpsilonValueCalculator();
+        }
+
+
+        /// <summary>
+        /// Logarithmic calculator to convert the average response time for a host
+        /// into a score that can be used to weight hosts in the epsilon greedy hostpool. Lower response
+        /// times should yield higher scores (we want to select the faster hosts more often) The default
+        /// LinearEpsilonValueCalculator just uses the reciprocal of the response time. In practice, any
+        /// decreasing function from the positive reals to the positive reals should work.
+        /// </summary>
+        public static EpsilonValueCalculator Logarithmic()
+        {
+            return new LogEpsilonValueCalculator();
+        }
+
+
+        /// <summary>
+        /// Polynomial calculator to convert the average response time for a host
+        /// into a score that can be used to weight hosts in the epsilon greedy hostpool. Lower response
+        /// times should yield higher scores (we want to select the faster hosts more often) The default
+        /// LinearEpsilonValueCalculator just uses the reciprocal of the response time. In practice, any
+        /// decreasing function from the positive reals to the positive reals should work.
+        /// </summary>
+        public static EpsilonValueCalculator Polynomial(float exponent)
+        {
+            return new PolynomialEpsilonValueCalculator(exponent);
         }
     }
 }

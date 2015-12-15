@@ -8,7 +8,6 @@ namespace RethinkDb.Driver.Net.Clustering
         public string Name { get; set; }
         public Network Network { get; set; }
     }
-
     public class Network
     {
         [JsonProperty("canonical_addresses")]

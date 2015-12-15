@@ -21,12 +21,17 @@ namespace RethinkDb.Driver.Tests.Network
         public void roundrobin_test()
         {
             var sw = Stopwatch.StartNew();
-            var dummyErr = new Exception("dummy error");
 
             var p = new RoundRobinHostPool();
             p.AddHost("a", null);
             p.AddHost("b", null);
             p.AddHost("c", null);
+
+            //initially hosts are not dead, for testing of course.
+            foreach( var h in p.HostList )
+            {
+                h.Dead = false;
+            }
 
             p.GetRoundRobin().Host.Should().Be("a");
             p.GetRoundRobin().Host.Should().Be("b");
@@ -34,16 +39,15 @@ namespace RethinkDb.Driver.Tests.Network
             var respA = p.GetRoundRobin();
             respA.Host.Should().Be("a");
 
-            p.MarkFailed(respA);
+            respA.MarkFailed();
             var respB = p.GetRoundRobin();
-            p.MarkFailed(respB);
+            respB.MarkFailed();
             var respC = p.GetRoundRobin();
             respC.Host.Should().Be("c");
 
             // get again, and verify that it's still c
             p.GetRoundRobin().Host.Should().Be("c");
             p.GetRoundRobin().Host.Should().Be("c");
-            p.GetRoundRobin().Host.Should().Be("a");
             p.GetRoundRobin().Host.Should().Be("c");
 
             var resp = p.GetRoundRobin();
@@ -60,10 +64,16 @@ namespace RethinkDb.Driver.Tests.Network
             var sw = Stopwatch.StartNew();
             EpsilonGreedyHostPool.Random = new Random(10);
 
-            var p = new EpsilonGreedyHostPool(null, new LinearEpsilonValueCalculator());
+            var p = new EpsilonGreedyHostPool(null, EpsilonCalculator.Linear(), autoStartDecayTimer:false);
             p.AddHost("a", null);
             p.AddHost("b", null);
-            
+
+            //initially hosts are not dead, for testing of course.
+            foreach (var h in p.HostList)
+            {
+                h.Dead = false;
+            }
+
             //Initially, A is faster than B;
             var timings = new Dictionary<string, long>()
                 {
@@ -150,9 +160,15 @@ namespace RethinkDb.Driver.Tests.Network
         {
             EpsilonGreedyHostPool.Random = new Random(10);
 
-            var p = new EpsilonGreedyHostPool(null, new LinearEpsilonValueCalculator());
+            var p = new EpsilonGreedyHostPool(null, new LinearEpsilonValueCalculator(), autoStartDecayTimer:false);
             p.AddHost("a", null);
             p.AddHost("b", null);
+
+            //initially hosts are not dead, for testing of course.
+            foreach (var h in p.HostList)
+            {
+                h.Dead = false;
+            }
 
             //var hitA = 0;
             //var hitB = 0;
@@ -246,6 +262,12 @@ namespace RethinkDb.Driver.Tests.Network
             p.AddHost("a", null);
             p.AddHost("b", null);
             p.AddHost("c", null);
+
+            //initially hosts are not dead, for testing of course.
+            foreach (var h in p.HostList)
+            {
+                h.Dead = false;
+            }
 
             var hitA = 0;
             var hitB = 0;

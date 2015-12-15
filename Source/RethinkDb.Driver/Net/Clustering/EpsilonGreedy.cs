@@ -112,7 +112,7 @@ namespace RethinkDb.Driver.Net.Clustering
         public EpsilonGreedyHostPool(TimeSpan? decayDuration,
             EpsilonValueCalculator calc,
             bool autoStartDecayTimer = true) :
-            this(null, null, decayDuration, calc)
+            this(null, null, decayDuration, calc, autoStartDecayTimer)
         {
             
         }

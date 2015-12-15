@@ -64,7 +64,7 @@ namespace RethinkDb.Driver.Net.Clustering
         /// </summary>
         /// <param name="retryDelayInitial">The initial retry delay when a host goes down. Default, null, is 30 seconds.</param>
         /// <param name="retryDelayMax">The maximum retry delay when a host goes down. Default, null, is 15 minutes.</param>
-        /// <param name="decayDuration">The amount of time to cycle though all EpsilonBuckets (0...120). 
+        /// <param name="decayDuration">The amount of time to cycle through all EpsilonBuckets (0...120). 
         /// This decay duration is divided by EpsilonBuckets (default: 5 min / 120 buckets = 2.5 seconds per bucket).
         /// IE: The average will be taken every decayDuration/EpsilonBuckets seconds.</param>
         /// <param name="calc">Given the weighted average among EpsilonBuckets slot measurements, calculate the host's EpsilonValue using EpsilonCalculators.Linear/Logarithmic/Polynomial(exponent)</param>

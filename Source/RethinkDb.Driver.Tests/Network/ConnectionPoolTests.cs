@@ -382,6 +382,23 @@ namespace RethinkDb.Driver.Tests.Network
         }
 
         [Test]
+        [Explicit]
+        public void epsilon_greedy_host_pool_alive()
+        {
+            var r = RethinkDB.r;
+            var c = r.connectionPool()
+                .seed(new[] { "192.168.0.11:28015" })
+                .poolingStrategy(new EpsilonGreedyHostPool(null, EpsilonCalculator.Linear()))
+                .discover(true)
+                .connect();
+
+            Thread.Sleep(10000);
+
+            int result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
+            result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
+        }
+
+        [Test]
         public void failure_should_double_retry()
         {
             var he = new HostEntry("a")

@@ -57,6 +57,10 @@ Documentation
 -----
 * [Home](https://github.com/bchavez/RethinkDb.Driver/wiki)
 * [Query Examples](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/RethinkDb.Driver.Tests/ReQL)
+* [Connections & Pooling](https://github.com/bchavez/RethinkDb.Driver/wiki/Connections-&-Pooling)
+  * [Single Connection](https://github.com/bchavez/RethinkDb.Driver/wiki/Connections-&-Pooling#single-connection-no-pooling)
+  * [Round Robin Pooling](https://github.com/bchavez/RethinkDb.Driver/wiki/Connections-&-Pooling#connection-pool-round-robin)
+  * [Epsilon Greedy Pooling](https://github.com/bchavez/RethinkDb.Driver/wiki/Connections-&-Pooling#connection-pool-epsilon-greedy)
 * [Extra C# Features](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features)
   * [Optional Arguments](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#optional-arguments)
   * [Bracket](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#bracket)

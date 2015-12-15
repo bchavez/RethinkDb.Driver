@@ -20,6 +20,13 @@ namespace RethinkDb.Driver.Net.Clustering
         {
             this.RetryDelayInitial = retryDelayInitial ?? TimeSpan.FromSeconds(30);
             this.RetryDelayMax = retryDelayMax ?? TimeSpan.FromSeconds(900);
+
+            if( this.RetryDelayInitial < TimeSpan.FromSeconds(30)
+                || this.RetryDelayMax < TimeSpan.FromSeconds(30) )
+            {
+                throw new ArgumentOutOfRangeException($"{nameof(retryDelayInitial)} and {nameof(retryDelayMax)} must both be greater than 30 seconds. Anything less can cause threads to pile up on each other because the default socket timeout for windows is about 20 seconds.");
+            }
+
             hostList = new HostEntry[0];
         }
 

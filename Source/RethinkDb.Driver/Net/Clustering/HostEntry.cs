@@ -58,6 +58,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 this.RetryDelay = this.RetryDelayInitial;
                 this.NextRetry = DateTime.Now.Add(this.RetryDelay);
                 this.Dead = true;
+                Log.Trace($"Host {this.Host} is DOWN.");
             }
         }
     }

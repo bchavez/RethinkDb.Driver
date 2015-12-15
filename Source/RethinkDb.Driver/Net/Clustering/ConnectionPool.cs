@@ -271,13 +271,13 @@ namespace RethinkDb.Driver.Net.Clustering
 
                                 if( conn.Open )
                                 {
-                                    Log.Debug($"{nameof(Supervisor)}: Server '{he.Host}' is UP.");
+                                    Log.Debug($"{nameof(Supervisor)}: RETRY: Server '{he.Host}' is UP.");
                                     he.Dead = false;
                                     poolReady.TrySetResult(this);
                                 }
                                 else
                                 {
-                                    Log.Debug($"{nameof(Supervisor)}: Server '{he.Host}' is DOWN.");
+                                    Log.Debug($"{nameof(Supervisor)}: RETRY: Server '{he.Host}' is DOWN.");
                                     he.RetryFailed();
                                 }
                             });
@@ -289,7 +289,6 @@ namespace RethinkDb.Driver.Net.Clustering
                         //not dead, but has error, mark it dead.
                         //and retry later.
                         he.MarkFailed();
-                        Log.Trace($"Host {he.Host} is DOWN.");
                     }
                 }
 

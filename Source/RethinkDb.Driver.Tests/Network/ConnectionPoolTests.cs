@@ -14,7 +14,6 @@ using Z.ExtensionMethods;
 namespace RethinkDb.Driver.Tests.Network
 {
     [TestFixture]
-    [Explicit]
     public class ConnectionPoolTests
     {
         [Test]
@@ -59,6 +58,7 @@ namespace RethinkDb.Driver.Tests.Network
 
 
         [Test]
+        [Explicit            ]
         public void epsilon_test()
         {
             var sw = Stopwatch.StartNew();
@@ -156,6 +156,7 @@ namespace RethinkDb.Driver.Tests.Network
         }
 
         [Test]
+        [Explicit]
         public void benchmark_epsilon()
         {
             EpsilonGreedyHostPool.Random = new Random(10);
@@ -256,6 +257,7 @@ namespace RethinkDb.Driver.Tests.Network
         }
 
         [Test]
+        [Explicit]
         public void bechmark_round_robin()
         {
             var p = new RoundRobinHostPool();
@@ -376,6 +378,42 @@ namespace RethinkDb.Driver.Tests.Network
                 .connect();
 
             Thread.Sleep(900000);
+        }
+
+        [Test]
+        public void failure_should_double_retry()
+        {
+            var he = new HostEntry("a")
+                {
+                    RetryDelayMax = TimeSpan.FromSeconds(300),
+                    RetryDelayInitial = TimeSpan.FromSeconds(30)
+                };
+
+            he.MarkFailed();
+            he.Dead.Should().BeTrue();
+            he.RetryCount.Should().Be(0);
+
+            he.NextRetry.Should().BeCloseTo(DateTime.Now.AddSeconds(30), precision: 3000);
+
+            he.RetryFailed();
+
+            he.RetryCount.Should().Be(1);
+            he.NextRetry.Should().BeCloseTo(DateTime.Now.AddSeconds(30 * 2), precision: 3000);
+
+            he.RetryFailed();
+            
+            he.RetryCount.Should().Be(2);
+            he.NextRetry.Should().BeCloseTo(DateTime.Now.AddSeconds(30 * 2 * 2), precision: 3000);
+
+            //run it past the maximum
+            Enumerable.Range(1, 30 * 12)
+                .ForEach(i => he.RetryFailed());
+
+            he.RetryFailed();
+
+            he.NextRetry.Should().BeCloseTo(DateTime.Now + he.RetryDelayMax, precision: 1000);
+
+
         }
     }
 

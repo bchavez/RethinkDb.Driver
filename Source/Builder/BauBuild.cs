@@ -210,7 +210,6 @@ namespace Builder
                                     p.Version = BuildContext.FullVersion;
                                     p.Symbols = true;
                                     p.OutputDirectory = Folders.Package.ToString();
-                                    p.NoPackageAnalysis = true;
                                 })
                             .WithNuGetExePathOverride(nugetExe.FullName);
                     })

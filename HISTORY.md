@@ -1,3 +1,6 @@
+## v2.2.0
+* Release
+
 ## v2.2.0-beta-2
 * ConnectAsync
 * ReconnectAsync

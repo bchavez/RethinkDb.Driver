@@ -354,9 +354,9 @@ namespace RethinkDb.Driver.Tests.Network
         public async void can_connect_to_cluster()
         {
             var r = RethinkDB.r;
-            var c = r.hostpool()
+            var c = r.connectionPool()
                 .seed(new[] {"192.168.0.11:28015"})
-                .selectionStrategy(new RoundRobinHostPool())
+                .poolingStrategy(new RoundRobinHostPool())
                 .discover(true)
                 .connect();
 
@@ -371,9 +371,10 @@ namespace RethinkDb.Driver.Tests.Network
         public void stay_alive_test()
         {
             var r = RethinkDB.r;
-            var c = r.hostpool()
+            
+            var c = r.connectionPool()
                 .seed(new[] { "192.168.0.11:28015" })
-                .selectionStrategy(new RoundRobinHostPool())
+                .poolingStrategy(new RoundRobinHostPool())
                 .discover(true)
                 .connect();
 

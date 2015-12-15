@@ -16,7 +16,7 @@ namespace RethinkDb.Driver
             return Connection.build();
         }
 
-        public virtual ConnectionPool.Builder hostpool()
+        public virtual ConnectionPool.Builder connectionPool()
         {
             return ConnectionPool.build();
         }

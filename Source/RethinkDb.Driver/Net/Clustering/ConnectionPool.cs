@@ -98,6 +98,12 @@ namespace RethinkDb.Driver.Net.Clustering
             shutdownSignal = new CancellationTokenSource();
             poolReady = new TaskCompletionSource<ConnectionPool>();
 
+            if( poolingStrategy == null )
+            {
+                throw new ArgumentNullException(nameof(poolingStrategy),
+                    $"You must specify a pooling strategy '{nameof(Builder.poolingStrategy)}' when building the connection pool.");
+            }
+
             var initialSeeds = this.seeds.Select(s =>
                 {
                     var parts = s.Split(new[] {':'}, StringSplitOptions.RemoveEmptyEntries);
@@ -330,7 +336,7 @@ namespace RethinkDb.Driver.Net.Clustering
             internal TimeSpan _supervisePeriod;
 
             /// <summary>
-            /// Should be strings of the form "Host:Port".
+            /// Seed the driver with the following endpoints. Should be strings of the form "Host:Port".
             /// </summary>
             public Builder seed(string[] seeds)
             {
@@ -341,7 +347,7 @@ namespace RethinkDb.Driver.Net.Clustering
             /// <summary>
             /// discover() is used to enable host discovery, when true the driver
             /// will attempt to discover any new nodes added to the cluster and then
-            /// start sending queries to these new nodes.
+            /// start sending queries to the newly added cluster nodes.
             /// </summary>
             public Builder discover(bool discoverNewHosts)
             {
@@ -370,7 +376,7 @@ namespace RethinkDb.Driver.Net.Clustering
             /// <summary>
             /// The selection strategy to for selecting a connection. IE: RoundRobin, HeartBeat, or EpsilonGreedy.
             /// </summary>
-            public Builder selectionStrategy(IPoolingStrategy hostPool)
+            public Builder poolingStrategy(IPoolingStrategy hostPool)
             {
                 this.hostpool = hostPool;
                 return this;

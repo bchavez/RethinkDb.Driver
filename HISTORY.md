@@ -1,5 +1,7 @@
-## v2.2.0
-* release to nuget
+## v2.2.0-beta-2
+* ConnectAsync
+* ReconnectAsync
+* Connection Pooling: RoundRobin and EpsilonGreedy connection pools.
 
 ## v2.2.0-beta-1
 * conn.server() and conn.serverAsync(): SERVER_INFO implemented.

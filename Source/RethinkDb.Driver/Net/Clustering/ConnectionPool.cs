@@ -18,27 +18,44 @@ namespace RethinkDb.Driver.Net.Clustering
         private bool discover;
         private IPoolingStrategy poolingStrategy;
 
-        private Func<ReqlAst, object, Task> RunAtom;
+        
+        
 
         #region REQL AST RUNNERS
 
         Task<dynamic> IConnection.RunAsync<T>(ReqlAst term, object globalOpts)
         {
+            if( this.shutdownSignal.IsCancellationRequested )
+            {
+                throw new ReqlDriverError("HostPool is shutdown.");
+            }
             return poolingStrategy.RunAsync<T>(term, globalOpts);
         }
 
         Task<Cursor<T>> IConnection.RunCursorAsync<T>(ReqlAst term, object globalOpts)
         {
+            if (this.shutdownSignal.IsCancellationRequested)
+            {
+                throw new ReqlDriverError("HostPool is shutdown.");
+            }
             return poolingStrategy.RunCursorAsync<T>(term, globalOpts);
         }
 
         Task<T> IConnection.RunAtomAsync<T>(ReqlAst term, object globalOpts)
         {
+            if (this.shutdownSignal.IsCancellationRequested)
+            {
+                throw new ReqlDriverError("HostPool is shutdown.");
+            }
             return poolingStrategy.RunAtomAsync<T>(term, globalOpts);
         }
 
         void IConnection.RunNoReply(ReqlAst term, object globalOpts)
         {
+            if( this.shutdownSignal.IsCancellationRequested )
+            {
+                throw new ReqlDriverError("HostPool is shutdown.");
+            }
             poolingStrategy.RunNoReply(term, globalOpts);
         }
 
@@ -53,6 +70,10 @@ namespace RethinkDb.Driver.Net.Clustering
             poolingStrategy = builder.hostpool;
         }
 
+
+        /// <summary>
+        /// Shutdown the connection pool.
+        /// </summary>
         public void shutdown()
         {
             shutdownSignal?.Cancel();
@@ -63,7 +84,8 @@ namespace RethinkDb.Driver.Net.Clustering
                 //shutdown all connections.
                 foreach( var h in poolingStrategy.HostList )
                 {
-                    ((Connection)h.conn).close(false);
+                    var conn = h.conn as Connection;
+                    conn.close(false);
                 }
             }
         }
@@ -101,12 +123,15 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
+        /// <summary>
+        /// This thread is in charge of discovering new hosts via rethinkdb system
+        /// table change feed. If a new host is found it is added to the host pool.
+        /// </summary>
         private void Discoverer()
         {
             var r = RethinkDB.r;
 
             var changeFeed = r.db("rethinkdb").table("server_status").changes()[new { include_initial = true }];
-
 
             while ( true )
             {
@@ -146,6 +171,11 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
+        /// <summary>
+        /// Called by the discoverer thread when a new server has been added (or comes back
+        /// online). This method will determine if AddHost is needed. We only have monotonically
+        /// increasing hosts to prevent unnecessary locking on the host list array.
+        /// </summary>
         private void MaybeAddNewHost(Server server)
         {
             //Ok, could be initial or new host.
@@ -206,6 +236,13 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
+        /// <summary>
+        /// This thread is mainly in charge of supervising the connections.
+        /// The supervisor will kick off a worker to try to reconnect
+        /// connections that are due for reconnecting. It also scans though
+        /// the host list looking for connections that are not dead but have errors
+        /// and attempts to reset them.
+        /// </summary>
         private void Supervisor()
         {
             var restartWorkers = new List<Task>();
@@ -250,6 +287,7 @@ namespace RethinkDb.Driver.Net.Clustering
                     else if( !he.Dead && conn.HasError)
                     {
                         //not dead, but has error, mark it dead.
+                        //and retry later.
                         he.MarkFailed();
                         Log.Trace($"Host {he.Host} is DOWN.");
                     }
@@ -258,6 +296,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 if( restartWorkers.Any() )
                 {
                     Task.WaitAll(restartWorkers.ToArray());
+                    restartWorkers.Clear();
                 }
                 else
                 {
@@ -276,7 +315,6 @@ namespace RethinkDb.Driver.Net.Clustering
                     _port = port
                 });
         }
-
 
         public static Builder build()
         {

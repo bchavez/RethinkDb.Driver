@@ -145,6 +145,16 @@ namespace RethinkDb.Driver.Net.Clustering
 
         internal void PerformEpsilonGreedyDecay(object state)
         {
+            lock( hostLock )
+            {
+                if( shuttingDown )
+                {
+                    this.timer.Change(Timeout.Infinite, Timeout.Infinite);
+                    this.timer.Dispose();
+                    return;
+                }
+            }
+
             //Parallel.For()
             //basically advance the index
             var hlist = this.hostList;

@@ -28,6 +28,8 @@ namespace RethinkDb.Driver.Net
 
         public virtual bool Open => this.Socket?.Open ?? false;
 
+        public virtual bool HasError => this.Socket?.HasError ?? false;
+
         public virtual void Close()
         {
             closing = true;

@@ -94,6 +94,7 @@ namespace RethinkDb.Driver.Net
         }
 
         public virtual bool Open => instance?.Open ?? false;
+        public virtual bool HasError => instance?.HasError ?? false;
 
         public virtual ConnectionInstance checkOpen()
         {

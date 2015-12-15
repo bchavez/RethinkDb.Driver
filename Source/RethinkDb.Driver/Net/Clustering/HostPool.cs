@@ -12,6 +12,7 @@ namespace RethinkDb.Driver.Net.Clustering
         HostEntry[] HostList { get; }
         void AddHost(string host, Connection conn);
         void Shutdown();
+        void MarkFailed(HostEntry h);
     }
 
     public abstract class HostPool : IPoolingStrategy
@@ -31,17 +32,6 @@ namespace RethinkDb.Driver.Net.Clustering
             hostList = new HostEntry[0];
         }
 
-        public virtual void ResetAll()
-        {
-            lock( hostLock )
-            {
-                foreach (var h in hostList)
-                {
-                    h.Dead = false;
-                }
-            }
-        }
-
         private object hostLock = new object();
 
         public HostEntry[] HostList => hostList;
@@ -56,8 +46,9 @@ namespace RethinkDb.Driver.Net.Clustering
                 var nextHostList = new HostEntry[oldHostList.Length + 1];
                 Array.Copy(oldHostList, nextHostList, oldHostList.Length);
 
-                //add new host to the end of the array.
-                var he = new HostEntry(host, maxRetryInterval) { conn = conn };
+                //add new host to the end of the array. Initially, start off as a dead
+                //host.
+                var he = new HostEntry(host, maxRetryInterval) { conn = conn, Dead = true};
                 nextHostList[nextHostList.Length - 1] = he;
                 this.hostList = nextHostList;
             }
@@ -73,7 +64,7 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
-        protected internal void MarkFailed(HostEntry h)
+        public void MarkFailed(HostEntry h)
         {
             if (!h.Dead)
             {
@@ -81,6 +72,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 h.RetryDelay = initialRetryDelay;
                 h.NextRetry = DateTime.Now.Add(h.RetryDelay);
                 h.Dead = true;
+                Log.Trace($"Host {h.Host} is DOWN.");
             }
         }
 
@@ -117,8 +109,6 @@ namespace RethinkDb.Driver.Net.Clustering
                     return h;
                 }
             }
-
-            ResetAll();
 
             return hostList[0];
         }

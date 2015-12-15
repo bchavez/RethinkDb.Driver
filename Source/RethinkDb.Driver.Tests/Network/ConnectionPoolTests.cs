@@ -323,7 +323,37 @@ namespace RethinkDb.Driver.Tests.Network
             var now = new[] {"192.168.0.12", "192.168.0.13"};
 
             realAddresses.Any(ip => now.Any(s => s.Contains(ip))).Dump();
+        }
 
+        [Test]
+        [Explicit]
+        public async void can_connect_to_cluster()
+        {
+            var r = RethinkDB.r;
+            var c = r.hostpool()
+                .seed(new[] {"192.168.0.11:28015"})
+                .selectionStrategy(new RoundRobinHostPool())
+                .discover(true)
+                .connect();
+
+            Thread.Sleep(10000);
+
+            int result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
+            result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
+        }
+
+        [Test]
+        [Explicit]
+        public void stay_alive_test()
+        {
+            var r = RethinkDB.r;
+            var c = r.hostpool()
+                .seed(new[] { "192.168.0.11:28015" })
+                .selectionStrategy(new RoundRobinHostPool())
+                .discover(true)
+                .connect();
+
+            Thread.Sleep(900000);
         }
     }
 

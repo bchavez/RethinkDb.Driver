@@ -35,6 +35,8 @@ namespace RethinkDb.Driver.Net
             this.socketChannel = new TcpClient();
         }
 
+        private Exception currentException;
+
         public virtual async Task ConnectAsync(byte[] handshake)
         {
             try
@@ -129,7 +131,6 @@ namespace RethinkDb.Driver.Net
         private void ResponsePump()
         {
             pump = new CancellationTokenSource();
-
             while ( true )
             {
                 if( pump.IsCancellationRequested )
@@ -164,17 +165,34 @@ namespace RethinkDb.Driver.Net
                         //I guess we'll ignore for now, perhaps a cursor was killed
                     }
                 }
-                catch( Exception e ) when( !pump.IsCancellationRequested )
+                catch( Exception e )
                 {
-                    Log.Trace($"Response Pump: Exception - {e.Message}");
+                    currentException = e;
+                    Log.Trace($"Response Pump: {e.GetType().Name} - {e.Message}. The connection can no longer be used. {nameof(ResponsePump)} is preparing to shutdown.");
+                    //shutdown all.
+                    try
+                    {
+                        this.Close();
+                    }
+                    catch
+                    {
+                    }
+                    break;
                 }
             }
 
-            Log.Trace("Cleaning up Response Pump awaiters.");
+            Log.Trace($"Cleaning up Response Pump awaiters for {hostname}:{port}");
             //clean up.
             foreach( var a in awaiters.Values )
             {
-                a.TrySetCanceled();
+                if( currentException != null )
+                {
+                    a.TrySetException(currentException);
+                }
+                else
+                {
+                    a.TrySetCanceled();
+                }
             }
             awaiters.Clear(); 
         }
@@ -219,9 +237,11 @@ namespace RethinkDb.Driver.Net
                     this.bw.Write(jsonBytes.Length);
                     this.bw.Write(jsonBytes);
                 }
-                catch
+                catch(Exception e)
                 {
-                    Log.Trace($"Write Query failed for Token {token}.");
+                    currentException = e;
+                    Log.Trace($"Write Query failed for Token {token}. Exception: {e.Message}");
+                    throw;
                 }
             }
             return awaiter?.Task ?? TaskHelper.CompletedResponse;
@@ -230,6 +250,8 @@ namespace RethinkDb.Driver.Net
         public virtual bool Closed => !socketChannel.Connected;
 
         public virtual bool Open => socketChannel.Connected;
+
+        public virtual bool HasError => currentException != null;
 
         public virtual void Close()
         {
@@ -248,6 +270,8 @@ namespace RethinkDb.Driver.Net
                 socketChannel.Shutdown();
             }
             catch { }
+
+            currentException = currentException ?? new EndOfStreamException("The driver connection is closed.");
         }
     }
 }

@@ -94,14 +94,14 @@ namespace RethinkDb.Driver.Net.Clustering
                 this.poolingStrategy.AddHost(conn.host, conn.conn);
             }
 
-            Task.Factory.StartNew(SuperviseDeadHosts, TaskCreationOptions.LongRunning);
+            Task.Factory.StartNew(Supervisor, TaskCreationOptions.LongRunning);
             if( discover )
             {
-                Task.Factory.StartNew(DiscoverNewHosts, TaskCreationOptions.LongRunning);
+                Task.Factory.StartNew(Discoverer, TaskCreationOptions.LongRunning);
             }
         }
 
-        private void DiscoverNewHosts()
+        private void Discoverer()
         {
             var r = RethinkDB.r;
 
@@ -112,7 +112,7 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 if( shutdownSignal.IsCancellationRequested )
                 {
-                    Log.Debug($"{nameof(DiscoverNewHosts)}: Shutdown Signal Received");
+                    Log.Debug($"{nameof(Discoverer)}: Shutdown Signal Received");
                     break;
                 }
 
@@ -122,7 +122,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 }
                 catch
                 {
-                    Log.Trace($"{nameof(DiscoverNewHosts)}: Pool is not ready to discover new hosts.");
+                    Log.Trace($"{nameof(Discoverer)}: Pool is not ready to discover new hosts.");
                     Thread.Sleep(1000);
                 }
 
@@ -134,75 +134,79 @@ namespace RethinkDb.Driver.Net.Clustering
                     {
                         if( change.NewValue != null )
                         {
-                            //Ok, could be initial or new host.
-                            //either way, see if we need to add
-                            //the connection if it has not been
-                            //discovered.
-
-                            var server = change.NewValue;
-                            var port = server.Network.ReqlPort;
-
-                            var realAddresses = server.Network.CanonicalAddress
-                                .Where(s => // no localhost and no ipv6. for now.
-                                    !s.Host.StartsWith("127.0.0.1") &&
-                                    !s.Host.Contains(":"))
-                                .Select(c => c.Host);
-
-                            //now do any of the real
-                            //addresses match the ones already in
-                            //the host list?
-                            var hlist = poolingStrategy.HostList;
-
-                            //has it been discovered?
-                            if( !realAddresses.Any(ip => hlist.Any(s => s.Host.Contains(ip))) )
-                            {
-                                //the host IP is not found, so, see if we can connect?
-                                foreach( var ip in realAddresses )
-                                {
-                                    //can we connect to this IP?
-                                    var client = new TcpClient();
-                                    try
-                                    {
-                                        client.Connect(ip, port);
-                                    }
-                                    catch
-                                    {
-                                        try
-                                        {
-                                            client.Shutdown();
-                                        }
-                                        catch
-                                        {
-                                        }
-                                        continue;
-                                    }
-                                    if( client.Connected )
-                                    {
-                                        client.Shutdown();
-                                        //good chance we can connect to it.
-                                        var conn = NewPoolConnection(ip, port);
-                                        var host = $"{ip}:{port}";
-                                        this.poolingStrategy.AddHost(host, conn);
-                                        Log.Trace($"{nameof(DiscoverNewHosts)}: Server '{server.Name}' ({host}) was added to the host pool. The supervisor will bring up the connection later.");
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                Log.Trace($"{nameof(DiscoverNewHosts)}: Server '{server.Name}' is back, but doesn't need to be added to the pool. The supervisor will re-establish the connection later.");
-                            }
+                            MaybeAddNewHost(change.NewValue);
                         }
                     }
                 }
                 catch
                 {
-                    Log.Trace($"{nameof(DiscoverNewHosts)}: Change feed broke.");
+                    Log.Trace($"{nameof(Discoverer)}: Discover change feed broke.");
                     Thread.Sleep(1000);
                 }
             }
         }
 
-        private void SuperviseDeadHosts()
+        private void MaybeAddNewHost(Server server)
+        {
+            //Ok, could be initial or new host.
+            //either way, see if we need to add
+            //the connection if it has not been
+            //discovered.
+            var port = server.Network.ReqlPort;
+
+            var realAddresses = server.Network.CanonicalAddress
+                .Where(s => // no localhost and no ipv6. for now.
+                    !s.Host.StartsWith("127.0.0.1") &&
+                    !s.Host.Contains(":"))
+                .Select(c => c.Host);
+
+            //now do any of the real
+            //addresses match the ones already in
+            //the host list?
+            var hlist = poolingStrategy.HostList;
+
+            //has it been discovered?
+            if (!realAddresses.Any(ip => hlist.Any(s => s.Host.Contains(ip))))
+            {
+                //the host IP is not found, so, see if we can connect?
+                foreach (var ip in realAddresses)
+                {
+                    //can we connect to this IP?
+                    var test = new TcpClient();
+                    try
+                    {
+                        test.Connect(ip, port);
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            test.Shutdown();
+                        }
+                        catch
+                        {
+                        }
+                        continue;
+                    }
+                    if (test.Connected)
+                    {
+                        test.Shutdown();
+                        //good chance we can connect to it.
+                        var conn = NewPoolConnection(ip, port);
+                        var host = $"{ip}:{port}";
+                        this.poolingStrategy.AddHost(host, conn);
+                        Log.Trace($"{nameof(Discoverer)}: Server '{server.Name}' ({host}) was added to the host pool. The supervisor will bring up the connection later.");
+                        break; //stop checking IPs, one is enough.
+                    }
+                }
+            }
+            else
+            {
+                Log.Trace($"{nameof(Discoverer)}: Server '{server.Name}' is back, but doesn't need to be added to the pool. The supervisor will re-establish the connection later.");
+            }
+        }
+
+        private void Supervisor()
         {
             var restartWorkers = new List<Task>();
 
@@ -210,7 +214,7 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 if( shutdownSignal.IsCancellationRequested )
                 {
-                    Log.Debug($"{nameof(SuperviseDeadHosts)}: Shutdown Signal Received");
+                    Log.Debug($"{nameof(Supervisor)}: Shutdown Signal Received");
                     break;
                 }
 
@@ -219,9 +223,10 @@ namespace RethinkDb.Driver.Net.Clustering
                 for( int i = 0; i < hlist.Length; i++ )
                 {
                     var he = hlist[i];
-                    if( he.Dead && he.NextRetry < DateTime.Now)
+                    var conn = he.conn as Connection;
+
+                    if ( he.Dead && he.NextRetry < DateTime.Now )
                     {
-                        var conn = he.conn as Connection;
 
                         var worker = Task.Run(() =>
                             {
@@ -229,17 +234,23 @@ namespace RethinkDb.Driver.Net.Clustering
 
                                 if( conn.Open )
                                 {
-                                    Log.Debug($"{nameof(SuperviseDeadHosts)}: Server '{he.Host}' is UP.");
+                                    Log.Debug($"{nameof(Supervisor)}: Server '{he.Host}' is UP.");
                                     he.Dead = false;
+                                    poolReady.TrySetResult(this);
                                 }
                                 else
                                 {
-                                    Log.Debug($"{nameof(SuperviseDeadHosts)}: Server '{he.Host}' is DOWN.");
+                                    Log.Debug($"{nameof(Supervisor)}: Server '{he.Host}' is DOWN.");
                                     he.UpdateRetry();
                                 }
                             });
 
                         restartWorkers.Add(worker);
+                    }
+                    else if( !he.Dead && conn.HasError)
+                    {
+                        //not dead, but has error, mark it dead.
+                        poolingStrategy.MarkFailed(he);
                     }
                 }
 
@@ -331,6 +342,7 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 var conn = new ConnectionPool(this);
                 conn.StartPool();
+                conn.poolReady.Task.Wait();
                 return conn;
             }
 

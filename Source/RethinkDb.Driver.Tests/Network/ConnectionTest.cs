@@ -24,14 +24,6 @@ namespace RethinkDb.Driver.Tests.Network
             result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
         }
 
-        [Test]
-        [Explicit]
-        public void can_connect_to_cluster()
-        {
-            var c = r.hostpool()
-                .seed(new[] {"192.168.0.11:28015", "192.168.0.12:28015"})
-                .discover(true)
-                .connect();
-        }
+
     }
 }

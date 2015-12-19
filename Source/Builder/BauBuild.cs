@@ -230,9 +230,9 @@ namespace Builder
                             .WithNuGetExePathOverride(nugetExe.FullName);
                         var dir = Projects.DriverProject.Folder.ToString();
                         
-                        //HACK: DELETE ALL LOCK FILES AFTER RESTORE. LOLz?
-                        Directory.GetFiles(dir, "*.lock.json")
-                            .ForEach(System.IO.File.Delete);
+                        ////HACK: DELETE ALL LOCK FILES AFTER RESTORE. LOLz?
+                        //Directory.GetFiles(dir, "*.lock.json")
+                        //    .ForEach(System.IO.File.Delete);
                     })
 
                 //Define

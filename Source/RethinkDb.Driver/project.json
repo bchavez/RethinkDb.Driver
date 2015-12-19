@@ -1,5 +1,5 @@
 {
-  "version": "0.0.0-localbuild",
+  "version": "2.2.0",
   "description": "A RethinkDB database driver written in C# striving for 100% ReQL API compatibility and completeness. Architecturally, this driver is a one-to-one port of the official Java driver.",
   "authors": [
     "Brian Chavez"

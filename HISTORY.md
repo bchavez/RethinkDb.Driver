@@ -1,3 +1,9 @@
+## v2.2.1-beta-1
+* Added remaining top-level aggregation terms.
+
+## v2.2.0
+* Release for .NET 4.5 Framework (CoreCLR users, please continue using beta releases).
+
 ## v2.2.0-beta-2
 * ConnectAsync
 * ReconnectAsync

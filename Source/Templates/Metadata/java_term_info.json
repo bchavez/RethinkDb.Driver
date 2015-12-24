@@ -1043,6 +1043,7 @@
   }, 
   "CONTAINS": {
     "include_in": [
+      "TopLevel", 
       "ReqlExpr"
     ], 
     "signatures": [
@@ -3804,6 +3805,7 @@
   }, 
   "REDUCE": {
     "include_in": [
+      "TopLevel", 
       "ReqlExpr"
     ], 
     "signatures": [
@@ -5389,6 +5391,7 @@
   }, 
   "DISTINCT": {
     "include_in": [
+      "TopLevel", 
       "ReqlExpr"
     ], 
     "signatures": [
@@ -5414,6 +5417,7 @@
   }, 
   "COUNT": {
     "include_in": [
+      "TopLevel", 
       "ReqlExpr"
     ], 
     "signatures": [
@@ -8218,6 +8222,7 @@
   }, 
   "GROUP": {
     "include_in": [
+      "TopLevel", 
       "ReqlExpr"
     ], 
     "signatures": [
@@ -9492,6 +9497,7 @@
   }, 
   "SUM": {
     "include_in": [
+      "TopLevel", 
       "ReqlExpr"
     ], 
     "signatures": [
@@ -9553,6 +9559,7 @@
   }, 
   "AVG": {
     "include_in": [
+      "TopLevel", 
       "ReqlExpr"
     ], 
     "signatures": [
@@ -9614,6 +9621,7 @@
   }, 
   "MIN": {
     "include_in": [
+      "TopLevel", 
       "ReqlExpr"
     ], 
     "signatures": [
@@ -9678,6 +9686,7 @@
   }, 
   "MAX": {
     "include_in": [
+      "TopLevel", 
       "ReqlExpr"
     ], 
     "signatures": [

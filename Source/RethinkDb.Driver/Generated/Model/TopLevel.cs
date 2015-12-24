@@ -350,6 +350,990 @@ namespace RethinkDb.Driver.Ast {
                                 return new Round (arguments);
                             }
 /// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Javascript jsA, Javascript jsB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(jsB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(jsB);
+                                arguments.CoerceAndAdd(jsC);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(jsB);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Javascript jsA, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Javascript jsA, Object exprA, Javascript jsB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(jsB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Javascript jsA, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Object exprA, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Object exprA, Javascript jsA, Javascript jsB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(jsB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Object exprA, Javascript jsA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Object exprA, Object exprB, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Javascript js, Object exprA, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Javascript js, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Javascript js, Javascript jsA, Javascript jsB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(jsB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Javascript js, Javascript jsA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Javascript js, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Javascript js, Object exprB, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Javascript js, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Object exprB, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(js);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Object exprB, Javascript js, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Object exprB, Javascript js, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(js);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprD);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(func1);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1B);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1C);
+                                return new Contains (arguments);
+                            }
+/// <summary>
 /// <para>Creates an object from a list of key-value pairs, where the keys must
 /// be strings.  <code>r.object(A, B, C, D)</code> is equivalent to
 /// <code>r.expr([[A, B], [C, D]]).coerce_to('OBJECT')</code>.</para>
@@ -362,6 +1346,42 @@ namespace RethinkDb.Driver.Ast {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAddAll(exprs);
                                 return new ReqlObject (arguments);
+                            }
+/// <summary>
+/// <para>Produce a single value from a sequence through repeated application of a reduction
+/// function.</para>
+///</summary>
+/// <example><para>Example: Return the number of documents in the table `posts.</para>
+/// <code>r.table("posts").map(function(doc) {
+///     return 1
+/// }).reduce(function(left, right) {
+///     return left.add(right)
+/// }).run(conn, callback);
+/// </code></example>
+                            public Reduce reduce ( Object expr, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                return new Reduce (arguments);
+                            }
+/// <summary>
+/// <para>Produce a single value from a sequence through repeated application of a reduction
+/// function.</para>
+///</summary>
+/// <example><para>Example: Return the number of documents in the table `posts.</para>
+/// <code>r.table("posts").map(function(doc) {
+///     return 1
+/// }).reduce(function(left, right) {
+///     return left.add(right)
+/// }).run(conn, callback);
+/// </code></example>
+                            public Reduce reduce ( Object expr, ReqlFunction2 func2 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func2);
+                                return new Reduce (arguments);
                             }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -527,6 +1547,79 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(func1);
                                 return new Map (arguments);
+                            }
+/// <summary>
+/// <para>Remove duplicate elements from the sequence.</para>
+///</summary>
+/// <example><para>Example: Which unique villains have been vanquished by marvel heroes?</para>
+/// <code>r.table('marvel').concatMap(function(hero) {
+///     return hero('villainList')
+/// }).distinct().run(conn, callback)
+/// </code></example>
+                            public Distinct distinct ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                return new Distinct (arguments);
+                            }
+/// <summary>
+/// <para>Count the number of elements in the sequence. With a single argument, count the number
+/// of elements equal to it. If the argument is a function, it is equivalent to calling
+/// filter before count.</para>
+///</summary>
+/// <example><para>Example: Just how many super heroes are there?</para>
+/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// </code></example>
+                            public Count count ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                return new Count (arguments);
+                            }
+/// <summary>
+/// <para>Count the number of elements in the sequence. With a single argument, count the number
+/// of elements equal to it. If the argument is a function, it is equivalent to calling
+/// filter before count.</para>
+///</summary>
+/// <example><para>Example: Just how many super heroes are there?</para>
+/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// </code></example>
+                            public Count count ( Object expr, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                return new Count (arguments);
+                            }
+/// <summary>
+/// <para>Count the number of elements in the sequence. With a single argument, count the number
+/// of elements equal to it. If the argument is a function, it is equivalent to calling
+/// filter before count.</para>
+///</summary>
+/// <example><para>Example: Just how many super heroes are there?</para>
+/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// </code></example>
+                            public Count count ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Count (arguments);
+                            }
+/// <summary>
+/// <para>Count the number of elements in the sequence. With a single argument, count the number
+/// of elements equal to it. If the argument is a function, it is equivalent to calling
+/// filter before count.</para>
+///</summary>
+/// <example><para>Example: Just how many super heroes are there?</para>
+/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// </code></example>
+                            public Count count ( Object expr, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                return new Count (arguments);
                             }
 /// <summary>
 /// <para>Concatenate two or more sequences.</para>
@@ -1102,6 +2195,1234 @@ namespace RethinkDb.Driver.Ast {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 return new Literal (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Javascript jsA, Javascript jsB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(jsB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(jsB);
+                                arguments.CoerceAndAdd(jsC);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(jsB);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Javascript jsA, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Javascript jsA, Object exprA, Javascript jsB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(jsB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Javascript jsA, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Object exprA, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Object exprA, Javascript jsA, Javascript jsB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(jsB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Object exprA, Javascript jsA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Object exprA, Object exprB, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Javascript js, Object exprA, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Javascript js, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Javascript js, Javascript jsA, Javascript jsB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(jsB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Javascript js, Javascript jsA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Javascript js, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Javascript js, Object exprB, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Javascript js, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Object exprB, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(js);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Object exprB, Javascript js, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Object exprB, Javascript js, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(js);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(exprD);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                arguments.CoerceAndAdd(func1);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1B);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                arguments.CoerceAndAdd(func1C);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Sums all the elements of a sequence.  If called with a field name,
+/// sums all the values of that field in the sequence, skipping elements
+/// of the sequence that lack that field.  If called with a function,
+/// calls that function on every element of the sequence and sums the
+/// results, skipping elements of the sequence where that function returns
+/// <code>null</code> or a non-existence error.</para>
+///</summary>
+/// <example><para>Example: What's 3 + 5 + 7?</para>
+/// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
+/// </code></example>
+                            public Sum sum ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                return new Sum (arguments);
+                            }
+/// <summary>
+/// <para>Sums all the elements of a sequence.  If called with a field name,
+/// sums all the values of that field in the sequence, skipping elements
+/// of the sequence that lack that field.  If called with a function,
+/// calls that function on every element of the sequence and sums the
+/// results, skipping elements of the sequence where that function returns
+/// <code>null</code> or a non-existence error.</para>
+///</summary>
+/// <example><para>Example: What's 3 + 5 + 7?</para>
+/// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
+/// </code></example>
+                            public Sum sum ( Object expr, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                return new Sum (arguments);
+                            }
+/// <summary>
+/// <para>Sums all the elements of a sequence.  If called with a field name,
+/// sums all the values of that field in the sequence, skipping elements
+/// of the sequence that lack that field.  If called with a function,
+/// calls that function on every element of the sequence and sums the
+/// results, skipping elements of the sequence where that function returns
+/// <code>null</code> or a non-existence error.</para>
+///</summary>
+/// <example><para>Example: What's 3 + 5 + 7?</para>
+/// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
+/// </code></example>
+                            public Sum sum ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Sum (arguments);
+                            }
+/// <summary>
+/// <para>Sums all the elements of a sequence.  If called with a field name,
+/// sums all the values of that field in the sequence, skipping elements
+/// of the sequence that lack that field.  If called with a function,
+/// calls that function on every element of the sequence and sums the
+/// results, skipping elements of the sequence where that function returns
+/// <code>null</code> or a non-existence error.</para>
+///</summary>
+/// <example><para>Example: What's 3 + 5 + 7?</para>
+/// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
+/// </code></example>
+                            public Sum sum ( Object expr, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                return new Sum (arguments);
+                            }
+/// <summary>
+/// <para>Averages all the elements of a sequence.  If called with a field name,
+/// averages all the values of that field in the sequence, skipping
+/// elements of the sequence that lack that field.  If called with a
+/// function, calls that function on every element of the sequence and
+/// averages the results, skipping elements of the sequence where that
+/// function returns <code>null</code> or a non-existence error.</para>
+///</summary>
+/// <example><para>Example: What's the average of 3, 5, and 7?</para>
+/// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
+/// </code></example>
+                            public Avg avg ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                return new Avg (arguments);
+                            }
+/// <summary>
+/// <para>Averages all the elements of a sequence.  If called with a field name,
+/// averages all the values of that field in the sequence, skipping
+/// elements of the sequence that lack that field.  If called with a
+/// function, calls that function on every element of the sequence and
+/// averages the results, skipping elements of the sequence where that
+/// function returns <code>null</code> or a non-existence error.</para>
+///</summary>
+/// <example><para>Example: What's the average of 3, 5, and 7?</para>
+/// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
+/// </code></example>
+                            public Avg avg ( Object expr, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                return new Avg (arguments);
+                            }
+/// <summary>
+/// <para>Averages all the elements of a sequence.  If called with a field name,
+/// averages all the values of that field in the sequence, skipping
+/// elements of the sequence that lack that field.  If called with a
+/// function, calls that function on every element of the sequence and
+/// averages the results, skipping elements of the sequence where that
+/// function returns <code>null</code> or a non-existence error.</para>
+///</summary>
+/// <example><para>Example: What's the average of 3, 5, and 7?</para>
+/// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
+/// </code></example>
+                            public Avg avg ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Avg (arguments);
+                            }
+/// <summary>
+/// <para>Averages all the elements of a sequence.  If called with a field name,
+/// averages all the values of that field in the sequence, skipping
+/// elements of the sequence that lack that field.  If called with a
+/// function, calls that function on every element of the sequence and
+/// averages the results, skipping elements of the sequence where that
+/// function returns <code>null</code> or a non-existence error.</para>
+///</summary>
+/// <example><para>Example: What's the average of 3, 5, and 7?</para>
+/// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
+/// </code></example>
+                            public Avg avg ( Object expr, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                return new Avg (arguments);
+                            }
+/// <summary>
+/// <para>Finds the minimum element of a sequence.</para>
+///</summary>
+/// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
+/// <code>r.expr([3, 5, 7]).min().run(conn, callback);
+/// </code></example>
+                            public Min min ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                return new Min (arguments);
+                            }
+/// <summary>
+/// <para>Finds the minimum element of a sequence.</para>
+///</summary>
+/// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
+/// <code>r.expr([3, 5, 7]).min().run(conn, callback);
+/// </code></example>
+                            public Min min ( Object expr, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                return new Min (arguments);
+                            }
+/// <summary>
+/// <para>Finds the minimum element of a sequence.</para>
+///</summary>
+/// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
+/// <code>r.expr([3, 5, 7]).min().run(conn, callback);
+/// </code></example>
+                            public Min min ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Min (arguments);
+                            }
+/// <summary>
+/// <para>Finds the minimum element of a sequence.</para>
+///</summary>
+/// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
+/// <code>r.expr([3, 5, 7]).min().run(conn, callback);
+/// </code></example>
+                            public Min min ( Object expr, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                return new Min (arguments);
+                            }
+/// <summary>
+/// <para>Finds the maximum element of a sequence.</para>
+///</summary>
+/// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
+/// <code>r.expr([3, 5, 7]).max().run(conn, callback);
+/// </code></example>
+                            public Max max ( Object expr )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                return new Max (arguments);
+                            }
+/// <summary>
+/// <para>Finds the maximum element of a sequence.</para>
+///</summary>
+/// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
+/// <code>r.expr([3, 5, 7]).max().run(conn, callback);
+/// </code></example>
+                            public Max max ( Object expr, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                return new Max (arguments);
+                            }
+/// <summary>
+/// <para>Finds the maximum element of a sequence.</para>
+///</summary>
+/// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
+/// <code>r.expr([3, 5, 7]).max().run(conn, callback);
+/// </code></example>
+                            public Max max ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Max (arguments);
+                            }
+/// <summary>
+/// <para>Finds the maximum element of a sequence.</para>
+///</summary>
+/// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
+/// <code>r.expr([3, 5, 7]).max().run(conn, callback);
+/// </code></example>
+                            public Max max ( Object expr, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                return new Max (arguments);
                             }
 /// <summary>
 /// <para>Generate a random number between given (or implied) bounds. <code>random</code> takes zero, one or two arguments.</para>

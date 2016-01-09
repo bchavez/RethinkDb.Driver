@@ -176,7 +176,7 @@ If you'd like to contribute, please consider reading some [helpful tips before m
  
 Contributors
 ---------
-Created by [Brian Chavez](http://bchavez.bitarmory.com). Originally ported from the Java Driver by [Josh Kuhn](https://github.com/deontologician). Special thanks to the rest of the RethinkDB team (Josh, AtnNn, danielmewes, neumino) for answering some crazy ReQL protocol questions.
+Created by [Brian Chavez](http://bchavez.bitarmory.com). Originally ported from the Java Driver by [Josh Kuhn](https://github.com/deontologician). Special thanks to the rest of the RethinkDB team ([Josh](https://github.com/deontologician), [AtnNn](https://github.com/AtnNn), [danielmewes](https://github.com/danielmewes), [neumino](https://github.com/neumino)) for answering ReQL protocol questions. Also, speical thanks to [Annie Ruygt](https://github.com/ahruygt) for the wonderful GitHub banner!
 
 A big thanks to GitHub and all contributors:
 

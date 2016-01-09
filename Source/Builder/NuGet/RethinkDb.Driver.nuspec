@@ -10,9 +10,9 @@
     <iconUrl>https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/Docs/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     
-    <summary>A RethinkDB database driver written in C# striving for 100% ReQL API compatibility and completeness. Architecturally, this driver is a one-to-one port of the official Java driver.</summary>
+    <summary>A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a one-to-one port of the official Java driver.</summary>
     
-    <description>A RethinkDB database driver written in C# striving for 100% ReQL API compatibility and completeness. Architecturally, this driver is a one-to-one port of the official Java driver.</description>
+    <description>A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a one-to-one port of the official Java driver.</description>
     
     <releaseNotes>
         @history@

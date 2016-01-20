@@ -37,6 +37,12 @@ namespace RethinkDb.Driver.Ast
                 return ast;
             }
 
+            var token = val as JToken;
+            if( token != null )
+            {
+                return new Poco(val);
+            }
+
             var lst = val as IList;
             if( lst != null )
             {

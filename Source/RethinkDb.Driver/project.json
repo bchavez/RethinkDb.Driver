@@ -1,6 +1,6 @@
 {
   "version": "0.0.0-localbuild",
-  "description": "A RethinkDB database driver written in C# striving for 100% ReQL API compatibility and completeness. Architecturally, this driver is a one-to-one port of the official Java driver.",
+  "description": "A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a one-to-one port of the official Java driver.",
   "authors": [
     "Brian Chavez"
   ],
@@ -20,7 +20,7 @@
     }
   },
   "dependencies": {
-    "Newtonsoft.Json": "7.0.1"
+    "Newtonsoft.Json": "8.0.2"
   },
   "frameworks": {
     "net45": {

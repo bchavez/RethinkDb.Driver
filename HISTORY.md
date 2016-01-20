@@ -1,3 +1,10 @@
+## v2.2.1
+* Roll-up Release for .NET Framework since v2.2.0.
+* CoreCLR users please continue using previous beta release.
+
+## v2.2.1-beta-2
+* Newtonsoft v8.0.2 compatibility.
+
 ## v2.2.1-beta-1
 * Added remaining top-level aggregation terms.
 

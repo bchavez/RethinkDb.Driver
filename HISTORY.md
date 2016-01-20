@@ -1,6 +1,10 @@
+## v2.2.2-beta-1
+* Issue #21: Allow driver usage of JObject in API. Example: r.table().insert(JObject).run().
+* CoreCLR users please continue using beta releases until CoreCLR is RTM.
+
 ## v2.2.1
 * Roll-up Release for .NET Framework since v2.2.0.
-* CoreCLR users please continue using previous beta release.
+* CoreCLR users please continue using previous beta release until CoreCLR is RTM.
 
 ## v2.2.1-beta-2
 * Newtonsoft v8.0.2 compatibility.
@@ -9,7 +13,7 @@
 * Added remaining top-level aggregation terms.
 
 ## v2.2.0
-* Release for .NET 4.5 Framework (CoreCLR users, please continue using beta releases).
+* Release for .NET 4.5 Framework (CoreCLR users, please continue using beta releases until CoreCLR is RTM).
 
 ## v2.2.0-beta-2
 * ConnectAsync

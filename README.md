@@ -73,19 +73,22 @@ Documentation
      * [`.runGrouping`](https://github.com/bchavez/RethinkDb.Driver/wiki/Run-Helpers#rungroupingtkeytitem)
   * [Async/Await Support](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#asyncawait-support)
   * [POCO Support](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#poco-support)
-  * [Anonymous Type Support](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#anonymous-type-support)
   * [JObject Support](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#jobject-support)
-  * [Reactive Extensions](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#reactive-extensions-rx-support)
+  * [Anon Type Insert](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#anonymous-type-insert-support)
   * [Anon Type Projection](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#anonymous-type-map-projection)
+  * [Reactive Extensions](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#reactive-extensions-rx-support)
   * [Implicit Operators](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#implicit-conversion-operator-overload)
 * [Differences](https://github.com/bchavez/RethinkDb.Driver/wiki/Differences-Between-C%23-and-Java-driver)
 * [Java ReQL API Documentation](http://rethinkdb.com/api/java/)
 
-##### Driver Development
-  * [Contributing](https://github.com/bchavez/RethinkDb.Driver/blob/master/CONTRIBUTING.md)
-  * [Getting Started](https://github.com/bchavez/RethinkDb.Driver/wiki/Getting-Started)
-  * [Unit Tests](https://github.com/bchavez/RethinkDb.Driver/wiki/Unit-Tests)
-  * [Protocol Debugging](https://github.com/bchavez/RethinkDb.Driver/wiki/Protocol-Debugging)
+### Driver Development
+* [Contributing](https://github.com/bchavez/RethinkDb.Driver/blob/master/CONTRIBUTING.md)
+* [Getting Started](https://github.com/bchavez/RethinkDb.Driver/wiki/Getting-Started)
+* [Unit Tests](https://github.com/bchavez/RethinkDb.Driver/wiki/Unit-Tests)
+* [Protocol Debugging](https://github.com/bchavez/RethinkDb.Driver/wiki/Protocol-Debugging)
+* [Threading Architecture](https://github.com/bchavez/RethinkDb.Driver/issues/15)
+* [Connection Pooling Architecture](https://github.com/bchavez/RethinkDb.Driver/issues/17)
+* [Java/.NET Naming Convention](https://github.com/bchavez/RethinkDb.Driver/issues/18#issuecomment-171535799)
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bchavez/RethinkDb.Driver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 

@@ -115,11 +115,31 @@ namespace RethinkDb.Driver.Tests.ReQL
                     ["TheBinary"] = new byte[] {0, 2, 3, 255},
                     ["TheBoolean"] = true,
                     ["TheDateTime"] = new DateTime(2011, 11, 1, 11, 11, 11, DateTimeKind.Local),
-                    ["TheDateTimeOffset"] = new DateTimeOffset(2011, 11, 1, 11, 11, 11,11, TimeSpan.FromHours(-8)).ToUniversalTime(),
+                    ["TheDateTimeOffset"] = new DateTimeOffset(2011, 11, 1, 11, 11, 11, 11, TimeSpan.FromHours(-8)).ToUniversalTime(),
                     ["TheGuid"] = Guid.Empty,
                     ["TheTimeSpan"] = TimeSpan.FromHours(3),
                     ["TheInt"] = 25,
-                    ["TheLong"] = 82342342234
+                    ["TheLong"] = 82342342234,
+                    ["NestedObject"] = new JObject
+                        {
+                            ["NestedString"] = "StringValue",
+                            ["NestedDate"] = new DateTime(2011, 11, 1, 11, 11, 11, DateTimeKind.Local)
+                        },
+                    ["NestedArray"] = new JArray
+                        {
+                            {
+                                new JObject
+                                    {
+                                        ["SongName"] = "Dirty Deeds Done Dirt Cheap",
+                                        ["SongLength"] = "4:14"
+                                    }
+                            },
+                            new JObject
+                                    {
+                                        ["SongName"] = "Love at First Feel",
+                                        ["SongLength"] = "3:10"
+                                    }
+                        }
                 };
             
             Console.WriteLine(">>> INSERT");

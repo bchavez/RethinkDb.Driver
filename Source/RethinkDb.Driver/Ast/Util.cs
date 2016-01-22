@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
@@ -37,10 +39,36 @@ namespace RethinkDb.Driver.Ast
                 return ast;
             }
 
+            //GitHub Issue #21 - Request - Allow Inserting JObject
             var token = val as JToken;
             if( token != null )
             {
-                return new Poco(val);
+                //Another way to do it is to convert the whole thing into JSON and have
+                //the server parse it. One thing we'd need to watch out for is 
+                //the DateTime conversion. ReqlDateTimeConverter would need to change
+                //so that it directly serializes to $reql_type$:TIME instead of a protocol
+                //Iso8601(string). It's probably more proper to seralize to $reql_type$ than
+                //a ReQL command Iso8601(string).
+                var json = token.ToString(Formatting.None, Converter.Serializer.Converters.ToArray());
+                return new Json(json);
+
+                //One way to do it: De-construct the JObject like we do to an IDictionary...
+                //Pro: More complete
+                //Con: Easy to get wrong, lots more code, code-duplication with IDictionary
+                //     
+                //if( token.Type == JTokenType.Object )
+                //{
+                //    var jobj = val as IDictionary<string, JToken>;
+                //    var obj = new Dictionary<string, ReqlAst>();
+                //    foreach( var t in jobj )
+                //    {
+                //        obj[t.Key] = ToReqlAst(t.Value);
+                //    }
+                //    return MakeObj.fromMap(obj);
+                //}
+                //else if( token.Type == )
+                //{
+                //}
             }
 
             var lst = val as IList;

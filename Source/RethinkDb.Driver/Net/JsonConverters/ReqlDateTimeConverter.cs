@@ -8,8 +8,30 @@ namespace RethinkDb.Driver.Net.JsonConverters
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var ast = Util.ToReqlAst(value);
-            serializer.Serialize(writer, ast.Build());
+            writer.WriteStartObject();
+            writer.WritePropertyName(Converter.PseudoTypeKey);
+            writer.WriteValue(Converter.Time);
+            writer.WritePropertyName("epoch_time");
+            DateTimeOffset dto;
+            if( value is DateTimeOffset )
+            {
+                dto = (DateTimeOffset)value;
+            }
+            else
+            {
+                dto = (DateTime)value;
+            }
+            writer.WriteValue(ToUnixTime(dto));
+            writer.WritePropertyName("timezone");
+            var offset = $"{(dto.Offset < TimeSpan.Zero ? "-" : "+")}{dto.Offset.ToString("hh':'mm")}";
+            writer.WriteValue(offset);
+            writer.WriteEndObject();
+        }
+
+        //http://stackoverflow.com/questions/2883576/how-do-you-convert-epoch-time-in-c
+        public double ToUnixTime(DateTimeOffset date)
+        {
+            return (date.UtcTicks - 621355968000000000) / 10000000.0;
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)

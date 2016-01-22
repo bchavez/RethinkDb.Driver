@@ -130,13 +130,13 @@ namespace RethinkDb.Driver.Tests.ReQL
                             {
                                 new JObject
                                     {
-                                        ["SongName"] = "Dirty Deeds Done Dirt Cheap",
+                                        ["SongName"] = "Song 1",
                                         ["SongLength"] = "4:14"
                                     }
                             },
                             new JObject
                                     {
-                                        ["SongName"] = "Love at First Feel",
+                                        ["SongName"] = "Song 2",
                                         ["SongLength"] = "3:10"
                                     }
                         }
@@ -162,7 +162,41 @@ namespace RethinkDb.Driver.Tests.ReQL
             check.TheTimeSpan.Should().Be((TimeSpan)state["TheTimeSpan"]);
             check.TheInt.Should().Be((int)state["TheInt"]);
             check.TheLong.Should().Be((long)state["TheLong"]);
+        }
 
+
+        [Test]
+        public void issue_21_raw_json_test()
+        {
+            var json = @"
+            {
+                ""Entered"": ""2012 - 08 - 18T13: 26:37.7137482 - 10:00"",
+                ""AlbumName"": ""Dirty Deeds Done Dirt Cheap"",
+                ""Artist"": ""AC/DC"",
+                ""YearReleased"": 1976,
+                ""Songs"": [
+                {
+                    ""SongName"": ""Dirty Deeds Done Dirt Cheap"",
+                    ""SongLength"": ""4:11""
+                },
+                {
+                    ""SongName"": ""Love at First Feel"",
+                    ""SongLength"": ""3:10""
+                }
+                ]
+            }";
+
+            var jObject = JObject.Parse(json);
+
+            var table = r.db(DbName).table(TableName);
+            table.delete().run(conn);
+
+            var result = table.insert(jObject).runResult(conn);
+            var id = result.GeneratedKeys[0];
+            result.Dump();
+
+            var check = table.get(id).runAtom<JObject>(conn);
+            check.Dump();
         }
 
     }

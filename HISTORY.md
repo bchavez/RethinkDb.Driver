@@ -1,6 +1,6 @@
 ## v2.2.2-beta-2
 * Issue #21: Fixed nested array types in JObject serialization.
-* Notice: ReqlDateTimeConverter serialization implementation changed.
+* Notice: ReqlDateTimeConverter serialization implementation changed (non-breaking).
 * CoreCLR users please continue using beta releases until CoreCLR is RTM.
 
 ## v2.2.2-beta-1

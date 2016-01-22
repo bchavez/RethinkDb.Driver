@@ -1,3 +1,8 @@
+## v2.2.2-beta-2
+* Issue #21: Fixed nested array types in JObject serialization.
+* Notice: ReqlDateTimeConverter serialization implementation changed.
+* CoreCLR users please continue using beta releases until CoreCLR is RTM.
+
 ## v2.2.2-beta-1
 * Issue #21: Allow driver usage of JObject in API. Example: r.table().insert(JObject).run().
 * CoreCLR users please continue using beta releases until CoreCLR is RTM.

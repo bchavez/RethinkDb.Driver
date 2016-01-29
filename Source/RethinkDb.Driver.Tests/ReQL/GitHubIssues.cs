@@ -44,7 +44,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             basket.Revisions = new List<Revision>
                 {
-                    new Revision {Bytes = new byte[] {1, 2, 3}}
+                    new Revision {Bytes = new byte[] {1, 2, 3, 255}}
                 };
 
             basket.ArrayOfInts = new[] {new[] {1, 2, 3}, new[] {4, 5, 6}};

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace RethinkDb.Driver.Tests.Utils
 {
-    internal static class ExtensionsForTesting
+    public static class ExtensionsForTesting
     {
         public static void Dump(this object obj)
         {

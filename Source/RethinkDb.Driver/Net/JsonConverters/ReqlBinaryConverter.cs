@@ -12,7 +12,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
             writer.WriteValue(Converter.Binary);
             writer.WritePropertyName("data");
 
-            writer.WriteValue((byte[])value);
+            writer.WriteValue(Convert.ToBase64String((byte[])value));
             writer.WriteEndObject();
         }
 

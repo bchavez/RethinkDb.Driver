@@ -56,6 +56,7 @@ Documentation
 -----
 * [Home](https://github.com/bchavez/RethinkDb.Driver/wiki)
 * [Query Examples](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/RethinkDb.Driver.Tests/ReQL)
+* [Logging](https://github.com/bchavez/RethinkDb.Driver/wiki/Protocol-Debugging)
 * [Connections & Pooling](https://github.com/bchavez/RethinkDb.Driver/wiki/Connections-&-Pooling)
   * [Single Connection](https://github.com/bchavez/RethinkDb.Driver/wiki/Connections-&-Pooling#single-connection-no-pooling)
   * [Round Robin Pooling](https://github.com/bchavez/RethinkDb.Driver/wiki/Connections-&-Pooling#connection-pool-round-robin)

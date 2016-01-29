@@ -312,7 +312,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 MarkSuccess(host, start, end);
                 return result;
             }
-            catch
+            catch (Exception e) when (ExceptionIs.NetworkError(e))
             {
                 host.MarkFailed();
                 throw;
@@ -330,7 +330,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 MarkSuccess(host, start, end);
                 return result;
             }
-            catch
+            catch (Exception e) when (ExceptionIs.NetworkError(e))
             {
                 host.MarkFailed();
                 throw;
@@ -347,7 +347,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 var end = DateTime.Now.Ticks;
                 MarkSuccess(host, start, end);
             }
-            catch
+            catch (Exception e) when (ExceptionIs.NetworkError(e))
             {
                 host.MarkFailed();
                 throw;
@@ -365,7 +365,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 MarkSuccess(host, start, end);
                 return result;
             }
-            catch
+            catch (Exception e) when (ExceptionIs.NetworkError(e))
             {
                 host.MarkFailed();
                 throw;

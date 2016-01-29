@@ -180,7 +180,7 @@ namespace RethinkDb.Driver.Ast
         /// method offers a slight edge in performance without the need for the
         /// dynamic language runtime like the run() method uses.
         /// </summary>
-        public virtual T runAtom<T>(Connection conn, object runOpts = null)
+        public virtual T runAtom<T>(IConnection conn, object runOpts = null)
         {
             return runAtomAsync<T>(conn, runOpts).WaitSync();
         }
@@ -203,7 +203,7 @@ namespace RethinkDb.Driver.Ast
         /// Helper shortcut for DML type of queries that returns # of inserts, deletes, errors.
         /// This method bypasses the dynamic language runtime for extra performance.
         /// </summary>
-        public virtual Result runResult(Connection conn, object runOpts = null)
+        public virtual Result runResult(IConnection conn, object runOpts = null)
         {
             return runResultAsync(conn, runOpts).WaitSync();
         }

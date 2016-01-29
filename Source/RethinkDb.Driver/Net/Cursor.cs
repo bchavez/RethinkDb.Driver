@@ -152,38 +152,15 @@ namespace RethinkDb.Driver.Net
                 return MoveNext(null);
             }
 
-            public override bool MoveNext(TimeSpan? timeout)
+            public override async Task<bool> MoveNextAsync()
             {
                 while (items.Count == 0)
                 {
                     //if we're out of buffered items, poll until we get more.
                     MaybeSendContinue();
-                    if (error != null)
-                        return false; //we don't throw in .net
+                    if (error != null) return false; //we don't throw in .net
 
-                    //we're going to need to extend our own cursor once we've
-                    //finished awaiting.
-                    if( timeout == null )
-                    {
-                        //block until we're closed. will not throw exception.
-                        try
-                        {
-                            this.awaitingContinue.Wait(awaitingCloser.Token);
-                        }
-                        catch( Exception ) when( awaitingCloser.IsCancellationRequested )
-                        {
-                            //if we're getting an exception because of a close signal
-                            //then just exit cleanly.
-                            return false; //no more items
-                        }
-                    }
-                    else
-                    {
-                        //block with a timeout. will throw exception.
-                        this.awaitingContinue.Wait(timeout.Value);
-                    }
-
-                    var result = awaitingContinue.Result;
+                    var result = await this.awaitingContinue.ConfigureAwait(false);
 
                     this.Extend(result);
                 }
@@ -197,6 +174,34 @@ namespace RethinkDb.Driver.Net
                 }
 
                 return false;
+            }
+
+            public override bool MoveNext(TimeSpan? timeout)
+            {
+                Task<bool> task;
+                if( timeout == null )
+                {
+                    //block until we're closed. will not throw exception.
+                    try
+                    {
+                        //this.awaitingContinue.Wait(awaitingCloser.Token);
+                        task = MoveNextAsync();
+                        task.Wait(awaitingCloser.Token);
+                        return task.Result;
+                    }
+                    catch( Exception ) when( awaitingCloser.IsCancellationRequested )
+                    {
+                        //if we're getting an exception because of a close signal
+                        //then just exit cleanly.
+                        return false; //no more items
+                    }
+                }
+
+                //block with a timeout. will throw exception.
+                //var result = this.awaitingContinue.Wait(timeout.Value);
+                task = MoveNextAsync();
+                task.Wait(timeout.Value);
+                return task.Result;
             }
 
             protected override T Convert(JToken token)
@@ -237,6 +242,9 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         /// <param name="timeout">The amount of time to wait for a response. If timeout is null, blocks until a response is received.</param>
         public abstract bool MoveNext(TimeSpan? timeout);
+
+        public abstract Task<bool> MoveNextAsync();
+
         protected abstract T Convert(JToken token);
 
         public void Reset()

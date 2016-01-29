@@ -11,6 +11,7 @@ namespace RethinkDb.Driver.Net
 {
     public class Awaiter : TaskCompletionSource<Response>
     {
+
     }
 
     public class SocketWrapper

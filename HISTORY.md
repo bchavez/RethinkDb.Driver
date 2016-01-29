@@ -1,3 +1,9 @@
+## v2.2.3-beta-1
+* runResult() now takes IConnection instead of strongly typed Connection.
+* Fixed nullable DateTime? and DateTimeOffset? not converting to $reql_type$:TIME pesudo type.
+* Make ConnectionPool more reliable. Unstable ConnectionPool arised when driver threw errors due to syntax.
+* Fixed bug in ReqlBinaryConverter preventing ser/deserialization of 0xFF
+
 ## v2.2.2
 * Roll-up Release for .NET Framework since v2.2.1.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.

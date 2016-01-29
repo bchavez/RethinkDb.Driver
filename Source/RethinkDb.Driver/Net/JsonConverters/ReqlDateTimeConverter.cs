@@ -36,6 +36,11 @@ namespace RethinkDb.Driver.Net.JsonConverters
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            if( reader.TokenType == JsonToken.Null )
+            {
+                return null;
+            }
+
             if( reader.TokenType != JsonToken.StartObject )
             {
                 var msg = string.Join(" ",
@@ -76,7 +81,8 @@ namespace RethinkDb.Driver.Net.JsonConverters
 
             var dto = dt.ToOffset(tz);
 
-            if( objectType == typeof(DateTimeOffset) )
+            if( objectType == typeof(DateTimeOffset) || 
+                objectType == typeof(DateTimeOffset?) )
                 return dto;
 
             var tzHandle = serializer.DateTimeZoneHandling;
@@ -99,7 +105,9 @@ namespace RethinkDb.Driver.Net.JsonConverters
         public override bool CanConvert(Type objectType)
         {
             return objectType == typeof(DateTime) ||
-                   objectType == typeof(DateTimeOffset);
+                   objectType == typeof(DateTimeOffset) ||
+                   objectType == typeof(DateTime?) ||
+                   objectType == typeof(DateTimeOffset?);
         }
 
        

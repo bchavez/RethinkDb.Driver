@@ -1,10 +1,19 @@
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Net.Clustering
 {
+    public static class ExceptionIs
+    {
+        public static bool NetworkError(Exception e)
+        {
+            return e is IOException || e is ObjectDisposedException;
+        }
+    }
+    
     /// <summary>
     /// Create a new RoundRobin host pool. Each host is used in a round robin
     /// strategy when processing each query.
@@ -66,7 +75,7 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 return host.conn.RunAsync<T>(term, globalOpts);
             }
-            catch
+            catch( Exception e ) when( ExceptionIs.NetworkError(e) )
             {
                 host.MarkFailed();
                 throw;
@@ -80,7 +89,7 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 return host.conn.RunCursorAsync<T>(term, globalOpts);
             }
-            catch
+            catch( Exception e ) when( ExceptionIs.NetworkError(e) )
             {
                 host.MarkFailed();
                 throw;
@@ -94,7 +103,7 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 return host.conn.RunAtomAsync<T>(term, globalOpts);
             }
-            catch
+            catch (Exception e) when (ExceptionIs.NetworkError(e))
             {
                 host.MarkFailed();
                 throw;
@@ -108,7 +117,7 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 host.conn.RunNoReply(term, globalOpts);
             }
-            catch
+            catch (Exception e) when (ExceptionIs.NetworkError(e))
             {
                 host.MarkFailed();
                 throw;

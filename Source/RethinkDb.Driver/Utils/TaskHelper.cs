@@ -6,7 +6,7 @@ using RethinkDb.Driver.Net;
 
 namespace RethinkDb.Driver.Utils
 {
-    internal static class TaskHelper
+    public static class TaskHelper
     {
         // Proper Library Sync usage
         // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-

@@ -22,7 +22,7 @@ namespace RethinkDb.Driver.ReGrid
         private List<byte[]> batch;
         private long batchPosition;
         private int batchSize;
-        private int chunkSize;
+        private int chunkSizeBytes;
 
         private bool closed = false;
         private bool disposed = false;
@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.ReGrid
             this.fileTable = fileTable;
             this.chunkTable = chunkTable;
             this.chunkInsertOpts = options.ChunkInsertOptions;
-            this.chunkSize = options.ChunkSize;
+            this.chunkSizeBytes = options.ChunkSizeBytes;
             
             this.batchSize = options.BatchSize;
 
@@ -100,7 +100,7 @@ namespace RethinkDb.Driver.ReGrid
 
         private async Task<ArraySegment<byte>> GetCurrentChunkAsync()
         {
-            var batchIndex = (int)((length - batchPosition) / chunkSize);
+            var batchIndex = (int)((length - batchPosition) / chunkSizeBytes);
             if (batchIndex == batchSize) // batch size, default 16 * 1024 * 1024 / ChunkSize
             {
                 await WriteBatchAsync().ConfigureAwait(false);
@@ -114,11 +114,11 @@ namespace RethinkDb.Driver.ReGrid
         {
             if( batch.Count <= batchIndex )
             {
-                batch.Add(new byte[chunkSize]);
+                batch.Add(new byte[chunkSizeBytes]);
             }
             var chunk = batch[batchIndex];
-            var offset = (int)(length % chunkSize);
-            var count = chunkSize - offset;
+            var offset = (int)(length % chunkSizeBytes);
+            var count = chunkSizeBytes - offset;
             return new ArraySegment<byte>(chunk, offset, count);
         }
 
@@ -135,7 +135,7 @@ namespace RethinkDb.Driver.ReGrid
         private IEnumerable<Chunk> PrepareChunks()
         {
             var chunks = new List<Chunk>();
-            var n = (int)(batchPosition / chunkSize);
+            var n = (int)(batchPosition / chunkSizeBytes);
             foreach( var chunk in batch )
             {
                 var c = new Chunk
@@ -177,7 +177,7 @@ namespace RethinkDb.Driver.ReGrid
             this.FileInfo.Id = this.filesInfoId;
             this.FileInfo.Length = this.length;
             this.FileInfo.SHA256 = Util.GetHexString(this.sha256.Hash);
-            this.FileInfo.UploadDate = DateTimeOffset.UtcNow;
+            this.FileInfo.CreatedDate = DateTimeOffset.UtcNow;
             this.FileInfo.Status = Status.Completed;
 
             await this.fileTable.replace(this.FileInfo).runResultAsync(conn)
@@ -210,7 +210,7 @@ namespace RethinkDb.Driver.ReGrid
 
         private void TruncateFinalChunk()
         {
-            var finalChunkSize = (int)(length % chunkSize);
+            var finalChunkSize = (int)(length % chunkSizeBytes);
             if( finalChunkSize > 0 )
             {
                 var finalChunk = this.batch[this.batch.Count - 1];

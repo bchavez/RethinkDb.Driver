@@ -161,7 +161,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
             original.Dump();
 
-            original.UploadDate.Should().BeBefore(latest.UploadDate.Value);
+            original.CreatedDate.Should().BeBefore(latest.CreatedDate.Value);
         }
 
         private void CreateBucketWithTwoFileRevisions()

@@ -30,7 +30,7 @@ namespace RethinkDb.Driver.ReGrid
 
             using (var destination = OpenUploadStream(fileName, options))
             {
-                var chunkSize = options.ChunkSize;
+                var chunkSize = options.ChunkSizeBytes;
                 var buffer = new byte[chunkSize];
 
                 while (true)
@@ -114,7 +114,7 @@ namespace RethinkDb.Driver.ReGrid
                 FileName = fileName,
                 StartedDate = DateTimeOffset.UtcNow,
                 Metadata = options.Metadata,
-                ChunkSizeBytes = options.ChunkSize
+                ChunkSizeBytes = options.ChunkSizeBytes
             };
 
             var fileTable = this.db.table(this.fileTableName);

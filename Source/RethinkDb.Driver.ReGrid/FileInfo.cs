@@ -7,6 +7,10 @@ namespace RethinkDb.Driver.ReGrid
 {
     public class FileInfo
     {
+        internal const string CreatedDateJsonName = "createdAt";
+        internal const string FileNameJsonName = "filename";
+        internal const string StatusJsonName = "status";
+
         public FileInfo()
         {
             this.Status = Status.Incomplete;
@@ -18,16 +22,16 @@ namespace RethinkDb.Driver.ReGrid
         [JsonProperty("chunkSizeBytes")]
         public int ChunkSizeBytes { get; set; }
 
-        [JsonProperty("filename")]
+        [JsonProperty(FileNameJsonName)]
         public string FileName { get; set; }
 
         [JsonProperty("length")]
         public long Length { get; set; }
 
-        [JsonProperty("uploadDate")]
-        public DateTimeOffset? UploadDate { get; set; }
+        [JsonProperty(CreatedDateJsonName)]
+        public DateTimeOffset? CreatedDate { get; set; }
 
-        [JsonProperty("startedDate")]
+        [JsonProperty("startedAt")]
         public DateTimeOffset StartedDate { get; set; }
 
         [JsonProperty("sha256")]
@@ -36,7 +40,7 @@ namespace RethinkDb.Driver.ReGrid
         [JsonProperty("metadata")]
         public JObject Metadata { get; set; }
 
-        [JsonProperty("status")]
+        [JsonProperty(StatusJsonName)]
         public Status Status { get; set; }
     }
 

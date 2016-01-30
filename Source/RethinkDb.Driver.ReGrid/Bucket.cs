@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
@@ -161,7 +162,7 @@ namespace RethinkDb.Driver.ReGrid
             {
                 //index the file paths of completed files and status
                 await CreateIndex(this.fileTableName, this.fileIndexPath,
-                    row => r.array(row["status"], row["filename"], row["uploadDate"]))
+                    row => r.array(row[FileInfo.StatusJsonName], row[FileInfo.FileNameJsonName], row[FileInfo.CreatedDateJsonName]))
                     .ConfigureAwait(false);
             }
 
@@ -172,7 +173,7 @@ namespace RethinkDb.Driver.ReGrid
             {
                 //Index the chunks and their parent [fileid, n].
                 await CreateIndex(this.chunkTableName, this.chunkIndexName,
-                    row => r.array(row["files_id"], row["n"]))
+                    row => r.array(row[Chunk.FilesIdJsonName], row[Chunk.NumJsonName]))
                     .ConfigureAwait(true);
             }
 

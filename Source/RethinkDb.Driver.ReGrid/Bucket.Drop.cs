@@ -38,7 +38,7 @@ namespace RethinkDb.Driver.ReGrid
             catch
             {
             }
-            this.Initialized = false;
+            this.Mounted = false;
         }
 
 

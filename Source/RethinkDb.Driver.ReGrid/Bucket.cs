@@ -31,7 +31,7 @@ namespace RethinkDb.Driver.ReGrid
         private Table fileTable;
         private Table chunkTable;
 
-        public bool Initialized { get; set; }
+        public bool Mounted { get; set; }
 
         public Bucket(IConnection conn, string databaseName, string bucketName = "fs", BucketConfig config = null)
         {
@@ -93,10 +93,10 @@ namespace RethinkDb.Driver.ReGrid
             return fileInfo;
         }
 
-        private void ThrowIfNotInitialized()
+        private void ThrowIfNotMounted()
         {
-            if( !this.Initialized )
-                throw new InvalidOperationException("Please call Bucket.Initialize() first before performing any operation.");
+            if( !this.Mounted )
+                throw new InvalidOperationException($"Please call {nameof(Mount)} before performing any operation.");
         }
 
         public void Mount()
@@ -106,7 +106,7 @@ namespace RethinkDb.Driver.ReGrid
 
         public async Task MountAsync()
         {
-            if (this.Initialized)
+            if (this.Mounted)
                 return;
 
             var filesTableResult = await EnsureTable(this.fileTableName)
@@ -131,7 +131,7 @@ namespace RethinkDb.Driver.ReGrid
                     .ConfigureAwait(true);
             }
 
-            this.Initialized = true;
+            this.Mounted = true;
         }
 
 

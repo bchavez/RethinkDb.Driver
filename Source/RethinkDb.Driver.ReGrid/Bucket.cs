@@ -99,12 +99,12 @@ namespace RethinkDb.Driver.ReGrid
                 throw new InvalidOperationException("Please call Bucket.Initialize() first before performing any operation.");
         }
 
-        public void Initialize()
+        public void Mount()
         {
-            InitializeAsync().WaitSync();
+            MountAsync().WaitSync();
         }
 
-        public async Task InitializeAsync()
+        public async Task MountAsync()
         {
             if (this.Initialized)
                 return;

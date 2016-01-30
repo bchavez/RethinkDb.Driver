@@ -15,12 +15,12 @@ namespace RethinkDb.Driver.ReGrid
     {
         //PUBLIC
         //AS BYTE ARRAY
-        public byte[] DownloadBytesByName(string fileName, int revision = -1, DownloadOptions options = null)
+        public byte[] DownloadAsBytesByName(string fileName, int revision = -1, DownloadOptions options = null)
         {
-            return DownloadBytesByNameAsync(fileName, revision, options).WaitSync();
+            return DownloadAsBytesByNameAsync(fileName, revision, options).WaitSync();
         }
 
-        public async Task<byte[]> DownloadBytesByNameAsync(string fileName, int revision = -1, DownloadOptions options = null)
+        public async Task<byte[]> DownloadAsBytesByNameAsync(string fileName, int revision = -1, DownloadOptions options = null)
         {
             options = options ?? new DownloadOptions();
             var fileInfo = await GetFileInfoByNameAsync(fileName, revision);
@@ -29,10 +29,10 @@ namespace RethinkDb.Driver.ReGrid
 
         public byte[] DownloadBytes(Guid fileId, DownloadOptions options = null)
         {
-            return DownloadBytesAsync(fileId, options).WaitSync();
+            return DownloadAsBytesAsync(fileId, options).WaitSync();
         }
 
-        public async Task<byte[]> DownloadBytesAsync(Guid fileId, DownloadOptions options = null)
+        public async Task<byte[]> DownloadAsBytesAsync(Guid fileId, DownloadOptions options = null)
         {
             options = options ?? new DownloadOptions();
             return await DownloadBytesHelperAsync(fileId, options);

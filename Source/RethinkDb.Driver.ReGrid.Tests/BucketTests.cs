@@ -45,7 +45,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
         public void BeforeEachTest()
         {
             //make sure we get a new conn on each test.
-            bucket = new Bucket(conn, DbName);
+            bucket = new Bucket(conn, DbName, bucketName: "foo" );
         }
 
         private void DropFilesTable()
@@ -58,7 +58,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
         public void test_upload()
         {
             bucket.Drop();
-            bucket.Initialize();
+            bucket.Mount();
 
             var fileId = bucket.Upload("foobar.mp3", TestBytes.OneHalfChunk);
 
@@ -77,17 +77,17 @@ namespace RethinkDb.Driver.ReGrid.Tests
             CreateBucketWithTwoFileRevisions();
 
             Console.WriteLine(">>>>> DOWNLOAD");
-            var bytes = bucket.DownloadBytesByName("foobar.mp3");
+            var bytes = bucket.DownloadAsBytesByName("foobar.mp3");
             bytes.Should().Equal(TestBytes.OneHalfChunkReversed);
 
-            bytes = bucket.DownloadBytesByName("foobar.mp3", revision: 0);
+            bytes = bucket.DownloadAsBytesByName("foobar.mp3", revision: 0);
             bytes.Should().Equal(TestBytes.OneHalfChunk);
         }
 
         [Test]
         public void thow_exception_when_file_isnt_found()
         {
-            bucket.Initialize();
+            bucket.Mount();
 
             Action act = () => bucket.GetFileInfoByNameAsync("foooooooobar.mp3", -99)
                 .WaitSync();
@@ -167,7 +167,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
         private void CreateBucketWithTwoFileRevisions()
         {
             bucket.Drop();
-            bucket.Initialize();
+            bucket.Mount();
             
             //original reversed
             bucket.Upload("foobar.mp3", TestBytes.OneHalfChunk);

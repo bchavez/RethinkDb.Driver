@@ -88,6 +88,9 @@ Documentation
 * [Buckets](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#buckets)
 * [Files](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#files)
   * [Revision Numbers](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#revision-numbers) 
+  * [Upload](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#upload)
+  * [Download](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#download)
+  * [Seekable Download](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#seekable-downloads)
 * [`rg` Command Line Utility](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#rg--command-line-utility)
 
 ### Driver Development

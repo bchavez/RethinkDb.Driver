@@ -116,7 +116,7 @@ namespace RethinkDb.Driver.ReGrid
             {
                 //index the file paths of completed files and status
                 await CreateIndex(this.fileTableName, this.fileIndexPath,
-                    row => r.array(row[FileInfo.StatusJsonName], row[FileInfo.FileNameJsonName], row[FileInfo.CreatedDateJsonName]))
+                    row => r.array(row[FileInfo.StatusJsonName], row[FileInfo.FileNameJsonName], row[FileInfo.FinishedDateJsonName]))
                     .ConfigureAwait(false);
             }
 

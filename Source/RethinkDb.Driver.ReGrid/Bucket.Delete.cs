@@ -15,7 +15,9 @@ namespace RethinkDb.Driver.ReGrid
         public async Task DeleteAsync(Guid fileId, bool softDelete = true, object deleteOpts = null)
         {
             var result = await this.fileTable.get(fileId)
-                .update(r.hashMap(FileInfo.StatusJsonName, Status.Deleted))[deleteOpts]
+                .update(
+                    r.hashMap(FileInfo.StatusJsonName, Status.Deleted)
+                        .with(FileInfo.DeletedDateJsonName, DateTimeOffset.UtcNow))[deleteOpts]
                 .runResultAsync(conn)
                 .ConfigureAwait(false);
 

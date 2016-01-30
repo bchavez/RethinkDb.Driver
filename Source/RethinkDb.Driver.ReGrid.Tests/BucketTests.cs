@@ -26,6 +26,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
         private string fileTableName;
         private string chunkTableName;
 
+        private string testFile = "foobar.mp3";
 
         public BucketTests()
         {
@@ -60,15 +61,22 @@ namespace RethinkDb.Driver.ReGrid.Tests
             bucket.Drop();
             bucket.Mount();
 
-            var fileId = bucket.Upload("foobar.mp3", TestBytes.OneHalfChunk);
+            var fileId = bucket.Upload(testFile, TestBytes.OneHalfChunk);
 
             fileId.Should().NotBeEmpty();
 
-            var info = bucket.GetFileInfoByNameAsync("foobar.mp3", -1).WaitSync();
+            var info = bucket.GetFileInfoByNameAsync(testFile, -1).WaitSync();
 
             info.Dump();
 
             info.Id.Should().Be(fileId);
+        }
+
+        [Test]
+        public void delete_test()
+        {
+            CreateBucketWithTwoFileRevisions();
+
         }
 
         [Test]
@@ -77,10 +85,10 @@ namespace RethinkDb.Driver.ReGrid.Tests
             CreateBucketWithTwoFileRevisions();
 
             Console.WriteLine(">>>>> DOWNLOAD");
-            var bytes = bucket.DownloadAsBytesByName("foobar.mp3");
+            var bytes = bucket.DownloadAsBytesByName(testFile);
             bytes.Should().Equal(TestBytes.OneHalfChunkReversed);
 
-            bytes = bucket.DownloadAsBytesByName("foobar.mp3", revision: 0);
+            bytes = bucket.DownloadAsBytesByName(testFile, revision: 0);
             bytes.Should().Equal(TestBytes.OneHalfChunk);
         }
 
@@ -103,7 +111,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
             
             Console.WriteLine(">>>>> DOWNLOAD LATEST");
             var fs = File.Open("foobar_latest.mp3", FileMode.Create);
-            bucket.DownloadToStreamByName("foobar.mp3", fs);
+            bucket.DownloadToStreamByName(testFile, fs);
             fs.Close();
 
             var outBytes = File.ReadAllBytes("foobar_latest.mp3");
@@ -115,7 +123,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
             Console.WriteLine(">>>>> DOWNLOAD ORIGINAL");
 
             fs = File.Open("foobar_original.mp3", FileMode.Create);
-            bucket.DownloadToStreamByName("foobar.mp3", fs, revision: 0);
+            bucket.DownloadToStreamByName(testFile, fs, revision: 0);
             fs.Close();
 
             outBytes = File.ReadAllBytes("foobar_original.mp3");
@@ -138,7 +146,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
             //    .orderBy()[new { index = r.desc("path_ix") }]
             //    .runCursor<FileInfo>(conn);
 
-            var fileInfo = await bucket.GetFileInfoByNameAsync("foobar.mp3", -1);
+            var fileInfo = await bucket.GetFileInfoByNameAsync(testFile, -1);
 
             fileInfo.Dump();
 
@@ -151,17 +159,17 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
             Console.WriteLine(">>>> LATEST ");
 
-            var latest = await bucket.GetFileInfoByNameAsync("foobar.mp3", -1);
+            var latest = await bucket.GetFileInfoByNameAsync(testFile, -1);
 
             latest.Dump();
 
             Console.WriteLine(">>>> ORIGINAL ");
 
-            var original = await bucket.GetFileInfoByNameAsync("foobar.mp3", 0);
+            var original = await bucket.GetFileInfoByNameAsync(testFile, 0);
 
             original.Dump();
 
-            original.CreatedDate.Should().BeBefore(latest.CreatedDate.Value);
+            original.FinishedAtDate.Should().BeBefore(latest.FinishedAtDate.Value);
         }
 
         private void CreateBucketWithTwoFileRevisions()
@@ -170,12 +178,12 @@ namespace RethinkDb.Driver.ReGrid.Tests
             bucket.Mount();
             
             //original reversed
-            bucket.Upload("foobar.mp3", TestBytes.OneHalfChunk);
+            bucket.Upload(testFile, TestBytes.OneHalfChunk);
 
             Thread.Sleep(1500);
 
             //latest
-            bucket.Upload("foobar.mp3", TestBytes.OneHalfChunkReversed);
+            bucket.Upload(testFile, TestBytes.OneHalfChunkReversed);
         }
     }
 }

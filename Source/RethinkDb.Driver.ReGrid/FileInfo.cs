@@ -7,7 +7,8 @@ namespace RethinkDb.Driver.ReGrid
 {
     public class FileInfo
     {
-        internal const string CreatedDateJsonName = "createdAt";
+        internal const string FinishedDateJsonName = "finishedAt";
+        internal const string DeletedDateJsonName = "deletedAt";
         internal const string FileNameJsonName = "filename";
         internal const string StatusJsonName = "status";
 
@@ -28,11 +29,14 @@ namespace RethinkDb.Driver.ReGrid
         [JsonProperty("length")]
         public long Length { get; set; }
 
-        [JsonProperty(CreatedDateJsonName)]
-        public DateTimeOffset? CreatedDate { get; set; }
+        [JsonProperty(FinishedDateJsonName)]
+        public DateTimeOffset? FinishedAtDate { get; set; }
 
         [JsonProperty("startedAt")]
-        public DateTimeOffset StartedDate { get; set; }
+        public DateTimeOffset StartedAtDate { get; set; }
+
+        [JsonProperty(DeletedDateJsonName)]
+        public DateTimeOffset? DeletedAtDate { get; set; }
 
         [JsonProperty("sha256")]
         public string SHA256 { get; set; }

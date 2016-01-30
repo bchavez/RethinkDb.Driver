@@ -177,7 +177,7 @@ namespace RethinkDb.Driver.ReGrid
             this.FileInfo.Id = this.filesInfoId;
             this.FileInfo.Length = this.length;
             this.FileInfo.SHA256 = Util.GetHexString(this.sha256.Hash);
-            this.FileInfo.CreatedDate = DateTimeOffset.UtcNow;
+            this.FileInfo.FinishedAtDate = DateTimeOffset.UtcNow;
             this.FileInfo.Status = Status.Completed;
 
             await this.fileTable.replace(this.FileInfo).runResultAsync(conn)

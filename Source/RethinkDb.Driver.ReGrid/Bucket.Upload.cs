@@ -112,7 +112,7 @@ namespace RethinkDb.Driver.ReGrid
             {
                 Status = Status.Incomplete,
                 FileName = fileName,
-                StartedDate = DateTimeOffset.UtcNow,
+                StartedAtDate = DateTimeOffset.UtcNow,
                 Metadata = options.Metadata,
                 ChunkSizeBytes = options.ChunkSizeBytes
             };

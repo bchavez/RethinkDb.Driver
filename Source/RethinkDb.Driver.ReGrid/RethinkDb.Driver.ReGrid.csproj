@@ -36,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseStream.cs" />
-    <Compile Include="Bucket.Destroy.cs" />
+    <Compile Include="Bucket.Purge.cs" />
     <Compile Include="Bucket.Upload.cs" />
     <Compile Include="Bucket.Download.cs" />
     <Compile Include="Bucket.cs" />

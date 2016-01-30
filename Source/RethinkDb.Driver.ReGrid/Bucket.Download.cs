@@ -138,7 +138,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             Ensure.IsNotNull(options, nameof(options));
 
-            using (var source = new DownloadStreamForwardOnly(conn, fileinfo, this.chunkTable, this.chunkIndexName, options))
+            using (var source = new DownloadStreamForwardOnly(this, conn, fileinfo, this.chunkTable, this.chunkIndexName, options))
             {
                 var count = source.Length;
                 var buffer = new byte[fileinfo.ChunkSizeBytes];
@@ -170,7 +170,7 @@ namespace RethinkDb.Driver.ReGrid
                 throw new NotImplementedException();
             }
 
-            return new DownloadStreamForwardOnly(this.conn, fileinfo, this.chunkTable, this.chunkIndexName, options);
+            return new DownloadStreamForwardOnly(this, this.conn, fileinfo, this.chunkTable, this.chunkIndexName, options);
         }
 
     }

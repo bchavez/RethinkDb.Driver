@@ -27,9 +27,10 @@ namespace RethinkDb.Driver.ReGrid
 
         private List<Chunk> batch;
 
-        public DownloadStreamForwardOnly(IConnection conn, FileInfo fileInfo, Table chunkTable, string chunkIndexName, DownloadOptions options)
+        public DownloadStreamForwardOnly(Bucket bucket, IConnection conn, FileInfo fileInfo, Table chunkTable, string chunkIndexName, DownloadOptions options)
             : base(fileInfo)
         {
+            this.bucket = bucket;
             this.conn = conn;
             this.chunkTable = chunkTable;
             this.chunkIndexName = chunkIndexName;
@@ -113,12 +114,15 @@ namespace RethinkDb.Driver.ReGrid
 
         private async Task GetFirstBatchAsync()
         {
-            var index = new {index = this.chunkIndexName};
-            this.cursor = chunkTable.between(r.array(this.FileInfo.Id, r.minval()), r.array(this.FileInfo.Id, r.maxval()))[index]
-                .orderBy("n")[index]
-                .runCursor<Chunk>(conn);
-            
-            //await GetNextBatchAsync().ConfigureAwait(false);
+            //var index = new {index = this.chunkIndexName};
+            //this.cursor = await chunkTable.between(r.array(this.FileInfo.Id, r.minval()), r.array(this.FileInfo.Id, r.maxval()))[index]
+            //    .orderBy("n")[index]
+            //    .runCursorAsync<Chunk>(conn)
+            //    .ConfigureAwait(false);
+
+            this.cursor = await GridUtility.EnumerateChunksAsync(this.bucket, this.FileInfo.Id)
+                .ConfigureAwait(false);
+
             GetNextBatchFromCursor(cursor.BufferedSize > 0);
         }
 
@@ -206,6 +210,7 @@ namespace RethinkDb.Driver.ReGrid
         private int lastChunkSize;
         private long batchPosition;
         private long nextChunkNumber;
+        private Bucket bucket;
 
         public override long Position
         {

@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Utils;
@@ -66,5 +67,17 @@ namespace RethinkDb.Driver.ReGrid
             return cursor;
         }
 
+        public static Cursor<Chunk> EnumerateChunks(Bucket bucket, Guid fileId)
+        {
+            return EnumerateChunksAsync(bucket, fileId).WaitSync();
+        }
+        public static async Task<Cursor<Chunk>> EnumerateChunksAsync(Bucket bucket, Guid fileId)
+        {
+            var index = new { index = bucket.chunkIndexName };
+            return await bucket.chunkTable.between(r.array(fileId, r.minval()), r.array(fileId, r.maxval()))[index]
+                .orderBy("n")[index]
+                .runCursorAsync<Chunk>(bucket.conn)
+                .ConfigureAwait(false);
+        }
     }
 }

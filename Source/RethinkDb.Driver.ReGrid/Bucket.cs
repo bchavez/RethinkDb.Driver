@@ -28,6 +28,8 @@ namespace RethinkDb.Driver.ReGrid
         private string fileIndexPath;
 
         private object tableOpts;
+        private Table fileTable;
+        private Table chunkTable;
 
         public bool Initialized { get; set; }
 
@@ -43,22 +45,15 @@ namespace RethinkDb.Driver.ReGrid
             this.tableOpts = config.TableOptions;
 
             this.fileTableName = $"{bucketName}_{config.FileTableName}";
+            this.fileTable = this.db.table(fileTableName);
             this.fileIndexPath = config.FileIndexPath;
 
             this.chunkTableName = $"{bucketName}_{config.ChunkTable}";
+            this.chunkTable = this.db.table(chunkTableName);
             this.chunkIndexName = config.ChunkIndex;
         }
         
-        public void Delete(string objectId)
-        {
-
-        }
-
-        public void DeleteAsync(string objectId)
-        {
-
-        }
-
+        
         public Cursor<FileInfo> Find(Func<Table, string, ReqlExpr> filter)
         {
             return FindAysnc(filter).WaitSync();
@@ -66,8 +61,7 @@ namespace RethinkDb.Driver.ReGrid
 
         public async Task<Cursor<FileInfo>> FindAysnc(Func<Table, string, ReqlExpr> filter)
         {
-            var table = this.db.table(this.chunkTableName);
-            var query = filter(table, this.fileIndexPath);
+            var query = filter(this.fileTable, this.fileIndexPath);
             return await query.runCursorAsync<FileInfo>(conn)
                 .ConfigureAwait(false);
         }
@@ -81,7 +75,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             try
             {
-                await this.db.tableDrop(this.fileTableName).runResultAsync(this.conn)
+                await this.fileTable.runResultAsync(this.conn)
                     .ConfigureAwait(false);
             }
             catch
@@ -90,7 +84,7 @@ namespace RethinkDb.Driver.ReGrid
 
             try
             {
-                await this.db.tableDrop(this.chunkTableName).runResultAsync(this.conn)
+                await this.chunkTable.runResultAsync(this.conn)
                     .ConfigureAwait(false);
             }
             catch
@@ -104,7 +98,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             var index = new { index = this.fileIndexPath };
 
-            var between = this.db.table(this.fileTableName)
+            var between = this.fileTable
                 .between(r.array(Status.Completed, fileName, r.minval()), r.array(Status.Completed, fileName, r.maxval()))[index];
 
             var sort = revision >= 0 ? r.asc(this.fileIndexPath) : r.desc(this.fileIndexPath) as ReqlExpr;
@@ -127,7 +121,7 @@ namespace RethinkDb.Driver.ReGrid
 
         internal async Task<FileInfo> GetFileInfoAsync(Guid fileId)
         {
-            var fileInfo = await this.db.table(this.fileTableName)
+            var fileInfo = await this.fileTable
                 .get(fileId).runAtomAsync<FileInfo>(conn)
                 .ConfigureAwait(false);
 

@@ -48,6 +48,7 @@ namespace RethinkDb.Driver.ReGrid
     public enum Status
     {
         Incomplete,
-        Completed
+        Completed,
+        Deleted
     }
 }

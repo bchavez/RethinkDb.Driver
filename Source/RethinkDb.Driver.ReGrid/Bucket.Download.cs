@@ -138,9 +138,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             Ensure.IsNotNull(options, nameof(options));
 
-            var chunkTable = this.db.table(this.chunkTableName);
-
-            using (var source = new DownloadStreamForwardOnly(conn, fileInfo, chunkTable, this.chunkIndexName, options))
+            using (var source = new DownloadStreamForwardOnly(conn, fileInfo, this.chunkTable, this.chunkIndexName, options))
             {
                 var count = source.Length;
                 var buffer = new byte[fileInfo.ChunkSizeBytes];
@@ -166,15 +164,13 @@ namespace RethinkDb.Driver.ReGrid
                 throw new ArgumentException("CheckSHA256 can only be used when Seekable is false.");
             }
 
-            var chunkTable = this.db.table(chunkTableName);
-
             if (options.Seekable)
             {
                 //make seekable
                 throw new NotImplementedException();
             }
 
-            return new DownloadStreamForwardOnly(this.conn, fileInfo, chunkTable, this.chunkIndexName, options);
+            return new DownloadStreamForwardOnly(this.conn, fileInfo, this.chunkTable, this.chunkIndexName, options);
         }
 
     }

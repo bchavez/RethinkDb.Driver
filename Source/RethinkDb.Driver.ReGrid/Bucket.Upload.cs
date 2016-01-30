@@ -117,9 +117,6 @@ namespace RethinkDb.Driver.ReGrid
                 ChunkSizeBytes = options.ChunkSizeBytes
             };
 
-            var fileTable = this.db.table(this.fileTableName);
-            var chunkTable = this.db.table(this.chunkTableName);
-
             var result = await fileTable.insert(fileInfo).runResultAsync(conn)
                 .ConfigureAwait(false);
 
@@ -127,7 +124,7 @@ namespace RethinkDb.Driver.ReGrid
 
             var fileInfoId = result.GeneratedKeys[0];
 
-            return new UploadStream(this.conn, fileInfoId, fileInfo, fileTable, chunkTable, options);
+            return new UploadStream(this.conn, fileInfoId, fileInfo, this.fileTable, this.chunkTable, options);
         }
     }
 }

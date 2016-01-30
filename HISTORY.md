@@ -1,3 +1,7 @@
+## v2.2.3
+* Roll-up Release for Full .NET Framework since v2.2.2.
+* CoreCLR users please continue using latest beta release until CoreCLR is RTM.
+
 ## v2.2.3-beta-2
 * runResult() now takes IConnection instead of strongly typed Connection.
 * Added runResult[T] for SUCCESS_ATOM or SUCCESS_SEQUENCE responses.

@@ -1,6 +1,6 @@
 <img src="https://github.com/bchavez/RethinkDb.Driver/blob/master/Docs/GitHubBanner.png" style="max-width: 100%" />
 
-[![Build status](https://ci.appveyor.com/api/projects/status/8o06bhlnjss2n7k8?svg=true)](https://ci.appveyor.com/project/bchavez/rethinkdb-driver) [![Nuget](https://img.shields.io/nuget/v/RethinkDb.Driver.svg)](https://www.nuget.org/packages/RethinkDb.Driver/) [![Users](https://img.shields.io/nuget/dt/RethinkDb.Driver.svg)](https://www.nuget.org/packages/RethinkDb.Driver/) [![Twitter](https://img.shields.io/twitter/url/https/github.com/bchavez/RethinkDb.Driver.svg?style=social)](https://twitter.com/intent/tweet?text=%23rethinkdb %23reql driver for C%23 and .NET:&amp;amp;url=https%3A%2F%2Fgithub.com%2Fbchavez%2FRethinkDb.Driver) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bchavez/RethinkDb.Driver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Build status](https://ci.appveyor.com/api/projects/status/8o06bhlnjss2n7k8?svg=true)](https://ci.appveyor.com/project/bchavez/rethinkdb-driver) [![Nuget](https://img.shields.io/nuget/v/RethinkDb.Driver.svg)](https://www.nuget.org/packages/RethinkDb.Driver/) [![Users](https://img.shields.io/nuget/dt/RethinkDb.Driver.svg)](https://www.nuget.org/packages/RethinkDb.Driver/) [![Twitter](https://img.shields.io/twitter/url/https/github.com/bchavez/RethinkDb.Driver.svg?style=social)](https://twitter.com/intent/tweet?text=%23RethinkDB %23reql driver for C%23 and .NET:&amp;amp;url=https%3A%2F%2Fgithub.com%2Fbchavez%2FRethinkDb.Driver) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bchavez/RethinkDb.Driver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 RethinkDb.Driver
 ================
@@ -86,6 +86,8 @@ Documentation
 * [What is ReGrid?](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage)
 * [Getting Started](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#getting-started)
 * [Buckets](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#buckets)
+* [Files](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#files)
+  * [Revision Numbers](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#revision-numbers) 
 * [`rg` Command Line Utility](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#rg--command-line-utility)
 
 ### Driver Development
@@ -188,7 +190,7 @@ If you'd like to contribute, please consider reading some [helpful tips before m
  
 Contributors
 ---------
-Created by [Brian Chavez](http://bchavez.bitarmory.com). Originally ported from the Java Driver by [Josh Kuhn](https://github.com/deontologician). Special thanks to the rest of the RethinkDB team ([Josh](https://github.com/deontologician), [AtnNn](https://github.com/AtnNn), [danielmewes](https://github.com/danielmewes), [neumino](https://github.com/neumino)) for answering ReQL protocol questions. Also, special thanks to [Annie Ruygt](https://github.com/ahruygt) for the wonderful GitHub banner!
+Created by [Brian Chavez](http://bchavez.bitarmory.com) ([twitter]()). Originally ported from the Java Driver by [Josh Kuhn](https://github.com/deontologician). Special thanks to the rest of the RethinkDB team ([Josh](https://github.com/deontologician), [AtnNn](https://github.com/AtnNn), [danielmewes](https://github.com/danielmewes), [neumino](https://github.com/neumino)) for answering ReQL protocol questions. Also, special thanks to [Annie Ruygt](https://github.com/ahruygt) for the wonderful GitHub banner!
 
 A big thanks to GitHub and all contributors:
 

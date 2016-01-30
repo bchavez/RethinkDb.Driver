@@ -37,6 +37,8 @@
   <ItemGroup>
     <Compile Include="BaseStream.cs" />
     <Compile Include="Bucket.Delete.cs" />
+    <Compile Include="Bucket.Drop.cs" />
+    <Compile Include="Bucket.Find.cs" />
     <Compile Include="Bucket.Upload.cs" />
     <Compile Include="Bucket.Download.cs" />
     <Compile Include="Bucket.cs" />

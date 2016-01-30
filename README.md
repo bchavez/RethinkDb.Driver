@@ -82,6 +82,9 @@ Documentation
 * [Differences](https://github.com/bchavez/RethinkDb.Driver/wiki/Differences-Between-C%23-and-Java-driver)
 * [Java ReQL API Documentation](http://rethinkdb.com/api/java/)
 
+### ReGrid File Storage
+* [What is ReGrid?](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage)
+
 ### Driver Development
 * [Contributing](https://github.com/bchavez/RethinkDb.Driver/blob/master/CONTRIBUTING.md)
 * [Getting Started](https://github.com/bchavez/RethinkDb.Driver/wiki/Getting-Started)

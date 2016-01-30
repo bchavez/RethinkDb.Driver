@@ -53,46 +53,6 @@ namespace RethinkDb.Driver.ReGrid
             this.chunkIndexName = config.ChunkIndex;
         }
         
-        
-        public Cursor<FileInfo> Find(Func<Table, string, ReqlExpr> filter)
-        {
-            return FindAysnc(filter).WaitSync();
-        }
-
-        public async Task<Cursor<FileInfo>> FindAysnc(Func<Table, string, ReqlExpr> filter)
-        {
-            var query = filter(this.fileTable, this.fileIndexPath);
-            return await query.runCursorAsync<FileInfo>(conn)
-                .ConfigureAwait(false);
-        }
-
-        public void Drop()
-        {
-            DropAsync().WaitSync();
-        }
-
-        public async Task DropAsync()
-        {
-            try
-            {
-                await this.fileTable.runResultAsync(this.conn)
-                    .ConfigureAwait(false);
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                await this.chunkTable.runResultAsync(this.conn)
-                    .ConfigureAwait(false);
-            }
-            catch
-            {
-            }
-            this.Initialized = false;
-        }
-
 
         internal async Task<FileInfo> GetFileInfoByNameAsync(string fileName, int revision)
         {

@@ -95,6 +95,7 @@ namespace RethinkDb.Driver.ReGrid
             catch
             {
             }
+            this.Initialized = false;
         }
 
 

@@ -15,20 +15,20 @@ namespace RethinkDb.Driver.ReGrid
     {
         //PUBLIC
 
-        public async Task<Guid> UploadAsync(string fileName, byte[] bytes, UploadOptions options = null)
+        public async Task<Guid> UploadAsync(string filename, byte[] bytes, UploadOptions options = null)
         {
             using (var ms = new MemoryStream(bytes))
             {
-                return await UploadAsync(fileName, ms, options)
+                return await UploadAsync(filename, ms, options)
                     .ConfigureAwait(false);
             }
         }
 
-        public async Task<Guid> UploadAsync(string fileName, Stream source, UploadOptions options = null)
+        public async Task<Guid> UploadAsync(string filename, Stream source, UploadOptions options = null)
         {
             options = options ?? new UploadOptions();
 
-            using (var destination = OpenUploadStream(fileName, options))
+            using (var destination = OpenUploadStream(filename, options))
             {
                 var chunkSize = options.ChunkSizeBytes;
                 var buffer = new byte[chunkSize];
@@ -71,14 +71,14 @@ namespace RethinkDb.Driver.ReGrid
             }
         }
 
-        public Guid Upload(string fileName, Stream stream, UploadOptions options = null)
+        public Guid Upload(string filename, Stream stream, UploadOptions options = null)
         {
-            return UploadAsync(fileName, stream, options).WaitSync();
+            return UploadAsync(filename, stream, options).WaitSync();
         }
 
-        public Guid Upload(string fileName, byte[] bytes, UploadOptions options = null)
+        public Guid Upload(string filename, byte[] bytes, UploadOptions options = null)
         {
-            return UploadAsync(fileName, bytes, options).WaitSync();
+            return UploadAsync(filename, bytes, options).WaitSync();
         }
 
         public UploadStream OpenUploadStream(
@@ -104,14 +104,14 @@ namespace RethinkDb.Driver.ReGrid
 
 
         // PRIVATE
-        private async Task<UploadStream> CreateUploadStreamAsync(string fileName, UploadOptions options)
+        private async Task<UploadStream> CreateUploadStreamAsync(string filename, UploadOptions options)
         {
             Ensure.IsNotNull(options, nameof(options));
 
             var fileInfo = new FileInfo()
             {
                 Status = Status.Incomplete,
-                FileName = fileName,
+                FileName = filename.SafePath(),
                 StartedAtDate = DateTimeOffset.UtcNow,
                 Metadata = options.Metadata,
                 ChunkSizeBytes = options.ChunkSizeBytes

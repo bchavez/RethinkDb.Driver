@@ -13,13 +13,15 @@ namespace RethinkDb.Driver.ReGrid
 {
     public partial class Bucket
     {
-
-        public void Drop()
+        /// <summary>
+        /// Erases all files from the system inside the bucket.
+        /// </summary>
+        public void Purge()
         {
-            DropAsync().WaitSync();
+            DestroyAsync().WaitSync();
         }
 
-        public async Task DropAsync()
+        public async Task DestroyAsync()
         {
             try
             {
@@ -40,7 +42,5 @@ namespace RethinkDb.Driver.ReGrid
             }
             this.Mounted = false;
         }
-
-
     }
 }

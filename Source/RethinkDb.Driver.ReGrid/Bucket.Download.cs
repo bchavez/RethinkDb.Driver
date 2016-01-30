@@ -15,15 +15,15 @@ namespace RethinkDb.Driver.ReGrid
     {
         //PUBLIC
         //AS BYTE ARRAY
-        public byte[] DownloadAsBytesByName(string fileName, int revision = -1, DownloadOptions options = null)
+        public byte[] DownloadAsBytesByName(string filename, int revision = -1, DownloadOptions options = null)
         {
-            return DownloadAsBytesByNameAsync(fileName, revision, options).WaitSync();
+            return DownloadAsBytesByNameAsync(filename, revision, options).WaitSync();
         }
 
-        public async Task<byte[]> DownloadAsBytesByNameAsync(string fileName, int revision = -1, DownloadOptions options = null)
+        public async Task<byte[]> DownloadAsBytesByNameAsync(string filename, int revision = -1, DownloadOptions options = null)
         {
             options = options ?? new DownloadOptions();
-            var fileInfo = await GetFileInfoByNameAsync(fileName, revision);
+            var fileInfo = await GetFileInfoByNameAsync(filename, revision);
             return await DownloadBytesHelperAsync(fileInfo, options);
         }
 
@@ -77,10 +77,10 @@ namespace RethinkDb.Driver.ReGrid
 
 
         // OPEN AS STREAM
-        public DownloadStream OpenDownloadStream(string fileName, int revision = -1, DownloadOptions options = null)
+        public DownloadStream OpenDownloadStream(string filename, int revision = -1, DownloadOptions options = null)
         {
             options = options ?? new DownloadOptions();
-            return OpenDownloadStreamAsync(fileName, options, revision).WaitSync();
+            return OpenDownloadStreamAsync(filename, options, revision).WaitSync();
         }
 
         public async Task<DownloadStream> OpenDownloadStreamAsync(string fileName, DownloadOptions options, int revision = -1)
@@ -107,18 +107,18 @@ namespace RethinkDb.Driver.ReGrid
             return await DownloadBytesHelperAsync(fileInfo, options)
                 .ConfigureAwait(false);
         }
-        private async Task<byte[]> DownloadBytesHelperAsync(FileInfo fileInfo, DownloadOptions options)
+        private async Task<byte[]> DownloadBytesHelperAsync(FileInfo fileinfo, DownloadOptions options)
         {
             Ensure.IsNotNull(options, nameof(options));
 
-            if (fileInfo.Length > int.MaxValue)
+            if (fileinfo.Length > int.MaxValue)
             {
                 throw new NotSupportedException("ReGrid stored file is too large to be returned as a byte array.");
             }
 
-            using (var destination = new MemoryStream((int)fileInfo.Length))
+            using (var destination = new MemoryStream((int)fileinfo.Length))
             {
-                await DownloadToStreamHelperAsync(fileInfo, destination, options)
+                await DownloadToStreamHelperAsync(fileinfo, destination, options)
                     .ConfigureAwait(false);
 
                 return destination.GetBuffer();
@@ -134,14 +134,14 @@ namespace RethinkDb.Driver.ReGrid
                 .ConfigureAwait(false);
         }
 
-        private async Task DownloadToStreamHelperAsync(FileInfo fileInfo, Stream destination, DownloadOptions options)
+        private async Task DownloadToStreamHelperAsync(FileInfo fileinfo, Stream destination, DownloadOptions options)
         {
             Ensure.IsNotNull(options, nameof(options));
 
-            using (var source = new DownloadStreamForwardOnly(conn, fileInfo, this.chunkTable, this.chunkIndexName, options))
+            using (var source = new DownloadStreamForwardOnly(conn, fileinfo, this.chunkTable, this.chunkIndexName, options))
             {
                 var count = source.Length;
-                var buffer = new byte[fileInfo.ChunkSizeBytes];
+                var buffer = new byte[fileinfo.ChunkSizeBytes];
 
                 while (count > 0)
                 {
@@ -155,7 +155,7 @@ namespace RethinkDb.Driver.ReGrid
             }
         }
 
-        private DownloadStream CreateDownloadStream(FileInfo fileInfo, DownloadOptions options)
+        private DownloadStream CreateDownloadStream(FileInfo fileinfo, DownloadOptions options)
         {
             Ensure.IsNotNull(options, nameof(options));
 
@@ -170,7 +170,7 @@ namespace RethinkDb.Driver.ReGrid
                 throw new NotImplementedException();
             }
 
-            return new DownloadStreamForwardOnly(this.conn, fileInfo, this.chunkTable, this.chunkIndexName, options);
+            return new DownloadStreamForwardOnly(this.conn, fileinfo, this.chunkTable, this.chunkIndexName, options);
         }
 
     }

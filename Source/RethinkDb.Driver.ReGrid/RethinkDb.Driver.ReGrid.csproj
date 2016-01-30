@@ -36,9 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseStream.cs" />
-    <Compile Include="Bucket.Delete.cs" />
-    <Compile Include="Bucket.Drop.cs" />
-    <Compile Include="Bucket.Find.cs" />
+    <Compile Include="Bucket.Destroy.cs" />
     <Compile Include="Bucket.Upload.cs" />
     <Compile Include="Bucket.Download.cs" />
     <Compile Include="Bucket.cs" />
@@ -51,7 +49,11 @@
     <Compile Include="Ensure.cs" />
     <Compile Include="FileInfo.cs" />
     <Compile Include="FileNotFoundException.cs" />
+    <Compile Include="FileSystemMethods.cs" />
     <Compile Include="FindOptions.cs" />
+    <Compile Include="GridUtility.cs" />
+    <Compile Include="InvalidPathException.cs" />
+    <Compile Include="PathExtensions.cs" />
     <Compile Include="ReGridException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SHA256Exception.cs" />

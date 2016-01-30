@@ -16,20 +16,20 @@ namespace RethinkDb.Driver.ReGrid
     {
         private static readonly RethinkDB r = RethinkDB.r;
 
-        private readonly IConnection conn;
+        internal readonly IConnection conn;
         private readonly BucketConfig config;
         private Db db;
         private string databaseName;
 
         private string chunkTableName;
-        private string chunkIndexName;
+        internal string chunkIndexName;
 
         private string fileTableName;
-        private string fileIndexPath;
+        internal string fileIndexPath;
 
         private object tableOpts;
-        private Table fileTable;
-        private Table chunkTable;
+        internal Table fileTable;
+        internal Table chunkTable;
 
         public bool Mounted { get; set; }
 
@@ -54,12 +54,14 @@ namespace RethinkDb.Driver.ReGrid
         }
         
 
-        internal async Task<FileInfo> GetFileInfoByNameAsync(string fileName, int revision)
+        internal async Task<FileInfo> GetFileInfoByNameAsync(string filename, int revision)
         {
+            filename = filename.SafePath();
+
             var index = new { index = this.fileIndexPath };
 
             var between = this.fileTable
-                .between(r.array(Status.Completed, fileName, r.minval()), r.array(Status.Completed, fileName, r.maxval()))[index];
+                .between(r.array(Status.Completed, filename, r.minval()), r.array(Status.Completed, filename, r.maxval()))[index];
 
             var sort = revision >= 0 ? r.asc(this.fileIndexPath) : r.desc(this.fileIndexPath) as ReqlExpr;
 
@@ -70,14 +72,15 @@ namespace RethinkDb.Driver.ReGrid
                 .runResultAsync<List<FileInfo>>(conn)
                 .ConfigureAwait(false);
 
-            var fileInfo = selection.FirstOrDefault();
-            if( fileInfo == null )
+            var fileinfo = selection.FirstOrDefault();
+            if( fileinfo == null )
             {
-                throw new FileNotFoundException(fileName, revision);
+                throw new FileNotFoundException(filename, revision);
             }
 
-            return fileInfo;
+            return fileinfo;
         }
+
 
         internal async Task<FileInfo> GetFileInfoAsync(Guid fileId)
         {
@@ -85,13 +88,14 @@ namespace RethinkDb.Driver.ReGrid
                 .get(fileId).runAtomAsync<FileInfo>(conn)
                 .ConfigureAwait(false);
 
-            if( fileInfo == null )
+            if (fileInfo == null)
             {
                 throw new FileNotFoundException(fileId);
             }
 
             return fileInfo;
         }
+
 
         private void ThrowIfNotMounted()
         {

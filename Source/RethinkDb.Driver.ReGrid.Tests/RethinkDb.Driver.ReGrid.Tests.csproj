@@ -82,8 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
-    <Compile Include="BasicApiTest.cs" />
+    <Compile Include="BucketTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestBytes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

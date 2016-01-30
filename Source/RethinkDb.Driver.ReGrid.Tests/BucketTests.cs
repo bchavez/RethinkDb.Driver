@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,7 +7,6 @@ using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
-using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Tests;
 using RethinkDb.Driver.Tests.Utils;
 using RethinkDb.Driver.Utils;
@@ -142,15 +141,13 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
         private void CreateBucketWithTwoRevisions()
         {
-            var bucket = new Bucket(conn, "query");
-
             bucket.Initialize();
 
             var bytes = TestBytes.OneHalfChunk;
 
             bucket.Upload("foobar.mp3", bytes);
 
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
 
             bucket.Upload("foobar.mp3", bytes.Reverse().ToArray());
         }
@@ -159,17 +156,13 @@ namespace RethinkDb.Driver.ReGrid.Tests
         [Test]
         public void path_ix_list_history()
         {
-            var index = new { index = this.fileIndexPath };
-
-            //var fileInfos = this.fileTable
-            //    .between(r.array("foobar.mp3", r.minval()), r.array("foobar.mp3", r.maxval()))[index]
-            //    .orderBy(r.desc("uploadDate"))
-            //    .runCursor<FileInfo>(conn);
             var files = this.fileTable
-                .between(r.array("foobar.mp3", r.minval()), r.array("foobar.mp3", r.maxval()))
-                [new { index = this.fileIndexPath }]
-                .orderBy(r.desc("uploadDate"))
-                .runAtom<List<FileInfo>>(conn);
+                .between(
+                    r.array(Status.Completed, "foobar.mp3", r.minval()),
+                    r.array(Status.Completed, "foobar.mp3", r.maxval())
+                    )[new {index = "path_ix"}]
+                .orderBy()[new { index = r.desc("path_ix") }]
+                .runCursor<FileInfo>(conn);
 
             foreach (var info in files)
             {
@@ -179,14 +172,18 @@ namespace RethinkDb.Driver.ReGrid.Tests
         [Test]
         public void path_ix_test()
         {
-            Console.WriteLine(">>>> BETWEEN");
-            //var files = this.fileTable
-            //    .between(r.array("foobar.mp3", r.minval()), r.array("foobar.mp3", r.maxval()))
-            //    [new {index = this.fileIndexPath}]
-            //    .orderBy(r.asc("uploadDate"))
-            //    .runAtom<List<FileInfo>>(conn);
+            Console.WriteLine(">>>> path_ix ");
 
-            
+
+            bucket.Drop();
+            bucket.Initialize();
+
+            CreateBucketWithTwoRevisions();
+
+            var fileInfo = bucket.GetFileInfoByNameAsync("foobar.mp3", -1);
+
+            fileInfo.Dump();
+
 
             //Console.WriteLine($"{fileInfo.Id} -- {fileInfo.FileName} { fileInfo.UploadDate}");
 
@@ -194,24 +191,6 @@ namespace RethinkDb.Driver.ReGrid.Tests
             //{
             //    Console.WriteLine($"{info.Id} -- {info.FileName} { info.UploadDate}");
             //}
-        }
-    }
-
-    public static class TestBytes
-    {
-        public static byte[] OneHalfChunk;
-        public static byte[] NoChunks = new byte[0];
-
-        static TestBytes()
-        {
-            OneHalfChunk = Generate((1024 * 255) + (1024 * 128));// 1.5 chunks
-        }
-
-        public static byte[] Generate(int amount)
-        {
-            return Enumerable.Range(0, amount)
-                .Select(i => (byte)(i % 256))
-                .ToArray();
         }
     }
 }

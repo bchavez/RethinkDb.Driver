@@ -19,14 +19,14 @@ namespace RethinkDb.Driver.ReGrid
         private readonly BucketConfig config;
         private Db db;
         private string databaseName;
+
         private string chunkTableName;
         private string chunkIndexName;
 
         private string fileTableName;
-        private string fileIndexIncomplete;
+        private string fileIndexPath;
 
         private object tableOpts;
-        private string fileIndexPath;
 
         public bool Initialized { get; set; }
 
@@ -43,7 +43,6 @@ namespace RethinkDb.Driver.ReGrid
 
             this.fileTableName = $"{bucketName}_{config.FileTableName}";
             this.fileIndexPath = config.FileIndexPath;
-            this.fileIndexIncomplete = config.FileIndexIncomplete;
 
             this.chunkTableName = $"{bucketName}_{config.ChunkTable}";
             this.chunkIndexName = config.ChunkIndex;
@@ -104,13 +103,14 @@ namespace RethinkDb.Driver.ReGrid
             var index = new { index = this.fileIndexPath };
 
             var between = this.db.table(this.fileTableName)
-                .between(r.array(fileName, r.minval()), r.array(fileName, r.maxval()))[index];
+                .between(r.array(Status.Completed, fileName, r.minval()), r.array(Status.Completed, fileName, r.maxval()))[index];
 
-            var sort = revision >= 0 ? r.asc("uploadDate") : r.desc("uploadDate") as ReqlExpr;
+            var sort = revision >= 0 ? r.asc(this.fileIndexPath) : r.desc(this.fileIndexPath) as ReqlExpr;
 
             revision = revision >= 0 ? revision : (revision * -1) - 1;
 
-            var selection = await between.orderBy(sort).skip(revision).limit(1)
+            var selection = await between.orderBy()[r.hashMap("index", sort)]
+                .skip(revision).limit(1) // so the driver doesn't throw an error when a file isn't found.
                 .runAtomAsync<List<FileInfo>>(conn)
                 .ConfigureAwait(false);
 
@@ -158,14 +158,9 @@ namespace RethinkDb.Driver.ReGrid
 
             if( filesTableResult.TablesCreated == 1 )
             {
-                //index the file paths of completed files.
-                await CreateIndex(this.fileTableName, this.fileIndexPath, 
-                    doc => new[] { doc["filename"], doc["uploadDate"] })
-                    .ConfigureAwait(false);
-
-                //Only index files that are incomplete ...
-                await CreateIndex(this.fileTableName, this.fileIndexIncomplete,
-                    doc => r.branch(doc["status"].eq("Incomplete"), doc["startedDate"], r.error()))
+                //index the file paths of completed files and status
+                await CreateIndex(this.fileTableName, this.fileIndexPath,
+                    row => r.array(row["status"], row["filename"], row["uploadDate"]))
                     .ConfigureAwait(false);
             }
 
@@ -176,7 +171,7 @@ namespace RethinkDb.Driver.ReGrid
             {
                 //Index the chunks and their parent [fileid, n].
                 await CreateIndex(this.chunkTableName, this.chunkIndexName,
-                    doc => new[] {doc["files_id"], doc["n"]})
+                    row => r.array(row["files_id"], row["n"]))
                     .ConfigureAwait(true);
             }
 
@@ -184,16 +179,6 @@ namespace RethinkDb.Driver.ReGrid
         }
 
 
-        protected internal async Task<JArray> CreateIndex(string tableName, string indexName, IList compoundFields)
-        {
-            await this.db.table(tableName)
-                .indexCreate(indexName, compoundFields).runAtomAsync<JObject>(conn)
-                .ConfigureAwait(false);
-
-            return await this.db.table(tableName)
-                .indexWait(indexName).runAtomAsync<JArray>(conn)
-                .ConfigureAwait(false);
-        }
 
         protected internal async Task<JArray> CreateIndex(string tableName, string indexName, ReqlFunction1 indexFunc)
         {

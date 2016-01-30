@@ -110,6 +110,20 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
+        public override Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts)
+        {
+            HostEntry host = GetRoundRobin();
+            try
+            {
+                return host.conn.RunResultAsync<T>(term, globalOpts);
+            }
+            catch (Exception e) when (ExceptionIs.NetworkError(e))
+            {
+                host.MarkFailed();
+                throw;
+            }
+        }
+
         public override void RunNoReply(ReqlAst term, object globalOpts)
         {
             HostEntry host = GetRoundRobin();

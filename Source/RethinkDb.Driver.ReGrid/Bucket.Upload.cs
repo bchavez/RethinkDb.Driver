@@ -114,7 +114,7 @@ namespace RethinkDb.Driver.ReGrid
                 FileName = fileName,
                 StartedDate = DateTimeOffset.UtcNow,
                 Metadata = options.Metadata,
-                ChunkSize = options.ChunkSize
+                ChunkSizeBytes = options.ChunkSize
             };
 
             var fileTable = this.db.table(this.fileTableName);

@@ -185,6 +185,26 @@ namespace RethinkDb.Driver.Ast
             return runAtomAsync<T>(conn, runOpts).WaitSync();
         }
 
+        /// <summary>
+        /// Use this method if you're expecting SUCCESS_ATOM response from your query. This
+        /// method offers a slight edge in performance without the need for the
+        /// dynamic language runtime like the run() method uses.
+        /// </summary>
+        public virtual Task<T> runResultAsync<T>(IConnection conn, object runOpts = null)
+        {
+            return conn.RunResultAsync<T>(this, runOpts);
+        }
+
+        /// <summary>
+        /// Use this method if you're expecting SUCCESS_ATOM response from your query. This
+        /// method offers a slight edge in performance without the need for the
+        /// dynamic language runtime like the run() method uses.
+        /// </summary>
+        public virtual T runResult<T>(IConnection conn, object runOpts = null)
+        {
+            return runResultAsync<T>(conn, runOpts).WaitSync();
+        }
+
         #endregion
 
 

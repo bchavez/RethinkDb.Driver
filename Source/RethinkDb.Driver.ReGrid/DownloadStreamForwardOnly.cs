@@ -18,8 +18,8 @@ namespace RethinkDb.Driver.ReGrid
         private readonly IConnection conn;
         private readonly Table chunkTable;
         private readonly string chunkIndexName;
-        private MD5 md5;
-        private bool checkMD5;
+        private SHA256 sha256;
+        private bool checkSHA256;
 
         private bool closed;
 
@@ -33,18 +33,18 @@ namespace RethinkDb.Driver.ReGrid
             this.conn = conn;
             this.chunkTable = chunkTable;
             this.chunkIndexName = chunkIndexName;
-            if( options.CheckMD5 )
+            if( options.CheckSHA256 )
             {
-                this.md5 = MD5.Create();
-                this.checkMD5 = true;
+                this.sha256 = SHA256.Create();
+                this.checkSHA256 = true;
             }
 
-            lastChunkNumber = (int)((fileInfo.Length - 1) / fileInfo.ChunkSize);
-            lastChunkSize = (int)(fileInfo.Length % fileInfo.ChunkSize);
+            lastChunkNumber = (int)((fileInfo.Length - 1) / fileInfo.ChunkSizeBytes);
+            lastChunkSize = (int)(fileInfo.Length % fileInfo.ChunkSizeBytes);
 
             if( lastChunkSize == 0 )
             {
-                lastChunkSize = fileInfo.ChunkSize;
+                lastChunkSize = fileInfo.ChunkSizeBytes;
             }
         }
 
@@ -96,7 +96,7 @@ namespace RethinkDb.Driver.ReGrid
 
         private async Task<ArraySegment<byte>> GetSegmentAsync()
         {
-            var batchIndex = (int)((position - batchPosition) / FileInfo.ChunkSize);
+            var batchIndex = (int)((position - batchPosition) / FileInfo.ChunkSizeBytes);
 
             if (cursor == null)
             {
@@ -140,7 +140,7 @@ namespace RethinkDb.Driver.ReGrid
 
             if (previousBatch != null)
             {
-                batchPosition += previousBatch.Count * FileInfo.ChunkSize ;
+                batchPosition += previousBatch.Count * FileInfo.ChunkSizeBytes ;
             }
 
             var lastChunkInBatch = batch.Last();
@@ -160,15 +160,15 @@ namespace RethinkDb.Driver.ReGrid
                 }
                 nextChunkNumber++;
 
-                var expectedChunkSize = n == lastChunkNumber ? lastChunkSize : FileInfo.ChunkSize;
+                var expectedChunkSize = n == lastChunkNumber ? lastChunkSize : FileInfo.ChunkSizeBytes;
                 if (bytes.Length != expectedChunkSize)
                 {
                     throw new ChunkException(FileInfo.Id, nextChunkNumber, "the wrong size");
                 }
 
-                if (checkMD5)
+                if (checkSHA256)
                 {
-                    md5.TransformBlock(bytes, 0, bytes.Length, null, 0);
+                    sha256.TransformBlock(bytes, 0, bytes.Length, null, 0);
                 }
             }
         }
@@ -177,7 +177,7 @@ namespace RethinkDb.Driver.ReGrid
         private ArraySegment<byte> GetSegmentHelper(int batchIndex)
         {
             var bytes = batch[batchIndex].Data;
-            var segmentOffset = (int)(position % FileInfo.ChunkSize);
+            var segmentOffset = (int)(position % FileInfo.ChunkSizeBytes);
             var segmentCount = bytes.Length - segmentOffset;
             return new ArraySegment<byte>(bytes, segmentOffset, segmentCount);
         }
@@ -188,14 +188,14 @@ namespace RethinkDb.Driver.ReGrid
             {
                 closed = true;
 
-                if (checkMD5 && position == FileInfo.Length)
+                if (checkSHA256 && position == FileInfo.Length)
                 {
-                    this.md5.TransformFinalBlock(new byte[0], 0, 0);
-                    var calculatedMd5 = Util.GetHexString(this.md5.Hash);
+                    this.sha256.TransformFinalBlock(new byte[0], 0, 0);
+                    var sig = Util.GetHexString(this.sha256.Hash);
 
-                    if (!calculatedMd5.Equals(FileInfo.MD5, StringComparison.OrdinalIgnoreCase))
+                    if (!sig.Equals(FileInfo.SHA256, StringComparison.OrdinalIgnoreCase))
                     {
-                        throw new MD5Exception(FileInfo.Id);
+                        throw new SHA256Exception(FileInfo.Id);
                     }
                 }
             }

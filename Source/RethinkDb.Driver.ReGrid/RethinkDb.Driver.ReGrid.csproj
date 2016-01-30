@@ -42,7 +42,6 @@
     <Compile Include="BucketConfig.cs" />
     <Compile Include="Chunk.cs" />
     <Compile Include="ChunkException.cs" />
-    <Compile Include="CrazyBucket.cs" />
     <Compile Include="DownloadOptions.cs" />
     <Compile Include="DownloadStreamBase.cs" />
     <Compile Include="DownloadStreamForwardOnly.cs" />
@@ -51,8 +50,8 @@
     <Compile Include="FileNotFoundException.cs" />
     <Compile Include="FindOptions.cs" />
     <Compile Include="ReGridException.cs" />
-    <Compile Include="MD5Exception.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SHA256Exception.cs" />
     <Compile Include="UploadException.cs" />
     <Compile Include="UploadOptions.cs" />
     <Compile Include="UploadStream.cs" />

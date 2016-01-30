@@ -109,9 +109,9 @@ namespace RethinkDb.Driver.ReGrid
 
             revision = revision >= 0 ? revision : (revision * -1) - 1;
 
-            var selection = await between.orderBy()[r.hashMap("index", sort)]
+            var selection = await between.orderBy()[new {index = sort}]
                 .skip(revision).limit(1) // so the driver doesn't throw an error when a file isn't found.
-                .runAtomAsync<List<FileInfo>>(conn)
+                .runResultAsync<List<FileInfo>>(conn)
                 .ConfigureAwait(false);
 
             var fileInfo = selection.FirstOrDefault();

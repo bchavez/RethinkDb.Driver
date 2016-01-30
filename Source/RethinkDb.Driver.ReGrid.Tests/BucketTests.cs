@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
@@ -170,7 +171,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
             }
         }
         [Test]
-        public void path_ix_test()
+        public async Task path_ix_test()
         {
             Console.WriteLine(">>>> path_ix ");
 
@@ -180,7 +181,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
             CreateBucketWithTwoRevisions();
 
-            var fileInfo = bucket.GetFileInfoByNameAsync("foobar.mp3", -1);
+            var fileInfo = await bucket.GetFileInfoByNameAsync("foobar.mp3", -1);
 
             fileInfo.Dump();
 

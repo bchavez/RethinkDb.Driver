@@ -143,7 +143,7 @@ namespace RethinkDb.Driver.ReGrid
             using (var source = new DownloadStreamForwardOnly(conn, fileInfo, chunkTable, this.chunkIndexName, options))
             {
                 var count = source.Length;
-                var buffer = new byte[fileInfo.ChunkSize];
+                var buffer = new byte[fileInfo.ChunkSizeBytes];
 
                 while (count > 0)
                 {
@@ -161,9 +161,9 @@ namespace RethinkDb.Driver.ReGrid
         {
             Ensure.IsNotNull(options, nameof(options));
 
-            if (options.CheckMD5 && options.Seekable)
+            if (options.CheckSHA256 && options.Seekable)
             {
-                throw new ArgumentException("CheckMD5 can only be used when Seekable is false.");
+                throw new ArgumentException("CheckSHA256 can only be used when Seekable is false.");
             }
 
             var chunkTable = this.db.table(chunkTableName);

@@ -15,8 +15,8 @@ namespace RethinkDb.Driver.ReGrid
         [JsonProperty("id", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Guid Id { get; set; }
 
-        [JsonProperty("chunkSize")]
-        public int ChunkSize { get; set; }
+        [JsonProperty("chunkSizeBytes")]
+        public int ChunkSizeBytes { get; set; }
 
         [JsonProperty("filename")]
         public string FileName { get; set; }
@@ -30,8 +30,8 @@ namespace RethinkDb.Driver.ReGrid
         [JsonProperty("startedDate")]
         public DateTimeOffset StartedDate { get; set; }
 
-        [JsonProperty("md5")]
-        public string MD5 { get; set; }
+        [JsonProperty("sha256")]
+        public string SHA256 { get; set; }
 
         [JsonProperty("metadata")]
         public JObject Metadata { get; set; }

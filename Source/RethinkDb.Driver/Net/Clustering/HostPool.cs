@@ -71,6 +71,7 @@ namespace RethinkDb.Driver.Net.Clustering
         public abstract Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts);
         public abstract Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts);
         public abstract Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts);
+        public abstract Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts);
         public abstract void RunNoReply(ReqlAst term, object globalOpts);
     }
 }

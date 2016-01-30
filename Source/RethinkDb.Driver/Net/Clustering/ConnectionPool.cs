@@ -50,6 +50,15 @@ namespace RethinkDb.Driver.Net.Clustering
             return poolingStrategy.RunAtomAsync<T>(term, globalOpts);
         }
 
+        Task<T> IConnection.RunResultAsync<T>(ReqlAst term, object globalOpts)
+        {
+            if (this.shutdownSignal.IsCancellationRequested)
+            {
+                throw new ReqlDriverError("HostPool is shutdown.");
+            }
+            return poolingStrategy.RunResultAsync<T>(term, globalOpts);
+        }
+
         void IConnection.RunNoReply(ReqlAst term, object globalOpts)
         {
             if( this.shutdownSignal.IsCancellationRequested )

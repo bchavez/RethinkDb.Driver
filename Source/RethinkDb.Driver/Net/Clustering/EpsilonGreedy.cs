@@ -337,6 +337,24 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
+        public override async Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts)
+        {
+            HostEntry host = GetEpsilonGreedy();
+            try
+            {
+                var start = DateTime.Now.Ticks;
+                var result = await host.conn.RunResultAsync<T>(term, globalOpts).ConfigureAwait(false);
+                var end = DateTime.Now.Ticks;
+                MarkSuccess(host, start, end);
+                return result;
+            }
+            catch (Exception e) when (ExceptionIs.NetworkError(e))
+            {
+                host.MarkFailed();
+                throw;
+            }
+        }
+
         public override void RunNoReply(ReqlAst term, object globalOpts)
         {
             HostEntry host = GetEpsilonGreedy();

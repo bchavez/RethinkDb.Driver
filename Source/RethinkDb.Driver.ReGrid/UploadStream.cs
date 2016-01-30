@@ -29,7 +29,7 @@ namespace RethinkDb.Driver.ReGrid
         private long length;
         private bool aborted = false;
 
-        private MD5 md5;
+        private SHA256 sha256;
 
         /// <summary>
         /// Creates an UploadStream to ReGrid.
@@ -56,7 +56,7 @@ namespace RethinkDb.Driver.ReGrid
 
             this.batch = new List<byte[]>();
 
-            md5 = MD5.Create();
+            sha256 = SHA256.Create();
         }
 
         public void Abort()
@@ -146,7 +146,7 @@ namespace RethinkDb.Driver.ReGrid
                     };
                 chunks.Add(c);
                 batchPosition += chunk.Length;
-                md5.TransformBlock(chunk, 0, chunk.Length, null, 0);
+                sha256.TransformBlock(chunk, 0, chunk.Length, null, 0);
             }
             return chunks;
         }
@@ -176,7 +176,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             this.FileInfo.Id = this.filesInfoId;
             this.FileInfo.Length = this.length;
-            this.FileInfo.MD5 = Util.GetHexString(this.md5.Hash);
+            this.FileInfo.SHA256 = Util.GetHexString(this.sha256.Hash);
             this.FileInfo.UploadDate = DateTimeOffset.UtcNow;
             this.FileInfo.Status = Status.Completed;
 
@@ -191,7 +191,7 @@ namespace RethinkDb.Driver.ReGrid
                 TruncateFinalChunk();
                 await WriteBatchAsync().ConfigureAwait(false);
             }
-            md5.TransformFinalBlock(new byte[0], 0, 0);
+            sha256.TransformFinalBlock(new byte[0], 0, 0);
         }
 
         public override bool CanRead => false;
@@ -231,9 +231,9 @@ namespace RethinkDb.Driver.ReGrid
 
                 if (disposing)
                 {
-                    if (md5 != null)
+                    if (sha256 != null)
                     {
-                        md5.Dispose();
+                        sha256.Dispose();
                     }
                 }
             }

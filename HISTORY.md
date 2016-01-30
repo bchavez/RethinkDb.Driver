@@ -1,5 +1,6 @@
-## v2.2.3-beta-1
+## v2.2.3-beta-2
 * runResult() now takes IConnection instead of strongly typed Connection.
+* Added runResult[T] for SUCCESS_ATOM or SUCCESS_SEQUENCE responses.
 * Fixed nullable DateTime? and DateTimeOffset? not converting to reql_type:TIME pesudo type.
 * Make ConnectionPool more reliable. Unstable ConnectionPool arised when driver threw errors due to syntax.
 * Fixed bug in ReqlBinaryConverter preventing ser/deserialization of 0xFF

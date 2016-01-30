@@ -15,6 +15,7 @@ namespace RethinkDb.Driver.Net
         Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts);
         Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts);
         Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts);
+        Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts);
         void RunNoReply(ReqlAst term, object globalOpts);
     }
     public class Connection : IConnection
@@ -169,41 +170,19 @@ namespace RethinkDb.Driver.Net
 
         protected async virtual Task<Cursor<T>> RunQueryCursorAsync<T>(Query query)
         {
-            //If you need to continue after an await, **while inside the driver**, 
-            //as a library writer, you must use ConfigureAwait(false) on *your*
-            //await to tell the compiler NOT to resume
-            //on synchronization context (if one is present).
-            //
-            //The top most await (your user) will capture the correct synchronization context
-            //(if any) when they await on a query's run.
-            //
-            // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-
-            // http://blogs.msdn.com/b/lucian/archive/2013/11/23/talk-mvp-summit-async-best-practices.aspx
-            //
             var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
             if( res.IsPartial || res.IsSequence )
             {
                 return Cursor<T>.create(this, query, res);
             }
-            throw new ReqlDriverError($"The query response can't be converted to a Cursor<T>. The query response is not a SUCCESS_SEQUENCE or SUCCESS_PARTIAL. The response received was {res.Type}. Use `.run` and inspect the object manually. Ensure your query result is a stream that can be turned into a Cursor<T>. Most likely, your query returns an ATOM of object T and you should be using `.runAtom` instead.");
+            throw new ReqlDriverError($"The query response cannot be converted to a Cursor<T>. The run helper works with SUCCESS_SEQUENCE or SUCCESS_PARTIAL results. The server response was {res.Type}. If the server response can be handled by this run method check T. Otherwise, if the server response cannot be handled by this run helper use `.runAtom<T>` or `.runResult<T>`.");
         }
 
         /// <summary>
-        /// Fast ATOM conversion without the DLR dynamic
+        /// Fast SUCCESS_ATOM conversion without the DLR dynamic
         /// </summary>
         protected async virtual Task<T> RunQueryAtomAsync<T>(Query query)
         {
-            //If you need to continue after an await, **while inside the driver**, 
-            //as a library writer, you must use ConfigureAwait(false) on *your*
-            //await to tell the compiler NOT to resume
-            //on synchronization context (if one is present).
-            //
-            //The top most await (your user) will capture the correct synchronization context
-            //(if any) when they await on a query's run.
-            //
-            // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-
-            // http://blogs.msdn.com/b/lucian/archive/2013/11/23/talk-mvp-summit-async-best-practices.aspx
-            //
             var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
             if (res.IsAtom)
             {
@@ -216,22 +195,36 @@ namespace RethinkDb.Driver.Net
                     throw new ReqlDriverError("Atom response was empty!", ex);
                 }
             }
-            throw new ReqlDriverError($"The query response can't be converted to an object of T. The query response is not SUCCESS_ATOM. The response received was {res.Type}. Use `.run` and inspect the response manually. Ensure that your query result is something that can be converted to an object of T.  Most likely your query returns a STREAM and you should be using `.runCursor`.");
+            throw new ReqlDriverError($"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.runCursor` or `.runResult<T>`.");
+        }   
+
+
+        /// <summary>
+        /// FAST SUCCESS_ATOM or SUCCESS_SEQUENCE conversion without the DLR dynamic
+        /// </summary>
+        private async Task<T> RunQueryResultAsync<T>(Query query)
+        {
+            var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
+            if( res.IsAtom )
+            {
+                try
+                {
+                    return res.Data[0].ToObject<T>(Converter.Serializer);
+                }
+                catch( IndexOutOfRangeException ex )
+                {
+                    throw new ReqlDriverError("Atom response was empty!", ex);
+                }
+            }
+            else if( res.IsSequence )
+            {
+                return res.Data.ToObject<T>(Converter.Serializer);
+            }
+            throw new ReqlDriverError($"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM or SUCCESS_SEQUENCE results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.runCursor`.");
         }
 
         protected async virtual Task RunQueryWaitAsync(Query query)
         {
-            //If you need to continue after an await, **while inside the driver**, 
-            //as a library writer, you must use ConfigureAwait(false) on *your*
-            //await to tell the compiler NOT to resume
-            //on synchronization context (if one is present).
-            //
-            //The top most await (your user) will capture the correct synchronization context
-            //(if any) when they await on a query's run.
-            //
-            // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-
-            // http://blogs.msdn.com/b/lucian/archive/2013/11/23/talk-mvp-summit-async-best-practices.aspx
-            //
             var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
             if( res.IsWaitComplete )
             {
@@ -334,6 +327,12 @@ namespace RethinkDb.Driver.Net
         {
             Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
             return RunQueryAtomAsync<T>(q);
+        }
+
+        Task<T> IConnection.RunResultAsync<T>(ReqlAst term, object globalOpts)
+        {
+            Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
+            return RunQueryResultAsync<T>(q);
         }
 
         void IConnection.RunNoReply(ReqlAst term, object globalOpts)

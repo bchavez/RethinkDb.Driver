@@ -84,6 +84,9 @@ Documentation
 
 ### ReGrid File Storage
 * [What is ReGrid?](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage)
+* [Getting Started](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#getting-started)
+* [Buckets](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#buckets)
+* [`rg` Command Line Utility](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#rg--command-line-utility)
 
 ### Driver Development
 * [Contributing](https://github.com/bchavez/RethinkDb.Driver/blob/master/CONTRIBUTING.md)

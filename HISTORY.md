@@ -1,3 +1,10 @@
+## v2.2.4
+* Roll-up Release for Full .NET Framework since v2.2.3.
+* CoreCLR users please continue using latest beta release until CoreCLR is RTM.
+
+## v2.2.4-beta-1
+* Issue 24 - Aggregate / NullReference after .connect() and immediate .run().
+
 ## v2.2.3
 * Roll-up Release for Full .NET Framework since v2.2.2.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.

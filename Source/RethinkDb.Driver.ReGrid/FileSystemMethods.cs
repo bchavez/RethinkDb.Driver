@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Utils;
@@ -12,12 +15,12 @@ namespace RethinkDb.Driver.ReGrid
         private static readonly RethinkDB r = RethinkDB.r;
         
 
-        public static Cursor<FileInfo> FindAllRevisions(this Bucket bucket, string filename)
+        public static Cursor<FileInfo> GetAllFileRevisions(this Bucket bucket, string filename)
         {
-            return FindAllRevisionsAsync(bucket, filename).WaitSync();
+            return GetAllRevisionsAsync(bucket, filename).WaitSync();
         }
 
-        public static async Task<Cursor<FileInfo>> FindAllRevisionsAsync(this Bucket bucket, string filename)
+        public static async Task<Cursor<FileInfo>> GetAllRevisionsAsync(this Bucket bucket, string filename)
         {
             filename = filename.SafePath();
 
@@ -34,28 +37,57 @@ namespace RethinkDb.Driver.ReGrid
 
 
 
-        public static Cursor<FileInfo> FindFileInfo(this Bucket bucket, string filename, int revision = -1)
+        public static FileInfo GetFileInfo(this Bucket bucket, Guid fileId)
+        {
+            return GetFileInfoAsync(bucket, fileId).WaitSync();
+        }
+
+        public static async Task<FileInfo> GetFileInfoAsync(this Bucket bucket, Guid fileId)
+        {
+            var fileInfo = await bucket.fileTable
+                .get(fileId).runAtomAsync<FileInfo>(bucket.conn)
+                .ConfigureAwait(false);
+
+            if (fileInfo == null)
+            {
+                throw new FileNotFoundException(fileId);
+            }
+
+            return fileInfo;
+        }
+
+        public static FileInfo GetFileInfoByName(this Bucket bucket, string filename, int revision = -1)
+        {
+            return GetFileInfoByNameAsync(bucket, filename, revision).WaitSync();
+        }
+
+        public static async Task<FileInfo> GetFileInfoByNameAsync(this Bucket bucket, string filename, int revision = -1)
         {
             filename = filename.SafePath();
 
-            return null;
+            var index = new { index = bucket.fileIndexPath };
+
+            var between = bucket.fileTable
+                .between(r.array(Status.Completed, filename, r.minval()), r.array(Status.Completed, filename, r.maxval()))[index];
+
+            var sort = revision >= 0 ? r.asc(bucket.fileIndexPath) : r.desc(bucket.fileIndexPath) as ReqlExpr;
+
+            revision = revision >= 0 ? revision : (revision * -1) - 1;
+
+            var selection = await between.orderBy()[new { index = sort }]
+                .skip(revision).limit(1) // so the driver doesn't throw an error when a file isn't found.
+                .runResultAsync<List<FileInfo>>(bucket.conn)
+                .ConfigureAwait(false);
+
+            var fileinfo = selection.FirstOrDefault();
+            if (fileinfo == null)
+            {
+                throw new FileNotFoundException(filename, revision);
+            }
+
+            return fileinfo;
         }
 
-        public static Cursor<FileInfo> FindFileInfo(this Bucket bucket, string filename )
-        {
-            return null;
-        }
-
-        public static async Task<Cursor<FileInfo>> FindFileAsync(this Bucket bucket, string filename)
-        {
-            filename = filename.SafePath();
-
-            return null;
-        }
-
-
-
-        
 
 
 

@@ -37,7 +37,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
         public void BeforeEachTest()
         {
             //make sure we get a new conn on each test.
-            bucket = new Bucket(conn, DbName, bucketName: "foo");
+            bucket = new Bucket(conn, DbName);
         }
 
         protected void DropFilesTable()

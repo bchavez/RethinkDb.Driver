@@ -23,8 +23,10 @@ namespace RethinkDb.Driver.ReGrid
         public async Task<byte[]> DownloadAsBytesByNameAsync(string filename, int revision = -1, DownloadOptions options = null)
         {
             options = options ?? new DownloadOptions();
-            var fileInfo = await GetFileInfoByNameAsync(filename, revision);
-            return await DownloadBytesHelperAsync(fileInfo, options);
+            var fileInfo = await this.GetFileInfoByNameAsync(filename, revision)
+                .ConfigureAwait(false);
+            return await DownloadBytesHelperAsync(fileInfo, options)
+                .ConfigureAwait(false);
         }
 
         public byte[] DownloadBytes(Guid fileId, DownloadOptions options = null)
@@ -35,7 +37,8 @@ namespace RethinkDb.Driver.ReGrid
         public async Task<byte[]> DownloadAsBytesAsync(Guid fileId, DownloadOptions options = null)
         {
             options = options ?? new DownloadOptions();
-            return await DownloadBytesHelperAsync(fileId, options);
+            return await DownloadBytesHelperAsync(fileId, options)
+                .ConfigureAwait(false);
         }
 
 
@@ -65,7 +68,7 @@ namespace RethinkDb.Driver.ReGrid
             Ensure.IsNotNull(destination, nameof(destination));
             options = options ?? new DownloadOptions();
 
-            var fileInfo = await GetFileInfoByNameAsync(filename, revision)
+            var fileInfo = await this.GetFileInfoByNameAsync(filename, revision)
                 .ConfigureAwait(false);
             await DownloadToStreamHelperAsync(fileInfo, destination, options)
                 .ConfigureAwait(false);
@@ -83,9 +86,9 @@ namespace RethinkDb.Driver.ReGrid
             return OpenDownloadStreamAsync(filename, options, revision).WaitSync();
         }
 
-        public async Task<DownloadStream> OpenDownloadStreamAsync(string fileName, DownloadOptions options, int revision = -1)
+        public async Task<DownloadStream> OpenDownloadStreamAsync(string filename, DownloadOptions options, int revision = -1)
         {
-            var fileInfo = await GetFileInfoByNameAsync(fileName, revision)
+            var fileInfo = await this.GetFileInfoByNameAsync(filename, revision)
                 .ConfigureAwait(false);
 
             return CreateDownloadStream(fileInfo, options);
@@ -101,7 +104,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             Ensure.IsNotNull(options, nameof(options));
 
-            var fileInfo = await GetFileInfoAsync(fileId)
+            var fileInfo = await this.GetFileInfoAsync(fileId)
                 .ConfigureAwait(false);
 
             return await DownloadBytesHelperAsync(fileInfo, options)
@@ -127,7 +130,7 @@ namespace RethinkDb.Driver.ReGrid
 
         private async Task DownloadToStreamHelperAsync(Guid id, Stream destination, DownloadOptions options)
         {
-            var fileInfo = await GetFileInfoAsync(id)
+            var fileInfo = await this.GetFileInfoAsync(id)
                 .ConfigureAwait(false);
 
             await DownloadToStreamHelperAsync(fileInfo, destination, options)

@@ -2,7 +2,9 @@ using System;
 using System.IO;
 using System.Linq;
 using FluentAssertions;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Tests.Utils;
 using RethinkDb.Driver.Utils;
 
@@ -70,6 +72,62 @@ namespace RethinkDb.Driver.ReGrid.Tests
             {
                 chunk.Data.Length.Should().Be(1024);
             }
+        }
+
+        public class AppMeta
+        {
+            public string User { get; set; }
+            public DateTime? LastAccess { get; set; }
+            public string[] Roles { get; set; }
+            public string ContentType { get; set; }
+        }
+
+        [Test]
+        public void can_store_metadata_with_upload()
+        {
+            var meta = new AppMeta()
+                {
+                    User = "cowboy",
+                    LastAccess = DateTime.Now,
+                    Roles = new[] {"admin", "office"},
+                    ContentType = "application/pdf"
+            };
+
+            var opts = new UploadOptions();
+            opts.SetMetadata(meta);
+
+            var id = bucket.Upload(testFile, TestBytes.HalfChunk, opts);
+
+            var fileInfo = bucket.GetFileInfo(id);
+            fileInfo.Metadata.Should().NotBeNull();
+
+            var otherMeta = fileInfo.Metadata.ToObject<AppMeta>(Converter.Serializer);
+
+            otherMeta.User.Should().Be(meta.User);
+            otherMeta.LastAccess.Should().BeCloseTo(meta.LastAccess.Value, 2000);
+            otherMeta.Roles.Should().Equal(meta.Roles);
+            otherMeta.ContentType.Should().Be(meta.ContentType);
+        }
+
+        [Test]
+        public void can_store_simple_meta_with_upload()
+        {
+            var opts = new UploadOptions();
+
+            opts.SetMetadata(new
+                {
+                    UserId = "123",
+                    LastAccess = r.now(),
+                    Roles = r.array("admin", "office"),
+                    ContentType = "application/pdf"
+                });
+
+            var id = bucket.Upload(testFile, TestBytes.HalfChunk, opts);
+
+            var fileInfo = bucket.GetFileInfo(id);
+
+            fileInfo.Metadata["UserId"].Value<string>().Should().Be("123");
+            fileInfo.Dump();
         }
 
         [Test]

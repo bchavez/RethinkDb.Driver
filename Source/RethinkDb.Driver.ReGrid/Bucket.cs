@@ -54,49 +54,6 @@ namespace RethinkDb.Driver.ReGrid
         }
         
 
-        internal async Task<FileInfo> GetFileInfoByNameAsync(string filename, int revision)
-        {
-            filename = filename.SafePath();
-
-            var index = new { index = this.fileIndexPath };
-
-            var between = this.fileTable
-                .between(r.array(Status.Completed, filename, r.minval()), r.array(Status.Completed, filename, r.maxval()))[index];
-
-            var sort = revision >= 0 ? r.asc(this.fileIndexPath) : r.desc(this.fileIndexPath) as ReqlExpr;
-
-            revision = revision >= 0 ? revision : (revision * -1) - 1;
-
-            var selection = await between.orderBy()[new {index = sort}]
-                .skip(revision).limit(1) // so the driver doesn't throw an error when a file isn't found.
-                .runResultAsync<List<FileInfo>>(conn)
-                .ConfigureAwait(false);
-
-            var fileinfo = selection.FirstOrDefault();
-            if( fileinfo == null )
-            {
-                throw new FileNotFoundException(filename, revision);
-            }
-
-            return fileinfo;
-        }
-
-
-        internal async Task<FileInfo> GetFileInfoAsync(Guid fileId)
-        {
-            var fileInfo = await this.fileTable
-                .get(fileId).runAtomAsync<FileInfo>(conn)
-                .ConfigureAwait(false);
-
-            if (fileInfo == null)
-            {
-                throw new FileNotFoundException(fileId);
-            }
-
-            return fileInfo;
-        }
-
-
         private void ThrowIfNotMounted()
         {
             if( !this.Mounted )

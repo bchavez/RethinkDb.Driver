@@ -52,7 +52,7 @@ namespace RethinkDb.Driver.Tests
             {
             }
         }
-
+        
         [TestFixtureTearDown]
         public void AfterRunningTestSession()
         {

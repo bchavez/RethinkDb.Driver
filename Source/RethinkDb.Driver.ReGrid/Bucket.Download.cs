@@ -170,7 +170,7 @@ namespace RethinkDb.Driver.ReGrid
             if (options.Seekable)
             {
                 //make seekable
-                throw new NotImplementedException();
+                return new SeekableDownloadStream(this, fileinfo);
             }
 
             return new DownloadStreamForwardOnly(this, this.conn, fileinfo, this.chunkTable, this.chunkIndexName, options);

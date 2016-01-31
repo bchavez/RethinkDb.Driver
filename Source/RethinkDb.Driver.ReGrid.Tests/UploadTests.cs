@@ -24,11 +24,11 @@ namespace RethinkDb.Driver.ReGrid.Tests
         [Test]
         public void test_upload()
         {
-            var fileId = bucket.Upload(testFile, TestBytes.OneHalfChunk);
+            var fileId = bucket.Upload(testfile, TestBytes.OneHalfChunk);
 
             fileId.Should().NotBeEmpty();
 
-            var info = bucket.GetFileInfoByNameAsync(testFile, -1).WaitSync();
+            var info = bucket.GetFileInfoByNameAsync(testfile, -1).WaitSync();
 
             info.Dump();
 
@@ -39,7 +39,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
         [Test]
         public void uploadfile_with_no_bytes_should_have_no_chunks()
         {
-            var fileId = bucket.Upload(testFile, TestBytes.NoChunks);
+            var fileId = bucket.Upload(testfile, TestBytes.NoChunks);
 
             var chunks = GridUtility.EnumerateChunks(bucket, fileId).ToList();
             chunks.Count.Should().Be(0);
@@ -55,11 +55,11 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
             var data = TestBytes.Generate(1024 * 2);
 
-            var fileId = bucket.Upload(testFile, data, opts);
+            var fileId = bucket.Upload(testfile, data, opts);
 
             fileId.Should().NotBeEmpty();
 
-            var info = bucket.GetFileInfoByNameAsync(testFile, -1).WaitSync();
+            var info = bucket.GetFileInfoByNameAsync(testfile, -1).WaitSync();
 
             info.ChunkSizeBytes.Should().Be(1024);
 
@@ -96,7 +96,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
             var opts = new UploadOptions();
             opts.SetMetadata(meta);
 
-            var id = bucket.Upload(testFile, TestBytes.HalfChunk, opts);
+            var id = bucket.Upload(testfile, TestBytes.HalfChunk, opts);
 
             var fileInfo = bucket.GetFileInfo(id);
             fileInfo.Metadata.Should().NotBeNull();
@@ -122,7 +122,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
                     ContentType = "application/pdf"
                 });
 
-            var id = bucket.Upload(testFile, TestBytes.HalfChunk, opts);
+            var id = bucket.Upload(testfile, TestBytes.HalfChunk, opts);
 
             var fileInfo = bucket.GetFileInfo(id);
 
@@ -135,13 +135,13 @@ namespace RethinkDb.Driver.ReGrid.Tests
         {
             Guid uploadId;
             using( var fileStream = new MemoryStream(TestBytes.OneHalfChunk))
-            using( var uploadStream = bucket.OpenUploadStream(testFile) )
+            using( var uploadStream = bucket.OpenUploadStream(testfile) )
             {
                 uploadId = uploadStream.FileInfo.Id;
                 fileStream.CopyTo(uploadStream);
             }
             
-            var upload = bucket.DownloadAsBytesByName(testFile);
+            var upload = bucket.DownloadAsBytesByName(testfile);
 
             upload.Should().Equal(TestBytes.OneHalfChunk);
         }

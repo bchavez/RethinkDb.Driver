@@ -79,5 +79,18 @@ namespace RethinkDb.Driver.ReGrid
                 .runCursorAsync<Chunk>(bucket.conn)
                 .ConfigureAwait(false);
         }
+
+        public static Chunk GetChunk(Bucket bucket, Guid fileId, long n)
+        {
+            return GetChunkAsync(bucket, fileId, n).WaitSync();
+        }
+        public static async Task<Chunk> GetChunkAsync(Bucket bucket, Guid fileId, long n)
+        {
+            var index = new { index = bucket.chunkIndexName };
+            return await bucket.chunkTable.getAll(r.array(fileId, n))[index]
+                .nth(0)
+                .runResultAsync<Chunk>(bucket.conn)
+                .ConfigureAwait(false);
+        }
     }
 }

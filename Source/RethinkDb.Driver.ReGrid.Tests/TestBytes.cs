@@ -10,12 +10,15 @@ namespace RethinkDb.Driver.ReGrid.Tests
         public static byte[] OneHalfChunkReversed;
         public static byte[] NoChunks = new byte[0];
 
+        public static int BlockLength = (1024 * 255);
+        public static int HalfBlockLength = (1024 * 128);
+
         static TestBytes()
         {
-            OneHalfChunk = Generate((1024 * 255) + (1024 * 128));// 1.5 chunks
+            OneHalfChunk = Generate(BlockLength + HalfBlockLength);// 1.5 chunks
             OneHalfChunkReversed = OneHalfChunk.Reverse().ToArray();
 
-            HalfChunk = Generate(1024 * 128);
+            HalfChunk = Generate(HalfBlockLength);
         }
 
         public static byte[] Generate(int amount)

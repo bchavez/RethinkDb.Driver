@@ -17,7 +17,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
         protected string fileTableName;
         protected string chunkTableName;
 
-        protected string testFile = "foobar.mp3";
+        protected string testfile = "foobar.mp3";
 
         public BucketTest()
         {
@@ -52,12 +52,21 @@ namespace RethinkDb.Driver.ReGrid.Tests
             bucket.Mount();
 
             //original reversed
-            bucket.Upload(testFile, TestBytes.OneHalfChunk);
+            bucket.Upload(testfile, TestBytes.OneHalfChunk);
 
             Thread.Sleep(1500);
 
             //latest
-            bucket.Upload(testFile, TestBytes.OneHalfChunkReversed);
+            bucket.Upload(testfile, TestBytes.OneHalfChunkReversed);
+        }
+
+        protected void CreateBucketWithOneFileTwoChunks()
+        {
+            bucket.Purge();
+            bucket.Mount();
+
+            //original reversed
+            bucket.Upload(testfile, TestBytes.OneHalfChunk);
         }
     }
 }

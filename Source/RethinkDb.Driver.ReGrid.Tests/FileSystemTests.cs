@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
             //    .orderBy()[new { index = r.desc("path_ix") }]
             //    .runCursor<FileInfo>(conn);
 
-            var fileInfo = await bucket.GetFileInfoByNameAsync(testFile, -1);
+            var fileInfo = await bucket.GetFileInfoByNameAsync(testfile, -1);
 
             fileInfo.Dump();
 
@@ -48,13 +48,13 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
             Console.WriteLine(">>>> LATEST ");
 
-            var latest = await bucket.GetFileInfoByNameAsync(testFile, -1);
+            var latest = await bucket.GetFileInfoByNameAsync(testfile, -1);
 
             latest.Dump();
 
             Console.WriteLine(">>>> ORIGINAL ");
 
-            var original = await bucket.GetFileInfoByNameAsync(testFile, 0);
+            var original = await bucket.GetFileInfoByNameAsync(testfile, 0);
 
             original.Dump();
 

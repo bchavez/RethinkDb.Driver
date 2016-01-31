@@ -7,8 +7,11 @@ namespace RethinkDb.Driver.ReGrid
 {
     public abstract class DownloadStream : BaseStream
     {
-        protected DownloadStream(FileInfo fileInfo) : base(fileInfo)
+        protected readonly Bucket bucket;
+
+        protected DownloadStream(Bucket bucket, FileInfo fileInfo) : base(fileInfo)
         {
+            this.bucket = bucket;
         }
 
         private bool disposed;

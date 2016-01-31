@@ -28,9 +28,8 @@ namespace RethinkDb.Driver.ReGrid
         private List<Chunk> batch;
 
         public DownloadStreamForwardOnly(Bucket bucket, IConnection conn, FileInfo fileInfo, Table chunkTable, string chunkIndexName, DownloadOptions options)
-            : base(fileInfo)
+            : base(bucket, fileInfo)
         {
-            this.bucket = bucket;
             this.conn = conn;
             this.chunkTable = chunkTable;
             this.chunkIndexName = chunkIndexName;
@@ -210,7 +209,6 @@ namespace RethinkDb.Driver.ReGrid
         private int lastChunkSize;
         private long batchPosition;
         private long nextChunkNumber;
-        private Bucket bucket;
 
         public override long Position
         {

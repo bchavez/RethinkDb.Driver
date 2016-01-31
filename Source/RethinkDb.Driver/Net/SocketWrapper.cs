@@ -68,6 +68,15 @@ namespace RethinkDb.Driver.Net
                 //http://blog.i3arnon.com/2015/07/02/task-run-long-running/
                 //LongRunning creates a new thread and marks it as a background thread
                 //(ie: does not block application shutdown, when all foreground threads finish)
+                pump = new CancellationTokenSource(); // GitHub Issue #24 - Set PUMP token first before starting thread.
+                                                      //      If the pump token is set in ResponsePump, and the thread is scheduled
+                                                      //      late, and we return immediately to the caller indicating the connection
+                                                      //      is ready, the caller will immediately SendQuery. However, SendQuery
+                                                      //      is dependent on pump, and will encounter a null reference exception
+                                                      //      because the ResponsePump thread is late setting the token.
+                                                      //
+                                                      //      So, set the token so that we're *really* ready to begin sending
+                                                      //      queries.
                 Task.Factory.StartNew(ResponsePump, TaskCreationOptions.LongRunning);
             }
             catch
@@ -131,7 +140,6 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         private void ResponsePump()
         {
-            pump = new CancellationTokenSource();
             while ( true )
             {
                 if( pump.IsCancellationRequested )

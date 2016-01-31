@@ -97,6 +97,21 @@ namespace RethinkDb.Driver.Ast {
 ///  "unit": "E_UNIT",
 ///  "fill": "T_BOOL"
 ///</summary>
+    public Circle this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Circle (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "num_vertices": "T_EXPR",
+///  "geo_system": "E_GEO_SYSTEM",
+///  "unit": "E_UNIT",
+///  "fill": "T_BOOL"
+///</summary>
         public Circle optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

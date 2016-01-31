@@ -95,6 +95,26 @@ namespace RethinkDb.Driver.Ast {
 ///  "nonvoting_replica_tags": "T_ARRAY",
 ///  "emergency_repair": "E_EMERGENCY_REPAIR"
 ///</summary>
+    public Reconfigure this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Reconfigure (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "shards": "T_NUM",
+///  "replicas": [
+///    "T_OBJECT",
+///    "T_NUM"
+///  ],
+///  "primary_replica_tag": "T_STR",
+///  "dry_run": "T_BOOL",
+///  "nonvoting_replica_tags": "T_ARRAY",
+///  "emergency_repair": "E_EMERGENCY_REPAIR"
+///</summary>
         public Reconfigure optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

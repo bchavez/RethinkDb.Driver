@@ -79,6 +79,18 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "index": "T_STR"
 ///</summary>
+    public GetAll this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new GetAll (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "index": "T_STR"
+///</summary>
         public GetAll optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

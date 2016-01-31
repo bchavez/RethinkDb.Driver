@@ -96,6 +96,22 @@ namespace RethinkDb.Driver.Ast {
 ///  "max_dist": "T_NUM",
 ///  "geo_system": "E_GEO_SYSTEM"
 ///</summary>
+    public GetNearest this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new GetNearest (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "index": "T_STR",
+///  "max_results": "T_NUM",
+///  "unit": "E_UNIT",
+///  "max_dist": "T_NUM",
+///  "geo_system": "E_GEO_SYSTEM"
+///</summary>
         public GetNearest optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

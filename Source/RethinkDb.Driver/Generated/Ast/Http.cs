@@ -117,6 +117,37 @@ namespace RethinkDb.Driver.Ast {
 ///    "T_OBJECT"
 ///  ]
 ///</summary>
+    public Http this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Http (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "timeout": "T_NUM",
+///  "reattempts": "T_NUM",
+///  "redirects": "T_NUM",
+///  "verify": "T_BOOL",
+///  "result_format": "E_RESULT_FORMAT",
+///  "method": "E_HTTP_METHOD",
+///  "auth": {
+///    "type": "E_AUTH_TYPE",
+///    "user": "T_STR",
+///    "pass": "T_STR"
+///  },
+///  "params": "T_OBJECT",
+///  "header": [
+///    "T_ARRAY",
+///    "T_OBJECT"
+///  ],
+///  "data": [
+///    "T_STR",
+///    "T_OBJECT"
+///  ]
+///</summary>
         public Http optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

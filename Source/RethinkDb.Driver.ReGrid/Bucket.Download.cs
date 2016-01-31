@@ -15,11 +15,21 @@ namespace RethinkDb.Driver.ReGrid
     {
         //PUBLIC
         //AS BYTE ARRAY
+        /// <summary>
+        /// Download file as byte[].
+        /// </summary>
+        /// <param name="filename">The file name</param>
+        /// <param name="revision">-1: The most recent revision. -2: The second most recent revision. -3: The third most recent revision. 0: The original stored file. 1: The first revision. 2: The second revision. etc...</param>
         public byte[] DownloadAsBytesByName(string filename, int revision = -1, DownloadOptions options = null)
         {
             return DownloadAsBytesByNameAsync(filename, revision, options).WaitSync();
         }
 
+        /// <summary>
+        /// Download file as byte[].
+        /// </summary>
+        /// <param name="filename">The file name</param>
+        /// <param name="revision">-1: The most recent revision. -2: The second most recent revision. -3: The third most recent revision. 0: The original stored file. 1: The first revision. 2: The second revision. etc...</param>
         public async Task<byte[]> DownloadAsBytesByNameAsync(string filename, int revision = -1, DownloadOptions options = null)
         {
             options = options ?? new DownloadOptions();
@@ -29,11 +39,19 @@ namespace RethinkDb.Driver.ReGrid
                 .ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// Download file as byte[] by fileId.
+        /// </summary>
+        /// <param name="fileId">The fileId</param>
         public byte[] DownloadBytes(Guid fileId, DownloadOptions options = null)
         {
             return DownloadAsBytesAsync(fileId, options).WaitSync();
         }
 
+        /// <summary>
+        /// Download file as byte[] by fileId.
+        /// </summary>
+        /// <param name="fileId">The fileId</param>
         public async Task<byte[]> DownloadAsBytesAsync(Guid fileId, DownloadOptions options = null)
         {
             options = options ?? new DownloadOptions();
@@ -44,11 +62,21 @@ namespace RethinkDb.Driver.ReGrid
 
 
         // TO STREAM
+        /// <summary>
+        /// Download a file to a stream.
+        /// </summary>
+        /// <param name="fileId">The fileId</param>
+        /// <param name="destination"></param>
         public void DownloadToStream(Guid fileId, Stream destination, DownloadOptions options = null)
         {
             DownloadToStreamAsync(fileId, destination, options).WaitSync();
         }
 
+        /// <summary>
+        /// Download a file to a stream.
+        /// </summary>
+        /// <param name="fileId">The fileId</param>
+        /// <param name="destination"></param>
         public async Task DownloadToStreamAsync(Guid fileId, Stream destination, DownloadOptions options = null)
         {
             options = options ?? new DownloadOptions();
@@ -57,11 +85,23 @@ namespace RethinkDb.Driver.ReGrid
         }
 
 
+        /// <summary>
+        /// Download file to a stream.
+        /// </summary>
+        /// <param name="filename">The file name</param>
+        /// <param name="revision">-1: The most recent revision. -2: The second most recent revision. -3: The third most recent revision. 0: The original stored file. 1: The first revision. 2: The second revision. etc...</param>
+        /// <param name="destination">The destination stream to write to.</param>
         public void DownloadToStreamByName(string filename, Stream destination, int revision = -1, DownloadOptions options = null)
         {
             DownloadToStreamByNameAsync(filename, destination, revision, options).WaitSync();
         }
 
+        /// <summary>
+        /// Download file to a stream.
+        /// </summary>
+        /// <param name="filename">The file name</param>
+        /// <param name="revision">-1: The most recent revision. -2: The second most recent revision. -3: The third most recent revision. 0: The original stored file. 1: The first revision. 2: The second revision. etc...</param>
+        /// <param name="destination">The destination stream to write to.</param>
         public async Task DownloadToStreamByNameAsync(string filename, Stream destination, int revision = -1, DownloadOptions options = null)
         {
             Ensure.IsNotNull(filename, nameof(filename));
@@ -74,18 +114,28 @@ namespace RethinkDb.Driver.ReGrid
                 .ConfigureAwait(false);
         }
 
-        
+
 
 
 
 
         // OPEN AS STREAM
+        /// <summary>
+        /// Open a download stream to read from.
+        /// </summary>
+        /// <param name="filename">The file name</param>
+        /// <param name="revision">-1: The most recent revision. -2: The second most recent revision. -3: The third most recent revision. 0: The original stored file. 1: The first revision. 2: The second revision. etc...</param>
         public DownloadStream OpenDownloadStream(string filename, int revision = -1, DownloadOptions options = null)
         {
             options = options ?? new DownloadOptions();
             return OpenDownloadStreamAsync(filename, options, revision).WaitSync();
         }
 
+        /// <summary>
+        /// Open a download stream to read from.
+        /// </summary>
+        /// <param name="filename">The file name</param>
+        /// <param name="revision">-1: The most recent revision. -2: The second most recent revision. -3: The third most recent revision. 0: The original stored file. 1: The first revision. 2: The second revision. etc...</param>
         public async Task<DownloadStream> OpenDownloadStreamAsync(string filename, DownloadOptions options, int revision = -1)
         {
             var fileInfo = await this.GetFileInfoByNameAsync(filename, revision)

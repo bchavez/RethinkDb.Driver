@@ -11,7 +11,7 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.ReGrid
 {
-    public class DownloadStreamForwardOnly : DownloadStream
+    internal class DownloadStreamForwardOnly : DownloadStream
     {
         private static readonly RethinkDB r = RethinkDB.r;
 

@@ -103,6 +103,18 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "default": "T_EXPR"
 ///</summary>
+    public Filter this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Filter (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "default": "T_EXPR"
+///</summary>
         public Filter optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

@@ -15,11 +15,17 @@ namespace RethinkDb.Driver.ReGrid
         private static readonly RethinkDB r = RethinkDB.r;
         
 
-        public static Cursor<FileInfo> GetAllFileRevisions(this Bucket bucket, string filename)
+        /// <summary>
+        /// Gets all 'completed' file revisions for a given file. Deleted and incomplete files are excluded.
+        /// </summary>
+        public static Cursor<FileInfo> GetAllRevisions(this Bucket bucket, string filename)
         {
             return GetAllRevisionsAsync(bucket, filename).WaitSync();
         }
 
+        /// <summary>
+        /// Gets all 'completed' file revisions for a given file. Deleted and incomplete files are excluded.
+        /// </summary>
         public static async Task<Cursor<FileInfo>> GetAllRevisionsAsync(this Bucket bucket, string filename)
         {
             filename = filename.SafePath();
@@ -36,12 +42,17 @@ namespace RethinkDb.Driver.ReGrid
 
 
 
-
+        /// <summary>
+        /// Gets the FileInfo for a given fileId
+        /// </summary>
         public static FileInfo GetFileInfo(this Bucket bucket, Guid fileId)
         {
             return GetFileInfoAsync(bucket, fileId).WaitSync();
         }
 
+        /// <summary>
+        /// Gets the FileInfo for a given fileId
+        /// </summary>
         public static async Task<FileInfo> GetFileInfoAsync(this Bucket bucket, Guid fileId)
         {
             var fileInfo = await bucket.fileTable
@@ -56,11 +67,19 @@ namespace RethinkDb.Driver.ReGrid
             return fileInfo;
         }
 
+        /// <summary>
+        /// Gets a FileInfo for a given filename and revision. Considers only 'completed' uploads.
+        /// </summary>
+        /// <param name="revision">-1: The most recent revision. -2: The second most recent revision. -3: The third most recent revision. 0: The original stored file. 1: The first revision. 2: The second revision. etc...</param>
         public static FileInfo GetFileInfoByName(this Bucket bucket, string filename, int revision = -1)
         {
             return GetFileInfoByNameAsync(bucket, filename, revision).WaitSync();
         }
 
+        /// <summary>
+        /// Gets a FileInfo for a given filename and revision. Considers only 'completed' uploads.
+        /// </summary>
+        /// <param name="revision">-1: The most recent revision. -2: The second most recent revision. -3: The third most recent revision. 0: The original stored file. 1: The first revision. 2: The second revision. etc...</param>
         public static async Task<FileInfo> GetFileInfoByNameAsync(this Bucket bucket, string filename, int revision = -1)
         {
             filename = filename.SafePath();
@@ -92,18 +111,28 @@ namespace RethinkDb.Driver.ReGrid
 
 
 
-
-        public static void Delete(this Bucket bucket, Guid fileId, bool softDelete = true, object deleteOpts = null)
+        /// <summary>
+        /// Deletes a file in the bucket.
+        /// </summary>
+        /// <param name="softDelete">If true, soft-deletes a file. Space will not be reclaimed until GridUtility or admin tool is used to clean up.</param>
+        /// <param name="deleteOpts">Delete durability options. See ReQL API.</param>
+        public static void DeleteFile(this Bucket bucket, Guid fileId, bool softDelete = true, object deleteOpts = null)
         {
-            DeleteAsync(bucket, fileId, softDelete, deleteOpts).WaitSync();
+            DeleteFileAsync(bucket, fileId, softDelete, deleteOpts).WaitSync();
         }
 
-        public static async Task DeleteAsync(this Bucket bucket, Guid fileId, bool softDelete = true, object deleteOpts = null)
+        /// <summary>
+        /// Deletes a file in the bucket.
+        /// </summary>
+        /// <param name="softDelete">If false, will hard-delete a file and it's chunks. If true, soft-deletes a file. Space will not be reclaimed until GridUtility or admin tool is used to clean up.</param>
+        /// <param name="deleteOpts">Delete durability options. See ReQL API.</param>
+        public static async Task DeleteFileAsync(this Bucket bucket, Guid fileId, bool softDelete = true, object deleteOpts = null)
         {
             var result = await bucket.fileTable.get(fileId)
                 .update(
                     r.hashMap(FileInfo.StatusJsonName, Status.Deleted)
-                        .with(FileInfo.DeletedDateJsonName, DateTimeOffset.UtcNow))[deleteOpts]
+                        .with(FileInfo.DeletedDateJsonName, DateTimeOffset.UtcNow)
+                )[deleteOpts]
                 .runResultAsync(bucket.conn)
                 .ConfigureAwait(false);
 
@@ -126,8 +155,34 @@ namespace RethinkDb.Driver.ReGrid
             }
         }
 
+        /// <summary>
+        /// Deletes a file and it's associated revisions. Iteratively deletes revisions for a file one by one.
+        /// </summary>
+        /// <param name="softDelete">If false, will hard-delete a file and it's chunks. If true, soft-deletes a file. Space will not be reclaimed until GridUtility or admin tool is used to clean up.</param>
+        /// <param name="deleteOpts">Delete durability options. See ReQL API.</param>
+        public static void DeleteAllRevisions(this Bucket bucket, string filename, bool softDelete = true, object deleteOpts = null)
+        {
+            DeleteAllRevisionsAsync(bucket, filename, softDelete, deleteOpts).WaitSync();
+        }
 
+        /// <summary>
+        /// Deletes a file and it's associated revisions. Iteratively deletes revisions for a file one by one.
+        /// </summary>
+        /// <param name="softDelete">If false, will hard-delete a file and it's chunks. If true, soft-deletes a file. Space will not be reclaimed until GridUtility or admin tool is used to clean up.</param>
+        /// <param name="deleteOpts">Delete durability options. See ReQL API.</param>
+        public static async Task DeleteAllRevisionsAsync(this Bucket bucket, string filename, bool softDelete = true, object deleteOpts = null)
+        {
+            filename = filename.SafePath();
 
+            var result = await GetAllRevisionsAsync(bucket, filename)
+                .ConfigureAwait(false);
+
+            foreach( var file in result )
+            {
+                await DeleteFileAsync(bucket, file.Id, softDelete, deleteOpts)
+                    .ConfigureAwait(false);
+            }
+        }
 
     }
 }

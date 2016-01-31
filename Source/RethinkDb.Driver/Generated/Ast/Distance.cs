@@ -93,6 +93,19 @@ namespace RethinkDb.Driver.Ast {
 /// "geo_system": "E_GEO_SYSTEM",
 ///  "unit": "E_UNIT"
 ///</summary>
+    public Distance this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Distance (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "geo_system": "E_GEO_SYSTEM",
+///  "unit": "E_UNIT"
+///</summary>
         public Distance optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

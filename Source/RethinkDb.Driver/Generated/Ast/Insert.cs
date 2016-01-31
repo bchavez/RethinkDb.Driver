@@ -104,6 +104,23 @@ namespace RethinkDb.Driver.Ast {
 ///  ],
 ///  "conflict": "E_CONFLICT"
 ///</summary>
+    public Insert this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Insert (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "durability": "E_DURABILITY",
+///  "return_changes": [
+///    "T_BOOL",
+///    "always"
+///  ],
+///  "conflict": "E_CONFLICT"
+///</summary>
         public Insert optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

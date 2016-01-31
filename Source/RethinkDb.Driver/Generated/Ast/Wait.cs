@@ -81,6 +81,19 @@ namespace RethinkDb.Driver.Ast {
 /// "wait_for": "E_STATUS",
 ///  "timeout": "T_NUM"
 ///</summary>
+    public Wait this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Wait (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "wait_for": "E_STATUS",
+///  "timeout": "T_NUM"
+///</summary>
         public Wait optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

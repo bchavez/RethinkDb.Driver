@@ -7,7 +7,7 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.ReGrid
 {
-    public class SeekableDownloadStream : DownloadStream
+    internal class SeekableDownloadStream : DownloadStream
     {
         // private fields
         private byte[] chunk;

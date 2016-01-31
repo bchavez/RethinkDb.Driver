@@ -81,6 +81,19 @@ namespace RethinkDb.Driver.Ast {
 /// "multi": "T_BOOL",
 ///  "geo": "T_BOOL"
 ///</summary>
+    public IndexCreate this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new IndexCreate (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "multi": "T_BOOL",
+///  "geo": "T_BOOL"
+///</summary>
         public IndexCreate optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

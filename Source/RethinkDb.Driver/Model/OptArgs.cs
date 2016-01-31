@@ -33,6 +33,14 @@ namespace RethinkDb.Driver.Model
             return this;
         }
 
+        public virtual OptArgs with(OptArgs args)
+        {
+            foreach( var kvp in args )
+                this.with(kvp.Key, kvp.Value);
+
+            return this;
+        }
+
         public static OptArgs fromMap(IDictionary<string, ReqlAst> map)
         {
             OptArgs oa = new OptArgs();

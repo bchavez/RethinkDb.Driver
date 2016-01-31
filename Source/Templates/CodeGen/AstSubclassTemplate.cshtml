@@ -95,6 +95,18 @@
         @:}
         @:
 @:///<summary>
+@:/// @optArgs.ToString().Trim('{', '}').Trim().Replace("\n", "\n///")
+@:///</summary>
+    @:public @Class(ClassName) this[OptArgs optArgs] {
+    @:    get
+    @:    {
+    @:        var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    @:
+    @:        return new @Class(ClassName) (this.Args, newOptargs);
+    @:    }
+    @:}
+    @:
+@:///<summary>
 @:/// @optArgs.ToString().Trim('{', '}').Trim().Replace("\n","\n///")
 @:///</summary>
         @:public @Class(ClassName) optArg(string key, object val){

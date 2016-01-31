@@ -98,6 +98,20 @@ namespace RethinkDb.Driver.Ast {
 ///  "left_bound": "E_BOUND",
 ///  "right_bound": "E_BOUND"
 ///</summary>
+    public Between this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Between (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "index": "T_STR",
+///  "left_bound": "E_BOUND",
+///  "right_bound": "E_BOUND"
+///</summary>
         public Between optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

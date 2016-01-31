@@ -79,6 +79,18 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "default_timezone": "T_STR"
 ///</summary>
+    public Iso8601 this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Iso8601 (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "default_timezone": "T_STR"
+///</summary>
         public Iso8601 optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

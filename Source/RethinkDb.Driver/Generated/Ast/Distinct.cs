@@ -85,6 +85,18 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "index": "T_STR"
 ///</summary>
+    public Distinct this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Distinct (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "index": "T_STR"
+///</summary>
         public Distinct optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

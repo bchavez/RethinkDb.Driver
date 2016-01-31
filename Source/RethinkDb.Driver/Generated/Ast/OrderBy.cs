@@ -115,6 +115,18 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "index": "T_EXPR"
 ///</summary>
+    public OrderBy this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new OrderBy (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "index": "T_EXPR"
+///</summary>
         public OrderBy optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\RethinkDb.Driver.ReGrid.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -58,6 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeekableDownloadStream.cs" />
     <Compile Include="SHA256Exception.cs" />
+    <Compile Include="TimeSpanParser.cs" />
     <Compile Include="UploadException.cs" />
     <Compile Include="UploadOptions.cs" />
     <Compile Include="UploadStream.cs" />

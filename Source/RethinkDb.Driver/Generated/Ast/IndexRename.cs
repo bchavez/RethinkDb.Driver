@@ -79,6 +79,18 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "overwrite": "T_BOOL"
 ///</summary>
+    public IndexRename this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new IndexRename (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "overwrite": "T_BOOL"
+///</summary>
         public IndexRename optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

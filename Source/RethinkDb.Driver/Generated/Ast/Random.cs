@@ -79,6 +79,18 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "float": "T_BOOL"
 ///</summary>
+    public Random this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Random (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "float": "T_BOOL"
+///</summary>
         public Random optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

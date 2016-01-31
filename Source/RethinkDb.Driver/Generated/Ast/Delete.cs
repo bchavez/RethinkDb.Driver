@@ -87,6 +87,22 @@ namespace RethinkDb.Driver.Ast {
 ///    "always"
 ///  ]
 ///</summary>
+    public Delete this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Delete (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "durability": "E_DURABILITY",
+///  "return_changes": [
+///    "T_BOOL",
+///    "always"
+///  ]
+///</summary>
         public Delete optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

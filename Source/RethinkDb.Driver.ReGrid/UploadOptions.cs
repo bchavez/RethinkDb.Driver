@@ -23,10 +23,5 @@ namespace RethinkDb.Driver.ReGrid
         {
             this.Metadata = JObject.FromObject(obj, Converter.Serializer);
         }
-
-        public T GetMetadata<T>()
-        {
-            return this.Metadata.ToObject<T>(Converter.Serializer);
-        }
     }
 }

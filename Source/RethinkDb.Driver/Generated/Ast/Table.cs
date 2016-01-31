@@ -84,6 +84,19 @@ namespace RethinkDb.Driver.Ast {
 /// "read_mode": "E_READ_MODE",
 ///  "identifier_format": "E_IDENTIFIER_FORMAT"
 ///</summary>
+    public Table this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Table (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "read_mode": "E_READ_MODE",
+///  "identifier_format": "E_IDENTIFIER_FORMAT"
+///</summary>
         public Table optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

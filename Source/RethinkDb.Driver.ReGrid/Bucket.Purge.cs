@@ -25,7 +25,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             try
             {
-                await this.fileTable.runResultAsync(this.conn)
+                await this.db.tableDrop(this.fileTableName).runResultAsync(this.conn)
                     .ConfigureAwait(false);
             }
             catch
@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.ReGrid
 
             try
             {
-                await this.chunkTable.runResultAsync(this.conn)
+                await this.db.tableDrop(this.chunkTableName).runResultAsync(this.conn)
                     .ConfigureAwait(false);
             }
             catch

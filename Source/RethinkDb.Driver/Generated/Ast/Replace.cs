@@ -110,6 +110,23 @@ namespace RethinkDb.Driver.Ast {
 ///  ],
 ///  "non_atomic": "T_BOOL"
 ///</summary>
+    public Replace this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new Replace (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "durability": "E_DURABILITY",
+///  "return_changes": [
+///    "T_BOOL",
+///    "always"
+///  ],
+///  "non_atomic": "T_BOOL"
+///</summary>
         public Replace optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

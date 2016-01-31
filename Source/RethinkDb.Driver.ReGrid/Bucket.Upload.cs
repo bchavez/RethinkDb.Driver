@@ -14,16 +14,25 @@ namespace RethinkDb.Driver.ReGrid
     public partial class Bucket
     {
         //PUBLIC
-
-        public async Task<Guid> UploadAsync(string filename, byte[] bytes, UploadOptions options = null)
+        /// <summary>
+        /// Upload a file from a byte array.
+        /// </summary>
+        /// <param name="filename">The file name</param>
+        /// <param name="source">Source bytes</param>
+        public async Task<Guid> UploadAsync(string filename, byte[] source, UploadOptions options = null)
         {
-            using (var ms = new MemoryStream(bytes))
+            using (var ms = new MemoryStream(source))
             {
                 return await UploadAsync(filename, ms, options)
                     .ConfigureAwait(false);
             }
         }
 
+        /// <summary>
+        /// Upload a file from a stream source.
+        /// </summary>
+        /// <param name="filename">The file name</param>
+        /// <param name="source">Source stream</param>
         public async Task<Guid> UploadAsync(string filename, Stream source, UploadOptions options = null)
         {
             options = options ?? new UploadOptions();
@@ -71,27 +80,41 @@ namespace RethinkDb.Driver.ReGrid
             }
         }
 
+        /// <summary>
+        /// Upload a file from a stream
+        /// </summary>
+        /// <param name="filename">The file name</param>
+        /// <param name="stream">source stream</param>
         public Guid Upload(string filename, Stream stream, UploadOptions options = null)
         {
             return UploadAsync(filename, stream, options).WaitSync();
         }
 
+        /// <summary>
+        /// Upload a file from a byte[]
+        /// </summary>
+        /// <param name="filename">The file name</param>
+        /// <param name="bytes">source bytes</param>
         public Guid Upload(string filename, byte[] bytes, UploadOptions options = null)
         {
             return UploadAsync(filename, bytes, options).WaitSync();
         }
 
-        public UploadStream OpenUploadStream(
-            string fileName,
-            UploadOptions options = null)
+        /// <summary>
+        /// Open an upload stream to write to.
+        /// </summary>
+        /// <param name="fileName">The file name</param>
+        public UploadStream OpenUploadStream(string fileName, UploadOptions options = null)
         {
             options = options ?? new UploadOptions();
             return CreateUploadStreamAsync(fileName, options).WaitSync();
         }
 
-        public async Task<UploadStream> OpenUploadStreamAsync(
-            string fileName,
-            UploadOptions options)
+        /// <summary>
+        /// Open an upload stream to write to.
+        /// </summary>
+        /// <param name="fileName">The file name</param>
+        public async Task<UploadStream> OpenUploadStreamAsync(string fileName,UploadOptions options)
         {
             options = options ?? new UploadOptions();
 

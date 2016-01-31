@@ -93,6 +93,25 @@ namespace RethinkDb.Driver.Ast {
 ///  ],
 ///  "primary_replica_tag": "T_STR"
 ///</summary>
+    public TableCreate this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new TableCreate (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "primary_key": "T_STR",
+///  "durability": "E_DURABILITY",
+///  "shards": "T_NUM",
+///  "replicas": [
+///    "T_NUM",
+///    "T_OBJECT"
+///  ],
+///  "primary_replica_tag": "T_STR"
+///</summary>
         public TableCreate optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

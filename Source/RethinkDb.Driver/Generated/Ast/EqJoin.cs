@@ -82,6 +82,18 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "index": "T_STR"
 ///</summary>
+    public EqJoin this[OptArgs optArgs] {
+        get
+        {
+            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    
+            return new EqJoin (this.Args, newOptargs);
+        }
+    }
+    
+///<summary>
+/// "index": "T_STR"
+///</summary>
         public EqJoin optArg(string key, object val){
             
             var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);

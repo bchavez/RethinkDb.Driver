@@ -114,19 +114,19 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Deletes a file in the bucket.
         /// </summary>
-        /// <param name="softDelete">If true, soft-deletes a file. Space will not be reclaimed until GridUtility or admin tool is used to clean up.</param>
+        /// <param name="mode">Soft deletes are atomic. Hard are atomic on the file but not a file's chunks.</param>
         /// <param name="deleteOpts">Delete durability options. See ReQL API.</param>
-        public static void DeleteFile(this Bucket bucket, Guid fileId, bool softDelete = true, object deleteOpts = null)
+        public static void DeleteRevision(this Bucket bucket, Guid fileId, DeleteMode mode = DeleteMode.Soft, object deleteOpts = null)
         {
-            DeleteFileAsync(bucket, fileId, softDelete, deleteOpts).WaitSync();
+            DeleteRevisionAsync(bucket, fileId, mode, deleteOpts).WaitSync();
         }
 
         /// <summary>
         /// Deletes a file in the bucket.
         /// </summary>
-        /// <param name="softDelete">If false, will hard-delete a file and it's chunks. If true, soft-deletes a file. Space will not be reclaimed until GridUtility or admin tool is used to clean up.</param>
+        /// <param name="mode">Soft deletes are atomic. Hard are atomic on the file but not a file's chunks.</param>
         /// <param name="deleteOpts">Delete durability options. See ReQL API.</param>
-        public static async Task DeleteFileAsync(this Bucket bucket, Guid fileId, bool softDelete = true, object deleteOpts = null)
+        public static async Task DeleteRevisionAsync(this Bucket bucket, Guid fileId, DeleteMode mode = DeleteMode.Soft, object deleteOpts = null)
         {
             var result = await bucket.fileTable.get(fileId)
                 .update(
@@ -138,7 +138,7 @@ namespace RethinkDb.Driver.ReGrid
 
             result.AssertReplaced(1);
 
-            if (!softDelete)
+            if (mode == DeleteMode.Hard)
             {
                 //delete the chunks....
                 await bucket.chunkTable.between(
@@ -158,19 +158,19 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Deletes a file and it's associated revisions. Iteratively deletes revisions for a file one by one.
         /// </summary>
-        /// <param name="softDelete">If false, will hard-delete a file and it's chunks. If true, soft-deletes a file. Space will not be reclaimed until GridUtility or admin tool is used to clean up.</param>
+        /// <param name="mode">Soft deletes are atomic. Hard are atomic on the file but not a file's chunks.</param>
         /// <param name="deleteOpts">Delete durability options. See ReQL API.</param>
-        public static void DeleteAllRevisions(this Bucket bucket, string filename, bool softDelete = true, object deleteOpts = null)
+        public static void DeleteAllRevisions(this Bucket bucket, string filename, DeleteMode mode = DeleteMode.Soft, object deleteOpts = null)
         {
-            DeleteAllRevisionsAsync(bucket, filename, softDelete, deleteOpts).WaitSync();
+            DeleteAllRevisionsAsync(bucket, filename, mode, deleteOpts).WaitSync();
         }
 
         /// <summary>
         /// Deletes a file and it's associated revisions. Iteratively deletes revisions for a file one by one.
         /// </summary>
-        /// <param name="softDelete">If false, will hard-delete a file and it's chunks. If true, soft-deletes a file. Space will not be reclaimed until GridUtility or admin tool is used to clean up.</param>
+        /// <param name="mode">Soft deletes are atomic. Hard are atomic on the file but not a file's chunks.</param>
         /// <param name="deleteOpts">Delete durability options. See ReQL API.</param>
-        public static async Task DeleteAllRevisionsAsync(this Bucket bucket, string filename, bool softDelete = true, object deleteOpts = null)
+        public static async Task DeleteAllRevisionsAsync(this Bucket bucket, string filename, DeleteMode mode = DeleteMode.Soft, object deleteOpts = null)
         {
             filename = filename.SafePath();
 
@@ -179,7 +179,7 @@ namespace RethinkDb.Driver.ReGrid
 
             foreach( var file in result )
             {
-                await DeleteFileAsync(bucket, file.Id, softDelete, deleteOpts)
+                await DeleteRevisionAsync(bucket, file.Id, mode, deleteOpts)
                     .ConfigureAwait(false);
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -197,6 +198,37 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             var check = table.get(id).runAtom<JObject>(conn);
             check.Dump();
+        }
+
+        [Test]
+        public void issue_24()
+        {
+            Parallel.For(1, 4, (i) =>
+                {
+                    while( true )
+                    {
+                        Console.WriteLine("START");
+                        var _r = RethinkDB.r;
+                        var conn = _r.connection()
+                            .hostname("192.168.0.11")
+                            .port(RethinkDBConstants.DEFAULT_PORT)
+                            .timeout(60)
+                            .connect();
+                        var x = _r.db(DbName)
+                            .table(TableName)
+                            .count();
+                        Console.WriteLine(">>>>>");
+                        long resCount = x.run(conn);
+                        Console.WriteLine("<<<<<");
+                        Console.WriteLine(" - C: " + resCount);
+                        conn.close();
+                        conn = null;
+                        _r = null;
+                        Console.WriteLine("FINISH");
+                        Console.WriteLine();
+                        Console.WriteLine();
+                    }
+                });
         }
 
     }

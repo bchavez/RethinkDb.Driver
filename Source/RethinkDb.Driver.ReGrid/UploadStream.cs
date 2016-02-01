@@ -29,7 +29,8 @@ namespace RethinkDb.Driver.ReGrid
         private long length;
         private bool aborted = false;
 
-        private SHA256 sha256;
+        //private SHA256 sha256;
+        private Hasher sha256;
 
         /// <summary>
         /// Creates an UploadStream to ReGrid.
@@ -56,7 +57,7 @@ namespace RethinkDb.Driver.ReGrid
 
             this.batch = new List<byte[]>();
 
-            sha256 = SHA256.Create();
+            sha256 = new Hasher();
         }
 
         public void Abort()
@@ -146,15 +147,17 @@ namespace RethinkDb.Driver.ReGrid
                     };
                 chunks.Add(c);
                 batchPosition += chunk.Length;
-                sha256.TransformBlock(chunk, 0, chunk.Length, null, 0);
+                sha256.AppendData(chunk);
             }
             return chunks;
         }
 
+#if !DNX
         public override void Close()
         {
             CloseAsync().WaitSync();
         }
+#endif
 
         public override async Task CloseAsync()
         {
@@ -168,15 +171,16 @@ namespace RethinkDb.Driver.ReGrid
                 await WriteFinalBatchAsync().ConfigureAwait(false);
                 await WriteFinalFileInfoAsync().ConfigureAwait(false);
             }
-
+#if !DNX
             base.Close();
+#endif
         }
 
         private async Task WriteFinalFileInfoAsync()
         {
             this.FileInfo.Id = this.filesInfoId;
             this.FileInfo.Length = this.length;
-            this.FileInfo.SHA256 = Util.GetHexString(this.sha256.Hash);
+            this.FileInfo.SHA256 = this.sha256.GetHashAndReset();
             this.FileInfo.FinishedAtDate = DateTimeOffset.UtcNow;
             this.FileInfo.Status = Status.Completed;
 
@@ -191,7 +195,6 @@ namespace RethinkDb.Driver.ReGrid
                 TruncateFinalChunk();
                 await WriteBatchAsync().ConfigureAwait(false);
             }
-            sha256.TransformFinalBlock(new byte[0], 0, 0);
         }
 
         public override bool CanRead => false;
@@ -241,7 +244,7 @@ namespace RethinkDb.Driver.ReGrid
             base.Dispose(disposing);
         }
 
-        #region Helpers
+#region Helpers
         private void ThrowIfAbortedClosedOrDisposed()
         {
             if (aborted)
@@ -267,10 +270,10 @@ namespace RethinkDb.Driver.ReGrid
                 throw new ObjectDisposedException(GetType().Name);
             }
         }
-        #endregion
+#endregion
 
 
-        #region UNUSED
+#region UNUSED
         public override void Flush()
         {
         }
@@ -299,7 +302,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             throw new NotSupportedException();
         }
-        #endregion
+#endregion
 
     }
 }

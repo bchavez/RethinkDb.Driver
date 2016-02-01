@@ -1,6 +1,6 @@
 {
-  "version": "2.2.2",
-  "description": "A RethinkDB large object storage driver.",
+  "version": "0.0.0-localbuild",
+  "description": "ReGrid is a distributed file storage on top of RethinkDB. ReGrid is similarly inspired by GridFS from MongoDB. With ReGrid, a large 4GB file can be broken up into chunks and stored on RethinkDB cluster.",
   "authors": [
     "Brian Chavez"
   ],
@@ -20,7 +20,8 @@
     }
   },
   "dependencies": {
-    "Newtonsoft.Json": "8.0.2"
+    "Newtonsoft.Json": "8.0.2",
+    "RethinkDb.Driver": ""
   },
   "frameworks": {
     "net45": {
@@ -50,11 +51,14 @@
         "System.Net.Sockets": "4.0.10-beta-23123",
         "System.Net.Primitives": "4.0.11-beta-23516",
         "System.Threading.Timer": "4.0.1-beta-23516",
-        "System.Threading.Thread": "4.0.0-beta-23516"
+        "System.Threading.Thread": "4.0.0-beta-23516",
+        "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516",
+        "System.Security.Cryptography.Primitives": "4.0.0-beta-23516"
       },
       "compilationOptions": {
         "define": [
-          "DNX"
+          "DNX",
+          "NETCORE50"
         ]
       }
     }

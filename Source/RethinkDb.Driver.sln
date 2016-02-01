@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.ReGrid.CLI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.ReGrid.Tests", "RethinkDb.Driver.ReGrid.Tests\RethinkDb.Driver.ReGrid.Tests.csproj", "{E25C4B05-EA03-4693-B9A7-C00E5020D95A}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Builder2", "..\Builder\Builder2.fsproj", "{2E878DDF-5585-48F2-85E0-748579278C9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{E25C4B05-EA03-4693-B9A7-C00E5020D95A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E25C4B05-EA03-4693-B9A7-C00E5020D95A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E25C4B05-EA03-4693-B9A7-C00E5020D95A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E878DDF-5585-48F2-85E0-748579278C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E878DDF-5585-48F2-85E0-748579278C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E878DDF-5585-48F2-85E0-748579278C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E878DDF-5585-48F2-85E0-748579278C9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

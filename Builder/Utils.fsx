@@ -52,6 +52,16 @@ module BuildContext =
 //                                | (Some value, "local") -> value
 //                                | (_, _) -> None )
 
+open System
+
+let ChangeWorkingFolder() =
+        let workingDir = currentDirectory
+        if workingDir.EndsWith("Builder") then 
+            let newPath = workingDir @@ ".."
+            System.IO.Directory.SetCurrentDirectory newPath
+        else
+            failwith (sprintf "I don't know where I am... '%s'" workingDir)  
+        System.IO.Directory.GetCurrentDirectory()
 
 
 module Setup =
@@ -88,6 +98,8 @@ module Setup =
         member this.GlobalJson = globalJson
         member this.DnvmVersion = dnvmVersion
 
+
+    
         //module Folders =
         //    let WorkingFolder = System.IO.Directory.GetCurrentDirectory()
         //    let CompileOutput = WorkingFolder @@ "__compile"

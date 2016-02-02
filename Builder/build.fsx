@@ -4,8 +4,7 @@
 //Environment.CurrentDirectory <- workingDir
 //#else
 //#endif
-open System
-let workingDir = Environment.CurrentDirectory
+
 
 // include Fake lib
 #I @"packages/build/FAKE/tools"
@@ -17,6 +16,10 @@ open Fake
 open Utils
 open System.Reflection
 open Helpers
+
+let workingDir = ChangeWorkingFolder()
+
+trace (sprintf "WORKING DIR: %s" workingDir)
 
 let ProjectName = "RethinkDb.Driver";
 
@@ -100,6 +103,14 @@ Target "mono" (fun _ ->
      XBuild GridProject.ProjectFile (GridProject.OutputDirectory @@ tag)
 )
 
+Target "restore" (fun _ -> 
+     trace "MS NuGet Project Restore"
+     Projects.SolutionFile
+     |> RestoreMSSolutionPackages (fun p ->
+            { p with OutputPath = (Folders.Source @@ "packages" )}
+        )
+ )
+
 Target "nuget" (fun _ ->
     trace "NuGet Task"
     
@@ -143,6 +154,7 @@ Target "ci" (fun _ ->
 
 
 "Clean"
+    ==> "restore"
     ==> "astgen"
     ==> "BuildInfo"
 

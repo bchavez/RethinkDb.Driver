@@ -29,9 +29,9 @@ before_test:
     - ps: |
             Push-AppveyorArtifact __package\RethinkDb.Driver.Tests.zip
 
-#test: off
-test_script:
-  - build.cmd citest
+test: off
+#test_script:
+#  - build.cmd citest
 
 
 artifacts:

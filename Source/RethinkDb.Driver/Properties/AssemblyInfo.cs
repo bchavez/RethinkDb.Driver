@@ -7,7 +7,7 @@ using System.Reflection;
 [assembly: AssemblyCopyrightAttribute("Brian Chavez © 2016")]
 [assembly: AssemblyVersionAttribute("0.0.0")]
 [assembly: AssemblyFileVersionAttribute("0.0.0")]
-[assembly: AssemblyInformationalVersionAttribute("0.0.0-localbuild built on 2/2/2016 9:47:05 PM")]
+[assembly: AssemblyInformationalVersionAttribute("0.0.0-localbuild built on 2/2/2016 9:55:45 PM")]
 [assembly: AssemblyTrademarkAttribute("Apache License v2.0")]
 [assembly: AssemblyDescriptionAttribute("http://www.github.com/bchavez/RethinkDb.Driver")]
 namespace System {

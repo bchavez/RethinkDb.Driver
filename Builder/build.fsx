@@ -1,9 +1,9 @@
 ﻿#if INTERACTIVE
 open System
 let workingDir = "C:/Code/Projects/Public/RethinkDb.Driver"
-//Environment.CurrentDirectory <- workingDir
+Environment.CurrentDirectory <- workingDir
 #else
-let workingDir = ".."
+let workingDir = Environment.CurrentDirectory
 #endif
 
 // include Fake lib

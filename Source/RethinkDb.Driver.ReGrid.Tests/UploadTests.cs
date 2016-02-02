@@ -156,5 +156,12 @@ namespace RethinkDb.Driver.ReGrid.Tests
             fileId = bucket.Upload("/people/father.mp4", TestBytes.NoChunks);
             fileId = bucket.Upload("/people/mother.mp4", TestBytes.NoChunks);
         }
+
+        //DEBUG INDEXES:
+        //r.db("query").table("fs_files").map(function(x) { return x('filename').split("/").slice(0, -1); })
+
+        //INDEX: r.db("query").table('fs_files').indexCreate("path_array", function(x) { return x('filename').split("/").slice(1, -1); })
+
+        //FIND: r.db("query").table("fs_files").getAll(["animals"],{index:"path_array"})
     }
 }

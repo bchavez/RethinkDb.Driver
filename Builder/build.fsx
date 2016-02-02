@@ -99,21 +99,22 @@ Target "mono" (fun _ ->
      XBuild GridProject.ProjectFile (GridProject.OutputDirectory @@ tag)
 )
 
-Target "pack" (fun _ ->
-    trace "Pack Task"
+Target "nuget" (fun _ ->
+    trace "NuGet Task"
     
     let driverConfig = NuGetConfig DriverProject Folders Files     
     NuGet ( fun p -> driverConfig) DriverProject.NugetSpec
 
     let gridConfig = NuGetConfig GridProject Folders Files     
     NuGet ( fun p -> gridConfig) GridProject.NugetSpec
-     
 )
 
-Target "push" (fun _ ->
-     trace "Push Task"
-)
+Target "zip" (fun _ -> 
+    trace "Zip Task"
 
+    !!(DriverProject.OutputDirectory @@ "**") |> Zip Folders.CompileOutput (Folders.Package @@ DriverProject.Zip)
+    !!(GridProject.OutputDirectory @@ "**") |> Zip Folders.CompileOutput (Folders.Package @@ GridProject.Zip)
+)
 
 
 Target "BuildInfo" (fun _ ->
@@ -130,14 +131,46 @@ Target "Clean" (fun _ ->
     CleanDirs [Folders.CompileOutput; Folders.Package]
 )
 
+Target "test" (fun _ ->
+    trace "CI BUILT"
+)
+
+Target "ci" (fun _ ->
+    trace "CI BUILT"
+)
 
 
-//"Clean" 
-//    ==> "astgen"
-//    ==> "BuildInfo"
-//    ==> "dnx"
-//    ==> "pack"
+
+"Clean"
+    ==> "astgen"
+    ==> "BuildInfo"
+
+//build systems
+"BuildInfo"
+    ==> "dnx"
+    ==> "zip"
+
+"BuildInfo"
+    ==> "msb"
+    ==> "zip"
+
+"BuildInfo"
+    ==> "mono"
+    ==> "zip"
+
+"dnx"
+    ==> "nuget"
+
+//none are dependent on each other, any of them requires dependencies of dnx
+"dnx" <=> "msb" <=> "mono"
+
+
+"nuget"
+    ==> "ci"
+
+"zip"
+    ==> "ci"
 
 
 // start build
-RunTargetOrDefault "pack"
+RunTargetOrDefault "zip"

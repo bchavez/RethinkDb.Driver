@@ -18,10 +18,8 @@ init:
 
 build_script: build.cmd ci
 
-after_build:
-    - robocopy Source\RethinkDb.Driver\bin\Release __compile\RethinkDb.Driver\Release\other\ Common.Logging* Newtonsoft.Json* & if %errorlevel% LSS 8 exit /b 0 else exit /b 1
-    - 7z a __package\RethinkDb.Driver.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver\Release\**
-
+#after_build:
+    
 
 
 before_test:
@@ -39,7 +37,7 @@ test_script:
 artifacts:
     - path: __package\*.nupkg
       name: NuGet
-    - path: __package\RethinkDb.Driver.zip
+    - path: __package\*.zip
       name: Zip
 
 nuget:

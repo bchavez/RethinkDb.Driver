@@ -21,20 +21,36 @@ namespace Templates
         public string AstClasses = @"./Generated/Ast";
         public string ModelDir = @"./Generated/Model";
 
+        public void SetPaths(string driverFolder)
+        {
+            MetaDb.Initialize(Path.Combine(driverFolder, @"..\Templates\Metadata"));
+
+            this.GenerateRootDir = Path.GetFullPath(Path.Combine(driverFolder, GenerateRootDir));
+            this.ProtoDir = Path.GetFullPath(Path.Combine(driverFolder, ProtoDir));
+            this.GenerateRootDir = Path.GetFullPath(Path.Combine(driverFolder, GenerateRootDir));
+            this.AstClasses = Path.GetFullPath(Path.Combine(driverFolder, AstClasses));
+            this.ModelDir = Path.GetFullPath(Path.Combine(driverFolder, ModelDir));
+            this.ProjectFolder = Path.GetFullPath(driverFolder);
+        }
+
         [TestFixtureSetUp]
         public void BeforeRunningTestSession()
         {
-            MetaDb.Initialize(@"..\..\Metadata");
-
             //remount the working directory before we begin.
-            var rootProjectPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", ProjectFolder);
-            Directory.SetCurrentDirectory(rootProjectPath);
+            var driverFolder = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", ProjectFolder);
+            SetPaths(driverFolder);
+
             EnsurePathsExist();
         }
 
         private void Clean()
         {
-            if( Directory.Exists(GenerateRootDir) )
+            if (!File.Exists(Path.Combine(ProjectFolder,"RethinkDb.Driver.csproj")))
+            {
+                throw new FileNotFoundException("RethinkDb.Driver.csproj not found. Being safe and existing before deleting directories.");
+            }
+
+            if ( Directory.Exists(GenerateRootDir) )
             {
                 Directory.Delete(GenerateRootDir, true);
             }
@@ -42,6 +58,11 @@ namespace Templates
 
         public void EnsurePathsExist()
         {
+            if (!File.Exists(Path.Combine(ProjectFolder, "RethinkDb.Driver.csproj")))
+            {
+                throw new FileNotFoundException("RethinkDb.Driver.csproj not found. Being safe and existing before deleting directories.");
+            }
+
             if( !Directory.Exists(GenerateRootDir) )
                 Directory.CreateDirectory(GenerateRootDir);
             if( !Directory.Exists(ProtoDir) )

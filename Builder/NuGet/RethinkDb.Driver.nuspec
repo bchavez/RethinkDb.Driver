@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>RethinkDb.Driver</id>
-    <version>0.0.0.0</version>
+    <id>@project@</id>
+    <version>@build.number@</version>
     <authors>Brian Chavez</authors>
     <owners>Brian Chavez</owners>
     <licenseUrl>https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE</licenseUrl>
@@ -14,9 +14,8 @@
     
     <description>A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a one-to-one port of the official Java driver.</description>
     
-    <releaseNotes>
-        @history@
-    </releaseNotes>
+    <releaseNotes>@releaseNotes@</releaseNotes>
+      
     <copyright>Copyright 2016</copyright>
     <tags>rethinkdb database driver reql</tags>
       <dependencies>
@@ -59,22 +58,7 @@
       </frameworkAssemblies>
 
   </metadata>
-
-  <files>
-    <file src="Release\net45\RethinkDb.Driver.dll" target="lib\net45" />
-    <file src="Release\net45\RethinkDb.Driver.pdb" target="lib\net45" />
-    <file src="Release\net45\RethinkDb.Driver.XML" target="lib\net45" />
-
-    <file src="Release\dnx451\RethinkDb.Driver.dll" target="lib\dnx451" />
-    <file src="Release\dnx451\RethinkDb.Driver.pdb" target="lib\dnx451" />
-    <file src="Release\dnx451\RethinkDb.Driver.XML" target="lib\dnx451" />
-      
-    <file src="Release\dnxcore50\RethinkDb.Driver.dll" target="lib\dnxcore50" />
-    <file src="Release\dnxcore50\RethinkDb.Driver.pdb" target="lib\dnxcore50" />
-    <file src="Release\dnxcore50\RethinkDb.Driver.XML" target="lib\dnxcore50" />
-
-    <file src="..\..\Source\RethinkDb.Driver\**\*.cs"
-            exclude="..\..\Source\RethinkDb.Driver\obj\**" target="src" />
-  </files>
-
+  
+    @files@
+    
 </package>

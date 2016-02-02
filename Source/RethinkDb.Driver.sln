@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{BBBED03D-3
 		..\HISTORY.md = ..\HISTORY.md
 		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md
+		..\Builder\NuGet\RethinkDb.Driver.nuspec = ..\Builder\NuGet\RethinkDb.Driver.nuspec
+		..\Builder\NuGet\RethinkDb.Driver.ReGrid.nuspec = ..\Builder\NuGet\RethinkDb.Driver.ReGrid.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder", "Builder\Builder.csproj", "{594E6C48-5DEF-4C3E-A57C-2A2C544E999E}"

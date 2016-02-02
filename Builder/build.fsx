@@ -1,5 +1,7 @@
 ﻿#if INTERACTIVE
+open System
 let workingDir = "C:/Code/Projects/Public/RethinkDb.Driver"
+//Environment.CurrentDirectory <- workingDir
 #else
 let workingDir = ".."
 #endif
@@ -13,6 +15,7 @@ let workingDir = ".."
 open Fake
 open Utils
 open System.Reflection
+open Helpers
 
 let ProjectName = "RethinkDb.Driver";
 
@@ -30,11 +33,13 @@ let TestProject = {Project = Project("Templates", Folders); Zip = "RethinkDb.Dri
 // Default target
 Target "astgen" (fun _ ->
     
+    trace "ReQL AST Generation Task Starting ..."
+    
     let metadata = "Metadata";
     let templates = Project("Templates", Folders);
-
+    
     !! templates.ProjectFile
-    |> MSBuildWithDefaults "Build"
+    |> MSBuildDebug null "Build"
     |> Log "AppBuild-Output: "
 
     let path = templates.Folder @@ "bin" @@ "Debug" @@ sprintf "%s.dll" templates.Name
@@ -43,7 +48,9 @@ Target "astgen" (fun _ ->
 
     let gen = assembly.CreateInstance("Templates.GeneratorForAst")
 
+    trace DriverProject.Folder
 
+    DynInvoke gen "SetPaths" [| DriverProject.Folder |]
     DynInvoke gen "EnsurePathsExist" [||]
     DynInvoke gen "Generate_All" [||]
     
@@ -51,32 +58,71 @@ Target "astgen" (fun _ ->
 
 Target "msb" (fun _ ->
     
+    let tag = "msb_build";
+
     !! DriverProject.ProjectFile
-    |> MSBuildRelease DriverProject.OutputDirectory "Build"
+    |> MSBuildRelease (DriverProject.OutputDirectory @@ tag) "Build"
     |> Log "AppBuild-Output: "
 
     !! GridProject.ProjectFile
-    |> MSBuildRelease GridProject.OutputDirectory "Build"
+    |> MSBuildRelease (GridProject.OutputDirectory @@ tag) "Build"
     |> Log "AppBuild-Output: "
 
 )
 
+
+
 Target "dnx" (fun _ ->
-     trace "dnx task"
+    trace "DNX Build Task"
+
+    let tag = "dnx_build"
+    
+    DnvmUpdate()
+    DnvmInstall Projects.DnvmVersion
+    DnvmUse Projects.DnvmVersion
+    
+    // PROJECTS
+    Dnu DnuCommands.Restore DriverProject.Folder
+    DnuBuild DriverProject.Folder (DriverProject.OutputDirectory @@ tag)
+
+    Dnu DnuCommands.Restore GridProject.Folder
+    DnuBuild GridProject.Folder (GridProject.OutputDirectory @@ tag)
 )
 
 Target "mono" (fun _ ->
-     trace "mono task"
+     trace "Mono Task"
+
+     let tag = "mono_build/"
+
+     //Setup
+     XBuild DriverProject.ProjectFile (DriverProject.OutputDirectory @@ tag)
+     XBuild GridProject.ProjectFile (GridProject.OutputDirectory @@ tag)
 )
 
+Target "pack" (fun _ ->
+    trace "Pack Task"
+    
+    let driverConfig = NuGetConfig DriverProject Folders Files     
+    NuGet ( fun p -> driverConfig) DriverProject.NugetSpec
+
+    let gridConfig = NuGetConfig GridProject Folders Files     
+    NuGet ( fun p -> gridConfig) GridProject.NugetSpec
+     
+)
+
+Target "push" (fun _ ->
+     trace "Push Task"
+)
 
 
 
 Target "BuildInfo" (fun _ ->
-    //RethinkDB.Driver
-    //makeBuildInfo "RethinkDb.Driver" "RethinkDb Driver for .NET" 
-    //makeBuildInfo "RethinkDb.Driver.ReGrid" "RethinkDb Large Object File Storage for .NET"
+    
+    trace "Writing Assembly Build Info"
+
+    MakeBuildInfo DriverProject Folders
     MakeBuildInfo GridProject Folders
+
 )
 
 
@@ -85,12 +131,13 @@ Target "Clean" (fun _ ->
 )
 
 
-"Clean"
-    ==> "BuildInfo"
-    ==> "msb"
-    ==> "dnx"
-    ==> "mono"
+
+//"Clean" 
+//    ==> "astgen"
+//    ==> "BuildInfo"
+//    ==> "dnx"
+//    ==> "pack"
 
 
 // start build
-RunTargetOrDefault "msb"
+RunTargetOrDefault "pack"

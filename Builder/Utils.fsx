@@ -3,17 +3,14 @@
 // include Fake lib
 #I @"packages/build/FAKE/tools"
 #I @"packages/build/FSharp.Data/lib/net40"
+#I @"packages/build/Z.ExtensionMethods.WithNamespace\lib\net40"
 
 #r @"FakeLib.dll"
 #r @"FSharp.Data.dll"
+#r @"Z.ExtensionMethods.WithNamespace.dll"
 
 open Fake
 open AssemblyInfoFile
-open FSharp.Data
-open FSharp.Data.JsonExtensions
-
-
-
 
 module BuildContext =     
 
@@ -58,12 +55,15 @@ module BuildContext =
 
 
 module Setup =
+    open FSharp.Data
+    open FSharp.Data.JsonExtensions
+
     type Folders(workingFolder : string) =
         let compileOutput = workingFolder @@ "__compile"
         let package = workingFolder @@ "__package"
         let source = workingFolder @@ "Source"
         let lib = source @@ "packages"
-        let builder = source @@ "builder"
+        let builder = workingFolder @@ "Builder"
     
         member this.WorkingFolder = workingFolder
         member this.CompileOutput = compileOutput
@@ -122,10 +122,10 @@ type Project(name : string, folders : Folders) =
     member this.ProjectFile = projectFile
     member this.Name = name
 
-//type ProjectWithZip = {
-//        Project : Project
-//        Zip : string
-//    }
+//Like an Extension Method in C#
+type Project with 
+    member this.Zip = sprintf "%s.zip" this.Name
+
 
 type NugetProject(name : string, assemblyTitle : string, folders : Folders) =
     inherit Project(name, folders)
@@ -146,8 +146,6 @@ type NugetProject(name : string, assemblyTitle : string, folders : Folders) =
     
     member this.NugetSpec = nugetSpec
     member this.NugetPkg = nugetPkg
-
-    member this.Zip = zip
     
     member this.Title = assemblyTitle
 
@@ -176,5 +174,129 @@ open System.Reflection
 
 let DynInvoke (instance : obj) (methodName : string) (args : obj[]) =
     let objType = instance.GetType();
-    let invoke = objType.InvokeMember(methodName, BindingFlags.Instance ||| BindingFlags.Public, null, instance, args )
+    let invoke = objType.InvokeMember(methodName, BindingFlags.Instance ||| BindingFlags.Public ||| BindingFlags.InvokeMethod, null, instance, args )
     ()
+
+
+//let MakeHistorySpec nuspec dest historyTxt =
+//    trace "Making Hisotry Nuspec"
+//    let historyFile = filename (changeExt "history.nuspec" nuspec)
+//    let historyFullPath = dest @@ historyFile
+//    CopyFile historyFullPath nuspec
+//    XmlPoke historyFullPath "/package/metadata/releaseNotes/text()" historyTxt
+
+let NuGetWorkingDir (project : NugetProject) =
+    project.OutputDirectory @@ "dnx_build" @@ "release"
+
+
+let NuGetSourceDir (project : NugetProject) =
+    let dirInfo = directoryInfo project.Folder
+    (dirInfo.FullName @@ @"**\*.cs", Some "src", Some @"**\obj\**")
+
+
+let SetupNuGetPaths (p : NuGetParams) (project : NugetProject) =
+    let workingDir = NuGetWorkingDir project
+    let srcDir = NuGetSourceDir project
+    {p with 
+        WorkingDir = workingDir
+        Files = [ srcDir ]
+        }
+
+
+module History =
+    open Z.Core.Extensions
+    
+    let All historyFile =
+        System.IO.File.ReadAllText(historyFile)
+    let NugetText historyFile =
+        System.Security.SecurityElement.Escape(All historyFile)
+    let ChangesFor version historyFile =
+        let all = All historyFile
+        all.GetAfter(version).GetBefore("## ").Trim()
+
+
+let NuGetConfig (project : NugetProject) (folders :Folders) (files : Files) =
+    let p = NuGetDefaults()
+    {p with 
+       Project = project.Name
+       ReleaseNotes = History.NugetText files.History
+       OutputPath = folders.Package
+       Version = BuildContext.FullVersion
+       SymbolPackage = NugetSymbolPackage.Nuspec
+       WorkingDir = NuGetWorkingDir project
+       Files = [
+                  (@"**\**", Some "lib", None )
+                  NuGetSourceDir project
+               ]
+       Publish = false
+    }
+
+
+
+
+//////////////// DNVM
+
+module Helpers = 
+
+    let shellExec cmdPath args target = 
+        let result = ExecProcess (
+                      fun info ->
+                        info.FileName <- cmdPath
+                        info.WorkingDirectory <- target
+                        info.Arguments <- args
+                      ) System.TimeSpan.MaxValue
+        if result <> 0 then failwith (sprintf "'%s' failed" cmdPath + " " + args)
+
+    let findOnPath name = 
+        let executable = tryFindFileOnPath name
+        match executable with
+            | Some exec -> exec
+            | None -> failwith (sprintf "'%s' can't find" name)
+
+  
+    let dnu args workingDir = 
+        let executable = findOnPath "dnu.cmd"
+        shellExec executable args workingDir
+
+          
+    let dnx args workingDir = 
+            let executable = findOnPath "dnx.exe"
+            shellExec executable args workingDir    
+   
+    let dnvm args workingDir = 
+        let executable = findOnPath "dnvm.cmd"
+        shellExec executable args workingDir    
+            
+                                                          
+    type DnuCommands =
+        | Restore
+        | Build
+        | Publish
+     
+    let Dnu command target = 
+        match command with
+            | Restore -> (dnu "restore" target)
+            | Build -> (dnu "build --configuration release" target)
+            | Publish -> (dnu "publish --configuration release -o XXNOTXX XXXUSEDXXX" target)
+
+    let DnuBuild target output = 
+            let buildArgs = sprintf "build --configuration release --out %s" output
+            dnu buildArgs target
+
+    let DnvmInstall version =
+            let installArgs = sprintf "install %s -r clr" version
+            dnvm installArgs ""
+
+    let DnvmUse version =
+            let _use = sprintf "use %s -r clr -p" version;
+            dnvm _use ""
+
+    let DnvmUpdate() =
+            dnvm "update-self" ""
+
+    let XBuild target output =
+        let buildArgs = sprintf "%s /p:OutDir=%s" target output
+        let monopath = ProgramFilesX86 @@ "Mono" @@ "bin"
+
+        shellExec (monopath @@ "xbuild.bat") buildArgs ""
+    

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>RethinkDb.Driver</id>
-    <version>0.0.0.0</version>
+    <id>@project@</id>
+    <version>@build.number@</version>
     <authors>Brian Chavez</authors>
     <owners>Brian Chavez</owners>
     <licenseUrl>https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE</licenseUrl>
@@ -13,12 +13,11 @@
     <summary>ReGrid is a distributed file storage on top of RethinkDB. ReGrid is similarly inspired by GridFS from MongoDB. With ReGrid, a large 4GB file can be broken up into chunks and stored on RethinkDB cluster.</summary>
     
     <description>ReGrid is a distributed file storage on top of RethinkDB. ReGrid is similarly inspired by GridFS from MongoDB. With ReGrid, a large 4GB file can be broken up into chunks and stored on RethinkDB cluster.</description>
-    
-    <releaseNotes>
-        @history@
-    </releaseNotes>
+
+      <releaseNotes>@releaseNotes@</releaseNotes>
+      
     <copyright>Copyright 2016</copyright>
-    <tags>rethinkdb database driver reql</tags>
+    <tags>rethinkdb database driver reql gridfs regrid</tags>
       <dependencies>
           
           <group targetFramework="net45">
@@ -60,21 +59,6 @@
 
   </metadata>
 
-  <files>
-    <file src="Release\net45\RethinkDb.Driver.Regrid.dll" target="lib\net45" />
-    <file src="Release\net45\RethinkDb.Driver.Regrid.pdb" target="lib\net45" />
-    <file src="Release\net45\RethinkDb.Driver.Regrid.XML" target="lib\net45" />
-
-    <file src="Release\dnx451\RethinkDb.Driver.Regrid.dll" target="lib\dnx451" />
-    <file src="Release\dnx451\RethinkDb.Driver.Regrid.pdb" target="lib\dnx451" />
-    <file src="Release\dnx451\RethinkDb.Driver.Regrid.XML" target="lib\dnx451" />
-      
-    <file src="Release\dnxcore50\RethinkDb.Driver.Regrid.dll" target="lib\dnxcore50" />
-    <file src="Release\dnxcore50\RethinkDb.Driver.Regrid.pdb" target="lib\dnxcore50" />
-    <file src="Release\dnxcore50\RethinkDb.Driver.Regrid.XML" target="lib\dnxcore50" />
-
-    <file src="..\..\Source\RethinkDb.Driver\**\*.cs"
-            exclude="..\..\Source\RethinkDb.Driver\obj\**" target="src" />
-  </files>
+    @files@
 
 </package>

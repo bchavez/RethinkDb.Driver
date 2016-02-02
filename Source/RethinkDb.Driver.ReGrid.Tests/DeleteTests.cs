@@ -59,7 +59,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
         {
             CreateBucketWithTwoFileRevisions();
 
-            bucket.DeleteAllRevisions(testfile, mode: true);
+            bucket.DeleteAllRevisions(testfile, mode: DeleteMode.Soft);
 
 
             var fileEntries = GridUtility.EnumerateFileEntries(bucket, testfile)
@@ -76,7 +76,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
         {
             CreateBucketWithTwoFileRevisions();
 
-            bucket.DeleteAllRevisions(testfile, mode: false);
+            bucket.DeleteAllRevisions(testfile, mode: DeleteMode.Hard);
 
             var fileEntries = GridUtility.EnumerateFileEntries(bucket, testfile)
                 .ToList();

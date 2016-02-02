@@ -174,7 +174,8 @@ namespace RethinkDb.Driver.ReGrid
                 await DownloadToStreamHelperAsync(fileinfo, destination, options)
                     .ConfigureAwait(false);
 
-                return destination.GetBuffer();
+
+                return destination.ToArray();
             }
         }
 

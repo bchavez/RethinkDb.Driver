@@ -145,5 +145,23 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
             upload.Should().Equal(TestBytes.OneHalfChunk);
         }
+
+        [Test]
+        public void upload_files_to_different_paths()
+        {
+            var fileId = bucket.Upload("/monkey.mp4", TestBytes.NoChunks);
+            fileId = bucket.Upload("/animals/dog.mp4", TestBytes.NoChunks);
+            fileId = bucket.Upload("/animals/cat.mp4", TestBytes.NoChunks);
+            fileId = bucket.Upload("/animals/fish.mp4", TestBytes.NoChunks);
+            fileId = bucket.Upload("/people/father.mp4", TestBytes.NoChunks);
+            fileId = bucket.Upload("/people/mother.mp4", TestBytes.NoChunks);
+        }
+
+        //DEBUG INDEXES:
+        //r.db("query").table("fs_files").map(function(x) { return x('filename').split("/").slice(0, -1); })
+
+        //INDEX: r.db("query").table('fs_files').indexCreate("path_array", function(x) { return x('filename').split("/").slice(1, -1); })
+
+        //FIND: r.db("query").table("fs_files").getAll(["animals"],{index:"path_array"})
     }
 }

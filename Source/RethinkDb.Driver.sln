@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{BBBED03D-3
 		..\HISTORY.md = ..\HISTORY.md
 		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md
+		..\Builder\NuGet\RethinkDb.Driver.nuspec = ..\Builder\NuGet\RethinkDb.Driver.nuspec
+		..\Builder\NuGet\RethinkDb.Driver.ReGrid.nuspec = ..\Builder\NuGet\RethinkDb.Driver.ReGrid.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder", "Builder\Builder.csproj", "{594E6C48-5DEF-4C3E-A57C-2A2C544E999E}"
@@ -32,6 +34,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.ReGrid.CLI", "RethinkDb.Driver.ReGrid.CLI\RethinkDb.Driver.ReGrid.CLI.csproj", "{E4D63A4B-F886-4C29-96FD-11022F4294A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.ReGrid.Tests", "RethinkDb.Driver.ReGrid.Tests\RethinkDb.Driver.ReGrid.Tests.csproj", "{E25C4B05-EA03-4693-B9A7-C00E5020D95A}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Builder2", "..\Builder\Builder2.fsproj", "{2E878DDF-5585-48F2-85E0-748579278C9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,10 @@ Global
 		{E25C4B05-EA03-4693-B9A7-C00E5020D95A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E25C4B05-EA03-4693-B9A7-C00E5020D95A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E25C4B05-EA03-4693-B9A7-C00E5020D95A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E878DDF-5585-48F2-85E0-748579278C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E878DDF-5585-48F2-85E0-748579278C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E878DDF-5585-48F2-85E0-748579278C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E878DDF-5585-48F2-85E0-748579278C9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

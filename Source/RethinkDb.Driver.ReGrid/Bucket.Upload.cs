@@ -132,13 +132,13 @@ namespace RethinkDb.Driver.ReGrid
             Ensure.IsNotNull(options, nameof(options));
 
             var fileInfo = new FileInfo()
-            {
-                Status = Status.Incomplete,
-                FileName = filename.SafePath(),
-                StartedAtDate = DateTimeOffset.UtcNow,
-                Metadata = options.Metadata,
-                ChunkSizeBytes = options.ChunkSizeBytes
-            };
+                {
+                    Status = Status.Incomplete,
+                    FileName = filename.SafePath(),
+                    StartedAtDate = DateTimeOffset.UtcNow,
+                    Metadata = options.Metadata,
+                    ChunkSizeBytes = options.ChunkSizeBytes
+                };
 
             var result = await fileTable.insert(fileInfo).runResultAsync(conn)
                 .ConfigureAwait(false);

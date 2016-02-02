@@ -16,7 +16,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
             var file = bucket.GetFileInfoByName(testfile);
 
             //soft delete
-            bucket.DeleteFile(file.Id, softDelete: true);
+            bucket.DeleteRevision(file.Id, mode: DeleteMode.Soft);
 
             Action act = () => file = bucket.GetFileInfoByName(testfile);
 
@@ -39,7 +39,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
             var file = bucket.GetFileInfoByName(testfile);
 
             //soft delete
-            bucket.DeleteFile(file.Id, softDelete: false);
+            bucket.DeleteRevision(file.Id, mode: DeleteMode.Hard);
 
             var fileEntries = GridUtility.EnumerateFileEntries(bucket, testfile)
                 .ToList();
@@ -59,7 +59,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
         {
             CreateBucketWithTwoFileRevisions();
 
-            bucket.DeleteAllRevisions(testfile, softDelete: true);
+            bucket.DeleteAllRevisions(testfile, mode: DeleteMode.Soft);
 
 
             var fileEntries = GridUtility.EnumerateFileEntries(bucket, testfile)
@@ -76,7 +76,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
         {
             CreateBucketWithTwoFileRevisions();
 
-            bucket.DeleteAllRevisions(testfile, softDelete: false);
+            bucket.DeleteAllRevisions(testfile, mode: DeleteMode.Hard);
 
             var fileEntries = GridUtility.EnumerateFileEntries(bucket, testfile)
                 .ToList();

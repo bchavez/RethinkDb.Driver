@@ -1,22 +1,18 @@
-@ECHO OFF
-SETLOCAL
+@echo off
+cls
+REM "NuGet.exe" "Install" "FAKE" "-OutputDirectory" "Source\packages" "-ExcludeVersion"
 
-REM Uncomment to forcibly set the build version.
-REM set FORCE_VERSION=0.0.4-alpha4
-
-IF NOT DEFINED DevEnvDir (
-	IF DEFINED vs140comntools ( 
-		CALL "%vs140comntools%\vsvars32.bat"
-	)
+.paket\paket.bootstrapper.exe
+if errorlevel 1 (
+  exit /b %errorlevel%
 )
 
-nuget restore Source\RethinkDb.Driver.sln
+pushd Builder
+..\.paket\paket.exe install
+if errorlevel 1 (
+  popd
+  exit /b %errorlevel%
+)
 
-msbuild Source\Builder\Builder.csproj
-if %errorlevel% neq 0 exit /b %errorlevel%
-
-ECHO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ECHO        RUNNING BAU BUILDER
-ECHO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Source\Builder\bin\Debug\Builder.exe %1
-if %errorlevel% neq 0 exit /b %errorlevel%
+"packages\build\FAKE\tools\Fake.exe" build.fsx %1
+popd

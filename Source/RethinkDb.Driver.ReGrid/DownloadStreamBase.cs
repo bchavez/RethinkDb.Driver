@@ -24,14 +24,17 @@ namespace RethinkDb.Driver.ReGrid
 
 
         // public methods
+#if !DNX
         public override void Close()
         {
             CloseAsync().WaitSync();
         }
-
+#endif
         public override Task CloseAsync()
         {
+#if !DNX
             base.Close();
+#endif
             return TaskHelper.CompletedTask;
         }
 

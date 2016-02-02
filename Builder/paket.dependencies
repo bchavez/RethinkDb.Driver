@@ -1,0 +1,9 @@
+source https://www.nuget.org/api/v2
+
+group build
+    
+    source https://www.nuget.org/api/v2
+
+    nuget FAKE
+    nuget FSharp.Data
+    nuget Z.ExtensionMethods.WithNamespace

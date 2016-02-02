@@ -18,7 +18,7 @@ namespace RethinkDb.Driver.ReGrid
         private readonly IConnection conn;
         private readonly Table chunkTable;
         private readonly string chunkIndexName;
-        private SHA256 sha256;
+        private Hasher sha256;
         private bool checkSHA256;
 
         private bool closed;
@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.ReGrid
             this.chunkIndexName = chunkIndexName;
             if( options.CheckSHA256 )
             {
-                this.sha256 = SHA256.Create();
+                this.sha256 = new Hasher();
                 this.checkSHA256 = true;
             }
 
@@ -48,11 +48,13 @@ namespace RethinkDb.Driver.ReGrid
             }
         }
 
+#if !DNX
         public override void Close()
         {
             CloseHelper();
             base.Close();
         }
+#endif
 
         public override Task CloseAsync()
         {
@@ -171,7 +173,7 @@ namespace RethinkDb.Driver.ReGrid
 
                 if (checkSHA256)
                 {
-                    sha256.TransformBlock(bytes, 0, bytes.Length, null, 0);
+                    sha256.AppendData(bytes);
                 }
             }
         }
@@ -193,8 +195,9 @@ namespace RethinkDb.Driver.ReGrid
 
                 if (checkSHA256 && position == FileInfo.Length)
                 {
-                    this.sha256.TransformFinalBlock(new byte[0], 0, 0);
-                    var sig = Util.GetHexString(this.sha256.Hash);
+                    var sig = this.sha256.GetHashAndReset();
+
+                    this.sha256.Dispose();
 
                     if (!sig.Equals(FileInfo.SHA256, StringComparison.OrdinalIgnoreCase))
                     {

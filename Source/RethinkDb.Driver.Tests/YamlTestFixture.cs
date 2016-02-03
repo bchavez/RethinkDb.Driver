@@ -32,14 +32,7 @@ namespace RethinkDb.Driver.Tests
             Context = ctx;
         }
 
-        public static YamlTestContext Context
-        {
-            get
-            {
-                return CallContext.GetData("YamlTestContext") as YamlTestContext;
-            }
-            set { CallContext.SetData("YamlTestContext", value); }
-        }
+        public static YamlTestContext Context { get; set; }
 
         private void SetupFluentAssertion()
         {

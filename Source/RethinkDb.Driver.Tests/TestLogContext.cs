@@ -12,7 +12,7 @@ namespace RethinkDb.Driver.Tests
         {
             var sb = new StringBuilder();
             sb.AppendLine();
-            sb.AppendLine("Log In Context:");
+            sb.AppendLine("Protocol In Context:");
             foreach (var otherLine in OtherLines)
             {
                 sb.AppendLine("\t" + otherLine);
@@ -32,13 +32,6 @@ namespace RethinkDb.Driver.Tests
             Context = new TestLogContext();
         }
 
-        public static TestLogContext Context
-        {
-            get
-            {
-                return CallContext.GetData("TestLogContext") as TestLogContext;
-            }
-            set { CallContext.SetData("TestLogContext", value); }
-        }
+        public static TestLogContext Context { get; set; }
     }
 }

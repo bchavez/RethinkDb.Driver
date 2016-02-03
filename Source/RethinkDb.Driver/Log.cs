@@ -11,7 +11,7 @@ namespace RethinkDb.Driver
 {
     public static class Log
     {
-        public static bool TruncateBinaryTypes = false;
+        public static bool TruncateBinaryTypes = true;
 #if DNX
         public static ILogger Instance = null;
 #else

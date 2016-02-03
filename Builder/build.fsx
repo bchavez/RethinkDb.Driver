@@ -147,9 +147,7 @@ Target "BuildInfo" (fun _ ->
 
 
 Target "Clean" (fun _ ->
-    if( System.IO.File.Exists(Files.TestResultFile)) then
-        System.IO.File.Delete(Files.TestResultFile)
-    
+    DeleteFile Files.TestResultFile
     CleanDirs [Folders.CompileOutput; Folders.Package]
 )
 
@@ -163,6 +161,8 @@ Target "serverup" (fun _ ->
     let serverExe = (Folders.Test @@ "RethinkDB-windows-alpha2.exe")
     let serverArgs = ""
 
+    CreateDir (directory zipfile)
+    
     client.DownloadFile(url, zipfile)
 
     Unzip Folders.Test zipfile
@@ -195,7 +195,6 @@ Target "ci" (fun _ ->
 )
 
 Target "citest" (fun _ ->
-    Run "test"
     UploadTestResultsXml TestResultsType.NUnit Folders.Test
 )
 
@@ -235,6 +234,9 @@ Target "citest" (fun _ ->
 
 
 "serverup"
+    ==> "citest"
+
+"test"
     ==> "citest"
 
 

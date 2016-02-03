@@ -163,6 +163,7 @@ Target "serverup" (fun _ ->
 
     CreateDir (directory zipfile)
     
+    trace ("Downloading RethinkDB for Windows (wait a min ok):" + url)
     client.DownloadFile(url, zipfile)
 
     Unzip Folders.Test zipfile
@@ -176,9 +177,7 @@ Target "serverup" (fun _ ->
 
 )
 
-Target "test" (fun _ ->
-    trace "CI TEST"
-
+let RunTests() =
     let nunit = findToolInSubPath "nunit-console.exe" Folders.Lib
     let nunitFolder = System.IO.Path.GetDirectoryName(nunit)
 
@@ -187,7 +186,6 @@ Target "test" (fun _ ->
                             ToolPath = nunitFolder
                             OutputFile = Files.TestResultFile
                             ErrorLevel = TestRunnerErrorLevel.DontFailBuild }) //for now.
-)
 
 open Fake.AppVeyor
 
@@ -195,7 +193,13 @@ Target "ci" (fun _ ->
     trace "ci Task"
 )
 
+Target "test" (fun _ ->
+    trace "CI TEST"
+    RunTests()
+)
+
 Target "citest" (fun _ ->
+    RunTests()
     UploadTestResultsXml TestResultsType.NUnit Folders.Test
 )
 
@@ -235,9 +239,6 @@ Target "citest" (fun _ ->
 
 
 "serverup"
-    ==> "citest"
-
-"test"
     ==> "citest"
 
 

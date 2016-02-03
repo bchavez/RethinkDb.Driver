@@ -92,7 +92,7 @@ Documentation
   * [Download](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#download)
   * [Seekable Streams](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#seekable-download-streams)
   * [Delete](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#delete)
-* [`rg` Command Line Utility](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage#rg--command-line-utility)
+
 
 
 ### Driver Development

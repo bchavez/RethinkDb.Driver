@@ -16,8 +16,8 @@ open Utils
 open System.Reflection
 open Helpers
 
-//let workingDir = ChangeWorkingFolder()
-let workingDir = "C:/Code/Projects/Public/RethinkDb.Driver"
+let workingDir = ChangeWorkingFolder()
+//let workingDir = "C:/Code/Projects/Public/RethinkDb.Driver"
 
 
 trace (sprintf "WORKING DIR: %s" workingDir)

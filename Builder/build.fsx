@@ -145,6 +145,8 @@ Target "Clean" (fun _ ->
 
 Target "test" (fun _ ->
     trace "CI BUILT"
+
+
 )
 
 Target "ci" (fun _ ->

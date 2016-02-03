@@ -264,9 +264,9 @@ namespace RethinkDb.Driver.Tests
                 {
                     obj = (obj as AggregateException).InnerException;
                 }
-                if( obj.GetType() != this.clazz )
+                if( !this.clazz.IsAssignableFrom(obj.GetType()) )
                 {
-                    obj.GetType().Should().Be(this.clazz);
+                    obj.GetType().Should().BeDerivedFrom(this.clazz);
                     return false;
                 }
 

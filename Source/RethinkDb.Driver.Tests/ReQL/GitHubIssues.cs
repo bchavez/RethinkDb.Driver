@@ -201,6 +201,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         }
 
         [Test]
+        [Explicit]
         public void issue_24()
         {
             Parallel.For(1, 4, (i) =>

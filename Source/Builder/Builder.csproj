@@ -108,7 +108,6 @@
     <Compile Include="Testing.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="NuGet\RethinkDb.Driver.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

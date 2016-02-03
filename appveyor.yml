@@ -20,18 +20,11 @@ build_script: build.cmd ci
 
 #after_build:
     
+#before_test:
 
-
-before_test:
-    - robocopy Source\RethinkDb.Driver.Tests\bin\Release __compile\RethinkDb.Driver.Tests\UnitTests /E & if %errorlevel% LSS 8 exit /b 0 else exit /b 1
-    - robocopy Source\packages\NUnit.Runners.2.6.4\tools __compile\RethinkDb.Driver.Tests\Runner /E & if %errorlevel% LSS 8 exit /b 0 else exit /b 1
-    - 7z a __package\RethinkDb.Driver.Tests.zip %APPVEYOR_BUILD_FOLDER%\__compile\RethinkDb.Driver.Tests\**
-    - ps: |
-            Push-AppveyorArtifact __package\RethinkDb.Driver.Tests.zip
-
-test: off
-#test_script:
-#  - build.cmd citest
+#test: off
+test_script:
+  - build.cmd citest
 
 
 artifacts:

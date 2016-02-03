@@ -71,6 +71,7 @@ module Setup =
     type Folders(workingFolder : string) =
         let compileOutput = workingFolder @@ "__compile"
         let package = workingFolder @@ "__package"
+        let test = workingFolder @@ "__test"
         let source = workingFolder @@ "Source"
         let lib = source @@ "packages"
         let builder = workingFolder @@ "Builder"
@@ -81,11 +82,14 @@ module Setup =
         member this.Source = source
         member this.Lib = lib
         member this.Builder = builder
+        member this.Test = test
 
     type Files(folders : Folders) =
         let history = folders.WorkingFolder @@ "HISTORY.md"
-
+        let testResultFile = folders.Test @@ "results.xml"
+        
         member this.History = history
+        member this.TestResultFile = testResultFile
 
     type Projects(projectName : string, folders : Folders) = 
         let solutionFile = folders.Source @@ sprintf "%s.sln" projectName
@@ -138,6 +142,13 @@ type Project(name : string, folders : Folders) =
 type Project with 
     member this.Zip = sprintf "%s.zip" this.Name
 
+type TestProject(name : string, folders : Folders) =
+    inherit Project(name, folders)
+    
+    let testAssembly = base.Folder @@ "bin/Debug/" @@ sprintf "%s.dll" base.Name
+    member this.TestAssembly = testAssembly
+
+
 
 type NugetProject(name : string, assemblyTitle : string, folders : Folders) =
     inherit Project(name, folders)
@@ -160,6 +171,7 @@ type NugetProject(name : string, assemblyTitle : string, folders : Folders) =
     member this.NugetPkg = nugetPkg
     
     member this.Title = assemblyTitle
+
 
 
 

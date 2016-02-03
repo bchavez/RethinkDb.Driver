@@ -1,6 +1,5 @@
 ﻿//#if INTERACTIVE
 //open System
-//let workingDir = "C:/Code/Projects/Public/RethinkDb.Driver"
 //Environment.CurrentDirectory <- workingDir
 //#else
 //#endif
@@ -17,7 +16,9 @@ open Utils
 open System.Reflection
 open Helpers
 
-let workingDir = ChangeWorkingFolder()
+//let workingDir = ChangeWorkingFolder()
+let workingDir = "C:/Code/Projects/Public/RethinkDb.Driver"
+
 
 trace (sprintf "WORKING DIR: %s" workingDir)
 
@@ -29,9 +30,8 @@ let Projects = Setup.Projects(ProjectName, Folders)
 
 let DriverProject = NugetProject("RethinkDb.Driver", "RethinkDb Driver for .NET", Folders)
 let GridProject = NugetProject("RethinkDb.Driver.ReGrid", "RethinkDb Large Object Storage for .NET", Folders)
-
-type TestProject = {Project : Project; Zip : string}
-let TestProject = {Project = Project("Templates", Folders); Zip = "RethinkDb.Driver.Tests.zip"}
+let DriverTestProject = TestProject("RethinkDb.Driver.Tests", Folders)
+//let TestGridProject = Project("RethinkDb.Driver.ReGrid.Tests", Folders)
 
 
 // Default target
@@ -72,6 +72,13 @@ Target "msb" (fun _ ->
     |> MSBuildRelease (GridProject.OutputDirectory @@ tag) "Build"
     |> Log "AppBuild-Output: "
 
+    !! DriverTestProject.ProjectFile
+    |> MSBuildDebug "" "Build"
+    |> Log "AppBuild-Output: "
+
+//    !! GridTestProject.ProjectFile
+//    |> MSBuildDebug "" "Build"
+//    |> Log "AppBuild-Output: "
 )
 
 
@@ -140,17 +147,56 @@ Target "BuildInfo" (fun _ ->
 
 
 Target "Clean" (fun _ ->
+    if( System.IO.File.Exists(Files.TestResultFile)) then
+        System.IO.File.Delete(Files.TestResultFile)
+    
     CleanDirs [Folders.CompileOutput; Folders.Package]
 )
 
-Target "test" (fun _ ->
-    trace "CI BUILT"
 
+Target "serverup" (fun _ ->
+
+    let url = "https://ipfs.io/ipfs/QmeaNpgJd2Uwharad1o1dcDx9K1m3i93vx7BUkiEcCJqi5/RethinkDB-windows-alpha2.zip"
+
+    use client = new System.Net.WebClient()
+    let zipfile = (Folders.Test @@ "RethinkDb.Server.zip")
+    let serverExe = (Folders.Test @@ "RethinkDB-windows-alpha2.exe")
+    let serverArgs = ""
+
+    client.DownloadFile(url, zipfile)
+
+    Unzip Folders.Test zipfile
+
+    trace "STARTING RETHINKDB SERVER ON WINDOWS ;) ATnNn STYLE"
+    fireAndForget( fun psi -> 
+                         psi.FileName <- serverExe
+                         psi.WorkingDirectory <- Folders.Test
+                         psi.Arguments <- serverArgs )
+    trace "STARTED RETHINKDB SERVER ON WINDOWS ;)"
 
 )
 
+Target "test" (fun _ ->
+    trace "CI TEST"
+
+    let nunit = findToolInSubPath "nunit-console.exe" Folders.Lib
+    let nunitFolder = System.IO.Path.GetDirectoryName(nunit)
+
+    !! DriverTestProject.TestAssembly
+    |> NUnit (fun p -> { p with 
+                            ToolPath = nunitFolder
+                            OutputFile = Files.TestResultFile })
+)
+
+open Fake.AppVeyor
+
 Target "ci" (fun _ ->
-    trace "CI BUILT"
+    trace "ci Task"
+)
+
+Target "citest" (fun _ ->
+    Run "test"
+    UploadTestResultsXml TestResultsType.NUnit Folders.Test
 )
 
 
@@ -176,15 +222,21 @@ Target "ci" (fun _ ->
 "dnx"
     ==> "nuget"
 
-//none are dependent on each other, any of them requires dependencies of dnx
-"dnx" <=> "msb" <=> "mono"
-
 
 "nuget"
     ==> "ci"
 
 "zip"
     ==> "ci"
+
+//test task depends on msbuild
+"msb"
+    ==> "test"
+
+
+"serverup"
+    ==> "citest"
+
 
 
 // start build

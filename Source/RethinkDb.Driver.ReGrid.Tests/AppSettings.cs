@@ -12,7 +12,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
                 if (Environment.GetEnvironmentVariable("CI").IsNotNullOrWhiteSpace())
                 {
                     //CI is testing.
-                    return "localhost";
+                    return "127.0.0.1";
                 }
                 return System.Configuration.ConfigurationManager.AppSettings["TestServer"];
             }

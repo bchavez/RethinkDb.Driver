@@ -9,6 +9,7 @@
 paket.lock
 .fake
 .paket/paket.exe
+__test
 
 # User-specific files
 *.suo

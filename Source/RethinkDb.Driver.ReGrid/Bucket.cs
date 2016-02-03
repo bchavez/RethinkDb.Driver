@@ -26,6 +26,7 @@ namespace RethinkDb.Driver.ReGrid
 
         private string fileTableName;
         internal string fileIndexPath;
+        internal string fileIndexPrefix;
 
         private object tableOpts;
         internal Table fileTable;
@@ -47,6 +48,7 @@ namespace RethinkDb.Driver.ReGrid
             this.fileTableName = $"{bucketName}_{config.FileTableName}";
             this.fileTable = this.db.table(fileTableName);
             this.fileIndexPath = config.FileIndexPath;
+            this.fileIndexPrefix = config.FileIndexPrefix;
 
             this.chunkTableName = $"{bucketName}_{config.ChunkTable}";
             this.chunkTable = this.db.table(chunkTableName);
@@ -76,10 +78,28 @@ namespace RethinkDb.Driver.ReGrid
             if( filesTableResult.TablesCreated == 1 )
             {
                 //index the file paths of completed files and status
-                await CreateIndex(this.fileTableName, this.fileIndexPath,
-                    row => r.array(row[FileInfo.StatusJsonName], row[FileInfo.FileNameJsonName], row[FileInfo.FinishedDateJsonName]))
+                ReqlFunction1 pathIx = row =>
+                    {
+                        return r.array(row[FileInfo.StatusJsonName], row[FileInfo.FileNameJsonName], row[FileInfo.FinishedDateJsonName]);
+                    };
+                await CreateIndex(this.fileTableName, this.fileIndexPath,pathIx)
+                    .ConfigureAwait(false);
+
+
+                //prefix IX
+                ReqlFunction1 prefixIx = doc =>
+                    {
+                        //return r.array(doc[FileInfo.FileNameJsonName].split("/").slice(1, -1), doc[FileInfo.FinishedDateJsonName]);
+                        return r.branch(doc[FileInfo.StatusJsonName].eq(Status.Completed),
+                            r.array(doc[FileInfo.FileNameJsonName].split("/").slice(1, -1), doc[FileInfo.FinishedDateJsonName]),
+                            r.error());
+                    };
+                await CreateIndex(this.fileTableName, this.fileIndexPrefix, prefixIx)
                     .ConfigureAwait(false);
             }
+
+
+            // CHUNK TAABLE INDEXES
 
             var chunkTableResult = await EnsureTable(this.chunkTableName)
                 .ConfigureAwait(false);
@@ -87,14 +107,16 @@ namespace RethinkDb.Driver.ReGrid
             if( chunkTableResult.TablesCreated == 1 )
             {
                 //Index the chunks and their parent [fileid, n].
-                await CreateIndex(this.chunkTableName, this.chunkIndexName,
-                    row => r.array(row[Chunk.FilesIdJsonName], row[Chunk.NumJsonName]))
+                ReqlFunction1 chunkIx = row =>
+                    {
+                        return r.array(row[Chunk.FilesIdJsonName], row[Chunk.NumJsonName]);
+                    };
+                await CreateIndex(this.chunkTableName, this.chunkIndexName, chunkIx)
                     .ConfigureAwait(true);
             }
 
             this.Mounted = true;
         }
-
 
 
         protected internal async Task<JArray> CreateIndex(string tableName, string indexName, ReqlFunction1 indexFunc)

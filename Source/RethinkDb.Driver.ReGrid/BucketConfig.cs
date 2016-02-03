@@ -4,6 +4,7 @@ namespace RethinkDb.Driver.ReGrid
     {
         public string FileTableName { get; set; } = "files";
         public string FileIndexPath { get; set; } = "path_ix";
+        public string FileIndexPrefix { get; set; } = "prefix_ix";
         public string ChunkTable { get; set; } = "chunks";
         public string ChunkIndex { get; set; } = "chunks_ix";
         public object TableOptions { get; set; }

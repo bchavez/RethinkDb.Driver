@@ -87,8 +87,10 @@
     <Compile Include="DownloadTests.cs" />
     <Compile Include="FileSystemTests.cs" />
     <Compile Include="PathTests.cs" />
+    <Compile Include="PrefixTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBytes.cs" />
+    <Compile Include="TestUploader.cs" />
     <Compile Include="UploadTests.cs" />
   </ItemGroup>
   <ItemGroup>

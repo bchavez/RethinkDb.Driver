@@ -108,6 +108,45 @@ namespace RethinkDb.Driver.ReGrid
         }
 
 
+        private static char[] PrefixChar = {'/'};
+
+
+
+        /// <summary>
+        /// List files with a given path.
+        /// </summary>
+        /// <param name="path">The path starting with /</param>
+        public static Cursor<FileInfo> ListFilesByPrefix(this Bucket bucket, string path)
+        {
+            return ListFilesByPrefixAsync(bucket, path).WaitSync();
+        }
+
+        /// <summary>
+        /// List files with a given path.
+        /// </summary>
+        /// <param name="path">The path starting with /</param>
+        public static async Task<Cursor<FileInfo>> ListFilesByPrefixAsync(this Bucket bucket, string path)
+        {
+            path = path.SafePath();
+
+            var parts = path.Split(PrefixChar, StringSplitOptions.RemoveEmptyEntries);
+            
+
+            var index = new {index = bucket.fileIndexPrefix};
+
+            var between = bucket.fileTable
+                .between(r.array(parts, r.minval()), r.array(parts, r.maxval()))[index];
+
+            var sort = r.desc(bucket.fileIndexPrefix);
+
+            var selection = await between.orderBy()[new { index = sort }]
+                .runCursorAsync<FileInfo>(bucket.conn)
+                .ConfigureAwait(false);
+
+            return selection;
+        }
+
+
 
 
 

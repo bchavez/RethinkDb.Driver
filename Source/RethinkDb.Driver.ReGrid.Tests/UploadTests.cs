@@ -91,7 +91,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
                     LastAccess = DateTime.Now,
                     Roles = new[] {"admin", "office"},
                     ContentType = "application/pdf"
-            };
+                };
 
             var opts = new UploadOptions();
             opts.SetMetadata(meta);
@@ -134,13 +134,13 @@ namespace RethinkDb.Driver.ReGrid.Tests
         public void test_upload_stream()
         {
             Guid uploadId;
-            using( var fileStream = new MemoryStream(TestBytes.OneHalfChunk))
+            using( var fileStream = new MemoryStream(TestBytes.OneHalfChunk) )
             using( var uploadStream = bucket.OpenUploadStream(testfile) )
             {
                 uploadId = uploadStream.FileInfo.Id;
                 fileStream.CopyTo(uploadStream);
             }
-            
+
             var upload = bucket.DownloadAsBytesByName(testfile);
 
             upload.Should().Equal(TestBytes.OneHalfChunk);
@@ -149,12 +149,14 @@ namespace RethinkDb.Driver.ReGrid.Tests
         [Test]
         public void upload_files_to_different_paths()
         {
-            var fileId = bucket.Upload("/monkey.mp4", TestBytes.NoChunks);
-            fileId = bucket.Upload("/animals/dog.mp4", TestBytes.NoChunks);
-            fileId = bucket.Upload("/animals/cat.mp4", TestBytes.NoChunks);
-            fileId = bucket.Upload("/animals/fish.mp4", TestBytes.NoChunks);
-            fileId = bucket.Upload("/people/father.mp4", TestBytes.NoChunks);
-            fileId = bucket.Upload("/people/mother.mp4", TestBytes.NoChunks);
+            TestFiles.DifferentPathsNoRevisions(this.bucket);
+        }
+
+
+        [Test]
+        public void upload_files_to_different_paths_and_revisions()
+        {
+            TestFiles.DifferentPathsAndRevisions(this.bucket);
         }
 
         //DEBUG INDEXES:

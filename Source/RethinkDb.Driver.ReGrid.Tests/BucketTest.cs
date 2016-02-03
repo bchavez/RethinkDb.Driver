@@ -46,10 +46,16 @@ namespace RethinkDb.Driver.ReGrid.Tests
             result.AssertTablesDropped(1);
         }
 
-        protected void CreateBucketWithTwoFileRevisions()
+        public void ClearBucket()
         {
             bucket.Purge();
             bucket.Mount();
+        }
+
+
+        protected void CreateBucketWithTwoFileRevisions()
+        {
+            ClearBucket();
 
             //original reversed
             bucket.Upload(testfile, TestBytes.OneHalfChunk);
@@ -62,8 +68,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
         protected void CreateBucketWithOneFileTwoChunks()
         {
-            bucket.Purge();
-            bucket.Mount();
+            ClearBucket();
 
             //original reversed
             bucket.Upload(testfile, TestBytes.OneHalfChunk);

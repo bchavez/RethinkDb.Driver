@@ -13,5 +13,11 @@ namespace RethinkDb.Driver.ReGrid
             }
             return rootedPath;
         }
+
+        public static string SafePrefix(this string path)
+        {
+            var rootedPath = Path.IsPathRooted(path) ? path : Path.Combine("/", path);
+            return rootedPath;
+        }
     }
 }

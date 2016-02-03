@@ -1,8 +1,5 @@
 version: '{build}'
 
-environment:
-  circleci_token:
-    secure: qe9KQDwgVgk0LSU5XdcfTFIqpMaHc87pnRtsdsjbfrrvYecFS9qJZ+J6VdsKGtnb
 
 skip_commits:
   message: /(//skip\W*ci)|(read\W*me)/
@@ -39,9 +36,6 @@ nuget:
 #before_deploy:
 #    - ps: |
 #            Write-Host "~~~~~~~~~~~~~~~~~~"
-#            Write-Host "  Release Notes   "
-#            Write-Host "~~~~~~~~~~~~~~~~~~"
-#            Write-Host $Env:RELEASE_NOTES
 
 deploy:
     - provider: GitHub

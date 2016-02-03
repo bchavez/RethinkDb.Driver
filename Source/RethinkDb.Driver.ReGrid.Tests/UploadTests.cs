@@ -164,6 +164,16 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
         //INDEX: r.db("query").table('fs_files').indexCreate("path_array", function(x) { return x('filename').split("/").slice(1, -1); })
 
+        // Includes duplicates
         //FIND: r.db("query").table("fs_files").getAll(["animals"],{index:"path_array"})
+
+        //FIND: 
+        /*
+        r.db("query").table("fs_files").between(
+                  [["animals"], r.minval],[["animals"], r.maxval],
+                {index:"prefix_ix"})
+                .group("filename").max("finishedAt").ungroup()("reduction")
+        */
+
     }
 }

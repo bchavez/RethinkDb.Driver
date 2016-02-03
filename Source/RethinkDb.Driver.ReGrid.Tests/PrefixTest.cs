@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests.Utils;
 
@@ -20,6 +22,10 @@ namespace RethinkDb.Driver.ReGrid.Tests
             {
                 fileInfo.Dump();
             }
+            files.Select(f => f.FileName)
+                .All( f => f.StartsWith("/animals"))
+                .Should().BeTrue();
+
         }
     }
 }

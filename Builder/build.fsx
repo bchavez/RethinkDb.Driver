@@ -162,7 +162,7 @@ Target "serverup" (fun _ ->
 
     CreateDir (directory zipfile)
     
-    trace ("Downloading RethinkDB for Windows ..... :" + serverDownload)
+    trace ("Downloading RethinkDB for Windows ... : " + serverDownload)
     client.DownloadFile(serverDownload, zipfile)
 
     Unzip Folders.Test zipfile

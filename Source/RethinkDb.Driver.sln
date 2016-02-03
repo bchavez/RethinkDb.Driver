@@ -15,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{BBBED03D-3
 		..\.gitignore = ..\.gitignore
 		..\appveyor.yml = ..\appveyor.yml
 		..\build.cmd = ..\build.cmd
-		..\circle.sh = ..\circle.sh
-		..\circle.yml = ..\circle.yml
 		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
 		..\HISTORY.md = ..\HISTORY.md
 		..\LICENSE = ..\LICENSE
@@ -24,8 +22,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{BBBED03D-3
 		..\Builder\NuGet\RethinkDb.Driver.nuspec = ..\Builder\NuGet\RethinkDb.Driver.nuspec
 		..\Builder\NuGet\RethinkDb.Driver.ReGrid.nuspec = ..\Builder\NuGet\RethinkDb.Driver.ReGrid.nuspec
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder", "Builder\Builder.csproj", "{594E6C48-5DEF-4C3E-A57C-2A2C544E999E}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RethinkDb.Driver.Dnx", "RethinkDb.Driver\RethinkDb.Driver.Dnx.xproj", "{0E8B7AB8-9224-46DE-8758-79750C2DF94D}"
 EndProject
@@ -35,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.ReGrid.CLI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.ReGrid.Tests", "RethinkDb.Driver.ReGrid.Tests\RethinkDb.Driver.ReGrid.Tests.csproj", "{E25C4B05-EA03-4693-B9A7-C00E5020D95A}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Builder2", "..\Builder\Builder2.fsproj", "{2E878DDF-5585-48F2-85E0-748579278C9A}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Builder", "..\Builder\Builder.fsproj", "{2E878DDF-5585-48F2-85E0-748579278C9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +51,6 @@ Global
 		{37C1CCF5-F8DA-4F56-93AB-C2F6BAFB01B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37C1CCF5-F8DA-4F56-93AB-C2F6BAFB01B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37C1CCF5-F8DA-4F56-93AB-C2F6BAFB01B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{594E6C48-5DEF-4C3E-A57C-2A2C544E999E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{594E6C48-5DEF-4C3E-A57C-2A2C544E999E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{594E6C48-5DEF-4C3E-A57C-2A2C544E999E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{594E6C48-5DEF-4C3E-A57C-2A2C544E999E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0E8B7AB8-9224-46DE-8758-79750C2DF94D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E8B7AB8-9224-46DE-8758-79750C2DF94D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D888899B-D030-44D1-9D91-99D57201A048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

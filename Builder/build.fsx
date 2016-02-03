@@ -4,6 +4,8 @@
 //#else
 //#endif
 
+let serverDownload = "https://ipfs.io/ipfs/QmeaNpgJd2Uwharad1o1dcDx9K1m3i93vx7BUkiEcCJqi5/RethinkDB-windows-alpha2.zip"
+
 
 // include Fake lib
 #I @"packages/build/FAKE/tools"
@@ -31,10 +33,9 @@ let Projects = Setup.Projects(ProjectName, Folders)
 let DriverProject = NugetProject("RethinkDb.Driver", "RethinkDb Driver for .NET", Folders)
 let GridProject = NugetProject("RethinkDb.Driver.ReGrid", "RethinkDb Large Object Storage for .NET", Folders)
 let DriverTestProject = TestProject("RethinkDb.Driver.Tests", Folders)
-//let TestGridProject = Project("RethinkDb.Driver.ReGrid.Tests", Folders)
+let TestGridProject = Project("RethinkDb.Driver.ReGrid.Tests", Folders)
 
 
-// Default target
 Target "astgen" (fun _ ->
     
     trace "ReQL AST Generation Task Starting ..."
@@ -154,8 +155,6 @@ Target "Clean" (fun _ ->
 
 Target "serverup" (fun _ ->
 
-    let url = "https://ipfs.io/ipfs/QmeaNpgJd2Uwharad1o1dcDx9K1m3i93vx7BUkiEcCJqi5/RethinkDB-windows-alpha2.zip"
-
     use client = new System.Net.WebClient()
     let zipfile = (Folders.Test @@ "RethinkDb.Server.zip")
     let serverExe = (Folders.Test @@ "RethinkDB-windows-alpha2.exe")
@@ -163,8 +162,8 @@ Target "serverup" (fun _ ->
 
     CreateDir (directory zipfile)
     
-    trace ("Downloading RethinkDB for Windows (wait a min ok):" + url)
-    client.DownloadFile(url, zipfile)
+    trace ("Downloading RethinkDB for Windows ..... :" + serverDownload)
+    client.DownloadFile(serverDownload, zipfile)
 
     Unzip Folders.Test zipfile
 

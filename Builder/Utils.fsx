@@ -29,7 +29,7 @@ module BuildContext =
 
         match (forced, tagname, buildver) with
         | (Some f, _, _) -> f
-        | (_, Some t, _) -> t
+        | (_, Some t, _) -> t.Trim(' ', 'v')
         | (_, _, Some b) -> sprintf "0.0.%s-ci" b
         | (_, _, _     ) -> "0.0.0-localbuild"
 

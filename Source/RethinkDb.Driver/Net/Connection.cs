@@ -32,11 +32,14 @@ namespace RethinkDb.Driver.Net
         private readonly TimeSpan? connectTimeout;
         private readonly byte[] handshake;
 
-
         internal SocketWrapper Socket { get; private set; }
 
-
         private readonly ConcurrentDictionary<long, ICursor> cursorCache = new ConcurrentDictionary<long, ICursor>();
+
+        /// <summary>
+        /// Raised when 
+        /// </summary>
+        public event EventHandler<Exception> ConnectionError;
 
         internal Connection(Builder builder)
         {
@@ -82,7 +85,7 @@ namespace RethinkDb.Driver.Net
                 timeout = connectTimeout;
             }
             close(noreplyWait);
-            this.Socket = new SocketWrapper(hostname, port, timeout);
+            this.Socket = new SocketWrapper(hostname, port, timeout, OnSocketErrorCallback);
             this.Socket.Connect(handshake);
             return this;
         }
@@ -90,7 +93,7 @@ namespace RethinkDb.Driver.Net
         public virtual async Task<Connection> reconnectAsync(bool noreplyWait = false)
         {
             close(noreplyWait);
-            this.Socket = new SocketWrapper(hostname, port, connectTimeout);
+            this.Socket = new SocketWrapper(hostname, port, connectTimeout, OnSocketErrorCallback);
             await this.Socket.ConnectAsync(handshake);
             return this;
         }
@@ -104,6 +107,24 @@ namespace RethinkDb.Driver.Net
             {
                 throw new ReqlDriverError("Connection is closed.");
             }
+        }
+
+        private void OnSocketErrorCallback(Exception e)
+        {
+            CleanUpCursorCache(e.Message);
+
+            //raise event defensively. in case anyone else is subscribed
+            //we don't stop processing the rest of the subscribers.
+            this.ConnectionError.FireEvent(this, e);
+        }
+
+        protected void CleanUpCursorCache(string message)
+        {
+            foreach (var cursor in this.cursorCache.Values)
+            {
+                cursor.SetError(message);
+            }
+            cursorCache.Clear();
         }
 
         public virtual void close(bool shouldNoReplyWait = true)
@@ -126,11 +147,7 @@ namespace RethinkDb.Driver.Net
                 }
             }
 
-            foreach (var cursor in this.cursorCache.Values)
-            {
-                cursor.SetError("Connection is closed.");
-            }
-            cursorCache.Clear();
+            CleanUpCursorCache("The connection is closed.");
         }
 
         public virtual void noreplyWait()

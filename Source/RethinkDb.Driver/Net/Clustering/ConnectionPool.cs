@@ -299,12 +299,6 @@ namespace RethinkDb.Driver.Net.Clustering
 
                         restartWorkers.Add(worker);
                     }
-                    else if( !he.Dead && conn.HasError)
-                    {
-                        //not dead, but has error, mark it dead.
-                        //and retry later.
-                        he.MarkFailed();
-                    }
                 }
 
                 if( restartWorkers.Any() )
@@ -321,13 +315,24 @@ namespace RethinkDb.Driver.Net.Clustering
 
         protected virtual Connection NewPoolConnection(string hostname, int port)
         {
-            return new Connection(new Connection.Builder()
+            var connNew = new Connection(new Connection.Builder()
                 {
                     _authKey = authKey,
                     _dbname = dbname,
                     _hostname = hostname,
                     _port = port
                 });
+
+            connNew.ConnectionError += OnConnectionError;
+            return connNew;
+        }
+
+        private void OnConnectionError(object sender, Exception e)
+        {
+            var connError = sender as Connection;
+            var hlist = this.poolingStrategy.HostList;
+            var he = hlist.FirstOrDefault(h => h.conn == connError);
+            he?.MarkFailed();
         }
 
         public static Builder build()

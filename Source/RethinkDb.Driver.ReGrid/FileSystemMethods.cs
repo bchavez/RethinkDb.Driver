@@ -29,7 +29,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             filename = filename.SafePath();
 
-            var index = new { index = bucket.fileIndexPath };
+            var index = new { index = bucket.fileIndex };
 
             var cursor = await bucket.fileTable
                 .between(r.array(Status.Completed, filename, r.minval()), r.array(Status.Completed, filename, r.maxval()))[index]
@@ -83,12 +83,12 @@ namespace RethinkDb.Driver.ReGrid
         {
             filename = filename.SafePath();
 
-            var index = new { index = bucket.fileIndexPath };
+            var index = new { index = bucket.fileIndex };
 
             var between = bucket.fileTable
                 .between(r.array(Status.Completed, filename, r.minval()), r.array(Status.Completed, filename, r.maxval()))[index];
 
-            var sort = revision >= 0 ? r.asc(bucket.fileIndexPath) : r.desc(bucket.fileIndexPath) as ReqlExpr;
+            var sort = revision >= 0 ? r.asc(bucket.fileIndex) : r.desc(bucket.fileIndex) as ReqlExpr;
 
             revision = revision >= 0 ? revision : (revision * -1) - 1;
 

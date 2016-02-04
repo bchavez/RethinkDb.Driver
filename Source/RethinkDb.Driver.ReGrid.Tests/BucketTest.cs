@@ -28,7 +28,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
             db = r.db(DbName);
             var opts = new BucketConfig();
             chunkIndex = opts.ChunkIndex;
-            fileIndexPath = opts.FileIndexPath;
+            fileIndexPath = opts.FileIndex;
             fileTableName = "fs_files";
             chunkTableName = "fs_chunks";
         }

@@ -20,15 +20,17 @@ namespace RethinkDb.Driver.Net
 
         private readonly string hostname;
         private readonly int port;
+        private readonly Action<Exception> errorCallback;
 
         private NetworkStream ns = null;
         private BinaryWriter bw = null;
         private BinaryReader br = null;
 
-        public SocketWrapper(string hostname, int port, TimeSpan? timeout)
+        public SocketWrapper(string hostname, int port, TimeSpan? timeout, Action<Exception> errorCallback)
         {
             this.hostname = hostname;
             this.port = port;
+            this.errorCallback = errorCallback;
 
             this.timeout = timeout ?? TimeSpan.FromSeconds(60);
 
@@ -176,6 +178,7 @@ namespace RethinkDb.Driver.Net
                 catch( Exception e )
                 {
                     currentException = e;
+                    this.errorCallback?.Invoke(currentException);
                     Log.Trace($"Response Pump: {e.GetType().Name} - {e.Message}. The connection can no longer be used. {nameof(ResponsePump)} is preparing to shutdown.");
                     //shutdown all.
                     try
@@ -248,6 +251,7 @@ namespace RethinkDb.Driver.Net
                 catch(Exception e)
                 {
                     currentException = e;
+                    this.errorCallback?.Invoke(currentException);
                     Log.Trace($"Write Query failed for Token {token}. Exception: {e.Message}");
                     throw;
                 }

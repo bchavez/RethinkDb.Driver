@@ -1,3 +1,7 @@
+## v2.2.5-beta-1
+* Added Connection.ConnectionError event. Better for connection pooling.
+* CoreCLR users please continue using latest beta release until CoreCLR is RTM.
+
 ## v2.2.4
 * Roll-up Release for Full .NET Framework since v2.2.3.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.

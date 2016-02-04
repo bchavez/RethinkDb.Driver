@@ -25,7 +25,7 @@ namespace RethinkDb.Driver.ReGrid
         internal string chunkIndexName;
 
         private string fileTableName;
-        internal string fileIndexPath;
+        internal string fileIndex;
         internal string fileIndexPrefix;
 
         private object tableOpts;
@@ -47,7 +47,7 @@ namespace RethinkDb.Driver.ReGrid
 
             this.fileTableName = $"{bucketName}_{config.FileTableName}";
             this.fileTable = this.db.table(fileTableName);
-            this.fileIndexPath = config.FileIndexPath;
+            this.fileIndex = config.FileIndex;
             this.fileIndexPrefix = config.FileIndexPrefix;
 
             this.chunkTableName = $"{bucketName}_{config.ChunkTable}";
@@ -82,7 +82,7 @@ namespace RethinkDb.Driver.ReGrid
                     {
                         return r.array(row[FileInfo.StatusJsonName], row[FileInfo.FileNameJsonName], row[FileInfo.FinishedDateJsonName]);
                     };
-                await CreateIndex(this.fileTableName, this.fileIndexPath,pathIx)
+                await CreateIndex(this.fileTableName, this.fileIndex,pathIx)
                     .ConfigureAwait(false);
 
 

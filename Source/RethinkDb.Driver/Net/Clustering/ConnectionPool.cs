@@ -321,7 +321,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
         protected virtual Connection NewPoolConnection(string hostname, int port)
         {
-            return new Connection(new Connection.Builder(() => new ConnectionInstance())
+            return new Connection(new Connection.Builder()
                 {
                     _authKey = authKey,
                     _dbname = dbname,

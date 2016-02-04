@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -25,13 +26,17 @@ namespace RethinkDb.Driver.Net
         public readonly int port;
 
         private long nextToken = 0;
-        private readonly Func<ConnectionInstance> instanceMaker;
 
         // private mutable
         private string dbname;
         private readonly TimeSpan? connectTimeout;
         private readonly byte[] handshake;
-        private ConnectionInstance instance = null;
+
+
+        internal SocketWrapper Socket { get; private set; }
+
+
+        private readonly ConcurrentDictionary<long, ICursor> cursorCache = new ConcurrentDictionary<long, ICursor>();
 
         internal Connection(Builder builder)
         {
@@ -53,8 +58,6 @@ namespace RethinkDb.Driver.Net
             hostname = builder._hostname ?? "localhost";
             port = builder._port ?? RethinkDBConstants.DEFAULT_PORT;
             connectTimeout = builder._timeout;
-
-            instanceMaker = builder._instanceMaker;
         }
 
         public virtual string db()
@@ -79,36 +82,33 @@ namespace RethinkDb.Driver.Net
                 timeout = connectTimeout;
             }
             close(noreplyWait);
-            ConnectionInstance inst = instanceMaker();
-            instance = inst;
-            inst.Connect(hostname, port, handshake, timeout);
+            this.Socket = new SocketWrapper(hostname, port, timeout);
+            this.Socket.Connect(handshake);
             return this;
         }
 
         public virtual async Task<Connection> reconnectAsync(bool noreplyWait = false)
         {
             close(noreplyWait);
-            ConnectionInstance inst = instanceMaker();
-            instance = inst;
-            await inst.ConnectAsync(hostname, port, handshake);
+            this.Socket = new SocketWrapper(hostname, port, connectTimeout);
+            await this.Socket.ConnectAsync(handshake);
             return this;
         }
 
-        public virtual bool Open => instance?.Open ?? false;
-        public virtual bool HasError => instance?.HasError ?? false;
+        public virtual bool Open => this.Socket?.Open ?? false;
+        public virtual bool HasError => this.Socket?.HasError ?? false;
 
-        public virtual ConnectionInstance checkOpen()
+        public virtual void checkOpen()
         {
-            if( !instance?.Open ?? true )
+            if( !this.Socket?.Open ?? true )
             {
                 throw new ReqlDriverError("Connection is closed.");
             }
-            return instance;
         }
 
         public virtual void close(bool shouldNoReplyWait = true)
         {
-            if( instance != null )
+            if ( this.Socket != null )
             {
                 try
                 {
@@ -121,10 +121,16 @@ namespace RethinkDb.Driver.Net
                 finally
                 {
                     nextToken = 0;
-                    instance.Close();
-                    instance = null;
+                    this.Socket.Close();
+                    this.Socket = null;
                 }
             }
+
+            foreach (var cursor in this.cursorCache.Values)
+            {
+                cursor.SetError("Connection is closed.");
+            }
+            cursorCache.Clear();
         }
 
         public virtual void noreplyWait()
@@ -276,9 +282,8 @@ namespace RethinkDb.Driver.Net
 
         protected Task<Response> SendQuery(Query query, bool awaitResponse)
         {
-            var inst = checkOpen();
-            if( inst.Socket == null ) throw new ReqlDriverError("No socket open.");
-            return inst.Socket.SendQuery(query.Token, query.Serialize(), awaitResponse);
+            if( this.Socket == null ) throw new ReqlDriverError("No socket open.");
+            return this.Socket.SendQuery(query.Token, query.Serialize(), awaitResponse);
         }
 
         protected Query PrepareQuery(ReqlAst term, OptArgs globalOpts)
@@ -363,39 +368,37 @@ namespace RethinkDb.Driver.Net
             return RunQueryReply(Query.Stop(cursor.Token));
         }
 
-        internal virtual void RemoveFromCache(long token)
+
+        internal virtual void AddToCache(long token, ICursor cursor)
         {
-            instance?.RemoveFromCache(token);
+            if( this.Socket == null)
+                throw new ReqlDriverError("Can't add to cache when not connected.");
+            cursorCache[token] = cursor;
         }
 
-        internal virtual void AddToCache<T>(long token, Cursor<T> cursor)
+        internal virtual void RemoveFromCache(long token)
         {
-            if (instance == null)
-                throw new ReqlDriverError("Can't add to cache when not connected.");
-
-            instance?.AddToCache(token, cursor);
+            ICursor removed;
+            if (!cursorCache.TryRemove(token, out removed))
+            {
+                Log.Trace($"Could not remove cursor token {token} from cursorCache.");
+            }
         }
 
         #endregion
 
         public static Builder build()
         {
-            return new Builder(() => new ConnectionInstance());
+            return new Builder();
         }
 
         public class Builder
         {
-            internal readonly Func<ConnectionInstance> _instanceMaker;
             internal string _hostname = null;
             internal int? _port = null;
             internal string _dbname = null;
             internal string _authKey = null;
             internal TimeSpan? _timeout = null;
-
-            public Builder(Func<ConnectionInstance> instanceMaker)
-            {
-                this._instanceMaker = instanceMaker;
-            }
 
             public virtual Builder hostname(string val)
             {

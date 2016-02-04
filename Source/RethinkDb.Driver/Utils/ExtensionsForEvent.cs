@@ -2,7 +2,7 @@
 
 namespace RethinkDb.Driver.Utils
 {
-    public static class ExtensionsForEvent
+    internal static class ExtensionsForEvent
     {
         public static void FireEvent<T>(this EventHandler<T> eve, object sender, T arg)
         {

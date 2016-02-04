@@ -1,4 +1,5 @@
 ## v2.2.5-beta-1
+* Introducing ReGrid: The RethinkDB Large Object File Store. See docs for more info.
 * Added Connection.ConnectionError event. Better for connection pooling.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.
 

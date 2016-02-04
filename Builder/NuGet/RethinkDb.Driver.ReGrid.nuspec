@@ -21,15 +21,18 @@
       <dependencies>
           
           <group targetFramework="net45">
+              <dependency id="RethinkDb.Driver" version="@build.number@" />
               <dependency id="Newtonsoft.Json" version="8.0.2" />
               <dependency id="Common.Logging" version="3.3.0" />
           </group>
 
         <group targetFramework="DNX4.5.1">
+            <dependency id="RethinkDb.Driver" version="@build.number@" />
             <dependency id="Newtonsoft.Json" version="8.0.2" />
             <dependency id="Microsoft.Extensions.Logging.Abstractions" version="1.0.0-rc1-final" />
         </group>
         <group targetFramework="DNXCore5.0">
+            <dependency id="RethinkDb.Driver" version="@build.number@" />
             <dependency id="Newtonsoft.Json" version="8.0.2" />
             <dependency id="System.Text.Encoding" version="4.0.11-beta-23516" />
             <dependency id="System.Runtime" version="4.0.21-beta-23516" />

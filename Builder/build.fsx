@@ -4,12 +4,15 @@
 //#else
 //#endif
 
-let serverDownload = "https://ipfs.io/ipfs/QmeaNpgJd2Uwharad1o1dcDx9K1m3i93vx7BUkiEcCJqi5/RethinkDB-windows-alpha2.zip"
+let serverDownload = "http://circus.atnnn.com/ipfs/QmbF14Tn4HLkRtRFgz64JiunEHE6DaGPaLf15Mrz8ugHzL/rethinkdb-windows-alpha3.zip"
 
 
 // include Fake lib
 #I @"packages/build/FAKE/tools"
+#I @"packages/build/DotNetZip/lib/net20"
 #r @"FakeLib.dll"
+#r @"Ionic.Zip.dll"
+
 
 #load @"Utils.fsx"
 
@@ -152,12 +155,13 @@ Target "Clean" (fun _ ->
     CleanDirs [Folders.CompileOutput; Folders.Package]
 )
 
+open Ionic.Zip
 
 Target "serverup" (fun _ ->
 
     use client = new System.Net.WebClient()
     let zipfile = (Folders.Test @@ "RethinkDb.Server.zip")
-    let serverExe = (Folders.Test @@ "RethinkDB-windows-alpha2.exe")
+    let serverExe = (Folders.Test @@ "rethinkdb.exe")
     let serverArgs = ""
 
     CreateDir (directory zipfile)
@@ -165,7 +169,10 @@ Target "serverup" (fun _ ->
     trace ("Downloading RethinkDB for Windows ... : " + serverDownload)
     client.DownloadFile(serverDownload, zipfile)
 
-    Unzip Folders.Test zipfile
+    use zip = new ZipFile(zipfile)
+    zip.FlattenFoldersOnExtract <- true;
+    zip.ExtractAll(Folders.Test)
+
 
     trace "STARTING RETHINKDB SERVER ON WINDOWS ;) ATnNn STYLE"
     fireAndForget( fun psi -> 

@@ -7,3 +7,4 @@ group build
     nuget FAKE
     nuget FSharp.Data
     nuget Z.ExtensionMethods.WithNamespace
+    nuget DotNetZip

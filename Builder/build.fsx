@@ -4,7 +4,7 @@
 //#else
 //#endif
 
-let serverDownload = "http://circus.atnnn.com/ipfs/QmbF14Tn4HLkRtRFgz64JiunEHE6DaGPaLf15Mrz8ugHzL/rethinkdb-windows-alpha3.zip"
+let serverDownload = "https://download.rethinkdb.com/windows/rethinkdb-dev-preview-0.zip"
 
 
 // include Fake lib
@@ -174,7 +174,7 @@ Target "serverup" (fun _ ->
     zip.ExtractAll(Folders.Test)
 
 
-    trace "STARTING RETHINKDB SERVER ON WINDOWS ;) ATnNn STYLE"
+    trace "STARTING RETHINKDB SERVER ON WINDOWS ;)"
     fireAndForget( fun psi -> 
                          psi.FileName <- serverExe
                          psi.WorkingDirectory <- Folders.Test

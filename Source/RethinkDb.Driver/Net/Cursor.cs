@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Proto;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
@@ -51,14 +52,15 @@ namespace RethinkDb.Driver.Net
         public virtual void close()
         {
             awaitingCloser.Cancel();
-            if( error == null )
+            if (error == null)
             {
                 error = new Exception("No such element.");
-                if( connection.Open )
+                if (connection.Open)
                 {
                     outstandingRequests += 1;
                     connection.Stop(this);
                 }
+                connection.RemoveFromCache(this.Token);
             }
         }
 
@@ -159,8 +161,15 @@ namespace RethinkDb.Driver.Net
                     //if we're out of buffered items, poll until we get more.
                     MaybeSendContinue();
                     if (error != null) return false; //we don't throw in .net
-
+                    
                     var result = await this.awaitingContinue.ConfigureAwait(false);
+
+                    //stop processing immediately, even if we have results from
+                    //STOP. Calmly tell the caller we don't have anything.
+                    if( this.awaitingCloser.IsCancellationRequested )
+                    {
+                        return false;
+                    }
 
                     this.Extend(result);
                 }

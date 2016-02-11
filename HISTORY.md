@@ -1,4 +1,8 @@
 ## v2.2.5-beta-1
+* Fixed possible memory leak in Cursor.close()
+* Some minor Cursor changes to make MoveNextAsync work better when Cursor.close()
+
+## v2.2.5-beta-1
 * Introducing ReGrid: The RethinkDB Large Object File Store. See docs for more info.
 * Added Connection.ConnectionError event. Better for connection pooling.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.

@@ -374,7 +374,7 @@ namespace RethinkDb.Driver.Net
             return RunQueryReply(Query.Continue(cursor.Token));
         }
 
-        internal virtual Task<Response> Stop(ICursor cursor)
+        internal virtual void Stop(ICursor cursor)
         {
             /*
             neumino: The END query itself doesn't come back with a response
@@ -382,7 +382,8 @@ namespace RethinkDb.Driver.Net
             neumino: Yes a STOP is like a very last CONTINUE
             neumino: If you have a pending CONTINUE, and send a STOP, you should get back two SUCCESS_SEQUENCE
             */
-            return RunQueryReply(Query.Stop(cursor.Token));
+            //this.Socket?.CancelAwaiter(cursor.Token);
+            RunQueryNoReply(Query.Stop(cursor.Token));
         }
 
 

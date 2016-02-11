@@ -1,8 +1,0 @@
-dependencies:
-    pre: 
-      - sudo apt-get install fish
-      - fish ./circle.sh Setup
-
-test:
-    override:
-      - fish ./circle.sh RunTests

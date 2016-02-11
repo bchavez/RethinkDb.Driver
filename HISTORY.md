@@ -1,6 +1,7 @@
-## v2.2.5-beta-1
+## v2.2.5-beta-2
 * Fixed possible memory leak in Cursor.close()
-* Some minor Cursor changes to make MoveNextAsync work better when Cursor.close()
+* Some minor Cursor changes to make MoveNextAsync work better
+* Connection and ConnectionPool are now IDisposable.
 
 ## v2.2.5-beta-1
 * Introducing ReGrid: The RethinkDB Large Object File Store. See docs for more info.

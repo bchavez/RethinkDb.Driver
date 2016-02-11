@@ -73,5 +73,11 @@ namespace RethinkDb.Driver.Net.Clustering
         public abstract Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts);
         public abstract Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts);
         public abstract void RunNoReply(ReqlAst term, object globalOpts);
+
+
+        public void Dispose()
+        {
+            //pooling strategies really have nothing to do...
+        }
     }
 }

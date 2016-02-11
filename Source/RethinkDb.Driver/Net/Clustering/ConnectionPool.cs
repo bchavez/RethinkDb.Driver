@@ -411,5 +411,10 @@ namespace RethinkDb.Driver.Net.Clustering
                 return conn.poolReady.Task;
             }
         }
+
+        public void Dispose()
+        {
+            this.shutdown();
+        }
     }
 }

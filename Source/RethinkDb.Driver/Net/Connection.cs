@@ -11,7 +11,7 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
-    public interface IConnection
+    public interface IConnection : IDisposable
     {
         Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts);
         Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts);
@@ -465,6 +465,11 @@ namespace RethinkDb.Driver.Net
                 var conn = new Connection(this);
                 return conn.reconnectAsync();
             }
+        }
+
+        public void Dispose()
+        {
+            this.close(false);
         }
     }
 }

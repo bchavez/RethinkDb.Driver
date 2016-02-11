@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Proto;
-using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {

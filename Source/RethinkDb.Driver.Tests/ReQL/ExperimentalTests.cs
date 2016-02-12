@@ -26,10 +26,10 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
 
             var result =
-                R.expr(games)
+                R.Expr(games)
                     //.filter(g => g["points"] == 10)
                     .filter<Game>(g => g.points > 9)
-                    .map(g => new {PlayerId = g["id"]})
+                    .Map(g => new {PlayerId = g["id"]})
                     .RunAtom<List<TopPlayer>>(conn);
 
             result.ShouldBeEquivalentTo(new[]

@@ -35,11 +35,11 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void issue_10()
         {
-            R.db(DbName).table(TableName)
-                .delete().Run(conn);
+            R.Db(DbName).Table(TableName)
+                .Delete().Run(conn);
 
-            var insert = R.db(DbName).table(TableName)
-                .insert(new User
+            var insert = R.Db(DbName).Table(TableName)
+                .Insert(new User
                     {
                         Birthday = new DateTime(1990, 8, 18, 0, 0, 0, DateTimeKind.Utc),
                         FirstName = null,
@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                     }).Run(conn);
 
             
-            Cursor<User> result = R.db(DbName).table(TableName)
+            Cursor<User> result = R.Db(DbName).Table(TableName)
                 .Run<User>(conn);
 
             var bufferedItems = result.BufferedItems;

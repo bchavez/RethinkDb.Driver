@@ -29,12 +29,12 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void issue_12()
         {
-            var table = R.db(DbName).table(TableName);
-            table.delete().Run(conn);
+            var table = R.Db(DbName).Table(TableName);
+            table.Delete().Run(conn);
 
             var basket = new Basket {id = 99};
 
-            table.insert(basket).Run(conn);
+            table.Insert(basket).Run(conn);
 
             basket.Items = new List<string>
                 {
@@ -52,7 +52,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             table.update(basket).Run(conn);
 
-            Basket fromDb = table.get(99).Run<Basket>(conn);
+            Basket fromDb = table.Get(99).Run<Basket>(conn);
 
             fromDb.Dump();
 
@@ -65,22 +65,22 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void issue_20()
         {
-            var table = R.db(DbName).table(TableName);
-            table.delete().Run(conn);
+            var table = R.Db(DbName).Table(TableName);
+            table.Delete().Run(conn);
 
             Console.WriteLine(">>> INSERT");
-            var result = table.insert(new {foo = "bar"}).RunResult(conn);
+            var result = table.Insert(new {foo = "bar"}).RunResult(conn);
             var id = result.GeneratedKeys[0];
             result.AssertInserted(1);
 
             Console.WriteLine(">>> UPDATE 1 / VALUE 1");
             var value = "VALUE1";
-            result = table.get(id).update(new {Target = value}).RunResult(conn);
+            result = table.Get(id).update(new {Target = value}).RunResult(conn);
             result.Dump();
 
             Console.WriteLine(">>> UPDATE 2 / VALUE 2");
             value = "VALUE2";
-            var optResult = table.get(id).update(new {Target = value})
+            var optResult = table.Get(id).update(new {Target = value})
                 .optArg("return_changes", true).Run(conn);
             ExtensionsForTesting.Dump(optResult);
         }
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void issue_21_allow_JObject_inserts()
         {
-            var table = R.db(DbName).table(TableName);
-            table.delete().Run(conn);
+            var table = R.Db(DbName).Table(TableName);
+            table.Delete().Run(conn);
 
             var state = new JObject
                 {
@@ -144,11 +144,11 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
             
             Console.WriteLine(">>> INSERT");
-            var result = table.insert(state).RunResult(conn);
+            var result = table.Insert(state).RunResult(conn);
             var id = result.GeneratedKeys[0];
             result.Dump();
 
-            var check = table.get(id).RunAtom<TheJObject>(conn);
+            var check = table.Get(id).RunAtom<TheJObject>(conn);
             check.Dump();
 
             check.TheString.Should().Be((string)state["TheString"]);
@@ -189,14 +189,14 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             var jObject = JObject.Parse(json);
 
-            var table = R.db(DbName).table(TableName);
-            table.delete().Run(conn);
+            var table = R.Db(DbName).Table(TableName);
+            table.Delete().Run(conn);
 
-            var result = table.insert(jObject).RunResult(conn);
+            var result = table.Insert(jObject).RunResult(conn);
             var id = result.GeneratedKeys[0];
             result.Dump();
 
-            var check = table.get(id).RunAtom<JObject>(conn);
+            var check = table.Get(id).RunAtom<JObject>(conn);
             check.Dump();
         }
 
@@ -215,9 +215,9 @@ namespace RethinkDb.Driver.Tests.ReQL
                             .port(RethinkDBConstants.DEFAULT_PORT)
                             .timeout(60)
                             .connect();
-                        var x = _r.db(DbName)
-                            .table(TableName)
-                            .count();
+                        var x = _r.Db(DbName)
+                            .Table(TableName)
+                            .Count();
                         Console.WriteLine(">>>>>");
                         long resCount = x.Run(conn);
                         Console.WriteLine("<<<<<");

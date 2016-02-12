@@ -11,7 +11,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void binary_echo()
         {
-            byte[] data = R.binary(new byte[] {1, 2, 3}).Run<byte[]>(conn);
+            byte[] data = R.Binary(new byte[] {1, 2, 3}).Run<byte[]>(conn);
             data.Should().Equal(1, 2, 3);
         }
 

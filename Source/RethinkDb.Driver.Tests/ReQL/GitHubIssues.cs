@@ -29,7 +29,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void issue_12()
         {
-            var table = r.db(DbName).table(TableName);
+            var table = R.db(DbName).table(TableName);
             table.delete().run(conn);
 
             var basket = new Basket {id = 99};
@@ -65,7 +65,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void issue_20()
         {
-            var table = r.db(DbName).table(TableName);
+            var table = R.db(DbName).table(TableName);
             table.delete().run(conn);
 
             Console.WriteLine(">>> INSERT");
@@ -104,7 +104,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void issue_21_allow_JObject_inserts()
         {
-            var table = r.db(DbName).table(TableName);
+            var table = R.db(DbName).table(TableName);
             table.delete().run(conn);
 
             var state = new JObject
@@ -189,7 +189,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             var jObject = JObject.Parse(json);
 
-            var table = r.db(DbName).table(TableName);
+            var table = R.db(DbName).table(TableName);
             table.delete().run(conn);
 
             var result = table.insert(jObject).runResult(conn);

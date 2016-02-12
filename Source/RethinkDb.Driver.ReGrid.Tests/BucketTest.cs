@@ -23,9 +23,9 @@ namespace RethinkDb.Driver.ReGrid.Tests
         {
             Log.TruncateBinaryTypes = true;
 
-            fileTable = r.db(DbName).table("fs_files");
-            chunkTable = r.db(DbName).table("fs_chunk");
-            db = r.db(DbName);
+            fileTable = R.db(DbName).table("fs_files");
+            chunkTable = R.db(DbName).table("fs_chunk");
+            db = R.db(DbName);
             var opts = new BucketConfig();
             chunkIndex = opts.ChunkIndex;
             fileIndexPath = opts.FileIndex;

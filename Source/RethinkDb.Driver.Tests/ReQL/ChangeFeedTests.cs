@@ -15,12 +15,12 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Explicit]
         public void change_feeds_without_rx()
         {
-            var result = r.db(DbName).table(TableName)
+            var result = R.db(DbName).table(TableName)
                 .delete()[new { return_changes = true }]
                 .runResult(conn)
                 .AssertNoErrors();
 
-            var changes = r.db(DbName).table(TableName)
+            var changes = R.db(DbName).table(TableName)
                 .changes()[new { include_states = false }]
                 .runChanges<JObject>(conn);
 
@@ -40,7 +40,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
+                R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
                     .run(conn);
             });
@@ -49,7 +49,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
+                R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
                     .run(conn);
             });
@@ -58,7 +58,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
+                R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
                     .run(conn);
             });
@@ -74,12 +74,12 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Explicit]
         public void can_enumerate_though_change_feed_manually()
         {
-            var result = r.db(DbName).table(TableName)
+            var result = R.db(DbName).table(TableName)
                 .delete()[new { return_changes = true }]
                 .runResult(conn)
                 .AssertNoErrors();
 
-            var changes = r.db(DbName).table(TableName)
+            var changes = R.db(DbName).table(TableName)
                 .changes()[new { include_states = false }]
                 .runChanges<JObject>(conn);
 
@@ -98,7 +98,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
+                R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
                     .run(conn);
             });
@@ -107,7 +107,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
+                R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
                     .run(conn);
             });
@@ -116,7 +116,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
+                R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
                     .run(conn);
             });

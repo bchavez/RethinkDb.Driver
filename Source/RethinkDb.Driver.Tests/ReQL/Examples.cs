@@ -28,7 +28,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void test_booleans()
         {
-            bool t = r.expr(true).run<bool>(conn);
+            bool t = R.expr(true).run<bool>(conn);
             t.Should().Be(true);
         }
 
@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         public void insert_test_without_id()
         {
             var obj = new Foo { Bar = 1, Baz = 2, Tim = DateTimeOffset.Now };
-            Result result = r.db(DbName).table(TableName).insert(obj).run<Result>(conn);
+            Result result = R.db(DbName).table(TableName).insert(obj).run<Result>(conn);
             result.Dump();
         }
 
@@ -49,21 +49,21 @@ namespace RethinkDb.Driver.Tests.ReQL
                     new Foo {id = "b", Baz = 2, Bar = 2},
                     new Foo {id = "c", Baz = 3, Bar = 3}
                 };
-            Result result = r.db(DbName).table(TableName).insert(arr).run<Result>(conn);
+            Result result = R.db(DbName).table(TableName).insert(arr).run<Result>(conn);
             result.Dump();
         }
 
         [Test]
         public void get_test()
         {
-            Foo foo = r.db(DbName).table(TableName).get("a").run<Foo>(conn);
+            Foo foo = R.db(DbName).table(TableName).get("a").run<Foo>(conn);
             foo.Dump();
         }
 
         [Test]
         public void get_with_time()
         {
-            Foo foo = r.db(DbName).table(TableName).get("4d4ba69e-048c-43b7-b842-c7b49dc6691c")
+            Foo foo = R.db(DbName).table(TableName).get("4d4ba69e-048c-43b7-b842-c7b49dc6691c")
                 .run<Foo>(conn);
 
             foo.Dump();
@@ -72,7 +72,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void getall_test()
         {
-            Cursor<Foo> all = r.db(DbName).table(TableName).getAll("a", "b", "c").run<Foo>(conn);
+            Cursor<Foo> all = R.db(DbName).table(TableName).getAll("a", "b", "c").run<Foo>(conn);
 
             all.BufferedItems.Dump();
 
@@ -86,7 +86,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void use_a_cursor_to_get_items()
         {
-            Cursor<Foo> all = r.db(DbName).table(TableName).getAll("a", "b", "c").runCursor<Foo>(conn);
+            Cursor<Foo> all = R.db(DbName).table(TableName).getAll("a", "b", "c").runCursor<Foo>(conn);
 
             foreach (var foo in all)
             {
@@ -98,7 +98,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void getall_with_linq()
         {
-            Cursor<Foo> all = r.db(DbName).table(TableName).getAll("a", "b", "c").runCursor<Foo>(conn);
+            Cursor<Foo> all = R.db(DbName).table(TableName).getAll("a", "b", "c").runCursor<Foo>(conn);
 
             var bazInOrder = all.OrderByDescending(f => f.Baz)
                 .Select(f => f.Baz);
@@ -116,11 +116,11 @@ namespace RethinkDb.Driver.Tests.ReQL
             DropTable(DbName, TableName);
             CreateTable(DbName, TableName);
 
-            r.db(DbName)
+            R.db(DbName)
                 .table(TableName)
                 .indexCreate(IndexName).run(conn);
 
-            r.db(DbName)
+            R.db(DbName)
                 .table(TableName)
                 .indexWait(IndexName).run(conn);
 
@@ -131,9 +131,9 @@ namespace RethinkDb.Driver.Tests.ReQL
                     new Foo {id = "c", Baz = 3, Bar = 3, Idx = "qux"}
                 };
 
-            r.db(DbName).table(TableName).insert(foos).run(conn);
+            R.db(DbName).table(TableName).insert(foos).run(conn);
 
-            Cursor<Foo> all = r.db(DbName).table(TableName)
+            Cursor<Foo> all = R.db(DbName).table(TableName)
                 .getAll("qux")[new { index = "Idx" }]
                 .run<Foo>(conn);
 
@@ -147,37 +147,37 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void getfield_expression_test()
         {
-            r.db(DbName).table(TableName).delete().run(conn);
+            R.db(DbName).table(TableName).delete().run(conn);
             var arr = new[]
                 {
                     new Foo {id = "a", Baz = 1, Bar = 1, Tim = DateTimeOffset.Now},
                     new Foo {id = "b", Baz = 2, Bar = 2, Tim = DateTimeOffset.Now},
                     new Foo {id = "c", Baz = 3, Bar = 3, Tim = DateTimeOffset.Now}
                 };
-            Result result = r.db(DbName).table(TableName).insert(arr).run<Result>(conn);
+            Result result = R.db(DbName).table(TableName).insert(arr).run<Result>(conn);
             result.Dump();
             result.Inserted.Should().Be(3);
 
-            long bazInFooC = r.db(DbName).table(TableName).get("c")["Baz"].run(conn);
+            long bazInFooC = R.db(DbName).table(TableName).get("c")["Baz"].run(conn);
             bazInFooC.Should().Be(3);
         }
 
         [Test]
         public void test_overloading()
         {
-            r.db(DbName).table(TableName).delete().run(conn);
+            R.db(DbName).table(TableName).delete().run(conn);
             var arr = new[]
                 {
                     new Foo {id = "a", Baz = 1, Bar = 1, Tim = DateTimeOffset.Now},
                     new Foo {id = "b", Baz = 2, Bar = 2, Tim = DateTimeOffset.Now},
                     new Foo {id = "c", Baz = 3, Bar = 3, Tim = DateTimeOffset.Now}
                 };
-            Result result = r.db(DbName).table(TableName).insert(arr).run<Result>(conn);
+            Result result = R.db(DbName).table(TableName).insert(arr).run<Result>(conn);
             result.Dump();
             result.Inserted.Should().Be(3);
 
-            var expA = r.db(DbName).table(TableName).get("a")["Baz"];
-            var expB = r.db(DbName).table(TableName).get("b")["Bar"];
+            var expA = R.db(DbName).table(TableName).get("a")["Baz"];
+            var expB = R.db(DbName).table(TableName).get("b")["Bar"];
 
             int add = (expA + expB + 1).run<int>(conn);
             add.Should().Be(4);
@@ -186,14 +186,14 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void test_implicit_operator_overload()
         {
-            long x = (r.expr(1) + 1).run(conn); //everything between () actually gets executed on the server
+            long x = (R.expr(1) + 1).run(conn); //everything between () actually gets executed on the server
             x.Should().Be(2);
         }
 
         [Test]
         public void test_loop()
         {
-            Cursor<int> result = r.range(1, 4).runCursor<int>(conn);
+            Cursor<int> result = R.range(1, 4).runCursor<int>(conn);
 
             foreach (var i in result)
             {
@@ -222,13 +222,13 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
 
 
-            r.db(DbName).table(TableName).delete().run(conn);
+            R.db(DbName).table(TableName).delete().run(conn);
 
-            r.db(DbName).table(TableName)
+            R.db(DbName).table(TableName)
                 .insert(avatar).run(conn);
 
 
-            Avatar fromDb = r.db(DbName).table(TableName)
+            Avatar fromDb = R.db(DbName).table(TableName)
                 .get("myavatar").run<Avatar>(conn);
 
 
@@ -246,13 +246,13 @@ namespace RethinkDb.Driver.Tests.ReQL
             var myObject = new MapObject()
                 {
                     {"id", "javabin"},
-                    {"the_data", r.binary(data)}
+                    {"the_data", R.binary(data)}
                 };
 
-            r.db(DbName).table(TableName)
+            R.db(DbName).table(TableName)
                 .insert(myObject).run(conn);
 
-            var result = r.db(DbName).table(TableName)
+            var result = R.db(DbName).table(TableName)
                 .get("javabin").run(conn);
 
             ExtensionsForTesting.Dump(result.the_data);
@@ -270,7 +270,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void check_if_table_exists()
         {
-            var result = r.db(DbName).tableList().runAtom<List<string>>(conn);
+            var result = R.db(DbName).tableList().runAtom<List<string>>(conn);
 
             if( result.Contains("test") )
             {
@@ -281,13 +281,13 @@ namespace RethinkDb.Driver.Tests.ReQL
                 //doesnt exist
             }
 
-            var newTableResult = r.db(DbName).tableList().contains("newTable")
+            var newTableResult = R.db(DbName).tableList().contains("newTable")
                 .do_(tableExists =>
                     {
-                        return r.branch(
+                        return R.branch(
                             tableExists, /* The test */
                             new {tables_created = 0}, /* If False */
-                            r.db(DbName).tableCreate("newTable") /* If true */
+                            R.db(DbName).tableCreate("newTable") /* If true */
                             );
                     }).runResult(conn);
 

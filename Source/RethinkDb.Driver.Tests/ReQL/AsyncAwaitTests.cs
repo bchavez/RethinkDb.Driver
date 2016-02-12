@@ -10,7 +10,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public async void basic_test()
         {
-            bool b = await r.expr(true).runAsync<bool>(conn);
+            bool b = await R.Expr(true).runAsync<bool>(conn);
 
             b.Should().Be(true);
         }
@@ -19,7 +19,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         public async void async_insert()
         {
             //ClearDefaultTable();
-            r.db(DbName).table(TableName).delete().run(conn);
+            R.Db(DbName).Table(TableName).Delete().run(conn);
 
             var games = new[]
                 {
@@ -29,8 +29,8 @@ namespace RethinkDb.Driver.Tests.ReQL
                     new Game {id = 12, player = "Alice", points = 2, type = "free"},
                 };
 
-            var result = await r.db(DbName).table(TableName)
-                                .insert(games)
+            var result = await R.Db(DbName).Table(TableName)
+                                .Insert(games)
                                 .runResultAsync(conn);
 
             result.AssertInserted(4);

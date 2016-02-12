@@ -30,7 +30,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
 
             IEnumerable<GroupedResult<string,Game>> result = 
-                r.expr(games).group("player")
+                R.expr(games).group("player")
                 .run<GroupedResult<string, Game>>(conn);
 
             var groups = 0;
@@ -63,7 +63,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                     new Game { id=12, player = "Alice", points = 2, type = "free"},
                 };
 
-            var result = r.expr(games).group("player")
+            var result = R.expr(games).group("player")
                 .runGrouping<string, Game>(conn);
 
             var groups = 0;
@@ -96,7 +96,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                     new Game { id=12, player = "Alice", points = 2, type = "free"},
                 };
 
-            var result = await r.expr(games).group("player")
+            var result = await R.expr(games).group("player")
                 .runGroupingAsync<string, Game>(conn);
 
             var groups = 0;

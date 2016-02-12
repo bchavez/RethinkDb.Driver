@@ -43,24 +43,42 @@ using RethinkDb.Driver.Ast;
 namespace RethinkDb.Driver.Ast {
     public class TopLevel {
 
-        public ReqlExpr expr(Object value){
+        public ReqlExpr Expr(Object value){
+            return expr(value);
+        }
+        internal ReqlExpr expr(Object value){
             return Util.ToReqlExpr(value);
         }
 
-        public ReqlExpr row(params object[] values) {
+
+        public ReqlExpr Row(params object[] values) {
+            return row(values);
+        }
+        internal ReqlExpr row(params object[] values) {
             throw new ReqlDriverError("r.row is not implemented in the C# driver. Use lambda syntax instead.");
         }
 
-        public MapObject hashMap(object key, object val) {
+        public MapObject HashMap(object key, object val) {
+            return new MapObject().with(key, val);
+        }
+        internal MapObject hashMap(object key, object val) {
             return new MapObject().with(key, val);
         }
 
-        public MapObject hashMap()
+        public MapObject HashMap()
+        {
+            return hashMap();
+        }
+        internal MapObject hashMap()
         {
             return new MapObject();
         }
 
-        public IList array(params object[] values){
+
+        public IList Array(params object[] values){
+            return array(values);
+        }
+        internal IList array(params object[] values){
             return values.ToList();
         }
 
@@ -76,9 +94,15 @@ namespace RethinkDb.Driver.Ast {
                         if( sig.FirstArg.NotIn("Db", "Table") )
                         {
                             var parameters = sig.Args.Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
+                            var forwardParams = sig.Args.Select(arg => $"{ArgumentVariable(arg.Var)}").ToArray();
 
                             @RenderMethodXmlDoc(termInfo.Key)
                             @:public @Class(term["classname"].ToString()) @Method(methodname) ( @string.Join(", ", parameters.ToArray()) )
+                            @:{
+                            @:   return @MethodInternalName(methodname) ( @string.Join(", ", forwardParams.ToArray()) );
+                            @:}
+
+                            @:internal @Class(term["classname"].ToString()) @MethodInternalName(methodname) ( @string.Join(", ", parameters.ToArray()) )
                             @:{
 
                             if (methodname == "binary")

@@ -11,6 +11,11 @@ namespace Templates.CodeGen.Util
 
         public static string MethodName(this string str)
         {
+            return str.Pascalize();
+        }
+
+        public static string MethodInternalName(this string str)
+        {
             return str.Camelize();
         }
 

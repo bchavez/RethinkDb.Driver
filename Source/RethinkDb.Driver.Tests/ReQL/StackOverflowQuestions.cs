@@ -13,7 +13,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             ClearTable(DbName, TableName);
 
-            var result = r.db(DbName).table(TableName)
+            var result = R.db(DbName).table(TableName)
                 .insert(new
                     {
                         students = new
@@ -28,13 +28,13 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             var insertedId = result.GeneratedKeys[0];
 
-            var obj = r.db(DbName).table(TableName)
+            var obj = R.db(DbName).table(TableName)
                 .get(insertedId)
                 .runAtom<JObject>(conn);
 
             obj.Dump();
 
-            r.db(DbName).table(TableName)
+            R.db(DbName).table(TableName)
                 .get(insertedId)
                 .update(new
                     {
@@ -46,7 +46,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                 .runResult(conn);
 
 
-            var newObj = r.db(DbName).table(TableName)
+            var newObj = R.db(DbName).table(TableName)
                 .get(insertedId)
                 .runAtom<JObject>(conn);
 

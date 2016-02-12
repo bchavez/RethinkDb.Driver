@@ -26,7 +26,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
 
             var result =
-                r.expr(games)
+                R.expr(games)
                     //.filter(g => g["points"] == 10)
                     .filter<Game>(g => g.points > 9)
                     .map(g => new {PlayerId = g["id"]})

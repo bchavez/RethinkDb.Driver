@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Net.Clustering;

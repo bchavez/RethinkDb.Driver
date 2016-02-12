@@ -45,7 +45,7 @@ namespace RethinkDb.Driver.Tests.Network
 
             for( var i = 0; i < inserts; i++ )
             {
-                r.db(DbName).table(TableName)
+                R.db(DbName).table(TableName)
                     .insert(docs.Generate())
                     .runResult(conn);
             }
@@ -56,7 +56,7 @@ namespace RethinkDb.Driver.Tests.Network
         [Test]
         public void read_all()
         {
-            var cursor = r.db(DbName).table(TableName)
+            var cursor = R.db(DbName).table(TableName)
                 .runCursor<TestDoc>(conn);
 
             foreach( var doc in cursor )

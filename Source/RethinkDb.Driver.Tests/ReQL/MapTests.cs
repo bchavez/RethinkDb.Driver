@@ -20,7 +20,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
 
             List<TopPlayer> result =
-                r.expr(games)
+                R.expr(games)
                     .filter(g => g["points"].gt(9))
                     .map(g => new { PlayerId = g["id"] })
                     .run<List<TopPlayer>>(conn);
@@ -38,7 +38,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void mapping_test_2()
         {
-            List<int> result = r.expr(new[] { 1, 2, 3, 4, 5 })
+            List<int> result = R.expr(new[] { 1, 2, 3, 4, 5 })
                 .map(v => v.mul(v))
                 .run<List<int>>(conn);
 

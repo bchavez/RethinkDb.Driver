@@ -9,6 +9,10 @@ using Templates.CodeGen;
 using Templates.CodeGen.Specialized;
 using Templates.CodeGen.Util;
 using Templates.Metadata;
+using Templates.Utils;
+using Humanizer;
+using Newtonsoft.Json;
+using Z.ExtensionMethods;
 
 namespace Templates
 {
@@ -129,6 +133,28 @@ namespace Templates
 
             File.WriteAllText(Path.Combine(ModelDir, "TopLevel.cs"), tmpl.TransformText());
         }
+
+        //[Test]
+        //public void Prep_AST()
+        //{
+        //    // Try pascalizing all the method names in the AST.
+        //    var methodNames = MetaDb.JavaTermInfo.SelectTokens("*.methodnames");
+        //    foreach( var jToken in methodNames )
+        //    {
+        //        var array = ((JArray)jToken).ToList();
+        //        foreach( var jArrayToken in array )
+        //        {
+        //            var methodName = (JValue)jArrayToken;
+        //            var newMethodName = methodName.Value<string>().Pascalize();
+        //            newMethodName.Dump();
+        //            methodName.Replace(new JValue(newMethodName));
+        //        }
+        //    }
+
+        //    var newJavaTermInfo = JsonConvert.SerializeObject(MetaDb.JavaTermInfo, Formatting.Indented);
+        //    var savePath = MetaDb.MetaPath.PathCombine("java_term_info.json");
+        //    File.WriteAllText(savePath, newJavaTermInfo);
+        //}
 
         [Test]
         public void Render_Proto_Enums()

@@ -10,14 +10,14 @@ namespace RethinkDb.Driver.Tests
         protected const string DbName = "query";
         protected const string TableName = "test";
 
-        public static RethinkDB r = RethinkDB.r;
+        public static RethinkDB R = RethinkDB.r;
 
         protected Connection conn;
         private void EnsureConnection()
         {
             if (conn == null || !conn.Open)
             {
-                this.conn = r.connection()
+                this.conn = R.connection()
                     .hostname(AppSettings.TestHost)
                     .port(AppSettings.TestPort)
                     .connect();
@@ -91,14 +91,14 @@ namespace RethinkDb.Driver.Tests
         [TearDown]
         public void AfterEachTest()
         {
-            r.db("rethinkdb").table("_debug_scratch").delete().run(conn);
+            R.db("rethinkdb").table("_debug_scratch").delete().run(conn);
             conn.close(false);
         }
 
 
         protected void ClearDefaultTable()
         {
-            r.db(DbName).table(TableName).delete().run(conn);
+            R.db(DbName).table(TableName).delete().run(conn);
         }
 
         protected void ClearTable(string dbName, string tableName)
@@ -109,24 +109,24 @@ namespace RethinkDb.Driver.Tests
 
         protected void CreateDb(string dbName)
         {
-            r.dbCreate(dbName).run(conn);
-            r.db(dbName).wait_().run(conn);
+            R.dbCreate(dbName).run(conn);
+            R.db(dbName).wait_().run(conn);
         }
 
         protected void DropDb(string dbName)
         {
-            r.dbDrop(dbName).run(conn);
+            R.dbDrop(dbName).run(conn);
         }
 
         protected void DropTable(string dbName, string tableName)
         {
-            r.db(dbName).tableDrop(tableName).run(conn);
+            R.db(dbName).tableDrop(tableName).run(conn);
         }
 
         protected void CreateTable(string dbName, string tableName)
         {
-            r.db(dbName).tableCreate(tableName).run(conn);
-            r.db(dbName).table(tableName).wait_().run(conn);
+            R.db(dbName).tableCreate(tableName).run(conn);
+            R.db(dbName).table(tableName).wait_().run(conn);
         }
     }
 }

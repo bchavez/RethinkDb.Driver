@@ -21,14 +21,14 @@ namespace RethinkDb.Driver.Tests.ReQL
             var onError = 0;
             var onNext = 0;
 
-            var result = r.db(DbName).table(TableName)
+            var result = R.db(DbName).table(TableName)
                     .delete()[new { return_changes = true }]
                     .runResult(conn)
                     .AssertNoErrors();
 
             result.ChangesAs<JObject>().Dump();
 
-            var changes = r.db(DbName).table(TableName)
+            var changes = R.db(DbName).table(TableName)
                 //.changes()[new {include_states = true, include_initial = true}]
                 .changes()
                 .runChanges<JObject>(conn);
@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Task.Run(() =>
                 {
-                    r.db(DbName).table(TableName)
+                    R.db(DbName).table(TableName)
                         .insert(new { foo = "bar" })
                         .run(conn);
                 });
@@ -59,7 +59,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
+                R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
                     .run(conn);
             });
@@ -68,7 +68,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Task.Run(() =>
                 {
-                    r.db(DbName).table(TableName)
+                    R.db(DbName).table(TableName)
                         .insert(new { foo = "bar" })
                         .run(conn);
                 });

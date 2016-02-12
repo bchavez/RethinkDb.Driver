@@ -116,11 +116,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Find a document by UUID.</para>
 /// <code>r.table('posts').get('a9849eef-7176-4411-935b-79a6e3c56a74').run(conn, callback)
 /// </code></example>
-                        public Get get ( Object expr )
+                        public Get Get ( Object expr )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                        return new Get (arguments );
+                           return get ( expr );
+                        }
+                        internal Get get ( Object expr )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            return new Get (arguments );
                         }
 /// <summary>
 /// <para>Get all documents where the given value matches the value of the requested index.</para>
@@ -128,11 +132,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Secondary index keys are not guaranteed to be unique so we cannot query via <a href="/api/javascript/get/">get</a> when using a secondary index.</para>
 /// <code>r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback)
 /// </code></example>
-                        public GetAll getAll ( params object[] exprs )
+                        public GetAll GetAll ( params object[] exprs )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAddAll(exprs);
-                        return new GetAll (arguments );
+                           return getAll ( exprs );
+                        }
+                        internal GetAll getAll ( params object[] exprs )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAddAll(exprs);
+                            return new GetAll (arguments );
                         }
 /// <summary>
 /// <para>Insert JSON documents into a table. Accepts a single JSON document or an array of
@@ -145,11 +153,15 @@ namespace RethinkDb.Driver.Ast {
 ///     content: "Dolor sit amet"
 /// }).run(conn, callback)
 /// </code></example>
-                        public Insert insert ( Object expr )
+                        public Insert Insert ( Object expr )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                        return new Insert (arguments );
+                           return insert ( expr );
+                        }
+                        internal Insert insert ( Object expr )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            return new Insert (arguments );
                         }
 /// <summary>
 /// <para>Query (read and/or update) the configurations for individual tables or databases.</para>
@@ -157,10 +169,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get the configuration for the <code>users</code> table.</para>
 /// <code>&gt; r.table('users').config().run(conn, callback);
 /// </code></example>
-                        public Config config (  )
+                        public Config Config (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new Config (arguments );
+                           return config (  );
+                        }
+                        internal Config config (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new Config (arguments );
                         }
 /// <summary>
 /// <para>Return the status of a table.</para>
@@ -168,10 +184,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get a table's status.</para>
 /// <code>&gt; r.table('superheroes').status().run(conn, callback);
 /// </code></example>
-                        public Status status (  )
+                        public Status Status (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new Status (arguments );
+                           return status (  );
+                        }
+                        internal Status status (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new Status (arguments );
                         }
 /// <summary>
 /// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
@@ -179,10 +199,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Wait for a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
 /// </code></example>
-                        public Wait wait_ (  )
+                        public Wait Wait_ (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new Wait (arguments );
+                           return wait_ (  );
+                        }
+                        internal Wait wait_ (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new Wait (arguments );
                         }
 /// <summary>
 /// <para>Reconfigure a table's sharding and replication.</para>
@@ -190,10 +214,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
-                        public Reconfigure reconfigure (  )
+                        public Reconfigure Reconfigure (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new Reconfigure (arguments );
+                           return reconfigure (  );
+                        }
+                        internal Reconfigure reconfigure (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new Reconfigure (arguments );
                         }
 /// <summary>
 /// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
@@ -201,10 +229,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
-                        public Rebalance rebalance (  )
+                        public Rebalance Rebalance (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new Rebalance (arguments );
+                           return rebalance (  );
+                        }
+                        internal Rebalance rebalance (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new Rebalance (arguments );
                         }
 /// <summary>
 /// <para><code>sync</code> ensures that writes on a given table are written to permanent storage. Queries
@@ -216,10 +248,14 @@ namespace RethinkDb.Driver.Ast {
 /// until these changes are persisted.</para>
 /// <code>r.table('marvel').sync().run(conn, callback)
 /// </code></example>
-                        public Sync sync (  )
+                        public Sync Sync (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new Sync (arguments );
+                           return sync (  );
+                        }
+                        internal Sync sync (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new Sync (arguments );
                         }
 /// <summary>
 /// <para>Create a new secondary index on a table.</para>
@@ -227,11 +263,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
 /// </code></example>
-                        public IndexCreate indexCreate ( Object expr )
+                        public IndexCreate IndexCreate ( Object expr )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                        return new IndexCreate (arguments );
+                           return indexCreate ( expr );
+                        }
+                        internal IndexCreate indexCreate ( Object expr )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            return new IndexCreate (arguments );
                         }
 /// <summary>
 /// <para>Create a new secondary index on a table.</para>
@@ -239,12 +279,16 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
 /// </code></example>
-                        public IndexCreate indexCreate ( Object expr, Javascript js )
+                        public IndexCreate IndexCreate ( Object expr, Javascript js )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(js);
-                        return new IndexCreate (arguments );
+                           return indexCreate ( expr, js );
+                        }
+                        internal IndexCreate indexCreate ( Object expr, Javascript js )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            arguments.CoerceAndAdd(js);
+                            return new IndexCreate (arguments );
                         }
 /// <summary>
 /// <para>Create a new secondary index on a table.</para>
@@ -252,12 +296,16 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
 /// </code></example>
-                        public IndexCreate indexCreate ( Object expr, Object exprA )
+                        public IndexCreate IndexCreate ( Object expr, Object exprA )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                        return new IndexCreate (arguments );
+                           return indexCreate ( expr, exprA );
+                        }
+                        internal IndexCreate indexCreate ( Object expr, Object exprA )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            arguments.CoerceAndAdd(exprA);
+                            return new IndexCreate (arguments );
                         }
 /// <summary>
 /// <para>Create a new secondary index on a table.</para>
@@ -265,12 +313,16 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
 /// </code></example>
-                        public IndexCreate indexCreate ( Object expr, ReqlFunction0 func0 )
+                        public IndexCreate IndexCreate ( Object expr, ReqlFunction0 func0 )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func0);
-                        return new IndexCreate (arguments );
+                           return indexCreate ( expr, func0 );
+                        }
+                        internal IndexCreate indexCreate ( Object expr, ReqlFunction0 func0 )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            arguments.CoerceAndAdd(func0);
+                            return new IndexCreate (arguments );
                         }
 /// <summary>
 /// <para>Create a new secondary index on a table.</para>
@@ -278,12 +330,16 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
 /// </code></example>
-                        public IndexCreate indexCreate ( Object expr, ReqlFunction1 func1 )
+                        public IndexCreate IndexCreate ( Object expr, ReqlFunction1 func1 )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func1);
-                        return new IndexCreate (arguments );
+                           return indexCreate ( expr, func1 );
+                        }
+                        internal IndexCreate indexCreate ( Object expr, ReqlFunction1 func1 )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            arguments.CoerceAndAdd(func1);
+                            return new IndexCreate (arguments );
                         }
 /// <summary>
 /// <para>Delete a previously created secondary index of this table.</para>
@@ -291,11 +347,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Drop a secondary index named 'code_name'.</para>
 /// <code>r.table('dc').indexDrop('code_name').run(conn, callback)
 /// </code></example>
-                        public IndexDrop indexDrop ( Object expr )
+                        public IndexDrop IndexDrop ( Object expr )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                        return new IndexDrop (arguments );
+                           return indexDrop ( expr );
+                        }
+                        internal IndexDrop indexDrop ( Object expr )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            return new IndexDrop (arguments );
                         }
 /// <summary>
 /// <para>List all the secondary indexes of this table.</para>
@@ -303,10 +363,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: List the available secondary indexes for this table.</para>
 /// <code>r.table('marvel').indexList().run(conn, callback)
 /// </code></example>
-                        public IndexList indexList (  )
+                        public IndexList IndexList (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new IndexList (arguments );
+                           return indexList (  );
+                        }
+                        internal IndexList indexList (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new IndexList (arguments );
                         }
 /// <summary>
 /// <para>Get the status of the specified indexes on this table, or the status
@@ -318,11 +382,15 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Example: Get the status of the <code>timestamp</code> index:</para>
 /// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
-                        public IndexStatus indexStatus ( params object[] exprs )
+                        public IndexStatus IndexStatus ( params object[] exprs )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAddAll(exprs);
-                        return new IndexStatus (arguments );
+                           return indexStatus ( exprs );
+                        }
+                        internal IndexStatus indexStatus ( params object[] exprs )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAddAll(exprs);
+                            return new IndexStatus (arguments );
                         }
 /// <summary>
 /// <para>Wait for the specified indexes on this table to be ready, or for all
@@ -334,11 +402,15 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Example: Wait for the index <code>timestamp</code> to be ready:</para>
 /// <code>r.table('test').indexWait('timestamp').run(conn, callback)
 /// </code></example>
-                        public IndexWait indexWait ( params object[] exprs )
+                        public IndexWait IndexWait ( params object[] exprs )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAddAll(exprs);
-                        return new IndexWait (arguments );
+                           return indexWait ( exprs );
+                        }
+                        internal IndexWait indexWait ( params object[] exprs )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAddAll(exprs);
+                            return new IndexWait (arguments );
                         }
 /// <summary>
 /// <para>Rename an existing secondary index on a table. If the optional argument <code>overwrite</code> is specified as <code>true</code>, a previously existing index with the new name will be deleted and the index will be renamed. If <code>overwrite</code> is <code>false</code> (the default) an error will be raised if the new index name already exists.</para>
@@ -346,12 +418,16 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Rename an index on the comments table.</para>
 /// <code>r.table('comments').indexRename('postId', 'messageId').run(conn, callback)
 /// </code></example>
-                        public IndexRename indexRename ( Object expr, Object exprA )
+                        public IndexRename IndexRename ( Object expr, Object exprA )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                        return new IndexRename (arguments );
+                           return indexRename ( expr, exprA );
+                        }
+                        internal IndexRename indexRename ( Object expr, Object exprA )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            arguments.CoerceAndAdd(exprA);
+                            return new IndexRename (arguments );
                         }
 /// <summary>
 /// <para>Get all documents where the given geometry object intersects the geometry object of the requested geospatial index.</para>
@@ -360,11 +436,15 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var circle1 = r.circle([-117.220406,32.719464], 10, {unit: 'mi'});
 /// r.table('parks').getIntersecting(circle1, {index: 'area'}).run(conn, callback);
 /// </code></example>
-                        public GetIntersecting getIntersecting ( Object expr )
+                        public GetIntersecting GetIntersecting ( Object expr )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                        return new GetIntersecting (arguments );
+                           return getIntersecting ( expr );
+                        }
+                        internal GetIntersecting getIntersecting ( Object expr )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            return new GetIntersecting (arguments );
                         }
 /// <summary>
 /// <para>Get all documents where the specified geospatial index is within a certain distance of the specified point (default 100 kilometers).</para>
@@ -375,11 +455,15 @@ namespace RethinkDb.Driver.Ast {
 ///     {index: 'location', maxDist: 5000}
 /// ).run(conn, callback)
 /// </code></example>
-                        public GetNearest getNearest ( Object expr )
+                        public GetNearest GetNearest ( Object expr )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                        return new GetNearest (arguments );
+                           return getNearest ( expr );
+                        }
+                        internal GetNearest getNearest ( Object expr )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            return new GetNearest (arguments );
                         }
 
     

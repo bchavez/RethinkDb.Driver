@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Ast
             }
             if( GlobalOptions != null )
             {
-                queryArr.Add(ReqlAst.buildOptarg(GlobalOptions));
+                queryArr.Add(ReqlAst.BuildOptarg(GlobalOptions));
             }
 
             string queryJson = queryArr.ToString(Formatting.None);

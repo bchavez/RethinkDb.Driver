@@ -10,7 +10,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void check_atom_respone()
         {
-            var result = R.expr(true).runAtom<bool>(conn);
+            var result = R.expr(true).RunAtom<bool>(conn);
 
             result.Should().BeTrue();
         }
@@ -20,10 +20,10 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             R.db(DbName).table(TableName)
                 .insert(new Foo {id = "check_helper", Baz = 33, Bar = 11})
-                .run(conn);
+                .Run(conn);
 
             var result = R.db(DbName).table(TableName).get("check_helper")
-                .runAtom<Foo>(conn);
+                .RunAtom<Foo>(conn);
 
             result.id.Should().Be("check_helper");
             result.Baz.Should().Be(33);
@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             Action act = () =>
                 {
-                    var result = R.range(1, 5).runAtom<int[]>(conn);
+                    var result = R.range(1, 5).RunAtom<int[]>(conn);
                 };
 
             act.ShouldThrow<ReqlDriverError>();

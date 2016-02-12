@@ -126,7 +126,7 @@ namespace RethinkDb.Driver.ReGrid
                 .ConfigureAwait(false);
 
             return await this.db.table(tableName)
-                .indexWait(indexName).runAtomAsync<JArray>(conn)
+                .indexWait(indexName).RunAtomAsync<JArray>(conn)
                 .ConfigureAwait(false);
         }
 

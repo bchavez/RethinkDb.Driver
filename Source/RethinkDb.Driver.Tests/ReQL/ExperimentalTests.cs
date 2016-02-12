@@ -30,7 +30,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                     //.filter(g => g["points"] == 10)
                     .filter<Game>(g => g.points > 9)
                     .map(g => new {PlayerId = g["id"]})
-                    .runAtom<List<TopPlayer>>(conn);
+                    .RunAtom<List<TopPlayer>>(conn);
 
             result.ShouldBeEquivalentTo(new[]
     {

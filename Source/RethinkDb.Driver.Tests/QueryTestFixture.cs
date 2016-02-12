@@ -91,14 +91,14 @@ namespace RethinkDb.Driver.Tests
         [TearDown]
         public void AfterEachTest()
         {
-            R.db("rethinkdb").table("_debug_scratch").delete().run(conn);
+            R.db("rethinkdb").table("_debug_scratch").delete().Run(conn);
             conn.close(false);
         }
 
 
         protected void ClearDefaultTable()
         {
-            R.db(DbName).table(TableName).delete().run(conn);
+            R.db(DbName).table(TableName).delete().Run(conn);
         }
 
         protected void ClearTable(string dbName, string tableName)
@@ -109,24 +109,24 @@ namespace RethinkDb.Driver.Tests
 
         protected void CreateDb(string dbName)
         {
-            R.dbCreate(dbName).run(conn);
-            R.db(dbName).wait_().run(conn);
+            R.dbCreate(dbName).Run(conn);
+            R.db(dbName).wait_().Run(conn);
         }
 
         protected void DropDb(string dbName)
         {
-            R.dbDrop(dbName).run(conn);
+            R.dbDrop(dbName).Run(conn);
         }
 
         protected void DropTable(string dbName, string tableName)
         {
-            R.db(dbName).tableDrop(tableName).run(conn);
+            R.db(dbName).tableDrop(tableName).Run(conn);
         }
 
         protected void CreateTable(string dbName, string tableName)
         {
-            R.db(dbName).tableCreate(tableName).run(conn);
-            R.db(dbName).table(tableName).wait_().run(conn);
+            R.db(dbName).tableCreate(tableName).Run(conn);
+            R.db(dbName).table(tableName).wait_().Run(conn);
         }
     }
 }

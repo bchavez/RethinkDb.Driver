@@ -28,7 +28,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void test_booleans()
         {
-            bool t = R.expr(true).run<bool>(conn);
+            bool t = R.expr(true).Run<bool>(conn);
             t.Should().Be(true);
         }
 
@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         public void insert_test_without_id()
         {
             var obj = new Foo { Bar = 1, Baz = 2, Tim = DateTimeOffset.Now };
-            Result result = R.db(DbName).table(TableName).insert(obj).run<Result>(conn);
+            Result result = R.db(DbName).table(TableName).insert(obj).Run<Result>(conn);
             result.Dump();
         }
 
@@ -49,14 +49,14 @@ namespace RethinkDb.Driver.Tests.ReQL
                     new Foo {id = "b", Baz = 2, Bar = 2},
                     new Foo {id = "c", Baz = 3, Bar = 3}
                 };
-            Result result = R.db(DbName).table(TableName).insert(arr).run<Result>(conn);
+            Result result = R.db(DbName).table(TableName).insert(arr).Run<Result>(conn);
             result.Dump();
         }
 
         [Test]
         public void get_test()
         {
-            Foo foo = R.db(DbName).table(TableName).get("a").run<Foo>(conn);
+            Foo foo = R.db(DbName).table(TableName).get("a").Run<Foo>(conn);
             foo.Dump();
         }
 
@@ -64,7 +64,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         public void get_with_time()
         {
             Foo foo = R.db(DbName).table(TableName).get("4d4ba69e-048c-43b7-b842-c7b49dc6691c")
-                .run<Foo>(conn);
+                .Run<Foo>(conn);
 
             foo.Dump();
         }
@@ -72,7 +72,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void getall_test()
         {
-            Cursor<Foo> all = R.db(DbName).table(TableName).getAll("a", "b", "c").run<Foo>(conn);
+            Cursor<Foo> all = R.db(DbName).table(TableName).getAll("a", "b", "c").Run<Foo>(conn);
 
             all.BufferedItems.Dump();
 
@@ -86,7 +86,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void use_a_cursor_to_get_items()
         {
-            Cursor<Foo> all = R.db(DbName).table(TableName).getAll("a", "b", "c").runCursor<Foo>(conn);
+            Cursor<Foo> all = R.db(DbName).table(TableName).getAll("a", "b", "c").RunCursor<Foo>(conn);
 
             foreach (var foo in all)
             {
@@ -98,7 +98,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void getall_with_linq()
         {
-            Cursor<Foo> all = R.db(DbName).table(TableName).getAll("a", "b", "c").runCursor<Foo>(conn);
+            Cursor<Foo> all = R.db(DbName).table(TableName).getAll("a", "b", "c").RunCursor<Foo>(conn);
 
             var bazInOrder = all.OrderByDescending(f => f.Baz)
                 .Select(f => f.Baz);
@@ -118,11 +118,11 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             R.db(DbName)
                 .table(TableName)
-                .indexCreate(IndexName).run(conn);
+                .indexCreate(IndexName).Run(conn);
 
             R.db(DbName)
                 .table(TableName)
-                .indexWait(IndexName).run(conn);
+                .indexWait(IndexName).Run(conn);
 
             var foos = new[]
                 {
@@ -131,11 +131,11 @@ namespace RethinkDb.Driver.Tests.ReQL
                     new Foo {id = "c", Baz = 3, Bar = 3, Idx = "qux"}
                 };
 
-            R.db(DbName).table(TableName).insert(foos).run(conn);
+            R.db(DbName).table(TableName).insert(foos).Run(conn);
 
             Cursor<Foo> all = R.db(DbName).table(TableName)
                 .getAll("qux")[new { index = "Idx" }]
-                .run<Foo>(conn);
+                .Run<Foo>(conn);
 
             var results = all.ToArray();
 
@@ -147,53 +147,53 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void getfield_expression_test()
         {
-            R.db(DbName).table(TableName).delete().run(conn);
+            R.db(DbName).table(TableName).delete().Run(conn);
             var arr = new[]
                 {
                     new Foo {id = "a", Baz = 1, Bar = 1, Tim = DateTimeOffset.Now},
                     new Foo {id = "b", Baz = 2, Bar = 2, Tim = DateTimeOffset.Now},
                     new Foo {id = "c", Baz = 3, Bar = 3, Tim = DateTimeOffset.Now}
                 };
-            Result result = R.db(DbName).table(TableName).insert(arr).run<Result>(conn);
+            Result result = R.db(DbName).table(TableName).insert(arr).Run<Result>(conn);
             result.Dump();
             result.Inserted.Should().Be(3);
 
-            long bazInFooC = R.db(DbName).table(TableName).get("c")["Baz"].run(conn);
+            long bazInFooC = R.db(DbName).table(TableName).get("c")["Baz"].Run(conn);
             bazInFooC.Should().Be(3);
         }
 
         [Test]
         public void test_overloading()
         {
-            R.db(DbName).table(TableName).delete().run(conn);
+            R.db(DbName).table(TableName).delete().Run(conn);
             var arr = new[]
                 {
                     new Foo {id = "a", Baz = 1, Bar = 1, Tim = DateTimeOffset.Now},
                     new Foo {id = "b", Baz = 2, Bar = 2, Tim = DateTimeOffset.Now},
                     new Foo {id = "c", Baz = 3, Bar = 3, Tim = DateTimeOffset.Now}
                 };
-            Result result = R.db(DbName).table(TableName).insert(arr).run<Result>(conn);
+            Result result = R.db(DbName).table(TableName).insert(arr).Run<Result>(conn);
             result.Dump();
             result.Inserted.Should().Be(3);
 
             var expA = R.db(DbName).table(TableName).get("a")["Baz"];
             var expB = R.db(DbName).table(TableName).get("b")["Bar"];
 
-            int add = (expA + expB + 1).run<int>(conn);
+            int add = (expA + expB + 1).Run<int>(conn);
             add.Should().Be(4);
         }
 
         [Test]
         public void test_implicit_operator_overload()
         {
-            long x = (R.expr(1) + 1).run(conn); //everything between () actually gets executed on the server
+            long x = (R.expr(1) + 1).Run(conn); //everything between () actually gets executed on the server
             x.Should().Be(2);
         }
 
         [Test]
         public void test_loop()
         {
-            Cursor<int> result = R.range(1, 4).runCursor<int>(conn);
+            Cursor<int> result = R.range(1, 4).RunCursor<int>(conn);
 
             foreach (var i in result)
             {
@@ -222,14 +222,14 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
 
 
-            R.db(DbName).table(TableName).delete().run(conn);
+            R.db(DbName).table(TableName).delete().Run(conn);
 
             R.db(DbName).table(TableName)
-                .insert(avatar).run(conn);
+                .insert(avatar).Run(conn);
 
 
             Avatar fromDb = R.db(DbName).table(TableName)
-                .get("myavatar").run<Avatar>(conn);
+                .get("myavatar").Run<Avatar>(conn);
 
 
             fromDb.Id.Should().Be(avatar.Id);
@@ -250,10 +250,10 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
 
             R.db(DbName).table(TableName)
-                .insert(myObject).run(conn);
+                .insert(myObject).Run(conn);
 
             var result = R.db(DbName).table(TableName)
-                .get("javabin").run(conn);
+                .get("javabin").Run(conn);
 
             ExtensionsForTesting.Dump(result.the_data);
         }
@@ -270,7 +270,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void check_if_table_exists()
         {
-            var result = R.db(DbName).tableList().runAtom<List<string>>(conn);
+            var result = R.db(DbName).tableList().RunAtom<List<string>>(conn);
 
             if( result.Contains("test") )
             {
@@ -289,7 +289,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                             new {tables_created = 0}, /* If False */
                             R.db(DbName).tableCreate("newTable") /* If true */
                             );
-                    }).runResult(conn);
+                    }).RunResult(conn);
 
             newTableResult.Dump();
         }

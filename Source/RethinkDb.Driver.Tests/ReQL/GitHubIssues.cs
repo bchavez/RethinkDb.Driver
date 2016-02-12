@@ -30,11 +30,11 @@ namespace RethinkDb.Driver.Tests.ReQL
         public void issue_12()
         {
             var table = R.db(DbName).table(TableName);
-            table.delete().run(conn);
+            table.delete().Run(conn);
 
             var basket = new Basket {id = 99};
 
-            table.insert(basket).run(conn);
+            table.insert(basket).Run(conn);
 
             basket.Items = new List<string>
                 {
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             basket.ArrayOfInts = new[] {new[] {1, 2, 3}, new[] {4, 5, 6}};
 
-            table.update(basket).run(conn);
+            table.update(basket).Run(conn);
 
-            Basket fromDb = table.get(99).run<Basket>(conn);
+            Basket fromDb = table.get(99).Run<Basket>(conn);
 
             fromDb.Dump();
 
@@ -66,22 +66,22 @@ namespace RethinkDb.Driver.Tests.ReQL
         public void issue_20()
         {
             var table = R.db(DbName).table(TableName);
-            table.delete().run(conn);
+            table.delete().Run(conn);
 
             Console.WriteLine(">>> INSERT");
-            var result = table.insert(new {foo = "bar"}).runResult(conn);
+            var result = table.insert(new {foo = "bar"}).RunResult(conn);
             var id = result.GeneratedKeys[0];
             result.AssertInserted(1);
 
             Console.WriteLine(">>> UPDATE 1 / VALUE 1");
             var value = "VALUE1";
-            result = table.get(id).update(new {Target = value}).runResult(conn);
+            result = table.get(id).update(new {Target = value}).RunResult(conn);
             result.Dump();
 
             Console.WriteLine(">>> UPDATE 2 / VALUE 2");
             value = "VALUE2";
             var optResult = table.get(id).update(new {Target = value})
-                .optArg("return_changes", true).run(conn);
+                .optArg("return_changes", true).Run(conn);
             ExtensionsForTesting.Dump(optResult);
         }
 
@@ -105,7 +105,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         public void issue_21_allow_JObject_inserts()
         {
             var table = R.db(DbName).table(TableName);
-            table.delete().run(conn);
+            table.delete().Run(conn);
 
             var state = new JObject
                 {
@@ -144,11 +144,11 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
             
             Console.WriteLine(">>> INSERT");
-            var result = table.insert(state).runResult(conn);
+            var result = table.insert(state).RunResult(conn);
             var id = result.GeneratedKeys[0];
             result.Dump();
 
-            var check = table.get(id).runAtom<TheJObject>(conn);
+            var check = table.get(id).RunAtom<TheJObject>(conn);
             check.Dump();
 
             check.TheString.Should().Be((string)state["TheString"]);
@@ -190,13 +190,13 @@ namespace RethinkDb.Driver.Tests.ReQL
             var jObject = JObject.Parse(json);
 
             var table = R.db(DbName).table(TableName);
-            table.delete().run(conn);
+            table.delete().Run(conn);
 
-            var result = table.insert(jObject).runResult(conn);
+            var result = table.insert(jObject).RunResult(conn);
             var id = result.GeneratedKeys[0];
             result.Dump();
 
-            var check = table.get(id).runAtom<JObject>(conn);
+            var check = table.get(id).RunAtom<JObject>(conn);
             check.Dump();
         }
 
@@ -219,7 +219,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                             .table(TableName)
                             .count();
                         Console.WriteLine(">>>>>");
-                        long resCount = x.run(conn);
+                        long resCount = x.Run(conn);
                         Console.WriteLine("<<<<<");
                         Console.WriteLine(" - C: " + resCount);
                         conn.close();

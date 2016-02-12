@@ -17,12 +17,12 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             var result = R.db(DbName).table(TableName)
                 .delete()[new { return_changes = true }]
-                .runResult(conn)
+                .RunResult(conn)
                 .AssertNoErrors();
 
             var changes = R.db(DbName).table(TableName)
                 .changes()[new { include_states = false }]
-                .runChanges<JObject>(conn);
+                .RunChanges<JObject>(conn);
 
 
             
@@ -42,7 +42,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             {
                 R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
-                    .run(conn);
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
@@ -51,7 +51,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             {
                 R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
-                    .run(conn);
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             {
                 R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
-                    .run(conn);
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
@@ -76,12 +76,12 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             var result = R.db(DbName).table(TableName)
                 .delete()[new { return_changes = true }]
-                .runResult(conn)
+                .RunResult(conn)
                 .AssertNoErrors();
 
             var changes = R.db(DbName).table(TableName)
                 .changes()[new { include_states = false }]
-                .runChanges<JObject>(conn);
+                .RunChanges<JObject>(conn);
 
             var task = Task.Run(async () =>
             {
@@ -100,7 +100,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             {
                 R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
-                    .run(conn);
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
@@ -109,7 +109,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             {
                 R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
-                    .run(conn);
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
@@ -118,7 +118,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             {
                 R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
-                    .run(conn);
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);

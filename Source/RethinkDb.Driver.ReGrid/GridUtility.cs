@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.ReGrid
 
             var cursor = await bucket.fileTable
                 .between(r.array(status, filename, r.minval()), r.array(status, filename, r.maxval()))[index]
-                .runCursorAsync<FileInfo>(bucket.conn)
+                .RunCursorAsync<FileInfo>(bucket.conn)
                 .ConfigureAwait(false);
 
             return cursor;
@@ -61,7 +61,7 @@ namespace RethinkDb.Driver.ReGrid
 
             var cursor = await bucket.fileTable
                 .between(r.array(r.minval(), filename, r.minval()), r.array( r.maxval(), filename, r.maxval()))[index]
-                .runCursorAsync<FileInfo>(bucket.conn)
+                .RunCursorAsync<FileInfo>(bucket.conn)
                 .ConfigureAwait(false);
 
             return cursor;
@@ -89,7 +89,7 @@ namespace RethinkDb.Driver.ReGrid
             var index = new { index = bucket.chunkIndexName };
             return await bucket.chunkTable.getAll(r.array(fileId, n))[index]
                 .nth(0)
-                .runResultAsync<Chunk>(bucket.conn)
+                .RunResultAsync<Chunk>(bucket.conn)
                 .ConfigureAwait(false);
         }
     }

@@ -24,13 +24,13 @@ namespace RethinkDb.Driver.Tests.ReQL
                                     }
                             }
                     })
-                    .runResult(conn);
+                    .RunResult(conn);
 
             var insertedId = result.GeneratedKeys[0];
 
             var obj = R.db(DbName).table(TableName)
                 .get(insertedId)
-                .runAtom<JObject>(conn);
+                .RunAtom<JObject>(conn);
 
             obj.Dump();
 
@@ -43,12 +43,12 @@ namespace RethinkDb.Driver.Tests.ReQL
                                 locations = new[] { "Seattle", "San Francisco" }
                             }
                     })
-                .runResult(conn);
+                .RunResult(conn);
 
 
             var newObj = R.db(DbName).table(TableName)
                 .get(insertedId)
-                .runAtom<JObject>(conn);
+                .RunAtom<JObject>(conn);
 
             newObj.Dump();
         }

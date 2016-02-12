@@ -13,7 +13,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void datetimeoffset_pesudo_type_r_now()
         {
-            DateTimeOffset t = R.now().run<DateTimeOffset>(conn);
+            DateTimeOffset t = R.now().Run<DateTimeOffset>(conn);
             //ten minute limit for clock drift.
             var now = DateTimeOffset.Now;
             t.Should().BeCloseTo(now, 600000);
@@ -22,7 +22,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void datetime_pesudo_type_r_now()
         {
-            DateTime t = R.now().run<DateTime>(conn);
+            DateTime t = R.now().Run<DateTime>(conn);
             //rethinkdb returns no timezone with r.now();
 
             var now = DateTime.UtcNow;
@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         public void datetime_expr_localtime()
         {
             var date = DateTime.Now;
-            DateTime result = R.expr(date).run<DateTime>(conn);
+            DateTime result = R.expr(date).Run<DateTime>(conn);
 
             result.Should().BeCloseTo(date, 1); // must be within 1ms of each other
         }
@@ -44,7 +44,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         public void datetime_expr_utctime()
         {
             var date = DateTime.UtcNow;
-            DateTime result = R.expr(date).run<DateTime>(conn);
+            DateTime result = R.expr(date).Run<DateTime>(conn);
 
             result.Should().BeCloseTo(date, 1);
         }
@@ -58,7 +58,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Action action = () =>
                 {
-                    DateTime result = R.expr(date).run<DateTime>(conn);
+                    DateTime result = R.expr(date).Run<DateTime>(conn);
                 };
 
             action.ShouldThrow<ReqlQueryLogicError>("DateTime unspecified timezone should not be ISO8601 valid.");
@@ -71,14 +71,14 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             var default_timezone = new {default_timezone = "-09:00"};
 
-            DateTime result = (R.expr(date) as Iso8601)[default_timezone].run<DateTime>(conn);
+            DateTime result = (R.expr(date) as Iso8601)[default_timezone].Run<DateTime>(conn);
 
             var dateTimeUtc = new DateTime(2015, 11, 14, 1, 2, 3) + TimeSpan.FromHours(9);
 
             result.ToUniversalTime().Should().BeCloseTo(dateTimeUtc, 1);
 
             var withoutTimezone = date.ToString("o");
-            DateTime result2 = R.iso8601(withoutTimezone)[default_timezone].run<DateTime>(conn);
+            DateTime result2 = R.iso8601(withoutTimezone)[default_timezone].Run<DateTime>(conn);
 
             result2.ToUniversalTime().Should().BeCloseTo(dateTimeUtc, 1);
 
@@ -87,7 +87,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void use_raw_object()
         {
-            JObject result = R.now().run<JObject>(conn);
+            JObject result = R.now().Run<JObject>(conn);
             //ten minute limit for clock drift.
 
             result["$reql_type$"].ToString().Should().Be("TIME");
@@ -108,10 +108,10 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
 
             var result = R.db(DbName).table(TableName)
-                .insert(flight).run(conn);
+                .insert(flight).Run(conn);
 
             Flight f = R.db(DbName).table(TableName)
-                .get("lax").run<Flight>(conn);
+                .get("lax").Run<Flight>(conn);
 
             f.Should().NotBeNull();
         }

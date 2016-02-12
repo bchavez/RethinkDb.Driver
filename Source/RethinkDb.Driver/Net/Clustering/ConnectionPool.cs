@@ -168,7 +168,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
                 try
                 {
-                    var cursor = changeFeed.runChanges<Server>(this);
+                    var cursor = changeFeed.RunChanges<Server>(this);
 
                     foreach ( var change in cursor )
                     {

@@ -20,7 +20,7 @@ namespace RethinkDb.Driver.Tests.Network
                 .timeout(60)
                 .connect();
             
-            int result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
+            int result = r.random(1, 9).add(r.random(1, 9)).Run<int>(c);
             result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
         }
 

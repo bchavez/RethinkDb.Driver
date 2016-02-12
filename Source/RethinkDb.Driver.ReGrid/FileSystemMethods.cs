@@ -33,7 +33,7 @@ namespace RethinkDb.Driver.ReGrid
 
             var cursor = await bucket.fileTable
                 .between(r.array(Status.Completed, filename, r.minval()), r.array(Status.Completed, filename, r.maxval()))[index]
-                .runCursorAsync<FileInfo>(bucket.conn)
+                .RunCursorAsync<FileInfo>(bucket.conn)
                 .ConfigureAwait(false);
 
             return cursor;
@@ -55,7 +55,7 @@ namespace RethinkDb.Driver.ReGrid
         public static async Task<FileInfo> GetFileInfoAsync(this Bucket bucket, Guid fileId)
         {
             var fileInfo = await bucket.fileTable
-                .get(fileId).runAtomAsync<FileInfo>(bucket.conn)
+                .get(fileId).RunAtomAsync<FileInfo>(bucket.conn)
                 .ConfigureAwait(false);
 
             if (fileInfo == null)
@@ -183,12 +183,12 @@ namespace RethinkDb.Driver.ReGrid
                     r.array(fileId, r.minval()),
                     r.array(fileId, r.maxval()))[new { index = bucket.chunkIndexName }]
                     .delete()[deleteOpts]
-                    .runResultAsync(bucket.conn)
+                    .RunResultAsync(bucket.conn)
                     .ConfigureAwait(false);
 
                 //then delete the file.
                 await bucket.fileTable.get(fileId).delete()[deleteOpts]
-                    .runResultAsync(bucket.conn)
+                    .RunResultAsync(bucket.conn)
                     .ConfigureAwait(false);
             }
         }

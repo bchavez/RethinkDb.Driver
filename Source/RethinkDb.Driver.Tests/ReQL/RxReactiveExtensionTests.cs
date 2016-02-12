@@ -23,7 +23,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             var result = R.db(DbName).table(TableName)
                     .delete()[new { return_changes = true }]
-                    .runResult(conn)
+                    .RunResult(conn)
                     .AssertNoErrors();
 
             result.ChangesAs<JObject>().Dump();
@@ -31,7 +31,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             var changes = R.db(DbName).table(TableName)
                 //.changes()[new {include_states = true, include_initial = true}]
                 .changes()
-                .runChanges<JObject>(conn);
+                .RunChanges<JObject>(conn);
 
             var observable = changes.ToObservable();
 
@@ -52,7 +52,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                 {
                     R.db(DbName).table(TableName)
                         .insert(new { foo = "bar" })
-                        .run(conn);
+                        .Run(conn);
                 });
 
             Thread.Sleep(3000);
@@ -61,7 +61,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             {
                 R.db(DbName).table(TableName)
                     .insert(new { foo = "bar" })
-                    .run(conn);
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
@@ -70,7 +70,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                 {
                     R.db(DbName).table(TableName)
                         .insert(new { foo = "bar" })
-                        .run(conn);
+                        .Run(conn);
                 });
 
             Thread.Sleep(3000);

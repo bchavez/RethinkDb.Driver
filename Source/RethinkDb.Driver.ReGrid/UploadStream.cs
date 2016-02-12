@@ -127,7 +127,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             var chunks = PrepareChunks();
 
-            await chunkTable.insert(chunks.ToArray())[chunkInsertOpts].runResultAsync(conn)
+            await chunkTable.insert(chunks.ToArray())[chunkInsertOpts].RunResultAsync(conn)
                 .ConfigureAwait(false);
 
             this.batch.Clear();

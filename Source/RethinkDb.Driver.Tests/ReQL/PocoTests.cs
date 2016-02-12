@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         public void issue_10()
         {
             R.db(DbName).table(TableName)
-                .delete().run(conn);
+                .delete().Run(conn);
 
             var insert = R.db(DbName).table(TableName)
                 .insert(new User
@@ -63,11 +63,11 @@ namespace RethinkDb.Driver.Tests.ReQL
                                 {new Address {Street = "Shipping 2", Zipcode = "Zip 2"}},
                                 {new Address {Street = "Shipping 3", Zipcode = "Zip 3"}}
                             }
-                    }).run(conn);
+                    }).Run(conn);
 
             
             Cursor<User> result = R.db(DbName).table(TableName)
-                .run<User>(conn);
+                .Run<User>(conn);
 
             var bufferedItems = result.BufferedItems;
 

@@ -140,7 +140,7 @@ namespace RethinkDb.Driver.ReGrid
                     ChunkSizeBytes = options.ChunkSizeBytes
                 };
 
-            var result = await fileTable.insert(fileInfo).runResultAsync(conn)
+            var result = await fileTable.insert(fileInfo).RunResultAsync(conn)
                 .ConfigureAwait(false);
 
             result.AssertInserted(1);

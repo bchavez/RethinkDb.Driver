@@ -73,8 +73,8 @@ namespace RethinkDb.Driver.Tests
 
             try
             {
-                r.dbCreate(DbName).run(conn);
-                r.db(DbName).wait_().run(conn);
+                r.dbCreate(DbName).Run(conn);
+                r.db(DbName).wait_().Run(conn);
             }
             catch
             {
@@ -84,8 +84,8 @@ namespace RethinkDb.Driver.Tests
             {
                 try
                 {
-                    r.db(DbName).tableCreate(tableName).run(conn);
-                    r.db(DbName).table(tableName).wait_().run(conn);
+                    r.db(DbName).tableCreate(tableName).Run(conn);
+                    r.db(DbName).table(tableName).wait_().Run(conn);
                 }
                 catch
                 {
@@ -96,7 +96,7 @@ namespace RethinkDb.Driver.Tests
         [TearDown]
         public void AfterEachTest()
         {
-            r.db("rethinkdb").table("_debug_scratch").delete().run(conn);
+            r.db("rethinkdb").table("_debug_scratch").delete().Run(conn);
             if( !conn.Open )
             {
                 conn.close();
@@ -107,7 +107,7 @@ namespace RethinkDb.Driver.Tests
             {
                 try
                 {
-                    r.db(DbName).tableDrop(tableName).run(conn);
+                    r.db(DbName).tableDrop(tableName).Run(conn);
                 }
                 catch
                 {
@@ -115,7 +115,7 @@ namespace RethinkDb.Driver.Tests
             }
             try
             {
-                r.dbDrop(DbName).run(conn);
+                r.dbDrop(DbName).Run(conn);
             }
             catch
             {

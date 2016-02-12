@@ -11,7 +11,7 @@ namespace RethinkDb.Driver.ReGrid
 {
     public static class FileSystemMethods
     {
-        private static readonly RethinkDB r = RethinkDB.r;
+        private static readonly RethinkDB R = RethinkDB.r;
         
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace RethinkDb.Driver.ReGrid
             var index = new { index = bucket.fileIndex };
 
             var cursor = await bucket.fileTable
-                .between(r.array(Status.Completed, filename, r.minval()), r.array(Status.Completed, filename, r.maxval()))[index]
+                .Between(R.Array(Status.Completed, filename, R.Minval()), R.Array(Status.Completed, filename, R.Maxval()))[index]
                 .RunCursorAsync<FileInfo>(bucket.conn)
                 .ConfigureAwait(false);
 
@@ -55,7 +55,7 @@ namespace RethinkDb.Driver.ReGrid
         public static async Task<FileInfo> GetFileInfoAsync(this Bucket bucket, Guid fileId)
         {
             var fileInfo = await bucket.fileTable
-                .get(fileId).RunAtomAsync<FileInfo>(bucket.conn)
+                .Get(fileId).RunAtomAsync<FileInfo>(bucket.conn)
                 .ConfigureAwait(false);
 
             if (fileInfo == null)
@@ -86,15 +86,15 @@ namespace RethinkDb.Driver.ReGrid
             var index = new { index = bucket.fileIndex };
 
             var between = bucket.fileTable
-                .between(r.array(Status.Completed, filename, r.minval()), r.array(Status.Completed, filename, r.maxval()))[index];
+                .Between(R.Array(Status.Completed, filename, R.Minval()), R.Array(Status.Completed, filename, R.Maxval()))[index];
 
-            var sort = revision >= 0 ? r.asc(bucket.fileIndex) : r.desc(bucket.fileIndex) as ReqlExpr;
+            var sort = revision >= 0 ? R.Asc(bucket.fileIndex) : R.Desc(bucket.fileIndex) as ReqlExpr;
 
             revision = revision >= 0 ? revision : (revision * -1) - 1;
 
-            var selection = await between.orderBy()[new { index = sort }]
-                .skip(revision).limit(1) // so the driver doesn't throw an error when a file isn't found.
-                .runResultAsync<List<FileInfo>>(bucket.conn)
+            var selection = await between.OrderBy()[new { index = sort }]
+                .Skip(revision).Limit(1) // so the driver doesn't throw an error when a file isn't found.
+                .RunResultAsync<List<FileInfo>>(bucket.conn)
                 .ConfigureAwait(false);
 
             var fileinfo = selection.FirstOrDefault();
@@ -134,12 +134,12 @@ namespace RethinkDb.Driver.ReGrid
             var index = new {index = bucket.fileIndexPrefix};
 
             var between = bucket.fileTable
-                .between(r.array(parts, r.minval()), r.array(parts, r.maxval()))[index];
+                .Between(R.Array(parts, R.Minval()), R.Array(parts, R.Maxval()))[index];
 
-            var sort = r.desc(bucket.fileIndexPrefix);
+            var sort = R.Desc(bucket.fileIndexPrefix);
 
-            var selection = await between.orderBy()[new { index = sort }]
-                .runCursorAsync<FileInfo>(bucket.conn)
+            var selection = await between.OrderBy()[new { index = sort }]
+                .RunCursorAsync<FileInfo>(bucket.conn)
                 .ConfigureAwait(false);
 
             return selection;
@@ -166,12 +166,12 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="deleteOpts">Delete durability options. See ReQL API.</param>
         public static async Task DeleteRevisionAsync(this Bucket bucket, Guid fileId, DeleteMode mode = DeleteMode.Soft, object deleteOpts = null)
         {
-            var result = await bucket.fileTable.get(fileId)
-                .update(
-                    r.hashMap(FileInfo.StatusJsonName, Status.Deleted)
+            var result = await bucket.fileTable.Get(fileId)
+                .Update(
+                    R.HashMap(FileInfo.StatusJsonName, Status.Deleted)
                         .with(FileInfo.DeletedDateJsonName, DateTimeOffset.UtcNow)
                 )[deleteOpts]
-                .runResultAsync(bucket.conn)
+                .RunResultAsync(bucket.conn)
                 .ConfigureAwait(false);
 
             result.AssertReplaced(1);
@@ -179,15 +179,15 @@ namespace RethinkDb.Driver.ReGrid
             if (mode == DeleteMode.Hard)
             {
                 //delete the chunks....
-                await bucket.chunkTable.between(
-                    r.array(fileId, r.minval()),
-                    r.array(fileId, r.maxval()))[new { index = bucket.chunkIndexName }]
-                    .delete()[deleteOpts]
+                await bucket.chunkTable.Between(
+                    R.Array(fileId, R.Minval()),
+                    R.Array(fileId, R.Maxval()))[new { index = bucket.chunkIndexName }]
+                    .Delete()[deleteOpts]
                     .RunResultAsync(bucket.conn)
                     .ConfigureAwait(false);
 
                 //then delete the file.
-                await bucket.fileTable.get(fileId).delete()[deleteOpts]
+                await bucket.fileTable.Get(fileId).Delete()[deleteOpts]
                     .RunResultAsync(bucket.conn)
                     .ConfigureAwait(false);
             }

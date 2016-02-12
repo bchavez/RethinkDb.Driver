@@ -23,9 +23,9 @@ namespace RethinkDb.Driver.ReGrid.Tests
         {
             Log.TruncateBinaryTypes = true;
 
-            fileTable = R.db(DbName).table("fs_files");
-            chunkTable = R.db(DbName).table("fs_chunk");
-            db = R.db(DbName);
+            fileTable = R.Db(DbName).Table("fs_files");
+            chunkTable = R.Db(DbName).Table("fs_chunk");
+            db = R.Db(DbName);
             var opts = new BucketConfig();
             chunkIndex = opts.ChunkIndex;
             fileIndexPath = opts.FileIndex;
@@ -42,7 +42,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
         protected void DropFilesTable()
         {
-            var result = db.tableDrop(this.fileTableName).RunResult(this.conn);
+            var result = db.TableDrop(this.fileTableName).RunResult(this.conn);
             result.AssertTablesDropped(1);
         }
 

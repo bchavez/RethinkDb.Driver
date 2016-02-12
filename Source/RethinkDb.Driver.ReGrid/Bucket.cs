@@ -14,7 +14,7 @@ namespace RethinkDb.Driver.ReGrid
 {
     public partial class Bucket
     {
-        private static readonly RethinkDB r = RethinkDB.r;
+        private static readonly RethinkDB R = RethinkDB.r;
 
         internal readonly IConnection conn;
         private readonly BucketConfig config;
@@ -39,19 +39,19 @@ namespace RethinkDb.Driver.ReGrid
             this.conn = conn;
 
             this.databaseName = databaseName;
-            this.db = r.db(this.databaseName);
+            this.db = R.Db(this.databaseName);
 
             config = config ?? new BucketConfig();
 
             this.tableOpts = config.TableOptions;
 
             this.fileTableName = $"{bucketName}_{config.FileTableName}";
-            this.fileTable = this.db.table(fileTableName);
+            this.fileTable = this.db.Table(fileTableName);
             this.fileIndex = config.FileIndex;
             this.fileIndexPrefix = config.FileIndexPrefix;
 
             this.chunkTableName = $"{bucketName}_{config.ChunkTable}";
-            this.chunkTable = this.db.table(chunkTableName);
+            this.chunkTable = this.db.Table(chunkTableName);
             this.chunkIndexName = config.ChunkIndex;
         }
         
@@ -80,7 +80,7 @@ namespace RethinkDb.Driver.ReGrid
                 //index the file paths of completed files and status
                 ReqlFunction1 pathIx = row =>
                     {
-                        return r.array(row[FileInfo.StatusJsonName], row[FileInfo.FileNameJsonName], row[FileInfo.FinishedDateJsonName]);
+                        return R.Array(row[FileInfo.StatusJsonName], row[FileInfo.FileNameJsonName], row[FileInfo.FinishedDateJsonName]);
                     };
                 await CreateIndex(this.fileTableName, this.fileIndex,pathIx)
                     .ConfigureAwait(false);
@@ -90,9 +90,9 @@ namespace RethinkDb.Driver.ReGrid
                 ReqlFunction1 prefixIx = doc =>
                     {
                         //return r.array(doc[FileInfo.FileNameJsonName].split("/").slice(1, -1), doc[FileInfo.FinishedDateJsonName]);
-                        return r.branch(doc[FileInfo.StatusJsonName].eq(Status.Completed),
-                            r.array(doc[FileInfo.FileNameJsonName].split("/").slice(1, -1), doc[FileInfo.FinishedDateJsonName]),
-                            r.error());
+                        return R.Branch(doc[FileInfo.StatusJsonName].Eq(Status.Completed),
+                            R.Array(doc[FileInfo.FileNameJsonName].Split("/").Slice(1, -1), doc[FileInfo.FinishedDateJsonName]),
+                            R.Error());
                     };
                 await CreateIndex(this.fileTableName, this.fileIndexPrefix, prefixIx)
                     .ConfigureAwait(false);
@@ -109,7 +109,7 @@ namespace RethinkDb.Driver.ReGrid
                 //Index the chunks and their parent [fileid, n].
                 ReqlFunction1 chunkIx = row =>
                     {
-                        return r.array(row[Chunk.FilesIdJsonName], row[Chunk.NumJsonName]);
+                        return R.Array(row[Chunk.FilesIdJsonName], row[Chunk.NumJsonName]);
                     };
                 await CreateIndex(this.chunkTableName, this.chunkIndexName, chunkIx)
                     .ConfigureAwait(true);
@@ -121,21 +121,21 @@ namespace RethinkDb.Driver.ReGrid
 
         protected internal async Task<JArray> CreateIndex(string tableName, string indexName, ReqlFunction1 indexFunc)
         {
-            await this.db.table(tableName)
-                .indexCreate(indexName, indexFunc).runAtomAsync<JObject>(conn)
+            await this.db.Table(tableName)
+                .IndexCreate(indexName, indexFunc).RunAtomAsync<JObject>(conn)
                 .ConfigureAwait(false);
 
-            return await this.db.table(tableName)
-                .indexWait(indexName).RunAtomAsync<JArray>(conn)
+            return await this.db.Table(tableName)
+                .IndexWait(indexName).RunAtomAsync<JArray>(conn)
                 .ConfigureAwait(false);
         }
 
         protected internal async Task<Result> EnsureTable(string tableName)
         {
-            return await this.db.tableList().contains(tableName)
-                .do_(tableExists =>
-                    r.branch(tableExists, new {tables_created = 0}, db.tableCreate(tableName)[this.tableOpts])
-                ).runResultAsync(this.conn)
+            return await this.db.TableList().Contains(tableName)
+                .Do_(tableExists =>
+                    R.Branch(tableExists, new {tables_created = 0}, db.TableCreate(tableName)[this.tableOpts])
+                ).RunResultAsync(this.conn)
                 .ConfigureAwait(false);
         }
     }

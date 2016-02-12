@@ -77,6 +77,7 @@ Documentation
   * [JObject Support](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#jobject-support)
   * [Anon Type Insert](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#anonymous-type-insert-support)
   * [Anon Type Projection](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#anonymous-type-map-projection)
+  * [Consuming Changefeeds](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#consuming-changefeeds)
   * [Reactive Extensions](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#reactive-extensions-rx-support)
   * [Implicit Operators](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#implicit-conversion-operator-overload)
 * [Differences](https://github.com/bchavez/RethinkDb.Driver/wiki/Differences-Between-C%23-and-Java-driver)

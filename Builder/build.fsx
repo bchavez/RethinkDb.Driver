@@ -4,7 +4,7 @@
 //#else
 //#endif
 
-let serverDownload = "https://download.rethinkdb.com/windows/rethinkdb-dev-preview-0.zip"
+let serverDownload = "http://circus.atnnn.com/ipfs/QmQaZiJNyAkWshdD3xRBmLYjvgoDpzm8QNYAStpo6SifDo/rethinkdb-windows-alpha-5.zip"
 
 
 // include Fake lib

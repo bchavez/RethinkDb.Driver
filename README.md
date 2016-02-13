@@ -103,7 +103,6 @@ Documentation
 * [Protocol Debugging](https://github.com/bchavez/RethinkDb.Driver/wiki/Protocol-Debugging)
 * [Threading Architecture](https://github.com/bchavez/RethinkDb.Driver/issues/15)
 * [Connection Pooling Architecture](https://github.com/bchavez/RethinkDb.Driver/issues/17)
-* [Java/.NET Naming Convention](https://github.com/bchavez/RethinkDb.Driver/issues/18#issuecomment-171535799)
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bchavez/RethinkDb.Driver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 

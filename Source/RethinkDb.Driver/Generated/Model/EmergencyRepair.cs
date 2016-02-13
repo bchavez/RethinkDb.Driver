@@ -11,10 +11,9 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum EmergencyRepair {
-        unsafe_rollback,
-        unsafe_rollback_or_erase,
+    public static class EmergencyRepair {
+        public const string UnsafeRollback = "unsafe_rollback";
+        public const string UnsafeRollbackOrErase = "unsafe_rollback_or_erase";
     }
 
     

@@ -11,10 +11,9 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum IdentifierFormat {
-        name,
-        uuid,
+    public static class IdentifierFormat {
+        public const string Name = "name";
+        public const string Uuid = "uuid";
     }
 
     

@@ -11,10 +11,9 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum Durability {
-        hard,
-        soft,
+    public static class Durability {
+        public const string Hard = "hard";
+        public const string Soft = "soft";
     }
 
     

@@ -11,11 +11,10 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum Conflict {
-        error,
-        replace,
-        update,
+    public static class Conflict {
+        public const string Error = "error";
+        public const string Replace = "replace";
+        public const string Update = "update";
     }
 
     

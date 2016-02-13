@@ -11,10 +11,9 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum AuthType {
-        basic,
-        digest,
+    public static class AuthType {
+        public const string Basic = "basic";
+        public const string Digest = "digest";
     }
 
     

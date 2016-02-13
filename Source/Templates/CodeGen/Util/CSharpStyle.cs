@@ -29,6 +29,11 @@ namespace Templates.CodeGen.Util
             return str.Camelize();
         }
 
+        public static string EnumField(this string str)
+        {
+            return str.Pascalize();
+        }
+
         public static string ArgumentTypeName(this string str)
         {
             if( str == "Object..." )

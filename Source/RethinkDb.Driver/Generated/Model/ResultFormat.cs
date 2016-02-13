@@ -11,13 +11,12 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum ResultFormat {
-        text,
-        json,
-        jsonp,
-        binary,
-        auto,
+    public static class ResultFormat {
+        public const string Text = "text";
+        public const string Json = "json";
+        public const string Jsonp = "jsonp";
+        public const string Binary = "binary";
+        public const string Auto = "auto";
     }
 
     

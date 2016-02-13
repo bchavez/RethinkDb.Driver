@@ -11,14 +11,13 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum HttpMethod {
-        GET,
-        POST,
-        PUT,
-        PATCH,
-        DELETE,
-        HEAD,
+    public static class HttpMethod {
+        public const string GET = "GET";
+        public const string POST = "POST";
+        public const string PUT = "PUT";
+        public const string PATCH = "PATCH";
+        public const string DELETE = "DELETE";
+        public const string HEAD = "HEAD";
     }
 
     

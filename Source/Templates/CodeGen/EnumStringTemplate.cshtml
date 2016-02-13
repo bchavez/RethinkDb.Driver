@@ -2,6 +2,7 @@
 @using System.Linq
 @using RazorGenerator.Templating
 @using Templates.CodeGen
+@using Templates.CodeGen.Util
 
 @functions {
     public string EnumName { get; set; }
@@ -30,11 +31,10 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum @EnumName {
+    public static class @EnumName {
     @foreach( var v in this.Enums )
     {
-        @:@v,
+        @:public const string @v.EnumField() = "@v";
     }
     }
 

@@ -11,10 +11,9 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum GeoSystem {
-        WGS84,
-        unit_sphere,
+    public static class GeoSystem {
+        public const string WGS84 = "WGS84";
+        public const string UnitSphere = "unit_sphere";
     }
 
     

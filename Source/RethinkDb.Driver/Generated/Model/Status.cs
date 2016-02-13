@@ -11,12 +11,11 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum Status {
-        ready_for_outdated_reads,
-        ready_for_reads,
-        ready_for_writes,
-        all_replicas_ready,
+    public static class Status {
+        public const string ReadyForOutdatedReads = "ready_for_outdated_reads";
+        public const string ReadyForReads = "ready_for_reads";
+        public const string ReadyForWrites = "ready_for_writes";
+        public const string AllReplicasReady = "all_replicas_ready";
     }
 
     

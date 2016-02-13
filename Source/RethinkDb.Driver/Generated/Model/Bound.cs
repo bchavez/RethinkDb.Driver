@@ -11,10 +11,9 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum Bound {
-        open,
-        closed,
+    public static class Bound {
+        public const string Open = "open";
+        public const string Closed = "closed";
     }
 
     

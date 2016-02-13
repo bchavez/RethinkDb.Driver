@@ -11,10 +11,9 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum Format {
-        raw,
-        native,
+    public static class Format {
+        public const string Raw = "raw";
+        public const string Native = "native";
     }
 
     

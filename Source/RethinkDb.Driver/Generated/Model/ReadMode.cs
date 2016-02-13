@@ -11,11 +11,10 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum ReadMode {
-        single,
-        majority,
-        outdated,
+    public static class ReadMode {
+        public const string Single = "single";
+        public const string Majority = "majority";
+        public const string Outdated = "outdated";
     }
 
     

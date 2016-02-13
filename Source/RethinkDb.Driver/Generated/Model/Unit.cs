@@ -11,13 +11,12 @@ using Newtonsoft.Json.Converters;
 
 namespace RethinkDb.Driver.Model {
     
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum Unit {
-        m,
-        km,
-        mi,
-        nm,
-        ft,
+    public static class Unit {
+        public const string M = "m";
+        public const string Km = "km";
+        public const string Mi = "mi";
+        public const string Nm = "nm";
+        public const string Ft = "ft";
     }
 
     

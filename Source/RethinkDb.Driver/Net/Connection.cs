@@ -43,8 +43,8 @@ namespace RethinkDb.Driver.Net
 
         internal Connection(Builder builder)
         {
-            dbname = builder._dbname;
-            var authKey = builder._authKey ?? string.Empty;
+            dbname = builder.dbname;
+            var authKey = builder.authKey ?? string.Empty;
             var authKeyBytes = Encoding.ASCII.GetBytes(authKey);
 
             using (var ms = new MemoryStream())
@@ -58,9 +58,9 @@ namespace RethinkDb.Driver.Net
                 handshake = ms.ToArray();
             }
 
-            hostname = builder._hostname ?? "localhost";
-            port = builder._port ?? RethinkDBConstants.DefaultPort;
-            connectTimeout = builder._timeout;
+            hostname = builder.hostname ?? "localhost";
+            port = builder.port ?? RethinkDBConstants.DefaultPort;
+            connectTimeout = builder.timeout;
         }
 
         public virtual string Db()
@@ -412,33 +412,33 @@ namespace RethinkDb.Driver.Net
 
         public class Builder
         {
-            internal string _hostname = null;
-            internal int? _port = null;
-            internal string _dbname = null;
-            internal string _authKey = null;
-            internal TimeSpan? _timeout = null;
+            internal string hostname = null;
+            internal int? port = null;
+            internal string dbname = null;
+            internal string authKey = null;
+            internal TimeSpan? timeout = null;
 
             public virtual Builder Hostname(string val)
             {
-                this._hostname = val;
+                this.hostname = val;
                 return this;
             }
 
             public virtual Builder Port(int val)
             {
-                this._port = val;
+                this.port = val;
                 return this;
             }
 
             public virtual Builder Db(string val)
             {
-                this._dbname = val;
+                this.dbname = val;
                 return this;
             }
 
             public virtual Builder AuthKey(string val)
             {
-                this._authKey = val;
+                this.authKey = val;
                 return this;
             }
 
@@ -449,7 +449,7 @@ namespace RethinkDb.Driver.Net
             /// <returns></returns>
             public virtual Builder Timeout(int val)
             {
-                this._timeout = TimeSpan.FromSeconds(val);
+                this.timeout = TimeSpan.FromSeconds(val);
                 return this;
             }
 

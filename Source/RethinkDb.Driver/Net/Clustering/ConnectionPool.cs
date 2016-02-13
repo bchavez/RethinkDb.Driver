@@ -72,10 +72,10 @@ namespace RethinkDb.Driver.Net.Clustering
 
         internal ConnectionPool(Builder builder)
         {
-            authKey = builder._authKey;
-            dbname = builder._dbname;
+            authKey = builder.authKey;
+            dbname = builder.dbname;
             seeds = builder.seeds;
-            discover = builder._discover;
+            discover = builder.discover;
             poolingStrategy = builder.hostpool;
         }
 
@@ -317,10 +317,10 @@ namespace RethinkDb.Driver.Net.Clustering
         {
             var connNew = new Connection(new Connection.Builder()
                 {
-                    _authKey = authKey,
-                    _dbname = dbname,
-                    _hostname = hostname,
-                    _port = port
+                    authKey = authKey,
+                    dbname = dbname,
+                    hostname = hostname,
+                    port = port
                 });
 
             connNew.ConnectionError += OnConnectionError;
@@ -342,12 +342,12 @@ namespace RethinkDb.Driver.Net.Clustering
 
         public class Builder
         {
-            internal bool _discover;
+            internal bool discover;
             internal string[] seeds;
-            internal string _dbname;
-            internal string _authKey;
+            internal string dbname;
+            internal string authKey;
             internal IPoolingStrategy hostpool;
-            internal TimeSpan _supervisePeriod;
+            internal TimeSpan supervisePeriod;
 
             /// <summary>
             /// Seed the driver with the following endpoints. Should be strings of the form "Host:Port".
@@ -365,25 +365,25 @@ namespace RethinkDb.Driver.Net.Clustering
             /// </summary>
             public Builder Discover(bool discoverNewHosts)
             {
-                this._discover = discoverNewHosts;
+                this.discover = discoverNewHosts;
                 return this;
             }
 
             public virtual Builder Db(string val)
             {
-                this._dbname = val;
+                this.dbname = val;
                 return this;
             }
 
             public virtual Builder AuthKey(string val)
             {
-                this._authKey = val;
+                this.authKey = val;
                 return this;
             }
 
             public virtual Builder SuperviseEvery(TimeSpan period)
             {
-                this._supervisePeriod = period;
+                this.supervisePeriod = period;
                 return this;
             }
 

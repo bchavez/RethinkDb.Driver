@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests;
 using RethinkDb.Driver.Tests.Utils;
@@ -19,7 +20,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
             byte[] bytes = bucket.DownloadBytes(uploadId, new DownloadOptions());
 
-
+            bytes.Should().Equal(TestBytes.TwoMB);
         }
     }
 }

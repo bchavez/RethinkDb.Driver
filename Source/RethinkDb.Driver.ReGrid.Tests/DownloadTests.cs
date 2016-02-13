@@ -82,7 +82,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
             id.Dump();
 
             var bytes = bucket.DownloadBytes(id);
-
+            bytes.Should().Equal(TestBytes.TwoMB);
         }
 
     }

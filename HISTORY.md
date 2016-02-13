@@ -1,7 +1,8 @@
 ## v2.2.5-beta-3
 * BREAKING CHANGES:
-* **ReGrid** specification update: chunks using: file_id and num fields.
-* **ReQL AST** now using .NET naming conventions.
+* -- **ReGrid** specification update: chunks using: file_id and num fields.
+* -- **ReQL AST** now using .NET naming conventions. AST is now PascalCase.
+* -- RethinkDBConstants using .NET naming conventions.
 * Fixed **ReGrid** bug with large uploads.
 
 ## v2.2.5-beta-2

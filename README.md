@@ -110,18 +110,18 @@ Documentation
 Quick Examples
 -----
 ```csharp
-public static RethinkDB r = RethinkDB.r;
+public static RethinkDB R = RethinkDB.R;
 
 [Test]
 public void can_connect()
 {
-var c = r.connection()
-         .hostname("192.168.0.11")
-         .port(RethinkDBConstants.DEFAULT_PORT)
-         .timeout(60)
-         .connect();
+var c = R.Connection()
+         .Hostname("192.168.0.11")
+         .Port(RethinkDBConstants.DefaultPort)
+         .Timeout(60)
+         .Connect();
 
-int result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
+int result = R.Random(1, 9).Add(R.Random(1, 9)).Run<int>(c);
     Console.WriteLine(result);
     result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
 }
@@ -131,7 +131,7 @@ int result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
 public void insert_poco_without_id()
 {
     var obj = new Foo { Bar = 1, Baz = 2};
-    var result = r.db(DbName).table(TableName).insert(obj).run(conn);
+    var result = R.Db("mydb").Table("mytable").Insert(obj).Run(conn);
     result.Dump();
 }
 /*
@@ -158,7 +158,7 @@ public void insert_an_array_of_pocos()
             new Foo {id = "b", Baz = 2, Bar = 2},
             new Foo {id = "c", Baz = 3, Bar = 3}
         };
-    var result = r.db(DbName).table(TableName).insert(list).run(conn);
+    var result = R.Db("mydb").Table("mytable").Insert(list).Run(conn);
     result.Dump();
 }
 /*
@@ -177,7 +177,7 @@ public void insert_an_array_of_pocos()
 [Test]
 public void get_a_poco()
 {
-    Foo foo = r.db(DbName).table(TableName).get("abc").run<Foo>(conn);
+    Foo foo = R.Db("mydb").Table("mytable").Get("abc").Run<Foo>(conn);
     foo.Dump();
 }
 //Foo Object

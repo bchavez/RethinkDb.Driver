@@ -209,7 +209,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                     while( true )
                     {
                         Console.WriteLine("START");
-                        var _r = RethinkDB.r;
+                        var _r = RethinkDB.R;
                         var conn = _r.connection()
                             .hostname("192.168.0.11")
                             .port(RethinkDBConstants.DEFAULT_PORT)

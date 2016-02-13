@@ -319,7 +319,7 @@ namespace RethinkDb.Driver.Tests.Network
         [Explicit]
         public void check_model()
         {
-            var r = RethinkDB.r;
+            var r = RethinkDB.R;
             var conn = r.connection()
                 .hostname(AppSettings.TestHost)
                 .port(AppSettings.TestPort)
@@ -353,7 +353,7 @@ namespace RethinkDb.Driver.Tests.Network
         [Explicit]
         public async void can_connect_to_cluster()
         {
-            var r = RethinkDB.r;
+            var r = RethinkDB.R;
             var c = r.connectionPool()
                 .seed(new[] {"192.168.0.11:28015"})
                 .poolingStrategy(new RoundRobinHostPool())
@@ -370,7 +370,7 @@ namespace RethinkDb.Driver.Tests.Network
         [Explicit]
         public void stay_alive_test()
         {
-            var r = RethinkDB.r;
+            var r = RethinkDB.R;
             
             var c = r.connectionPool()
                 .seed(new[] { "192.168.0.11:28015" })
@@ -385,7 +385,7 @@ namespace RethinkDb.Driver.Tests.Network
         [Explicit]
         public void epsilon_greedy_host_pool_alive()
         {
-            var r = RethinkDB.r;
+            var r = RethinkDB.R;
             var c = r.connectionPool()
                 .seed(new[] { "192.168.0.11:28015" })
                 .poolingStrategy(new EpsilonGreedyHostPool(null, EpsilonCalculator.Linear()))

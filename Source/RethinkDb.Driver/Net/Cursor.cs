@@ -49,7 +49,7 @@ namespace RethinkDb.Driver.Net
         }
 
 
-        public virtual void close()
+        public virtual void Close()
         {
             awaitingCloser.Cancel();
             if (error == null)
@@ -242,7 +242,7 @@ namespace RethinkDb.Driver.Net
 
         public void Dispose()
         {
-            this.close();
+            this.Close();
         }
 
         /// <summary>

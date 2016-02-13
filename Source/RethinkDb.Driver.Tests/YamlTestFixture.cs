@@ -16,7 +16,7 @@ namespace RethinkDb.Driver.Tests
         protected static int TestCounter = 0;
         protected const string DbName = "test";
 
-        protected static RethinkDB r = RethinkDB.r;
+        protected static RethinkDB r = RethinkDB.R;
         protected Connection conn;
 
         protected List<string> tableVars = new List<string>();

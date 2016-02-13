@@ -7,7 +7,7 @@ namespace RethinkDb.Driver.ReGrid
 {
     public static class GridUtility
     {
-        private static readonly RethinkDB R = RethinkDB.r;
+        private static readonly RethinkDB R = RethinkDB.R;
 
         /// <summary>
         /// Reclaims space from incomplete files.

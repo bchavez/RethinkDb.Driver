@@ -10,7 +10,7 @@ namespace RethinkDb.Driver.Tests
         protected const string DbName = "query";
         protected const string TableName = "test";
 
-        public static RethinkDB R = RethinkDB.r;
+        public static RethinkDB R = RethinkDB.R;
 
         protected Connection conn;
         private void EnsureConnection()

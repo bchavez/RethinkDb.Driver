@@ -7,7 +7,7 @@ namespace RethinkDb.Driver.Tests.Network
     [TestFixture]
     public class ConnectionTest
     {
-        public static RethinkDB r = RethinkDB.r;
+        public static RethinkDB r = RethinkDB.R;
 
         private Connection conn;
         

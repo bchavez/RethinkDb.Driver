@@ -144,9 +144,9 @@ namespace RethinkDb.Driver.Net.Clustering
         /// </summary>
         private void Discoverer()
         {
-            var r = RethinkDB.r;
+            var r = RethinkDB.R;
 
-            var changeFeed = r.db("rethinkdb").table("server_status").changes()[new { include_initial = true }];
+            var changeFeed = r.Db("rethinkdb").Table("server_status").Changes()[new { include_initial = true }];
 
             while ( true )
             {

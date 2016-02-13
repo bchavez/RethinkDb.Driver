@@ -11,7 +11,7 @@ namespace RethinkDb.Driver.ReGrid
 {
     public static class FileSystemMethods
     {
-        private static readonly RethinkDB R = RethinkDB.r;
+        private static readonly RethinkDB R = RethinkDB.R;
         
 
         /// <summary>

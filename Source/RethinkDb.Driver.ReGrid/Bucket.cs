@@ -14,7 +14,7 @@ namespace RethinkDb.Driver.ReGrid
 {
     public partial class Bucket
     {
-        private static readonly RethinkDB R = RethinkDB.r;
+        private static readonly RethinkDB R = RethinkDB.R;
 
         internal readonly IConnection conn;
         private readonly BucketConfig config;

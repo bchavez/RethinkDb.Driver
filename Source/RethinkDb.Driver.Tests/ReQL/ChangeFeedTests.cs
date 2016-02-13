@@ -65,7 +65,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Thread.Sleep(3000);
 
-            changes.close();
+            changes.Close();
 
             task.Result.Should().Be(3);
         }
@@ -123,7 +123,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Thread.Sleep(3000);
 
-            changes.close();
+            changes.Close();
 
             Task.WaitAll(task);
             task.Result.Should().Be(3);

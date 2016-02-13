@@ -121,8 +121,8 @@ public void can_connect()
              .Connect();
 
     int result = R.Random(1, 9).Add(R.Random(1, 9)).Run<int>(c);
-        Console.WriteLine(result);
-        result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
+    Console.WriteLine(result);
+    result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
 }
 // Output: 8
 

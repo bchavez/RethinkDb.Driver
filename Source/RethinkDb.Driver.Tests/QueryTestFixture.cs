@@ -17,10 +17,10 @@ namespace RethinkDb.Driver.Tests
         {
             if (conn == null || !conn.Open)
             {
-                this.conn = R.connection()
-                    .hostname(AppSettings.TestHost)
-                    .port(AppSettings.TestPort)
-                    .connect();
+                this.conn = R.Connection()
+                    .Hostname(AppSettings.TestHost)
+                    .Port(AppSettings.TestPort)
+                    .Connect();
             }
         }
 
@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Tests
 
             try
             {
-                conn.close(false);
+                conn.Close(false);
             }
             catch
             {
@@ -92,7 +92,7 @@ namespace RethinkDb.Driver.Tests
         public void AfterEachTest()
         {
             R.db("rethinkdb").table("_debug_scratch").delete().Run(conn);
-            conn.close(false);
+            conn.Close(false);
         }
 
 

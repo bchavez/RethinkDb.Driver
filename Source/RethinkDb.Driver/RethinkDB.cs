@@ -12,14 +12,14 @@ namespace RethinkDb.Driver
         /// </summary>
         public static readonly RethinkDB R = new RethinkDB();
 
-        public virtual Connection.Builder connection()
+        public virtual Connection.Builder Connection()
         {
-            return Connection.build();
+            return Net.Connection.Build();
         }
 
-        public virtual ConnectionPool.Builder connectionPool()
+        public virtual ConnectionPool.Builder ConnectionPool()
         {
-            return ConnectionPool.build();
+            return Net.Clustering.ConnectionPool.Build();
         }
     }
 }

@@ -87,7 +87,7 @@ namespace RethinkDb.Driver.Ast {
         public Between this[object optArgs] {
             get
             {
-                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+                var newOptargs = OptArgs.FromMap(this.OptArgs).with(optArgs);
         
                 return new Between (this.Args, newOptargs);
             }
@@ -101,7 +101,7 @@ namespace RethinkDb.Driver.Ast {
     public Between this[OptArgs optArgs] {
         get
         {
-            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+            var newOptargs = OptArgs.FromMap(this.OptArgs).with(optArgs);
     
             return new Between (this.Args, newOptargs);
         }
@@ -114,7 +114,7 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
         public Between optArg(string key, object val){
             
-            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
+            var newOptargs = OptArgs.FromMap(this.OptArgs).with(key, val);
         
             return new Between (this.Args, newOptargs);
         }

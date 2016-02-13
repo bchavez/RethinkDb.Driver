@@ -261,7 +261,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void server_info()
         {
-            var server = conn.server();
+            var server = conn.Server();
 
             server.Id.Should().NotBeEmpty();
             server.Name.Should().NotBeNullOrWhiteSpace();

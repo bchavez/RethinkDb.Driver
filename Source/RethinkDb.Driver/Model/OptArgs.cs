@@ -5,7 +5,11 @@ namespace RethinkDb.Driver.Model
 {
     public class OptArgs : Dictionary<string, ReqlAst>
     {
-        public virtual OptArgs with(string key, object value)
+        public virtual OptArgs With(string key, object value)
+        {
+            return with(key, value);
+        }
+        internal virtual OptArgs with(string key, object value)
         {
             if( key != null )
             {
@@ -14,7 +18,11 @@ namespace RethinkDb.Driver.Model
             return this;
         }
 
-        public virtual OptArgs with(string key, IList<object> value)
+        internal virtual OptArgs With(string key, IList<object> value)
+        {
+            return with(key, value);
+        }
+        internal virtual OptArgs with(string key, IList<object> value)
         {
             if( key != null )
             {
@@ -23,7 +31,12 @@ namespace RethinkDb.Driver.Model
             return this;
         }
 
-        public virtual OptArgs with(object anonType)
+
+        public virtual OptArgs With(object anonType)
+        {
+            return with(anonType);
+        }
+        internal virtual OptArgs with(object anonType)
         {
             var anonDict = PropertyHelper.ObjectToDictionary(anonType);
             foreach( var kvp in anonDict )
@@ -33,7 +46,12 @@ namespace RethinkDb.Driver.Model
             return this;
         }
 
-        public virtual OptArgs with(OptArgs args)
+
+        public virtual OptArgs With(OptArgs args)
+        {
+            return with(args);
+        }
+        internal virtual OptArgs with(OptArgs args)
         {
             foreach( var kvp in args )
                 this.with(kvp.Key, kvp.Value);
@@ -41,7 +59,12 @@ namespace RethinkDb.Driver.Model
             return this;
         }
 
-        public static OptArgs fromMap(IDictionary<string, ReqlAst> map)
+
+        public static OptArgs FromMap(IDictionary<string, ReqlAst> map)
+        {
+            return fromMap(map);
+        }
+        internal static OptArgs fromMap(IDictionary<string, ReqlAst> map)
         {
             OptArgs oa = new OptArgs();
 
@@ -51,7 +74,7 @@ namespace RethinkDb.Driver.Model
             return oa;
         }
 
-        public static OptArgs fromAnonType(object anonType)
+        public static OptArgs FromAnonType(object anonType)
         {
             OptArgs oa = new OptArgs();
             oa.with(anonType);
@@ -59,7 +82,11 @@ namespace RethinkDb.Driver.Model
             return oa;
         }
 
-        public static OptArgs of(string key, object val)
+        public static OptArgs Of(string key, object val)
+        {
+            return of(key, val);
+        }
+        internal static OptArgs of(string key, object val)
         {
             OptArgs oa = new OptArgs();
             oa.with(key, val);

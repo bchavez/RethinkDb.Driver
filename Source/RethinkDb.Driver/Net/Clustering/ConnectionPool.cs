@@ -94,7 +94,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 foreach( var h in poolingStrategy.HostList )
                 {
                     var conn = h.conn as Connection;
-                    conn.close(false);
+                    conn.Close(false);
                 }
             }
         }
@@ -120,7 +120,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
                     IPAddress.Parse(host); //make sure it's an IP address.
 
-                    var port = parts.Length == 2 ? int.Parse(parts[1]) : RethinkDBConstants.DEFAULT_PORT;
+                    var port = parts.Length == 2 ? int.Parse(parts[1]) : RethinkDBConstants.DefaultPort;
 
                     var conn = NewPoolConnection(host, port);
                     return new {conn, host = s};
@@ -282,7 +282,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
                         var worker = Task.Run(() =>
                             {
-                                conn.reconnect();
+                                conn.Reconnect();
 
                                 if( conn.Open )
                                 {
@@ -335,7 +335,7 @@ namespace RethinkDb.Driver.Net.Clustering
             he?.MarkFailed();
         }
 
-        public static Builder build()
+        public static Builder Build()
         {
             return new Builder();
         }

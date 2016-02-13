@@ -77,7 +77,7 @@ namespace RethinkDb.Driver.Ast {
         public TableCreate this[object optArgs] {
             get
             {
-                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+                var newOptargs = OptArgs.FromMap(this.OptArgs).with(optArgs);
         
                 return new TableCreate (this.Args, newOptargs);
             }
@@ -96,7 +96,7 @@ namespace RethinkDb.Driver.Ast {
     public TableCreate this[OptArgs optArgs] {
         get
         {
-            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+            var newOptargs = OptArgs.FromMap(this.OptArgs).with(optArgs);
     
             return new TableCreate (this.Args, newOptargs);
         }
@@ -114,7 +114,7 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
         public TableCreate optArg(string key, object val){
             
-            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
+            var newOptargs = OptArgs.FromMap(this.OptArgs).with(key, val);
         
             return new TableCreate (this.Args, newOptargs);
         }

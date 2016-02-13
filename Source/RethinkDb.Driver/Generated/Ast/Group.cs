@@ -77,7 +77,7 @@ namespace RethinkDb.Driver.Ast {
         public Group this[object optArgs] {
             get
             {
-                var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+                var newOptargs = OptArgs.FromMap(this.OptArgs).with(optArgs);
         
                 return new Group (this.Args, newOptargs);
             }
@@ -90,7 +90,7 @@ namespace RethinkDb.Driver.Ast {
     public Group this[OptArgs optArgs] {
         get
         {
-            var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+            var newOptargs = OptArgs.FromMap(this.OptArgs).with(optArgs);
     
             return new Group (this.Args, newOptargs);
         }
@@ -102,7 +102,7 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
         public Group optArg(string key, object val){
             
-            var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
+            var newOptargs = OptArgs.FromMap(this.OptArgs).with(key, val);
         
             return new Group (this.Args, newOptargs);
         }

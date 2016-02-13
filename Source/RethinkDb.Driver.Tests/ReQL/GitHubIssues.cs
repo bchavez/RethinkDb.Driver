@@ -210,11 +210,11 @@ namespace RethinkDb.Driver.Tests.ReQL
                     {
                         Console.WriteLine("START");
                         var _r = RethinkDB.R;
-                        var conn = _r.connection()
-                            .hostname("192.168.0.11")
-                            .port(RethinkDBConstants.DEFAULT_PORT)
-                            .timeout(60)
-                            .connect();
+                        var conn = _r.Connection()
+                            .Hostname("192.168.0.11")
+                            .Port(RethinkDBConstants.DefaultPort)
+                            .Timeout(60)
+                            .Connect();
                         var x = _r.Db(DbName)
                             .Table(TableName)
                             .Count();
@@ -222,7 +222,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                         long resCount = x.Run(conn);
                         Console.WriteLine("<<<<<");
                         Console.WriteLine(" - C: " + resCount);
-                        conn.close();
+                        conn.Close();
                         conn = null;
                         _r = null;
                         Console.WriteLine("FINISH");

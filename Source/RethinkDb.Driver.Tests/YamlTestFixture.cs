@@ -66,10 +66,10 @@ namespace RethinkDb.Driver.Tests
         {
             FixtureWaitHandle.WaitOne();
             
-            conn = r.connection()
-                .hostname(AppSettings.TestHost)
-                .port(AppSettings.TestPort)
-                .connect();
+            conn = r.Connection()
+                .Hostname(AppSettings.TestHost)
+                .Port(AppSettings.TestPort)
+                .Connect();
 
             try
             {
@@ -99,8 +99,8 @@ namespace RethinkDb.Driver.Tests
             r.db("rethinkdb").table("_debug_scratch").delete().Run(conn);
             if( !conn.Open )
             {
-                conn.close();
-                conn.reconnect();
+                conn.Close();
+                conn.Reconnect();
             }
 
             foreach( var tableName in tableVars )
@@ -120,7 +120,7 @@ namespace RethinkDb.Driver.Tests
             catch
             {
             }
-            conn.close(false);
+            conn.Close(false);
             FixtureWaitHandle.Set();
         }
     }

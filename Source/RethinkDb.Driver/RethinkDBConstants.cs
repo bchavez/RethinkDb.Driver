@@ -2,15 +2,15 @@ namespace RethinkDb.Driver
 {
     public class RethinkDBConstants
     {
-        public const string DEFAULT_DB_NAME = "test";
-        public const string DEFAULT_HOSTNAME = "localhost";
-        public const string DEFAULT_AUTHKEY = "";
-        public const int DEFAULT_PORT = 28015;
-        public const int DEFAULT_TIMEOUT = 20;
+        public const string DefaultDbName = "test";
+        public const string DefaultHostname = "localhost";
+        public const string DefaultAuthkey = "";
+        public const int DefaultPort = 28015;
+        public const int DefaultTimeout = 20;
 
         public class Protocol
         {
-            public const string SUCCESS = "SUCCESS";
+            public const string Success = "SUCCESS";
         }
     }
 }

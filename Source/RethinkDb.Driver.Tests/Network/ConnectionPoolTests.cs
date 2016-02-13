@@ -355,10 +355,10 @@ namespace RethinkDb.Driver.Tests.Network
         {
             var r = RethinkDB.R;
             var c = r.ConnectionPool()
-                .seed(new[] {"192.168.0.11:28015"})
-                .poolingStrategy(new RoundRobinHostPool())
-                .discover(true)
-                .connect();
+                .Seed(new[] {"192.168.0.11:28015"})
+                .PoolingStrategy(new RoundRobinHostPool())
+                .Discover(true)
+                .Connect();
 
             Thread.Sleep(10000);
 
@@ -373,10 +373,10 @@ namespace RethinkDb.Driver.Tests.Network
             var r = RethinkDB.R;
             
             var c = r.ConnectionPool()
-                .seed(new[] { "192.168.0.11:28015" })
-                .poolingStrategy(new RoundRobinHostPool())
-                .discover(true)
-                .connect();
+                .Seed(new[] { "192.168.0.11:28015" })
+                .PoolingStrategy(new RoundRobinHostPool())
+                .Discover(true)
+                .Connect();
 
             Thread.Sleep(900000);
         }
@@ -387,10 +387,10 @@ namespace RethinkDb.Driver.Tests.Network
         {
             var r = RethinkDB.R;
             var c = r.ConnectionPool()
-                .seed(new[] { "192.168.0.11:28015" })
-                .poolingStrategy(new EpsilonGreedyHostPool(null, EpsilonCalculator.Linear()))
-                .discover(true)
-                .connect();
+                .Seed(new[] { "192.168.0.11:28015" })
+                .PoolingStrategy(new EpsilonGreedyHostPool(null, EpsilonCalculator.Linear()))
+                .Discover(true)
+                .Connect();
 
             Thread.Sleep(10000);
 

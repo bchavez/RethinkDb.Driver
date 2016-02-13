@@ -83,7 +83,7 @@ namespace RethinkDb.Driver.Net.Clustering
         /// <summary>
         /// Shutdown the connection pool.
         /// </summary>
-        public void shutdown()
+        public void Shutdown()
         {
             shutdownSignal?.Cancel();
             poolingStrategy?.Shutdown();
@@ -110,7 +110,7 @@ namespace RethinkDb.Driver.Net.Clustering
             if( poolingStrategy == null )
             {
                 throw new ArgumentNullException(nameof(poolingStrategy),
-                    $"You must specify a pooling strategy '{nameof(Builder.poolingStrategy)}' when building the connection pool.");
+                    $"You must specify a pooling strategy '{nameof(Builder.PoolingStrategy)}' when building the connection pool.");
             }
 
             var initialSeeds = this.seeds.Select(s =>
@@ -352,7 +352,7 @@ namespace RethinkDb.Driver.Net.Clustering
             /// <summary>
             /// Seed the driver with the following endpoints. Should be strings of the form "Host:Port".
             /// </summary>
-            public Builder seed(string[] seeds)
+            public Builder Seed(string[] seeds)
             {
                 this.seeds = seeds;
                 return this;
@@ -363,25 +363,25 @@ namespace RethinkDb.Driver.Net.Clustering
             /// will attempt to discover any new nodes added to the cluster and then
             /// start sending queries to the newly added cluster nodes.
             /// </summary>
-            public Builder discover(bool discoverNewHosts)
+            public Builder Discover(bool discoverNewHosts)
             {
                 this._discover = discoverNewHosts;
                 return this;
             }
 
-            public virtual Builder db(string val)
+            public virtual Builder Db(string val)
             {
                 this._dbname = val;
                 return this;
             }
 
-            public virtual Builder authKey(string val)
+            public virtual Builder AuthKey(string val)
             {
                 this._authKey = val;
                 return this;
             }
 
-            public virtual Builder superviseEvery(TimeSpan period)
+            public virtual Builder SuperviseEvery(TimeSpan period)
             {
                 this._supervisePeriod = period;
                 return this;
@@ -390,13 +390,13 @@ namespace RethinkDb.Driver.Net.Clustering
             /// <summary>
             /// The selection strategy to for selecting a connection. IE: RoundRobin, HeartBeat, or EpsilonGreedy.
             /// </summary>
-            public Builder poolingStrategy(IPoolingStrategy hostPool)
+            public Builder PoolingStrategy(IPoolingStrategy hostPool)
             {
                 this.hostpool = hostPool;
                 return this;
             }
 
-            public virtual ConnectionPool connect()
+            public virtual ConnectionPool Connect()
             {
                 var conn = new ConnectionPool(this);
                 conn.StartPool();
@@ -404,7 +404,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 return conn;
             }
 
-            public virtual Task<ConnectionPool> connectAsync()
+            public virtual Task<ConnectionPool> ConnectAsync()
             {
                 var conn = new ConnectionPool(this);
                 conn.StartPool();
@@ -414,7 +414,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
         public void Dispose()
         {
-            this.shutdown();
+            this.Shutdown();
         }
     }
 }

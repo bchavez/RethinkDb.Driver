@@ -319,15 +319,15 @@ namespace RethinkDb.Driver.Tests.Network
         [Explicit]
         public void check_model()
         {
-            var r = RethinkDB.r;
-            var conn = r.connection()
-                .hostname(AppSettings.TestHost)
-                .port(AppSettings.TestPort)
-                .timeout(60)
-                .connect();
+            var r = RethinkDB.R;
+            var conn = r.Connection()
+                .Hostname(AppSettings.TestHost)
+                .Port(AppSettings.TestPort)
+                .Timeout(60)
+                .Connect();
 
             var result = r.db("rethinkdb").table("server_status")
-                 .runCursor<Server>(conn);
+                 .RunCursor<Server>(conn);
 
             var servers = result.ToList();
 
@@ -353,8 +353,8 @@ namespace RethinkDb.Driver.Tests.Network
         [Explicit]
         public async void can_connect_to_cluster()
         {
-            var r = RethinkDB.r;
-            var c = r.connectionPool()
+            var r = RethinkDB.R;
+            var c = r.ConnectionPool()
                 .seed(new[] {"192.168.0.11:28015"})
                 .poolingStrategy(new RoundRobinHostPool())
                 .discover(true)
@@ -362,7 +362,7 @@ namespace RethinkDb.Driver.Tests.Network
 
             Thread.Sleep(10000);
 
-            int result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
+            int result = r.random(1, 9).add(r.random(1, 9)).Run<int>(c);
             result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
         }
 
@@ -370,9 +370,9 @@ namespace RethinkDb.Driver.Tests.Network
         [Explicit]
         public void stay_alive_test()
         {
-            var r = RethinkDB.r;
+            var r = RethinkDB.R;
             
-            var c = r.connectionPool()
+            var c = r.ConnectionPool()
                 .seed(new[] { "192.168.0.11:28015" })
                 .poolingStrategy(new RoundRobinHostPool())
                 .discover(true)
@@ -385,8 +385,8 @@ namespace RethinkDb.Driver.Tests.Network
         [Explicit]
         public void epsilon_greedy_host_pool_alive()
         {
-            var r = RethinkDB.r;
-            var c = r.connectionPool()
+            var r = RethinkDB.R;
+            var c = r.ConnectionPool()
                 .seed(new[] { "192.168.0.11:28015" })
                 .poolingStrategy(new EpsilonGreedyHostPool(null, EpsilonCalculator.Linear()))
                 .discover(true)
@@ -394,7 +394,7 @@ namespace RethinkDb.Driver.Tests.Network
 
             Thread.Sleep(10000);
 
-            int result = r.random(1, 9).add(r.random(1, 9)).run<int>(c);
+            int result = r.random(1, 9).add(r.random(1, 9)).Run<int>(c);
             result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
         }
 

@@ -22,28 +22,50 @@ using RethinkDb.Driver.Ast;
 namespace RethinkDb.Driver.Ast {
     public class TopLevel {
 
-        public ReqlExpr expr(Object value){
+        public ReqlExpr Expr(Object value){
+            return expr(value);
+        }
+        internal ReqlExpr expr(Object value){
             return Util.ToReqlExpr(value);
         }
 
-        public ReqlExpr row(params object[] values) {
+
+        public ReqlExpr Row(params object[] values) {
+            return row(values);
+        }
+        internal ReqlExpr row(params object[] values) {
             throw new ReqlDriverError("r.row is not implemented in the C# driver. Use lambda syntax instead.");
         }
 
-        public MapObject hashMap(object key, object val) {
+        public MapObject HashMap(object key, object val) {
+            return new MapObject().with(key, val);
+        }
+        internal MapObject hashMap(object key, object val) {
             return new MapObject().with(key, val);
         }
 
-        public MapObject hashMap()
+        public MapObject HashMap()
+        {
+            return hashMap();
+        }
+        internal MapObject hashMap()
         {
             return new MapObject();
         }
 
-        public IList array(params object[] values){
+
+        public IList Array(params object[] values){
+            return array(values);
+        }
+        internal IList array(params object[] values){
             return values.ToList();
         }
 
-                            public Javascript js ( Object expr )
+                            public Javascript Js ( Object expr )
+                            {
+                               return js ( expr );
+                            }
+                            internal Javascript js ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -57,7 +79,11 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback
 /// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
 /// </code></example>
-                            public Uuid uuid (  )
+                            public Uuid Uuid (  )
+                            {
+                               return uuid (  );
+                            }
+                            internal Uuid uuid (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Uuid (arguments);
@@ -70,7 +96,11 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback
 /// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
 /// </code></example>
-                            public Uuid uuid ( Object expr )
+                            public Uuid Uuid ( Object expr )
+                            {
+                               return uuid ( expr );
+                            }
+                            internal Uuid uuid ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -82,7 +112,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Perform a simple HTTP <code>GET</code> request, and store the result in a table.</para>
 /// <code>r.table('posts').insert(r.http('http://httpbin.org/get')).run(conn, callback)
 /// </code></example>
-                            public Http http ( Object expr )
+                            public Http Http ( Object expr )
+                            {
+                               return http ( expr );
+                            }
+                            internal Http http ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -98,7 +132,11 @@ namespace RethinkDb.Driver.Ast {
 ///         ironman)
 /// }).run(conn, callback)
 /// </code></example>
-                            public Error error (  )
+                            public Error Error (  )
+                            {
+                               return error (  );
+                            }
+                            internal Error error (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Error (arguments);
@@ -113,7 +151,11 @@ namespace RethinkDb.Driver.Ast {
 ///         ironman)
 /// }).run(conn, callback)
 /// </code></example>
-                            public Error error ( Object expr )
+                            public Error Error ( Object expr )
+                            {
+                               return error ( expr );
+                            }
+                            internal Error error ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -125,7 +167,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Explicitly specify a database for a query.</para>
 /// <code>r.db('heroes').table('marvel').run(conn, callback)
 /// </code></example>
-                            public Db db ( Object expr )
+                            public Db Db ( Object expr )
+                            {
+                               return db ( expr );
+                            }
+                            internal Db db ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -138,7 +184,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
 /// </code></example>
-                            public Table table ( Object expr )
+                            public Table Table ( Object expr )
+                            {
+                               return table ( expr );
+                            }
+                            internal Table table ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -150,7 +200,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Does 2 equal 2?</para>
 /// <code>r.expr(2).eq(2).run(conn, callback)
 /// </code></example>
-                            public Eq eq ( Object expr, Object exprA, params object[] exprs )
+                            public Eq Eq ( Object expr, Object exprA, params object[] exprs )
+                            {
+                               return eq ( expr, exprA, exprs );
+                            }
+                            internal Eq eq ( Object expr, Object exprA, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -164,7 +218,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Does 2 not equal 2?</para>
 /// <code>r.expr(2).ne(2).run(conn, callback)
 /// </code></example>
-                            public Ne ne ( Object expr, Object exprA, params object[] exprs )
+                            public Ne Ne ( Object expr, Object exprA, params object[] exprs )
+                            {
+                               return ne ( expr, exprA, exprs );
+                            }
+                            internal Ne ne ( Object expr, Object exprA, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -178,7 +236,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Is 2 less than 2?</para>
 /// <code>r.expr(2).lt(2).run(conn, callback)
 /// </code></example>
-                            public Lt lt ( Object expr, Object exprA, params object[] exprs )
+                            public Lt Lt ( Object expr, Object exprA, params object[] exprs )
+                            {
+                               return lt ( expr, exprA, exprs );
+                            }
+                            internal Lt lt ( Object expr, Object exprA, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -192,7 +254,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Is 2 less than or equal to 2?</para>
 /// <code>r.expr(2).le(2).run(conn, callback)
 /// </code></example>
-                            public Le le ( Object expr, Object exprA, params object[] exprs )
+                            public Le Le ( Object expr, Object exprA, params object[] exprs )
+                            {
+                               return le ( expr, exprA, exprs );
+                            }
+                            internal Le le ( Object expr, Object exprA, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -206,7 +272,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Is 2 greater than 2?</para>
 /// <code>r.expr(2).gt(2).run(conn, callback)
 /// </code></example>
-                            public Gt gt ( Object expr, Object exprA, params object[] exprs )
+                            public Gt Gt ( Object expr, Object exprA, params object[] exprs )
+                            {
+                               return gt ( expr, exprA, exprs );
+                            }
+                            internal Gt gt ( Object expr, Object exprA, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -220,7 +290,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Is 2 greater than or equal to 2?</para>
 /// <code>r.expr(2).ge(2).run(conn, callback)
 /// </code></example>
-                            public Ge ge ( Object expr, Object exprA, params object[] exprs )
+                            public Ge Ge ( Object expr, Object exprA, params object[] exprs )
+                            {
+                               return ge ( expr, exprA, exprs );
+                            }
+                            internal Ge ge ( Object expr, Object exprA, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -236,7 +310,11 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
 /// </code></example>
-                            public Not not ( Object expr )
+                            public Not Not ( Object expr )
+                            {
+                               return not ( expr );
+                            }
+                            internal Not not ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -248,7 +326,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: It's as easy as 2 + 2 = 4.</para>
 /// <code>r.expr(2).add(2).run(conn, callback)
 /// </code></example>
-                            public Add add ( Object expr, params object[] exprs )
+                            public Add Add ( Object expr, params object[] exprs )
+                            {
+                               return add ( expr, exprs );
+                            }
+                            internal Add add ( Object expr, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -261,7 +343,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: It's as easy as 2 - 2 = 0.</para>
 /// <code>r.expr(2).sub(2).run(conn, callback)
 /// </code></example>
-                            public Sub sub ( Object expr, params object[] exprs )
+                            public Sub Sub ( Object expr, params object[] exprs )
+                            {
+                               return sub ( expr, exprs );
+                            }
+                            internal Sub sub ( Object expr, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -274,7 +360,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: It's as easy as 2 * 2 = 4.</para>
 /// <code>r.expr(2).mul(2).run(conn, callback)
 /// </code></example>
-                            public Mul mul ( Object expr, params object[] exprs )
+                            public Mul Mul ( Object expr, params object[] exprs )
+                            {
+                               return mul ( expr, exprs );
+                            }
+                            internal Mul mul ( Object expr, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -287,7 +377,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: It's as easy as 2 / 2 = 1.</para>
 /// <code>r.expr(2).div(2).run(conn, callback)
 /// </code></example>
-                            public Div div ( Object expr, params object[] exprs )
+                            public Div Div ( Object expr, params object[] exprs )
+                            {
+                               return div ( expr, exprs );
+                            }
+                            internal Div div ( Object expr, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -300,7 +394,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)
 /// </code></example>
-                            public Mod mod ( Object expr, Object exprA )
+                            public Mod Mod ( Object expr, Object exprA )
+                            {
+                               return mod ( expr, exprA );
+                            }
+                            internal Mod mod ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -315,7 +413,11 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 12.0
 /// </code></example>
-                            public Floor floor ( Object expr )
+                            public Floor Floor ( Object expr )
+                            {
+                               return floor ( expr );
+                            }
+                            internal Floor floor ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -329,7 +431,11 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 13.0
 /// </code></example>
-                            public Ceil ceil ( Object expr )
+                            public Ceil Ceil ( Object expr )
+                            {
+                               return ceil ( expr );
+                            }
+                            internal Ceil ceil ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -343,7 +449,11 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// 12.0
 /// </code></example>
-                            public Round round ( Object expr )
+                            public Round Round ( Object expr )
+                            {
+                               return round ( expr );
+                            }
+                            internal Round round ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -357,7 +467,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr )
+                            public Contains Contains ( Object expr )
+                            {
+                               return contains ( expr );
+                            }
+                            internal Contains contains ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -371,7 +485,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Javascript js )
+                            public Contains Contains ( Object expr, Javascript js )
+                            {
+                               return contains ( expr, js );
+                            }
+                            internal Contains contains ( Object expr, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -386,7 +504,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Javascript jsA )
+                            public Contains Contains ( Object expr, Javascript js, Javascript jsA )
+                            {
+                               return contains ( expr, js, jsA );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Javascript jsA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -402,7 +524,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Javascript jsA, Javascript jsB )
+                            public Contains Contains ( Object expr, Javascript js, Javascript jsA, Javascript jsB )
+                            {
+                               return contains ( expr, js, jsA, jsB );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Javascript jsA, Javascript jsB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -419,7 +545,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
+                            public Contains Contains ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
+                            {
+                               return contains ( expr, js, jsA, jsB, jsC );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -437,7 +567,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Object exprA )
+                            public Contains Contains ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Object exprA )
+                            {
+                               return contains ( expr, js, jsA, jsB, exprA );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -455,7 +589,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Javascript jsA, Object exprA )
+                            public Contains Contains ( Object expr, Javascript js, Javascript jsA, Object exprA )
+                            {
+                               return contains ( expr, js, jsA, exprA );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Javascript jsA, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -472,7 +610,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Javascript jsA, Object exprA, Javascript jsB )
+                            public Contains Contains ( Object expr, Javascript js, Javascript jsA, Object exprA, Javascript jsB )
+                            {
+                               return contains ( expr, js, jsA, exprA, jsB );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Javascript jsA, Object exprA, Javascript jsB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -490,7 +632,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Javascript jsA, Object exprA, Object exprB )
+                            public Contains Contains ( Object expr, Javascript js, Javascript jsA, Object exprA, Object exprB )
+                            {
+                               return contains ( expr, js, jsA, exprA, exprB );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Javascript jsA, Object exprA, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -508,7 +654,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Object exprA )
+                            public Contains Contains ( Object expr, Javascript js, Object exprA )
+                            {
+                               return contains ( expr, js, exprA );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -524,31 +674,17 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Object exprA, Javascript jsA )
+                            public Contains Contains ( Object expr, Javascript js, Object exprA, Javascript jsA )
                             {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(js);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(jsA);
-                                return new Contains (arguments);
+                               return contains ( expr, js, exprA, jsA );
                             }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Object exprA, Javascript jsA, Javascript jsB )
+                            internal Contains contains ( Object expr, Javascript js, Object exprA, Javascript jsA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
-                                arguments.CoerceAndAdd(jsB);
                                 return new Contains (arguments);
                             }
 /// <summary>
@@ -559,131 +695,16 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Object exprA, Javascript jsA, Object exprB )
+                            public Contains Contains ( Object expr, Javascript js, Object exprA, Javascript jsA, Javascript jsB )
+                            {
+                               return contains ( expr, js, exprA, jsA, jsB );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Object exprA, Javascript jsA, Javascript jsB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(jsA);
-                                arguments.CoerceAndAdd(exprB);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Object exprA, Object exprB )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(js);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(exprB);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Object exprA, Object exprB, Javascript jsA )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(js);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(exprB);
-                                arguments.CoerceAndAdd(jsA);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, Javascript js, Object exprA, Object exprB, Object exprC )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(js);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(exprB);
-                                arguments.CoerceAndAdd(exprC);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, Object exprA )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Javascript js )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(js);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Javascript js, Javascript jsA )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(js);
-                                arguments.CoerceAndAdd(jsA);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Javascript js, Javascript jsA, Javascript jsB )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
                                 return new Contains (arguments);
@@ -696,7 +717,180 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Javascript js, Javascript jsA, Object exprB )
+                            public Contains Contains ( Object expr, Javascript js, Object exprA, Javascript jsA, Object exprB )
+                            {
+                               return contains ( expr, js, exprA, jsA, exprB );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Object exprA, Javascript jsA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, Javascript js, Object exprA, Object exprB )
+                            {
+                               return contains ( expr, js, exprA, exprB );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, Javascript js, Object exprA, Object exprB, Javascript jsA )
+                            {
+                               return contains ( expr, js, exprA, exprB, jsA );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Object exprA, Object exprB, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, Javascript js, Object exprA, Object exprB, Object exprC )
+                            {
+                               return contains ( expr, js, exprA, exprB, exprC );
+                            }
+                            internal Contains contains ( Object expr, Javascript js, Object exprA, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, Object exprA )
+                            {
+                               return contains ( expr, exprA );
+                            }
+                            internal Contains contains ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, Object exprA, Javascript js )
+                            {
+                               return contains ( expr, exprA, js );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, Object exprA, Javascript js, Javascript jsA )
+                            {
+                               return contains ( expr, exprA, js, jsA );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Javascript js, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, Object exprA, Javascript js, Javascript jsA, Javascript jsB )
+                            {
+                               return contains ( expr, exprA, js, jsA, jsB );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Javascript js, Javascript jsA, Javascript jsB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(jsB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, Object exprA, Javascript js, Javascript jsA, Object exprB )
+                            {
+                               return contains ( expr, exprA, js, jsA, exprB );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Javascript js, Javascript jsA, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -714,7 +908,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Javascript js, Object exprB )
+                            public Contains Contains ( Object expr, Object exprA, Javascript js, Object exprB )
+                            {
+                               return contains ( expr, exprA, js, exprB );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Javascript js, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -731,7 +929,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Javascript js, Object exprB, Javascript jsA )
+                            public Contains Contains ( Object expr, Object exprA, Javascript js, Object exprB, Javascript jsA )
+                            {
+                               return contains ( expr, exprA, js, exprB, jsA );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Javascript js, Object exprB, Javascript jsA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -749,7 +951,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Javascript js, Object exprB, Object exprC )
+                            public Contains Contains ( Object expr, Object exprA, Javascript js, Object exprB, Object exprC )
+                            {
+                               return contains ( expr, exprA, js, exprB, exprC );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Javascript js, Object exprB, Object exprC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -767,7 +973,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Object exprB )
+                            public Contains Contains ( Object expr, Object exprA, Object exprB )
+                            {
+                               return contains ( expr, exprA, exprB );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -783,7 +993,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Object exprB, Javascript js )
+                            public Contains Contains ( Object expr, Object exprA, Object exprB, Javascript js )
+                            {
+                               return contains ( expr, exprA, exprB, js );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Object exprB, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -800,7 +1014,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Object exprB, Javascript js, Javascript jsA )
+                            public Contains Contains ( Object expr, Object exprA, Object exprB, Javascript js, Javascript jsA )
+                            {
+                               return contains ( expr, exprA, exprB, js, jsA );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Object exprB, Javascript js, Javascript jsA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -818,7 +1036,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Object exprB, Javascript js, Object exprC )
+                            public Contains Contains ( Object expr, Object exprA, Object exprB, Javascript js, Object exprC )
+                            {
+                               return contains ( expr, exprA, exprB, js, exprC );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Object exprB, Javascript js, Object exprC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -836,7 +1058,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Object exprB, Object exprC )
+                            public Contains Contains ( Object expr, Object exprA, Object exprB, Object exprC )
+                            {
+                               return contains ( expr, exprA, exprB, exprC );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Object exprB, Object exprC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -853,7 +1079,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
+                            public Contains Contains ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
+                            {
+                               return contains ( expr, exprA, exprB, exprC, js );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -871,7 +1101,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD )
+                            public Contains Contains ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD )
+                            {
+                               return contains ( expr, exprA, exprB, exprC, exprD );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -889,7 +1123,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                            public Contains Contains ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                            {
+                               return contains ( expr, exprA, exprB, exprC, func1 );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -907,7 +1145,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1 )
+                            public Contains Contains ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1 )
+                            {
+                               return contains ( expr, exprA, exprB, func1 );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -924,7 +1166,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                            public Contains Contains ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                            {
+                               return contains ( expr, exprA, exprB, func1, exprC );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -942,7 +1188,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            public Contains Contains ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                               return contains ( expr, exprA, exprB, func1, func1A );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -960,7 +1210,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1 )
+                            public Contains Contains ( Object expr, Object exprA, ReqlFunction1 func1 )
+                            {
+                               return contains ( expr, exprA, func1 );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -976,31 +1230,17 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB )
+                            public Contains Contains ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB )
                             {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(exprB);
-                                return new Contains (arguments);
+                               return contains ( expr, exprA, func1, exprB );
                             }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                            internal Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
-                                arguments.CoerceAndAdd(exprC);
                                 return new Contains (arguments);
                             }
 /// <summary>
@@ -1011,131 +1251,16 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                            public Contains Contains ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                            {
+                               return contains ( expr, exprA, func1, exprB, exprC );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(exprB);
-                                arguments.CoerceAndAdd(func1A);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(func1A);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(func1A);
-                                arguments.CoerceAndAdd(exprB);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(func1A);
-                                arguments.CoerceAndAdd(func1B);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1 )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func1);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(exprA);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(exprB);
-                                return new Contains (arguments);
-                            }
-/// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
-///</summary>
-/// <example><para>Example: Has Iron Man ever fought Superman?</para>
-/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
-/// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 return new Contains (arguments);
@@ -1148,7 +1273,180 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                            public Contains Contains ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                            {
+                               return contains ( expr, exprA, func1, exprB, func1A );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                               return contains ( expr, exprA, func1, func1A );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                            {
+                               return contains ( expr, exprA, func1, func1A, exprB );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                               return contains ( expr, exprA, func1, func1A, func1B );
+                            }
+                            internal Contains contains ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, ReqlFunction1 func1 )
+                            {
+                               return contains ( expr, func1 );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, Object exprA )
+                            {
+                               return contains ( expr, func1, exprA );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB )
+                            {
+                               return contains ( expr, func1, exprA, exprB );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                            {
+                               return contains ( expr, func1, exprA, exprB, exprC );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Contains (arguments);
+                            }
+/// <summary>
+/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
+/// provided instead, returns whether or not a sequence contains values matching all the
+/// specified functions.</para>
+///</summary>
+/// <example><para>Example: Has Iron Man ever fought Superman?</para>
+/// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
+/// </code></example>
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                            {
+                               return contains ( expr, func1, exprA, exprB, func1A );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1166,7 +1464,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                            {
+                               return contains ( expr, func1, exprA, func1A );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1183,7 +1485,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                            {
+                               return contains ( expr, func1, exprA, func1A, exprB );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1201,7 +1507,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                               return contains ( expr, func1, exprA, func1A, func1B );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1219,7 +1529,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                               return contains ( expr, func1, func1A );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1235,7 +1549,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                            {
+                               return contains ( expr, func1, func1A, exprA );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1252,7 +1570,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                            {
+                               return contains ( expr, func1, func1A, exprA, exprB );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1270,7 +1592,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                            {
+                               return contains ( expr, func1, func1A, exprA, func1B );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1288,7 +1614,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                               return contains ( expr, func1, func1A, func1B );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1305,7 +1635,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                            {
+                               return contains ( expr, func1, func1A, func1B, exprA );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1323,7 +1657,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
 /// </code></example>
-                            public Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                            public Contains Contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                            {
+                               return contains ( expr, func1, func1A, func1B, func1C );
+                            }
+                            internal Contains contains ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1341,7 +1679,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a simple object.</para>
 /// <code>r.object('id', 5, 'data', ['foo', 'bar']).run(conn, callback)
 /// </code></example>
-                            public ReqlObject object_ ( params object[] exprs )
+                            public ReqlObject Object_ ( params object[] exprs )
+                            {
+                               return object_ ( exprs );
+                            }
+                            internal ReqlObject object_ ( params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAddAll(exprs);
@@ -1358,7 +1700,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return left.add(right)
 /// }).run(conn, callback);
 /// </code></example>
-                            public Reduce reduce ( Object expr, Javascript js )
+                            public Reduce Reduce ( Object expr, Javascript js )
+                            {
+                               return reduce ( expr, js );
+                            }
+                            internal Reduce reduce ( Object expr, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1376,7 +1722,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return left.add(right)
 /// }).run(conn, callback);
 /// </code></example>
-                            public Reduce reduce ( Object expr, ReqlFunction2 func2 )
+                            public Reduce Reduce ( Object expr, ReqlFunction2 func2 )
+                            {
+                               return reduce ( expr, func2 );
+                            }
+                            internal Reduce reduce ( Object expr, ReqlFunction2 func2 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1393,7 +1743,11 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                            public Map map ( Object expr, Javascript js )
+                            public Map Map ( Object expr, Javascript js )
+                            {
+                               return map ( expr, js );
+                            }
+                            internal Map map ( Object expr, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1410,7 +1764,11 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                            public Map map ( Object expr, Object exprA, Javascript js )
+                            public Map Map ( Object expr, Object exprA, Javascript js )
+                            {
+                               return map ( expr, exprA, js );
+                            }
+                            internal Map map ( Object expr, Object exprA, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1428,7 +1786,11 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                            public Map map ( Object expr, Object exprA, Object exprB, Javascript js )
+                            public Map Map ( Object expr, Object exprA, Object exprB, Javascript js )
+                            {
+                               return map ( expr, exprA, exprB, js );
+                            }
+                            internal Map map ( Object expr, Object exprA, Object exprB, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1447,7 +1809,11 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                            public Map map ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
+                            public Map Map ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
+                            {
+                               return map ( expr, exprA, exprB, exprC, js );
+                            }
+                            internal Map map ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1467,7 +1833,11 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                            public Map map ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
+                            public Map Map ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
+                            {
+                               return map ( expr, exprA, exprB, exprC, func4 );
+                            }
+                            internal Map map ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1487,7 +1857,11 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                            public Map map ( Object expr, Object exprA, Object exprB, ReqlFunction3 func3 )
+                            public Map Map ( Object expr, Object exprA, Object exprB, ReqlFunction3 func3 )
+                            {
+                               return map ( expr, exprA, exprB, func3 );
+                            }
+                            internal Map map ( Object expr, Object exprA, Object exprB, ReqlFunction3 func3 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1506,7 +1880,11 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                            public Map map ( Object expr, Object exprA, ReqlFunction2 func2 )
+                            public Map Map ( Object expr, Object exprA, ReqlFunction2 func2 )
+                            {
+                               return map ( expr, exprA, func2 );
+                            }
+                            internal Map map ( Object expr, Object exprA, ReqlFunction2 func2 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1524,7 +1902,11 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                            public Map map ( Object expr, ReqlFunction0 func0 )
+                            public Map Map ( Object expr, ReqlFunction0 func0 )
+                            {
+                               return map ( expr, func0 );
+                            }
+                            internal Map map ( Object expr, ReqlFunction0 func0 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1541,7 +1923,11 @@ namespace RethinkDb.Driver.Ast {
 /// // Result passed to callback
 /// [1, 4, 9, 16, 25]
 /// </code></example>
-                            public Map map ( Object expr, ReqlFunction1 func1 )
+                            public Map Map ( Object expr, ReqlFunction1 func1 )
+                            {
+                               return map ( expr, func1 );
+                            }
+                            internal Map map ( Object expr, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1556,7 +1942,11 @@ namespace RethinkDb.Driver.Ast {
 ///     return hero('villainList')
 /// }).distinct().run(conn, callback)
 /// </code></example>
-                            public Distinct distinct ( Object expr )
+                            public Distinct Distinct ( Object expr )
+                            {
+                               return distinct ( expr );
+                            }
+                            internal Distinct distinct ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1570,7 +1960,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Just how many super heroes are there?</para>
 /// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
 /// </code></example>
-                            public Count count ( Object expr )
+                            public Count Count ( Object expr )
+                            {
+                               return count ( expr );
+                            }
+                            internal Count count ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1584,7 +1978,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Just how many super heroes are there?</para>
 /// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
 /// </code></example>
-                            public Count count ( Object expr, Javascript js )
+                            public Count Count ( Object expr, Javascript js )
+                            {
+                               return count ( expr, js );
+                            }
+                            internal Count count ( Object expr, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1599,7 +1997,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Just how many super heroes are there?</para>
 /// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
 /// </code></example>
-                            public Count count ( Object expr, Object exprA )
+                            public Count Count ( Object expr, Object exprA )
+                            {
+                               return count ( expr, exprA );
+                            }
+                            internal Count count ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1614,7 +2016,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Just how many super heroes are there?</para>
 /// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
 /// </code></example>
-                            public Count count ( Object expr, ReqlFunction1 func1 )
+                            public Count Count ( Object expr, ReqlFunction1 func1 )
+                            {
+                               return count ( expr, func1 );
+                            }
+                            internal Count count ( Object expr, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1627,7 +2033,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
 /// </code></example>
-                            public Union union ( Object expr, params object[] exprs )
+                            public Union Union ( Object expr, params object[] exprs )
+                            {
+                               return union ( expr, exprs );
+                            }
+                            internal Union union ( Object expr, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1642,7 +2052,11 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// [0, 1, 2, 3]
 /// </code></example>
-                            public Range range (  )
+                            public Range Range (  )
+                            {
+                               return range (  );
+                            }
+                            internal Range range (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Range (arguments);
@@ -1655,7 +2069,11 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// [0, 1, 2, 3]
 /// </code></example>
-                            public Range range ( Object expr )
+                            public Range Range ( Object expr )
+                            {
+                               return range ( expr );
+                            }
+                            internal Range range ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1669,7 +2087,11 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// [0, 1, 2, 3]
 /// </code></example>
-                            public Range range ( Object expr, Object exprA )
+                            public Range Range ( Object expr, Object exprA )
+                            {
+                               return range ( expr, exprA );
+                            }
+                            internal Range range ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1682,7 +2104,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get the type of a string.</para>
 /// <code>r.expr("foo").typeOf().run(conn, callback)
 /// </code></example>
-                            public TypeOf typeOf ( Object expr )
+                            public TypeOf TypeOf ( Object expr )
+                            {
+                               return typeOf ( expr );
+                            }
+                            internal TypeOf typeOf ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1698,7 +2124,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a database named 'superheroes'.</para>
 /// <code>r.dbCreate('superheroes').run(conn, callback)
 /// </code></example>
-                            public DbCreate dbCreate ( Object expr )
+                            public DbCreate DbCreate ( Object expr )
+                            {
+                               return dbCreate ( expr );
+                            }
+                            internal DbCreate dbCreate ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1712,7 +2142,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Drop a database named 'superheroes'.</para>
 /// <code>r.dbDrop('superheroes').run(conn, callback)
 /// </code></example>
-                            public DbDrop dbDrop ( Object expr )
+                            public DbDrop DbDrop ( Object expr )
+                            {
+                               return dbDrop ( expr );
+                            }
+                            internal DbDrop dbDrop ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1724,7 +2158,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: List all databases.</para>
 /// <code>r.dbList().run(conn, callback)
 /// </code></example>
-                            public DbList dbList (  )
+                            public DbList DbList (  )
+                            {
+                               return dbList (  );
+                            }
+                            internal DbList dbList (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new DbList (arguments);
@@ -1735,7 +2173,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
 /// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
 /// </code></example>
-                            public TableCreate tableCreate ( Object expr )
+                            public TableCreate TableCreate ( Object expr )
+                            {
+                               return tableCreate ( expr );
+                            }
+                            internal TableCreate tableCreate ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1747,7 +2189,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Drop a table named 'dc_universe'.</para>
 /// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
 /// </code></example>
-                            public TableDrop tableDrop ( Object expr )
+                            public TableDrop TableDrop ( Object expr )
+                            {
+                               return tableDrop ( expr );
+                            }
+                            internal TableDrop tableDrop ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1759,7 +2205,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: List all tables of the 'test' database.</para>
 /// <code>r.db('test').tableList().run(conn, callback)
 /// </code></example>
-                            public TableList tableList (  )
+                            public TableList TableList (  )
+                            {
+                               return tableList (  );
+                            }
+                            internal TableList tableList (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new TableList (arguments);
@@ -1770,7 +2220,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Wait for a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
 /// </code></example>
-                            public Wait wait_ (  )
+                            public Wait Wait_ (  )
+                            {
+                               return wait_ (  );
+                            }
+                            internal Wait wait_ (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Wait (arguments);
@@ -1781,7 +2235,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
-                            public Reconfigure reconfigure (  )
+                            public Reconfigure Reconfigure (  )
+                            {
+                               return reconfigure (  );
+                            }
+                            internal Reconfigure reconfigure (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Reconfigure (arguments);
@@ -1792,25 +2250,41 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
-                            public Rebalance rebalance (  )
+                            public Rebalance Rebalance (  )
+                            {
+                               return rebalance (  );
+                            }
+                            internal Rebalance rebalance (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Rebalance (arguments);
                             }
-                            public Funcall do_ ( Javascript js )
+                            public Funcall Do_ ( Javascript js )
+                            {
+                               return do_ ( js );
+                            }
+                            internal Funcall do_ ( Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(js);
                                 return new Funcall (arguments);
                             }
-                            public Funcall do_ ( Object expr, Javascript js )
+                            public Funcall Do_ ( Object expr, Javascript js )
+                            {
+                               return do_ ( expr, js );
+                            }
+                            internal Funcall do_ ( Object expr, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(js);
                                 return new Funcall (arguments);
                             }
-                            public Funcall do_ ( Object expr, Object exprA, Javascript js )
+                            public Funcall Do_ ( Object expr, Object exprA, Javascript js )
+                            {
+                               return do_ ( expr, exprA, js );
+                            }
+                            internal Funcall do_ ( Object expr, Object exprA, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1818,7 +2292,11 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 return new Funcall (arguments);
                             }
-                            public Funcall do_ ( Object expr, Object exprA, Object exprB, Javascript js )
+                            public Funcall Do_ ( Object expr, Object exprA, Object exprB, Javascript js )
+                            {
+                               return do_ ( expr, exprA, exprB, js );
+                            }
+                            internal Funcall do_ ( Object expr, Object exprA, Object exprB, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1827,7 +2305,11 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(js);
                                 return new Funcall (arguments);
                             }
-                            public Funcall do_ ( Object expr, Object exprA, Object exprB, ReqlFunction3 func3 )
+                            public Funcall Do_ ( Object expr, Object exprA, Object exprB, ReqlFunction3 func3 )
+                            {
+                               return do_ ( expr, exprA, exprB, func3 );
+                            }
+                            internal Funcall do_ ( Object expr, Object exprA, Object exprB, ReqlFunction3 func3 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1836,7 +2318,11 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func3);
                                 return new Funcall (arguments);
                             }
-                            public Funcall do_ ( Object expr, Object exprA, ReqlFunction2 func2 )
+                            public Funcall Do_ ( Object expr, Object exprA, ReqlFunction2 func2 )
+                            {
+                               return do_ ( expr, exprA, func2 );
+                            }
+                            internal Funcall do_ ( Object expr, Object exprA, ReqlFunction2 func2 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1844,21 +2330,33 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(func2);
                                 return new Funcall (arguments);
                             }
-                            public Funcall do_ ( Object expr, params object[] exprs )
+                            public Funcall Do_ ( Object expr, params object[] exprs )
+                            {
+                               return do_ ( expr, exprs );
+                            }
+                            internal Funcall do_ ( Object expr, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAddAll(exprs);
                                 return new Funcall (arguments);
                             }
-                            public Funcall do_ ( Object expr, ReqlFunction1 func1 )
+                            public Funcall Do_ ( Object expr, ReqlFunction1 func1 )
+                            {
+                               return do_ ( expr, func1 );
+                            }
+                            internal Funcall do_ ( Object expr, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(func1);
                                 return new Funcall (arguments);
                             }
-                            public Funcall do_ ( ReqlFunction0 func0 )
+                            public Funcall Do_ ( ReqlFunction0 func0 )
+                            {
+                               return do_ ( func0 );
+                            }
+                            internal Funcall do_ ( ReqlFunction0 func0 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(func0);
@@ -1879,7 +2377,11 @@ namespace RethinkDb.Driver.Ast {
 ///     )
 /// ).run(conn, callback)
 /// </code></example>
-                            public Branch branch ( Object expr, Object exprA, Object exprB, params object[] exprs )
+                            public Branch Branch ( Object expr, Object exprA, Object exprB, params object[] exprs )
+                            {
+                               return branch ( expr, exprA, exprB, exprs );
+                            }
+                            internal Branch branch ( Object expr, Object exprA, Object exprB, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1897,7 +2399,11 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// true
 /// </code></example>
-                            public Or or ( Object expr, Object exprA, params object[] exprs )
+                            public Or Or ( Object expr, Object exprA, params object[] exprs )
+                            {
+                               return or ( expr, exprA, exprs );
+                            }
+                            internal Or or ( Object expr, Object exprA, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1914,44 +2420,72 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// false
 /// </code></example>
-                            public And and ( Object expr, params object[] exprs )
+                            public And And ( Object expr, params object[] exprs )
+                            {
+                               return and ( expr, exprs );
+                            }
+                            internal And and ( Object expr, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAddAll(exprs);
                                 return new And (arguments);
                             }
-                            public Asc asc ( Javascript js )
+                            public Asc Asc ( Javascript js )
+                            {
+                               return asc ( js );
+                            }
+                            internal Asc asc ( Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(js);
                                 return new Asc (arguments);
                             }
-                            public Asc asc ( Object expr )
+                            public Asc Asc ( Object expr )
+                            {
+                               return asc ( expr );
+                            }
+                            internal Asc asc ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 return new Asc (arguments);
                             }
-                            public Asc asc ( ReqlFunction1 func1 )
+                            public Asc Asc ( ReqlFunction1 func1 )
+                            {
+                               return asc ( func1 );
+                            }
+                            internal Asc asc ( ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(func1);
                                 return new Asc (arguments);
                             }
-                            public Desc desc ( Javascript js )
+                            public Desc Desc ( Javascript js )
+                            {
+                               return desc ( js );
+                            }
+                            internal Desc desc ( Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(js);
                                 return new Desc (arguments);
                             }
-                            public Desc desc ( Object expr )
+                            public Desc Desc ( Object expr )
+                            {
+                               return desc ( expr );
+                            }
+                            internal Desc desc ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 return new Desc (arguments);
                             }
-                            public Desc desc ( ReqlFunction1 func1 )
+                            public Desc Desc ( ReqlFunction1 func1 )
+                            {
+                               return desc ( func1 );
+                            }
+                            internal Desc desc ( ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(func1);
@@ -1963,7 +2497,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
 /// <code>r.table('marvel').info().run(conn, callback)
 /// </code></example>
-                            public Info info ( Object expr )
+                            public Info Info ( Object expr )
+                            {
+                               return info ( expr );
+                            }
+                            internal Info info ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1975,7 +2513,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Send an array to the server.</para>
 /// <code>r.json("[1,2,3]").run(conn, callback)
 /// </code></example>
-                            public Json json ( Object expr )
+                            public Json Json ( Object expr )
+                            {
+                               return json ( expr );
+                            }
+                            internal Json json ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -1987,7 +2529,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Update the time of John's birth.</para>
 /// <code>r.table("user").get("John").update({birth: r.ISO8601('1986-11-03T08:30:00-07:00')}).run(conn, callback)
 /// </code></example>
-                            public Iso8601 iso8601 ( Object expr )
+                            public Iso8601 Iso8601 ( Object expr )
+                            {
+                               return iso8601 ( expr );
+                            }
+                            internal Iso8601 iso8601 ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2001,7 +2547,11 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("user").get("John").update({birthdate: r.epochTime(531360000)})
 ///     .run(conn, callback)
 /// </code></example>
-                            public EpochTime epochTime ( Object expr )
+                            public EpochTime EpochTime ( Object expr )
+                            {
+                               return epochTime ( expr );
+                            }
+                            internal EpochTime epochTime ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2016,7 +2566,11 @@ namespace RethinkDb.Driver.Ast {
 ///     subscription_date: r.now()
 /// }).run(conn, callback)
 /// </code></example>
-                            public Now now (  )
+                            public Now Now (  )
+                            {
+                               return now (  );
+                            }
+                            internal Now now (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Now (arguments);
@@ -2039,7 +2593,11 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
 ///     .run(conn, callback)
 /// </code></example>
-                            public Time time ( Object expr, Object exprA, Object exprB, Object exprC )
+                            public Time Time ( Object expr, Object exprA, Object exprB, Object exprC )
+                            {
+                               return time ( expr, exprA, exprB, exprC );
+                            }
+                            internal Time time ( Object expr, Object exprA, Object exprB, Object exprC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2066,7 +2624,11 @@ namespace RethinkDb.Driver.Ast {
 /// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
 ///     .run(conn, callback)
 /// </code></example>
-                            public Time time ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD, Object exprE, Object exprF )
+                            public Time Time ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD, Object exprE, Object exprF )
+                            {
+                               return time ( expr, exprA, exprB, exprC, exprD, exprE, exprF );
+                            }
+                            internal Time time ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD, Object exprE, Object exprF )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2078,97 +2640,173 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprF);
                                 return new Time (arguments);
                             }
-                            public Monday monday (  )
+                            public Monday Monday (  )
+                            {
+                               return monday (  );
+                            }
+                            internal Monday monday (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Monday (arguments);
                             }
-                            public Tuesday tuesday (  )
+                            public Tuesday Tuesday (  )
+                            {
+                               return tuesday (  );
+                            }
+                            internal Tuesday tuesday (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Tuesday (arguments);
                             }
-                            public Wednesday wednesday (  )
+                            public Wednesday Wednesday (  )
+                            {
+                               return wednesday (  );
+                            }
+                            internal Wednesday wednesday (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Wednesday (arguments);
                             }
-                            public Thursday thursday (  )
+                            public Thursday Thursday (  )
+                            {
+                               return thursday (  );
+                            }
+                            internal Thursday thursday (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Thursday (arguments);
                             }
-                            public Friday friday (  )
+                            public Friday Friday (  )
+                            {
+                               return friday (  );
+                            }
+                            internal Friday friday (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Friday (arguments);
                             }
-                            public Saturday saturday (  )
+                            public Saturday Saturday (  )
+                            {
+                               return saturday (  );
+                            }
+                            internal Saturday saturday (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Saturday (arguments);
                             }
-                            public Sunday sunday (  )
+                            public Sunday Sunday (  )
+                            {
+                               return sunday (  );
+                            }
+                            internal Sunday sunday (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Sunday (arguments);
                             }
-                            public January january (  )
+                            public January January (  )
+                            {
+                               return january (  );
+                            }
+                            internal January january (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new January (arguments);
                             }
-                            public February february (  )
+                            public February February (  )
+                            {
+                               return february (  );
+                            }
+                            internal February february (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new February (arguments);
                             }
-                            public March march (  )
+                            public March March (  )
+                            {
+                               return march (  );
+                            }
+                            internal March march (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new March (arguments);
                             }
-                            public April april (  )
+                            public April April (  )
+                            {
+                               return april (  );
+                            }
+                            internal April april (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new April (arguments);
                             }
-                            public May may (  )
+                            public May May (  )
+                            {
+                               return may (  );
+                            }
+                            internal May may (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new May (arguments);
                             }
-                            public June june (  )
+                            public June June (  )
+                            {
+                               return june (  );
+                            }
+                            internal June june (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new June (arguments);
                             }
-                            public July july (  )
+                            public July July (  )
+                            {
+                               return july (  );
+                            }
+                            internal July july (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new July (arguments);
                             }
-                            public August august (  )
+                            public August August (  )
+                            {
+                               return august (  );
+                            }
+                            internal August august (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new August (arguments);
                             }
-                            public September september (  )
+                            public September September (  )
+                            {
+                               return september (  );
+                            }
+                            internal September september (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new September (arguments);
                             }
-                            public October october (  )
+                            public October October (  )
+                            {
+                               return october (  );
+                            }
+                            internal October october (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new October (arguments);
                             }
-                            public November november (  )
+                            public November November (  )
+                            {
+                               return november (  );
+                            }
+                            internal November november (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new November (arguments);
                             }
-                            public December december (  )
+                            public December December (  )
+                            {
+                               return december (  );
+                            }
+                            internal December december (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new December (arguments);
@@ -2179,7 +2817,11 @@ namespace RethinkDb.Driver.Ast {
 /// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
 ///</summary>
 /// <example></example>
-                            public Literal literal (  )
+                            public Literal Literal (  )
+                            {
+                               return literal (  );
+                            }
+                            internal Literal literal (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Literal (arguments);
@@ -2190,7 +2832,11 @@ namespace RethinkDb.Driver.Ast {
 /// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
 ///</summary>
 /// <example></example>
-                            public Literal literal ( Object expr )
+                            public Literal Literal ( Object expr )
+                            {
+                               return literal ( expr );
+                            }
+                            internal Literal literal ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2204,7 +2850,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr )
+                            public Group Group ( Object expr )
+                            {
+                               return group ( expr );
+                            }
+                            internal Group group ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2218,7 +2868,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Javascript js )
+                            public Group Group ( Object expr, Javascript js )
+                            {
+                               return group ( expr, js );
+                            }
+                            internal Group group ( Object expr, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2233,7 +2887,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Javascript js, Javascript jsA )
+                            public Group Group ( Object expr, Javascript js, Javascript jsA )
+                            {
+                               return group ( expr, js, jsA );
+                            }
+                            internal Group group ( Object expr, Javascript js, Javascript jsA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2249,7 +2907,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Javascript js, Javascript jsA, Javascript jsB )
+                            public Group Group ( Object expr, Javascript js, Javascript jsA, Javascript jsB )
+                            {
+                               return group ( expr, js, jsA, jsB );
+                            }
+                            internal Group group ( Object expr, Javascript js, Javascript jsA, Javascript jsB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2266,7 +2928,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
+                            public Group Group ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
+                            {
+                               return group ( expr, js, jsA, jsB, jsC );
+                            }
+                            internal Group group ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2284,7 +2950,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Object exprA )
+                            public Group Group ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Object exprA )
+                            {
+                               return group ( expr, js, jsA, jsB, exprA );
+                            }
+                            internal Group group ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2302,7 +2972,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Javascript js, Javascript jsA, Object exprA )
+                            public Group Group ( Object expr, Javascript js, Javascript jsA, Object exprA )
+                            {
+                               return group ( expr, js, jsA, exprA );
+                            }
+                            internal Group group ( Object expr, Javascript js, Javascript jsA, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2319,7 +2993,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Javascript js, Javascript jsA, Object exprA, Javascript jsB )
+                            public Group Group ( Object expr, Javascript js, Javascript jsA, Object exprA, Javascript jsB )
+                            {
+                               return group ( expr, js, jsA, exprA, jsB );
+                            }
+                            internal Group group ( Object expr, Javascript js, Javascript jsA, Object exprA, Javascript jsB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2337,7 +3015,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Javascript js, Javascript jsA, Object exprA, Object exprB )
+                            public Group Group ( Object expr, Javascript js, Javascript jsA, Object exprA, Object exprB )
+                            {
+                               return group ( expr, js, jsA, exprA, exprB );
+                            }
+                            internal Group group ( Object expr, Javascript js, Javascript jsA, Object exprA, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2355,7 +3037,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Javascript js, Object exprA )
+                            public Group Group ( Object expr, Javascript js, Object exprA )
+                            {
+                               return group ( expr, js, exprA );
+                            }
+                            internal Group group ( Object expr, Javascript js, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2371,31 +3057,17 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Javascript js, Object exprA, Javascript jsA )
+                            public Group Group ( Object expr, Javascript js, Object exprA, Javascript jsA )
                             {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(js);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(jsA);
-                                return new Group (arguments);
+                               return group ( expr, js, exprA, jsA );
                             }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, Javascript js, Object exprA, Javascript jsA, Javascript jsB )
+                            internal Group group ( Object expr, Javascript js, Object exprA, Javascript jsA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(jsA);
-                                arguments.CoerceAndAdd(jsB);
                                 return new Group (arguments);
                             }
 /// <summary>
@@ -2406,131 +3078,16 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Javascript js, Object exprA, Javascript jsA, Object exprB )
+                            public Group Group ( Object expr, Javascript js, Object exprA, Javascript jsA, Javascript jsB )
+                            {
+                               return group ( expr, js, exprA, jsA, jsB );
+                            }
+                            internal Group group ( Object expr, Javascript js, Object exprA, Javascript jsA, Javascript jsB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(jsA);
-                                arguments.CoerceAndAdd(exprB);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, Javascript js, Object exprA, Object exprB )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(js);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(exprB);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, Javascript js, Object exprA, Object exprB, Javascript jsA )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(js);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(exprB);
-                                arguments.CoerceAndAdd(jsA);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, Javascript js, Object exprA, Object exprB, Object exprC )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(js);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(exprB);
-                                arguments.CoerceAndAdd(exprC);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, Object exprA )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, Object exprA, Javascript js )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(js);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, Object exprA, Javascript js, Javascript jsA )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(js);
-                                arguments.CoerceAndAdd(jsA);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, Object exprA, Javascript js, Javascript jsA, Javascript jsB )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(js);
                                 arguments.CoerceAndAdd(jsA);
                                 arguments.CoerceAndAdd(jsB);
                                 return new Group (arguments);
@@ -2543,7 +3100,180 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Javascript js, Javascript jsA, Object exprB )
+                            public Group Group ( Object expr, Javascript js, Object exprA, Javascript jsA, Object exprB )
+                            {
+                               return group ( expr, js, exprA, jsA, exprB );
+                            }
+                            internal Group group ( Object expr, Javascript js, Object exprA, Javascript jsA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, Javascript js, Object exprA, Object exprB )
+                            {
+                               return group ( expr, js, exprA, exprB );
+                            }
+                            internal Group group ( Object expr, Javascript js, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, Javascript js, Object exprA, Object exprB, Javascript jsA )
+                            {
+                               return group ( expr, js, exprA, exprB, jsA );
+                            }
+                            internal Group group ( Object expr, Javascript js, Object exprA, Object exprB, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, Javascript js, Object exprA, Object exprB, Object exprC )
+                            {
+                               return group ( expr, js, exprA, exprB, exprC );
+                            }
+                            internal Group group ( Object expr, Javascript js, Object exprA, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, Object exprA )
+                            {
+                               return group ( expr, exprA );
+                            }
+                            internal Group group ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, Object exprA, Javascript js )
+                            {
+                               return group ( expr, exprA, js );
+                            }
+                            internal Group group ( Object expr, Object exprA, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, Object exprA, Javascript js, Javascript jsA )
+                            {
+                               return group ( expr, exprA, js, jsA );
+                            }
+                            internal Group group ( Object expr, Object exprA, Javascript js, Javascript jsA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, Object exprA, Javascript js, Javascript jsA, Javascript jsB )
+                            {
+                               return group ( expr, exprA, js, jsA, jsB );
+                            }
+                            internal Group group ( Object expr, Object exprA, Javascript js, Javascript jsA, Javascript jsB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                arguments.CoerceAndAdd(jsA);
+                                arguments.CoerceAndAdd(jsB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, Object exprA, Javascript js, Javascript jsA, Object exprB )
+                            {
+                               return group ( expr, exprA, js, jsA, exprB );
+                            }
+                            internal Group group ( Object expr, Object exprA, Javascript js, Javascript jsA, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2561,7 +3291,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Javascript js, Object exprB )
+                            public Group Group ( Object expr, Object exprA, Javascript js, Object exprB )
+                            {
+                               return group ( expr, exprA, js, exprB );
+                            }
+                            internal Group group ( Object expr, Object exprA, Javascript js, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2578,7 +3312,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Javascript js, Object exprB, Javascript jsA )
+                            public Group Group ( Object expr, Object exprA, Javascript js, Object exprB, Javascript jsA )
+                            {
+                               return group ( expr, exprA, js, exprB, jsA );
+                            }
+                            internal Group group ( Object expr, Object exprA, Javascript js, Object exprB, Javascript jsA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2596,7 +3334,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Javascript js, Object exprB, Object exprC )
+                            public Group Group ( Object expr, Object exprA, Javascript js, Object exprB, Object exprC )
+                            {
+                               return group ( expr, exprA, js, exprB, exprC );
+                            }
+                            internal Group group ( Object expr, Object exprA, Javascript js, Object exprB, Object exprC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2614,7 +3356,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Object exprB )
+                            public Group Group ( Object expr, Object exprA, Object exprB )
+                            {
+                               return group ( expr, exprA, exprB );
+                            }
+                            internal Group group ( Object expr, Object exprA, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2630,7 +3376,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Object exprB, Javascript js )
+                            public Group Group ( Object expr, Object exprA, Object exprB, Javascript js )
+                            {
+                               return group ( expr, exprA, exprB, js );
+                            }
+                            internal Group group ( Object expr, Object exprA, Object exprB, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2647,7 +3397,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Object exprB, Javascript js, Javascript jsA )
+                            public Group Group ( Object expr, Object exprA, Object exprB, Javascript js, Javascript jsA )
+                            {
+                               return group ( expr, exprA, exprB, js, jsA );
+                            }
+                            internal Group group ( Object expr, Object exprA, Object exprB, Javascript js, Javascript jsA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2665,7 +3419,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Object exprB, Javascript js, Object exprC )
+                            public Group Group ( Object expr, Object exprA, Object exprB, Javascript js, Object exprC )
+                            {
+                               return group ( expr, exprA, exprB, js, exprC );
+                            }
+                            internal Group group ( Object expr, Object exprA, Object exprB, Javascript js, Object exprC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2683,7 +3441,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Object exprB, Object exprC )
+                            public Group Group ( Object expr, Object exprA, Object exprB, Object exprC )
+                            {
+                               return group ( expr, exprA, exprB, exprC );
+                            }
+                            internal Group group ( Object expr, Object exprA, Object exprB, Object exprC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2700,7 +3462,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
+                            public Group Group ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
+                            {
+                               return group ( expr, exprA, exprB, exprC, js );
+                            }
+                            internal Group group ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2718,7 +3484,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD )
+                            public Group Group ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD )
+                            {
+                               return group ( expr, exprA, exprB, exprC, exprD );
+                            }
+                            internal Group group ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2736,7 +3506,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                            public Group Group ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                            {
+                               return group ( expr, exprA, exprB, exprC, func1 );
+                            }
+                            internal Group group ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2754,7 +3528,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1 )
+                            public Group Group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1 )
+                            {
+                               return group ( expr, exprA, exprB, func1 );
+                            }
+                            internal Group group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2771,7 +3549,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                            public Group Group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                            {
+                               return group ( expr, exprA, exprB, func1, exprC );
+                            }
+                            internal Group group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2789,7 +3571,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            public Group Group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                               return group ( expr, exprA, exprB, func1, func1A );
+                            }
+                            internal Group group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2807,7 +3593,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1 )
+                            public Group Group ( Object expr, Object exprA, ReqlFunction1 func1 )
+                            {
+                               return group ( expr, exprA, func1 );
+                            }
+                            internal Group group ( Object expr, Object exprA, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -2823,31 +3613,17 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB )
+                            public Group Group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB )
                             {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(exprB);
-                                return new Group (arguments);
+                               return group ( expr, exprA, func1, exprB );
                             }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                            internal Group group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
                                 arguments.CoerceAndAdd(exprB);
-                                arguments.CoerceAndAdd(exprC);
                                 return new Group (arguments);
                             }
 /// <summary>
@@ -2858,131 +3634,16 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                            public Group Group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                            {
+                               return group ( expr, exprA, func1, exprB, exprC );
+                            }
+                            internal Group group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(exprB);
-                                arguments.CoerceAndAdd(func1A);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(func1A);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(func1A);
-                                arguments.CoerceAndAdd(exprB);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(func1A);
-                                arguments.CoerceAndAdd(func1B);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1 )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func1);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(exprA);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(exprA);
-                                arguments.CoerceAndAdd(exprB);
-                                return new Group (arguments);
-                            }
-/// <summary>
-/// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
-///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
-/// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
-                            {
-                                Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(func1);
-                                arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAdd(exprB);
                                 arguments.CoerceAndAdd(exprC);
                                 return new Group (arguments);
@@ -2995,7 +3656,180 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                            public Group Group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                            {
+                               return group ( expr, exprA, func1, exprB, func1A );
+                            }
+                            internal Group group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                               return group ( expr, exprA, func1, func1A );
+                            }
+                            internal Group group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                            {
+                               return group ( expr, exprA, func1, func1A, exprB );
+                            }
+                            internal Group group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                               return group ( expr, exprA, func1, func1A, func1B );
+                            }
+                            internal Group group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(func1A);
+                                arguments.CoerceAndAdd(func1B);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, ReqlFunction1 func1 )
+                            {
+                               return group ( expr, func1 );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, ReqlFunction1 func1, Object exprA )
+                            {
+                               return group ( expr, func1, exprA );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB )
+                            {
+                               return group ( expr, func1, exprA, exprB );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                            {
+                               return group ( expr, func1, exprA, exprB, exprC );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(func1);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(exprB);
+                                arguments.CoerceAndAdd(exprC);
+                                return new Group (arguments);
+                            }
+/// <summary>
+/// <para>Takes a stream and partitions it into multiple groups based on the
+/// fields or functions provided.  Commands chained after <code>group</code> will be
+/// called on each of these grouped sub-streams, producing grouped data.</para>
+///</summary>
+/// <example><para>Example: What is each player's best game?</para>
+/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// </code></example>
+                            public Group Group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                            {
+                               return group ( expr, func1, exprA, exprB, func1A );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3013,7 +3847,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                            public Group Group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                            {
+                               return group ( expr, func1, exprA, func1A );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3030,7 +3868,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                            public Group Group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                            {
+                               return group ( expr, func1, exprA, func1A, exprB );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3048,7 +3890,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            public Group Group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                               return group ( expr, func1, exprA, func1A, func1B );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3066,7 +3912,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A )
+                            {
+                               return group ( expr, func1, func1A );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3082,7 +3932,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                            public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                            {
+                               return group ( expr, func1, func1A, exprA );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3099,7 +3953,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                            public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                            {
+                               return group ( expr, func1, func1A, exprA, exprB );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3117,7 +3975,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                            public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                            {
+                               return group ( expr, func1, func1A, exprA, func1B );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3135,7 +3997,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                            {
+                               return group ( expr, func1, func1A, func1B );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3152,7 +4018,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                            public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                            {
+                               return group ( expr, func1, func1A, func1B, exprA );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3170,7 +4040,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is each player's best game?</para>
 /// <code>r.table('games').group('player').max('points').run(conn, callback)
 /// </code></example>
-                            public Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                            public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                            {
+                               return group ( expr, func1, func1A, func1B, func1C );
+                            }
+                            internal Group group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3191,7 +4065,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's 3 + 5 + 7?</para>
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
-                            public Sum sum ( Object expr )
+                            public Sum Sum ( Object expr )
+                            {
+                               return sum ( expr );
+                            }
+                            internal Sum sum ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3208,7 +4086,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's 3 + 5 + 7?</para>
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
-                            public Sum sum ( Object expr, Javascript js )
+                            public Sum Sum ( Object expr, Javascript js )
+                            {
+                               return sum ( expr, js );
+                            }
+                            internal Sum sum ( Object expr, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3226,7 +4108,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's 3 + 5 + 7?</para>
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
-                            public Sum sum ( Object expr, Object exprA )
+                            public Sum Sum ( Object expr, Object exprA )
+                            {
+                               return sum ( expr, exprA );
+                            }
+                            internal Sum sum ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3244,7 +4130,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's 3 + 5 + 7?</para>
 /// <code>r.expr([3, 5, 7]).sum().run(conn, callback)
 /// </code></example>
-                            public Sum sum ( Object expr, ReqlFunction1 func1 )
+                            public Sum Sum ( Object expr, ReqlFunction1 func1 )
+                            {
+                               return sum ( expr, func1 );
+                            }
+                            internal Sum sum ( Object expr, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3262,7 +4152,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's the average of 3, 5, and 7?</para>
 /// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
 /// </code></example>
-                            public Avg avg ( Object expr )
+                            public Avg Avg ( Object expr )
+                            {
+                               return avg ( expr );
+                            }
+                            internal Avg avg ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3279,7 +4173,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's the average of 3, 5, and 7?</para>
 /// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
 /// </code></example>
-                            public Avg avg ( Object expr, Javascript js )
+                            public Avg Avg ( Object expr, Javascript js )
+                            {
+                               return avg ( expr, js );
+                            }
+                            internal Avg avg ( Object expr, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3297,7 +4195,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's the average of 3, 5, and 7?</para>
 /// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
 /// </code></example>
-                            public Avg avg ( Object expr, Object exprA )
+                            public Avg Avg ( Object expr, Object exprA )
+                            {
+                               return avg ( expr, exprA );
+                            }
+                            internal Avg avg ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3315,7 +4217,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What's the average of 3, 5, and 7?</para>
 /// <code>r.expr([3, 5, 7]).avg().run(conn, callback)
 /// </code></example>
-                            public Avg avg ( Object expr, ReqlFunction1 func1 )
+                            public Avg Avg ( Object expr, ReqlFunction1 func1 )
+                            {
+                               return avg ( expr, func1 );
+                            }
+                            internal Avg avg ( Object expr, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3328,7 +4234,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).min().run(conn, callback);
 /// </code></example>
-                            public Min min ( Object expr )
+                            public Min Min ( Object expr )
+                            {
+                               return min ( expr );
+                            }
+                            internal Min min ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3340,7 +4250,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).min().run(conn, callback);
 /// </code></example>
-                            public Min min ( Object expr, Javascript js )
+                            public Min Min ( Object expr, Javascript js )
+                            {
+                               return min ( expr, js );
+                            }
+                            internal Min min ( Object expr, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3353,7 +4267,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).min().run(conn, callback);
 /// </code></example>
-                            public Min min ( Object expr, Object exprA )
+                            public Min Min ( Object expr, Object exprA )
+                            {
+                               return min ( expr, exprA );
+                            }
+                            internal Min min ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3366,7 +4284,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return the minimum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).min().run(conn, callback);
 /// </code></example>
-                            public Min min ( Object expr, ReqlFunction1 func1 )
+                            public Min Min ( Object expr, ReqlFunction1 func1 )
+                            {
+                               return min ( expr, func1 );
+                            }
+                            internal Min min ( Object expr, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3379,7 +4301,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).max().run(conn, callback);
 /// </code></example>
-                            public Max max ( Object expr )
+                            public Max Max ( Object expr )
+                            {
+                               return max ( expr );
+                            }
+                            internal Max max ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3391,7 +4317,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).max().run(conn, callback);
 /// </code></example>
-                            public Max max ( Object expr, Javascript js )
+                            public Max Max ( Object expr, Javascript js )
+                            {
+                               return max ( expr, js );
+                            }
+                            internal Max max ( Object expr, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3404,7 +4334,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).max().run(conn, callback);
 /// </code></example>
-                            public Max max ( Object expr, Object exprA )
+                            public Max Max ( Object expr, Object exprA )
+                            {
+                               return max ( expr, exprA );
+                            }
+                            internal Max max ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3417,7 +4351,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return the maximum value in the list <code>[3, 5, 7]</code>.</para>
 /// <code>r.expr([3, 5, 7]).max().run(conn, callback);
 /// </code></example>
-                            public Max max ( Object expr, ReqlFunction1 func1 )
+                            public Max Max ( Object expr, ReqlFunction1 func1 )
+                            {
+                               return max ( expr, func1 );
+                            }
+                            internal Max max ( Object expr, ReqlFunction1 func1 )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3430,7 +4368,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
-                            public Random random (  )
+                            public Random Random (  )
+                            {
+                               return random (  );
+                            }
+                            internal Random random (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Random (arguments);
@@ -3441,7 +4383,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
-                            public Random random ( Object expr )
+                            public Random Random ( Object expr )
+                            {
+                               return random ( expr );
+                            }
+                            internal Random random ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3453,7 +4399,11 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Generate a random number in the range <code>[0,1)</code></para>
 /// <code>r.random().run(conn, callback)
 /// </code></example>
-                            public Random random ( Object expr, Object exprA )
+                            public Random Random ( Object expr, Object exprA )
+                            {
+                               return random ( expr, exprA );
+                            }
+                            internal Random random ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3471,7 +4421,11 @@ namespace RethinkDb.Driver.Ast {
 /// // or
 /// r.table('people').getAll(r.args(['Alice', 'Bob'])).run(conn, callback)
 /// </code></example>
-                            public Args args ( Object expr )
+                            public Args Args ( Object expr )
+                            {
+                               return args ( expr );
+                            }
+                            internal Args args ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3493,7 +4447,11 @@ namespace RethinkDb.Driver.Ast {
 ///     }
 /// });
 /// </code></example>
-                            public Binary binary ( Object expr )
+                            public Binary Binary ( Object expr )
+                            {
+                               return binary ( expr );
+                            }
+                            internal Binary binary ( Object expr )
                             {
                                    var byteArray = expr as byte[];
                                    if( byteArray != null ){
@@ -3517,7 +4475,11 @@ namespace RethinkDb.Driver.Ast {
 ///     location: r.geojson(geoJson)
 /// }).run(conn, callback);
 /// </code></example>
-                            public Geojson geojson ( Object expr )
+                            public Geojson Geojson ( Object expr )
+                            {
+                               return geojson ( expr );
+                            }
+                            internal Geojson geojson ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3533,7 +4495,11 @@ namespace RethinkDb.Driver.Ast {
 ///     location: r.point(-122.423246,37.779388)
 /// }).run(conn, callback);
 /// </code></example>
-                            public Point point ( Object expr, Object exprA )
+                            public Point Point ( Object expr, Object exprA )
+                            {
+                               return point ( expr, exprA );
+                            }
+                            internal Point point ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3553,7 +4519,11 @@ namespace RethinkDb.Driver.Ast {
 ///     route: r.line([-122.423246,37.779388], [-121.886420,37.329898])
 /// }).run(conn, callback);
 /// </code></example>
-                            public Line line ( Object expr, Object exprA, params object[] exprs )
+                            public Line Line ( Object expr, Object exprA, params object[] exprs )
+                            {
+                               return line ( expr, exprA, exprs );
+                            }
+                            internal Line line ( Object expr, Object exprA, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3579,7 +4549,11 @@ namespace RethinkDb.Driver.Ast {
 ///     )
 /// }).run(conn, callback);
 /// </code></example>
-                            public Polygon polygon ( Object expr, Object exprA, Object exprB, params object[] exprs )
+                            public Polygon Polygon ( Object expr, Object exprA, Object exprB, params object[] exprs )
+                            {
+                               return polygon ( expr, exprA, exprB, exprs );
+                            }
+                            internal Polygon polygon ( Object expr, Object exprA, Object exprB, params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3598,7 +4572,11 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback 
 /// 734.1252496021841
 /// </code></example>
-                            public Distance distance ( Object expr, Object exprA )
+                            public Distance Distance ( Object expr, Object exprA )
+                            {
+                               return distance ( expr, exprA );
+                            }
+                            internal Distance distance ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3615,7 +4593,11 @@ namespace RethinkDb.Driver.Ast {
 /// // result returned to callback 
 /// true
 /// </code></example>
-                            public Intersects intersects ( Object expr, Object exprA )
+                            public Intersects Intersects ( Object expr, Object exprA )
+                            {
+                               return intersects ( expr, exprA );
+                            }
+                            internal Intersects intersects ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3632,7 +4614,11 @@ namespace RethinkDb.Driver.Ast {
 ///     neighborhood: r.circle([-122.423246,37.779388], 1000)
 /// }).run(conn, callback);
 /// </code></example>
-                            public Circle circle ( Object expr )
+                            public Circle Circle ( Object expr )
+                            {
+                               return circle ( expr );
+                            }
+                            internal Circle circle ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3648,7 +4634,11 @@ namespace RethinkDb.Driver.Ast {
 ///     neighborhood: r.circle([-122.423246,37.779388], 1000)
 /// }).run(conn, callback);
 /// </code></example>
-                            public Circle circle ( Object expr, Object exprA )
+                            public Circle Circle ( Object expr, Object exprA )
+                            {
+                               return circle ( expr, exprA );
+                            }
+                            internal Circle circle ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3665,7 +4655,11 @@ namespace RethinkDb.Driver.Ast {
 ///     neighborhood: r.circle([-122.423246,37.779388], 1000)
 /// }).run(conn, callback);
 /// </code></example>
-                            public Circle circle ( Object expr, Object exprA, Object exprB )
+                            public Circle Circle ( Object expr, Object exprA, Object exprB )
+                            {
+                               return circle ( expr, exprA, exprB );
+                            }
+                            internal Circle circle ( Object expr, Object exprA, Object exprB )
                             {
                                 Arguments arguments = new Arguments();
                                 arguments.CoerceAndAdd(expr);
@@ -3673,12 +4667,20 @@ namespace RethinkDb.Driver.Ast {
                                 arguments.CoerceAndAdd(exprB);
                                 return new Circle (arguments);
                             }
-                            public Minval minval (  )
+                            public Minval Minval (  )
+                            {
+                               return minval (  );
+                            }
+                            internal Minval minval (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Minval (arguments);
                             }
-                            public Maxval maxval (  )
+                            public Maxval Maxval (  )
+                            {
+                               return maxval (  );
+                            }
+                            internal Maxval maxval (  )
                             {
                                 Arguments arguments = new Arguments();
                                 return new Maxval (arguments);

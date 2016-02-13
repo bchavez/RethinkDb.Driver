@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Templates.CodeGen.Util;
 
 namespace Templates.Metadata
 {
@@ -13,6 +12,7 @@ namespace Templates.Metadata
     {
         public static void Initialize(string pathToJson)
         {
+            MetaPath = pathToJson;
             if( Protocol != null ) throw new InvalidOperationException("MetaDb was already initialized.");
 
             Protocol = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(Path.Combine(pathToJson, "proto_basic.json")));
@@ -22,7 +22,7 @@ namespace Templates.Metadata
             ReadDocMeta(pathToJson);
         }
 
-        public static void ReadDocMeta(string pathToJson)
+        internal static void ReadDocMeta(string pathToJson)
         {
             var json = File.ReadAllText(Path.Combine(pathToJson, "reql_docs.js"));
             json = json.Substring(json.IndexOf("reql_docs = ") + 12);
@@ -50,6 +50,7 @@ namespace Templates.Metadata
         public static JObject Global;
         public static JObject JavaTermInfo;
         public static Dictionary<string, Documentation> Docs;
+        public static string MetaPath;
     }
 
 

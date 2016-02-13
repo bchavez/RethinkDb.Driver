@@ -13,11 +13,13 @@ namespace RethinkDb.Driver.ReGrid
 {
     internal class DownloadStreamForwardOnly : DownloadStream
     {
-        private static readonly RethinkDB r = RethinkDB.r;
+        private long position;
+        private int lastChunkNumber;
+        private int lastChunkSize;
+        private long batchPosition;
+        private long nextChunkNumber;
 
-        private readonly IConnection conn;
-        private readonly Table chunkTable;
-        private readonly string chunkIndexName;
+
         private Hasher sha256;
         private bool checkSHA256;
 
@@ -27,12 +29,10 @@ namespace RethinkDb.Driver.ReGrid
 
         private List<Chunk> batch;
 
-        public DownloadStreamForwardOnly(Bucket bucket, IConnection conn, FileInfo fileInfo, Table chunkTable, string chunkIndexName, DownloadOptions options)
+        public DownloadStreamForwardOnly(Bucket bucket, FileInfo fileInfo, DownloadOptions options)
             : base(bucket, fileInfo)
         {
-            this.conn = conn;
-            this.chunkTable = chunkTable;
-            this.chunkIndexName = chunkIndexName;
+
             if( options.CheckSHA256 )
             {
                 this.sha256 = new Hasher();
@@ -124,7 +124,7 @@ namespace RethinkDb.Driver.ReGrid
             this.cursor = await GridUtility.EnumerateChunksAsync(this.bucket, this.FileInfo.Id)
                 .ConfigureAwait(false);
 
-            GetNextBatchFromCursor(cursor.BufferedSize > 0);
+            await GetNextBatchAsync();
         }
 
         private async Task GetNextBatchAsync()
@@ -141,7 +141,10 @@ namespace RethinkDb.Driver.ReGrid
             }
 
             var previousBatch = batch;
-            batch = cursor.Take(cursor.BufferedSize).ToList();
+            batch = cursor.BufferedItems;
+            batch.Insert(0, cursor.Current);//don't forget the current
+                                            //that was just iterated on
+            cursor.ClearBuffer();
 
             if (previousBatch != null)
             {
@@ -206,13 +209,7 @@ namespace RethinkDb.Driver.ReGrid
                 }
             }
         }
-
-        private long position;
-        private int lastChunkNumber;
-        private int lastChunkSize;
-        private long batchPosition;
-        private long nextChunkNumber;
-
+        
         public override long Position
         {
             get { return position; }

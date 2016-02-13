@@ -29,12 +29,12 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void issue_12()
         {
-            var table = r.db(DbName).table(TableName);
-            table.delete().run(conn);
+            var table = R.Db(DbName).Table(TableName);
+            table.Delete().Run(conn);
 
             var basket = new Basket {id = 99};
 
-            table.insert(basket).run(conn);
+            table.Insert(basket).Run(conn);
 
             basket.Items = new List<string>
                 {
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             basket.ArrayOfInts = new[] {new[] {1, 2, 3}, new[] {4, 5, 6}};
 
-            table.update(basket).run(conn);
+            table.update(basket).Run(conn);
 
-            Basket fromDb = table.get(99).run<Basket>(conn);
+            Basket fromDb = table.Get(99).Run<Basket>(conn);
 
             fromDb.Dump();
 
@@ -65,23 +65,23 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void issue_20()
         {
-            var table = r.db(DbName).table(TableName);
-            table.delete().run(conn);
+            var table = R.Db(DbName).Table(TableName);
+            table.Delete().Run(conn);
 
             Console.WriteLine(">>> INSERT");
-            var result = table.insert(new {foo = "bar"}).runResult(conn);
+            var result = table.Insert(new {foo = "bar"}).RunResult(conn);
             var id = result.GeneratedKeys[0];
             result.AssertInserted(1);
 
             Console.WriteLine(">>> UPDATE 1 / VALUE 1");
             var value = "VALUE1";
-            result = table.get(id).update(new {Target = value}).runResult(conn);
+            result = table.Get(id).update(new {Target = value}).RunResult(conn);
             result.Dump();
 
             Console.WriteLine(">>> UPDATE 2 / VALUE 2");
             value = "VALUE2";
-            var optResult = table.get(id).update(new {Target = value})
-                .optArg("return_changes", true).run(conn);
+            var optResult = table.Get(id).update(new {Target = value})
+                .optArg("return_changes", true).Run(conn);
             ExtensionsForTesting.Dump(optResult);
         }
 
@@ -104,8 +104,8 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void issue_21_allow_JObject_inserts()
         {
-            var table = r.db(DbName).table(TableName);
-            table.delete().run(conn);
+            var table = R.Db(DbName).Table(TableName);
+            table.Delete().Run(conn);
 
             var state = new JObject
                 {
@@ -144,11 +144,11 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
             
             Console.WriteLine(">>> INSERT");
-            var result = table.insert(state).runResult(conn);
+            var result = table.Insert(state).RunResult(conn);
             var id = result.GeneratedKeys[0];
             result.Dump();
 
-            var check = table.get(id).runAtom<TheJObject>(conn);
+            var check = table.Get(id).RunAtom<TheJObject>(conn);
             check.Dump();
 
             check.TheString.Should().Be((string)state["TheString"]);
@@ -189,14 +189,14 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             var jObject = JObject.Parse(json);
 
-            var table = r.db(DbName).table(TableName);
-            table.delete().run(conn);
+            var table = R.Db(DbName).Table(TableName);
+            table.Delete().Run(conn);
 
-            var result = table.insert(jObject).runResult(conn);
+            var result = table.Insert(jObject).RunResult(conn);
             var id = result.GeneratedKeys[0];
             result.Dump();
 
-            var check = table.get(id).runAtom<JObject>(conn);
+            var check = table.Get(id).RunAtom<JObject>(conn);
             check.Dump();
         }
 
@@ -209,20 +209,20 @@ namespace RethinkDb.Driver.Tests.ReQL
                     while( true )
                     {
                         Console.WriteLine("START");
-                        var _r = RethinkDB.r;
-                        var conn = _r.connection()
-                            .hostname("192.168.0.11")
-                            .port(RethinkDBConstants.DEFAULT_PORT)
-                            .timeout(60)
-                            .connect();
-                        var x = _r.db(DbName)
-                            .table(TableName)
-                            .count();
+                        var _r = RethinkDB.R;
+                        var conn = _r.Connection()
+                            .Hostname("192.168.0.11")
+                            .Port(RethinkDBConstants.DefaultPort)
+                            .Timeout(60)
+                            .Connect();
+                        var x = _r.Db(DbName)
+                            .Table(TableName)
+                            .Count();
                         Console.WriteLine(">>>>>");
-                        long resCount = x.run(conn);
+                        long resCount = x.Run(conn);
                         Console.WriteLine("<<<<<");
                         Console.WriteLine(" - C: " + resCount);
-                        conn.close();
+                        conn.Close();
                         conn = null;
                         _r = null;
                         Console.WriteLine("FINISH");

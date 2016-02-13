@@ -10,17 +10,17 @@ namespace RethinkDb.Driver.Tests
         protected const string DbName = "query";
         protected const string TableName = "test";
 
-        public static RethinkDB r = RethinkDB.r;
+        public static RethinkDB R = RethinkDB.R;
 
         protected Connection conn;
         private void EnsureConnection()
         {
             if (conn == null || !conn.Open)
             {
-                this.conn = r.connection()
-                    .hostname(AppSettings.TestHost)
-                    .port(AppSettings.TestPort)
-                    .connect();
+                this.conn = R.Connection()
+                    .Hostname(AppSettings.TestHost)
+                    .Port(AppSettings.TestPort)
+                    .Connect();
             }
         }
 
@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Tests
 
             try
             {
-                conn.close(false);
+                conn.Close(false);
             }
             catch
             {
@@ -91,14 +91,14 @@ namespace RethinkDb.Driver.Tests
         [TearDown]
         public void AfterEachTest()
         {
-            r.db("rethinkdb").table("_debug_scratch").delete().run(conn);
-            conn.close(false);
+            R.db("rethinkdb").table("_debug_scratch").delete().Run(conn);
+            conn.Close(false);
         }
 
 
         protected void ClearDefaultTable()
         {
-            r.db(DbName).table(TableName).delete().run(conn);
+            R.db(DbName).table(TableName).delete().Run(conn);
         }
 
         protected void ClearTable(string dbName, string tableName)
@@ -109,24 +109,24 @@ namespace RethinkDb.Driver.Tests
 
         protected void CreateDb(string dbName)
         {
-            r.dbCreate(dbName).run(conn);
-            r.db(dbName).wait_().run(conn);
+            R.dbCreate(dbName).Run(conn);
+            R.db(dbName).wait_().Run(conn);
         }
 
         protected void DropDb(string dbName)
         {
-            r.dbDrop(dbName).run(conn);
+            R.dbDrop(dbName).Run(conn);
         }
 
         protected void DropTable(string dbName, string tableName)
         {
-            r.db(dbName).tableDrop(tableName).run(conn);
+            R.db(dbName).tableDrop(tableName).Run(conn);
         }
 
         protected void CreateTable(string dbName, string tableName)
         {
-            r.db(dbName).tableCreate(tableName).run(conn);
-            r.db(dbName).table(tableName).wait_().run(conn);
+            R.db(dbName).tableCreate(tableName).Run(conn);
+            R.db(dbName).table(tableName).wait_().Run(conn);
         }
     }
 }

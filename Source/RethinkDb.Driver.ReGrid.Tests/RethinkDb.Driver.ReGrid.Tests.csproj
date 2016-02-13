@@ -86,6 +86,7 @@
     <Compile Include="DeleteTests.cs" />
     <Compile Include="DownloadTests.cs" />
     <Compile Include="FileSystemTests.cs" />
+    <Compile Include="GithubIssues.cs" />
     <Compile Include="PathTests.cs" />
     <Compile Include="PrefixTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -117,8 +117,8 @@ namespace RethinkDb.Driver.ReGrid.Tests
             opts.SetMetadata(new
                 {
                     UserId = "123",
-                    LastAccess = r.now(),
-                    Roles = r.array("admin", "office"),
+                    LastAccess = R.Now(),
+                    Roles = R.Array("admin", "office"),
                     ContentType = "application/pdf"
                 });
 

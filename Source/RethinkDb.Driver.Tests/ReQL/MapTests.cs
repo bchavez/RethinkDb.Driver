@@ -20,10 +20,10 @@ namespace RethinkDb.Driver.Tests.ReQL
                 };
 
             List<TopPlayer> result =
-                r.expr(games)
-                    .filter(g => g["points"].gt(9))
-                    .map(g => new { PlayerId = g["id"] })
-                    .run<List<TopPlayer>>(conn);
+                R.Expr(games)
+                    .Filter(g => g["points"].Gt(9))
+                    .Map(g => new { PlayerId = g["id"] })
+                    .Run<List<TopPlayer>>(conn);
 
             result.Dump();
 
@@ -38,9 +38,9 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void mapping_test_2()
         {
-            List<int> result = r.expr(new[] { 1, 2, 3, 4, 5 })
-                .map(v => v.mul(v))
-                .run<List<int>>(conn);
+            List<int> result = R.Expr(new[] { 1, 2, 3, 4, 5 })
+                .Map(v => v.Mul(v))
+                .Run<List<int>>(conn);
 
             result.Dump();
 

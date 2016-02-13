@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Net.Clustering;
@@ -9,16 +10,16 @@ namespace RethinkDb.Driver
         /// <summary>
         /// The Singleton to use to begin interacting with RethinkDB Driver
         /// </summary>
-        public static readonly RethinkDB r = new RethinkDB();
+        public static readonly RethinkDB R = new RethinkDB();
 
-        public virtual Connection.Builder connection()
+        public virtual Connection.Builder Connection()
         {
-            return Connection.build();
+            return Net.Connection.Build();
         }
 
-        public virtual ConnectionPool.Builder connectionPool()
+        public virtual ConnectionPool.Builder ConnectionPool()
         {
-            return ConnectionPool.build();
+            return Net.Clustering.ConnectionPool.Build();
         }
     }
 }

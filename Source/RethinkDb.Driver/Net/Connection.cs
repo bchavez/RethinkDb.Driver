@@ -59,40 +59,40 @@ namespace RethinkDb.Driver.Net
             }
 
             hostname = builder._hostname ?? "localhost";
-            port = builder._port ?? RethinkDBConstants.DEFAULT_PORT;
+            port = builder._port ?? RethinkDBConstants.DefaultPort;
             connectTimeout = builder._timeout;
         }
 
-        public virtual string db()
+        public virtual string Db()
         {
             return dbname;
         }
 
-        public virtual void use(string db)
+        public virtual void Use(string db)
         {
             dbname = db;
         }
 
-        public virtual TimeSpan? timeout()
+        public virtual TimeSpan? Timeout()
         {
             return connectTimeout;
         }
 
-        public virtual Connection reconnect(bool noreplyWait = false, TimeSpan? timeout = null)
+        public virtual Connection Reconnect(bool noreplyWait = false, TimeSpan? timeout = null)
         {
             if( !timeout.HasValue )
             {
                 timeout = connectTimeout;
             }
-            close(noreplyWait);
+            Close(noreplyWait);
             this.Socket = new SocketWrapper(hostname, port, timeout, OnSocketErrorCallback);
             this.Socket.Connect(handshake);
             return this;
         }
 
-        public virtual async Task<Connection> reconnectAsync(bool noreplyWait = false)
+        public virtual async Task<Connection> ReconnectAsync(bool noreplyWait = false)
         {
-            close(noreplyWait);
+            Close(noreplyWait);
             this.Socket = new SocketWrapper(hostname, port, connectTimeout, OnSocketErrorCallback);
             await this.Socket.ConnectAsync(handshake);
             return this;
@@ -127,7 +127,7 @@ namespace RethinkDb.Driver.Net
             cursorCache.Clear();
         }
 
-        public virtual void close(bool shouldNoReplyWait = true)
+        public virtual void Close(bool shouldNoReplyWait = true)
         {
             if ( this.Socket != null )
             {
@@ -135,7 +135,7 @@ namespace RethinkDb.Driver.Net
                 {
                     if( shouldNoReplyWait )
                     {
-                        var task = noreplyWaitAsync();
+                        var task = NoReplyWaitAsync();
                         task.Wait();
                     }
                 }
@@ -150,12 +150,12 @@ namespace RethinkDb.Driver.Net
             CleanUpCursorCache("The connection is closed.");
         }
 
-        public virtual void noreplyWait()
+        public virtual void NoReplyWait()
         {
-            noreplyWaitAsync().WaitSync();
+            NoReplyWaitAsync().WaitSync();
         }
 
-        public virtual Task noreplyWaitAsync()
+        public virtual Task NoReplyWaitAsync()
         {
             return RunQueryWaitAsync(Query.NoReplyWait(NewToken()));
         }
@@ -170,7 +170,7 @@ namespace RethinkDb.Driver.Net
             throw new ReqlDriverError("Did not receive a SERVER_INFO response.");
         }
 
-        public virtual Server server()
+        public virtual Server Server()
         {
             return serverAsync().WaitSync();
         }
@@ -335,31 +335,31 @@ namespace RethinkDb.Driver.Net
 
         Task<dynamic> IConnection.RunAsync<T>(ReqlAst term, object globalOpts)
         {
-            Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
+            Query q = PrepareQuery(term, OptArgs.FromAnonType(globalOpts));
             return RunQueryAsync<T>(q);
         }
 
         Task<Cursor<T>> IConnection.RunCursorAsync<T>(ReqlAst term, object globalOpts)
         {
-            Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
+            Query q = PrepareQuery(term, OptArgs.FromAnonType(globalOpts));
             return RunQueryCursorAsync<T>(q);
         }
 
         Task<T> IConnection.RunAtomAsync<T>(ReqlAst term, object globalOpts)
         {
-            Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
+            Query q = PrepareQuery(term, OptArgs.FromAnonType(globalOpts));
             return RunQueryAtomAsync<T>(q);
         }
 
         Task<T> IConnection.RunResultAsync<T>(ReqlAst term, object globalOpts)
         {
-            Query q = PrepareQuery(term, OptArgs.fromAnonType(globalOpts));
+            Query q = PrepareQuery(term, OptArgs.FromAnonType(globalOpts));
             return RunQueryResultAsync<T>(q);
         }
 
         void IConnection.RunNoReply(ReqlAst term, object globalOpts)
         {
-            var opts = OptArgs.fromAnonType(globalOpts);
+            var opts = OptArgs.FromAnonType(globalOpts);
             SetDefaultDb(opts);
             opts.with("noreply", true);
             RunQueryNoReply(Query.Start(NewToken(), term, opts));
@@ -405,7 +405,7 @@ namespace RethinkDb.Driver.Net
 
         #endregion
 
-        public static Builder build()
+        public static Builder Build()
         {
             return new Builder();
         }
@@ -418,25 +418,25 @@ namespace RethinkDb.Driver.Net
             internal string _authKey = null;
             internal TimeSpan? _timeout = null;
 
-            public virtual Builder hostname(string val)
+            public virtual Builder Hostname(string val)
             {
                 this._hostname = val;
                 return this;
             }
 
-            public virtual Builder port(int val)
+            public virtual Builder Port(int val)
             {
                 this._port = val;
                 return this;
             }
 
-            public virtual Builder db(string val)
+            public virtual Builder Db(string val)
             {
                 this._dbname = val;
                 return this;
             }
 
-            public virtual Builder authKey(string val)
+            public virtual Builder AuthKey(string val)
             {
                 this._authKey = val;
                 return this;
@@ -447,29 +447,29 @@ namespace RethinkDb.Driver.Net
             /// </summary>
             /// <param name="val"></param>
             /// <returns></returns>
-            public virtual Builder timeout(int val)
+            public virtual Builder Timeout(int val)
             {
                 this._timeout = TimeSpan.FromSeconds(val);
                 return this;
             }
 
-            public virtual Connection connect()
+            public virtual Connection Connect()
             {
                 var conn = new Connection(this);
-                conn.reconnect();
+                conn.Reconnect();
                 return conn;
             }
 
-            public virtual Task<Connection> connectAsync()
+            public virtual Task<Connection> ConnectAsync()
             {
                 var conn = new Connection(this);
-                return conn.reconnectAsync();
+                return conn.ReconnectAsync();
             }
         }
 
         public void Dispose()
         {
-            this.close(false);
+            this.Close(false);
         }
     }
 }

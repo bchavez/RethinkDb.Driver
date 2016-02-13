@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
+using RethinkDb.Driver.Tests.Utils;
 using Z.ExtensionMethods;
 
 namespace RethinkDb.Driver.ReGrid.Tests
@@ -70,6 +71,18 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
                 dlbytes.Should().Equal(TestBytes.OneHalfChunk.Skip(TestBytes.BlockLength));
             }
+        }
+
+        [Test]
+        public void download_large_file()
+        {
+            ClearBucket();
+
+            var id = bucket.Upload("foobar.mp3", TestBytes.TwoMB);
+            id.Dump();
+
+            var bytes = bucket.DownloadBytes(id);
+
         }
 
     }

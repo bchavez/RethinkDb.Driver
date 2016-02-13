@@ -199,7 +199,7 @@ namespace RethinkDb.Driver.Tests
         {
             if( query is ReqlAst )
             {
-                return ((ReqlAst)query).run(conn, runOpts);
+                return ((ReqlAst)query).Run(conn, runOpts);
             }
             else
             {
@@ -217,7 +217,7 @@ namespace RethinkDb.Driver.Tests
 
             try
             {
-                var res = ((ReqlAst)query).run(conn, runopts);
+                var res = ((ReqlAst)query).Run(conn, runopts);
 
                 if( res is ICursor )
                 {

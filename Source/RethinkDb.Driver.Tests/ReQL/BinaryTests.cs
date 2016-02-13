@@ -11,7 +11,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void binary_echo()
         {
-            byte[] data = r.binary(new byte[] {1, 2, 3}).run<byte[]>(conn);
+            byte[] data = R.Binary(new byte[] {1, 2, 3}).Run<byte[]>(conn);
             data.Should().Equal(1, 2, 3);
         }
 
@@ -19,7 +19,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void can_get_raw_binary_type()
         {
-            JObject reqlType = r.binary(new byte[] { 1, 2, 3 }).run<JObject>(conn);
+            JObject reqlType = R.binary(new byte[] { 1, 2, 3 }).Run<JObject>(conn);
             reqlType[Converter.PseudoTypeKey].ToString().Should().Be("BINARY");
         }
     }

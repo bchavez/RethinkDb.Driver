@@ -10,7 +10,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void test_timezone()
         {
-            var val = r.epochTime(1.4444445).toIso8601().run(conn);
+            var val = R.EpochTime(1.4444445).ToIso8601().Run(conn);
             Console.WriteLine(val.GetType());
         }
 

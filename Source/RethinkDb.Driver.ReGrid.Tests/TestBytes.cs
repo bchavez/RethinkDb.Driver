@@ -10,6 +10,8 @@ namespace RethinkDb.Driver.ReGrid.Tests
         public static byte[] OneHalfChunkReversed;
         public static byte[] NoChunks = new byte[0];
 
+        public static byte[] TwoMB;
+
         public static int BlockLength = (1024 * 255);
         public static int HalfBlockLength = (1024 * 128);
 
@@ -19,6 +21,8 @@ namespace RethinkDb.Driver.ReGrid.Tests
             OneHalfChunkReversed = OneHalfChunk.Reverse().ToArray();
 
             HalfChunk = Generate(HalfBlockLength);
+
+            TwoMB = Generate(1024 * 1024 * 2);
         }
 
         public static byte[] Generate(int amount)

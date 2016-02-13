@@ -15,14 +15,14 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Explicit]
         public void change_feeds_without_rx()
         {
-            var result = r.db(DbName).table(TableName)
-                .delete()[new { return_changes = true }]
-                .runResult(conn)
+            var result = R.Db(DbName).Table(TableName)
+                .Delete()[new { return_changes = true }]
+                .RunResult(conn)
                 .AssertNoErrors();
 
-            var changes = r.db(DbName).table(TableName)
-                .changes()[new { include_states = false }]
-                .runChanges<JObject>(conn);
+            var changes = R.Db(DbName).Table(TableName)
+                .Changes()[new { include_states = false }]
+                .RunChanges<JObject>(conn);
 
 
             
@@ -40,32 +40,32 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
-                    .insert(new { foo = "bar" })
-                    .run(conn);
+                R.Db(DbName).Table(TableName)
+                    .Insert(new { foo = "bar" })
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
-                    .insert(new { foo = "bar" })
-                    .run(conn);
+                R.Db(DbName).Table(TableName)
+                    .Insert(new { foo = "bar" })
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
-                    .insert(new { foo = "bar" })
-                    .run(conn);
+                R.Db(DbName).Table(TableName)
+                    .Insert(new { foo = "bar" })
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
 
-            changes.close();
+            changes.Close();
 
             task.Result.Should().Be(3);
         }
@@ -74,14 +74,14 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Explicit]
         public void can_enumerate_though_change_feed_manually()
         {
-            var result = r.db(DbName).table(TableName)
-                .delete()[new { return_changes = true }]
-                .runResult(conn)
+            var result = R.Db(DbName).Table(TableName)
+                .Delete()[new { return_changes = true }]
+                .RunResult(conn)
                 .AssertNoErrors();
 
-            var changes = r.db(DbName).table(TableName)
-                .changes()[new { include_states = false }]
-                .runChanges<JObject>(conn);
+            var changes = R.Db(DbName).Table(TableName)
+                .Changes()[new { include_states = false }]
+                .RunChanges<JObject>(conn);
 
             var task = Task.Run(async () =>
             {
@@ -98,32 +98,32 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
-                    .insert(new { foo = "bar" })
-                    .run(conn);
+                R.Db(DbName).Table(TableName)
+                    .Insert(new { foo = "bar" })
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
-                    .insert(new { foo = "bar" })
-                    .run(conn);
+                R.Db(DbName).Table(TableName)
+                    .Insert(new { foo = "bar" })
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
-                    .insert(new { foo = "bar" })
-                    .run(conn);
+                R.Db(DbName).Table(TableName)
+                    .Insert(new { foo = "bar" })
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
 
-            changes.close();
+            changes.Close();
 
             Task.WaitAll(task);
             task.Result.Should().Be(3);

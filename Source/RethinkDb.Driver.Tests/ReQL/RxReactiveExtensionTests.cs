@@ -21,17 +21,17 @@ namespace RethinkDb.Driver.Tests.ReQL
             var onError = 0;
             var onNext = 0;
 
-            var result = r.db(DbName).table(TableName)
-                    .delete()[new { return_changes = true }]
-                    .runResult(conn)
+            var result = R.Db(DbName).Table(TableName)
+                    .Delete()[new { return_changes = true }]
+                    .RunResult(conn)
                     .AssertNoErrors();
 
             result.ChangesAs<JObject>().Dump();
 
-            var changes = r.db(DbName).table(TableName)
+            var changes = R.Db(DbName).Table(TableName)
                 //.changes()[new {include_states = true, include_initial = true}]
-                .changes()
-                .runChanges<JObject>(conn);
+                .Changes()
+                .RunChanges<JObject>(conn);
 
             var observable = changes.ToObservable();
 
@@ -50,32 +50,32 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             Task.Run(() =>
                 {
-                    r.db(DbName).table(TableName)
-                        .insert(new { foo = "bar" })
-                        .run(conn);
+                    R.Db(DbName).Table(TableName)
+                        .Insert(new { foo = "bar" })
+                        .Run(conn);
                 });
 
             Thread.Sleep(3000);
 
             Task.Run(() =>
             {
-                r.db(DbName).table(TableName)
-                    .insert(new { foo = "bar" })
-                    .run(conn);
+                R.Db(DbName).Table(TableName)
+                    .Insert(new { foo = "bar" })
+                    .Run(conn);
             });
 
             Thread.Sleep(3000);
 
             Task.Run(() =>
                 {
-                    r.db(DbName).table(TableName)
-                        .insert(new { foo = "bar" })
-                        .run(conn);
+                    R.Db(DbName).Table(TableName)
+                        .Insert(new { foo = "bar" })
+                        .Run(conn);
                 });
 
             Thread.Sleep(3000);
 
-            changes.close();
+            changes.Close();
 
             Thread.Sleep(3000);
 

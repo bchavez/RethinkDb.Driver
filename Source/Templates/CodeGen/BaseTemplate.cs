@@ -16,6 +16,11 @@ namespace Templates.CodeGen
             return str.MethodName();
         }
 
+        public string MethodInternalName(string str)
+        {
+            return str.MethodInternalName();
+        }
+
         public string Property(string str)
         {
             return str.PropertyName();

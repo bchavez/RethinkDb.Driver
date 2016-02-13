@@ -7,7 +7,7 @@ namespace RethinkDb.Driver.ReGrid
 {
     public static class GridUtility
     {
-        private static readonly RethinkDB r = RethinkDB.r;
+        private static readonly RethinkDB R = RethinkDB.R;
 
         /// <summary>
         /// Reclaims space from incomplete files.
@@ -35,8 +35,8 @@ namespace RethinkDb.Driver.ReGrid
             var index = new { index = bucket.fileIndex };
 
             var cursor = await bucket.fileTable
-                .between(r.array(status, filename, r.minval()), r.array(status, filename, r.maxval()))[index]
-                .runCursorAsync<FileInfo>(bucket.conn)
+                .Between(R.Array(status, filename, R.Minval()), R.Array(status, filename, R.Maxval()))[index]
+                .RunCursorAsync<FileInfo>(bucket.conn)
                 .ConfigureAwait(false);
 
             return cursor;
@@ -60,8 +60,8 @@ namespace RethinkDb.Driver.ReGrid
             var index = new { index = bucket.fileIndex };
 
             var cursor = await bucket.fileTable
-                .between(r.array(r.minval(), filename, r.minval()), r.array( r.maxval(), filename, r.maxval()))[index]
-                .runCursorAsync<FileInfo>(bucket.conn)
+                .Between(R.Array(R.Minval(), filename, R.Minval()), R.Array( R.Maxval(), filename, R.Maxval()))[index]
+                .RunCursorAsync<FileInfo>(bucket.conn)
                 .ConfigureAwait(false);
 
             return cursor;
@@ -74,9 +74,9 @@ namespace RethinkDb.Driver.ReGrid
         public static async Task<Cursor<Chunk>> EnumerateChunksAsync(Bucket bucket, Guid fileId)
         {
             var index = new { index = bucket.chunkIndexName };
-            return await bucket.chunkTable.between(r.array(fileId, r.minval()), r.array(fileId, r.maxval()))[index]
-                .orderBy("n")[index]
-                .runCursorAsync<Chunk>(bucket.conn)
+            return await bucket.chunkTable.Between(R.Array(fileId, R.Minval()), R.Array(fileId, R.Maxval()))[index]
+                .OrderBy("n")[index]
+                .RunCursorAsync<Chunk>(bucket.conn)
                 .ConfigureAwait(false);
         }
 
@@ -87,9 +87,9 @@ namespace RethinkDb.Driver.ReGrid
         public static async Task<Chunk> GetChunkAsync(Bucket bucket, Guid fileId, long n)
         {
             var index = new { index = bucket.chunkIndexName };
-            return await bucket.chunkTable.getAll(r.array(fileId, n))[index]
-                .nth(0)
-                .runResultAsync<Chunk>(bucket.conn)
+            return await bucket.chunkTable.GetAll(R.Array(fileId, n))[index]
+                .Nth(0)
+                .RunResultAsync<Chunk>(bucket.conn)
                 .ConfigureAwait(false);
         }
     }

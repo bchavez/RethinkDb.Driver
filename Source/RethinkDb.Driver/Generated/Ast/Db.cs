@@ -77,11 +77,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
 /// </code></example>
-                        public Table table ( Object expr )
+                        public Table Table ( Object expr )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                        return new Table (arguments );
+                           return table ( expr );
+                        }
+                        internal Table table ( Object expr )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            return new Table (arguments );
                         }
 /// <summary>
 /// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
@@ -89,11 +93,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
 /// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
 /// </code></example>
-                        public TableCreate tableCreate ( Object expr )
+                        public TableCreate TableCreate ( Object expr )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                        return new TableCreate (arguments );
+                           return tableCreate ( expr );
+                        }
+                        internal TableCreate tableCreate ( Object expr )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            return new TableCreate (arguments );
                         }
 /// <summary>
 /// <para>Drop a table. The table and all its data will be deleted.</para>
@@ -101,11 +109,15 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Drop a table named 'dc_universe'.</para>
 /// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
 /// </code></example>
-                        public TableDrop tableDrop ( Object expr )
+                        public TableDrop TableDrop ( Object expr )
                         {
-                        Arguments arguments = new Arguments(this);
-                                arguments.CoerceAndAdd(expr);
-                        return new TableDrop (arguments );
+                           return tableDrop ( expr );
+                        }
+                        internal TableDrop tableDrop ( Object expr )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            return new TableDrop (arguments );
                         }
 /// <summary>
 /// <para>List all table names in a database. The result is a list of strings.</para>
@@ -113,10 +125,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: List all tables of the 'test' database.</para>
 /// <code>r.db('test').tableList().run(conn, callback)
 /// </code></example>
-                        public TableList tableList (  )
+                        public TableList TableList (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new TableList (arguments );
+                           return tableList (  );
+                        }
+                        internal TableList tableList (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new TableList (arguments );
                         }
 /// <summary>
 /// <para>Query (read and/or update) the configurations for individual tables or databases.</para>
@@ -124,10 +140,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get the configuration for the <code>users</code> table.</para>
 /// <code>&gt; r.table('users').config().run(conn, callback);
 /// </code></example>
-                        public Config config (  )
+                        public Config Config (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new Config (arguments );
+                           return config (  );
+                        }
+                        internal Config config (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new Config (arguments );
                         }
 /// <summary>
 /// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
@@ -135,10 +155,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Wait for a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
 /// </code></example>
-                        public Wait wait_ (  )
+                        public Wait Wait_ (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new Wait (arguments );
+                           return wait_ (  );
+                        }
+                        internal Wait wait_ (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new Wait (arguments );
                         }
 /// <summary>
 /// <para>Reconfigure a table's sharding and replication.</para>
@@ -146,10 +170,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Reconfigure a table.</para>
 /// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
 /// </code></example>
-                        public Reconfigure reconfigure (  )
+                        public Reconfigure Reconfigure (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new Reconfigure (arguments );
+                           return reconfigure (  );
+                        }
+                        internal Reconfigure reconfigure (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new Reconfigure (arguments );
                         }
 /// <summary>
 /// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
@@ -157,10 +185,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Rebalance a table.</para>
 /// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
 /// </code></example>
-                        public Rebalance rebalance (  )
+                        public Rebalance Rebalance (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new Rebalance (arguments );
+                           return rebalance (  );
+                        }
+                        internal Rebalance rebalance (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new Rebalance (arguments );
                         }
 /// <summary>
 /// <para>Get information about a ReQL value.</para>
@@ -168,10 +200,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: Get information about a table such as primary key, or cache size.</para>
 /// <code>r.table('marvel').info().run(conn, callback)
 /// </code></example>
-                        public Info info (  )
+                        public Info Info (  )
                         {
-                        Arguments arguments = new Arguments(this);
-                        return new Info (arguments );
+                           return info (  );
+                        }
+                        internal Info info (  )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            return new Info (arguments );
                         }
 
     

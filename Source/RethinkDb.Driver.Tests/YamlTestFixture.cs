@@ -16,7 +16,7 @@ namespace RethinkDb.Driver.Tests
         protected static int TestCounter = 0;
         protected const string DbName = "test";
 
-        protected static RethinkDB r = RethinkDB.r;
+        protected static RethinkDB r = RethinkDB.R;
         protected Connection conn;
 
         protected List<string> tableVars = new List<string>();
@@ -66,15 +66,15 @@ namespace RethinkDb.Driver.Tests
         {
             FixtureWaitHandle.WaitOne();
             
-            conn = r.connection()
-                .hostname(AppSettings.TestHost)
-                .port(AppSettings.TestPort)
-                .connect();
+            conn = r.Connection()
+                .Hostname(AppSettings.TestHost)
+                .Port(AppSettings.TestPort)
+                .Connect();
 
             try
             {
-                r.dbCreate(DbName).run(conn);
-                r.db(DbName).wait_().run(conn);
+                r.dbCreate(DbName).Run(conn);
+                r.db(DbName).wait_().Run(conn);
             }
             catch
             {
@@ -84,8 +84,8 @@ namespace RethinkDb.Driver.Tests
             {
                 try
                 {
-                    r.db(DbName).tableCreate(tableName).run(conn);
-                    r.db(DbName).table(tableName).wait_().run(conn);
+                    r.db(DbName).tableCreate(tableName).Run(conn);
+                    r.db(DbName).table(tableName).wait_().Run(conn);
                 }
                 catch
                 {
@@ -96,18 +96,18 @@ namespace RethinkDb.Driver.Tests
         [TearDown]
         public void AfterEachTest()
         {
-            r.db("rethinkdb").table("_debug_scratch").delete().run(conn);
+            r.db("rethinkdb").table("_debug_scratch").delete().Run(conn);
             if( !conn.Open )
             {
-                conn.close();
-                conn.reconnect();
+                conn.Close();
+                conn.Reconnect();
             }
 
             foreach( var tableName in tableVars )
             {
                 try
                 {
-                    r.db(DbName).tableDrop(tableName).run(conn);
+                    r.db(DbName).tableDrop(tableName).Run(conn);
                 }
                 catch
                 {
@@ -115,12 +115,12 @@ namespace RethinkDb.Driver.Tests
             }
             try
             {
-                r.dbDrop(DbName).run(conn);
+                r.dbDrop(DbName).Run(conn);
             }
             catch
             {
             }
-            conn.close(false);
+            conn.Close(false);
             FixtureWaitHandle.Set();
         }
     }

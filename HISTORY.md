@@ -1,3 +1,9 @@
+## v2.2.5-beta-3
+* BREAKING CHANGES:
+* **ReGrid** specification update: chunks using: file_id and num fields.
+* **ReQL AST** now using .NET naming conventions.
+* Fixed **ReGrid** bug with large uploads.
+
 ## v2.2.5-beta-2
 * Fixed possible memory leak in Cursor.close()
 * Some minor Cursor changes to make MoveNextAsync work better

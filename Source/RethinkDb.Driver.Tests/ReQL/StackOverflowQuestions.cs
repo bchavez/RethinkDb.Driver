@@ -13,8 +13,8 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             ClearTable(DbName, TableName);
 
-            var result = r.db(DbName).table(TableName)
-                .insert(new
+            var result = R.Db(DbName).Table(TableName)
+                .Insert(new
                     {
                         students = new
                             {
@@ -24,31 +24,31 @@ namespace RethinkDb.Driver.Tests.ReQL
                                     }
                             }
                     })
-                    .runResult(conn);
+                    .RunResult(conn);
 
             var insertedId = result.GeneratedKeys[0];
 
-            var obj = r.db(DbName).table(TableName)
-                .get(insertedId)
-                .runAtom<JObject>(conn);
+            var obj = R.Db(DbName).Table(TableName)
+                .Get(insertedId)
+                .RunAtom<JObject>(conn);
 
             obj.Dump();
 
-            r.db(DbName).table(TableName)
-                .get(insertedId)
-                .update(new
+            R.Db(DbName).Table(TableName)
+                .Get(insertedId)
+                .Update(new
                     {
                         students = new
                             {
                                 locations = new[] { "Seattle", "San Francisco" }
                             }
                     })
-                .runResult(conn);
+                .RunResult(conn);
 
 
-            var newObj = r.db(DbName).table(TableName)
-                .get(insertedId)
-                .runAtom<JObject>(conn);
+            var newObj = R.Db(DbName).Table(TableName)
+                .Get(insertedId)
+                .RunAtom<JObject>(conn);
 
             newObj.Dump();
         }

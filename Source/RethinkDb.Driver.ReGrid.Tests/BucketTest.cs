@@ -6,7 +6,7 @@ using RethinkDb.Driver.Tests;
 
 namespace RethinkDb.Driver.ReGrid.Tests
 {
-    public class BucketTest : QueryTestFixture
+    public abstract class BucketTest : QueryTestFixture
     {
         protected Table fileTable;
         protected Table chunkTable;
@@ -23,9 +23,9 @@ namespace RethinkDb.Driver.ReGrid.Tests
         {
             Log.TruncateBinaryTypes = true;
 
-            fileTable = r.db(DbName).table("fs_files");
-            chunkTable = r.db(DbName).table("fs_chunk");
-            db = r.db(DbName);
+            fileTable = R.Db(DbName).Table("fs_files");
+            chunkTable = R.Db(DbName).Table("fs_chunk");
+            db = R.Db(DbName);
             var opts = new BucketConfig();
             chunkIndex = opts.ChunkIndex;
             fileIndexPath = opts.FileIndex;
@@ -42,7 +42,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
 
         protected void DropFilesTable()
         {
-            var result = db.tableDrop(this.fileTableName).runResult(this.conn);
+            var result = db.TableDrop(this.fileTableName).RunResult(this.conn);
             result.AssertTablesDropped(1);
         }
 

@@ -88,9 +88,9 @@
         @:public @Class(ClassName) this[object optArgs] {
         @:    get
         @:    {
-        @:        var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+        @:        var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
         @:
-        @:        return new @Class(ClassName) (this.Args, newOptargs);
+        @:        return new @Class(ClassName) (this.Args, newOptArgs);
         @:    }
         @:}
         @:
@@ -100,9 +100,9 @@
     @:public @Class(ClassName) this[OptArgs optArgs] {
     @:    get
     @:    {
-    @:        var newOptargs = OptArgs.fromMap(this.OptArgs).with(optArgs);
+    @:        var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
     @:
-    @:        return new @Class(ClassName) (this.Args, newOptargs);
+    @:        return new @Class(ClassName) (this.Args, newOptArgs);
     @:    }
     @:}
     @:
@@ -111,9 +111,9 @@
 @:///</summary>
         @:public @Class(ClassName) optArg(string key, object val){
         @:    
-        @:    var newOptargs = OptArgs.fromMap(this.OptArgs).with(key, val);
+        @:    var newOptArgs = OptArgs.FromMap(this.OptArgs).with(key, val);
         @:
-        @:    return new @Class(ClassName) (this.Args, newOptargs);
+        @:    return new @Class(ClassName) (this.Args, newOptArgs);
         @:}
      }
 }
@@ -163,23 +163,30 @@ namespace RethinkDb.Driver.Ast {
                     if( signature.FirstArg == ClassName )
                     {
                         var parameters = signature.Args.Skip(1).Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
+                        var forwardParams = signature.Args.Skip(1).Select(arg => $"{ArgumentVariable(arg.Var)}").ToArray();
+
                         @RenderCtorXmlDoc(term)
                         @:public @Class(info["classname"].ToString()) @Method(methodname) ( @string.Join(", ", parameters.ToArray()) )
                         @:{
+                        @:   return @MethodInternalName(methodname) ( @string.Join(", ", forwardParams.ToArray()) );
+                        @:}
 
-                        @:Arguments arguments = new Arguments(this);
+                        @:internal @Class(info["classname"].ToString()) @MethodInternalName(methodname) ( @string.Join(", ", parameters.ToArray()) )
+                        @:{
+
+                        @:    Arguments arguments = new Arguments(this);
                         foreach( var param in signature.Args.Skip(1) )
                         {
                             if( param.Type.EndsWith("...") )
                             {
-                                @:arguments.CoerceAndAddAll(@ArgumentVariable(param.Var));
+                            @:arguments.CoerceAndAddAll(@ArgumentVariable(param.Var));
                             }
                             else
                             {
-                                @:arguments.CoerceAndAdd(@ArgumentVariable(param.Var));
+                            @:arguments.CoerceAndAdd(@ArgumentVariable(param.Var));
                             }
                         }
-                        @:return new @Class(info["classname"].ToString()) (arguments );
+                        @:    return new @Class(info["classname"].ToString()) (arguments );
 
                         @:}
                     }

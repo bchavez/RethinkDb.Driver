@@ -160,7 +160,7 @@ namespace RethinkDb.Driver.Net
             return RunQueryWaitAsync(Query.NoReplyWait(NewToken()));
         }
 
-        public async virtual Task<Server> serverAsync()
+        public async virtual Task<Server> ServerAsync()
         {
             var response = await SendQuery(Query.ServerInfo(NewToken()), awaitResponse: true).ConfigureAwait(false);
             if( response.Type == ResponseType.SERVER_INFO )
@@ -172,7 +172,7 @@ namespace RethinkDb.Driver.Net
 
         public virtual Server Server()
         {
-            return serverAsync().WaitSync();
+            return ServerAsync().WaitSync();
         }
 
 

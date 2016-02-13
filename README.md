@@ -114,15 +114,15 @@ public static RethinkDB R = RethinkDB.R;
 [Test]
 public void can_connect()
 {
-var c = R.Connection()
-         .Hostname("192.168.0.11")
-         .Port(RethinkDBConstants.DefaultPort)
-         .Timeout(60)
-         .Connect();
+    var c = R.Connection()
+             .Hostname("192.168.0.11")
+             .Port(RethinkDBConstants.DefaultPort)
+             .Timeout(60)
+             .Connect();
 
-int result = R.Random(1, 9).Add(R.Random(1, 9)).Run<int>(c);
-    Console.WriteLine(result);
-    result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
+    int result = R.Random(1, 9).Add(R.Random(1, 9)).Run<int>(c);
+        Console.WriteLine(result);
+        result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
 }
 // Output: 8
 

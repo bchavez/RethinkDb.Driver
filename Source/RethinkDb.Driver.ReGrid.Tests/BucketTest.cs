@@ -6,7 +6,7 @@ using RethinkDb.Driver.Tests;
 
 namespace RethinkDb.Driver.ReGrid.Tests
 {
-    public class BucketTest : QueryTestFixture
+    public abstract class BucketTest : QueryTestFixture
     {
         protected Table fileTable;
         protected Table chunkTable;

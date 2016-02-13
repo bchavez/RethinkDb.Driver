@@ -141,7 +141,7 @@ namespace RethinkDb.Driver.ReGrid
             {
                 var c = new Chunk
                     {
-                        FilesId = filesInfoId,
+                        FileId = filesInfoId,
                         Num = n++,
                         Data = chunk
                     };

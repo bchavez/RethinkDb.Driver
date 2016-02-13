@@ -26,7 +26,8 @@ namespace RethinkDb.Driver.Net
         protected internal readonly Query query;
 
         // mutable members
-        protected internal List<JToken> items = new List<JToken>();
+        //protected internal List<JToken> items = new List<JToken>();
+        protected internal Queue<JToken> items = new Queue<JToken>();
         protected internal int outstandingRequests = 0;
         protected internal int threshold = 1;
         protected internal Exception error = null;
@@ -53,7 +54,7 @@ namespace RethinkDb.Driver.Net
             awaitingCloser.Cancel();
             if (error == null)
             {
-                error = new Exception("No such element.");
+                error = new Exception("The Cursor is closed. If the Cursor was used in a LINQ expression LINQ may have called .Dispose() on the Cursor.");
                 if (connection.Open)
                 {
                     outstandingRequests += 1;
@@ -67,6 +68,15 @@ namespace RethinkDb.Driver.Net
 
         public List<T> BufferedItems => items.Select(Convert).ToList();
 
+        
+        /// <summary>
+        /// Clears BufferedItems and empties the cursor.
+        /// </summary>
+        public void ClearBuffer()
+        {
+            items.Clear();
+        }
+
         private void ExtendInternal(Response response)
         {
             threshold = response.Data.Count;
@@ -75,13 +85,13 @@ namespace RethinkDb.Driver.Net
                 if( response.IsPartial )
                 {
                     foreach( var item in response.Data )
-                        items.Add(item);
+                        items.Enqueue(item);
                 }
                 else if( response.IsSequence )
                 {
                     foreach( var item in response.Data )
-                        items.Add(item);
-                    error = new InvalidOperationException("No such element");
+                        items.Enqueue(item);
+                    error = new InvalidOperationException("No such element. The sequence is finished.");
                 }
                 else
                 {
@@ -175,8 +185,7 @@ namespace RethinkDb.Driver.Net
 
                 if (this.items.Count > 0)
                 {
-                    var element = items[0];
-                    items.RemoveAt(0);
+                    var element = items.Dequeue();
                     this.current = Convert(element);
                     return true;
                 }

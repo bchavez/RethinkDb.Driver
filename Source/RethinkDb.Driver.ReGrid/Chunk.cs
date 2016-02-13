@@ -5,14 +5,14 @@ namespace RethinkDb.Driver.ReGrid
 {
     public class Chunk
     {
-        internal const string FilesIdJsonName = "files_id";
-        internal const string NumJsonName = "n";
+        internal const string FilesIdJsonName = "file_id";
+        internal const string NumJsonName = "num";
 
         [JsonProperty("id", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Guid Id { get; set; }
 
         [JsonProperty(FilesIdJsonName)]
-        public Guid FilesId { get; set; }
+        public Guid FileId { get; set; }
 
         [JsonProperty(NumJsonName)]
         public int Num { get; set; }

@@ -8,3 +8,4 @@ group build
     nuget FSharp.Data
     nuget Z.ExtensionMethods.WithNamespace
     nuget DotNetZip
+    nuget NuGet.CommandLine == 2.8.6

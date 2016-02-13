@@ -250,4 +250,4 @@ Target "citest" (fun _ ->
 
 
 // start build
-RunTargetOrDefault "zip"
+RunTargetOrDefault "msb"

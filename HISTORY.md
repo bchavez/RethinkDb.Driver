@@ -1,3 +1,6 @@
+## v2.2.5-beta-4
+* Issue 31: Handle null byte[] Properly.
+
 ## v2.2.5-beta-3
 * BREAKING CHANGES:
 * -- **ReGrid** specification update: chunks using: file_id and num fields.

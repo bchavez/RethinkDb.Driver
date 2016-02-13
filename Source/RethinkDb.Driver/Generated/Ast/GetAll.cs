@@ -70,9 +70,9 @@ namespace RethinkDb.Driver.Ast {
         public GetAll this[object optArgs] {
             get
             {
-                var newOptargs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+                var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
         
-                return new GetAll (this.Args, newOptargs);
+                return new GetAll (this.Args, newOptArgs);
             }
         }
         
@@ -82,9 +82,9 @@ namespace RethinkDb.Driver.Ast {
     public GetAll this[OptArgs optArgs] {
         get
         {
-            var newOptargs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+            var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
     
-            return new GetAll (this.Args, newOptargs);
+            return new GetAll (this.Args, newOptArgs);
         }
     }
     
@@ -93,9 +93,9 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
         public GetAll optArg(string key, object val){
             
-            var newOptargs = OptArgs.FromMap(this.OptArgs).with(key, val);
+            var newOptArgs = OptArgs.FromMap(this.OptArgs).with(key, val);
         
-            return new GetAll (this.Args, newOptargs);
+            return new GetAll (this.Args, newOptArgs);
         }
 
 

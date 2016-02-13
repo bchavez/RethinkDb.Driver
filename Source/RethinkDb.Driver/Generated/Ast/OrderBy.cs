@@ -106,9 +106,9 @@ namespace RethinkDb.Driver.Ast {
         public OrderBy this[object optArgs] {
             get
             {
-                var newOptargs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+                var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
         
-                return new OrderBy (this.Args, newOptargs);
+                return new OrderBy (this.Args, newOptArgs);
             }
         }
         
@@ -118,9 +118,9 @@ namespace RethinkDb.Driver.Ast {
     public OrderBy this[OptArgs optArgs] {
         get
         {
-            var newOptargs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+            var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
     
-            return new OrderBy (this.Args, newOptargs);
+            return new OrderBy (this.Args, newOptArgs);
         }
     }
     
@@ -129,9 +129,9 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
         public OrderBy optArg(string key, object val){
             
-            var newOptargs = OptArgs.FromMap(this.OptArgs).with(key, val);
+            var newOptArgs = OptArgs.FromMap(this.OptArgs).with(key, val);
         
-            return new OrderBy (this.Args, newOptargs);
+            return new OrderBy (this.Args, newOptArgs);
         }
 
 

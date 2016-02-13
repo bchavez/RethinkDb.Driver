@@ -489,7 +489,7 @@ WriteLiteral("    {\r\n");
 
 WriteLiteral("        ");
 
-WriteLiteral("        var newOptargs = OptArgs.FromMap(this.OptArgs).with(optArgs);\r\n");
+WriteLiteral("        var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);\r\n");
 
 
 
@@ -511,7 +511,7 @@ WriteLiteral("        return new ");
             
             #line default
             #line hidden
-WriteLiteral(" (this.Args, newOptargs);\r\n");
+WriteLiteral(" (this.Args, newOptArgs);\r\n");
 
 
 
@@ -585,7 +585,7 @@ WriteLiteral("    {\r\n");
 
 WriteLiteral("    ");
 
-WriteLiteral("        var newOptargs = OptArgs.FromMap(this.OptArgs).with(optArgs);\r\n");
+WriteLiteral("        var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);\r\n");
 
 
 
@@ -607,7 +607,7 @@ WriteLiteral("        return new ");
             
             #line default
             #line hidden
-WriteLiteral(" (this.Args, newOptargs);\r\n");
+WriteLiteral(" (this.Args, newOptArgs);\r\n");
 
 
 
@@ -675,7 +675,7 @@ WriteLiteral("    \r\n");
 
 WriteLiteral("        ");
 
-WriteLiteral("    var newOptargs = OptArgs.FromMap(this.OptArgs).with(key, val);\r\n");
+WriteLiteral("    var newOptArgs = OptArgs.FromMap(this.OptArgs).with(key, val);\r\n");
 
 
 
@@ -697,7 +697,7 @@ WriteLiteral("    return new ");
             
             #line default
             #line hidden
-WriteLiteral(" (this.Args, newOptargs);\r\n");
+WriteLiteral(" (this.Args, newOptArgs);\r\n");
 
 
 

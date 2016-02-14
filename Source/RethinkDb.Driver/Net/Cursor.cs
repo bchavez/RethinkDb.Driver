@@ -66,7 +66,7 @@ namespace RethinkDb.Driver.Net
         /// 
         /// <param name="cancelToken">
         ///   <para>
-        ///     Used to cancel the operation if it takes too long.
+        ///     Used to cancel the advancement of the next item if it takes too long.
         ///   </para>
         ///   <para>
         ///     The <paramref name="cancelToken"/> has no effect if the cursor still

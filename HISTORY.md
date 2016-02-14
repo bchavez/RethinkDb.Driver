@@ -1,3 +1,10 @@
+## v2.2.5
+* Roll-up Release for Full .NET Framework since v2.2.4.
+* CoreCLR users please continue using latest beta release until CoreCLR is RTM.
+* BREAKING CHANGES:
+* -- **ReGrid** specification update: chunks using: file_id and num fields.
+* -- **ReQL AST** now using .NET naming conventions. AST is now PascalCase.
+
 ## v2.2.5-beta-5
 * Completely reimplemented Cursor from the ground up. *Better*, *faster*, *stronger*, *simpler*.
 * Async APIs now accept CancellationTokens.

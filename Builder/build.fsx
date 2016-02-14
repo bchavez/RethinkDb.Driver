@@ -132,6 +132,18 @@ Target "nuget" (fun _ ->
     NuGet ( fun p -> gridConfig) GridProject.NugetSpec
 )
 
+Target "push" (fun _ ->
+    trace "NuGet Push Task"
+    
+    let driverConfig = NuGetConfig DriverProject Folders Files     
+    NuGetPublish ( fun p -> driverConfig)
+
+    let gridConfig = NuGetConfig GridProject Folders Files     
+    NuGetPublish ( fun p -> gridConfig)
+)
+
+
+
 Target "zip" (fun _ -> 
     trace "Zip Task"
 
@@ -236,6 +248,9 @@ Target "citest" (fun _ ->
 "nuget"
     ==> "ci"
 
+"nuget"
+    ==> "push"
+
 "zip"
     ==> "ci"
 
@@ -246,7 +261,6 @@ Target "citest" (fun _ ->
 
 "serverup"
     ==> "citest"
-
 
 
 // start build

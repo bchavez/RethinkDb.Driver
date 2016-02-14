@@ -42,7 +42,7 @@ namespace RethinkDb.Driver.Net
 
         private Task<Response> pendingContinue;
 
-        private Queue<JToken> items = new Queue<JToken>();
+        private readonly Queue<JToken> items = new Queue<JToken>();
         
         void AdvanceCurrent()
         {
@@ -51,8 +51,9 @@ namespace RethinkDb.Driver.Net
         }
 
         /// <summary>
-        /// Advances the cursor to the next item. This is a blocking operation if a response
-        /// from the server is needed.
+        /// Advances the cursor to the next item. This is a blocking operation 
+        /// if there are no buffered items to advance on and a response from 
+        /// the server is needed.
         /// </summary>
         public bool MoveNext()
         {
@@ -62,9 +63,50 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// Asynchronously advances the cursor to the next item.
         /// </summary>
-        /// <param name="cancelToken">Used to cancel the operation if it takes too long. 
-        /// The cancelToken has no effect the cursor still has buffered items to draw from. Cancellation only 
-        /// pertains to an outstanding network request that is taking too long.</param>
+        /// 
+        /// <param name="cancelToken">
+        ///   <para>
+        ///     Used to cancel the operation if it takes too long.
+        ///   </para>
+        ///   <para>
+        ///     The <paramref name="cancelToken"/> has no effect if the cursor still
+        ///     has buffered items to draw from. Cancellation pertains to the
+        ///     wait on an outstanding network request that is taking too long.
+        ///   </para>
+        ///   <para>
+        ///     If the <paramref name="cancelToken"/> is canceled before
+        ///     <see cref="MoveNextAsync"/> is called, <see cref="TaskCanceledException"/>
+        ///     is thrown immediately before any operation begins.
+        ///   </para>
+        ///   <para>
+        ///     Additionally, cancellation is a safe operation. When
+        ///     a <see cref="TaskCanceledException"/> is thrown, the exception will 
+        ///     not disrupt the ordering of cursor items. Cancellation only pertains to
+        ///     the semantic *wait* on a pending network request. Cancellation will not 
+        ///     cancel an already in-progress network request for more items. 
+        ///     Therefore, a <see cref="TaskCanceledException"/>
+        ///     will not disrupt the success of future precedent calls 
+        ///     to <see cref="MoveNextAsync"/>. Network requests will still arrive 
+        ///     in order at some later time.
+        ///    </para>
+        /// </param>
+        /// 
+        /// <exception cref="TaskCanceledException">
+        ///   <para>
+        ///       Thrown when <paramref name="cancelToken"/> is canceled before
+        ///       <see cref="MoveNextAsync"/> is called.
+        ///   </para> 
+        ///   <para>
+        ///       Thrown when there are no buffered items to draw from and operation
+        ///       requires waiting on a response from the server.
+        ///   </para> 
+        ///   <para>
+        ///       When <see cref="TaskCanceledException"/> is thrown the exception
+        ///       will not disrupt the ordering of items. Any non-canceled precedent calls to
+        ///       <see cref="MoveNextAsync"/> from an antecedent canceled <see cref="TaskCanceledException"/>
+        ///       will advance the cursor normally and maintain ordering of items.
+        ///   </para>
+        /// </exception>
         public async Task<bool> MoveNextAsync(CancellationToken cancelToken = default(CancellationToken))
         {
             cancelToken.ThrowIfCancellationRequested();

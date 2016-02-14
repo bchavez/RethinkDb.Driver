@@ -1,3 +1,8 @@
+## v2.2.6-beta-1
+* Cleaned up APIs.
+* Fixed Cursor.IsFeed bug always false.
+* Added more XML docs.
+
 ## v2.2.5
 * Roll-up Release for Full .NET Framework since v2.2.4.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.

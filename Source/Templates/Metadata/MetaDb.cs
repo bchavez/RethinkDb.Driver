@@ -77,7 +77,9 @@ namespace Templates.Metadata
                 .Replace("\n", "\r\n/// "
                     .Replace("&rarr", "JArray"))
                 .Replace("<strong>", "")
-                .Replace("</strong>", "");
+                .Replace("</strong>", "")
+                .Replace("&minus;", "-")
+                .Replace("&ndash;","-");
         }
     }
 }

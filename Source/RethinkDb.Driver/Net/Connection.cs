@@ -11,23 +11,13 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
-    public interface IConnection : IDisposable
-    {
-        Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
-        Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
-        Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
-        Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
-        void RunNoReply(ReqlAst term, object globalOpts);
-    }
+    /// <summary>
+    /// Represents a single connection to a RethinkDB Server.
+    /// </summary>
     public class Connection : IConnection
     {
-        // public immutable
-        public readonly string hostname;
-        public readonly int port;
-
         private long nextToken = 0;
 
-        // private mutable
         private string dbname;
         private readonly TimeSpan? connectTimeout;
         private readonly byte[] handshake;
@@ -37,7 +27,7 @@ namespace RethinkDb.Driver.Net
         private readonly ConcurrentDictionary<long, ICursor> cursorCache = new ConcurrentDictionary<long, ICursor>();
 
         /// <summary>
-        /// Raised when 
+        /// Raised when the underlying network connection has thrown an exception.
         /// </summary>
         public event EventHandler<Exception> ConnectionError;
 
@@ -58,49 +48,79 @@ namespace RethinkDb.Driver.Net
                 handshake = ms.ToArray();
             }
 
-            hostname = builder.hostname ?? "localhost";
-            port = builder.port ?? RethinkDBConstants.DefaultPort;
+            this.Hostname = builder.hostname ?? "localhost";
+            this.Port = builder.port ?? RethinkDBConstants.DefaultPort;
             connectTimeout = builder.timeout;
         }
 
-        public virtual string Db()
-        {
-            return dbname;
-        }
+        /// <summary>
+        /// Hostname assigned to the connection.
+        /// </summary>
+        public string Hostname { get; }
+        /// <summary>
+        /// TCP port number assigned to the connection.
+        /// </summary>
+        public int Port { get; }
 
+        /// <summary>
+        /// Current default database for queries on the connection. To change default database, <see cref="Use"/>
+        /// </summary>
+        public virtual string Db => dbname;
+
+        /// <summary>
+        /// Changes the default database on the connection.
+        /// </summary>
         public virtual void Use(string db)
         {
             dbname = db;
         }
 
-        public virtual TimeSpan? Timeout()
-        {
-            return connectTimeout;
-        }
+        /// <summary>
+        /// Returns the connection timeout setting.
+        /// </summary>
+        public virtual TimeSpan? Timeout => connectTimeout;
 
-        public virtual Connection Reconnect(bool noreplyWait = false, TimeSpan? timeout = null)
+        /// <summary>
+        /// Reconnects the underlying connection to the server.
+        /// </summary>
+        /// <param name="noreplyWait"><see cref="NoReplyWait"/></param>
+        public virtual void Reconnect(bool noreplyWait = false, TimeSpan? timeout = null)
         {
             if( !timeout.HasValue )
             {
                 timeout = connectTimeout;
             }
             Close(noreplyWait);
-            this.Socket = new SocketWrapper(hostname, port, timeout, OnSocketErrorCallback);
+            this.Socket = new SocketWrapper(this.Hostname, this.Port, timeout, OnSocketErrorCallback);
             this.Socket.Connect(handshake);
-            return this;
         }
 
-        public virtual async Task<Connection> ReconnectAsync(bool noreplyWait = false)
+        /// <summary>
+        /// Asynchronously reconnects the underlying connection to the server.
+        /// </summary>
+        /// <param name="noreplyWait"><see cref="NoReplyWait"/></param>
+        public virtual async Task ReconnectAsync(bool noreplyWait = false)
         {
             Close(noreplyWait);
-            this.Socket = new SocketWrapper(hostname, port, connectTimeout, OnSocketErrorCallback);
+            this.Socket = new SocketWrapper(this.Hostname, this.Port, connectTimeout, OnSocketErrorCallback);
             await this.Socket.ConnectAsync(handshake);
-            return this;
         }
 
+        /// <summary>
+        /// Flag to check the underlying socket is connected.
+        /// </summary>
         public virtual bool Open => this.Socket?.Open ?? false;
+        
+        /// <summary>
+        /// Flag to check if the underlying socket has some kind of error.
+        /// </summary>
         public virtual bool HasError => this.Socket?.HasError ?? false;
 
+        /// <summary>
+        /// An exception throwing method to check the state of the 
+        /// underlying socket.
+        /// </summary>
+        /// <exception cref="ReqlDriverError">Throws when the underlying socket is closed.</exception>
         public virtual void CheckOpen()
         {
             if(!this.Socket?.Open ?? true)
@@ -109,7 +129,10 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-        private void OnSocketErrorCallback(Exception e)
+        /// <summary>
+        /// Called when the underlying <see cref="SocketWrapper"/> encounters an error.
+        /// </summary>
+        protected void OnSocketErrorCallback(Exception e)
         {
             CleanUpCursorCache(e.Message);
 
@@ -118,6 +141,11 @@ namespace RethinkDb.Driver.Net
             this.ConnectionError.FireEvent(this, e);
         }
 
+        /// <summary>
+        /// Called when cleanup is needed. Usually when the connection was closed
+        /// and can no longer be used. The <see cref="Connection"/> is in a state
+        /// where it must be "reconnected" before it can be used again.
+        /// </summary>
         protected void CleanUpCursorCache(string message)
         {
             foreach (var cursor in this.cursorCache.Values)
@@ -127,6 +155,18 @@ namespace RethinkDb.Driver.Net
             cursorCache.Clear();
         }
 
+        /// <summary>
+        /// Closes the connection.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Close(false);
+        }
+
+        /// <summary>
+        /// Closes the connection.
+        /// </summary>
+        /// <param name="shouldNoReplyWait"><see cref="NoReplyWait"/></param>
         public virtual void Close(bool shouldNoReplyWait = true)
         {
             if ( this.Socket != null )
@@ -135,8 +175,7 @@ namespace RethinkDb.Driver.Net
                 {
                     if( shouldNoReplyWait )
                     {
-                        var task = NoReplyWaitAsync();
-                        task.Wait();
+                        NoReplyWait();
                     }
                 }
                 finally
@@ -150,16 +189,31 @@ namespace RethinkDb.Driver.Net
             CleanUpCursorCache("The connection is closed.");
         }
 
+
+        /// <summary>
+        /// Ensure that previous queries executed with NoReplyWait have been processed
+        /// by the server. Note that this guarantee only apples to queries run on the
+        /// same connection.
+        /// </summary>
         public virtual void NoReplyWait()
         {
             NoReplyWaitAsync().WaitSync();
         }
 
+        /// <summary>
+        /// Asynchronously ensures that previous queries executed with NoReplyWait have 
+        /// been processed by the server. Note that this guarantee only apples to queries
+        /// run on the same connection.
+        /// </summary>
         public virtual Task NoReplyWaitAsync(CancellationToken cancelToken = default(CancellationToken))
         {
             return RunQueryWaitAsync(Query.NoReplyWait(NewToken()), cancelToken);
         }
 
+
+        /// <summary>
+        /// Return the server name and server UUID being used by a connection.
+        /// </summary>
         public virtual async Task<Server> ServerAsync(CancellationToken cancelToken = default(CancellationToken))
         {
             var response = await SendQuery(Query.ServerInfo(NewToken()), cancelToken, awaitResponse: true).ConfigureAwait(false);
@@ -170,6 +224,9 @@ namespace RethinkDb.Driver.Net
             throw new ReqlDriverError("Did not receive a SERVER_INFO response.");
         }
 
+        /// <summary>
+        /// Return the server name and server UUID being used by a connection.
+        /// </summary>
         public virtual Server Server()
         {
             return ServerAsync().WaitSync();
@@ -224,7 +281,7 @@ namespace RethinkDb.Driver.Net
 
 
         /// <summary>
-        /// FAST SUCCESS_ATOM or SUCCESS_SEQUENCE conversion without the DLR dynamic
+        /// Fast SUCCESS_ATOM or SUCCESS_SEQUENCE conversion without the DLR dynamic
         /// </summary>
         private async Task<T> RunQueryResultAsync<T>(Query query, CancellationToken cancelToken)
         {
@@ -406,11 +463,15 @@ namespace RethinkDb.Driver.Net
 
         #endregion
 
-        public static Builder Build()
+
+        internal static Builder Build()
         {
             return new Builder();
         }
 
+        /// <summary>
+        /// The Connection builder.
+        /// </summary>
         public class Builder
         {
             internal string hostname = null;
@@ -419,24 +480,37 @@ namespace RethinkDb.Driver.Net
             internal string authKey = null;
             internal TimeSpan? timeout = null;
 
+            /// <summary>
+            /// The hostname or IP address of the server.
+            /// </summary>
+            /// <param name="val">Hostname or IP address</param>
             public virtual Builder Hostname(string val)
             {
                 this.hostname = val;
                 return this;
             }
 
+            /// <summary>
+            /// The TCP port to connect with.
+            /// </summary>
             public virtual Builder Port(int val)
             {
                 this.port = val;
                 return this;
             }
 
+            /// <summary>
+            /// The default DB for queries.
+            /// </summary>
             public virtual Builder Db(string val)
             {
                 this.dbname = val;
                 return this;
             }
 
+            /// <summary>
+            /// The authorization key to the server.
+            /// </summary>
             public virtual Builder AuthKey(string val)
             {
                 this.authKey = val;
@@ -454,6 +528,9 @@ namespace RethinkDb.Driver.Net
                 return this;
             }
 
+            /// <summary>
+            /// Creates and establishes the connection using the specified settings.
+            /// </summary>
             public virtual Connection Connect()
             {
                 var conn = new Connection(this);
@@ -461,16 +538,14 @@ namespace RethinkDb.Driver.Net
                 return conn;
             }
 
-            public virtual Task<Connection> ConnectAsync()
+            /// <summary>
+            /// Asynchronously creates and establishes the connection using the specified settings.
+            /// </summary>
+            public virtual Task ConnectAsync()
             {
                 var conn = new Connection(this);
                 return conn.ReconnectAsync();
             }
-        }
-
-        public void Dispose()
-        {
-            this.Close(false);
         }
     }
 }

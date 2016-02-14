@@ -1,29 +1,42 @@
 using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
+using RethinkDb.Driver.Net.Clustering;
 
 namespace RethinkDb.Driver.Tests.Network
 {
     [TestFixture]
     public class ConnectionTest
     {
-        public static RethinkDB r = RethinkDB.R;
+        public static RethinkDB R = RethinkDB.R;
 
         private Connection conn;
         
         [Test]
         public void can_connect()
         {
-            var c = r.Connection()
+            var c = R.Connection()
                 .Hostname(AppSettings.TestHost)
                 .Port(AppSettings.TestPort)
                 .Timeout(60)
                 .Connect();
             
-            int result = r.random(1, 9).add(r.random(1, 9)).Run<int>(c);
+            int result = R.Random(1, 9).Add(R.Random(1, 9)).Run<int>(c);
             result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
         }
 
+        [Test]
+        public void can_connect_to_a_cluster()
+        {
+            var c = R.ConnectionPool()
+                .PoolingStrategy(new RoundRobinHostPool())
+                .Seed(new[] {$"{AppSettings.TestHost}:{AppSettings.TestPort}"})
+                .Connect();
+
+
+            int result = R.Random(1, 9).Add(R.Random(1, 9)).Run<int>(c);
+            result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
+        }
 
     }
 }

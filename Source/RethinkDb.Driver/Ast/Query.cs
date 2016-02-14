@@ -1,3 +1,5 @@
+#pragma warning disable 1591
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
@@ -9,7 +11,9 @@ namespace RethinkDb.Driver.Ast
      * track of its token, the args to .run() it was called with, and its
      * query type.
     */
-
+    /// <summary>
+    /// DO NOT USE DIRECTLY
+    /// </summary>
     public class Query
     {
         public QueryType Type { get; }

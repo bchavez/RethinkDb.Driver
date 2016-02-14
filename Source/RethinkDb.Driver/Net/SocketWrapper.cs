@@ -9,14 +9,7 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
-    public class Awaiter : CancellableTask
-    {
-        public Awaiter(CancellationToken cancelToken) : base(cancelToken)
-        {
-        }
-    }
-
-    public class SocketWrapper
+    internal class SocketWrapper
     {
         private readonly TcpClient socketChannel;
         private readonly TimeSpan timeout;
@@ -81,7 +74,9 @@ namespace RethinkDb.Driver.Net
                                                       //
                                                       //      So, set the token so that we're *really* ready to begin sending
                                                       //      queries.
+#pragma warning disable 4014 // We know what' we're doing. It's intentional.
                 Task.Factory.StartNew(ResponsePump, TaskCreationOptions.LongRunning);
+#pragma warning restore 4014
             }
             catch
             {

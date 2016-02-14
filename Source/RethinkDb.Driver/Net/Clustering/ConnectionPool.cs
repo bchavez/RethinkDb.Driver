@@ -10,6 +10,9 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net.Clustering
 {
+    /// <summary>
+    /// Represents a pooled connection to a RethinkDB cluster.
+    /// </summary>
     public class ConnectionPool : IConnection
     {
         private string authKey;
@@ -18,9 +21,9 @@ namespace RethinkDb.Driver.Net.Clustering
         private bool discover;
         private IPoolingStrategy poolingStrategy;
 
-        
-        
+        public string Db => this.dbname;
 
+        
         #region REQL AST RUNNERS
 
         Task<dynamic> IConnection.RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
@@ -102,6 +105,9 @@ namespace RethinkDb.Driver.Net.Clustering
         private CancellationTokenSource shutdownSignal;
         private TaskCompletionSource<ConnectionPool> poolReady;
 
+        /// <summary>
+        /// Starts the connection pool.
+        /// </summary>
         protected virtual void StartPool()
         {
             shutdownSignal = new CancellationTokenSource();
@@ -276,14 +282,14 @@ namespace RethinkDb.Driver.Net.Clustering
                 {
                     var he = hlist[i];
                     var conn = he.conn as Connection;
-
+                    
                     if ( he.NeedsRetry() )
                     {
 
                         var worker = Task.Run(() =>
                             {
                                 conn.Reconnect();
-
+                                
                                 if( conn.Open )
                                 {
                                     Log.Debug($"{nameof(Supervisor)}: RETRY: Server '{he.Host}' is UP.");
@@ -313,6 +319,9 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
+        /// <summary>
+        /// Called to create a new connection to a RethinkDB server.
+        /// </summary>
         protected virtual Connection NewPoolConnection(string hostname, int port)
         {
             var connNew = new Connection(new Connection.Builder()
@@ -335,11 +344,15 @@ namespace RethinkDb.Driver.Net.Clustering
             he?.MarkFailed();
         }
 
-        public static Builder Build()
+        internal static Builder Build()
         {
             return new Builder();
         }
 
+
+        /// <summary>
+        /// The connection pool builder.
+        /// </summary>
         public class Builder
         {
             internal bool discover;
@@ -347,11 +360,11 @@ namespace RethinkDb.Driver.Net.Clustering
             internal string dbname;
             internal string authKey;
             internal IPoolingStrategy hostpool;
-            internal TimeSpan supervisePeriod;
 
             /// <summary>
             /// Seed the driver with the following endpoints. Should be strings of the form "Host:Port".
             /// </summary>
+            /// <param name="seeds">Strings of the form "Host:Port"</param>
             public Builder Seed(string[] seeds)
             {
                 this.seeds = seeds;
@@ -369,21 +382,22 @@ namespace RethinkDb.Driver.Net.Clustering
                 return this;
             }
 
+            /// <summary>
+            /// The default DB for queries.
+            /// </summary>
             public virtual Builder Db(string val)
             {
                 this.dbname = val;
                 return this;
             }
 
+
+            /// <summary>
+            /// The authorization key to the cluster.
+            /// </summary>
             public virtual Builder AuthKey(string val)
             {
                 this.authKey = val;
-                return this;
-            }
-
-            public virtual Builder SuperviseEvery(TimeSpan period)
-            {
-                this.supervisePeriod = period;
                 return this;
             }
 
@@ -396,6 +410,10 @@ namespace RethinkDb.Driver.Net.Clustering
                 return this;
             }
 
+            /// <summary>
+            /// Creates and establishes the connection pool using the specified settings.
+            /// </summary>
+            /// <returns>The returned connect pool is ready to be used. At least one host will be ready to accept a query.</returns>
             public virtual ConnectionPool Connect()
             {
                 var conn = new ConnectionPool(this);
@@ -404,6 +422,10 @@ namespace RethinkDb.Driver.Net.Clustering
                 return conn;
             }
 
+            /// <summary>
+            /// Asynchronously creates and establishes the connection pool using the specified settings.
+            /// </summary>
+            /// <returns>The returned connect pool is ready to be used. At least one host will be ready to accept a query.</returns>
             public virtual Task<ConnectionPool> ConnectAsync()
             {
                 var conn = new ConnectionPool(this);
@@ -412,6 +434,9 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
+        /// <summary>
+        /// Disposes / shuts down the connection pool.
+        /// </summary>
         public void Dispose()
         {
             this.Shutdown();

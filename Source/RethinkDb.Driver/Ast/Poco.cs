@@ -6,7 +6,7 @@ using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver.Ast
 {
-    public class Poco : ReqlAst
+    internal class Poco : ReqlAst
     {
         private readonly object obj;
 

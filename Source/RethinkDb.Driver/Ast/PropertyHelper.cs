@@ -1,3 +1,5 @@
+#pragma warning disable 419
+
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
@@ -312,7 +314,7 @@ namespace RethinkDb.Driver.Ast
         /// Given an object, adds each instance property with a public get method as a key and its
         /// associated value to a dictionary.
         ///
-        /// If the object is already an <see cref="IDictionary{string, object}"/> instance, then a copy
+        /// If the object is already an IDictionary{string,object} instance, then a copy
         /// is returned.
         /// </summary>
         /// <remarks>

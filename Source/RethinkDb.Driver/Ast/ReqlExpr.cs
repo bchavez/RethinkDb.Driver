@@ -1,10 +1,15 @@
+#pragma warning disable 1591 // Missing XML comment for publicly visible type or member
+
+
 using System;
 
 namespace RethinkDb.Driver.Ast
 {
     //Partial class for overloads expression overloads! :) 
     //Cool man. Yeeah. That's right. So 1337.
+#pragma warning disable 660,661
     public partial class ReqlExpr
+#pragma warning restore 660,661
     {
         /// <summary>
         /// Get a single field from an object. If called on a sequence, gets that field from every object in the sequence, skipping objects that lack it.
@@ -17,6 +22,7 @@ namespace RethinkDb.Driver.Ast
         /// <param name="bracket"></param>
         /// <returns></returns>
         public Bracket this[int bracket] => this.bracket(bracket);
+
 
 
         public static ReqlExpr operator >(ReqlExpr a, ReqlExpr b)

@@ -11,11 +11,15 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
+    /// <summary>
+    /// Cursor that handles stream types of responses.
+    /// </summary>
+    /// <typeparam name="T">The underlying item being iterated over.</typeparam>
     public class Cursor<T> : IEnumerable<T>, IEnumerator<T>, ICursor
     {
         private readonly Connection conn;
 
-        public Cursor(Connection conn, Query query, Response firstResponse)
+        internal Cursor(Connection conn, Query query, Response firstResponse)
         {
             this.conn = conn;
             this.IsFeed = firstResponse.IsFeed;
@@ -266,7 +270,11 @@ namespace RethinkDb.Driver.Net
             this.items.Clear();
         }
 
-        public void Reset()
+        /// <summary>
+        /// Throws always. A Cursor cannot be reset. Hidden from public use.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Throws always. A Cursor cannot be reset.</exception>
+        void IEnumerator.Reset()
         {
             throw new InvalidOperationException("A Cursor cannot be reset.");
         }

@@ -22,6 +22,7 @@ namespace RethinkDb.Driver.Ast
     /// </summary>
     public class ReqlAst
     {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         protected internal TermType TermType { get; }
         protected internal Arguments Args { get; }
         protected internal OptArgs OptArgs { get; }
@@ -64,9 +65,10 @@ namespace RethinkDb.Driver.Ast
             var dict = opts.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Build());
             return JObject.FromObject(dict);
         }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 
-        
+
         #region DYNAMIC LANGUAGE RUNTIME (DLR) RUNNERS
 
         /// <summary>
@@ -90,6 +92,9 @@ namespace RethinkDb.Driver.Ast
         /// dynamic language runtime execution engine.
         /// </summary>
         /// <returns>Returns T or Cursor[T]</returns>
+        /// /// <param name="conn">connection</param>
+        /// <param name="runOpts">global anonymous type optional arguments</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
         public virtual Task<dynamic> RunAsync(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
             return RunAsync<dynamic>(conn, runOpts, cancelToken);
@@ -146,6 +151,7 @@ namespace RethinkDb.Driver.Ast
         /// <typeparam name="T"></typeparam>
         /// <param name="conn">connection</param>
         /// <param name="runOpts">global anonymous type optional arguments</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
         /// <returns>A Cursor</returns>
         public virtual Task<Cursor<T>> RunCursorAsync<T>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
@@ -171,6 +177,9 @@ namespace RethinkDb.Driver.Ast
         /// method offers a slight edge in performance without the need for the
         /// dynamic language runtime like the run() method uses.
         /// </summary>
+        /// <param name="conn">connection</param>
+        /// <param name="runOpts">global anonymous type optional arguments</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
         public virtual Task<T> RunAtomAsync<T>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
             return conn.RunAtomAsync<T>(this, runOpts, cancelToken);
@@ -181,6 +190,8 @@ namespace RethinkDb.Driver.Ast
         /// method offers a slight edge in performance without the need for the
         /// dynamic language runtime like the run() method uses.
         /// </summary>
+        /// <param name="conn">connection</param>
+        /// <param name="runOpts">global anonymous type optional arguments</param>
         public virtual T RunAtom<T>(IConnection conn, object runOpts = null)
         {
             return RunAtomAsync<T>(conn, runOpts).WaitSync();
@@ -191,6 +202,9 @@ namespace RethinkDb.Driver.Ast
         /// method offers a slight edge in performance without the need for the
         /// dynamic language runtime like the run() method uses.
         /// </summary>
+        /// <param name="conn">connection</param>
+        /// <param name="runOpts">global anonymous type optional arguments</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
         public virtual Task<T> RunResultAsync<T>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
             return conn.RunResultAsync<T>(this, runOpts, cancelToken);
@@ -201,6 +215,8 @@ namespace RethinkDb.Driver.Ast
         /// method offers a slight edge in performance without the need for the
         /// dynamic language runtime like the run() method uses.
         /// </summary>
+        /// <param name="conn">connection</param>
+        /// <param name="runOpts">global anonymous type optional arguments</param>
         public virtual T RunResult<T>(IConnection conn, object runOpts = null)
         {
             return RunResultAsync<T>(conn, runOpts).WaitSync();
@@ -215,6 +231,9 @@ namespace RethinkDb.Driver.Ast
         /// Helper shortcut for DML type of queries that returns # of inserts, deletes, errors.
         /// This method bypasses the dynamic language runtime for extra performance.
         /// </summary>
+        /// <param name="conn">connection</param>
+        /// <param name="runOpts">global anonymous type optional arguments</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
         public virtual Task<Result> RunResultAsync(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
             return conn.RunAtomAsync<Result>(this, runOpts, cancelToken);
@@ -224,6 +243,8 @@ namespace RethinkDb.Driver.Ast
         /// Helper shortcut for DML type of queries that returns # of inserts, deletes, errors.
         /// This method bypasses the dynamic language runtime for extra performance.
         /// </summary>
+        /// <param name="conn">connection</param>
+        /// <param name="runOpts">global anonymous type optional arguments</param>
         public virtual Result RunResult(IConnection conn, object runOpts = null)
         {
             return RunResultAsync(conn, runOpts).WaitSync();
@@ -234,6 +255,9 @@ namespace RethinkDb.Driver.Ast
         /// This method bypasses the dynamic language runtime for extra performance.
         /// </summary>
         /// <typeparam name="T">The document type of new/old value</typeparam>
+        /// <param name="conn">connection</param>
+        /// <param name="runOpts">global anonymous type optional arguments</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
         public virtual Task<Cursor<Change<T>>> RunChangesAsync<T>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
             return conn.RunCursorAsync<Change<T>>(this, runOpts, cancelToken);
@@ -244,6 +268,8 @@ namespace RethinkDb.Driver.Ast
         /// This method bypasses the dynamic language runtime for extra performance.
         /// </summary>
         /// <typeparam name="T">The document type of new/old value</typeparam>
+        /// <param name="conn">connection</param>
+        /// <param name="runOpts">global anonymous type optional arguments</param>
         public virtual Cursor<Change<T>> RunChanges<T>(IConnection conn, object runOpts = null)
         {
             return RunChangesAsync<T>(conn, runOpts).WaitSync();
@@ -258,9 +284,12 @@ namespace RethinkDb.Driver.Ast
         /// </summary>
         /// <typeparam name="TKey">The key type of how items are grouped</typeparam>
         /// <typeparam name="TItem">The type of items</typeparam>
-        public async virtual Task<IEnumerable<GroupedResult<TKey, TItem>>> RunGroupingAsync<TKey, TItem>(IConnection conn, object runOpts = null)
+        /// <param name="conn">connection</param>
+        /// <param name="runOpts">global anonymous type optional arguments</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
+        public virtual async Task<IEnumerable<GroupedResult<TKey, TItem>>> RunGroupingAsync<TKey, TItem>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
-            var tsk = await RunAtomAsync<GroupedResultSet<TKey, TItem>>(conn, runOpts).ConfigureAwait(false);
+            var tsk = await RunAtomAsync<GroupedResultSet<TKey, TItem>>(conn, runOpts, cancelToken).ConfigureAwait(false);
             return tsk;
         }
         /// <summary>
@@ -269,6 +298,8 @@ namespace RethinkDb.Driver.Ast
         /// </summary>
         /// <typeparam name="TKey">The key type of how items are grouped</typeparam>
         /// <typeparam name="TItem">The type of items</typeparam>
+        /// <param name="conn">connection</param>
+        /// <param name="runOpts">global anonymous type optional arguments</param>
         public virtual IEnumerable<GroupedResult<TKey, TItem>> RunGrouping<TKey, TItem>(IConnection conn, object runOpts = null)
         {
             return RunAtomAsync<GroupedResultSet<TKey, TItem>>(conn, runOpts).WaitSync();

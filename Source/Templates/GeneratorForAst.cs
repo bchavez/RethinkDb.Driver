@@ -29,12 +29,11 @@ namespace Templates
         {
             MetaDb.Initialize(Path.Combine(driverFolder, @"..\Templates\Metadata"));
 
+            this.ProjectFolder = Path.GetFullPath(driverFolder);
             this.GenerateRootDir = Path.GetFullPath(Path.Combine(driverFolder, GenerateRootDir));
             this.ProtoDir = Path.GetFullPath(Path.Combine(driverFolder, ProtoDir));
-            this.GenerateRootDir = Path.GetFullPath(Path.Combine(driverFolder, GenerateRootDir));
             this.AstClasses = Path.GetFullPath(Path.Combine(driverFolder, AstClasses));
             this.ModelDir = Path.GetFullPath(Path.Combine(driverFolder, ModelDir));
-            this.ProjectFolder = Path.GetFullPath(driverFolder);
         }
 
         [TestFixtureSetUp]

@@ -9,8 +9,13 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
-    public class Awaiter : TaskCompletionSource<Response>
+    public class Awaiter : TaskCompletionSource<Response>, IDisposable
     {
+
+        public void Dispose()
+        {
+            
+        }
     }
 
     public class SocketWrapper
@@ -58,6 +63,7 @@ namespace RethinkDb.Driver.Net
 
                 this.bw.Write(handshake);
                 this.bw.Flush();
+                //await this.ns.WriteAsync(handshake, 0, handshake.Length);
 
                 var msg = this.ReadNullTerminatedString(timeout);
 
@@ -224,8 +230,20 @@ namespace RethinkDb.Driver.Net
 
         private object writeLock = new object();
 
-        public virtual Task<Response> SendQuery(long token, string json, bool awaitResponse)
+        private void QueryCanceled(object tokenObj)
         {
+            var token = Convert.ToInt64(tokenObj);
+
+            Awaiter awaitingTask;
+            if(awaiters.TryRemove(token, out awaitingTask))
+            {
+                awaitingTask.SetCanceled();
+            }
+        }
+
+        public virtual Task<Response> SendQuery(long token, string json, bool awaitResponse, CancellationToken cancelToken = default(CancellationToken))
+        {
+            cancelToken.ThrowIfCancellationRequested();
             if (pump.IsCancellationRequested)
             {
                 throw new ReqlDriverError($"Threads may not {nameof(SendQuery)} because the connection is shutting down.");
@@ -238,11 +256,24 @@ namespace RethinkDb.Driver.Net
                 //The caller is expecting a response.
                 awaiter = new Awaiter();
                 awaiters[token] = awaiter;
+                if(cancelToken != default(CancellationToken))
+                { //make sure we're not using the default CTS
+                    
+                    cancelToken.Register(QueryCanceled, token, false);
+                }
             }
             lock (writeLock)
             {   // Everyone can write their query as fast as they can; block if needed.
+                cancelToken.ThrowIfCancellationRequested();
+                //We could probably use a semaphore slim as a lock
+                //and Wait(cancelToken), but using semaphore slim
+                //is slower and requires more overhead. So, instead
+                //we just cancel at earliest possible time when the lock
+                //is free.
+
                 try
                 {
+                    //using bw is fast and convenient
                     this.bw.Write(token);
                     var jsonBytes = Encoding.UTF8.GetBytes(json);
                     this.bw.Write(jsonBytes.Length);

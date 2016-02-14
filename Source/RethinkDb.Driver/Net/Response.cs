@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
@@ -118,7 +119,7 @@ namespace RethinkDb.Driver.Net
 
         internal virtual bool IsFeed
         {
-            get { return Notes.TrueForAll(rn => rn.IsFeed()); }
+            get { return Notes.Any(rn => rn.IsFeed()); }
         }
 
         /* Whether the response is any kind of error */

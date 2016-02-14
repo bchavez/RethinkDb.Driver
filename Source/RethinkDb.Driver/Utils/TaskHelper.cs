@@ -26,10 +26,14 @@ namespace RethinkDb.Driver.Utils
         static TaskHelper()
         {
             CompletedTask = Task.FromResult(true);
+            CompletedTaskTrue = Task.FromResult(true);
+            CompletedTaskFalse = Task.FromResult(false);
             CompletedResponse = Task.FromResult<Response>(null);
         }
 
         public static Task CompletedTask { get; private set; }
+        public static Task<bool> CompletedTaskTrue { get; private set; }
+        public static Task<bool> CompletedTaskFalse { get; private set; }
         public static Task<Response> CompletedResponse { get; private set; }
     }
 }

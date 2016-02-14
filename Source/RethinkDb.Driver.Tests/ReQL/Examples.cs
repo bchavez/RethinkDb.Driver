@@ -88,11 +88,14 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             Cursor<Foo> all = R.Db(DbName).Table(TableName).GetAll("a", "b", "c").RunCursor<Foo>(conn);
 
+            var items = new List<Foo>();
             foreach (var foo in all)
             {
                 Console.WriteLine($"Printing: {foo.id}!");
                 foo.Dump();
+                items.Add(foo);
             }
+            items.Select(f => f.id).ToArray().Should().BeEquivalentTo("a", "b", "c");
         }
 
         [Test]
@@ -102,10 +105,15 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             var bazInOrder = all.OrderByDescending(f => f.Baz)
                 .Select(f => f.Baz);
+
+            var items = new List<int>();
             foreach (var baz in bazInOrder)
             {
                 Console.WriteLine(baz);
+                items.Add(baz);
             }
+
+            items.Should().BeInDescendingOrder().And.BeEquivalentTo(3,2,1);
         }
 
         [Test]

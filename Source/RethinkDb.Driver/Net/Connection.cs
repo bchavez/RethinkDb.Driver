@@ -103,7 +103,7 @@ namespace RethinkDb.Driver.Net
 
         public virtual void checkOpen()
         {
-            if( !this.Socket?.Open ?? true )
+            if(!this.Socket?.Open ?? true)
             {
                 throw new ReqlDriverError("Connection is closed.");
             }
@@ -196,7 +196,8 @@ namespace RethinkDb.Driver.Net
             var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
             if( res.IsPartial || res.IsSequence )
             {
-                return Cursor<T>.create(this, query, res);
+                //return Cursor<T>.create(this, query, res);
+                return new Cursor<T>(this, query, res);
             }
             throw new ReqlDriverError($"The query response cannot be converted to a Cursor<T>. The run helper works with SUCCESS_SEQUENCE or SUCCESS_PARTIAL results. The server response was {res.Type}. If the server response can be handled by this run method check T. Otherwise, if the server response cannot be handled by this run helper use `.runAtom<T>` or `.runResult<T>`.");
         }
@@ -284,7 +285,8 @@ namespace RethinkDb.Driver.Net
             }
             else if( res.IsPartial || res.IsSequence )
             {
-                ICursor cursor = Cursor<T>.create(this, query, res);
+                //ICursor cursor = Cursor<T>.create(this, query, res);
+                var cursor = new Cursor<T>(this, query, res);
                 return cursor;
             }
             else if( res.IsWaitComplete )
@@ -383,18 +385,19 @@ namespace RethinkDb.Driver.Net
             neumino: If you have a pending CONTINUE, and send a STOP, you should get back two SUCCESS_SEQUENCE
             */
             //this.Socket?.CancelAwaiter(cursor.Token);
+            RemoveFromCache(cursor.Token);
             RunQueryNoReply(Query.Stop(cursor.Token));
         }
 
 
-        internal virtual void AddToCache(long token, ICursor cursor)
+        internal void AddToCache(long token, ICursor cursor)
         {
             if( this.Socket == null)
                 throw new ReqlDriverError("Can't add to cache when not connected.");
             cursorCache[token] = cursor;
         }
 
-        internal virtual void RemoveFromCache(long token)
+        internal void RemoveFromCache(long token)
         {
             ICursor removed;
             if (!cursorCache.TryRemove(token, out removed))

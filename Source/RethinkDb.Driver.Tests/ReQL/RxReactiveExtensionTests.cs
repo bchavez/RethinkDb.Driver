@@ -51,7 +51,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             Task.Run(() =>
                 {
                     R.Db(DbName).Table(TableName)
-                        .Insert(new { foo = "bar" })
+                        .Insert(new { foo = "change1" })
                         .Run(conn);
                 });
 
@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             Task.Run(() =>
             {
                 R.Db(DbName).Table(TableName)
-                    .Insert(new { foo = "bar" })
+                    .Insert(new { foo = "change2" })
                     .Run(conn);
             });
 
@@ -69,7 +69,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             Task.Run(() =>
                 {
                     R.Db(DbName).Table(TableName)
-                        .Insert(new { foo = "bar" })
+                        .Insert(new { foo = "change3" })
                         .Run(conn);
                 });
 

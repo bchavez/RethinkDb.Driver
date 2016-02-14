@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Threading;
+using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Model;
 
@@ -34,6 +36,19 @@ namespace RethinkDb.Driver.Tests.ReQL
                                 .RunResultAsync(conn);
 
             result.AssertInserted(4);
+        }
+
+        const string TimeoutFunction = "while(true){}";
+
+        [Test]
+        public void canceltoken_directquery()
+        {
+            var query = R.Js(TimeoutFunction)[new {timeout = 10}];
+
+            using(var cancelSource = new CancellationTokenSource(TimeSpan.FromSeconds(1.5)))
+            {
+                //query.RunAsync(conn)
+            }
         }
     }
 }

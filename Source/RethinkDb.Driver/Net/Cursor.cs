@@ -6,229 +6,186 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
-using RethinkDb.Driver.Proto;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
-    internal interface ICursor : IEnumerable, IEnumerator
+    public class Cursor<T> : IEnumerable<T>, IEnumerator<T>, ICursor
     {
-        void SetError(string msg);
-        long Token { get; }
-    }
+        private readonly Connection conn;
 
-    public abstract class Cursor<T> : IEnumerable<T>, IEnumerator<T>, ICursor
-    {
-        // public immutable members
-        public long Token { get; }
-
-        // immutable members
-        protected internal readonly Connection connection;
-        protected internal readonly Query query;
-
-        // mutable members
-        //protected internal List<JToken> items = new List<JToken>();
-        protected internal Queue<JToken> items = new Queue<JToken>();
-        protected internal int outstandingRequests = 0;
-        protected internal int threshold = 1;
-        protected internal Exception error = null;
-        protected internal Task<Response> awaitingContinue = null;
-        protected internal CancellationTokenSource awaitingCloser = null;
-        public bool IsFeed { get; }
-
-
-        protected Cursor(Connection connection, Query query, Response firstResponse)
+        public Cursor(Connection conn, Query query, Response firstResponse)
         {
-            this.connection = connection;
-            this.query = query;
-            this.Token = query.Token;
+            this.conn = conn;
             this.IsFeed = firstResponse.IsFeed;
-            this.awaitingCloser = new CancellationTokenSource();
-            connection.AddToCache(query.Token, this);
+            this.Token = query.Token;
+
             MaybeSendContinue();
-            ExtendInternal(firstResponse);
-        }
-
-
-        public virtual void Close()
-        {
-            awaitingCloser.Cancel();
-            if (error == null)
-            {
-                error = new Exception("The Cursor is closed. If the Cursor was used in a LINQ expression LINQ may have called .Dispose() on the Cursor.");
-                if (connection.Open)
-                {
-                    outstandingRequests += 1;
-                    connection.Stop(this);
-                }
-                connection.RemoveFromCache(this.Token);
-            }
+            ExtendBuffer(firstResponse);
         }
 
         public int BufferedSize => this.items.Count;
 
         public List<T> BufferedItems => items.Select(Convert).ToList();
 
+        public bool IsFeed { get; set; }
+
+        public bool IsOpen => this.Error == null;
+
+        public Exception Error { get; private set; }
+
+        public long Token { get; }
+
+        private Task<Response> pendingContinue;
+
+        private Queue<JToken> items = new Queue<JToken>();
         
-        /// <summary>
-        /// Clears BufferedItems and empties the cursor.
-        /// </summary>
-        public void ClearBuffer()
+        void AdvanceCurrent()
         {
-            items.Clear();
+            var item = items.Dequeue();
+            this.Current = Convert(item);
         }
 
-        private void ExtendInternal(Response response)
+        /// <summary>
+        /// Advances the cursor to the next item. This is a blocking operation if a response
+        /// from the server is needed.
+        /// </summary>
+        public bool MoveNext()
         {
-            threshold = response.Data.Count;
-            if( error == null )
+            return MoveNextAsync().WaitSync();
+        }
+
+        /// <summary>
+        /// Asynchronously advances the cursor to the next item.
+        /// </summary>
+        /// <param name="cancelToken">Used to cancel the operation if it takes too long. 
+        /// The cancelToken has no effect the cursor still has buffered items to draw from. Cancellation only 
+        /// pertains to an outstanding network request that is taking too long.</param>
+        public async Task<bool> MoveNextAsync(CancellationToken cancelToken = default(CancellationToken))
+        {
+            cancelToken.ThrowIfCancellationRequested();
+            while (items.Count == 0)
             {
-                if( response.IsPartial )
+                if (!this.IsOpen) return false;
+
+                //our buffer is empty, we need to expect the next batch of items.
+
+                if (!this.pendingContinue.IsCompleted)
                 {
-                    foreach( var item in response.Data )
-                        items.Enqueue(item);
+                    //the next batch isn't here yet. so,
+                    //let's await and honor the cancelToken.
+
+                    //create a task that is controlled by the token.
+                    using (var cancelTask = new CancellableTask(cancelToken))
+                    {
+                        //now await on either task, pending or the cancellation of the CancellableTask.
+                        await Task.WhenAny(this.pendingContinue, cancelTask.Task).ConfigureAwait(false);
+                        //if it was the cancelTask that triggered the continuation... throw if requested.
+                        cancelToken.ThrowIfCancellationRequested();
+                        //else, no cancellation was requested.
+                        //we can proceed by processing the results we awaited for.
+                    }//ensure the disposal of the cancelToken registration upon exiting scope
                 }
-                else if( response.IsSequence )
+
+                //if we get here, the next batch should be available.
+                var nextBatch = this.pendingContinue.Result;
+                this.pendingContinue = null;
+                MaybeSendContinue();
+                this.ExtendBuffer(nextBatch);
+            }
+
+            //either way, we have something to advance.
+            AdvanceCurrent();
+
+            return await TaskHelper.CompletedTaskTrue.ConfigureAwait(false);
+        }
+
+        void MaybeSendContinue()
+        {
+            if (this.IsOpen && this.conn.Open && pendingContinue == null)
+            {
+                this.pendingContinue = this.conn.Continue(this);
+            }
+        }
+
+        void ExtendBuffer(Response response)
+        {
+            if (this.IsOpen)
+            {
+                if (response.IsPartial)
                 {
-                    foreach( var item in response.Data )
-                        items.Enqueue(item);
-                    error = new InvalidOperationException("No such element. The sequence is finished.");
+                    //SUCCESS_PARTIAL
+                    foreach (var jToken in response.Data)
+                    {
+                        items.Enqueue(jToken);
+                    }
+                }
+                else if (response.IsSequence)
+                {
+                    //SUCCESS_SEQUENCE
+                    foreach (var jToken in response.Data)
+                    {
+                        items.Enqueue(jToken);
+                    }
+                    this.SetError("The sequence is finished. There are no more items to iterate over.");
                 }
                 else
                 {
-                    error = response.MakeError(query);
+                    throw new NotSupportedException("Cursor cannot extend the response. The response was not a SUCCESS_PARTIAL or SUCCESS_SEQUENCE.");
                 }
-            }
-            if( outstandingRequests == 0 && error != null )
-            {
-                connection.RemoveFromCache(response.Token);
             }
         }
 
-        private void Extend(Response response)
+        T Convert(JToken token)
         {
-            outstandingRequests -= 1;
-            MaybeSendContinue();
-            ExtendInternal(response);
+            return token.ToObject<T>(Converter.Serializer);
         }
+
+
+        public void Dispose()
+        {
+            this.Shutdown("The Cursor was disposed. Iteration cannot continue. If the Cursor was used in a LINQ expression LINQ may have called .Dispose() on the Cursor.");
+        }
+
+        public void Close()
+        {
+            this.Shutdown("The Cursor was forcibly closed. Iteration cannot continue.");
+        }
+
+        private void Shutdown(string reason)
+        {
+            if (this.conn.Open && this.IsOpen)
+            {
+                conn.Stop(this);
+                SetError(reason);
+            }
+            else
+            {
+                SetError(reason);
+            }
+        }
+
 
         public void SetError(string msg)
         {
-            if( this.error != null ) return;
-
-            this.error = new ReqlRuntimeError(msg);
-
-            var dummyResponse = Response.Make(query.Token, ResponseType.SUCCESS_SEQUENCE)
-                .Build();
-
-            ExtendInternal(dummyResponse);
+            if (this.Error != null) return;
+            this.Error = new InvalidOperationException(msg);
         }
 
-        protected internal virtual void MaybeSendContinue()
+
+        public void ClearBuffer()
         {
-            if( error == null && items.Count < threshold && outstandingRequests == 0 )
-            {
-                outstandingRequests += 1;
-                awaitingContinue = connection.Continue(this);
-            }
+            this.items.Clear();
         }
 
-        internal virtual string Error
+        public void Reset()
         {
-            set
-            {
-                if( error != null )
-                {
-                    error = new ReqlRuntimeError(value);
-                    Response dummyResponse = Response.Make(query.Token, ResponseType.SUCCESS_SEQUENCE).Build();
-                    Extend(dummyResponse);
-                }
-            }
+            throw new InvalidOperationException("A Cursor cannot be reset.");
         }
 
-        public static Cursor<T> create(Connection connection, Query query, Response firstResponse)
-        {
-            return new DefaultCursor<T>(connection, query, firstResponse);
-        }
+        public T Current { get; private set; }
 
-        private class DefaultCursor<T> : Cursor<T>
-        {
-            public DefaultCursor(Connection connection, Query query, Response firstResponse) : base(connection, query, firstResponse)
-            {
-
-            }
-            private T current;
-
-            public override bool MoveNext()
-            {
-                return MoveNext(null);
-            }
-
-            public override async Task<bool> MoveNextAsync()
-            {
-                while (items.Count == 0)
-                {
-                    //if we're out of buffered items, poll until we get more.
-                    MaybeSendContinue();
-                    if (error != null) return false; //we don't throw in .net
-                    
-                    var result = await this.awaitingContinue.ConfigureAwait(false);
-
-                    //stop processing immediately, even if we have results from
-                    //STOP. Calmly tell the caller we don't have anything.
-                    if( this.awaitingCloser.IsCancellationRequested )
-                    {
-                        return false;
-                    }
-
-                    this.Extend(result);
-                }
-
-                if (this.items.Count > 0)
-                {
-                    var element = items.Dequeue();
-                    this.current = Convert(element);
-                    return true;
-                }
-
-                return false;
-            }
-
-            public override bool MoveNext(TimeSpan? timeout)
-            {
-                Task<bool> task;
-                if( timeout == null )
-                {
-                    //block until we're closed. will not throw exception.
-                    try
-                    {
-                        //this.awaitingContinue.Wait(awaitingCloser.Token);
-                        task = MoveNextAsync();
-                        task.Wait(awaitingCloser.Token);
-                        return task.Result;
-                    }
-                    catch( Exception ) when( awaitingCloser.IsCancellationRequested )
-                    {
-                        //if we're getting an exception because of a close signal
-                        //then just exit cleanly.
-                        return false; //no more items
-                    }
-                }
-
-                //block with a timeout. will throw exception.
-                //var result = this.awaitingContinue.Wait(timeout.Value);
-                task = MoveNextAsync();
-                task.Wait(timeout.Value);
-                return task.Result;
-            }
-
-            protected override T Convert(JToken token)
-            {
-                return token.ToObject<T>(Converter.Serializer);
-            }
-
-            public override T Current => this.current;
-        }
-
+        object IEnumerator.Current => this.Current;
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -238,42 +195,6 @@ namespace RethinkDb.Driver.Net
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
-        }
-
-        public void Dispose()
-        {
-            this.Close();
-        }
-
-        /// <summary>
-        /// Advances the cursor to the next batch of items. This is a blocking operation until a response
-        /// from the server is received.
-        /// </summary>
-        public abstract bool MoveNext();
-
-        /// <summary>
-        /// Advances the cursor to the next batch of items. If a timeout is specified,
-        /// MoveNext will throw a timeout exception if a response is not received in the specified
-        /// time frame. However, if timeout is null, MoveNext() will block indefinitely,
-        /// until Cursor.close() is called.
-        /// </summary>
-        /// <param name="timeout">The amount of time to wait for a response. If timeout is null, blocks until a response is received.</param>
-        public abstract bool MoveNext(TimeSpan? timeout);
-
-        public abstract Task<bool> MoveNextAsync();
-
-        protected abstract T Convert(JToken token);
-
-        public void Reset()
-        {
-            throw new ReqlDriverError("A Cursor can't be reset.");
-        }
-
-        public abstract T Current { get; }
-
-        object IEnumerator.Current
-        {
-            get { return Current; }
         }
     }
 }

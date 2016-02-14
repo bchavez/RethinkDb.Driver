@@ -33,9 +33,9 @@ Once the CLA is signed, here are some helpful guidelines to keep in mind when co
         <tr>
             <td>
                 <a href=
-                "http://www.youtube.com/watch?feature=player_embedded&v=wvUQcnfwUUM"
+                "http://www.youtube.com/watch?feature=player_embedded&v=1lyu1KKwC74"
                 target="_blank"><img alt="Summer Time" border="10" height="180"
-                src="http://img.youtube.com/vi/wvUQcnfwUUM/0.jpg" width=
+                src="http://img.youtube.com/vi/1lyu1KKwC74/0.jpg" width=
                 "240"></a>
             </td>
             <td>

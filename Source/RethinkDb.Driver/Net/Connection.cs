@@ -191,7 +191,7 @@ namespace RethinkDb.Driver.Net
             SendQuery(query, CancellationToken.None, awaitResponse: false);
         }
 
-        protected async virtual Task<Cursor<T>> RunQueryCursorAsync<T>(Query query, CancellationToken cancelToken)
+        protected virtual async Task<Cursor<T>> RunQueryCursorAsync<T>(Query query, CancellationToken cancelToken)
         {
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( res.IsPartial || res.IsSequence )
@@ -205,7 +205,7 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// Fast SUCCESS_ATOM conversion without the DLR dynamic
         /// </summary>
-        protected async virtual Task<T> RunQueryAtomAsync<T>(Query query, CancellationToken cancelToken)
+        protected virtual async Task<T> RunQueryAtomAsync<T>(Query query, CancellationToken cancelToken)
         {
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if (res.IsAtom)
@@ -247,7 +247,7 @@ namespace RethinkDb.Driver.Net
             throw new ReqlDriverError($"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM or SUCCESS_SEQUENCE results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.runCursor`.");
         }
 
-        protected async virtual Task RunQueryWaitAsync(Query query, CancellationToken cancelToken)
+        protected virtual async Task RunQueryWaitAsync(Query query, CancellationToken cancelToken)
         {
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( res.IsWaitComplete )

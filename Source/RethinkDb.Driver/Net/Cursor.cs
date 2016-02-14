@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
+using RethinkDb.Driver.Proto;
 using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
@@ -21,7 +22,8 @@ namespace RethinkDb.Driver.Net
             this.Token = query.Token;
 
             this.conn.AddToCache(this.Token, this);
-            this.finished = firstResponse.IsSequence; // is the response already fully complete?
+            //is the first response all there is?
+            this.sequenceFinished = firstResponse.Type == ResponseType.SUCCESS_SEQUENCE;
             MaybeSendContinue();
             ExtendBuffer(firstResponse);
         }
@@ -104,7 +106,7 @@ namespace RethinkDb.Driver.Net
 
         void MaybeSendContinue()
         {
-            if (this.IsOpen && this.conn.Open && pendingContinue == null && !finished)
+            if (this.IsOpen && this.conn.Open && pendingContinue == null && !sequenceFinished)
             {
                 this.pendingContinue = this.conn.Continue(this);
             }
@@ -129,7 +131,7 @@ namespace RethinkDb.Driver.Net
                     {
                         items.Enqueue(jToken);
                     }
-                    this.Finished();
+                    this.SequenceFinished();
                 }
                 else
                 {
@@ -143,10 +145,10 @@ namespace RethinkDb.Driver.Net
             return token.ToObject<T>(Converter.Serializer);
         }
 
-        bool finished;
-        void Finished()
+        bool sequenceFinished;
+        void SequenceFinished()
         {
-            finished = true;
+            sequenceFinished = true;
             this.Shutdown("The sequence is finished. There are no more items to iterate over.");
         }
 
@@ -165,7 +167,7 @@ namespace RethinkDb.Driver.Net
             if (this.conn.Open && this.IsOpen)
             {
                 conn.RemoveFromCache(this.Token);
-                if(!finished)
+                if(!sequenceFinished)
                 {
                     conn.Stop(this);
                 }

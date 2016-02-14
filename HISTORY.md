@@ -1,3 +1,7 @@
+## v2.2.5-beta-5
+* Completely reimplemented Cursor from the ground up. *Better*, *faster*, *stronger*, *simpler*.
+* Async APIs now accept CancellationTokens.
+
 ## v2.2.5-beta-4
 * Issue 31: Handle null byte[] properly.
 

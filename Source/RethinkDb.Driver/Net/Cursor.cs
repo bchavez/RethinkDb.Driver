@@ -143,7 +143,7 @@ namespace RethinkDb.Driver.Net
             //either way, we have something to advance.
             AdvanceCurrent();
 
-            return await TaskHelper.CompletedTaskTrue.ConfigureAwait(false);
+            return true;
         }
 
         void MaybeSendContinue()

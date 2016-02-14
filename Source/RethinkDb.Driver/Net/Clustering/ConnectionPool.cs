@@ -23,40 +23,40 @@ namespace RethinkDb.Driver.Net.Clustering
 
         #region REQL AST RUNNERS
 
-        Task<dynamic> IConnection.RunAsync<T>(ReqlAst term, object globalOpts)
+        Task<dynamic> IConnection.RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             if( this.shutdownSignal.IsCancellationRequested )
             {
                 throw new ReqlDriverError("HostPool is shutdown.");
             }
-            return poolingStrategy.RunAsync<T>(term, globalOpts);
+            return poolingStrategy.RunAsync<T>(term, globalOpts, cancelToken);
         }
 
-        Task<Cursor<T>> IConnection.RunCursorAsync<T>(ReqlAst term, object globalOpts)
+        Task<Cursor<T>> IConnection.RunCursorAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             if (this.shutdownSignal.IsCancellationRequested)
             {
                 throw new ReqlDriverError("HostPool is shutdown.");
             }
-            return poolingStrategy.RunCursorAsync<T>(term, globalOpts);
+            return poolingStrategy.RunCursorAsync<T>(term, globalOpts, cancelToken);
         }
 
-        Task<T> IConnection.RunAtomAsync<T>(ReqlAst term, object globalOpts)
+        Task<T> IConnection.RunAtomAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             if (this.shutdownSignal.IsCancellationRequested)
             {
                 throw new ReqlDriverError("HostPool is shutdown.");
             }
-            return poolingStrategy.RunAtomAsync<T>(term, globalOpts);
+            return poolingStrategy.RunAtomAsync<T>(term, globalOpts, cancelToken);
         }
 
-        Task<T> IConnection.RunResultAsync<T>(ReqlAst term, object globalOpts)
+        Task<T> IConnection.RunResultAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             if (this.shutdownSignal.IsCancellationRequested)
             {
                 throw new ReqlDriverError("HostPool is shutdown.");
             }
-            return poolingStrategy.RunResultAsync<T>(term, globalOpts);
+            return poolingStrategy.RunResultAsync<T>(term, globalOpts, cancelToken);
         }
 
         void IConnection.RunNoReply(ReqlAst term, object globalOpts)

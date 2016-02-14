@@ -13,10 +13,10 @@ namespace RethinkDb.Driver.Net
 {
     public interface IConnection : IDisposable
     {
-        Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts);
-        Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts);
-        Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts);
-        Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts);
+        Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
+        Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
+        Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
+        Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
         void RunNoReply(ReqlAst term, object globalOpts);
     }
     public class Connection : IConnection
@@ -155,14 +155,14 @@ namespace RethinkDb.Driver.Net
             NoReplyWaitAsync().WaitSync();
         }
 
-        public virtual Task NoReplyWaitAsync()
+        public virtual Task NoReplyWaitAsync(CancellationToken cancelToken = default(CancellationToken))
         {
-            return RunQueryWaitAsync(Query.NoReplyWait(NewToken()));
+            return RunQueryWaitAsync(Query.NoReplyWait(NewToken()), cancelToken);
         }
 
-        public async virtual Task<Server> ServerAsync()
+        public async virtual Task<Server> ServerAsync(CancellationToken cancelToken = default(CancellationToken))
         {
-            var response = await SendQuery(Query.ServerInfo(NewToken()), awaitResponse: true).ConfigureAwait(false);
+            var response = await SendQuery(Query.ServerInfo(NewToken()), cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( response.Type == ResponseType.SERVER_INFO )
             {
                 return response.Data[0].ToObject<Server>(Converter.Serializer);
@@ -183,17 +183,17 @@ namespace RethinkDb.Driver.Net
 
         protected virtual Task<Response> RunQueryReply(Query query)
         {
-            return SendQuery(query, awaitResponse: true);
+            return SendQuery(query, CancellationToken.None, awaitResponse: true);
         }
 
         protected virtual void RunQueryNoReply(Query query)
         {
-            SendQuery(query, awaitResponse: false);
+            SendQuery(query, CancellationToken.None, awaitResponse: false);
         }
 
-        protected async virtual Task<Cursor<T>> RunQueryCursorAsync<T>(Query query)
+        protected async virtual Task<Cursor<T>> RunQueryCursorAsync<T>(Query query, CancellationToken cancelToken)
         {
-            var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
+            var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( res.IsPartial || res.IsSequence )
             {
                 //return Cursor<T>.create(this, query, res);
@@ -205,9 +205,9 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// Fast SUCCESS_ATOM conversion without the DLR dynamic
         /// </summary>
-        protected async virtual Task<T> RunQueryAtomAsync<T>(Query query)
+        protected async virtual Task<T> RunQueryAtomAsync<T>(Query query, CancellationToken cancelToken)
         {
-            var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
+            var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if (res.IsAtom)
             {
                 try
@@ -226,9 +226,9 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// FAST SUCCESS_ATOM or SUCCESS_SEQUENCE conversion without the DLR dynamic
         /// </summary>
-        private async Task<T> RunQueryResultAsync<T>(Query query)
+        private async Task<T> RunQueryResultAsync<T>(Query query, CancellationToken cancelToken)
         {
-            var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
+            var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( res.IsAtom )
             {
                 try
@@ -247,9 +247,9 @@ namespace RethinkDb.Driver.Net
             throw new ReqlDriverError($"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM or SUCCESS_SEQUENCE results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.runCursor`.");
         }
 
-        protected async virtual Task RunQueryWaitAsync(Query query)
+        protected async virtual Task RunQueryWaitAsync(Query query, CancellationToken cancelToken)
         {
-            var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
+            var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( res.IsWaitComplete )
             {
                 return;
@@ -257,7 +257,7 @@ namespace RethinkDb.Driver.Net
             throw new ReqlDriverError($"The query response is not WAIT_COMPLETE. The returned query is {res.Type}. You need to call the appropriate run method that handles the response type for your query.");
         }
 
-        protected async Task<dynamic> RunQueryAsync<T>(Query query)
+        protected async Task<dynamic> RunQueryAsync<T>(Query query, CancellationToken cancelToken)
         {
             //If you need to continue after an await, **while inside the driver**, 
             //as a library writer, you must use ConfigureAwait(false) on *your*
@@ -270,7 +270,7 @@ namespace RethinkDb.Driver.Net
             // https://channel9.msdn.com/Series/Three-Essential-Tips-for-Async/Async-library-methods-should-consider-using-Task-ConfigureAwait-false-
             // http://blogs.msdn.com/b/lucian/archive/2013/11/23/talk-mvp-summit-async-best-practices.aspx
             //
-            var res = await SendQuery(query, awaitResponse: true).ConfigureAwait(false);
+            var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
 
             if( res.IsAtom )
             {
@@ -286,8 +286,7 @@ namespace RethinkDb.Driver.Net
             else if( res.IsPartial || res.IsSequence )
             {
                 //ICursor cursor = Cursor<T>.create(this, query, res);
-                var cursor = new Cursor<T>(this, query, res);
-                return cursor;
+                return new Cursor<T>(this, query, res);
             }
             else if( res.IsWaitComplete )
             {
@@ -299,10 +298,10 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-        protected Task<Response> SendQuery(Query query, bool awaitResponse)
+        protected Task<Response> SendQuery(Query query, CancellationToken cancelToken, bool awaitResponse)
         {
             if( this.Socket == null ) throw new ReqlDriverError("No socket open.");
-            return this.Socket.SendQuery(query.Token, query.Serialize(), awaitResponse);
+            return this.Socket.SendQuery(query.Token, query.Serialize(), awaitResponse, cancelToken);
         }
 
         protected Query PrepareQuery(ReqlAst term, OptArgs globalOpts)
@@ -335,28 +334,28 @@ namespace RethinkDb.Driver.Net
 
         //Typically called by the surface API of ReqlAst.
 
-        Task<dynamic> IConnection.RunAsync<T>(ReqlAst term, object globalOpts)
+        Task<dynamic> IConnection.RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             Query q = PrepareQuery(term, OptArgs.FromAnonType(globalOpts));
-            return RunQueryAsync<T>(q);
+            return RunQueryAsync<T>(q, cancelToken);
         }
 
-        Task<Cursor<T>> IConnection.RunCursorAsync<T>(ReqlAst term, object globalOpts)
+        Task<Cursor<T>> IConnection.RunCursorAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             Query q = PrepareQuery(term, OptArgs.FromAnonType(globalOpts));
-            return RunQueryCursorAsync<T>(q);
+            return RunQueryCursorAsync<T>(q, cancelToken);
         }
 
-        Task<T> IConnection.RunAtomAsync<T>(ReqlAst term, object globalOpts)
+        Task<T> IConnection.RunAtomAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             Query q = PrepareQuery(term, OptArgs.FromAnonType(globalOpts));
-            return RunQueryAtomAsync<T>(q);
+            return RunQueryAtomAsync<T>(q, cancelToken);
         }
 
-        Task<T> IConnection.RunResultAsync<T>(ReqlAst term, object globalOpts)
+        Task<T> IConnection.RunResultAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             Query q = PrepareQuery(term, OptArgs.FromAnonType(globalOpts));
-            return RunQueryResultAsync<T>(q);
+            return RunQueryResultAsync<T>(q, cancelToken);
         }
 
         void IConnection.RunNoReply(ReqlAst term, object globalOpts)
@@ -385,7 +384,6 @@ namespace RethinkDb.Driver.Net
             neumino: If you have a pending CONTINUE, and send a STOP, you should get back two SUCCESS_SEQUENCE
             */
             //this.Socket?.CancelAwaiter(cursor.Token);
-            RemoveFromCache(cursor.Token);
             RunQueryNoReply(Query.Stop(cursor.Token));
         }
 

@@ -301,13 +301,13 @@ namespace RethinkDb.Driver.Net.Clustering
 
         #region CONNECTION RUNNERS
 
-        public override async Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts)
+        public override async Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             HostEntry host = GetEpsilonGreedy();
             try
             {
                 var start = DateTime.Now.Ticks;
-                var result = await host.conn.RunAsync<T>(term, globalOpts).ConfigureAwait(false);
+                var result = await host.conn.RunAsync<T>(term, globalOpts, cancelToken).ConfigureAwait(false);
                 var end = DateTime.Now.Ticks;
                 MarkSuccess(host, start, end);
                 return result;
@@ -319,13 +319,13 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
-        public override async Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts)
+        public override async Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             HostEntry host = GetEpsilonGreedy();
             try
             {
                 var start = DateTime.Now.Ticks;
-                var result = await host.conn.RunAtomAsync<T>(term, globalOpts).ConfigureAwait(false);
+                var result = await host.conn.RunAtomAsync<T>(term, globalOpts, cancelToken).ConfigureAwait(false);
                 var end = DateTime.Now.Ticks;
                 MarkSuccess(host, start, end);
                 return result;
@@ -337,13 +337,13 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
-        public override async Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts)
+        public override async Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             HostEntry host = GetEpsilonGreedy();
             try
             {
                 var start = DateTime.Now.Ticks;
-                var result = await host.conn.RunResultAsync<T>(term, globalOpts).ConfigureAwait(false);
+                var result = await host.conn.RunResultAsync<T>(term, globalOpts, cancelToken).ConfigureAwait(false);
                 var end = DateTime.Now.Ticks;
                 MarkSuccess(host, start, end);
                 return result;
@@ -372,13 +372,13 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
-        public override async Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts)
+        public override async Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             HostEntry host = GetEpsilonGreedy();
             try
             {
                 var start = DateTime.Now.Ticks;
-                var result = await host.conn.RunCursorAsync<T>(term, globalOpts).ConfigureAwait(false);
+                var result = await host.conn.RunCursorAsync<T>(term, globalOpts, cancelToken).ConfigureAwait(false);
                 var end = DateTime.Now.Ticks;
                 MarkSuccess(host, start, end);
                 return result;

@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Model;
+using RethinkDb.Driver.Tests.Utils;
 
 namespace RethinkDb.Driver.Tests.ReQL
 {
@@ -41,14 +45,73 @@ namespace RethinkDb.Driver.Tests.ReQL
         const string TimeoutFunction = "while(true){}";
 
         [Test]
-        public void canceltoken_directquery()
+        public async Task canceltoken_directquery()
         {
             var query = R.Js(TimeoutFunction)[new {timeout = 10}];
 
             using(var cancelSource = new CancellationTokenSource(TimeSpan.FromSeconds(1.5)))
             {
-                //query.RunAsync(conn)
+                var token = cancelSource.Token;
+                Func<Task> action = async () => await query.RunAsync(conn, cancelToken: token);
+                action.ShouldThrow<TaskCanceledException>();
             }
+        }
+
+
+        [Test]
+        public void immedately_canceled_cursor_shouldnt_disrupt_current()
+        {
+            var cursor = R.range(1, 9999)
+                .RunCursor<int>(conn);
+
+            using(var cts = new CancellationTokenSource())
+            {
+                cts.Cancel();
+                //preset cancel shouldn't disrupt buffered items.
+                var token = cts.Token;
+                Func<Task> action = async () => await cursor.MoveNextAsync(token);
+                action.ShouldThrow<TaskCanceledException>();
+
+                cursor.Current.Should().Be(0);
+            }
+
+        }
+
+        [Test]
+        public async Task cancled_token_midway_during_enumeration_shouldnt_distrupt_order()
+        {
+            var cursor = R.range(1, 9999)
+                .RunCursor<int>(conn);
+
+            var consumed = new List<int>();
+            using (var cts = new CancellationTokenSource())
+            {
+                //preset cancel shouldn't disrupt buffered items.
+                var token = cts.Token;
+
+                for(int i = 0; i < 25; i++)
+                {
+                    await cursor.MoveNextAsync(token);
+                    consumed.Add(cursor.Current);
+                }
+
+                //mid way, we have a problme and cancle.
+                cts.Cancel();
+
+                Func<Task> action = async () => await cursor.MoveNextAsync(token);
+                action.ShouldThrow<TaskCanceledException>();
+
+
+                //continue consuming...
+                for (int i = 0; i < 25; i++)
+                {
+                    await cursor.MoveNextAsync(CancellationToken.None);
+                    consumed.Add(cursor.Current);
+                }
+            }
+
+            consumed.Should().Equal(Enumerable.Range(1, 50));
+
         }
     }
 }

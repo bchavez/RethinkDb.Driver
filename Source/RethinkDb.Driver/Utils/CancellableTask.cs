@@ -22,10 +22,14 @@ namespace RethinkDb.Driver.Utils
             this.SetCanceled();
         }
 
+        private bool disposed = false;
 
         public void Dispose()
         {
-            this.registration.Dispose();
+            if(!disposed)
+            {
+                this.registration.Dispose();
+            }
         }
     }
 }

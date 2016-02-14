@@ -20,6 +20,8 @@ namespace RethinkDb.Driver.Net
             this.IsFeed = firstResponse.IsFeed;
             this.Token = query.Token;
 
+            this.conn.AddToCache(this.Token, this);
+            this.finished = firstResponse.IsSequence; // is the response already fully complete?
             MaybeSendContinue();
             ExtendBuffer(firstResponse);
         }
@@ -102,7 +104,7 @@ namespace RethinkDb.Driver.Net
 
         void MaybeSendContinue()
         {
-            if (this.IsOpen && this.conn.Open && pendingContinue == null)
+            if (this.IsOpen && this.conn.Open && pendingContinue == null && !finished)
             {
                 this.pendingContinue = this.conn.Continue(this);
             }
@@ -127,7 +129,7 @@ namespace RethinkDb.Driver.Net
                     {
                         items.Enqueue(jToken);
                     }
-                    this.SetError("The sequence is finished. There are no more items to iterate over.");
+                    this.Finished();
                 }
                 else
                 {
@@ -141,6 +143,12 @@ namespace RethinkDb.Driver.Net
             return token.ToObject<T>(Converter.Serializer);
         }
 
+        bool finished;
+        void Finished()
+        {
+            finished = true;
+            this.Shutdown("The sequence is finished. There are no more items to iterate over.");
+        }
 
         public void Dispose()
         {
@@ -152,11 +160,15 @@ namespace RethinkDb.Driver.Net
             this.Shutdown("The Cursor was forcibly closed. Iteration cannot continue.");
         }
 
-        private void Shutdown(string reason)
+        void Shutdown(string reason)
         {
             if (this.conn.Open && this.IsOpen)
             {
-                conn.Stop(this);
+                conn.RemoveFromCache(this.Token);
+                if(!finished)
+                {
+                    conn.Stop(this);
+                }
                 SetError(reason);
             }
             else

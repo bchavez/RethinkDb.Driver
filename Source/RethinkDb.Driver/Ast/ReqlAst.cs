@@ -6,6 +6,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -76,9 +77,9 @@ namespace RethinkDb.Driver.Ast
         /// dynamic language runtime execution engine.
         /// </summary>
         /// <returns>Returns T or Cursor[T]</returns>
-        public virtual Task<dynamic> RunAsync<T>(IConnection conn, object runOpts = null)
+        public virtual Task<dynamic> RunAsync<T>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
-            return conn.RunAsync<T>(this, runOpts);
+            return conn.RunAsync<T>(this, runOpts, cancelToken);
         }
 
         /// <summary>
@@ -89,9 +90,9 @@ namespace RethinkDb.Driver.Ast
         /// dynamic language runtime execution engine.
         /// </summary>
         /// <returns>Returns T or Cursor[T]</returns>
-        public virtual Task<dynamic> RunAsync(IConnection conn, object runOpts = null)
+        public virtual Task<dynamic> RunAsync(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
-            return RunAsync<dynamic>(conn, runOpts);
+            return RunAsync<dynamic>(conn, runOpts, cancelToken);
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace RethinkDb.Driver.Ast
         /// <returns>Returns T or Cursor[T]</returns>
         public virtual dynamic Run<T>(IConnection conn, object runOpts = null)
         {
-            return conn.RunAsync<T>(this, runOpts).WaitSync();
+            return RunAsync<T>(conn, runOpts).WaitSync();
         }
 
         /// <summary>
@@ -146,9 +147,9 @@ namespace RethinkDb.Driver.Ast
         /// <param name="conn">connection</param>
         /// <param name="runOpts">global anonymous type optional arguments</param>
         /// <returns>A Cursor</returns>
-        public virtual Task<Cursor<T>> RunCursorAsync<T>(IConnection conn, object runOpts = null)
+        public virtual Task<Cursor<T>> RunCursorAsync<T>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
-            return conn.RunCursorAsync<T>(this, runOpts);
+            return conn.RunCursorAsync<T>(this, runOpts, cancelToken);
         }
 
         /// <summary>
@@ -162,7 +163,7 @@ namespace RethinkDb.Driver.Ast
         /// <returns>A Cursor</returns>
         public virtual Cursor<T> RunCursor<T>(IConnection conn, object runOpts = null)
         {
-            return conn.RunCursorAsync<T>(this, runOpts).WaitSync();
+            return RunCursorAsync<T>(conn, runOpts).WaitSync();
         }
 
         /// <summary>
@@ -170,9 +171,9 @@ namespace RethinkDb.Driver.Ast
         /// method offers a slight edge in performance without the need for the
         /// dynamic language runtime like the run() method uses.
         /// </summary>
-        public virtual Task<T> RunAtomAsync<T>(IConnection conn, object runOpts = null)
+        public virtual Task<T> RunAtomAsync<T>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
-            return conn.RunAtomAsync<T>(this, runOpts);
+            return conn.RunAtomAsync<T>(this, runOpts, cancelToken);
         }
 
         /// <summary>
@@ -190,9 +191,9 @@ namespace RethinkDb.Driver.Ast
         /// method offers a slight edge in performance without the need for the
         /// dynamic language runtime like the run() method uses.
         /// </summary>
-        public virtual Task<T> RunResultAsync<T>(IConnection conn, object runOpts = null)
+        public virtual Task<T> RunResultAsync<T>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
-            return conn.RunResultAsync<T>(this, runOpts);
+            return conn.RunResultAsync<T>(this, runOpts, cancelToken);
         }
 
         /// <summary>
@@ -214,9 +215,9 @@ namespace RethinkDb.Driver.Ast
         /// Helper shortcut for DML type of queries that returns # of inserts, deletes, errors.
         /// This method bypasses the dynamic language runtime for extra performance.
         /// </summary>
-        public virtual Task<Result> RunResultAsync(IConnection conn, object runOpts = null)
+        public virtual Task<Result> RunResultAsync(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
-            return conn.RunAtomAsync<Result>(this, runOpts);
+            return conn.RunAtomAsync<Result>(this, runOpts, cancelToken);
         }
 
         /// <summary>
@@ -233,9 +234,9 @@ namespace RethinkDb.Driver.Ast
         /// This method bypasses the dynamic language runtime for extra performance.
         /// </summary>
         /// <typeparam name="T">The document type of new/old value</typeparam>
-        public virtual Task<Cursor<Change<T>>> RunChangesAsync<T>(IConnection conn, object runOpts = null)
+        public virtual Task<Cursor<Change<T>>> RunChangesAsync<T>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
-            return conn.RunCursorAsync<Change<T>>(this, runOpts);
+            return conn.RunCursorAsync<Change<T>>(this, runOpts, cancelToken);
         }
 
         /// <summary>
@@ -245,7 +246,7 @@ namespace RethinkDb.Driver.Ast
         /// <typeparam name="T">The document type of new/old value</typeparam>
         public virtual Cursor<Change<T>> RunChanges<T>(IConnection conn, object runOpts = null)
         {
-            return conn.RunCursorAsync<Change<T>>(this, runOpts).WaitSync();
+            return RunChangesAsync<T>(conn, runOpts).WaitSync();
         }
 
         #endregion

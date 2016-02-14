@@ -9,12 +9,10 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
-    public class Awaiter : TaskCompletionSource<Response>, IDisposable
+    public class Awaiter : CancellableTask
     {
-
-        public void Dispose()
+        public Awaiter(CancellationToken cancelToken) : base(cancelToken)
         {
-            
         }
     }
 
@@ -63,7 +61,6 @@ namespace RethinkDb.Driver.Net
 
                 this.bw.Write(handshake);
                 this.bw.Flush();
-                //await this.ns.WriteAsync(handshake, 0, handshake.Length);
 
                 var msg = this.ReadNullTerminatedString(timeout);
 
@@ -171,7 +168,12 @@ namespace RethinkDb.Driver.Net
                     {
                         Task.Run(() =>
                             {
-                                awaitingTask.SetResult(response);
+                                //try, because it's possible
+                                //the awaiting task was canceled.
+                                if(!awaitingTask.TrySetResult(response))
+                                {
+                                    Log.Debug($"Response Pump: The awaiter waiting for response token {response.Token} could not be set. The task was probably canceled.");
+                                }
                             });
                     }
                     else
@@ -185,7 +187,7 @@ namespace RethinkDb.Driver.Net
                 {
                     currentException = e;
                     this.errorCallback?.Invoke(currentException);
-                    Log.Trace($"Response Pump: {e.GetType().Name} - {e.Message}. The connection can no longer be used. {nameof(ResponsePump)} is preparing to shutdown.");
+                    Log.Trace($"Response Pump: {e.GetType().Name} - {e.Message} The connection can no longer be used. {nameof(ResponsePump)} is preparing to shutdown.");
                     //shutdown all.
                     try
                     {
@@ -230,18 +232,8 @@ namespace RethinkDb.Driver.Net
 
         private object writeLock = new object();
 
-        private void QueryCanceled(object tokenObj)
-        {
-            var token = Convert.ToInt64(tokenObj);
 
-            Awaiter awaitingTask;
-            if(awaiters.TryRemove(token, out awaitingTask))
-            {
-                awaitingTask.SetCanceled();
-            }
-        }
-
-        public virtual Task<Response> SendQuery(long token, string json, bool awaitResponse, CancellationToken cancelToken = default(CancellationToken))
+        public virtual Task<Response> SendQuery(long token, string json, bool awaitResponse, CancellationToken cancelToken)
         {
             cancelToken.ThrowIfCancellationRequested();
             if (pump.IsCancellationRequested)
@@ -254,13 +246,8 @@ namespace RethinkDb.Driver.Net
             {
                 //Assign a new awaiter for this token,
                 //The caller is expecting a response.
-                awaiter = new Awaiter();
+                awaiter = new Awaiter(cancelToken);
                 awaiters[token] = awaiter;
-                if(cancelToken != default(CancellationToken))
-                { //make sure we're not using the default CTS
-                    
-                    cancelToken.Register(QueryCanceled, token, false);
-                }
             }
             lock (writeLock)
             {   // Everyone can write their query as fast as they can; block if needed.

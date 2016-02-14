@@ -68,12 +68,12 @@ namespace RethinkDb.Driver.Net.Clustering
             return hostList[0];
         }
 
-        public override Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts)
+        public override async Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             HostEntry host = GetRoundRobin();
             try
             {
-                return host.conn.RunAsync<T>(term, globalOpts);
+                return await host.conn.RunAsync<T>(term, globalOpts, cancelToken).ConfigureAwait(false);
             }
             catch( Exception e ) when( ExceptionIs.NetworkError(e) )
             {
@@ -82,12 +82,12 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
-        public override Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts)
+        public override async Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             HostEntry host = GetRoundRobin();
             try
             {
-                return host.conn.RunCursorAsync<T>(term, globalOpts);
+                return await host.conn.RunCursorAsync<T>(term, globalOpts, cancelToken).ConfigureAwait(false);
             }
             catch( Exception e ) when( ExceptionIs.NetworkError(e) )
             {
@@ -96,12 +96,12 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
-        public override Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts)
+        public override async Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             HostEntry host = GetRoundRobin();
             try
             {
-                return host.conn.RunAtomAsync<T>(term, globalOpts);
+                return await host.conn.RunAtomAsync<T>(term, globalOpts, cancelToken).ConfigureAwait(false);
             }
             catch (Exception e) when (ExceptionIs.NetworkError(e))
             {
@@ -110,12 +110,12 @@ namespace RethinkDb.Driver.Net.Clustering
             }
         }
 
-        public override Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts)
+        public override async Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
             HostEntry host = GetRoundRobin();
             try
             {
-                return host.conn.RunResultAsync<T>(term, globalOpts);
+                return await host.conn.RunResultAsync<T>(term, globalOpts, cancelToken).ConfigureAwait(false);
             }
             catch (Exception e) when (ExceptionIs.NetworkError(e))
             {

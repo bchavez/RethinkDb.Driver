@@ -28,16 +28,34 @@ namespace RethinkDb.Driver.Net
             ExtendBuffer(firstResponse);
         }
 
+        /// <summary>
+        /// The size of the buffered items.
+        /// </summary>
         public int BufferedSize => this.items.Count;
 
+        /// <summary>
+        /// The list of items in the queue. This does not include the Current item.
+        /// </summary>
         public List<T> BufferedItems => items.Select(Convert).ToList();
 
-        public bool IsFeed { get; set; }
+        /// <summary>
+        /// Whether the Cursor is any kind of feed.
+        /// </summary>
+        public bool IsFeed { get; private set; }
 
+        /// <summary>
+        /// A flag to determine if the cursor can still be used.
+        /// </summary>
         public bool IsOpen => this.Error == null;
 
+        /// <summary>
+        /// If any, the error that disabled the cursor.
+        /// </summary>
         public Exception Error { get; private set; }
 
+        /// <summary>
+        /// The token of the query that the cursor represents. This is a unique cursor ID.
+        /// </summary>
         public long Token { get; }
 
         private Task<Response> pendingContinue;
@@ -194,11 +212,17 @@ namespace RethinkDb.Driver.Net
             this.Shutdown("The sequence is finished. There are no more items to iterate over.");
         }
 
+        /// <summary>
+        /// Disposes the Cursor so it cannot be used anymore.
+        /// </summary>
         public void Dispose()
         {
             this.Shutdown("The Cursor was disposed. Iteration cannot continue. If the Cursor was used in a LINQ expression LINQ may have called .Dispose() on the Cursor.");
         }
 
+        /// <summary>
+        /// Forcibly closes the Cursor so it cannot be used anymore.
+        /// </summary>
         public void Close()
         {
             this.Shutdown("The Cursor was forcibly closed. Iteration cannot continue.");
@@ -221,14 +245,22 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-
-        public void SetError(string msg)
+        //Some trickery just so we don't expose SetError
+        //on the public API surface.
+        internal void SetError(string msg)
         {
             if (this.Error != null) return;
             this.Error = new InvalidOperationException(msg);
         }
+        void ICursor.SetError(string msg)
+        {
+            SetError(msg);
+        }
 
-
+        /// <summary>
+        /// Clears <see cref="BufferedItems"/>. Any advancement after the buffer
+        /// is cleared will cause a new batch of items to be buffered.
+        /// </summary>
         public void ClearBuffer()
         {
             this.items.Clear();
@@ -239,6 +271,9 @@ namespace RethinkDb.Driver.Net
             throw new InvalidOperationException("A Cursor cannot be reset.");
         }
 
+        /// <summary>
+        /// The current item in iteration.
+        /// </summary>
         public T Current { get; private set; }
 
         object IEnumerator.Current => this.Current;

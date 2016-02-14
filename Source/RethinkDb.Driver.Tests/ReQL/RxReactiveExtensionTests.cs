@@ -33,6 +33,8 @@ namespace RethinkDb.Driver.Tests.ReQL
                 .Changes()
                 .RunChanges<JObject>(conn);
 
+            changes.IsFeed.Should().BeTrue();
+
             var observable = changes.ToObservable();
 
             //use a new thread if you want to continue,

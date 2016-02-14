@@ -73,7 +73,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         public void getall_test()
         {
             Cursor<Foo> all = R.Db(DbName).Table(TableName).GetAll("a", "b", "c").Run<Foo>(conn);
-
+            
             all.BufferedItems.Dump();
 
             foreach (var foo in all)

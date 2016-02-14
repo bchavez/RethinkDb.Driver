@@ -10,146 +10,77 @@ namespace RethinkDb.Driver.Net
 {
     public class Response
     {
+        private const string TypeKey = "t";
+        private const string NotesKey = "n";
+        private const string ErrorKey = "e";
+        private const string ProfileKey = "p";
+        private const string BacktraceKey = "b";
+        private const string DataKey = "r";
+
         public long Token { get; }
         public ResponseType Type { get; }
-        public List<ResponseNote> Notes { get; }
+        public List<ResponseNote> Notes { get; private set; }
 
-        public JArray Data { get; }
-        public Profile Profile { get; }
-        public Backtrace Backtrace { get; }
-        public ErrorType ErrorType { get; }
+        public JArray Data { get; private set; }
+        public Profile Profile { get; private set; }
+        public Backtrace Backtrace { get; private set; }
+        public ErrorType? ErrorType { get; private set; }
 
+        private Response(long token, ResponseType responseType)
+        {
+            this.Token = token;
+            this.Type = responseType;
+        }
 
         public static Response ParseFrom(long token, string buf)
         {
             Log.Trace($"JSON Recv: Token: {token}, JSON: {buf}");
             var jsonResp = JObject.Parse(buf);
-            var responseType = jsonResp["t"].ToObject<ResponseType>();
-            var responseNotes = jsonResp["n"]?.ToObject<List<ResponseNote>>() ?? new List<ResponseNote>();
-            ErrorType? et = jsonResp["e"]?.ToObject<ErrorType>();
+            var responseType = jsonResp[TypeKey].ToObject<ResponseType>();
+            var responseNotes = jsonResp[NotesKey]?.ToObject<List<ResponseNote>>() ?? new List<ResponseNote>();
+            ErrorType? et = jsonResp[ErrorKey]?.ToObject<ErrorType>();
 
-            Builder res = new Builder(token, responseType);
-            if( et != null )
-            {
-                res.errorType = et.Value;
-            }
-            return res.SetProfile((JArray)jsonResp["p"])
-                .SetBacktrace((JArray)jsonResp["b"])
-                .SetData((JArray)jsonResp["r"] ?? new JArray())
-                .Build();
-        }
+            var profile = Profile.FromJsonArray((JArray)jsonResp[ProfileKey]);
+            var backtrace = Backtrace.FromJsonArray((JArray)jsonResp[BacktraceKey]);
 
-        private Response(long token, ResponseType responseType, JArray data, List<ResponseNote> responseNotes, Profile profile, Backtrace backtrace, ErrorType errorType)
-        {
-            this.Token = token;
-            this.Type = responseType;
-            this.Data = data;
-            this.Notes = responseNotes;
-            this.Profile = profile;
-            this.Backtrace = backtrace;
-            this.ErrorType = errorType;
-        }
-
-        internal class Builder
-        {
-            internal long token;
-            internal ResponseType responseType;
-            internal List<ResponseNote> notes = new List<ResponseNote>();
-            internal JArray data = new JArray();
-            internal Profile profile;
-            internal Backtrace backtrace;
-            internal ErrorType errorType;
-
-            internal Builder(long token, ResponseType responseType)
-            {
-                this.token = token;
-                this.responseType = responseType;
-            }
-
-            internal virtual Builder SetNotes(List<ResponseNote> notes)
-            {
-                this.notes.AddRange(notes);
-                return this;
-            }
-
-            internal virtual Builder SetData(JArray data)
-            {
-                if( data != null )
+            var res = new Response(token, responseType)
                 {
-                    this.data = data;
-                }
-                return this;
-            }
+                    ErrorType = et,
+                    Profile = profile,
+                    Backtrace = backtrace,
+                    Data = (JArray)jsonResp[DataKey] ?? new JArray(),
+                    Notes = responseNotes
+                };
 
-            internal virtual Builder SetProfile(JArray profile)
-            {
-                this.profile = Profile.FromJsonArray(profile);
-                return this;
-            }
-
-            internal virtual Builder SetBacktrace(JArray backtrace)
-            {
-                this.backtrace = Backtrace.FromJsonArray(backtrace);
-                return this;
-            }
-
-            internal virtual Builder SetErrorType(int value)
-            {
-                this.errorType = (ErrorType)value;
-                return this;
-            }
-
-            internal virtual Response Build()
-            {
-                return new Response(token, responseType, data, notes, profile, backtrace, errorType);
-            }
+            return res;
         }
 
-        internal static Builder Make(long token, ResponseType type)
-        {
-            return new Builder(token, type);
-        }
-
-        internal virtual bool IsWaitComplete
-        {
-            get { return Type == ResponseType.WAIT_COMPLETE; }
-        }
+        internal virtual bool IsWaitComplete => this.Type == ResponseType.WAIT_COMPLETE;
 
         /* Whether the response is any kind of feed */
 
-        internal virtual bool IsFeed
-        {
-            get { return Notes.Any(rn => rn.IsFeed()); }
-        }
+        internal virtual bool IsFeed => this.Notes.Any(rn => rn.IsFeed());
 
         /* Whether the response is any kind of error */
 
-        internal virtual bool IsError
-        {
-            get { return Type.IsError(); }
-        }
+        internal virtual bool IsError => this.Type.IsError();
 
         /* What type of success the response contains */
 
-        internal virtual bool IsAtom
-        {
-            get { return Type == ResponseType.SUCCESS_ATOM; }
-        }
+        internal virtual bool IsAtom => this.Type == ResponseType.SUCCESS_ATOM;
 
-        internal virtual bool IsSequence
-        {
-            get { return Type == ResponseType.SUCCESS_SEQUENCE; }
-        }
+        internal virtual bool IsSequence => this.Type == ResponseType.SUCCESS_SEQUENCE;
 
-        internal virtual bool IsPartial
-        {
-            get { return Type == ResponseType.SUCCESS_PARTIAL; }
-        }
+        internal virtual bool IsPartial => this.Type == ResponseType.SUCCESS_PARTIAL;
 
         internal virtual ReqlError MakeError(Query query)
         {
-            string msg = Data.Count > 0 ? (string)Data[0] : "Unknown error message";
-            return (new ErrorBuilder(msg, Type)).SetBacktrace(Backtrace).SetErrorType(ErrorType).SetTerm(query).Build();
+            string msg = this.Data.Count > 0 ? (string)Data[0] : "Unknown error message";
+            return new ErrorBuilder(msg, this.Type)
+                .SetBacktrace(this.Backtrace)
+                .SetErrorType(this.ErrorType.GetValueOrDefault())
+                .SetTerm(query)
+                .Build();
         }
 
         public override string ToString()

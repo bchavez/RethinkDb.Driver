@@ -27,7 +27,7 @@ Once the CLA is signed, here are some helpful guidelines to keep in mind when co
 * :x: **AVOID** breaking the continuous integration build. 
 * :x: **AVOID** making significant changes to the driver's overall architecture. We'd like to keep this driver in-sync with the overall architecture of the Java driver so both projects benefit from bug fixes and new features.
 
-:headphones: **BONUS** check out the cool music-video wall. Listen to some music while you code your PR. =)
+:headphones: **BONUS** check out our cool music video wall. Listen to some tunes while you make your PR. =)
 
 <table>
         <tr>

@@ -160,7 +160,7 @@ namespace RethinkDb.Driver.Net
             return RunQueryWaitAsync(Query.NoReplyWait(NewToken()), cancelToken);
         }
 
-        public async virtual Task<Server> ServerAsync(CancellationToken cancelToken = default(CancellationToken))
+        public virtual async Task<Server> ServerAsync(CancellationToken cancelToken = default(CancellationToken))
         {
             var response = await SendQuery(Query.ServerInfo(NewToken()), cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( response.Type == ResponseType.SERVER_INFO )

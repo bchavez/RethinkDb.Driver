@@ -134,10 +134,10 @@ namespace RethinkDb.Driver.Net
                 }
 
                 //if we get here, the next batch should be available.
-                var nextBatch = this.pendingContinue.Result;
+                var newBatch = this.pendingContinue.Result;
                 this.pendingContinue = null;
                 MaybeSendContinue();
-                this.ExtendBuffer(nextBatch);
+                this.ExtendBuffer(newBatch);
             }
 
             //either way, we have something to advance.

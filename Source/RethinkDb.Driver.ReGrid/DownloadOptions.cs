@@ -9,6 +9,7 @@ namespace RethinkDb.Driver.ReGrid
         /// Calculates the SHA256 as the file is downloaded.
         /// </summary>
         public bool CheckSHA256 { get; set; } = false;
+        
         /// <summary>
         /// Creates a seekable download stream
         /// </summary>

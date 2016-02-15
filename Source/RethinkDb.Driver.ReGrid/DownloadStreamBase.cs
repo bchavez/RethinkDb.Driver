@@ -43,7 +43,6 @@ namespace RethinkDb.Driver.ReGrid
         public override long Length => FileInfo.Length;
 
 
-        // public methods
 #if !DNX
         /// <summary>
         /// Closes the stream.

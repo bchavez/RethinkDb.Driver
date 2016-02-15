@@ -7,6 +7,14 @@ if errorlevel 1 (
   exit /b %errorlevel%
 )
 
+pushd Source
+..\.paket\paket.exe install
+if errorlevel 1 (
+  popd
+  exit /b %errorlevel%
+)
+popd
+
 pushd Builder
 ..\.paket\paket.exe install
 if errorlevel 1 (

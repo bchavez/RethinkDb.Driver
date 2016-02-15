@@ -124,7 +124,7 @@ namespace RethinkDb.Driver.ReGrid
             this.cursor = await GridUtility.EnumerateChunksAsync(this.bucket, this.FileInfo.Id, cancelToken)
                 .ConfigureAwait(false);
 
-            await GetNextBatchAsync(cancelToken);
+            await GetNextBatchAsync(cancelToken).ConfigureAwait(false);
         }
 
         private async Task GetNextBatchAsync(CancellationToken cancelToken)

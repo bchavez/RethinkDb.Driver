@@ -114,7 +114,7 @@ namespace RethinkDb.Driver.ReGrid
 
         private async Task GetChunkAsync(long n)
         {
-            var chunk = await GridUtility.GetChunkAsync(this.bucket, this.FileInfo.Id, n);
+            var chunk = await GridUtility.GetChunkAsync(this.bucket, this.FileInfo.Id, n).ConfigureAwait(false);
             this.chunk = GetChunkHelper(n, chunk);
             num = n;
         }

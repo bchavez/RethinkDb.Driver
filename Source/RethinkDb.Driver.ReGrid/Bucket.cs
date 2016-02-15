@@ -129,7 +129,7 @@ namespace RethinkDb.Driver.ReGrid
                         return R.Array(row[Chunk.FilesIdJsonName], row[Chunk.NumJsonName]);
                     };
                 await CreateIndex(this.chunkTableName, this.chunkIndexName, chunkIx, cancelToken)
-                    .ConfigureAwait(true);
+                    .ConfigureAwait(false);
             }
 
             this.Mounted = true;

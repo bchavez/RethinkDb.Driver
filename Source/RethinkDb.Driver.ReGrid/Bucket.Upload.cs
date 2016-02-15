@@ -52,8 +52,8 @@ namespace RethinkDb.Driver.ReGrid
         public async Task<Guid> UploadAsync(string filename, Stream source, UploadOptions options = null, CancellationToken cancelToken = default(CancellationToken))
         {
             options = options ?? new UploadOptions();
-
-            using (var destination = await OpenUploadStreamAsync(filename, options, cancelToken))
+            var uploadStream = await OpenUploadStreamAsync(filename, options, cancelToken).ConfigureAwait(false);
+            using (var destination = uploadStream)
             {
                 var chunkSize = options.ChunkSizeBytes;
                 var buffer = new byte[chunkSize];

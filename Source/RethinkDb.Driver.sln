@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{BBBED03D-3
 		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
 		..\HISTORY.md = ..\HISTORY.md
 		..\LICENSE = ..\LICENSE
+		paket.dependencies = paket.dependencies
 		..\README.md = ..\README.md
 		..\Builder\NuGet\RethinkDb.Driver.nuspec = ..\Builder\NuGet\RethinkDb.Driver.nuspec
 		..\Builder\NuGet\RethinkDb.Driver.ReGrid.nuspec = ..\Builder\NuGet\RethinkDb.Driver.ReGrid.nuspec

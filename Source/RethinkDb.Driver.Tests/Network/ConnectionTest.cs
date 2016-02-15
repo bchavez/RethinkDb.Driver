@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Net.Clustering;
@@ -19,6 +20,19 @@ namespace RethinkDb.Driver.Tests.Network
                 .Port(AppSettings.TestPort)
                 .Timeout(60)
                 .Connect();
+            
+            int result = R.Random(1, 9).Add(R.Random(1, 9)).Run<int>(c);
+            result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
+        }
+
+        [Test]
+        public async Task can_connect_async_test()
+        {
+            var c = await R.Connection()
+                .Hostname(AppSettings.TestHost)
+                .Port(AppSettings.TestPort)
+                .Timeout(60)
+                .ConnectAsync();
             
             int result = R.Random(1, 9).Add(R.Random(1, 9)).Run<int>(c);
             result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);

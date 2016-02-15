@@ -104,7 +104,7 @@ namespace RethinkDb.Driver.Net
         {
             Close(noreplyWait);
             this.Socket = new SocketWrapper(this.Hostname, this.Port, connectTimeout, OnSocketErrorCallback);
-            await this.Socket.ConnectAsync(handshake);
+            await this.Socket.ConnectAsync(handshake).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -562,10 +562,11 @@ namespace RethinkDb.Driver.Net
             /// <summary>
             /// Asynchronously creates and establishes the connection using the specified settings.
             /// </summary>
-            public virtual Task ConnectAsync()
+            public virtual async Task<Connection> ConnectAsync()
             {
                 var conn = new Connection(this);
-                return conn.ReconnectAsync();
+                await conn.ReconnectAsync().ConfigureAwait(false);
+                return conn;
             }
         }
     }

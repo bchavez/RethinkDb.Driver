@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\RethinkDb.Driver.ReGrid.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>RethinkDb.Driver.ReGrid.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>RethinkDb.Driver.ReGrid.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -75,12 +77,16 @@
   <ItemGroup>
     <None Include="project.json" />
     <None Include="RethinkDb.Driver.ReGrid.project.json" />
+    <None Include="RethinkDb.Driver.ReGrid.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RethinkDb.Driver\RethinkDb.Driver.csproj">
       <Project>{bf0e5a4a-4e2d-48b9-bcaa-054506396524}</Project>
       <Name>RethinkDb.Driver</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\ConfigureAwaitChecker.Analyzer\analyzers\dotnet\cs\ConfigureAwaitChecker.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

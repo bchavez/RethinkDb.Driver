@@ -118,13 +118,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Get Get ( Object expr )
                         {
-                           return get ( expr );
-                        }
-                        internal Get get ( Object expr )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(expr);
                             return new Get (arguments );
+                        }
+                        internal Get get ( Object expr )
+                        {
+                           return Get ( expr );
                         }
 /// <summary>
 /// <para>Get all documents where the given value matches the value of the requested index.</para>
@@ -134,13 +134,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public GetAll GetAll ( params object[] exprs )
                         {
-                           return getAll ( exprs );
-                        }
-                        internal GetAll getAll ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new GetAll (arguments );
+                        }
+                        internal GetAll getAll ( params object[] exprs )
+                        {
+                           return GetAll ( exprs );
                         }
 /// <summary>
 /// <para>Insert JSON documents into a table. Accepts a single JSON document or an array of
@@ -155,13 +155,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Insert Insert ( Object expr )
                         {
-                           return insert ( expr );
-                        }
-                        internal Insert insert ( Object expr )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(expr);
                             return new Insert (arguments );
+                        }
+                        internal Insert insert ( Object expr )
+                        {
+                           return Insert ( expr );
                         }
 /// <summary>
 /// <para>Query (read and/or update) the configurations for individual tables or databases.</para>
@@ -171,12 +171,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Config Config (  )
                         {
-                           return config (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Config (arguments );
                         }
                         internal Config config (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Config (arguments );
+                           return Config (  );
                         }
 /// <summary>
 /// <para>Return the status of a table.</para>
@@ -186,12 +186,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Status Status (  )
                         {
-                           return status (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Status (arguments );
                         }
                         internal Status status (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Status (arguments );
+                           return Status (  );
                         }
 /// <summary>
 /// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
@@ -201,12 +201,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Wait Wait_ (  )
                         {
-                           return wait_ (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Wait (arguments );
                         }
                         internal Wait wait_ (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Wait (arguments );
+                           return Wait_ (  );
                         }
 /// <summary>
 /// <para>Reconfigure a table's sharding and replication.</para>
@@ -216,12 +216,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Reconfigure Reconfigure (  )
                         {
-                           return reconfigure (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Reconfigure (arguments );
                         }
                         internal Reconfigure reconfigure (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Reconfigure (arguments );
+                           return Reconfigure (  );
                         }
 /// <summary>
 /// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
@@ -231,12 +231,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Rebalance Rebalance (  )
                         {
-                           return rebalance (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Rebalance (arguments );
                         }
                         internal Rebalance rebalance (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Rebalance (arguments );
+                           return Rebalance (  );
                         }
 /// <summary>
 /// <para><code>sync</code> ensures that writes on a given table are written to permanent storage. Queries
@@ -250,12 +250,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Sync Sync (  )
                         {
-                           return sync (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Sync (arguments );
                         }
                         internal Sync sync (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Sync (arguments );
+                           return Sync (  );
                         }
 /// <summary>
 /// <para>Create a new secondary index on a table.</para>
@@ -265,13 +265,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public IndexCreate IndexCreate ( Object expr )
                         {
-                           return indexCreate ( expr );
-                        }
-                        internal IndexCreate indexCreate ( Object expr )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(expr);
                             return new IndexCreate (arguments );
+                        }
+                        internal IndexCreate indexCreate ( Object expr )
+                        {
+                           return IndexCreate ( expr );
                         }
 /// <summary>
 /// <para>Create a new secondary index on a table.</para>
@@ -281,14 +281,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public IndexCreate IndexCreate ( Object expr, Javascript js )
                         {
-                           return indexCreate ( expr, js );
-                        }
-                        internal IndexCreate indexCreate ( Object expr, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(expr);
                             arguments.CoerceAndAdd(js);
                             return new IndexCreate (arguments );
+                        }
+                        internal IndexCreate indexCreate ( Object expr, Javascript js )
+                        {
+                           return IndexCreate ( expr, js );
                         }
 /// <summary>
 /// <para>Create a new secondary index on a table.</para>
@@ -298,14 +298,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public IndexCreate IndexCreate ( Object expr, Object exprA )
                         {
-                           return indexCreate ( expr, exprA );
-                        }
-                        internal IndexCreate indexCreate ( Object expr, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(expr);
                             arguments.CoerceAndAdd(exprA);
                             return new IndexCreate (arguments );
+                        }
+                        internal IndexCreate indexCreate ( Object expr, Object exprA )
+                        {
+                           return IndexCreate ( expr, exprA );
                         }
 /// <summary>
 /// <para>Create a new secondary index on a table.</para>
@@ -315,14 +315,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public IndexCreate IndexCreate ( Object expr, ReqlFunction0 func0 )
                         {
-                           return indexCreate ( expr, func0 );
-                        }
-                        internal IndexCreate indexCreate ( Object expr, ReqlFunction0 func0 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(expr);
                             arguments.CoerceAndAdd(func0);
                             return new IndexCreate (arguments );
+                        }
+                        internal IndexCreate indexCreate ( Object expr, ReqlFunction0 func0 )
+                        {
+                           return IndexCreate ( expr, func0 );
                         }
 /// <summary>
 /// <para>Create a new secondary index on a table.</para>
@@ -332,14 +332,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public IndexCreate IndexCreate ( Object expr, ReqlFunction1 func1 )
                         {
-                           return indexCreate ( expr, func1 );
-                        }
-                        internal IndexCreate indexCreate ( Object expr, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(expr);
                             arguments.CoerceAndAdd(func1);
                             return new IndexCreate (arguments );
+                        }
+                        internal IndexCreate indexCreate ( Object expr, ReqlFunction1 func1 )
+                        {
+                           return IndexCreate ( expr, func1 );
                         }
 /// <summary>
 /// <para>Delete a previously created secondary index of this table.</para>
@@ -349,13 +349,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public IndexDrop IndexDrop ( Object expr )
                         {
-                           return indexDrop ( expr );
-                        }
-                        internal IndexDrop indexDrop ( Object expr )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(expr);
                             return new IndexDrop (arguments );
+                        }
+                        internal IndexDrop indexDrop ( Object expr )
+                        {
+                           return IndexDrop ( expr );
                         }
 /// <summary>
 /// <para>List all the secondary indexes of this table.</para>
@@ -365,12 +365,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public IndexList IndexList (  )
                         {
-                           return indexList (  );
+                            Arguments arguments = new Arguments(this);
+                            return new IndexList (arguments );
                         }
                         internal IndexList indexList (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new IndexList (arguments );
+                           return IndexList (  );
                         }
 /// <summary>
 /// <para>Get the status of the specified indexes on this table, or the status
@@ -384,13 +384,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public IndexStatus IndexStatus ( params object[] exprs )
                         {
-                           return indexStatus ( exprs );
-                        }
-                        internal IndexStatus indexStatus ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new IndexStatus (arguments );
+                        }
+                        internal IndexStatus indexStatus ( params object[] exprs )
+                        {
+                           return IndexStatus ( exprs );
                         }
 /// <summary>
 /// <para>Wait for the specified indexes on this table to be ready, or for all
@@ -404,13 +404,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public IndexWait IndexWait ( params object[] exprs )
                         {
-                           return indexWait ( exprs );
-                        }
-                        internal IndexWait indexWait ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new IndexWait (arguments );
+                        }
+                        internal IndexWait indexWait ( params object[] exprs )
+                        {
+                           return IndexWait ( exprs );
                         }
 /// <summary>
 /// <para>Rename an existing secondary index on a table. If the optional argument <code>overwrite</code> is specified as <code>true</code>, a previously existing index with the new name will be deleted and the index will be renamed. If <code>overwrite</code> is <code>false</code> (the default) an error will be raised if the new index name already exists.</para>
@@ -420,14 +420,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public IndexRename IndexRename ( Object expr, Object exprA )
                         {
-                           return indexRename ( expr, exprA );
-                        }
-                        internal IndexRename indexRename ( Object expr, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(expr);
                             arguments.CoerceAndAdd(exprA);
                             return new IndexRename (arguments );
+                        }
+                        internal IndexRename indexRename ( Object expr, Object exprA )
+                        {
+                           return IndexRename ( expr, exprA );
                         }
 /// <summary>
 /// <para>Get all documents where the given geometry object intersects the geometry object of the requested geospatial index.</para>
@@ -438,13 +438,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public GetIntersecting GetIntersecting ( Object expr )
                         {
-                           return getIntersecting ( expr );
-                        }
-                        internal GetIntersecting getIntersecting ( Object expr )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(expr);
                             return new GetIntersecting (arguments );
+                        }
+                        internal GetIntersecting getIntersecting ( Object expr )
+                        {
+                           return GetIntersecting ( expr );
                         }
 /// <summary>
 /// <para>Get all documents where the specified geospatial index is within a certain distance of the specified point (default 100 kilometers).</para>
@@ -457,13 +457,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public GetNearest GetNearest ( Object expr )
                         {
-                           return getNearest ( expr );
-                        }
-                        internal GetNearest getNearest ( Object expr )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(expr);
                             return new GetNearest (arguments );
+                        }
+                        internal GetNearest getNearest ( Object expr )
+                        {
+                           return GetNearest ( expr );
                         }
 
     

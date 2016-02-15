@@ -168,11 +168,6 @@ namespace RethinkDb.Driver.Ast {
                         @RenderCtorXmlDoc(term)
                         @:public @Class(info["classname"].ToString()) @Method(methodname) ( @string.Join(", ", parameters.ToArray()) )
                         @:{
-                        @:   return @MethodInternalName(methodname) ( @string.Join(", ", forwardParams.ToArray()) );
-                        @:}
-
-                        @:internal @Class(info["classname"].ToString()) @MethodInternalName(methodname) ( @string.Join(", ", parameters.ToArray()) )
-                        @:{
 
                         @:    Arguments arguments = new Arguments(this);
                         foreach( var param in signature.Args.Skip(1) )
@@ -188,6 +183,12 @@ namespace RethinkDb.Driver.Ast {
                         }
                         @:    return new @Class(info["classname"].ToString()) (arguments );
 
+                        @:}
+
+
+                        @:internal @Class(info["classname"].ToString()) @MethodInternalName(methodname) ( @string.Join(", ", parameters.ToArray()) )
+                        @:{
+                        @:   return @Method(methodname) ( @string.Join(", ", forwardParams.ToArray()) );
                         @:}
                     }
                 }

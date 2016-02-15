@@ -44,18 +44,19 @@ namespace RethinkDb.Driver.Ast {
     public class TopLevel {
 
         public ReqlExpr Expr(Object value){
-            return expr(value);
+            return Util.ToReqlExpr(value);
+
         }
         internal ReqlExpr expr(Object value){
-            return Util.ToReqlExpr(value);
+            return Expr(value);
         }
 
 
         public ReqlExpr Row(params object[] values) {
-            return row(values);
+            throw new ReqlDriverError("r.row is not implemented in the C# driver. Use lambda syntax instead.");
         }
         internal ReqlExpr row(params object[] values) {
-            throw new ReqlDriverError("r.row is not implemented in the C# driver. Use lambda syntax instead.");
+            return Row(values);
         }
 
         public MapObject HashMap(object key, object val) {
@@ -67,19 +68,19 @@ namespace RethinkDb.Driver.Ast {
 
         public MapObject HashMap()
         {
-            return hashMap();
+            return new MapObject();
         }
         internal MapObject hashMap()
         {
-            return new MapObject();
+            return HashMap();
         }
 
 
         public IList Array(params object[] values){
-            return array(values);
+            return values.ToList();
         }
         internal IList array(params object[] values){
-            return values.ToList();
+            return Array(values);
         }
 
         @foreach (var termInfo in AllTerms)
@@ -98,11 +99,6 @@ namespace RethinkDb.Driver.Ast {
 
                             @RenderMethodXmlDoc(termInfo.Key)
                             @:public @Class(term["classname"].ToString()) @Method(methodname) ( @string.Join(", ", parameters.ToArray()) )
-                            @:{
-                            @:   return @MethodInternalName(methodname) ( @string.Join(", ", forwardParams.ToArray()) );
-                            @:}
-
-                            @:internal @Class(term["classname"].ToString()) @MethodInternalName(methodname) ( @string.Join(", ", parameters.ToArray()) )
                             @:{
 
                             if (methodname == "binary")
@@ -128,6 +124,10 @@ namespace RethinkDb.Driver.Ast {
                             @:    return new @Class(term["classname"].ToString()) (arguments);
                             @:}
 
+                            @:internal @Class(term["classname"].ToString()) @MethodInternalName(methodname) ( @string.Join(", ", parameters.ToArray()) )
+                            @:{
+                            @:   return @Method(methodname) ( @string.Join(", ", forwardParams.ToArray()) );
+                            @:}
                         }
                     }
                 }

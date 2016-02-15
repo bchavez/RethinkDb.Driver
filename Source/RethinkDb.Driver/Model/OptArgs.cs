@@ -49,10 +49,6 @@ namespace RethinkDb.Driver.Model
 
         public virtual OptArgs With(OptArgs args)
         {
-            return with(args);
-        }
-        internal virtual OptArgs with(OptArgs args)
-        {
             foreach( var kvp in args )
                 this.with(kvp.Key, kvp.Value);
 
@@ -61,10 +57,6 @@ namespace RethinkDb.Driver.Model
 
 
         public static OptArgs FromMap(IDictionary<string, ReqlAst> map)
-        {
-            return fromMap(map);
-        }
-        internal static OptArgs fromMap(IDictionary<string, ReqlAst> map)
         {
             OptArgs oa = new OptArgs();
 

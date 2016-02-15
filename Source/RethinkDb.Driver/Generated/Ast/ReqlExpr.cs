@@ -56,14 +56,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Eq Eq ( Object exprA, params object[] exprs )
                         {
-                           return eq ( exprA, exprs );
-                        }
-                        internal Eq eq ( Object exprA, params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAddAll(exprs);
                             return new Eq (arguments );
+                        }
+                        internal Eq eq ( Object exprA, params object[] exprs )
+                        {
+                           return Eq ( exprA, exprs );
                         }
 /// <summary>
 /// <para>Test if two values are not equal.</para>
@@ -73,14 +73,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Ne Ne ( Object exprA, params object[] exprs )
                         {
-                           return ne ( exprA, exprs );
-                        }
-                        internal Ne ne ( Object exprA, params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAddAll(exprs);
                             return new Ne (arguments );
+                        }
+                        internal Ne ne ( Object exprA, params object[] exprs )
+                        {
+                           return Ne ( exprA, exprs );
                         }
 /// <summary>
 /// <para>Test if the first value is less than other.</para>
@@ -90,14 +90,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Lt Lt ( Object exprA, params object[] exprs )
                         {
-                           return lt ( exprA, exprs );
-                        }
-                        internal Lt lt ( Object exprA, params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAddAll(exprs);
                             return new Lt (arguments );
+                        }
+                        internal Lt lt ( Object exprA, params object[] exprs )
+                        {
+                           return Lt ( exprA, exprs );
                         }
 /// <summary>
 /// <para>Test if the first value is less than or equal to other.</para>
@@ -107,14 +107,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Le Le ( Object exprA, params object[] exprs )
                         {
-                           return le ( exprA, exprs );
-                        }
-                        internal Le le ( Object exprA, params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAddAll(exprs);
                             return new Le (arguments );
+                        }
+                        internal Le le ( Object exprA, params object[] exprs )
+                        {
+                           return Le ( exprA, exprs );
                         }
 /// <summary>
 /// <para>Test if the first value is greater than other.</para>
@@ -124,14 +124,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Gt Gt ( Object exprA, params object[] exprs )
                         {
-                           return gt ( exprA, exprs );
-                        }
-                        internal Gt gt ( Object exprA, params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAddAll(exprs);
                             return new Gt (arguments );
+                        }
+                        internal Gt gt ( Object exprA, params object[] exprs )
+                        {
+                           return Gt ( exprA, exprs );
                         }
 /// <summary>
 /// <para>Test if the first value is greater than or equal to other.</para>
@@ -141,14 +141,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Ge Ge ( Object exprA, params object[] exprs )
                         {
-                           return ge ( exprA, exprs );
-                        }
-                        internal Ge ge ( Object exprA, params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAddAll(exprs);
                             return new Ge (arguments );
+                        }
+                        internal Ge ge ( Object exprA, params object[] exprs )
+                        {
+                           return Ge ( exprA, exprs );
                         }
 /// <summary>
 /// <para>Compute the logical inverse (not) of an expression.</para>
@@ -160,12 +160,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Not Not (  )
                         {
-                           return not (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Not (arguments );
                         }
                         internal Not not (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Not (arguments );
+                           return Not (  );
                         }
 /// <summary>
 /// <para>Sum two numbers, concatenate two strings, or concatenate 2 arrays.</para>
@@ -175,13 +175,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Add Add ( params object[] exprs )
                         {
-                           return add ( exprs );
-                        }
-                        internal Add add ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new Add (arguments );
+                        }
+                        internal Add add ( params object[] exprs )
+                        {
+                           return Add ( exprs );
                         }
 /// <summary>
 /// <para>Subtract two numbers.</para>
@@ -191,13 +191,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Sub Sub ( params object[] exprs )
                         {
-                           return sub ( exprs );
-                        }
-                        internal Sub sub ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new Sub (arguments );
+                        }
+                        internal Sub sub ( params object[] exprs )
+                        {
+                           return Sub ( exprs );
                         }
 /// <summary>
 /// <para>Multiply two numbers, or make a periodic array.</para>
@@ -207,13 +207,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Mul Mul ( params object[] exprs )
                         {
-                           return mul ( exprs );
-                        }
-                        internal Mul mul ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new Mul (arguments );
+                        }
+                        internal Mul mul ( params object[] exprs )
+                        {
+                           return Mul ( exprs );
                         }
 /// <summary>
 /// <para>Divide two numbers.</para>
@@ -223,13 +223,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Div Div ( params object[] exprs )
                         {
-                           return div ( exprs );
-                        }
-                        internal Div div ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new Div (arguments );
+                        }
+                        internal Div div ( params object[] exprs )
+                        {
+                           return Div ( exprs );
                         }
 /// <summary>
 /// <para>Find the remainder when dividing two numbers.</para>
@@ -239,13 +239,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Mod Mod ( Object exprA )
                         {
-                           return mod ( exprA );
-                        }
-                        internal Mod mod ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Mod (arguments );
+                        }
+                        internal Mod mod ( Object exprA )
+                        {
+                           return Mod ( exprA );
                         }
 /// <summary>
 /// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
@@ -257,12 +257,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Floor Floor (  )
                         {
-                           return floor (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Floor (arguments );
                         }
                         internal Floor floor (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Floor (arguments );
+                           return Floor (  );
                         }
 /// <summary>
 /// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
@@ -274,12 +274,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Ceil Ceil (  )
                         {
-                           return ceil (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Ceil (arguments );
                         }
                         internal Ceil ceil (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Ceil (arguments );
+                           return Ceil (  );
                         }
 /// <summary>
 /// <para>Rounds the given value to the nearest whole integer.</para>
@@ -291,12 +291,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Round Round (  )
                         {
-                           return round (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Round (arguments );
                         }
                         internal Round round (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Round (arguments );
+                           return Round (  );
                         }
 /// <summary>
 /// <para>Append a value to an array.</para>
@@ -306,13 +306,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Append Append ( Object exprA )
                         {
-                           return append ( exprA );
-                        }
-                        internal Append append ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Append (arguments );
+                        }
+                        internal Append append ( Object exprA )
+                        {
+                           return Append ( exprA );
                         }
 /// <summary>
 /// <para>Prepend a value to an array.</para>
@@ -322,13 +322,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Prepend Prepend ( Object exprA )
                         {
-                           return prepend ( exprA );
-                        }
-                        internal Prepend prepend ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Prepend (arguments );
+                        }
+                        internal Prepend prepend ( Object exprA )
+                        {
+                           return Prepend ( exprA );
                         }
 /// <summary>
 /// <para>Remove the elements of one array from another array.</para>
@@ -338,13 +338,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Difference Difference ( Object exprA )
                         {
-                           return difference ( exprA );
-                        }
-                        internal Difference difference ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Difference (arguments );
+                        }
+                        internal Difference difference ( Object exprA )
+                        {
+                           return Difference ( exprA );
                         }
 /// <summary>
 /// <para>Add a value to an array and return it as a set (an array with distinct values).</para>
@@ -354,13 +354,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public SetInsert SetInsert ( Object exprA )
                         {
-                           return setInsert ( exprA );
-                        }
-                        internal SetInsert setInsert ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new SetInsert (arguments );
+                        }
+                        internal SetInsert setInsert ( Object exprA )
+                        {
+                           return SetInsert ( exprA );
                         }
 /// <summary>
 /// <para>Intersect two arrays returning values that occur in both of them as a set (an array with
@@ -371,13 +371,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public SetIntersection SetIntersection ( Object exprA )
                         {
-                           return setIntersection ( exprA );
-                        }
-                        internal SetIntersection setIntersection ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new SetIntersection (arguments );
+                        }
+                        internal SetIntersection setIntersection ( Object exprA )
+                        {
+                           return SetIntersection ( exprA );
                         }
 /// <summary>
 /// <para>Add a several values to an array and return it as a set (an array with distinct values).</para>
@@ -387,13 +387,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public SetUnion SetUnion ( Object exprA )
                         {
-                           return setUnion ( exprA );
-                        }
-                        internal SetUnion setUnion ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new SetUnion (arguments );
+                        }
+                        internal SetUnion setUnion ( Object exprA )
+                        {
+                           return SetUnion ( exprA );
                         }
 /// <summary>
 /// <para>Remove the elements of one array from another and return them as a set (an array with
@@ -404,13 +404,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public SetDifference SetDifference ( Object exprA )
                         {
-                           return setDifference ( exprA );
-                        }
-                        internal SetDifference setDifference ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new SetDifference (arguments );
+                        }
+                        internal SetDifference setDifference ( Object exprA )
+                        {
+                           return SetDifference ( exprA );
                         }
 /// <summary>
 /// <para>Return the elements of a sequence within the specified range.</para>
@@ -421,13 +421,13 @@ namespace RethinkDb.Driver.Ast {
 /// <example></example>
                         public Slice Slice ( Object exprA )
                         {
-                           return slice ( exprA );
-                        }
-                        internal Slice slice ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Slice (arguments );
+                        }
+                        internal Slice slice ( Object exprA )
+                        {
+                           return Slice ( exprA );
                         }
 /// <summary>
 /// <para>Return the elements of a sequence within the specified range.</para>
@@ -438,14 +438,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example></example>
                         public Slice Slice ( Object exprA, Object exprB )
                         {
-                           return slice ( exprA, exprB );
-                        }
-                        internal Slice slice ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Slice (arguments );
+                        }
+                        internal Slice slice ( Object exprA, Object exprB )
+                        {
+                           return Slice ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Skip a number of elements from the head of the sequence.</para>
@@ -455,13 +455,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Skip Skip ( Object exprA )
                         {
-                           return skip ( exprA );
-                        }
-                        internal Skip skip ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Skip (arguments );
+                        }
+                        internal Skip skip ( Object exprA )
+                        {
+                           return Skip ( exprA );
                         }
 /// <summary>
 /// <para>End the sequence after the given number of elements.</para>
@@ -471,13 +471,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Limit Limit ( Object exprA )
                         {
-                           return limit ( exprA );
-                        }
-                        internal Limit limit ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Limit (arguments );
+                        }
+                        internal Limit limit ( Object exprA )
+                        {
+                           return Limit ( exprA );
                         }
 /// <summary>
 /// <para>Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.</para>
@@ -487,13 +487,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OffsetsOf OffsetsOf ( Javascript js )
                         {
-                           return offsetsOf ( js );
-                        }
-                        internal OffsetsOf offsetsOf ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new OffsetsOf (arguments );
+                        }
+                        internal OffsetsOf offsetsOf ( Javascript js )
+                        {
+                           return OffsetsOf ( js );
                         }
 /// <summary>
 /// <para>Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.</para>
@@ -503,13 +503,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OffsetsOf OffsetsOf ( Object exprA )
                         {
-                           return offsetsOf ( exprA );
-                        }
-                        internal OffsetsOf offsetsOf ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new OffsetsOf (arguments );
+                        }
+                        internal OffsetsOf offsetsOf ( Object exprA )
+                        {
+                           return OffsetsOf ( exprA );
                         }
 /// <summary>
 /// <para>Get the indexes of an element in a sequence. If the argument is a predicate, get the indexes of all elements matching it.</para>
@@ -519,13 +519,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OffsetsOf OffsetsOf ( ReqlFunction1 func1 )
                         {
-                           return offsetsOf ( func1 );
-                        }
-                        internal OffsetsOf offsetsOf ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new OffsetsOf (arguments );
+                        }
+                        internal OffsetsOf offsetsOf ( ReqlFunction1 func1 )
+                        {
+                           return OffsetsOf ( func1 );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -537,12 +537,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains (  )
                         {
-                           return contains (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Contains (arguments );
                         }
                         internal Contains contains (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Contains (arguments );
+                           return Contains (  );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -554,13 +554,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js )
                         {
-                           return contains ( js );
-                        }
-                        internal Contains contains ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js )
+                        {
+                           return Contains ( js );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -572,14 +572,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Javascript jsA )
                         {
-                           return contains ( js, jsA );
-                        }
-                        internal Contains contains ( Javascript js, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Javascript jsA )
+                        {
+                           return Contains ( js, jsA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -591,15 +591,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Javascript jsA, Javascript jsB )
                         {
-                           return contains ( js, jsA, jsB );
-                        }
-                        internal Contains contains ( Javascript js, Javascript jsA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Javascript jsA, Javascript jsB )
+                        {
+                           return Contains ( js, jsA, jsB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -611,16 +611,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
                         {
-                           return contains ( js, jsA, jsB, jsC );
-                        }
-                        internal Contains contains ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             arguments.CoerceAndAdd(jsC);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
+                        {
+                           return Contains ( js, jsA, jsB, jsC );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -632,16 +632,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
                         {
-                           return contains ( js, jsA, jsB, exprA );
-                        }
-                        internal Contains contains ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             arguments.CoerceAndAdd(exprA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
+                        {
+                           return Contains ( js, jsA, jsB, exprA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -653,15 +653,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Javascript jsA, Object exprA )
                         {
-                           return contains ( js, jsA, exprA );
-                        }
-                        internal Contains contains ( Javascript js, Javascript jsA, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Javascript jsA, Object exprA )
+                        {
+                           return Contains ( js, jsA, exprA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -673,16 +673,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
                         {
-                           return contains ( js, jsA, exprA, jsB );
-                        }
-                        internal Contains contains ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
+                        {
+                           return Contains ( js, jsA, exprA, jsB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -694,16 +694,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Javascript jsA, Object exprA, Object exprB )
                         {
-                           return contains ( js, jsA, exprA, exprB );
-                        }
-                        internal Contains contains ( Javascript js, Javascript jsA, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Javascript jsA, Object exprA, Object exprB )
+                        {
+                           return Contains ( js, jsA, exprA, exprB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -715,14 +715,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Object exprA )
                         {
-                           return contains ( js, exprA );
-                        }
-                        internal Contains contains ( Javascript js, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Object exprA )
+                        {
+                           return Contains ( js, exprA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -734,15 +734,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Object exprA, Javascript jsA )
                         {
-                           return contains ( js, exprA, jsA );
-                        }
-                        internal Contains contains ( Javascript js, Object exprA, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Object exprA, Javascript jsA )
+                        {
+                           return Contains ( js, exprA, jsA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -754,16 +754,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
                         {
-                           return contains ( js, exprA, jsA, jsB );
-                        }
-                        internal Contains contains ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
+                        {
+                           return Contains ( js, exprA, jsA, jsB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -775,16 +775,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Object exprA, Javascript jsA, Object exprB )
                         {
-                           return contains ( js, exprA, jsA, exprB );
-                        }
-                        internal Contains contains ( Javascript js, Object exprA, Javascript jsA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Object exprA, Javascript jsA, Object exprB )
+                        {
+                           return Contains ( js, exprA, jsA, exprB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -796,15 +796,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Object exprA, Object exprB )
                         {
-                           return contains ( js, exprA, exprB );
-                        }
-                        internal Contains contains ( Javascript js, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Object exprA, Object exprB )
+                        {
+                           return Contains ( js, exprA, exprB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -816,16 +816,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Object exprA, Object exprB, Javascript jsA )
                         {
-                           return contains ( js, exprA, exprB, jsA );
-                        }
-                        internal Contains contains ( Javascript js, Object exprA, Object exprB, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(jsA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Object exprA, Object exprB, Javascript jsA )
+                        {
+                           return Contains ( js, exprA, exprB, jsA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -837,16 +837,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Javascript js, Object exprA, Object exprB, Object exprC )
                         {
-                           return contains ( js, exprA, exprB, exprC );
-                        }
-                        internal Contains contains ( Javascript js, Object exprA, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Javascript js, Object exprA, Object exprB, Object exprC )
+                        {
+                           return Contains ( js, exprA, exprB, exprC );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -858,13 +858,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA )
                         {
-                           return contains ( exprA );
-                        }
-                        internal Contains contains ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA )
+                        {
+                           return Contains ( exprA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -876,14 +876,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Javascript js )
                         {
-                           return contains ( exprA, js );
-                        }
-                        internal Contains contains ( Object exprA, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Javascript js )
+                        {
+                           return Contains ( exprA, js );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -895,15 +895,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Javascript js, Javascript jsA )
                         {
-                           return contains ( exprA, js, jsA );
-                        }
-                        internal Contains contains ( Object exprA, Javascript js, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Javascript js, Javascript jsA )
+                        {
+                           return Contains ( exprA, js, jsA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -915,16 +915,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
                         {
-                           return contains ( exprA, js, jsA, jsB );
-                        }
-                        internal Contains contains ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
+                        {
+                           return Contains ( exprA, js, jsA, jsB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -936,16 +936,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Javascript js, Javascript jsA, Object exprB )
                         {
-                           return contains ( exprA, js, jsA, exprB );
-                        }
-                        internal Contains contains ( Object exprA, Javascript js, Javascript jsA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Javascript js, Javascript jsA, Object exprB )
+                        {
+                           return Contains ( exprA, js, jsA, exprB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -957,15 +957,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Javascript js, Object exprB )
                         {
-                           return contains ( exprA, js, exprB );
-                        }
-                        internal Contains contains ( Object exprA, Javascript js, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Javascript js, Object exprB )
+                        {
+                           return Contains ( exprA, js, exprB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -977,16 +977,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Javascript js, Object exprB, Javascript jsA )
                         {
-                           return contains ( exprA, js, exprB, jsA );
-                        }
-                        internal Contains contains ( Object exprA, Javascript js, Object exprB, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(jsA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Javascript js, Object exprB, Javascript jsA )
+                        {
+                           return Contains ( exprA, js, exprB, jsA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -998,16 +998,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Javascript js, Object exprB, Object exprC )
                         {
-                           return contains ( exprA, js, exprB, exprC );
-                        }
-                        internal Contains contains ( Object exprA, Javascript js, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Javascript js, Object exprB, Object exprC )
+                        {
+                           return Contains ( exprA, js, exprB, exprC );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1019,14 +1019,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Object exprB )
                         {
-                           return contains ( exprA, exprB );
-                        }
-                        internal Contains contains ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Object exprB )
+                        {
+                           return Contains ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1038,15 +1038,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Object exprB, Javascript js )
                         {
-                           return contains ( exprA, exprB, js );
-                        }
-                        internal Contains contains ( Object exprA, Object exprB, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Object exprB, Javascript js )
+                        {
+                           return Contains ( exprA, exprB, js );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1058,16 +1058,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Object exprB, Javascript js, Javascript jsA )
                         {
-                           return contains ( exprA, exprB, js, jsA );
-                        }
-                        internal Contains contains ( Object exprA, Object exprB, Javascript js, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Object exprB, Javascript js, Javascript jsA )
+                        {
+                           return Contains ( exprA, exprB, js, jsA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1079,16 +1079,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Object exprB, Javascript js, Object exprC )
                         {
-                           return contains ( exprA, exprB, js, exprC );
-                        }
-                        internal Contains contains ( Object exprA, Object exprB, Javascript js, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprC);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Object exprB, Javascript js, Object exprC )
+                        {
+                           return Contains ( exprA, exprB, js, exprC );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1100,15 +1100,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Object exprB, Object exprC )
                         {
-                           return contains ( exprA, exprB, exprC );
-                        }
-                        internal Contains contains ( Object exprA, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Object exprB, Object exprC )
+                        {
+                           return Contains ( exprA, exprB, exprC );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1120,16 +1120,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Object exprB, Object exprC, Javascript js )
                         {
-                           return contains ( exprA, exprB, exprC, js );
-                        }
-                        internal Contains contains ( Object exprA, Object exprB, Object exprC, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(js);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Object exprB, Object exprC, Javascript js )
+                        {
+                           return Contains ( exprA, exprB, exprC, js );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1141,16 +1141,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Object exprB, Object exprC, Object exprD )
                         {
-                           return contains ( exprA, exprB, exprC, exprD );
-                        }
-                        internal Contains contains ( Object exprA, Object exprB, Object exprC, Object exprD )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(exprD);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Object exprB, Object exprC, Object exprD )
+                        {
+                           return Contains ( exprA, exprB, exprC, exprD );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1162,16 +1162,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
                         {
-                           return contains ( exprA, exprB, exprC, func1 );
-                        }
-                        internal Contains contains ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(func1);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                        {
+                           return Contains ( exprA, exprB, exprC, func1 );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1183,15 +1183,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Object exprB, ReqlFunction1 func1 )
                         {
-                           return contains ( exprA, exprB, func1 );
-                        }
-                        internal Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1 )
+                        {
+                           return Contains ( exprA, exprB, func1 );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1203,16 +1203,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
                         {
-                           return contains ( exprA, exprB, func1, exprC );
-                        }
-                        internal Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprC);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                        {
+                           return Contains ( exprA, exprB, func1, exprC );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1224,16 +1224,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
-                           return contains ( exprA, exprB, func1, func1A );
-                        }
-                        internal Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                           return Contains ( exprA, exprB, func1, func1A );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1245,14 +1245,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, ReqlFunction1 func1 )
                         {
-                           return contains ( exprA, func1 );
-                        }
-                        internal Contains contains ( Object exprA, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, ReqlFunction1 func1 )
+                        {
+                           return Contains ( exprA, func1 );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1264,15 +1264,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, ReqlFunction1 func1, Object exprB )
                         {
-                           return contains ( exprA, func1, exprB );
-                        }
-                        internal Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB )
+                        {
+                           return Contains ( exprA, func1, exprB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1284,16 +1284,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
                         {
-                           return contains ( exprA, func1, exprB, exprC );
-                        }
-                        internal Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                        {
+                           return Contains ( exprA, func1, exprB, exprC );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1305,16 +1305,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
                         {
-                           return contains ( exprA, func1, exprB, func1A );
-                        }
-                        internal Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1A);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                        {
+                           return Contains ( exprA, func1, exprB, func1A );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1326,15 +1326,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
-                           return contains ( exprA, func1, func1A );
-                        }
-                        internal Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                           return Contains ( exprA, func1, func1A );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1346,16 +1346,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
                         {
-                           return contains ( exprA, func1, func1A, exprB );
-                        }
-                        internal Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                        {
+                           return Contains ( exprA, func1, func1A, exprB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1367,16 +1367,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
-                           return contains ( exprA, func1, func1A, func1B );
-                        }
-                        internal Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                           return Contains ( exprA, func1, func1A, func1B );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1388,13 +1388,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1 )
                         {
-                           return contains ( func1 );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1 )
+                        {
+                           return Contains ( func1 );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1406,14 +1406,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, Object exprA )
                         {
-                           return contains ( func1, exprA );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, Object exprA )
+                        {
+                           return Contains ( func1, exprA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1425,15 +1425,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, Object exprA, Object exprB )
                         {
-                           return contains ( func1, exprA, exprB );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB )
+                        {
+                           return Contains ( func1, exprA, exprB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1445,16 +1445,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
                         {
-                           return contains ( func1, exprA, exprB, exprC );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                        {
+                           return Contains ( func1, exprA, exprB, exprC );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1466,16 +1466,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
                         {
-                           return contains ( func1, exprA, exprB, func1A );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1A);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                        {
+                           return Contains ( func1, exprA, exprB, func1A );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1487,15 +1487,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
                         {
-                           return contains ( func1, exprA, func1A );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1A);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                        {
+                           return Contains ( func1, exprA, func1A );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1507,16 +1507,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
                         {
-                           return contains ( func1, exprA, func1A, exprB );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                        {
+                           return Contains ( func1, exprA, func1A, exprB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1528,16 +1528,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
-                           return contains ( func1, exprA, func1A, func1B );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                           return Contains ( func1, exprA, func1A, func1B );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1549,14 +1549,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
-                           return contains ( func1, func1A );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                           return Contains ( func1, func1A );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1568,15 +1568,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
                         {
-                           return contains ( func1, func1A, exprA );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                        {
+                           return Contains ( func1, func1A, exprA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1588,16 +1588,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
                         {
-                           return contains ( func1, func1A, exprA, exprB );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                        {
+                           return Contains ( func1, func1A, exprA, exprB );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1609,16 +1609,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
                         {
-                           return contains ( func1, func1A, exprA, func1B );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1B);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                        {
+                           return Contains ( func1, func1A, exprA, func1B );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1630,15 +1630,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
-                           return contains ( func1, func1A, func1B );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                           return Contains ( func1, func1A, func1B );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1650,16 +1650,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
                         {
-                           return contains ( func1, func1A, func1B, exprA );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             arguments.CoerceAndAdd(exprA);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                        {
+                           return Contains ( func1, func1A, func1B, exprA );
                         }
 /// <summary>
 /// <para>Returns whether or not a sequence contains all the specified values, or if functions are
@@ -1671,16 +1671,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Contains Contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
                         {
-                           return contains ( func1, func1A, func1B, func1C );
-                        }
-                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             arguments.CoerceAndAdd(func1C);
                             return new Contains (arguments );
+                        }
+                        internal Contains contains ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                        {
+                           return Contains ( func1, func1A, func1B, func1C );
                         }
 /// <summary>
 /// <para>Get a single field from an object. If called on a sequence, gets that field from every
@@ -1691,13 +1691,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public GetField GetField ( Object exprA )
                         {
-                           return getField ( exprA );
-                        }
-                        internal GetField getField ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new GetField (arguments );
+                        }
+                        internal GetField getField ( Object exprA )
+                        {
+                           return GetField ( exprA );
                         }
 /// <summary>
 /// <para>Get a single field from an object. If called on a sequence, gets that field from every
@@ -1708,13 +1708,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public GetField G ( Object exprA )
                         {
-                           return g ( exprA );
-                        }
-                        internal GetField g ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new GetField (arguments );
+                        }
+                        internal GetField g ( Object exprA )
+                        {
+                           return G ( exprA );
                         }
 /// <summary>
 /// <para>Return an array containing all of the object's keys.</para>
@@ -1724,12 +1724,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Keys Keys (  )
                         {
-                           return keys (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Keys (arguments );
                         }
                         internal Keys keys (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Keys (arguments );
+                           return Keys (  );
                         }
 /// <summary>
 /// <para>Test if an object has one or more fields. An object has a field if it has that key and the key has a non-null value. For instance, the object <code>{'a': 1,'b': 2,'c': null}</code> has the fields <code>a</code> and <code>b</code>.</para>
@@ -1739,13 +1739,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public HasFields HasFields ( params object[] exprs )
                         {
-                           return hasFields ( exprs );
-                        }
-                        internal HasFields hasFields ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new HasFields (arguments );
+                        }
+                        internal HasFields hasFields ( params object[] exprs )
+                        {
+                           return HasFields ( exprs );
                         }
 /// <summary>
 /// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.</para>
@@ -1755,13 +1755,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public WithFields WithFields ( params object[] exprs )
                         {
-                           return withFields ( exprs );
-                        }
-                        internal WithFields withFields ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new WithFields (arguments );
+                        }
+                        internal WithFields withFields ( params object[] exprs )
+                        {
+                           return WithFields ( exprs );
                         }
 /// <summary>
 /// <para>Plucks out one or more attributes from either an object or a sequence of objects
@@ -1773,13 +1773,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Pluck Pluck ( params object[] exprs )
                         {
-                           return pluck ( exprs );
-                        }
-                        internal Pluck pluck ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new Pluck (arguments );
+                        }
+                        internal Pluck pluck ( params object[] exprs )
+                        {
+                           return Pluck ( exprs );
                         }
 /// <summary>
 /// <para>The opposite of pluck; takes an object or a sequence of objects, and returns them with
@@ -1791,13 +1791,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Without Without ( params object[] exprs )
                         {
-                           return without ( exprs );
-                        }
-                        internal Without without ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new Without (arguments );
+                        }
+                        internal Without without ( params object[] exprs )
+                        {
+                           return Without ( exprs );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1810,12 +1810,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge (  )
                         {
-                           return merge (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Merge (arguments );
                         }
                         internal Merge merge (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Merge (arguments );
+                           return Merge (  );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1828,13 +1828,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js )
                         {
-                           return merge ( js );
-                        }
-                        internal Merge merge ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js )
+                        {
+                           return Merge ( js );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1847,14 +1847,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Javascript jsA )
                         {
-                           return merge ( js, jsA );
-                        }
-                        internal Merge merge ( Javascript js, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Javascript jsA )
+                        {
+                           return Merge ( js, jsA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1867,15 +1867,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Javascript jsA, Javascript jsB )
                         {
-                           return merge ( js, jsA, jsB );
-                        }
-                        internal Merge merge ( Javascript js, Javascript jsA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Javascript jsA, Javascript jsB )
+                        {
+                           return Merge ( js, jsA, jsB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1888,16 +1888,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
                         {
-                           return merge ( js, jsA, jsB, jsC );
-                        }
-                        internal Merge merge ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             arguments.CoerceAndAdd(jsC);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
+                        {
+                           return Merge ( js, jsA, jsB, jsC );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1910,16 +1910,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
                         {
-                           return merge ( js, jsA, jsB, exprA );
-                        }
-                        internal Merge merge ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             arguments.CoerceAndAdd(exprA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
+                        {
+                           return Merge ( js, jsA, jsB, exprA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1932,15 +1932,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Javascript jsA, Object exprA )
                         {
-                           return merge ( js, jsA, exprA );
-                        }
-                        internal Merge merge ( Javascript js, Javascript jsA, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Javascript jsA, Object exprA )
+                        {
+                           return Merge ( js, jsA, exprA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1953,16 +1953,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
                         {
-                           return merge ( js, jsA, exprA, jsB );
-                        }
-                        internal Merge merge ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
+                        {
+                           return Merge ( js, jsA, exprA, jsB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1975,16 +1975,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Javascript jsA, Object exprA, Object exprB )
                         {
-                           return merge ( js, jsA, exprA, exprB );
-                        }
-                        internal Merge merge ( Javascript js, Javascript jsA, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Javascript jsA, Object exprA, Object exprB )
+                        {
+                           return Merge ( js, jsA, exprA, exprB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -1997,14 +1997,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Object exprA )
                         {
-                           return merge ( js, exprA );
-                        }
-                        internal Merge merge ( Javascript js, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Object exprA )
+                        {
+                           return Merge ( js, exprA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2017,15 +2017,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Object exprA, Javascript jsA )
                         {
-                           return merge ( js, exprA, jsA );
-                        }
-                        internal Merge merge ( Javascript js, Object exprA, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Object exprA, Javascript jsA )
+                        {
+                           return Merge ( js, exprA, jsA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2038,16 +2038,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
                         {
-                           return merge ( js, exprA, jsA, jsB );
-                        }
-                        internal Merge merge ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
+                        {
+                           return Merge ( js, exprA, jsA, jsB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2060,16 +2060,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Object exprA, Javascript jsA, Object exprB )
                         {
-                           return merge ( js, exprA, jsA, exprB );
-                        }
-                        internal Merge merge ( Javascript js, Object exprA, Javascript jsA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Object exprA, Javascript jsA, Object exprB )
+                        {
+                           return Merge ( js, exprA, jsA, exprB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2082,15 +2082,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Object exprA, Object exprB )
                         {
-                           return merge ( js, exprA, exprB );
-                        }
-                        internal Merge merge ( Javascript js, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Object exprA, Object exprB )
+                        {
+                           return Merge ( js, exprA, exprB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2103,16 +2103,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Object exprA, Object exprB, Javascript jsA )
                         {
-                           return merge ( js, exprA, exprB, jsA );
-                        }
-                        internal Merge merge ( Javascript js, Object exprA, Object exprB, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(jsA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Object exprA, Object exprB, Javascript jsA )
+                        {
+                           return Merge ( js, exprA, exprB, jsA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2125,16 +2125,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Javascript js, Object exprA, Object exprB, Object exprC )
                         {
-                           return merge ( js, exprA, exprB, exprC );
-                        }
-                        internal Merge merge ( Javascript js, Object exprA, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Javascript js, Object exprA, Object exprB, Object exprC )
+                        {
+                           return Merge ( js, exprA, exprB, exprC );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2147,13 +2147,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA )
                         {
-                           return merge ( exprA );
-                        }
-                        internal Merge merge ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA )
+                        {
+                           return Merge ( exprA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2166,14 +2166,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Javascript js )
                         {
-                           return merge ( exprA, js );
-                        }
-                        internal Merge merge ( Object exprA, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Javascript js )
+                        {
+                           return Merge ( exprA, js );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2186,15 +2186,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Javascript js, Javascript jsA )
                         {
-                           return merge ( exprA, js, jsA );
-                        }
-                        internal Merge merge ( Object exprA, Javascript js, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Javascript js, Javascript jsA )
+                        {
+                           return Merge ( exprA, js, jsA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2207,16 +2207,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
                         {
-                           return merge ( exprA, js, jsA, jsB );
-                        }
-                        internal Merge merge ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
+                        {
+                           return Merge ( exprA, js, jsA, jsB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2229,16 +2229,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Javascript js, Javascript jsA, Object exprB )
                         {
-                           return merge ( exprA, js, jsA, exprB );
-                        }
-                        internal Merge merge ( Object exprA, Javascript js, Javascript jsA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Javascript js, Javascript jsA, Object exprB )
+                        {
+                           return Merge ( exprA, js, jsA, exprB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2251,15 +2251,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Javascript js, Object exprB )
                         {
-                           return merge ( exprA, js, exprB );
-                        }
-                        internal Merge merge ( Object exprA, Javascript js, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Javascript js, Object exprB )
+                        {
+                           return Merge ( exprA, js, exprB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2272,16 +2272,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Javascript js, Object exprB, Javascript jsA )
                         {
-                           return merge ( exprA, js, exprB, jsA );
-                        }
-                        internal Merge merge ( Object exprA, Javascript js, Object exprB, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(jsA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Javascript js, Object exprB, Javascript jsA )
+                        {
+                           return Merge ( exprA, js, exprB, jsA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2294,16 +2294,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Javascript js, Object exprB, Object exprC )
                         {
-                           return merge ( exprA, js, exprB, exprC );
-                        }
-                        internal Merge merge ( Object exprA, Javascript js, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Javascript js, Object exprB, Object exprC )
+                        {
+                           return Merge ( exprA, js, exprB, exprC );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2316,14 +2316,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Object exprB )
                         {
-                           return merge ( exprA, exprB );
-                        }
-                        internal Merge merge ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Object exprB )
+                        {
+                           return Merge ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2336,15 +2336,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Object exprB, Javascript js )
                         {
-                           return merge ( exprA, exprB, js );
-                        }
-                        internal Merge merge ( Object exprA, Object exprB, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Object exprB, Javascript js )
+                        {
+                           return Merge ( exprA, exprB, js );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2357,16 +2357,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Object exprB, Javascript js, Javascript jsA )
                         {
-                           return merge ( exprA, exprB, js, jsA );
-                        }
-                        internal Merge merge ( Object exprA, Object exprB, Javascript js, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Object exprB, Javascript js, Javascript jsA )
+                        {
+                           return Merge ( exprA, exprB, js, jsA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2379,16 +2379,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Object exprB, Javascript js, Object exprC )
                         {
-                           return merge ( exprA, exprB, js, exprC );
-                        }
-                        internal Merge merge ( Object exprA, Object exprB, Javascript js, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprC);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Object exprB, Javascript js, Object exprC )
+                        {
+                           return Merge ( exprA, exprB, js, exprC );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2401,15 +2401,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Object exprB, Object exprC )
                         {
-                           return merge ( exprA, exprB, exprC );
-                        }
-                        internal Merge merge ( Object exprA, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Object exprB, Object exprC )
+                        {
+                           return Merge ( exprA, exprB, exprC );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2422,16 +2422,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Object exprB, Object exprC, Javascript js )
                         {
-                           return merge ( exprA, exprB, exprC, js );
-                        }
-                        internal Merge merge ( Object exprA, Object exprB, Object exprC, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(js);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Object exprB, Object exprC, Javascript js )
+                        {
+                           return Merge ( exprA, exprB, exprC, js );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2444,16 +2444,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Object exprB, Object exprC, Object exprD )
                         {
-                           return merge ( exprA, exprB, exprC, exprD );
-                        }
-                        internal Merge merge ( Object exprA, Object exprB, Object exprC, Object exprD )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(exprD);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Object exprB, Object exprC, Object exprD )
+                        {
+                           return Merge ( exprA, exprB, exprC, exprD );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2466,16 +2466,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
                         {
-                           return merge ( exprA, exprB, exprC, func1 );
-                        }
-                        internal Merge merge ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(func1);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                        {
+                           return Merge ( exprA, exprB, exprC, func1 );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2488,15 +2488,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Object exprB, ReqlFunction1 func1 )
                         {
-                           return merge ( exprA, exprB, func1 );
-                        }
-                        internal Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1 )
+                        {
+                           return Merge ( exprA, exprB, func1 );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2509,16 +2509,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
                         {
-                           return merge ( exprA, exprB, func1, exprC );
-                        }
-                        internal Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprC);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                        {
+                           return Merge ( exprA, exprB, func1, exprC );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2531,16 +2531,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
-                           return merge ( exprA, exprB, func1, func1A );
-                        }
-                        internal Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                           return Merge ( exprA, exprB, func1, func1A );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2553,14 +2553,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, ReqlFunction1 func1 )
                         {
-                           return merge ( exprA, func1 );
-                        }
-                        internal Merge merge ( Object exprA, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, ReqlFunction1 func1 )
+                        {
+                           return Merge ( exprA, func1 );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2573,15 +2573,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, ReqlFunction1 func1, Object exprB )
                         {
-                           return merge ( exprA, func1, exprB );
-                        }
-                        internal Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB )
+                        {
+                           return Merge ( exprA, func1, exprB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2594,16 +2594,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
                         {
-                           return merge ( exprA, func1, exprB, exprC );
-                        }
-                        internal Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                        {
+                           return Merge ( exprA, func1, exprB, exprC );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2616,16 +2616,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
                         {
-                           return merge ( exprA, func1, exprB, func1A );
-                        }
-                        internal Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1A);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                        {
+                           return Merge ( exprA, func1, exprB, func1A );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2638,15 +2638,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
-                           return merge ( exprA, func1, func1A );
-                        }
-                        internal Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                           return Merge ( exprA, func1, func1A );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2659,16 +2659,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
                         {
-                           return merge ( exprA, func1, func1A, exprB );
-                        }
-                        internal Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                        {
+                           return Merge ( exprA, func1, func1A, exprB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2681,16 +2681,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
-                           return merge ( exprA, func1, func1A, func1B );
-                        }
-                        internal Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                           return Merge ( exprA, func1, func1A, func1B );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2703,13 +2703,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1 )
                         {
-                           return merge ( func1 );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1 )
+                        {
+                           return Merge ( func1 );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2722,14 +2722,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, Object exprA )
                         {
-                           return merge ( func1, exprA );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, Object exprA )
+                        {
+                           return Merge ( func1, exprA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2742,15 +2742,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, Object exprA, Object exprB )
                         {
-                           return merge ( func1, exprA, exprB );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB )
+                        {
+                           return Merge ( func1, exprA, exprB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2763,16 +2763,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
                         {
-                           return merge ( func1, exprA, exprB, exprC );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                        {
+                           return Merge ( func1, exprA, exprB, exprC );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2785,16 +2785,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
                         {
-                           return merge ( func1, exprA, exprB, func1A );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1A);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                        {
+                           return Merge ( func1, exprA, exprB, func1A );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2807,15 +2807,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
                         {
-                           return merge ( func1, exprA, func1A );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1A);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                        {
+                           return Merge ( func1, exprA, func1A );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2828,16 +2828,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
                         {
-                           return merge ( func1, exprA, func1A, exprB );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                        {
+                           return Merge ( func1, exprA, func1A, exprB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2850,16 +2850,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
-                           return merge ( func1, exprA, func1A, func1B );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                           return Merge ( func1, exprA, func1A, func1B );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2872,14 +2872,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
-                           return merge ( func1, func1A );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                           return Merge ( func1, func1A );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2892,15 +2892,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
                         {
-                           return merge ( func1, func1A, exprA );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                        {
+                           return Merge ( func1, func1A, exprA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2913,16 +2913,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
                         {
-                           return merge ( func1, func1A, exprA, exprB );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                        {
+                           return Merge ( func1, func1A, exprA, exprB );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2935,16 +2935,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
                         {
-                           return merge ( func1, func1A, exprA, func1B );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1B);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                        {
+                           return Merge ( func1, func1A, exprA, func1B );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2957,15 +2957,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
-                           return merge ( func1, func1A, func1B );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                           return Merge ( func1, func1A, func1B );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -2978,16 +2978,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
                         {
-                           return merge ( func1, func1A, func1B, exprA );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             arguments.CoerceAndAdd(exprA);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                        {
+                           return Merge ( func1, func1A, func1B, exprA );
                         }
 /// <summary>
 /// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
@@ -3000,16 +3000,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Merge Merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
                         {
-                           return merge ( func1, func1A, func1B, func1C );
-                        }
-                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             arguments.CoerceAndAdd(func1C);
                             return new Merge (arguments );
+                        }
+                        internal Merge merge ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                        {
+                           return Merge ( func1, func1A, func1B, func1C );
                         }
 /// <summary>
 /// <para>Get all documents between two keys. Accepts three optional arguments: <code>index</code>,
@@ -3024,14 +3024,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Between Between ( Object exprA, Object exprB )
                         {
-                           return between ( exprA, exprB );
-                        }
-                        internal Between between ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Between (arguments );
+                        }
+                        internal Between between ( Object exprA, Object exprB )
+                        {
+                           return Between ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Produce a single value from a sequence through repeated application of a reduction
@@ -3046,13 +3046,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Reduce Reduce ( Javascript js )
                         {
-                           return reduce ( js );
-                        }
-                        internal Reduce reduce ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Reduce (arguments );
+                        }
+                        internal Reduce reduce ( Javascript js )
+                        {
+                           return Reduce ( js );
                         }
 /// <summary>
 /// <para>Produce a single value from a sequence through repeated application of a reduction
@@ -3067,13 +3067,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Reduce Reduce ( ReqlFunction2 func2 )
                         {
-                           return reduce ( func2 );
-                        }
-                        internal Reduce reduce ( ReqlFunction2 func2 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func2);
                             return new Reduce (arguments );
+                        }
+                        internal Reduce reduce ( ReqlFunction2 func2 )
+                        {
+                           return Reduce ( func2 );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -3087,13 +3087,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Map Map ( Javascript js )
                         {
-                           return map ( js );
-                        }
-                        internal Map map ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Map (arguments );
+                        }
+                        internal Map map ( Javascript js )
+                        {
+                           return Map ( js );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -3107,14 +3107,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Map Map ( Object exprA, Javascript js )
                         {
-                           return map ( exprA, js );
-                        }
-                        internal Map map ( Object exprA, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             return new Map (arguments );
+                        }
+                        internal Map map ( Object exprA, Javascript js )
+                        {
+                           return Map ( exprA, js );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -3128,15 +3128,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Map Map ( Object exprA, Object exprB, Javascript js )
                         {
-                           return map ( exprA, exprB, js );
-                        }
-                        internal Map map ( Object exprA, Object exprB, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             return new Map (arguments );
+                        }
+                        internal Map map ( Object exprA, Object exprB, Javascript js )
+                        {
+                           return Map ( exprA, exprB, js );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -3150,16 +3150,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Map Map ( Object exprA, Object exprB, Object exprC, Javascript js )
                         {
-                           return map ( exprA, exprB, exprC, js );
-                        }
-                        internal Map map ( Object exprA, Object exprB, Object exprC, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(js);
                             return new Map (arguments );
+                        }
+                        internal Map map ( Object exprA, Object exprB, Object exprC, Javascript js )
+                        {
+                           return Map ( exprA, exprB, exprC, js );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -3173,16 +3173,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Map Map ( Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
                         {
-                           return map ( exprA, exprB, exprC, func4 );
-                        }
-                        internal Map map ( Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(func4);
                             return new Map (arguments );
+                        }
+                        internal Map map ( Object exprA, Object exprB, Object exprC, ReqlFunction4 func4 )
+                        {
+                           return Map ( exprA, exprB, exprC, func4 );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -3196,15 +3196,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Map Map ( Object exprA, Object exprB, ReqlFunction3 func3 )
                         {
-                           return map ( exprA, exprB, func3 );
-                        }
-                        internal Map map ( Object exprA, Object exprB, ReqlFunction3 func3 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func3);
                             return new Map (arguments );
+                        }
+                        internal Map map ( Object exprA, Object exprB, ReqlFunction3 func3 )
+                        {
+                           return Map ( exprA, exprB, func3 );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -3218,14 +3218,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Map Map ( Object exprA, ReqlFunction2 func2 )
                         {
-                           return map ( exprA, func2 );
-                        }
-                        internal Map map ( Object exprA, ReqlFunction2 func2 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func2);
                             return new Map (arguments );
+                        }
+                        internal Map map ( Object exprA, ReqlFunction2 func2 )
+                        {
+                           return Map ( exprA, func2 );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -3239,13 +3239,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Map Map ( ReqlFunction0 func0 )
                         {
-                           return map ( func0 );
-                        }
-                        internal Map map ( ReqlFunction0 func0 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func0);
                             return new Map (arguments );
+                        }
+                        internal Map map ( ReqlFunction0 func0 )
+                        {
+                           return Map ( func0 );
                         }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
@@ -3259,13 +3259,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Map Map ( ReqlFunction1 func1 )
                         {
-                           return map ( func1 );
-                        }
-                        internal Map map ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Map (arguments );
+                        }
+                        internal Map map ( ReqlFunction1 func1 )
+                        {
+                           return Map ( func1 );
                         }
 /// <summary>
 /// <para>Get all the documents for which the given predicate is true.</para>
@@ -3283,13 +3283,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Filter Filter ( Javascript js )
                         {
-                           return filter ( js );
-                        }
-                        internal Filter filter ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Filter (arguments );
+                        }
+                        internal Filter filter ( Javascript js )
+                        {
+                           return Filter ( js );
                         }
 /// <summary>
 /// <para>Get all the documents for which the given predicate is true.</para>
@@ -3307,13 +3307,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Filter Filter ( Object exprA )
                         {
-                           return filter ( exprA );
-                        }
-                        internal Filter filter ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Filter (arguments );
+                        }
+                        internal Filter filter ( Object exprA )
+                        {
+                           return Filter ( exprA );
                         }
 /// <summary>
 /// <para>Get all the documents for which the given predicate is true.</para>
@@ -3331,13 +3331,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Filter Filter ( ReqlFunction1 func1 )
                         {
-                           return filter ( func1 );
-                        }
-                        internal Filter filter ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Filter (arguments );
+                        }
+                        internal Filter filter ( ReqlFunction1 func1 )
+                        {
+                           return Filter ( func1 );
                         }
 /// <summary>
 /// <para>Concatenate one or more elements into a single sequence using a mapping function.</para>
@@ -3349,13 +3349,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public ConcatMap ConcatMap ( Javascript js )
                         {
-                           return concatMap ( js );
-                        }
-                        internal ConcatMap concatMap ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new ConcatMap (arguments );
+                        }
+                        internal ConcatMap concatMap ( Javascript js )
+                        {
+                           return ConcatMap ( js );
                         }
 /// <summary>
 /// <para>Concatenate one or more elements into a single sequence using a mapping function.</para>
@@ -3367,13 +3367,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public ConcatMap ConcatMap ( ReqlFunction1 func1 )
                         {
-                           return concatMap ( func1 );
-                        }
-                        internal ConcatMap concatMap ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new ConcatMap (arguments );
+                        }
+                        internal ConcatMap concatMap ( ReqlFunction1 func1 )
+                        {
+                           return ConcatMap ( func1 );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3395,12 +3395,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy (  )
                         {
-                           return orderBy (  );
+                            Arguments arguments = new Arguments(this);
+                            return new OrderBy (arguments );
                         }
                         internal OrderBy orderBy (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new OrderBy (arguments );
+                           return OrderBy (  );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3422,13 +3422,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js )
                         {
-                           return orderBy ( js );
-                        }
-                        internal OrderBy orderBy ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js )
+                        {
+                           return OrderBy ( js );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3450,14 +3450,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA )
                         {
-                           return orderBy ( js, jsA );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Javascript jsA )
+                        {
+                           return OrderBy ( js, jsA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3479,15 +3479,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA, Javascript jsB )
                         {
-                           return orderBy ( js, jsA, jsB );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Javascript jsA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Javascript jsA, Javascript jsB )
+                        {
+                           return OrderBy ( js, jsA, jsB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3509,16 +3509,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
                         {
-                           return orderBy ( js, jsA, jsB, jsC );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             arguments.CoerceAndAdd(jsC);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
+                        {
+                           return OrderBy ( js, jsA, jsB, jsC );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3540,16 +3540,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
                         {
-                           return orderBy ( js, jsA, jsB, exprA );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             arguments.CoerceAndAdd(exprA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
+                        {
+                           return OrderBy ( js, jsA, jsB, exprA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3571,15 +3571,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA, Object exprA )
                         {
-                           return orderBy ( js, jsA, exprA );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Javascript jsA, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Javascript jsA, Object exprA )
+                        {
+                           return OrderBy ( js, jsA, exprA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3601,16 +3601,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
                         {
-                           return orderBy ( js, jsA, exprA, jsB );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
+                        {
+                           return OrderBy ( js, jsA, exprA, jsB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3632,16 +3632,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA, Object exprA, Object exprB )
                         {
-                           return orderBy ( js, jsA, exprA, exprB );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Javascript jsA, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Javascript jsA, Object exprA, Object exprB )
+                        {
+                           return OrderBy ( js, jsA, exprA, exprB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3663,14 +3663,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA )
                         {
-                           return orderBy ( js, exprA );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Object exprA )
+                        {
+                           return OrderBy ( js, exprA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3692,15 +3692,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA, Javascript jsA )
                         {
-                           return orderBy ( js, exprA, jsA );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Object exprA, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Object exprA, Javascript jsA )
+                        {
+                           return OrderBy ( js, exprA, jsA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3722,16 +3722,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
                         {
-                           return orderBy ( js, exprA, jsA, jsB );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
+                        {
+                           return OrderBy ( js, exprA, jsA, jsB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3753,16 +3753,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA, Javascript jsA, Object exprB )
                         {
-                           return orderBy ( js, exprA, jsA, exprB );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Object exprA, Javascript jsA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Object exprA, Javascript jsA, Object exprB )
+                        {
+                           return OrderBy ( js, exprA, jsA, exprB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3784,15 +3784,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA, Object exprB )
                         {
-                           return orderBy ( js, exprA, exprB );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Object exprA, Object exprB )
+                        {
+                           return OrderBy ( js, exprA, exprB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3814,16 +3814,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA, Object exprB, Javascript jsA )
                         {
-                           return orderBy ( js, exprA, exprB, jsA );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Object exprA, Object exprB, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(jsA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Object exprA, Object exprB, Javascript jsA )
+                        {
+                           return OrderBy ( js, exprA, exprB, jsA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3845,16 +3845,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA, Object exprB, Object exprC )
                         {
-                           return orderBy ( js, exprA, exprB, exprC );
-                        }
-                        internal OrderBy orderBy ( Javascript js, Object exprA, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Javascript js, Object exprA, Object exprB, Object exprC )
+                        {
+                           return OrderBy ( js, exprA, exprB, exprC );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3876,13 +3876,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA )
                         {
-                           return orderBy ( exprA );
-                        }
-                        internal OrderBy orderBy ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA )
+                        {
+                           return OrderBy ( exprA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3904,14 +3904,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js )
                         {
-                           return orderBy ( exprA, js );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Javascript js )
+                        {
+                           return OrderBy ( exprA, js );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3933,15 +3933,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js, Javascript jsA )
                         {
-                           return orderBy ( exprA, js, jsA );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Javascript js, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Javascript js, Javascript jsA )
+                        {
+                           return OrderBy ( exprA, js, jsA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3963,16 +3963,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
                         {
-                           return orderBy ( exprA, js, jsA, jsB );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
+                        {
+                           return OrderBy ( exprA, js, jsA, jsB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -3994,16 +3994,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js, Javascript jsA, Object exprB )
                         {
-                           return orderBy ( exprA, js, jsA, exprB );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Javascript js, Javascript jsA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Javascript js, Javascript jsA, Object exprB )
+                        {
+                           return OrderBy ( exprA, js, jsA, exprB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4025,15 +4025,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js, Object exprB )
                         {
-                           return orderBy ( exprA, js, exprB );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Javascript js, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Javascript js, Object exprB )
+                        {
+                           return OrderBy ( exprA, js, exprB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4055,16 +4055,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js, Object exprB, Javascript jsA )
                         {
-                           return orderBy ( exprA, js, exprB, jsA );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Javascript js, Object exprB, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(jsA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Javascript js, Object exprB, Javascript jsA )
+                        {
+                           return OrderBy ( exprA, js, exprB, jsA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4086,16 +4086,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js, Object exprB, Object exprC )
                         {
-                           return orderBy ( exprA, js, exprB, exprC );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Javascript js, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Javascript js, Object exprB, Object exprC )
+                        {
+                           return OrderBy ( exprA, js, exprB, exprC );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4117,14 +4117,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB )
                         {
-                           return orderBy ( exprA, exprB );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Object exprB )
+                        {
+                           return OrderBy ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4146,15 +4146,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Javascript js )
                         {
-                           return orderBy ( exprA, exprB, js );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Object exprB, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Object exprB, Javascript js )
+                        {
+                           return OrderBy ( exprA, exprB, js );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4176,16 +4176,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Javascript js, Javascript jsA )
                         {
-                           return orderBy ( exprA, exprB, js, jsA );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Object exprB, Javascript js, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Object exprB, Javascript js, Javascript jsA )
+                        {
+                           return OrderBy ( exprA, exprB, js, jsA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4207,16 +4207,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Javascript js, Object exprC )
                         {
-                           return orderBy ( exprA, exprB, js, exprC );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Object exprB, Javascript js, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprC);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Object exprB, Javascript js, Object exprC )
+                        {
+                           return OrderBy ( exprA, exprB, js, exprC );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4238,15 +4238,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Object exprC )
                         {
-                           return orderBy ( exprA, exprB, exprC );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Object exprB, Object exprC )
+                        {
+                           return OrderBy ( exprA, exprB, exprC );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4268,16 +4268,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Object exprC, Javascript js )
                         {
-                           return orderBy ( exprA, exprB, exprC, js );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Object exprB, Object exprC, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(js);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Object exprB, Object exprC, Javascript js )
+                        {
+                           return OrderBy ( exprA, exprB, exprC, js );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4299,16 +4299,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Object exprC, Object exprD )
                         {
-                           return orderBy ( exprA, exprB, exprC, exprD );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Object exprB, Object exprC, Object exprD )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(exprD);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Object exprB, Object exprC, Object exprD )
+                        {
+                           return OrderBy ( exprA, exprB, exprC, exprD );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4330,16 +4330,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
                         {
-                           return orderBy ( exprA, exprB, exprC, func1 );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(func1);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                        {
+                           return OrderBy ( exprA, exprB, exprC, func1 );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4361,15 +4361,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, ReqlFunction1 func1 )
                         {
-                           return orderBy ( exprA, exprB, func1 );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Object exprB, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Object exprB, ReqlFunction1 func1 )
+                        {
+                           return OrderBy ( exprA, exprB, func1 );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4391,16 +4391,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
                         {
-                           return orderBy ( exprA, exprB, func1, exprC );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprC);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                        {
+                           return OrderBy ( exprA, exprB, func1, exprC );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4422,16 +4422,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
-                           return orderBy ( exprA, exprB, func1, func1A );
-                        }
-                        internal OrderBy orderBy ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                           return OrderBy ( exprA, exprB, func1, func1A );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4453,14 +4453,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1 )
                         {
-                           return orderBy ( exprA, func1 );
-                        }
-                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1 )
+                        {
+                           return OrderBy ( exprA, func1 );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4482,15 +4482,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1, Object exprB )
                         {
-                           return orderBy ( exprA, func1, exprB );
-                        }
-                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1, Object exprB )
+                        {
+                           return OrderBy ( exprA, func1, exprB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4512,16 +4512,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
                         {
-                           return orderBy ( exprA, func1, exprB, exprC );
-                        }
-                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                        {
+                           return OrderBy ( exprA, func1, exprB, exprC );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4543,16 +4543,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
                         {
-                           return orderBy ( exprA, func1, exprB, func1A );
-                        }
-                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1A);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                        {
+                           return OrderBy ( exprA, func1, exprB, func1A );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4574,15 +4574,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
-                           return orderBy ( exprA, func1, func1A );
-                        }
-                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                           return OrderBy ( exprA, func1, func1A );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4604,16 +4604,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
                         {
-                           return orderBy ( exprA, func1, func1A, exprB );
-                        }
-                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                        {
+                           return OrderBy ( exprA, func1, func1A, exprB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4635,16 +4635,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
-                           return orderBy ( exprA, func1, func1A, func1B );
-                        }
-                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                           return OrderBy ( exprA, func1, func1A, func1B );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4666,13 +4666,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1 )
                         {
-                           return orderBy ( func1 );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1 )
+                        {
+                           return OrderBy ( func1 );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4694,14 +4694,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA )
                         {
-                           return orderBy ( func1, exprA );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA )
+                        {
+                           return OrderBy ( func1, exprA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4723,15 +4723,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA, Object exprB )
                         {
-                           return orderBy ( func1, exprA, exprB );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA, Object exprB )
+                        {
+                           return OrderBy ( func1, exprA, exprB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4753,16 +4753,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
                         {
-                           return orderBy ( func1, exprA, exprB, exprC );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                        {
+                           return OrderBy ( func1, exprA, exprB, exprC );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4784,16 +4784,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
                         {
-                           return orderBy ( func1, exprA, exprB, func1A );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1A);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                        {
+                           return OrderBy ( func1, exprA, exprB, func1A );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4815,15 +4815,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
                         {
-                           return orderBy ( func1, exprA, func1A );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1A);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                        {
+                           return OrderBy ( func1, exprA, func1A );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4845,16 +4845,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
                         {
-                           return orderBy ( func1, exprA, func1A, exprB );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                        {
+                           return OrderBy ( func1, exprA, func1A, exprB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4876,16 +4876,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
-                           return orderBy ( func1, exprA, func1A, func1B );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                           return OrderBy ( func1, exprA, func1A, func1B );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4907,14 +4907,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
-                           return orderBy ( func1, func1A );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                           return OrderBy ( func1, func1A );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4936,15 +4936,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
                         {
-                           return orderBy ( func1, func1A, exprA );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                        {
+                           return OrderBy ( func1, func1A, exprA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4966,16 +4966,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
                         {
-                           return orderBy ( func1, func1A, exprA, exprB );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                        {
+                           return OrderBy ( func1, func1A, exprA, exprB );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -4997,16 +4997,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
                         {
-                           return orderBy ( func1, func1A, exprA, func1B );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1B);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                        {
+                           return OrderBy ( func1, func1A, exprA, func1B );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -5028,15 +5028,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
-                           return orderBy ( func1, func1A, func1B );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                           return OrderBy ( func1, func1A, func1B );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -5058,16 +5058,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
                         {
-                           return orderBy ( func1, func1A, func1B, exprA );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             arguments.CoerceAndAdd(exprA);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                        {
+                           return OrderBy ( func1, func1A, func1B, exprA );
                         }
 /// <summary>
 /// <para>Sort the sequence by document values of the given key(s). To specify
@@ -5089,16 +5089,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
                         {
-                           return orderBy ( func1, func1A, func1B, func1C );
-                        }
-                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             arguments.CoerceAndAdd(func1C);
                             return new OrderBy (arguments );
+                        }
+                        internal OrderBy orderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                        {
+                           return OrderBy ( func1, func1A, func1B, func1C );
                         }
 /// <summary>
 /// <para>Remove duplicate elements from the sequence.</para>
@@ -5110,12 +5110,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Distinct Distinct (  )
                         {
-                           return distinct (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Distinct (arguments );
                         }
                         internal Distinct distinct (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Distinct (arguments );
+                           return Distinct (  );
                         }
 /// <summary>
 /// <para>Count the number of elements in the sequence. With a single argument, count the number
@@ -5127,12 +5127,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Count Count (  )
                         {
-                           return count (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Count (arguments );
                         }
                         internal Count count (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Count (arguments );
+                           return Count (  );
                         }
 /// <summary>
 /// <para>Count the number of elements in the sequence. With a single argument, count the number
@@ -5144,13 +5144,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Count Count ( Javascript js )
                         {
-                           return count ( js );
-                        }
-                        internal Count count ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Count (arguments );
+                        }
+                        internal Count count ( Javascript js )
+                        {
+                           return Count ( js );
                         }
 /// <summary>
 /// <para>Count the number of elements in the sequence. With a single argument, count the number
@@ -5162,13 +5162,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Count Count ( Object exprA )
                         {
-                           return count ( exprA );
-                        }
-                        internal Count count ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Count (arguments );
+                        }
+                        internal Count count ( Object exprA )
+                        {
+                           return Count ( exprA );
                         }
 /// <summary>
 /// <para>Count the number of elements in the sequence. With a single argument, count the number
@@ -5180,13 +5180,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Count Count ( ReqlFunction1 func1 )
                         {
-                           return count ( func1 );
-                        }
-                        internal Count count ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Count (arguments );
+                        }
+                        internal Count count ( ReqlFunction1 func1 )
+                        {
+                           return Count ( func1 );
                         }
 /// <summary>
 /// <para>Test if a sequence is empty.</para>
@@ -5196,12 +5196,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public IsEmpty IsEmpty (  )
                         {
-                           return isEmpty (  );
+                            Arguments arguments = new Arguments(this);
+                            return new IsEmpty (arguments );
                         }
                         internal IsEmpty isEmpty (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new IsEmpty (arguments );
+                           return IsEmpty (  );
                         }
 /// <summary>
 /// <para>Concatenate two or more sequences.</para>
@@ -5211,13 +5211,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Union Union ( params object[] exprs )
                         {
-                           return union ( exprs );
-                        }
-                        internal Union union ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new Union (arguments );
+                        }
+                        internal Union union ( params object[] exprs )
+                        {
+                           return Union ( exprs );
                         }
 /// <summary>
 /// <para>Get the <em>nth</em> element of a sequence, counting from zero. If the argument is negative, count from the last element.</para>
@@ -5227,13 +5227,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Nth Nth ( Object exprA )
                         {
-                           return nth ( exprA );
-                        }
-                        internal Nth nth ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Nth (arguments );
+                        }
+                        internal Nth nth ( Object exprA )
+                        {
+                           return Nth ( exprA );
                         }
 /// <summary>
 /// <para>Get a single field from an object or a single element from a sequence.</para>
@@ -5243,13 +5243,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Bracket Bracket ( Object exprA )
                         {
-                           return bracket ( exprA );
-                        }
-                        internal Bracket bracket ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Bracket (arguments );
+                        }
+                        internal Bracket bracket ( Object exprA )
+                        {
+                           return Bracket ( exprA );
                         }
 /// <summary>
 /// <para>Returns an inner join of two sequences.</para>
@@ -5261,14 +5261,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public InnerJoin InnerJoin ( Object exprA, Javascript js )
                         {
-                           return innerJoin ( exprA, js );
-                        }
-                        internal InnerJoin innerJoin ( Object exprA, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             return new InnerJoin (arguments );
+                        }
+                        internal InnerJoin innerJoin ( Object exprA, Javascript js )
+                        {
+                           return InnerJoin ( exprA, js );
                         }
 /// <summary>
 /// <para>Returns an inner join of two sequences.</para>
@@ -5280,14 +5280,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public InnerJoin InnerJoin ( Object exprA, ReqlFunction2 func2 )
                         {
-                           return innerJoin ( exprA, func2 );
-                        }
-                        internal InnerJoin innerJoin ( Object exprA, ReqlFunction2 func2 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func2);
                             return new InnerJoin (arguments );
+                        }
+                        internal InnerJoin innerJoin ( Object exprA, ReqlFunction2 func2 )
+                        {
+                           return InnerJoin ( exprA, func2 );
                         }
 /// <summary>
 /// <para>Returns a left outer join of two sequences.</para>
@@ -5299,14 +5299,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OuterJoin OuterJoin ( Object exprA, Javascript js )
                         {
-                           return outerJoin ( exprA, js );
-                        }
-                        internal OuterJoin outerJoin ( Object exprA, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             return new OuterJoin (arguments );
+                        }
+                        internal OuterJoin outerJoin ( Object exprA, Javascript js )
+                        {
+                           return OuterJoin ( exprA, js );
                         }
 /// <summary>
 /// <para>Returns a left outer join of two sequences.</para>
@@ -5318,14 +5318,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public OuterJoin OuterJoin ( Object exprA, ReqlFunction2 func2 )
                         {
-                           return outerJoin ( exprA, func2 );
-                        }
-                        internal OuterJoin outerJoin ( Object exprA, ReqlFunction2 func2 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func2);
                             return new OuterJoin (arguments );
+                        }
+                        internal OuterJoin outerJoin ( Object exprA, ReqlFunction2 func2 )
+                        {
+                           return OuterJoin ( exprA, func2 );
                         }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
@@ -5336,14 +5336,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example></example>
                         public EqJoin EqJoin ( Javascript js, Object exprA )
                         {
-                           return eqJoin ( js, exprA );
-                        }
-                        internal EqJoin eqJoin ( Javascript js, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             return new EqJoin (arguments );
+                        }
+                        internal EqJoin eqJoin ( Javascript js, Object exprA )
+                        {
+                           return EqJoin ( js, exprA );
                         }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
@@ -5354,14 +5354,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example></example>
                         public EqJoin EqJoin ( Object exprA, Object exprB )
                         {
-                           return eqJoin ( exprA, exprB );
-                        }
-                        internal EqJoin eqJoin ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new EqJoin (arguments );
+                        }
+                        internal EqJoin eqJoin ( Object exprA, Object exprB )
+                        {
+                           return EqJoin ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
@@ -5372,14 +5372,14 @@ namespace RethinkDb.Driver.Ast {
 /// <example></example>
                         public EqJoin EqJoin ( ReqlFunction1 func1, Object exprA )
                         {
-                           return eqJoin ( func1, exprA );
-                        }
-                        internal EqJoin eqJoin ( ReqlFunction1 func1, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             return new EqJoin (arguments );
+                        }
+                        internal EqJoin eqJoin ( ReqlFunction1 func1, Object exprA )
+                        {
+                           return EqJoin ( func1, exprA );
                         }
 /// <summary>
 /// <para>Used to 'zip' up the result of a join by merging the 'right' fields into 'left' fields of each member of the sequence.</para>
@@ -5390,12 +5390,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Zip Zip (  )
                         {
-                           return zip (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Zip (arguments );
                         }
                         internal Zip zip (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Zip (arguments );
+                           return Zip (  );
                         }
 /// <summary>
 /// <para>Insert a value in to an array at a given index. Returns the modified array.</para>
@@ -5405,14 +5405,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public InsertAt InsertAt ( Object exprA, Object exprB )
                         {
-                           return insertAt ( exprA, exprB );
-                        }
-                        internal InsertAt insertAt ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new InsertAt (arguments );
+                        }
+                        internal InsertAt insertAt ( Object exprA, Object exprB )
+                        {
+                           return InsertAt ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Remove one or more elements from an array at a given index. Returns the modified array.</para>
@@ -5424,13 +5424,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public DeleteAt DeleteAt ( Object exprA )
                         {
-                           return deleteAt ( exprA );
-                        }
-                        internal DeleteAt deleteAt ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new DeleteAt (arguments );
+                        }
+                        internal DeleteAt deleteAt ( Object exprA )
+                        {
+                           return DeleteAt ( exprA );
                         }
 /// <summary>
 /// <para>Remove one or more elements from an array at a given index. Returns the modified array.</para>
@@ -5442,14 +5442,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public DeleteAt DeleteAt ( Object exprA, Object exprB )
                         {
-                           return deleteAt ( exprA, exprB );
-                        }
-                        internal DeleteAt deleteAt ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new DeleteAt (arguments );
+                        }
+                        internal DeleteAt deleteAt ( Object exprA, Object exprB )
+                        {
+                           return DeleteAt ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Change a value in an array at a given index. Returns the modified array.</para>
@@ -5459,14 +5459,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public ChangeAt ChangeAt ( Object exprA, Object exprB )
                         {
-                           return changeAt ( exprA, exprB );
-                        }
-                        internal ChangeAt changeAt ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new ChangeAt (arguments );
+                        }
+                        internal ChangeAt changeAt ( Object exprA, Object exprB )
+                        {
+                           return ChangeAt ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Insert several values in to an array at a given index. Returns the modified array.</para>
@@ -5476,14 +5476,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public SpliceAt SpliceAt ( Object exprA, Object exprB )
                         {
-                           return spliceAt ( exprA, exprB );
-                        }
-                        internal SpliceAt spliceAt ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new SpliceAt (arguments );
+                        }
+                        internal SpliceAt spliceAt ( Object exprA, Object exprB )
+                        {
+                           return SpliceAt ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Convert a value of one type into another.</para>
@@ -5495,13 +5495,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public CoerceTo CoerceTo ( Object exprA )
                         {
-                           return coerceTo ( exprA );
-                        }
-                        internal CoerceTo coerceTo ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new CoerceTo (arguments );
+                        }
+                        internal CoerceTo coerceTo ( Object exprA )
+                        {
+                           return CoerceTo ( exprA );
                         }
 /// <summary>
 /// <para>Gets the type of a value.</para>
@@ -5511,12 +5511,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public TypeOf TypeOf (  )
                         {
-                           return typeOf (  );
+                            Arguments arguments = new Arguments(this);
+                            return new TypeOf (arguments );
                         }
                         internal TypeOf typeOf (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new TypeOf (arguments );
+                           return TypeOf (  );
                         }
 /// <summary>
 /// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
@@ -5528,13 +5528,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Update Update ( Javascript js )
                         {
-                           return update ( js );
-                        }
-                        internal Update update ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Update (arguments );
+                        }
+                        internal Update update ( Javascript js )
+                        {
+                           return Update ( js );
                         }
 /// <summary>
 /// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
@@ -5546,13 +5546,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Update Update ( Object exprA )
                         {
-                           return update ( exprA );
-                        }
-                        internal Update update ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Update (arguments );
+                        }
+                        internal Update update ( Object exprA )
+                        {
+                           return Update ( exprA );
                         }
 /// <summary>
 /// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
@@ -5564,13 +5564,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Update Update ( ReqlFunction1 func1 )
                         {
-                           return update ( func1 );
-                        }
-                        internal Update update ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Update (arguments );
+                        }
+                        internal Update update ( ReqlFunction1 func1 )
+                        {
+                           return Update ( func1 );
                         }
 /// <summary>
 /// <para>Delete one or more documents from a table.</para>
@@ -5580,12 +5580,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Delete Delete (  )
                         {
-                           return delete (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Delete (arguments );
                         }
                         internal Delete delete (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Delete (arguments );
+                           return Delete (  );
                         }
 /// <summary>
 /// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
@@ -5602,13 +5602,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Replace Replace ( Javascript js )
                         {
-                           return replace ( js );
-                        }
-                        internal Replace replace ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Replace (arguments );
+                        }
+                        internal Replace replace ( Javascript js )
+                        {
+                           return Replace ( js );
                         }
 /// <summary>
 /// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
@@ -5625,13 +5625,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Replace Replace ( Object exprA )
                         {
-                           return replace ( exprA );
-                        }
-                        internal Replace replace ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Replace (arguments );
+                        }
+                        internal Replace replace ( Object exprA )
+                        {
+                           return Replace ( exprA );
                         }
 /// <summary>
 /// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
@@ -5648,40 +5648,36 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Replace Replace ( ReqlFunction1 func1 )
                         {
-                           return replace ( func1 );
-                        }
-                        internal Replace replace ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Replace (arguments );
                         }
-                        public Funcall Do_ ( Javascript js )
+                        internal Replace replace ( ReqlFunction1 func1 )
                         {
-                           return do_ ( js );
+                           return Replace ( func1 );
                         }
-                        internal Funcall do_ ( Javascript js )
+                        public Funcall Do_ ( Javascript js )
                         {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Funcall (arguments );
                         }
-                        public Funcall Do_ ( Object exprA, Javascript js )
+                        internal Funcall do_ ( Javascript js )
                         {
-                           return do_ ( exprA, js );
+                           return Do_ ( js );
                         }
-                        internal Funcall do_ ( Object exprA, Javascript js )
+                        public Funcall Do_ ( Object exprA, Javascript js )
                         {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             return new Funcall (arguments );
                         }
-                        public Funcall Do_ ( Object exprA, Object exprB, Javascript js )
+                        internal Funcall do_ ( Object exprA, Javascript js )
                         {
-                           return do_ ( exprA, exprB, js );
+                           return Do_ ( exprA, js );
                         }
-                        internal Funcall do_ ( Object exprA, Object exprB, Javascript js )
+                        public Funcall Do_ ( Object exprA, Object exprB, Javascript js )
                         {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
@@ -5689,11 +5685,11 @@ namespace RethinkDb.Driver.Ast {
                             arguments.CoerceAndAdd(js);
                             return new Funcall (arguments );
                         }
-                        public Funcall Do_ ( Object exprA, Object exprB, ReqlFunction3 func3 )
+                        internal Funcall do_ ( Object exprA, Object exprB, Javascript js )
                         {
-                           return do_ ( exprA, exprB, func3 );
+                           return Do_ ( exprA, exprB, js );
                         }
-                        internal Funcall do_ ( Object exprA, Object exprB, ReqlFunction3 func3 )
+                        public Funcall Do_ ( Object exprA, Object exprB, ReqlFunction3 func3 )
                         {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
@@ -5701,36 +5697,40 @@ namespace RethinkDb.Driver.Ast {
                             arguments.CoerceAndAdd(func3);
                             return new Funcall (arguments );
                         }
-                        public Funcall Do_ ( Object exprA, ReqlFunction2 func2 )
+                        internal Funcall do_ ( Object exprA, Object exprB, ReqlFunction3 func3 )
                         {
-                           return do_ ( exprA, func2 );
+                           return Do_ ( exprA, exprB, func3 );
                         }
-                        internal Funcall do_ ( Object exprA, ReqlFunction2 func2 )
+                        public Funcall Do_ ( Object exprA, ReqlFunction2 func2 )
                         {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func2);
                             return new Funcall (arguments );
                         }
-                        public Funcall Do_ ( params object[] exprs )
+                        internal Funcall do_ ( Object exprA, ReqlFunction2 func2 )
                         {
-                           return do_ ( exprs );
+                           return Do_ ( exprA, func2 );
                         }
-                        internal Funcall do_ ( params object[] exprs )
+                        public Funcall Do_ ( params object[] exprs )
                         {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new Funcall (arguments );
                         }
-                        public Funcall Do_ ( ReqlFunction1 func1 )
+                        internal Funcall do_ ( params object[] exprs )
                         {
-                           return do_ ( func1 );
+                           return Do_ ( exprs );
                         }
-                        internal Funcall do_ ( ReqlFunction1 func1 )
+                        public Funcall Do_ ( ReqlFunction1 func1 )
                         {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Funcall (arguments );
+                        }
+                        internal Funcall do_ ( ReqlFunction1 func1 )
+                        {
+                           return Do_ ( func1 );
                         }
 /// <summary>
 /// <para>Compute the logical "or" of two or more values.</para>
@@ -5743,14 +5743,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Or Or ( Object exprA, params object[] exprs )
                         {
-                           return or ( exprA, exprs );
-                        }
-                        internal Or or ( Object exprA, params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAddAll(exprs);
                             return new Or (arguments );
+                        }
+                        internal Or or ( Object exprA, params object[] exprs )
+                        {
+                           return Or ( exprA, exprs );
                         }
 /// <summary>
 /// <para>Compute the logical "and" of two or more values.</para>
@@ -5763,13 +5763,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public And And ( params object[] exprs )
                         {
-                           return and ( exprs );
-                        }
-                        internal And and ( params object[] exprs )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAddAll(exprs);
                             return new And (arguments );
+                        }
+                        internal And and ( params object[] exprs )
+                        {
+                           return And ( exprs );
                         }
 /// <summary>
 /// <para>Loop over a sequence, evaluating the given write query for each element.</para>
@@ -5781,13 +5781,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public ForEach ForEach ( Javascript js )
                         {
-                           return forEach ( js );
-                        }
-                        internal ForEach forEach ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new ForEach (arguments );
+                        }
+                        internal ForEach forEach ( Javascript js )
+                        {
+                           return ForEach ( js );
                         }
 /// <summary>
 /// <para>Loop over a sequence, evaluating the given write query for each element.</para>
@@ -5799,13 +5799,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public ForEach ForEach ( ReqlFunction0 func0 )
                         {
-                           return forEach ( func0 );
-                        }
-                        internal ForEach forEach ( ReqlFunction0 func0 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func0);
                             return new ForEach (arguments );
+                        }
+                        internal ForEach forEach ( ReqlFunction0 func0 )
+                        {
+                           return ForEach ( func0 );
                         }
 /// <summary>
 /// <para>Loop over a sequence, evaluating the given write query for each element.</para>
@@ -5817,13 +5817,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public ForEach ForEach ( ReqlFunction1 func1 )
                         {
-                           return forEach ( func1 );
-                        }
-                        internal ForEach forEach ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new ForEach (arguments );
+                        }
+                        internal ForEach forEach ( ReqlFunction1 func1 )
+                        {
+                           return ForEach ( func1 );
                         }
 /// <summary>
 /// <para>Get information about a ReQL value.</para>
@@ -5833,12 +5833,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Info Info (  )
                         {
-                           return info (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Info (arguments );
                         }
                         internal Info info (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Info (arguments );
+                           return Info (  );
                         }
 /// <summary>
 /// <para>Matches against a regular expression. If there is a match, returns an object with the fields:</para>
@@ -5857,13 +5857,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Match Match ( Object exprA )
                         {
-                           return match ( exprA );
-                        }
-                        internal Match match ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Match (arguments );
+                        }
+                        internal Match match ( Object exprA )
+                        {
+                           return Match ( exprA );
                         }
 /// <summary>
 /// <para>Uppercases a string.</para>
@@ -5873,12 +5873,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Upcase Upcase (  )
                         {
-                           return upcase (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Upcase (arguments );
                         }
                         internal Upcase upcase (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Upcase (arguments );
+                           return Upcase (  );
                         }
 /// <summary>
 /// <para>Lowercases a string.</para>
@@ -5888,12 +5888,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Downcase Downcase (  )
                         {
-                           return downcase (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Downcase (arguments );
                         }
                         internal Downcase downcase (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Downcase (arguments );
+                           return Downcase (  );
                         }
 /// <summary>
 /// <para>Select a given number of elements from a sequence with uniform random distribution. Selection is done without replacement.</para>
@@ -5903,13 +5903,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Sample Sample ( Object exprA )
                         {
-                           return sample ( exprA );
-                        }
-                        internal Sample sample ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Sample (arguments );
+                        }
+                        internal Sample sample ( Object exprA )
+                        {
+                           return Sample ( exprA );
                         }
 /// <summary>
 /// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
@@ -5930,13 +5930,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Default Default_ ( Javascript js )
                         {
-                           return default_ ( js );
-                        }
-                        internal Default default_ ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Default (arguments );
+                        }
+                        internal Default default_ ( Javascript js )
+                        {
+                           return Default_ ( js );
                         }
 /// <summary>
 /// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
@@ -5957,13 +5957,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Default Default_ ( Object exprA )
                         {
-                           return default_ ( exprA );
-                        }
-                        internal Default default_ ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Default (arguments );
+                        }
+                        internal Default default_ ( Object exprA )
+                        {
+                           return Default_ ( exprA );
                         }
 /// <summary>
 /// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
@@ -5984,13 +5984,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Default Default_ ( ReqlFunction1 func1 )
                         {
-                           return default_ ( func1 );
-                        }
-                        internal Default default_ ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Default (arguments );
+                        }
+                        internal Default default_ ( ReqlFunction1 func1 )
+                        {
+                           return Default_ ( func1 );
                         }
 /// <summary>
 /// <para>Convert a ReQL value or object to a JSON string. You may use either <code>toJsonString</code> or <code>toJSON</code>.</para>
@@ -6002,12 +6002,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public ToJsonString ToJsonString (  )
                         {
-                           return toJsonString (  );
+                            Arguments arguments = new Arguments(this);
+                            return new ToJsonString (arguments );
                         }
                         internal ToJsonString toJsonString (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new ToJsonString (arguments );
+                           return ToJsonString (  );
                         }
 /// <summary>
 /// <para>Convert a ReQL value or object to a JSON string. You may use either <code>toJsonString</code> or <code>toJSON</code>.</para>
@@ -6019,12 +6019,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public ToJsonString ToJson (  )
                         {
-                           return toJson (  );
+                            Arguments arguments = new Arguments(this);
+                            return new ToJsonString (arguments );
                         }
                         internal ToJsonString toJson (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new ToJsonString (arguments );
+                           return ToJson (  );
                         }
 /// <summary>
 /// <para>Convert a time object to a string in ISO 8601 format.</para>
@@ -6036,12 +6036,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public ToIso8601 ToIso8601 (  )
                         {
-                           return toIso8601 (  );
+                            Arguments arguments = new Arguments(this);
+                            return new ToIso8601 (arguments );
                         }
                         internal ToIso8601 toIso8601 (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new ToIso8601 (arguments );
+                           return ToIso8601 (  );
                         }
 /// <summary>
 /// <para>Convert a time object to its epoch time.</para>
@@ -6051,12 +6051,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public ToEpochTime ToEpochTime (  )
                         {
-                           return toEpochTime (  );
+                            Arguments arguments = new Arguments(this);
+                            return new ToEpochTime (arguments );
                         }
                         internal ToEpochTime toEpochTime (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new ToEpochTime (arguments );
+                           return ToEpochTime (  );
                         }
 /// <summary>
 /// <para>Return a new time object with a different timezone. While the time stays the same, the results returned by methods such as hours() will change since they take the timezone into account. The timezone argument has to be of the ISO 8601 format.</para>
@@ -6066,13 +6066,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public InTimezone InTimezone ( Object exprA )
                         {
-                           return inTimezone ( exprA );
-                        }
-                        internal InTimezone inTimezone ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new InTimezone (arguments );
+                        }
+                        internal InTimezone inTimezone ( Object exprA )
+                        {
+                           return InTimezone ( exprA );
                         }
 /// <summary>
 /// <para>Return if a time is between two other times (by default, inclusive for the start, exclusive for the end).</para>
@@ -6084,14 +6084,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public During During ( Object exprA, Object exprB )
                         {
-                           return during ( exprA, exprB );
-                        }
-                        internal During during ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new During (arguments );
+                        }
+                        internal During during ( Object exprA, Object exprB )
+                        {
+                           return During ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Return a new time object only based on the day, month and year (ie. the same day at 00:00).</para>
@@ -6103,12 +6103,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Date Date (  )
                         {
-                           return date (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Date (arguments );
                         }
                         internal Date date (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Date (arguments );
+                           return Date (  );
                         }
 /// <summary>
 /// <para>Return the number of seconds elapsed since the beginning of the day stored in the time object.</para>
@@ -6120,12 +6120,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public TimeOfDay TimeOfDay (  )
                         {
-                           return timeOfDay (  );
+                            Arguments arguments = new Arguments(this);
+                            return new TimeOfDay (arguments );
                         }
                         internal TimeOfDay timeOfDay (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new TimeOfDay (arguments );
+                           return TimeOfDay (  );
                         }
 /// <summary>
 /// <para>Return the timezone of the time object.</para>
@@ -6137,12 +6137,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Timezone Timezone (  )
                         {
-                           return timezone (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Timezone (arguments );
                         }
                         internal Timezone timezone (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Timezone (arguments );
+                           return Timezone (  );
                         }
 /// <summary>
 /// <para>Return the year of a time object.</para>
@@ -6154,12 +6154,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Year Year (  )
                         {
-                           return year (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Year (arguments );
                         }
                         internal Year year (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Year (arguments );
+                           return Year (  );
                         }
 /// <summary>
 /// <para>Return the month of a time object as a number between 1 and 12. For your convenience, the terms r.january, r.february etc. are defined and map to the appropriate integer.</para>
@@ -6171,12 +6171,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Month Month (  )
                         {
-                           return month (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Month (arguments );
                         }
                         internal Month month (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Month (arguments );
+                           return Month (  );
                         }
 /// <summary>
 /// <para>Return the day of a time object as a number between 1 and 31.</para>
@@ -6188,12 +6188,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Day Day (  )
                         {
-                           return day (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Day (arguments );
                         }
                         internal Day day (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Day (arguments );
+                           return Day (  );
                         }
 /// <summary>
 /// <para>Return the day of week of a time object as a number between 1 and 7 (following ISO 8601 standard). For your convenience, the terms r.monday, r.tuesday etc. are defined and map to the appropriate integer.</para>
@@ -6203,12 +6203,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public DayOfWeek DayOfWeek (  )
                         {
-                           return dayOfWeek (  );
+                            Arguments arguments = new Arguments(this);
+                            return new DayOfWeek (arguments );
                         }
                         internal DayOfWeek dayOfWeek (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new DayOfWeek (arguments );
+                           return DayOfWeek (  );
                         }
 /// <summary>
 /// <para>Return the day of the year of a time object as a number between 1 and 366 (following ISO 8601 standard).</para>
@@ -6220,12 +6220,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public DayOfYear DayOfYear (  )
                         {
-                           return dayOfYear (  );
+                            Arguments arguments = new Arguments(this);
+                            return new DayOfYear (arguments );
                         }
                         internal DayOfYear dayOfYear (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new DayOfYear (arguments );
+                           return DayOfYear (  );
                         }
 /// <summary>
 /// <para>Return the hour in a time object as a number between 0 and 23.</para>
@@ -6237,12 +6237,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Hours Hours (  )
                         {
-                           return hours (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Hours (arguments );
                         }
                         internal Hours hours (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Hours (arguments );
+                           return Hours (  );
                         }
 /// <summary>
 /// <para>Return the minute in a time object as a number between 0 and 59.</para>
@@ -6254,12 +6254,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Minutes Minutes (  )
                         {
-                           return minutes (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Minutes (arguments );
                         }
                         internal Minutes minutes (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Minutes (arguments );
+                           return Minutes (  );
                         }
 /// <summary>
 /// <para>Return the seconds in a time object as a number between 0 and 59.999 (double precision).</para>
@@ -6271,12 +6271,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Seconds Seconds (  )
                         {
-                           return seconds (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Seconds (arguments );
                         }
                         internal Seconds seconds (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Seconds (arguments );
+                           return Seconds (  );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6288,12 +6288,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group (  )
                         {
-                           return group (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Group (arguments );
                         }
                         internal Group group (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Group (arguments );
+                           return Group (  );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6305,13 +6305,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js )
                         {
-                           return group ( js );
-                        }
-                        internal Group group ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js )
+                        {
+                           return Group ( js );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6323,14 +6323,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA )
                         {
-                           return group ( js, jsA );
-                        }
-                        internal Group group ( Javascript js, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Javascript jsA )
+                        {
+                           return Group ( js, jsA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6342,15 +6342,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA, Javascript jsB )
                         {
-                           return group ( js, jsA, jsB );
-                        }
-                        internal Group group ( Javascript js, Javascript jsA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Javascript jsA, Javascript jsB )
+                        {
+                           return Group ( js, jsA, jsB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6362,16 +6362,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
                         {
-                           return group ( js, jsA, jsB, jsC );
-                        }
-                        internal Group group ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             arguments.CoerceAndAdd(jsC);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
+                        {
+                           return Group ( js, jsA, jsB, jsC );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6383,16 +6383,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
                         {
-                           return group ( js, jsA, jsB, exprA );
-                        }
-                        internal Group group ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             arguments.CoerceAndAdd(exprA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
+                        {
+                           return Group ( js, jsA, jsB, exprA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6404,15 +6404,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA, Object exprA )
                         {
-                           return group ( js, jsA, exprA );
-                        }
-                        internal Group group ( Javascript js, Javascript jsA, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Javascript jsA, Object exprA )
+                        {
+                           return Group ( js, jsA, exprA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6424,16 +6424,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
                         {
-                           return group ( js, jsA, exprA, jsB );
-                        }
-                        internal Group group ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
+                        {
+                           return Group ( js, jsA, exprA, jsB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6445,16 +6445,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA, Object exprA, Object exprB )
                         {
-                           return group ( js, jsA, exprA, exprB );
-                        }
-                        internal Group group ( Javascript js, Javascript jsA, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Javascript jsA, Object exprA, Object exprB )
+                        {
+                           return Group ( js, jsA, exprA, exprB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6466,14 +6466,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA )
                         {
-                           return group ( js, exprA );
-                        }
-                        internal Group group ( Javascript js, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Object exprA )
+                        {
+                           return Group ( js, exprA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6485,15 +6485,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA, Javascript jsA )
                         {
-                           return group ( js, exprA, jsA );
-                        }
-                        internal Group group ( Javascript js, Object exprA, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Object exprA, Javascript jsA )
+                        {
+                           return Group ( js, exprA, jsA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6505,16 +6505,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
                         {
-                           return group ( js, exprA, jsA, jsB );
-                        }
-                        internal Group group ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
+                        {
+                           return Group ( js, exprA, jsA, jsB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6526,16 +6526,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA, Javascript jsA, Object exprB )
                         {
-                           return group ( js, exprA, jsA, exprB );
-                        }
-                        internal Group group ( Javascript js, Object exprA, Javascript jsA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Object exprA, Javascript jsA, Object exprB )
+                        {
+                           return Group ( js, exprA, jsA, exprB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6547,15 +6547,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA, Object exprB )
                         {
-                           return group ( js, exprA, exprB );
-                        }
-                        internal Group group ( Javascript js, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Object exprA, Object exprB )
+                        {
+                           return Group ( js, exprA, exprB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6567,16 +6567,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA, Object exprB, Javascript jsA )
                         {
-                           return group ( js, exprA, exprB, jsA );
-                        }
-                        internal Group group ( Javascript js, Object exprA, Object exprB, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(jsA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Object exprA, Object exprB, Javascript jsA )
+                        {
+                           return Group ( js, exprA, exprB, jsA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6588,16 +6588,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA, Object exprB, Object exprC )
                         {
-                           return group ( js, exprA, exprB, exprC );
-                        }
-                        internal Group group ( Javascript js, Object exprA, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Javascript js, Object exprA, Object exprB, Object exprC )
+                        {
+                           return Group ( js, exprA, exprB, exprC );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6609,13 +6609,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA )
                         {
-                           return group ( exprA );
-                        }
-                        internal Group group ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA )
+                        {
+                           return Group ( exprA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6627,14 +6627,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js )
                         {
-                           return group ( exprA, js );
-                        }
-                        internal Group group ( Object exprA, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Javascript js )
+                        {
+                           return Group ( exprA, js );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6646,15 +6646,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js, Javascript jsA )
                         {
-                           return group ( exprA, js, jsA );
-                        }
-                        internal Group group ( Object exprA, Javascript js, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Javascript js, Javascript jsA )
+                        {
+                           return Group ( exprA, js, jsA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6666,16 +6666,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
                         {
-                           return group ( exprA, js, jsA, jsB );
-                        }
-                        internal Group group ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(jsB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
+                        {
+                           return Group ( exprA, js, jsA, jsB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6687,16 +6687,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js, Javascript jsA, Object exprB )
                         {
-                           return group ( exprA, js, jsA, exprB );
-                        }
-                        internal Group group ( Object exprA, Javascript js, Javascript jsA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             arguments.CoerceAndAdd(exprB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Javascript js, Javascript jsA, Object exprB )
+                        {
+                           return Group ( exprA, js, jsA, exprB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6708,15 +6708,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js, Object exprB )
                         {
-                           return group ( exprA, js, exprB );
-                        }
-                        internal Group group ( Object exprA, Javascript js, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Javascript js, Object exprB )
+                        {
+                           return Group ( exprA, js, exprB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6728,16 +6728,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js, Object exprB, Javascript jsA )
                         {
-                           return group ( exprA, js, exprB, jsA );
-                        }
-                        internal Group group ( Object exprA, Javascript js, Object exprB, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(jsA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Javascript js, Object exprB, Javascript jsA )
+                        {
+                           return Group ( exprA, js, exprB, jsA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6749,16 +6749,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js, Object exprB, Object exprC )
                         {
-                           return group ( exprA, js, exprB, exprC );
-                        }
-                        internal Group group ( Object exprA, Javascript js, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Javascript js, Object exprB, Object exprC )
+                        {
+                           return Group ( exprA, js, exprB, exprC );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6770,14 +6770,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB )
                         {
-                           return group ( exprA, exprB );
-                        }
-                        internal Group group ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Object exprB )
+                        {
+                           return Group ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6789,15 +6789,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Javascript js )
                         {
-                           return group ( exprA, exprB, js );
-                        }
-                        internal Group group ( Object exprA, Object exprB, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Object exprB, Javascript js )
+                        {
+                           return Group ( exprA, exprB, js );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6809,16 +6809,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Javascript js, Javascript jsA )
                         {
-                           return group ( exprA, exprB, js, jsA );
-                        }
-                        internal Group group ( Object exprA, Object exprB, Javascript js, Javascript jsA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(jsA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Object exprB, Javascript js, Javascript jsA )
+                        {
+                           return Group ( exprA, exprB, js, jsA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6830,16 +6830,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Javascript js, Object exprC )
                         {
-                           return group ( exprA, exprB, js, exprC );
-                        }
-                        internal Group group ( Object exprA, Object exprB, Javascript js, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(js);
                             arguments.CoerceAndAdd(exprC);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Object exprB, Javascript js, Object exprC )
+                        {
+                           return Group ( exprA, exprB, js, exprC );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6851,15 +6851,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Object exprC )
                         {
-                           return group ( exprA, exprB, exprC );
-                        }
-                        internal Group group ( Object exprA, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Object exprB, Object exprC )
+                        {
+                           return Group ( exprA, exprB, exprC );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6871,16 +6871,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Object exprC, Javascript js )
                         {
-                           return group ( exprA, exprB, exprC, js );
-                        }
-                        internal Group group ( Object exprA, Object exprB, Object exprC, Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(js);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Object exprB, Object exprC, Javascript js )
+                        {
+                           return Group ( exprA, exprB, exprC, js );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6892,16 +6892,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Object exprC, Object exprD )
                         {
-                           return group ( exprA, exprB, exprC, exprD );
-                        }
-                        internal Group group ( Object exprA, Object exprB, Object exprC, Object exprD )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(exprD);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Object exprB, Object exprC, Object exprD )
+                        {
+                           return Group ( exprA, exprB, exprC, exprD );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6913,16 +6913,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
                         {
-                           return group ( exprA, exprB, exprC, func1 );
-                        }
-                        internal Group group ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             arguments.CoerceAndAdd(func1);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
+                        {
+                           return Group ( exprA, exprB, exprC, func1 );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6934,15 +6934,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, ReqlFunction1 func1 )
                         {
-                           return group ( exprA, exprB, func1 );
-                        }
-                        internal Group group ( Object exprA, Object exprB, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Object exprB, ReqlFunction1 func1 )
+                        {
+                           return Group ( exprA, exprB, func1 );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6954,16 +6954,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
                         {
-                           return group ( exprA, exprB, func1, exprC );
-                        }
-                        internal Group group ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprC);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
+                        {
+                           return Group ( exprA, exprB, func1, exprC );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6975,16 +6975,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
-                           return group ( exprA, exprB, func1, func1A );
-                        }
-                        internal Group group ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                           return Group ( exprA, exprB, func1, func1A );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -6996,14 +6996,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1 )
                         {
-                           return group ( exprA, func1 );
-                        }
-                        internal Group group ( Object exprA, ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, ReqlFunction1 func1 )
+                        {
+                           return Group ( exprA, func1 );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7015,15 +7015,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1, Object exprB )
                         {
-                           return group ( exprA, func1, exprB );
-                        }
-                        internal Group group ( Object exprA, ReqlFunction1 func1, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, ReqlFunction1 func1, Object exprB )
+                        {
+                           return Group ( exprA, func1, exprB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7035,16 +7035,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
                         {
-                           return group ( exprA, func1, exprB, exprC );
-                        }
-                        internal Group group ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
+                        {
+                           return Group ( exprA, func1, exprB, exprC );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7056,16 +7056,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
                         {
-                           return group ( exprA, func1, exprB, func1A );
-                        }
-                        internal Group group ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1A);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
+                        {
+                           return Group ( exprA, func1, exprB, func1A );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7077,15 +7077,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
-                           return group ( exprA, func1, func1A );
-                        }
-                        internal Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                           return Group ( exprA, func1, func1A );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7097,16 +7097,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
                         {
-                           return group ( exprA, func1, func1A, exprB );
-                        }
-                        internal Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
+                        {
+                           return Group ( exprA, func1, func1A, exprB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7118,16 +7118,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
-                           return group ( exprA, func1, func1A, func1B );
-                        }
-                        internal Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             return new Group (arguments );
+                        }
+                        internal Group group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                           return Group ( exprA, func1, func1A, func1B );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7139,13 +7139,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1 )
                         {
-                           return group ( func1 );
-                        }
-                        internal Group group ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1 )
+                        {
+                           return Group ( func1 );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7157,14 +7157,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA )
                         {
-                           return group ( func1, exprA );
-                        }
-                        internal Group group ( ReqlFunction1 func1, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, Object exprA )
+                        {
+                           return Group ( func1, exprA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7176,15 +7176,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA, Object exprB )
                         {
-                           return group ( func1, exprA, exprB );
-                        }
-                        internal Group group ( ReqlFunction1 func1, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, Object exprA, Object exprB )
+                        {
+                           return Group ( func1, exprA, exprB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7196,16 +7196,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
                         {
-                           return group ( func1, exprA, exprB, exprC );
-                        }
-                        internal Group group ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(exprC);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
+                        {
+                           return Group ( func1, exprA, exprB, exprC );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7217,16 +7217,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
                         {
-                           return group ( func1, exprA, exprB, func1A );
-                        }
-                        internal Group group ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             arguments.CoerceAndAdd(func1A);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
+                        {
+                           return Group ( func1, exprA, exprB, func1A );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7238,15 +7238,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
                         {
-                           return group ( func1, exprA, func1A );
-                        }
-                        internal Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1A);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
+                        {
+                           return Group ( func1, exprA, func1A );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7258,16 +7258,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
                         {
-                           return group ( func1, exprA, func1A, exprB );
-                        }
-                        internal Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
+                        {
+                           return Group ( func1, exprA, func1A, exprB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7279,16 +7279,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
-                           return group ( func1, exprA, func1A, func1B );
-                        }
-                        internal Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                           return Group ( func1, exprA, func1A, func1B );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7300,14 +7300,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
-                           return group ( func1, func1A );
-                        }
-                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A )
+                        {
+                           return Group ( func1, func1A );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7319,15 +7319,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
                         {
-                           return group ( func1, func1A, exprA );
-                        }
-                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
+                        {
+                           return Group ( func1, func1A, exprA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7339,16 +7339,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
                         {
-                           return group ( func1, func1A, exprA, exprB );
-                        }
-                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
+                        {
+                           return Group ( func1, func1A, exprA, exprB );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7360,16 +7360,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
                         {
-                           return group ( func1, func1A, exprA, func1B );
-                        }
-                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(func1B);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
+                        {
+                           return Group ( func1, func1A, exprA, func1B );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7381,15 +7381,15 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
-                           return group ( func1, func1A, func1B );
-                        }
-                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
+                        {
+                           return Group ( func1, func1A, func1B );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7401,16 +7401,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
                         {
-                           return group ( func1, func1A, func1B, exprA );
-                        }
-                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             arguments.CoerceAndAdd(exprA);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
+                        {
+                           return Group ( func1, func1A, func1B, exprA );
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
@@ -7422,16 +7422,16 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
                         {
-                           return group ( func1, func1A, func1B, func1C );
-                        }
-                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             arguments.CoerceAndAdd(func1A);
                             arguments.CoerceAndAdd(func1B);
                             arguments.CoerceAndAdd(func1C);
                             return new Group (arguments );
+                        }
+                        internal Group group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
+                        {
+                           return Group ( func1, func1A, func1B, func1C );
                         }
 /// <summary>
 /// <para>Sums all the elements of a sequence.  If called with a field name,
@@ -7446,12 +7446,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Sum Sum (  )
                         {
-                           return sum (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Sum (arguments );
                         }
                         internal Sum sum (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Sum (arguments );
+                           return Sum (  );
                         }
 /// <summary>
 /// <para>Sums all the elements of a sequence.  If called with a field name,
@@ -7466,13 +7466,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Sum Sum ( Javascript js )
                         {
-                           return sum ( js );
-                        }
-                        internal Sum sum ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Sum (arguments );
+                        }
+                        internal Sum sum ( Javascript js )
+                        {
+                           return Sum ( js );
                         }
 /// <summary>
 /// <para>Sums all the elements of a sequence.  If called with a field name,
@@ -7487,13 +7487,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Sum Sum ( Object exprA )
                         {
-                           return sum ( exprA );
-                        }
-                        internal Sum sum ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Sum (arguments );
+                        }
+                        internal Sum sum ( Object exprA )
+                        {
+                           return Sum ( exprA );
                         }
 /// <summary>
 /// <para>Sums all the elements of a sequence.  If called with a field name,
@@ -7508,13 +7508,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Sum Sum ( ReqlFunction1 func1 )
                         {
-                           return sum ( func1 );
-                        }
-                        internal Sum sum ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Sum (arguments );
+                        }
+                        internal Sum sum ( ReqlFunction1 func1 )
+                        {
+                           return Sum ( func1 );
                         }
 /// <summary>
 /// <para>Averages all the elements of a sequence.  If called with a field name,
@@ -7529,12 +7529,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Avg Avg (  )
                         {
-                           return avg (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Avg (arguments );
                         }
                         internal Avg avg (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Avg (arguments );
+                           return Avg (  );
                         }
 /// <summary>
 /// <para>Averages all the elements of a sequence.  If called with a field name,
@@ -7549,13 +7549,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Avg Avg ( Javascript js )
                         {
-                           return avg ( js );
-                        }
-                        internal Avg avg ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Avg (arguments );
+                        }
+                        internal Avg avg ( Javascript js )
+                        {
+                           return Avg ( js );
                         }
 /// <summary>
 /// <para>Averages all the elements of a sequence.  If called with a field name,
@@ -7570,13 +7570,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Avg Avg ( Object exprA )
                         {
-                           return avg ( exprA );
-                        }
-                        internal Avg avg ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Avg (arguments );
+                        }
+                        internal Avg avg ( Object exprA )
+                        {
+                           return Avg ( exprA );
                         }
 /// <summary>
 /// <para>Averages all the elements of a sequence.  If called with a field name,
@@ -7591,13 +7591,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Avg Avg ( ReqlFunction1 func1 )
                         {
-                           return avg ( func1 );
-                        }
-                        internal Avg avg ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Avg (arguments );
+                        }
+                        internal Avg avg ( ReqlFunction1 func1 )
+                        {
+                           return Avg ( func1 );
                         }
 /// <summary>
 /// <para>Finds the minimum element of a sequence.</para>
@@ -7607,12 +7607,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Min Min (  )
                         {
-                           return min (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Min (arguments );
                         }
                         internal Min min (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Min (arguments );
+                           return Min (  );
                         }
 /// <summary>
 /// <para>Finds the minimum element of a sequence.</para>
@@ -7622,13 +7622,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Min Min ( Javascript js )
                         {
-                           return min ( js );
-                        }
-                        internal Min min ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Min (arguments );
+                        }
+                        internal Min min ( Javascript js )
+                        {
+                           return Min ( js );
                         }
 /// <summary>
 /// <para>Finds the minimum element of a sequence.</para>
@@ -7638,13 +7638,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Min Min ( Object exprA )
                         {
-                           return min ( exprA );
-                        }
-                        internal Min min ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Min (arguments );
+                        }
+                        internal Min min ( Object exprA )
+                        {
+                           return Min ( exprA );
                         }
 /// <summary>
 /// <para>Finds the minimum element of a sequence.</para>
@@ -7654,13 +7654,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Min Min ( ReqlFunction1 func1 )
                         {
-                           return min ( func1 );
-                        }
-                        internal Min min ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Min (arguments );
+                        }
+                        internal Min min ( ReqlFunction1 func1 )
+                        {
+                           return Min ( func1 );
                         }
 /// <summary>
 /// <para>Finds the maximum element of a sequence.</para>
@@ -7670,12 +7670,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Max Max (  )
                         {
-                           return max (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Max (arguments );
                         }
                         internal Max max (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Max (arguments );
+                           return Max (  );
                         }
 /// <summary>
 /// <para>Finds the maximum element of a sequence.</para>
@@ -7685,13 +7685,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Max Max ( Javascript js )
                         {
-                           return max ( js );
-                        }
-                        internal Max max ( Javascript js )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(js);
                             return new Max (arguments );
+                        }
+                        internal Max max ( Javascript js )
+                        {
+                           return Max ( js );
                         }
 /// <summary>
 /// <para>Finds the maximum element of a sequence.</para>
@@ -7701,13 +7701,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Max Max ( Object exprA )
                         {
-                           return max ( exprA );
-                        }
-                        internal Max max ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Max (arguments );
+                        }
+                        internal Max max ( Object exprA )
+                        {
+                           return Max ( exprA );
                         }
 /// <summary>
 /// <para>Finds the maximum element of a sequence.</para>
@@ -7717,13 +7717,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Max Max ( ReqlFunction1 func1 )
                         {
-                           return max ( func1 );
-                        }
-                        internal Max max ( ReqlFunction1 func1 )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(func1);
                             return new Max (arguments );
+                        }
+                        internal Max max ( ReqlFunction1 func1 )
+                        {
+                           return Max ( func1 );
                         }
 /// <summary>
 /// <para>Splits a string into substrings.  Splits on whitespace when called
@@ -7741,12 +7741,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Split Split (  )
                         {
-                           return split (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Split (arguments );
                         }
                         internal Split split (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Split (arguments );
+                           return Split (  );
                         }
 /// <summary>
 /// <para>Splits a string into substrings.  Splits on whitespace when called
@@ -7764,13 +7764,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Split Split ( Object exprA )
                         {
-                           return split ( exprA );
-                        }
-                        internal Split split ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Split (arguments );
+                        }
+                        internal Split split ( Object exprA )
+                        {
+                           return Split ( exprA );
                         }
 /// <summary>
 /// <para>Splits a string into substrings.  Splits on whitespace when called
@@ -7788,14 +7788,14 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Split Split ( Object exprA, Object exprB )
                         {
-                           return split ( exprA, exprB );
-                        }
-                        internal Split split ( Object exprA, Object exprB )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAdd(exprB);
                             return new Split (arguments );
+                        }
+                        internal Split split ( Object exprA, Object exprB )
+                        {
+                           return Split ( exprA, exprB );
                         }
 /// <summary>
 /// <para>Takes a grouped stream or grouped data and turns it into an array of
@@ -7812,12 +7812,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Ungroup Ungroup (  )
                         {
-                           return ungroup (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Ungroup (arguments );
                         }
                         internal Ungroup ungroup (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Ungroup (arguments );
+                           return Ungroup (  );
                         }
 /// <summary>
 /// <para>Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.</para>
@@ -7829,12 +7829,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Changes Changes (  )
                         {
-                           return changes (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Changes (arguments );
                         }
                         internal Changes changes (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Changes (arguments );
+                           return Changes (  );
                         }
 /// <summary>
 /// <para>Convert a ReQL geometry object to a [GeoJSON][] object.</para>
@@ -7849,12 +7849,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public ToGeojson ToGeojson (  )
                         {
-                           return toGeojson (  );
+                            Arguments arguments = new Arguments(this);
+                            return new ToGeojson (arguments );
                         }
                         internal ToGeojson toGeojson (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new ToGeojson (arguments );
+                           return ToGeojson (  );
                         }
 /// <summary>
 /// <para>Compute the distance between a point and another geometry object. At least one of the geometry objects specified must be a point.</para>
@@ -7868,13 +7868,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Distance Distance ( Object exprA )
                         {
-                           return distance ( exprA );
-                        }
-                        internal Distance distance ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Distance (arguments );
+                        }
+                        internal Distance distance ( Object exprA )
+                        {
+                           return Distance ( exprA );
                         }
 /// <summary>
 /// <para>Tests whether two geometry objects intersect with one another. When applied to a sequence of geometry objects, <code>intersects</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that intersect with the argument.</para>
@@ -7888,13 +7888,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Intersects Intersects ( Object exprA )
                         {
-                           return intersects ( exprA );
-                        }
-                        internal Intersects intersects ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Intersects (arguments );
+                        }
+                        internal Intersects intersects ( Object exprA )
+                        {
+                           return Intersects ( exprA );
                         }
 /// <summary>
 /// <para>Tests whether a geometry object is completely contained within another. When applied to a sequence of geometry objects, <code>includes</code> acts as a <a href="/api/javascript/filter">filter</a>, returning a sequence of objects from the sequence that include the argument.</para>
@@ -7908,13 +7908,13 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Includes Includes ( Object exprA )
                         {
-                           return includes ( exprA );
-                        }
-                        internal Includes includes ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new Includes (arguments );
+                        }
+                        internal Includes includes ( Object exprA )
+                        {
+                           return Includes ( exprA );
                         }
 /// <summary>
 /// <para>Convert a Line object into a Polygon object. If the last point does not specify the same coordinates as the first point, <code>polygon</code> will close the polygon by connecting them.</para>
@@ -7936,12 +7936,12 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public Fill Fill (  )
                         {
-                           return fill (  );
+                            Arguments arguments = new Arguments(this);
+                            return new Fill (arguments );
                         }
                         internal Fill fill (  )
                         {
-                            Arguments arguments = new Arguments(this);
-                            return new Fill (arguments );
+                           return Fill (  );
                         }
 /// <summary>
 /// <para>Use <code>polygon2</code> to "punch out" a hole in <code>polygon1</code>. <code>polygon2</code> must be completely contained within <code>polygon1</code> and must have no holes itself (it must not be the output of <code>polygonSub</code> itself).</para>
@@ -7963,22 +7963,22 @@ namespace RethinkDb.Driver.Ast {
 /// </code></example>
                         public PolygonSub PolygonSub ( Object exprA )
                         {
-                           return polygonSub ( exprA );
-                        }
-                        internal PolygonSub polygonSub ( Object exprA )
-                        {
                             Arguments arguments = new Arguments(this);
                             arguments.CoerceAndAdd(exprA);
                             return new PolygonSub (arguments );
                         }
-                        public Values Values (  )
+                        internal PolygonSub polygonSub ( Object exprA )
                         {
-                           return values (  );
+                           return PolygonSub ( exprA );
                         }
-                        internal Values values (  )
+                        public Values Values (  )
                         {
                             Arguments arguments = new Arguments(this);
                             return new Values (arguments );
+                        }
+                        internal Values values (  )
+                        {
+                           return Values (  );
                         }
 
     

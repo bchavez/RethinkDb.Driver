@@ -169,7 +169,7 @@ namespace RethinkDb.Driver.ReGrid
             var result = await bucket.fileTable.Get(fileId)
                 .Update(
                     R.HashMap(FileInfo.StatusJsonName, Status.Deleted)
-                        .with(FileInfo.DeletedDateJsonName, DateTimeOffset.UtcNow)
+                        .With(FileInfo.DeletedDateJsonName, DateTimeOffset.UtcNow)
                 )[deleteOpts]
                 .RunResultAsync(bucket.conn)
                 .ConfigureAwait(false);

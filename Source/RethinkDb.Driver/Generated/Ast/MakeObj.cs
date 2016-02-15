@@ -70,10 +70,10 @@ namespace RethinkDb.Driver.Ast {
 
     
         internal static MakeObj fromMap(Dictionary<string, ReqlAst> map){
-            return new MakeObj(OptArgs.fromMap(map));
+            return new MakeObj(OptArgs.FromMap(map));
         }
         public static MakeObj FromMap(Dictionary<string, ReqlAst> map){
-            return fromMap(map);
+            return FromMap(map);
         }
 
 

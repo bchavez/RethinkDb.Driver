@@ -14,7 +14,7 @@ namespace RethinkDb.Driver.Model
     /// <typeparam name="TElement">The VALUE type</typeparam>
     public class GroupedResult<TKey, TElement> : IGrouping<TKey, TElement>
     {
-        internal GroupedResult(JToken key, JArray items)
+        public GroupedResult(JToken key, JArray items)
         {
             this.Key = key.ToObject<TKey>(Converter.Serializer);
             this.Items = items.ToObject<List<TElement>>(Converter.Serializer);

@@ -378,12 +378,12 @@ namespace RethinkDb.Driver.Net
             {
                 // Only override the db global arg if the user hasn't
                 // specified one already and one is specified on the connection
-                globalOpts.with("db", this.dbname);
+                globalOpts.With("db", this.dbname);
             }
             if (globalOpts?.ContainsKey("db") == true)
             {
                 // The db arg must be wrapped in a db ast object
-                globalOpts.with("db", new Db(Arguments.Make(globalOpts["db"])));
+                globalOpts.With("db", new Db(Arguments.Make(globalOpts["db"])));
             }
         }
 
@@ -419,7 +419,7 @@ namespace RethinkDb.Driver.Net
         {
             var opts = OptArgs.FromAnonType(globalOpts);
             SetDefaultDb(opts);
-            opts.with("noreply", true);
+            opts.With("noreply", true);
             RunQueryNoReply(Query.Start(NewToken(), term, opts));
         }
 

@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Net.Configuration;
-using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using RethinkDb.Driver.Ast;
-using RethinkDb.Driver.Model;
-using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.ReGrid

@@ -33,9 +33,9 @@ namespace RethinkDb.Driver.ReGrid.Tests
             chunkTableName = "fs_chunks";
         }
 
-        [SetUp]
-        public void BeforeEachTest()
+        public override void BeforeEachTest()
         {
+            base.BeforeEachTest();
             //make sure we get a new conn on each test.
             bucket = new Bucket(conn, DbName);
         }

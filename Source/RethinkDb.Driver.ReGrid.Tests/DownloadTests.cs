@@ -93,12 +93,13 @@ namespace RethinkDb.Driver.ReGrid.Tests
         {
             ClearBucket();
 
-            var id = bucket.Upload("foobar.mp3", TestBytes.TenMB);
+            var id = bucket.Upload("foobar.mp3", TestBytes.TwoMB);
             id.Dump();
 
             Console.WriteLine(">>>> UPLOAD DONE STARTING DOWNLOAD");
-            using(var cts = new CancellationTokenSource(TimeSpan.FromSeconds(2.5)))
+            using(var cts = new CancellationTokenSource())
             {
+                cts.Cancel();
                 var token = cts.Token;
                 Func<Task> action = async () =>
                     {

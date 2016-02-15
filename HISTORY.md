@@ -1,7 +1,13 @@
+## v2.2.6
+* Roll-up Release for Full .NET Framework since v2.2.5.
+* CoreCLR users please continue using latest beta release until CoreCLR is RTM.
+
 ## v2.2.6-beta-1
-* Cleaned up APIs.
+* All public API are squeaky clean.
+* Added more more convenience CancellationToken Run*().
 * Fixed Cursor.IsFeed bug always false.
 * Added more XML docs.
+* Inverted the AST generation for faster query composition.
 
 ## v2.2.5
 * Roll-up Release for Full .NET Framework since v2.2.4.

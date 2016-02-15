@@ -10,7 +10,6 @@ namespace RethinkDb.Driver.ReGrid.Tests
         [Test]
         public void issue_28_should_be_able_to_download_on_windows_preview()
         {
-            var dbname = "query";
             Bucket bucket = new Bucket(conn, "query", "file");
             bucket.Purge();
             bucket.Mount();

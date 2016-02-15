@@ -74,7 +74,7 @@ namespace RethinkDb.Driver.Tests
         }
 
         [SetUp]
-        public void BeforeEachTest()
+        public  virtual void BeforeEachTest()
         {
             EnsureConnection();
 

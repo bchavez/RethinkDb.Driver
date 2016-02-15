@@ -13,9 +13,9 @@ namespace RethinkDb.Driver.ReGrid.Tests
     [TestFixture]
     public class UploadTests : BucketTest
     {
-        [SetUp]
-        public void BeforeEachTest()
+        public override void BeforeEachTest()
         {
+            base.BeforeEachTest();
             //make sure we get a new conn on each test.
             bucket.Purge();
             bucket.Mount(); // ensure we have a clear table on each upload.

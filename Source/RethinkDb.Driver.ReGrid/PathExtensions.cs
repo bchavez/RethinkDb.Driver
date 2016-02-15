@@ -2,7 +2,7 @@ using System.IO;
 
 namespace RethinkDb.Driver.ReGrid
 {
-    public static class PathExtensions
+    internal static class PathExtensions
     {
         public static string SafePath(this string filename)
         {

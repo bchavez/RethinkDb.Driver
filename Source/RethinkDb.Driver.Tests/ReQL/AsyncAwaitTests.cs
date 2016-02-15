@@ -52,7 +52,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             using(var cancelSource = new CancellationTokenSource(TimeSpan.FromSeconds(1.5)))
             {
                 var token = cancelSource.Token;
-                Func<Task> action = async () => await query.RunAsync(conn, cancelToken: token);
+                Func<Task> action = async () => await query.RunAsync(conn, token);
                 action.ShouldThrow<TaskCanceledException>();
             }
         }

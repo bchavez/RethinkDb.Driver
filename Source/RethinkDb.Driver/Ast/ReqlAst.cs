@@ -83,6 +83,20 @@ namespace RethinkDb.Driver.Ast
         {
             return conn.RunAsync<T>(this, runOpts, cancelToken);
         }
+        /// <summary>
+        /// Runs the query on the connection. If you know the response type
+        /// of your query, T (SUCCESS_ATOM) or Cursor[T] (SUCCESS_SEQUENCE or SUCCESS_PARTIAL)
+        /// it's recommended to use `.runAtom` or `.runCursor` helpers
+        /// as they offer a slight edge in performance since both bypass the 
+        /// dynamic language runtime execution engine.
+        /// </summary>
+        /// <returns>Returns T or Cursor[T]</returns>
+        public virtual Task<dynamic> RunAsync<T>(IConnection conn, CancellationToken cancelToken)
+        {
+            return RunAsync<T>(conn, null, cancelToken);
+        }
+
+
 
         /// <summary>
         /// Runs the query on the connection. If you know the response type
@@ -99,6 +113,22 @@ namespace RethinkDb.Driver.Ast
         {
             return RunAsync<dynamic>(conn, runOpts, cancelToken);
         }
+        /// <summary>
+        /// Runs the query on the connection. If you know the response type
+        /// of your query, T (SUCCESS_ATOM) or Cursor[T] (SUCCESS_SEQUENCE or SUCCESS_PARTIAL)
+        /// it's recommended to use `.runAtom` or `.runCursor` helpers
+        /// as they offer a slight edge in performance since both bypass the 
+        /// dynamic language runtime execution engine.
+        /// </summary>
+        /// <returns>Returns T or Cursor[T]</returns>
+        /// /// <param name="conn">connection</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
+        public virtual Task<dynamic> RunAsync(IConnection conn, CancellationToken cancelToken)
+        {
+            return RunAsync(conn, null, cancelToken);
+        }
+
+
 
         /// <summary>
         /// Runs the query on the connection. If you know the response type
@@ -157,6 +187,19 @@ namespace RethinkDb.Driver.Ast
         {
             return conn.RunCursorAsync<T>(this, runOpts, cancelToken);
         }
+        /// <summary>
+        /// Use this method if you're expecting a cursor (SUCCESS_SEQUENCE or SUCCESS_PARTIAL) response
+        /// from your query. This method offers a slight edge in performance without the need for the
+        /// dynamic language runtime like the run() method uses.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="conn">connection</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
+        /// <returns>A Cursor</returns>
+        public virtual Task<Cursor<T>> RunCursorAsync<T>(IConnection conn, CancellationToken cancelToken)
+        {
+            return RunCursorAsync<T>(conn, null, cancelToken);
+        }
 
         /// <summary>
         /// Use this method if you're expecting a cursor (SUCCESS_SEQUENCE or SUCCESS_PARTIAL) response
@@ -184,6 +227,17 @@ namespace RethinkDb.Driver.Ast
         {
             return conn.RunAtomAsync<T>(this, runOpts, cancelToken);
         }
+        /// <summary>
+        /// Use this method if you're expecting SUCCESS_ATOM response from your query. This
+        /// method offers a slight edge in performance without the need for the
+        /// dynamic language runtime like the run() method uses.
+        /// </summary>
+        /// <param name="conn">connection</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
+        public virtual Task<T> RunAtomAsync<T>(IConnection conn, CancellationToken cancelToken )
+        {
+            return RunAtomAsync<T>(conn, null, cancelToken);
+        }
 
         /// <summary>
         /// Use this method if you're expecting SUCCESS_ATOM response from your query. This
@@ -208,6 +262,17 @@ namespace RethinkDb.Driver.Ast
         public virtual Task<T> RunResultAsync<T>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
             return conn.RunResultAsync<T>(this, runOpts, cancelToken);
+        }
+        /// <summary>
+        /// Use this method if you're expecting SUCCESS_ATOM response from your query. This
+        /// method offers a slight edge in performance without the need for the
+        /// dynamic language runtime like the run() method uses.
+        /// </summary>
+        /// <param name="conn">connection</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
+        public virtual Task<T> RunResultAsync<T>(IConnection conn, CancellationToken cancelToken)
+        {
+            return RunResultAsync<T>(conn, null, cancelToken);
         }
 
         /// <summary>
@@ -238,6 +303,16 @@ namespace RethinkDb.Driver.Ast
         {
             return conn.RunAtomAsync<Result>(this, runOpts, cancelToken);
         }
+        /// <summary>
+        /// Helper shortcut for DML type of queries that returns # of inserts, deletes, errors.
+        /// This method bypasses the dynamic language runtime for extra performance.
+        /// </summary>
+        /// <param name="conn">connection</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
+        public virtual Task<Result> RunResultAsync(IConnection conn, CancellationToken cancelToken)
+        {
+            return RunResultAsync(conn, null, cancelToken);
+        }
 
         /// <summary>
         /// Helper shortcut for DML type of queries that returns # of inserts, deletes, errors.
@@ -261,6 +336,17 @@ namespace RethinkDb.Driver.Ast
         public virtual Task<Cursor<Change<T>>> RunChangesAsync<T>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
         {
             return conn.RunCursorAsync<Change<T>>(this, runOpts, cancelToken);
+        }
+        /// <summary>
+        /// Helper shortcut for change feeds, use if your query is expecting an infinite changes() stream.
+        /// This method bypasses the dynamic language runtime for extra performance.
+        /// </summary>
+        /// <typeparam name="T">The document type of new/old value</typeparam>
+        /// <param name="conn">connection</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
+        public virtual Task<Cursor<Change<T>>> RunChangesAsync<T>(IConnection conn, CancellationToken cancelToken )
+        {
+            return RunChangesAsync<T>(conn, null, cancelToken);
         }
 
         /// <summary>
@@ -292,6 +378,19 @@ namespace RethinkDb.Driver.Ast
             var tsk = await RunAtomAsync<GroupedResultSet<TKey, TItem>>(conn, runOpts, cancelToken).ConfigureAwait(false);
             return tsk;
         }
+        /// <summary>
+        /// Helper shortcut for grouping queries.
+        /// This method bypasses the dynamic language runtime for extra performance.
+        /// </summary>
+        /// <typeparam name="TKey">The key type of how items are grouped</typeparam>
+        /// <typeparam name="TItem">The type of items</typeparam>
+        /// <param name="conn">connection</param>
+        /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
+        public virtual Task<IEnumerable<GroupedResult<TKey, TItem>>> RunGroupingAsync<TKey, TItem>(IConnection conn, CancellationToken cancelToken)
+        {
+            return RunGroupingAsync<TKey, TItem>(conn, null, cancelToken);
+        }
+
         /// <summary>
         /// Helper shortcut for grouping queries.
         /// This method bypasses the dynamic language runtime for extra performance.

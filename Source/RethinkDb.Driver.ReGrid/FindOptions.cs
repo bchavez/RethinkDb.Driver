@@ -9,12 +9,12 @@ namespace RethinkDb.Driver.ReGrid
     public class FindOptions
     {
         // fields
-        private int? _batchSize;
-        private int? _limit;
-        private TimeSpan? _maxTime;
-        private bool? _noCursorTimeout;
-        private int? _skip;
-        private ReqlExpr _sort;
+        private int? batchSize;
+        private int? limit;
+        private TimeSpan? maxTime;
+        private bool? noCursorTimeout;
+        private int? skip;
+        private ReqlExpr sort;
 
         // properties
         /// <summary>
@@ -25,8 +25,8 @@ namespace RethinkDb.Driver.ReGrid
         /// </value>
         public int? BatchSize
         {
-            get { return _batchSize; }
-            set { _batchSize = Ensure.IsNullOrGreaterThanZero(value, nameof(value)); }
+            get { return batchSize; }
+            set { batchSize = Ensure.IsNullOrGreaterThanZero(value, nameof(value)); }
         }
 
         /// <summary>
@@ -37,8 +37,8 @@ namespace RethinkDb.Driver.ReGrid
         /// </value>
         public int? Limit
         {
-            get { return _limit; }
-            set { _limit = value; }
+            get { return limit; }
+            set { limit = value; }
         }
 
         /// <summary>
@@ -49,8 +49,8 @@ namespace RethinkDb.Driver.ReGrid
         /// </value>
         public TimeSpan? MaxTime
         {
-            get { return _maxTime; }
-            set { _maxTime = Ensure.IsNullOrGreaterThanZero(value, nameof(value)); }
+            get { return maxTime; }
+            set { maxTime = Ensure.IsNullOrGreaterThanZero(value, nameof(value)); }
         }
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace RethinkDb.Driver.ReGrid
         /// </value>
         public bool? NoCursorTimeout
         {
-            get { return _noCursorTimeout; }
-            set { _noCursorTimeout = value; }
+            get { return noCursorTimeout; }
+            set { noCursorTimeout = value; }
         }
 
         /// <summary>
@@ -73,8 +73,8 @@ namespace RethinkDb.Driver.ReGrid
         /// </value>
         public int? Skip
         {
-            get { return _skip; }
-            set { _skip = Ensure.IsNullOrGreaterThanOrEqualToZero(value, nameof(value)); }
+            get { return skip; }
+            set { skip = Ensure.IsNullOrGreaterThanOrEqualToZero(value, nameof(value)); }
         }
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace RethinkDb.Driver.ReGrid
         /// </value>
         public ReqlExpr Sort
         {
-            get { return _sort; }
-            set { _sort = value; }
+            get { return sort; }
+            set { sort = value; }
         }
     }
 }

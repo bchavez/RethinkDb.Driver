@@ -73,11 +73,7 @@ namespace RethinkDb.Driver.Ast
                 queryArr.Add(ReqlAst.BuildOptarg(GlobalOptions));
             }
 
-            string queryJson = queryArr.ToString(Formatting.None);
-
-            Log.Trace($"JSON Send: Token: {Token}, JSON: {queryJson}");
-
-            return queryJson;
+            return queryArr.ToString(Formatting.None);
         }
     }
 }

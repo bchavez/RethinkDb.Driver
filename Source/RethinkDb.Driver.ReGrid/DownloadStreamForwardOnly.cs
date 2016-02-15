@@ -14,8 +14,8 @@ namespace RethinkDb.Driver.ReGrid
     internal class DownloadStreamForwardOnly : DownloadStream
     {
         private long position;
-        private int lastChunkNumber;
-        private int lastChunkSize;
+        private readonly int lastChunkNumber;
+        private readonly int lastChunkSize;
         private long batchPosition;
         private long nextChunkNumber;
 
@@ -56,10 +56,10 @@ namespace RethinkDb.Driver.ReGrid
         }
 #endif
 
-        public override Task CloseAsync()
+        public override Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
         {
             CloseHelper();
-            return base.CloseAsync();
+            return base.CloseAsync(cancelToken);
         }
 
 
@@ -75,13 +75,13 @@ namespace RethinkDb.Driver.ReGrid
             return ReadAsync(buffer, offset, count).WaitSync();
         }
 
-        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancelToken)
         {
             ThrowIfDisposed();
             var bytesRead = 0;
             while (count > 0 && position < FileInfo.Length)
             {
-                var segment = await GetSegmentAsync().ConfigureAwait(false);
+                var segment = await GetSegmentAsync(cancelToken).ConfigureAwait(false);
 
                 var partialCount = Math.Min(count, segment.Count);
                 Buffer.BlockCopy(segment.Array, segment.Offset, buffer, offset, partialCount);
@@ -96,24 +96,24 @@ namespace RethinkDb.Driver.ReGrid
         }
 
 
-        private async Task<ArraySegment<byte>> GetSegmentAsync()
+        private async Task<ArraySegment<byte>> GetSegmentAsync(CancellationToken cancelToken)
         {
             var batchIndex = (int)((position - batchPosition) / FileInfo.ChunkSizeBytes);
 
             if (cursor == null)
             {
-                await GetFirstBatchAsync().ConfigureAwait(false);
+                await GetFirstBatchAsync(cancelToken).ConfigureAwait(false);
             }
             else if (batchIndex == batch.Count)
             {
-                await GetNextBatchAsync().ConfigureAwait(false);
+                await GetNextBatchAsync(cancelToken).ConfigureAwait(false);
                 batchIndex = 0;
             }
 
             return GetSegmentHelper(batchIndex);
         }
 
-        private async Task GetFirstBatchAsync()
+        private async Task GetFirstBatchAsync(CancellationToken cancelToken)
         {
             //var index = new {index = this.chunkIndexName};
             //this.cursor = await chunkTable.between(r.array(this.FileInfo.Id, r.minval()), r.array(this.FileInfo.Id, r.maxval()))[index]
@@ -121,15 +121,15 @@ namespace RethinkDb.Driver.ReGrid
             //    .runCursorAsync<Chunk>(conn)
             //    .ConfigureAwait(false);
 
-            this.cursor = await GridUtility.EnumerateChunksAsync(this.bucket, this.FileInfo.Id)
+            this.cursor = await GridUtility.EnumerateChunksAsync(this.bucket, this.FileInfo.Id, cancelToken)
                 .ConfigureAwait(false);
 
-            await GetNextBatchAsync();
+            await GetNextBatchAsync(cancelToken);
         }
 
-        private async Task GetNextBatchAsync()
+        private async Task GetNextBatchAsync(CancellationToken cancelToken)
         {
-            var hasMore = await cursor.MoveNextAsync().ConfigureAwait(false);
+            var hasMore = await cursor.MoveNextAsync(cancelToken).ConfigureAwait(false);
             GetNextBatchFromCursor(hasMore);
         }
 

@@ -11,6 +11,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
         public static byte[] NoChunks = new byte[0];
 
         public static byte[] TwoMB;
+        public static byte[] TenMB;
 
         public static int BlockLength = (1024 * 255);
         public static int HalfBlockLength = (1024 * 128);
@@ -23,6 +24,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
             HalfChunk = Generate(HalfBlockLength);
 
             TwoMB = Generate(1024 * 1024 * 2);
+            TenMB = Generate(1024 * 1024 * 10);
         }
 
         public static byte[] Generate(int amount)

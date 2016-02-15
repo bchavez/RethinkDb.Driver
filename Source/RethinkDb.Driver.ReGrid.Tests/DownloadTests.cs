@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Tests.Utils;
@@ -81,8 +83,31 @@ namespace RethinkDb.Driver.ReGrid.Tests
             var id = bucket.Upload("foobar.mp3", TestBytes.TwoMB);
             id.Dump();
 
-            var bytes = bucket.DownloadBytes(id);
+            var bytes = bucket.DownloadAsBytes(id);
             bytes.Should().Equal(TestBytes.TwoMB);
+        }
+
+
+        [Test]
+        public void large_download_async_abort_test()
+        {
+            ClearBucket();
+
+            var id = bucket.Upload("foobar.mp3", TestBytes.TenMB);
+            id.Dump();
+
+            Console.WriteLine(">>>> UPLOAD DONE STARTING DOWNLOAD");
+            using(var cts = new CancellationTokenSource(TimeSpan.FromSeconds(2.5)))
+            {
+                var token = cts.Token;
+                Func<Task> action = async () =>
+                    {
+                        await bucket.DownloadAsBytesAsync(id, token);
+                    };
+                action.ShouldThrow<TaskCanceledException>();
+            }
+
+            
         }
 
     }

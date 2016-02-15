@@ -244,6 +244,7 @@ namespace RethinkDb.Driver.Net
                 awaiter = new Awaiter(cancelToken);
                 awaiters[token] = awaiter;
             }
+
             lock (writeLock)
             {   // Everyone can write their query as fast as they can; block if needed.
                 cancelToken.ThrowIfCancellationRequested();
@@ -260,8 +261,9 @@ namespace RethinkDb.Driver.Net
                     var jsonBytes = Encoding.UTF8.GetBytes(json);
                     this.bw.Write(jsonBytes.Length);
                     this.bw.Write(jsonBytes);
+                    Log.Trace($"JSON Send: Token: {token}, JSON: {json}");
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     currentException = e;
                     this.errorCallback?.Invoke(currentException);

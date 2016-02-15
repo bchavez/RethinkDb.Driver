@@ -11,6 +11,9 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.ReGrid
 {
+    /// <summary>
+    /// A ReGrid upload stream
+    /// </summary>
     public class UploadStream : BaseStream
     {
         private readonly Table chunkTable;
@@ -19,10 +22,10 @@ namespace RethinkDb.Driver.ReGrid
         private readonly IConnection conn;
         private readonly Guid filesInfoId;
 
-        private List<byte[]> batch;
+        private readonly List<byte[]> batch;
         private long batchPosition;
-        private int batchSize;
-        private int chunkSizeBytes;
+        private readonly int batchSize;
+        private readonly int chunkSizeBytes;
 
         private bool closed = false;
         private bool disposed = false;
@@ -40,11 +43,8 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="fileInfo">An incomplete FileInfo that exists in the database waiting to be finalized.</param>
         /// <param name="fileTable">An already namespaced Table term for FileInfo.</param>
         /// <param name="chunkTable">An already namespaced Table term for Chunk</param>
-        /// <param name="chunkInsertOpts">The insert options for chunks inserted into the chunk table.</param>
-        /// <param name="chunkSize">The size of chunk documents in the chunk table.</param>
-        /// <param name="batchSize">The size of the stream buffer before flushing chunks to the chunk table. Default 16MB.</param>
         /// <param name="options">Upload options</param>
-        public UploadStream(IConnection conn, Guid filesInfoId, FileInfo fileInfo, Table fileTable, Table chunkTable, UploadOptions options) : base(fileInfo)
+        internal UploadStream(IConnection conn, Guid filesInfoId, FileInfo fileInfo, Table fileTable, Table chunkTable, UploadOptions options) : base(fileInfo)
         {
             this.conn = conn;
             this.filesInfoId = filesInfoId;
@@ -60,6 +60,9 @@ namespace RethinkDb.Driver.ReGrid
             sha256 = new Hasher();
         }
 
+        /// <summary>
+        /// Aborts an upload.
+        /// </summary>
         public void Abort()
         {
             AbortAsync().WaitSync();
@@ -67,30 +70,41 @@ namespace RethinkDb.Driver.ReGrid
             //FileInfo as Incomplete and it's chunks, fsck will clean up.
         }
 
-        public async Task AbortAsync()
+        /// <summary>
+        /// Aborts an upload in progress
+        /// </summary>
+        /// <param name="cancelToken"></param>
+        /// <returns></returns>
+        public async Task AbortAsync(CancellationToken cancelToken = default(CancellationToken))
         {
             if( aborted ) return;
 
             ThrowIfClosedOrDisposed();
             aborted = true;
 
+            await this.CloseAsync(cancelToken).ConfigureAwait(false);
             //we could clean up, but for now, just leave the
             //FileInfo as Incomplete and it's chunks, fsck will clean up.
         }
 
 
+        /// <summary>
+        /// Write to the upload stream
+        /// </summary>
         public override void Write(byte[] buffer, int offset, int count)
         {
             WriteAsync(buffer, offset, count).WaitSync();
         }
 
-
-        public override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        /// <summary>
+        /// Async write to the upload stream
+        /// </summary>
+        public override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancelToken)
         {
             ThrowIfClosedOrDisposed();
             while( count > 0 )
             {
-                var chunk = await GetCurrentChunkAsync().ConfigureAwait(false);
+                var chunk = await GetCurrentChunkAsync(cancelToken).ConfigureAwait(false);
                 var partialCount = Math.Min(count, chunk.Count);
                 Buffer.BlockCopy(buffer, offset, chunk.Array, chunk.Offset, partialCount);
                 offset += partialCount;
@@ -99,12 +113,12 @@ namespace RethinkDb.Driver.ReGrid
             }
         }
 
-        private async Task<ArraySegment<byte>> GetCurrentChunkAsync()
+        private async Task<ArraySegment<byte>> GetCurrentChunkAsync(CancellationToken cancelToken)
         {
             var batchIndex = (int)((length - batchPosition) / chunkSizeBytes);
             if (batchIndex == batchSize) // batch size, default 16 * 1024 * 1024 / ChunkSize
             {
-                await WriteBatchAsync().ConfigureAwait(false);
+                await WriteBatchAsync(cancelToken).ConfigureAwait(false);
                 batch.Clear();
                 batchIndex = 0;
             }
@@ -123,11 +137,11 @@ namespace RethinkDb.Driver.ReGrid
             return new ArraySegment<byte>(chunk, offset, count);
         }
 
-        private async Task WriteBatchAsync()
+        private async Task WriteBatchAsync(CancellationToken cancelToken)
         {
             var chunks = PrepareChunks();
 
-            await chunkTable.Insert(chunks.ToArray())[chunkInsertOpts].RunResultAsync(conn)
+            await chunkTable.Insert(chunks.ToArray())[chunkInsertOpts].RunResultAsync(conn, cancelToken)
                 .ConfigureAwait(false);
 
             this.batch.Clear();
@@ -153,13 +167,19 @@ namespace RethinkDb.Driver.ReGrid
         }
 
 #if !DNX
+        /// <summary>
+        /// Closes the stream.
+        /// </summary>
         public override void Close()
         {
             CloseAsync().WaitSync();
         }
 #endif
 
-        public override async Task CloseAsync()
+        /// <summary>
+        /// Async close the upload stream.
+        /// </summary>
+        public override async Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
         {
             if (this.closed) return;
 
@@ -168,15 +188,15 @@ namespace RethinkDb.Driver.ReGrid
 
             if (!aborted)
             {
-                await WriteFinalBatchAsync().ConfigureAwait(false);
-                await WriteFinalFileInfoAsync().ConfigureAwait(false);
+                await WriteFinalBatchAsync(cancelToken).ConfigureAwait(false);
+                await WriteFinalFileInfoAsync(cancelToken).ConfigureAwait(false);
             }
 #if !DNX
             base.Close();
 #endif
         }
 
-        private async Task WriteFinalFileInfoAsync()
+        private async Task WriteFinalFileInfoAsync(CancellationToken cancelToken)
         {
             this.FileInfo.Id = this.filesInfoId;
             this.FileInfo.Length = this.length;
@@ -184,31 +204,49 @@ namespace RethinkDb.Driver.ReGrid
             this.FileInfo.FinishedAtDate = DateTimeOffset.UtcNow;
             this.FileInfo.Status = Status.Completed;
 
-            await this.fileTable.Replace(this.FileInfo).RunResultAsync(conn)
+            await this.fileTable.Replace(this.FileInfo).RunResultAsync(conn, cancelToken)
                 .ConfigureAwait(false);
         }
 
-        private async Task WriteFinalBatchAsync()
+        private async Task WriteFinalBatchAsync(CancellationToken cancelToken)
         {
             if (batch.Count > 0)
             {
                 TruncateFinalChunk();
-                await WriteBatchAsync().ConfigureAwait(false);
+                await WriteBatchAsync(cancelToken).ConfigureAwait(false);
             }
         }
 
+        /// <summary>
+        /// False, upload streams are not readable.
+        /// </summary>
         public override bool CanRead => false;
+        /// <summary>
+        /// False, upload streams cannot be seeked.
+        /// </summary>
         public override bool CanSeek => false;
+        /// <summary>
+        /// True, upload streams can be written to..
+        /// </summary>
         public override bool CanWrite => true;
 
+        /// <summary>
+        /// The in-progress length of the upload.
+        /// </summary>
         public override long Length => this.length;
 
+        /// <summary>
+        /// The in-progress length of the upload. Same as <see cref="Length"/>.
+        /// </summary>
         public override long Position
         {
             get { return this.length; }
             set { throw new NotSupportedException(); }
         }
 
+        /// <summary>
+        /// The unique file id this upload stream represents.
+        /// </summary>
         public Guid Id => filesInfoId;
 
         private void TruncateFinalChunk()
@@ -226,6 +264,9 @@ namespace RethinkDb.Driver.ReGrid
             }
         }
 
+        /// <summary>
+        /// Disposes of the upload stream.
+        /// </summary>
         protected override void Dispose(bool disposing)
         {
             if (!disposed)
@@ -274,30 +315,48 @@ namespace RethinkDb.Driver.ReGrid
 
 
 #region UNUSED
+        /// <summary>
+        /// Not supported. Does nothing.
+        /// </summary>
         public override void Flush()
         {
         }
 
+        /// <summary>
+        /// Not supported. Does nothing.
+        /// </summary>
         public override Task FlushAsync(CancellationToken cancellationToken)
         {
             return TaskHelper.CompletedTask;
         }
 
+        /// <summary>
+        /// Not supported.
+        /// </summary>
         public override long Seek(long offset, SeekOrigin origin)
         {
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// Not supported.
+        /// </summary>
         public override void SetLength(long value)
         {
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// Not supported.
+        /// </summary>
         public override int Read(byte[] buffer, int offset, int count)
         {
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// Not supported.
+        /// </summary>
         public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();

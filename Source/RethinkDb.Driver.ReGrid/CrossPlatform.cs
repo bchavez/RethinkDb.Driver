@@ -8,7 +8,9 @@ using System.Reflection;
 
 namespace RethinkDb.Driver.ReGrid
 {
-
+    /// <summary>
+    /// Cross platform SHA 256 Hasher
+    /// </summary>
     public class Hasher : IDisposable
     {
 #if NETCORE50
@@ -16,6 +18,9 @@ namespace RethinkDb.Driver.ReGrid
 #else
         private SHA256 hasher;
 #endif
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Hasher()
         {
 #if NETCORE50
@@ -24,7 +29,10 @@ namespace RethinkDb.Driver.ReGrid
             hasher = SHA256.Create();
 #endif
         }
-
+        
+        /// <summary>
+        /// Updates the hash value
+        /// </summary>
         public void AppendData(byte[] data)
         {
 #if NETCORE50
@@ -34,6 +42,9 @@ namespace RethinkDb.Driver.ReGrid
 #endif
         }
 
+        /// <summary>
+        /// Gets the final hash calculation.
+        /// </summary>
         public string GetHashAndReset()
         {
 #if NETCORE50
@@ -44,6 +55,9 @@ namespace RethinkDb.Driver.ReGrid
 #endif
         }
 
+        /// <summary>
+        /// Disposes the hasher.
+        /// </summary>
         public void Dispose()
         {
             hasher.Dispose();
@@ -51,10 +65,4 @@ namespace RethinkDb.Driver.ReGrid
     }
 
 
-    internal static class ExtensionsForDNX
-    {
-
-
- 
-    }
 }

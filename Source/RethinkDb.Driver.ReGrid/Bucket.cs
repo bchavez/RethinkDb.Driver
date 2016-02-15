@@ -1,23 +1,24 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Utils;
+using RethinkDb.Driver.Net.Clustering;
 
 namespace RethinkDb.Driver.ReGrid
 {
+    /// <summary>
+    /// A ReGrid bucket
+    /// </summary>
     public partial class Bucket
     {
         private static readonly RethinkDB R = RethinkDB.R;
 
         internal readonly IConnection conn;
-        private readonly BucketConfig config;
+
         private Db db;
         private string databaseName;
 
@@ -28,12 +29,22 @@ namespace RethinkDb.Driver.ReGrid
         internal string fileIndex;
         internal string fileIndexPrefix;
 
-        private object tableOpts;
+        private object tableCreateOpts;
         internal Table fileTable;
         internal Table chunkTable;
 
+        /// <summary>
+        /// Flag indicating if the bucket is mounted.
+        /// </summary>
         public bool Mounted { get; set; }
 
+        /// <summary>
+        /// Creates a new bucket.
+        /// </summary>
+        /// <param name="conn">A <see cref="Connection"/> or <see cref="ConnectionPool"/></param>
+        /// <param name="databaseName">The database name to use. The database must exist.</param>
+        /// <param name="bucketName">The bucket name to use.</param>
+        /// <param name="config">Low level bucket configuration options.</param>
         public Bucket(IConnection conn, string databaseName, string bucketName = "fs", BucketConfig config = null)
         {
             this.conn = conn;
@@ -43,7 +54,7 @@ namespace RethinkDb.Driver.ReGrid
 
             config = config ?? new BucketConfig();
 
-            this.tableOpts = config.TableOptions;
+            this.tableCreateOpts = config.TableCreateOptions;
 
             this.fileTableName = $"{bucketName}_{config.FileTableName}";
             this.fileTable = this.db.Table(fileTableName);
@@ -62,17 +73,23 @@ namespace RethinkDb.Driver.ReGrid
                 throw new InvalidOperationException($"Please call {nameof(Mount)} before performing any operation.");
         }
 
+        /// <summary>
+        /// Mounts the bucket. Mount is necessary before using a bucket to ensure the existence of tables and indexes.
+        /// </summary>
         public void Mount()
         {
             MountAsync().WaitSync();
         }
 
-        public async Task MountAsync()
+        /// <summary>
+        /// Mounts the bucket. Mount is necessary before using a bucket to ensure the existence of tables and indexes.
+        /// </summary>
+        public async Task MountAsync(CancellationToken cancelToken = default (CancellationToken))
         {
             if (this.Mounted)
                 return;
 
-            var filesTableResult = await EnsureTable(this.fileTableName)
+            var filesTableResult = await EnsureTable(this.fileTableName, cancelToken)
                 .ConfigureAwait(false);
 
             if( filesTableResult.TablesCreated == 1 )
@@ -82,7 +99,7 @@ namespace RethinkDb.Driver.ReGrid
                     {
                         return R.Array(row[FileInfo.StatusJsonName], row[FileInfo.FileNameJsonName], row[FileInfo.FinishedDateJsonName]);
                     };
-                await CreateIndex(this.fileTableName, this.fileIndex,pathIx)
+                await CreateIndex(this.fileTableName, this.fileIndex,pathIx, cancelToken)
                     .ConfigureAwait(false);
 
 
@@ -94,14 +111,14 @@ namespace RethinkDb.Driver.ReGrid
                             R.Array(doc[FileInfo.FileNameJsonName].Split("/").Slice(1, -1), doc[FileInfo.FinishedDateJsonName]),
                             R.Error());
                     };
-                await CreateIndex(this.fileTableName, this.fileIndexPrefix, prefixIx)
+                await CreateIndex(this.fileTableName, this.fileIndexPrefix, prefixIx, cancelToken)
                     .ConfigureAwait(false);
             }
 
 
             // CHUNK TAABLE INDEXES
 
-            var chunkTableResult = await EnsureTable(this.chunkTableName)
+            var chunkTableResult = await EnsureTable(this.chunkTableName, cancelToken)
                 .ConfigureAwait(false);
 
             if( chunkTableResult.TablesCreated == 1 )
@@ -111,7 +128,7 @@ namespace RethinkDb.Driver.ReGrid
                     {
                         return R.Array(row[Chunk.FilesIdJsonName], row[Chunk.NumJsonName]);
                     };
-                await CreateIndex(this.chunkTableName, this.chunkIndexName, chunkIx)
+                await CreateIndex(this.chunkTableName, this.chunkIndexName, chunkIx, cancelToken)
                     .ConfigureAwait(true);
             }
 
@@ -119,23 +136,29 @@ namespace RethinkDb.Driver.ReGrid
         }
 
 
-        protected internal async Task<JArray> CreateIndex(string tableName, string indexName, ReqlFunction1 indexFunc)
+        /// <summary>
+        /// Helper function to create an index
+        /// </summary>
+        protected internal async Task<JArray> CreateIndex(string tableName, string indexName, ReqlFunction1 indexFunc, CancellationToken cancelToken)
         {
             await this.db.Table(tableName)
-                .IndexCreate(indexName, indexFunc).RunAtomAsync<JObject>(conn)
+                .IndexCreate(indexName, indexFunc).RunAtomAsync<JObject>(conn, cancelToken)
                 .ConfigureAwait(false);
 
             return await this.db.Table(tableName)
-                .IndexWait(indexName).RunAtomAsync<JArray>(conn)
+                .IndexWait(indexName).RunAtomAsync<JArray>(conn, cancelToken)
                 .ConfigureAwait(false);
         }
 
-        protected internal async Task<Result> EnsureTable(string tableName)
+        /// <summary>
+        /// Helper function to ensure table exists.
+        /// </summary>
+        protected internal async Task<Result> EnsureTable(string tableName, CancellationToken cancelToken)
         {
             return await this.db.TableList().Contains(tableName)
                 .Do_(tableExists =>
-                    R.Branch(tableExists, new {tables_created = 0}, db.TableCreate(tableName)[this.tableOpts])
-                ).RunResultAsync(this.conn)
+                    R.Branch(tableExists, new {tables_created = 0}, db.TableCreate(tableName)[this.tableCreateOpts])
+                ).RunResultAsync(this.conn, cancelToken)
                 .ConfigureAwait(false);
         }
     }

@@ -18,7 +18,7 @@ namespace RethinkDb.Driver.ReGrid.Tests
             var uploadId = bucket.Upload("MyNameIsBob.jpg", TestBytes.TwoMB);
             uploadId.Dump();
 
-            byte[] bytes = bucket.DownloadBytes(uploadId, new DownloadOptions());
+            byte[] bytes = bucket.DownloadAsBytes(uploadId, new DownloadOptions());
 
             bytes.Should().Equal(TestBytes.TwoMB);
         }

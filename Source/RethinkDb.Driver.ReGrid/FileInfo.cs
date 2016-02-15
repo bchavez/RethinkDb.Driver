@@ -15,14 +15,23 @@ namespace RethinkDb.Driver.ReGrid
         internal const string FileNameJsonName = "filename";
         internal const string StatusJsonName = "status";
 
+        /// <summary>
+        /// Construct a new FileInfo. Initial status is incomplete.
+        /// </summary>
         public FileInfo()
         {
             this.Status = Status.Incomplete;
         }
 
+        /// <summary>
+        /// Unique File ID in the bucket.
+        /// </summary>
         [JsonProperty("id", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Guid Id { get; set; }
 
+        /// <summary>
+        /// The size of the chunk files.
+        /// </summary>
         [JsonProperty("chunkSizeBytes")]
         public int ChunkSizeBytes { get; set; }
 
@@ -32,6 +41,9 @@ namespace RethinkDb.Driver.ReGrid
         [JsonProperty(FileNameJsonName)]
         public string FileName { get; set; }
 
+        /// <summary>
+        /// The full length of the file.
+        /// </summary>
         [JsonProperty("length")]
         public long Length { get; set; }
 
@@ -65,6 +77,9 @@ namespace RethinkDb.Driver.ReGrid
         [JsonProperty(StatusJsonName)]
         public Status Status { get; set; }
 
+        /// <summary>
+        /// Raw metadata belonging to the file.
+        /// </summary>
         [JsonProperty("metadata")]
         public JObject Metadata { get; set; }
 

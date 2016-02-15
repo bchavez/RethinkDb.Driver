@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
@@ -21,11 +22,14 @@ namespace RethinkDb.Driver.ReGrid
             DestroyAsync().WaitSync();
         }
 
-        public async Task DestroyAsync()
+        /// <summary>
+        /// Erases all files from the system inside the bucket.
+        /// </summary>
+        public async Task DestroyAsync(CancellationToken cancelToken = default(CancellationToken))
         {
             try
             {
-                await this.db.TableDrop(this.fileTableName).RunResultAsync(this.conn)
+                await this.db.TableDrop(this.fileTableName).RunResultAsync(this.conn, cancelToken)
                     .ConfigureAwait(false);
             }
             catch
@@ -34,7 +38,7 @@ namespace RethinkDb.Driver.ReGrid
 
             try
             {
-                await this.db.TableDrop(this.chunkTableName).RunResultAsync(this.conn)
+                await this.db.TableDrop(this.chunkTableName).RunResultAsync(this.conn, cancelToken)
                     .ConfigureAwait(false);
             }
             catch

@@ -286,6 +286,9 @@ namespace RethinkDb.Driver.Net
 
         object IEnumerator.Current => this.Current;
 
+        /// <summary>
+        /// The cursor's enumerator
+        /// </summary>
         public IEnumerator<T> GetEnumerator()
         {
             return this;

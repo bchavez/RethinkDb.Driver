@@ -8,6 +8,9 @@ using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver.Net
 {
+    /// <summary>
+    /// Response from the server.
+    /// </summary>
     public class Response
     {
         private const string TypeKey = "t";
@@ -17,13 +20,34 @@ namespace RethinkDb.Driver.Net
         private const string BacktraceKey = "b";
         private const string DataKey = "r";
 
+        /// <summary>
+        /// The token ID associated with the query.
+        /// </summary>
         public long Token { get; }
+        /// <summary>
+        /// The response type <see cref="ResponseType"/>.
+        /// </summary>
         public ResponseType Type { get; }
+        /// <summary>
+        /// Notes about the response <see cref="ResponseNote"/>
+        /// </summary>
         public List<ResponseNote> Notes { get; private set; }
 
+        /// <summary>
+        /// The data payload.
+        /// </summary>
         public JArray Data { get; private set; }
+        /// <summary>
+        /// Profile information about the query
+        /// </summary>
         public Profile Profile { get; private set; }
+        /// <summary>
+        /// Backtrace information about a failed query.
+        /// </summary>
         public Backtrace Backtrace { get; private set; }
+        /// <summary>
+        /// The error type, if any.
+        /// </summary>
         public ErrorType? ErrorType { get; private set; }
 
         private Response(long token, ResponseType responseType)
@@ -32,6 +56,9 @@ namespace RethinkDb.Driver.Net
             this.Type = responseType;
         }
 
+        /// <summary>
+        /// Parses a Response from a raw JSON string
+        /// </summary>
         public static Response ParseFrom(long token, string buf)
         {
             Log.Trace($"JSON Recv: Token: {token}, JSON: {buf}");
@@ -83,6 +110,9 @@ namespace RethinkDb.Driver.Net
                 .Build();
         }
 
+        /// <summary>
+        /// Pretty printing a response for diagnostics.
+        /// </summary>
         public override string ToString()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);

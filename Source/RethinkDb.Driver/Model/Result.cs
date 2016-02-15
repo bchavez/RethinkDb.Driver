@@ -61,6 +61,9 @@ namespace RethinkDb.Driver.Model
         /// </summary>
         public JArray Changes { get; set; }
 
+        /// <summary>
+        /// If the query had return_changes set, get the changes as <typeparam name="T"></typeparam>.
+        /// </summary>
         public Change<T>[] ChangesAs<T>()
         {
             return this.Changes?.ToObject<Change<T>[]>(Net.Converter.Serializer);
@@ -72,13 +75,25 @@ namespace RethinkDb.Driver.Model
         /// </summary>
         public uint? Ready { get; set; } //probably need to move this to something like AdminResult or DdlResult
 
+        /// <summary>
+        /// The number of databases created.
+        /// </summary>
         [JsonProperty("dbs_created")]
         public uint DatabasesCreated { get; set; }
+        /// <summary>
+        /// The number of databases dropped.
+        /// </summary>
         [JsonProperty("dbs_dropped")]
         public uint DatabasesDropped { get; set; }
 
+        /// <summary>
+        /// The number of tables created.
+        /// </summary>
         [JsonProperty("tables_created")]
         public uint TablesCreated { get; set; }
+        /// <summary>
+        /// The number of tables dropped.
+        /// </summary>
         [JsonProperty("tables_dropped")]
         public uint TablesDropped { get; set; }
     }

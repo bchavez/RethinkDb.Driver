@@ -1,6 +1,5 @@
 using FluentAssertions;
 using NUnit.Framework;
-using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Net.Clustering;
 
 namespace RethinkDb.Driver.Tests.Network
@@ -10,7 +9,7 @@ namespace RethinkDb.Driver.Tests.Network
     {
         public static RethinkDB R = RethinkDB.R;
 
-        private Connection conn;
+        //private Connection conn;
         
         [Test]
         public void can_connect()

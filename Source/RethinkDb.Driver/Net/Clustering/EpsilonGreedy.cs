@@ -1,3 +1,5 @@
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 using System;
 using System.Linq;
 using System.Threading;
@@ -21,10 +23,24 @@ namespace RethinkDb.Driver.Net.Clustering
     /// </summary>
     public class EpsilonGreedyHostPool : RoundRobinHostPool
     {
-        protected static readonly TimeSpan DefaultDecayDuration = TimeSpan.FromMinutes(5);
-        protected const double InitialEpsilon = 0.3;
-        protected const double MinEpsilon = 0.01; // explore one percent of the time
-        protected const double EpsilonDecay = 0.90; // decay the exploration rate
+        static readonly TimeSpan DefaultDecayDuration = TimeSpan.FromMinutes(5);
+
+        /// <summary>
+        /// Initial epsilon value.
+        /// </summary>
+        public const double InitialEpsilon = 0.3;
+        /// <summary>
+        /// The steady state percentage of time to explore
+        /// </summary>
+        public const double MinEpsilon = 0.01; // explore one percent of the time
+        /// <summary>
+        /// The decay exploration rate.
+        /// </summary>
+        public const double EpsilonDecay = 0.90; // decay the exploration rate
+
+        /// <summary>
+        /// Number of bucket slot measurements
+        /// </summary>
         public const int EpsilonBuckets = 120; //measurement slots
 
         /// <summary>
@@ -41,6 +57,9 @@ namespace RethinkDb.Driver.Net.Clustering
 
         private Timer timer;
 
+        /// <summary>
+        /// Random value generator.
+        /// </summary>
         public static Random Random { get; set; }
 
         static EpsilonGreedyHostPool()
@@ -183,7 +202,7 @@ namespace RethinkDb.Driver.Net.Clustering
             Update();
         }
 
-        public virtual HostEntry GetEpsilonGreedy()
+        internal virtual HostEntry GetEpsilonGreedy()
         {
             HostEntry hostToUse = null;
 
@@ -260,7 +279,7 @@ namespace RethinkDb.Driver.Net.Clustering
             h.EpsilonValue = this.calc.CalcValueFromAvgResponseTime(h.EpsilonWeightAverage);
         }
 
-        public void MarkSuccess( HostEntry h, long start, long end )
+        internal void MarkSuccess( HostEntry h, long start, long end )
         {
             var duration = TimeSpan.FromTicks(end - start);
             var index = h.EpsilonIndex % EpsilonBuckets;
@@ -271,7 +290,7 @@ namespace RethinkDb.Driver.Net.Clustering
             Interlocked.Add(ref values[index], Convert.ToInt64(duration.TotalMilliseconds));
         }
 
-        public void Update()
+        internal void Update()
         {
             var hlist = this.hostList;
             var sumValues = 0f;

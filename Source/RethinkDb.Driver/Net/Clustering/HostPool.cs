@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -68,17 +70,12 @@ namespace RethinkDb.Driver.Net.Clustering
                 shuttingDown = true;
             }
         }
-
         public abstract Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
         public abstract Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
         public abstract Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
         public abstract Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
         public abstract void RunNoReply(ReqlAst term, object globalOpts);
 
-
-        public void Dispose()
-        {
-            //pooling strategies really have nothing to do...
-        }
+        public abstract void Dispose();
     }
 }

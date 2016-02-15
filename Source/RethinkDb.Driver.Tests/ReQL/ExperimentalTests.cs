@@ -61,7 +61,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             
         }
 
-        private ReqlExpr expr;
+        //private ReqlExpr expr;
 
         protected override Expression VisitBinary(BinaryExpression node)
         {
@@ -123,7 +123,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             if( node.NodeType == ExpressionType.Lambda )
             {
                 var l = node as LambdaExpression;
-                var x = nameof(Game.points);
+                //var x = nameof(Game.points);
                 var newParams = l.Parameters.Select(r => Expression.Parameter(typeof(Var), r.Name));
 
                 var tmp= Expression.Lambda(base.Visit(l.Body), newParams);

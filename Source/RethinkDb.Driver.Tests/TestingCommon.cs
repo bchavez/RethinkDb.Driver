@@ -1,3 +1,5 @@
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -750,7 +752,7 @@ namespace RethinkDb.Driver.Tests
                 limit = long.MaxValue;
             }
             var cursor = cursor_ as ICursor;
-            long total = 0;
+            //long total = 0;
             var result = new ArrayList((int)limit);
             for( long i = 0; i < limit; i++ )
             {

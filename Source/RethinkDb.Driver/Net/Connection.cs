@@ -84,6 +84,7 @@ namespace RethinkDb.Driver.Net
         /// Reconnects the underlying connection to the server.
         /// </summary>
         /// <param name="noreplyWait"><see cref="NoReplyWait"/></param>
+        /// <param name="timeout">The timeout value before throwing exception</param>
         public virtual void Reconnect(bool noreplyWait = false, TimeSpan? timeout = null)
         {
             if( !timeout.HasValue )
@@ -238,16 +239,19 @@ namespace RethinkDb.Driver.Net
             return Interlocked.Increment(ref nextToken);
         }
 
-        protected virtual Task<Response> RunQueryReply(Query query)
+        Task<Response> SendQueryReply(Query query)
         {
             return SendQuery(query, CancellationToken.None, awaitResponse: true);
         }
 
-        protected virtual void RunQueryNoReply(Query query)
+        void SendQueryNoReply(Query query)
         {
             SendQuery(query, CancellationToken.None, awaitResponse: false);
         }
 
+        /// <summary>
+        /// Fast SUCCESS_SEQUENCE or SUCCESS_PARTIAL conversion without DLR dynamic.
+        /// </summary>
         protected virtual async Task<Cursor<T>> RunQueryCursorAsync<T>(Query query, CancellationToken cancelToken)
         {
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
@@ -304,6 +308,11 @@ namespace RethinkDb.Driver.Net
             throw new ReqlDriverError($"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM or SUCCESS_SEQUENCE results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.runCursor`.");
         }
 
+        /// <summary>
+        /// Asynchronously ensures that previous queries executed with NoReplyWait have 
+        /// been processed by the server. Note that this guarantee only apples to queries
+        /// run on the same connection.
+        /// </summary>
         protected virtual async Task RunQueryWaitAsync(Query query, CancellationToken cancelToken)
         {
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
@@ -314,6 +323,9 @@ namespace RethinkDb.Driver.Net
             throw new ReqlDriverError($"The query response is not WAIT_COMPLETE. The returned query is {res.Type}. You need to call the appropriate run method that handles the response type for your query.");
         }
 
+        /// <summary>
+        /// Run the query but it's return type is standard dynamic.
+        /// </summary>
         protected async Task<dynamic> RunQueryAsync<T>(Query query, CancellationToken cancelToken)
         {
             //If you need to continue after an await, **while inside the driver**, 
@@ -355,12 +367,18 @@ namespace RethinkDb.Driver.Net
             }
         }
 
+        /// <summary>
+        /// Sends the query over to the underlying socket for sending.
+        /// </summary>
         protected Task<Response> SendQuery(Query query, CancellationToken cancelToken, bool awaitResponse)
         {
             if( this.Socket == null ) throw new ReqlDriverError("No socket open.");
             return this.Socket.SendQuery(query.Token, query.Serialize(), awaitResponse, cancelToken);
         }
 
+        /// <summary>
+        /// Prepares the query by setting the default DB if it doesn't exist.
+        /// </summary>
         protected Query PrepareQuery(ReqlAst term, OptArgs globalOpts)
         {
             SetDefaultDb(globalOpts);
@@ -372,6 +390,9 @@ namespace RethinkDb.Driver.Net
             return q;
         }
 
+        /// <summary>
+        /// Sets the database if it's not already set.
+        /// </summary>
         protected void SetDefaultDb(OptArgs globalOpts)
         {
             if (globalOpts?.ContainsKey("db") == false && this.dbname != null)
@@ -420,7 +441,7 @@ namespace RethinkDb.Driver.Net
             var opts = OptArgs.FromAnonType(globalOpts);
             SetDefaultDb(opts);
             opts.With("noreply", true);
-            RunQueryNoReply(Query.Start(NewToken(), term, opts));
+            SendQueryNoReply(Query.Start(NewToken(), term, opts));
         }
 
         #endregion
@@ -429,7 +450,7 @@ namespace RethinkDb.Driver.Net
 
         internal virtual Task<Response> Continue(ICursor cursor)
         {
-            return RunQueryReply(Query.Continue(cursor.Token));
+            return SendQueryReply(Query.Continue(cursor.Token));
         }
 
         internal virtual void Stop(ICursor cursor)
@@ -441,7 +462,7 @@ namespace RethinkDb.Driver.Net
             neumino: If you have a pending CONTINUE, and send a STOP, you should get back two SUCCESS_SEQUENCE
             */
             //this.Socket?.CancelAwaiter(cursor.Token);
-            RunQueryNoReply(Query.Stop(cursor.Token));
+            SendQueryNoReply(Query.Stop(cursor.Token));
         }
 
 

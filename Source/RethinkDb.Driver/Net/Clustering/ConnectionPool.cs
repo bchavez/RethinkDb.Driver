@@ -21,6 +21,9 @@ namespace RethinkDb.Driver.Net.Clustering
         private bool discover;
         private IPoolingStrategy poolingStrategy;
 
+        /// <summary>
+        /// The default database used by queries.
+        /// </summary>
         public string Db => this.dbname;
 
         

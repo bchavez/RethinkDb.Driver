@@ -14,12 +14,12 @@ namespace RethinkDb.Driver.Model
     /// <typeparam name="TElement">The VALUE type</typeparam>
     public class GroupedResult<TKey, TElement> : IGrouping<TKey, TElement>
     {
+#pragma warning disable 1591 // Missing XML comment for publicly visible type or member
         public GroupedResult(JToken key, JArray items)
         {
             this.Key = key.ToObject<TKey>(Converter.Serializer);
             this.Items = items.ToObject<List<TElement>>(Converter.Serializer);
         }
-#pragma warning disable 1591 // Missing XML comment for publicly visible type or member
         public IEnumerator<TElement> GetEnumerator()
         {
             return this.Items.GetEnumerator();

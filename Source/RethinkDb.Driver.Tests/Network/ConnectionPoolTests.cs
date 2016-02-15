@@ -175,7 +175,7 @@ namespace RethinkDb.Driver.Tests.Network
             //var hitB = 0;
 
             var iterations = 120000;
-            var changeTimingsAt = 60000;
+            //var changeTimingsAt = 60000;
 
             var threads = 5;
 
@@ -351,7 +351,7 @@ namespace RethinkDb.Driver.Tests.Network
 
         [Test]
         [Explicit]
-        public async void can_connect_to_cluster()
+        public void can_connect_to_cluster()
         {
             var r = RethinkDB.R;
             var c = r.ConnectionPool()

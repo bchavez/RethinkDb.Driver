@@ -3,50 +3,65 @@ using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Model
 {
+    /// <summary>
+    /// Dictionary of string,ReqlAst
+    /// </summary>
     public class OptArgs : Dictionary<string, ReqlAst>
     {
+        /// <summary>
+        /// Fluent helper for setting dictionary[key] = value.
+        /// </summary>
         public virtual OptArgs With(string key, object value)
         {
-            return with(key, value);
-        }
-        internal virtual OptArgs with(string key, object value)
-        {
-            if( key != null )
+            if (key != null)
             {
                 this[key] = Util.ToReqlAst(value);
             }
             return this;
         }
-
-        internal virtual OptArgs With(string key, IList<object> value)
+        internal OptArgs with(string key, object value)
         {
-            return with(key, value);
+            return With(key, value);
+        }
+
+        /// <summary>
+        /// Fluent helper for setting dictionary[key] = List.
+        /// </summary>
+        public virtual OptArgs With(string key, IList<object> value)
+        {
+            if (key != null)
+            {
+                this[key] = Util.ToReqlAst(value);
+            }
+            return this;
         }
         internal virtual OptArgs with(string key, IList<object> value)
         {
-            if( key != null )
-            {
-                this[key] = Util.ToReqlAst(value);
-            }
-            return this;
+            return With(key, value);
         }
 
-
+        /// <summary>
+        /// Fluent helper for setting dictionary[key] = value multiple times 
+        /// for each Property=Value in the anonType.
+        /// </summary>
         public virtual OptArgs With(object anonType)
         {
-            return with(anonType);
-        }
-        internal virtual OptArgs with(object anonType)
-        {
             var anonDict = PropertyHelper.ObjectToDictionary(anonType);
-            foreach( var kvp in anonDict )
+            foreach (var kvp in anonDict)
             {
                 this.with(kvp.Key, kvp.Value);
             }
             return this;
         }
+        internal virtual OptArgs with(object anonType)
+        {
+            return With(anonType);
+        }
 
 
+        /// <summary>
+        /// Fluent helper to copy all key value pairs from <paramref name="args"/>
+        /// </summary>
         public virtual OptArgs With(OptArgs args)
         {
             foreach( var kvp in args )
@@ -56,6 +71,9 @@ namespace RethinkDb.Driver.Model
         }
 
 
+        /// <summary>
+        /// Creates a new OptArg from all key value pairs in <paramref name="map"/>
+        /// </summary>
         public static OptArgs FromMap(IDictionary<string, ReqlAst> map)
         {
             OptArgs oa = new OptArgs();
@@ -66,6 +84,9 @@ namespace RethinkDb.Driver.Model
             return oa;
         }
 
+        /// <summary>
+        /// Creates a new OptArg from all Property = Value pairs in <paramref name="anonType"/> anonymous type.
+        /// </summary>
         public static OptArgs FromAnonType(object anonType)
         {
             OptArgs oa = new OptArgs();
@@ -74,15 +95,5 @@ namespace RethinkDb.Driver.Model
             return oa;
         }
 
-        public static OptArgs Of(string key, object val)
-        {
-            return of(key, val);
-        }
-        internal static OptArgs of(string key, object val)
-        {
-            OptArgs oa = new OptArgs();
-            oa.with(key, val);
-            return oa;
-        }
     }
 }

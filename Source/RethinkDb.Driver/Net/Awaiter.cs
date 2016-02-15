@@ -3,7 +3,7 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
-    public class Awaiter : CancellableTask
+    internal class Awaiter : CancellableTask
     {
         public Awaiter(CancellationToken cancelToken) : base(cancelToken)
         {

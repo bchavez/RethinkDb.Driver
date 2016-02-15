@@ -12,49 +12,82 @@ namespace RethinkDb.Driver.Net.Clustering
     /// </summary>
     public abstract class EpsilonValueCalculator
     {
+        /// <summary>
+        /// The implementation of the value calculation.
+        /// </summary>
         public abstract float CalcValueFromAvgResponseTime(float v);
 
+        /// <summary>
+        /// Linear value calculation
+        /// </summary>
         public static float LinearEpsilonValueCalculator(float v)
         {
             return 1.0f / v;
         }
+
+        /// <summary>
+        /// Logarithmic value calculation
+        /// </summary>
         public static float LogEpsilonValueCalculator(float v)
         {
             return LinearEpsilonValueCalculator(Convert.ToSingle(Math.Log(v + 1.0d)));
         }
 
+        /// <summary>
+        /// Polynomial value calculation
+        /// </summary>
         public static float PolynomialEpsilonValueCalculator(float v, float exp)
         {
             return LinearEpsilonValueCalculator(Convert.ToSingle(Math.Pow(v, exp)));
         }
     }
 
-
+    /// <summary>
+    /// Linear epsilon value calculation
+    /// </summary>
     public class LinearEpsilonValueCalculator : EpsilonValueCalculator
     {
+        /// <summary>
+        /// The implementation of the value calculation.
+        /// </summary>
         public override float CalcValueFromAvgResponseTime(float v)
         {
             return LinearEpsilonValueCalculator(v);
         }
     }
 
+    /// <summary>
+    /// Logarithmic epsilon value calculation
+    /// </summary>
     public class LogEpsilonValueCalculator : EpsilonValueCalculator
     {
+        /// <summary>
+        /// The implementation of the value calculation.
+        /// </summary>
         public override float CalcValueFromAvgResponseTime(float v)
         {
             return LogEpsilonValueCalculator(v);
         }
     }
 
+    /// <summary>
+    /// Polynomial epsilon value calculation
+    /// </summary>
     public class PolynomialEpsilonValueCalculator : EpsilonValueCalculator
     {
         private readonly float exponent;
 
+        /// <summary>
+        /// Constructor with exponent
+        /// </summary>
         public PolynomialEpsilonValueCalculator(float exponent)
         {
             this.exponent = exponent;
         }
 
+        /// <summary>
+        /// The implementation of the value calculation.
+        /// </summary>
         public override float CalcValueFromAvgResponseTime(float v)
         {
             return PolynomialEpsilonValueCalculator(v, exponent);

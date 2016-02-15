@@ -1,19 +1,12 @@
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 using System;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Net.Clustering
 {
-    public static class ExceptionIs
-    {
-        public static bool NetworkError(Exception e)
-        {
-            return e is IOException || e is ObjectDisposedException;
-        }
-    }
-    
     /// <summary>
     /// Create a new RoundRobin host pool. Each host is used in a round robin
     /// strategy when processing each query.
@@ -67,6 +60,8 @@ namespace RethinkDb.Driver.Net.Clustering
 
             return hostList[0];
         }
+        
+        #region CONNECTION RUNNERS
 
         public override async Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
@@ -136,6 +131,13 @@ namespace RethinkDb.Driver.Net.Clustering
                 host.MarkFailed();
                 throw;
             }
+        }
+
+        #endregion
+
+        public override void Dispose()
+        {
+            //nothing to do i guess.
         }
     }
 }

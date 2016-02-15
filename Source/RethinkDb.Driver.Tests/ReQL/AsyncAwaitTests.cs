@@ -45,7 +45,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         const string TimeoutFunction = "while(true){}";
 
         [Test]
-        public async Task canceltoken_directquery()
+        public void canceltoken_directquery()
         {
             var query = R.Js(TimeoutFunction)[new {timeout = 10}];
 

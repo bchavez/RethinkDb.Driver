@@ -2,13 +2,14 @@
 
 namespace RethinkDb.Driver.Net.Clustering
 {
-    public class Server
+    internal class Server
     {
         public string Id { get; set; }
         public string Name { get; set; }
         public Network Network { get; set; }
     }
-    public class Network
+
+    internal class Network
     {
         [JsonProperty("canonical_addresses")]
         public CanonicalAddress[] CanonicalAddress { get; set; }
@@ -17,7 +18,7 @@ namespace RethinkDb.Driver.Net.Clustering
         public int ReqlPort { get; set; }
     }
 
-    public class CanonicalAddress
+    internal class CanonicalAddress
     {
         public string Host { get; set; }
         public int Port { get; set; }

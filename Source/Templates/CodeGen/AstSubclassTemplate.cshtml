@@ -88,7 +88,7 @@
         @:public @Class(ClassName) this[object optArgs] {
         @:    get
         @:    {
-        @:        var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+        @:        var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);
         @:
         @:        return new @Class(ClassName) (this.Args, newOptArgs);
         @:    }
@@ -100,7 +100,7 @@
     @:public @Class(ClassName) this[OptArgs optArgs] {
     @:    get
     @:    {
-    @:        var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+    @:        var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);
     @:
     @:        return new @Class(ClassName) (this.Args, newOptArgs);
     @:    }
@@ -111,7 +111,7 @@
 @:///</summary>
         @:public @Class(ClassName) optArg(string key, object val){
         @:    
-        @:    var newOptArgs = OptArgs.FromMap(this.OptArgs).with(key, val);
+        @:    var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         @:
         @:    return new @Class(ClassName) (this.Args, newOptArgs);
         @:}

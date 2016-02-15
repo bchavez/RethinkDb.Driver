@@ -9,7 +9,7 @@ using RethinkDb.Driver.Net;
 
 namespace RethinkDb.Driver.Ast
 {
-    public static class Util
+    internal static class Util
     {
         public static ReqlAst ToReqlAst(object val)
         {

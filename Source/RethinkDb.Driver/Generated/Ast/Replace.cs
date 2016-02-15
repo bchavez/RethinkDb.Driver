@@ -96,7 +96,7 @@ namespace RethinkDb.Driver.Ast {
         public Replace this[object optArgs] {
             get
             {
-                var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+                var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);
         
                 return new Replace (this.Args, newOptArgs);
             }
@@ -113,7 +113,7 @@ namespace RethinkDb.Driver.Ast {
     public Replace this[OptArgs optArgs] {
         get
         {
-            var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+            var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);
     
             return new Replace (this.Args, newOptArgs);
         }
@@ -129,7 +129,7 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
         public Replace optArg(string key, object val){
             
-            var newOptArgs = OptArgs.FromMap(this.OptArgs).with(key, val);
+            var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Replace (this.Args, newOptArgs);
         }

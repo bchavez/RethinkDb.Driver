@@ -70,7 +70,7 @@ namespace RethinkDb.Driver.Ast {
         public Max this[object optArgs] {
             get
             {
-                var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+                var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);
         
                 return new Max (this.Args, newOptArgs);
             }
@@ -82,7 +82,7 @@ namespace RethinkDb.Driver.Ast {
     public Max this[OptArgs optArgs] {
         get
         {
-            var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+            var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);
     
             return new Max (this.Args, newOptArgs);
         }
@@ -93,7 +93,7 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
         public Max optArg(string key, object val){
             
-            var newOptArgs = OptArgs.FromMap(this.OptArgs).with(key, val);
+            var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Max (this.Args, newOptArgs);
         }

@@ -76,7 +76,7 @@ namespace RethinkDb.Driver.Ast {
         public Distinct this[object optArgs] {
             get
             {
-                var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+                var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);
         
                 return new Distinct (this.Args, newOptArgs);
             }
@@ -88,7 +88,7 @@ namespace RethinkDb.Driver.Ast {
     public Distinct this[OptArgs optArgs] {
         get
         {
-            var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+            var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);
     
             return new Distinct (this.Args, newOptArgs);
         }
@@ -99,7 +99,7 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
         public Distinct optArg(string key, object val){
             
-            var newOptArgs = OptArgs.FromMap(this.OptArgs).with(key, val);
+            var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Distinct (this.Args, newOptArgs);
         }

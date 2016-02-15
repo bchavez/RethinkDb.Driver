@@ -4,7 +4,7 @@ using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver
 {
-    public class ErrorBuilder
+    internal class ErrorBuilder
     {
         internal string Msg { get; }
         internal ResponseType? ResponseType { get; }

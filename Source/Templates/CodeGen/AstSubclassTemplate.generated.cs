@@ -489,7 +489,7 @@ WriteLiteral("    {\r\n");
 
 WriteLiteral("        ");
 
-WriteLiteral("        var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);\r\n");
+WriteLiteral("        var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);\r\n");
 
 
 
@@ -585,7 +585,7 @@ WriteLiteral("    {\r\n");
 
 WriteLiteral("    ");
 
-WriteLiteral("        var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);\r\n");
+WriteLiteral("        var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);\r\n");
 
 
 
@@ -675,7 +675,7 @@ WriteLiteral("    \r\n");
 
 WriteLiteral("        ");
 
-WriteLiteral("    var newOptArgs = OptArgs.FromMap(this.OptArgs).with(key, val);\r\n");
+WriteLiteral("    var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);\r\n");
 
 
 

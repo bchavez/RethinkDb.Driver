@@ -89,7 +89,7 @@ namespace RethinkDb.Driver.Ast {
         public Http this[object optArgs] {
             get
             {
-                var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+                var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);
         
                 return new Http (this.Args, newOptArgs);
             }
@@ -120,7 +120,7 @@ namespace RethinkDb.Driver.Ast {
     public Http this[OptArgs optArgs] {
         get
         {
-            var newOptArgs = OptArgs.FromMap(this.OptArgs).with(optArgs);
+            var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);
     
             return new Http (this.Args, newOptArgs);
         }
@@ -150,7 +150,7 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
         public Http optArg(string key, object val){
             
-            var newOptArgs = OptArgs.FromMap(this.OptArgs).with(key, val);
+            var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Http (this.Args, newOptArgs);
         }

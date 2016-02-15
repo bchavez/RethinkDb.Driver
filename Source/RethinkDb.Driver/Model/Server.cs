@@ -12,9 +12,18 @@ namespace RethinkDb.Driver.Model
     /// </summary>
     public class Server
     {
+        /// <summary>
+        /// The server's id
+        /// </summary>
         public Guid Id { get; set; }
+        /// <summary>
+        /// The server's name.
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Extra metadata that couldn't be parsed, if any.
+        /// </summary>
         [JsonExtensionData]
         public IDictionary<string, JToken> ExtraData { get; set; }
     }

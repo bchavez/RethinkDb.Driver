@@ -1,3 +1,6 @@
+## v2.2.8-beta-1
+* Issue 32: Switch to new `dotnet` target framework monikers for CoreCLR.
+
 ## v2.2.7
 * Roll-up Release for Full .NET Framework since v2.2.5.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.

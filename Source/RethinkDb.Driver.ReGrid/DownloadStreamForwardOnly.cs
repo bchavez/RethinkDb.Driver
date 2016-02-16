@@ -127,16 +127,15 @@ namespace RethinkDb.Driver.ReGrid
         private async Task GetNextBatchAsync(CancellationToken cancelToken)
         {
             var hasMore = await cursor.MoveNextAsync(cancelToken).ConfigureAwait(false);
-            GetNextBatchFromCursor(hasMore);
-        }
-
-        private void GetNextBatchFromCursor(bool hasMore)
-        {
-            if( !hasMore )
+            if (!hasMore)
             {
                 throw new ChunkException(FileInfo.Id, nextChunkNumber, "missing");
             }
+            GetNextBatchFromCursor();
+        }
 
+        private void GetNextBatchFromCursor()
+        {
             var previousBatch = batch;
             batch = cursor.BufferedItems;
             //don't forget the current

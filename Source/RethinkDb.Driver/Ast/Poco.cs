@@ -1,4 +1,3 @@
-using System;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;

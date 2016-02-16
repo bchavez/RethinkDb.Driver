@@ -2,7 +2,6 @@
 
 using System;
 using Newtonsoft.Json;
-using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Net.JsonConverters
 {
@@ -52,7 +51,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
                     "See https://rethinkdb.com/docs/data-types/ for more information about how Date and Times are represented in RethinkDB.");
                 throw new JsonSerializationException(msg);
             }
-            
+
             reader.ReadAndAssertProperty(Converter.PseudoTypeKey);
             var reql_type = reader.ReadAsString();
             if( reql_type != Converter.Time )
@@ -83,7 +82,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
 
             var dto = dt.ToOffset(tz);
 
-            if( objectType == typeof(DateTimeOffset) || 
+            if( objectType == typeof(DateTimeOffset) ||
                 objectType == typeof(DateTimeOffset?) )
                 return dto;
 
@@ -111,7 +110,5 @@ namespace RethinkDb.Driver.Net.JsonConverters
                    objectType == typeof(DateTime?) ||
                    objectType == typeof(DateTimeOffset?);
         }
-
-       
     }
 }

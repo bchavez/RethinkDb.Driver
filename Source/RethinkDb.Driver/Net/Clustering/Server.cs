@@ -13,7 +13,9 @@ namespace RethinkDb.Driver.Net.Clustering
     {
         [JsonProperty("canonical_addresses")]
         public CanonicalAddress[] CanonicalAddress { get; set; }
+
         public string Hostname { get; set; }
+
         [JsonProperty("reql_port")]
         public int ReqlPort { get; set; }
     }

@@ -25,10 +25,11 @@ namespace RethinkDb.Driver.Net.Clustering
         /// </summary>
         /// <param name="retryDelayInitial">The initial retry delay when a host goes down. Default, null, is 30 seconds.</param>
         /// <param name="retryDelayMax">The maximum retry delay when a host goes down. Default, null, is 15 minutes.</param>
-        public RoundRobinHostPool(TimeSpan? retryDelayInitial, TimeSpan? retryDelayMax) 
+        public RoundRobinHostPool(TimeSpan? retryDelayInitial, TimeSpan? retryDelayMax)
             : base(retryDelayInitial, retryDelayMax)
         {
         }
+
         /// <summary>
         /// Create a new RoundRobin host pool. Each host is used in a round robin
         /// strategy when processing each query. When a host goes down, the supervisor will
@@ -37,7 +38,7 @@ namespace RethinkDb.Driver.Net.Clustering
         /// is greater than retryDelayMax; thereafter, every subsequent retry is retryDelayMax.
         /// The retryDelayInitial is 30 seconds, and retryDelayMax is 15 minutes.
         /// </summary>
-        public RoundRobinHostPool() : this(null , null)
+        public RoundRobinHostPool() : this(null, null)
         {
         }
 
@@ -50,7 +51,7 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 var next = Interlocked.Increment(ref nextHostIndex);
                 var currentIndex = next % hostCount;
-                
+
                 var h = hostList[currentIndex];
                 if( !h.Dead )
                 {
@@ -60,7 +61,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
             return hostList[0];
         }
-        
+
         #region CONNECTION RUNNERS
 
         public override async Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
@@ -98,7 +99,7 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 return await host.conn.RunAtomAsync<T>(term, globalOpts, cancelToken).ConfigureAwait(false);
             }
-            catch (Exception e) when (ExceptionIs.NetworkError(e))
+            catch( Exception e ) when( ExceptionIs.NetworkError(e) )
             {
                 host.MarkFailed();
                 throw;
@@ -112,7 +113,7 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 return await host.conn.RunResultAsync<T>(term, globalOpts, cancelToken).ConfigureAwait(false);
             }
-            catch (Exception e) when (ExceptionIs.NetworkError(e))
+            catch( Exception e ) when( ExceptionIs.NetworkError(e) )
             {
                 host.MarkFailed();
                 throw;
@@ -126,7 +127,7 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 host.conn.RunNoReply(term, globalOpts);
             }
-            catch (Exception e) when (ExceptionIs.NetworkError(e))
+            catch( Exception e ) when( ExceptionIs.NetworkError(e) )
             {
                 host.MarkFailed();
                 throw;

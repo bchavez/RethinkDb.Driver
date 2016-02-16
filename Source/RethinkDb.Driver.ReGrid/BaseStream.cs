@@ -22,10 +22,10 @@ namespace RethinkDb.Driver.ReGrid
         /// File info the stream represents
         /// </summary>
         public FileInfo FileInfo { get; set; }
-        
+
         /// <summary>
         /// Async closure of the stream.
         /// </summary>
-        public abstract Task CloseAsync(CancellationToken cancelToken = default (CancellationToken));
+        public abstract Task CloseAsync(CancellationToken cancelToken = default(CancellationToken));
     }
 }

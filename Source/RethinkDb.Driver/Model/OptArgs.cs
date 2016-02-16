@@ -13,12 +13,13 @@ namespace RethinkDb.Driver.Model
         /// </summary>
         public virtual OptArgs With(string key, object value)
         {
-            if (key != null)
+            if( key != null )
             {
                 this[key] = Util.ToReqlAst(value);
             }
             return this;
         }
+
         internal OptArgs with(string key, object value)
         {
             return With(key, value);
@@ -29,12 +30,13 @@ namespace RethinkDb.Driver.Model
         /// </summary>
         public virtual OptArgs With(string key, IList<object> value)
         {
-            if (key != null)
+            if( key != null )
             {
                 this[key] = Util.ToReqlAst(value);
             }
             return this;
         }
+
         internal virtual OptArgs with(string key, IList<object> value)
         {
             return With(key, value);
@@ -47,12 +49,13 @@ namespace RethinkDb.Driver.Model
         public virtual OptArgs With(object anonType)
         {
             var anonDict = PropertyHelper.ObjectToDictionary(anonType);
-            foreach (var kvp in anonDict)
+            foreach( var kvp in anonDict )
             {
                 this.with(kvp.Key, kvp.Value);
             }
             return this;
         }
+
         internal virtual OptArgs with(object anonType)
         {
             return With(anonType);
@@ -94,6 +97,5 @@ namespace RethinkDb.Driver.Model
 
             return oa;
         }
-
     }
 }

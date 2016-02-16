@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,7 +14,7 @@ namespace RethinkDb.Driver.ReGrid
         private long position;
 
         // constructors
-        public SeekableDownloadStream(Bucket bucket,FileInfo fileInfo)
+        public SeekableDownloadStream(Bucket bucket, FileInfo fileInfo)
             : base(bucket, fileInfo)
         {
         }
@@ -25,10 +24,7 @@ namespace RethinkDb.Driver.ReGrid
 
         public override long Position
         {
-            get
-            {
-                return position;
-            }
+            get { return position; }
             set
             {
                 Ensure.IsGreaterThanOrEqualToZero(value, nameof(value));
@@ -46,7 +42,7 @@ namespace RethinkDb.Driver.ReGrid
             ThrowIfDisposed();
 
             var bytesRead = 0;
-            while (count > 0 && position < FileInfo.Length)
+            while( count > 0 && position < FileInfo.Length )
             {
                 var segment = GetSegment();
 
@@ -62,7 +58,7 @@ namespace RethinkDb.Driver.ReGrid
             return bytesRead;
         }
 
-        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count,CancellationToken cancellationToken)
+        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             Ensure.IsNotNull(buffer, nameof(buffer));
             Ensure.IsBetween(offset, 0, buffer.Length, nameof(offset));
@@ -70,7 +66,7 @@ namespace RethinkDb.Driver.ReGrid
             ThrowIfDisposed();
 
             var bytesRead = 0;
-            while (count > 0 && position < FileInfo.Length)
+            while( count > 0 && position < FileInfo.Length )
             {
                 var segment = await GetSegmentAsync().ConfigureAwait(false);
 
@@ -89,14 +85,21 @@ namespace RethinkDb.Driver.ReGrid
         public override long Seek(long offset, SeekOrigin origin)
         {
             long newPosition;
-            switch (origin)
+            switch( origin )
             {
-                case SeekOrigin.Begin: newPosition = offset; break;
-                case SeekOrigin.Current: newPosition = position + offset; break;
-                case SeekOrigin.End: newPosition = position + offset; break;
-                default: throw new ArgumentException("Invalid origin.", "origin");
+                case SeekOrigin.Begin:
+                    newPosition = offset;
+                    break;
+                case SeekOrigin.Current:
+                    newPosition = position + offset;
+                    break;
+                case SeekOrigin.End:
+                    newPosition = position + offset;
+                    break;
+                default:
+                    throw new ArgumentException("Invalid origin.", "origin");
             }
-            if (newPosition < 0)
+            if( newPosition < 0 )
             {
                 throw new IOException("Position must be greater than or equal to zero.");
             }
@@ -126,7 +129,7 @@ namespace RethinkDb.Driver.ReGrid
             var chunkSizeBytes = FileInfo.ChunkSizeBytes;
             var lastChunk = FileInfo.Length / FileInfo.ChunkSizeBytes;
             var expectedChunkSize = n == lastChunk ? FileInfo.Length % chunkSizeBytes : chunkSizeBytes;
-            if (data.Length != expectedChunkSize)
+            if( data.Length != expectedChunkSize )
             {
                 throw new ChunkException(FileInfo.Id, n, "the wrong size");
             }
@@ -137,7 +140,7 @@ namespace RethinkDb.Driver.ReGrid
         private ArraySegment<byte> GetSegment()
         {
             var n = position / FileInfo.ChunkSizeBytes;
-            if (num != n)
+            if( num != n )
             {
                 GetChunk(n);
             }
@@ -151,7 +154,7 @@ namespace RethinkDb.Driver.ReGrid
         private async Task<ArraySegment<byte>> GetSegmentAsync()
         {
             var n = position / FileInfo.ChunkSizeBytes;
-            if (num != n)
+            if( num != n )
             {
                 await GetChunkAsync(n).ConfigureAwait(false);
             }

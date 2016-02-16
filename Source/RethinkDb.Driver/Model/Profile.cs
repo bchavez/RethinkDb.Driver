@@ -1,6 +1,5 @@
 #pragma warning disable 1591 // Missing XML comment for publicly visible type or member
 
-using System;
 using Newtonsoft.Json.Linq;
 
 namespace RethinkDb.Driver.Model

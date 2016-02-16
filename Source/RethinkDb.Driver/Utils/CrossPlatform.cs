@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net.Sockets;
-using System.Reflection;
 
 #if DNX
 using System.Reflection;
@@ -44,7 +43,7 @@ namespace RethinkDb.Driver.Utils
             tcp.Dispose();
 #else
             tcp.Close();
-#endif   
+#endif
         }
     }
 }

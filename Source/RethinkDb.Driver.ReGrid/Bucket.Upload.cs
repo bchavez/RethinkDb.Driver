@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
-using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.ReGrid
@@ -24,7 +19,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
         public async Task<Guid> UploadAsync(string filename, byte[] source, UploadOptions options = null, CancellationToken cancelToken = default(CancellationToken))
         {
-            using (var ms = new MemoryStream(source))
+            using( var ms = new MemoryStream(source) )
             {
                 return await UploadAsync(filename, ms, options, cancelToken)
                     .ConfigureAwait(false);
@@ -53,12 +48,12 @@ namespace RethinkDb.Driver.ReGrid
         {
             options = options ?? new UploadOptions();
             var uploadStream = await OpenUploadStreamAsync(filename, options, cancelToken).ConfigureAwait(false);
-            using (var destination = uploadStream)
+            using( var destination = uploadStream )
             {
                 var chunkSize = options.ChunkSizeBytes;
                 var buffer = new byte[chunkSize];
 
-                while (true)
+                while( true )
                 {
                     int bytesRead = 0;
                     Exception sourceException = null;
@@ -67,21 +62,23 @@ namespace RethinkDb.Driver.ReGrid
                         bytesRead = await source.ReadAsync(buffer, 0, buffer.Length, cancelToken)
                             .ConfigureAwait(false);
                     }
-                    catch (Exception ex)
+                    catch( Exception ex )
                     {
                         sourceException = ex;
                     }
-                    if (sourceException != null)
+                    if( sourceException != null )
                     {
                         try
                         {
                             await destination.AbortAsync(cancelToken)
                                 .ConfigureAwait(false);
                         }
-                        catch { }
+                        catch
+                        {
+                        }
                         throw sourceException;
                     }
-                    if (bytesRead == 0)
+                    if( bytesRead == 0 )
                     {
                         break;
                     }
@@ -153,6 +150,7 @@ namespace RethinkDb.Driver.ReGrid
             return await CreateUploadStreamAsync(fileName, options, cancelToken)
                 .ConfigureAwait(false);
         }
+
         /// <summary>
         /// Open an upload stream to write to.
         /// </summary>
@@ -162,9 +160,6 @@ namespace RethinkDb.Driver.ReGrid
         {
             return OpenUploadStreamAsync(fileName, null, cancelToken);
         }
-
-
-
 
 
         // PRIVATE

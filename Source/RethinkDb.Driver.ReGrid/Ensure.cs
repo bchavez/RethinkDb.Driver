@@ -21,7 +21,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static T IsBetween<T>(T value, T min, T max, string paramName) where T : IComparable<T>
         {
-            if (value.CompareTo(min) < 0 || value.CompareTo(max) > 0)
+            if( value.CompareTo(min) < 0 || value.CompareTo(max) > 0 )
             {
                 var message = string.Format("Value is not between {1} and {2}: {0}.", value, min, max);
                 throw new ArgumentOutOfRangeException(paramName, message);
@@ -39,7 +39,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static T IsEqualTo<T>(T value, T comparand, string paramName)
         {
-            if (!value.Equals(comparand))
+            if( !value.Equals(comparand) )
             {
                 var message = string.Format("Value is not equal to {1}: {0}.", value, comparand);
                 throw new ArgumentException(paramName, message);
@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static T IsGreaterThanOrEqualTo<T>(T value, T comparand, string paramName) where T : IComparable<T>
         {
-            if (value.CompareTo(comparand) < 0)
+            if( value.CompareTo(comparand) < 0 )
             {
                 var message = string.Format("Value is not greater than or equal to {1}: {0}.", value, comparand);
                 throw new ArgumentOutOfRangeException(paramName, message);
@@ -73,7 +73,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static int IsGreaterThanOrEqualToZero(int value, string paramName)
         {
-            if (value < 0)
+            if( value < 0 )
             {
                 var message = string.Format("Value is not greater than or equal to 0: {0}.", value);
                 throw new ArgumentOutOfRangeException(paramName, message);
@@ -89,7 +89,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static long IsGreaterThanOrEqualToZero(long value, string paramName)
         {
-            if (value < 0)
+            if( value < 0 )
             {
                 var message = string.Format("Value is not greater than or equal to 0: {0}.", value);
                 throw new ArgumentOutOfRangeException(paramName, message);
@@ -105,7 +105,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static TimeSpan IsGreaterThanOrEqualToZero(TimeSpan value, string paramName)
         {
-            if (value < TimeSpan.Zero)
+            if( value < TimeSpan.Zero )
             {
                 var message = string.Format("Value is not greater than or equal to zero: {0}.", TimeSpanParser.ToString(value));
                 throw new ArgumentOutOfRangeException(paramName, message);
@@ -121,7 +121,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static int IsGreaterThanZero(int value, string paramName)
         {
-            if (value <= 0)
+            if( value <= 0 )
             {
                 var message = string.Format("Value is not greater than zero: {0}.", value);
                 throw new ArgumentOutOfRangeException(paramName, message);
@@ -137,7 +137,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static long IsGreaterThanZero(long value, string paramName)
         {
-            if (value <= 0)
+            if( value <= 0 )
             {
                 var message = string.Format("Value is not greater than zero: {0}.", value);
                 throw new ArgumentOutOfRangeException(paramName, message);
@@ -153,7 +153,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static TimeSpan IsGreaterThanZero(TimeSpan value, string paramName)
         {
-            if (value <= TimeSpan.Zero)
+            if( value <= TimeSpan.Zero )
             {
                 var message = string.Format("Value is not greater than zero: {0}.", value);
                 throw new ArgumentOutOfRangeException(paramName, message);
@@ -169,7 +169,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static TimeSpan IsInfiniteOrGreaterThanOrEqualToZero(TimeSpan value, string paramName)
         {
-            if (value < TimeSpan.Zero && value != Timeout.InfiniteTimeSpan)
+            if( value < TimeSpan.Zero && value != Timeout.InfiniteTimeSpan )
             {
                 var message = string.Format("Value is not infinite or greater than or equal to zero: {0}.", TimeSpanParser.ToString(value));
                 throw new ArgumentOutOfRangeException(paramName, message);
@@ -186,7 +186,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static T IsNotNull<T>(T value, string paramName) where T : class
         {
-            if (value == null)
+            if( value == null )
             {
                 throw new ArgumentNullException(paramName, "Value cannot be null.");
             }
@@ -201,11 +201,11 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static string IsNotNullOrEmpty(string value, string paramName)
         {
-            if (value == null)
+            if( value == null )
             {
                 throw new ArgumentNullException(paramName);
             }
-            if (value.Length == 0)
+            if( value.Length == 0 )
             {
                 throw new ArgumentException("Value cannot be empty.", paramName);
             }
@@ -221,7 +221,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static T IsNull<T>(T value, string paramName) where T : class
         {
-            if (value != null)
+            if( value != null )
             {
                 throw new ArgumentNullException(paramName, "Value must be null.");
             }
@@ -236,7 +236,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static int? IsNullOrGreaterThanOrEqualToZero(int? value, string paramName)
         {
-            if (value != null)
+            if( value != null )
             {
                 IsGreaterThanOrEqualToZero(value.Value, paramName);
             }
@@ -251,7 +251,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static long? IsNullOrGreaterThanOrEqualToZero(long? value, string paramName)
         {
-            if (value != null)
+            if( value != null )
             {
                 IsGreaterThanOrEqualToZero(value.Value, paramName);
             }
@@ -266,7 +266,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static int? IsNullOrGreaterThanZero(int? value, string paramName)
         {
-            if (value != null)
+            if( value != null )
             {
                 IsGreaterThanZero(value.Value, paramName);
             }
@@ -281,7 +281,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static long? IsNullOrGreaterThanZero(long? value, string paramName)
         {
-            if (value != null)
+            if( value != null )
             {
                 IsGreaterThanZero(value.Value, paramName);
             }
@@ -296,7 +296,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static TimeSpan? IsNullOrGreaterThanZero(TimeSpan? value, string paramName)
         {
-            if (value != null)
+            if( value != null )
             {
                 IsGreaterThanZero(value.Value, paramName);
             }
@@ -311,7 +311,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static TimeSpan? IsNullOrInfiniteOrGreaterThanOrEqualToZero(TimeSpan? value, string paramName)
         {
-            if (value.HasValue && value.Value < TimeSpan.Zero && value.Value != Timeout.InfiniteTimeSpan)
+            if( value.HasValue && value.Value < TimeSpan.Zero && value.Value != Timeout.InfiniteTimeSpan )
             {
                 var message = string.Format("Value is not null or infinite or greater than or equal to zero: {0}.", TimeSpanParser.ToString(value.Value));
                 throw new ArgumentOutOfRangeException(paramName, message);
@@ -327,7 +327,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static string IsNullOrNotEmpty(string value, string paramName)
         {
-            if (value != null && value == "")
+            if( value != null && value == "" )
             {
                 throw new ArgumentException("Value cannot be empty.", paramName);
             }
@@ -342,7 +342,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static TimeSpan? IsNullOrValidTimeout(TimeSpan? value, string paramName)
         {
-            if (value != null)
+            if( value != null )
             {
                 IsValidTimeout(value.Value, paramName);
             }
@@ -357,7 +357,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static TimeSpan IsValidTimeout(TimeSpan value, string paramName)
         {
-            if (value < TimeSpan.Zero && value != Timeout.InfiniteTimeSpan)
+            if( value < TimeSpan.Zero && value != Timeout.InfiniteTimeSpan )
             {
                 var message = string.Format("Invalid timeout: {0}.", value);
                 throw new ArgumentException(message, paramName);
@@ -372,7 +372,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="message">The message to use with the exception that is thrown if the assertion is false.</param>
         public static void That(bool assertion, string message)
         {
-            if (!assertion)
+            if( !assertion )
             {
                 throw new ArgumentException(message);
             }
@@ -389,7 +389,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns>The value of the parameter.</returns>
         public static T That<T>(T value, Func<T, bool> assertion, string paramName, string message)
         {
-            if (!assertion(value))
+            if( !assertion(value) )
             {
                 throw new ArgumentException(message, paramName);
             }

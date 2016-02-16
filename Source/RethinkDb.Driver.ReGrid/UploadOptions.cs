@@ -15,10 +15,12 @@ namespace RethinkDb.Driver.ReGrid
         {
             this.Metadata = new JObject();
         }
+
         /// <summary>
         /// The default chunk size in bytes
         /// </summary>
         public const int DefaultCunkSize = 255 * 1024;
+
         /// <summary>
         /// The default batch size in bytes
         /// </summary>

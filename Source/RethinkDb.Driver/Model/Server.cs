@@ -16,6 +16,7 @@ namespace RethinkDb.Driver.Model
         /// The server's id
         /// </summary>
         public Guid Id { get; set; }
+
         /// <summary>
         /// The server's name.
         /// </summary>

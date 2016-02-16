@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
+
 #if DNX
 using System.Reflection;
 #endif
@@ -16,6 +17,7 @@ namespace RethinkDb.Driver.ReGrid
 #else
         private SHA256 hasher;
 #endif
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -27,7 +29,7 @@ namespace RethinkDb.Driver.ReGrid
             hasher = SHA256.Create();
 #endif
         }
-        
+
         /// <summary>
         /// Updates the hash value
         /// </summary>
@@ -61,6 +63,4 @@ namespace RethinkDb.Driver.ReGrid
             hasher.Dispose();
         }
     }
-
-
 }

@@ -7,9 +7,9 @@ namespace RethinkDb.Driver.Utils
         public static void FireEvent<T>(this EventHandler<T> eve, object sender, T arg)
         {
             var handlers = eve?.GetInvocationList();
-            if (handlers != null)
+            if( handlers != null )
             {
-                foreach (var del in handlers)
+                foreach( var del in handlers )
                 {
                     var callback = (EventHandler<T>)del;
                     try

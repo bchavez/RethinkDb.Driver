@@ -86,7 +86,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Get Metadata as T
         /// </summary>
-        public T MetadataAs<T>() where T : class 
+        public T MetadataAs<T>() where T : class
         {
             return this.Metadata?.ToObject<T>(Net.Converter.Serializer);
         }
@@ -102,7 +102,7 @@ namespace RethinkDb.Driver.ReGrid
         /// Incomplete status indicates that the file has not finished uploading.
         /// </summary>
         Incomplete,
-        
+
         /// <summary>
         /// Completed status indicates that the file was successfully uploaded.
         /// </summary>

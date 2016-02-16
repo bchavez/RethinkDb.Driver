@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
-using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Utils;
 
@@ -32,7 +30,6 @@ namespace RethinkDb.Driver.ReGrid
         public DownloadStreamForwardOnly(Bucket bucket, FileInfo fileInfo, DownloadOptions options)
             : base(bucket, fileInfo)
         {
-
             if( options.CheckSHA256 )
             {
                 this.sha256 = new Hasher();
@@ -79,7 +76,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             ThrowIfDisposed();
             var bytesRead = 0;
-            while (count > 0 && position < FileInfo.Length)
+            while( count > 0 && position < FileInfo.Length )
             {
                 var segment = await GetSegmentAsync(cancelToken).ConfigureAwait(false);
 
@@ -100,11 +97,11 @@ namespace RethinkDb.Driver.ReGrid
         {
             var batchIndex = (int)((position - batchPosition) / FileInfo.ChunkSizeBytes);
 
-            if (cursor == null)
+            if( cursor == null )
             {
                 await GetFirstBatchAsync(cancelToken).ConfigureAwait(false);
             }
-            else if (batchIndex == batch.Count)
+            else if( batchIndex == batch.Count )
             {
                 await GetNextBatchAsync(cancelToken).ConfigureAwait(false);
                 batchIndex = 0;
@@ -135,46 +132,47 @@ namespace RethinkDb.Driver.ReGrid
 
         private void GetNextBatchFromCursor(bool hasMore)
         {
-            if (!hasMore)
+            if( !hasMore )
             {
                 throw new ChunkException(FileInfo.Id, nextChunkNumber, "missing");
             }
 
             var previousBatch = batch;
             batch = cursor.BufferedItems;
-            batch.Insert(0, cursor.Current);//don't forget the current
-                                            //that was just iterated on
+            //don't forget the current
+            //that was just iterated on
+            batch.Insert(0, cursor.Current);
             cursor.ClearBuffer();
 
-            if (previousBatch != null)
+            if( previousBatch != null )
             {
-                batchPosition += previousBatch.Count * FileInfo.ChunkSizeBytes ;
+                batchPosition += previousBatch.Count * FileInfo.ChunkSizeBytes;
             }
 
             var lastChunkInBatch = batch.Last();
-            if (lastChunkInBatch.Num == lastChunkNumber + 1 && lastChunkInBatch.Data.Length == 0)
+            if( lastChunkInBatch.Num == lastChunkNumber + 1 && lastChunkInBatch.Data.Length == 0 )
             {
                 batch.RemoveAt(batch.Count - 1);
             }
 
-            foreach (var chunk in batch)
+            foreach( var chunk in batch )
             {
                 var n = chunk.Num;
                 var bytes = chunk.Data;
 
-                if (n != nextChunkNumber)
+                if( n != nextChunkNumber )
                 {
                     throw new ChunkException(FileInfo.Id, nextChunkNumber, "missing");
                 }
                 nextChunkNumber++;
 
                 var expectedChunkSize = n == lastChunkNumber ? lastChunkSize : FileInfo.ChunkSizeBytes;
-                if (bytes.Length != expectedChunkSize)
+                if( bytes.Length != expectedChunkSize )
                 {
                     throw new ChunkException(FileInfo.Id, nextChunkNumber, "the wrong size");
                 }
 
-                if (checkSHA256)
+                if( checkSHA256 )
                 {
                     sha256.AppendData(bytes);
                 }
@@ -192,28 +190,28 @@ namespace RethinkDb.Driver.ReGrid
 
         private void CloseHelper()
         {
-            if (!closed)
+            if( !closed )
             {
                 closed = true;
 
-                if (checkSHA256 && position == FileInfo.Length)
+                if( checkSHA256 && position == FileInfo.Length )
                 {
                     var sig = this.sha256.GetHashAndReset();
 
                     this.sha256.Dispose();
 
-                    if (!sig.Equals(FileInfo.SHA256, StringComparison.OrdinalIgnoreCase))
+                    if( !sig.Equals(FileInfo.SHA256, StringComparison.OrdinalIgnoreCase) )
                     {
                         throw new SHA256Exception(FileInfo.Id);
                     }
                 }
             }
         }
-        
+
         public override long Position
         {
             get { return position; }
             set { throw new NotSupportedException(); }
-        }   
+        }
     }
 }

@@ -1,8 +1,6 @@
 ﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using RethinkDb.Driver.Ast;
@@ -27,7 +25,8 @@ namespace RethinkDb.Driver.Net.Clustering
             if( this.RetryDelayInitial < TimeSpan.FromSeconds(30)
                 || this.RetryDelayMax < TimeSpan.FromSeconds(30) )
             {
-                throw new ArgumentOutOfRangeException($"{nameof(retryDelayInitial)} and {nameof(retryDelayMax)} must both be greater than 30 seconds. Anything less can cause threads to pile up on each other because the default socket timeout for windows is about 20 seconds.");
+                throw new ArgumentOutOfRangeException(
+                    $"{nameof(retryDelayInitial)} and {nameof(retryDelayMax)} must both be greater than 30 seconds. Anything less can cause threads to pile up on each other because the default socket timeout for windows is about 20 seconds.");
             }
 
             hostList = new HostEntry[0];
@@ -70,6 +69,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 shuttingDown = true;
             }
         }
+
         public abstract Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
         public abstract Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
         public abstract Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);

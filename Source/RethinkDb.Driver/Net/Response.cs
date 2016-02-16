@@ -24,10 +24,12 @@ namespace RethinkDb.Driver.Net
         /// The token ID associated with the query.
         /// </summary>
         public long Token { get; }
+
         /// <summary>
         /// The response type <see cref="ResponseType"/>.
         /// </summary>
         public ResponseType Type { get; }
+
         /// <summary>
         /// Notes about the response <see cref="ResponseNote"/>
         /// </summary>
@@ -37,14 +39,17 @@ namespace RethinkDb.Driver.Net
         /// The data payload.
         /// </summary>
         public JArray Data { get; private set; }
+
         /// <summary>
         /// Profile information about the query
         /// </summary>
         public Profile Profile { get; private set; }
+
         /// <summary>
         /// Backtrace information about a failed query.
         /// </summary>
         public Backtrace Backtrace { get; private set; }
+
         /// <summary>
         /// The error type, if any.
         /// </summary>

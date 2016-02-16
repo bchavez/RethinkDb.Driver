@@ -25,6 +25,5 @@ namespace RethinkDb.Driver.ReGrid
             : base(FormatMessage(filename, revision))
         {
         }
-
     }
 }

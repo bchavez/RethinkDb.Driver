@@ -1,9 +1,9 @@
 #if DNX
 using Microsoft.Extensions.Logging;
 #else
+using System.Text;
 using Common.Logging;
 #endif
-
 using System.Text;
 
 
@@ -31,7 +31,6 @@ namespace RethinkDb.Driver
 
         private static string Filter(string msg, int startAfter = 0)
         {
-
             if( TruncateBinaryTypes )
             {
                 var start = msg.IndexOf(@"{""$reql_type$"":""BINARY"",""data"":""", startAfter);

@@ -65,7 +65,7 @@ namespace RethinkDb.Driver.Net
         private Task<Response> pendingContinue;
 
         private readonly Queue<JToken> items = new Queue<JToken>();
-        
+
         void AdvanceCurrent()
         {
             var item = items.Dequeue();
@@ -132,19 +132,19 @@ namespace RethinkDb.Driver.Net
         public async Task<bool> MoveNextAsync(CancellationToken cancelToken = default(CancellationToken))
         {
             cancelToken.ThrowIfCancellationRequested();
-            while (items.Count == 0)
+            while( items.Count == 0 )
             {
-                if (!this.IsOpen) return false;
+                if( !this.IsOpen ) return false;
 
                 //our buffer is empty, we need to expect the next batch of items.
 
-                if (!this.pendingContinue.IsCompleted)
+                if( !this.pendingContinue.IsCompleted )
                 {
                     //the next batch isn't here yet. so,
                     //let's await and honor the cancelToken.
 
                     //create a task that is controlled by the token.
-                    using (var cancelTask = new CancellableTask(cancelToken))
+                    using( var cancelTask = new CancellableTask(cancelToken) )
                     {
                         //now await on either task, pending or the cancellation of the CancellableTask.
                         await Task.WhenAny(this.pendingContinue, cancelTask.Task).ConfigureAwait(false);
@@ -152,7 +152,7 @@ namespace RethinkDb.Driver.Net
                         cancelToken.ThrowIfCancellationRequested();
                         //else, no cancellation was requested.
                         //we can proceed by processing the results we awaited for.
-                    }//ensure the disposal of the cancelToken registration upon exiting scope
+                    } //ensure the disposal of the cancelToken registration upon exiting scope
                 }
 
                 //if we get here, the next batch should be available.
@@ -170,7 +170,7 @@ namespace RethinkDb.Driver.Net
 
         void MaybeSendContinue()
         {
-            if (this.IsOpen && this.conn.Open && pendingContinue == null && !sequenceFinished)
+            if( this.IsOpen && this.conn.Open && pendingContinue == null && !sequenceFinished )
             {
                 this.pendingContinue = this.conn.Continue(this);
             }
@@ -178,20 +178,20 @@ namespace RethinkDb.Driver.Net
 
         void ExtendBuffer(Response response)
         {
-            if (this.IsOpen)
+            if( this.IsOpen )
             {
-                if (response.IsPartial)
+                if( response.IsPartial )
                 {
                     //SUCCESS_PARTIAL
-                    foreach (var jToken in response.Data)
+                    foreach( var jToken in response.Data )
                     {
                         items.Enqueue(jToken);
                     }
                 }
-                else if (response.IsSequence)
+                else if( response.IsSequence )
                 {
                     //SUCCESS_SEQUENCE
-                    foreach (var jToken in response.Data)
+                    foreach( var jToken in response.Data )
                     {
                         items.Enqueue(jToken);
                     }
@@ -210,6 +210,7 @@ namespace RethinkDb.Driver.Net
         }
 
         bool sequenceFinished;
+
         void SequenceFinished()
         {
             sequenceFinished = true;
@@ -234,10 +235,10 @@ namespace RethinkDb.Driver.Net
 
         void Shutdown(string reason)
         {
-            if (this.conn.Open && this.IsOpen)
+            if( this.conn.Open && this.IsOpen )
             {
                 conn.RemoveFromCache(this.Token);
-                if(!sequenceFinished)
+                if( !sequenceFinished )
                 {
                     conn.Stop(this);
                 }
@@ -253,9 +254,10 @@ namespace RethinkDb.Driver.Net
         //on the public API surface.
         internal void SetError(string msg)
         {
-            if (this.Error != null) return;
+            if( this.Error != null ) return;
             this.Error = new InvalidOperationException(msg);
         }
+
         void ICursor.SetError(string msg)
         {
             SetError(msg);

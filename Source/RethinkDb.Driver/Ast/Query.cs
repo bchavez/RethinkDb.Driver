@@ -11,6 +11,7 @@ namespace RethinkDb.Driver.Ast
      * track of its token, the args to .run() it was called with, and its
      * query type.
     */
+
     /// <summary>
     /// DO NOT USE DIRECTLY
     /// </summary>

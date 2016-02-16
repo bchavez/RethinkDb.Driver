@@ -25,7 +25,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
                 return null;
             }
 
-            if (reader.TokenType != JsonToken.StartObject)
+            if( reader.TokenType != JsonToken.StartObject )
             {
                 var msg = string.Join(" ",
                     $"The JSON representation of binary data (byte[]) when parsing the server response is not a {Converter.PseudoTypeKey}:{Converter.Binary} object.",

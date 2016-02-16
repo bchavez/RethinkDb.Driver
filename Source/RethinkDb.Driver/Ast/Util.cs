@@ -20,7 +20,7 @@ namespace RethinkDb.Driver.Ast
         {
             var converted = ToReqlAst(val);
             var reqlAst = converted as ReqlExpr;
-            if( !ReferenceEquals(reqlAst, null))
+            if( !ReferenceEquals(reqlAst, null) )
             {
                 return reqlAst;
             }

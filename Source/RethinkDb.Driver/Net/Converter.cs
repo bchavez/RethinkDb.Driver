@@ -1,7 +1,4 @@
-using System;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using RethinkDb.Driver.Net.JsonConverters;
 
 namespace RethinkDb.Driver.Net
@@ -31,8 +28,6 @@ namespace RethinkDb.Driver.Net
                         }
                 };
             Serializer = JsonSerializer.CreateDefault(settings);
-
-
         }
 
         /// <summary>
@@ -44,24 +39,23 @@ namespace RethinkDb.Driver.Net
         /// DateTime converter to/from ReQL pseudo types
         /// </summary>
         public static ReqlDateTimeConverter DateTimeConverter { get; set; }
-        
+
         /// <summary>
         /// Binary converter to/from ReQL pseudo types
         /// </summary>
         public static ReqlBinaryConverter BinaryConverter { get; set; }
-        
+
         /// <summary>
         /// DateTime converter from ReQL grouping types
         /// </summary>
         public static ReqlGroupingConverter GroupingConverter { get; set; }
 
 
-
         /// <summary>
         /// Serializes arrays in POCO into wire specific format
         /// </summary>
         public static PocoArrayConverter PocoArrayConverter { get; set; }
-        
+
         /// <summary>
         /// Allows anonymous types to be composed with ReQL expressions like R.Now()
         /// </summary>
@@ -77,14 +71,17 @@ namespace RethinkDb.Driver.Net
         /// Discriminator for TIME types.
         /// </summary>
         public const string Time = "TIME";
+
         /// <summary>
         /// Discriminator for GROUPED_DATA types.
         /// </summary>
         public const string GroupedData = "GROUPED_DATA";
+
         /// <summary>
         /// Discriminator for GEOMETRY types.
         /// </summary>
         public const string Geometry = "GEOMETRY";
+
         /// <summary>
         /// Discriminator for BINARY types.
         /// </summary>

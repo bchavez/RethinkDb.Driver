@@ -14,7 +14,7 @@ namespace RethinkDb.Driver.Model
         /// document of a feed that returns initial values.
         /// </summary>
         Initializing = 1,
-        
+
         /// <summary>
         /// {state: 'ready'} indicates the following documents represent changes.
         /// This will be the first document of a feed that does not return initial 

@@ -1,8 +1,6 @@
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 using System;
-using System.Threading;
-using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Net.Clustering
 {
@@ -23,7 +21,7 @@ namespace RethinkDb.Driver.Net.Clustering
         public string Host { get; set; }
         public bool Dead { get; set; }
         public object Tag { get; set; }
-        
+
         public DateTime NextRetry { get; set; }
         public int RetryCount { get; set; }
         public TimeSpan RetryDelay { get; set; }
@@ -36,7 +34,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
         public float EpsilonValue;
         public float EpsilonPercentage;
-        public float EpsilonWeightAverage ;
+        public float EpsilonWeightAverage;
 
         public virtual void RetryFailed()
         {
@@ -54,7 +52,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
         public virtual void MarkFailed()
         {
-            if (!this.Dead)
+            if( !this.Dead )
             {
                 this.RetryCount = 0;
                 this.RetryDelay = this.RetryDelayInitial;

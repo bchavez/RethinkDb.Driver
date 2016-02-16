@@ -2,7 +2,6 @@ using System;
 
 namespace RethinkDb.Driver.Net.Clustering
 {
-
     /// <summary>
     /// Classes implementing this interface are used to convert the average response time for a host
     /// into a score that can be used to weight hosts in the epsilon greedy hostpool. Lower response
@@ -104,7 +103,6 @@ namespace RethinkDb.Driver.Net.Clustering
     /// </summary>
     public static class EpsilonCalculator
     {
-
         /// <summary>
         /// Linear calculator to convert the average response time for a host
         /// into a score that can be used to weight hosts in the epsilon greedy hostpool. Lower response

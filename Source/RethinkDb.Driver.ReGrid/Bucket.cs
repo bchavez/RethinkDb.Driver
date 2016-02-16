@@ -5,8 +5,8 @@ using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
-using RethinkDb.Driver.Utils;
 using RethinkDb.Driver.Net.Clustering;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.ReGrid
 {
@@ -65,7 +65,7 @@ namespace RethinkDb.Driver.ReGrid
             this.chunkTable = this.db.Table(chunkTableName);
             this.chunkIndexName = config.ChunkIndex;
         }
-        
+
 
         private void ThrowIfNotMounted()
         {
@@ -84,9 +84,9 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Mounts the bucket. Mount is necessary before using a bucket to ensure the existence of tables and indexes.
         /// </summary>
-        public async Task MountAsync(CancellationToken cancelToken = default (CancellationToken))
+        public async Task MountAsync(CancellationToken cancelToken = default(CancellationToken))
         {
-            if (this.Mounted)
+            if( this.Mounted )
                 return;
 
             var filesTableResult = await EnsureTable(this.fileTableName, cancelToken)
@@ -95,11 +95,8 @@ namespace RethinkDb.Driver.ReGrid
             if( filesTableResult.TablesCreated == 1 )
             {
                 //index the file paths of completed files and status
-                ReqlFunction1 pathIx = row =>
-                    {
-                        return R.Array(row[FileInfo.StatusJsonName], row[FileInfo.FileNameJsonName], row[FileInfo.FinishedDateJsonName]);
-                    };
-                await CreateIndex(this.fileTableName, this.fileIndex,pathIx, cancelToken)
+                ReqlFunction1 pathIx = row => { return R.Array(row[FileInfo.StatusJsonName], row[FileInfo.FileNameJsonName], row[FileInfo.FinishedDateJsonName]); };
+                await CreateIndex(this.fileTableName, this.fileIndex, pathIx, cancelToken)
                     .ConfigureAwait(false);
 
 
@@ -124,10 +121,7 @@ namespace RethinkDb.Driver.ReGrid
             if( chunkTableResult.TablesCreated == 1 )
             {
                 //Index the chunks and their parent [fileid, n].
-                ReqlFunction1 chunkIx = row =>
-                    {
-                        return R.Array(row[Chunk.FilesIdJsonName], row[Chunk.NumJsonName]);
-                    };
+                ReqlFunction1 chunkIx = row => { return R.Array(row[Chunk.FilesIdJsonName], row[Chunk.NumJsonName]); };
                 await CreateIndex(this.chunkTableName, this.chunkIndexName, chunkIx, cancelToken)
                     .ConfigureAwait(false);
             }

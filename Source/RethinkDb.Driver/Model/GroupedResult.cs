@@ -20,6 +20,7 @@ namespace RethinkDb.Driver.Model
             this.Key = key.ToObject<TKey>(Converter.Serializer);
             this.Items = items.ToObject<List<TElement>>(Converter.Serializer);
         }
+
         public IEnumerator<TElement> GetEnumerator()
         {
             return this.Items.GetEnumerator();
@@ -35,7 +36,7 @@ namespace RethinkDb.Driver.Model
         /// The Key
         /// </summary>
         public TKey Key { get; }
-        
+
         /// <summary>
         /// The list of items grouped by <see cref="Key"/>
         /// </summary>
@@ -47,7 +48,7 @@ namespace RethinkDb.Driver.Model
     /// </summary>
     /// <typeparam name="TKey">The KEY type</typeparam>
     /// <typeparam name="TItem">The VALUE type</typeparam>
-    public class GroupedResultSet<TKey, TItem> : List< GroupedResult<TKey, TItem>>
+    public class GroupedResultSet<TKey, TItem> : List<GroupedResult<TKey, TItem>>
     {
         /// <summary>
         /// Item type

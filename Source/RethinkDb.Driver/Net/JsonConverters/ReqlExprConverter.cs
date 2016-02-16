@@ -3,6 +3,7 @@
 using System;
 using Newtonsoft.Json;
 using RethinkDb.Driver.Ast;
+
 #if DNX
 using RethinkDb.Driver.Utils;
 #endif

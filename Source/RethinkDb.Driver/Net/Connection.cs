@@ -37,8 +37,8 @@ namespace RethinkDb.Driver.Net
             var authKey = builder.authKey ?? string.Empty;
             var authKeyBytes = Encoding.ASCII.GetBytes(authKey);
 
-            using (var ms = new MemoryStream())
-            using (var bw = new BinaryWriter(ms))
+            using( var ms = new MemoryStream() )
+            using( var bw = new BinaryWriter(ms) )
             {
                 bw.Write((int)Proto.Version.V0_4);
                 bw.Write(authKeyBytes.Length);
@@ -57,6 +57,7 @@ namespace RethinkDb.Driver.Net
         /// Hostname assigned to the connection.
         /// </summary>
         public string Hostname { get; }
+
         /// <summary>
         /// TCP port number assigned to the connection.
         /// </summary>
@@ -111,7 +112,7 @@ namespace RethinkDb.Driver.Net
         /// Flag to check the underlying socket is connected.
         /// </summary>
         public virtual bool Open => this.Socket?.Open ?? false;
-        
+
         /// <summary>
         /// Flag to check if the underlying socket has some kind of error.
         /// </summary>
@@ -124,7 +125,7 @@ namespace RethinkDb.Driver.Net
         /// <exception cref="ReqlDriverError">Throws when the underlying socket is closed.</exception>
         public virtual void CheckOpen()
         {
-            if(!this.Socket?.Open ?? true)
+            if( !this.Socket?.Open ?? true )
             {
                 throw new ReqlDriverError("Connection is closed.");
             }
@@ -149,7 +150,7 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         protected void CleanUpCursorCache(string message)
         {
-            foreach (var cursor in this.cursorCache.Values)
+            foreach( var cursor in this.cursorCache.Values )
             {
                 cursor.SetError(message);
             }
@@ -170,7 +171,7 @@ namespace RethinkDb.Driver.Net
         /// <param name="shouldNoReplyWait"><see cref="NoReplyWait"/></param>
         public virtual void Close(bool shouldNoReplyWait = true)
         {
-            if ( this.Socket != null )
+            if( this.Socket != null )
             {
                 try
                 {
@@ -260,7 +261,8 @@ namespace RethinkDb.Driver.Net
                 //return Cursor<T>.create(this, query, res);
                 return new Cursor<T>(this, query, res);
             }
-            throw new ReqlDriverError($"The query response cannot be converted to a Cursor<T>. The run helper works with SUCCESS_SEQUENCE or SUCCESS_PARTIAL results. The server response was {res.Type}. If the server response can be handled by this run method check T. Otherwise, if the server response cannot be handled by this run helper use `.runAtom<T>` or `.runResult<T>`.");
+            throw new ReqlDriverError(
+                $"The query response cannot be converted to a Cursor<T>. The run helper works with SUCCESS_SEQUENCE or SUCCESS_PARTIAL results. The server response was {res.Type}. If the server response can be handled by this run method check T. Otherwise, if the server response cannot be handled by this run helper use `.runAtom<T>` or `.runResult<T>`.");
         }
 
         /// <summary>
@@ -269,19 +271,20 @@ namespace RethinkDb.Driver.Net
         protected virtual async Task<T> RunQueryAtomAsync<T>(Query query, CancellationToken cancelToken)
         {
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
-            if (res.IsAtom)
+            if( res.IsAtom )
             {
                 try
                 {
                     return res.Data[0].ToObject<T>(Converter.Serializer);
                 }
-                catch (IndexOutOfRangeException ex)
+                catch( IndexOutOfRangeException ex )
                 {
                     throw new ReqlDriverError("Atom response was empty!", ex);
                 }
             }
-            throw new ReqlDriverError($"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.runCursor` or `.runResult<T>`.");
-        }   
+            throw new ReqlDriverError(
+                $"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.runCursor` or `.runResult<T>`.");
+        }
 
 
         /// <summary>
@@ -305,7 +308,8 @@ namespace RethinkDb.Driver.Net
             {
                 return res.Data.ToObject<T>(Converter.Serializer);
             }
-            throw new ReqlDriverError($"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM or SUCCESS_SEQUENCE results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.runCursor`.");
+            throw new ReqlDriverError(
+                $"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM or SUCCESS_SEQUENCE results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.runCursor`.");
         }
 
         /// <summary>
@@ -320,7 +324,8 @@ namespace RethinkDb.Driver.Net
             {
                 return;
             }
-            throw new ReqlDriverError($"The query response is not WAIT_COMPLETE. The returned query is {res.Type}. You need to call the appropriate run method that handles the response type for your query.");
+            throw new ReqlDriverError(
+                $"The query response is not WAIT_COMPLETE. The returned query is {res.Type}. You need to call the appropriate run method that handles the response type for your query.");
         }
 
         /// <summary>
@@ -395,13 +400,13 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         protected void SetDefaultDb(OptArgs globalOpts)
         {
-            if (globalOpts?.ContainsKey("db") == false && this.dbname != null)
+            if( globalOpts?.ContainsKey("db") == false && this.dbname != null )
             {
                 // Only override the db global arg if the user hasn't
                 // specified one already and one is specified on the connection
                 globalOpts.With("db", this.dbname);
             }
-            if (globalOpts?.ContainsKey("db") == true)
+            if( globalOpts?.ContainsKey("db") == true )
             {
                 // The db arg must be wrapped in a db ast object
                 globalOpts.With("db", new Db(Arguments.Make(globalOpts["db"])));
@@ -468,7 +473,7 @@ namespace RethinkDb.Driver.Net
 
         internal void AddToCache(long token, ICursor cursor)
         {
-            if( this.Socket == null)
+            if( this.Socket == null )
                 throw new ReqlDriverError("Can't add to cache when not connected.");
             cursorCache[token] = cursor;
         }
@@ -476,14 +481,13 @@ namespace RethinkDb.Driver.Net
         internal void RemoveFromCache(long token)
         {
             ICursor removed;
-            if (!cursorCache.TryRemove(token, out removed))
+            if( !cursorCache.TryRemove(token, out removed) )
             {
                 Log.Trace($"Could not remove cursor token {token} from cursorCache.");
             }
         }
 
         #endregion
-
 
         internal static Builder Build()
         {

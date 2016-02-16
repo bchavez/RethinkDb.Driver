@@ -1,14 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Dynamic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
@@ -67,8 +60,6 @@ namespace RethinkDb.Driver.Ast
         }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
-
-
         #region DYNAMIC LANGUAGE RUNTIME (DLR) RUNNERS
 
         /// <summary>
@@ -83,6 +74,7 @@ namespace RethinkDb.Driver.Ast
         {
             return conn.RunAsync<T>(this, runOpts, cancelToken);
         }
+
         /// <summary>
         /// Runs the query on the connection. If you know the response type
         /// of your query, T (SUCCESS_ATOM) or Cursor[T] (SUCCESS_SEQUENCE or SUCCESS_PARTIAL)
@@ -95,7 +87,6 @@ namespace RethinkDb.Driver.Ast
         {
             return RunAsync<T>(conn, null, cancelToken);
         }
-
 
 
         /// <summary>
@@ -113,6 +104,7 @@ namespace RethinkDb.Driver.Ast
         {
             return RunAsync<dynamic>(conn, runOpts, cancelToken);
         }
+
         /// <summary>
         /// Runs the query on the connection. If you know the response type
         /// of your query, T (SUCCESS_ATOM) or Cursor[T] (SUCCESS_SEQUENCE or SUCCESS_PARTIAL)
@@ -127,7 +119,6 @@ namespace RethinkDb.Driver.Ast
         {
             return RunAsync(conn, null, cancelToken);
         }
-
 
 
         /// <summary>
@@ -158,11 +149,6 @@ namespace RethinkDb.Driver.Ast
 
         #endregion
 
-
-
-
-
-
         #region RESPONSE TYPED RUNNERS
 
         /// <summary>
@@ -187,6 +173,7 @@ namespace RethinkDb.Driver.Ast
         {
             return conn.RunCursorAsync<T>(this, runOpts, cancelToken);
         }
+
         /// <summary>
         /// Use this method if you're expecting a cursor (SUCCESS_SEQUENCE or SUCCESS_PARTIAL) response
         /// from your query. This method offers a slight edge in performance without the need for the
@@ -227,6 +214,7 @@ namespace RethinkDb.Driver.Ast
         {
             return conn.RunAtomAsync<T>(this, runOpts, cancelToken);
         }
+
         /// <summary>
         /// Use this method if you're expecting SUCCESS_ATOM response from your query. This
         /// method offers a slight edge in performance without the need for the
@@ -234,7 +222,7 @@ namespace RethinkDb.Driver.Ast
         /// </summary>
         /// <param name="conn">connection</param>
         /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
-        public virtual Task<T> RunAtomAsync<T>(IConnection conn, CancellationToken cancelToken )
+        public virtual Task<T> RunAtomAsync<T>(IConnection conn, CancellationToken cancelToken)
         {
             return RunAtomAsync<T>(conn, null, cancelToken);
         }
@@ -263,6 +251,7 @@ namespace RethinkDb.Driver.Ast
         {
             return conn.RunResultAsync<T>(this, runOpts, cancelToken);
         }
+
         /// <summary>
         /// Use this method if you're expecting SUCCESS_ATOM response from your query. This
         /// method offers a slight edge in performance without the need for the
@@ -289,7 +278,6 @@ namespace RethinkDb.Driver.Ast
 
         #endregion
 
-
         #region EXTRA RUN HELPERS
 
         /// <summary>
@@ -303,6 +291,7 @@ namespace RethinkDb.Driver.Ast
         {
             return conn.RunAtomAsync<Result>(this, runOpts, cancelToken);
         }
+
         /// <summary>
         /// Helper shortcut for DML type of queries that returns # of inserts, deletes, errors.
         /// This method bypasses the dynamic language runtime for extra performance.
@@ -337,6 +326,7 @@ namespace RethinkDb.Driver.Ast
         {
             return conn.RunCursorAsync<Change<T>>(this, runOpts, cancelToken);
         }
+
         /// <summary>
         /// Helper shortcut for change feeds, use if your query is expecting an infinite changes() stream.
         /// This method bypasses the dynamic language runtime for extra performance.
@@ -344,7 +334,7 @@ namespace RethinkDb.Driver.Ast
         /// <typeparam name="T">The document type of new/old value</typeparam>
         /// <param name="conn">connection</param>
         /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
-        public virtual Task<Cursor<Change<T>>> RunChangesAsync<T>(IConnection conn, CancellationToken cancelToken )
+        public virtual Task<Cursor<Change<T>>> RunChangesAsync<T>(IConnection conn, CancellationToken cancelToken)
         {
             return RunChangesAsync<T>(conn, null, cancelToken);
         }
@@ -363,7 +353,6 @@ namespace RethinkDb.Driver.Ast
 
         #endregion
 
-
         /// <summary>
         /// Helper shortcut for grouping queries.
         /// This method bypasses the dynamic language runtime for extra performance.
@@ -373,11 +362,13 @@ namespace RethinkDb.Driver.Ast
         /// <param name="conn">connection</param>
         /// <param name="runOpts">global anonymous type optional arguments</param>
         /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
-        public virtual async Task<IEnumerable<GroupedResult<TKey, TItem>>> RunGroupingAsync<TKey, TItem>(IConnection conn, object runOpts = null, CancellationToken cancelToken = default(CancellationToken))
+        public virtual async Task<IEnumerable<GroupedResult<TKey, TItem>>> RunGroupingAsync<TKey, TItem>(IConnection conn, object runOpts = null,
+            CancellationToken cancelToken = default(CancellationToken))
         {
             var tsk = await RunAtomAsync<GroupedResultSet<TKey, TItem>>(conn, runOpts, cancelToken).ConfigureAwait(false);
             return tsk;
         }
+
         /// <summary>
         /// Helper shortcut for grouping queries.
         /// This method bypasses the dynamic language runtime for extra performance.
@@ -403,6 +394,5 @@ namespace RethinkDb.Driver.Ast
         {
             return RunAtomAsync<GroupedResultSet<TKey, TItem>>(conn, runOpts).WaitSync();
         }
-
     }
 }

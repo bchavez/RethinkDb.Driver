@@ -28,7 +28,7 @@ namespace RethinkDb.Driver.Utils
 
         public void Dispose()
         {
-            if(!disposed)
+            if( !disposed )
             {
                 this.registration.Dispose();
             }

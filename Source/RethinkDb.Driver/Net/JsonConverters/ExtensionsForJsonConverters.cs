@@ -8,7 +8,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
         public static void ReadAndAssertProperty(this JsonReader reader, string propertyName)
         {
             ReadAndAssert(reader);
-            if ((reader.TokenType != JsonToken.PropertyName) || !string.Equals(reader.Value.ToString(), propertyName, StringComparison.OrdinalIgnoreCase))
+            if( (reader.TokenType != JsonToken.PropertyName) || !string.Equals(reader.Value.ToString(), propertyName, StringComparison.OrdinalIgnoreCase) )
             {
                 throw new JsonSerializationException($"Expected JSON property '{propertyName}'.");
             }
@@ -16,7 +16,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
 
         public static void ReadAndAssert(this JsonReader reader)
         {
-            if (!reader.Read())
+            if( !reader.Read() )
             {
                 throw new JsonSerializationException("Unexpected end.");
             }

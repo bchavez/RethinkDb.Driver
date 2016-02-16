@@ -47,7 +47,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
             {
                 throw new JsonSerializationException($"Expected {Converter.PseudoTypeKey} should be {Converter.GroupedData} but got {reql_type}.");
             }
-            
+
             reader.ReadAndAssertProperty("data");
 
             //move reader to property value
@@ -69,7 +69,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
 
             var data = serializer.Deserialize<List<JArray>>(reader);
 
-            foreach ( var group in data )
+            foreach( var group in data )
             {
                 var key = group[0]; //key, group value in common
                 var items = group[1]; //the grouped items

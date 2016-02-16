@@ -9,17 +9,17 @@ namespace RethinkDb.Driver
         /// Default database name: test
         /// </summary>
         public const string DefaultDbName = "test";
-        
+
         /// <summary>
         /// Default hostname: localhost
         /// </summary>
         public const string DefaultHostname = "localhost";
-        
+
         /// <summary>
         /// Default auth key: ""
         /// </summary>
         public const string DefaultAuthkey = "";
-        
+
         /// <summary>
         /// Default TCP port: 28015
         /// </summary>

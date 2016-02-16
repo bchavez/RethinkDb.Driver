@@ -13,19 +13,19 @@ namespace RethinkDb.Driver.ReGrid
             const int msInOneHour = 60 * msInOneMinute;
 
             var ms = (long)value.TotalMilliseconds;
-            if ((ms % msInOneHour) == 0)
+            if( (ms % msInOneHour) == 0 )
             {
                 return string.Format("{0}h", ms / msInOneHour);
             }
-            else if ((ms % msInOneMinute) == 0 && ms < msInOneHour)
+            else if( (ms % msInOneMinute) == 0 && ms < msInOneHour )
             {
                 return string.Format("{0}m", ms / msInOneMinute);
             }
-            else if ((ms % msInOneSecond) == 0 && ms < msInOneMinute)
+            else if( (ms % msInOneSecond) == 0 && ms < msInOneMinute )
             {
                 return string.Format("{0}s", ms / msInOneSecond);
             }
-            else if (ms < 1000)
+            else if( ms < 1000 )
             {
                 return string.Format("{0}ms", ms);
             }
@@ -37,15 +37,15 @@ namespace RethinkDb.Driver.ReGrid
 
         public static bool TryParse(string value, out TimeSpan result)
         {
-            if (!string.IsNullOrEmpty(value))
+            if( !string.IsNullOrEmpty(value) )
             {
                 value = value.ToLowerInvariant();
                 var end = value.Length - 1;
 
                 var multiplier = 1000; // default units are seconds
-                if (value[end] == 's')
+                if( value[end] == 's' )
                 {
-                    if (value[end - 1] == 'm')
+                    if( value[end - 1] == 'm' )
                     {
                         value = value.Substring(0, value.Length - 2);
                         multiplier = 1;
@@ -56,24 +56,24 @@ namespace RethinkDb.Driver.ReGrid
                         multiplier = 1000;
                     }
                 }
-                else if (value[end] == 'm')
+                else if( value[end] == 'm' )
                 {
                     value = value.Substring(0, value.Length - 1);
                     multiplier = 60 * 1000;
                 }
-                else if (value[end] == 'h')
+                else if( value[end] == 'h' )
                 {
                     value = value.Substring(0, value.Length - 1);
                     multiplier = 60 * 60 * 1000;
                 }
-                else if (value.IndexOf(':') != -1)
+                else if( value.IndexOf(':') != -1 )
                 {
                     return TimeSpan.TryParse(value, out result);
                 }
 
                 double multiplicand;
                 var numberStyles = NumberStyles.None;
-                if (double.TryParse(value, numberStyles, CultureInfo.InvariantCulture, out multiplicand))
+                if( double.TryParse(value, numberStyles, CultureInfo.InvariantCulture, out multiplicand) )
                 {
                     result = TimeSpan.FromMilliseconds(multiplicand * multiplier);
                     return true;

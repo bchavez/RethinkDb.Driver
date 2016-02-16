@@ -80,6 +80,7 @@ namespace RethinkDb.Driver.Model
         /// </summary>
         [JsonProperty("dbs_created")]
         public uint DatabasesCreated { get; set; }
+
         /// <summary>
         /// The number of databases dropped.
         /// </summary>
@@ -91,6 +92,7 @@ namespace RethinkDb.Driver.Model
         /// </summary>
         [JsonProperty("tables_created")]
         public uint TablesCreated { get; set; }
+
         /// <summary>
         /// The number of tables dropped.
         /// </summary>

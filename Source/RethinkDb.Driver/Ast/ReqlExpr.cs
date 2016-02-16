@@ -16,13 +16,13 @@ namespace RethinkDb.Driver.Ast
         /// </summary>
         /// <param name="bracket"></param>
         public Bracket this[string bracket] => this.bracket(bracket);
+
         /// <summary>
         /// Get the nth element of a sequence, counting from zero. If the argument is negative, count from the last element.
         /// </summary>
         /// <param name="bracket"></param>
         /// <returns></returns>
         public Bracket this[int bracket] => this.bracket(bracket);
-
 
 
         public static ReqlExpr operator >(ReqlExpr a, ReqlExpr b)
@@ -95,7 +95,7 @@ namespace RethinkDb.Driver.Ast
         public static bool operator true(ReqlExpr a)
         {
             return false; //forces evaluation of & and | ?
-                          //this might be a bug here.
+            //this might be a bug here.
         }
 
         public static ReqlExpr operator &(ReqlExpr a, ReqlExpr b)
@@ -109,14 +109,12 @@ namespace RethinkDb.Driver.Ast
         }
 
 
-
-
-
         //Can we do implicit operators???
         public static implicit operator ReqlExpr(string a)
         {
             return Util.ToReqlExpr(a);
         }
+
         public static implicit operator ReqlExpr(int a)
         {
             return Util.ToReqlExpr(a);
@@ -126,42 +124,52 @@ namespace RethinkDb.Driver.Ast
         {
             return Util.ToReqlExpr(a);
         }
+
         public static implicit operator ReqlExpr(byte a)
         {
             return Util.ToReqlExpr(a);
         }
+
         public static implicit operator ReqlExpr(sbyte a)
         {
             return Util.ToReqlExpr(a);
         }
+
         public static implicit operator ReqlExpr(long a)
         {
             return Util.ToReqlExpr(a);
         }
+
         public static implicit operator ReqlExpr(ulong a)
         {
             return Util.ToReqlExpr(a);
         }
+
         public static implicit operator ReqlExpr(double a)
         {
             return Util.ToReqlExpr(a);
         }
+
         public static implicit operator ReqlExpr(decimal a)
         {
             return Util.ToReqlExpr(a);
         }
+
         public static implicit operator ReqlExpr(float a)
         {
             return Util.ToReqlExpr(a);
         }
+
         public static implicit operator ReqlExpr(DateTime a)
         {
             return Util.ToReqlExpr(a);
         }
+
         public static implicit operator ReqlExpr(DateTimeOffset a)
         {
             return Util.ToReqlExpr(a);
         }
+
         public static implicit operator ReqlExpr(Delegate a)
         {
             return Util.ToReqlExpr(a);

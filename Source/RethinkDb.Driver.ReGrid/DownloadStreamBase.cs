@@ -52,6 +52,7 @@ namespace RethinkDb.Driver.ReGrid
             CloseAsync().WaitSync();
         }
 #endif
+
         /// <summary>
         /// Closes the stream asynchronously.
         /// </summary>
@@ -125,7 +126,7 @@ namespace RethinkDb.Driver.ReGrid
         /// </summary>
         protected virtual void ThrowIfDisposed()
         {
-            if (disposed)
+            if( disposed )
             {
                 throw new ObjectDisposedException(GetType().Name);
             }

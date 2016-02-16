@@ -26,7 +26,6 @@ namespace RethinkDb.Driver.Net.Clustering
         /// </summary>
         public string Db => this.dbname;
 
-        
         #region REQL AST RUNNERS
 
         Task<dynamic> IConnection.RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
@@ -40,7 +39,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
         Task<Cursor<T>> IConnection.RunCursorAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
-            if (this.shutdownSignal.IsCancellationRequested)
+            if( this.shutdownSignal.IsCancellationRequested )
             {
                 throw new ReqlDriverError("HostPool is shutdown.");
             }
@@ -49,7 +48,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
         Task<T> IConnection.RunAtomAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
-            if (this.shutdownSignal.IsCancellationRequested)
+            if( this.shutdownSignal.IsCancellationRequested )
             {
                 throw new ReqlDriverError("HostPool is shutdown.");
             }
@@ -58,7 +57,7 @@ namespace RethinkDb.Driver.Net.Clustering
 
         Task<T> IConnection.RunResultAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken)
         {
-            if (this.shutdownSignal.IsCancellationRequested)
+            if( this.shutdownSignal.IsCancellationRequested )
             {
                 throw new ReqlDriverError("HostPool is shutdown.");
             }
@@ -94,7 +93,7 @@ namespace RethinkDb.Driver.Net.Clustering
             shutdownSignal?.Cancel();
             poolingStrategy?.Shutdown();
 
-            if ( poolingStrategy != null )
+            if( poolingStrategy != null )
             {
                 //shutdown all connections.
                 foreach( var h in poolingStrategy.HostList )
@@ -155,9 +154,9 @@ namespace RethinkDb.Driver.Net.Clustering
         {
             var r = RethinkDB.R;
 
-            var changeFeed = r.Db("rethinkdb").Table("server_status").Changes()[new { include_initial = true }];
+            var changeFeed = r.Db("rethinkdb").Table("server_status").Changes()[new {include_initial = true}];
 
-            while ( true )
+            while( true )
             {
                 if( shutdownSignal.IsCancellationRequested )
                 {
@@ -179,7 +178,7 @@ namespace RethinkDb.Driver.Net.Clustering
                 {
                     var cursor = changeFeed.RunChanges<Server>(this);
 
-                    foreach ( var change in cursor )
+                    foreach( var change in cursor )
                     {
                         if( change.NewValue != null )
                         {
@@ -220,10 +219,10 @@ namespace RethinkDb.Driver.Net.Clustering
             var hlist = poolingStrategy.HostList;
 
             //has it been discovered?
-            if (!realAddresses.Any(ip => hlist.Any(s => s.Host.Contains(ip))))
+            if( !realAddresses.Any(ip => hlist.Any(s => s.Host.Contains(ip))) )
             {
                 //the host IP is not found, so, see if we can connect?
-                foreach (var ip in realAddresses)
+                foreach( var ip in realAddresses )
                 {
                     //can we connect to this IP?
                     var test = new TcpClient();
@@ -242,7 +241,7 @@ namespace RethinkDb.Driver.Net.Clustering
                         }
                         continue;
                     }
-                    if (test.Connected)
+                    if( test.Connected )
                     {
                         test.Shutdown();
                         //good chance we can connect to it.
@@ -256,7 +255,8 @@ namespace RethinkDb.Driver.Net.Clustering
             }
             else
             {
-                Log.Trace($"{nameof(Discoverer)}: Server '{server.Name}' is back, but doesn't need to be added to the pool. The supervisor will re-establish the connection later.");
+                Log.Trace(
+                    $"{nameof(Discoverer)}: Server '{server.Name}' is back, but doesn't need to be added to the pool. The supervisor will re-establish the connection later.");
             }
         }
 
@@ -271,7 +271,7 @@ namespace RethinkDb.Driver.Net.Clustering
         {
             var restartWorkers = new List<Task>();
 
-            while ( true )
+            while( true )
             {
                 if( shutdownSignal.IsCancellationRequested )
                 {
@@ -285,14 +285,13 @@ namespace RethinkDb.Driver.Net.Clustering
                 {
                     var he = hlist[i];
                     var conn = he.conn as Connection;
-                    
-                    if ( he.NeedsRetry() )
-                    {
 
+                    if( he.NeedsRetry() )
+                    {
                         var worker = Task.Run(() =>
                             {
                                 conn.Reconnect();
-                                
+
                                 if( conn.Open )
                                 {
                                     Log.Debug($"{nameof(Supervisor)}: RETRY: Server '{he.Host}' is UP.");

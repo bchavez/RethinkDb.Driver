@@ -18,7 +18,6 @@ namespace RethinkDb.Driver.ReGrid
         /// </summary>
         public static void CleanUp(Bucket bucket)
         {
-            
         }
 
         /// <summary>
@@ -32,11 +31,12 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Enumerate the file system entries of a given particular status.
         /// </summary>
-        public static async Task<Cursor<FileInfo>> EnumerateFileEntriesAsync(Bucket bucket, string filename, Status status, CancellationToken cancelToken = default(CancellationToken))
+        public static async Task<Cursor<FileInfo>> EnumerateFileEntriesAsync(Bucket bucket, string filename, Status status,
+            CancellationToken cancelToken = default(CancellationToken))
         {
             filename = filename.SafePath();
 
-            var index = new { index = bucket.fileIndex };
+            var index = new {index = bucket.fileIndex};
 
             var cursor = await bucket.fileTable
                 .Between(R.Array(status, filename, R.Minval()), R.Array(status, filename, R.Maxval()))[index]
@@ -61,10 +61,10 @@ namespace RethinkDb.Driver.ReGrid
         {
             filename = filename.SafePath();
 
-            var index = new { index = bucket.fileIndex };
+            var index = new {index = bucket.fileIndex};
 
             var cursor = await bucket.fileTable
-                .Between(R.Array(R.Minval(), filename, R.Minval()), R.Array( R.Maxval(), filename, R.Maxval()))[index]
+                .Between(R.Array(R.Minval(), filename, R.Minval()), R.Array(R.Maxval(), filename, R.Maxval()))[index]
                 .RunCursorAsync<FileInfo>(bucket.conn, cancelToken)
                 .ConfigureAwait(false);
 
@@ -78,12 +78,13 @@ namespace RethinkDb.Driver.ReGrid
         {
             return EnumerateChunksAsync(bucket, fileId).WaitSync();
         }
+
         /// <summary>
         /// Gets the enumeration of chunks for file id
         /// </summary>
         public static async Task<Cursor<Chunk>> EnumerateChunksAsync(Bucket bucket, Guid fileId, CancellationToken cancelToken = default(CancellationToken))
         {
-            var index = new { index = bucket.chunkIndexName };
+            var index = new {index = bucket.chunkIndexName};
             return await bucket.chunkTable.Between(R.Array(fileId, R.Minval()), R.Array(fileId, R.Maxval()))[index]
                 .OrderBy("n")[index]
                 .RunCursorAsync<Chunk>(bucket.conn, cancelToken)
@@ -97,12 +98,13 @@ namespace RethinkDb.Driver.ReGrid
         {
             return GetChunkAsync(bucket, fileId, n).WaitSync();
         }
+
         /// <summary>
         /// Get a chunk in a bucket for file id.
         /// </summary>
         public static async Task<Chunk> GetChunkAsync(Bucket bucket, Guid fileId, long n, CancellationToken cancelToken = default(CancellationToken))
         {
-            var index = new { index = bucket.chunkIndexName };
+            var index = new {index = bucket.chunkIndexName};
             return await bucket.chunkTable.GetAll(R.Array(fileId, n))[index]
                 .Nth(0)
                 .RunResultAsync<Chunk>(bucket.conn, cancelToken)

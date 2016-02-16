@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using RethinkDb.Driver.Ast;
@@ -52,7 +51,7 @@ namespace RethinkDb.Driver.ReGrid
             this.chunkTable = chunkTable;
             this.chunkInsertOpts = options.ChunkInsertOptions;
             this.chunkSizeBytes = options.ChunkSizeBytes;
-            
+
             this.batchSize = options.BatchSize;
 
             this.batch = new List<byte[]>();
@@ -116,7 +115,7 @@ namespace RethinkDb.Driver.ReGrid
         private async Task<ArraySegment<byte>> GetCurrentChunkAsync(CancellationToken cancelToken)
         {
             var batchIndex = (int)((length - batchPosition) / chunkSizeBytes);
-            if (batchIndex == batchSize) // batch size, default 16 * 1024 * 1024 / ChunkSize
+            if( batchIndex == batchSize ) // batch size, default 16 * 1024 * 1024 / ChunkSize
             {
                 await WriteBatchAsync(cancelToken).ConfigureAwait(false);
                 batch.Clear();
@@ -181,12 +180,12 @@ namespace RethinkDb.Driver.ReGrid
         /// </summary>
         public override async Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
         {
-            if (this.closed) return;
+            if( this.closed ) return;
 
             ThrowIfDisposed();
             this.closed = true;
 
-            if (!aborted)
+            if( !aborted )
             {
                 await WriteFinalBatchAsync(cancelToken).ConfigureAwait(false);
                 await WriteFinalFileInfoAsync(cancelToken).ConfigureAwait(false);
@@ -210,7 +209,7 @@ namespace RethinkDb.Driver.ReGrid
 
         private async Task WriteFinalBatchAsync(CancellationToken cancelToken)
         {
-            if (batch.Count > 0)
+            if( batch.Count > 0 )
             {
                 TruncateFinalChunk();
                 await WriteBatchAsync(cancelToken).ConfigureAwait(false);
@@ -221,10 +220,12 @@ namespace RethinkDb.Driver.ReGrid
         /// False, upload streams are not readable.
         /// </summary>
         public override bool CanRead => false;
+
         /// <summary>
         /// False, upload streams cannot be seeked.
         /// </summary>
         public override bool CanSeek => false;
+
         /// <summary>
         /// True, upload streams can be written to..
         /// </summary>
@@ -269,13 +270,13 @@ namespace RethinkDb.Driver.ReGrid
         /// </summary>
         protected override void Dispose(bool disposing)
         {
-            if (!disposed)
+            if( !disposed )
             {
                 disposed = true;
 
-                if (disposing)
+                if( disposing )
                 {
-                    if (sha256 != null)
+                    if( sha256 != null )
                     {
                         sha256.Dispose();
                     }
@@ -285,10 +286,11 @@ namespace RethinkDb.Driver.ReGrid
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
+
         private void ThrowIfAbortedClosedOrDisposed()
         {
-            if (aborted)
+            if( aborted )
             {
                 throw new InvalidOperationException("The upload was aborted.");
             }
@@ -297,7 +299,7 @@ namespace RethinkDb.Driver.ReGrid
 
         private void ThrowIfClosedOrDisposed()
         {
-            if (closed)
+            if( closed )
             {
                 throw new InvalidOperationException("The stream is closed.");
             }
@@ -306,15 +308,16 @@ namespace RethinkDb.Driver.ReGrid
 
         private void ThrowIfDisposed()
         {
-            if (disposed)
+            if( disposed )
             {
                 throw new ObjectDisposedException(GetType().Name);
             }
         }
-#endregion
 
+        #endregion
 
-#region UNUSED
+        #region UNUSED
+
         /// <summary>
         /// Not supported. Does nothing.
         /// </summary>
@@ -361,7 +364,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             throw new NotSupportedException();
         }
-#endregion
 
+        #endregion
     }
 }

@@ -16,7 +16,7 @@ namespace RethinkDb.Driver.ReGrid
     public static class FileSystemMethods
     {
         private static readonly RethinkDB R = RethinkDB.R;
-        
+
 
         /// <summary>
         /// Gets all 'completed' file revisions for a given file. Deleted and incomplete files are excluded.
@@ -29,11 +29,11 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Gets all 'completed' file revisions for a given file. Deleted and incomplete files are excluded.
         /// </summary>
-        public static async Task<Cursor<FileInfo>> GetAllRevisionsAsync(this Bucket bucket, string filename, CancellationToken cancelToken = default (CancellationToken))
+        public static async Task<Cursor<FileInfo>> GetAllRevisionsAsync(this Bucket bucket, string filename, CancellationToken cancelToken = default(CancellationToken))
         {
             filename = filename.SafePath();
 
-            var index = new { index = bucket.fileIndex };
+            var index = new {index = bucket.fileIndex};
 
             var cursor = await bucket.fileTable
                 .Between(R.Array(Status.Completed, filename, R.Minval()), R.Array(Status.Completed, filename, R.Maxval()))[index]
@@ -42,7 +42,6 @@ namespace RethinkDb.Driver.ReGrid
 
             return cursor;
         }
-
 
 
         /// <summary>
@@ -62,7 +61,7 @@ namespace RethinkDb.Driver.ReGrid
                 .Get(fileId).RunAtomAsync<FileInfo>(bucket.conn, cancelToken)
                 .ConfigureAwait(false);
 
-            if (fileInfo == null)
+            if( fileInfo == null )
             {
                 throw new FileNotFoundException(fileId);
             }
@@ -88,11 +87,12 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="bucket"><see cref="Bucket"/></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
         /// <param name="filename">The filename</param>
-        public static async Task<FileInfo> GetFileInfoByNameAsync(this Bucket bucket, string filename, int revision = -1, CancellationToken cancelToken = default(CancellationToken))
+        public static async Task<FileInfo> GetFileInfoByNameAsync(this Bucket bucket, string filename, int revision = -1,
+            CancellationToken cancelToken = default(CancellationToken))
         {
             filename = filename.SafePath();
 
-            var index = new { index = bucket.fileIndex };
+            var index = new {index = bucket.fileIndex};
 
             var between = bucket.fileTable
                 .Between(R.Array(Status.Completed, filename, R.Minval()), R.Array(Status.Completed, filename, R.Maxval()))[index];
@@ -101,13 +101,13 @@ namespace RethinkDb.Driver.ReGrid
 
             revision = revision >= 0 ? revision : (revision * -1) - 1;
 
-            var selection = await between.OrderBy()[new { index = sort }]
+            var selection = await between.OrderBy()[new {index = sort}]
                 .Skip(revision).Limit(1) // so the driver doesn't throw an error when a file isn't found.
                 .RunResultAsync<List<FileInfo>>(bucket.conn, cancelToken)
                 .ConfigureAwait(false);
 
             var fileinfo = selection.FirstOrDefault();
-            if (fileinfo == null)
+            if( fileinfo == null )
             {
                 throw new FileNotFoundException(filename, revision);
             }
@@ -117,7 +117,6 @@ namespace RethinkDb.Driver.ReGrid
 
 
         private static char[] PrefixChar = {'/'};
-
 
 
         /// <summary>
@@ -141,7 +140,7 @@ namespace RethinkDb.Driver.ReGrid
             path = path.SafePath();
 
             var parts = path.Split(PrefixChar, StringSplitOptions.RemoveEmptyEntries);
-            
+
 
             var index = new {index = bucket.fileIndexPrefix};
 
@@ -150,15 +149,12 @@ namespace RethinkDb.Driver.ReGrid
 
             var sort = R.Desc(bucket.fileIndexPrefix);
 
-            var selection = await between.OrderBy()[new { index = sort }]
+            var selection = await between.OrderBy()[new {index = sort}]
                 .RunCursorAsync<FileInfo>(bucket.conn, cancelToken)
                 .ConfigureAwait(false);
 
             return selection;
         }
-
-
-
 
 
         /// <summary>
@@ -181,7 +177,8 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="bucket"><see cref="Bucket"/></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
         /// <param name="fileId"><see cref="FileInfo.Id"/></param>
-        public static async Task DeleteRevisionAsync(this Bucket bucket, Guid fileId, DeleteMode mode = DeleteMode.Soft, object deleteOpts = null, CancellationToken cancelToken = default(CancellationToken))
+        public static async Task DeleteRevisionAsync(this Bucket bucket, Guid fileId, DeleteMode mode = DeleteMode.Soft, object deleteOpts = null,
+            CancellationToken cancelToken = default(CancellationToken))
         {
             var result = await bucket.fileTable.Get(fileId)
                 .Update(
@@ -193,12 +190,12 @@ namespace RethinkDb.Driver.ReGrid
 
             result.AssertReplaced(1);
 
-            if (mode == DeleteMode.Hard)
+            if( mode == DeleteMode.Hard )
             {
                 //delete the chunks....
                 await bucket.chunkTable.Between(
                     R.Array(fileId, R.Minval()),
-                    R.Array(fileId, R.Maxval()))[new { index = bucket.chunkIndexName }]
+                    R.Array(fileId, R.Maxval()))[new {index = bucket.chunkIndexName}]
                     .Delete()[deleteOpts]
                     .RunResultAsync(bucket.conn, cancelToken)
                     .ConfigureAwait(false);
@@ -242,6 +239,5 @@ namespace RethinkDb.Driver.ReGrid
                     .ConfigureAwait(false);
             }
         }
-
     }
 }

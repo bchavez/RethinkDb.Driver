@@ -16,18 +16,22 @@ namespace RethinkDb.Driver.Net
         /// DO NOT CALL THIS METHOD EXPLICITLY. USE Run*() METHODS AT THE END OF YOUR QUERY.
         /// </summary>
         Task<dynamic> RunAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
+
         /// <summary>
         /// DO NOT CALL THIS METHOD EXPLICITLY. USE Run*() METHODS AT THE END OF YOUR QUERY.
         /// </summary>
         Task<Cursor<T>> RunCursorAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
+
         /// <summary>
         /// DO NOT CALL THIS METHOD EXPLICITLY. USE Run*() METHODS AT THE END OF YOUR QUERY.
         /// </summary>
         Task<T> RunAtomAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
+
         /// <summary>
         /// DO NOT CALL THIS METHOD EXPLICITLY. USE Run*() METHODS AT THE END OF YOUR QUERY.
         /// </summary>
         Task<T> RunResultAsync<T>(ReqlAst term, object globalOpts, CancellationToken cancelToken);
+
         /// <summary>
         /// DO NOT CALL THIS METHOD EXPLICITLY. USE Run*() METHODS AT THE END OF YOUR QUERY.
         /// </summary>

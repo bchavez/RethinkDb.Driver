@@ -45,9 +45,9 @@ namespace RethinkDb.Driver.Net
                 //socketChannel.ReceiveTimeout = 250;
                 //socketChannel.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
                 //socketChannel.Client.Blocking = true;
-                
+
                 await socketChannel.ConnectAsync(this.hostname, this.port).ConfigureAwait(false);
-                
+
                 this.ns = socketChannel.GetStream();
                 this.bw = new BinaryWriter(this.ns);
                 this.br = new BinaryReader(this.ns);
@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Net
 
                 var msg = this.ReadNullTerminatedString(timeout);
 
-                if (!msg.Equals("SUCCESS"))
+                if( !msg.Equals("SUCCESS") )
                 {
                     throw new ReqlDriverError($"Server dropped connection with message: '{msg}'");
                 }
@@ -65,15 +65,18 @@ namespace RethinkDb.Driver.Net
                 //http://blog.i3arnon.com/2015/07/02/task-run-long-running/
                 //LongRunning creates a new thread and marks it as a background thread
                 //(ie: does not block application shutdown, when all foreground threads finish)
-                pump = new CancellationTokenSource(); // GitHub Issue #24 - Set PUMP token first before starting thread.
-                                                      //      If the pump token is set in ResponsePump, and the thread is scheduled
-                                                      //      late, and we return immediately to the caller indicating the connection
-                                                      //      is ready, the caller will immediately SendQuery. However, SendQuery
-                                                      //      is dependent on pump, and will encounter a null reference exception
-                                                      //      because the ResponsePump thread is late setting the token.
-                                                      //
-                                                      //      So, set the token so that we're *really* ready to begin sending
-                                                      //      queries.
+
+                pump = new CancellationTokenSource();
+                // GitHub Issue #24 - Set PUMP token first before starting thread.
+                //      If the pump token is set in ResponsePump, and the thread is scheduled
+                //      late, and we return immediately to the caller indicating the connection
+                //      is ready, the caller will immediately SendQuery. However, SendQuery
+                //      is dependent on pump, and will encounter a null reference exception
+                //      because the ResponsePump thread is late setting the token.
+                //
+                //      So, set the token so that we're *really* ready to begin sending
+                //      queries.
+
 #pragma warning disable 4014 // We know what' we're doing. It's intentional.
                 Task.Factory.StartNew(ResponsePump, TaskCreationOptions.LongRunning);
 #pragma warning restore 4014
@@ -83,7 +86,6 @@ namespace RethinkDb.Driver.Net
                 try
                 {
                     this.Close();
-                    
                 }
                 catch
                 {
@@ -139,7 +141,7 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         private void ResponsePump()
         {
-            while ( true )
+            while( true )
             {
                 if( pump.IsCancellationRequested )
                 {
@@ -165,7 +167,7 @@ namespace RethinkDb.Driver.Net
                             {
                                 //try, because it's possible
                                 //the awaiting task was canceled.
-                                if(!awaitingTask.TrySetResult(response))
+                                if( !awaitingTask.TrySetResult(response) )
                                 {
                                     Log.Debug($"Response Pump: The awaiter waiting for response token {response.Token} could not be set. The task was probably canceled.");
                                 }
@@ -174,7 +176,8 @@ namespace RethinkDb.Driver.Net
                     else
                     {
                         //Wow, there's nobody waiting for this response.
-                        Log.Debug($"Response Pump: There are no awaiters waiting for {response.Token} token. A cursor was probably closed and this might be a response to a QUERY:STOP. The response will be ignored.");
+                        Log.Debug(
+                            $"Response Pump: There are no awaiters waiting for {response.Token} token. A cursor was probably closed and this might be a response to a QUERY:STOP. The response will be ignored.");
                         //I guess we'll ignore for now, perhaps a cursor was killed
                     }
                 }
@@ -208,7 +211,7 @@ namespace RethinkDb.Driver.Net
                     a.TrySetCanceled();
                 }
             }
-            awaiters.Clear(); 
+            awaiters.Clear();
         }
 
 
@@ -231,13 +234,13 @@ namespace RethinkDb.Driver.Net
         public virtual Task<Response> SendQuery(long token, string json, bool awaitResponse, CancellationToken cancelToken)
         {
             cancelToken.ThrowIfCancellationRequested();
-            if (pump.IsCancellationRequested)
+            if( pump.IsCancellationRequested )
             {
                 throw new ReqlDriverError($"Threads may not {nameof(SendQuery)} because the connection is shutting down.");
             }
 
             Awaiter awaiter = null;
-            if (awaitResponse)
+            if( awaitResponse )
             {
                 //Assign a new awaiter for this token,
                 //The caller is expecting a response.
@@ -245,8 +248,9 @@ namespace RethinkDb.Driver.Net
                 awaiters[token] = awaiter;
             }
 
-            lock (writeLock)
-            {   // Everyone can write their query as fast as they can; block if needed.
+            lock( writeLock )
+            {
+                // Everyone can write their query as fast as they can; block if needed.
                 cancelToken.ThrowIfCancellationRequested();
                 //We could probably use a semaphore slim as a lock
                 //and Wait(cancelToken), but using semaphore slim
@@ -263,7 +267,7 @@ namespace RethinkDb.Driver.Net
                     this.bw.Write(jsonBytes);
                     Log.Trace($"JSON Send: Token: {token}, JSON: {json}");
                 }
-                catch (Exception e)
+                catch( Exception e )
                 {
                     currentException = e;
                     this.errorCallback?.Invoke(currentException);
@@ -296,7 +300,9 @@ namespace RethinkDb.Driver.Net
             {
                 socketChannel.Shutdown();
             }
-            catch { }
+            catch
+            {
+            }
 
             currentException = currentException ?? new EndOfStreamException("The driver connection is closed.");
         }

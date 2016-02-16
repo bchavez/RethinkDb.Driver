@@ -196,7 +196,7 @@ Target "serverup" (fun _ ->
 )
 
 let RunTests() =
-    CleanDir Folders.Test
+    CreateDir Folders.Test
     let nunit = findToolInSubPath "nunit-console.exe" Folders.Lib
     let nunitFolder = System.IO.Path.GetDirectoryName(nunit)
 

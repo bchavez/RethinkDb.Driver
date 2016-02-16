@@ -1,58 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package>
-  <metadata>
-    <id>@project@</id>
-    <version>@build.number@</version>
-    <authors>Brian Chavez</authors>
-    <owners>Brian Chavez</owners>
-    <licenseUrl>https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/bchavez/RethinkDb.Driver</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/wiki/bchavez/RethinkDb.Driver/logo.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    
-    <summary>A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a port of the official Java driver.</summary>
-    
-    <description>A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a port of the official Java driver.</description>
-    
-    <releaseNotes>@releaseNotes@</releaseNotes>
-      
-    <copyright>Copyright 2016</copyright>
-    <tags>rethinkdb database driver reql</tags>
-      <dependencies>
-          
-          <group targetFramework="net45">
-              <dependency id="Newtonsoft.Json" version="8.0.2" />
-              <dependency id="Common.Logging" version="3.3.0" />
-          </group>
+    <metadata>
+        <id>@project@</id>
+        <version>@build.number@</version>
+        <authors>Brian Chavez</authors>
+        <owners>Brian Chavez</owners>
+        <licenseUrl>https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/bchavez/RethinkDb.Driver</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/wiki/bchavez/RethinkDb.Driver/logo.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
 
-          <group targetFramework=".NETPlatform5.4">
-            <dependency id="Newtonsoft.Json" version="8.0.2" />
-            <dependency id="System.Text.Encoding" version="4.0.11-beta-23516" />
-            <dependency id="System.Runtime" version="4.0.21-beta-23516" />
-            <dependency id="System.Dynamic.Runtime" version="4.0.11-beta-23516" />
-            <dependency id="System.IO" version="4.0.11-beta-23516" />
-            <dependency id="System.ComponentModel" version="4.0.1-beta-23516" />
-            <dependency id="System.Reflection.Extensions" version="4.0.1-beta-23516" />
-            <dependency id="Microsoft.Extensions.Logging.Abstractions" version="1.0.0-rc1-final" />
-            <dependency id="System.Net.Sockets" version="4.0.10-beta-23123" />
-            <dependency id="System.Net.Primitives" version="4.0.11-beta-23516" />
-            <dependency id="System.Threading.Timer" version="4.0.1-beta-23516" />
-            <dependency id="System.Threading.Thread" version="4.0.0-beta-23516" />
-        </group>
-      
-    </dependencies>
+        <summary>A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a port of the official Java driver.</summary>
 
-      <frameworkAssemblies>
-          <frameworkAssemblies>
-              <frameworkAssembly assemblyName="mscorlib" targetFramework=".NETFramework4.5" />
-              <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.5" />
-              <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.5" />
-              <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.5" />
-          </frameworkAssemblies>
-      </frameworkAssemblies>
+        <description>A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a port of the official Java driver.</description>
 
-  </metadata>
-  
+        <releaseNotes>@releaseNotes@</releaseNotes>
+
+        <copyright>Copyright 2016</copyright>
+        <tags>rethinkdb database driver reql</tags>
+        <dependencies>
+
+            <group targetFramework="net45">
+                <dependency id="Newtonsoft.Json" version="8.0.2" />
+                <dependency id="Common.Logging" version="3.3.0" />
+            </group>
+
+            <group targetFramework=".NETPlatform5.4">
+                <dependency id="Newtonsoft.Json" version="8.0.2" />
+                <dependency id="System.Text.Encoding" version="4.0.11-beta-23516" />
+                <dependency id="System.Runtime" version="4.0.21-beta-23516" />
+                <dependency id="System.Dynamic.Runtime" version="4.0.11-beta-23516" />
+                <dependency id="System.IO" version="4.0.11-beta-23516" />
+                <dependency id="System.ComponentModel" version="4.0.1-beta-23516" />
+                <dependency id="System.Reflection.Extensions" version="4.0.1-beta-23516" />
+                <dependency id="Microsoft.Extensions.Logging.Abstractions" version="1.0.0-rc1-final" />
+                <dependency id="System.Net.Sockets" version="4.0.10-beta-23123" />
+                <dependency id="System.Net.Primitives" version="4.0.11-beta-23516" />
+                <dependency id="System.Threading.Timer" version="4.0.1-beta-23516" />
+                <dependency id="System.Threading.Thread" version="4.0.0-beta-23516" />
+            </group>
+
+        </dependencies>
+
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="mscorlib" targetFramework=".NETFramework4.5" />
+            <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.5" />
+            <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.5" />
+            <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.5" />
+        </frameworkAssemblies>
+
+    </metadata>
+
     @files@
-    
+
 </package>

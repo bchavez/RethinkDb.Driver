@@ -1,11 +1,9 @@
+using System.Text;
 #if DNX
 using Microsoft.Extensions.Logging;
 #else
-using System.Text;
 using Common.Logging;
 #endif
-using System.Text;
-
 
 namespace RethinkDb.Driver
 {

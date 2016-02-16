@@ -3,10 +3,7 @@
 using System;
 using Newtonsoft.Json;
 using RethinkDb.Driver.Ast;
-
-#if DNX
 using RethinkDb.Driver.Utils;
-#endif
 
 namespace RethinkDb.Driver.Net.JsonConverters
 {
@@ -27,7 +24,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType.IsSubclassOf(typeof(ReqlExpr));
+            return objectType.IsASubclassOf(typeof(ReqlExpr));
         }
     }
 }

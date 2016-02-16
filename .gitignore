@@ -11,6 +11,7 @@ paket.lock
 .paket/paket.exe
 __test
 
+
 # User-specific files
 *.suo
 *.user

@@ -324,6 +324,7 @@
     <Compile Include="RethinkDB.cs" />
     <Compile Include="RethinkDBConstants.cs" />
     <Compile Include="Utils\ExtensionsForEvent.cs" />
+    <Compile Include="Utils\ExtensionsForType.cs" />
     <Compile Include="Utils\TaskHelper.cs" />
   </ItemGroup>
   <ItemGroup>

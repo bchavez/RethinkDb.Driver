@@ -9,7 +9,7 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.ReGrid
 {
-    internal class DownloadStreamForwardOnly : DownloadStream
+    internal partial class DownloadStreamForwardOnly : DownloadStream
     {
         private long position;
         private readonly int lastChunkNumber;
@@ -44,14 +44,6 @@ namespace RethinkDb.Driver.ReGrid
                 lastChunkSize = fileInfo.ChunkSizeBytes;
             }
         }
-
-#if !DNX
-        public override void Close()
-        {
-            CloseHelper();
-            base.Close();
-        }
-#endif
 
         public override Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
         {
@@ -127,7 +119,7 @@ namespace RethinkDb.Driver.ReGrid
         private async Task GetNextBatchAsync(CancellationToken cancelToken)
         {
             var hasMore = await cursor.MoveNextAsync(cancelToken).ConfigureAwait(false);
-            if (!hasMore)
+            if( !hasMore )
             {
                 throw new ChunkException(FileInfo.Id, nextChunkNumber, "missing");
             }

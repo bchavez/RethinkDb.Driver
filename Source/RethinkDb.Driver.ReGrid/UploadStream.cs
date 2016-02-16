@@ -13,7 +13,7 @@ namespace RethinkDb.Driver.ReGrid
     /// <summary>
     /// A ReGrid upload stream
     /// </summary>
-    public class UploadStream : BaseStream
+    public partial class UploadStream : BaseStream
     {
         private readonly Table chunkTable;
         private readonly Table fileTable;
@@ -165,34 +165,18 @@ namespace RethinkDb.Driver.ReGrid
             return chunks;
         }
 
-#if !DNX
-        /// <summary>
-        /// Closes the stream.
-        /// </summary>
-        public override void Close()
+        private async Task CloseInternalAsync(CancellationToken cancelToken = default(CancellationToken))
         {
-            CloseAsync().WaitSync();
-        }
-#endif
-
-        /// <summary>
-        /// Async close the upload stream.
-        /// </summary>
-        public override async Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
-        {
-            if( this.closed ) return;
+            if (this.closed) return;
 
             ThrowIfDisposed();
             this.closed = true;
 
-            if( !aborted )
+            if (!aborted)
             {
                 await WriteFinalBatchAsync(cancelToken).ConfigureAwait(false);
                 await WriteFinalFileInfoAsync(cancelToken).ConfigureAwait(false);
             }
-#if !DNX
-            base.Close();
-#endif
         }
 
         private async Task WriteFinalFileInfoAsync(CancellationToken cancelToken)

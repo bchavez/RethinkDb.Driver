@@ -30,17 +30,7 @@
       },
       "frameworkAssemblies": {}
     },
-    "dnx451": {
-      "dependencies": {
-        "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final"
-      },
-      "compilationOptions": {
-        "define": [
-          "DNX"
-        ]
-      }
-    },
-    "dnxcore50": {
+    "dotnet5.4": {
       "dependencies": {
         "System.Text.Encoding": "4.0.11-beta-23516",
         "System.Dynamic.Runtime": "4.0.11-beta-23516",
@@ -57,8 +47,7 @@
       },
       "compilationOptions": {
         "define": [
-          "DNX",
-          "NETCORE50"
+          "DNX"
         ]
       }
     }

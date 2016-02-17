@@ -1,5 +1,5 @@
 ## v2.2.8-beta-2
-* Issu3 32: Adding back `dnx451`, `dnxcore50`.
+* Issue 32: Adding back `dnx451`, `dnxcore50`.
 
 ## v2.2.8-beta-1
 * Issue 32: Switch to new `dotnet` target framework monikers for CoreCLR.

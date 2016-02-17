@@ -6,7 +6,7 @@
     {
         public static void Shutdown(this TcpClient tcp)
         {
-#if DOTNET5_4
+#if DOTNET5_4 || DNXCORE50
             tcp.Dispose();
 #else
             tcp.Close();

@@ -15,7 +15,7 @@ namespace RethinkDb.Driver.ReGrid
     /// </summary>
     public class Hasher : IDisposable
     {
-#if DNX
+#if DOTNET5_4 || DNXCORE50
         private IncrementalHash hasher;
 #else
         private SHA256 hasher;
@@ -26,7 +26,7 @@ namespace RethinkDb.Driver.ReGrid
         /// </summary>
         public Hasher()
         {
-#if DNX
+#if DOTNET5_4 || DNXCORE50
             hasher = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
 #else
             hasher = SHA256.Create();
@@ -38,7 +38,7 @@ namespace RethinkDb.Driver.ReGrid
         /// </summary>
         public void AppendData(byte[] data)
         {
-#if DNX
+#if DOTNET5_4 || DNXCORE50
             hasher.AppendData(data);
 #else
             hasher.TransformBlock(data, 0, data.Length, null, 0);
@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.ReGrid
         /// </summary>
         public string GetHashAndReset()
         {
-#if DNX
+#if DOTNET5_4 || DNXCORE50
             return Util.GetHexString(hasher.GetHashAndReset());
 #else
             hasher.TransformFinalBlock(new byte[0], 0, 0);

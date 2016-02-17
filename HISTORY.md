@@ -1,4 +1,4 @@
-## v2.2.8-beta-1
+## v2.2.8-beta-2
 * Issu3 32: Adding back `dnx451`, `dnxcore50`.
 
 ## v2.2.8-beta-1

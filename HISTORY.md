@@ -1,5 +1,5 @@
 ## v2.2.8-beta-4
-* Improved [] operator overloading AST Term["bracket"]. Sometimes wouldn't get called.
+* Improved [] operator overloading in AST. Term["bracket"]. Sometimes wouldn't get called.
 
 ## v2.2.8-beta-3
 * Promoted anonymous types to expressions. R.Expr(new {keya="vala"}).Keys()

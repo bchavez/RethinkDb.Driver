@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bogus;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -119,22 +120,72 @@ namespace RethinkDb.Driver.Tests.ReQL
             raw.Should().Contain(Converter.PseudoTypeKey);
         }
 
+        
         [Test]
-        [Explicit]
         public void can_bracket_on_table()
         {
-            R.Db(DbName).TableCreate("sessions").RunResult(conn);
-            R.Db(DbName).TableCreate("speakers").RunResult(conn);
+            string sessions = "sessions";
+            string speakers = "speakers";
+
+            try
+            {
+                DropTable(DbName, sessions);
+            }
+            catch
+            {
+            }
+            try
+            {
+                DropTable(DbName, speakers);
+            }
+            catch
+            {
+            }
+
+            CreateTable(DbName, sessions);
+            CreateTable(DbName, speakers);
+
+
+            R.Db(DbName).Table(sessions)
+                .Insert(new[]
+                    {
+                        new {name = "Session 1", track = "trackA"},
+                        new {name = "Session 2", track = "trackA"},
+                        new {name = "Session 3", track = "trackA"},
+                        new {name = "Session 4", track = "trackB"},
+                        new {name = "Session 5", track = "trackC"},
+                        new {name = "Session 6", track = "trackD"},
+                    }).RunResult(conn);
+
+            R.Db(DbName).Table(speakers)
+                .Insert(new[]
+                    {
+                        new {name = "Brian Chavez"},
+                        new {name = "Name B"},
+                        new {name = "Name C"},
+                        new {name = "Name D"},
+                        new {name = "Name E"},
+                        new {name = "Name F"},
+                    }).RunResult(conn);
+            
 
             var projection = new
                 {
-                    track = R.Db("codecamp_organizer").Table("sessions")["track"].Distinct().CoerceTo("array"),
-                    speakers = R.Db("codecamp_organizer").Table("speakers")["name"].CoerceTo("array")
+                    tracks = R.Db(DbName).Table(sessions)["track"].Distinct().CoerceTo("array"),
+                    speakers = R.Db(DbName).Table(speakers)["name"].CoerceTo("array")
                 };
 
             var result = R.Expr(projection).RunResult<JObject>(conn);
 
-            result.Dump();
+            var speakersArray = result["speakers"].ToObject<string[]>();
+            var tracksArray = result["tracks"].ToObject<string[]>();
+
+            speakersArray.Should().HaveCount(6).And
+                .Contain("Brian Chavez");
+
+            tracksArray.Should().HaveCount(4).And
+                .Contain("trackC");
+
         }
     }
 }

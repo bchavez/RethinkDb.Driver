@@ -4,6 +4,7 @@ using System.Linq;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Tests.Utils;
 
@@ -116,6 +117,24 @@ namespace RethinkDb.Driver.Tests.ReQL
             raw.Dump();
             raw.Should().Contain("foo");
             raw.Should().Contain(Converter.PseudoTypeKey);
+        }
+
+        [Test]
+        [Explicit]
+        public void can_bracket_on_table()
+        {
+            R.Db(DbName).TableCreate("sessions").RunResult(conn);
+            R.Db(DbName).TableCreate("speakers").RunResult(conn);
+
+            var projection = new
+                {
+                    track = R.Db("codecamp_organizer").Table("sessions")["track"].Distinct().CoerceTo("array"),
+                    speakers = R.Db("codecamp_organizer").Table("speakers")["name"].CoerceTo("array")
+                };
+
+            var result = R.Expr(projection).RunResult<JObject>(conn);
+
+            result.Dump();
         }
     }
 }

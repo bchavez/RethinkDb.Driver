@@ -1,3 +1,6 @@
+## v2.2.8-beta-4
+* Improved [] operator overloading AST Term["bracket"]. Sometimes wouldn't get called.
+
 ## v2.2.8-beta-3
 * Promoted anonymous types to expressions. R.Expr(new {keya="vala"}).Keys()
 * Fixed null reference exception in ReGrid.OpenDownloadStreamAsync()

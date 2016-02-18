@@ -11,11 +11,22 @@ namespace RethinkDb.Driver.Ast
     public partial class ReqlExpr
 #pragma warning restore 660,661
     {
+        #region INDEXERS, READ WARNING
+        // WARNING:
+        // ANY ADDITIONAL INDEXERS YOU SPECIFY HERE MUST BE NEWLY
+        // IMPLEMENTED IN THE AST SUBCLASS TEMPLATE TO BE PROPERLY
+        // RESOLVED DURING OPERATOR RESOLUTION. REGEN OF THE AST
+        // IS REQUIRED.
+        // 
+        // SEE ReqlExprHelpers SECTION IN AstSublcassTemplate FOR
+        // MORE INFORMATION.
+        ///
         /// <summary>
         /// Get a single field from an object. If called on a sequence, gets that field from every object in the sequence, skipping objects that lack it.
         /// </summary>
         /// <param name="bracket"></param>
         public Bracket this[string bracket] => this.bracket(bracket);
+
 
         /// <summary>
         /// Get the nth element of a sequence, counting from zero. If the argument is negative, count from the last element.
@@ -23,7 +34,7 @@ namespace RethinkDb.Driver.Ast
         /// <param name="bracket"></param>
         /// <returns></returns>
         public Bracket this[int bracket] => this.bracket(bracket);
-
+        #endregion
 
         public static ReqlExpr operator >(ReqlExpr a, ReqlExpr b)
         {

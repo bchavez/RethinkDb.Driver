@@ -178,7 +178,6 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="options"><see cref="DownloadOptions"/></param>
         public DownloadStream OpenDownloadStream(string filename, int revision = -1, DownloadOptions options = null)
         {
-            options = options ?? new DownloadOptions();
             return OpenDownloadStreamAsync(filename, options, revision).WaitSync();
         }
 
@@ -189,9 +188,11 @@ namespace RethinkDb.Driver.ReGrid
         /// <param name="revision">-1: The most recent revision. -2: The second most recent revision. -3: The third most recent revision. 0: The original stored file. 1: The first revision. 2: The second revision. etc...</param>
         /// <param name="options"><see cref="DownloadOptions"/></param>
         /// <param name="cancelToken"><see cref="CancellationToken"/></param>
-        public async Task<DownloadStream> OpenDownloadStreamAsync(string filename, DownloadOptions options, int revision = -1,
+        public async Task<DownloadStream> OpenDownloadStreamAsync(string filename, DownloadOptions options = null, int revision = -1,
             CancellationToken cancelToken = default(CancellationToken))
         {
+            options = options ?? new DownloadOptions();
+
             var fileInfo = await this.GetFileInfoByNameAsync(filename, revision, cancelToken)
                 .ConfigureAwait(false);
 

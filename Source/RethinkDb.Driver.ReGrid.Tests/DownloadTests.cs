@@ -116,13 +116,17 @@ namespace RethinkDb.Driver.ReGrid.Tests
         {
             CreateBucketWithOneFileTwoChunks();
 
-            var opts = new DownloadOptions();
-
-            var fs = await bucket.OpenDownloadStreamAsync(testfile, opts).ConfigureAwait(false);
-
-            using( fs )
+            using( var cts = new CancellationTokenSource() )
             {
-                fs.Should().NotBeNull();
+
+                var opts = new DownloadOptions();
+
+                var fs = await bucket.OpenDownloadStreamAsync(testfile, cts.Token).ConfigureAwait(false);
+
+                using( fs )
+                {
+                    fs.Should().NotBeNull();
+                }
             }
         }
 

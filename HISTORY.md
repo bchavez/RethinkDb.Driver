@@ -1,5 +1,6 @@
-## v2.2.8-beta-31
+## v2.2.8-beta-3
 * Promoted anonymous types to expressions. R.Expr(new {keya="vala"}).Keys()
+* Fixed null reference exception in ReGrid.OpenDownloadStreamAsync()
 
 ## v2.2.8-beta-2
 * Issue 32: Adding back `dnx451`, `dnxcore50`.

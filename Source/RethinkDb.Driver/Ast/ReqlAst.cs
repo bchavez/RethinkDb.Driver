@@ -27,10 +27,6 @@ namespace RethinkDb.Driver.Ast
             this.OptArgs = optargs ?? new OptArgs();
         }
 
-        protected internal ReqlAst(TermType termType, Arguments args) : this(termType, args, null)
-        {
-        }
-
         protected internal virtual object Build()
         {
             // Create a JSON object from the Ast

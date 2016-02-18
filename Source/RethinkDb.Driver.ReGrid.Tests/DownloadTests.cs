@@ -111,5 +111,20 @@ namespace RethinkDb.Driver.ReGrid.Tests
             
         }
 
+        [Test]
+        public async Task test_async_method()
+        {
+            CreateBucketWithOneFileTwoChunks();
+
+            var opts = new DownloadOptions();
+
+            var fs = await bucket.OpenDownloadStreamAsync(testfile, opts).ConfigureAwait(false);
+
+            using( fs )
+            {
+                fs.Should().NotBeNull();
+            }
+        }
+
     }
 }

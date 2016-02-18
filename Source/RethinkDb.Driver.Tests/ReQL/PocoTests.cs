@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Tests.Utils;
@@ -86,6 +88,34 @@ namespace RethinkDb.Driver.Tests.ReQL
                     new Address {Street = "Shipping 2", Zipcode = "Zip 2"},
                     new Address {Street = "Shipping 3", Zipcode = "Zip 3"}
                 });
+        }
+
+        [Test]
+        public void anonymous_type_is_an_expr_too()
+        {
+            var obj = R.Expr(new
+                {
+                    keya = "foo",
+                    keyb = "bar"
+                }).keys().RunResult<string[]>(conn);
+
+            obj.Should().BeEquivalentTo("keya", "keyb");
+        }
+
+        [Test]
+        public void can_ser_deser_reql_expr_anon_type()
+        {
+            
+            var vals = R.Expr(new
+            {
+                keya = R.Now(),
+                keyb = "foo"
+            }).values().RunResult<JArray>(conn);
+
+            var raw = vals.ToString();
+            raw.Dump();
+            raw.Should().Contain("foo");
+            raw.Should().Contain(Converter.PseudoTypeKey);
         }
     }
 }

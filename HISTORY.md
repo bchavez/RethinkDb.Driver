@@ -1,3 +1,6 @@
+## v2.2.8-beta-31
+* Promoted anonymous types to expressions. R.Expr(new {keya="vala"}).Keys()
+
 ## v2.2.8-beta-2
 * Issue 32: Adding back `dnx451`, `dnxcore50`.
 

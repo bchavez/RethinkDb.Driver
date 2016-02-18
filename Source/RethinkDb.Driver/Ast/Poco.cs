@@ -1,25 +1,16 @@
 using Newtonsoft.Json.Linq;
-using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver.Ast
 {
-    internal class Poco : ReqlAst
+    internal class Poco : ReqlExpr
     {
         private readonly object obj;
 
-        public Poco(object obj) : base(new TermType(), null)
+        public Poco(object obj) : base(new TermType(), null, null)
         {
             this.obj = obj;
-        }
-
-        public Poco(TermType termType, Arguments args, OptArgs optargs) : base(termType, args, optargs)
-        {
-        }
-
-        public Poco(TermType termType, Arguments args) : base(termType, args)
-        {
         }
 
         protected internal override object Build()

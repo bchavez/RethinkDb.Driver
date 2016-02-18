@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
@@ -66,12 +67,12 @@ namespace RethinkDb.Driver.ReGrid.Tests
             bucket.Upload(testfile, TestBytes.OneHalfChunkReversed);
         }
 
-        protected void CreateBucketWithOneFileTwoChunks()
+        protected Guid CreateBucketWithOneFileTwoChunks()
         {
             ClearBucket();
 
             //original reversed
-            bucket.Upload(testfile, TestBytes.OneHalfChunk);
+            return bucket.Upload(testfile, TestBytes.OneHalfChunk);
         }
     }
 }

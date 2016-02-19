@@ -7,14 +7,6 @@ General help with ReQL questions can be found on:
 * **Gitter**: For questions that relate to this C# driver we have a **Gitter** channel: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bchavez/RethinkDb.Driver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
   
 
-Reporting Issues
-------------
-Here are some helpful tips to keep in mind when reporting issues:
-
-* :heavy_check_mark: **CONSIDER** including [JSON protocol traces](https://github.com/bchavez/RethinkDb.Driver/wiki/Protocol-Debugging) in your issue.
-* :heavy_check_mark: **CONSIDER** including any **ReQL** queries (and any associated classes) in your issue.
-* :heavy_check_mark: **CONSIDER** describing the OS and run-time platform you're using.
-
 Pull Requests
 ------------
 Err'body hatin' on legal :-1:, but gotta do it. Please sign the [**RethinkDB CLA**](http://rethinkdb.com/community/cla/). :pencil2: :clipboard:

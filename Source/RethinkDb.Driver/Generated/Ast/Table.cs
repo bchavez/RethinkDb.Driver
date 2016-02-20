@@ -157,6 +157,32 @@ namespace RethinkDb.Driver.Ast {
                             arguments.CoerceAndAddAll(exprs);
                             return new GetAll (arguments );
                         }
+/// <summary>
+/// <para>Get all documents where the given value matches the value of the requested index.</para>
+/// </summary>
+/// <example><para>Example: Secondary index keys are not guaranteed to be unique so we cannot query via <a href="/api/javascript/get/">get</a> when using a secondary index.</para>
+/// <code>r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback)
+/// </code></example>
+                            /// <param name="args">Same as calling params object[] overload, except the collection is applied as object[] params.</param>
+                            public GetAll GetAll ( ICollection<string> args )
+                            {
+                                var arguments = new Arguments(this);
+                                arguments.CoerceAndAddAll(args);
+                                return new GetAll (arguments);
+                            }
+/// <summary>
+/// <para>Get all documents where the given value matches the value of the requested index.</para>
+/// </summary>
+/// <example><para>Example: Secondary index keys are not guaranteed to be unique so we cannot query via <a href="/api/javascript/get/">get</a> when using a secondary index.</para>
+/// <code>r.table('marvel').getAll('man_of_steel', {index:'code_name'}).run(conn, callback)
+/// </code></example>
+                            /// <param name="args">Same as calling params object[] overload, except the collection is applied as object[] params.</param>
+                            public GetAll GetAll ( ICollection<Guid> args )
+                            {
+                                var arguments = new Arguments(this);
+                                arguments.CoerceAndAddAll(args);
+                                return new GetAll (arguments);
+                            }
                         internal GetAll getAll ( params object[] exprs )
                         {
                            return GetAll ( exprs );
@@ -407,6 +433,23 @@ namespace RethinkDb.Driver.Ast {
                             arguments.CoerceAndAddAll(exprs);
                             return new IndexStatus (arguments );
                         }
+/// <summary>
+/// <para>Get the status of the specified indexes on this table, or the status
+/// of all indexes on this table if no indexes are specified.</para>
+/// </summary>
+/// <example><para>Example: Get the status of all the indexes on <code>test</code>:</para>
+/// <code>r.table('test').indexStatus().run(conn, callback)
+/// </code>
+/// <para>Example: Get the status of the <code>timestamp</code> index:</para>
+/// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
+/// </code></example>
+                            /// <param name="args">Same as calling params object[] overload, except the collection is applied as object[] params.</param>
+                            public IndexStatus IndexStatus ( ICollection<string> args )
+                            {
+                                var arguments = new Arguments(this);
+                                arguments.CoerceAndAddAll(args);
+                                return new IndexStatus (arguments);
+                            }
                         internal IndexStatus indexStatus ( params object[] exprs )
                         {
                            return IndexStatus ( exprs );
@@ -427,6 +470,23 @@ namespace RethinkDb.Driver.Ast {
                             arguments.CoerceAndAddAll(exprs);
                             return new IndexWait (arguments );
                         }
+/// <summary>
+/// <para>Wait for the specified indexes on this table to be ready, or for all
+/// indexes on this table to be ready if no indexes are specified.</para>
+/// </summary>
+/// <example><para>Example: Wait for all indexes on the table <code>test</code> to be ready:</para>
+/// <code>r.table('test').indexWait().run(conn, callback)
+/// </code>
+/// <para>Example: Wait for the index <code>timestamp</code> to be ready:</para>
+/// <code>r.table('test').indexWait('timestamp').run(conn, callback)
+/// </code></example>
+                            /// <param name="args">Same as calling params object[] overload, except the collection is applied as object[] params.</param>
+                            public IndexWait IndexWait ( ICollection<string> args )
+                            {
+                                var arguments = new Arguments(this);
+                                arguments.CoerceAndAddAll(args);
+                                return new IndexWait (arguments);
+                            }
                         internal IndexWait indexWait ( params object[] exprs )
                         {
                            return IndexWait ( exprs );

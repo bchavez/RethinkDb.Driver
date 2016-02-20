@@ -21,7 +21,7 @@
 
     public string TermName { get; set; }
     public JObject TermMeta { get; set; }
-    public Dictionary<string,JObject> AllTerms { get; set; }
+    public Dictionary<string, JObject> AllTerms { get; set; }
 
     public override RazorTemplateBase UseParentLayout(RazorTemplateBase child)
     {
@@ -35,6 +35,50 @@
             ChildTemplate = child
         };
     }
+
+    private bool IsParams(Signature.SigArg args)
+    {
+        return args.Type.EndsWith("...");
+    }
+
+    private bool OnlyHasParams(Signature sig)
+    {
+        if( sig.Args.Length == 2 )
+        {
+            return IsParams(sig.Args[1]);
+        }
+        return false;
+    }
+
+    protected static Dictionary<string, string[]> EnumerableHelpers = new Dictionary<string, string[]>()
+        {
+            {
+                "GetAll", new[] {"ICollection<string>", "ICollection<Guid>"}
+            },
+            {
+                "HasFields", new[] {"ICollection<string>"}
+            }
+            ,
+            {
+                "WithFields", new[] {"ICollection<string>"}
+            }
+            ,
+            {
+                "Pluck", new[] {"ICollection<string>"}
+            }
+            ,
+            {
+                "Without", new[] {"ICollection<string>"}
+            }
+            ,
+            {
+                "IndexStatus", new[] {"ICollection<string>"}
+            }
+            ,
+            {
+                "IndexWait", new[] {"ICollection<string>"}
+            }
+        };
 
 }
 
@@ -193,7 +237,7 @@ namespace RethinkDb.Driver.Ast {
 
         if( info["include_in"].ToObject<string[]>().Any(inc => string.Equals(inc, ClassName, StringComparison.OrdinalIgnoreCase)) )
         { // is the current term included in this class we're generating?
-            foreach( var methodname in info["methodnames"].ToObject<string[]>() )
+            foreach( var rawMethodName in info["methodnames"].ToObject<string[]>() )
             {
                 foreach( var signature in info["signatures"].ToObject<Signature[]>() )
                 {
@@ -201,15 +245,18 @@ namespace RethinkDb.Driver.Ast {
                     {
                         var parameters = signature.Args.Skip(1).Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
                         var forwardParams = signature.Args.Skip(1).Select(arg => $"{ArgumentVariable(arg.Var)}").ToArray();
+                        var className = Class(info["classname"].ToString());
+                        var methodName = Method(rawMethodName);
+                        var internalMethodName = MethodInternalName(rawMethodName);
 
                         @RenderCtorXmlDoc(term)
-                        @:public @Class(info["classname"].ToString()) @Method(methodname) ( @string.Join(", ", parameters.ToArray()) )
+                        @:public @className @methodName ( @string.Join(", ", parameters.ToArray()) )
                         @:{
 
                         @:    Arguments arguments = new Arguments(this);
                         foreach( var param in signature.Args.Skip(1) )
                         {
-                            if( param.Type.EndsWith("...") )
+                            if( IsParams(param) )
                             {
                             @:arguments.CoerceAndAddAll(@ArgumentVariable(param.Var));
                             }
@@ -218,14 +265,31 @@ namespace RethinkDb.Driver.Ast {
                             @:arguments.CoerceAndAdd(@ArgumentVariable(param.Var));
                             }
                         }
-                        @:    return new @Class(info["classname"].ToString()) (arguments );
+                        @:    return new @className (arguments );
 
                         @:}
 
+                        //Create a IList helper overload for "params object[] args"
+                        string[] helperSigs;
+                        if (OnlyHasParams(signature) && EnumerableHelpers.TryGetValue(methodName, out helperSigs))
+                        {
+                            foreach (var helperSig in helperSigs)
+                            {
+                            @RenderCtorXmlDoc(term)
+                            @:/// <param name="args">Same as calling params object[] overload, except the collection is applied as object[] params.</param>
+                            @:public @className @methodName ( @helperSig args )
+                            @:{
+                                @:var arguments = new Arguments(this);
+                                @:arguments.CoerceAndAddAll(args);
+                                @:return new @className (arguments);
+                            @:}
+                            }
+                        }
 
-                        @:internal @Class(info["classname"].ToString()) @MethodInternalName(methodname) ( @string.Join(", ", parameters.ToArray()) )
+                        //Internal API for Unit Tests
+                        @:internal @className @internalMethodName ( @string.Join(", ", parameters.ToArray()) )
                         @:{
-                        @:   return @Method(methodname) ( @string.Join(", ", forwardParams.ToArray()) );
+                        @:   return @methodName ( @string.Join(", ", forwardParams.ToArray()) );
                         @:}
                     }
                 }

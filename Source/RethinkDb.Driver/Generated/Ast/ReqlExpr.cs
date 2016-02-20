@@ -1750,6 +1750,19 @@ namespace RethinkDb.Driver.Ast {
                             arguments.CoerceAndAddAll(exprs);
                             return new HasFields (arguments );
                         }
+/// <summary>
+/// <para>Test if an object has one or more fields. An object has a field if it has that key and the key has a non-null value. For instance, the object <code>{'a': 1,'b': 2,'c': null}</code> has the fields <code>a</code> and <code>b</code>.</para>
+/// </summary>
+/// <example><para>Example: Return the players who have won games.</para>
+/// <code>r.table('players').hasFields('games_won').run(conn, callback)
+/// </code></example>
+                            /// <param name="args">Same as calling params object[] overload, except the collection is applied as object[] params.</param>
+                            public HasFields HasFields ( ICollection<string> args )
+                            {
+                                var arguments = new Arguments(this);
+                                arguments.CoerceAndAddAll(args);
+                                return new HasFields (arguments);
+                            }
                         internal HasFields hasFields ( params object[] exprs )
                         {
                            return HasFields ( exprs );
@@ -1766,6 +1779,19 @@ namespace RethinkDb.Driver.Ast {
                             arguments.CoerceAndAddAll(exprs);
                             return new WithFields (arguments );
                         }
+/// <summary>
+/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.</para>
+/// </summary>
+/// <example><para>Example: Get a list of users and their posts, excluding any users who have not made any posts.</para>
+/// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
+/// </code></example>
+                            /// <param name="args">Same as calling params object[] overload, except the collection is applied as object[] params.</param>
+                            public WithFields WithFields ( ICollection<string> args )
+                            {
+                                var arguments = new Arguments(this);
+                                arguments.CoerceAndAddAll(args);
+                                return new WithFields (arguments);
+                            }
                         internal WithFields withFields ( params object[] exprs )
                         {
                            return WithFields ( exprs );
@@ -1784,6 +1810,21 @@ namespace RethinkDb.Driver.Ast {
                             arguments.CoerceAndAddAll(exprs);
                             return new Pluck (arguments );
                         }
+/// <summary>
+/// <para>Plucks out one or more attributes from either an object or a sequence of objects
+/// (projection).</para>
+/// </summary>
+/// <example><para>Example: We just need information about IronMan's reactor and not the rest of the
+/// document.</para>
+/// <code>r.table('marvel').get('IronMan').pluck('reactorState', 'reactorPower').run(conn, callback)
+/// </code></example>
+                            /// <param name="args">Same as calling params object[] overload, except the collection is applied as object[] params.</param>
+                            public Pluck Pluck ( ICollection<string> args )
+                            {
+                                var arguments = new Arguments(this);
+                                arguments.CoerceAndAddAll(args);
+                                return new Pluck (arguments);
+                            }
                         internal Pluck pluck ( params object[] exprs )
                         {
                            return Pluck ( exprs );
@@ -1802,6 +1843,21 @@ namespace RethinkDb.Driver.Ast {
                             arguments.CoerceAndAddAll(exprs);
                             return new Without (arguments );
                         }
+/// <summary>
+/// <para>The opposite of pluck; takes an object or a sequence of objects, and returns them with
+/// the specified paths removed.</para>
+/// </summary>
+/// <example><para>Example: Since we don't need it for this computation we'll save bandwidth and leave
+/// out the list of IronMan's romantic conquests.</para>
+/// <code>r.table('marvel').get('IronMan').without('personalVictoriesList').run(conn, callback)
+/// </code></example>
+                            /// <param name="args">Same as calling params object[] overload, except the collection is applied as object[] params.</param>
+                            public Without Without ( ICollection<string> args )
+                            {
+                                var arguments = new Arguments(this);
+                                arguments.CoerceAndAddAll(args);
+                                return new Without (arguments);
+                            }
                         internal Without without ( params object[] exprs )
                         {
                            return Without ( exprs );

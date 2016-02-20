@@ -25,6 +25,29 @@ namespace RethinkDb.Driver.Tests.ReQL
     [TestFixture]
     public class Examples : QueryTestFixture
     {
+        private void InsertSomePocos()
+        {
+            var arr = new[]
+                {
+                    new Foo {id = "a", Baz = 1, Bar = 1},
+                    new Foo {id = "b", Baz = 2, Bar = 2},
+                    new Foo {id = "c", Baz = 3, Bar = 3}
+                };
+            Result result = R.Db(DbName).Table(TableName).Insert(arr).Run<Result>(conn);
+            result.AssertInserted(3);
+        }
+
+        public override void BeforeEachTest()
+        {
+            base.BeforeEachTest();
+            ClearTable();
+        }
+
+        private void ClearTable()
+        {
+            ClearTable(DbName, TableName);
+        }
+
         [Test]
         public void test_booleans()
         {
@@ -43,40 +66,29 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void insert_an_array_of_pocos()
         {
-            var arr = new[]
-                {
-                    new Foo {id = "a", Baz = 1, Bar = 1},
-                    new Foo {id = "b", Baz = 2, Bar = 2},
-                    new Foo {id = "c", Baz = 3, Bar = 3}
-                };
-            Result result = R.Db(DbName).Table(TableName).Insert(arr).Run<Result>(conn);
-            result.Dump();
+            InsertSomePocos();
         }
 
         [Test]
         public void get_test()
         {
+            InsertSomePocos();
             Foo foo = R.Db(DbName).Table(TableName).Get("a").Run<Foo>(conn);
-            foo.Dump();
+            foo.Bar.Should().Be(1);
+            foo.Baz.Should().Be(1);
         }
 
-        [Test]
-        public void get_with_time()
-        {
-            Foo foo = R.Db(DbName).Table(TableName).Get("4d4ba69e-048c-43b7-b842-c7b49dc6691c")
-                .Run<Foo>(conn);
-
-            foo.Dump();
-        }
 
         [Test]
-        public void getall_test()
+        public void dynamic_getall_test()
         {
+            InsertSomePocos();
             Cursor<Foo> all = R.Db(DbName).Table(TableName).GetAll("a", "b", "c").Run<Foo>(conn);
-            
-            all.BufferedItems.Dump();
 
-            foreach (var foo in all)
+            var items = all.ToList();
+            items.Count.Should().Be(3);
+
+            foreach (var foo in items)
             {
                 Console.WriteLine($"Printing: {foo.id}!");
                 foo.Dump();
@@ -84,8 +96,9 @@ namespace RethinkDb.Driver.Tests.ReQL
         }
 
         [Test]
-        public void use_a_cursor_to_get_items()
+        public void runcursor_use_a_cursor_to_get_items()
         {
+            InsertSomePocos();
             Cursor<Foo> all = R.Db(DbName).Table(TableName).GetAll("a", "b", "c").RunCursor<Foo>(conn);
 
             var items = new List<Foo>();
@@ -99,8 +112,9 @@ namespace RethinkDb.Driver.Tests.ReQL
         }
 
         [Test]
-        public void getall_with_linq()
+        public void runcursor_getall_and_linq()
         {
+            InsertSomePocos();
             Cursor<Foo> all = R.Db(DbName).Table(TableName).GetAll("a", "b", "c").RunCursor<Foo>(conn);
 
             var bazInOrder = all.OrderByDescending(f => f.Baz)
@@ -120,9 +134,6 @@ namespace RethinkDb.Driver.Tests.ReQL
         public void getall_using_an_index_with_optarg_indexer()
         {
             const string IndexName = "Idx";
-
-            DropTable(DbName, TableName);
-            CreateTable(DbName, TableName);
 
             R.Db(DbName)
                 .Table(TableName)

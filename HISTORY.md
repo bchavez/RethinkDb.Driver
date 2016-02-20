@@ -1,3 +1,6 @@
+## v2.2.9-beta-1
+* Added helper overloads for GetAll, HasFields, WithFields, Pluck, Without, IndexStatus, IndexWait.
+
 ## v2.2.8
 * Roll-up Release for Full .NET Framework since v2.2.7.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.

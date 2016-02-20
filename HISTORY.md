@@ -1,3 +1,7 @@
+## v2.2.8
+* Roll-up Release for Full .NET Framework since v2.2.7.
+* CoreCLR users please continue using latest beta release until CoreCLR is RTM.
+
 ## v2.2.8-beta-4
 * Improved [] operator overloading in AST. Term[`bracket`]. Sometimes wouldn`t get called.
 

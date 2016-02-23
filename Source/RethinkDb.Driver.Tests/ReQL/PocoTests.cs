@@ -1,14 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Bogus;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
-using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Tests.Utils;
-using Z.ExtensionMethods;
 
 namespace RethinkDb.Driver.Tests.ReQL
 {

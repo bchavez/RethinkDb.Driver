@@ -8,6 +8,7 @@ using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Tests.Utils;
+using Z.ExtensionMethods;
 
 namespace RethinkDb.Driver.Tests.ReQL
 {
@@ -33,9 +34,38 @@ namespace RethinkDb.Driver.Tests.ReQL
         public string Zipcode { get; set; }
     }
 
+    public class SomePoco
+    {
+        public JObject Data { get; set; }
+    }
+
     [TestFixture]
     public class PocoTests : QueryTestFixture
     {
+        [Test]
+        public void jakes_serilization_of_jobject_issue()
+        {
+            R.Db(DbName).Table(TableName).Delete().Run(conn);
+
+            var json = GetType().Assembly.GetManifestResourceStream("RethinkDb.Driver.Tests.ReQL.Bad.json").ReadToEnd();
+
+            var poco = new SomePoco
+            {
+                Data = JObject.Parse(json)
+            };
+
+            try
+            {
+                R.Db(DbName).Table(TableName).Insert(poco).Run(conn);
+            }
+            catch (AggregateException e)
+            {
+                // Expected a TermType as a NUMBER but found OBJECT.
+                var innerException = e.InnerException;
+                Assert.Fail(innerException.Message);
+            }
+        }
+
         [Test]
         public void issue_10()
         {

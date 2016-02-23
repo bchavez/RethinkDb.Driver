@@ -198,7 +198,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <EmbeddedResource Include="ReQL\Bad.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RethinkDb.Driver\RethinkDb.Driver.csproj">

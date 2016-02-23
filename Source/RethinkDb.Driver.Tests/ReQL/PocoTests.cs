@@ -47,11 +47,12 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             R.Db(DbName).Table(TableName).Delete().Run(conn);
 
-            var json = GetType().Assembly.GetManifestResourceStream("RethinkDb.Driver.Tests.ReQL.Bad.json").ReadToEnd();
-
             var poco = new SomePoco
             {
-                Data = JObject.Parse(json)
+                Data = new JObject
+                {
+                    ["blah"] = JToken.FromObject(new[] { "one", "two", "three" })
+                }
             };
 
             try

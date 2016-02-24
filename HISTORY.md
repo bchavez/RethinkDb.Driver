@@ -1,3 +1,6 @@
+## v2.2.9-beta-2
+* Improved JObject and POCO serialization.
+
 ## v2.2.9-beta-1
 * Added helper overloads for GetAll, HasFields, WithFields, Pluck, Without, IndexStatus, IndexWait.
 

@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Bogus;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
-using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Tests.Utils;
 
@@ -33,9 +30,39 @@ namespace RethinkDb.Driver.Tests.ReQL
         public string Zipcode { get; set; }
     }
 
+    public class SomePoco
+    {
+        public JObject Data { get; set; }
+    }
+
     [TestFixture]
     public class PocoTests : QueryTestFixture
     {
+        [Test]
+        public void jakes_serilization_of_jobject_issue()
+        {
+            R.Db(DbName).Table(TableName).Delete().Run(conn);
+
+            var poco = new SomePoco
+            {
+                Data = new JObject
+                {
+                    ["blah"] = JToken.FromObject(new[] { "one", "two", "three" })
+                }
+            };
+
+            try
+            {
+                R.Db(DbName).Table(TableName).Insert(poco).Run(conn);
+            }
+            catch (AggregateException e)
+            {
+                // Expected a TermType as a NUMBER but found OBJECT.
+                var innerException = e.InnerException;
+                Assert.Fail(innerException.Message);
+            }
+        }
+
         [Test]
         public void issue_10()
         {

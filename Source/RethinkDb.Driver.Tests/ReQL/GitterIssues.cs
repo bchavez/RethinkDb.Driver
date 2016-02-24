@@ -5,6 +5,7 @@ using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
+using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Tests.Utils;
 
 namespace RethinkDb.Driver.Tests.ReQL
@@ -64,16 +65,8 @@ namespace RethinkDb.Driver.Tests.ReQL
                         }
                 };
 
-            try
-            {
-                R.Db(DbName).Table(TableName).Insert(poco).Run(conn);
-            }
-            catch( AggregateException e )
-            {
-                // Expected a TermType as a NUMBER but found OBJECT.
-                var innerException = e.InnerException;
-                Assert.Fail(innerException.Message);
-            }
+            var result = R.Db(DbName).Table(TableName).Insert(poco).RunResult(conn);
+            result.AssertInserted(1);
         }
     }
 }

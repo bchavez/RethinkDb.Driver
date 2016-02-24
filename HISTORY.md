@@ -1,3 +1,7 @@
+## v2.2.9
+* Roll-up Release for Full .NET Framework since v2.2.8.
+* CoreCLR users please continue using latest beta release until CoreCLR is RTM.
+
 ## v2.2.9-beta-2
 * Improved JObject and POCO serialization.
 

@@ -10,25 +10,26 @@ namespace RethinkDb.Driver.Net
     {
         static Converter()
         {
-            DateTimeConverter = new ReqlDateTimeConverter();
-            BinaryConverter = new ReqlBinaryConverter();
-            GroupingConverter = new ReqlGroupingConverter();
-            PocoArrayConverter = new PocoArrayConverter();
-            PocoExprConverter = new PocoExprConverter();
+            Converters = new JsonConverter[]
+                {
+                    DateTimeConverter = new ReqlDateTimeConverter(),
+                    BinaryConverter = new ReqlBinaryConverter(),
+                    GroupingConverter = new ReqlGroupingConverter(),
+                    PocoExprConverter = new PocoExprConverter(),
+                };
 
             var settings = new JsonSerializerSettings()
                 {
-                    Converters = new JsonConverter[]
-                        {
-                            DateTimeConverter,
-                            BinaryConverter,
-                            GroupingConverter,
-                            PocoArrayConverter,
-                            PocoExprConverter
-                        }
+                    Converters = Converters
                 };
+
             Serializer = JsonSerializer.CreateDefault(settings);
         }
+
+        /// <summary>
+        /// An array of the JSON converters in this static class.
+        /// </summary>
+        public static JsonConverter[] Converters { get; set; }
 
         /// <summary>
         /// The JSON serializer used for ser/deser.
@@ -49,12 +50,6 @@ namespace RethinkDb.Driver.Net
         /// DateTime converter from ReQL grouping types
         /// </summary>
         public static ReqlGroupingConverter GroupingConverter { get; set; }
-
-
-        /// <summary>
-        /// Serializes arrays in POCO into wire specific format
-        /// </summary>
-        public static PocoArrayConverter PocoArrayConverter { get; set; }
 
         /// <summary>
         /// Allows anonymous types to be composed with ReQL expressions like R.Now()

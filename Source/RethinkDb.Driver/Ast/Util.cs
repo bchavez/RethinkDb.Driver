@@ -49,8 +49,9 @@ namespace RethinkDb.Driver.Ast
                 //so that it directly serializes to $reql_type$:TIME instead of an AST
                 //Iso8601(string) with [49,...]. It's probably more proper to serialize 
                 //to $reql_type$ than a ReQL Iso8601(string)[49, ...].
-                var json = token.ToString(Formatting.None, Converter.Serializer.Converters.ToArray());
-                return new Json(json);
+                //var json = token.ToString(Formatting.None, Converter.Serializer.Converters.ToArray());
+                //return new Json(json);
+                return new Poco(token);
 
                 //Another way to do it: De-construct the JObject like we do to an IDictionary...
                 //Pro: More complete

@@ -1,8 +1,11 @@
 using System;
+using System.Dynamic;
 using System.Linq;
 using FluentAssertions;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
+using RethinkDb.Driver.Tests.Utils;
 
 namespace RethinkDb.Driver.Tests.ReQL
 {
@@ -14,6 +17,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             public string FirstName { get; set; }
             public string LastName { get; set; }
         }
+
         [Test]
         public void should_be_able_to_use_getall_with_listofguid()
         {
@@ -39,6 +43,37 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             people.Should().HaveCount(3);
 
+        }
+
+
+        public class SomePoco
+        {
+            public JObject Data { get; set; }
+        }
+
+        [Test]
+        public void jakes_serilization_of_jobject_issue()
+        {
+            ClearDefaultTable();
+
+            var poco = new SomePoco
+                {
+                    Data = new JObject
+                        {
+                            ["blah"] = new JArray("one", "two", "three")
+                        }
+                };
+
+            try
+            {
+                R.Db(DbName).Table(TableName).Insert(poco).Run(conn);
+            }
+            catch( AggregateException e )
+            {
+                // Expected a TermType as a NUMBER but found OBJECT.
+                var innerException = e.InnerException;
+                Assert.Fail(innerException.Message);
+            }
         }
     }
 }

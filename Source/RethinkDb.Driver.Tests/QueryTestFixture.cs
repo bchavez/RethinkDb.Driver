@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Net;
 
 namespace RethinkDb.Driver.Tests
@@ -11,6 +12,8 @@ namespace RethinkDb.Driver.Tests
         protected const string TableName = "test";
 
         public static RethinkDB R = RethinkDB.R;
+
+        public static Table table = R.Db(DbName).Table(TableName);
 
         protected Connection conn;
         private void EnsureConnection()
@@ -91,14 +94,14 @@ namespace RethinkDb.Driver.Tests
         [TearDown]
         public void AfterEachTest()
         {
-            R.db("rethinkdb").table("_debug_scratch").delete().Run(conn);
+            R.Db("rethinkdb").Table("_debug_scratch").Delete().Run(conn);
             conn.Close(false);
         }
 
 
         protected void ClearDefaultTable()
         {
-            R.db(DbName).table(TableName).delete().Run(conn);
+            R.Db(DbName).Table(TableName).Delete().Run(conn);
         }
 
         protected void ClearTable(string dbName, string tableName)
@@ -109,24 +112,24 @@ namespace RethinkDb.Driver.Tests
 
         protected void CreateDb(string dbName)
         {
-            R.dbCreate(dbName).Run(conn);
-            R.db(dbName).wait_().Run(conn);
+            R.DbCreate(dbName).Run(conn);
+            R.Db(dbName).Wait_().Run(conn);
         }
 
         protected void DropDb(string dbName)
         {
-            R.dbDrop(dbName).Run(conn);
+            R.DbDrop(dbName).Run(conn);
         }
 
         protected void DropTable(string dbName, string tableName)
         {
-            R.db(dbName).tableDrop(tableName).Run(conn);
+            R.Db(dbName).TableDrop(tableName).Run(conn);
         }
 
         protected void CreateTable(string dbName, string tableName)
         {
-            R.db(dbName).tableCreate(tableName).Run(conn);
-            R.db(dbName).table(tableName).wait_().Run(conn);
+            R.Db(dbName).TableCreate(tableName).Run(conn);
+            R.Db(dbName).Table(tableName).Wait_().Run(conn);
         }
     }
 }

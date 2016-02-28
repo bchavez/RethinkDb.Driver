@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using FluentAssertions;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Net;
@@ -182,6 +183,65 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             tracksArray.Should().HaveCount(4).And
                 .Contain("trackC");
+
+        }
+
+
+        public class PocoWithIgnoredGuidId
+        {
+            [JsonIgnore]
+            public Guid id { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+        }
+
+        [Test]
+        public void serdes_poco_with_ignored_guid_id()
+        {
+            var poco = new PocoWithIgnoredGuidId()
+                {
+                    FirstName = "Brian",
+                    LastName = "Chavez"
+                };
+
+            var result = table.Insert(poco)
+                .RunResult(conn);
+
+            result.Dump();
+            result.GeneratedKeys[0].Should().NotBeEmpty();
+            var get = table.Get(result.GeneratedKeys[0])
+                .RunResult<PocoWithIgnoredGuidId>(conn);
+            get.id.Should().BeEmpty();
+            get.Dump();
+        }
+
+        public class PocoWithGuidId
+        {
+            [JsonProperty("id", DefaultValueHandling = DefaultValueHandling.Ignore)]
+            public Guid Id { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+        }
+
+        [Test]
+        public void serdes_poco_with_proper_guid()
+        {
+            var poco = new PocoWithGuidId()
+                {
+                    FirstName = "Brian",
+                    LastName = "Chavez"
+                };
+
+            var result = table.Insert(poco)
+                .RunResult(conn);
+
+            result.Dump();
+            var id = result.GeneratedKeys[0];
+            id.Should().NotBeEmpty();
+            var get = table.Get(id)
+                .RunResult<PocoWithGuidId>(conn);
+            get.Dump();
+            get.Id.Should().NotBeEmpty();
 
         }
     }

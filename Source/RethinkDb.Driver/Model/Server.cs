@@ -23,6 +23,12 @@ namespace RethinkDb.Driver.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// True if the driver is connected to a proxy server. False if the driver is
+        /// connected to a RethinkDB server.
+        /// </summary>
+        public bool Proxy { get; set; }
+
+        /// <summary>
         /// Extra metadata that couldn't be parsed, if any.
         /// </summary>
         [JsonExtensionData]

@@ -1,3 +1,6 @@
+## v2.2.10
+* Added Proxy field to Server:conn.Server().
+
 ## v2.2.9
 * Roll-up Release for Full .NET Framework since v2.2.8.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.

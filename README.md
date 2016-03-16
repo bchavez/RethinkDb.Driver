@@ -23,6 +23,8 @@ Independent commercial support and consulting is available for this ***community
 Install-Package RethinkDb.Driver -Pre
 ```
 
+**CoreCLR** users please continue using the latest beta release.
+
 **Supported Runtimes**
 
 <table>

@@ -12,7 +12,7 @@ A [**RethinkDB**](http://rethinkdb.com/) database driver written in C# striving 
 This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/next/drivers/java). The basic mechanics and architecture of both drivers are the same.
 
 #### Commercial Support
-Independent commercial support and consulting is available for this ***community driver***. To ensure best practices in .NET, proper driver usage, and critical bug fixes for the **C#** ***community driver*** contact [**Brian Chavez**](https://github.com/bchavez) for more information. Commercial support for **RethinkDB** ***Server*** out-of-scope of the **C#** ***community driver*** can be found [here](http://rethinkdb.com/services/). 
+Independent commercial support and consulting is available for this ***community driver***. To ensure best practices in .NET, proper driver usage, and critical bug fixes for the **C#** ***community driver*** contact [**Brian Chavez**](https://github.com/bchavez) ([twitter](https://twitter.com/bchavez)) for more information. Commercial support for **RethinkDB** ***Server*** out-of-scope of the **C#** ***community driver*** can be found [here](http://rethinkdb.com/services/). 
 
 
 

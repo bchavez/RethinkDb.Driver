@@ -105,11 +105,15 @@ namespace RethinkDb.Driver.Ast {
 ///  "include_states": "T_BOOL",
 ///  "include_initial": "T_BOOL"
 ///</summary>
-        public Changes optArg(string key, object val){
+        public Changes OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Changes (this.Args, newOptArgs);
+        }
+        internal Changes optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

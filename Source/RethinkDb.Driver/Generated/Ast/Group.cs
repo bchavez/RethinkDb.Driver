@@ -102,11 +102,15 @@ namespace RethinkDb.Driver.Ast {
 /// "index": "T_STR",
 ///  "multi": "T_BOOL"
 ///</summary>
-        public Group optArg(string key, object val){
+        public Group OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Group (this.Args, newOptArgs);
+        }
+        internal Group optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

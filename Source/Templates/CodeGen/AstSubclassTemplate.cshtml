@@ -144,11 +144,15 @@
 @:///<summary>
 @:/// @optArgs.ToString().Trim('{', '}').Trim().Replace("\n","\n///")
 @:///</summary>
-        @:public @Class(ClassName) optArg(string key, object val){
+        @:public @Class(ClassName) OptArg(string key, object val){
         @:    
         @:    var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         @:
         @:    return new @Class(ClassName) (this.Args, newOptArgs);
+        @:}
+        @:internal @Class(ClassName) optArg(string key, object val){
+        @:
+        @:    return this.OptArg(key, val);
         @:}
      }
 }

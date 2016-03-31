@@ -129,11 +129,15 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "index": "T_EXPR"
 ///</summary>
-        public OrderBy optArg(string key, object val){
+        public OrderBy OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new OrderBy (this.Args, newOptArgs);
+        }
+        internal OrderBy optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

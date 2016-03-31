@@ -123,11 +123,15 @@ namespace RethinkDb.Driver.Ast {
 ///  ],
 ///  "conflict": "E_CONFLICT"
 ///</summary>
-        public Insert optArg(string key, object val){
+        public Insert OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Insert (this.Args, newOptArgs);
+        }
+        internal Insert optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

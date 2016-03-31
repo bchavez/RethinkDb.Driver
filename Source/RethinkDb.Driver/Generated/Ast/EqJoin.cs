@@ -96,11 +96,15 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "index": "T_STR"
 ///</summary>
-        public EqJoin optArg(string key, object val){
+        public EqJoin OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new EqJoin (this.Args, newOptArgs);
+        }
+        internal EqJoin optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

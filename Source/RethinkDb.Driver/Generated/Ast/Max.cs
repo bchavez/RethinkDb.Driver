@@ -93,11 +93,15 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "index": "T_STR"
 ///</summary>
-        public Max optArg(string key, object val){
+        public Max OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Max (this.Args, newOptArgs);
+        }
+        internal Max optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

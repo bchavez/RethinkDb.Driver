@@ -78,11 +78,15 @@ namespace RethinkDb.Driver.Ast {
 /// "emit": "T_FUNC3",
 ///  "final_emit": "T_FUNC1"
 ///</summary>
-        public Fold optArg(string key, object val){
+        public Fold OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Fold (this.Args, newOptArgs);
+        }
+        internal Fold optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

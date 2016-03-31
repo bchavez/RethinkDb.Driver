@@ -93,11 +93,15 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "index": "T_STR"
 ///</summary>
-        public Min optArg(string key, object val){
+        public Min OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Min (this.Args, newOptArgs);
+        }
+        internal Min optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

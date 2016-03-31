@@ -105,11 +105,15 @@ namespace RethinkDb.Driver.Ast {
 ///    "always"
 ///  ]
 ///</summary>
-        public Delete optArg(string key, object val){
+        public Delete OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Delete (this.Args, newOptArgs);
+        }
+        internal Delete optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

@@ -114,11 +114,15 @@ namespace RethinkDb.Driver.Ast {
 ///  "max_dist": "T_NUM",
 ///  "geo_system": "E_GEO_SYSTEM"
 ///</summary>
-        public GetNearest optArg(string key, object val){
+        public GetNearest OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new GetNearest (this.Args, newOptArgs);
+        }
+        internal GetNearest optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

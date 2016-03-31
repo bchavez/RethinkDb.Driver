@@ -698,7 +698,7 @@ WriteLiteral("public ");
             
             #line default
             #line hidden
-WriteLiteral(" optArg(string key, object val){\r\n");
+WriteLiteral(" OptArg(string key, object val){\r\n");
 
 
 
@@ -741,8 +741,42 @@ WriteLiteral("        ");
 WriteLiteral("}\r\n");
 
 
+
+WriteLiteral("        ");
+
+WriteLiteral("internal ");
+
+
             
             #line 153 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+              Write(Class(ClassName));
+
+            
+            #line default
+            #line hidden
+WriteLiteral(" optArg(string key, object val){\r\n");
+
+
+
+WriteLiteral("        ");
+
+WriteLiteral("\r\n");
+
+
+
+WriteLiteral("        ");
+
+WriteLiteral("    return this.OptArg(key, val);\r\n");
+
+
+
+WriteLiteral("        ");
+
+WriteLiteral("}\r\n");
+
+
+            
+            #line 157 "..\..\CodeGen\AstSubclassTemplate.cshtml"
      }
 
             
@@ -764,7 +798,7 @@ WriteLiteral("\r\n    \r\n");
 
 
             
-            #line 172 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 176 "..\..\CodeGen\AstSubclassTemplate.cshtml"
      if (Superclass == "ReqlExpr")
     {
 
@@ -796,14 +830,14 @@ WriteLiteral("/// <param name=\"bracket\"></param>\r\n");
 
 
             
-            #line 178 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 182 "..\..\CodeGen\AstSubclassTemplate.cshtml"
         
             
             #line default
             #line hidden
 
             
-            #line 178 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 182 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                                   
 
             
@@ -852,14 +886,14 @@ WriteLiteral("/// <returns></returns>\r\n");
 
 
             
-            #line 186 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 190 "..\..\CodeGen\AstSubclassTemplate.cshtml"
         
             
             #line default
             #line hidden
 
             
-            #line 186 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 190 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                                   
 
             
@@ -871,7 +905,7 @@ WriteLiteral("public new Bracket this[int bracket] => base[bracket];\r\n");
 
 
             
-            #line 188 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 192 "..\..\CodeGen\AstSubclassTemplate.cshtml"
     }
 
             
@@ -898,7 +932,7 @@ using System.Collections.Generic;
 
 
             
-            #line 203 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 207 "..\..\CodeGen\AstSubclassTemplate.cshtml"
 Write(RenderSection("add_imports"));
 
             
@@ -908,7 +942,7 @@ WriteLiteral("\r\n\r\nnamespace RethinkDb.Driver.Ast {\r\n\r\n    public partial
 
 
             
-            #line 207 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 211 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                     Write(Class(ClassName));
 
             
@@ -918,7 +952,7 @@ WriteLiteral(" : ");
 
 
             
-            #line 207 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 211 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                         Write(Superclass);
 
             
@@ -928,7 +962,7 @@ WriteLiteral(" {\r\n\r\n    ");
 
 
             
-            #line 209 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 213 "..\..\CodeGen\AstSubclassTemplate.cshtml"
 Write(RenderSection("MemberVars"));
 
             
@@ -938,7 +972,7 @@ WriteLiteral("\r\n    \r\n    ");
 
 
             
-            #line 211 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 215 "..\..\CodeGen\AstSubclassTemplate.cshtml"
 Write(RenderSection("Ctors"));
 
             
@@ -948,7 +982,7 @@ WriteLiteral("\r\n\r\n    ");
 
 
             
-            #line 213 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 217 "..\..\CodeGen\AstSubclassTemplate.cshtml"
 Write(RenderSection("StaticFactories"));
 
             
@@ -958,7 +992,7 @@ WriteLiteral("\r\n\r\n    ");
 
 
             
-            #line 215 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 219 "..\..\CodeGen\AstSubclassTemplate.cshtml"
 Write(RenderSection("OptArgs"));
 
             
@@ -968,7 +1002,7 @@ WriteLiteral("\r\n\r\n    ");
 
 
             
-            #line 217 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 221 "..\..\CodeGen\AstSubclassTemplate.cshtml"
 Write(RenderSection("ReqlExprHelpers"));
 
             
@@ -978,7 +1012,7 @@ WriteLiteral("\r\n\r\n    ");
 
 
             
-            #line 219 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 223 "..\..\CodeGen\AstSubclassTemplate.cshtml"
 Write(RenderBody());
 
             
@@ -988,7 +1022,7 @@ WriteLiteral("\r\n\r\n    ");
 
 
             
-            #line 221 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 225 "..\..\CodeGen\AstSubclassTemplate.cshtml"
 Write(RenderSection("SpecialMethods"));
 
             
@@ -998,7 +1032,7 @@ WriteLiteral("\r\n\r\n");
 
 
             
-            #line 223 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 227 "..\..\CodeGen\AstSubclassTemplate.cshtml"
      foreach( var termInfo in AllTerms )
     {
         var term = termInfo.Key;
@@ -1031,14 +1065,14 @@ WriteLiteral("\r\n\r\n");
             #line default
             #line hidden
             
-            #line 250 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 254 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                    Write(RenderCtorXmlDoc(term));
 
             
             #line default
             #line hidden
             
-            #line 250 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 254 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                                
 
             
@@ -1050,7 +1084,7 @@ WriteLiteral("public ");
 
 
             
-            #line 251 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 255 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                             Write(className);
 
             
@@ -1060,7 +1094,7 @@ WriteLiteral(" ");
 
 
             
-            #line 251 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 255 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                        Write(methodName);
 
             
@@ -1070,7 +1104,7 @@ WriteLiteral(" ( ");
 
 
             
-            #line 251 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 255 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                                      Write(string.Join(", ", RenderSigArgs(remainingArgs) ));
 
             
@@ -1086,7 +1120,7 @@ WriteLiteral("{\r\n");
 
 
             
-            #line 253 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 257 "..\..\CodeGen\AstSubclassTemplate.cshtml"
 
 
             
@@ -1098,7 +1132,7 @@ WriteLiteral("    Arguments arguments = new Arguments(this);\r\n");
 
 
             
-            #line 255 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 259 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                         foreach( var param in remainingArgs )
                         {
                             if( param.IsParams() )
@@ -1113,7 +1147,7 @@ WriteLiteral("arguments.CoerceAndAddAll(");
 
 
             
-            #line 259 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 263 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                                    Write(ArgumentVariable(param.Var));
 
             
@@ -1123,7 +1157,7 @@ WriteLiteral(");\r\n");
 
 
             
-            #line 260 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 264 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                             }
                             else
                             {
@@ -1137,7 +1171,7 @@ WriteLiteral("arguments.CoerceAndAdd(");
 
 
             
-            #line 263 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 267 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                                 Write(ArgumentVariable(param.Var));
 
             
@@ -1147,7 +1181,7 @@ WriteLiteral(");\r\n");
 
 
             
-            #line 264 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 268 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                             }
                         }
 
@@ -1160,7 +1194,7 @@ WriteLiteral("    return new ");
 
 
             
-            #line 266 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 270 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                     Write(className);
 
             
@@ -1170,7 +1204,7 @@ WriteLiteral(" (arguments );\r\n");
 
 
             
-            #line 267 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 271 "..\..\CodeGen\AstSubclassTemplate.cshtml"
 
 
             
@@ -1182,7 +1216,7 @@ WriteLiteral("}\r\n");
 
 
             
-            #line 269 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 273 "..\..\CodeGen\AstSubclassTemplate.cshtml"
 
                         //Create a IList helper overload for "params object[] args"
                         string[] helperSigs;
@@ -1195,14 +1229,14 @@ WriteLiteral("}\r\n");
             #line default
             #line hidden
             
-            #line 276 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 280 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                        Write(RenderCtorXmlDoc(term));
 
             
             #line default
             #line hidden
             
-            #line 276 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 280 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                                    
 
             
@@ -1221,7 +1255,7 @@ WriteLiteral("public ");
 
 
             
-            #line 278 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 282 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                 Write(className);
 
             
@@ -1231,7 +1265,7 @@ WriteLiteral(" ");
 
 
             
-            #line 278 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 282 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                            Write(methodName);
 
             
@@ -1241,7 +1275,7 @@ WriteLiteral(" ( ");
 
 
             
-            #line 278 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 282 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                                          Write(helperSig);
 
             
@@ -1275,7 +1309,7 @@ WriteLiteral("return new ");
 
 
             
-            #line 282 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 286 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                         Write(className);
 
             
@@ -1291,7 +1325,7 @@ WriteLiteral("}\r\n");
 
 
             
-            #line 284 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 288 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                             }
                         }
 
@@ -1306,7 +1340,7 @@ WriteLiteral("internal ");
 
 
             
-            #line 288 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 292 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                               Write(className);
 
             
@@ -1316,7 +1350,7 @@ WriteLiteral(" ");
 
 
             
-            #line 288 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 292 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                          Write(internalMethodName);
 
             
@@ -1326,7 +1360,7 @@ WriteLiteral(" ( ");
 
 
             
-            #line 288 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 292 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                                                Write(string.Join(", ", RenderSigArgs(remainingArgs) ));
 
             
@@ -1348,7 +1382,7 @@ WriteLiteral("   return ");
 
 
             
-            #line 290 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 294 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                Write(methodName);
 
             
@@ -1358,7 +1392,7 @@ WriteLiteral(" ( ");
 
 
             
-            #line 290 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 294 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                                              Write(string.Join(", ", remainingArgs.Select(arg => $"{ArgumentVariable(arg.Var)}").ToArray()));
 
             
@@ -1374,7 +1408,7 @@ WriteLiteral("}\r\n");
 
 
             
-            #line 292 "..\..\CodeGen\AstSubclassTemplate.cshtml"
+            #line 296 "..\..\CodeGen\AstSubclassTemplate.cshtml"
                     }
                 }
             }

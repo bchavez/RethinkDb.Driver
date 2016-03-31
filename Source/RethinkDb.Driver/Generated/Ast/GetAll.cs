@@ -93,11 +93,15 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "index": "T_STR"
 ///</summary>
-        public GetAll optArg(string key, object val){
+        public GetAll OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new GetAll (this.Args, newOptArgs);
+        }
+        internal GetAll optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

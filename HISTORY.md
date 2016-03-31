@@ -1,10 +1,13 @@
-## v2.2.11
+## v2.2.10
+* Roll-up Release for Full .NET Framework since last non-beta release.
+* CoreCLR users please continue using latest beta release until CoreCLR is RTM.
+
+## v2.2.10-beta-1
 * Fixed Issue 36: Inconsistency between AND and OR method signatures.
 * Added Fold Term (Note: Not usable until RethinkDB Server 2.3 is released).
 * Added support for Union interleave optArg.
-
-## v2.2.10
 * Added Proxy field to Server:conn.Server().
+* BREAKING: .optArg now named .OptArg to follow .NET conventions (My apologies, I missed this one).
 
 ## v2.2.9
 * Roll-up Release for Full .NET Framework since v2.2.8.

@@ -150,11 +150,15 @@ namespace RethinkDb.Driver.Ast {
 ///    "T_OBJECT"
 ///  ]
 ///</summary>
-        public Http optArg(string key, object val){
+        public Http OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Http (this.Args, newOptArgs);
+        }
+        internal Http optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

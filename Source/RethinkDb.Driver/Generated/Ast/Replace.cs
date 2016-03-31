@@ -129,11 +129,15 @@ namespace RethinkDb.Driver.Ast {
 ///  ],
 ///  "non_atomic": "T_BOOL"
 ///</summary>
-        public Replace optArg(string key, object val){
+        public Replace OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Replace (this.Args, newOptArgs);
+        }
+        internal Replace optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

@@ -114,11 +114,15 @@ namespace RethinkDb.Driver.Ast {
 ///  ],
 ///  "primary_replica_tag": "T_STR"
 ///</summary>
-        public TableCreate optArg(string key, object val){
+        public TableCreate OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new TableCreate (this.Args, newOptArgs);
+        }
+        internal TableCreate optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

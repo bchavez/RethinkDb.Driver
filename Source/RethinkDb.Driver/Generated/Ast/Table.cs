@@ -99,11 +99,15 @@ namespace RethinkDb.Driver.Ast {
 /// "read_mode": "E_READ_MODE",
 ///  "identifier_format": "E_IDENTIFIER_FORMAT"
 ///</summary>
-        public Table optArg(string key, object val){
+        public Table OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Table (this.Args, newOptArgs);
+        }
+        internal Table optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

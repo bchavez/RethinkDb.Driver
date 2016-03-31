@@ -96,11 +96,15 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "index": "T_STR"
 ///</summary>
-        public GetIntersecting optArg(string key, object val){
+        public GetIntersecting OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new GetIntersecting (this.Args, newOptArgs);
+        }
+        internal GetIntersecting optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

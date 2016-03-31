@@ -114,11 +114,15 @@ namespace RethinkDb.Driver.Ast {
 ///  "unit": "E_UNIT",
 ///  "fill": "T_BOOL"
 ///</summary>
-        public Circle optArg(string key, object val){
+        public Circle OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Circle (this.Args, newOptArgs);
+        }
+        internal Circle optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

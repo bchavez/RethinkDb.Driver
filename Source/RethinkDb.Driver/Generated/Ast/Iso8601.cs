@@ -93,11 +93,15 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "default_timezone": "T_STR"
 ///</summary>
-        public Iso8601 optArg(string key, object val){
+        public Iso8601 OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Iso8601 (this.Args, newOptArgs);
+        }
+        internal Iso8601 optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

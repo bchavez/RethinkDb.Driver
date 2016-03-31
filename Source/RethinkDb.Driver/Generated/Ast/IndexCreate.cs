@@ -96,11 +96,15 @@ namespace RethinkDb.Driver.Ast {
 /// "multi": "T_BOOL",
 ///  "geo": "T_BOOL"
 ///</summary>
-        public IndexCreate optArg(string key, object val){
+        public IndexCreate OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new IndexCreate (this.Args, newOptArgs);
+        }
+        internal IndexCreate optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

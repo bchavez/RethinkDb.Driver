@@ -117,11 +117,15 @@ namespace RethinkDb.Driver.Ast {
 ///<summary>
 /// "default": "T_EXPR"
 ///</summary>
-        public Filter optArg(string key, object val){
+        public Filter OptArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
             return new Filter (this.Args, newOptArgs);
+        }
+        internal Filter optArg(string key, object val){
+        
+            return this.OptArg(key, val);
         }
 
 

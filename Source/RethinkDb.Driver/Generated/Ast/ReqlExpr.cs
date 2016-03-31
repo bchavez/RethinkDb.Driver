@@ -3138,6 +3138,28 @@ namespace RethinkDb.Driver.Ast {
                         {
                            return Reduce ( func2 );
                         }
+                        public Fold Fold ( Object exprA, Javascript js )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(exprA);
+                            arguments.CoerceAndAdd(js);
+                            return new Fold (arguments );
+                        }
+                        internal Fold fold ( Object exprA, Javascript js )
+                        {
+                           return Fold ( exprA, js );
+                        }
+                        public Fold Fold ( Object exprA, ReqlFunction2 func2 )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(exprA);
+                            arguments.CoerceAndAdd(func2);
+                            return new Fold (arguments );
+                        }
+                        internal Fold fold ( Object exprA, ReqlFunction2 func2 )
+                        {
+                           return Fold ( exprA, func2 );
+                        }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 /// </summary>
@@ -5804,16 +5826,15 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// true
 /// </code></example>
-                        public Or Or ( Object exprA, params object[] exprs )
+                        public Or Or ( params object[] exprs )
                         {
                             Arguments arguments = new Arguments(this);
-                            arguments.CoerceAndAdd(exprA);
                             arguments.CoerceAndAddAll(exprs);
                             return new Or (arguments );
                         }
-                        internal Or or ( Object exprA, params object[] exprs )
+                        internal Or or ( params object[] exprs )
                         {
-                           return Or ( exprA, exprs );
+                           return Or ( exprs );
                         }
 /// <summary>
 /// <para>Compute the logical "and" of two or more values.</para>

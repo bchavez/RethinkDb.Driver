@@ -35,19 +35,10 @@
             ChildTemplate = child
         };
     }
-
-    private bool IsParams(Signature.SigArg args)
+    
+    private string[] RenderSigArgs(Signature.SigArg[] sigArgs)
     {
-        return args.Type.EndsWith("...");
-    }
-
-    private bool OnlyHasParams(Signature sig)
-    {
-        if( sig.Args.Length == 2 )
-        {
-            return IsParams(sig.Args[1]);
-        }
-        return false;
+        return sigArgs.Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
     }
 
     protected static Dictionary<string, string[]> EnumerableHelpers = new Dictionary<string, string[]>()
@@ -243,20 +234,27 @@ namespace RethinkDb.Driver.Ast {
                 {
                     if( signature.FirstArg == ClassName )
                     {
-                        var parameters = signature.Args.Skip(1).Select(arg => $"{ArgumentType(arg.Type)} {ArgumentVariable(arg.Var)}").ToArray();
-                        var forwardParams = signature.Args.Skip(1).Select(arg => $"{ArgumentVariable(arg.Var)}").ToArray();
+                        Signature.SigArg[] remainingArgs;
+                        if( signature.Args[0].IsParams() ) // for r.term(params object[] foo)
+                        {
+                            remainingArgs = signature.Args;
+                        }
+                        else
+                        {
+                            remainingArgs = signature.Args.Skip(1).ToArray();
+                        }
                         var className = Class(info["classname"].ToString());
                         var methodName = Method(rawMethodName);
                         var internalMethodName = MethodInternalName(rawMethodName);
 
                         @RenderCtorXmlDoc(term)
-                        @:public @className @methodName ( @string.Join(", ", parameters.ToArray()) )
+                        @:public @className @methodName ( @string.Join(", ", RenderSigArgs(remainingArgs) ) )
                         @:{
 
                         @:    Arguments arguments = new Arguments(this);
-                        foreach( var param in signature.Args.Skip(1) )
+                        foreach( var param in remainingArgs )
                         {
-                            if( IsParams(param) )
+                            if( param.IsParams() )
                             {
                             @:arguments.CoerceAndAddAll(@ArgumentVariable(param.Var));
                             }
@@ -271,7 +269,7 @@ namespace RethinkDb.Driver.Ast {
 
                         //Create a IList helper overload for "params object[] args"
                         string[] helperSigs;
-                        if (OnlyHasParams(signature) && EnumerableHelpers.TryGetValue(methodName, out helperSigs))
+                        if (signature.OnlyHasParams() && EnumerableHelpers.TryGetValue(methodName, out helperSigs))
                         {
                             foreach (var helperSig in helperSigs)
                             {
@@ -287,9 +285,9 @@ namespace RethinkDb.Driver.Ast {
                         }
 
                         //Internal API for Unit Tests
-                        @:internal @className @internalMethodName ( @string.Join(", ", parameters.ToArray()) )
+                        @:internal @className @internalMethodName ( @string.Join(", ", RenderSigArgs(remainingArgs) ) )
                         @:{
-                        @:   return @methodName ( @string.Join(", ", forwardParams.ToArray()) );
+                        @:   return @methodName ( @string.Join(", ", remainingArgs.Select(arg => $"{ArgumentVariable(arg.Var)}").ToArray()) );
                         @:}
                     }
                 }

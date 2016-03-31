@@ -62,6 +62,7 @@ namespace RethinkDb.Driver.Proto {
         BETWEEN = 182,
         REDUCE = 37,
         MAP = 38,
+        FOLD = 187,
         FILTER = 39,
         CONCAT_MAP = 40,
         ORDER_BY = 41,

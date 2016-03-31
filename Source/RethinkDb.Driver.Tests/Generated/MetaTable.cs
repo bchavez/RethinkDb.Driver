@@ -841,35 +841,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                      assertEquals(expected_, obtained);                 
              }
-             
-             {
-                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWV0YS90YWJsZS55YW1sIiwiTGluZU51bSI6IjI1MSIsIk9yaWdpbmFsIjoici53YWl0KCkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLndhaXRfKCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoicGFydGlhbCh7J3JlYWR5JzoxfSkiLCJFeHBlY3RlZFR5cGUiOiJQYXJ0aWFsIiwiRXhwZWN0ZWRKYXZhIjoicGFydGlhbChyLmhhc2hNYXAoXCJyZWFkeVwiLCAxTCkpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );
-                 //JavaQuery, meta/table.yaml, #251
-                 /* ExpectedOriginal: partial({'ready':1}) */
-                 var expected_ = partial(r.hashMap("ready", 1L));
-                 
-                 /* Original: r.wait() */
-                 var obtained = runOrCatch( r.wait_() ,
-                                            new {
-                    }, conn);
-                 
-                     assertEquals(expected_, obtained);                 
-             }
-             
-             {
-                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWV0YS90YWJsZS55YW1sIiwiTGluZU51bSI6IjI1MyIsIk9yaWdpbmFsIjoici5yZWJhbGFuY2UoKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIucmViYWxhbmNlKCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoicGFydGlhbCh7J3JlYmFsYW5jZWQnOjF9KSIsIkV4cGVjdGVkVHlwZSI6IlBhcnRpYWwiLCJFeHBlY3RlZEphdmEiOiJwYXJ0aWFsKHIuaGFzaE1hcChcInJlYmFsYW5jZWRcIiwgMUwpKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
-                 //JavaQuery, meta/table.yaml, #253
-                 /* ExpectedOriginal: partial({'rebalanced':1}) */
-                 var expected_ = partial(r.hashMap("rebalanced", 1L));
-                 
-                 /* Original: r.rebalance() */
-                 var obtained = runOrCatch( r.rebalance() ,
-                                            new {
-                    }, conn);
-                 
-                     assertEquals(expected_, obtained);                 
-             }
-             
+                       
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWV0YS90YWJsZS55YW1sIiwiTGluZU51bSI6IjI1NiIsIk9yaWdpbmFsIjoiZGIudGFibGVfZHJvcCgnYScpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoiZGIudGFibGVEcm9wKFwiYVwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJwYXJ0aWFsKHsndGFibGVzX2Ryb3BwZWQnOjF9KSIsIkV4cGVjdGVkVHlwZSI6IlBhcnRpYWwiLCJFeHBlY3RlZEphdmEiOiJwYXJ0aWFsKHIuaGFzaE1hcChcInRhYmxlc19kcm9wcGVkXCIsIDFMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, meta/table.yaml, #256
@@ -1192,20 +1164,6 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                  /* Original: r.table('testA', identifier_format='uuid').count() */
                  var obtained = runOrCatch( r.table("testA").optArg("identifier_format", "uuid").count() ,
-                                            new {
-                    }, conn);
-                 
-                     assertEquals(expected_, obtained);                 
-             }
-             
-             {
-                 SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWV0YS90YWJsZS55YW1sIiwiTGluZU51bSI6IjMzNCIsIk9yaWdpbmFsIjoici53YWl0KHdhaXRfZm9yPSdhbGxfcmVwbGljYXNfcmVhZHknLCB0aW1lb3V0PTUpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici53YWl0XygpLm9wdEFyZyhcIndhaXRfZm9yXCIsIFwiYWxsX3JlcGxpY2FzX3JlYWR5XCIpLm9wdEFyZyhcInRpbWVvdXRcIiwgNUwpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6InBhcnRpYWwoeydyZWFkeSc6Mn0pIiwiRXhwZWN0ZWRUeXBlIjoiUGFydGlhbCIsIkV4cGVjdGVkSmF2YSI6InBhcnRpYWwoci5oYXNoTWFwKFwicmVhZHlcIiwgMkwpKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );
-                 //JavaQuery, meta/table.yaml, #334
-                 /* ExpectedOriginal: partial({'ready':2}) */
-                 var expected_ = partial(r.hashMap("ready", 2L));
-                 
-                 /* Original: r.wait(wait_for='all_replicas_ready', timeout=5) */
-                 var obtained = runOrCatch( r.wait_().optArg("wait_for", "all_replicas_ready").optArg("timeout", 5L) ,
                                             new {
                     }, conn);
                  

@@ -1,3 +1,8 @@
+## v2.2.11
+* Fixed Issue 36: Inconsistency between AND and OR method signatures.
+* Added Fold Term (Note: Not usable until RethinkDB Server 2.3 is released).
+* Added support for Union interleave optArg.
+
 ## v2.2.10
 * Added Proxy field to Server:conn.Server().
 

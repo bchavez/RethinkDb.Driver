@@ -29,35 +29,17 @@ using System.Collections.Generic;
 
 namespace RethinkDb.Driver.Ast {
 
-    public partial class Union : ReqlExpr {
+    public partial class Fold : ReqlExpr {
 
     
     
     
-/// <summary>
-/// <para>Concatenate two or more sequences.</para>
-/// </summary>
-/// <example><para>Example: Construct a stream of all heroes.</para>
-/// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
-/// </code></example>
-        public Union (object arg) : this(new Arguments(arg), null) {
+        public Fold (object arg) : this(new Arguments(arg), null) {
         }
-/// <summary>
-/// <para>Concatenate two or more sequences.</para>
-/// </summary>
-/// <example><para>Example: Construct a stream of all heroes.</para>
-/// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
-/// </code></example>
-        public Union (Arguments args) : this(args, null) {
+        public Fold (Arguments args) : this(args, null) {
         }
-/// <summary>
-/// <para>Concatenate two or more sequences.</para>
-/// </summary>
-/// <example><para>Example: Construct a stream of all heroes.</para>
-/// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
-/// </code></example>
-        public Union (Arguments args, OptArgs optargs)
-         : base(TermType.UNION, args, optargs) {
+        public Fold (Arguments args, OptArgs optargs)
+         : base(TermType.FOLD, args, optargs) {
         }
 
 
@@ -67,37 +49,40 @@ namespace RethinkDb.Driver.Ast {
 
     
 ///<summary>
-/// "interleave": "T_EXPR"
+/// "emit": "T_FUNC3",
+///  "final_emit": "T_FUNC1"
 ///</summary>
-        public Union this[object optArgs] {
+        public Fold this[object optArgs] {
             get
             {
                 var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);
         
-                return new Union (this.Args, newOptArgs);
+                return new Fold (this.Args, newOptArgs);
             }
         }
         
 ///<summary>
-/// "interleave": "T_EXPR"
+/// "emit": "T_FUNC3",
+///  "final_emit": "T_FUNC1"
 ///</summary>
-    public Union this[OptArgs optArgs] {
+    public Fold this[OptArgs optArgs] {
         get
         {
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(optArgs);
     
-            return new Union (this.Args, newOptArgs);
+            return new Fold (this.Args, newOptArgs);
         }
     }
     
 ///<summary>
-/// "interleave": "T_EXPR"
+/// "emit": "T_FUNC3",
+///  "final_emit": "T_FUNC1"
 ///</summary>
-        public Union optArg(string key, object val){
+        public Fold optArg(string key, object val){
             
             var newOptArgs = OptArgs.FromMap(this.OptArgs).With(key, val);
         
-            return new Union (this.Args, newOptArgs);
+            return new Fold (this.Args, newOptArgs);
         }
 
 

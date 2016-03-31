@@ -1734,6 +1734,30 @@ namespace RethinkDb.Driver.Ast {
                             {
                                return Reduce ( expr, func2 );
                             }
+                            public Fold Fold ( Object expr, Object exprA, Javascript js )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(js);
+                                return new Fold (arguments);
+                            }
+                            internal Fold fold ( Object expr, Object exprA, Javascript js )
+                            {
+                               return Fold ( expr, exprA, js );
+                            }
+                            public Fold Fold ( Object expr, Object exprA, ReqlFunction2 func2 )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                arguments.CoerceAndAdd(func2);
+                                return new Fold (arguments);
+                            }
+                            internal Fold fold ( Object expr, Object exprA, ReqlFunction2 func2 )
+                            {
+                               return Fold ( expr, exprA, func2 );
+                            }
 /// <summary>
 /// <para>Transform each element of one or more sequences by applying a mapping function to them. If <code>map</code> is run with two or more sequences, it will iterate for as many items as there are in the shortest sequence.</para>
 ///</summary>
@@ -2215,51 +2239,6 @@ namespace RethinkDb.Driver.Ast {
                             {
                                return TableList (  );
                             }
-/// <summary>
-/// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
-///</summary>
-/// <example><para>Example: Wait for a table to be ready.</para>
-/// <code>&gt; r.table('superheroes').wait().run(conn, callback);
-/// </code></example>
-                            public Wait Wait_ (  )
-                            {
-                                Arguments arguments = new Arguments();
-                                return new Wait (arguments);
-                            }
-                            internal Wait wait_ (  )
-                            {
-                               return Wait_ (  );
-                            }
-/// <summary>
-/// <para>Reconfigure a table's sharding and replication.</para>
-///</summary>
-/// <example><para>Example: Reconfigure a table.</para>
-/// <code>&gt; r.table('superheroes').reconfigure({shards: 2, replicas: 1}).run(conn, callback);
-/// </code></example>
-                            public Reconfigure Reconfigure (  )
-                            {
-                                Arguments arguments = new Arguments();
-                                return new Reconfigure (arguments);
-                            }
-                            internal Reconfigure reconfigure (  )
-                            {
-                               return Reconfigure (  );
-                            }
-/// <summary>
-/// <para>Rebalances the shards of a table. When called on a database, all the tables in that database will be rebalanced.</para>
-///</summary>
-/// <example><para>Example: Rebalance a table.</para>
-/// <code>&gt; r.table('superheroes').rebalance().run(conn, callback);
-/// </code></example>
-                            public Rebalance Rebalance (  )
-                            {
-                                Arguments arguments = new Arguments();
-                                return new Rebalance (arguments);
-                            }
-                            internal Rebalance rebalance (  )
-                            {
-                               return Rebalance (  );
-                            }
                             public Funcall Do_ ( Javascript js )
                             {
                                 Arguments arguments = new Arguments();
@@ -2400,17 +2379,15 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// true
 /// </code></example>
-                            public Or Or ( Object expr, Object exprA, params object[] exprs )
+                            public Or Or ( params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
-                                arguments.CoerceAndAdd(exprA);
                                 arguments.CoerceAndAddAll(exprs);
                                 return new Or (arguments);
                             }
-                            internal Or or ( Object expr, Object exprA, params object[] exprs )
+                            internal Or or ( params object[] exprs )
                             {
-                               return Or ( expr, exprA, exprs );
+                               return Or ( exprs );
                             }
 /// <summary>
 /// <para>Compute the logical "and" of two or more values.</para>
@@ -2421,16 +2398,15 @@ namespace RethinkDb.Driver.Ast {
 /// // result passed to callback
 /// false
 /// </code></example>
-                            public And And ( Object expr, params object[] exprs )
+                            public And And ( params object[] exprs )
                             {
                                 Arguments arguments = new Arguments();
-                                arguments.CoerceAndAdd(expr);
                                 arguments.CoerceAndAddAll(exprs);
                                 return new And (arguments);
                             }
-                            internal And and ( Object expr, params object[] exprs )
+                            internal And and ( params object[] exprs )
                             {
-                               return And ( expr, exprs );
+                               return And ( exprs );
                             }
                             public Asc Asc ( Javascript js )
                             {

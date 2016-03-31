@@ -62,6 +62,7 @@
     <Compile Include="Ast\ReqlExpr.cs" />
     <Compile Include="Ast\Util.cs" />
     <Compile Include="ErrorBuilder.cs" />
+    <Compile Include="Generated\Ast\Fold.cs" />
     <Compile Include="Model\Server.cs" />
     <Compile Include="Net\Awaiter.cs" />
     <Compile Include="Net\Clustering\ConnectionPool.cs" />

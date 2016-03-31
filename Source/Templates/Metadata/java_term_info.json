@@ -3843,6 +3843,58 @@
     "classname": "Reduce", 
     "superclass": "ReqlExpr"
   }, 
+  "FOLD": {
+    "include_in": [
+      "TopLevel", 
+      "ReqlExpr"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "js", 
+            "type": "Javascript"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }, 
+          {
+            "var": "func2", 
+            "type": "ReqlFunction2"
+          }
+        ]
+      }
+    ], 
+    "optargs": {
+      "emit": "T_FUNC3", 
+      "final_emit": "T_FUNC1"
+    }, 
+    "id": 187, 
+    "methodnames": [
+      "fold"
+    ], 
+    "classname": "Fold", 
+    "superclass": "ReqlExpr"
+  }, 
   "MAP": {
     "include_in": [
       "TopLevel", 
@@ -5504,6 +5556,9 @@
       "TopLevel", 
       "ReqlExpr"
     ], 
+    "optargs": {
+      "interleave": "T_EXPR"
+    }, 
     "signatures": [
       {
         "first_arg": "ReqlExpr", 
@@ -6401,7 +6456,6 @@
   "WAIT": {
     "side_effect": true, 
     "include_in": [
-      "TopLevel", 
       "Db", 
       "Table"
     ], 
@@ -6443,7 +6497,6 @@
   "RECONFIGURE": {
     "side_effect": true, 
     "include_in": [
-      "TopLevel", 
       "Db", 
       "Table"
     ], 
@@ -6492,7 +6545,6 @@
   "REBALANCE": {
     "side_effect": true, 
     "include_in": [
-      "TopLevel", 
       "Db", 
       "Table"
     ], 
@@ -6977,14 +7029,6 @@
         "first_arg": "ReqlExpr", 
         "args": [
           {
-            "var": "expr", 
-            "type": "Object"
-          }, 
-          {
-            "var": "exprA", 
-            "type": "Object"
-          }, 
-          {
             "var": "exprs", 
             "type": "Object..."
           }
@@ -7007,10 +7051,6 @@
       {
         "first_arg": "ReqlExpr", 
         "args": [
-          {
-            "var": "expr", 
-            "type": "Object"
-          }, 
           {
             "var": "exprs", 
             "type": "Object..."

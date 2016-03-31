@@ -16,4 +16,21 @@ namespace Templates.CodeGen.Util
             public string Type { get; set; }
         }
     }
+
+    internal static class ExtensionHelpersForSignature
+    {
+        public static bool IsParams(this Signature.SigArg args)
+        {
+            return args.Type.EndsWith("...");
+        }
+
+        public static bool OnlyHasParams(this Signature sig)
+        {
+            if (sig.Args.Length == 2)
+            {
+                return IsParams(sig.Args[1]);
+            }
+            return false;
+        }
+    }
 }

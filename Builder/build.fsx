@@ -204,7 +204,7 @@ let RunTests() =
     |> NUnit (fun p -> { p with 
                             ToolPath = nunitFolder
                             OutputFile = Files.TestResultFile
-                            ErrorLevel = TestRunnerErrorLevel.DontFailBuild }) //for now.
+                            ErrorLevel = TestRunnerErrorLevel.Error })
 
 open Fake.AppVeyor
 

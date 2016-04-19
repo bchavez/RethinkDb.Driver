@@ -248,9 +248,10 @@ namespace RethinkDb.Driver.Tests.ReQL
             check.Dump();
 
             var dtProper = check["timestamp"].ToObject<DateTime>(Net.Converter.Serializer);
+            dtProper.Should().Be(dateTime);
 
-            var dt = (DateTime)check["timestamp"];
-            dt.Should().Be(dateTime);
+            //var dt = (DateTime)check["timestamp"];
+            //dt.Should().Be(dateTime);
         }
 
     }

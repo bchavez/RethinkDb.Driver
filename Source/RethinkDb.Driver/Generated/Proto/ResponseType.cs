@@ -21,8 +21,8 @@ namespace RethinkDb.Driver.Proto {
 
     
        public static class ExtensionsForResponseType {
-            public static bool IsError(this ResponseType note){
-                 switch( note ){
+            public static bool IsError(this ResponseType rtype){
+                 switch( rtype ){
                         case ResponseType.CLIENT_ERROR:
                             return true;
                         case ResponseType.COMPILE_ERROR:

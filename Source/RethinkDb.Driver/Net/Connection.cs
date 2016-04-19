@@ -258,11 +258,14 @@ namespace RethinkDb.Driver.Net
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( res.IsPartial || res.IsSequence )
             {
-                //return Cursor<T>.create(this, query, res);
                 return new Cursor<T>(this, query, res);
             }
+            if (res.IsError)
+            {
+                throw res.MakeError(query);
+            }
             throw new ReqlDriverError(
-                $"The query response cannot be converted to a Cursor<T>. The run helper works with SUCCESS_SEQUENCE or SUCCESS_PARTIAL results. The server response was {res.Type}. If the server response can be handled by this run method check T. Otherwise, if the server response cannot be handled by this run helper use `.runAtom<T>` or `.runResult<T>`.");
+                $"The query response cannot be converted to a Cursor<T>. The run helper works with SUCCESS_SEQUENCE or SUCCESS_PARTIAL results. The server response was {res.Type}. If the server response can be handled by this run method check T. Otherwise, if the server response cannot be handled by this run helper use `.RunAtom<T>` or `.RunResult<T>`.");
         }
 
         /// <summary>
@@ -282,8 +285,12 @@ namespace RethinkDb.Driver.Net
                     throw new ReqlDriverError("Atom response was empty!", ex);
                 }
             }
+            if( res.IsError )
+            {
+                throw res.MakeError(query);
+            }
             throw new ReqlDriverError(
-                $"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.runCursor` or `.runResult<T>`.");
+                $"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.RunCursor` or `.RunResult<T>`.");
         }
 
 
@@ -304,12 +311,16 @@ namespace RethinkDb.Driver.Net
                     throw new ReqlDriverError("Atom response was empty!", ex);
                 }
             }
-            else if( res.IsSequence )
+            if( res.IsSequence )
             {
                 return res.Data.ToObject<T>(Converter.Serializer);
             }
+            if (res.IsError)
+            {
+                throw res.MakeError(query);
+            }
             throw new ReqlDriverError(
-                $"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM or SUCCESS_SEQUENCE results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.runCursor`.");
+                $"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM or SUCCESS_SEQUENCE results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.RunCursor`.");
         }
 
         /// <summary>
@@ -323,6 +334,10 @@ namespace RethinkDb.Driver.Net
             if( res.IsWaitComplete )
             {
                 return;
+            }
+            if (res.IsError)
+            {
+                throw res.MakeError(query);
             }
             throw new ReqlDriverError(
                 $"The query response is not WAIT_COMPLETE. The returned query is {res.Type}. You need to call the appropriate run method that handles the response type for your query.");
@@ -390,7 +405,7 @@ namespace RethinkDb.Driver.Net
             Query q = Query.Start(NewToken(), term, globalOpts);
             if( globalOpts?.ContainsKey("noreply") == true )
             {
-                throw new ReqlDriverError("Don't provide the noreply option as an optarg. Use `.runNoReply` instead of `.run`");
+                throw new ReqlDriverError("Don't provide the noreply option as an optarg. Use `.RunNoReply` instead of `.Run`");
             }
             return q;
         }

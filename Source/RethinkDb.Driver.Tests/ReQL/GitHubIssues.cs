@@ -254,6 +254,24 @@ namespace RethinkDb.Driver.Tests.ReQL
             //dt.Should().Be(dateTime);
         }
 
+
+        [Test]
+        public void issue_41_ensure_run_helpers_throw_error_first_before_direct_conversion()
+        {
+            try
+            {
+                CreateDb(DbName);
+            }
+            catch
+            {
+                // ignored
+            }
+
+            Action action = () => R.DbCreate(DbName).RunResult(conn);
+
+            action.ShouldThrow<ReqlRuntimeError>();
+        }
+
     }
 
 }

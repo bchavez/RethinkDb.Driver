@@ -17,8 +17,8 @@
 
 @section CustomMethods {
        public static class @("ExtensionsFor" + EnumName) {
-            public static bool IsError(this ResponseType note){
-                 switch( note ){
+            public static bool IsError(this ResponseType rtype){
+                 switch( rtype ){
                    @foreach( var k in Enums.Keys.Where(k => k.EndsWith("ERROR")) ) { 
                         @:case ResponseType.@k:
                             @:return true;

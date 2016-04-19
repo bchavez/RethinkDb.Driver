@@ -72,6 +72,9 @@ namespace RethinkDb.Driver
                         case Proto.ErrorType.USER:
                             con = new ReqlUserError(Msg);
                             break;
+                        case Proto.ErrorType.PERMISSION_ERROR:
+                            con = new ReqlPermissionError(Msg);
+                            break;
                         default:
                             con = new ReqlRuntimeError(Msg);
                             break;

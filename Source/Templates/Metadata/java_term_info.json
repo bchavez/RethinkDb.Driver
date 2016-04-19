@@ -6602,6 +6602,69 @@
     "classname": "Sync", 
     "superclass": "ReqlExpr"
   }, 
+  "GRANT": {
+    "side_effect": true, 
+    "include_in": [
+      "TopLevel", 
+      "Db", 
+      "Table"
+    ], 
+    "signatures": [
+      {
+        "first_arg": "Db", 
+        "args": [
+          {
+            "var": "db", 
+            "type": "Db"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "ReqlExpr", 
+        "args": [
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }, 
+      {
+        "first_arg": "Table", 
+        "args": [
+          {
+            "var": "table", 
+            "type": "Table"
+          }, 
+          {
+            "var": "expr", 
+            "type": "Object"
+          }, 
+          {
+            "var": "exprA", 
+            "type": "Object"
+          }
+        ]
+      }
+    ], 
+    "id": 188, 
+    "methodnames": [
+      "grant"
+    ], 
+    "classname": "Grant", 
+    "superclass": "ReqlExpr"
+  }, 
   "INDEX_CREATE": {
     "side_effect": true, 
     "include_in": [

@@ -232,6 +232,27 @@ namespace RethinkDb.Driver.Tests.ReQL
                 });
         }
 
+        [Test]
+        public void issue_39()
+        {
+            var dateTime = DateTime.Parse("2016-09-03T10:30:20Z");
+            var obj = new JObject(new JProperty("timestamp", dateTime));
+
+            var table = R.Db(DbName).Table(TableName);
+            table.Delete().Run(conn);
+
+            var result = table.Insert(obj).RunResult(conn);
+            var id = result.GeneratedKeys[0];
+
+            var check = table.Get(id).RunAtom<JObject>(conn);
+            check.Dump();
+
+            var dtProper = check["timestamp"].ToObject<DateTime>(Net.Converter.Serializer);
+
+            var dt = (DateTime)check["timestamp"];
+            dt.Should().Be(dateTime);
+        }
+
     }
 
 }

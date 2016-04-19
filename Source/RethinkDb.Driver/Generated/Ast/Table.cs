@@ -306,6 +306,17 @@ namespace RethinkDb.Driver.Ast {
                         {
                            return Sync (  );
                         }
+                        public Grant Grant ( Object expr, Object exprA )
+                        {
+                            Arguments arguments = new Arguments(this);
+                            arguments.CoerceAndAdd(expr);
+                            arguments.CoerceAndAdd(exprA);
+                            return new Grant (arguments );
+                        }
+                        internal Grant grant ( Object expr, Object exprA )
+                        {
+                           return Grant ( expr, exprA );
+                        }
 /// <summary>
 /// <para>Create a new secondary index on a table.</para>
 /// </summary>

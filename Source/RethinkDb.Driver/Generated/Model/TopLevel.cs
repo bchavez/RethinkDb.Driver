@@ -2239,6 +2239,17 @@ namespace RethinkDb.Driver.Ast {
                             {
                                return TableList (  );
                             }
+                            public Grant Grant ( Object expr, Object exprA )
+                            {
+                                Arguments arguments = new Arguments();
+                                arguments.CoerceAndAdd(expr);
+                                arguments.CoerceAndAdd(exprA);
+                                return new Grant (arguments);
+                            }
+                            internal Grant grant ( Object expr, Object exprA )
+                            {
+                               return Grant ( expr, exprA );
+                            }
                             public Funcall Do_ ( Javascript js )
                             {
                                 Arguments arguments = new Arguments();

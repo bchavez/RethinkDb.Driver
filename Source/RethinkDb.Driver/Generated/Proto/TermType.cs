@@ -99,6 +99,7 @@ namespace RethinkDb.Driver.Proto {
         RECONFIGURE = 176,
         REBALANCE = 179,
         SYNC = 138,
+        GRANT = 188,
         INDEX_CREATE = 75,
         INDEX_DROP = 76,
         INDEX_LIST = 77,

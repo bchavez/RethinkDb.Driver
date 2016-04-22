@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
@@ -18,12 +19,7 @@ namespace RethinkDb.Driver.Net
 
         public string OriginalString = null;
 
-        public static ScramAttributes create()
-        {
-            return new ScramAttributes();
-        }
-
-        static ScramAttributes from(ScramAttributes other)
+        public static ScramAttributes From(ScramAttributes other)
         {
             var obj = new ScramAttributes
                 {
@@ -40,7 +36,7 @@ namespace RethinkDb.Driver.Net
             return obj;
         }
 
-        static ScramAttributes from(string input)
+        public static ScramAttributes From(string input)
         {
             var sa = new ScramAttributes
                 {
@@ -50,70 +46,70 @@ namespace RethinkDb.Driver.Net
             foreach( string section in input.Split(','))
             {
                 string[] keyVal = section.Split(new[] {'='}, 2);
-                sa.setAttribute(keyVal[0], keyVal[1]);
+                sa.SetAttribute(keyVal[0], keyVal[1]);
             }
             return sa;
         }
 
-        private void setAttribute(string key, string val)
+        private void SetAttribute(string key, string val)
         {
             switch( key )
             {
                 case "a":
-                    AuthIdentity = val;
+                    this.AuthIdentity = val;
                     break;
                 case "n":
-                    Username = val;
+                    this.Username = val;
                     break;
                 case "r":
-                    Nonce = val;
+                    this.Nonce = val;
                     break;
                 case "m":
                     throw new ReqlAuthError("m field disallowed");
                 case "c":
-                    HeaderAndChannelBinding = val;
+                    this.HeaderAndChannelBinding = val;
                     break;
                 case "s":
-                    Salt = Convert.FromBase64String(val);
+                    this.Salt = Convert.FromBase64String(val);
                     break;
                 case "i":
-                    IterationCount = int.Parse(val);
+                    this.IterationCount = int.Parse(val);
                     break;
                 case "p":
-                    ClientProof = val;
+                    this.ClientProof = val;
                     break;
                 case "v":
-                    ServerSignature = Convert.FromBase64String(val);
+                    this.ServerSignature = Convert.FromBase64String(val);
                     break;
                 case "e":
-                    Error = val;
+                    this.Error = val;
                     break;
                 // Supposed to ignore unexpected fields
             }
         }
 
-        public string toString()
+        public override string ToString()
         {
-            if( !string.IsNullOrWhiteSpace(OriginalString) )
+            if( this.OriginalString.IsNotNullOrEmpty() )
             {
                 return OriginalString;
             }
             string output = "";
-            if(!string.IsNullOrWhiteSpace(Username) )
+            if( this.Username.IsNotNullOrEmpty() )
             {
-                output += ",n=" + Username;
+                output += ",n=" + this.Username;
             }
-            if(!string.IsNullOrWhiteSpace(Nonce) )
+            if( this.Nonce.IsNotNullOrEmpty() )
             {
-                output += ",r=" + Nonce;
+                output += ",r=" + this.Nonce;
             }
-            if(!string.IsNullOrWhiteSpace(HeaderAndChannelBinding) )
+            if( this.HeaderAndChannelBinding.IsNotNullOrEmpty() )
             {
-                output += ",c=" + HeaderAndChannelBinding;
+                output += ",c=" + this.HeaderAndChannelBinding;
             }
-            if(!string.IsNullOrWhiteSpace(ClientProof) )
+            if( this.ClientProof.IsNotNullOrEmpty() )
             {
-                output += ",p=" + ClientProof;
+                output += ",p=" + this.ClientProof;
             }
             if( output.StartsWith(",") )
             {
@@ -126,34 +122,32 @@ namespace RethinkDb.Driver.Net
         }
 
         // Setters with coercion
-        ScramAttributes username(string username)
+        public ScramAttributes SetUsername(string username)
         {
-            ScramAttributes next = ScramAttributes.from(this);
+            ScramAttributes next = ScramAttributes.From(this);
             next.Username = username.Replace("=", "=3D").Replace(",", "=2C");
             return next;
         }
 
-        ScramAttributes nonce(string nonce)
+        public ScramAttributes SetNonce(string nonce)
         {
-            ScramAttributes next = ScramAttributes.from(this);
+            ScramAttributes next = ScramAttributes.From(this);
             next.Nonce = nonce;
             return next;
         }
 
-        ScramAttributes headerAndChannelBinding(string hacb)
+        public ScramAttributes SetHeaderAndChannelBinding(string hacb)
         {
-            ScramAttributes next = ScramAttributes.from(this);
+            ScramAttributes next = ScramAttributes.From(this);
             next.HeaderAndChannelBinding = hacb;
             return next;
         }
 
-        ScramAttributes clientProof(byte[] clientProof)
+        public ScramAttributes SetClientProof(byte[] clientProof)
         {
-            ScramAttributes next = ScramAttributes.from(this);
+            ScramAttributes next = ScramAttributes.From(this);
             next.ClientProof = Convert.ToBase64String(clientProof);
             return next;
         }
-
-
     }
 }

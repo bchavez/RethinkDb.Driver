@@ -1,94 +1,110 @@
-﻿using RethinkDb.Driver.Proto;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Net
 {
-    public class Handshake
+    internal class Handshake
     {
-        static Version VERSION = Version.V1_0;
+        static Proto.Version VERSION = Proto.Version.V1_0;
         static long SUB_PROTOCOL_VERSION = 0L;
-        static Protocol PROTOCOL = Protocol.JSON;
+        static Proto.Protocol PROTOCOL = Proto.Protocol.JSON;
 
         private static string CLIENT_KEY = "Client Key";
         private static string SERVER_KEY = "Server Key";
 
         private string username;
         private string password;
-        private ProtocolState state;
 
-        private interface ProtocolState
+        private IProtocolState state;
+
+        private interface IProtocolState
         {
-            ProtocolState nextState(string response);
-            Optional<ByteBuffer> toSend();
-            bool isFinished();
+            IProtocolState NextState(string response);
+            byte[] ToSend();
+            bool IsFinished { get; }
         }
 
-        private class InitialState : ProtocolState
+        public Handshake(string username, string password)
+        {
+            this.username = username;
+            this.password = password;
+            this.state = new InitialState(username, password);
+        }
+
+        class InitialState : IProtocolState
         {
             private string nonce;
             private string username;
             private byte[] password;
 
-            InitialState(string username, string password)
+            internal InitialState(string username, string password)
             {
                 this.username = username;
-                this.password = toUTF8(password);
-                this.nonce = makeNonce();
+                this.password = Encoding.UTF8.GetBytes(password);
+                this.nonce = Crypto.MakeNonce();
             }
 
-
-            public ProtocolState nextState(string response)
+            public IProtocolState NextState(string response)
             {
                 if( response != null )
                 {
                     throw new ReqlDriverError("Unexpected response");
                 }
                 // We could use a json serializer, but it's fairly straightforward
-                ScramAttributes clientFirstMessageBare = ScramAttributes.create()
-                    .username(username)
-                    .nonce(nonce);
-                byte[] jsonBytes = toUTF8(
+                var clientFirstMessageBare = new ScramAttributes()
+                    .SetUsername(username)
+                    .SetNonce(nonce);
+
+                byte[] jsonBytes = Encoding.UTF8.GetBytes(
                     "{" +
                     "\"protocol_version\":" + SUB_PROTOCOL_VERSION + "," +
                     "\"authentication_method\":\"SCRAM-SHA-256\"," +
                     "\"authentication\":" + "\"n,," + clientFirstMessageBare + "\"" +
                     "}"
                     );
-                ByteBuffer msg = Util.leByteBuffer(
-                    Integer.BYTES + // size of VERSION
-                    jsonBytes.length + // json auth payload
-                    1 // terminating null byte
-                    ).putInt(VERSION.value)
-                    .put(jsonBytes)
-                    .put(new byte[1]);
+
+                byte[] msg;
+                using (var ms = new MemoryStream())
+                using (var bw = new BinaryWriter(ms))
+                {
+                    bw.Write((int)VERSION);
+                    bw.Write(jsonBytes);
+                    bw.Write('\0');
+                    bw.Flush();
+                    msg = ms.ToArray();
+                }
+
                 return new WaitingForProtocolRange(
                     nonce, password, clientFirstMessageBare, msg);
             }
 
 
-            public Optional<ByteBuffer> toSend()
+            public byte[] ToSend()
             {
-                return Optional.empty();
+                return null;
             }
 
 
-            public bool isFinished()
-            {
-                return false;
-            }
+            public bool IsFinished => false;
         }
 
-        private class WaitingForProtocolRange : ProtocolState
+        class WaitingForProtocolRange : IProtocolState
         {
             private string nonce;
-            private ByteBuffer message;
+            private byte[] message;
             private ScramAttributes clientFirstMessageBare;
             private byte[] password;
 
-            WaitingForProtocolRange(
+            internal WaitingForProtocolRange(
                 string nonce,
                 byte[] password,
                 ScramAttributes clientFirstMessageBare,
-                ByteBuffer message)
+                byte[] message)
             {
                 this.nonce = nonce;
                 this.password = password;
@@ -97,12 +113,12 @@ namespace RethinkDb.Driver.Net
             }
 
 
-            public ProtocolState nextState(string response)
+            public IProtocolState NextState(string response)
             {
-                JSONObject json = toJSON(response);
-                throwIfFailure(json);
-                long minVersion = (long)json.get("min_protocol_version");
-                long maxVersion = (long)json.get("max_protocol_version");
+                var json = JObject.Parse(response);
+                ThrowIfFailure(json);
+                long minVersion = json["min_protocol_version"].Value<long>();
+                long maxVersion = json["max_protocol_version"].Value<long>();
                 if( SUB_PROTOCOL_VERSION < minVersion || SUB_PROTOCOL_VERSION > maxVersion )
                 {
                     throw new ReqlDriverError(
@@ -113,26 +129,22 @@ namespace RethinkDb.Driver.Net
             }
 
 
-            public Optional<ByteBuffer> toSend()
+            public byte[] ToSend()
             {
-                return Optional.of(message);
+                return message;
             }
 
 
-            public bool isFinished()
-            {
-                return false;
-            }
+            public bool IsFinished => false;
         }
 
-        private class WaitingForAuthResponse : ProtocolState
+        private class WaitingForAuthResponse : IProtocolState
         {
             private string nonce;
             private byte[] password;
             private ScramAttributes clientFirstMessageBare;
 
-            WaitingForAuthResponse(
-                string nonce, byte[] password, ScramAttributes clientFirstMessageBare)
+            public WaitingForAuthResponse(string nonce, byte[] password, ScramAttributes clientFirstMessageBare)
             {
                 this.nonce = nonce;
                 this.password = password;
@@ -140,29 +152,29 @@ namespace RethinkDb.Driver.Net
             }
 
 
-            public ProtocolState nextState(string response)
+            public IProtocolState NextState(string response)
             {
-                JSONObject json = toJSON(response);
-                throwIfFailure(json);
-                string serverFirstMessage = (string)json.get("authentication");
-                ScramAttributes serverAuth = ScramAttributes.from(serverFirstMessage);
-                if( !serverAuth.nonce().startsWith(nonce) )
+                var json = JObject.Parse(response);
+                ThrowIfFailure(json);
+                string serverFirstMessage = json["authentication"].Value<string>();
+                ScramAttributes serverAuth = ScramAttributes.From(serverFirstMessage);
+                if( !serverAuth.Nonce.StartsWith(nonce) )
                 {
                     throw new ReqlAuthError("Invalid nonce from server");
                 }
-                ScramAttributes clientFinalMessageWithoutProof = ScramAttributes.create()
-                    .headerAndChannelBinding("biws")
-                    .nonce(serverAuth.nonce());
+                ScramAttributes clientFinalMessageWithoutProof = new ScramAttributes()
+                    .SetHeaderAndChannelBinding("biws")
+                    .SetNonce(serverAuth.Nonce);
 
                 // SaltedPassword := Hi(Normalize(password), salt, i)
-                byte[] saltedPassword = pbkdf2(
-                    password, serverAuth.salt(), serverAuth.iterationCount());
+                byte[] saltedPassword = Crypto.Pbkdf2(
+                    password, serverAuth.Salt, serverAuth.IterationCount);
 
                 // ClientKey := HMAC(SaltedPassword, "Client Key")
-                byte[] clientKey = hmac(saltedPassword, CLIENT_KEY);
+                byte[] clientKey = Crypto.Hmac(saltedPassword, CLIENT_KEY);
 
                 // StoredKey := H(ClientKey)
-                byte[] storedKey = sha256(clientKey);
+                byte[] storedKey = Crypto.Sha256(clientKey);
 
                 // AuthMessage := client-first-message-bare + "," +
                 //                server-first-message + "," +
@@ -173,58 +185,65 @@ namespace RethinkDb.Driver.Net
                     clientFinalMessageWithoutProof;
 
                 // ClientSignature := HMAC(StoredKey, AuthMessage)
-                byte[] clientSignature = hmac(storedKey, authMessage);
+                byte[] clientSignature = Crypto.Hmac(storedKey, authMessage);
 
                 // ClientProof := ClientKey XOR ClientSignature
-                byte[] clientProof = xor(clientKey, clientSignature);
+                byte[] clientProof = Crypto.Xor(clientKey, clientSignature);
 
                 // ServerKey := HMAC(SaltedPassword, "Server Key")
-                byte[] serverKey = hmac(saltedPassword, SERVER_KEY);
+                byte[] serverKey = Crypto.Hmac(saltedPassword, SERVER_KEY);
 
                 // ServerSignature := HMAC(ServerKey, AuthMessage)
-                byte[] serverSignature = hmac(serverKey, authMessage);
+                byte[] serverSignature = Crypto.Hmac(serverKey, authMessage);
 
                 ScramAttributes auth = clientFinalMessageWithoutProof
-                    .clientProof(clientProof);
-                byte[] authJson = toUTF8("{\"authentication\":\"" + auth + "\"}");
-                ByteBuffer message = Util.leByteBuffer(authJson.length + 1)
-                    .put(authJson)
-                    .put(new byte[1]);
+                    .SetClientProof(clientProof);
+                byte[] authJson = Encoding.UTF8.GetBytes("{\"authentication\":\"" + auth + "\"}");
+
+                byte[] message;
+                using (var ms = new MemoryStream())
+                using (var bw = new BinaryWriter(ms))
+                {
+                    bw.Write(authJson);
+                    bw.Write('\0');
+                    bw.Flush();
+                    message = ms.ToArray();
+                }
+
                 return new WaitingForAuthSuccess(serverSignature, message);
             }
 
 
-            public Optional<ByteBuffer> toSend()
+            public byte[] ToSend()
             {
-                return Optional.empty();
+                return null;
             }
 
 
-            public bool isFinished()
-            {
-                return false;
-            }
+            public bool IsFinished => false;
         }
 
-        private class WaitingForAuthSuccess : ProtocolState
+        private class WaitingForAuthSuccess : IProtocolState
         {
             private byte[] serverSignature;
-            private ByteBuffer message;
+            private byte[] message;
 
-            public WaitingForAuthSuccess(byte[] serverSignature, ByteBuffer message)
+            public WaitingForAuthSuccess(byte[] serverSignature, byte[] message)
             {
                 this.serverSignature = serverSignature;
                 this.message = message;
             }
 
 
-            public ProtocolState nextState(string response)
+            public IProtocolState NextState(string response)
             {
-                JSONObject json = toJSON(response);
-                throwIfFailure(json);
+                var json = JObject.Parse(response);
+                ThrowIfFailure(json);
                 ScramAttributes auth = ScramAttributes
-                    .from((string)json.get("authentication"));
-                if( !MessageDigest.isEqual(auth.serverSignature(), serverSignature) )
+                    .From(json["authentication"].Value<string>());
+
+
+                if( !auth.ServerSignature.SequenceEqual(serverSignature) )
                 {
                     throw new ReqlAuthError("Invalid server signature");
                 }
@@ -232,78 +251,59 @@ namespace RethinkDb.Driver.Net
             }
 
 
-            public Optional<ByteBuffer> toSend()
+            public byte[] ToSend()
             {
-                return Optional.of(message);
+                return message;
             }
 
 
-            public bool isFinished()
-            {
-                return false;
-            }
+            public bool IsFinished => false;
         }
 
-        private class HandshakeSuccess : ProtocolState
+        private class HandshakeSuccess : IProtocolState
         {
-
-
-            public ProtocolState nextState(string response)
+            public IProtocolState NextState(string response)
             {
                 return this;
             }
 
 
-            public Optional<ByteBuffer> toSend()
+            public byte[] ToSend()
             {
-                return Optional.empty();
+                return null;
             }
 
 
-            public bool isFinished()
-            {
-                return true;
-            }
+            public bool IsFinished => true;
         }
 
-        private void throwIfFailure(JSONObject json)
+        static void ThrowIfFailure(JObject json)
         {
-            if( !(bool)json.get("success") )
+            if( !json["success"].Value<bool>() )
             {
-                long errorCode = (long)json.get("error_code");
+                long errorCode = json["error_code"].Value<long>();
                 if( errorCode >= 10 && errorCode <= 20 )
                 {
-                    throw new ReqlAuthError((string)json.get("error"));
+                    throw new ReqlAuthError(json["error"].Value<string>());
                 }
                 else
                 {
-                    throw new ReqlDriverError((string)json.get("error"));
+                    throw new ReqlDriverError(json["error"].Value<string>());
                 }
             }
         }
 
-        public Handshake(string username, string password)
-        {
-            this.username = username;
-            this.password = password;
-            this.state = new InitialState(username, password);
-        }
-
-        public void reset()
+        public void Reset()
         {
             this.state = new InitialState(this.username, this.password);
         }
 
-        public Optional<ByteBuffer> nextMessage(string response)
+        public byte[] NextMessage(string response)
         {
-            this.state = this.state.nextState(response);
-            return this.state.toSend();
+            this.state = this.state.NextState(response);
+            return this.state.ToSend();
         }
 
-        public bool isFinished()
-        {
-            return this.state.isFinished();
-        }
-
+        public bool IsFinished => this.state.IsFinished;
     }
 }

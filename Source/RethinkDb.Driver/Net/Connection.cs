@@ -20,7 +20,7 @@ namespace RethinkDb.Driver.Net
 
         private string dbname;
         private readonly TimeSpan? connectTimeout;
-        private readonly byte[] handshake;
+        private readonly Handshake handshake;
 
         internal SocketWrapper Socket { get; private set; }
 
@@ -34,19 +34,15 @@ namespace RethinkDb.Driver.Net
         internal Connection(Builder builder)
         {
             dbname = builder.dbname;
-            var authKey = builder.authKey ?? string.Empty;
-            var authKeyBytes = Encoding.ASCII.GetBytes(authKey);
-
-            using( var ms = new MemoryStream() )
-            using( var bw = new BinaryWriter(ms) )
+            if( builder.authKey.IsNotNullOrEmpty() && builder.user.IsNotNullOrEmpty() )
             {
-                bw.Write((int)Proto.Version.V0_4);
-                bw.Write(authKeyBytes.Length);
-                bw.Write(authKeyBytes);
-                bw.Write((int)Proto.Protocol.JSON);
-                bw.Flush();
-                handshake = ms.ToArray();
+                throw new ReqlDriverError("Either `authKey` or `user` can be used, but not both.");
             }
+
+            var user = builder.user ?? "admin";
+            var password = builder.password ?? builder.authKey ?? "";
+
+            this.handshake = new Handshake(user, password);
 
             this.Hostname = builder.hostname ?? "localhost";
             this.Port = builder.port ?? RethinkDBConstants.DefaultPort;
@@ -517,8 +513,10 @@ namespace RethinkDb.Driver.Net
             internal string hostname = null;
             internal int? port = null;
             internal string dbname = null;
-            internal string authKey = null;
             internal TimeSpan? timeout = null;
+            internal string authKey = null;
+            internal string user = null;
+            internal string password = null;
 
             /// <summary>
             /// The hostname or IP address of the server.
@@ -551,9 +549,19 @@ namespace RethinkDb.Driver.Net
             /// <summary>
             /// The authorization key to the server.
             /// </summary>
-            public virtual Builder AuthKey(string val)
+            public virtual Builder AuthKey(string key)
             {
-                this.authKey = val;
+                this.authKey = key;
+                return this;
+            }
+
+            /// <summary>
+            /// The user account and password to connect as (default "admin", "").
+            /// </summary>
+            public virtual Builder User(string user, string password)
+            {
+                this.user = user;
+                this.password = password;
                 return this;
             }
 

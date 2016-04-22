@@ -1,11 +1,8 @@
-using System;
+﻿using System;
 
-namespace RethinkDb.Driver.ReGrid
+namespace RethinkDb.Driver.Utils
 {
-    /// <summary>
-    /// Utility helper methods for ReGrid.
-    /// </summary>
-    public static class Util
+    internal static class StringHelper
     {
         /// <summary>
         /// Gets the hex representation of a byte[], in lower case.

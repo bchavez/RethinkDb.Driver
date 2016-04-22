@@ -1,4 +1,9 @@
 using System.Text;
+#if DNX
+using Microsoft.Extensions.Logging;
+#else
+using Common.Logging;
+#endif
 
 namespace RethinkDb.Driver
 {
@@ -7,6 +12,49 @@ namespace RethinkDb.Driver
     /// </summary>
     public static partial class Log
     {
+#if DNX
+        /// <summary>
+        /// RethinkDB Logger
+        /// </summary>
+        public static ILogger Instance = null;
+#else
+        /// <summary>
+        /// RethinkDB Logger
+        /// </summary>
+        public static ILog Instance = LogManager.GetLogger("RethinkDb.Driver");
+#endif
+
+        /// <summary>
+        /// Trace message
+        /// </summary>
+        public static void Trace(string msg)
+        {
+#if DNX
+            Instance?.LogDebug(msg);
+#else
+            Instance.Trace(Filter(msg));
+#endif
+        }
+
+        /// <summary>
+        /// Debug message
+        /// </summary>
+        public static void Debug(string msg)
+        {
+#if DNX
+            Instance?.LogDebug(msg);
+#else
+            Instance.Debug(Filter(msg));
+#endif
+        }
+
+#if DNX
+        public static void EnableRethinkDbLogging(this ILoggerFactory loggerFactory)
+        {
+            Instance = loggerFactory.CreateLogger("RethinkDb.Driver");
+        }
+#endif
+
         /// <summary>
         /// Truncates BASE64 responses to make logs easier to read. Default true.
         /// </summary>

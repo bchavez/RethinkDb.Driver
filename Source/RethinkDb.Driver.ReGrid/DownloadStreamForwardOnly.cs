@@ -9,7 +9,7 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.ReGrid
 {
-    internal partial class DownloadStreamForwardOnly : DownloadStream
+    internal class DownloadStreamForwardOnly : DownloadStream
     {
         private long position;
         private readonly int lastChunkNumber;
@@ -18,7 +18,7 @@ namespace RethinkDb.Driver.ReGrid
         private long nextChunkNumber;
 
 
-        private Hasher sha256;
+        private IncrementalSHA256 sha256;
         private bool checkSHA256;
 
         private bool closed;
@@ -32,7 +32,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             if( options.CheckSHA256 )
             {
-                this.sha256 = new Hasher();
+                this.sha256 = new IncrementalSHA256();
                 this.checkSHA256 = true;
             }
 
@@ -44,6 +44,16 @@ namespace RethinkDb.Driver.ReGrid
                 lastChunkSize = fileInfo.ChunkSizeBytes;
             }
         }
+
+
+#if !DNX
+        public override void Close()
+        {
+            CloseHelper();
+            base.Close();
+        }
+#endif  
+
 
         public override Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
         {
@@ -187,7 +197,7 @@ namespace RethinkDb.Driver.ReGrid
 
                 if( checkSHA256 && position == FileInfo.Length )
                 {
-                    var sig = this.sha256.GetHashAndReset();
+                    var sig = this.sha256.GetHashStringAndReset();
 
                     this.sha256.Dispose();
 

@@ -32,7 +32,7 @@ namespace RethinkDb.Driver.ReGrid
         private bool aborted = false;
 
         //private SHA256 sha256;
-        private Hasher sha256;
+        private IncrementalSHA256 sha256;
 
         /// <summary>
         /// Creates an UploadStream to ReGrid.
@@ -56,7 +56,7 @@ namespace RethinkDb.Driver.ReGrid
 
             this.batch = new List<byte[]>();
 
-            sha256 = new Hasher();
+            sha256 = new IncrementalSHA256();
         }
 
         /// <summary>
@@ -67,6 +67,27 @@ namespace RethinkDb.Driver.ReGrid
             AbortAsync().WaitSync();
             //we could clean up, but for now, just leave the
             //FileInfo as Incomplete and it's chunks, fsck will clean up.
+        }
+
+#if !DNX
+        /// <summary>
+        /// Closes the stream.
+        /// </summary>
+        public override void Close()
+        {
+            CloseAsync().WaitSync();
+        }
+#endif
+
+        /// <summary>
+        /// Async close the upload stream.
+        /// </summary>
+        public override async Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
+        {
+            await this.CloseInternalAsync(cancelToken).ConfigureAwait(false);
+#if !DNX
+            base.Close();
+#endif
         }
 
         /// <summary>
@@ -183,7 +204,7 @@ namespace RethinkDb.Driver.ReGrid
         {
             this.FileInfo.Id = this.filesInfoId;
             this.FileInfo.Length = this.length;
-            this.FileInfo.SHA256 = this.sha256.GetHashAndReset();
+            this.FileInfo.SHA256 = this.sha256.GetHashStringAndReset();
             this.FileInfo.FinishedAtDate = DateTimeOffset.UtcNow;
             this.FileInfo.Status = Status.Completed;
 

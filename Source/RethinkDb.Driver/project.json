@@ -1,27 +1,27 @@
 {
-  "version": "0.0.0-localbuild",
-  "description": "A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a one-to-one port of the official Java driver.",
-  "authors": [
-    "Brian Chavez"
-  ],
-  "tags": [
-    ""
-  ],
-  "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
-  "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
-  "configurations": {
-    "Debug": {
-      "compilationOptions": {}
+    "version": "0.0.0-localbuild",
+    "description": "A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a one-to-one port of the official Java driver.",
+    "authors": [
+        "Brian Chavez"
+    ],
+    "tags": [
+        ""
+    ],
+    "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
+    "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
+    "configurations": {
+        "Debug": {
+            "compilationOptions": { }
+        },
+        "Release": {
+            "compilationOptions": {
+                "optimize": true
+            }
+        }
     },
-    "Release": {
-      "compilationOptions": {
-        "optimize": true
-      }
-    }
-  },
-  "dependencies": {
-    "Newtonsoft.Json": "8.0.2"
-  },
+    "dependencies": {
+        "Newtonsoft.Json": "8.0.2"
+    },
     "frameworks": {
         "net45": {
             "dependencies": {
@@ -51,7 +51,9 @@
                 "System.Net.Sockets": "4.0.10-beta-23123",
                 "System.Net.Primitives": "4.0.11-beta-23516",
                 "System.Threading.Timer": "4.0.1-beta-23516",
-                "System.Threading.Thread": "4.0.0-beta-23516"
+                "System.Threading.Thread": "4.0.0-beta-23516",
+                "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516",
+                "System.Security.Cryptography.Primitives": "4.0.0-beta-23516"
             },
             "compilationOptions": {
                 "define": [
@@ -71,7 +73,9 @@
                 "System.Net.Sockets": "4.0.10-beta-23123",
                 "System.Net.Primitives": "4.0.11-beta-23516",
                 "System.Threading.Timer": "4.0.1-beta-23516",
-                "System.Threading.Thread": "4.0.0-beta-23516"
+                "System.Threading.Thread": "4.0.0-beta-23516",
+                "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516",
+                "System.Security.Cryptography.Primitives": "4.0.0-beta-23516"
             },
             "compilationOptions": {
                 "define": [

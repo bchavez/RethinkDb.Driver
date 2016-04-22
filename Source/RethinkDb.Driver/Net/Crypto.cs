@@ -1,19 +1,32 @@
 ﻿using System;
 using System.Collections;
 using System.Security.Cryptography;
-
-using System.Globalization;
-using System.IO;
 using System.Text;
-
 
 namespace RethinkDb.Driver.Net
 {
+    internal class SecureRandom : IDisposable
+    {
+#if DNX
+        private RandomNumberGenerator random = RandomNumberGenerator.Create();
+#else
+        private RNGCryptoServiceProvider random = new RNGCryptoServiceProvider();
+#endif
+
+        public void GetBytes(byte[] data)
+        {
+            random.GetBytes(data);
+        }
+
+        public void Dispose()
+        {
+            random.Dispose();
+        }
+    }
+
     internal class Crypto
     {
-        private static string DEFAULT_SSL_PROTOCOL = "TLSv1.2";
-
-        private static readonly RNGCryptoServiceProvider secureRandom = new RNGCryptoServiceProvider();
+        private static readonly SecureRandom secureRandom = new SecureRandom();
 
         private const int NonceBytes = 18;
 
@@ -22,9 +35,10 @@ namespace RethinkDb.Driver.Net
 
         public static byte[] Sha256(byte[] clientKey)
         {
-            using( var sha = SHA256.Create() )
+            using( var sha = new IncrementalSHA256() )
             {
-                return sha.ComputeHash(clientKey);
+                sha.AppendData(clientKey);
+                return sha.GetHashAndReset();
             }
         }
 
@@ -38,18 +52,56 @@ namespace RethinkDb.Driver.Net
 
         public static byte[] Pbkdf2(byte[] password, byte[] salt, int iterations = Pbkdf2Iterations)
         {
+            /*
             // Algorithm Credits to https://github.com/vexocide
             //
             // Implements PBKDF2WithHmacSHA256 in Java. Beautifully Amazing.
-            using ( var mac = new HMACSHA256(password) )
+            using (var mac = new HMACSHA256(password))
             {
                 mac.TransformBlock(salt, 0, salt.Length, salt, 0);
-                byte[] i = {0, 0, 0, 1};
+                byte[] i = { 0, 0, 0, 1 };
                 mac.TransformFinalBlock(i, 0, i.Length);
                 byte[] t = mac.Hash;
                 mac.Initialize();
 
                 byte[] u = t;
+                for (uint c = 2; c <= iterations; c++)
+                {
+                    t = mac.ComputeHash(t);
+                    for (int j = 0; j < mac.HashSize / 8; j++)
+                    {
+                        u[j] ^= t[j];
+                    }
+                }
+
+                return u;
+            }
+*/
+#if DOTNET5_4 || DNXCORE50
+            using( var macSalt = IncrementalHash.CreateHMAC(HashAlgorithmName.SHA256, password) )
+#endif
+            using ( var mac = new HMACSHA256(password) )
+            {
+#if DOTNET5_4 || DNXCORE50
+                macSalt.AppendData(salt);
+#else
+                mac.TransformBlock(salt, 0, salt.Length, salt, 0);
+#endif
+                byte[] i = {0, 0, 0, 1};
+#if DOTNET5_4 || DNXCORE50
+                macSalt.AppendData(i);
+#else
+                mac.TransformFinalBlock(i, 0, i.Length);
+#endif
+#if DOTNET5_4 || DNXCORE50
+                byte[] t = macSalt.GetHashAndReset();
+#else
+                byte[] t = mac.Hash;
+                mac.Initialize();
+#endif
+
+                byte[] u = t;
+
                 for( uint c = 2; c <= iterations; c++ )
                 {
                     t = mac.ComputeHash(t);
@@ -61,6 +113,7 @@ namespace RethinkDb.Driver.Net
 
                 return u;
             }
+
         }
 
         public static string MakeNonce()
@@ -72,10 +125,10 @@ namespace RethinkDb.Driver.Net
 
         public static byte[] Xor(byte[] a, byte[] b)
         {
-            var ba = new BitArray(a);
-            var bb = new BitArray(b);
             byte[] result = new byte[a.Length];
-            ba.Xor(bb).CopyTo(result, 0);
+            for( var i = 0; i < result.Length; i++ )
+                result[i] = (byte)(a[i] ^ b[i]);
+
             return result;
         }
     }

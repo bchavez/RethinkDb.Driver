@@ -80,12 +80,12 @@
     <Compile Include="Net\Handshake.cs" />
     <Compile Include="Net\IConnection.cs" />
     <Compile Include="Net\ICursor.cs" />
+    <Compile Include="Net\IncrementalSHA256.cs" />
     <Compile Include="Net\ScramAttributes.cs" />
     <Compile Include="ReqlAssertFailure.cs" />
     <Compile Include="Model\Change[T].cs" />
     <Compile Include="Model\ExtensionsForResult.cs" />
     <Compile Include="Utils\CancellableTask.cs" />
-    <Compile Include="Utils\CrossPlatform.cs" />
     <Compile Include="Generated\Ast\Add.cs" />
     <Compile Include="Generated\Ast\And.cs" />
     <Compile Include="Generated\Ast\Append.cs" />
@@ -330,7 +330,9 @@
     <Compile Include="RethinkDBConstants.cs" />
     <Compile Include="Utils\ExtensionsForEvent.cs" />
     <Compile Include="Utils\ExtensionsForString.cs" />
+    <Compile Include="Utils\ExtensionsForTcpClient.cs" />
     <Compile Include="Utils\ExtensionsForType.cs" />
+    <Compile Include="Utils\StringHelper.cs" />
     <Compile Include="Utils\TaskHelper.cs" />
   </ItemGroup>
   <ItemGroup>

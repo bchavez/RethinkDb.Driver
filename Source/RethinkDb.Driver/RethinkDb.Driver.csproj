@@ -63,6 +63,8 @@
     <Compile Include="Ast\Util.cs" />
     <Compile Include="ErrorBuilder.cs" />
     <Compile Include="Generated\Ast\Fold.cs" />
+    <Compile Include="Generated\Ast\Grant.cs" />
+    <Compile Include="Generated\ReqlPermissionError.cs" />
     <Compile Include="Model\Server.cs" />
     <Compile Include="Net\Awaiter.cs" />
     <Compile Include="Net\Clustering\ConnectionPool.cs" />
@@ -74,13 +76,16 @@
     <Compile Include="Net\Clustering\IPoolingStrategy.cs" />
     <Compile Include="Net\Clustering\RoundRobinHostPool.cs" />
     <Compile Include="Net\Clustering\Server.cs" />
+    <Compile Include="Net\Crypto.cs" />
+    <Compile Include="Net\Handshake.cs" />
     <Compile Include="Net\IConnection.cs" />
     <Compile Include="Net\ICursor.cs" />
+    <Compile Include="Net\IncrementalSHA256.cs" />
+    <Compile Include="Net\ScramAttributes.cs" />
     <Compile Include="ReqlAssertFailure.cs" />
     <Compile Include="Model\Change[T].cs" />
     <Compile Include="Model\ExtensionsForResult.cs" />
     <Compile Include="Utils\CancellableTask.cs" />
-    <Compile Include="Utils\CrossPlatform.cs" />
     <Compile Include="Generated\Ast\Add.cs" />
     <Compile Include="Generated\Ast\And.cs" />
     <Compile Include="Generated\Ast\Append.cs" />
@@ -324,7 +329,10 @@
     <Compile Include="RethinkDB.cs" />
     <Compile Include="RethinkDBConstants.cs" />
     <Compile Include="Utils\ExtensionsForEvent.cs" />
+    <Compile Include="Utils\ExtensionsForString.cs" />
+    <Compile Include="Utils\ExtensionsForTcpClient.cs" />
     <Compile Include="Utils\ExtensionsForType.cs" />
+    <Compile Include="Utils\StringHelper.cs" />
     <Compile Include="Utils\TaskHelper.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -20,14 +20,18 @@ namespace RethinkDb.Driver.Tests
         {
             if (conn == null || !conn.Open)
             {
-                this.conn = R.Connection()
-                    .Hostname(AppSettings.TestHost)
-                    .Port(AppSettings.TestPort)
+                this.conn = DefaultConnectionBuilder()
                     .Connect();
             }
         }
 
-
+        public static Connection.Builder DefaultConnectionBuilder()
+        {
+            return R.Connection()
+                .Hostname(AppSettings.TestHost)
+                .Port(AppSettings.TestPort);
+        }
+        
         private void SetupFluentAssertion()
         {
             //Hook into FluentAssertion so we see very useful 

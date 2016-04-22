@@ -51,7 +51,6 @@
     <Compile Include="BucketConfig.cs" />
     <Compile Include="Chunk.cs" />
     <Compile Include="ChunkException.cs" />
-    <Compile Include="CrossPlatform.cs" />
     <Compile Include="DeleteMode.cs" />
     <Compile Include="DownloadOptions.cs" />
     <Compile Include="DownloadStreamBase.cs" />
@@ -72,7 +71,6 @@
     <Compile Include="UploadException.cs" />
     <Compile Include="UploadOptions.cs" />
     <Compile Include="UploadStream.cs" />
-    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

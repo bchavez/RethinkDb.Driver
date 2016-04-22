@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Net
 
         private Exception currentException;
 
-        public virtual async Task ConnectAsync(byte[] handshake)
+        public virtual async Task ConnectAsync(Handshake handshake)
         {
             try
             {
@@ -52,15 +52,8 @@ namespace RethinkDb.Driver.Net
                 this.bw = new BinaryWriter(this.ns);
                 this.br = new BinaryReader(this.ns);
 
-                this.bw.Write(handshake);
-                this.bw.Flush();
-
-                var msg = this.ReadNullTerminatedString(timeout);
-
-                if( !msg.Equals("SUCCESS") )
-                {
-                    throw new ReqlDriverError($"Server dropped connection with message: '{msg}'");
-                }
+                // execute RethinkDB handshake
+                ExecuteHandshake(handshake);
 
                 //http://blog.i3arnon.com/2015/07/02/task-run-long-running/
                 //LongRunning creates a new thread and marks it as a background thread
@@ -96,7 +89,24 @@ namespace RethinkDb.Driver.Net
             }
         }
 
-        public virtual void Connect(byte[] handshake)
+        private void ExecuteHandshake(Handshake handshake)
+        {
+            // initialize handshake
+            var toWrite = handshake.NextMessage(null);
+            // Sit in the handshake until it's completed. Exceptions will be thrown if
+            // anything goes wrong.
+            while (!handshake.IsFinished)
+            {
+                if (toWrite != null)
+                {
+                    bw.Write(toWrite);
+                }
+                var serverMsg = ReadNullTerminatedString(this.timeout);
+                toWrite = handshake.NextMessage(serverMsg);
+            }
+        }
+
+        public virtual void Connect(Handshake handshake)
         {
             if( !ConnectAsync(handshake).Wait(this.timeout) )
             {

@@ -1,14 +1,38 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.ReGrid
 {
     /// <summary>
     /// A ReGrid download stream.
     /// </summary>
-    public abstract partial class DownloadStream : BaseStream
+    public abstract class DownloadStream : BaseStream
     {
+#if !DNX
+        /// <summary>
+        /// Closes the stream.
+        /// </summary>
+        public override void Close()
+        {
+            CloseAsync().WaitSync();
+        }
+#endif
+
+        /// <summary>
+        /// Closes the stream asynchronously.
+        /// </summary>
+        /// <param name="cancelToken"><see cref="CancellationToken"/></param>
+        /// <returns></returns>
+        public override Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
+        {
+#if !DNX
+            base.Close();
+#endif
+            return TaskHelper.CompletedTask;
+        }
+
         /// <summary>
         /// The underlying bucket container for <see cref="FileInfo"/>
         /// </summary>

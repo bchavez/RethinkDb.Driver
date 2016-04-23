@@ -82,6 +82,7 @@
     <Compile Include="Net\ICursor.cs" />
     <Compile Include="Net\IncrementalSHA256.cs" />
     <Compile Include="Net\ScramAttributes.cs" />
+    <Compile Include="Net\SecureRandom.cs" />
     <Compile Include="ReqlAssertFailure.cs" />
     <Compile Include="Model\Change[T].cs" />
     <Compile Include="Model\ExtensionsForResult.cs" />

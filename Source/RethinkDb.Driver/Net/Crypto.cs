@@ -1,29 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace RethinkDb.Driver.Net
 {
-    internal class SecureRandom : IDisposable
-    {
-#if DNX
-        private RandomNumberGenerator random = RandomNumberGenerator.Create();
-#else
-        private RNGCryptoServiceProvider random = new RNGCryptoServiceProvider();
-#endif
-
-        public void GetBytes(byte[] data)
-        {
-            random.GetBytes(data);
-        }
-
-        public void Dispose()
-        {
-            random.Dispose();
-        }
-    }
-
     internal class Crypto
     {
         private static readonly SecureRandom secureRandom = new SecureRandom();
@@ -113,7 +93,6 @@ namespace RethinkDb.Driver.Net
 
                 return u;
             }
-
         }
 
         public static string MakeNonce()

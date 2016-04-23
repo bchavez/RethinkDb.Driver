@@ -1,3 +1,9 @@
+## v2.3.1-beta-1
+* Compatibility with RethinkDB 2.3 and new user/pass authentication system.
+* New 'Grant' AST term added.
+* New permission exception types.
+* Issue 41 - Synchronous Run Helpers now throw expected exceptions (unwrapped AggregateException).
+
 ## v2.2.10
 * Roll-up Release for Full .NET Framework since last non-beta release.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.
@@ -5,7 +11,7 @@
 ## v2.2.10-beta-1
 * Fixed Issue 36: Inconsistency between AND and OR method signatures.
 * Added Fold Term (Note: Not usable until RethinkDB Server 2.3 is released).
-* Added support for Union interleave optArg.
+* Added support for Union interleave OptArg.
 * Added Proxy field to Server:conn.Server().
 * BREAKING: .optArg now named .OptArg to follow .NET conventions (My apologies, I missed this one).
 

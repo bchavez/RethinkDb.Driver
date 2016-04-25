@@ -3,8 +3,7 @@ General Help
 General help with ReQL questions can be found on:
 
 * **Slack**: Primary means of getting help is on [**Slack**](http://slack.rethinkdb.com) <a href="http://slack.rethinkdb.com/"><img valign="middle"  src="http://slack.rethinkdb.com/badge.svg"></a>  If you don't receive the invite, check your spam folder.
-* **IRC Freenode**: Use [WebChat](http://webchat.freenode.net/?channels=rethinkdb) and join `#rethinkdb` channel. Alternatively, [HexChat](https://hexchat.github.io/) a good native windows IRC client. 
-* **Gitter**: For questions that relate to this C# driver we have a **Gitter** channel: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bchavez/RethinkDb.Driver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+* **IRC Freenode**: Use [WebChat](http://webchat.freenode.net/?channels=rethinkdb) and join `#rethinkdb` channel. Alternatively, [HexChat](https://hexchat.github.io/) a good native windows IRC client.
   
 
 Pull Requests

@@ -11,11 +11,13 @@ A [**RethinkDB**](http://rethinkdb.com/) database driver written in C# striving 
 
 This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/next/drivers/java). The basic mechanics and architecture of both drivers are the same.
 
-#### Commercial Support
+### Getting Help
+###### Commercial Support
 Independent commercial support and consulting is available for this ***community driver***. To ensure best practices in .NET, proper driver usage, and critical bug fixes for the **C#** ***community driver*** contact [**Brian Chavez**](https://github.com/bchavez) ([twitter](https://twitter.com/bchavez)) for more information. Commercial support for **RethinkDB** ***Server*** out-of-scope of the **C#** ***community driver*** can be found [here](http://rethinkdb.com/services/). 
 
-#### Community Support
-[**Slack** (http://slack.rethinkdb.com)](http://slack.rethinkdb.com) is the primary means of getting help for free. If you don't receive the invite, check your spam folder. The `#general` channel has many users willing to help. If yourx **C#** related question can't be answered by anyone tag **@bchavez** in your question.
+###### Community Support
+[**Slack** (http://slack.rethinkdb.com)](http://slack.rethinkdb.com) is the primary means of getting help for free. If you don't receive the invite, check your spam folder. The `#general` channel has many users willing to help. If your **C#** related question can't be answered by anyone tag **@bchavez** in your question.
+
 
 ### Download & Install
 **NuGet Package [RethinkDb.Driver](https://www.nuget.org/packages/RethinkDb.Driver/)**

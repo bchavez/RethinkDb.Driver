@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/wiki/bchavez/RethinkDb.Driver/GitHubBanner.png" style="max-width: 100%" />
 
-[![Build status](https://ci.appveyor.com/api/projects/status/8o06bhlnjss2n7k8/branch/master?svg=true)](https://ci.appveyor.com/project/bchavez/rethinkdb-driver/branch/master) [![Twitter](https://img.shields.io/twitter/url/https/github.com/bchavez/RethinkDb.Driver.svg?style=social)](https://twitter.com/intent/tweet?text=%23RethinkDB %23reql driver for C%23 and .NET:&amp;amp;url=https%3A%2F%2Fgithub.com%2Fbchavez%2FRethinkDb.Driver) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bchavez/RethinkDb.Driver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Build status](https://ci.appveyor.com/api/projects/status/8o06bhlnjss2n7k8/branch/master?svg=true)](https://ci.appveyor.com/project/bchavez/rethinkdb-driver/branch/master) [![Twitter](https://img.shields.io/twitter/url/https/github.com/bchavez/RethinkDb.Driver.svg?style=social)](https://twitter.com/intent/tweet?text=%23RethinkDB %23reql driver for C%23 and .NET:&amp;amp;url=https%3A%2F%2Fgithub.com%2Fbchavez%2FRethinkDb.Driver) <a href="http://slack.rethinkdb.com/"><img valign="middle"  src="http://slack.rethinkdb.com/badge.svg"></a>
 
 RethinkDb.Driver
 ================
@@ -14,7 +14,8 @@ This driver is based on the *official* [Java Driver](https://github.com/rethinkd
 #### Commercial Support
 Independent commercial support and consulting is available for this ***community driver***. To ensure best practices in .NET, proper driver usage, and critical bug fixes for the **C#** ***community driver*** contact [**Brian Chavez**](https://github.com/bchavez) ([twitter](https://twitter.com/bchavez)) for more information. Commercial support for **RethinkDB** ***Server*** out-of-scope of the **C#** ***community driver*** can be found [here](http://rethinkdb.com/services/). 
 
-
+#### Non-Commercial Support
+[**Slack**](http://slack.rethinkdb.com) <a href="http://slack.rethinkdb.com/"><img valign="middle"  src="http://slack.rethinkdb.com/badge.svg"></a> [(http://slack.rethinkdb.com)](http://slack.rethinkdb.com) is the primary means of getting help for free. If you don't receive the invite, check your spam folder. The `#general` channel has many users willing to help. If yourx **C#** related question can't be answered by anyone tag **@bchavez** in your question.
 
 ### Download & Install
 **NuGet Package [RethinkDb.Driver](https://www.nuget.org/packages/RethinkDb.Driver/)**
@@ -61,11 +62,6 @@ Install-Package RethinkDb.Driver -Pre
 
 Documentation
 -----
-##### Getting Help
-[**Slack**](http://slack.rethinkdb.com) <a href="http://slack.rethinkdb.com/"><img valign="middle"  src="http://slack.rethinkdb.com/badge.svg"></a> [(http://slack.rethinkdb.com)](http://slack.rethinkdb.com) is the primary means of getting help. If you don't receive the invite, check your spam folder. The `#general` channel has many users willing to help. If your **C#** related question can't be answered by anyone tag **@bchavez** in your question.
-
-----
-
 * [Home](https://github.com/bchavez/RethinkDb.Driver/wiki)
 * [Query Examples](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/RethinkDb.Driver.Tests/ReQL)
 * [Logging](https://github.com/bchavez/RethinkDb.Driver/wiki/Protocol-Debugging)
@@ -116,7 +112,7 @@ Documentation
 * [Threading Architecture](https://github.com/bchavez/RethinkDb.Driver/issues/15)
 * [Connection Pooling Architecture](https://github.com/bchavez/RethinkDb.Driver/issues/17)
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bchavez/RethinkDb.Driver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+<a href="http://slack.rethinkdb.com/"><img valign="middle"  src="http://slack.rethinkdb.com/badge.svg"></a>
 
 Quick Examples
 -----

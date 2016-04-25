@@ -14,7 +14,7 @@ This driver is based on the *official* [Java Driver](https://github.com/rethinkd
 #### Commercial Support
 Independent commercial support and consulting is available for this ***community driver***. To ensure best practices in .NET, proper driver usage, and critical bug fixes for the **C#** ***community driver*** contact [**Brian Chavez**](https://github.com/bchavez) ([twitter](https://twitter.com/bchavez)) for more information. Commercial support for **RethinkDB** ***Server*** out-of-scope of the **C#** ***community driver*** can be found [here](http://rethinkdb.com/services/). 
 
-#### Non-Commercial Support
+#### Community Support
 [**Slack** (http://slack.rethinkdb.com)](http://slack.rethinkdb.com) is the primary means of getting help for free. If you don't receive the invite, check your spam folder. The `#general` channel has many users willing to help. If yourx **C#** related question can't be answered by anyone tag **@bchavez** in your question.
 
 ### Download & Install

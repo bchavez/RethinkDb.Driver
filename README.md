@@ -61,8 +61,10 @@ Install-Package RethinkDb.Driver -Pre
 
 Documentation
 -----
-### Getting Help
+##### Getting Help
 [**Slack**](http://slack.rethinkdb.com) <a href="http://slack.rethinkdb.com/"><img valign="middle"  src="http://slack.rethinkdb.com/badge.svg"></a> [(http://slack.rethinkdb.com)](http://slack.rethinkdb.com) is the primary means of getting help. If you don't receive the invite, check your spam folder. The `#general` channel has many users willing to help. If your **C#** related question can't be answered by anyone tag **@bchavez** in your question.
+
+----
 
 * [Home](https://github.com/bchavez/RethinkDb.Driver/wiki)
 * [Query Examples](https://github.com/bchavez/RethinkDb.Driver/tree/master/Source/RethinkDb.Driver.Tests/ReQL)

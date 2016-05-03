@@ -1,6 +1,11 @@
+## v2.3.1-beta-2
+* BREAKING: Issue 39 - Pseudo types are now converted by default in JToken types (JObject, JArray).
+*   You'll need to specify .Run*(conn, new { time_format: `raw` }) to keep raw types
+*   from being converted. Other raw types: binary_format and group_format.
+
 ## v2.3.1-beta-1
 * Compatibility with RethinkDB 2.3 and new user/pass authentication system.
-* New 'Grant' AST term added.
+* New `Grant` AST term added.
 * New permission exception types.
 * Issue 41 - Synchronous Run Helpers now throw expected exceptions (unwrapped AggregateException).
 

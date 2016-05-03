@@ -122,6 +122,7 @@
     <Compile Include="ReQL\GitHubIssues.cs" />
     <Compile Include="ReQL\GitterIssues.cs" />
     <Compile Include="ReQL\GroupingTests.cs" />
+    <Compile Include="ReQL\JObjectTests.cs" />
     <Compile Include="ReQL\MapTests.cs" />
     <Compile Include="ReQL\OtherTests.cs" />
     <Compile Include="ReQL\PocoTests.cs" />

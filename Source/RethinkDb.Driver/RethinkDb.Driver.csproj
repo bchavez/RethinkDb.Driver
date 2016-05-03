@@ -77,6 +77,7 @@
     <Compile Include="Net\Clustering\RoundRobinHostPool.cs" />
     <Compile Include="Net\Clustering\Server.cs" />
     <Compile Include="Net\Crypto.cs" />
+    <Compile Include="Net\FormatOptions.cs" />
     <Compile Include="Net\Handshake.cs" />
     <Compile Include="Net\IConnection.cs" />
     <Compile Include="Net\ICursor.cs" />

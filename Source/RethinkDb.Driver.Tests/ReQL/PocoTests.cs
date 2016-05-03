@@ -101,23 +101,6 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             obj.Should().BeEquivalentTo("keya", "keyb");
         }
-
-        [Test]
-        public void can_ser_deser_reql_expr_anon_type()
-        {
-            
-            var vals = R.Expr(new
-            {
-                keya = R.Now(),
-                keyb = "foo"
-            }).values().RunResult<JArray>(conn);
-
-            var raw = vals.ToString();
-            raw.Dump();
-            raw.Should().Contain("foo");
-            raw.Should().Contain(Converter.PseudoTypeKey);
-        }
-
         
         [Test]
         public void can_bracket_on_table()

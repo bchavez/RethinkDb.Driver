@@ -43,7 +43,7 @@ namespace RethinkDb.Driver.Net
                 //socketChannel.LingerState.Enabled = false;
                 //socketChannel.LingerState.LingerTime = 500;
                 //socketChannel.ReceiveTimeout = 250;
-                //socketChannel.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+                socketChannel.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
                 //socketChannel.Client.Blocking = true;
 
                 await socketChannel.ConnectAsync(this.hostname, this.port).ConfigureAwait(false);

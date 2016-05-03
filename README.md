@@ -7,9 +7,9 @@ RethinkDb.Driver
 
 Project Description
 -------------------
-A [**RethinkDB**](http://rethinkdb.com/) database driver written in C# striving for 100% API compatibility and completeness.
+A [**RethinkDB**](http://rethinkdb.com/) database driver written in C# with 100% **ReQL** API compatibility and completeness.
 
-This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/next/drivers/java). The basic mechanics and architecture of both drivers are the same.
+This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/next/drivers/java). The basic mechanics and architecture of both drivers are the same. Except this **C#** driver is a bit more *stylish* and *cool*. :sunglasses:
 
 ### Getting Help
 ###### Commercial Support
@@ -58,7 +58,7 @@ Install-Package RethinkDb.Driver -Pre
 	<td colspan='4'></td>
 </tr>
 <tr>
-     <td colspan='4' align='center'><strong>RethinkDB</strong> server <strong>2.2.0</strong> or higher</td>
+     <td colspan='4' align='center'><strong>RethinkDB</strong> server <strong>2.3.0</strong> or higher</td>
 </tr>
 </table>
 

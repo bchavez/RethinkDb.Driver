@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -274,7 +275,13 @@ namespace RethinkDb.Driver.Net
             {
                 try
                 {
+                    if( typeof(T).IsJToken() )
+                    {
+                        var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
+                        return (T)Converter.ConvertPseudoTypes(res.Data[0], fmt);
+                    }
                     return res.Data[0].ToObject<T>(Converter.Serializer);
+                    
                 }
                 catch( IndexOutOfRangeException ex )
                 {
@@ -300,15 +307,25 @@ namespace RethinkDb.Driver.Net
             {
                 try
                 {
+                    if( typeof(T).IsJToken() )
+                    {
+                        var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
+                        return (T)Converter.ConvertPseudoTypes(res.Data[0], fmt);
+                    }
                     return res.Data[0].ToObject<T>(Converter.Serializer);
                 }
-                catch( IndexOutOfRangeException ex )
+                catch ( IndexOutOfRangeException ex )
                 {
                     throw new ReqlDriverError("Atom response was empty!", ex);
                 }
             }
             if( res.IsSequence )
             {
+                if( typeof(T).IsJToken() )
+                {
+                    var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
+                    return (T)Converter.ConvertPseudoTypes(res.Data, fmt);
+                }
                 return res.Data.ToObject<T>(Converter.Serializer);
             }
             if (res.IsError)
@@ -361,16 +378,20 @@ namespace RethinkDb.Driver.Net
             {
                 try
                 {
+                    if( typeof(T).IsJToken() )
+                    {
+                        var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
+                        return Converter.ConvertPseudoTypes(res.Data[0], fmt);
+                    }
                     return res.Data[0].ToObject(typeof(T), Converter.Serializer);
                 }
-                catch( IndexOutOfRangeException ex )
+                catch ( IndexOutOfRangeException ex )
                 {
                     throw new ReqlDriverError("Atom response was empty!", ex);
                 }
             }
             else if( res.IsPartial || res.IsSequence )
             {
-                //ICursor cursor = Cursor<T>.create(this, query, res);
                 return new Cursor<T>(this, query, res);
             }
             else if( res.IsWaitComplete )

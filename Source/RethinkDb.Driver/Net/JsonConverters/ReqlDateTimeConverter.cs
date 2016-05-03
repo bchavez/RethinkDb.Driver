@@ -2,6 +2,7 @@
 
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace RethinkDb.Driver.Net.JsonConverters
 {
@@ -60,7 +61,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
             }
 
             reader.ReadAndAssertProperty("epoch_time");
-            var epoch_time = reader.ReadAsDecimal();
+            var epoch_time = reader.ReadAsDouble();
             if( epoch_time == null )
             {
                 throw new JsonSerializationException($"The {Converter.PseudoTypeKey}:{Converter.Time} object doesn't have an epoch_time value.");
@@ -73,22 +74,33 @@ namespace RethinkDb.Driver.Net.JsonConverters
             //one more post read to align out of { reql_type:TIME,  .... } 
             reader.ReadAndAssert();
 
+            if( objectType == typeof(DateTimeOffset) ||
+                objectType == typeof(DateTimeOffset?) )
+            {
+                return ConvertDateTimeOffset(epoch_time.Value, timezone);
+            }
+            else
+            {
+                return ConvertDateTime(epoch_time.Value, timezone, serializer.DateTimeZoneHandling);
+            }
+        }
+
+        public static DateTimeOffset ConvertDateTimeOffset(double epoch_time, string timezone)
+        {
             var tz = TimeSpan.Parse(timezone.Substring(1));
-            if( !timezone.StartsWith("+") )
+            if (!timezone.StartsWith("+"))
                 tz = -tz;
 
             var epoch = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero);
-            var dt = epoch + TimeSpan.FromSeconds(Convert.ToDouble(epoch_time.Value));
+            var dt = epoch + TimeSpan.FromSeconds(epoch_time);
 
-            var dto = dt.ToOffset(tz);
+            return dt.ToOffset(tz);
+        }
 
-            if( objectType == typeof(DateTimeOffset) ||
-                objectType == typeof(DateTimeOffset?) )
-                return dto;
-
-            var tzHandle = serializer.DateTimeZoneHandling;
-
-            switch( tzHandle )
+        public static DateTime ConvertDateTime(double epoch_time, string timezone, DateTimeZoneHandling tzHandle)
+        {
+            var dto = ConvertDateTimeOffset(epoch_time, timezone);
+            switch (tzHandle)
             {
                 case DateTimeZoneHandling.Local:
                     return dto.LocalDateTime;

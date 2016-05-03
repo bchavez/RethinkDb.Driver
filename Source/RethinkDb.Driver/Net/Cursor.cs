@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
+using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 using RethinkDb.Driver.Utils;
 
@@ -24,6 +25,7 @@ namespace RethinkDb.Driver.Net
             this.conn = conn;
             this.IsFeed = firstResponse.IsFeed;
             this.Token = query.Token;
+            this.fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
 
             this.conn.AddToCache(this.Token, this);
             //is the first response all there is?
@@ -65,6 +67,10 @@ namespace RethinkDb.Driver.Net
         private Task<Response> pendingContinue;
 
         private readonly Queue<JToken> items = new Queue<JToken>();
+
+        //we need these to keep track of the run options
+        //for things like "time_format: 'raw'"
+        private FormatOptions fmt;
 
         void AdvanceCurrent()
         {
@@ -206,6 +212,10 @@ namespace RethinkDb.Driver.Net
 
         T Convert(JToken token)
         {
+            if( typeof(T).IsJToken() )
+            {
+                return (T)Converter.ConvertPseudoTypes(token, fmt);
+            }
             return token.ToObject<T>(Converter.Serializer);
         }
 

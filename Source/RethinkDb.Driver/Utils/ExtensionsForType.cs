@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using Newtonsoft.Json.Linq;
 
 namespace RethinkDb.Driver.Utils
 {
@@ -8,6 +9,10 @@ namespace RethinkDb.Driver.Utils
         public static bool IsASubclassOf(this Type type, Type other)
         {
             return type.GetTypeInfo().IsSubclassOf(other);
+        }
+        public static bool IsJToken(this Type type)
+        {
+            return type.IsASubclassOf(typeof(JToken));
         }
 
         public static bool IsGenericType(this Type type)

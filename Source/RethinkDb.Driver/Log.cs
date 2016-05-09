@@ -10,7 +10,7 @@ namespace RethinkDb.Driver
     /// <summary>
     /// Logger class for the driver.
     /// </summary>
-    public static partial class Log
+    public static class Log
     {
 #if DNX
         /// <summary>

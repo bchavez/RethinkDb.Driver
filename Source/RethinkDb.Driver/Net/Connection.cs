@@ -278,7 +278,8 @@ namespace RethinkDb.Driver.Net
                     if( typeof(T).IsJToken() )
                     {
                         var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
-                        return (T)Converter.ConvertPseudoTypes(res.Data[0], fmt);
+                        Converter.ConvertPseudoTypes(res.Data[0], fmt);
+                        return (T)(object)res.Data[0]; //ugh ugly. find a better way to do this.
                     }
                     return res.Data[0].ToObject<T>(Converter.Serializer);
                     
@@ -310,7 +311,8 @@ namespace RethinkDb.Driver.Net
                     if( typeof(T).IsJToken() )
                     {
                         var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
-                        return (T)Converter.ConvertPseudoTypes(res.Data[0], fmt);
+                        Converter.ConvertPseudoTypes(res.Data[0], fmt);
+                        return (T)(object)res.Data[0]; //ugh ugly. find a better way to do this.
                     }
                     return res.Data[0].ToObject<T>(Converter.Serializer);
                 }
@@ -324,7 +326,8 @@ namespace RethinkDb.Driver.Net
                 if( typeof(T).IsJToken() )
                 {
                     var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
-                    return (T)Converter.ConvertPseudoTypes(res.Data, fmt);
+                    Converter.ConvertPseudoTypes(res.Data, fmt);
+                    return (T)(object)res.Data; //ugh ugly. find a better way to do this.
                 }
                 return res.Data.ToObject<T>(Converter.Serializer);
             }
@@ -381,7 +384,8 @@ namespace RethinkDb.Driver.Net
                     if( typeof(T).IsJToken() )
                     {
                         var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
-                        return Converter.ConvertPseudoTypes(res.Data[0], fmt);
+                        Converter.ConvertPseudoTypes(res.Data[0], fmt);
+                        return res.Data[0];
                     }
                     return res.Data[0].ToObject(typeof(T), Converter.Serializer);
                 }

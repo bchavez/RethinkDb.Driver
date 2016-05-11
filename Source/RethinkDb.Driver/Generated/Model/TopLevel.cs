@@ -20,7 +20,7 @@ using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Ast {
-    public class TopLevel {
+    public partial class TopLevel {
 
         public ReqlExpr Expr(Object value){
             return Util.ToReqlExpr(value);

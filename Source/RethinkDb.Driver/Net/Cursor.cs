@@ -214,7 +214,8 @@ namespace RethinkDb.Driver.Net
         {
             if( typeof(T).IsJToken() )
             {
-                return (T)Converter.ConvertPseudoTypes(token, fmt);
+                Converter.ConvertPseudoTypes(token, fmt);
+                return (T)(object)token; //ugh ugly. find a better way to do this.
             }
             return token.ToObject<T>(Converter.Serializer);
         }

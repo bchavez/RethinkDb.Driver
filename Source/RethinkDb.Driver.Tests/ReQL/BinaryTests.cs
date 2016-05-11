@@ -21,7 +21,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         [Test]
         public void can_get_raw_binary_type()
         {
-            JObject reqlType = R.binary(new byte[] { 1, 2, 3 }).Run<JObject>(conn);
+            JObject reqlType = R.binary(new byte[] { 1, 2, 3 }).Run<JObject>(conn, new {binary_format = "raw"});
             reqlType[Converter.PseudoTypeKey].ToString().Should().Be("BINARY");
         }
 

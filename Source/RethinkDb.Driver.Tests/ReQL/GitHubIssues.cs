@@ -172,6 +172,53 @@ namespace RethinkDb.Driver.Tests.ReQL
             action.ShouldThrow<ReqlRuntimeError>();
         }
 
+
+        public class Issue49
+        {
+            [JsonProperty("id")]
+            public int Id = 1;
+            public DateTime BigBang { get; set; }
+        }
+
+        [Test]
+        public void issue_49_use_reqldatetimeconverter_for_dates_in_ast()
+        {
+            ClearDefaultTable();
+
+            var mindate = DateTime.MinValue.ToUniversalTime();
+
+            var insertResult = R
+                .Db(DbName)
+                .Table(TableName)
+                .Insert(new Issue49 {BigBang = mindate})
+                .RunResult(conn);
+
+            insertResult.Errors.Should().Be(0);
+
+            var updateResult = R
+                .Db(DbName)
+                .Table(TableName)
+                .Get(1)
+                .Update(orig =>
+                        {
+                            var unchanged = orig["BigBang"].Eq(mindate);
+                            return R.Error(unchanged.CoerceTo("string"));
+                        })
+                .OptArg("return_changes", true)
+                .RunResult(conn);
+
+            updateResult.Errors.Should().Be(1);
+            updateResult.FirstError.Should().Be("true");
+
+            var filter =
+                R.Db(DbName)
+                 .Table(TableName)
+                 .Filter(x => x["BigBang"].Eq(mindate))
+                 .RunResult<List<Issue49>>(conn);
+
+            filter.Count.Should().Be(1);
+            filter[0].BigBang.Should().Be(mindate);
+        }
     }
 
 }

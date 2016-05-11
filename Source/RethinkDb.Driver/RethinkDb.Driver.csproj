@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="AssemblyAttributes.cs" />
     <Compile Include="Ast\ExtensionHelper.cs" />
+    <Compile Include="Ast\TopLevel.cs" />
     <Compile Include="Ast\Poco.cs" />
     <Compile Include="Ast\PropertyHelper.cs" />
     <Compile Include="Ast\Query.cs" />

@@ -101,7 +101,7 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// Method for converting pseudo types in JToken (JObjects)
         /// </summary>
-        public static object ConvertPseudoTypes(JToken data, FormatOptions fmt)
+        public static void ConvertPseudoTypes(JToken data, FormatOptions fmt)
         {
             var reqlTypes = data.SelectTokens("$..$reql_type$").ToList();
 
@@ -143,8 +143,6 @@ namespace RethinkDb.Driver.Net
 
                 pesudoObject.Replace(convertedValue);
             }
-
-            return data;
         }
 
         private static object GetTime(JObject value)

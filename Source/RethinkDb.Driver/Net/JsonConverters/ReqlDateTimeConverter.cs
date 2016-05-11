@@ -31,9 +31,14 @@ namespace RethinkDb.Driver.Net.JsonConverters
         }
 
         //http://stackoverflow.com/questions/2883576/how-do-you-convert-epoch-time-in-c
-        public double ToUnixTime(DateTimeOffset date)
+        public static double ToUnixTime(DateTimeOffset date)
         {
-            return (date.UtcTicks - 621355968000000000) / 10000000.0;
+            return ToUnixTime(date.UtcTicks);
+        }
+
+        public static double ToUnixTime(long utcTicks)
+        {
+            return (utcTicks - 621355968000000000) / 10000000.0;
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)

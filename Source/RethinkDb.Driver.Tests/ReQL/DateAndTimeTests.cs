@@ -50,18 +50,49 @@ namespace RethinkDb.Driver.Tests.ReQL
         }
 
         [Test]
-        public void unspecified_date_time()
+        public void unspecified_date_time_should_come_back_local_by_default()
+        {
+            var date = new DateTime(2015, 11, 14, 1, 2, 3, DateTimeKind.Unspecified);
+
+            var result = R.Expr(date).RunResult<DateTime>(conn);
+
+            var expected = new DateTime(2015, 11, 14, 1, 2, 3, DateTimeKind.Local);
+
+            result.Should().BeCloseTo(expected, (int)TimeSpan.FromMinutes(30).TotalMilliseconds);
+        }
+
+        [Test]
+        public void should_be_able_to_use_datetime_with_iso8601()
         {
             var date = new DateTime(2015, 11, 14, 1, 2, 3, DateTimeKind.Unspecified);
 
             //ISO 8601 string has no time zone, and no default time zone was provided.
-
             Action action = () =>
-                {
-                    DateTime result = R.Expr(date).Run<DateTime>(conn);
-                };
+            {
+                DateTime result = R.Iso8601(date).Run<DateTime>(conn);
+            };
 
             action.ShouldThrow<ReqlQueryLogicError>("DateTime unspecified timezone should not be ISO8601 valid.");
+        }
+
+        [Test]
+        public void can_convert_utc_datetime_to_epochtime()
+        {
+            var date = new DateTime(2015, 11, 14, 1, 2, 3, DateTimeKind.Utc);
+
+            var result = R.EpochTime(date).RunResult<DateTime>(conn);
+
+            result.Should().BeCloseTo(date, (int)TimeSpan.FromMinutes(30).TotalMilliseconds);
+        }
+
+        [Test]
+        public void can_convert_local_datetime_to_epochtime()
+        {
+            var date = new DateTime(2015, 11, 14, 1, 2, 3, DateTimeKind.Local);
+
+            var result = R.EpochTime(date).RunResult<DateTime>(conn);
+
+            result.Should().BeCloseTo(date.ToUniversalTime(), (int)TimeSpan.FromMinutes(30).TotalMilliseconds);
         }
 
         [Test]
@@ -69,9 +100,11 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             var date = new DateTime(2015, 11, 14, 1, 2, 3, DateTimeKind.Unspecified);
 
+            var datestr = date.ToString("o");
+
             var default_timezone = new {default_timezone = "-09:00"};
 
-            DateTime result = (R.Expr(date) as Iso8601)[default_timezone].Run<DateTime>(conn);
+            DateTime result = R.Iso8601(datestr)[default_timezone].Run<DateTime>(conn);
 
             var dateTimeUtc = new DateTime(2015, 11, 14, 1, 2, 3) + TimeSpan.FromHours(9);
 
@@ -81,13 +114,12 @@ namespace RethinkDb.Driver.Tests.ReQL
             DateTime result2 = R.Iso8601(withoutTimezone)[default_timezone].Run<DateTime>(conn);
 
             result2.ToUniversalTime().Should().BeCloseTo(dateTimeUtc, 1);
-
         }
 
         [Test]
         public void use_raw_object()
         {
-            JObject result = R.Now().Run<JObject>(conn);
+            JObject result = R.Now().Run<JObject>(conn, new {time_format="raw"});
             //ten minute limit for clock drift.
 
             result["$reql_type$"].ToString().Should().Be("TIME");

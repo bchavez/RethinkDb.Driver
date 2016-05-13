@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using RethinkDb.Driver.Linq.Attributes;
-using Xunit;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
     public class OrderByTests : BaseLinqTest
     {
-        [Fact]
+        [Test]
         public void For1OrderBy_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -34,12 +34,12 @@ namespace RethinkDb.Driver.Linq.Tests
                 .OrderBy( x => x.Name )
                 .ToList();
 
-            Assert.Equal( 2, result.Count );
-            Assert.Equal( data[0].Name, result[0].Name );
-            Assert.Equal( data[1].Name, result[1].Name );
+            Assert.AreEqual( 2, result.Count );
+            Assert.AreEqual( data[0].Name, result[0].Name );
+            Assert.AreEqual( data[1].Name, result[1].Name );
         }
 
-        [Fact]
+        [Test]
         public void For2OrderByDescending_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -66,12 +66,12 @@ namespace RethinkDb.Driver.Linq.Tests
                 .OrderByDescending( x => x.Name )
                 .ToList();
 
-            Assert.Equal( 2, result.Count );
-            Assert.Equal( data[1].Name, result[0].Name );
-            Assert.Equal( data[0].Name, result[1].Name );
+            Assert.AreEqual( 2, result.Count );
+            Assert.AreEqual( data[1].Name, result[0].Name );
+            Assert.AreEqual( data[0].Name, result[1].Name );
         }
 
-        [Fact]
+        [Test]
         public void ForOrderByOnPrimaryIndex_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -96,12 +96,12 @@ namespace RethinkDb.Driver.Linq.Tests
                 .OrderBy( x => x.Name2 )
                 .ToList();
 
-            Assert.Equal( 2, result.Count );
-            Assert.Equal( data[0].Name2, result[0].Name2 );
-            Assert.Equal( data[1].Name2, result[1].Name2 );
+            Assert.AreEqual( 2, result.Count );
+            Assert.AreEqual( data[0].Name2, result[0].Name2 );
+            Assert.AreEqual( data[1].Name2, result[1].Name2 );
         }
 
-        [Fact]
+        [Test]
         public void ForOrderByOnSecondaryIndex_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -128,9 +128,9 @@ namespace RethinkDb.Driver.Linq.Tests
                 .OrderBy( x => x.Name3 )
                 .ToList();
 
-            Assert.Equal( 2, result.Count );
-            Assert.Equal( data[0].Name3, result[0].Name3 );
-            Assert.Equal( data[1].Name3, result[1].Name3 );
+            Assert.AreEqual( 2, result.Count );
+            Assert.AreEqual( data[0].Name3, result[0].Name3 );
+            Assert.AreEqual( data[1].Name3, result[1].Name3 );
         }
 
         public class TestObject

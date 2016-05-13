@@ -1,3 +1,6 @@
+## v2.3.1-beta-3
+* Experimental LINQ to ReQL provider support.
+
 ## v2.3.1-beta-2
 * BREAKING: Issue 39 - Pseudo types are now converted by default in JToken types (JObject, JArray).
 *   You'll need to specify .Run*(conn, new { time_format: `raw` }) to keep raw types

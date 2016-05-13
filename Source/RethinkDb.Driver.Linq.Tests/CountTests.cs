@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using NUnit.Framework;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
     public class CountTests : BaseLinqTest
     {
-        [Fact]
+        [Test]
         public void Count_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -21,10 +21,10 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).Count();
 
-            Assert.Equal( 2, result );
+            Assert.AreEqual( 2, result );
         }
 
-        [Fact]
+        [Test]
         public void CountWithFilter_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -45,10 +45,10 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).Count( x => x.Name == "One" );
 
-            Assert.Equal( 1, result );
+            Assert.AreEqual( 1, result );
         }
 
-        [Fact]
+        [Test]
         public void WhereWithCount_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -74,10 +74,10 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).Where( x => x.Values.Count() == 2 ).ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
-        [Fact]
+        [Test]
         public void WhereWithListCount_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -103,10 +103,10 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).Where( x => x.Values.Count == 2 ).ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
-        [Fact]
+        [Test]
         public void WhereWithCountWithFilter_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -132,7 +132,7 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).Where( x => x.Values.Count( v => v == "One" ) == 1 ).ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
         public class TestObject

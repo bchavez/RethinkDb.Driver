@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using NUnit.Framework;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
     public class AverageTests : BaseLinqTest
     {
-        [Fact]
+        [Test]
         public void ForSimpleAverage_GeneratesCorrectQuery()
         {
             var data = new List<TestObject>
@@ -27,10 +27,10 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).Average( x => x.Size );
 
-            Assert.Equal( 2, result );
+            Assert.AreEqual( 2, result );
         }
 
-        [Fact]
+        [Test]
         public void ForSimpleAverageForSubProperty_GeneratesCorrectQuery()
         {
             var data = new List<TestObject>
@@ -57,10 +57,10 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).Average( x => x.Information.Size );
 
-            Assert.Equal( 2, result );
+            Assert.AreEqual( 2, result );
         }
 
-        [Fact]
+        [Test]
         public void ForSimpleAverageForSubSubProperty_GeneratesCorrectQuery()
         {
             var data = new List<TestObject>
@@ -93,7 +93,7 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).Average( x => x.MainInformation.Information.Size );
 
-            Assert.Equal( 2, result );
+            Assert.AreEqual( 2, result );
         }
 
         public class MainInformation

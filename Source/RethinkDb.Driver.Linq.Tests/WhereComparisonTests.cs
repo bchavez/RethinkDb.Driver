@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using RethinkDb.Driver.Linq.Attributes;
-using Xunit;
+
 
 namespace RethinkDb.Driver.Linq.Tests
 {
     public class WhereComparisonTests : BaseLinqTest
     {
-        [Fact]
+        [Test]
         public void ForSimpleToList_DoesNotCallAnyReqlMethods()
         {
             var data = new List<TestObject>
@@ -29,12 +30,12 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).ToList();
 
-            Assert.Equal( 2, result.Count );
+            Assert.AreEqual( 2, result.Count );
             foreach( var testObject in data )
                 Assert.True( result.Any( x => x.Name == testObject.Name ) );
         }
 
-        [Fact]
+        [Test]
         public void ForSimpleEqualOnNonIndex_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -59,11 +60,11 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Name == "Hello" )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
-            Assert.Equal( data[0].Name, result[0].Name );
+            Assert.AreEqual( 1, result.Count );
+            Assert.AreEqual( data[0].Name, result[0].Name );
         }
 
-        [Fact]
+        [Test]
         public void ForSimpleNotEqualOnNonIndex_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -88,11 +89,11 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Name != "Hello" )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
-            Assert.Equal( data[1].Name, result[0].Name );
+            Assert.AreEqual( 1, result.Count );
+            Assert.AreEqual( data[1].Name, result[0].Name );
         }
 
-        [Fact]
+        [Test]
         public void ForSimpleEqualOnPrimaryIndex_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -119,12 +120,12 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Id == data[0].Id )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
-            Assert.Equal( data[0].Id, result[0].Id );
-            Assert.Equal( data[0].Name, result[0].Name );
+            Assert.AreEqual( 1, result.Count );
+            Assert.AreEqual( data[0].Id, result[0].Id );
+            Assert.AreEqual( data[0].Name, result[0].Name );
         }
 
-        [Fact]
+        [Test]
         public void ForSimpleEqualOnPrimaryIndexWhenIndexIsOnRight_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -151,12 +152,12 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => data[0].Id == x.Id )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
-            Assert.Equal( data[0].Id, result[0].Id );
-            Assert.Equal( data[0].Name, result[0].Name );
+            Assert.AreEqual( 1, result.Count );
+            Assert.AreEqual( data[0].Id, result[0].Id );
+            Assert.AreEqual( data[0].Name, result[0].Name );
         }
 
-        [Fact]
+        [Test]
         public void ForSimpleEqualOnSecondaryIndex_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -183,12 +184,12 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Location == data[0].Location )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
-            Assert.Equal( data[0].Id, result[0].Id );
-            Assert.Equal( data[0].Name, result[0].Name );
+            Assert.AreEqual( 1, result.Count );
+            Assert.AreEqual( data[0].Id, result[0].Id );
+            Assert.AreEqual( data[0].Name, result[0].Name );
         }
 
-        [Fact]
+        [Test]
         public void ForEqualWith1AndOnSecondaryIndex_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -223,12 +224,12 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Location == data[0].Location && x.Name == data[0].Name )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
-            Assert.Equal( data[0].Id, result[0].Id );
-            Assert.Equal( data[0].Name, result[0].Name );
+            Assert.AreEqual( 1, result.Count );
+            Assert.AreEqual( data[0].Id, result[0].Id );
+            Assert.AreEqual( data[0].Name, result[0].Name );
         }
 
-        [Fact]
+        [Test]
         public void ForEqualWith2AndOnSecondaryIndex_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -267,12 +268,12 @@ namespace RethinkDb.Driver.Linq.Tests
                     x.Name2 == data[0].Name2 )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
-            Assert.Equal( data[0].Id, result[0].Id );
-            Assert.Equal( data[0].Name, result[0].Name );
+            Assert.AreEqual( 1, result.Count );
+            Assert.AreEqual( data[0].Id, result[0].Id );
+            Assert.AreEqual( data[0].Name, result[0].Name );
         }
 
-        [Fact]
+        [Test]
         public void WhenIsFilteredByOnceColumnThenByIndex_DoesNotUseIndex()
         {
             var data = new List<TestObject>
@@ -302,9 +303,9 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Location == data[0].Location )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
-            Assert.Equal( data[0].Id, result[0].Id );
-            Assert.Equal( data[0].Name, result[0].Name );
+            Assert.AreEqual( 1, result.Count );
+            Assert.AreEqual( data[0].Id, result[0].Id );
+            Assert.AreEqual( data[0].Name, result[0].Name );
         }
 
 

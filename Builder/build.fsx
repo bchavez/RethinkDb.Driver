@@ -35,6 +35,7 @@ let Projects = Setup.Projects(ProjectName, Folders)
 
 let DriverProject = NugetProject("RethinkDb.Driver", "RethinkDb Driver for .NET", Folders)
 let GridProject = NugetProject("RethinkDb.Driver.ReGrid", "RethinkDb Large Object Storage for .NET", Folders)
+let LinqProject = NugetProject("RethinkDb.Driver.Linq", "A LINQ to ReQL provider for the RethinkDb Driver", Folders)
 let DriverTestProject = TestProject("RethinkDb.Driver.Tests", Folders)
 let TestGridProject = Project("RethinkDb.Driver.ReGrid.Tests", Folders)
 

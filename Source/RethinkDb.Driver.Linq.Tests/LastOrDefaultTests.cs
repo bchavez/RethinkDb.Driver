@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using NUnit.Framework;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
     public class LastOrDefaultTests : BaseLinqTest
     {
-        [Fact]
+        [Test]
         public void LastOrDefaultWithNoFilter_GeneratesCorrectQuery()
         {
             var data = new List<TestObject>
@@ -28,7 +28,7 @@ namespace RethinkDb.Driver.Linq.Tests
             var result = GetQueryable<TestObject>( TableName, expected ).LastOrDefault();
         }
 
-        [Fact]
+        [Test]
         public void LastWithFilter_GeneratesCorrectQuery()
         {
             var data = new List<TestObject>
@@ -49,10 +49,10 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).LastOrDefault( x => x.Name == "TestObject2" );
 
-            Assert.Equal( "TestObject2", result.Name );
+            Assert.AreEqual( "TestObject2", result.Name );
         }
 
-        [Fact]
+        [Test]
         public void LastWithFilterAndNoMatches_ReturnsNull()
         {
             var data = new List<TestObject>

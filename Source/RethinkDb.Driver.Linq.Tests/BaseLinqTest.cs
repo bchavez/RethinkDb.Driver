@@ -5,25 +5,46 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NUnit.Framework;
 using Remotion.Linq;
 using Remotion.Linq.Parsing.Structure;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Linq.Attributes;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Proto;
-using Xunit;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
-    public class BaseLinqTest : IDisposable
+    public class BaseLinqTest
     {
-        protected readonly string TableName;
-        protected readonly IConnection Connection;
+        protected string TableName;
 
-        public BaseLinqTest()
+        protected IConnection Connection;
+
+        [TestFixtureSetUp]
+        public void BeforeRunningTestSession()
+        {
+
+        }
+
+        [TestFixtureTearDown]
+        public void AfterRunningTestSession()
+        {
+
+        }
+
+        [SetUp]
+        public void BeforeEachTest()
         {
             TableName = Guid.NewGuid().ToString().Replace( "-", "" );
             Connection = SetupConnection();
+        }
+
+        [TearDown]
+        public void AfterEachTest()
+        {
+            RethinkDB.R.TableDrop( TableName ).Run( Connection );
+            Connection.Dispose();
         }
 
         private void QueriesAreTheSame( ReqlAst expected, ReqlAst actual )
@@ -37,8 +58,8 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var expectedParsed = removeIdsRegex.Replace( ParseReql( expectedJson ), "" );
             var actualParsed = removeIdsRegex.Replace( ParseReql( actualJson ), "" );
-
-            Assert.Equal( expectedParsed, actualParsed );
+            
+            Assert.AreEqual( expectedParsed, actualParsed );
         }
 
         private static string ParseReql( string expectedJson )
@@ -98,12 +119,6 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Port( RethinkDBConstants.DefaultPort )
                 .Timeout( RethinkDBConstants.DefaultTimeout )
                 .Connect();
-        }
-
-        public void Dispose()
-        {
-            RethinkDB.R.TableDrop( TableName ).Run( Connection );
-            Connection.Dispose();
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using NUnit.Framework;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
     public class GroupByTests : BaseLinqTest
     {
-        [Fact]
+        [Test]
         public void WhenGroupingOnPropertyGroupsData()
         {
             var data = new List<GroupObject>
@@ -39,7 +39,7 @@ namespace RethinkDb.Driver.Linq.Tests
                 .ToList();
         }
 
-        [Fact]
+        [Test]
         public void WhenGroupingOnPropertyWithSelectorGroupsData()
         {
             var data = new List<GroupObject>
@@ -72,7 +72,7 @@ namespace RethinkDb.Driver.Linq.Tests
                 .ToList();
         }
 
-        [Fact]
+        [Test]
         public void WhenGroupingOnPropertyAndThenFilteringOnKeyGroupsData()
         {
             var data = new List<GroupObject>
@@ -106,7 +106,7 @@ namespace RethinkDb.Driver.Linq.Tests
                 .ToList();
         }
 
-        [Fact]
+        [Test]
         public void WhenGroupingOnPropertyAndFilteringOnGroupList_GeneratesCorrectReql()
         {
             var data = new List<GroupObject>

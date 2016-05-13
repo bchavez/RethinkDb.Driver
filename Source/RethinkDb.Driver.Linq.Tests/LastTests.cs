@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using NUnit.Framework;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
     public class LastTests : BaseLinqTest
     {
-        [Fact]
+        [Test]
         public void LastWithNoFilter_GeneratesCorrectQuery()
         {
             var data = new List<TestObject>
@@ -29,7 +29,7 @@ namespace RethinkDb.Driver.Linq.Tests
             var result = GetQueryable<TestObject>( TableName, expected ).Last();
         }
 
-        [Fact]
+        [Test]
         public void LastWithFilter_GeneratesCorrectQuery()
         {
             var data = new List<TestObject>
@@ -50,10 +50,10 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).Last( x => x.Name == "TestObject2" );
 
-            Assert.Equal( "TestObject2", result.Name );
+            Assert.AreEqual( "TestObject2", result.Name );
         }
 
-        [Fact]
+        [Test]
         public void LastWithFilterAndNoMatches_ThrowExecpetion()
         {
             var data = new List<TestObject>

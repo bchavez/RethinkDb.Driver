@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using NUnit.Framework;
+
 
 namespace RethinkDb.Driver.Linq.Tests
 {
     public class AnyTests : BaseLinqTest
     {
-        [Fact]
+        [Test]
         public void ForSimpleAnyQuery_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -30,7 +31,7 @@ namespace RethinkDb.Driver.Linq.Tests
             Assert.True( result );
         }
 
-        [Fact]
+        [Test]
         public void ForSimpleAnyQueryWithCondition_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -54,7 +55,7 @@ namespace RethinkDb.Driver.Linq.Tests
             Assert.True( result );
         }
 
-        [Fact]
+        [Test]
         public void WhenIsFilteredByAnyClauseAndNot_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -82,10 +83,10 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => !x.Locations.Any() )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
-        [Fact]
+        [Test]
         public void WhenIsFilteredByAnyClauseWithSubAny_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -128,10 +129,10 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Resources.Any( resource => resource.Locations.Any( l => l.Usages.Any() ) ) )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
-        [Fact]
+        [Test]
         public void WhenIsFilteredByAnyClauseAndEqualsFalse_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -159,12 +160,12 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Locations.Any() == false )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
-            Assert.Equal( 0, result[0].Locations.Count );
+            Assert.AreEqual( 1, result.Count );
+            Assert.AreEqual( 0, result[0].Locations.Count );
         }
 
 
-        [Fact]
+        [Test]
         public void WhenIsFilteredByAnyClause_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -192,10 +193,10 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Locations.Any() )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
-        [Fact]
+        [Test]
         public void WhenIsFilteredByAnyClauseWithFilter_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -223,7 +224,7 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Locations.Any( l => l == "Hello" ) )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
         public class TestObject

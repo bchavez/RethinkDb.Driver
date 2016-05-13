@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using Xunit;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
@@ -21,5 +20,3 @@ using Xunit;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("836cd478-2df3-4a8b-a57b-58d3fcb01a7d")]
-
-[assembly: CollectionBehavior( DisableTestParallelization = true )]

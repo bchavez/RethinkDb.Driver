@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using RethinkDb.Driver.Linq.Attributes;
-using Xunit;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
     public class ComplexQueryTests : BaseLinqTest
     {
-        [Fact]
+        [Test]
         public void ComplexQuery()
         {
             var data = new List<ComplexObject>

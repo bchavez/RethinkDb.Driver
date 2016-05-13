@@ -209,6 +209,7 @@ Created by [Brian Chavez](http://bchavez.bitarmory.com) ([twitter](https://twitt
 
 A big thanks to GitHub and all contributors:
 
+* [jrote1](https://github.com/jrote1) (Jake Rote)
 * [fiLLLip](https://github.com/fiLLLip) (Filip Andre Larsen Tomren)
 * [cadabloom](https://github.com/cadabloom)
 

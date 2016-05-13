@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using NUnit.Framework;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
     public class AllTests : BaseLinqTest
     {
-        [Fact]
+        [Test]
         public void ForAll_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -30,7 +30,7 @@ namespace RethinkDb.Driver.Linq.Tests
             Assert.True( result );
         }
 
-        [Fact]
+        [Test]
         public void ForAllOnSubProperty_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -60,7 +60,7 @@ namespace RethinkDb.Driver.Linq.Tests
             Assert.True( result );
         }
 
-        [Fact]
+        [Test]
         public void WhenIsFilteredByAllClause_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -88,10 +88,10 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Locations.All( l => l == "Hello" ) )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
-        [Fact]
+        [Test]
         public void WhenIsFilteredByAllClauseNot_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -119,7 +119,7 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => !x.Locations.All( l => l == "Hello" ) )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
         public class TestObject

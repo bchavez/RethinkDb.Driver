@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using NUnit.Framework;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
     public class FirstOrDefaultTests : BaseLinqTest
     {
-        [Fact]
+        [Test]
         public void FirstOrDefaultWithNoFilter_GeneratesCorrectQuery()
         {
             var data = new List<TestObject>
@@ -28,7 +28,7 @@ namespace RethinkDb.Driver.Linq.Tests
             var result = GetQueryable<TestObject>( TableName, expected ).FirstOrDefault();
         }
 
-        [Fact]
+        [Test]
         public void FirstWithFilter_GeneratesCorrectQuery()
         {
             var data = new List<TestObject>
@@ -49,11 +49,11 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).FirstOrDefault( x => x.Name == "TestObject2" );
 
-            Assert.Equal( "TestObject2", result.Name );
+            Assert.AreEqual( "TestObject2", result.Name );
         }
 
 
-        [Fact]
+        [Test]
         public void WhenIsFilteredByFirstOrDefaultClause_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -85,10 +85,10 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Resources.FirstOrDefault() != null )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
-        [Fact]
+        [Test]
         public void FirstWithFilterAndNoMatches_ReturnsNull()
         {
             var data = new List<TestObject>
@@ -112,7 +112,7 @@ namespace RethinkDb.Driver.Linq.Tests
             Assert.Null( result );
         }
 
-        [Fact]
+        [Test]
         public void WhenIsFilteredByFirstClause_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -140,11 +140,11 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Locations.First() == "Hello" )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
-            Assert.Equal( 1, result[0].Locations.Count );
+            Assert.AreEqual( 1, result.Count );
+            Assert.AreEqual( 1, result[0].Locations.Count );
         }
 
-        [Fact]
+        [Test]
         public void WhenIsFilteredByFirstClauseAndThenUsingSubProperty_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -176,10 +176,10 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Resources.First().Locations.Any() )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
-        [Fact]
+        [Test]
         public void WhenIsFilteredByFirstClauseAndThenUsingSubPropertyComplex_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -217,7 +217,7 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Resources.First().Locations.First().Usages.Any( u => u == "Main" ) )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
         public class TestObject

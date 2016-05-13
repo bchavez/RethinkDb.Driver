@@ -1,0 +1,11 @@
+﻿{
+  "frameworks": {
+    "net45": {}
+  },
+  "runtimes": {
+    "win": {}
+  },
+  "dependencies": {
+    "Remotion.Linq": "2.0.2"
+  }
+}

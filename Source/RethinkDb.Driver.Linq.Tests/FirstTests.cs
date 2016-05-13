@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using NUnit.Framework;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
     public class FirstTests : BaseLinqTest
     {
-        [Fact]
+        [Test]
         public void FirstWithNoFilter_GeneratesCorrectQuery()
         {
             var data = new List<TestObject>
@@ -29,7 +29,7 @@ namespace RethinkDb.Driver.Linq.Tests
             var result = GetQueryable<TestObject>( TableName, expected ).First();
         }
 
-        [Fact]
+        [Test]
         public void FirstWithFilter_GeneratesCorrectQuery()
         {
             var data = new List<TestObject>
@@ -50,10 +50,10 @@ namespace RethinkDb.Driver.Linq.Tests
 
             var result = GetQueryable<TestObject>( TableName, expected ).First( x => x.Name == "TestObject2" );
 
-            Assert.Equal( "TestObject2", result.Name );
+            Assert.AreEqual( "TestObject2", result.Name );
         }
 
-        [Fact]
+        [Test]
         public void FirstWithFilterAndNoMatches_ThrowExecpetion()
         {
             var data = new List<TestObject>
@@ -77,7 +77,7 @@ namespace RethinkDb.Driver.Linq.Tests
                 var result = GetQueryable<TestObject>( TableName, expected ).First( x => x.Name == "TestObject3" );
             } );
         }
-        [Fact]
+        [Test]
         public void WhenIsFilteredByFirstWithFilter_GeneratesCorrectReql()
         {
             var data = new List<TestObject>
@@ -116,7 +116,7 @@ namespace RethinkDb.Driver.Linq.Tests
                 .Where( x => x.Resources.First( r => r.Locations.Any( l => l.Usages.FirstOrDefault( u => u == "Main" ) != null ) ).Name == "First" )
                 .ToList();
 
-            Assert.Equal( 1, result.Count );
+            Assert.AreEqual( 1, result.Count );
         }
 
         public class TestObject

@@ -34,9 +34,10 @@ let Files = Setup.Files(Folders)
 let Projects = Setup.Projects(ProjectName, Folders)
 
 let DriverProject = NugetProject("RethinkDb.Driver", "RethinkDb Driver for .NET", Folders)
-let GridProject = NugetProject("RethinkDb.Driver.ReGrid", "RethinkDb Large Object Storage for .NET", Folders)
 let LinqProject = NugetProject("RethinkDb.Driver.Linq", "A LINQ to ReQL provider for the RethinkDb Driver", Folders)
-let DriverTestProject = TestProject("RethinkDb.Driver.Tests", Folders)
+let GridProject = NugetProject("RethinkDb.Driver.ReGrid", "RethinkDb Large Object Storage for .NET", Folders)
+let TestDriverProject = TestProject("RethinkDb.Driver.Tests", Folders)
+let TestLinqProject = Project("RethinkDb.Driver.Linq.Tests", Folders)
 let TestGridProject = Project("RethinkDb.Driver.ReGrid.Tests", Folders)
 
 
@@ -73,11 +74,15 @@ Target "msb" (fun _ ->
     |> MSBuildRelease (DriverProject.OutputDirectory @@ tag) "Build"
     |> Log "AppBuild-Output: "
 
+    !! LinqProject.ProjectFile
+    |> MSBuildRelease (LinqProject.OutputDirectory @@ tag) "Build"
+    |> Log "AppBuild-Output: "
+
     !! GridProject.ProjectFile
     |> MSBuildRelease (GridProject.OutputDirectory @@ tag) "Build"
     |> Log "AppBuild-Output: "
 
-    !! DriverTestProject.ProjectFile
+    !! TestDriverProject.ProjectFile
     |> MSBuildDebug "" "Build"
     |> Log "AppBuild-Output: "
 
@@ -101,6 +106,9 @@ Target "dnx" (fun _ ->
     Dnu DnuCommands.Restore DriverProject.Folder
     DnuBuild DriverProject.Folder (DriverProject.OutputDirectory @@ tag)
 
+    Dnu DnuCommands.Restore LinqProject.Folder
+    DnuBuild LinqProject.Folder (LinqProject.OutputDirectory @@ tag)
+
     Dnu DnuCommands.Restore GridProject.Folder
     DnuBuild GridProject.Folder (GridProject.OutputDirectory @@ tag)
 )
@@ -112,6 +120,7 @@ Target "mono" (fun _ ->
 
      //Setup
      XBuild DriverProject.ProjectFile (DriverProject.OutputDirectory @@ tag)
+     XBuild LinqProject.ProjectFile (LinqProject.OutputDirectory @@ tag)
      XBuild GridProject.ProjectFile (GridProject.OutputDirectory @@ tag)
 )
 
@@ -129,6 +138,9 @@ Target "nuget" (fun _ ->
     let driverConfig = NuGetConfig DriverProject Folders Files     
     NuGet ( fun p -> driverConfig) DriverProject.NugetSpec
 
+    let linqConfig = NuGetConfig LinqProject Folders Files     
+    NuGet ( fun p -> linqConfig) LinqProject.NugetSpec
+
     let gridConfig = NuGetConfig GridProject Folders Files     
     NuGet ( fun p -> gridConfig) GridProject.NugetSpec
 )
@@ -138,6 +150,9 @@ Target "push" (fun _ ->
     
     let driverConfig = NuGetConfig DriverProject Folders Files     
     NuGetPublish ( fun p -> driverConfig)
+
+    let linqConfig = NuGetConfig LinqProject Folders Files     
+    NuGetPublish ( fun p -> linqConfig)
 
     let gridConfig = NuGetConfig GridProject Folders Files     
     NuGetPublish ( fun p -> gridConfig)
@@ -149,6 +164,7 @@ Target "zip" (fun _ ->
     trace "Zip Task"
 
     !!(DriverProject.OutputDirectory @@ "**") |> Zip Folders.CompileOutput (Folders.Package @@ DriverProject.Zip)
+    !!(LinqProject.OutputDirectory @@ "**") |> Zip Folders.CompileOutput (Folders.Package @@ LinqProject.Zip)
     !!(GridProject.OutputDirectory @@ "**") |> Zip Folders.CompileOutput (Folders.Package @@ GridProject.Zip)
 )
 
@@ -158,6 +174,7 @@ Target "BuildInfo" (fun _ ->
     trace "Writing Assembly Build Info"
 
     MakeBuildInfo DriverProject Folders
+    MakeBuildInfo LinqProject Folders
     MakeBuildInfo GridProject Folders
 
 )
@@ -201,7 +218,7 @@ let RunTests() =
     let nunit = findToolInSubPath "nunit-console.exe" Folders.Lib
     let nunitFolder = System.IO.Path.GetDirectoryName(nunit)
 
-    !! DriverTestProject.TestAssembly
+    !! TestDriverProject.TestAssembly
     |> NUnit (fun p -> { p with 
                             ToolPath = nunitFolder
                             OutputFile = Files.TestResultFile

@@ -13,13 +13,13 @@ namespace RethinkDb.Driver.Linq
 {
     public class RethinkQueryExecutor : IQueryExecutor
     {
-        private readonly Table _table;
-        private readonly IConnection _connection;
+        private readonly Table table;
+        private readonly IConnection connection;
 
         public RethinkQueryExecutor( Table table, IConnection connection )
         {
-            _table = table;
-            _connection = connection;
+            this.table = table;
+            this.connection = connection;
         }
 
         protected virtual void ProcessQuery( ReqlAst query )
@@ -29,14 +29,14 @@ namespace RethinkDb.Driver.Linq
 
         public T ExecuteScalar<T>( QueryModel queryModel )
         {
-            var visitor = new RethinkDbQueryModelVisitor( _table );
+            var visitor = new RethinkDbQueryModelVisitor( table );
 
             visitor.VisitQueryModel( queryModel );
 
             var query = visitor.Query;
             ProcessQuery( query );
 
-            var result = query.Run( _connection );
+            var result = query.Run( connection );
 
             if( queryModel.ResultOperators.FirstOrDefault() is AnyResultOperator )
                 return result > 0;
@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.Linq
 
         public T ExecuteSingle<T>( QueryModel queryModel, bool returnDefaultWhenEmpty )
         {
-            var visitor = new RethinkDbQueryModelVisitor( _table );
+            var visitor = new RethinkDbQueryModelVisitor( table );
 
             visitor.VisitQueryModel( queryModel );
 
@@ -59,7 +59,7 @@ namespace RethinkDb.Driver.Linq
 
             try
             {
-                return query.RunResult<T>( _connection );
+                return query.RunResult<T>( connection );
             }
             catch( ReqlNonExistenceError ex )
             {
@@ -79,7 +79,7 @@ namespace RethinkDb.Driver.Linq
 
         public IEnumerable<T> ExecuteCollection<T>( QueryModel queryModel )
         {
-            var visitor = new RethinkDbQueryModelVisitor( _table );
+            var visitor = new RethinkDbQueryModelVisitor( table );
 
             visitor.VisitQueryModel( queryModel );
 
@@ -88,25 +88,27 @@ namespace RethinkDb.Driver.Linq
 
             if( typeof(T).GetTypeInfo().IsGenericType && typeof(T).GetGenericTypeDefinition() == typeof(IGrouping<,>) )
             {
-                return typeof(RethinkQueryExecutor).GetMethod(nameof(DeserializeGrouping), BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.DeclaredOnly)
-                                .MakeGenericMethod(
-                                    typeof(T).GetGenericArguments()[0],
-                                    typeof(T).GetGenericArguments()[1])
-                                .Invoke(null, new object[]
-                                              {
-                                                  query.Run(_connection) as JArray
-                                              }) as IEnumerable<T>;
+                return typeof(RethinkQueryExecutor)
+                    .GetMethod(nameof(DeserializeGrouping),
+                        BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.DeclaredOnly)
+                    .MakeGenericMethod(
+                        typeof(T).GetGenericArguments()[0],
+                        typeof(T).GetGenericArguments()[1])
+                    .Invoke(null, new object[]
+                                  {
+                                      query.Run(connection) as JArray
+                                  }) as IEnumerable<T>;
             }
 
             if( query is Get )
             {
                 return new List<T>
                        {
-                           query.RunResult<T>(_connection)
+                           query.RunResult<T>(connection)
                        };
             }
 
-            return query.RunResult<List<T>>( _connection );
+            return query.RunResult<List<T>>( connection );
         }
 
         private static List<IGrouping<T, TVal>> DeserializeGrouping<T, TVal>( JArray groups )

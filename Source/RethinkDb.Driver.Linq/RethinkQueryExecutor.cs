@@ -86,21 +86,25 @@ namespace RethinkDb.Driver.Linq
             var query = visitor.Query;
             ProcessQuery( query );
 
-            if( typeof( T ).GetTypeInfo().IsGenericType && typeof( T ).GetGenericTypeDefinition() == typeof( IGrouping<,> ) )
-                return GetType().GetMethod( nameof( DeserializeGrouping ), BindingFlags.NonPublic | BindingFlags.Static )
-                    .MakeGenericMethod(
-                        typeof( T ).GetGenericArguments()[0],
-                        typeof( T ).GetGenericArguments()[1] )
-                    .Invoke( null, new object[]
-                    {
-                        query.Run( _connection ) as JArray
-                    } ) as IEnumerable<T>;
+            if( typeof(T).GetTypeInfo().IsGenericType && typeof(T).GetGenericTypeDefinition() == typeof(IGrouping<,>) )
+            {
+                return typeof(RethinkQueryExecutor).GetMethod(nameof(DeserializeGrouping), BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.DeclaredOnly)
+                                .MakeGenericMethod(
+                                    typeof(T).GetGenericArguments()[0],
+                                    typeof(T).GetGenericArguments()[1])
+                                .Invoke(null, new object[]
+                                              {
+                                                  query.Run(_connection) as JArray
+                                              }) as IEnumerable<T>;
+            }
 
             if( query is Get )
+            {
                 return new List<T>
-                {
-                    query.RunResult<T>( _connection )
-                };
+                       {
+                           query.RunResult<T>(_connection)
+                       };
+            }
 
             return query.RunResult<List<T>>( _connection );
         }

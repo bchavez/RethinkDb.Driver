@@ -12,10 +12,11 @@ using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Linq.Attributes;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Proto;
+using RethinkDb.Driver.Tests;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
-    public class BaseLinqTest
+    public class BaseLinqTest : QueryTestFixture
     {
         protected string TableName;
 
@@ -37,14 +38,13 @@ namespace RethinkDb.Driver.Linq.Tests
         public void BeforeEachTest()
         {
             TableName = Guid.NewGuid().ToString().Replace( "-", "" );
-            Connection = SetupConnection();
+            Connection = this.conn;
         }
 
         [TearDown]
         public void AfterEachTest()
         {
             RethinkDB.R.TableDrop( TableName ).Run( Connection );
-            Connection.Dispose();
         }
 
         private void QueriesAreTheSame( ReqlAst expected, ReqlAst actual )
@@ -111,14 +111,14 @@ namespace RethinkDb.Driver.Linq.Tests
                 RethinkDB.R.Table( TableName ).Insert( testObject ).Run( Connection );
         }
 
-        private static Connection SetupConnection()
-        {
-            return RethinkDB.R.Connection()
-                .Db( "tests" )
-                .Hostname( RethinkDBConstants.DefaultHostname )
-                .Port( RethinkDBConstants.DefaultPort )
-                .Timeout( RethinkDBConstants.DefaultTimeout )
-                .Connect();
-        }
+        //private static Connection SetupConnection()
+        //{
+        //    return RethinkDB.R.Connection()
+        //        .Db( "tests" )
+        //        .Hostname( RethinkDBConstants.DefaultHostname )
+        //        .Port( RethinkDBConstants.DefaultPort )
+        //        .Timeout( RethinkDBConstants.DefaultTimeout )
+        //        .Connect();
+        //}
     }
 }

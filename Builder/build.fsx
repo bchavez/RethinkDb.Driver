@@ -176,7 +176,6 @@ Target "BuildInfo" (fun _ ->
     MakeBuildInfo DriverProject Folders
     MakeBuildInfo LinqProject Folders
     MakeBuildInfo GridProject Folders
-
 )
 
 

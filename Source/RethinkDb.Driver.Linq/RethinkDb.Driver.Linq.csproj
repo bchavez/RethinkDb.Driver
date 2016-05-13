@@ -64,7 +64,6 @@
     <Compile Include="WhereClauseParsers\ExprHelper.cs" />
     <Compile Include="WhereClauseParsers\GroupItemsParser.cs" />
     <Compile Include="WhereClauseParsers\IWhereClauseParser.cs" />
-    <Compile Include="WhereClauseParsers\Poco.cs" />
     <Compile Include="WhereClauseParsers\PrimaryIndexParser.cs" />
     <Compile Include="WhereClauseParsers\SecondaryIndexParser.cs" />
     <Compile Include="WhereClauseParsers\SubQueryVisitor\AllSubQueryVisitor.cs" />
@@ -75,7 +74,6 @@
     <Compile Include="WhereClauseParsers\SubQueryVisitor\CountSubQueryVisitor.cs" />
     <Compile Include="WhereClauseParsers\SubQueryVisitor\FirstSubQueryVisitor.cs" />
     <Compile Include="WhereClauseParsers\SubQueryVisitor\ISubQueryVisitor.cs" />
-    <Compile Include="WhereClauseParsers\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

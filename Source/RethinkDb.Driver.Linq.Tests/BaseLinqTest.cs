@@ -114,9 +114,8 @@ namespace RethinkDb.Driver.Linq.Tests
         {
             return RethinkDB.R.Connection()
                 .Db(DbName)
-                .Hostname(RethinkDBConstants.DefaultHostname)
-                .Port(RethinkDBConstants.DefaultPort)
-                .Timeout(RethinkDBConstants.DefaultTimeout)
+                .Hostname(AppSettings.TestHost)
+                .Port(AppSettings.TestPort)
                 .Connect();
         }
     }

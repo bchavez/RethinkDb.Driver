@@ -9,7 +9,7 @@ Project Description
 -------------------
 A [**RethinkDB**](http://rethinkdb.com/) database driver written in C# with 100% **ReQL** API compatibility and completeness.
 
-This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/next/drivers/java). The basic mechanics and architecture of both drivers are the same. Except this **C#** driver is a bit more *stylish* and *cool*. :sunglasses:
+This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/next/drivers/java). The basic mechanics and architecture of both drivers are the same. Except this **C#** driver is a bit more *cool*, *stylish* and *kick-ass*. :sunglasses:
 
 ### Getting Help
 ###### Commercial Support
@@ -209,7 +209,7 @@ Created by [Brian Chavez](http://bchavez.bitarmory.com) ([twitter](https://twitt
 
 A big thanks to GitHub and all contributors:
 
-* [jrote1](https://github.com/jrote1) (Jake Rote)
+* [`jrote1`](https://github.com/jrote1) (Jake Rote) ~ LINQ Provider
 * [fiLLLip](https://github.com/fiLLLip) (Filip Andre Larsen Tomren)
 * [cadabloom](https://github.com/cadabloom)
 

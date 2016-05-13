@@ -4,8 +4,5 @@
   },
   "runtimes": {
     "win": {}
-  },
-  "dependencies": {
-    "Remotion.Linq": "2.0.2"
   }
 }

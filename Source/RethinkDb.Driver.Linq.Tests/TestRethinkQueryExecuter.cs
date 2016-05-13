@@ -6,16 +6,16 @@ namespace RethinkDb.Driver.Linq.Tests
 {
     public class TestRethinkQueryExecutor : RethinkQueryExecutor
     {
-        private readonly Action<ReqlAst> _validate;
+        private readonly Action<ReqlAst> validate;
 
         public TestRethinkQueryExecutor( Table table, IConnection connection, Action<ReqlAst> validate ) : base( table, connection )
         {
-            _validate = validate;
+            this.validate = validate;
         }
 
         protected override void ProcessQuery( ReqlAst query )
         {
-            _validate( query );
+            validate( query );
         }
     }
 }

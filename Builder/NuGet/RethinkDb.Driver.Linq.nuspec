@@ -17,7 +17,7 @@
         <releaseNotes>@releaseNotes@</releaseNotes>
 
         <copyright>Copyright 2016</copyright>
-        <tags>rethinkdb database driver reql gridfs regrid</tags>
+        <tags>rethinkdb database driver reql linq</tags>
         <dependencies>
 
             <group targetFramework="net45">

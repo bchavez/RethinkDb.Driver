@@ -37,7 +37,7 @@ let DriverProject = NugetProject("RethinkDb.Driver", "RethinkDb Driver for .NET"
 let LinqProject = NugetProject("RethinkDb.Driver.Linq", "A LINQ to ReQL provider for the RethinkDb Driver", Folders)
 let GridProject = NugetProject("RethinkDb.Driver.ReGrid", "RethinkDb Large Object Storage for .NET", Folders)
 let TestDriverProject = TestProject("RethinkDb.Driver.Tests", Folders)
-let TestLinqProject = Project("RethinkDb.Driver.Linq.Tests", Folders)
+let TestLinqProject = TestProject("RethinkDb.Driver.Linq.Tests", Folders)
 let TestGridProject = Project("RethinkDb.Driver.ReGrid.Tests", Folders)
 
 
@@ -83,6 +83,10 @@ Target "msb" (fun _ ->
     |> Log "AppBuild-Output: "
 
     !! TestDriverProject.ProjectFile
+    |> MSBuildDebug "" "Build"
+    |> Log "AppBuild-Output: "
+
+    !! TestLinqProject.ProjectFile
     |> MSBuildDebug "" "Build"
     |> Log "AppBuild-Output: "
 
@@ -218,6 +222,7 @@ let RunTests() =
     let nunitFolder = System.IO.Path.GetDirectoryName(nunit)
 
     !! TestDriverProject.TestAssembly
+    ++ TestLinqProject.TestAssembly
     |> NUnit (fun p -> { p with 
                             ToolPath = nunitFolder
                             OutputFile = Files.TestResultFile

@@ -16,29 +16,28 @@ using RethinkDb.Driver.Tests;
 
 namespace RethinkDb.Driver.Linq.Tests
 {
-    public class BaseLinqTest : QueryTestFixture
+    public abstract class BaseLinqTest : QueryTestFixture
     {
         protected string TableName;
 
-        protected IConnection Connection;
+        protected Connection Connection;
 
         [TestFixtureSetUp]
         public void BeforeRunningTestSession()
         {
-
+            Connection = SetupConnection();
         }
 
         [TestFixtureTearDown]
         public void AfterRunningTestSession()
         {
-
+            Connection.Close();
         }
 
         [SetUp]
         public void BeforeEachTest()
         {
             TableName = Guid.NewGuid().ToString().Replace( "-", "" );
-            Connection = this.conn;
         }
 
         [TearDown]
@@ -111,14 +110,14 @@ namespace RethinkDb.Driver.Linq.Tests
                 RethinkDB.R.Table( TableName ).Insert( testObject ).Run( Connection );
         }
 
-        //private static Connection SetupConnection()
-        //{
-        //    return RethinkDB.R.Connection()
-        //        .Db( "tests" )
-        //        .Hostname( RethinkDBConstants.DefaultHostname )
-        //        .Port( RethinkDBConstants.DefaultPort )
-        //        .Timeout( RethinkDBConstants.DefaultTimeout )
-        //        .Connect();
-        //}
+        private static Connection SetupConnection()
+        {
+            return RethinkDB.R.Connection()
+                .Db(DbName)
+                .Hostname(RethinkDBConstants.DefaultHostname)
+                .Port(RethinkDBConstants.DefaultPort)
+                .Timeout(RethinkDBConstants.DefaultTimeout)
+                .Connect();
+        }
     }
 }

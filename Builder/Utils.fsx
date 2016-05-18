@@ -283,16 +283,17 @@ module Helpers =
         shellExec executable args workingDir
             
                                                           
-    type DnuCommands =
         | Restore
         | Build
         | Publish
      
-    let Dnu command target = 
+    let Dotnet command target = 
         match command with
             | Restore -> (dotnet "restore" target)
             | Build -> (dotnet "build --configuration release" target)
             | Publish -> (dotnet "publish --configuration release -o XXNOTXX XXXUSEDXXX" target)
+
+            dotnet buildArgs target
 
     let XBuild target output =
         let buildArgs = sprintf "%s /p:OutDir=%s" target output

@@ -102,19 +102,18 @@ Target "dnx" (fun _ ->
 
     let tag = "dnx_build"
     
-    DnvmUpdate()
-    DnvmInstall Projects.DnvmVersion
-    DnvmUse Projects.DnvmVersion
-    
     // PROJECTS
-    Dnu DnuCommands.Restore DriverProject.Folder
-    DnuBuild DriverProject.Folder (DriverProject.OutputDirectory @@ tag)
+    Dotnet DotnetCommands.Restore DriverProject.Folder
+    DotnetBuild DriverProject.Folder (DriverProject.OutputDirectory @@ tag) "net45" "net45"
+    DotnetBuild DriverProject.Folder (DriverProject.OutputDirectory @@ tag) "netstandard1.5" "netstandard1.5"
 
-    Dnu DnuCommands.Restore LinqProject.Folder
-    DnuBuild LinqProject.Folder (LinqProject.OutputDirectory @@ tag)
+    Dotnet DotnetCommands.Restore LinqProject.Folder
+    DotnetBuild LinqProject.Folder (LinqProject.OutputDirectory @@ tag) "net45" "net45"
+    DotnetBuild LinqProject.Folder (LinqProject.OutputDirectory @@ tag) "netstandard1.5" "netstandard1.5"
 
-    Dnu DnuCommands.Restore GridProject.Folder
-    DnuBuild GridProject.Folder (GridProject.OutputDirectory @@ tag)
+    Dotnet DotnetCommands.Restore GridProject.Folder
+    DotnetBuild GridProject.Folder (GridProject.OutputDirectory @@ tag) "net45" "net45"
+    DotnetBuild GridProject.Folder (GridProject.OutputDirectory @@ tag) "netstandard1.5" "netstandard1.5"
 )
 
 Target "mono" (fun _ ->

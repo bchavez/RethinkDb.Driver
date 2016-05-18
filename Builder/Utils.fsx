@@ -278,45 +278,25 @@ module Helpers =
             | None -> failwith (sprintf "'%s' can't find" name)
 
   
-    let dnu args workingDir = 
-        let executable = findOnPath "dnu.cmd"
+    let dotnet args workingDir = 
+        let executable = findOnPath "dotnet.exe"
         shellExec executable args workingDir
-
-          
-    let dnx args workingDir = 
-            let executable = findOnPath "dnx.exe"
-            shellExec executable args workingDir    
-   
-    let dnvm args workingDir = 
-        let executable = findOnPath "dnvm.cmd"
-        shellExec executable args workingDir    
             
                                                           
-    type DnuCommands =
+    type DotnetCommands =
         | Restore
         | Build
         | Publish
      
-    let Dnu command target = 
+    let Dotnet command target = 
         match command with
-            | Restore -> (dnu "restore" target)
-            | Build -> (dnu "build --configuration release" target)
-            | Publish -> (dnu "publish --configuration release -o XXNOTXX XXXUSEDXXX" target)
+            | Restore -> (dotnet "restore" target)
+            | Build -> (dotnet "build --configuration release" target)
+            | Publish -> (dotnet "publish --configuration release -o XXNOTXX XXXUSEDXXX" target)
 
-    let DnuBuild target output = 
-            let buildArgs = sprintf "build --configuration release --out %s" output
-            dnu buildArgs target
-
-    let DnvmInstall version =
-            let installArgs = sprintf "install %s -r clr" version
-            dnvm installArgs ""
-
-    let DnvmUse version =
-            let _use = sprintf "use %s -r clr -p" version;
-            dnvm _use ""
-
-    let DnvmUpdate() =
-            dnvm "update-self" ""
+    let DotnetBuild target output frameworkFolder framework = 
+            let buildArgs = sprintf "build --configuration release --output %s\\release\\%s --framework %s" output frameworkFolder framework
+            dotnet buildArgs target
 
     let XBuild target output =
         let buildArgs = sprintf "%s /p:OutDir=%s" target output

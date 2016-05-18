@@ -20,68 +20,41 @@
         }
     },
     "dependencies": {
-        "Newtonsoft.Json": "8.0.2"
+        "Newtonsoft.Json": "8.0.3"
     },
-    "frameworks": {
-        "net45": {
-            "dependencies": {
-                "Common.Logging": "3.3.0"
-            },
-            "frameworkAssemblies": { }
-        },
-        "dnx451": {
-            "dependencies": {
-                "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final"
-            },
-            "compilationOptions": {
-                "define": [
-                    "DNX"
-                ]
-            }
-        },
-        "dnxcore50": {
-            "dependencies": {
-                "System.Text.Encoding": "4.0.11-beta-23516",
-                "System.Runtime": "4.0.21-beta-23516",
-                "System.Dynamic.Runtime": "4.0.11-beta-23516",
-                "System.IO": "4.0.11-beta-23516",
-                "System.ComponentModel": "4.0.1-beta-23516",
-                "System.Reflection.Extensions": "4.0.1-beta-23516",
-                "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final",
-                "System.Net.Sockets": "4.0.10-beta-23123",
-                "System.Net.Primitives": "4.0.11-beta-23516",
-                "System.Threading.Timer": "4.0.1-beta-23516",
-                "System.Threading.Thread": "4.0.0-beta-23516",
-                "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516",
-                "System.Security.Cryptography.Primitives": "4.0.0-beta-23516"
-            },
-            "compilationOptions": {
-                "define": [
-                    "DNX"
-                ]
-            }
-        },
-        "dotnet5.4": {
-            "dependencies": {
-                "System.Text.Encoding": "4.0.11-beta-23516",
-                "System.Runtime": "4.0.21-beta-23516",
-                "System.Dynamic.Runtime": "4.0.11-beta-23516",
-                "System.IO": "4.0.11-beta-23516",
-                "System.ComponentModel": "4.0.1-beta-23516",
-                "System.Reflection.Extensions": "4.0.1-beta-23516",
-                "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final",
-                "System.Net.Sockets": "4.0.10-beta-23123",
-                "System.Net.Primitives": "4.0.11-beta-23516",
-                "System.Threading.Timer": "4.0.1-beta-23516",
-                "System.Threading.Thread": "4.0.0-beta-23516",
-                "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516",
-                "System.Security.Cryptography.Primitives": "4.0.0-beta-23516"
-            },
-            "compilationOptions": {
-                "define": [
-                    "DNX"
-                ]
-            }
-        }
+  "frameworks": {
+    "net45": {
+      "dependencies": {
+        "Common.Logging": "3.3.0"
+      },
+      "frameworkAssemblies": { }
+    },
+    "netstandard1.5": {
+      "dependencies": {
+        "System.Text.Encoding": "4.0.11-rc2-24027",
+        "System.Runtime": "4.1.0-rc2-24027",
+        "System.Dynamic.Runtime": "4.0.11-rc2-24027",
+        "System.IO": "4.1.0-rc2-24027",
+        "System.ComponentModel": "4.0.1-rc2-24027",
+        "System.Reflection.Extensions": "4.0.1-rc2-24027",
+        "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-final",
+        "System.Net.Sockets": "4.1.0-rc2-24027",
+        "System.Net.Primitives": "4.0.11-rc2-24027",
+        "System.Threading.Timer": "4.0.1-rc2-24027",
+        "System.Threading.Thread": "4.0.0-rc2-24027",
+        "System.Security.Cryptography.Algorithms": "4.1.0-rc2-24027",
+        "System.Security.Cryptography.Primitives": "4.0.0-rc2-24027",
+        "System.Diagnostics.Debug": "4.0.11-rc2-24027",
+        "System.Threading": "4.0.11-rc2-24027"
+      },
+      "imports": [
+        "portable-net451+win8"
+      ],
+      "compilationOptions": {
+        "define": [
+          "NETSTANDARD15"
+        ]
+      }
     }
+  }
 }

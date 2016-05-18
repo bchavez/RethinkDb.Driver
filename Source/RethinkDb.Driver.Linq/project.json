@@ -1,4 +1,5 @@
-﻿{
+﻿
+{
   "version": "1.0.0-*",
   "description": "RethinkDb.Driver.Linq Class Library",
   "authors": [ "jrote" ],
@@ -7,28 +8,43 @@
   "licenseUrl": "",
   "dependencies": {
     "Remotion.Linq": "2.0.2",
-    "RethinkDb.Driver": ""
+    "RethinkDb.Driver": "*"
   },
     "frameworks": {
-        "net45": { },
-        "dnx451": { },
-        "dnxcore50": {
-            "dependencies": {
-                "Microsoft.CSharp": "4.0.1-beta-23516",
-                "System.Collections": "4.0.11-beta-23516",
-                "System.Linq": "4.0.1-beta-23516",
-                "System.Runtime": "4.0.21-beta-23516",
-                "System.Threading": "4.0.11-beta-23516"
-            }
-        },
-        "dotnet5.4": {
-            "dependencies": {
-                "Microsoft.CSharp": "4.0.1-beta-23516",
-                "System.Collections": "4.0.11-beta-23516",
-                "System.Linq": "4.0.1-beta-23516",
-                "System.Runtime": "4.0.21-beta-23516",
-                "System.Threading": "4.0.11-beta-23516"
-            }
-        }
+        "net45": {
+      "dependencies": {
+        "Common.Logging": "3.3.0"
+      },
+      "frameworkAssemblies": { }
+    },
+    "netstandard1.5": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-rc2-24027",
+        "System.Text.Encoding": "4.0.11-rc2-24027",
+        "System.Runtime": "4.1.0-rc2-24027",
+        "System.Dynamic.Runtime": "4.0.11-rc2-24027",
+        "System.IO": "4.1.0-rc2-24027",
+        "System.ComponentModel": "4.0.1-rc2-24027",
+        "System.Reflection.Extensions": "4.0.1-rc2-24027",
+        "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-final",
+        "System.Net.Sockets": "4.1.0-rc2-24027",
+        "System.Net.Primitives": "4.0.11-rc2-24027",
+        "System.Threading.Timer": "4.0.1-rc2-24027",
+        "System.Threading.Thread": "4.0.0-rc2-24027",
+        "System.Security.Cryptography.Algorithms": "4.1.0-rc2-24027",
+        "System.Security.Cryptography.Primitives": "4.0.0-rc2-24027",
+        "System.Diagnostics.Debug": "4.0.11-rc2-24027",
+        "System.Threading": "4.0.11-rc2-24027",
+        "System.Reflection.TypeExtensions": "4.1.0-rc2-24027"
+      },
+      "imports": [
+        "portable-net451+win8"
+      ],
+      "compilationOptions": {
+        "define": [
+          "NETSTANDARD15"
+        ]
+      }
+    }
     }
 }

@@ -7,11 +7,12 @@ using System.Reflection;
 [assembly: AssemblyCopyrightAttribute("Brian Chavez © 2016")]
 [assembly: AssemblyVersionAttribute("0.0.0")]
 [assembly: AssemblyFileVersionAttribute("0.0.0")]
-[assembly: AssemblyInformationalVersionAttribute("0.0.0-localbuild built on 5/13/2016 5:20:26 AM")]
+[assembly: AssemblyInformationalVersionAttribute("0.0.0-localbuild built on 18/05/2016 20:44:24")]
 [assembly: AssemblyTrademarkAttribute("Apache License v2.0")]
 [assembly: AssemblyDescriptionAttribute("http://www.github.com/bchavez/RethinkDb.Driver")]
 namespace System {
     internal static class AssemblyVersionInformation {
         internal const string Version = "0.0.0";
+        internal const string InformationalVersion = "0.0.0-localbuild built on 18/05/2016 20:44:24";
     }
 }

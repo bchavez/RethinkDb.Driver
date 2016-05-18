@@ -11,7 +11,11 @@ namespace RethinkDb.Driver.Net
 {
     internal class SocketWrapper
     {
+#if NETSTANDARD15
+        private readonly Socket socket;
+#else
         private readonly TcpClient socketChannel;
+#endif
         private readonly TimeSpan timeout;
 
         private readonly string hostname;
@@ -30,7 +34,11 @@ namespace RethinkDb.Driver.Net
 
             this.timeout = timeout ?? TimeSpan.FromSeconds(60);
 
+#if NETSTANDARD15
+            this.socket = new Socket( SocketType.Stream, ProtocolType.Tcp );
+#else
             this.socketChannel = new TcpClient();
+#endif
         }
 
         private Exception currentException;
@@ -39,6 +47,12 @@ namespace RethinkDb.Driver.Net
         {
             try
             {
+#if NETSTANDARD15
+                socket.NoDelay = true;
+                socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+                await socket.ConnectAsync(this.hostname, this.port).ConfigureAwait(false);
+                this.ns = new NetworkStream(socket);
+#else
                 socketChannel.NoDelay = true;
                 //socketChannel.LingerState.Enabled = false;
                 //socketChannel.LingerState.LingerTime = 500;
@@ -49,6 +63,7 @@ namespace RethinkDb.Driver.Net
                 await socketChannel.ConnectAsync(this.hostname, this.port).ConfigureAwait(false);
 
                 this.ns = socketChannel.GetStream();
+#endif
                 this.bw = new BinaryWriter(this.ns);
                 this.br = new BinaryReader(this.ns);
 
@@ -288,9 +303,15 @@ namespace RethinkDb.Driver.Net
             return awaiter?.Task ?? TaskHelper.CompletedResponse;
         }
 
+#if NETSTANDARD15
+        public virtual bool Closed => !socket.Connected;
+
+        public virtual bool Open => socket.Connected;
+#else
         public virtual bool Closed => !socketChannel.Connected;
 
         public virtual bool Open => socketChannel.Connected;
+#endif
 
         public virtual bool HasError => currentException != null;
 
@@ -308,7 +329,11 @@ namespace RethinkDb.Driver.Net
 
             try
             {
+#if NETSTANDARD15
+                socket.Shutdown(SocketShutdown.Both);
+#else
                 socketChannel.Shutdown();
+#endif
             }
             catch
             {

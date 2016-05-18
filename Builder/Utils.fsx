@@ -283,6 +283,7 @@ module Helpers =
         shellExec executable args workingDir
             
                                                           
+    type DotnetCommands =
         | Restore
         | Build
         | Publish
@@ -293,6 +294,8 @@ module Helpers =
             | Build -> (dotnet "build --configuration release" target)
             | Publish -> (dotnet "publish --configuration release -o XXNOTXX XXXUSEDXXX" target)
 
+    let DotnetBuild target output frameworkFolder framework = 
+            let buildArgs = sprintf "build --configuration release --output %s\\release\\%s --framework %s" output frameworkFolder framework
             dotnet buildArgs target
 
     let XBuild target output =

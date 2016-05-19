@@ -258,7 +258,7 @@ Target "citest" (fun _ ->
     ==> "mono"
     ==> "zip"
 
-"BuildInfo"
+"dnx"
     ==> "nuget"
 
 

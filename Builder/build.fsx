@@ -28,6 +28,7 @@ let workingDir = ChangeWorkingFolder()
 trace (sprintf "WORKING DIR: %s" workingDir)
 
 let ProjectName = "RethinkDb.Driver";
+let GitHubUrl = "https://github.com/bchavez/RethinkDb.Driver"
 
 let Folders = Setup.Folders(workingDir)
 let Files = Setup.Files(Folders)
@@ -104,16 +105,13 @@ Target "dnx" (fun _ ->
     
     // PROJECTS
     Dotnet DotnetCommands.Restore DriverProject.Folder
-    DotnetBuild DriverProject.Folder (DriverProject.OutputDirectory @@ tag) "net45" "net45"
-    DotnetBuild DriverProject.Folder (DriverProject.OutputDirectory @@ tag) "netstandard1.5" "netstandard1.5"
+    DotnetBuild DriverProject (DriverProject.OutputDirectory @@ tag)
 
     Dotnet DotnetCommands.Restore LinqProject.Folder
-    DotnetBuild LinqProject.Folder (LinqProject.OutputDirectory @@ tag) "net45" "net45"
-    DotnetBuild LinqProject.Folder (LinqProject.OutputDirectory @@ tag) "netstandard1.5" "netstandard1.5"
+    DotnetBuild LinqProject (LinqProject.OutputDirectory @@ tag)
 
     Dotnet DotnetCommands.Restore GridProject.Folder
-    DotnetBuild GridProject.Folder (GridProject.OutputDirectory @@ tag) "net45" "net45"
-    DotnetBuild GridProject.Folder (GridProject.OutputDirectory @@ tag) "netstandard1.5" "netstandard1.5"
+    DotnetBuild GridProject (GridProject.OutputDirectory @@ tag)
 )
 
 Target "mono" (fun _ ->
@@ -138,27 +136,15 @@ Target "restore" (fun _ ->
 Target "nuget" (fun _ ->
     trace "NuGet Task"
     
-    let driverConfig = NuGetConfig DriverProject Folders Files     
-    NuGet ( fun p -> driverConfig) DriverProject.NugetSpec
-
-    let linqConfig = NuGetConfig LinqProject Folders Files     
-    NuGet ( fun p -> linqConfig) LinqProject.NugetSpec
-
-    let gridConfig = NuGetConfig GridProject Folders Files     
-    NuGet ( fun p -> gridConfig) GridProject.NugetSpec
+    DotnetPack DriverProject Folders.Package
+    DotnetPack LinqProject Folders.Package
+    DotnetPack GridProject Folders.Package
 )
 
 Target "push" (fun _ ->
     trace "NuGet Push Task"
     
-    let driverConfig = NuGetConfig DriverProject Folders Files     
-    NuGetPublish ( fun p -> driverConfig)
-
-    let linqConfig = NuGetConfig LinqProject Folders Files     
-    NuGetPublish ( fun p -> linqConfig)
-
-    let gridConfig = NuGetConfig GridProject Folders Files     
-    NuGetPublish ( fun p -> gridConfig)
+    failwith "Only CI server should publish on NuGet"
 )
 
 
@@ -179,6 +165,15 @@ Target "BuildInfo" (fun _ ->
     MakeBuildInfo DriverProject Folders
     MakeBuildInfo LinqProject Folders
     MakeBuildInfo GridProject Folders
+
+    JsonPoke "version" BuildContext.FullVersion DriverProject.ProjectJson
+    JsonPoke "version" BuildContext.FullVersion LinqProject.ProjectJson
+    JsonPoke "version" BuildContext.FullVersion GridProject.ProjectJson
+    
+    let releaseNotes = History.NugetText Files.History GitHubUrl
+    JsonPoke "packOptions.releaseNotes" releaseNotes DriverProject.ProjectJson
+    JsonPoke "packOptions.releaseNotes" releaseNotes LinqProject.ProjectJson
+    JsonPoke "packOptions.releaseNotes" releaseNotes GridProject.ProjectJson
 )
 
 
@@ -263,7 +258,7 @@ Target "citest" (fun _ ->
     ==> "mono"
     ==> "zip"
 
-"dnx"
+"BuildInfo"
     ==> "nuget"
 
 

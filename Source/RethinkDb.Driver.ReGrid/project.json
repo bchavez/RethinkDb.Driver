@@ -4,18 +4,38 @@
   "authors": [
     "Brian Chavez"
   ],
-  "tags": [
-    ""
-  ],
-  "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
-  "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
-  "configurations": {
-    "Debug": {
-      "compilationOptions": { }
-    },
-    "Release": {
-      "compilationOptions": {
-        "optimize": true
+  "packOptions": {
+    "summary": "ReGrid is a distributed file storage on top of RethinkDB. ReGrid is similarly inspired by GridFS from MongoDB. With ReGrid, a large 4GB file can be broken up into chunks and stored on RethinkDB cluster.",
+    "tags": [
+      "rethinkdb",
+      "database",
+      "driver",
+      "reql",
+      "gridfs",
+      "regrid"
+    ],
+    "owners": [
+      "Brian Chavez"
+    ],
+    "releaseNotes": "",
+    "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
+    "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
+    "requireLicenseAcceptance": false,
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/bchavez/RethinkDb.Driver"
+    }
+  },
+  "buildOptions": {
+    "xmlDoc": true,
+    "configurations": {
+      "Debug": {
+        "buildOptions": {}
+      },
+      "Release": {
+        "buildOptions": {
+          "optimize": true
+        }
       }
     }
   },
@@ -28,7 +48,7 @@
       "dependencies": {
         "Common.Logging": "3.3.0"
       },
-      "frameworkAssemblies": { }
+      "frameworkAssemblies": {}
     },
     "netstandard1.5": {
       "dependencies": {

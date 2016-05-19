@@ -20,9 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{BBBED03D-3
 		..\LICENSE = ..\LICENSE
 		paket.dependencies = paket.dependencies
 		..\README.md = ..\README.md
-		..\Builder\NuGet\RethinkDb.Driver.Linq.nuspec = ..\Builder\NuGet\RethinkDb.Driver.Linq.nuspec
-		..\Builder\NuGet\RethinkDb.Driver.nuspec = ..\Builder\NuGet\RethinkDb.Driver.nuspec
-		..\Builder\NuGet\RethinkDb.Driver.ReGrid.nuspec = ..\Builder\NuGet\RethinkDb.Driver.ReGrid.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RethinkDb.Driver.ReGrid", "RethinkDb.Driver.ReGrid\RethinkDb.Driver.ReGrid.csproj", "{D888899B-D030-44D1-9D91-99D57201A048}"

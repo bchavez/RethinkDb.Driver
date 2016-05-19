@@ -1,21 +1,56 @@
-﻿
 {
-  "version": "1.0.0-*",
-  "description": "RethinkDb.Driver.Linq Class Library",
-  "authors": [ "jrote" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
+  "version": "0.0.0-localbuild",
+  "description": "An experimental LINQ to ReQL provider for the RethinkDB C# Driver.",
+  "authors": [
+    "Brian Chavez",
+    "jrote1"
+  ],
+  "packOptions": {
+    "summary": "An experimental LINQ to ReQL provider for the RethinkDB C# Driver.",
+    "tags": [
+      "rethinkdb",
+      "database",
+      "driver",
+      "reql",
+      "linq"
+    ],
+    "owners": [
+      "Brian Chavez",
+      "jrote1"
+    ],
+    "releaseNotes": "",
+    "iconUrl": "https://raw.githubusercontent.com/wiki/bchavez/RethinkDb.Driver/logo.png",
+    "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
+    "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
+    "requireLicenseAcceptance": false,
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/bchavez/RethinkDb.Driver"
+    }
+  },
+  "buildOptions": {
+    "xmlDoc": true,
+    "configurations": {
+      "Debug": {
+        "buildOptions": {}
+      },
+      "Release": {
+        "buildOptions": {
+          "optimize": true
+        }
+      }
+    }
+  },
   "dependencies": {
     "Remotion.Linq": "2.0.2",
     "RethinkDb.Driver": "*"
   },
-    "frameworks": {
-        "net45": {
+  "frameworks": {
+    "net45": {
       "dependencies": {
         "Common.Logging": "3.3.0"
       },
-      "frameworkAssemblies": { }
+      "frameworkAssemblies": {}
     },
     "netstandard1.5": {
       "dependencies": {
@@ -46,5 +81,5 @@
         ]
       }
     }
-    }
+  }
 }

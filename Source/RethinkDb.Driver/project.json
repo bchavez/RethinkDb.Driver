@@ -1,33 +1,52 @@
 {
-    "version": "0.0.0-localbuild",
-    "description": "A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a one-to-one port of the official Java driver.",
-    "authors": [
-        "Brian Chavez"
-    ],
+  "version": "0.0.0-localbuild",
+  "description": "A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a port of the official Java driver.",
+  "authors": [
+    "Brian Chavez"
+  ],
+  "packOptions": {
+    "summary": "A RethinkDB database driver in C# striving for 100% ReQL API coverage. Architecturally, this driver is a port of the official Java driver.",
     "tags": [
-        ""
+      "rethinkdb",
+      "database",
+      "driver",
+      "reql"
     ],
+    "owners": [
+      "Brian Chavez"
+    ],
+    "releaseNotes": "",
+    "iconUrl": "https://raw.githubusercontent.com/wiki/bchavez/RethinkDb.Driver/logo.png",
     "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
     "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
+    "requireLicenseAcceptance": false,
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/bchavez/RethinkDb.Driver"
+    }
+  },
+  "buildOptions": {
+    "xmlDoc": true,
     "configurations": {
-        "Debug": {
-            "compilationOptions": { }
-        },
-        "Release": {
-            "compilationOptions": {
-                "optimize": true
-            }
+      "Debug": {
+        "buildOptions": {}
+      },
+      "Release": {
+        "buildOptions": {
+          "optimize": true
         }
-    },
-    "dependencies": {
-        "Newtonsoft.Json": "8.0.3"
-    },
+      }
+    }
+  },
+  "dependencies": {
+    "Newtonsoft.Json": "8.0.3"
+  },
   "frameworks": {
     "net45": {
       "dependencies": {
         "Common.Logging": "3.3.0"
       },
-      "frameworkAssemblies": { }
+      "frameworkAssemblies": {}
     },
     "netstandard1.5": {
       "dependencies": {
@@ -50,7 +69,7 @@
       "imports": [
         "portable-net451+win8"
       ],
-      "compilationOptions": {
+      "buildOptions": {
         "define": [
           "NETSTANDARD15"
         ]

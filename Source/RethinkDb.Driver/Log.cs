@@ -49,6 +49,9 @@ namespace RethinkDb.Driver
         }
 
 #if NETSTANDARD15
+        /// <summary>
+        /// Enables RehtinkDB Driver Logging
+        /// </summary>
         public static void EnableRethinkDbLogging(this ILoggerFactory loggerFactory)
         {
             Instance = loggerFactory.CreateLogger("RethinkDb.Driver");

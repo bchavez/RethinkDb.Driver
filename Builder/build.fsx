@@ -186,6 +186,10 @@ Target "Clean" (fun _ ->
     DeleteFile Files.TestResultFile
     CleanDirs [Folders.CompileOutput; Folders.Package]
 
+    JsonPoke "version" "0.0.0-localbuild" DriverProject.ProjectJson
+    JsonPoke "version" "0.0.0-localbuild" LinqProject.ProjectJson
+    JsonPoke "version" "0.0.0-localbuild" GridProject.ProjectJson
+    
     //reset project deps.
     JsonPoke "packOptions.releaseNotes" "" DriverProject.ProjectJson
     JsonPoke "packOptions.releaseNotes" "" LinqProject.ProjectJson

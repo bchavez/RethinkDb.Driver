@@ -1,5 +1,6 @@
 ## v2.3.2-beta-2
 * Connection now exposes ClientLocalEndpoint.
+* Better .NET Standard 1.3 and .NET Core RC2 compatibility.
 
 ## v2.3.2-beta-1
 * Compatibility with .NET Standard 1.3 and .NET Core RC2.

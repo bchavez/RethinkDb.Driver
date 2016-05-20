@@ -18,6 +18,7 @@
       "Brian Chavez"
     ],
     "releaseNotes": "",
+    "iconUrl": "https://raw.githubusercontent.com/wiki/bchavez/RethinkDb.Driver/logo.png",
     "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
     "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
     "requireLicenseAcceptance": false,

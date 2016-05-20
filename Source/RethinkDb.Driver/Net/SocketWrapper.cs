@@ -11,7 +11,7 @@ namespace RethinkDb.Driver.Net
 {
     internal class SocketWrapper
     {
-#if NETSTANDARD15
+#if STANDARD
         private readonly Socket socket;
 #else
         private readonly TcpClient socketChannel;
@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.Net
 
             this.timeout = timeout ?? TimeSpan.FromSeconds(60);
 
-#if NETSTANDARD15
+#if STANDARD
             this.socket = new Socket( SocketType.Stream, ProtocolType.Tcp );
 #else
             this.socketChannel = new TcpClient();
@@ -47,7 +47,7 @@ namespace RethinkDb.Driver.Net
         {
             try
             {
-#if NETSTANDARD15
+#if STANDARD
                 socket.NoDelay = true;
                 socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
                 await socket.ConnectAsync(this.hostname, this.port).ConfigureAwait(false);
@@ -303,7 +303,7 @@ namespace RethinkDb.Driver.Net
             return awaiter?.Task ?? TaskHelper.CompletedResponse;
         }
 
-#if NETSTANDARD15
+#if STANDARD
         public virtual bool Closed => !socket.Connected;
 
         public virtual bool Open => socket.Connected;
@@ -329,7 +329,7 @@ namespace RethinkDb.Driver.Net
 
             try
             {
-#if NETSTANDARD15
+#if STANDARD
                 socket.Shutdown(SocketShutdown.Both);
 #else
                 socketChannel.Shutdown();

@@ -69,7 +69,7 @@ namespace RethinkDb.Driver.ReGrid
             //FileInfo as Incomplete and it's chunks, fsck will clean up.
         }
 
-#if !NETSTANDARD15
+#if !STANDARD
         /// <summary>
         /// Closes the stream.
         /// </summary>
@@ -85,7 +85,7 @@ namespace RethinkDb.Driver.ReGrid
         public override async Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
         {
             await this.CloseInternalAsync(cancelToken).ConfigureAwait(false);
-#if !NETSTANDARD15
+#if !STANDARD
             base.Close();
 #endif
         }

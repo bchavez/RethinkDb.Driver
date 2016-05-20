@@ -9,7 +9,7 @@ namespace RethinkDb.Driver.Net
     /// </summary>
     public class IncrementalSHA256 : IDisposable
     {
-#if NETSTANDARD15
+#if STANDARD
         private IncrementalHash hasher;
 #else
         private SHA256 hasher;
@@ -20,7 +20,7 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         public IncrementalSHA256()
         {
-#if NETSTANDARD15
+#if STANDARD
             hasher = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
 #else
             hasher = SHA256.Create();
@@ -32,7 +32,7 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         public void AppendData(byte[] data)
         {
-#if NETSTANDARD15
+#if STANDARD
             hasher.AppendData(data);
 #else
             hasher.TransformBlock(data, 0, data.Length, null, 0);
@@ -52,7 +52,7 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         public byte[] GetHashAndReset()
         {
-#if NETSTANDARD15
+#if STANDARD
             return hasher.GetHashAndReset();
 #else
             hasher.TransformFinalBlock(new byte[0], 0, 0);

@@ -88,6 +88,7 @@ namespace RethinkDb.Driver.Linq
 
             if( typeof(T).GetTypeInfo().IsGenericType && typeof(T).GetGenericTypeDefinition() == typeof(IGrouping<,>) )
             {
+
                 return typeof(RethinkQueryExecutor)
                     .GetMethod(nameof(DeserializeGrouping),
                         BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.DeclaredOnly)

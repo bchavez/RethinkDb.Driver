@@ -10,7 +10,7 @@ namespace RethinkDb.Driver.ReGrid
     /// </summary>
     public abstract class DownloadStream : BaseStream
     {
-#if !NETSTANDARD15
+#if !STANDARD
         /// <summary>
         /// Closes the stream.
         /// </summary>
@@ -27,7 +27,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <returns></returns>
         public override Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
         {
-#if !NETSTANDARD15
+#if !STANDARD
             base.Close();
 #endif
             return TaskHelper.CompletedTask;

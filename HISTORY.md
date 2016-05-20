@@ -1,3 +1,6 @@
+## v2.3.2-beta-1
+* Compatibility with .NET Standard 1.3 and .NET Core RC2.
+
 ## v2.3.1-beta-3
 * Experimental LINQ to ReQL provider support.
 

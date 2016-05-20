@@ -45,8 +45,8 @@ Install-Package RethinkDb.Driver -Pre
  <td colspan='3' align='center'>All platforms <strong>4.0.2 SR2</strong> or higher</td>
 </tr>
 <tr>
- <td><strong>CoreCLR</strong></td>
- <td colspan='3' align='center'>All platforms <strong>1.0.0-rc1-final</strong> or higher</td>
+ <td><strong>.NET Standard</strong></td>
+ <td colspan='3' align='center'>All platforms <strong>1.3 RC2</strong> or higher.</td>
 </tr>
 <tr>
  <td><strong>.NET Framework</strong</td>

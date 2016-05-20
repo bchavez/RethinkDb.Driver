@@ -6,7 +6,7 @@ namespace RethinkDb.Driver.Utils
     {
         public static void Shutdown(this TcpClient tcp)
         {
-#if NETSTANDARD15
+#if STANDARD
             tcp.Dispose();
 #else
             tcp.Close();

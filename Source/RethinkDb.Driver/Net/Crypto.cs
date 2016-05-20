@@ -57,23 +57,23 @@ namespace RethinkDb.Driver.Net
                 return u;
             }
 */
-#if NETSTANDARD15
+#if STANDARD
             using( var macSalt = IncrementalHash.CreateHMAC(HashAlgorithmName.SHA256, password) )
 #endif
             using ( var mac = new HMACSHA256(password) )
             {
-#if NETSTANDARD15
+#if STANDARD
                 macSalt.AppendData(salt);
 #else
                 mac.TransformBlock(salt, 0, salt.Length, salt, 0);
 #endif
                 byte[] i = {0, 0, 0, 1};
-#if NETSTANDARD15
+#if STANDARD
                 macSalt.AppendData(i);
 #else
                 mac.TransformFinalBlock(i, 0, i.Length);
 #endif
-#if NETSTANDARD15
+#if STANDARD
                 byte[] t = macSalt.GetHashAndReset();
 #else
                 byte[] t = mac.Hash;

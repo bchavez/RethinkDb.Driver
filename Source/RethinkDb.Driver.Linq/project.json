@@ -18,7 +18,7 @@
       "Brian Chavez",
       "jrote1"
     ],
-    "releaseNotes": "## v2.3.1-beta-3\r\n* Experimental LINQ to ReQL provider support.\r\n\r\n## v2.3.1-beta-2\r\n* BREAKING: Issue 39 - Pseudo types are now converted by default in JToken types (JObject, JArray).\r\n*   You'll need to specify .Run*(conn, new { time_format: `raw` }) to keep raw types\r\n*   from being converted. Other raw types: binary_format and group_format.\r\n* BREAKING: Issue 49 - Handle DateTime and DateTimeOffset with ReqlDateTimeConverter\r\n*   instead of Iso8601 AST term.\r\n\r\n## v2.3.1-beta-1\r\n* Compatibility with RethinkDB 2.3 and new user/pass authentication system.\r\n* New `Grant` AST term added.\r\n* New permission exception types.\r\n* Issue 41 - Synchronous Run Helpers now throw expected exceptions (unwrapped AggregateException).\r\n\r\n## v2.2.10\r\n* Roll-up Release for Full .NET Framework since last non-beta release.\r\n* CoreCLR users please continue using latest beta release until CoreCLR is RTM.\r\n\r\n## v2.2.10-beta-1\r\n* Fixed Issue 36: Inconsistency between AND and OR method signatures.\r\n* Added Fold Term (Note: Not usable until RethinkDB Server 2.3 is released).\r\n* Added support for Union interleave OptArg.\r\n* Added Proxy field to Server:conn.Server().\r\n* BREAKING: .optArg now named .OptArg to follow .NET conventions (My apologies, I missed this one).\r\n\r\n\r\nFull History Here: https://github.com/bchavez/RethinkDb.Driver/blob/blob/master/HISTORY.md",
+    "releaseNotes": "",
     "iconUrl": "https://raw.githubusercontent.com/wiki/bchavez/RethinkDb.Driver/logo.png",
     "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
     "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
@@ -52,32 +52,19 @@
       },
       "frameworkAssemblies": {}
     },
-    "netstandard1.5": {
+    "netstandard1.3": {
       "dependencies": {
-        "Microsoft.CSharp": "4.0.1-rc2-24027",
-        "System.Text.Encoding": "4.0.11-rc2-24027",
-        "System.Runtime": "4.1.0-rc2-24027",
-        "System.Dynamic.Runtime": "4.0.11-rc2-24027",
-        "System.IO": "4.1.0-rc2-24027",
-        "System.ComponentModel": "4.0.1-rc2-24027",
-        "System.Reflection.Extensions": "4.0.1-rc2-24027",
-        "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-final",
-        "System.Net.Sockets": "4.1.0-rc2-24027",
-        "System.Net.Primitives": "4.0.11-rc2-24027",
-        "System.Threading.Timer": "4.0.1-rc2-24027",
-        "System.Threading.Thread": "4.0.0-rc2-24027",
-        "System.Security.Cryptography.Algorithms": "4.1.0-rc2-24027",
-        "System.Security.Cryptography.Primitives": "4.0.0-rc2-24027",
-        "System.Diagnostics.Debug": "4.0.11-rc2-24027",
-        "System.Threading": "4.0.11-rc2-24027",
-        "System.Reflection.TypeExtensions": "4.1.0-rc2-24027"
+        "NETStandard.Library": "1.5.0-rc2-24027",
+        "System.Reflection.TypeExtensions": "4.1.0-rc2-24027",
+        "Microsoft.CSharp": "4.0.1-rc2-24027"
       },
       "imports": [
-        "portable-net451+win8"
+        "portable-net451+win8",
+        "dnxcore50"
       ],
-      "compilationOptions": {
+      "buildOptions": {
         "define": [
-          "NETSTANDARD15"
+          "STANDARD"
         ]
       }
     }

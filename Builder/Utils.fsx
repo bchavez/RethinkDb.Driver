@@ -3,11 +3,13 @@
 // include Fake lib
 #I @"packages/build/FAKE/tools"
 #I @"packages/build/FSharp.Data/lib/net40"
-#I @"packages/build/Z.ExtensionMethods.WithNamespace\lib\net40"
+#I @"packages/build/Z.ExtensionMethods.WithNamespace/lib/net40"
+#I @"packages/build/Newtonsoft.Json/lib/net45"
 
 #r @"FakeLib.dll"
 #r @"FSharp.Data.dll"
 #r @"Z.ExtensionMethods.WithNamespace.dll"
+#r @"Newtonsoft.Json"
 
 open Fake
 open AssemblyInfoFile
@@ -33,24 +35,10 @@ module BuildContext =
         | (_, _, Some b) -> sprintf "0.0.%s-ci" b
         | (_, _, _     ) -> "0.0.0-localbuild"
 
-
     let Version = WithoutPreReleaseName FullVersion
 
         
-//        let picks = [
-//                        (forced, "forced")
-//                        (tagname, "tag")
-//                        (buildver, "ci")
-//                        (Some "0.0.0-localbuild", "local")
-//                    ]
-//
-//        picks |> List.pick (fun ele -> 
-//                                match ele with
-//                                | (Some value, "forced") -> value
-//                                | (Some value, "tag") -> value
-//                                | (Some value, "ci") -> sprintf "0.0.%s" value
-//                                | (Some value, "local") -> value
-//                                | (_, _) -> None )
+
 
 open System
 
@@ -104,28 +92,6 @@ module Setup =
 
 
     
-        //module Folders =
-        //    let WorkingFolder = System.IO.Directory.GetCurrentDirectory()
-        //    let CompileOutput = WorkingFolder @@ "__compile"
-        //    let Package = WorkingFolder @@ "__package"
-        //    let Source = WorkingFolder @@ "Source"
-        //    let Lib = Source @@ "packages"
-        //    let Builder = Source @@ "builder"
-        //
-        //module Files =
-        //    let History = Folders.WorkingFolder @@ "HISTORY.md"
-        //
-        //
-        //module Projects =
-        //    let SolutionFile = Folders.Source @@ sprintf "%s.sln" ProjectName
-        //    let GlobalJson = Folders.Source @@ "global.json"
-        //    let DnvmVersion = 
-        //        let json = JsonValue.Parse(System.IO.File.ReadAllText(GlobalJson))
-        //        json?sdk?version.AsString()
-        //
-        //
-
-
 
 
 open Setup
@@ -153,7 +119,7 @@ type TestProject(name : string, folders : Folders) =
 type NugetProject(name : string, assemblyTitle : string, folders : Folders) =
     inherit Project(name, folders)
     
-    let dnxProjectFile = base.Folder @@ "project.json"
+    let projectJson = base.Folder @@ "project.json"
     let outputDirectory = folders.CompileOutput @@ name
     let outputDll = outputDirectory @@ sprintf "%s.dll" name
     let packageDir = folders.Package @@ name
@@ -163,7 +129,7 @@ type NugetProject(name : string, assemblyTitle : string, folders : Folders) =
 
     let zip = folders.Package @@ sprintf "%s.zip" name
 
-    member this.DnxProjectFile = dnxProjectFile
+    member this.ProjectJson = projectJson
     member this.OutputDirectory = outputDirectory
     member this.OutputDll = outputDll
     
@@ -202,13 +168,6 @@ let DynInvoke (instance : obj) (methodName : string) (args : obj[]) =
     ()
 
 
-//let MakeHistorySpec nuspec dest historyTxt =
-//    trace "Making Hisotry Nuspec"
-//    let historyFile = filename (changeExt "history.nuspec" nuspec)
-//    let historyFullPath = dest @@ historyFile
-//    CopyFile historyFullPath nuspec
-//    XmlPoke historyFullPath "/package/metadata/releaseNotes/text()" historyTxt
-
 let NuGetWorkingDir (project : NugetProject) =
     project.OutputDirectory @@ "dnx_build" @@ "release"
 
@@ -229,38 +188,50 @@ let SetupNuGetPaths (p : NuGetParams) (project : NugetProject) =
 
 module History =
     open Z.Core.Extensions
+    open Z.Collections.Extensions
+    open System.Linq
     
     let All historyFile =
         System.IO.File.ReadAllText(historyFile)
-    let NugetText historyFile =
-        System.Security.SecurityElement.Escape(All historyFile)
+
+    let NugetText historyFile githubUrl =
+        let allText = All historyFile
+        //allText.Split("##").Where( fun s -> s.IsNullOrWhiteSpace() ).Take(5)
+        let q = query{
+                for str in allText.Split("##") do
+                where(str.IsNotNullOrWhiteSpace())
+                take 5
+            }
+
+        let text = q.StringJoin("##")
+        let historyUrl = sprintf "%s/blob/blob/master/HISTORY.md" githubUrl
+        sprintf "##%s\r\nFull History Here: %s" text historyUrl
+            
+
     let ChangesFor version historyFile =
         let all = All historyFile
         all.GetAfter(version).GetBefore("## ").Trim()
 
 
-let NuGetConfig (project : NugetProject) (folders :Folders) (files : Files) =
-    let p = NuGetDefaults()
-    {p with 
-       Project = project.Name
-       ReleaseNotes = History.NugetText files.History
-       OutputPath = folders.Package
-       Version = BuildContext.FullVersion
-       SymbolPackage = NugetSymbolPackage.Nuspec
-       WorkingDir = NuGetWorkingDir project
-       Files = [
-                  (@"**\**", Some "lib", None )
-                  NuGetSourceDir project
-               ]
-       Publish = false
-    }
 
+open System.IO
+open Newtonsoft.Json
+open Newtonsoft.Json.Linq
 
+let JsonPoke (jsonPath: string) (value: string) (filePath: string) =
+    let jsonText = File.ReadAllText(filePath)
+    let obj = JsonConvert.DeserializeObject<JObject>(jsonText)
+    let token = obj.SelectToken(jsonPath)
+    token.Replace(new JValue(value));
+    let newJson = JsonConvert.SerializeObject(obj, Formatting.Indented);
+    File.WriteAllText(filePath, newJson);
 
 
 //////////////// DNVM
 
 module Helpers = 
+    open FSharp.Data
+    open FSharp.Data.JsonExtensions
 
     let shellExec cmdPath args target = 
         let result = ExecProcess (
@@ -281,7 +252,7 @@ module Helpers =
     let dotnet args workingDir = 
         let executable = findOnPath "dotnet.exe"
         shellExec executable args workingDir
-            
+
                                                           
     type DotnetCommands =
         | Restore
@@ -292,11 +263,19 @@ module Helpers =
         match command with
             | Restore -> (dotnet "restore" target)
             | Build -> (dotnet "build --configuration release" target)
-            | Publish -> (dotnet "publish --configuration release -o XXNOTXX XXXUSEDXXX" target)
+            | Publish -> (failwith "Only CI server should publish on NuGet")
 
-    let DotnetBuild target output frameworkFolder framework = 
-            let buildArgs = sprintf "build --configuration release --output %s\\release\\%s --framework %s" output frameworkFolder framework
-            dotnet buildArgs target
+    let DotnetPack (project: NugetProject) (output: string) =
+        let packArgs = sprintf "pack --configuration Release --output %s" output
+        dotnet packArgs project.Folder
+
+    let DotnetBuild (target: NugetProject) (output: string) = 
+        let projectJson = JsonValue.Parse(File.ReadAllText(target.ProjectJson))
+        for framework in projectJson?frameworks.Properties do
+            //let moniker, _ = framework;
+            let moniker = fst framework;
+            let buildArgs = sprintf "build --configuration Release --output %s\\%s --framework %s" output moniker moniker
+            dotnet buildArgs target.Folder
 
     let XBuild target output =
         let buildArgs = sprintf "%s /p:OutDir=%s" target output

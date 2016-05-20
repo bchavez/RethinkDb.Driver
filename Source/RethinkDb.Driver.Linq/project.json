@@ -1,21 +1,56 @@
-﻿
 {
-  "version": "1.0.0-*",
-  "description": "RethinkDb.Driver.Linq Class Library",
-  "authors": [ "jrote" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
+  "version": "0.0.0-localbuild",
+  "description": "An experimental LINQ to ReQL provider for the RethinkDB C# Driver.",
+  "authors": [
+    "Brian Chavez",
+    "jrote1"
+  ],
+  "packOptions": {
+    "summary": "An experimental LINQ to ReQL provider for the RethinkDB C# Driver.",
+    "tags": [
+      "rethinkdb",
+      "database",
+      "driver",
+      "reql",
+      "linq"
+    ],
+    "owners": [
+      "Brian Chavez",
+      "jrote1"
+    ],
+    "releaseNotes": "## v2.3.1-beta-3\r\n* Experimental LINQ to ReQL provider support.\r\n\r\n## v2.3.1-beta-2\r\n* BREAKING: Issue 39 - Pseudo types are now converted by default in JToken types (JObject, JArray).\r\n*   You'll need to specify .Run*(conn, new { time_format: `raw` }) to keep raw types\r\n*   from being converted. Other raw types: binary_format and group_format.\r\n* BREAKING: Issue 49 - Handle DateTime and DateTimeOffset with ReqlDateTimeConverter\r\n*   instead of Iso8601 AST term.\r\n\r\n## v2.3.1-beta-1\r\n* Compatibility with RethinkDB 2.3 and new user/pass authentication system.\r\n* New `Grant` AST term added.\r\n* New permission exception types.\r\n* Issue 41 - Synchronous Run Helpers now throw expected exceptions (unwrapped AggregateException).\r\n\r\n## v2.2.10\r\n* Roll-up Release for Full .NET Framework since last non-beta release.\r\n* CoreCLR users please continue using latest beta release until CoreCLR is RTM.\r\n\r\n## v2.2.10-beta-1\r\n* Fixed Issue 36: Inconsistency between AND and OR method signatures.\r\n* Added Fold Term (Note: Not usable until RethinkDB Server 2.3 is released).\r\n* Added support for Union interleave OptArg.\r\n* Added Proxy field to Server:conn.Server().\r\n* BREAKING: .optArg now named .OptArg to follow .NET conventions (My apologies, I missed this one).\r\n\r\n\r\nFull History Here: https://github.com/bchavez/RethinkDb.Driver/blob/blob/master/HISTORY.md",
+    "iconUrl": "https://raw.githubusercontent.com/wiki/bchavez/RethinkDb.Driver/logo.png",
+    "projectUrl": "https://github.com/bchavez/RethinkDb.Driver",
+    "licenseUrl": "https://raw.githubusercontent.com/bchavez/RethinkDb.Driver/master/LICENSE",
+    "requireLicenseAcceptance": false,
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/bchavez/RethinkDb.Driver"
+    }
+  },
+  "buildOptions": {
+    "xmlDoc": true,
+    "configurations": {
+      "Debug": {
+        "buildOptions": {}
+      },
+      "Release": {
+        "buildOptions": {
+          "optimize": true
+        }
+      }
+    }
+  },
   "dependencies": {
     "Remotion.Linq": "2.0.2",
     "RethinkDb.Driver": "*"
   },
-    "frameworks": {
-        "net45": {
+  "frameworks": {
+    "net45": {
       "dependencies": {
         "Common.Logging": "3.3.0"
       },
-      "frameworkAssemblies": { }
+      "frameworkAssemblies": {}
     },
     "netstandard1.5": {
       "dependencies": {
@@ -46,5 +81,5 @@
         ]
       }
     }
-    }
+  }
 }

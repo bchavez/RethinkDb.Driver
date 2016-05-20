@@ -204,7 +204,7 @@ module History =
             }
 
         let text = q.StringJoin("##")
-        let historyUrl = sprintf "%s/blob/blob/master/HISTORY.md" githubUrl
+        let historyUrl = sprintf "%s/blob/master/HISTORY.md" githubUrl
         sprintf "##%s\r\nFull History Here: %s" text historyUrl
             
 

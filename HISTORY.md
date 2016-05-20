@@ -1,3 +1,7 @@
+## v2.3.2
+* Roll-up Release for Full .NET Framework since last non-beta release.
+* CoreCLR users please continue using latest beta release until CoreCLR is RTM.
+
 ## v2.3.2-beta-2
 * Connection now exposes ClientLocalEndpoint.
 * Better .NET Standard 1.3 and .NET Core RC2 compatibility.

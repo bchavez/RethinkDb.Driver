@@ -152,9 +152,10 @@ Target "push" (fun _ ->
 Target "zip" (fun _ -> 
     trace "Zip Task"
 
-    !!(DriverProject.OutputDirectory @@ "**") |> Zip Folders.CompileOutput (Folders.Package @@ DriverProject.Zip)
-    !!(LinqProject.OutputDirectory @@ "**") |> Zip Folders.CompileOutput (Folders.Package @@ LinqProject.Zip)
-    !!(GridProject.OutputDirectory @@ "**") |> Zip Folders.CompileOutput (Folders.Package @@ GridProject.Zip)
+    !!(DriverProject.OutputDirectory @@ "**") 
+        ++ (LinqProject.OutputDirectory @@ "**")
+        ++ (GridProject.OutputDirectory @@ "**")
+        |> Zip Folders.CompileOutput (Folders.Package @@ DriverProject.Zip)
 )
 
 

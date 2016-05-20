@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Concurrent;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Text;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using RethinkDb.Driver.Ast;
@@ -109,6 +107,11 @@ namespace RethinkDb.Driver.Net
         /// Flag to check the underlying socket is connected.
         /// </summary>
         public virtual bool Open => this.Socket?.Open ?? false;
+
+        /// <summary>
+        /// Retrieves the client-side local endpoint used to connect to the RethinkDB server.
+        /// </summary>
+        public virtual IPEndPoint ClientEndPoint => this.Socket?.ClientEndPoint;
 
         /// <summary>
         /// Flag to check if the underlying socket has some kind of error.

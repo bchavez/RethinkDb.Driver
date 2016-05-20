@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.IO;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -11,11 +12,8 @@ namespace RethinkDb.Driver.Net
 {
     internal class SocketWrapper
     {
-#if STANDARD
         private readonly Socket socket;
-#else
-        private readonly TcpClient socketChannel;
-#endif
+
         private readonly TimeSpan timeout;
 
         private readonly string hostname;
@@ -34,36 +32,28 @@ namespace RethinkDb.Driver.Net
 
             this.timeout = timeout ?? TimeSpan.FromSeconds(60);
 
-#if STANDARD
             this.socket = new Socket( SocketType.Stream, ProtocolType.Tcp );
-#else
-            this.socketChannel = new TcpClient();
-#endif
         }
-
+        
         private Exception currentException;
 
         public virtual async Task ConnectAsync(Handshake handshake)
         {
             try
             {
-#if STANDARD
                 socket.NoDelay = true;
                 socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+#if STANDARD
                 await socket.ConnectAsync(this.hostname, this.port).ConfigureAwait(false);
-                this.ns = new NetworkStream(socket);
 #else
-                socketChannel.NoDelay = true;
-                //socketChannel.LingerState.Enabled = false;
-                //socketChannel.LingerState.LingerTime = 500;
-                //socketChannel.ReceiveTimeout = 250;
-                socketChannel.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
-                //socketChannel.Client.Blocking = true;
-
-                await socketChannel.ConnectAsync(this.hostname, this.port).ConfigureAwait(false);
-
-                this.ns = socketChannel.GetStream();
+                await Task.Factory.FromAsync(
+                    (targetHost, targetPort, callback, state) => ((Socket)state).BeginConnect(targetHost, targetPort, callback, state),
+                    asyncResult => ((Socket)asyncResult.AsyncState).EndConnect(asyncResult),
+                    this.hostname,
+                    this.port,
+                    state: this.socket).ConfigureAwait(false);
 #endif
+                this.ns = new NetworkStream(this.socket);
                 this.bw = new BinaryWriter(this.ns);
                 this.br = new BinaryReader(this.ns);
 
@@ -303,15 +293,11 @@ namespace RethinkDb.Driver.Net
             return awaiter?.Task ?? TaskHelper.CompletedResponse;
         }
 
-#if STANDARD
         public virtual bool Closed => !socket.Connected;
 
         public virtual bool Open => socket.Connected;
-#else
-        public virtual bool Closed => !socketChannel.Connected;
 
-        public virtual bool Open => socketChannel.Connected;
-#endif
+        public virtual IPEndPoint ClientEndPoint => this.socket.LocalEndPoint as IPEndPoint;
 
         public virtual bool HasError => currentException != null;
 
@@ -329,11 +315,8 @@ namespace RethinkDb.Driver.Net
 
             try
             {
-#if STANDARD
                 socket.Shutdown(SocketShutdown.Both);
-#else
-                socketChannel.Shutdown();
-#endif
+                socket.Dispose();
             }
             catch
             {

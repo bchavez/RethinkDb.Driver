@@ -226,6 +226,9 @@ let JsonPoke (jsonPath: string) (value: string) (filePath: string) =
     let newJson = JsonConvert.SerializeObject(obj, Formatting.Indented);
     File.WriteAllText(filePath, newJson);
 
+let SetDependency (dependency:string) (dependencyVersion: string) (projectJson: string) =
+    let jsonPath = sprintf "dependencies.['%s']" dependency
+    JsonPoke jsonPath dependencyVersion projectJson
 
 //////////////// DNVM
 

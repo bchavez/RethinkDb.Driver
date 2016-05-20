@@ -175,12 +175,24 @@ Target "BuildInfo" (fun _ ->
     JsonPoke "packOptions.releaseNotes" releaseNotes DriverProject.ProjectJson
     JsonPoke "packOptions.releaseNotes" releaseNotes LinqProject.ProjectJson
     JsonPoke "packOptions.releaseNotes" releaseNotes GridProject.ProjectJson
+
+    let version = sprintf "[%s]" BuildContext.FullVersion
+    SetDependency DriverProject.Name version GridProject.ProjectJson
+    SetDependency DriverProject.Name version LinqProject.ProjectJson
 )
 
 
 Target "Clean" (fun _ ->
     DeleteFile Files.TestResultFile
     CleanDirs [Folders.CompileOutput; Folders.Package]
+
+    //reset project deps.
+    JsonPoke "packOptions.releaseNotes" "" DriverProject.ProjectJson
+    JsonPoke "packOptions.releaseNotes" "" LinqProject.ProjectJson
+    JsonPoke "packOptions.releaseNotes" "" GridProject.ProjectJson
+
+    SetDependency DriverProject.Name "*" GridProject.ProjectJson
+    SetDependency DriverProject.Name "*" LinqProject.ProjectJson
 )
 
 open Ionic.Zip

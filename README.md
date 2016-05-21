@@ -216,7 +216,7 @@ A big thanks to GitHub and all contributors:
 
 Music Wall
 ----------
-:headphones: A small collection of videos that helped in the creation of this driver. =)
+:musical_score: A small collection of videos that helped in the creation of this driver. =)
 
 <table>
         <tr>
@@ -245,13 +245,15 @@ Music Wall
 
         <tr>
             <td>
-                <a href="http://www.youtube.com/watch?feature=player_embedded&v=nXri9t8yrr4" target="_blank"><img src="http://img.youtube.com/vi/nXri9t8yrr4/0.jpg" alt="Kuffdam & Plant" width="240" height="180" border="10" /></a>
+                <a href="http://www.youtube.com/watch?feature=player_embedded&v=nXri9t8yrr4" target="_blank">
+                    <img src="http://img.youtube.com/vi/nXri9t8yrr4/0.jpg" alt="Kuffdam & Plant" width="240" height="180" border="10" />
+                </a>
             </td>
             <td>
                 <a href=
-                "http://www.youtube.com/watch?feature=player_embedded&v=iVNgOOE7Wpg"
+                "http://www.youtube.com/watch?feature=player_embedded&v=FyASdjZE0R0"
                 target="_blank"><img alt="NIN" border="10" height="180" src=
-                "http://img.youtube.com/vi/iVNgOOE7Wpg/0.jpg" width="240"></a>
+                "http://img.youtube.com/vi/FyASdjZE0R0/0.jpg" width="240"></a>
             </td>
             <td>
                 <a href=

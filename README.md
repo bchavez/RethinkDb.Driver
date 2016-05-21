@@ -205,7 +205,7 @@ Contributing
 If you'd like to contribute, please consider reading some [helpful tips before making changes](https://github.com/bchavez/RethinkDb.Driver/blob/master/CONTRIBUTING.md).
  
 Contributors
----------
+------------
 Created by [Brian Chavez](http://bchavez.bitarmory.com) ([twitter](https://twitter.com/bchavez)). Originally ported from the Java Driver by [Josh Kuhn](https://github.com/deontologician). Special thanks to the rest of the RethinkDB team ([Josh](https://github.com/deontologician), [AtnNn](https://github.com/AtnNn), [danielmewes](https://github.com/danielmewes), [neumino](https://github.com/neumino)) for answering ReQL protocol questions. Also, special thanks to [Annie Ruygt](https://github.com/ahruygt) for the wonderful GitHub banner!
 
 A big thanks to GitHub and all contributors:
@@ -213,4 +213,54 @@ A big thanks to GitHub and all contributors:
 * [`jrote1`](https://github.com/jrote1) (Jake Rote) ~ LINQ Provider
 * [fiLLLip](https://github.com/fiLLLip) (Filip Andre Larsen Tomren)
 * [cadabloom](https://github.com/cadabloom)
+
+Music Wall
+----------
+:headphones: A small collection of videos that helped in the creation of this driver. =)
+
+<table>
+        <tr>
+            <td>
+                <a href=
+                "http://www.youtube.com/watch?feature=player_embedded&v=1lyu1KKwC74"
+                target="_blank"><img alt="Summer Time" border="10" height="180"
+                src="http://img.youtube.com/vi/1lyu1KKwC74/0.jpg" width=
+                "240"></a>
+            </td>
+            <td>
+                <a href=
+                "http://www.youtube.com/watch?feature=player_embedded&v=XmSdTa9kaiQ"
+                target="_blank"><img alt="U2" border="10" height="180" src=
+                "http://img.youtube.com/vi/XmSdTa9kaiQ/0.jpg" width="240"></a>
+            </td>
+            <td>
+                <a href=
+                "http://www.youtube.com/watch?feature=player_embedded&v=7xzU9Qqdqww"
+                target="_blank"><img alt="Cudi" border="10" height="180" src=
+                "http://img.youtube.com/vi/7xzU9Qqdqww/0.jpg" width="240"></a>
+            </td>
+        </tr>
+
+
+
+        <tr>
+            <td>
+                <a href="http://www.youtube.com/watch?feature=player_embedded&v=nXri9t8yrr4" target="_blank"><img src="http://img.youtube.com/vi/nXri9t8yrr4/0.jpg" alt="Kuffdam & Plant" width="240" height="180" border="10" /></a>
+            </td>
+            <td>
+                <a href=
+                "http://www.youtube.com/watch?feature=player_embedded&v=iVNgOOE7Wpg"
+                target="_blank"><img alt="NIN" border="10" height="180" src=
+                "http://img.youtube.com/vi/iVNgOOE7Wpg/0.jpg" width="240"></a>
+            </td>
+            <td>
+                <a href=
+                "http://www.youtube.com/watch?feature=player_embedded&v=dd00Qh9yZUg"
+                target="_blank"><img alt="Glitch Mob" border="10" height="180" src=
+                "http://img.youtube.com/vi/dd00Qh9yZUg/0.jpg" width="240"></a>
+            </td>
+        </tr>
+
+</table>
+
 

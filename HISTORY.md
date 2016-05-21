@@ -1,3 +1,10 @@
+## v2.3.3
+* Roll-up Release for Full .NET Framework since last non-beta release.
+* CoreCLR users please continue using latest beta release until CoreCLR is RTM.
+
+## v2.3.3-beta-1
+* Issue 62 - Fixed "An address incompatible with the requested protocol was used" on Azure
+
 ## v2.3.2
 * Roll-up Release for Full .NET Framework since last non-beta release.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.

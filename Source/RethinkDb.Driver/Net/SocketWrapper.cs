@@ -32,7 +32,7 @@ namespace RethinkDb.Driver.Net
 
             this.timeout = timeout ?? TimeSpan.FromSeconds(60);
 
-            this.socket = new Socket( SocketType.Stream, ProtocolType.Tcp );
+            this.socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }
         
         private Exception currentException;

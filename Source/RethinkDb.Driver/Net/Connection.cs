@@ -80,6 +80,7 @@ namespace RethinkDb.Driver.Net
         /// Reconnects the underlying connection to the server.
         /// </summary>
         /// <param name="noreplyWait"><see cref="NoReplyWait"/></param>
+        /// <param name="timeout">The timeout value before throwing exception</param>
         public virtual void Reconnect(bool noreplyWait = false, TimeSpan? timeout = null)
         {
             ReconnectAsync(noreplyWait, timeout).WaitSync();

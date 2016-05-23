@@ -1,3 +1,7 @@
+## v2.3.4-beta-1
+* `Connection.Connect/ConnectAsync` now throw underlying exception without AggregateException
+* Fixed Issue 63 - "Can't connect on Linux with RC2"/"Sockets on this platform are invalid".
+
 ## v2.3.3
 * Roll-up Release for Full .NET Framework since last non-beta release.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.

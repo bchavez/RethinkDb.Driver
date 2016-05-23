@@ -56,7 +56,8 @@
         "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-final",
         "System.Security.Cryptography.Algorithms": "4.1.0-rc2-24027",
         "System.Security.Cryptography.Primitives": "4.0.0-rc2-24027",
-        "System.Threading.Thread": "4.0.0-rc2-24027"
+        "System.Threading.Thread": "4.0.0-rc2-24027",
+        "System.Net.NameResolution": "4.0.0-rc2-24027"
       },
       "imports": [
         "portable-net451+win8",

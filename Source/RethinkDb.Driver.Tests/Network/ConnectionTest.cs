@@ -1,3 +1,5 @@
+using System;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
@@ -49,6 +51,17 @@ namespace RethinkDb.Driver.Tests.Network
 
             int result = R.Random(1, 9).Add(R.Random(1, 9)).Run<int>(c);
             result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
+        }
+
+        [Test]
+        public void invalid_IP_throws_socket_exception_not_aggregate_exception()
+        {
+            Action invalidConnect = () => R.Connection()
+                        .Hostname("127.0.0.2")
+                        .Port(5555)
+                        .Connect();
+
+            invalidConnect.ShouldThrow<SocketException>();
         }
 
     }

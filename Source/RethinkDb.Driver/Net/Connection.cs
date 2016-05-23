@@ -80,26 +80,20 @@ namespace RethinkDb.Driver.Net
         /// Reconnects the underlying connection to the server.
         /// </summary>
         /// <param name="noreplyWait"><see cref="NoReplyWait"/></param>
-        /// <param name="timeout">The timeout value before throwing exception</param>
         public virtual void Reconnect(bool noreplyWait = false, TimeSpan? timeout = null)
         {
-            if( !timeout.HasValue )
-            {
-                timeout = connectTimeout;
-            }
-            Close(noreplyWait);
-            this.Socket = new SocketWrapper(this.Hostname, this.Port, timeout, OnSocketErrorCallback);
-            this.Socket.Connect(handshake);
+            ReconnectAsync(noreplyWait, timeout).WaitSync();
         }
 
         /// <summary>
         /// Asynchronously reconnects the underlying connection to the server.
         /// </summary>
         /// <param name="noreplyWait"><see cref="NoReplyWait"/></param>
-        public virtual async Task ReconnectAsync(bool noreplyWait = false)
+        /// <param name="timeout">The timeout value before throwing exception</param>
+        public virtual async Task ReconnectAsync(bool noreplyWait = false, TimeSpan? timeout = null)
         {
             Close(noreplyWait);
-            this.Socket = new SocketWrapper(this.Hostname, this.Port, connectTimeout, OnSocketErrorCallback);
+            this.Socket = new SocketWrapper(this.Hostname, this.Port, timeout ?? connectTimeout, OnSocketErrorCallback);
             await this.Socket.ConnectAsync(handshake).ConfigureAwait(false);
         }
 
@@ -609,9 +603,7 @@ namespace RethinkDb.Driver.Net
             /// </summary>
             public virtual Connection Connect()
             {
-                var conn = new Connection(this);
-                conn.Reconnect();
-                return conn;
+                return ConnectAsync().WaitSync();
             }
 
             /// <summary>

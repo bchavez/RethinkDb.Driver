@@ -12,7 +12,7 @@ namespace RethinkDb.Driver.Net
 {
     internal class SocketWrapper
     {
-        private readonly Socket socket;
+        private Socket socket;
 
         private readonly TimeSpan timeout;
 
@@ -31,8 +31,6 @@ namespace RethinkDb.Driver.Net
             this.errorCallback = errorCallback;
 
             this.timeout = timeout ?? TimeSpan.FromSeconds(60);
-
-            this.socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }
         
         private Exception currentException;
@@ -41,18 +39,12 @@ namespace RethinkDb.Driver.Net
         {
             try
             {
-                socket.NoDelay = true;
-                socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
-#if STANDARD
-                await socket.ConnectAsync(this.hostname, this.port).ConfigureAwait(false);
-#else
-                await Task.Factory.FromAsync(
-                    (targetHost, targetPort, callback, state) => ((Socket)state).BeginConnect(targetHost, targetPort, callback, state),
-                    asyncResult => ((Socket)asyncResult.AsyncState).EndConnect(asyncResult),
-                    this.hostname,
-                    this.port,
-                    state: this.socket).ConfigureAwait(false);
-#endif
+                var addresses = await Dns.GetHostAddressesAsync(this.hostname)
+                    .ConfigureAwait(false);
+
+                this.socket = await ConnectInternalAsync(addresses, this.port)
+                    .ConfigureAwait(false);
+
                 this.ns = new NetworkStream(this.socket);
                 this.bw = new BinaryWriter(this.ns);
                 this.br = new BinaryReader(this.ns);
@@ -92,6 +84,42 @@ namespace RethinkDb.Driver.Net
                 }
                 throw;
             }
+        }
+
+        private static async Task<Socket> ConnectInternalAsync(IPAddress[] addresses, int port)
+        {
+            Exception lastExc = null;
+            foreach( var address in addresses )
+            {
+                var s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
+                    {
+                        NoDelay = true
+                    };
+                s.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+                try
+                {
+#if STANDARD
+                    await s.ConnectAsync(address, port).ConfigureAwait(false);
+#else
+                    await Task.Factory.FromAsync(
+                        (targetHost, targetPort, callback, state) =>
+                            ((Socket)state).BeginConnect(targetHost, targetPort, callback, state),
+                        asyncResult =>
+                            ((Socket)asyncResult.AsyncState).EndConnect(asyncResult),
+                        address, port, state: s)
+                        .ConfigureAwait(false);
+#endif
+                    return s;
+                }
+                catch( Exception exc )
+                {
+                    lastExc = exc;
+                    s.Dispose();
+                }
+            }
+
+            if( lastExc != null ) throw lastExc;
+            throw new ArgumentException("No addresses provided", nameof(addresses));
         }
 
         private void ExecuteHandshake(Handshake handshake)

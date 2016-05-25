@@ -92,7 +92,7 @@ Documentation
   * [Implicit Operators](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#implicit-conversion-operator-overload)
 * [LINQ to ReQL Provider](https://github.com/bchavez/RethinkDb.Driver/wiki/LINQ-to-ReQL-Provider)
 * [Differences](https://github.com/bchavez/RethinkDb.Driver/wiki/Differences-Between-C%23-and-Java-driver)
-* [GOTCHA!](https://github.com/bchavez/RethinkDb.Driver/wiki/Gotchas)
+* [GOTCHA Goblins!](https://github.com/bchavez/RethinkDb.Driver/wiki/Gotchas)
 * [Java ReQL API Documentation](http://rethinkdb.com/api/java/)
 
 ### ReGrid File Storage

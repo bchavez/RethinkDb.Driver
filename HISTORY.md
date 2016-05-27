@@ -1,3 +1,6 @@
+## v2.3.4-beta-2
+* Simplified edge case when using `RunAtom<JObject>` and result is `null`, returns native `null`.
+
 ## v2.3.4-beta-1
 * `Connection.Connect/ConnectAsync` now throw underlying exception without AggregateException
 * Fixed Issue 63 - "Can't connect on Linux with RC2"/"Sockets on this platform are invalid".

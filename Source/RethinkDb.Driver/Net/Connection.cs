@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
@@ -275,9 +276,11 @@ namespace RethinkDb.Driver.Net
                 {
                     if( typeof(T).IsJToken() )
                     {
+                        if( res.Data[0].Type == JTokenType.Null ) return (T)(object)null;
                         var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
                         Converter.ConvertPseudoTypes(res.Data[0], fmt);
                         return (T)(object)res.Data[0]; //ugh ugly. find a better way to do this.
+                        //return res.Data[0].ToObject<T>();
                     }
                     return res.Data[0].ToObject<T>(Converter.Serializer);
                     
@@ -308,6 +311,7 @@ namespace RethinkDb.Driver.Net
                 {
                     if( typeof(T).IsJToken() )
                     {
+                        if( res.Data[0].Type == JTokenType.Null ) return (T)(object)null;
                         var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
                         Converter.ConvertPseudoTypes(res.Data[0], fmt);
                         return (T)(object)res.Data[0]; //ugh ugly. find a better way to do this.
@@ -381,6 +385,7 @@ namespace RethinkDb.Driver.Net
                 {
                     if( typeof(T).IsJToken() )
                     {
+                        if( res.Data[0].Type == JTokenType.Null ) return null;
                         var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
                         Converter.ConvertPseudoTypes(res.Data[0], fmt);
                         return res.Data[0];

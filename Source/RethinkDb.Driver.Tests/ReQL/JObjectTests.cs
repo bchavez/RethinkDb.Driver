@@ -176,6 +176,14 @@ namespace RethinkDb.Driver.Tests.ReQL
             raw.Should().Contain("foo");
             raw.Should().Contain(Converter.PseudoTypeKey);
         }
+
+
+        [Test]
+        public void try_getting_an_object_that_doesnt_exist()
+        {
+            var result = table.Get(Guid.NewGuid()).RunAtom<JObject>(conn);
+            result.Should().BeNull();
+        }
         
     }
 

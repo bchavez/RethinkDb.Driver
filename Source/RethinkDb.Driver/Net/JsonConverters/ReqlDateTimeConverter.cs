@@ -21,7 +21,7 @@ namespace RethinkDb.Driver.Net.JsonConverters
             }
             else
             {
-                dto = (DateTime)value;
+                dto = new DateTimeOffset((DateTime)value);
             }
             writer.WriteValue(ToUnixTime(dto));
             writer.WritePropertyName("timezone");

@@ -19,9 +19,21 @@ namespace RethinkDb.Driver.Net.JsonConverters
             {
                 dto = (DateTimeOffset)value;
             }
-            else
+            else //value is DateTime
             {
-                dto = new DateTimeOffset((DateTime)value);
+                var dt = (DateTime)value;
+                if( dt == DateTime.MinValue )
+                { //Ugh. Make MinValue consistent cross-platform on Windows and Linux.
+                  //See: https://github.com/dotnet/corefx/issues/9019
+                  //     https://github.com/bchavez/RethinkDb.Driver/issues/66
+                  //Either way, we shunt the value to MinValue and avoid
+                  //conversion of MinValue.
+                    dto = DateTimeOffset.MinValue;
+                }
+                else
+                {
+                    dto = new DateTimeOffset((DateTime)value);
+                }
             }
             writer.WriteValue(ToUnixTime(dto));
             writer.WritePropertyName("timezone");

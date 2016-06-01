@@ -1,5 +1,5 @@
-## v2.3.4-beta-3
-* Possible fix for Issue 66. `ArgumentOutOfRange` with `DateTime` conversions of `MinValue`.
+## v2.3.4-beta-4
+* BREAKING on CoreCLR: Issue 66: Makes `DateTime.MinValue` consistent cross-platform on Windows and Linux.
 
 ## v2.3.4-beta-2
 * Simplified edge case when using `RunAtom<JObject>` and result is `null`, returns native `null`.

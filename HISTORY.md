@@ -1,3 +1,7 @@
+## v2.3.4
+* Roll-up Release for Full .NET Framework since last non-beta release.
+* CoreCLR users please continue using latest beta release until CoreCLR is RTM.
+
 ## v2.3.4-beta-5
 * Added `RethinkDb.Driver.Extras.Dao`: A set of Data/Document Access objects for DAL architectures. Slick yo.
 

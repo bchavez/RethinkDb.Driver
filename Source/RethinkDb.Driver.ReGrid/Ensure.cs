@@ -13,7 +13,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Ensures that the value of a parameter is between a minimum and a maximum value.
         /// </summary>
-        /// <typeparam name="T">Type type of the value.</typeparam>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value of the parameter.</param>
         /// <param name="min">The minimum value.</param>
         /// <param name="max">The maximum value.</param>
@@ -32,7 +32,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Ensures that the value of a parameter is equal to a comparand.
         /// </summary>
-        /// <typeparam name="T">Type type of the value.</typeparam>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value of the parameter.</param>
         /// <param name="comparand">The comparand.</param>
         /// <param name="paramName">The name of the parameter.</param>
@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.ReGrid
         /// <summary>
         /// Ensures that the value of a parameter is greater than or equal to a comparand.
         /// </summary>
-        /// <typeparam name="T">Type type of the value.</typeparam>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value of the parameter.</param>
         /// <param name="comparand">The comparand.</param>
         /// <param name="paramName">The name of the parameter.</param>

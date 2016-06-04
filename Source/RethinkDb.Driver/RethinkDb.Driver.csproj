@@ -23,8 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>bin\Debug\RethinkDb.Driver.XML</DocumentationFile>
-    <CodeAnalysisRuleSet>
-    </CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>rethinkdb.driver.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,8 +34,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>bin\Release\RethinkDb.Driver.XML</DocumentationFile>
-    <CodeAnalysisRuleSet>
-    </CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>rethinkdb.driver.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
@@ -65,6 +63,9 @@
     <Compile Include="Ast\ReqlExpr.cs" />
     <Compile Include="Ast\Util.cs" />
     <Compile Include="ErrorBuilder.cs" />
+    <Compile Include="Extras\Dao\Document.cs" />
+    <Compile Include="Extras\Dao\IDao.cs" />
+    <Compile Include="Extras\Dao\GenericDao.cs" />
     <Compile Include="Generated\Ast\Fold.cs" />
     <Compile Include="Generated\Ast\Grant.cs" />
     <Compile Include="Generated\ReqlPermissionError.cs" />

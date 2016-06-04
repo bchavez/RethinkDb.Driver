@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="Dao\DaoTests.cs" />
     <Compile Include="Network\AuthTest.cs" />
     <Compile Include="Network\Benchmark.cs" />
     <Compile Include="Network\ConnectionPoolTests.cs" />

@@ -1,3 +1,6 @@
+## v2.3.4-beta-5
+* Added `RethinkDb.Driver.Extras.Dao`: A set of Data/Document Access objects for DAL architectures. Slick yo.
+
 ## v2.3.4-beta-4
 * BREAKING on CoreCLR: Issue 66: Makes `DateTime.MinValue` consistent cross-platform on Windows and Linux.
 

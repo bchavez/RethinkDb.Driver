@@ -79,6 +79,7 @@
     <Compile Include="Net\Clustering\HostPool.cs" />
     <Compile Include="Net\Clustering\IPoolingStrategy.cs" />
     <Compile Include="Net\Clustering\RoundRobinHostPool.cs" />
+    <Compile Include="Net\Clustering\Seed.cs" />
     <Compile Include="Net\Clustering\Server.cs" />
     <Compile Include="Net\Crypto.cs" />
     <Compile Include="Net\FormatOptions.cs" />

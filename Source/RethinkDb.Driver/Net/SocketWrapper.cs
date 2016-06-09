@@ -39,6 +39,8 @@ namespace RethinkDb.Driver.Net
         {
             try
             {
+                handshake.Reset();
+
                 var addresses = await Dns.GetHostAddressesAsync(this.hostname)
                     .ConfigureAwait(false);
 

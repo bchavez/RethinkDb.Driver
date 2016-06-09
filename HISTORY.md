@@ -1,3 +1,6 @@
+## v2.3.5-beta-1
+* Fixed :bettle: bug in `Connection` code that failed to reconnect to cluster node.
+
 ## v2.3.4
 * Roll-up Release for Full .NET Framework since last non-beta release.
 * CoreCLR users please continue using latest beta release until CoreCLR is RTM.

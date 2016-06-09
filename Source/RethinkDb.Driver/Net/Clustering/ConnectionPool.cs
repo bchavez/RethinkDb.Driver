@@ -17,7 +17,7 @@ namespace RethinkDb.Driver.Net.Clustering
     {
         private string authKey;
         private string dbname;
-        private string[] seeds;
+        private Seed[] seeds;
         private bool discover;
         private IPoolingStrategy poolingStrategy;
 
@@ -121,17 +121,10 @@ namespace RethinkDb.Driver.Net.Clustering
                     $"You must specify a pooling strategy '{nameof(Builder.PoolingStrategy)}' when building the connection pool.");
             }
 
-            var initialSeeds = this.seeds.Select(s =>
+            var initialSeeds = this.seeds.Select(seed =>
                 {
-                    var parts = s.Split(new[] {':'}, StringSplitOptions.RemoveEmptyEntries);
-                    var host = parts[0];
-
-                    IPAddress.Parse(host); //make sure it's an IP address.
-
-                    var port = parts.Length == 2 ? int.Parse(parts[1]) : RethinkDBConstants.DefaultPort;
-
-                    var conn = NewPoolConnection(host, port);
-                    return new {conn, host = s};
+                    var conn = NewPoolConnection(seed.Hostname, seed.Port);
+                    return new {conn, host = seed.GetEndpoint()};
                 });
 
             foreach( var conn in initialSeeds )
@@ -362,7 +355,7 @@ namespace RethinkDb.Driver.Net.Clustering
         public class Builder
         {
             internal bool discover;
-            internal string[] seeds;
+            internal Seed[] seeds;
             internal string dbname;
             internal string authKey;
             internal IPoolingStrategy hostpool;
@@ -371,9 +364,39 @@ namespace RethinkDb.Driver.Net.Clustering
             /// Seed the driver with the following endpoints. Should be strings of the form "Host:Port".
             /// </summary>
             /// <param name="seeds">Strings of the form "Host:Port"</param>
+            [Obsolete("Please use the new IEnumerable<Seed> overload. Will be removed in future versions.")]
             public Builder Seed(string[] seeds)
             {
-                this.seeds = seeds;
+                var initalSeeds = seeds.Select(s =>
+                    {
+                        var parts = s.Split(new[] {':'}, StringSplitOptions.RemoveEmptyEntries);
+                        var host = parts[0];
+
+                        IPAddress.Parse(host); //make sure it's an IP address.
+
+                        var port = parts.Length == 2 ? int.Parse(parts[1]) : RethinkDBConstants.DefaultPort;
+
+                        return new Seed(host, port);
+                    });
+
+                return Seed(initalSeeds);
+            }
+
+            /// <summary>
+            /// Seed the driver with the following endpoints.
+            /// </summary>
+            public Builder Seed(IEnumerable<Seed> seeds)
+            {
+                this.seeds = seeds.ToArray();
+                return this;
+            }
+
+            /// <summary>
+            /// Seed the driver with the following endpoints.
+            /// </summary>
+            public Builder Seed(params Seed[] seeds)
+            {
+                this.seeds = seeds.ToArray();
                 return this;
             }
 

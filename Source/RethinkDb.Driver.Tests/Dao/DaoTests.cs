@@ -7,15 +7,17 @@ using RethinkDb.Driver.Tests.Utils;
 
 namespace RethinkDb.Driver.Tests.Dao
 {
-    public class MyDoc : Document<Guid>
+    [Description("tblPerson")]
+    public class Person : Document<Guid>
     {
         public string Foo { get; set; }
         public string Bar { get; set; }
     }
 
-    public class MyDocDao : RethinkDao<MyDoc,Guid>
+    public class PersonDao : RethinkDao<Person,Guid>
     {
-        public MyDocDao(IConnection conn, string dbName, string tableName) : base(conn, dbName, tableName)
+        public PersonDao(IConnection conn)
+            : base(conn, QueryTestFixture.DbName , QueryTestFixture.TableName)
         {
         }
     }
@@ -23,12 +25,12 @@ namespace RethinkDb.Driver.Tests.Dao
     [TestFixture]
     public class DaoTestFixture : QueryTestFixture
     {
-        private MyDocDao dao;
+        private PersonDao dao;
 
         [SetUp]
         public void BeforeEachTest()
         {
-            this.dao = new MyDocDao(conn, "query", "test");
+            this.dao = new PersonDao(conn);
         }
 
 
@@ -37,7 +39,7 @@ namespace RethinkDb.Driver.Tests.Dao
         {
             ClearDefaultTable();
 
-            var doc = new MyDoc
+            var doc = new Person
                 {
                     Id = new Guid("3D6279F5-256F-4E94-BDF2-75FE8096140E"),
                     Foo = "Foooo",
@@ -57,7 +59,7 @@ namespace RethinkDb.Driver.Tests.Dao
         {
             ClearDefaultTable();
 
-            var doc = new MyDoc
+            var doc = new Person
                 {
                     Id = new Guid("3E8F4FCE-A6B8-4236-96D9-F4A479B5FA92"),
                     Foo = "update",
@@ -76,7 +78,7 @@ namespace RethinkDb.Driver.Tests.Dao
         public void save_or_update()
         {
             ClearDefaultTable();
-            var doc = new MyDoc
+            var doc = new Person
                 {
                     Foo = "SaveOrUpdate",
                     Bar = "SaveOrUpdate"
@@ -99,7 +101,7 @@ namespace RethinkDb.Driver.Tests.Dao
         public void delete()
         {
             ClearDefaultTable();
-            var doc = new MyDoc
+            var doc = new Person
                 {
                     Foo = "SaveOrUpdate",
                     Bar = "SaveOrUpdate"

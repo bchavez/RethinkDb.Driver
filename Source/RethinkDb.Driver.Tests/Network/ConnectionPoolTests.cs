@@ -355,7 +355,8 @@ namespace RethinkDb.Driver.Tests.Network
         {
             var r = RethinkDB.R;
             var c = r.ConnectionPool()
-                .Seed(new[] {"192.168.0.11:28015"})
+                //.Seed(new[] {"192.168.0.11:28015"})
+                .Seed(new Seed("localhost"))
                 .PoolingStrategy(new RoundRobinHostPool())
                 .Discover(true)
                 .Connect();
@@ -373,7 +374,7 @@ namespace RethinkDb.Driver.Tests.Network
             var r = RethinkDB.R;
             
             var c = r.ConnectionPool()
-                .Seed(new[] { "192.168.0.11:28015" })
+                .Seed(new Seed("127.0.0.1"))
                 .PoolingStrategy(new RoundRobinHostPool())
                 .Discover(true)
                 .Connect();

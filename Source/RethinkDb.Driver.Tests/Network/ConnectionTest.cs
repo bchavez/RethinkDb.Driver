@@ -1,9 +1,11 @@
 using System;
 using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Net.Clustering;
+using RethinkDb.Driver.Tests.Utils;
 
 namespace RethinkDb.Driver.Tests.Network
 {
@@ -62,6 +64,28 @@ namespace RethinkDb.Driver.Tests.Network
                         .Connect();
 
             invalidConnect.ShouldThrow<SocketException>();
+        }
+
+        [Test]
+        public void can_reconnect_after_close()
+        {
+            var c = R.Connection()
+                .Hostname(AppSettings.TestHost)
+                .Port(AppSettings.TestPort)
+                .Connect();
+
+            var dt = R.Now().RunAtom<DateTime>(c);
+            dt.Dump();
+            dt.Should().BeWithin(TimeSpan.FromHours(1));
+
+            c.Close(false);
+            c.Reconnect();
+
+            dt = R.Now().RunAtom<DateTime>(c);
+            dt.Dump();
+            dt.Should().BeWithin(TimeSpan.FromHours(1));
+
+            c.Close(false);
         }
 
     }

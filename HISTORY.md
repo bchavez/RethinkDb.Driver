@@ -1,3 +1,7 @@
+## v2.3.5
+* Roll-up Release for Full .NET Framework since last non-beta release.
+* CoreCLR users please continue using latest beta release until CoreCLR is RTM.
+
 ## v2.3.5-beta-1
 * Added `Connection.RemoteEndpoint` for symmetry.
 * Fixed :bettle: bug in `Connection` code that failed to reconnect to cluster node.

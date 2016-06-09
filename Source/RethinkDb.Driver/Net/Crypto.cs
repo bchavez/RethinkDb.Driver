@@ -6,7 +6,7 @@ namespace RethinkDb.Driver.Net
 {
     internal class Crypto
     {
-        private static readonly SecureRandom secureRandom = new SecureRandom();
+        private static readonly SecureRandom SecureRandom = new SecureRandom();
 
         private const int NonceBytes = 18;
 
@@ -98,7 +98,7 @@ namespace RethinkDb.Driver.Net
         public static string MakeNonce()
         {
             byte[] rawNonce = new byte[NonceBytes];
-            secureRandom.GetBytes(rawNonce);
+            SecureRandom.GetBytes(rawNonce);
             return Convert.ToBase64String(rawNonce);
         }
 

@@ -1,21 +1,18 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Net
 {
     internal class Handshake
     {
-        static Proto.Version VERSION = Proto.Version.V1_0;
-        static long SUB_PROTOCOL_VERSION = 0L;
-        static Proto.Protocol PROTOCOL = Proto.Protocol.JSON;
+        const Proto.Version Version = Proto.Version.V1_0;
+        const long SubProtocolVersion = 0L;
+        const Proto.Protocol Protocol = Proto.Protocol.JSON;
 
-        private static string CLIENT_KEY = "Client Key";
-        private static string SERVER_KEY = "Server Key";
+        private const string ClientKey = "Client Key";
+        private const string ServerKey = "Server Key";
 
         private string username;
         private string password;
@@ -33,14 +30,13 @@ namespace RethinkDb.Driver.Net
         {
             this.username = username;
             this.password = password;
-            this.state = new InitialState(username, password);
         }
 
         class InitialState : IProtocolState
         {
-            private string nonce;
-            private string username;
-            private byte[] password;
+            private readonly string nonce;
+            private readonly string username;
+            private readonly byte[] password;
 
             internal InitialState(string username, string password)
             {
@@ -62,7 +58,7 @@ namespace RethinkDb.Driver.Net
 
                 byte[] jsonBytes = Encoding.UTF8.GetBytes(
                     "{" +
-                    "\"protocol_version\":" + SUB_PROTOCOL_VERSION + "," +
+                    "\"protocol_version\":" + SubProtocolVersion + "," +
                     "\"authentication_method\":\"SCRAM-SHA-256\"," +
                     "\"authentication\":" + "\"n,," + clientFirstMessageBare + "\"" +
                     "}"
@@ -72,7 +68,7 @@ namespace RethinkDb.Driver.Net
                 using (var ms = new MemoryStream())
                 using (var bw = new BinaryWriter(ms))
                 {
-                    bw.Write((int)VERSION);
+                    bw.Write((int)Version);
                     bw.Write(jsonBytes);
                     bw.Write('\0');
                     bw.Flush();
@@ -119,10 +115,10 @@ namespace RethinkDb.Driver.Net
                 ThrowIfFailure(json);
                 long minVersion = json["min_protocol_version"].Value<long>();
                 long maxVersion = json["max_protocol_version"].Value<long>();
-                if( SUB_PROTOCOL_VERSION < minVersion || SUB_PROTOCOL_VERSION > maxVersion )
+                if( SubProtocolVersion < minVersion || SubProtocolVersion > maxVersion )
                 {
                     throw new ReqlDriverError(
-                        "Unsupported protocol version " + SUB_PROTOCOL_VERSION +
+                        "Unsupported protocol version " + SubProtocolVersion +
                         ", expected between " + minVersion + " and " + maxVersion);
                 }
                 return new WaitingForAuthResponse(nonce, password, clientFirstMessageBare);
@@ -171,7 +167,7 @@ namespace RethinkDb.Driver.Net
                     password, serverAuth.Salt, serverAuth.IterationCount);
 
                 // ClientKey := HMAC(SaltedPassword, "Client Key")
-                byte[] clientKey = Crypto.Hmac(saltedPassword, CLIENT_KEY);
+                byte[] clientKey = Crypto.Hmac(saltedPassword, ClientKey);
 
                 // StoredKey := H(ClientKey)
                 byte[] storedKey = Crypto.Sha256(clientKey);
@@ -191,7 +187,7 @@ namespace RethinkDb.Driver.Net
                 byte[] clientProof = Crypto.Xor(clientKey, clientSignature);
 
                 // ServerKey := HMAC(SaltedPassword, "Server Key")
-                byte[] serverKey = Crypto.Hmac(saltedPassword, SERVER_KEY);
+                byte[] serverKey = Crypto.Hmac(saltedPassword, ServerKey);
 
                 // ServerSignature := HMAC(ServerKey, AuthMessage)
                 byte[] serverSignature = Crypto.Hmac(serverKey, authMessage);

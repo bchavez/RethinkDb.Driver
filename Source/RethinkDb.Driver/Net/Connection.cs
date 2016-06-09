@@ -110,6 +110,11 @@ namespace RethinkDb.Driver.Net
         public virtual IPEndPoint ClientEndPoint => this.Socket?.ClientEndPoint;
 
         /// <summary>
+        /// Retrieves the server-side endpoint of the connection to the RethinkDB server.
+        /// </summary>
+        public virtual IPEndPoint RemoteEndPoint => this.Socket?.RemoteEndPoint;
+
+        /// <summary>
         /// Flag to check if the underlying socket has some kind of error.
         /// </summary>
         public virtual bool HasError => this.Socket?.HasError ?? false;

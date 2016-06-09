@@ -123,13 +123,13 @@ namespace RethinkDb.Driver.Net.Clustering
 
             var initialSeeds = this.seeds.Select(seed =>
                 {
-                    var conn = NewPoolConnection(seed.Hostname, seed.Port);
-                    return new {conn, host = seed.GetEndpoint()};
+                    var conn = NewPoolConnection(seed.IpAddress, seed.Port);
+                    return new {conn, EndPointId = EndpointIdentifier(seed.IpAddress, seed.Port) };
                 });
 
             foreach( var conn in initialSeeds )
             {
-                this.poolingStrategy.AddHost(conn.host, conn.conn);
+                this.poolingStrategy.AddHost(conn.EndPointId, conn.conn);
             }
 
             Task.Factory.StartNew(Supervisor, TaskCreationOptions.LongRunning);
@@ -243,9 +243,9 @@ namespace RethinkDb.Driver.Net.Clustering
                         test.Shutdown();
                         //good chance we can connect to it.
                         var conn = NewPoolConnection(ip, port);
-                        var host = $"{ip}:{port}";
-                        this.poolingStrategy.AddHost(host, conn);
-                        Log.Trace($"{nameof(Discoverer)}: Server '{server.Name}' ({host}) was added to the host pool. The supervisor will bring up the connection later.");
+                        var endPointId = EndpointIdentifier(ip, port);
+                        this.poolingStrategy.AddHost(endPointId, conn);
+                        Log.Trace($"{nameof(Discoverer)}: Server '{server.Name}' ({endPointId}) was added to the host pool. The supervisor will bring up the connection later.");
                         break; //stop checking IPs, one is enough.
                     }
                 }
@@ -255,6 +255,11 @@ namespace RethinkDb.Driver.Net.Clustering
                 Log.Trace(
                     $"{nameof(Discoverer)}: Server '{server.Name}' is back, but doesn't need to be added to the pool. The supervisor will re-establish the connection later.");
             }
+        }
+
+        private string EndpointIdentifier(string ip, int port)
+        {
+            return $"{ip}:{port}";
         }
 
         /// <summary>

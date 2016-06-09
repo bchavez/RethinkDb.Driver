@@ -329,6 +329,8 @@ namespace RethinkDb.Driver.Net
 
         public virtual IPEndPoint ClientEndPoint => this.socket.LocalEndPoint as IPEndPoint;
 
+        public virtual IPEndPoint RemoteEndPoint => this.socket.RemoteEndPoint as IPEndPoint;
+
         public virtual bool HasError => currentException != null;
 
         public virtual void Close()

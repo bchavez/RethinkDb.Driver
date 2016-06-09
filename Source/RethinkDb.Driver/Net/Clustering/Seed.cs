@@ -1,3 +1,5 @@
+using System.Net;
+
 namespace RethinkDb.Driver.Net.Clustering
 {
     /// <summary>
@@ -8,25 +10,21 @@ namespace RethinkDb.Driver.Net.Clustering
         /// <summary>
         /// Create a new RethinkDB seed endpoint.
         /// </summary>
-        public Seed(string hostname, int port = RethinkDBConstants.DefaultPort)
+        public Seed(string ipAddress, int port = RethinkDBConstants.DefaultPort)
         {
-            this.Hostname = hostname;
+            IPAddress.Parse(ipAddress);
+            this.IpAddress = ipAddress;
             this.Port = port;
         }
 
         /// <summary>
         /// RethinkDB hostname
         /// </summary>
-        public string Hostname { get;  }
+        public string IpAddress { get;  }
 
         /// <summary>
         /// RethinkDB port
         /// </summary>
         public int Port { get; }
-
-        internal string GetEndpoint()
-        {
-            return $"{this.Hostname}:{this.Port}";
-        }
     }
 }

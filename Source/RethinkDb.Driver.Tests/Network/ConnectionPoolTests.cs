@@ -356,7 +356,7 @@ namespace RethinkDb.Driver.Tests.Network
             var r = RethinkDB.R;
             var c = r.ConnectionPool()
                 //.Seed(new[] {"192.168.0.11:28015"})
-                .Seed(new Seed("localhost"))
+                .Seed(new Seed("127.0.0.1"))
                 .PoolingStrategy(new RoundRobinHostPool())
                 .Discover(true)
                 .Connect();
@@ -374,7 +374,7 @@ namespace RethinkDb.Driver.Tests.Network
             var r = RethinkDB.R;
             
             var c = r.ConnectionPool()
-                .Seed(new Seed("127.0.0.1"))
+                .Seed(new Seed("192.168.0.11"))
                 .PoolingStrategy(new RoundRobinHostPool())
                 .Discover(true)
                 .Connect();
@@ -388,7 +388,7 @@ namespace RethinkDb.Driver.Tests.Network
         {
             var r = RethinkDB.R;
             var c = r.ConnectionPool()
-                .Seed(new[] { "192.168.0.11:28015" })
+                .Seed(new[] { "127.0.0.1:28015" })
                 .PoolingStrategy(new EpsilonGreedyHostPool(null, EpsilonCalculator.Linear()))
                 .Discover(true)
                 .Connect();
@@ -397,6 +397,14 @@ namespace RethinkDb.Driver.Tests.Network
 
             int result = r.random(1, 9).add(r.random(1, 9)).Run<int>(c);
             result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
+        }
+
+        [Test]
+        public void new_seed_with_hosthname_should_throw()
+        {
+            Action act = () => new Seed("foobar");
+
+            act.ShouldThrow<FormatException>();
         }
 
         [Test]

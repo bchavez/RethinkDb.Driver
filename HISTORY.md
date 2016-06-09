@@ -1,5 +1,8 @@
 ## v2.3.5-beta-1
+* Added `Connection.RemoteEndpoint` for symmetry.
 * Fixed :bettle: bug in `Connection` code that failed to reconnect to cluster node.
+* BREAKING: `ConnectionPool.Seed(...)` now accepts `Seed` object.
+* Obsoleted `.Seed(stirng[] "IPAddress:Port")` seed strings.
 
 ## v2.3.4
 * Roll-up Release for Full .NET Framework since last non-beta release.

@@ -10,7 +10,7 @@ namespace Templates
     [TestFixture]
     public class TemplateTest
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void BeforeRunningTestSession()
         {
             //            MetaDb.Initialize(@"..\..\Metadata");

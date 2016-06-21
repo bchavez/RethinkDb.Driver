@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Tests.Network
             var c = await R.Connection()
                 .Hostname(AppSettings.TestHost)
                 .Port(AppSettings.TestPort)
-                .Timeout(60)
+                .Timeout(10)
                 .ConnectAsync();
             
             int result = R.Random(1, 9).Add(R.Random(1, 9)).Run<int>(c);
@@ -48,11 +48,23 @@ namespace RethinkDb.Driver.Tests.Network
             var c = R.ConnectionPool()
                 .PoolingStrategy(new RoundRobinHostPool())
                 .Seed(new[] {$"{AppSettings.TestHost}:{AppSettings.TestPort}"})
+                .InitialTimeout(10)
                 .Connect();
-
 
             int result = R.Random(1, 9).Add(R.Random(1, 9)).Run<int>(c);
             result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
+        }
+
+        [Test]
+        public void no_connection_to_a_pool_with_timeout_thows()
+        {
+            Action act = () => R.ConnectionPool()
+                .PoolingStrategy(new RoundRobinHostPool())
+                .Seed("127.0.0.2:2801")
+                .InitialTimeout(10)
+                .Connect();
+
+            act.ShouldThrow<ReqlDriverError>();
         }
 
         [Test]

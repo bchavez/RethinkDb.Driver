@@ -20,6 +20,7 @@ open Fake
 open Utils
 open System.Reflection
 open Helpers
+open Fake.Testing.NUnit3
 
 let workingDir = ChangeWorkingFolder()
 //let workingDir = "C:/Code/Projects/Public/RethinkDb.Driver"
@@ -39,7 +40,7 @@ let LinqProject = NugetProject("RethinkDb.Driver.Linq", "A LINQ to ReQL provider
 let GridProject = NugetProject("RethinkDb.Driver.ReGrid", "RethinkDb Large Object Storage for .NET", Folders)
 let TestDriverProject = TestProject("RethinkDb.Driver.Tests", Folders)
 let TestLinqProject = TestProject("RethinkDb.Driver.Linq.Tests", Folders)
-let TestGridProject = Project("RethinkDb.Driver.ReGrid.Tests", Folders)
+let TestGridProject = TestProject("RethinkDb.Driver.ReGrid.Tests", Folders)
 
 
 Target "astgen" (fun _ ->
@@ -91,9 +92,9 @@ Target "msb" (fun _ ->
     |> MSBuildDebug "" "Build"
     |> Log "AppBuild-Output: "
 
-//    !! GridTestProject.ProjectFile
-//    |> MSBuildDebug "" "Build"
-//    |> Log "AppBuild-Output: "
+    !! TestGridProject.ProjectFile
+    |> MSBuildDebug "" "Build"
+    |> Log "AppBuild-Output: "
 )
 
 
@@ -227,16 +228,19 @@ Target "serverup" (fun _ ->
 
 )
 
+
 let RunTests() =
     CreateDir Folders.Test
-    let nunit = findToolInSubPath "nunit-console.exe" Folders.Lib
+    let nunit = findToolInSubPath "nunit3-console.exe" Folders.Lib
     let nunitFolder = System.IO.Path.GetDirectoryName(nunit)
 
     !! TestDriverProject.TestAssembly
     ++ TestLinqProject.TestAssembly
-    |> NUnit (fun p -> { p with 
-                            ToolPath = nunitFolder
-                            OutputFile = Files.TestResultFile
+    ++ TestGridProject.TestAssembly
+    |> NUnit3 (fun p -> { p with 
+                            ProcessModel = NUnit3ProcessModel.SingleProcessModel
+                            ToolPath = nunit
+                            ResultSpecs = [Files.TestResultFile]
                             ErrorLevel = TestRunnerErrorLevel.Error })
 
 open Fake.AppVeyor
@@ -246,7 +250,7 @@ Target "ci" (fun _ ->
 )
 
 Target "test" (fun _ ->
-    trace "CI TEST"
+    trace "TEST"
     RunTests()
 )
 

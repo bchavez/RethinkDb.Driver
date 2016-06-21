@@ -14,7 +14,7 @@ namespace RethinkDb.Driver.Tests.ReQL
     public class AsyncAwaitTests : QueryTestFixture
     {
         [Test]
-        public async void basic_test()
+        public async Task basic_test()
         {
             bool b = await R.Expr(true).RunAsync<bool>(conn);
 
@@ -22,7 +22,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         }
 
         [Test]
-        public async void async_insert()
+        public async Task async_insert()
         {
             //ClearDefaultTable();
             R.Db(DbName).Table(TableName).Delete().Run(conn);

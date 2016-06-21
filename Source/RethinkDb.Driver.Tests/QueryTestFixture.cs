@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Net;
@@ -45,7 +46,7 @@ namespace RethinkDb.Driver.Tests
                 };
         }
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void BeforeRunningTestSession()
         {
             SetupFluentAssertion();
@@ -60,7 +61,7 @@ namespace RethinkDb.Driver.Tests
             }
         }
         
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void AfterRunningTestSession()
         {
             try

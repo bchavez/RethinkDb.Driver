@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Model;
@@ -86,7 +87,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         }
 
         [Test]
-        public async void can_group_with_async_helper()
+        public async Task can_group_with_async_helper()
         {
             var games = new[]
                 {

@@ -28,7 +28,7 @@ namespace RethinkDb.Driver.Tests.Dao
         private PersonDao dao;
 
         [SetUp]
-        public void BeforeEachTest()
+        public void BeforeEachTest2()
         {
             this.dao = new PersonDao(conn);
         }

@@ -28,7 +28,7 @@ namespace RethinkDb.Driver.Tests.ReQL
         }
 
         [SetUp]
-        public void BeforeEachTest()
+        public void BeforeEachTest2()
         {
             Converter.InitializeDefault();
         }

@@ -15,7 +15,7 @@ namespace RethinkDb.Driver.Tests.Network
 
         public static RethinkDB R = RethinkDB.R;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void BeforeRunningTestSession()
         {
             var adminConn = QueryTestFixture.DefaultConnectionBuilder()
@@ -28,7 +28,7 @@ namespace RethinkDb.Driver.Tests.Network
             adminConn.Close();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void AfterRunningTestSession()
         {
             var adminConn = QueryTestFixture.DefaultConnectionBuilder()

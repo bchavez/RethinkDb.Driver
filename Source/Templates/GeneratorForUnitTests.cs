@@ -22,7 +22,7 @@ namespace Templates
 
         private const string YamlImportDir = "../Templates/UnitTests";
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void BeforeRunningTestSession()
         {
             //remount the working directory before we begin.

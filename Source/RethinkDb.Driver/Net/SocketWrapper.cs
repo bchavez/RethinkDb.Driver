@@ -323,9 +323,9 @@ namespace RethinkDb.Driver.Net
             return awaiter?.Task ?? TaskHelper.CompletedResponse;
         }
 
-        public virtual bool Closed => !socket.Connected;
+        public virtual bool Closed => !this.Open;
 
-        public virtual bool Open => socket.Connected;
+        public virtual bool Open => socket?.Connected ?? false;
 
         public virtual IPEndPoint ClientEndPoint => this.socket.LocalEndPoint as IPEndPoint;
 

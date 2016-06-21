@@ -36,7 +36,7 @@ namespace Templates
             this.ModelDir = Path.GetFullPath(Path.Combine(driverFolder, ModelDir));
         }
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void BeforeRunningTestSession()
         {
             //remount the working directory before we begin.

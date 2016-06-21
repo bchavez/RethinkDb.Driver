@@ -22,13 +22,13 @@ namespace RethinkDb.Driver.Linq.Tests
 
         protected Connection Connection;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void BeforeRunningTestSession()
         {
             Connection = SetupConnection();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void AfterRunningTestSession()
         {
             Connection.Close();

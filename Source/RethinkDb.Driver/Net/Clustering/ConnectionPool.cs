@@ -20,6 +20,7 @@ namespace RethinkDb.Driver.Net.Clustering
         private Seed[] seeds;
         private bool discover;
         private IPoolingStrategy poolingStrategy;
+        private TimeSpan? initialTimeout;
 
         /// <summary>
         /// The default database used by queries.
@@ -82,6 +83,7 @@ namespace RethinkDb.Driver.Net.Clustering
             seeds = builder.seeds;
             discover = builder.discover;
             poolingStrategy = builder.hostpool;
+            initialTimeout = builder.initialTimeout;
         }
 
 
@@ -292,7 +294,11 @@ namespace RethinkDb.Driver.Net.Clustering
                     {
                         var worker = Task.Run(() =>
                             {
-                                conn.Reconnect();
+                                try
+                                {
+                                    conn.Reconnect();
+                                }
+                                catch { }
 
                                 if( conn.Open )
                                 {
@@ -306,14 +312,18 @@ namespace RethinkDb.Driver.Net.Clustering
                                     he.RetryFailed();
                                 }
                             });
-
+                        
                         restartWorkers.Add(worker);
                     }
                 }
 
                 if( restartWorkers.Any() )
                 {
-                    Task.WaitAll(restartWorkers.ToArray());
+                    try
+                    {
+                        Task.WaitAll(restartWorkers.ToArray());
+                    }
+                    catch{}
                     restartWorkers.Clear();
                 }
                 else
@@ -364,13 +374,13 @@ namespace RethinkDb.Driver.Net.Clustering
             internal string dbname;
             internal string authKey;
             internal IPoolingStrategy hostpool;
+            internal TimeSpan? initialTimeout;
 
             /// <summary>
             /// Seed the driver with the following endpoints. Should be strings of the form "Host:Port".
             /// </summary>
             /// <param name="seeds">Strings of the form "Host:Port"</param>
-            [Obsolete("Please use the new IEnumerable<Seed> overload. Will be removed in future versions.")]
-            public Builder Seed(string[] seeds)
+            public Builder Seed(params string[] seeds)
             {
                 var initalSeeds = seeds.Select(s =>
                     {
@@ -388,6 +398,15 @@ namespace RethinkDb.Driver.Net.Clustering
             }
 
             /// <summary>
+            /// Seed the driver with the following endpoints. Should be strings of the form "Host:Port".
+            /// </summary>
+            /// <param name="seeds">Strings of the form "Host:Port"</param>
+            public Builder Seed(IEnumerable<string> seeds)
+            {
+                return Seed(seeds.ToArray());
+            }
+
+            /// <summary>
             /// Seed the driver with the following endpoints.
             /// </summary>
             public Builder Seed(IEnumerable<Seed> seeds)
@@ -402,6 +421,19 @@ namespace RethinkDb.Driver.Net.Clustering
             public Builder Seed(params Seed[] seeds)
             {
                 this.seeds = seeds.ToArray();
+                return this;
+            }
+
+            /// <summary>
+            /// Sets the initial timeout (in seconds) for connecting. 
+            /// If a connection cannot be made within the specified time span
+            /// to any server, an exception is thrown. If no timeout is set,
+            /// the call to Connect() will block until at least one connection
+            /// is made.
+            /// </summary>
+            public Builder InitialTimeout(int timeout)
+            {
+                this.initialTimeout = TimeSpan.FromSeconds(timeout);
                 return this;
             }
 
@@ -452,7 +484,18 @@ namespace RethinkDb.Driver.Net.Clustering
             {
                 var conn = new ConnectionPool(this);
                 conn.StartPool();
-                conn.poolReady.Task.Wait();
+                if( initialTimeout.HasValue )
+                {
+                    if( !conn.poolReady.Task.Wait(initialTimeout.Value) )
+                    {
+                        conn.Shutdown();
+                        throw new ReqlDriverError("Connection timed out.");
+                    }
+                }
+                else
+                {
+                    conn.poolReady.Task.Wait();
+                }
                 return conn;
             }
 

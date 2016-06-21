@@ -47,13 +47,13 @@ namespace RethinkDb.Driver.Tests
                 };
         }
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void BeforeRunningTestSession()
         {
             SetupFluentAssertion();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void AfterRunningTestSession()
         {
             Console.WriteLine($"YAML TEST COUNTER: {TestCounter}");

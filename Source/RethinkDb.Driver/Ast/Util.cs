@@ -10,7 +10,11 @@ namespace RethinkDb.Driver.Ast
     {
         public static ReqlAst ToReqlAst(object val)
         {
-            return ToReqlAst(val, 100);
+            return ToReqlAst(val, 100, null);
+        }
+        public static ReqlAst ToReqlAst(object val, Func<object, ReqlAst> hook)
+        {
+            return ToReqlAst(val, 100, hook);
         }
 
         public static ReqlExpr ToReqlExpr(object val)
@@ -24,11 +28,19 @@ namespace RethinkDb.Driver.Ast
             throw new ReqlDriverError($"Cannot convert {val} to ReqlExpr");
         }
 
-        private static ReqlAst ToReqlAst(object val, int remainingDepth)
+        private static ReqlAst ToReqlAst(object val, int remainingDepth, Func<object, ReqlAst> hook = null )
         {
             if( remainingDepth <= 0 )
             {
                 throw new ReqlDriverCompileError("Recursion limit reached converting to ReqlAst");
+            }
+            if( hook != null )
+            {
+                var converted = hook(val);
+                if( !ReferenceEquals(converted, null) )
+                {
+                    return converted;
+                }
             }
             var ast = val as ReqlAst;
             if( !ReferenceEquals(ast, null) )

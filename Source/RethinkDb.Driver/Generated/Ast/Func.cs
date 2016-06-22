@@ -137,7 +137,100 @@ namespace RethinkDb.Driver.Ast {
     
         throw new ReqlDriverError("Arity of ReqlLambda not recognized!");
     }
-
+    
+    public static Func Serialize(Delegate function, List<Guid> context){
+    
+        var func0 = function as ReqlFunction0;
+        if( func0 != null )
+        {
+            return new Func(Arguments.Make(new List<object>(),
+                Util.ToReqlAst( func0() )));
+        }
+            //Function 1
+            var func1 = function as ReqlFunction1;
+            if( func1 != null){
+                Guid var1 = NextVarGuid();
+                var varIds = new List<Guid>{ 
+                    var1,
+                };
+                context.AddRange(varIds);
+                var appliedFunction = func1(
+                    new Var(var1) 
+                );
+                return new Func(Arguments.Make(
+                        new MakeArray(varIds),
+                        Util.ToReqlAst(appliedFunction)
+                ));
+            }
+            //Function 2
+            var func2 = function as ReqlFunction2;
+            if( func2 != null){
+                Guid var1 = NextVarGuid();
+                Guid var2 = NextVarGuid();
+                var varIds = new List<Guid>{ 
+                    var1,
+                    var2,
+                };
+                context.AddRange(varIds);
+                var appliedFunction = func2(
+                    new Var(var1) ,
+                    new Var(var2) 
+                );
+                return new Func(Arguments.Make(
+                        new MakeArray(varIds),
+                        Util.ToReqlAst(appliedFunction)
+                ));
+            }
+            //Function 3
+            var func3 = function as ReqlFunction3;
+            if( func3 != null){
+                Guid var1 = NextVarGuid();
+                Guid var2 = NextVarGuid();
+                Guid var3 = NextVarGuid();
+                var varIds = new List<Guid>{ 
+                    var1,
+                    var2,
+                    var3,
+                };
+                context.AddRange(varIds);
+                var appliedFunction = func3(
+                    new Var(var1) ,
+                    new Var(var2) ,
+                    new Var(var3) 
+                );
+                return new Func(Arguments.Make(
+                        new MakeArray(varIds),
+                        Util.ToReqlAst(appliedFunction)
+                ));
+            }
+            //Function 4
+            var func4 = function as ReqlFunction4;
+            if( func4 != null){
+                Guid var1 = NextVarGuid();
+                Guid var2 = NextVarGuid();
+                Guid var3 = NextVarGuid();
+                Guid var4 = NextVarGuid();
+                var varIds = new List<Guid>{ 
+                    var1,
+                    var2,
+                    var3,
+                    var4,
+                };
+                context.AddRange(varIds);
+                var appliedFunction = func4(
+                    new Var(var1) ,
+                    new Var(var2) ,
+                    new Var(var3) ,
+                    new Var(var4) 
+                );
+                return new Func(Arguments.Make(
+                        new MakeArray(varIds),
+                        Util.ToReqlAst(appliedFunction)
+                ));
+            }
+    
+        throw new ReqlDriverError("Arity of ReqlLambda not recognized!");
+    }
     
 
 
@@ -181,8 +274,11 @@ namespace RethinkDb.Driver.Ast {
       
 
     
-        private static int NextVarId(){
+        internal static int NextVarId(){
             return Interlocked.Increment(ref VarId);
+        }
+        internal static Guid NextVarGuid(){
+            return Guid.NewGuid();
         }
 
 

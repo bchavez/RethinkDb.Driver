@@ -40,7 +40,8 @@ namespace Templates
         public void BeforeRunningTestSession()
         {
             //remount the working directory before we begin.
-            var driverFolder = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", ProjectFolder);
+            var assemblyPath = Assembly.GetExecutingAssembly().Location;
+            var driverFolder = Path.Combine(assemblyPath, @"..\..\..\..", ProjectFolder);
             SetPaths(driverFolder);
 
             EnsurePathsExist();

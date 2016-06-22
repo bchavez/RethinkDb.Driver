@@ -29,8 +29,11 @@
 }
 
 @section SpecialMethods{
-        private static int NextVarId(){
+        internal static int NextVarId(){
             return Interlocked.Increment(ref VarId);
+        }
+        internal static Guid NextVarGuid(){
+            return Guid.NewGuid();
         }
 }
 
@@ -77,7 +80,47 @@
     
         throw new ReqlDriverError("Arity of ReqlLambda not recognized!");
     }
+    
+    public static Func Serialize(Delegate function, List<Guid> context){
+    
+        var func0 = function as ReqlFunction0;
+        if( func0 != null )
+        {
+            return new Func(Arguments.Make(new List<object>(),
+                Util.ToReqlAst( func0() )));
+        }
+        @foreach( var n in Enumerable.Range(1, GeneratorForAst.GetMaxArity()) )
+        {
+            @://Function @n
+            @:var @("func"+n) = function as @("ReqlFunction"+n);
+            @:if( @("func"+n) != null){
+                for( int v = 1; v <= n; v++ )
+                {
+                @:Guid @("var" + v) = NextVarGuid();
+                }
+                @:var varIds = new List<Guid>{ 
+                for( int v = 1; v <= n; v++ )
+                {
+                    @:var@(v + ",")
+                }
+                @:};
+                @:context.AddRange(varIds);
+                @:var appliedFunction = @("func"+n)(
+                    for (int v = 1; v <= n; v++)
+                {
+                    @:new Var(var@(v)) @(v == n ? "" : ",")
+                }
+                @:);
 
+                @:return new Func(Arguments.Make(
+                        @:new MakeArray(varIds),
+                        @:Util.ToReqlAst(appliedFunction)
+                @:));
+            @:}
+        }
+    
+        throw new ReqlDriverError("Arity of ReqlLambda not recognized!");
+    }
     
 }
 

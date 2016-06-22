@@ -56,7 +56,7 @@ namespace RethinkDb.Driver.Tests.Network
         }
 
         [Test]
-        public void no_connection_to_a_pool_with_timeout_thows()
+        public void no_connection_to_a_pool_with_timeout_throws()
         {
             Action act = () => R.ConnectionPool()
                 .PoolingStrategy(new RoundRobinHostPool())

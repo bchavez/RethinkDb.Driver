@@ -61,7 +61,7 @@ namespace RethinkDb.Driver.Ast
         /// <summary>
         /// Runs the query on the connection. If you know the response type
         /// of your query, T (SUCCESS_ATOM) or Cursor[T] (SUCCESS_SEQUENCE or SUCCESS_PARTIAL)
-        /// it's recommended to use `.runAtom` or `.runCursor` helpers
+        /// it's recommended to use `.RunAtom`, `.RunCursor` or `.RunResult` helpers
         /// as they offer a slight edge in performance since both bypass the 
         /// dynamic language runtime execution engine.
         /// </summary>
@@ -74,7 +74,7 @@ namespace RethinkDb.Driver.Ast
         /// <summary>
         /// Runs the query on the connection. If you know the response type
         /// of your query, T (SUCCESS_ATOM) or Cursor[T] (SUCCESS_SEQUENCE or SUCCESS_PARTIAL)
-        /// it's recommended to use `.runAtom` or `.runCursor` helpers
+        /// it's recommended to use `.RunAtom`, `.RunCursor` or `.RunResult` helpers
         /// as they offer a slight edge in performance since both bypass the 
         /// dynamic language runtime execution engine.
         /// </summary>
@@ -88,7 +88,7 @@ namespace RethinkDb.Driver.Ast
         /// <summary>
         /// Runs the query on the connection. If you know the response type
         /// of your query, T (SUCCESS_ATOM) or Cursor[T] (SUCCESS_SEQUENCE or SUCCESS_PARTIAL)
-        /// it's recommended to use `.runAtom` or `.runCursor` helpers
+        /// it's recommended to use `.RunAtom`, `.RunCursor` or `.RunResult` helpers
         /// as they offer a slight edge in performance since both bypass the 
         /// dynamic language runtime execution engine.
         /// </summary>
@@ -104,7 +104,7 @@ namespace RethinkDb.Driver.Ast
         /// <summary>
         /// Runs the query on the connection. If you know the response type
         /// of your query, T (SUCCESS_ATOM) or Cursor[T] (SUCCESS_SEQUENCE or SUCCESS_PARTIAL)
-        /// it's recommended to use `.runAtom` or `.runCursor` helpers
+        /// it's recommended to use `.RunAtom`, `.RunCursor` or `.RunResult` helpers
         /// as they offer a slight edge in performance since both bypass the 
         /// dynamic language runtime execution engine.
         /// </summary>
@@ -120,7 +120,7 @@ namespace RethinkDb.Driver.Ast
         /// <summary>
         /// Runs the query on the connection. If you know the response type
         /// of your query, T (SUCCESS_ATOM) or Cursor[T] (SUCCESS_SEQUENCE or SUCCESS_PARTIAL)
-        /// it's recommended to use `.runAtom` or `.runCursor` helpers
+        /// it's recommended to use `.RunAtom`, `.RunCursor` or `.RunResult` helpers
         /// as they offer a slight edge in performance since both bypass the 
         /// dynamic language runtime execution engine.
         /// </summary>
@@ -133,7 +133,7 @@ namespace RethinkDb.Driver.Ast
         /// <summary>
         /// Runs the query on the connection. If you know the response type
         /// of your query, T (SUCCESS_ATOM) or Cursor[T] (SUCCESS_SEQUENCE or SUCCESS_PARTIAL)
-        /// it's recommended to use `.runAtom` or `.runCursor` helpers
+        /// it's recommended to use `.RunAtom`, `.RunCursor` or `.RunResult` helpers
         /// as they offer a slight edge in performance since both bypass the 
         /// dynamic language runtime execution engine.
         /// </summary>
@@ -236,7 +236,7 @@ namespace RethinkDb.Driver.Ast
         }
 
         /// <summary>
-        /// Use this method if you're expecting SUCCESS_ATOM response from your query. This
+        /// Use this method if you're expecting SUCCESS_ATOM or SUCCESS_SEQUENCE response from your query. This
         /// method offers a slight edge in performance without the need for the
         /// dynamic language runtime like the run() method uses.
         /// </summary>
@@ -249,7 +249,7 @@ namespace RethinkDb.Driver.Ast
         }
 
         /// <summary>
-        /// Use this method if you're expecting SUCCESS_ATOM response from your query. This
+        /// Use this method if you're expecting SUCCESS_ATOM or SUCCESS_SEQUENCE response from your query. This
         /// method offers a slight edge in performance without the need for the
         /// dynamic language runtime like the run() method uses.
         /// </summary>
@@ -261,7 +261,7 @@ namespace RethinkDb.Driver.Ast
         }
 
         /// <summary>
-        /// Use this method if you're expecting SUCCESS_ATOM response from your query. This
+        /// Use this method if you're expecting SUCCESS_ATOM or SUCCESS_SEQUENCE response from your query. This
         /// method offers a slight edge in performance without the need for the
         /// dynamic language runtime like the run() method uses.
         /// </summary>

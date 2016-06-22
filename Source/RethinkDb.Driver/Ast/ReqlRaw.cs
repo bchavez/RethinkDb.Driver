@@ -73,7 +73,7 @@ namespace RethinkDb.Driver.Ast
             return $"{string.Join("|", list)}{RawTokenType}{query}";
         }
 
-        internal static string HidrateProtocolString(string reqlRawString)
+        internal static string HydrateProtocolString(string reqlRawString)
         {
             var tokenLocation = reqlRawString.IndexOf(RawTokenType, StringComparison.Ordinal);
             var guidStrings = reqlRawString.Substring(0, tokenLocation);
@@ -98,7 +98,7 @@ namespace RethinkDb.Driver.Ast
         /// <returns></returns>
         public static ReqlRaw FromRawString(string reqlRawString)
         {
-            var query = HidrateProtocolString(reqlRawString);
+            var query = HydrateProtocolString(reqlRawString);
             return new ReqlRaw(query);
         }
 

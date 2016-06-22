@@ -45,7 +45,7 @@ namespace RethinkDb.Driver.Ast
 
         public ReqlRawExpr FromRawString(string reqlRawString)
         {
-            var rawProtocol = ReqlRaw.HidrateProtocolString(reqlRawString);
+            var rawProtocol = ReqlRaw.HydrateProtocolString(reqlRawString);
             return new ReqlRawExpr(rawProtocol);
         }
     }

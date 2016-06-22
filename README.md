@@ -91,6 +91,7 @@ Documentation
   * [Consuming Changefeeds](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#consuming-changefeeds)
   * [Reactive Extensions](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#reactive-extensions-rx-support)
   * [Implicit Operators](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#implicit-conversion-operator-overload)
+  * [Serializing Expressions](https://github.com/bchavez/RethinkDb.Driver/wiki/Extra-C%23-Driver-Features#serializing-reql-expressions)
 * [GOTCHA Goblins!](https://github.com/bchavez/RethinkDb.Driver/wiki/GOTCHA!)
 * [LINQ to ReQL Provider](https://github.com/bchavez/RethinkDb.Driver/wiki/LINQ-to-ReQL-Provider)
 * [Differences](https://github.com/bchavez/RethinkDb.Driver/wiki/Differences-Between-C%23-and-Java-driver)

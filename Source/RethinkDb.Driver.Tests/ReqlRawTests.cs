@@ -7,7 +7,7 @@ using RethinkDb.Driver.Tests.Utils;
 namespace RethinkDb.Driver.Tests
 {
     [TestFixture]
-    public class ASTSerializationTests : QueryTestFixture
+    public class ReqlRawTests : QueryTestFixture
     {
         /// <summary>
         /// Example shows how to serialize a ReqlFunction expression

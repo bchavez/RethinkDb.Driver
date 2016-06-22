@@ -11,6 +11,31 @@ namespace RethinkDb.Driver.Ast
     /// <summary>
     /// Used to inject raw protocol strings when the AST is dumped on the wire.
     /// </summary>
+    public class ReqlRawExpr : ReqlExpr
+    {
+        private string RawProtocol { get; }
+
+        /// <summary>
+        /// Create an AST mid-flight with the raw protocol string.
+        /// </summary>
+        /// <param name="rawProtocol">Raw protocol string from ReqlAst.Build()</param>
+        internal ReqlRawExpr(string rawProtocol) : base(new TermType(), null, null)
+        {
+            this.RawProtocol = rawProtocol;
+        }
+
+        /// <summary>
+        /// Return the JToken representation of the raw protocol
+        /// </summary>
+        protected internal override object Build()
+        {
+            return JToken.Parse(this.RawProtocol);
+        }
+    }
+
+    /// <summary>
+    /// Used to inject raw protocol strings when the AST is dumped on the wire.
+    /// </summary>
     public class ReqlRaw : ReqlAst
     {
         private string RawProtocol { get; }
@@ -48,6 +73,23 @@ namespace RethinkDb.Driver.Ast
             return $"{string.Join("|", list)}{RawTokenType}{query}";
         }
 
+        internal static string HidrateProtocolString(string reqlRawString)
+        {
+            var tokenLocation = reqlRawString.IndexOf(RawTokenType, StringComparison.Ordinal);
+            var guidStrings = reqlRawString.Substring(0, tokenLocation);
+            var query = reqlRawString.Substring(tokenLocation + RawTokenType.Length);
+
+            //unpack
+            var replaceTokens = guidStrings.Split('|')
+                .Select(g => new { GuidString = $@"""{g}""", VarId = Func.NextVarId() });
+
+            foreach (var token in replaceTokens)
+            {
+                query = query.Replace(token.GuidString, token.VarId.ToString());
+            }
+            return query;
+        }
+
         /// <summary>
         /// Convert a raw protocol string into an AST term that will
         /// be injected when the AST is serialized.
@@ -56,19 +98,7 @@ namespace RethinkDb.Driver.Ast
         /// <returns></returns>
         public static ReqlRaw FromRawString(string reqlRawString)
         {
-            var tokenLocation = reqlRawString.IndexOf(RawTokenType, StringComparison.Ordinal);
-            var guidStrings = reqlRawString.Substring(0, tokenLocation);
-            var query = reqlRawString.Substring(tokenLocation + RawTokenType.Length);
-
-            //unpack
-            var replaceTokens = guidStrings.Split('|')
-                .Select(g => new {GuidString = $@"""{g}""", VarId = Func.NextVarId()});
-
-            foreach( var token in replaceTokens )
-            {
-                query = query.Replace(token.GuidString, token.VarId.ToString());
-            }
-
+            var query = HidrateProtocolString(reqlRawString);
             return new ReqlRaw(query);
         }
 

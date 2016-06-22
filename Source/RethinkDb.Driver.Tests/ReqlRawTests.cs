@@ -62,6 +62,30 @@ namespace RethinkDb.Driver.Tests
             ExtensionsForTesting.Dump(result2);
         }
 
+
+        [Test]
+        public void can_seralize_the_while_ast_term()
+        {
+            var query = R.Expr(R.Array(5,4,3)).Filter(n => IsForbidden(n).Not());
+            var result = query.Run(conn);
+            //result [5,4]
+            ExtensionsForTesting.Dump(result);
+
+
+            var query2 = R.Expr(R.Array(5, 4, 3)).Filter(n => IsForbidden(n).Not());
+            var queryStr = query2.ToRawString();
+
+            queryStr.Dump();
+
+            var queryAst = R
+                .FromRawString(queryStr)
+                .Filter(x => x.Eq(5));
+
+            var result2 = queryAst.Run(conn);
+
+            ExtensionsForTesting.Dump(result2);
+        }
+
         private ReqlExpr IsForbidden(ReqlExpr x)
         {
             return R.Expr(R.Array(1, 2, 3)).Contains(number => number.Eq(x));

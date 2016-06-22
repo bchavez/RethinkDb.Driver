@@ -185,5 +185,10 @@ namespace RethinkDb.Driver.Ast
         {
             return Util.ToReqlExpr(a);
         }
+
+        public string ToRawString()
+        {
+            return ReqlRaw.ToRawString(this);
+        }
     }
 }

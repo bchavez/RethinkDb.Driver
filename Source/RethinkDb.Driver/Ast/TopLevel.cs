@@ -42,5 +42,11 @@ namespace RethinkDb.Driver.Ast
             var epoch = ReqlDateTimeConverter.ToUnixTime(ticks.Value);
             return EpochTime(epoch);
         }
+
+        public ReqlRawExpr FromRawString(string reqlRawString)
+        {
+            var rawProtocol = ReqlRaw.HidrateProtocolString(reqlRawString);
+            return new ReqlRawExpr(rawProtocol);
+        }
     }
 }

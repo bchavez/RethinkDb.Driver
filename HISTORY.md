@@ -1,8 +1,8 @@
 ## v2.3.6-beta-1
 * Better initial `ConnectionPool` handling when all nodes are down.
-* Added `Connection.InitialTimeout` to initially timeout if all nodes are down.
+* Added `ConnectionPool.InitialTimeout` to initially timeout if all nodes are down.
 * Fixed null reference exception edge case when accessing for `Connection.Open` property.
-* New feature: AST Expressions can now be serialized cross app boundaries. See docs.
+* New feature: ReQL Expressions can now be serialized cross app boundaries. See docs.
 
 ## v2.3.5
 * Roll-up Release for Full .NET Framework since last non-beta release.

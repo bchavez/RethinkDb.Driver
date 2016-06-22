@@ -88,7 +88,7 @@ namespace RethinkDb.Driver.Tests
 
             var queryAst = R
                 .FromRawString(queryStr)
-                .Filter(x => x.Eq(5));
+                .Filter(x => x.Ge(5));
 
             var result2 = queryAst.RunResult<List<int>>(conn);
             //result [5]

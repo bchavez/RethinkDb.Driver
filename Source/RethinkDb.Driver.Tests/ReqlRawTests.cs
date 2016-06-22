@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using FluentAssertions;
 using NUnit.Framework;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Tests.ReQL;
@@ -37,6 +38,10 @@ namespace RethinkDb.Driver.Tests
             var result = table.Filter(filterTerm).RunResult<List<Foo>>(conn);
 
             result.Dump();
+
+            result[0].id.Should().Be(foos[2].id);
+            result[0].Baz.Should().Be(3);
+            result.Count.Should().Be(1);
         }
 
         [Test]
@@ -45,8 +50,9 @@ namespace RethinkDb.Driver.Tests
             //Full Query / No Seralization
             var filter = R.Expr(R.Array(5, 4, 3)).Filter(doc => IsForbidden(doc).Not());
 
-            var result = filter.Run(conn);
-            ExtensionsForTesting.Dump(result);
+            var result = filter.RunResult<List<int>>(conn);
+            result.Dump();
+            result.Should().BeEquivalentTo(5, 4);
             //RESULT:
             //[5,4]
 
@@ -58,8 +64,9 @@ namespace RethinkDb.Driver.Tests
             var filterWithRaw = R.Expr(R.Array(5, 4, 3)).Filter(rawFilter);
             //Not Allowed in C#
             //var filterWithRaw = R.Expr(R.Array(5, 4, 3)).Filter( x => rawFilter.SomethingElse );
-            var result2 = filterWithRaw.Run(conn);
-            ExtensionsForTesting.Dump(result2);
+            var result2 = filterWithRaw.RunResult<List<int>>(conn);
+            result2.Should().BeEquivalentTo(5, 4);
+            //ExtensionsForTesting.Dump(result2);
         }
 
 
@@ -67,9 +74,11 @@ namespace RethinkDb.Driver.Tests
         public void can_seralize_the_while_ast_term()
         {
             var query = R.Expr(R.Array(5,4,3)).Filter(n => IsForbidden(n).Not());
-            var result = query.Run(conn);
+            var result = query.RunResult<List<int>>(conn);
             //result [5,4]
-            ExtensionsForTesting.Dump(result);
+            result.Dump();
+            result.Should().BeEquivalentTo(5, 4);
+            //ExtensionsForTesting.Dump(result);
 
 
             var query2 = R.Expr(R.Array(5, 4, 3)).Filter(n => IsForbidden(n).Not());
@@ -81,9 +90,10 @@ namespace RethinkDb.Driver.Tests
                 .FromRawString(queryStr)
                 .Filter(x => x.Eq(5));
 
-            var result2 = queryAst.Run(conn);
-
-            ExtensionsForTesting.Dump(result2);
+            var result2 = queryAst.RunResult<List<int>>(conn);
+            //result [5]
+            result2.Dump();
+            result2.Should().BeEquivalentTo(5);
         }
 
         private ReqlExpr IsForbidden(ReqlExpr x)

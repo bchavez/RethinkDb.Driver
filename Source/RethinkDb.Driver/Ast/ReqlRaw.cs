@@ -90,13 +90,13 @@ namespace RethinkDb.Driver.Ast
             return query;
         }
 
-        /// <summary>
-        /// Convert a raw protocol string into an AST term that will
-        /// be injected when the AST is serialized.
-        /// </summary>
-        /// <param name="rawProtocol">The raw protocol string to inject</param>
-        /// <returns></returns>
-        public static ReqlRaw FromRawString(string reqlRawString)
+		/// <summary>
+		/// Convert a raw protocol string into an AST term that will
+		/// be injected when the AST is serialized.
+		/// </summary>
+		/// <param name="reqlRawString">The raw protocol string to inject</param>
+		/// <returns>A raw AST term</returns>
+		public static ReqlRaw FromRawString(string reqlRawString)
         {
             var query = HydrateProtocolString(reqlRawString);
             return new ReqlRaw(query);

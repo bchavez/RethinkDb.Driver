@@ -39,18 +39,18 @@ Install-Package RethinkDb.Driver
 	<th><img src='https://github.com/Turbo87/Font-Awesome/raw/platform-icons/svg/apple.png'/> Mac OS X</th>
 </tr>
 <tr>
- <td><strong>Mono</strong></td>
- <td colspan='3' align='center'>All platforms <strong>4.0.2 SR2</strong> or higher</td>
+ <td><strong>.NET Framework</strong</td>
+ <td align='center'><strong>v4.5</strong></td>
+ <td align='center'>n/a</td>
+ <td align='center'>n/a</td>
 </tr>
 <tr>
  <td><strong>.NET Standard</strong></td>
  <td colspan='3' align='center'>All platforms supporting <strong>.NET Standard 1.3</strong> or higher.</br>Eg: <a href="https://docs.microsoft.com/en-us/dotnet/articles/standard/library#net-platforms-support"><strong>.NET Core 1.0</strong></a>.</td>
 </tr>
 <tr>
- <td><strong>.NET Framework</strong</td>
- <td align='center'><strong>v4.5</strong></td>
- <td align='center'>n/a</td>
- <td align='center'>n/a</td>
+ <td><strong>Mono</strong></td>
+ <td colspan='3' align='center'>All platforms <strong>4.0.2 SR2</strong> or higher</td>
 </tr>
 <tr>
 	<td colspan='4'></td>

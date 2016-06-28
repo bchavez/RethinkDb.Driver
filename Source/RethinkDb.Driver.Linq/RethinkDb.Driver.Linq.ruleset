@@ -72,6 +72,6 @@
     <Rule Id="CA2242" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
-    <Rule Id="CS1591" Action="Error" />
+    <Rule Id="CS1591" Action="None" />
   </Rules>
 </RuleSet>

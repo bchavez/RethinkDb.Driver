@@ -23,10 +23,8 @@ Independent commercial support and consulting is available for this ***community
 **NuGet Package [RethinkDb.Driver](https://www.nuget.org/packages/RethinkDb.Driver/)**
 
 ```
-Install-Package RethinkDb.Driver -Pre
+Install-Package RethinkDb.Driver
 ```
-
-**CoreCLR** users please use the latest beta driver release.
 
 **Supported Runtimes**
 
@@ -46,7 +44,7 @@ Install-Package RethinkDb.Driver -Pre
 </tr>
 <tr>
  <td><strong>.NET Standard</strong></td>
- <td colspan='3' align='center'>All platforms <strong>1.3 RC2</strong> or higher.</td>
+ <td colspan='3' align='center'>All platforms supporting <strong>net standard 1.3</strong> or higher</td>
 </tr>
 <tr>
  <td><strong>.NET Framework</strong</td>

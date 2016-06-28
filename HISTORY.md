@@ -1,3 +1,6 @@
+## v2.3.6
+* :boom: .NET Core 1.0 RTM Support.
+
 ## v2.3.6-beta-1
 * Better initial `ConnectionPool` handling when all nodes are down.
 * Added `ConnectionPool.InitialTimeout` to initially timeout if all nodes are down.

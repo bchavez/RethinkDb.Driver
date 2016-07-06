@@ -1,3 +1,6 @@
+## v2.3.7
+* Added `async` methods to `IDao/RethinkDao` and 
+
 ## v2.3.6
 * :boom: .NET Core 1.0 RTM support.
 

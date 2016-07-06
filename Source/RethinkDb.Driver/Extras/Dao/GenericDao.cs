@@ -1,6 +1,8 @@
-﻿using RethinkDb.Driver.Ast;
+﻿using System.Threading.Tasks;
+using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
+using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Extras.Dao
 {
@@ -55,7 +57,15 @@ namespace RethinkDb.Driver.Extras.Dao
         /// </summary>
         public virtual T GetById(IdT id)
         {
-            return this.Table.Get(id).RunAtom<T>(conn);
+            return GetByIdAsync(id).WaitSync();
+        }
+
+        /// <summary>
+        /// Get a document by Id.
+        /// </summary>
+        public Task<T> GetByIdAsync(IdT id)
+        {
+            return this.Table.Get(id).RunAtomAsync<T>(conn);
         }
 
 
@@ -65,9 +75,20 @@ namespace RethinkDb.Driver.Extras.Dao
         /// <returns>Returns and deserializes the returned document</returns>
         public virtual T Save(T doc)
         {
-            var result = this.Table
+            return SaveAsync(doc).WaitSync();
+        }
+
+        /// <summary>
+        /// Save document. If the document exists, an exception will be thrown. Returns and deserializes the returned document.
+        /// </summary>
+        /// <returns>Returns and deserializes the returned document</returns>
+        public async Task<T> SaveAsync(T doc)
+        {
+            var result = await this.Table
                 .Insert(doc)[returnChanges].OptArg("conflict", "error")
-                .RunResult(conn);
+                .RunResultAsync(conn)
+                .ConfigureAwait(false);
+
             result.AssertNoErrors();
             result.AssertInserted(1);
             return result.ChangesAs<T>()[0].NewValue;
@@ -95,10 +116,19 @@ namespace RethinkDb.Driver.Extras.Dao
             //            doc
             //            )).RunResult(conn);
 
-            var result = this.Table
+            UpdateAsync(doc).WaitSync();
+        }
+
+        /// <summary>
+        /// Updates an existing document. If the document does not exist, an exception will be thrown. 
+        /// </summary>
+        public async Task UpdateAsync(T doc)
+        {
+            var result = await this.Table
                 .GetAll(doc.Id).OptArg("index", "id")
                 .Replace(doc)
-                .RunResult(conn);
+                .RunResultAsync(conn)
+                .ConfigureAwait(false);
 
             result.AssertNoErrors();
             result.AssertReplaced(1);
@@ -110,18 +140,28 @@ namespace RethinkDb.Driver.Extras.Dao
         /// <param name="doc"></param>
         public virtual T SaveOrUpdate(T doc)
         {
-            var result = this.Table
+            return SaveOrUpdateAsync(doc).WaitSync();
+        }
+
+        /// <summary>
+        /// Saves or updates a document. If the document doesn't exist, it will be saved. If the document exists, it will be updated.
+        /// </summary>
+        /// <param name="doc"></param>
+        public async Task<T> SaveOrUpdateAsync(T doc)
+        {
+            var result = await this.Table
                 .Insert(doc)[returnChanges].OptArg("conflict", "replace")
-                .RunResult(conn);
+                .RunResultAsync(conn)
+                .ConfigureAwait(false);
 
             result.AssertNoErrors();
 
-            if ( result.Inserted != 0 )
+            if (result.Inserted != 0)
             {
                 result.AssertInserted(1);
                 return result.ChangesAs<T>()[0].NewValue;
             }
-            if( result.Replaced != 0 )
+            if (result.Replaced != 0)
             {
                 result.AssertReplaced(1);
                 return result.ChangesAs<T>()[0].NewValue;
@@ -134,7 +174,15 @@ namespace RethinkDb.Driver.Extras.Dao
         /// </summary>
         public virtual void Delete(T doc)
         {
-            DeleteById(doc.Id);
+            DeleteAsync(doc).WaitSync();
+        }
+
+        /// <summary>
+        /// Deletes a document.
+        /// </summary>
+        public Task DeleteAsync(T doc)
+        {
+            return DeleteByIdAsync(doc.Id);
         }
 
         /// <summary>
@@ -143,7 +191,18 @@ namespace RethinkDb.Driver.Extras.Dao
         /// <param name="id"></param>
         public virtual void DeleteById(IdT id)
         {
-            var result = this.Table.Get(id).Delete().RunResult(conn);
+            DeleteByIdAsync(id).WaitSync();
+        }
+
+        /// <summary>
+        /// Delete a document by Id.
+        /// </summary>
+        /// <param name="id"></param>
+        public async Task DeleteByIdAsync(IdT id)
+        {
+            var result = await this.Table.Get(id).Delete()
+                .RunResultAsync(conn)
+                .ConfigureAwait(false);
             result.AssertDeleted(1);
         }
     }

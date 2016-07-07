@@ -11,7 +11,7 @@ let serverDownload = "https://download.rethinkdb.com/windows/rethinkdb-2.3.4.zip
 #I @"packages/build/FAKE/tools"
 #I @"packages/build/DotNetZip/lib/net20"
 #r @"FakeLib.dll"
-#r @"DotNetZip.dll"
+#r @"Ionic.Zip.dll"
 
 
 #load @"Utils.fsx"

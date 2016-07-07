@@ -1,5 +1,8 @@
+## v2.3.8
+* Newtonsoft.Json 9.0.1 dependency update.
+
 ## v2.3.7
-* Added `async` methods to `IDao/RethinkDao` 
+* Added `async` methods on `IDao` and `RethinkDao` 
 
 ## v2.3.6
 * :boom: .NET Core 1.0 RTM support.

@@ -1,3 +1,6 @@
+## v2.3.9
+* Added support for `Change<T>.Type` changefeed `include_types` OptArg.
+
 ## v2.3.8
 * Newtonsoft.Json 9.0.1 dependency update.
 

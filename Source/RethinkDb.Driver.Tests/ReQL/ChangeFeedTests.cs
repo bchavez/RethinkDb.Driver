@@ -128,5 +128,65 @@ namespace RethinkDb.Driver.Tests.ReQL
             Task.WaitAll(task);
             task.Result.Should().Be(3);
         }
+
+
+        [Test]
+        public void can_get_change_type()
+        {
+            var result = R.Db(DbName).Table(TableName)
+                .Delete()[new { return_changes = true }]
+                .RunResult(conn)
+                .AssertNoErrors();
+
+            var changes = R.Db(DbName).Table(TableName)
+                .Changes()[new { include_states = false, include_types = true }]
+                .RunChanges<JObject>(conn);
+
+            var task = Task.Run(async () =>
+            {
+                var count = 0;
+                while (await changes.MoveNextAsync())
+                {
+                    changes.Current.Type.Should().Be(ChangeType.Add);
+                    changes.Current.Dump();
+                    count++;
+                }
+                return count;
+            });
+
+            Thread.Sleep(3000);
+
+            Task.Run(() =>
+            {
+                R.Db(DbName).Table(TableName)
+                    .Insert(new { foo = "bar" })
+                    .Run(conn);
+            });
+
+            Thread.Sleep(3000);
+
+            Task.Run(() =>
+            {
+                R.Db(DbName).Table(TableName)
+                    .Insert(new { foo = "bar" })
+                    .Run(conn);
+            });
+
+            Thread.Sleep(3000);
+
+            Task.Run(() =>
+            {
+                R.Db(DbName).Table(TableName)
+                    .Insert(new { foo = "bar" })
+                    .Run(conn);
+            });
+
+            Thread.Sleep(3000);
+
+            changes.Close();
+
+            Task.WaitAll(task);
+            task.Result.Should().Be(3);
+        }
     }
 }

@@ -8,6 +8,7 @@ using NUnit.Framework;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Net;
 using RethinkDb.Driver.Tests.Utils;
+using RethinkDb.Driver.Ast;
 
 namespace RethinkDb.Driver.Tests.ReQL
 {
@@ -129,7 +130,7 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             items.Should().BeInDescendingOrder().And.BeEquivalentTo(3,2,1);
         }
-
+        
         [Test]
         public void getall_using_an_index_with_optarg_indexer()
         {
@@ -311,6 +312,47 @@ namespace RethinkDb.Driver.Tests.ReQL
                     }).RunResult(conn);
 
             newTableResult.Dump();
+        }
+
+        [Test]
+        public void test_dynamically_generated_query()
+        {
+            // The query should only return documents with any of the following colors
+            var colorsToSearchFor = new[] { "0BLK", "1WHT" };
+
+            // Define our ReQL function
+            ReqlFunction1 filterExpression = expr =>
+            {
+                // Dynamically loop over the given colors at run time
+                foreach (var c in colorsToSearchFor)
+                {
+                    // Apply the Or operator
+                    // E.g. ColorCode == 0BLK || ColorCode == 1WHT
+                    expr.Or(expr["ColorCode"].Eq(c));
+                }
+
+                return expr;
+            };
+
+            // Our fake data set with 2 matching docs and 2 non-matching docs      
+            var results = R.Expr(new Product[] {
+                new Product() {ColorCode = "4NAV"},
+                new Product() {ColorCode = "1WHT"},
+                new Product() {ColorCode = "0BLK"},
+                new Product() {ColorCode = "3PRP"}
+            })
+            .Filter(filterExpression)
+            .RunAtom<List<Product>>(conn).ToList();
+
+            // Results should be ["0BLK", "1WHT"]
+            results.Count.Should().Be(2);
+            results.Select(x => x.ColorCode).Should().NotContain("4NAV");
+            results.Select(x => x.ColorCode).Should().NotContain("3PRP");
+        }
+
+        private class Product
+        {
+            public string ColorCode;
         }
 
     }

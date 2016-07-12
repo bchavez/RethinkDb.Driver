@@ -320,34 +320,32 @@ namespace RethinkDb.Driver.Tests.ReQL
             // The query should only return documents with any of the following colors
             var colorsToSearchFor = new[] { "0BLK", "1WHT" };
 
-            // Define our ReQL function
-            ReqlFunction1 filterExpression = expr =>
-            {
-                // Dynamically loop over the given colors at run time
-                foreach (var c in colorsToSearchFor)
-                {
-                    // Apply the Or operator
-                    // E.g. ColorCode == 0BLK || ColorCode == 1WHT
-                    expr.Or(expr["ColorCode"].Eq(c));
-                }
-
-                return expr;
-            };
-
             // Our fake data set with 2 matching docs and 2 non-matching docs      
-            var results = R.Expr(new Product[] {
-                new Product() {ColorCode = "4NAV"},
-                new Product() {ColorCode = "1WHT"},
-                new Product() {ColorCode = "0BLK"},
-                new Product() {ColorCode = "3PRP"}
-            })
-            .Filter(filterExpression)
-            .RunAtom<List<Product>>(conn).ToList();
+            var results = R.Expr(new[]
+                {
+                    new Product() {ColorCode = "4NAV"},
+                    new Product() {ColorCode = "1WHT"},
+                    new Product() {ColorCode = "0BLK"},
+                    new Product() {ColorCode = "3PRP"}
+                })
+                .Filter(doc => BuildDynamicQuery(doc, colorsToSearchFor))
+                .RunAtom<List<Product>>(conn).ToList();
 
             // Results should be ["0BLK", "1WHT"]
             results.Count.Should().Be(2);
             results.Select(x => x.ColorCode).Should().NotContain("4NAV");
             results.Select(x => x.ColorCode).Should().NotContain("3PRP");
+            results.Dump();
+        }
+
+        private ReqlExpr BuildDynamicQuery(ReqlExpr expr, string[] colorSearch)
+        {
+            var statement = R.Or();
+            foreach( var color in colorSearch )
+            {
+                statement = statement.Or(expr[nameof(Product.ColorCode)].Eq(color));
+            }
+            return statement;
         }
 
         private class Product

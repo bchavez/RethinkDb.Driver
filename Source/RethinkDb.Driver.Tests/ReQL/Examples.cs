@@ -328,7 +328,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                     new Product() {ColorCode = "0BLK"},
                     new Product() {ColorCode = "3PRP"}
                 })
-                .Filter(doc => BuildDynamicQuery(doc, colorsToSearchFor))
+                .Filter(doc => BuildDynamicFilter(doc, colorsToSearchFor))
                 .RunAtom<List<Product>>(conn).ToList();
 
             // Results should be ["0BLK", "1WHT"]
@@ -338,7 +338,7 @@ namespace RethinkDb.Driver.Tests.ReQL
             results.Dump();
         }
 
-        private ReqlExpr BuildDynamicQuery(ReqlExpr expr, string[] colorSearch)
+        private ReqlExpr BuildDynamicFilter(ReqlExpr expr, string[] colorSearch)
         {
             var statement = R.Or();
             foreach( var color in colorSearch )

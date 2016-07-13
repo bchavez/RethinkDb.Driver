@@ -329,7 +329,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                     new Product() {ColorCode = "3PRP"}
                 })
                 .Filter(doc => BuildDynamicFilter(doc, colorsToSearchFor))
-                .RunAtom<List<Product>>(conn).ToList();
+                .RunAtom<List<Product>>(conn);
 
             // Results should be ["0BLK", "1WHT"]
             results.Count.Should().Be(2);

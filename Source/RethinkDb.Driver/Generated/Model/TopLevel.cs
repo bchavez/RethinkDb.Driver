@@ -73,12 +73,12 @@ namespace RethinkDb.Driver.Ast {
                                return Js ( expr );
                             }
 /// <summary>
-/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID.</para>
+/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID. If a string is passed to <code>uuid</code> as an argument, the UUID will be deterministic, derived from the string's SHA-1 hash.</para>
 ///</summary>
 /// <example><para>Example: Generate a UUID.</para>
 /// <code>&gt; r.uuid().run(conn, callback)
 /// // result returned to callback
-/// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
+/// "27961a0e-f4e8-4eb3-bf95-c5203e1d87b9"
 /// </code></example>
                             public Uuid Uuid (  )
                             {
@@ -90,12 +90,12 @@ namespace RethinkDb.Driver.Ast {
                                return Uuid (  );
                             }
 /// <summary>
-/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID.</para>
+/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID. If a string is passed to <code>uuid</code> as an argument, the UUID will be deterministic, derived from the string's SHA-1 hash.</para>
 ///</summary>
 /// <example><para>Example: Generate a UUID.</para>
 /// <code>&gt; r.uuid().run(conn, callback)
 /// // result returned to callback
-/// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
+/// "27961a0e-f4e8-4eb3-bf95-c5203e1d87b9"
 /// </code></example>
                             public Uuid Uuid ( Object expr )
                             {
@@ -110,7 +110,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.</para>
 ///</summary>
-/// <example><para>Example: Perform a simple HTTP <code>GET</code> request, and store the result in a table.</para>
+/// <example><para>Example: Perform an HTTP <code>GET</code> and store the result in a table.</para>
 /// <code>r.table('posts').insert(r.http('http://httpbin.org/get')).run(conn, callback)
 /// </code></example>
                             public Http Http ( Object expr )
@@ -179,8 +179,7 @@ namespace RethinkDb.Driver.Ast {
                                return Db ( expr );
                             }
 /// <summary>
-/// <para>Select all documents in a table. This command can be chained with other commands to do
-/// further processing on the data.</para>
+/// <para>Return all documents in a table. Other commands may be chained after <code>table</code> to return a subset of documents (such as <a href="/api/javascript/get/">get</a> and <a href="/api/javascript/filter/">filter</a>) or perform further processing.</para>
 ///</summary>
 /// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
@@ -196,10 +195,10 @@ namespace RethinkDb.Driver.Ast {
                                return Table ( expr );
                             }
 /// <summary>
-/// <para>Test if two values are equal.</para>
+/// <para>Test if two or more values are equal.</para>
 ///</summary>
-/// <example><para>Example: Does 2 equal 2?</para>
-/// <code>r.expr(2).eq(2).run(conn, callback)
+/// <example><para>Example: See if a user's <code>role</code> field is set to <code>administrator</code>.</para>
+/// <code>r.table('users').get(1)('role').eq('administrator').run(conn, callback);
 /// </code></example>
                             public Eq Eq ( Object expr, Object exprA, params object[] exprs )
                             {
@@ -214,10 +213,10 @@ namespace RethinkDb.Driver.Ast {
                                return Eq ( expr, exprA, exprs );
                             }
 /// <summary>
-/// <para>Test if two values are not equal.</para>
+/// <para>Test if two or more values are not equal.</para>
 ///</summary>
-/// <example><para>Example: Does 2 not equal 2?</para>
-/// <code>r.expr(2).ne(2).run(conn, callback)
+/// <example><para>Example: See if a user's <code>role</code> field is not set to <code>administrator</code>.</para>
+/// <code>r.table('users').get(1)('role').ne('administrator').run(conn, callback);
 /// </code></example>
                             public Ne Ne ( Object expr, Object exprA, params object[] exprs )
                             {
@@ -232,10 +231,10 @@ namespace RethinkDb.Driver.Ast {
                                return Ne ( expr, exprA, exprs );
                             }
 /// <summary>
-/// <para>Test if the first value is less than other.</para>
+/// <para>Compare values, testing if the left-hand value is less than the right-hand.</para>
 ///</summary>
-/// <example><para>Example: Is 2 less than 2?</para>
-/// <code>r.expr(2).lt(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored less than 10 points.</para>
+/// <code>r.table('players').get(1)('score').lt(10).run(conn, callback);
 /// </code></example>
                             public Lt Lt ( Object expr, Object exprA, params object[] exprs )
                             {
@@ -250,10 +249,10 @@ namespace RethinkDb.Driver.Ast {
                                return Lt ( expr, exprA, exprs );
                             }
 /// <summary>
-/// <para>Test if the first value is less than or equal to other.</para>
+/// <para>Compare values, testing if the left-hand value is less than or equal to the right-hand.</para>
 ///</summary>
-/// <example><para>Example: Is 2 less than or equal to 2?</para>
-/// <code>r.expr(2).le(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored 10 points or less.</para>
+/// <code>r.table('players').get(1)('score').le(10).run(conn, callback);
 /// </code></example>
                             public Le Le ( Object expr, Object exprA, params object[] exprs )
                             {
@@ -268,10 +267,10 @@ namespace RethinkDb.Driver.Ast {
                                return Le ( expr, exprA, exprs );
                             }
 /// <summary>
-/// <para>Test if the first value is greater than other.</para>
+/// <para>Compare values, testing if the left-hand value is greater than the right-hand.</para>
 ///</summary>
-/// <example><para>Example: Is 2 greater than 2?</para>
-/// <code>r.expr(2).gt(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored more than 10 points.</para>
+/// <code>r.table('players').get(1)('score').gt(10).run(conn, callback);
 /// </code></example>
                             public Gt Gt ( Object expr, Object exprA, params object[] exprs )
                             {
@@ -286,10 +285,10 @@ namespace RethinkDb.Driver.Ast {
                                return Gt ( expr, exprA, exprs );
                             }
 /// <summary>
-/// <para>Test if the first value is greater than or equal to other.</para>
+/// <para>Compare values, testing if the left-hand value is greater than or equal to the right-hand.</para>
 ///</summary>
-/// <example><para>Example: Is 2 greater than or equal to 2?</para>
-/// <code>r.expr(2).ge(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored 10 points or more.</para>
+/// <code>r.table('players').get(1)('score').ge(10).run(conn, callback);
 /// </code></example>
                             public Ge Ge ( Object expr, Object exprA, params object[] exprs )
                             {
@@ -305,12 +304,12 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Compute the logical inverse (not) of an expression.</para>
-/// <para><code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.</para>
 ///</summary>
 /// <example><para>Example: Not true is false.</para>
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>These evaluate to <code>false</code>.</para></example>
                             public Not Not ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
@@ -322,10 +321,12 @@ namespace RethinkDb.Driver.Ast {
                                return Not ( expr );
                             }
 /// <summary>
-/// <para>Sum two numbers, concatenate two strings, or concatenate 2 arrays.</para>
+/// <para>Sum two or more numbers, or concatenate two or more strings or arrays.</para>
 ///</summary>
 /// <example><para>Example: It's as easy as 2 + 2 = 4.</para>
-/// <code>r.expr(2).add(2).run(conn, callback)
+/// <code>&gt; r.expr(2).add(2).run(conn, callback)
+/// // result passed to callback
+/// 4
 /// </code></example>
                             public Add Add ( Object expr, params object[] exprs )
                             {
@@ -390,7 +391,7 @@ namespace RethinkDb.Driver.Ast {
                                return Div ( expr, exprs );
                             }
 /// <summary>
-/// <para>Find the remainder when dividing two numbers.</para>
+/// 
 ///</summary>
 /// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)
@@ -410,10 +411,11 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
 ///</summary>
 /// <example><para>Example: Return the floor of 12.345.</para>
-/// <code>&gt; r.floor(12.345).run(conn, callback);
-/// 
+/// <code>r.floor(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 12.0
-/// </code></example>
+/// </code>
+/// <para>The <code>floor</code> command can also be chained after an expression.</para></example>
                             public Floor Floor ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
@@ -428,10 +430,11 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
 ///</summary>
 /// <example><para>Example: Return the ceiling of 12.345.</para>
-/// <code>&gt; r.ceil(12.345).run(conn, callback);
-/// 
+/// <code>r.ceil(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 13.0
-/// </code></example>
+/// </code>
+/// <para>The <code>ceil</code> command can also be chained after an expression.</para></example>
                             public Ceil Ceil ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
@@ -446,10 +449,11 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Rounds the given value to the nearest whole integer.</para>
 ///</summary>
 /// <example><para>Example: Round 12.345 to the nearest integer.</para>
-/// <code>&gt; r.round(12.345).run(conn, callback);
-/// 
+/// <code>r.round(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 12.0
-/// </code></example>
+/// </code>
+/// <para>The <code>round</code> command can also be chained after an expression.</para></example>
                             public Round Round ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
@@ -461,9 +465,10 @@ namespace RethinkDb.Driver.Ast {
                                return Round ( expr );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -479,9 +484,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -498,9 +504,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -518,9 +525,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, jsA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -539,9 +547,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, jsA, jsB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -561,9 +570,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, jsA, jsB, jsC );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -583,9 +593,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, jsA, jsB, exprA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -604,9 +615,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, jsA, exprA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -626,9 +638,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, jsA, exprA, jsB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -648,9 +661,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, jsA, exprA, exprB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -668,9 +682,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, exprA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -689,9 +704,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, exprA, jsA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -711,9 +727,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, exprA, jsA, jsB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -733,9 +750,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, exprA, jsA, exprB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -754,9 +772,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, exprA, exprB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -776,9 +795,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, exprA, exprB, jsA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -798,9 +818,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, js, exprA, exprB, exprC );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -817,9 +838,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -837,9 +859,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, js );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -858,9 +881,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, js, jsA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -880,9 +904,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, js, jsA, jsB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -902,9 +927,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, js, jsA, exprB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -923,9 +949,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, js, exprB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -945,9 +972,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, js, exprB, jsA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -967,9 +995,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, js, exprB, exprC );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -987,9 +1016,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, exprB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1008,9 +1038,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, exprB, js );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1030,9 +1061,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, exprB, js, jsA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1052,9 +1084,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, exprB, js, exprC );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1073,9 +1106,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, exprB, exprC );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1095,9 +1129,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, exprB, exprC, js );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1117,9 +1152,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, exprB, exprC, exprD );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1139,9 +1175,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, exprB, exprC, func1 );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1160,9 +1197,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, exprB, func1 );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1182,9 +1220,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, exprB, func1, exprC );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1204,9 +1243,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, exprB, func1, func1A );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1224,9 +1264,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, func1 );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1245,9 +1286,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, func1, exprB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1267,9 +1309,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, func1, exprB, exprC );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1289,9 +1332,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, func1, exprB, func1A );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1310,9 +1354,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, func1, func1A );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1332,9 +1377,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, func1, func1A, exprB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1354,9 +1400,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, exprA, func1, func1A, func1B );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1373,9 +1420,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1 );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1393,9 +1441,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, exprA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1414,9 +1463,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, exprA, exprB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1436,9 +1486,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, exprA, exprB, exprC );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1458,9 +1509,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, exprA, exprB, func1A );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1479,9 +1531,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, exprA, func1A );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1501,9 +1554,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, exprA, func1A, exprB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1523,9 +1577,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, exprA, func1A, func1B );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1543,9 +1598,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, func1A );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1564,9 +1620,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, func1A, exprA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1586,9 +1643,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, func1A, exprA, exprB );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1608,9 +1666,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, func1A, exprA, func1B );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1629,9 +1688,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, func1A, func1B );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1651,9 +1711,10 @@ namespace RethinkDb.Driver.Ast {
                                return Contains ( expr, func1, func1A, func1B, exprA );
                             }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 ///</summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1679,6 +1740,9 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
 /// <example><para>Example: Create a simple object.</para>
 /// <code>r.object('id', 5, 'data', ['foo', 'bar']).run(conn, callback)
+/// </code>
+/// <para>Result:</para>
+/// <code>{data: ["foo", "bar"], id: 5}
 /// </code></example>
                             public ReqlObject Object_ ( params object[] exprs )
                             {
@@ -1691,16 +1755,16 @@ namespace RethinkDb.Driver.Ast {
                                return Object_ ( exprs );
                             }
 /// <summary>
-/// <para>Produce a single value from a sequence through repeated application of a reduction
-/// function.</para>
+/// <para>Produce a single value from a sequence through repeated application of a reduction function.</para>
 ///</summary>
-/// <example><para>Example: Return the number of documents in the table `posts.</para>
+/// <example><para>Example: Return the number of documents in the table <code>posts</code>.</para>
 /// <code>r.table("posts").map(function(doc) {
-///     return 1
+///     return 1;
 /// }).reduce(function(left, right) {
-///     return left.add(right)
-/// }).run(conn, callback);
-/// </code></example>
+///     return left.add(right);
+/// }).default(0).run(conn, callback);
+/// </code>
+/// <para>A shorter way to execute this query is to use <a href="/api/javascript/count">count</a>.</para></example>
                             public Reduce Reduce ( Object expr, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
@@ -1713,16 +1777,16 @@ namespace RethinkDb.Driver.Ast {
                                return Reduce ( expr, js );
                             }
 /// <summary>
-/// <para>Produce a single value from a sequence through repeated application of a reduction
-/// function.</para>
+/// <para>Produce a single value from a sequence through repeated application of a reduction function.</para>
 ///</summary>
-/// <example><para>Example: Return the number of documents in the table `posts.</para>
+/// <example><para>Example: Return the number of documents in the table <code>posts</code>.</para>
 /// <code>r.table("posts").map(function(doc) {
-///     return 1
+///     return 1;
 /// }).reduce(function(left, right) {
-///     return left.add(right)
-/// }).run(conn, callback);
-/// </code></example>
+///     return left.add(right);
+/// }).default(0).run(conn, callback);
+/// </code>
+/// <para>A shorter way to execute this query is to use <a href="/api/javascript/count">count</a>.</para></example>
                             public Reduce Reduce ( Object expr, ReqlFunction2 func2 )
                             {
                                 Arguments arguments = new Arguments();
@@ -1734,6 +1798,15 @@ namespace RethinkDb.Driver.Ast {
                             {
                                return Reduce ( expr, func2 );
                             }
+/// <summary>
+/// <para>Apply a function to a sequence in order, maintaining state via an accumulator. The <code>fold</code> command returns either a single value or a new sequence.</para>
+///</summary>
+/// <example><para>Example: Concatenate words from a list.</para>
+/// <code>r.table('words').orderBy('id').fold('', function (acc, word) {
+///     return acc.add(r.branch(acc.eq(''), '', ', ')).add(word);
+/// }).run(conn, callback);
+/// </code>
+/// <para>(This example could be implemented with <code>reduce</code>, but <code>fold</code> will preserve the order when <code>words</code> is a RethinkDB table or other stream, which is not guaranteed with <code>reduce</code>.)</para></example>
                             public Fold Fold ( Object expr, Object exprA, Javascript js )
                             {
                                 Arguments arguments = new Arguments();
@@ -1746,6 +1819,15 @@ namespace RethinkDb.Driver.Ast {
                             {
                                return Fold ( expr, exprA, js );
                             }
+/// <summary>
+/// <para>Apply a function to a sequence in order, maintaining state via an accumulator. The <code>fold</code> command returns either a single value or a new sequence.</para>
+///</summary>
+/// <example><para>Example: Concatenate words from a list.</para>
+/// <code>r.table('words').orderBy('id').fold('', function (acc, word) {
+///     return acc.add(r.branch(acc.eq(''), '', ', ')).add(word);
+/// }).run(conn, callback);
+/// </code>
+/// <para>(This example could be implemented with <code>reduce</code>, but <code>fold</code> will preserve the order when <code>words</code> is a RethinkDB table or other stream, which is not guaranteed with <code>reduce</code>.)</para></example>
                             public Fold Fold ( Object expr, Object exprA, ReqlFunction2 func2 )
                             {
                                 Arguments arguments = new Arguments();
@@ -1960,9 +2042,9 @@ namespace RethinkDb.Driver.Ast {
                                return Map ( expr, func1 );
                             }
 /// <summary>
-/// <para>Remove duplicate elements from the sequence.</para>
+/// <para>Removes duplicates from elements in a sequence.</para>
 ///</summary>
-/// <example><para>Example: Which unique villains have been vanquished by marvel heroes?</para>
+/// <example><para>Example: Which unique villains have been vanquished by Marvel heroes?</para>
 /// <code>r.table('marvel').concatMap(function(hero) {
 ///     return hero('villainList')
 /// }).distinct().run(conn, callback)
@@ -1978,12 +2060,10 @@ namespace RethinkDb.Driver.Ast {
                                return Distinct ( expr );
                             }
 /// <summary>
-/// <para>Count the number of elements in the sequence. With a single argument, count the number
-/// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.</para>
+/// <para>Counts the number of elements in a sequence or key/value pairs in an object, or returns the size of a string or binary object.</para>
 ///</summary>
-/// <example><para>Example: Just how many super heroes are there?</para>
-/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// <example><para>Example: Count the number of users.</para>
+/// <code>r.table('users').count().run(conn, callback);
 /// </code></example>
                             public Count Count ( Object expr )
                             {
@@ -1996,12 +2076,10 @@ namespace RethinkDb.Driver.Ast {
                                return Count ( expr );
                             }
 /// <summary>
-/// <para>Count the number of elements in the sequence. With a single argument, count the number
-/// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.</para>
+/// <para>Counts the number of elements in a sequence or key/value pairs in an object, or returns the size of a string or binary object.</para>
 ///</summary>
-/// <example><para>Example: Just how many super heroes are there?</para>
-/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// <example><para>Example: Count the number of users.</para>
+/// <code>r.table('users').count().run(conn, callback);
 /// </code></example>
                             public Count Count ( Object expr, Javascript js )
                             {
@@ -2015,12 +2093,10 @@ namespace RethinkDb.Driver.Ast {
                                return Count ( expr, js );
                             }
 /// <summary>
-/// <para>Count the number of elements in the sequence. With a single argument, count the number
-/// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.</para>
+/// <para>Counts the number of elements in a sequence or key/value pairs in an object, or returns the size of a string or binary object.</para>
 ///</summary>
-/// <example><para>Example: Just how many super heroes are there?</para>
-/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// <example><para>Example: Count the number of users.</para>
+/// <code>r.table('users').count().run(conn, callback);
 /// </code></example>
                             public Count Count ( Object expr, Object exprA )
                             {
@@ -2034,12 +2110,10 @@ namespace RethinkDb.Driver.Ast {
                                return Count ( expr, exprA );
                             }
 /// <summary>
-/// <para>Count the number of elements in the sequence. With a single argument, count the number
-/// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.</para>
+/// <para>Counts the number of elements in a sequence or key/value pairs in an object, or returns the size of a string or binary object.</para>
 ///</summary>
-/// <example><para>Example: Just how many super heroes are there?</para>
-/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// <example><para>Example: Count the number of users.</para>
+/// <code>r.table('users').count().run(conn, callback);
 /// </code></example>
                             public Count Count ( Object expr, ReqlFunction1 func1 )
                             {
@@ -2053,7 +2127,7 @@ namespace RethinkDb.Driver.Ast {
                                return Count ( expr, func1 );
                             }
 /// <summary>
-/// <para>Concatenate two or more sequences.</para>
+/// <para>Merge two or more sequences.</para>
 ///</summary>
 /// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
@@ -2074,7 +2148,7 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
 /// <example><para>Example: Return a four-element range of <code>[0, 1, 2, 3]</code>.</para>
 /// <code>&gt; r.range(4).run(conn, callback)
-/// 
+/// // result returned to callback
 /// [0, 1, 2, 3]
 /// </code></example>
                             public Range Range (  )
@@ -2091,7 +2165,7 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
 /// <example><para>Example: Return a four-element range of <code>[0, 1, 2, 3]</code>.</para>
 /// <code>&gt; r.range(4).run(conn, callback)
-/// 
+/// // result returned to callback
 /// [0, 1, 2, 3]
 /// </code></example>
                             public Range Range ( Object expr )
@@ -2109,7 +2183,7 @@ namespace RethinkDb.Driver.Ast {
 ///</summary>
 /// <example><para>Example: Return a four-element range of <code>[0, 1, 2, 3]</code>.</para>
 /// <code>&gt; r.range(4).run(conn, callback)
-/// 
+/// // result returned to callback
 /// [0, 1, 2, 3]
 /// </code></example>
                             public Range Range ( Object expr, Object exprA )
@@ -2124,10 +2198,12 @@ namespace RethinkDb.Driver.Ast {
                                return Range ( expr, exprA );
                             }
 /// <summary>
-/// <para>Gets the type of a value.</para>
+/// <para>Gets the type of a ReQL query's return value.</para>
 ///</summary>
 /// <example><para>Example: Get the type of a string.</para>
-/// <code>r.expr("foo").typeOf().run(conn, callback)
+/// <code>r.expr("foo").typeOf().run(conn, callback);
+/// // Result passed to callback
+/// "STRING"
 /// </code></example>
                             public TypeOf TypeOf ( Object expr )
                             {
@@ -2142,12 +2218,22 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Create a database. A RethinkDB database is a collection of tables, similar to
 /// relational databases.</para>
-/// <para>If successful, the operation returns an object: <code>{created: 1}</code>. If a database with the
-/// same name already exists the operation throws <code>RqlRuntimeError</code>.</para>
-/// <para>Note: that you can only use alphanumeric characters and underscores for the database name.</para>
 ///</summary>
 /// <example><para>Example: Create a database named 'superheroes'.</para>
-/// <code>r.dbCreate('superheroes').run(conn, callback)
+/// <code>&gt; r.dbCreate('superheroes').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "new_val": {
+///                 "id": "e4689cfc-e903-4532-a0e6-2d6797a43f07",
+///                 "name": "superheroes"
+///             },
+///             "old_val": null
+///         }
+///     ],
+///     "dbs_created": 1
+/// }
 /// </code></example>
                             public DbCreate DbCreate ( Object expr )
                             {
@@ -2161,11 +2247,23 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Drop a database. The database, all its tables, and corresponding data will be deleted.</para>
-/// <para>If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
-/// doesn't exist a <code>RqlRuntimeError</code> is thrown.</para>
 ///</summary>
 /// <example><para>Example: Drop a database named 'superheroes'.</para>
-/// <code>r.dbDrop('superheroes').run(conn, callback)
+/// <code>&gt; r.dbDrop('superheroes').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "old_val": {
+///                 "id": "e4689cfc-e903-4532-a0e6-2d6797a43f07",
+///                 "name": "superheroes"
+///             },
+///             "new_val": null
+///         }
+///     ],
+///     "tables_dropped": 3,
+///     "dbs_dropped": 1
+/// }
 /// </code></example>
                             public DbDrop DbDrop ( Object expr )
                             {
@@ -2196,7 +2294,33 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
 ///</summary>
 /// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
-/// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
+/// <code>&gt; r.db('heroes').tableCreate('dc_universe').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "new_val": {
+///                 "db": "test",
+///                 "durability":  "hard",
+///                 "id": "20ea60d4-3b76-4817-8828-98a236df0297",
+///                 "name": "dc_universe",
+///                 "primary_key": "id",
+///                 "shards": [
+///                     {
+///                         "primary_replica": "rethinkdb_srv1",
+///                         "replicas": [
+///                             "rethinkdb_srv1",
+///                             "rethinkdb_srv2"
+///                         ]
+///                     }
+///                 ],
+///                 "write_acks": "majority"
+///             },
+///             "old_val": null
+///         }
+///     ],
+///     "tables_created": 1
+/// }
 /// </code></example>
                             public TableCreate TableCreate ( Object expr )
                             {
@@ -2209,10 +2333,36 @@ namespace RethinkDb.Driver.Ast {
                                return TableCreate ( expr );
                             }
 /// <summary>
-/// <para>Drop a table. The table and all its data will be deleted.</para>
+/// <para>Drop a table from a database. The table and all its data will be deleted.</para>
 ///</summary>
 /// <example><para>Example: Drop a table named 'dc_universe'.</para>
-/// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
+/// <code>&gt; r.db('test').tableDrop('dc_universe').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "old_val": {
+///                 "db": "test",
+///                 "durability":  "hard",
+///                 "id": "20ea60d4-3b76-4817-8828-98a236df0297",
+///                 "name": "dc_universe",
+///                 "primary_key": "id",
+///                 "shards": [
+///                     {
+///                         "primary_replica": "rethinkdb_srv1",
+///                         "replicas": [
+///                             "rethinkdb_srv1",
+///                             "rethinkdb_srv2"
+///                         ]
+///                     }
+///                 ],
+///                 "write_acks": "majority"
+///             },
+///             "new_val": null
+///         }
+///     ],
+///     "tables_dropped": 1
+/// }
 /// </code></example>
                             public TableDrop TableDrop ( Object expr )
                             {
@@ -2239,6 +2389,22 @@ namespace RethinkDb.Driver.Ast {
                             {
                                return TableList (  );
                             }
+/// <summary>
+/// <para>Grant or deny access permissions for a user account, globally or on a per-database or per-table basis.</para>
+///</summary>
+/// <example><para>Example: Grant the <code>chatapp</code> user account read and write permissions on the <code>users</code> database.</para>
+/// <code>r.db('users').grant('chatapp', {read: true, write: true}).run(conn, callback);
+/// 
+/// // Result passed to callback
+/// {
+///     "granted": 1,
+///     "permissions_changes": [
+///         {
+///             "new_val": { "read": true, "write": true },
+///             "old_val": { null }
+///         }
+///     ]
+/// </code></example>
                             public Grant Grant ( Object expr, Object exprA )
                             {
                                 Arguments arguments = new Arguments();
@@ -2354,19 +2520,14 @@ namespace RethinkDb.Driver.Ast {
                                return Do_ ( func0 );
                             }
 /// <summary>
-/// <para>If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
-/// Otherwise, the <code>true_branch</code> will be evaluated.</para>
-/// <para>The <code>branch</code> command is effectively an <code>if</code> renamed due to language constraints.
-/// The type of the result is determined by the type of the branch that gets executed.</para>
+/// <para>Perform a branching conditional equivalent to <code>if-then-else</code>.</para>
+/// <para>The <code>branch</code> command takes 2n+1 arguments: pairs of conditional expressions and commands to be executed if the conditionals return any value but <code>false</code> or <code>null</code> (i.e., "truthy" values), with a final "else" command to be evaluated if all of the conditionals are <code>false</code> or <code>null</code>.</para>
 ///</summary>
-/// <example><para>Example: Return heroes and superheroes.</para>
-/// <code>r.table('marvel').map(
-///     r.branch(
-///         r.row('victories').gt(100),
-///         r.row('name').add(' is a superhero'),
-///         r.row('name').add(' is a hero')
-///     )
-/// ).run(conn, callback)
+/// <example><para>Example: Test the value of x.</para>
+/// <code>var x = 10;
+/// r.branch(r.expr(x).gt(5), 'big', 'small').run(conn, callback);
+/// // Result passed to callback
+/// "big"
 /// </code></example>
                             public Branch Branch ( Object expr, Object exprA, Object exprB, params object[] exprs )
                             {
@@ -2382,7 +2543,7 @@ namespace RethinkDb.Driver.Ast {
                                return Branch ( expr, exprA, exprB, exprs );
                             }
 /// <summary>
-/// <para>Compute the logical "or" of two or more values.</para>
+/// <para>Compute the logical "or" of one or more values.</para>
 ///</summary>
 /// <example><para>Example: Return whether either <code>a</code> or <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
@@ -2401,7 +2562,7 @@ namespace RethinkDb.Driver.Ast {
                                return Or ( exprs );
                             }
 /// <summary>
-/// <para>Compute the logical "and" of two or more values.</para>
+/// <para>Compute the logical "and" of one or more values.</para>
 ///</summary>
 /// <example><para>Example: Return whether both <code>a</code> and <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
@@ -2512,7 +2673,7 @@ namespace RethinkDb.Driver.Ast {
                                return Json ( expr );
                             }
 /// <summary>
-/// <para>Create a time object based on an ISO 8601 date-time string (e.g. '2013-01-01T01:01:01+00:00'). We support all valid ISO 8601 formats except for week dates. If you pass an ISO 8601 date-time without a time zone, you must specify the time zone with the <code>defaultTimezone</code> argument. Read more about the ISO 8601 format at <a href="http://en.wikipedia.org/wiki/ISO_8601">Wikipedia</a>.</para>
+/// <para>Create a time object based on an ISO 8601 date-time string (e.g. '2013-01-01T01:01:01+00:00'). RethinkDB supports all valid ISO 8601 formats except for week dates. Read more about the ISO 8601 format at <a href="http://en.wikipedia.org/wiki/ISO_8601">Wikipedia</a>.</para>
 ///</summary>
 /// <example><para>Example: Update the time of John's birth.</para>
 /// <code>r.table("user").get("John").update({birth: r.ISO8601('1986-11-03T08:30:00-07:00')}).run(conn, callback)
@@ -2532,8 +2693,7 @@ namespace RethinkDb.Driver.Ast {
 /// will be rounded to three decimal places (millisecond-precision).</para>
 ///</summary>
 /// <example><para>Example: Update the birthdate of the user "John" to November 3rd, 1986.</para>
-/// <code>r.table("user").get("John").update({birthdate: r.epochTime(531360000)})
-///     .run(conn, callback)
+/// <code>r.table("user").get("John").update({birthdate: r.epochTime(531360000)}).run(conn, callback)
 /// </code></example>
                             public EpochTime EpochTime ( Object expr )
                             {
@@ -2565,21 +2725,9 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Create a time object for a specific time.</para>
-/// <para>A few restrictions exist on the arguments:</para>
-/// <ul>
-/// <li><code>year</code> is an integer between 1400 and 9,999.</li>
-/// <li><code>month</code> is an integer between 1 and 12.</li>
-/// <li><code>day</code> is an integer between 1 and 31.</li>
-/// <li><code>hour</code> is an integer.</li>
-/// <li><code>minutes</code> is an integer.</li>
-/// <li><code>seconds</code> is a double. Its value will be rounded to three decimal places
-/// (millisecond-precision).</li>
-/// <li><code>timezone</code> can be <code>'Z'</code> (for UTC) or a string with the format <code>±[hh]:[mm]</code>.</li>
-/// </ul>
 ///</summary>
 /// <example><para>Example: Update the birthdate of the user "John" to November 3rd, 1986 UTC.</para>
-/// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
-///     .run(conn, callback)
+/// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')}).run(conn, callback)
 /// </code></example>
                             public Time Time ( Object expr, Object exprA, Object exprB, Object exprC )
                             {
@@ -2596,21 +2744,9 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Create a time object for a specific time.</para>
-/// <para>A few restrictions exist on the arguments:</para>
-/// <ul>
-/// <li><code>year</code> is an integer between 1400 and 9,999.</li>
-/// <li><code>month</code> is an integer between 1 and 12.</li>
-/// <li><code>day</code> is an integer between 1 and 31.</li>
-/// <li><code>hour</code> is an integer.</li>
-/// <li><code>minutes</code> is an integer.</li>
-/// <li><code>seconds</code> is a double. Its value will be rounded to three decimal places
-/// (millisecond-precision).</li>
-/// <li><code>timezone</code> can be <code>'Z'</code> (for UTC) or a string with the format <code>±[hh]:[mm]</code>.</li>
-/// </ul>
 ///</summary>
 /// <example><para>Example: Update the birthdate of the user "John" to November 3rd, 1986 UTC.</para>
-/// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')})
-///     .run(conn, callback)
+/// <code>r.table("user").get("John").update({birthdate: r.time(1986, 11, 3, 'Z')}).run(conn, callback)
 /// </code></example>
                             public Time Time ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD, Object exprE, Object exprF )
                             {
@@ -2800,11 +2936,21 @@ namespace RethinkDb.Driver.Ast {
                                return December (  );
                             }
 /// <summary>
-/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.</para>
-/// <para><code>js
-/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
+/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation. Using <code>literal</code> with no arguments in a <code>merge</code> or <code>update</code> operation will remove the corresponding field.</para>
 ///</summary>
-/// <example></example>
+/// <example><para>Example: Replace one nested document with another rather than merging the fields.</para>
+/// <code>r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)
+/// 
+/// // Result passed to callback
+/// {
+///     "id": 1,
+///     "name": "Alice",
+///     "data": {
+///         "age": 19,
+///         "job": "Engineer"
+///     }
+/// }
+/// </code></example>
                             public Literal Literal (  )
                             {
                                 Arguments arguments = new Arguments();
@@ -2815,11 +2961,21 @@ namespace RethinkDb.Driver.Ast {
                                return Literal (  );
                             }
 /// <summary>
-/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.</para>
-/// <para><code>js
-/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
+/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation. Using <code>literal</code> with no arguments in a <code>merge</code> or <code>update</code> operation will remove the corresponding field.</para>
 ///</summary>
-/// <example></example>
+/// <example><para>Example: Replace one nested document with another rather than merging the fields.</para>
+/// <code>r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)
+/// 
+/// // Result passed to callback
+/// {
+///     "id": 1,
+///     "name": "Alice",
+///     "data": {
+///         "age": 19,
+///         "job": "Engineer"
+///     }
+/// }
+/// </code></example>
                             public Literal Literal ( Object expr )
                             {
                                 Arguments arguments = new Arguments();
@@ -2832,11 +2988,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr )
                             {
@@ -2850,11 +3023,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js )
                             {
@@ -2869,11 +3059,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Javascript jsA )
                             {
@@ -2889,11 +3096,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Javascript jsA, Javascript jsB )
                             {
@@ -2910,11 +3134,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
                             {
@@ -2932,11 +3173,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Javascript jsA, Javascript jsB, Object exprA )
                             {
@@ -2954,11 +3212,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Javascript jsA, Object exprA )
                             {
@@ -2975,11 +3250,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Javascript jsA, Object exprA, Javascript jsB )
                             {
@@ -2997,11 +3289,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Javascript jsA, Object exprA, Object exprB )
                             {
@@ -3019,11 +3328,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Object exprA )
                             {
@@ -3039,11 +3365,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Object exprA, Javascript jsA )
                             {
@@ -3060,11 +3403,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Object exprA, Javascript jsA, Javascript jsB )
                             {
@@ -3082,11 +3442,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Object exprA, Javascript jsA, Object exprB )
                             {
@@ -3104,11 +3481,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Object exprA, Object exprB )
                             {
@@ -3125,11 +3519,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Object exprA, Object exprB, Javascript jsA )
                             {
@@ -3147,11 +3558,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Javascript js, Object exprA, Object exprB, Object exprC )
                             {
@@ -3169,11 +3597,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA )
                             {
@@ -3188,11 +3633,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Javascript js )
                             {
@@ -3208,11 +3670,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Javascript js, Javascript jsA )
                             {
@@ -3229,11 +3708,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Javascript js, Javascript jsA, Javascript jsB )
                             {
@@ -3251,11 +3747,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Javascript js, Javascript jsA, Object exprB )
                             {
@@ -3273,11 +3786,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Javascript js, Object exprB )
                             {
@@ -3294,11 +3824,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Javascript js, Object exprB, Javascript jsA )
                             {
@@ -3316,11 +3863,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Javascript js, Object exprB, Object exprC )
                             {
@@ -3338,11 +3902,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Object exprB )
                             {
@@ -3358,11 +3939,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Object exprB, Javascript js )
                             {
@@ -3379,11 +3977,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Object exprB, Javascript js, Javascript jsA )
                             {
@@ -3401,11 +4016,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Object exprB, Javascript js, Object exprC )
                             {
@@ -3423,11 +4055,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Object exprB, Object exprC )
                             {
@@ -3444,11 +4093,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Object exprB, Object exprC, Javascript js )
                             {
@@ -3466,11 +4132,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Object exprB, Object exprC, Object exprD )
                             {
@@ -3488,11 +4171,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
                             {
@@ -3510,11 +4210,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1 )
                             {
@@ -3531,11 +4248,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
                             {
@@ -3553,11 +4287,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
                             {
@@ -3575,11 +4326,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, ReqlFunction1 func1 )
                             {
@@ -3595,11 +4363,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB )
                             {
@@ -3616,11 +4401,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
                             {
@@ -3638,11 +4440,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
                             {
@@ -3660,11 +4479,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
                             {
@@ -3681,11 +4517,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
                             {
@@ -3703,11 +4556,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                             {
@@ -3725,11 +4595,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1 )
                             {
@@ -3744,11 +4631,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, Object exprA )
                             {
@@ -3764,11 +4668,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB )
                             {
@@ -3785,11 +4706,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
                             {
@@ -3807,11 +4745,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
                             {
@@ -3829,11 +4784,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
                             {
@@ -3850,11 +4822,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
                             {
@@ -3872,11 +4861,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
                             {
@@ -3894,11 +4900,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A )
                             {
@@ -3914,11 +4937,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
                             {
@@ -3935,11 +4975,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
                             {
@@ -3957,11 +5014,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
                             {
@@ -3979,11 +5053,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                             {
@@ -4000,11 +5091,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
                             {
@@ -4022,11 +5130,28 @@ namespace RethinkDb.Driver.Ast {
                             }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 ///</summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                             public Group Group ( Object expr, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
                             {
@@ -4401,8 +5526,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para><code>r.args</code> is a special term that's used to splice an array of arguments
 /// into another term.  This is useful when you want to call a variadic
-/// term such as <code>getAll</code> with a set of arguments produced at runtime.</para>
-/// <para>This is analogous to using apply in JavaScript.</para>
+/// term such as <a href="/api/javascript/get_all/">getAll</a> with a set of arguments produced at runtime.</para>
 ///</summary>
 /// <example><para>Example: Get Alice and Bob from the table <code>people</code>.</para>
 /// <code>r.table('people').getAll('Alice', 'Bob').run(conn, callback)
@@ -4474,7 +5598,7 @@ namespace RethinkDb.Driver.Ast {
                                return Geojson ( expr );
                             }
 /// <summary>
-/// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (-180 to 180) and the latitude (-90 to 90) of the point on a perfect sphere.</para>
+/// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (-180 to 180) and latitude (-90 to 90) of the point on a perfect sphere. See <a href="/docs/geo-support/">Geospatial support</a> for more information on ReQL's coordinate system.</para>
 ///</summary>
 /// <example><para>Example: Define a point.</para>
 /// <code>r.table('geo').insert({
@@ -4497,7 +5621,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Construct a geometry object of type Line. The line can be specified in one of two ways:</para>
 /// <ul>
-/// <li>Two or more two-item arrays, specifying longitude and latitude numbers of the line's vertices;</li>
+/// <li>Two or more two-item arrays, specifying latitude and longitude numbers of the line's vertices;</li>
 /// <li>Two or more <a href="/api/javascript/point">Point</a> objects specifying the line's vertices.</li>
 /// </ul>
 ///</summary>
@@ -4522,7 +5646,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:</para>
 /// <ul>
-/// <li>Three or more two-item arrays, specifying longitude and latitude numbers of the polygon's vertices;</li>
+/// <li>Three or more two-item arrays, specifying latitude and longitude numbers of the polygon's vertices;</li>
 /// <li>Three or more <a href="/api/javascript/point">Point</a> objects specifying the polygon's vertices.</li>
 /// </ul>
 ///</summary>
@@ -4557,7 +5681,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var point1 = r.point(-122.423246,37.779388);
 /// var point2 = r.point(-117.220406,32.719464);
 /// r.distance(point1, point2, {unit: 'km'}).run(conn, callback);
-/// // result returned to callback 
+/// // result returned to callback
 /// 734.1252496021841
 /// </code></example>
                             public Distance Distance ( Object expr, Object exprA )
@@ -4578,7 +5702,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var point1 = r.point(-117.220406,32.719464);
 /// var point2 = r.point(-117.206201,32.725186);
 /// r.circle(point1, 2000).intersects(point2).run(conn, callback);
-/// // result returned to callback 
+/// // result returned to callback
 /// true
 /// </code></example>
                             public Intersects Intersects ( Object expr, Object exprA )

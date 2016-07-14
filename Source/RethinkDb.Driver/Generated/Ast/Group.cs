@@ -36,31 +36,82 @@ namespace RethinkDb.Driver.Ast {
     
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
         public Group (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
         public Group (Arguments args) : this(args, null) {
         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
         public Group (Arguments args, OptArgs optargs)
          : base(TermType.GROUP, args, optargs) {

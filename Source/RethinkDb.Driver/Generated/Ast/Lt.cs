@@ -35,26 +35,26 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Test if the first value is less than other.</para>
+/// <para>Compare values, testing if the left-hand value is less than the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 less than 2?</para>
-/// <code>r.expr(2).lt(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored less than 10 points.</para>
+/// <code>r.table('players').get(1)('score').lt(10).run(conn, callback);
 /// </code></example>
         public Lt (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Test if the first value is less than other.</para>
+/// <para>Compare values, testing if the left-hand value is less than the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 less than 2?</para>
-/// <code>r.expr(2).lt(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored less than 10 points.</para>
+/// <code>r.table('players').get(1)('score').lt(10).run(conn, callback);
 /// </code></example>
         public Lt (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Test if the first value is less than other.</para>
+/// <para>Compare values, testing if the left-hand value is less than the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 less than 2?</para>
-/// <code>r.expr(2).lt(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored less than 10 points.</para>
+/// <code>r.table('players').get(1)('score').lt(10).run(conn, callback);
 /// </code></example>
         public Lt (Arguments args, OptArgs optargs)
          : base(TermType.LT, args, optargs) {

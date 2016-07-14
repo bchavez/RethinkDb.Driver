@@ -35,26 +35,26 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Test if the first value is greater than or equal to other.</para>
+/// <para>Compare values, testing if the left-hand value is greater than or equal to the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 greater than or equal to 2?</para>
-/// <code>r.expr(2).ge(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored 10 points or more.</para>
+/// <code>r.table('players').get(1)('score').ge(10).run(conn, callback);
 /// </code></example>
         public Ge (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Test if the first value is greater than or equal to other.</para>
+/// <para>Compare values, testing if the left-hand value is greater than or equal to the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 greater than or equal to 2?</para>
-/// <code>r.expr(2).ge(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored 10 points or more.</para>
+/// <code>r.table('players').get(1)('score').ge(10).run(conn, callback);
 /// </code></example>
         public Ge (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Test if the first value is greater than or equal to other.</para>
+/// <para>Compare values, testing if the left-hand value is greater than or equal to the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 greater than or equal to 2?</para>
-/// <code>r.expr(2).ge(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored 10 points or more.</para>
+/// <code>r.table('players').get(1)('score').ge(10).run(conn, callback);
 /// </code></example>
         public Ge (Arguments args, OptArgs optargs)
          : base(TermType.GE, args, optargs) {

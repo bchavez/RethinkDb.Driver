@@ -41,7 +41,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var point1 = r.point(-117.220406,32.719464);
 /// var point2 = r.point(-117.206201,32.725186);
 /// r.circle(point1, 2000).includes(point2).run(conn, callback);
-/// // result returned to callback 
+/// // result returned to callback
 /// true
 /// </code></example>
         public Includes (object arg) : this(new Arguments(arg), null) {
@@ -53,7 +53,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var point1 = r.point(-117.220406,32.719464);
 /// var point2 = r.point(-117.206201,32.725186);
 /// r.circle(point1, 2000).includes(point2).run(conn, callback);
-/// // result returned to callback 
+/// // result returned to callback
 /// true
 /// </code></example>
         public Includes (Arguments args) : this(args, null) {
@@ -65,7 +65,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var point1 = r.point(-117.220406,32.719464);
 /// var point2 = r.point(-117.206201,32.725186);
 /// r.circle(point1, 2000).includes(point2).run(conn, callback);
-/// // result returned to callback 
+/// // result returned to callback
 /// true
 /// </code></example>
         public Includes (Arguments args, OptArgs optargs)

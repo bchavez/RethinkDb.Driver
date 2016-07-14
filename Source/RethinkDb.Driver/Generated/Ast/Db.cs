@@ -78,8 +78,7 @@ namespace RethinkDb.Driver.Ast {
     
 
 /// <summary>
-/// <para>Select all documents in a table. This command can be chained with other commands to do
-/// further processing on the data.</para>
+/// <para>Return all documents in a table. Other commands may be chained after <code>table</code> to return a subset of documents (such as <a href="/api/javascript/get/">get</a> and <a href="/api/javascript/filter/">filter</a>) or perform further processing.</para>
 /// </summary>
 /// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
@@ -98,7 +97,33 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
 /// </summary>
 /// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
-/// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
+/// <code>&gt; r.db('heroes').tableCreate('dc_universe').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "new_val": {
+///                 "db": "test",
+///                 "durability":  "hard",
+///                 "id": "20ea60d4-3b76-4817-8828-98a236df0297",
+///                 "name": "dc_universe",
+///                 "primary_key": "id",
+///                 "shards": [
+///                     {
+///                         "primary_replica": "rethinkdb_srv1",
+///                         "replicas": [
+///                             "rethinkdb_srv1",
+///                             "rethinkdb_srv2"
+///                         ]
+///                     }
+///                 ],
+///                 "write_acks": "majority"
+///             },
+///             "old_val": null
+///         }
+///     ],
+///     "tables_created": 1
+/// }
 /// </code></example>
                         public TableCreate TableCreate ( Object expr )
                         {
@@ -111,10 +136,36 @@ namespace RethinkDb.Driver.Ast {
                            return TableCreate ( expr );
                         }
 /// <summary>
-/// <para>Drop a table. The table and all its data will be deleted.</para>
+/// <para>Drop a table from a database. The table and all its data will be deleted.</para>
 /// </summary>
 /// <example><para>Example: Drop a table named 'dc_universe'.</para>
-/// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
+/// <code>&gt; r.db('test').tableDrop('dc_universe').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "old_val": {
+///                 "db": "test",
+///                 "durability":  "hard",
+///                 "id": "20ea60d4-3b76-4817-8828-98a236df0297",
+///                 "name": "dc_universe",
+///                 "primary_key": "id",
+///                 "shards": [
+///                     {
+///                         "primary_replica": "rethinkdb_srv1",
+///                         "replicas": [
+///                             "rethinkdb_srv1",
+///                             "rethinkdb_srv2"
+///                         ]
+///                     }
+///                 ],
+///                 "write_acks": "majority"
+///             },
+///             "new_val": null
+///         }
+///     ],
+///     "tables_dropped": 1
+/// }
 /// </code></example>
                         public TableDrop TableDrop ( Object expr )
                         {
@@ -159,8 +210,10 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
 /// </summary>
-/// <example><para>Example: Wait for a table to be ready.</para>
+/// <example><para>Example: Wait on a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
+/// // Result passed to callback
+/// { "ready": 1 }
 /// </code></example>
                         public Wait Wait_ (  )
                         {
@@ -201,6 +254,22 @@ namespace RethinkDb.Driver.Ast {
                         {
                            return Rebalance (  );
                         }
+/// <summary>
+/// <para>Grant or deny access permissions for a user account, globally or on a per-database or per-table basis.</para>
+/// </summary>
+/// <example><para>Example: Grant the <code>chatapp</code> user account read and write permissions on the <code>users</code> database.</para>
+/// <code>r.db('users').grant('chatapp', {read: true, write: true}).run(conn, callback);
+/// 
+/// // Result passed to callback
+/// {
+///     "granted": 1,
+///     "permissions_changes": [
+///         {
+///             "new_val": { "read": true, "write": true },
+///             "old_val": { null }
+///         }
+///     ]
+/// </code></example>
                         public Grant Grant ( Object expr, Object exprA )
                         {
                             Arguments arguments = new Arguments(this);

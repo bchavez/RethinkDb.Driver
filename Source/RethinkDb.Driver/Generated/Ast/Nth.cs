@@ -39,6 +39,7 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Select the second element in the array.</para>
 /// <code>r.expr([1,2,3]).nth(1).run(conn, callback)
+/// r.expr([1,2,3])(1).run(conn, callback)
 /// </code></example>
         public Nth (object arg) : this(new Arguments(arg), null) {
         }
@@ -47,6 +48,7 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Select the second element in the array.</para>
 /// <code>r.expr([1,2,3]).nth(1).run(conn, callback)
+/// r.expr([1,2,3])(1).run(conn, callback)
 /// </code></example>
         public Nth (Arguments args) : this(args, null) {
         }
@@ -55,6 +57,7 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Select the second element in the array.</para>
 /// <code>r.expr([1,2,3]).nth(1).run(conn, callback)
+/// r.expr([1,2,3])(1).run(conn, callback)
 /// </code></example>
         public Nth (Arguments args, OptArgs optargs)
          : base(TermType.NTH, args, optargs) {

@@ -35,26 +35,26 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Test if two values are equal.</para>
+/// <para>Test if two or more values are equal.</para>
 /// </summary>
-/// <example><para>Example: Does 2 equal 2?</para>
-/// <code>r.expr(2).eq(2).run(conn, callback)
+/// <example><para>Example: See if a user's <code>role</code> field is set to <code>administrator</code>.</para>
+/// <code>r.table('users').get(1)('role').eq('administrator').run(conn, callback);
 /// </code></example>
         public Eq (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Test if two values are equal.</para>
+/// <para>Test if two or more values are equal.</para>
 /// </summary>
-/// <example><para>Example: Does 2 equal 2?</para>
-/// <code>r.expr(2).eq(2).run(conn, callback)
+/// <example><para>Example: See if a user's <code>role</code> field is set to <code>administrator</code>.</para>
+/// <code>r.table('users').get(1)('role').eq('administrator').run(conn, callback);
 /// </code></example>
         public Eq (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Test if two values are equal.</para>
+/// <para>Test if two or more values are equal.</para>
 /// </summary>
-/// <example><para>Example: Does 2 equal 2?</para>
-/// <code>r.expr(2).eq(2).run(conn, callback)
+/// <example><para>Example: See if a user's <code>role</code> field is set to <code>administrator</code>.</para>
+/// <code>r.table('users').get(1)('role').eq('administrator').run(conn, callback);
 /// </code></example>
         public Eq (Arguments args, OptArgs optargs)
          : base(TermType.EQ, args, optargs) {

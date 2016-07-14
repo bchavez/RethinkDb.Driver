@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Insert JSON documents into a table. Accepts a single JSON document or an array of
+/// <para>Insert documents into a table. Accepts a single document or an array of
 /// documents.</para>
 /// </summary>
 /// <example><para>Example: Insert a document into the table <code>posts</code>.</para>
@@ -48,7 +48,7 @@ namespace RethinkDb.Driver.Ast {
         public Insert (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Insert JSON documents into a table. Accepts a single JSON document or an array of
+/// <para>Insert documents into a table. Accepts a single document or an array of
 /// documents.</para>
 /// </summary>
 /// <example><para>Example: Insert a document into the table <code>posts</code>.</para>
@@ -61,7 +61,7 @@ namespace RethinkDb.Driver.Ast {
         public Insert (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Insert JSON documents into a table. Accepts a single JSON document or an array of
+/// <para>Insert documents into a table. Accepts a single document or an array of
 /// documents.</para>
 /// </summary>
 /// <example><para>Example: Insert a document into the table <code>posts</code>.</para>

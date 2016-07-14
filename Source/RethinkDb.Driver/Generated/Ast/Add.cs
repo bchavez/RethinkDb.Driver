@@ -35,26 +35,32 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Sum two numbers, concatenate two strings, or concatenate 2 arrays.</para>
+/// <para>Sum two or more numbers, or concatenate two or more strings or arrays.</para>
 /// </summary>
 /// <example><para>Example: It's as easy as 2 + 2 = 4.</para>
-/// <code>r.expr(2).add(2).run(conn, callback)
+/// <code>&gt; r.expr(2).add(2).run(conn, callback)
+/// // result passed to callback
+/// 4
 /// </code></example>
         public Add (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Sum two numbers, concatenate two strings, or concatenate 2 arrays.</para>
+/// <para>Sum two or more numbers, or concatenate two or more strings or arrays.</para>
 /// </summary>
 /// <example><para>Example: It's as easy as 2 + 2 = 4.</para>
-/// <code>r.expr(2).add(2).run(conn, callback)
+/// <code>&gt; r.expr(2).add(2).run(conn, callback)
+/// // result passed to callback
+/// 4
 /// </code></example>
         public Add (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Sum two numbers, concatenate two strings, or concatenate 2 arrays.</para>
+/// <para>Sum two or more numbers, or concatenate two or more strings or arrays.</para>
 /// </summary>
 /// <example><para>Example: It's as easy as 2 + 2 = 4.</para>
-/// <code>r.expr(2).add(2).run(conn, callback)
+/// <code>&gt; r.expr(2).add(2).run(conn, callback)
+/// // result passed to callback
+/// 4
 /// </code></example>
         public Add (Arguments args, OptArgs optargs)
          : base(TermType.ADD, args, optargs) {

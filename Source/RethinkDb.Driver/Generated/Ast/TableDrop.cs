@@ -35,26 +35,104 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Drop a table. The table and all its data will be deleted.</para>
+/// <para>Drop a table from a database. The table and all its data will be deleted.</para>
 /// </summary>
 /// <example><para>Example: Drop a table named 'dc_universe'.</para>
-/// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
+/// <code>&gt; r.db('test').tableDrop('dc_universe').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "old_val": {
+///                 "db": "test",
+///                 "durability":  "hard",
+///                 "id": "20ea60d4-3b76-4817-8828-98a236df0297",
+///                 "name": "dc_universe",
+///                 "primary_key": "id",
+///                 "shards": [
+///                     {
+///                         "primary_replica": "rethinkdb_srv1",
+///                         "replicas": [
+///                             "rethinkdb_srv1",
+///                             "rethinkdb_srv2"
+///                         ]
+///                     }
+///                 ],
+///                 "write_acks": "majority"
+///             },
+///             "new_val": null
+///         }
+///     ],
+///     "tables_dropped": 1
+/// }
 /// </code></example>
         public TableDrop (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Drop a table. The table and all its data will be deleted.</para>
+/// <para>Drop a table from a database. The table and all its data will be deleted.</para>
 /// </summary>
 /// <example><para>Example: Drop a table named 'dc_universe'.</para>
-/// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
+/// <code>&gt; r.db('test').tableDrop('dc_universe').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "old_val": {
+///                 "db": "test",
+///                 "durability":  "hard",
+///                 "id": "20ea60d4-3b76-4817-8828-98a236df0297",
+///                 "name": "dc_universe",
+///                 "primary_key": "id",
+///                 "shards": [
+///                     {
+///                         "primary_replica": "rethinkdb_srv1",
+///                         "replicas": [
+///                             "rethinkdb_srv1",
+///                             "rethinkdb_srv2"
+///                         ]
+///                     }
+///                 ],
+///                 "write_acks": "majority"
+///             },
+///             "new_val": null
+///         }
+///     ],
+///     "tables_dropped": 1
+/// }
 /// </code></example>
         public TableDrop (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Drop a table. The table and all its data will be deleted.</para>
+/// <para>Drop a table from a database. The table and all its data will be deleted.</para>
 /// </summary>
 /// <example><para>Example: Drop a table named 'dc_universe'.</para>
-/// <code>r.db('test').tableDrop('dc_universe').run(conn, callback)
+/// <code>&gt; r.db('test').tableDrop('dc_universe').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "old_val": {
+///                 "db": "test",
+///                 "durability":  "hard",
+///                 "id": "20ea60d4-3b76-4817-8828-98a236df0297",
+///                 "name": "dc_universe",
+///                 "primary_key": "id",
+///                 "shards": [
+///                     {
+///                         "primary_replica": "rethinkdb_srv1",
+///                         "replicas": [
+///                             "rethinkdb_srv1",
+///                             "rethinkdb_srv2"
+///                         ]
+///                     }
+///                 ],
+///                 "write_acks": "majority"
+///             },
+///             "new_val": null
+///         }
+///     ],
+///     "tables_dropped": 1
+/// }
 /// </code></example>
         public TableDrop (Arguments args, OptArgs optargs)
          : base(TermType.TABLE_DROP, args, optargs) {

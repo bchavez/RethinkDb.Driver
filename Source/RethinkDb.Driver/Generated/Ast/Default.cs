@@ -35,59 +35,47 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
-/// error related to the absence of a value is thrown in the process, or if its first
-/// argument returns <code>null</code>, returns its second argument. (Alternatively, the second argument
-/// may be a function which will be called with either the text of the non-existence error
-/// or <code>null</code>.)</para>
+/// <para>Provide a default value in case of non-existence errors. The <code>default</code> command evaluates its first argument (the value it's chained to). If that argument returns <code>null</code> or a non-existence error is thrown in evaluation, then <code>default</code> returns its second argument. The second argument is usually a default value, but it can be a function that returns a value.</para>
 /// </summary>
-/// <example><para>Example: Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
+/// <example><para>Example: Retrieve the titles and authors of the table <code>posts</code>.
 /// In the case where the author field is missing or <code>null</code>, we want to retrieve the string
 /// <code>Anonymous</code>.</para>
-/// <code>r.table("posts").map( function(post) {
+/// <code>r.table("posts").map(function (post) {
 ///     return {
 ///         title: post("title"),
 ///         author: post("author").default("Anonymous")
 ///     }
-/// }).run(conn, callback)
+/// }).run(conn, callback);
 /// </code></example>
         public Default (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
-/// error related to the absence of a value is thrown in the process, or if its first
-/// argument returns <code>null</code>, returns its second argument. (Alternatively, the second argument
-/// may be a function which will be called with either the text of the non-existence error
-/// or <code>null</code>.)</para>
+/// <para>Provide a default value in case of non-existence errors. The <code>default</code> command evaluates its first argument (the value it's chained to). If that argument returns <code>null</code> or a non-existence error is thrown in evaluation, then <code>default</code> returns its second argument. The second argument is usually a default value, but it can be a function that returns a value.</para>
 /// </summary>
-/// <example><para>Example: Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
+/// <example><para>Example: Retrieve the titles and authors of the table <code>posts</code>.
 /// In the case where the author field is missing or <code>null</code>, we want to retrieve the string
 /// <code>Anonymous</code>.</para>
-/// <code>r.table("posts").map( function(post) {
+/// <code>r.table("posts").map(function (post) {
 ///     return {
 ///         title: post("title"),
 ///         author: post("author").default("Anonymous")
 ///     }
-/// }).run(conn, callback)
+/// }).run(conn, callback);
 /// </code></example>
         public Default (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
-/// error related to the absence of a value is thrown in the process, or if its first
-/// argument returns <code>null</code>, returns its second argument. (Alternatively, the second argument
-/// may be a function which will be called with either the text of the non-existence error
-/// or <code>null</code>.)</para>
+/// <para>Provide a default value in case of non-existence errors. The <code>default</code> command evaluates its first argument (the value it's chained to). If that argument returns <code>null</code> or a non-existence error is thrown in evaluation, then <code>default</code> returns its second argument. The second argument is usually a default value, but it can be a function that returns a value.</para>
 /// </summary>
-/// <example><para>Example: Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
+/// <example><para>Example: Retrieve the titles and authors of the table <code>posts</code>.
 /// In the case where the author field is missing or <code>null</code>, we want to retrieve the string
 /// <code>Anonymous</code>.</para>
-/// <code>r.table("posts").map( function(post) {
+/// <code>r.table("posts").map(function (post) {
 ///     return {
 ///         title: post("title"),
 ///         author: post("author").default("Anonymous")
 ///     }
-/// }).run(conn, callback)
+/// }).run(conn, callback);
 /// </code></example>
         public Default (Arguments args, OptArgs optargs)
          : base(TermType.DEFAULT, args, optargs) {

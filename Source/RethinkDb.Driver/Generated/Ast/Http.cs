@@ -37,7 +37,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.</para>
 /// </summary>
-/// <example><para>Example: Perform a simple HTTP <code>GET</code> request, and store the result in a table.</para>
+/// <example><para>Example: Perform an HTTP <code>GET</code> and store the result in a table.</para>
 /// <code>r.table('posts').insert(r.http('http://httpbin.org/get')).run(conn, callback)
 /// </code></example>
         public Http (object arg) : this(new Arguments(arg), null) {
@@ -45,7 +45,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.</para>
 /// </summary>
-/// <example><para>Example: Perform a simple HTTP <code>GET</code> request, and store the result in a table.</para>
+/// <example><para>Example: Perform an HTTP <code>GET</code> and store the result in a table.</para>
 /// <code>r.table('posts').insert(r.http('http://httpbin.org/get')).run(conn, callback)
 /// </code></example>
         public Http (Arguments args) : this(args, null) {
@@ -53,7 +53,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Retrieve data from the specified URL over HTTP.  The return type depends on the <code>resultFormat</code> option, which checks the <code>Content-Type</code> of the response by default.</para>
 /// </summary>
-/// <example><para>Example: Perform a simple HTTP <code>GET</code> request, and store the result in a table.</para>
+/// <example><para>Example: Perform an HTTP <code>GET</code> and store the result in a table.</para>
 /// <code>r.table('posts').insert(r.http('http://httpbin.org/get')).run(conn, callback)
 /// </code></example>
         public Http (Arguments args, OptArgs optargs)

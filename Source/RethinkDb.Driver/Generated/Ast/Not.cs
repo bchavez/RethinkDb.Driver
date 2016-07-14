@@ -36,32 +36,32 @@ namespace RethinkDb.Driver.Ast {
     
 /// <summary>
 /// <para>Compute the logical inverse (not) of an expression.</para>
-/// <para><code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.</para>
 /// </summary>
 /// <example><para>Example: Not true is false.</para>
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>These evaluate to <code>false</code>.</para></example>
         public Not (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
 /// <para>Compute the logical inverse (not) of an expression.</para>
-/// <para><code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.</para>
 /// </summary>
 /// <example><para>Example: Not true is false.</para>
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>These evaluate to <code>false</code>.</para></example>
         public Not (Arguments args) : this(args, null) {
         }
 /// <summary>
 /// <para>Compute the logical inverse (not) of an expression.</para>
-/// <para><code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.</para>
 /// </summary>
 /// <example><para>Example: Not true is false.</para>
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>These evaluate to <code>false</code>.</para></example>
         public Not (Arguments args, OptArgs optargs)
          : base(TermType.NOT, args, optargs) {
         }

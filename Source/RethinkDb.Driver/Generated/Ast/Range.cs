@@ -39,7 +39,7 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Return a four-element range of <code>[0, 1, 2, 3]</code>.</para>
 /// <code>&gt; r.range(4).run(conn, callback)
-/// 
+/// // result returned to callback
 /// [0, 1, 2, 3]
 /// </code></example>
         public Range (object arg) : this(new Arguments(arg), null) {
@@ -49,7 +49,7 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Return a four-element range of <code>[0, 1, 2, 3]</code>.</para>
 /// <code>&gt; r.range(4).run(conn, callback)
-/// 
+/// // result returned to callback
 /// [0, 1, 2, 3]
 /// </code></example>
         public Range (Arguments args) : this(args, null) {
@@ -59,7 +59,7 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Return a four-element range of <code>[0, 1, 2, 3]</code>.</para>
 /// <code>&gt; r.range(4).run(conn, callback)
-/// 
+/// // result returned to callback
 /// [0, 1, 2, 3]
 /// </code></example>
         public Range (Arguments args, OptArgs optargs)

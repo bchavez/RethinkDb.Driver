@@ -37,24 +37,30 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
 /// </summary>
-/// <example><para>Example: Wait for a table to be ready.</para>
+/// <example><para>Example: Wait on a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
+/// // Result passed to callback
+/// { "ready": 1 }
 /// </code></example>
         public Wait (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
 /// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
 /// </summary>
-/// <example><para>Example: Wait for a table to be ready.</para>
+/// <example><para>Example: Wait on a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
+/// // Result passed to callback
+/// { "ready": 1 }
 /// </code></example>
         public Wait (Arguments args) : this(args, null) {
         }
 /// <summary>
 /// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
 /// </summary>
-/// <example><para>Example: Wait for a table to be ready.</para>
+/// <example><para>Example: Wait on a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
+/// // Result passed to callback
+/// { "ready": 1 }
 /// </code></example>
         public Wait (Arguments args, OptArgs optargs)
          : base(TermType.WAIT, args, optargs) {

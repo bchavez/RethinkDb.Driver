@@ -35,33 +35,36 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Returns a left outer join of two sequences.</para>
+/// <para>Returns a left outer join of two sequences. The returned sequence represents a union of the left-hand sequence and the right-hand sequence: all documents in the left-hand sequence will be returned, each matched with a document in the right-hand sequence if one satisfies the predicate condition. In most cases, you will want to follow the join with <a href="/api/javascript/zip">zip</a> to combine the left and right results.</para>
 /// </summary>
 /// <example><para>Example: Return a list of all Marvel heroes, paired with any DC heroes who could beat them in a fight.</para>
 /// <code>r.table('marvel').outerJoin(r.table('dc'), function(marvelRow, dcRow) {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>(Compare this to an <a href="/api/javascript/inner_join">innerJoin</a> with the same inputs and predicate, which would return a list only of the matchups in which the DC hero has the higher strength.)</para></example>
         public OuterJoin (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Returns a left outer join of two sequences.</para>
+/// <para>Returns a left outer join of two sequences. The returned sequence represents a union of the left-hand sequence and the right-hand sequence: all documents in the left-hand sequence will be returned, each matched with a document in the right-hand sequence if one satisfies the predicate condition. In most cases, you will want to follow the join with <a href="/api/javascript/zip">zip</a> to combine the left and right results.</para>
 /// </summary>
 /// <example><para>Example: Return a list of all Marvel heroes, paired with any DC heroes who could beat them in a fight.</para>
 /// <code>r.table('marvel').outerJoin(r.table('dc'), function(marvelRow, dcRow) {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>(Compare this to an <a href="/api/javascript/inner_join">innerJoin</a> with the same inputs and predicate, which would return a list only of the matchups in which the DC hero has the higher strength.)</para></example>
         public OuterJoin (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Returns a left outer join of two sequences.</para>
+/// <para>Returns a left outer join of two sequences. The returned sequence represents a union of the left-hand sequence and the right-hand sequence: all documents in the left-hand sequence will be returned, each matched with a document in the right-hand sequence if one satisfies the predicate condition. In most cases, you will want to follow the join with <a href="/api/javascript/zip">zip</a> to combine the left and right results.</para>
 /// </summary>
 /// <example><para>Example: Return a list of all Marvel heroes, paired with any DC heroes who could beat them in a fight.</para>
 /// <code>r.table('marvel').outerJoin(r.table('dc'), function(marvelRow, dcRow) {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>(Compare this to an <a href="/api/javascript/inner_join">innerJoin</a> with the same inputs and predicate, which would return a list only of the matchups in which the DC hero has the higher strength.)</para></example>
         public OuterJoin (Arguments args, OptArgs optargs)
          : base(TermType.OUTER_JOIN, args, optargs) {
         }

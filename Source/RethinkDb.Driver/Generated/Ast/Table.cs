@@ -35,8 +35,7 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Select all documents in a table. This command can be chained with other commands to do
-/// further processing on the data.</para>
+/// <para>Return all documents in a table. Other commands may be chained after <code>table</code> to return a subset of documents (such as <a href="/api/javascript/get/">get</a> and <a href="/api/javascript/filter/">filter</a>) or perform further processing.</para>
 /// </summary>
 /// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
@@ -44,8 +43,7 @@ namespace RethinkDb.Driver.Ast {
         public Table (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Select all documents in a table. This command can be chained with other commands to do
-/// further processing on the data.</para>
+/// <para>Return all documents in a table. Other commands may be chained after <code>table</code> to return a subset of documents (such as <a href="/api/javascript/get/">get</a> and <a href="/api/javascript/filter/">filter</a>) or perform further processing.</para>
 /// </summary>
 /// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
@@ -53,8 +51,7 @@ namespace RethinkDb.Driver.Ast {
         public Table (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Select all documents in a table. This command can be chained with other commands to do
-/// further processing on the data.</para>
+/// <para>Return all documents in a table. Other commands may be chained after <code>table</code> to return a subset of documents (such as <a href="/api/javascript/get/">get</a> and <a href="/api/javascript/filter/">filter</a>) or perform further processing.</para>
 /// </summary>
 /// <example><para>Example: Return all documents in the table 'marvel' of the default database.</para>
 /// <code>r.table('marvel').run(conn, callback)
@@ -134,10 +131,9 @@ namespace RethinkDb.Driver.Ast {
 
 /// <summary>
 /// <para>Get a document by primary key.</para>
-/// <para>If no document exists with that primary key, <code>get</code> will return <code>null</code>.</para>
 /// </summary>
 /// <example><para>Example: Find a document by UUID.</para>
-/// <code>r.table('posts').get('a9849eef-7176-4411-935b-79a6e3c56a74').run(conn, callback)
+/// <code>r.table('posts').get('a9849eef-7176-4411-935b-79a6e3c56a74').run(conn, callback);
 /// </code></example>
                         public Get Get ( Object expr )
                         {
@@ -192,7 +188,7 @@ namespace RethinkDb.Driver.Ast {
                            return GetAll ( exprs );
                         }
 /// <summary>
-/// <para>Insert JSON documents into a table. Accepts a single JSON document or an array of
+/// <para>Insert documents into a table. Accepts a single document or an array of
 /// documents.</para>
 /// </summary>
 /// <example><para>Example: Insert a document into the table <code>posts</code>.</para>
@@ -245,8 +241,10 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Wait for a table or all the tables in a database to be ready. A table may be temporarily unavailable after creation, rebalancing or reconfiguring. The <code>wait</code> command blocks until the given table (or database) is fully up to date.</para>
 /// </summary>
-/// <example><para>Example: Wait for a table to be ready.</para>
+/// <example><para>Example: Wait on a table to be ready.</para>
 /// <code>&gt; r.table('superheroes').wait().run(conn, callback);
+/// // Result passed to callback
+/// { "ready": 1 }
 /// </code></example>
                         public Wait Wait_ (  )
                         {
@@ -306,6 +304,22 @@ namespace RethinkDb.Driver.Ast {
                         {
                            return Sync (  );
                         }
+/// <summary>
+/// <para>Grant or deny access permissions for a user account, globally or on a per-database or per-table basis.</para>
+/// </summary>
+/// <example><para>Example: Grant the <code>chatapp</code> user account read and write permissions on the <code>users</code> database.</para>
+/// <code>r.db('users').grant('chatapp', {read: true, write: true}).run(conn, callback);
+/// 
+/// // Result passed to callback
+/// {
+///     "granted": 1,
+///     "permissions_changes": [
+///         {
+///             "new_val": { "read": true, "write": true },
+///             "old_val": { null }
+///         }
+///     ]
+/// </code></example>
                         public Grant Grant ( Object expr, Object exprA )
                         {
                             Arguments arguments = new Arguments(this);
@@ -318,7 +332,7 @@ namespace RethinkDb.Driver.Ast {
                            return Grant ( expr, exprA );
                         }
 /// <summary>
-/// <para>Create a new secondary index on a table.</para>
+/// <para>Create a new secondary index on a table. Secondary indexes improve the speed of many read queries at the slight cost of increased storage space and decreased write performance. For more information about secondary indexes, read the article "<a href="/docs/secondary-indexes/">Using secondary indexes in RethinkDB</a>."</para>
 /// </summary>
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
@@ -334,7 +348,7 @@ namespace RethinkDb.Driver.Ast {
                            return IndexCreate ( expr );
                         }
 /// <summary>
-/// <para>Create a new secondary index on a table.</para>
+/// <para>Create a new secondary index on a table. Secondary indexes improve the speed of many read queries at the slight cost of increased storage space and decreased write performance. For more information about secondary indexes, read the article "<a href="/docs/secondary-indexes/">Using secondary indexes in RethinkDB</a>."</para>
 /// </summary>
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
@@ -351,7 +365,7 @@ namespace RethinkDb.Driver.Ast {
                            return IndexCreate ( expr, js );
                         }
 /// <summary>
-/// <para>Create a new secondary index on a table.</para>
+/// <para>Create a new secondary index on a table. Secondary indexes improve the speed of many read queries at the slight cost of increased storage space and decreased write performance. For more information about secondary indexes, read the article "<a href="/docs/secondary-indexes/">Using secondary indexes in RethinkDB</a>."</para>
 /// </summary>
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
@@ -368,7 +382,7 @@ namespace RethinkDb.Driver.Ast {
                            return IndexCreate ( expr, exprA );
                         }
 /// <summary>
-/// <para>Create a new secondary index on a table.</para>
+/// <para>Create a new secondary index on a table. Secondary indexes improve the speed of many read queries at the slight cost of increased storage space and decreased write performance. For more information about secondary indexes, read the article "<a href="/docs/secondary-indexes/">Using secondary indexes in RethinkDB</a>."</para>
 /// </summary>
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
@@ -385,7 +399,7 @@ namespace RethinkDb.Driver.Ast {
                            return IndexCreate ( expr, func0 );
                         }
 /// <summary>
-/// <para>Create a new secondary index on a table.</para>
+/// <para>Create a new secondary index on a table. Secondary indexes improve the speed of many read queries at the slight cost of increased storage space and decreased write performance. For more information about secondary indexes, read the article "<a href="/docs/secondary-indexes/">Using secondary indexes in RethinkDB</a>."</para>
 /// </summary>
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
@@ -438,9 +452,6 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Get the status of all the indexes on <code>test</code>:</para>
 /// <code>r.table('test').indexStatus().run(conn, callback)
-/// </code>
-/// <para>Example: Get the status of the <code>timestamp</code> index:</para>
-/// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
                         public IndexStatus IndexStatus ( params object[] exprs )
                         {
@@ -454,9 +465,6 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Get the status of all the indexes on <code>test</code>:</para>
 /// <code>r.table('test').indexStatus().run(conn, callback)
-/// </code>
-/// <para>Example: Get the status of the <code>timestamp</code> index:</para>
-/// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
                             /// <param name="args">Same as calling params object[] overload, except the collection is applied as object[] params.</param>
                             public IndexStatus IndexStatus ( ICollection<string> args )
@@ -475,9 +483,6 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Wait for all indexes on the table <code>test</code> to be ready:</para>
 /// <code>r.table('test').indexWait().run(conn, callback)
-/// </code>
-/// <para>Example: Wait for the index <code>timestamp</code> to be ready:</para>
-/// <code>r.table('test').indexWait('timestamp').run(conn, callback)
 /// </code></example>
                         public IndexWait IndexWait ( params object[] exprs )
                         {
@@ -491,9 +496,6 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Wait for all indexes on the table <code>test</code> to be ready:</para>
 /// <code>r.table('test').indexWait().run(conn, callback)
-/// </code>
-/// <para>Example: Wait for the index <code>timestamp</code> to be ready:</para>
-/// <code>r.table('test').indexWait('timestamp').run(conn, callback)
 /// </code></example>
                             /// <param name="args">Same as calling params object[] overload, except the collection is applied as object[] params.</param>
                             public IndexWait IndexWait ( ICollection<string> args )

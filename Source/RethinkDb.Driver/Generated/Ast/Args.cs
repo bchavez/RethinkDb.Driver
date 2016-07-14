@@ -37,8 +37,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para><code>r.args</code> is a special term that's used to splice an array of arguments
 /// into another term.  This is useful when you want to call a variadic
-/// term such as <code>getAll</code> with a set of arguments produced at runtime.</para>
-/// <para>This is analogous to using apply in JavaScript.</para>
+/// term such as <a href="/api/javascript/get_all/">getAll</a> with a set of arguments produced at runtime.</para>
 /// </summary>
 /// <example><para>Example: Get Alice and Bob from the table <code>people</code>.</para>
 /// <code>r.table('people').getAll('Alice', 'Bob').run(conn, callback)
@@ -50,8 +49,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para><code>r.args</code> is a special term that's used to splice an array of arguments
 /// into another term.  This is useful when you want to call a variadic
-/// term such as <code>getAll</code> with a set of arguments produced at runtime.</para>
-/// <para>This is analogous to using apply in JavaScript.</para>
+/// term such as <a href="/api/javascript/get_all/">getAll</a> with a set of arguments produced at runtime.</para>
 /// </summary>
 /// <example><para>Example: Get Alice and Bob from the table <code>people</code>.</para>
 /// <code>r.table('people').getAll('Alice', 'Bob').run(conn, callback)
@@ -63,8 +61,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para><code>r.args</code> is a special term that's used to splice an array of arguments
 /// into another term.  This is useful when you want to call a variadic
-/// term such as <code>getAll</code> with a set of arguments produced at runtime.</para>
-/// <para>This is analogous to using apply in JavaScript.</para>
+/// term such as <a href="/api/javascript/get_all/">getAll</a> with a set of arguments produced at runtime.</para>
 /// </summary>
 /// <example><para>Example: Get Alice and Bob from the table <code>people</code>.</para>
 /// <code>r.table('people').getAll('Alice', 'Bob').run(conn, callback)

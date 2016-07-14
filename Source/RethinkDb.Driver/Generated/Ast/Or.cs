@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Compute the logical "or" of two or more values.</para>
+/// <para>Compute the logical "or" of one or more values.</para>
 /// </summary>
 /// <example><para>Example: Return whether either <code>a</code> or <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
@@ -46,7 +46,7 @@ namespace RethinkDb.Driver.Ast {
         public Or (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Compute the logical "or" of two or more values.</para>
+/// <para>Compute the logical "or" of one or more values.</para>
 /// </summary>
 /// <example><para>Example: Return whether either <code>a</code> or <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Ast {
         public Or (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Compute the logical "or" of two or more values.</para>
+/// <para>Compute the logical "or" of one or more values.</para>
 /// </summary>
 /// <example><para>Example: Return whether either <code>a</code> or <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;

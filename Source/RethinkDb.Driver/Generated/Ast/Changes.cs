@@ -35,32 +35,89 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.</para>
+/// <para>Turn a query into a changefeed, an infinite stream of objects representing changes to the query's results as they occur. A changefeed may return changes to a table or an individual document (a "point" changefeed). Commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to transform or filter the output, and many commands that operate on sequences can be chained after <code>changes</code>.</para>
 /// </summary>
 /// <example><para>Example: Subscribe to the changes on a table.</para>
+/// <para>Start monitoring the changefeed in one client:</para>
 /// <code>r.table('games').changes().run(conn, function(err, cursor) {
-///   cursor.each(console.log)
-/// })
+///   cursor.each(console.log);
+/// });
+/// </code>
+/// <para>As these queries are performed in a second client, the first
+/// client would receive and print the following objects:</para>
+/// <code>&gt; r.table('games').insert({id: 1}).run(conn, callback);
+/// {old_val: null, new_val: {id: 1}}
+/// 
+/// &gt; r.table('games').get(1).update({player1: 'Bob'}).run(conn, callback);
+/// {old_val: {id: 1}, new_val: {id: 1, player1: 'Bob'}}
+/// 
+/// &gt; r.table('games').get(1).replace({id: 1, player1: 'Bob', player2: 'Alice'}).run(conn, callback);
+/// {old_val: {id: 1, player1: 'Bob'},
+///  new_val: {id: 1, player1: 'Bob', player2: 'Alice'}}
+/// 
+/// &gt; r.table('games').get(1).delete().run(conn, callback)
+/// {old_val: {id: 1, player1: 'Bob', player2: 'Alice'}, new_val: null}
+/// 
+/// &gt; r.tableDrop('games').run(conn, callback);
+/// ReqlRuntimeError: Changefeed aborted (table unavailable)
 /// </code></example>
         public Changes (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.</para>
+/// <para>Turn a query into a changefeed, an infinite stream of objects representing changes to the query's results as they occur. A changefeed may return changes to a table or an individual document (a "point" changefeed). Commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to transform or filter the output, and many commands that operate on sequences can be chained after <code>changes</code>.</para>
 /// </summary>
 /// <example><para>Example: Subscribe to the changes on a table.</para>
+/// <para>Start monitoring the changefeed in one client:</para>
 /// <code>r.table('games').changes().run(conn, function(err, cursor) {
-///   cursor.each(console.log)
-/// })
+///   cursor.each(console.log);
+/// });
+/// </code>
+/// <para>As these queries are performed in a second client, the first
+/// client would receive and print the following objects:</para>
+/// <code>&gt; r.table('games').insert({id: 1}).run(conn, callback);
+/// {old_val: null, new_val: {id: 1}}
+/// 
+/// &gt; r.table('games').get(1).update({player1: 'Bob'}).run(conn, callback);
+/// {old_val: {id: 1}, new_val: {id: 1, player1: 'Bob'}}
+/// 
+/// &gt; r.table('games').get(1).replace({id: 1, player1: 'Bob', player2: 'Alice'}).run(conn, callback);
+/// {old_val: {id: 1, player1: 'Bob'},
+///  new_val: {id: 1, player1: 'Bob', player2: 'Alice'}}
+/// 
+/// &gt; r.table('games').get(1).delete().run(conn, callback)
+/// {old_val: {id: 1, player1: 'Bob', player2: 'Alice'}, new_val: null}
+/// 
+/// &gt; r.tableDrop('games').run(conn, callback);
+/// ReqlRuntimeError: Changefeed aborted (table unavailable)
 /// </code></example>
         public Changes (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.</para>
+/// <para>Turn a query into a changefeed, an infinite stream of objects representing changes to the query's results as they occur. A changefeed may return changes to a table or an individual document (a "point" changefeed). Commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to transform or filter the output, and many commands that operate on sequences can be chained after <code>changes</code>.</para>
 /// </summary>
 /// <example><para>Example: Subscribe to the changes on a table.</para>
+/// <para>Start monitoring the changefeed in one client:</para>
 /// <code>r.table('games').changes().run(conn, function(err, cursor) {
-///   cursor.each(console.log)
-/// })
+///   cursor.each(console.log);
+/// });
+/// </code>
+/// <para>As these queries are performed in a second client, the first
+/// client would receive and print the following objects:</para>
+/// <code>&gt; r.table('games').insert({id: 1}).run(conn, callback);
+/// {old_val: null, new_val: {id: 1}}
+/// 
+/// &gt; r.table('games').get(1).update({player1: 'Bob'}).run(conn, callback);
+/// {old_val: {id: 1}, new_val: {id: 1, player1: 'Bob'}}
+/// 
+/// &gt; r.table('games').get(1).replace({id: 1, player1: 'Bob', player2: 'Alice'}).run(conn, callback);
+/// {old_val: {id: 1, player1: 'Bob'},
+///  new_val: {id: 1, player1: 'Bob', player2: 'Alice'}}
+/// 
+/// &gt; r.table('games').get(1).delete().run(conn, callback)
+/// {old_val: {id: 1, player1: 'Bob', player2: 'Alice'}, new_val: null}
+/// 
+/// &gt; r.tableDrop('games').run(conn, callback);
+/// ReqlRuntimeError: Changefeed aborted (table unavailable)
 /// </code></example>
         public Changes (Arguments args, OptArgs optargs)
          : base(TermType.CHANGES, args, optargs) {

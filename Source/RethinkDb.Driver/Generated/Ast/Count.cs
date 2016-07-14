@@ -35,32 +35,26 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Count the number of elements in the sequence. With a single argument, count the number
-/// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.</para>
+/// <para>Counts the number of elements in a sequence or key/value pairs in an object, or returns the size of a string or binary object.</para>
 /// </summary>
-/// <example><para>Example: Just how many super heroes are there?</para>
-/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// <example><para>Example: Count the number of users.</para>
+/// <code>r.table('users').count().run(conn, callback);
 /// </code></example>
         public Count (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Count the number of elements in the sequence. With a single argument, count the number
-/// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.</para>
+/// <para>Counts the number of elements in a sequence or key/value pairs in an object, or returns the size of a string or binary object.</para>
 /// </summary>
-/// <example><para>Example: Just how many super heroes are there?</para>
-/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// <example><para>Example: Count the number of users.</para>
+/// <code>r.table('users').count().run(conn, callback);
 /// </code></example>
         public Count (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Count the number of elements in the sequence. With a single argument, count the number
-/// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.</para>
+/// <para>Counts the number of elements in a sequence or key/value pairs in an object, or returns the size of a string or binary object.</para>
 /// </summary>
-/// <example><para>Example: Just how many super heroes are there?</para>
-/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// <example><para>Example: Count the number of users.</para>
+/// <code>r.table('users').count().run(conn, callback);
 /// </code></example>
         public Count (Arguments args, OptArgs optargs)
          : base(TermType.COUNT, args, optargs) {

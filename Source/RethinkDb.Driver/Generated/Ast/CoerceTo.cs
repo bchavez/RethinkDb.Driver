@@ -37,9 +37,9 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Convert a value of one type into another.</para>
 /// </summary>
-/// <example><para>Example: Coerce a stream to an array.</para>
+/// <example><para>Example: Coerce a stream to an array to store its output in a field. (A stream cannot be stored in a field directly.)</para>
 /// <code>r.table('posts').map(function (post) {
-///     post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
+///     return post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
 /// }).run(conn, callback)
 /// </code></example>
         public CoerceTo (object arg) : this(new Arguments(arg), null) {
@@ -47,9 +47,9 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Convert a value of one type into another.</para>
 /// </summary>
-/// <example><para>Example: Coerce a stream to an array.</para>
+/// <example><para>Example: Coerce a stream to an array to store its output in a field. (A stream cannot be stored in a field directly.)</para>
 /// <code>r.table('posts').map(function (post) {
-///     post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
+///     return post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
 /// }).run(conn, callback)
 /// </code></example>
         public CoerceTo (Arguments args) : this(args, null) {
@@ -57,9 +57,9 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Convert a value of one type into another.</para>
 /// </summary>
-/// <example><para>Example: Coerce a stream to an array.</para>
+/// <example><para>Example: Coerce a stream to an array to store its output in a field. (A stream cannot be stored in a field directly.)</para>
 /// <code>r.table('posts').map(function (post) {
-///     post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
+///     return post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
 /// }).run(conn, callback)
 /// </code></example>
         public CoerceTo (Arguments args, OptArgs optargs)

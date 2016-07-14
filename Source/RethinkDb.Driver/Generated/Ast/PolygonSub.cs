@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.Ast {
 ///     [-122.0,37.6],
 ///     [-122.0,37.4]
 /// );
-/// outerPolygon.polygonSub(innerpolygon).run(conn, callback);
+/// outerPolygon.polygonSub(innerPolygon).run(conn, callback);
 /// </code></example>
         public PolygonSub (object arg) : this(new Arguments(arg), null) {
         }
@@ -70,7 +70,7 @@ namespace RethinkDb.Driver.Ast {
 ///     [-122.0,37.6],
 ///     [-122.0,37.4]
 /// );
-/// outerPolygon.polygonSub(innerpolygon).run(conn, callback);
+/// outerPolygon.polygonSub(innerPolygon).run(conn, callback);
 /// </code></example>
         public PolygonSub (Arguments args) : this(args, null) {
         }
@@ -90,7 +90,7 @@ namespace RethinkDb.Driver.Ast {
 ///     [-122.0,37.6],
 ///     [-122.0,37.4]
 /// );
-/// outerPolygon.polygonSub(innerpolygon).run(conn, callback);
+/// outerPolygon.polygonSub(innerPolygon).run(conn, callback);
 /// </code></example>
         public PolygonSub (Arguments args, OptArgs optargs)
          : base(TermType.POLYGON_SUB, args, optargs) {

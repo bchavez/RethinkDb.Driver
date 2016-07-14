@@ -41,12 +41,12 @@ namespace RethinkDb.Driver.Ast {
 /// splits, splits on that separator at most <code>max_splits</code> times.  (Can be
 /// called with <code>null</code> as the separator if you want to split on whitespace
 /// while still specifying <code>max_splits</code>.)</para>
-/// <para>Mimics the behavior of Python's <code>string.split</code> in edge cases, except
-/// for splitting on the empty string, which instead produces an array of
-/// single-character strings.</para>
 /// </summary>
 /// <example><para>Example: Split on whitespace.</para>
 /// <code>r.expr("foo  bar bax").split().run(conn, callback)
+/// </code>
+/// <para>Result:</para>
+/// <code>["foo", "bar", "bax"]
 /// </code></example>
         public Split (object arg) : this(new Arguments(arg), null) {
         }
@@ -57,12 +57,12 @@ namespace RethinkDb.Driver.Ast {
 /// splits, splits on that separator at most <code>max_splits</code> times.  (Can be
 /// called with <code>null</code> as the separator if you want to split on whitespace
 /// while still specifying <code>max_splits</code>.)</para>
-/// <para>Mimics the behavior of Python's <code>string.split</code> in edge cases, except
-/// for splitting on the empty string, which instead produces an array of
-/// single-character strings.</para>
 /// </summary>
 /// <example><para>Example: Split on whitespace.</para>
 /// <code>r.expr("foo  bar bax").split().run(conn, callback)
+/// </code>
+/// <para>Result:</para>
+/// <code>["foo", "bar", "bax"]
 /// </code></example>
         public Split (Arguments args) : this(args, null) {
         }
@@ -73,12 +73,12 @@ namespace RethinkDb.Driver.Ast {
 /// splits, splits on that separator at most <code>max_splits</code> times.  (Can be
 /// called with <code>null</code> as the separator if you want to split on whitespace
 /// while still specifying <code>max_splits</code>.)</para>
-/// <para>Mimics the behavior of Python's <code>string.split</code> in edge cases, except
-/// for splitting on the empty string, which instead produces an array of
-/// single-character strings.</para>
 /// </summary>
 /// <example><para>Example: Split on whitespace.</para>
 /// <code>r.expr("foo  bar bax").split().run(conn, callback)
+/// </code>
+/// <para>Result:</para>
+/// <code>["foo", "bar", "bax"]
 /// </code></example>
         public Split (Arguments args, OptArgs optargs)
          : base(TermType.SPLIT, args, optargs) {

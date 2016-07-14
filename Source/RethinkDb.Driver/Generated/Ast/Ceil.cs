@@ -38,30 +38,33 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
 /// </summary>
 /// <example><para>Example: Return the ceiling of 12.345.</para>
-/// <code>&gt; r.ceil(12.345).run(conn, callback);
-/// 
+/// <code>r.ceil(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 13.0
-/// </code></example>
+/// </code>
+/// <para>The <code>ceil</code> command can also be chained after an expression.</para></example>
         public Ceil (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
 /// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
 /// </summary>
 /// <example><para>Example: Return the ceiling of 12.345.</para>
-/// <code>&gt; r.ceil(12.345).run(conn, callback);
-/// 
+/// <code>r.ceil(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 13.0
-/// </code></example>
+/// </code>
+/// <para>The <code>ceil</code> command can also be chained after an expression.</para></example>
         public Ceil (Arguments args) : this(args, null) {
         }
 /// <summary>
 /// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
 /// </summary>
 /// <example><para>Example: Return the ceiling of 12.345.</para>
-/// <code>&gt; r.ceil(12.345).run(conn, callback);
-/// 
+/// <code>r.ceil(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 13.0
-/// </code></example>
+/// </code>
+/// <para>The <code>ceil</code> command can also be chained after an expression.</para></example>
         public Ceil (Arguments args, OptArgs optargs)
          : base(TermType.CEIL, args, optargs) {
         }

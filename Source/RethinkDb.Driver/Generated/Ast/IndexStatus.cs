@@ -40,9 +40,6 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Get the status of all the indexes on <code>test</code>:</para>
 /// <code>r.table('test').indexStatus().run(conn, callback)
-/// </code>
-/// <para>Example: Get the status of the <code>timestamp</code> index:</para>
-/// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
         public IndexStatus (object arg) : this(new Arguments(arg), null) {
         }
@@ -52,9 +49,6 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Get the status of all the indexes on <code>test</code>:</para>
 /// <code>r.table('test').indexStatus().run(conn, callback)
-/// </code>
-/// <para>Example: Get the status of the <code>timestamp</code> index:</para>
-/// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
         public IndexStatus (Arguments args) : this(args, null) {
         }
@@ -64,9 +58,6 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Get the status of all the indexes on <code>test</code>:</para>
 /// <code>r.table('test').indexStatus().run(conn, callback)
-/// </code>
-/// <para>Example: Get the status of the <code>timestamp</code> index:</para>
-/// <code>r.table('test').indexStatus('timestamp').run(conn, callback)
 /// </code></example>
         public IndexStatus (Arguments args, OptArgs optargs)
          : base(TermType.INDEX_STATUS, args, optargs) {

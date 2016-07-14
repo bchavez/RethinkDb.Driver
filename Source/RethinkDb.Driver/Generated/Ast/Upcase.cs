@@ -39,7 +39,11 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").upcase().run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>Result:</para>
+/// <code>"SENTENCE ABOUT LATEX."
+/// </code>
+/// <para>Note: <code>upcase</code> and <code>downcase</code> only affect ASCII characters.</para></example>
         public Upcase (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
@@ -47,7 +51,11 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").upcase().run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>Result:</para>
+/// <code>"SENTENCE ABOUT LATEX."
+/// </code>
+/// <para>Note: <code>upcase</code> and <code>downcase</code> only affect ASCII characters.</para></example>
         public Upcase (Arguments args) : this(args, null) {
         }
 /// <summary>
@@ -55,7 +63,11 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").upcase().run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>Result:</para>
+/// <code>"SENTENCE ABOUT LATEX."
+/// </code>
+/// <para>Note: <code>upcase</code> and <code>downcase</code> only affect ASCII characters.</para></example>
         public Upcase (Arguments args, OptArgs optargs)
          : base(TermType.UPCASE, args, optargs) {
         }

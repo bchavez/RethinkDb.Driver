@@ -35,42 +35,42 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Produce a single value from a sequence through repeated application of a reduction
-/// function.</para>
+/// <para>Produce a single value from a sequence through repeated application of a reduction function.</para>
 /// </summary>
-/// <example><para>Example: Return the number of documents in the table `posts.</para>
+/// <example><para>Example: Return the number of documents in the table <code>posts</code>.</para>
 /// <code>r.table("posts").map(function(doc) {
-///     return 1
+///     return 1;
 /// }).reduce(function(left, right) {
-///     return left.add(right)
-/// }).run(conn, callback);
-/// </code></example>
+///     return left.add(right);
+/// }).default(0).run(conn, callback);
+/// </code>
+/// <para>A shorter way to execute this query is to use <a href="/api/javascript/count">count</a>.</para></example>
         public Reduce (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Produce a single value from a sequence through repeated application of a reduction
-/// function.</para>
+/// <para>Produce a single value from a sequence through repeated application of a reduction function.</para>
 /// </summary>
-/// <example><para>Example: Return the number of documents in the table `posts.</para>
+/// <example><para>Example: Return the number of documents in the table <code>posts</code>.</para>
 /// <code>r.table("posts").map(function(doc) {
-///     return 1
+///     return 1;
 /// }).reduce(function(left, right) {
-///     return left.add(right)
-/// }).run(conn, callback);
-/// </code></example>
+///     return left.add(right);
+/// }).default(0).run(conn, callback);
+/// </code>
+/// <para>A shorter way to execute this query is to use <a href="/api/javascript/count">count</a>.</para></example>
         public Reduce (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Produce a single value from a sequence through repeated application of a reduction
-/// function.</para>
+/// <para>Produce a single value from a sequence through repeated application of a reduction function.</para>
 /// </summary>
-/// <example><para>Example: Return the number of documents in the table `posts.</para>
+/// <example><para>Example: Return the number of documents in the table <code>posts</code>.</para>
 /// <code>r.table("posts").map(function(doc) {
-///     return 1
+///     return 1;
 /// }).reduce(function(left, right) {
-///     return left.add(right)
-/// }).run(conn, callback);
-/// </code></example>
+///     return left.add(right);
+/// }).default(0).run(conn, callback);
+/// </code>
+/// <para>A shorter way to execute this query is to use <a href="/api/javascript/count">count</a>.</para></example>
         public Reduce (Arguments args, OptArgs optargs)
          : base(TermType.REDUCE, args, optargs) {
         }

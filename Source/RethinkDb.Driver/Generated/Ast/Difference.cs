@@ -38,7 +38,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Remove the elements of one array from another array.</para>
 /// </summary>
 /// <example><para>Example: Retrieve Iron Man's equipment list without boots.</para>
-/// <code>r.table('marvel').get('IronMan')('equipment').difference(['Boots']).run(conn, callback)
+/// <code>r.table('marvel').get('IronMan')('equipment')
+///   .difference(['Boots'])
+///   .run(conn, callback)
 /// </code></example>
         public Difference (object arg) : this(new Arguments(arg), null) {
         }
@@ -46,7 +48,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Remove the elements of one array from another array.</para>
 /// </summary>
 /// <example><para>Example: Retrieve Iron Man's equipment list without boots.</para>
-/// <code>r.table('marvel').get('IronMan')('equipment').difference(['Boots']).run(conn, callback)
+/// <code>r.table('marvel').get('IronMan')('equipment')
+///   .difference(['Boots'])
+///   .run(conn, callback)
 /// </code></example>
         public Difference (Arguments args) : this(args, null) {
         }
@@ -54,7 +58,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Remove the elements of one array from another array.</para>
 /// </summary>
 /// <example><para>Example: Retrieve Iron Man's equipment list without boots.</para>
-/// <code>r.table('marvel').get('IronMan')('equipment').difference(['Boots']).run(conn, callback)
+/// <code>r.table('marvel').get('IronMan')('equipment')
+///   .difference(['Boots'])
+///   .run(conn, callback)
 /// </code></example>
         public Difference (Arguments args, OptArgs optargs)
          : base(TermType.DIFFERENCE, args, optargs) {

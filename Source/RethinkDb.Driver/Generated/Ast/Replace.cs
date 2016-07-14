@@ -35,9 +35,9 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
-/// the original document with the new one. The new document must have the same primary key
-/// as the original document.</para>
+/// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression,
+/// and replaces the original document with the new one. The new document must
+/// have the same primary key as the original document.</para>
 /// </summary>
 /// <example><para>Example: Replace the document with the primary key <code>1</code>.</para>
 /// <code>r.table("posts").get(1).replace({
@@ -50,9 +50,9 @@ namespace RethinkDb.Driver.Ast {
         public Replace (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
-/// the original document with the new one. The new document must have the same primary key
-/// as the original document.</para>
+/// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression,
+/// and replaces the original document with the new one. The new document must
+/// have the same primary key as the original document.</para>
 /// </summary>
 /// <example><para>Example: Replace the document with the primary key <code>1</code>.</para>
 /// <code>r.table("posts").get(1).replace({
@@ -65,9 +65,9 @@ namespace RethinkDb.Driver.Ast {
         public Replace (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
-/// the original document with the new one. The new document must have the same primary key
-/// as the original document.</para>
+/// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression,
+/// and replaces the original document with the new one. The new document must
+/// have the same primary key as the original document.</para>
 /// </summary>
 /// <example><para>Example: Replace the document with the primary key <code>1</code>.</para>
 /// <code>r.table("posts").get(1).replace({

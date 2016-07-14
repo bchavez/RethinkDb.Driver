@@ -37,7 +37,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:</para>
 /// <ul>
-/// <li>Three or more two-item arrays, specifying longitude and latitude numbers of the polygon's vertices;</li>
+/// <li>Three or more two-item arrays, specifying latitude and longitude numbers of the polygon's vertices;</li>
 /// <li>Three or more <a href="/api/javascript/point">Point</a> objects specifying the polygon's vertices.</li>
 /// </ul>
 /// </summary>
@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:</para>
 /// <ul>
-/// <li>Three or more two-item arrays, specifying longitude and latitude numbers of the polygon's vertices;</li>
+/// <li>Three or more two-item arrays, specifying latitude and longitude numbers of the polygon's vertices;</li>
 /// <li>Three or more <a href="/api/javascript/point">Point</a> objects specifying the polygon's vertices.</li>
 /// </ul>
 /// </summary>
@@ -77,7 +77,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Construct a geometry object of type Polygon. The Polygon can be specified in one of two ways:</para>
 /// <ul>
-/// <li>Three or more two-item arrays, specifying longitude and latitude numbers of the polygon's vertices;</li>
+/// <li>Three or more two-item arrays, specifying latitude and longitude numbers of the polygon's vertices;</li>
 /// <li>Three or more <a href="/api/javascript/point">Point</a> objects specifying the polygon's vertices.</li>
 /// </ul>
 /// </summary>

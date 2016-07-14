@@ -36,31 +36,67 @@ namespace RethinkDb.Driver.Ast {
     
 /// <summary>
 /// <para>Drop a database. The database, all its tables, and corresponding data will be deleted.</para>
-/// <para>If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
-/// doesn't exist a <code>RqlRuntimeError</code> is thrown.</para>
 /// </summary>
 /// <example><para>Example: Drop a database named 'superheroes'.</para>
-/// <code>r.dbDrop('superheroes').run(conn, callback)
+/// <code>&gt; r.dbDrop('superheroes').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "old_val": {
+///                 "id": "e4689cfc-e903-4532-a0e6-2d6797a43f07",
+///                 "name": "superheroes"
+///             },
+///             "new_val": null
+///         }
+///     ],
+///     "tables_dropped": 3,
+///     "dbs_dropped": 1
+/// }
 /// </code></example>
         public DbDrop (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
 /// <para>Drop a database. The database, all its tables, and corresponding data will be deleted.</para>
-/// <para>If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
-/// doesn't exist a <code>RqlRuntimeError</code> is thrown.</para>
 /// </summary>
 /// <example><para>Example: Drop a database named 'superheroes'.</para>
-/// <code>r.dbDrop('superheroes').run(conn, callback)
+/// <code>&gt; r.dbDrop('superheroes').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "old_val": {
+///                 "id": "e4689cfc-e903-4532-a0e6-2d6797a43f07",
+///                 "name": "superheroes"
+///             },
+///             "new_val": null
+///         }
+///     ],
+///     "tables_dropped": 3,
+///     "dbs_dropped": 1
+/// }
 /// </code></example>
         public DbDrop (Arguments args) : this(args, null) {
         }
 /// <summary>
 /// <para>Drop a database. The database, all its tables, and corresponding data will be deleted.</para>
-/// <para>If successful, the operation returns the object <code>{dropped: 1}</code>. If the specified database
-/// doesn't exist a <code>RqlRuntimeError</code> is thrown.</para>
 /// </summary>
 /// <example><para>Example: Drop a database named 'superheroes'.</para>
-/// <code>r.dbDrop('superheroes').run(conn, callback)
+/// <code>&gt; r.dbDrop('superheroes').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "old_val": {
+///                 "id": "e4689cfc-e903-4532-a0e6-2d6797a43f07",
+///                 "name": "superheroes"
+///             },
+///             "new_val": null
+///         }
+///     ],
+///     "tables_dropped": 3,
+///     "dbs_dropped": 1
+/// }
 /// </code></example>
         public DbDrop (Arguments args, OptArgs optargs)
          : base(TermType.DB_DROP, args, optargs) {

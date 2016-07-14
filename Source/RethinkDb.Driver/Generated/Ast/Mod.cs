@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Find the remainder when dividing two numbers.</para>
+/// 
 /// </summary>
 /// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)
@@ -43,7 +43,7 @@ namespace RethinkDb.Driver.Ast {
         public Mod (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Find the remainder when dividing two numbers.</para>
+/// 
 /// </summary>
 /// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)
@@ -51,7 +51,7 @@ namespace RethinkDb.Driver.Ast {
         public Mod (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Find the remainder when dividing two numbers.</para>
+/// 
 /// </summary>
 /// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)

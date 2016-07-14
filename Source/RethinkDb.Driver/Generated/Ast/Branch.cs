@@ -35,53 +35,38 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
-/// Otherwise, the <code>true_branch</code> will be evaluated.</para>
-/// <para>The <code>branch</code> command is effectively an <code>if</code> renamed due to language constraints.
-/// The type of the result is determined by the type of the branch that gets executed.</para>
+/// <para>Perform a branching conditional equivalent to <code>if-then-else</code>.</para>
+/// <para>The <code>branch</code> command takes 2n+1 arguments: pairs of conditional expressions and commands to be executed if the conditionals return any value but <code>false</code> or <code>null</code> (i.e., "truthy" values), with a final "else" command to be evaluated if all of the conditionals are <code>false</code> or <code>null</code>.</para>
 /// </summary>
-/// <example><para>Example: Return heroes and superheroes.</para>
-/// <code>r.table('marvel').map(
-///     r.branch(
-///         r.row('victories').gt(100),
-///         r.row('name').add(' is a superhero'),
-///         r.row('name').add(' is a hero')
-///     )
-/// ).run(conn, callback)
+/// <example><para>Example: Test the value of x.</para>
+/// <code>var x = 10;
+/// r.branch(r.expr(x).gt(5), 'big', 'small').run(conn, callback);
+/// // Result passed to callback
+/// "big"
 /// </code></example>
         public Branch (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
-/// Otherwise, the <code>true_branch</code> will be evaluated.</para>
-/// <para>The <code>branch</code> command is effectively an <code>if</code> renamed due to language constraints.
-/// The type of the result is determined by the type of the branch that gets executed.</para>
+/// <para>Perform a branching conditional equivalent to <code>if-then-else</code>.</para>
+/// <para>The <code>branch</code> command takes 2n+1 arguments: pairs of conditional expressions and commands to be executed if the conditionals return any value but <code>false</code> or <code>null</code> (i.e., "truthy" values), with a final "else" command to be evaluated if all of the conditionals are <code>false</code> or <code>null</code>.</para>
 /// </summary>
-/// <example><para>Example: Return heroes and superheroes.</para>
-/// <code>r.table('marvel').map(
-///     r.branch(
-///         r.row('victories').gt(100),
-///         r.row('name').add(' is a superhero'),
-///         r.row('name').add(' is a hero')
-///     )
-/// ).run(conn, callback)
+/// <example><para>Example: Test the value of x.</para>
+/// <code>var x = 10;
+/// r.branch(r.expr(x).gt(5), 'big', 'small').run(conn, callback);
+/// // Result passed to callback
+/// "big"
 /// </code></example>
         public Branch (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>If the <code>test</code> expression returns <code>false</code> or <code>null</code>, the <code>false_branch</code> will be evaluated.
-/// Otherwise, the <code>true_branch</code> will be evaluated.</para>
-/// <para>The <code>branch</code> command is effectively an <code>if</code> renamed due to language constraints.
-/// The type of the result is determined by the type of the branch that gets executed.</para>
+/// <para>Perform a branching conditional equivalent to <code>if-then-else</code>.</para>
+/// <para>The <code>branch</code> command takes 2n+1 arguments: pairs of conditional expressions and commands to be executed if the conditionals return any value but <code>false</code> or <code>null</code> (i.e., "truthy" values), with a final "else" command to be evaluated if all of the conditionals are <code>false</code> or <code>null</code>.</para>
 /// </summary>
-/// <example><para>Example: Return heroes and superheroes.</para>
-/// <code>r.table('marvel').map(
-///     r.branch(
-///         r.row('victories').gt(100),
-///         r.row('name').add(' is a superhero'),
-///         r.row('name').add(' is a hero')
-///     )
-/// ).run(conn, callback)
+/// <example><para>Example: Test the value of x.</para>
+/// <code>var x = 10;
+/// r.branch(r.expr(x).gt(5), 'big', 'small').run(conn, callback);
+/// // Result passed to callback
+/// "big"
 /// </code></example>
         public Branch (Arguments args, OptArgs optargs)
          : base(TermType.BRANCH, args, optargs) {

@@ -41,6 +41,9 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Create a simple object.</para>
 /// <code>r.object('id', 5, 'data', ['foo', 'bar']).run(conn, callback)
+/// </code>
+/// <para>Result:</para>
+/// <code>{data: ["foo", "bar"], id: 5}
 /// </code></example>
         public ReqlObject (object arg) : this(new Arguments(arg), null) {
         }
@@ -51,6 +54,9 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Create a simple object.</para>
 /// <code>r.object('id', 5, 'data', ['foo', 'bar']).run(conn, callback)
+/// </code>
+/// <para>Result:</para>
+/// <code>{data: ["foo", "bar"], id: 5}
 /// </code></example>
         public ReqlObject (Arguments args) : this(args, null) {
         }
@@ -61,6 +67,9 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Create a simple object.</para>
 /// <code>r.object('id', 5, 'data', ['foo', 'bar']).run(conn, callback)
+/// </code>
+/// <para>Result:</para>
+/// <code>{data: ["foo", "bar"], id: 5}
 /// </code></example>
         public ReqlObject (Arguments args, OptArgs optargs)
          : base(TermType.OBJECT, args, optargs) {

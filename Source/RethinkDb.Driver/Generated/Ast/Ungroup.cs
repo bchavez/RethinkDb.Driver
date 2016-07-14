@@ -44,8 +44,8 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is the maximum number of points scored by each
 /// player, with the highest scorers first?</para>
 /// <code>r.table('games')
-///     .group('player').max('points')['points']
-///     .ungroup().orderBy(r.desc('reduction')).run(conn)
+///    .group('player').max('points')('points')
+///    .ungroup().orderBy(r.desc('reduction')).run(conn, callback)
 /// </code></example>
         public Ungroup (object arg) : this(new Arguments(arg), null) {
         }
@@ -59,8 +59,8 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is the maximum number of points scored by each
 /// player, with the highest scorers first?</para>
 /// <code>r.table('games')
-///     .group('player').max('points')['points']
-///     .ungroup().orderBy(r.desc('reduction')).run(conn)
+///    .group('player').max('points')('points')
+///    .ungroup().orderBy(r.desc('reduction')).run(conn, callback)
 /// </code></example>
         public Ungroup (Arguments args) : this(args, null) {
         }
@@ -74,8 +74,8 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is the maximum number of points scored by each
 /// player, with the highest scorers first?</para>
 /// <code>r.table('games')
-///     .group('player').max('points')['points']
-///     .ungroup().orderBy(r.desc('reduction')).run(conn)
+///    .group('player').max('points')('points')
+///    .ungroup().orderBy(r.desc('reduction')).run(conn, callback)
 /// </code></example>
         public Ungroup (Arguments args, OptArgs optargs)
          : base(TermType.UNGROUP, args, optargs) {

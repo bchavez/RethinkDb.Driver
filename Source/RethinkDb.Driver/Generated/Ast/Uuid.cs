@@ -35,32 +35,32 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID.</para>
+/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID. If a string is passed to <code>uuid</code> as an argument, the UUID will be deterministic, derived from the string's SHA-1 hash.</para>
 /// </summary>
 /// <example><para>Example: Generate a UUID.</para>
 /// <code>&gt; r.uuid().run(conn, callback)
 /// // result returned to callback
-/// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
+/// "27961a0e-f4e8-4eb3-bf95-c5203e1d87b9"
 /// </code></example>
         public Uuid (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID.</para>
+/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID. If a string is passed to <code>uuid</code> as an argument, the UUID will be deterministic, derived from the string's SHA-1 hash.</para>
 /// </summary>
 /// <example><para>Example: Generate a UUID.</para>
 /// <code>&gt; r.uuid().run(conn, callback)
 /// // result returned to callback
-/// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
+/// "27961a0e-f4e8-4eb3-bf95-c5203e1d87b9"
 /// </code></example>
         public Uuid (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID.</para>
+/// <para>Return a UUID (universally unique identifier), a string that can be used as a unique ID. If a string is passed to <code>uuid</code> as an argument, the UUID will be deterministic, derived from the string's SHA-1 hash.</para>
 /// </summary>
 /// <example><para>Example: Generate a UUID.</para>
 /// <code>&gt; r.uuid().run(conn, callback)
 /// // result returned to callback
-/// 27961a0e-f4e8-4eb3-bf95-c5203e1d87b9
+/// "27961a0e-f4e8-4eb3-bf95-c5203e1d87b9"
 /// </code></example>
         public Uuid (Arguments args, OptArgs optargs)
          : base(TermType.UUID, args, optargs) {

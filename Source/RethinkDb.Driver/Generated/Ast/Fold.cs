@@ -34,10 +34,37 @@ namespace RethinkDb.Driver.Ast {
     
     
     
+/// <summary>
+/// <para>Apply a function to a sequence in order, maintaining state via an accumulator. The <code>fold</code> command returns either a single value or a new sequence.</para>
+/// </summary>
+/// <example><para>Example: Concatenate words from a list.</para>
+/// <code>r.table('words').orderBy('id').fold('', function (acc, word) {
+///     return acc.add(r.branch(acc.eq(''), '', ', ')).add(word);
+/// }).run(conn, callback);
+/// </code>
+/// <para>(This example could be implemented with <code>reduce</code>, but <code>fold</code> will preserve the order when <code>words</code> is a RethinkDB table or other stream, which is not guaranteed with <code>reduce</code>.)</para></example>
         public Fold (object arg) : this(new Arguments(arg), null) {
         }
+/// <summary>
+/// <para>Apply a function to a sequence in order, maintaining state via an accumulator. The <code>fold</code> command returns either a single value or a new sequence.</para>
+/// </summary>
+/// <example><para>Example: Concatenate words from a list.</para>
+/// <code>r.table('words').orderBy('id').fold('', function (acc, word) {
+///     return acc.add(r.branch(acc.eq(''), '', ', ')).add(word);
+/// }).run(conn, callback);
+/// </code>
+/// <para>(This example could be implemented with <code>reduce</code>, but <code>fold</code> will preserve the order when <code>words</code> is a RethinkDB table or other stream, which is not guaranteed with <code>reduce</code>.)</para></example>
         public Fold (Arguments args) : this(args, null) {
         }
+/// <summary>
+/// <para>Apply a function to a sequence in order, maintaining state via an accumulator. The <code>fold</code> command returns either a single value or a new sequence.</para>
+/// </summary>
+/// <example><para>Example: Concatenate words from a list.</para>
+/// <code>r.table('words').orderBy('id').fold('', function (acc, word) {
+///     return acc.add(r.branch(acc.eq(''), '', ', ')).add(word);
+/// }).run(conn, callback);
+/// </code>
+/// <para>(This example could be implemented with <code>reduce</code>, but <code>fold</code> will preserve the order when <code>words</code> is a RethinkDB table or other stream, which is not guaranteed with <code>reduce</code>.)</para></example>
         public Fold (Arguments args, OptArgs optargs)
          : base(TermType.FOLD, args, optargs) {
         }

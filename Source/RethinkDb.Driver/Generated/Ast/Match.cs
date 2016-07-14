@@ -44,7 +44,8 @@ namespace RethinkDb.Driver.Ast {
 /// </ul>
 /// <para>If no match is found, returns <code>null</code>.</para>
 /// </summary>
-/// <example><para>Example: Get all users whose name starts with "A". </para>
+/// <example><para>Example: Get all users whose name starts with "A". Because <code>null</code> evaluates to <code>false</code> in
+/// <a href="/api/javascript/filter/">filter</a>, you can just use the result of <code>match</code> for the predicate.</para>
 /// <code>r.table('users').filter(function(doc){
 ///     return doc('name').match("^A")
 /// }).run(conn, callback)
@@ -61,7 +62,8 @@ namespace RethinkDb.Driver.Ast {
 /// </ul>
 /// <para>If no match is found, returns <code>null</code>.</para>
 /// </summary>
-/// <example><para>Example: Get all users whose name starts with "A". </para>
+/// <example><para>Example: Get all users whose name starts with "A". Because <code>null</code> evaluates to <code>false</code> in
+/// <a href="/api/javascript/filter/">filter</a>, you can just use the result of <code>match</code> for the predicate.</para>
 /// <code>r.table('users').filter(function(doc){
 ///     return doc('name').match("^A")
 /// }).run(conn, callback)
@@ -78,7 +80,8 @@ namespace RethinkDb.Driver.Ast {
 /// </ul>
 /// <para>If no match is found, returns <code>null</code>.</para>
 /// </summary>
-/// <example><para>Example: Get all users whose name starts with "A". </para>
+/// <example><para>Example: Get all users whose name starts with "A". Because <code>null</code> evaluates to <code>false</code> in
+/// <a href="/api/javascript/filter/">filter</a>, you can just use the result of <code>match</code> for the predicate.</para>
 /// <code>r.table('users').filter(function(doc){
 ///     return doc('name').match("^A")
 /// }).run(conn, callback)

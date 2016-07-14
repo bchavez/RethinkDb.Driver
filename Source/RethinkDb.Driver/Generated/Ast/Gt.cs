@@ -35,26 +35,26 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Test if the first value is greater than other.</para>
+/// <para>Compare values, testing if the left-hand value is greater than the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 greater than 2?</para>
-/// <code>r.expr(2).gt(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored more than 10 points.</para>
+/// <code>r.table('players').get(1)('score').gt(10).run(conn, callback);
 /// </code></example>
         public Gt (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Test if the first value is greater than other.</para>
+/// <para>Compare values, testing if the left-hand value is greater than the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 greater than 2?</para>
-/// <code>r.expr(2).gt(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored more than 10 points.</para>
+/// <code>r.table('players').get(1)('score').gt(10).run(conn, callback);
 /// </code></example>
         public Gt (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Test if the first value is greater than other.</para>
+/// <para>Compare values, testing if the left-hand value is greater than the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 greater than 2?</para>
-/// <code>r.expr(2).gt(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored more than 10 points.</para>
+/// <code>r.table('players').get(1)('score').gt(10).run(conn, callback);
 /// </code></example>
         public Gt (Arguments args, OptArgs optargs)
          : base(TermType.GT, args, optargs) {

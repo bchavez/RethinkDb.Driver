@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Create a new secondary index on a table.</para>
+/// <para>Create a new secondary index on a table. Secondary indexes improve the speed of many read queries at the slight cost of increased storage space and decreased write performance. For more information about secondary indexes, read the article "<a href="/docs/secondary-indexes/">Using secondary indexes in RethinkDB</a>."</para>
 /// </summary>
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
@@ -43,7 +43,7 @@ namespace RethinkDb.Driver.Ast {
         public IndexCreate (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Create a new secondary index on a table.</para>
+/// <para>Create a new secondary index on a table. Secondary indexes improve the speed of many read queries at the slight cost of increased storage space and decreased write performance. For more information about secondary indexes, read the article "<a href="/docs/secondary-indexes/">Using secondary indexes in RethinkDB</a>."</para>
 /// </summary>
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)
@@ -51,7 +51,7 @@ namespace RethinkDb.Driver.Ast {
         public IndexCreate (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Create a new secondary index on a table.</para>
+/// <para>Create a new secondary index on a table. Secondary indexes improve the speed of many read queries at the slight cost of increased storage space and decreased write performance. For more information about secondary indexes, read the article "<a href="/docs/secondary-indexes/">Using secondary indexes in RethinkDB</a>."</para>
 /// </summary>
 /// <example><para>Example: Create a simple index based on the field <code>postId</code>.</para>
 /// <code>r.table('comments').indexCreate('postId').run(conn, callback)

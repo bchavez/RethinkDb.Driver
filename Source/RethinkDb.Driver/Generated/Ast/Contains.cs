@@ -35,9 +35,10 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -45,9 +46,10 @@ namespace RethinkDb.Driver.Ast {
         public Contains (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -55,9 +57,10 @@ namespace RethinkDb.Driver.Ast {
         public Contains (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)

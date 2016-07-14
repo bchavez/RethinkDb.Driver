@@ -35,9 +35,7 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
-/// combination of the two. You can pass options like <code>returnChanges</code> that will return the old
-/// and new values of the row you have modified.</para>
+/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a combination of the two.</para>
 /// </summary>
 /// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
@@ -45,9 +43,7 @@ namespace RethinkDb.Driver.Ast {
         public Update (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
-/// combination of the two. You can pass options like <code>returnChanges</code> that will return the old
-/// and new values of the row you have modified.</para>
+/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a combination of the two.</para>
 /// </summary>
 /// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
@@ -55,9 +51,7 @@ namespace RethinkDb.Driver.Ast {
         public Update (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
-/// combination of the two. You can pass options like <code>returnChanges</code> that will return the old
-/// and new values of the row you have modified.</para>
+/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a combination of the two.</para>
 /// </summary>
 /// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)

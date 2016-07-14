@@ -41,7 +41,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var point1 = r.point(-122.423246,37.779388);
 /// var point2 = r.point(-117.220406,32.719464);
 /// r.distance(point1, point2, {unit: 'km'}).run(conn, callback);
-/// // result returned to callback 
+/// // result returned to callback
 /// 734.1252496021841
 /// </code></example>
         public Distance (object arg) : this(new Arguments(arg), null) {
@@ -53,7 +53,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var point1 = r.point(-122.423246,37.779388);
 /// var point2 = r.point(-117.220406,32.719464);
 /// r.distance(point1, point2, {unit: 'km'}).run(conn, callback);
-/// // result returned to callback 
+/// // result returned to callback
 /// 734.1252496021841
 /// </code></example>
         public Distance (Arguments args) : this(args, null) {
@@ -65,7 +65,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var point1 = r.point(-122.423246,37.779388);
 /// var point2 = r.point(-117.220406,32.719464);
 /// r.distance(point1, point2, {unit: 'km'}).run(conn, callback);
-/// // result returned to callback 
+/// // result returned to callback
 /// 734.1252496021841
 /// </code></example>
         public Distance (Arguments args, OptArgs optargs)

@@ -36,29 +36,26 @@ namespace RethinkDb.Driver.Ast {
     
 /// <summary>
 /// <para>Return the elements of a sequence within the specified range.</para>
-/// <para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3-5.)</para>
-/// <para><code>js
-/// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code></para>
 /// </summary>
-/// <example></example>
+/// <example><para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3-5.)</para>
+/// <code>r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback);
+/// </code></example>
         public Slice (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
 /// <para>Return the elements of a sequence within the specified range.</para>
-/// <para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3-5.)</para>
-/// <para><code>js
-/// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code></para>
 /// </summary>
-/// <example></example>
+/// <example><para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3-5.)</para>
+/// <code>r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback);
+/// </code></example>
         public Slice (Arguments args) : this(args, null) {
         }
 /// <summary>
 /// <para>Return the elements of a sequence within the specified range.</para>
-/// <para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3-5.)</para>
-/// <para><code>js
-/// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code></para>
 /// </summary>
-/// <example></example>
+/// <example><para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3-5.)</para>
+/// <code>r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback);
+/// </code></example>
         public Slice (Arguments args, OptArgs optargs)
          : base(TermType.SLICE, args, optargs) {
         }

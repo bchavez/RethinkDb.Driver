@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (-180 to 180) and the latitude (-90 to 90) of the point on a perfect sphere.</para>
+/// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (-180 to 180) and latitude (-90 to 90) of the point on a perfect sphere. See <a href="/docs/geo-support/">Geospatial support</a> for more information on ReQL's coordinate system.</para>
 /// </summary>
 /// <example><para>Example: Define a point.</para>
 /// <code>r.table('geo').insert({
@@ -47,7 +47,7 @@ namespace RethinkDb.Driver.Ast {
         public Point (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (-180 to 180) and the latitude (-90 to 90) of the point on a perfect sphere.</para>
+/// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (-180 to 180) and latitude (-90 to 90) of the point on a perfect sphere. See <a href="/docs/geo-support/">Geospatial support</a> for more information on ReQL's coordinate system.</para>
 /// </summary>
 /// <example><para>Example: Define a point.</para>
 /// <code>r.table('geo').insert({
@@ -59,7 +59,7 @@ namespace RethinkDb.Driver.Ast {
         public Point (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (-180 to 180) and the latitude (-90 to 90) of the point on a perfect sphere.</para>
+/// <para>Construct a geometry object of type Point. The point is specified by two floating point numbers, the longitude (-180 to 180) and latitude (-90 to 90) of the point on a perfect sphere. See <a href="/docs/geo-support/">Geospatial support</a> for more information on ReQL's coordinate system.</para>
 /// </summary>
 /// <example><para>Example: Define a point.</para>
 /// <code>r.table('geo').insert({

@@ -35,26 +35,32 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Gets the type of a value.</para>
+/// <para>Gets the type of a ReQL query's return value.</para>
 /// </summary>
 /// <example><para>Example: Get the type of a string.</para>
-/// <code>r.expr("foo").typeOf().run(conn, callback)
+/// <code>r.expr("foo").typeOf().run(conn, callback);
+/// // Result passed to callback
+/// "STRING"
 /// </code></example>
         public TypeOf (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Gets the type of a value.</para>
+/// <para>Gets the type of a ReQL query's return value.</para>
 /// </summary>
 /// <example><para>Example: Get the type of a string.</para>
-/// <code>r.expr("foo").typeOf().run(conn, callback)
+/// <code>r.expr("foo").typeOf().run(conn, callback);
+/// // Result passed to callback
+/// "STRING"
 /// </code></example>
         public TypeOf (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Gets the type of a value.</para>
+/// <para>Gets the type of a ReQL query's return value.</para>
 /// </summary>
 /// <example><para>Example: Get the type of a string.</para>
-/// <code>r.expr("foo").typeOf().run(conn, callback)
+/// <code>r.expr("foo").typeOf().run(conn, callback);
+/// // Result passed to callback
+/// "STRING"
 /// </code></example>
         public TypeOf (Arguments args, OptArgs optargs)
          : base(TermType.TYPE_OF, args, optargs) {

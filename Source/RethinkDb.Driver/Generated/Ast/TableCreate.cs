@@ -38,7 +38,33 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
 /// </summary>
 /// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
-/// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
+/// <code>&gt; r.db('heroes').tableCreate('dc_universe').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "new_val": {
+///                 "db": "test",
+///                 "durability":  "hard",
+///                 "id": "20ea60d4-3b76-4817-8828-98a236df0297",
+///                 "name": "dc_universe",
+///                 "primary_key": "id",
+///                 "shards": [
+///                     {
+///                         "primary_replica": "rethinkdb_srv1",
+///                         "replicas": [
+///                             "rethinkdb_srv1",
+///                             "rethinkdb_srv2"
+///                         ]
+///                     }
+///                 ],
+///                 "write_acks": "majority"
+///             },
+///             "old_val": null
+///         }
+///     ],
+///     "tables_created": 1
+/// }
 /// </code></example>
         public TableCreate (object arg) : this(new Arguments(arg), null) {
         }
@@ -46,7 +72,33 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
 /// </summary>
 /// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
-/// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
+/// <code>&gt; r.db('heroes').tableCreate('dc_universe').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "new_val": {
+///                 "db": "test",
+///                 "durability":  "hard",
+///                 "id": "20ea60d4-3b76-4817-8828-98a236df0297",
+///                 "name": "dc_universe",
+///                 "primary_key": "id",
+///                 "shards": [
+///                     {
+///                         "primary_replica": "rethinkdb_srv1",
+///                         "replicas": [
+///                             "rethinkdb_srv1",
+///                             "rethinkdb_srv2"
+///                         ]
+///                     }
+///                 ],
+///                 "write_acks": "majority"
+///             },
+///             "old_val": null
+///         }
+///     ],
+///     "tables_created": 1
+/// }
 /// </code></example>
         public TableCreate (Arguments args) : this(args, null) {
         }
@@ -54,7 +106,33 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Create a table. A RethinkDB table is a collection of JSON documents.</para>
 /// </summary>
 /// <example><para>Example: Create a table named 'dc_universe' with the default settings.</para>
-/// <code>r.db('test').tableCreate('dc_universe').run(conn, callback)
+/// <code>&gt; r.db('heroes').tableCreate('dc_universe').run(conn, callback);
+/// // Result passed to callback
+/// {
+///     "config_changes": [
+///         {
+///             "new_val": {
+///                 "db": "test",
+///                 "durability":  "hard",
+///                 "id": "20ea60d4-3b76-4817-8828-98a236df0297",
+///                 "name": "dc_universe",
+///                 "primary_key": "id",
+///                 "shards": [
+///                     {
+///                         "primary_replica": "rethinkdb_srv1",
+///                         "replicas": [
+///                             "rethinkdb_srv1",
+///                             "rethinkdb_srv2"
+///                         ]
+///                     }
+///                 ],
+///                 "write_acks": "majority"
+///             },
+///             "old_val": null
+///         }
+///     ],
+///     "tables_created": 1
+/// }
 /// </code></example>
         public TableCreate (Arguments args, OptArgs optargs)
          : base(TermType.TABLE_CREATE, args, optargs) {

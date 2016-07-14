@@ -40,9 +40,6 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Wait for all indexes on the table <code>test</code> to be ready:</para>
 /// <code>r.table('test').indexWait().run(conn, callback)
-/// </code>
-/// <para>Example: Wait for the index <code>timestamp</code> to be ready:</para>
-/// <code>r.table('test').indexWait('timestamp').run(conn, callback)
 /// </code></example>
         public IndexWait (object arg) : this(new Arguments(arg), null) {
         }
@@ -52,9 +49,6 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Wait for all indexes on the table <code>test</code> to be ready:</para>
 /// <code>r.table('test').indexWait().run(conn, callback)
-/// </code>
-/// <para>Example: Wait for the index <code>timestamp</code> to be ready:</para>
-/// <code>r.table('test').indexWait('timestamp').run(conn, callback)
 /// </code></example>
         public IndexWait (Arguments args) : this(args, null) {
         }
@@ -64,9 +58,6 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Wait for all indexes on the table <code>test</code> to be ready:</para>
 /// <code>r.table('test').indexWait().run(conn, callback)
-/// </code>
-/// <para>Example: Wait for the index <code>timestamp</code> to be ready:</para>
-/// <code>r.table('test').indexWait('timestamp').run(conn, callback)
 /// </code></example>
         public IndexWait (Arguments args, OptArgs optargs)
          : base(TermType.INDEX_WAIT, args, optargs) {

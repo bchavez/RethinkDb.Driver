@@ -35,10 +35,10 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Convert a ReQL geometry object to a [GeoJSON][] object.</para>
+/// <para>Convert a ReQL geometry object to a <a href="http://geojson.org">GeoJSON</a> object.</para>
 /// </summary>
 /// <example><para>Example: Convert a ReQL geometry object to a GeoJSON object.</para>
-/// <code>r.table(geo).get('sfo')('location').toGeojson.run(conn, callback);
+/// <code>r.table('geo').get('sfo')('location').toGeojson.run(conn, callback);
 /// // result passed to callback
 /// {
 ///     'type': 'Point',
@@ -48,10 +48,10 @@ namespace RethinkDb.Driver.Ast {
         public ToGeojson (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Convert a ReQL geometry object to a [GeoJSON][] object.</para>
+/// <para>Convert a ReQL geometry object to a <a href="http://geojson.org">GeoJSON</a> object.</para>
 /// </summary>
 /// <example><para>Example: Convert a ReQL geometry object to a GeoJSON object.</para>
-/// <code>r.table(geo).get('sfo')('location').toGeojson.run(conn, callback);
+/// <code>r.table('geo').get('sfo')('location').toGeojson.run(conn, callback);
 /// // result passed to callback
 /// {
 ///     'type': 'Point',
@@ -61,10 +61,10 @@ namespace RethinkDb.Driver.Ast {
         public ToGeojson (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Convert a ReQL geometry object to a [GeoJSON][] object.</para>
+/// <para>Convert a ReQL geometry object to a <a href="http://geojson.org">GeoJSON</a> object.</para>
 /// </summary>
 /// <example><para>Example: Convert a ReQL geometry object to a GeoJSON object.</para>
-/// <code>r.table(geo).get('sfo')('location').toGeojson.run(conn, callback);
+/// <code>r.table('geo').get('sfo')('location').toGeojson.run(conn, callback);
 /// // result passed to callback
 /// {
 ///     'type': 'Point',

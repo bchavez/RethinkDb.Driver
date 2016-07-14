@@ -36,27 +36,18 @@ namespace RethinkDb.Driver.Ast {
     
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
-/// <para>Example: Match players with the games they've played against one another.</para>
-/// <para><code>js
-/// r.table('players').eqJoin('gameId', r.table('games')).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
         public EqJoin (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
-/// <para>Example: Match players with the games they've played against one another.</para>
-/// <para><code>js
-/// r.table('players').eqJoin('gameId', r.table('games')).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
         public EqJoin (Arguments args) : this(args, null) {
         }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
-/// <para>Example: Match players with the games they've played against one another.</para>
-/// <para><code>js
-/// r.table('players').eqJoin('gameId', r.table('games')).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
         public EqJoin (Arguments args, OptArgs optargs)

@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -46,7 +46,7 @@ namespace RethinkDb.Driver.Ast {
         public Merge (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Ast {
         public Merge (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(

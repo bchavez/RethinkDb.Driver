@@ -35,26 +35,26 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Test if two values are not equal.</para>
+/// <para>Test if two or more values are not equal.</para>
 /// </summary>
-/// <example><para>Example: Does 2 not equal 2?</para>
-/// <code>r.expr(2).ne(2).run(conn, callback)
+/// <example><para>Example: See if a user's <code>role</code> field is not set to <code>administrator</code>.</para>
+/// <code>r.table('users').get(1)('role').ne('administrator').run(conn, callback);
 /// </code></example>
         public Ne (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Test if two values are not equal.</para>
+/// <para>Test if two or more values are not equal.</para>
 /// </summary>
-/// <example><para>Example: Does 2 not equal 2?</para>
-/// <code>r.expr(2).ne(2).run(conn, callback)
+/// <example><para>Example: See if a user's <code>role</code> field is not set to <code>administrator</code>.</para>
+/// <code>r.table('users').get(1)('role').ne('administrator').run(conn, callback);
 /// </code></example>
         public Ne (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Test if two values are not equal.</para>
+/// <para>Test if two or more values are not equal.</para>
 /// </summary>
-/// <example><para>Example: Does 2 not equal 2?</para>
-/// <code>r.expr(2).ne(2).run(conn, callback)
+/// <example><para>Example: See if a user's <code>role</code> field is not set to <code>administrator</code>.</para>
+/// <code>r.table('users').get(1)('role').ne('administrator').run(conn, callback);
 /// </code></example>
         public Ne (Arguments args, OptArgs optargs)
          : base(TermType.NE, args, optargs) {

@@ -35,27 +35,57 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.</para>
-/// <para><code>js
-/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
+/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation. Using <code>literal</code> with no arguments in a <code>merge</code> or <code>update</code> operation will remove the corresponding field.</para>
 /// </summary>
-/// <example></example>
+/// <example><para>Example: Replace one nested document with another rather than merging the fields.</para>
+/// <code>r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)
+/// 
+/// // Result passed to callback
+/// {
+///     "id": 1,
+///     "name": "Alice",
+///     "data": {
+///         "age": 19,
+///         "job": "Engineer"
+///     }
+/// }
+/// </code></example>
         public Literal (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.</para>
-/// <para><code>js
-/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
+/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation. Using <code>literal</code> with no arguments in a <code>merge</code> or <code>update</code> operation will remove the corresponding field.</para>
 /// </summary>
-/// <example></example>
+/// <example><para>Example: Replace one nested document with another rather than merging the fields.</para>
+/// <code>r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)
+/// 
+/// // Result passed to callback
+/// {
+///     "id": 1,
+///     "name": "Alice",
+///     "data": {
+///         "age": 19,
+///         "job": "Engineer"
+///     }
+/// }
+/// </code></example>
         public Literal (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation.</para>
-/// <para><code>js
-/// r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)</code></para>
+/// <para>Replace an object in a field instead of merging it with an existing object in a <code>merge</code> or <code>update</code> operation. Using <code>literal</code> with no arguments in a <code>merge</code> or <code>update</code> operation will remove the corresponding field.</para>
 /// </summary>
-/// <example></example>
+/// <example><para>Example: Replace one nested document with another rather than merging the fields.</para>
+/// <code>r.table('users').get(1).update({ data: r.literal({ age: 19, job: 'Engineer' }) }).run(conn, callback)
+/// 
+/// // Result passed to callback
+/// {
+///     "id": 1,
+///     "name": "Alice",
+///     "data": {
+///         "age": 19,
+///         "job": "Engineer"
+///     }
+/// }
+/// </code></example>
         public Literal (Arguments args, OptArgs optargs)
          : base(TermType.LITERAL, args, optargs) {
         }

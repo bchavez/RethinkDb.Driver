@@ -35,26 +35,26 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Test if the first value is less than or equal to other.</para>
+/// <para>Compare values, testing if the left-hand value is less than or equal to the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 less than or equal to 2?</para>
-/// <code>r.expr(2).le(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored 10 points or less.</para>
+/// <code>r.table('players').get(1)('score').le(10).run(conn, callback);
 /// </code></example>
         public Le (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Test if the first value is less than or equal to other.</para>
+/// <para>Compare values, testing if the left-hand value is less than or equal to the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 less than or equal to 2?</para>
-/// <code>r.expr(2).le(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored 10 points or less.</para>
+/// <code>r.table('players').get(1)('score').le(10).run(conn, callback);
 /// </code></example>
         public Le (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Test if the first value is less than or equal to other.</para>
+/// <para>Compare values, testing if the left-hand value is less than or equal to the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 less than or equal to 2?</para>
-/// <code>r.expr(2).le(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored 10 points or less.</para>
+/// <code>r.table('players').get(1)('score').le(10).run(conn, callback);
 /// </code></example>
         public Le (Arguments args, OptArgs optargs)
          : base(TermType.LE, args, optargs) {

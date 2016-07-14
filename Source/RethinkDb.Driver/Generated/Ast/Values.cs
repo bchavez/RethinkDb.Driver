@@ -34,10 +34,40 @@ namespace RethinkDb.Driver.Ast {
     
     
     
+/// <summary>
+/// <para>Return an array containing all of an object's values. <code>values()</code> guarantees the values will come out in the same order as <a href="/api/javascript/keys">keys</a>.</para>
+/// </summary>
+/// <example><para>Example: Get all of the values from a table row.</para>
+/// <code>// row: { id: 1, mail: "fred@example.com", name: "fred" }
+/// 
+/// r.table('users').get(1).values().run(conn, callback);
+/// // Result passed to callback
+/// [ 1, "fred@example.com", "fred" ]
+/// </code></example>
         public Values (object arg) : this(new Arguments(arg), null) {
         }
+/// <summary>
+/// <para>Return an array containing all of an object's values. <code>values()</code> guarantees the values will come out in the same order as <a href="/api/javascript/keys">keys</a>.</para>
+/// </summary>
+/// <example><para>Example: Get all of the values from a table row.</para>
+/// <code>// row: { id: 1, mail: "fred@example.com", name: "fred" }
+/// 
+/// r.table('users').get(1).values().run(conn, callback);
+/// // Result passed to callback
+/// [ 1, "fred@example.com", "fred" ]
+/// </code></example>
         public Values (Arguments args) : this(args, null) {
         }
+/// <summary>
+/// <para>Return an array containing all of an object's values. <code>values()</code> guarantees the values will come out in the same order as <a href="/api/javascript/keys">keys</a>.</para>
+/// </summary>
+/// <example><para>Example: Get all of the values from a table row.</para>
+/// <code>// row: { id: 1, mail: "fred@example.com", name: "fred" }
+/// 
+/// r.table('users').get(1).values().run(conn, callback);
+/// // Result passed to callback
+/// [ 1, "fred@example.com", "fred" ]
+/// </code></example>
         public Values (Arguments args, OptArgs optargs)
          : base(TermType.VALUES, args, optargs) {
         }

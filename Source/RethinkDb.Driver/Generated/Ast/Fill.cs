@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// r.table('geo').get(201).update({
 ///     rectangle: r.row('rectangle').fill()
-/// }).run(conn, callback);
+/// }, {nonAtomic: true}).run(conn, callback);
 /// </code></example>
         public Fill (object arg) : this(new Arguments(arg), null) {
         }
@@ -70,7 +70,7 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// r.table('geo').get(201).update({
 ///     rectangle: r.row('rectangle').fill()
-/// }).run(conn, callback);
+/// }, {nonAtomic: true}).run(conn, callback);
 /// </code></example>
         public Fill (Arguments args) : this(args, null) {
         }
@@ -90,7 +90,7 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// r.table('geo').get(201).update({
 ///     rectangle: r.row('rectangle').fill()
-/// }).run(conn, callback);
+/// }, {nonAtomic: true}).run(conn, callback);
 /// </code></example>
         public Fill (Arguments args, OptArgs optargs)
          : base(TermType.FILL, args, optargs) {

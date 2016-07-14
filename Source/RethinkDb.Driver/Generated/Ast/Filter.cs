@@ -35,51 +35,30 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Get all the documents for which the given predicate is true.</para>
-/// <para><code>filter</code> can be called on a sequence, selection, or a field containing an array of
-/// elements. The return type is the same as the type on which the function was called on.</para>
-/// <para>The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
-/// if a non-existence errors is thrown (when you try to access a field that does not exist
-/// in a document), RethinkDB will just ignore the document.
-/// The <code>default</code> value can be changed by passing an object with a <code>default</code> field.
-/// Setting this optional argument to <code>r.error()</code> will cause any non-existence errors to
-/// return a <code>RqlRuntimeError</code>.</para>
+/// <para>Return all the elements in a sequence for which the given predicate is true. The return value of <code>filter</code> will be the same as the input (sequence, stream, or array). Documents can be filtered in a variety of ways&mdash;ranges, nested values, boolean conditions, and the results of anonymous functions.</para>
 /// </summary>
-/// <example><para>Example: Get all the users that are 30 years old.</para>
-/// <code>r.table('users').filter({age: 30}).run(conn, callback)
-/// </code></example>
+/// <example><para>Example: Get all users who are 30 years old.</para>
+/// <code>r.table('users').filter({age: 30}).run(conn, callback);
+/// </code>
+/// <para>The predicate <code>{age: 30}</code> selects documents in the <code>users</code> table with an <code>age</code> field whose value is <code>30</code>. Documents with an <code>age</code> field set to any other value <em>or</em> with no <code>age</code> field present are skipped.</para></example>
         public Filter (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Get all the documents for which the given predicate is true.</para>
-/// <para><code>filter</code> can be called on a sequence, selection, or a field containing an array of
-/// elements. The return type is the same as the type on which the function was called on.</para>
-/// <para>The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
-/// if a non-existence errors is thrown (when you try to access a field that does not exist
-/// in a document), RethinkDB will just ignore the document.
-/// The <code>default</code> value can be changed by passing an object with a <code>default</code> field.
-/// Setting this optional argument to <code>r.error()</code> will cause any non-existence errors to
-/// return a <code>RqlRuntimeError</code>.</para>
+/// <para>Return all the elements in a sequence for which the given predicate is true. The return value of <code>filter</code> will be the same as the input (sequence, stream, or array). Documents can be filtered in a variety of ways&mdash;ranges, nested values, boolean conditions, and the results of anonymous functions.</para>
 /// </summary>
-/// <example><para>Example: Get all the users that are 30 years old.</para>
-/// <code>r.table('users').filter({age: 30}).run(conn, callback)
-/// </code></example>
+/// <example><para>Example: Get all users who are 30 years old.</para>
+/// <code>r.table('users').filter({age: 30}).run(conn, callback);
+/// </code>
+/// <para>The predicate <code>{age: 30}</code> selects documents in the <code>users</code> table with an <code>age</code> field whose value is <code>30</code>. Documents with an <code>age</code> field set to any other value <em>or</em> with no <code>age</code> field present are skipped.</para></example>
         public Filter (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Get all the documents for which the given predicate is true.</para>
-/// <para><code>filter</code> can be called on a sequence, selection, or a field containing an array of
-/// elements. The return type is the same as the type on which the function was called on.</para>
-/// <para>The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
-/// if a non-existence errors is thrown (when you try to access a field that does not exist
-/// in a document), RethinkDB will just ignore the document.
-/// The <code>default</code> value can be changed by passing an object with a <code>default</code> field.
-/// Setting this optional argument to <code>r.error()</code> will cause any non-existence errors to
-/// return a <code>RqlRuntimeError</code>.</para>
+/// <para>Return all the elements in a sequence for which the given predicate is true. The return value of <code>filter</code> will be the same as the input (sequence, stream, or array). Documents can be filtered in a variety of ways&mdash;ranges, nested values, boolean conditions, and the results of anonymous functions.</para>
 /// </summary>
-/// <example><para>Example: Get all the users that are 30 years old.</para>
-/// <code>r.table('users').filter({age: 30}).run(conn, callback)
-/// </code></example>
+/// <example><para>Example: Get all users who are 30 years old.</para>
+/// <code>r.table('users').filter({age: 30}).run(conn, callback);
+/// </code>
+/// <para>The predicate <code>{age: 30}</code> selects documents in the <code>users</code> table with an <code>age</code> field whose value is <code>30</code>. Documents with an <code>age</code> field set to any other value <em>or</em> with no <code>age</code> field present are skipped.</para></example>
         public Filter (Arguments args, OptArgs optargs)
          : base(TermType.FILTER, args, optargs) {
         }

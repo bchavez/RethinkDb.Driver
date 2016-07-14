@@ -37,7 +37,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Construct a geometry object of type Line. The line can be specified in one of two ways:</para>
 /// <ul>
-/// <li>Two or more two-item arrays, specifying longitude and latitude numbers of the line's vertices;</li>
+/// <li>Two or more two-item arrays, specifying latitude and longitude numbers of the line's vertices;</li>
 /// <li>Two or more <a href="/api/javascript/point">Point</a> objects specifying the line's vertices.</li>
 /// </ul>
 /// </summary>
@@ -52,7 +52,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Construct a geometry object of type Line. The line can be specified in one of two ways:</para>
 /// <ul>
-/// <li>Two or more two-item arrays, specifying longitude and latitude numbers of the line's vertices;</li>
+/// <li>Two or more two-item arrays, specifying latitude and longitude numbers of the line's vertices;</li>
 /// <li>Two or more <a href="/api/javascript/point">Point</a> objects specifying the line's vertices.</li>
 /// </ul>
 /// </summary>
@@ -67,7 +67,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Construct a geometry object of type Line. The line can be specified in one of two ways:</para>
 /// <ul>
-/// <li>Two or more two-item arrays, specifying longitude and latitude numbers of the line's vertices;</li>
+/// <li>Two or more two-item arrays, specifying latitude and longitude numbers of the line's vertices;</li>
 /// <li>Two or more <a href="/api/javascript/point">Point</a> objects specifying the line's vertices.</li>
 /// </ul>
 /// </summary>

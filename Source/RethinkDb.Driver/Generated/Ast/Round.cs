@@ -38,30 +38,33 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Rounds the given value to the nearest whole integer.</para>
 /// </summary>
 /// <example><para>Example: Round 12.345 to the nearest integer.</para>
-/// <code>&gt; r.round(12.345).run(conn, callback);
-/// 
+/// <code>r.round(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 12.0
-/// </code></example>
+/// </code>
+/// <para>The <code>round</code> command can also be chained after an expression.</para></example>
         public Round (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
 /// <para>Rounds the given value to the nearest whole integer.</para>
 /// </summary>
 /// <example><para>Example: Round 12.345 to the nearest integer.</para>
-/// <code>&gt; r.round(12.345).run(conn, callback);
-/// 
+/// <code>r.round(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 12.0
-/// </code></example>
+/// </code>
+/// <para>The <code>round</code> command can also be chained after an expression.</para></example>
         public Round (Arguments args) : this(args, null) {
         }
 /// <summary>
 /// <para>Rounds the given value to the nearest whole integer.</para>
 /// </summary>
 /// <example><para>Example: Round 12.345 to the nearest integer.</para>
-/// <code>&gt; r.round(12.345).run(conn, callback);
-/// 
+/// <code>r.round(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 12.0
-/// </code></example>
+/// </code>
+/// <para>The <code>round</code> command can also be chained after an expression.</para></example>
         public Round (Arguments args, OptArgs optargs)
          : base(TermType.ROUND, args, optargs) {
         }

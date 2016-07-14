@@ -35,26 +35,65 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.</para>
+/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <a href="/api/javascript/has_fields/">hasFields</a> followed by <a href="/api/javascript/pluck/">pluck</a> on a sequence.</para>
 /// </summary>
 /// <example><para>Example: Get a list of users and their posts, excluding any users who have not made any posts.</para>
-/// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
+/// <para>Existing table structure:</para>
+/// <code>[
+///     { 'id': 1, 'user': 'bob', 'email': 'bob@foo.com', 'posts': [ 1, 4, 5 ] },
+///     { 'id': 2, 'user': 'george', 'email': 'george@foo.com' },
+///     { 'id': 3, 'user': 'jane', 'email': 'jane@foo.com', 'posts': [ 2, 3, 6 ] }
+/// ]
+/// </code>
+/// <para>Command and output:</para>
+/// <code>&gt; r.table('users').withFields('id', 'user', 'posts').run(conn, callback)
+/// // Result passed to callback
+/// [
+///     { 'id': 1, 'user': 'bob', 'posts': [ 1, 4, 5 ] },
+///     { 'id': 3, 'user': 'jane', 'posts': [ 2, 3, 6 ] }
+/// ]
 /// </code></example>
         public WithFields (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.</para>
+/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <a href="/api/javascript/has_fields/">hasFields</a> followed by <a href="/api/javascript/pluck/">pluck</a> on a sequence.</para>
 /// </summary>
 /// <example><para>Example: Get a list of users and their posts, excluding any users who have not made any posts.</para>
-/// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
+/// <para>Existing table structure:</para>
+/// <code>[
+///     { 'id': 1, 'user': 'bob', 'email': 'bob@foo.com', 'posts': [ 1, 4, 5 ] },
+///     { 'id': 2, 'user': 'george', 'email': 'george@foo.com' },
+///     { 'id': 3, 'user': 'jane', 'email': 'jane@foo.com', 'posts': [ 2, 3, 6 ] }
+/// ]
+/// </code>
+/// <para>Command and output:</para>
+/// <code>&gt; r.table('users').withFields('id', 'user', 'posts').run(conn, callback)
+/// // Result passed to callback
+/// [
+///     { 'id': 1, 'user': 'bob', 'posts': [ 1, 4, 5 ] },
+///     { 'id': 3, 'user': 'jane', 'posts': [ 2, 3, 6 ] }
+/// ]
 /// </code></example>
         public WithFields (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.</para>
+/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <a href="/api/javascript/has_fields/">hasFields</a> followed by <a href="/api/javascript/pluck/">pluck</a> on a sequence.</para>
 /// </summary>
 /// <example><para>Example: Get a list of users and their posts, excluding any users who have not made any posts.</para>
-/// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
+/// <para>Existing table structure:</para>
+/// <code>[
+///     { 'id': 1, 'user': 'bob', 'email': 'bob@foo.com', 'posts': [ 1, 4, 5 ] },
+///     { 'id': 2, 'user': 'george', 'email': 'george@foo.com' },
+///     { 'id': 3, 'user': 'jane', 'email': 'jane@foo.com', 'posts': [ 2, 3, 6 ] }
+/// ]
+/// </code>
+/// <para>Command and output:</para>
+/// <code>&gt; r.table('users').withFields('id', 'user', 'posts').run(conn, callback)
+/// // Result passed to callback
+/// [
+///     { 'id': 1, 'user': 'bob', 'posts': [ 1, 4, 5 ] },
+///     { 'id': 3, 'user': 'jane', 'posts': [ 2, 3, 6 ] }
+/// ]
 /// </code></example>
         public WithFields (Arguments args, OptArgs optargs)
          : base(TermType.WITH_FIELDS, args, optargs) {

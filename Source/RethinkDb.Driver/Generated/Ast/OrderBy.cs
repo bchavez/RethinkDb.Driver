@@ -38,19 +38,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
         public OrderBy (object arg) : this(new Arguments(arg), null) {
         }
@@ -58,19 +48,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
         public OrderBy (Arguments args) : this(args, null) {
         }
@@ -78,19 +58,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
         public OrderBy (Arguments args, OptArgs optargs)
          : base(TermType.ORDER_BY, args, optargs) {

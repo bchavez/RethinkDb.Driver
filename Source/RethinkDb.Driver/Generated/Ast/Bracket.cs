@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Ast {
     
     
 /// <summary>
-/// <para>Get a single field from an object or a single element from a sequence.</para>
+/// <para>Get a single field from an object. If called on a sequence, gets that field from every object in the sequence, skipping objects that lack it.</para>
 /// </summary>
 /// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan')('firstAppearance').run(conn, callback)
@@ -43,7 +43,7 @@ namespace RethinkDb.Driver.Ast {
         public Bracket (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
-/// <para>Get a single field from an object or a single element from a sequence.</para>
+/// <para>Get a single field from an object. If called on a sequence, gets that field from every object in the sequence, skipping objects that lack it.</para>
 /// </summary>
 /// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan')('firstAppearance').run(conn, callback)
@@ -51,7 +51,7 @@ namespace RethinkDb.Driver.Ast {
         public Bracket (Arguments args) : this(args, null) {
         }
 /// <summary>
-/// <para>Get a single field from an object or a single element from a sequence.</para>
+/// <para>Get a single field from an object. If called on a sequence, gets that field from every object in the sequence, skipping objects that lack it.</para>
 /// </summary>
 /// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan')('firstAppearance').run(conn, callback)

@@ -56,10 +56,10 @@ namespace RethinkDb.Driver.Ast {
     
 
 /// <summary>
-/// <para>Test if two values are equal.</para>
+/// <para>Test if two or more values are equal.</para>
 /// </summary>
-/// <example><para>Example: Does 2 equal 2?</para>
-/// <code>r.expr(2).eq(2).run(conn, callback)
+/// <example><para>Example: See if a user's <code>role</code> field is set to <code>administrator</code>.</para>
+/// <code>r.table('users').get(1)('role').eq('administrator').run(conn, callback);
 /// </code></example>
                         public Eq Eq ( Object exprA, params object[] exprs )
                         {
@@ -73,10 +73,10 @@ namespace RethinkDb.Driver.Ast {
                            return Eq ( exprA, exprs );
                         }
 /// <summary>
-/// <para>Test if two values are not equal.</para>
+/// <para>Test if two or more values are not equal.</para>
 /// </summary>
-/// <example><para>Example: Does 2 not equal 2?</para>
-/// <code>r.expr(2).ne(2).run(conn, callback)
+/// <example><para>Example: See if a user's <code>role</code> field is not set to <code>administrator</code>.</para>
+/// <code>r.table('users').get(1)('role').ne('administrator').run(conn, callback);
 /// </code></example>
                         public Ne Ne ( Object exprA, params object[] exprs )
                         {
@@ -90,10 +90,10 @@ namespace RethinkDb.Driver.Ast {
                            return Ne ( exprA, exprs );
                         }
 /// <summary>
-/// <para>Test if the first value is less than other.</para>
+/// <para>Compare values, testing if the left-hand value is less than the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 less than 2?</para>
-/// <code>r.expr(2).lt(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored less than 10 points.</para>
+/// <code>r.table('players').get(1)('score').lt(10).run(conn, callback);
 /// </code></example>
                         public Lt Lt ( Object exprA, params object[] exprs )
                         {
@@ -107,10 +107,10 @@ namespace RethinkDb.Driver.Ast {
                            return Lt ( exprA, exprs );
                         }
 /// <summary>
-/// <para>Test if the first value is less than or equal to other.</para>
+/// <para>Compare values, testing if the left-hand value is less than or equal to the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 less than or equal to 2?</para>
-/// <code>r.expr(2).le(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored 10 points or less.</para>
+/// <code>r.table('players').get(1)('score').le(10).run(conn, callback);
 /// </code></example>
                         public Le Le ( Object exprA, params object[] exprs )
                         {
@@ -124,10 +124,10 @@ namespace RethinkDb.Driver.Ast {
                            return Le ( exprA, exprs );
                         }
 /// <summary>
-/// <para>Test if the first value is greater than other.</para>
+/// <para>Compare values, testing if the left-hand value is greater than the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 greater than 2?</para>
-/// <code>r.expr(2).gt(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored more than 10 points.</para>
+/// <code>r.table('players').get(1)('score').gt(10).run(conn, callback);
 /// </code></example>
                         public Gt Gt ( Object exprA, params object[] exprs )
                         {
@@ -141,10 +141,10 @@ namespace RethinkDb.Driver.Ast {
                            return Gt ( exprA, exprs );
                         }
 /// <summary>
-/// <para>Test if the first value is greater than or equal to other.</para>
+/// <para>Compare values, testing if the left-hand value is greater than or equal to the right-hand.</para>
 /// </summary>
-/// <example><para>Example: Is 2 greater than or equal to 2?</para>
-/// <code>r.expr(2).ge(2).run(conn, callback)
+/// <example><para>Example: Test if a player has scored 10 points or more.</para>
+/// <code>r.table('players').get(1)('score').ge(10).run(conn, callback);
 /// </code></example>
                         public Ge Ge ( Object exprA, params object[] exprs )
                         {
@@ -159,12 +159,12 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Compute the logical inverse (not) of an expression.</para>
-/// <para><code>not</code> can be called either via method chaining, immediately after an expression that evaluates as a boolean value, or by passing the expression as a parameter to <code>not</code>.</para>
 /// </summary>
 /// <example><para>Example: Not true is false.</para>
 /// <code>r(true).not().run(conn, callback)
 /// r.not(true).run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>These evaluate to <code>false</code>.</para></example>
                         public Not Not (  )
                         {
                             Arguments arguments = new Arguments(this);
@@ -175,10 +175,12 @@ namespace RethinkDb.Driver.Ast {
                            return Not (  );
                         }
 /// <summary>
-/// <para>Sum two numbers, concatenate two strings, or concatenate 2 arrays.</para>
+/// <para>Sum two or more numbers, or concatenate two or more strings or arrays.</para>
 /// </summary>
 /// <example><para>Example: It's as easy as 2 + 2 = 4.</para>
-/// <code>r.expr(2).add(2).run(conn, callback)
+/// <code>&gt; r.expr(2).add(2).run(conn, callback)
+/// // result passed to callback
+/// 4
 /// </code></example>
                         public Add Add ( params object[] exprs )
                         {
@@ -239,7 +241,7 @@ namespace RethinkDb.Driver.Ast {
                            return Div ( exprs );
                         }
 /// <summary>
-/// <para>Find the remainder when dividing two numbers.</para>
+/// 
 /// </summary>
 /// <example><para>Example: It's as easy as 2 % 2 = 0.</para>
 /// <code>r.expr(2).mod(2).run(conn, callback)
@@ -258,10 +260,11 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
 /// </summary>
 /// <example><para>Example: Return the floor of 12.345.</para>
-/// <code>&gt; r.floor(12.345).run(conn, callback);
-/// 
+/// <code>r.floor(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 12.0
-/// </code></example>
+/// </code>
+/// <para>The <code>floor</code> command can also be chained after an expression.</para></example>
                         public Floor Floor (  )
                         {
                             Arguments arguments = new Arguments(this);
@@ -275,10 +278,11 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Rounds the given value up, returning the smallest integer value greater than or equal to the given value (the value's ceiling).</para>
 /// </summary>
 /// <example><para>Example: Return the ceiling of 12.345.</para>
-/// <code>&gt; r.ceil(12.345).run(conn, callback);
-/// 
+/// <code>r.ceil(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 13.0
-/// </code></example>
+/// </code>
+/// <para>The <code>ceil</code> command can also be chained after an expression.</para></example>
                         public Ceil Ceil (  )
                         {
                             Arguments arguments = new Arguments(this);
@@ -292,10 +296,11 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Rounds the given value to the nearest whole integer.</para>
 /// </summary>
 /// <example><para>Example: Round 12.345 to the nearest integer.</para>
-/// <code>&gt; r.round(12.345).run(conn, callback);
-/// 
+/// <code>r.round(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 12.0
-/// </code></example>
+/// </code>
+/// <para>The <code>round</code> command can also be chained after an expression.</para></example>
                         public Round Round (  )
                         {
                             Arguments arguments = new Arguments(this);
@@ -341,7 +346,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Remove the elements of one array from another array.</para>
 /// </summary>
 /// <example><para>Example: Retrieve Iron Man's equipment list without boots.</para>
-/// <code>r.table('marvel').get('IronMan')('equipment').difference(['Boots']).run(conn, callback)
+/// <code>r.table('marvel').get('IronMan')('equipment')
+///   .difference(['Boots'])
+///   .run(conn, callback)
 /// </code></example>
                         public Difference Difference ( Object exprA )
                         {
@@ -421,11 +428,10 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Return the elements of a sequence within the specified range.</para>
-/// <para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3-5.)</para>
-/// <para><code>js
-/// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code></para>
 /// </summary>
-/// <example></example>
+/// <example><para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3-5.)</para>
+/// <code>r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback);
+/// </code></example>
                         public Slice Slice ( Object exprA )
                         {
                             Arguments arguments = new Arguments(this);
@@ -438,11 +444,10 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Return the elements of a sequence within the specified range.</para>
-/// <para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3-5.)</para>
-/// <para><code>js
-/// r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback)</code></para>
 /// </summary>
-/// <example></example>
+/// <example><para>Example: Return the fourth, fifth and sixth youngest players. (The youngest player is at index 0, so those are elements 3-5.)</para>
+/// <code>r.table('players').orderBy({index: 'age'}).slice(3,6).run(conn, callback);
+/// </code></example>
                         public Slice Slice ( Object exprA, Object exprB )
                         {
                             Arguments arguments = new Arguments(this);
@@ -457,7 +462,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Skip a number of elements from the head of the sequence.</para>
 /// </summary>
-/// <example><para>Example: Here in conjunction with <code>orderBy</code> we choose to ignore the most successful heroes.</para>
+/// <example><para>Example: Here in conjunction with <a href="/api/javascript/order_by/">orderBy</a> we choose to ignore the most successful heroes.</para>
 /// <code>r.table('marvel').orderBy('successMetric').skip(10).run(conn, callback)
 /// </code></example>
                         public Skip Skip ( Object exprA )
@@ -535,9 +540,10 @@ namespace RethinkDb.Driver.Ast {
                            return OffsetsOf ( func1 );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -552,9 +558,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains (  );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -570,9 +577,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -589,9 +597,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, jsA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -609,9 +618,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, jsA, jsB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -630,9 +640,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, jsA, jsB, jsC );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -651,9 +662,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, jsA, jsB, exprA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -671,9 +683,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, jsA, exprA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -692,9 +705,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, jsA, exprA, jsB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -713,9 +727,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, jsA, exprA, exprB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -732,9 +747,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, exprA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -752,9 +768,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, exprA, jsA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -773,9 +790,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, exprA, jsA, jsB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -794,9 +812,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, exprA, jsA, exprB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -814,9 +833,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, exprA, exprB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -835,9 +855,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, exprA, exprB, jsA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -856,9 +877,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( js, exprA, exprB, exprC );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -874,9 +896,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -893,9 +916,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, js );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -913,9 +937,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, js, jsA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -934,9 +959,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, js, jsA, jsB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -955,9 +981,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, js, jsA, exprB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -975,9 +1002,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, js, exprB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -996,9 +1024,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, js, exprB, jsA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1017,9 +1046,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, js, exprB, exprC );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1036,9 +1066,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, exprB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1056,9 +1087,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, exprB, js );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1077,9 +1109,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, exprB, js, jsA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1098,9 +1131,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, exprB, js, exprC );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1118,9 +1152,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, exprB, exprC );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1139,9 +1174,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, exprB, exprC, js );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1160,9 +1196,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, exprB, exprC, exprD );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1181,9 +1218,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, exprB, exprC, func1 );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1201,9 +1239,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, exprB, func1 );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1222,9 +1261,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, exprB, func1, exprC );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1243,9 +1283,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, exprB, func1, func1A );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1262,9 +1303,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, func1 );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1282,9 +1324,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, func1, exprB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1303,9 +1346,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, func1, exprB, exprC );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1324,9 +1368,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, func1, exprB, func1A );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1344,9 +1389,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, func1, func1A );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1365,9 +1411,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, func1, func1A, exprB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1386,9 +1433,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( exprA, func1, func1A, func1B );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1404,9 +1452,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1 );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1423,9 +1472,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, exprA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1443,9 +1493,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, exprA, exprB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1464,9 +1515,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, exprA, exprB, exprC );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1485,9 +1537,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, exprA, exprB, func1A );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1505,9 +1558,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, exprA, func1A );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1526,9 +1580,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, exprA, func1A, exprB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1547,9 +1602,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, exprA, func1A, func1B );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1566,9 +1622,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, func1A );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1586,9 +1643,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, func1A, exprA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1607,9 +1665,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, func1A, exprA, exprB );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1628,9 +1687,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, func1A, exprA, func1B );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1648,9 +1708,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, func1A, func1B );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1669,9 +1730,10 @@ namespace RethinkDb.Driver.Ast {
                            return Contains ( func1, func1A, func1B, exprA );
                         }
 /// <summary>
-/// <para>Returns whether or not a sequence contains all the specified values, or if functions are
-/// provided instead, returns whether or not a sequence contains values matching all the
-/// specified functions.</para>
+/// <para>When called with values, returns <code>true</code> if a sequence contains all the
+/// specified values.  When called with predicate functions, returns <code>true</code>
+/// if for each predicate there exists at least one element of the stream
+/// where that predicate returns <code>true</code>.</para>
 /// </summary>
 /// <example><para>Example: Has Iron Man ever fought Superman?</para>
 /// <code>r.table('marvel').get('ironman')('opponents').contains('superman').run(conn, callback)
@@ -1724,10 +1786,14 @@ namespace RethinkDb.Driver.Ast {
                            return G ( exprA );
                         }
 /// <summary>
-/// <para>Return an array containing all of the object's keys.</para>
+/// <para>Return an array containing all of an object's keys. Note that the keys will be sorted as described in <a href="/docs/data-types/#sorting-order">ReQL data types</a> (for strings, lexicographically).</para>
 /// </summary>
-/// <example><para>Example: Get all the keys of a row.</para>
-/// <code>r.table('marvel').get('ironman').keys().run(conn, callback)
+/// <example><para>Example: Get all the keys from a table row.</para>
+/// <code>// row: { id: 1, mail: "fred@example.com", name: "fred" }
+/// 
+/// r.table('users').get(1).keys().run(conn, callback);
+/// // Result passed to callback
+/// [ "id", "mail", "name" ]
 /// </code></example>
                         public Keys Keys (  )
                         {
@@ -1768,10 +1834,23 @@ namespace RethinkDb.Driver.Ast {
                            return HasFields ( exprs );
                         }
 /// <summary>
-/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.</para>
+/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <a href="/api/javascript/has_fields/">hasFields</a> followed by <a href="/api/javascript/pluck/">pluck</a> on a sequence.</para>
 /// </summary>
 /// <example><para>Example: Get a list of users and their posts, excluding any users who have not made any posts.</para>
-/// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
+/// <para>Existing table structure:</para>
+/// <code>[
+///     { 'id': 1, 'user': 'bob', 'email': 'bob@foo.com', 'posts': [ 1, 4, 5 ] },
+///     { 'id': 2, 'user': 'george', 'email': 'george@foo.com' },
+///     { 'id': 3, 'user': 'jane', 'email': 'jane@foo.com', 'posts': [ 2, 3, 6 ] }
+/// ]
+/// </code>
+/// <para>Command and output:</para>
+/// <code>&gt; r.table('users').withFields('id', 'user', 'posts').run(conn, callback)
+/// // Result passed to callback
+/// [
+///     { 'id': 1, 'user': 'bob', 'posts': [ 1, 4, 5 ] },
+///     { 'id': 3, 'user': 'jane', 'posts': [ 2, 3, 6 ] }
+/// ]
 /// </code></example>
                         public WithFields WithFields ( params object[] exprs )
                         {
@@ -1780,10 +1859,23 @@ namespace RethinkDb.Driver.Ast {
                             return new WithFields (arguments );
                         }
 /// <summary>
-/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <code>hasFields</code> followed by <code>pluck</code> on a sequence.</para>
+/// <para>Plucks one or more attributes from a sequence of objects, filtering out any objects in the sequence that do not have the specified fields. Functionally, this is identical to <a href="/api/javascript/has_fields/">hasFields</a> followed by <a href="/api/javascript/pluck/">pluck</a> on a sequence.</para>
 /// </summary>
 /// <example><para>Example: Get a list of users and their posts, excluding any users who have not made any posts.</para>
-/// <code>r.table('users').withFields('id', 'username', 'posts').run(conn, callback)
+/// <para>Existing table structure:</para>
+/// <code>[
+///     { 'id': 1, 'user': 'bob', 'email': 'bob@foo.com', 'posts': [ 1, 4, 5 ] },
+///     { 'id': 2, 'user': 'george', 'email': 'george@foo.com' },
+///     { 'id': 3, 'user': 'jane', 'email': 'jane@foo.com', 'posts': [ 2, 3, 6 ] }
+/// ]
+/// </code>
+/// <para>Command and output:</para>
+/// <code>&gt; r.table('users').withFields('id', 'user', 'posts').run(conn, callback)
+/// // Result passed to callback
+/// [
+///     { 'id': 1, 'user': 'bob', 'posts': [ 1, 4, 5 ] },
+///     { 'id': 3, 'user': 'jane', 'posts': [ 2, 3, 6 ] }
+/// ]
 /// </code></example>
                             /// <param name="args">Same as calling params object[] overload, except the collection is applied as object[] params.</param>
                             public WithFields WithFields ( ICollection<string> args )
@@ -1863,7 +1955,7 @@ namespace RethinkDb.Driver.Ast {
                            return Without ( exprs );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -1881,7 +1973,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge (  );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -1900,7 +1992,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -1920,7 +2012,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, jsA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -1941,7 +2033,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, jsA, jsB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -1963,7 +2055,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, jsA, jsB, jsC );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -1985,7 +2077,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, jsA, jsB, exprA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2006,7 +2098,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, jsA, exprA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2028,7 +2120,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, jsA, exprA, jsB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2050,7 +2142,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, jsA, exprA, exprB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2070,7 +2162,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, exprA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2091,7 +2183,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, exprA, jsA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2113,7 +2205,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, exprA, jsA, jsB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2135,7 +2227,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, exprA, jsA, exprB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2156,7 +2248,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, exprA, exprB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2178,7 +2270,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, exprA, exprB, jsA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2200,7 +2292,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( js, exprA, exprB, exprC );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2219,7 +2311,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2239,7 +2331,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, js );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2260,7 +2352,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, js, jsA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2282,7 +2374,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, js, jsA, jsB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2304,7 +2396,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, js, jsA, exprB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2325,7 +2417,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, js, exprB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2347,7 +2439,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, js, exprB, jsA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2369,7 +2461,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, js, exprB, exprC );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2389,7 +2481,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, exprB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2410,7 +2502,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, exprB, js );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2432,7 +2524,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, exprB, js, jsA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2454,7 +2546,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, exprB, js, exprC );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2475,7 +2567,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, exprB, exprC );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2497,7 +2589,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, exprB, exprC, js );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2519,7 +2611,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, exprB, exprC, exprD );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2541,7 +2633,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, exprB, exprC, func1 );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2562,7 +2654,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, exprB, func1 );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2584,7 +2676,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, exprB, func1, exprC );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2606,7 +2698,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, exprB, func1, func1A );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2626,7 +2718,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, func1 );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2647,7 +2739,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, func1, exprB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2669,7 +2761,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, func1, exprB, exprC );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2691,7 +2783,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, func1, exprB, func1A );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2712,7 +2804,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, func1, func1A );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2734,7 +2826,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, func1, func1A, exprB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2756,7 +2848,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( exprA, func1, func1A, func1B );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2775,7 +2867,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1 );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2795,7 +2887,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, exprA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2816,7 +2908,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, exprA, exprB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2838,7 +2930,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, exprA, exprB, exprC );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2860,7 +2952,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, exprA, exprB, func1A );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2881,7 +2973,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, exprA, func1A );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2903,7 +2995,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, exprA, func1A, exprB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2925,7 +3017,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, exprA, func1A, func1B );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2945,7 +3037,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, func1A );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2966,7 +3058,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, func1A, exprA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -2988,7 +3080,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, func1A, exprA, exprB );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -3010,7 +3102,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, func1A, exprA, func1B );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -3031,7 +3123,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, func1A, func1B );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -3053,7 +3145,7 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, func1A, func1B, exprA );
                         }
 /// <summary>
-/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list.</para>
+/// <para>Merge two or more objects together to construct a new object with properties from all. When there is a conflict between field names, preference is given to fields in the rightmost object in the argument list. <code>merge</code> also accepts a subquery function that returns an object, which will be used similarly to a <a href="/api/javascript/map/">map</a> function.</para>
 /// </summary>
 /// <example><para>Example: Equip Thor for battle.</para>
 /// <code>r.table('marvel').get('thor').merge(
@@ -3075,15 +3167,10 @@ namespace RethinkDb.Driver.Ast {
                            return Merge ( func1, func1A, func1B, func1C );
                         }
 /// <summary>
-/// <para>Get all documents between two keys. Accepts three optional arguments: <code>index</code>,
-/// <code>left_bound</code>, and <code>right_bound</code>. If <code>index</code> is set to the name of a secondary index,
-/// <code>between</code> will return all documents where that index's value is in the specified range
-/// (it uses the primary key by default). <code>left_bound</code> or <code>right_bound</code> may be set to <code>open</code>
-/// or <code>closed</code> to indicate whether or not to include that endpoint of the range (by default,
-/// <code>left_bound</code> is closed and <code>right_bound</code> is open).</para>
+/// <para>Get all documents between two keys. Accepts three optional arguments: <code>index</code>, <code>leftBound</code>, and <code>rightBound</code>. If <code>index</code> is set to the name of a secondary index, <code>between</code> will return all documents where that index's value is in the specified range (it uses the primary key by default). <code>leftBound</code> or <code>rightBound</code> may be set to <code>open</code> or <code>closed</code> to indicate whether or not to include that endpoint of the range (by default, <code>leftBound</code> is closed and <code>rightBound</code> is open).</para>
 /// </summary>
 /// <example><para>Example: Find all users with primary key &gt;= 10 and &lt; 20 (a normal half-open interval).</para>
-/// <code>r.table('marvel').between(10, 20).run(conn, callback)
+/// <code>r.table('marvel').between(10, 20).run(conn, callback);
 /// </code></example>
                         public Between Between ( Object exprA, Object exprB )
                         {
@@ -3097,16 +3184,16 @@ namespace RethinkDb.Driver.Ast {
                            return Between ( exprA, exprB );
                         }
 /// <summary>
-/// <para>Produce a single value from a sequence through repeated application of a reduction
-/// function.</para>
+/// <para>Produce a single value from a sequence through repeated application of a reduction function.</para>
 /// </summary>
-/// <example><para>Example: Return the number of documents in the table `posts.</para>
+/// <example><para>Example: Return the number of documents in the table <code>posts</code>.</para>
 /// <code>r.table("posts").map(function(doc) {
-///     return 1
+///     return 1;
 /// }).reduce(function(left, right) {
-///     return left.add(right)
-/// }).run(conn, callback);
-/// </code></example>
+///     return left.add(right);
+/// }).default(0).run(conn, callback);
+/// </code>
+/// <para>A shorter way to execute this query is to use <a href="/api/javascript/count">count</a>.</para></example>
                         public Reduce Reduce ( Javascript js )
                         {
                             Arguments arguments = new Arguments(this);
@@ -3118,16 +3205,16 @@ namespace RethinkDb.Driver.Ast {
                            return Reduce ( js );
                         }
 /// <summary>
-/// <para>Produce a single value from a sequence through repeated application of a reduction
-/// function.</para>
+/// <para>Produce a single value from a sequence through repeated application of a reduction function.</para>
 /// </summary>
-/// <example><para>Example: Return the number of documents in the table `posts.</para>
+/// <example><para>Example: Return the number of documents in the table <code>posts</code>.</para>
 /// <code>r.table("posts").map(function(doc) {
-///     return 1
+///     return 1;
 /// }).reduce(function(left, right) {
-///     return left.add(right)
-/// }).run(conn, callback);
-/// </code></example>
+///     return left.add(right);
+/// }).default(0).run(conn, callback);
+/// </code>
+/// <para>A shorter way to execute this query is to use <a href="/api/javascript/count">count</a>.</para></example>
                         public Reduce Reduce ( ReqlFunction2 func2 )
                         {
                             Arguments arguments = new Arguments(this);
@@ -3138,6 +3225,15 @@ namespace RethinkDb.Driver.Ast {
                         {
                            return Reduce ( func2 );
                         }
+/// <summary>
+/// <para>Apply a function to a sequence in order, maintaining state via an accumulator. The <code>fold</code> command returns either a single value or a new sequence.</para>
+/// </summary>
+/// <example><para>Example: Concatenate words from a list.</para>
+/// <code>r.table('words').orderBy('id').fold('', function (acc, word) {
+///     return acc.add(r.branch(acc.eq(''), '', ', ')).add(word);
+/// }).run(conn, callback);
+/// </code>
+/// <para>(This example could be implemented with <code>reduce</code>, but <code>fold</code> will preserve the order when <code>words</code> is a RethinkDB table or other stream, which is not guaranteed with <code>reduce</code>.)</para></example>
                         public Fold Fold ( Object exprA, Javascript js )
                         {
                             Arguments arguments = new Arguments(this);
@@ -3149,6 +3245,15 @@ namespace RethinkDb.Driver.Ast {
                         {
                            return Fold ( exprA, js );
                         }
+/// <summary>
+/// <para>Apply a function to a sequence in order, maintaining state via an accumulator. The <code>fold</code> command returns either a single value or a new sequence.</para>
+/// </summary>
+/// <example><para>Example: Concatenate words from a list.</para>
+/// <code>r.table('words').orderBy('id').fold('', function (acc, word) {
+///     return acc.add(r.branch(acc.eq(''), '', ', ')).add(word);
+/// }).run(conn, callback);
+/// </code>
+/// <para>(This example could be implemented with <code>reduce</code>, but <code>fold</code> will preserve the order when <code>words</code> is a RethinkDB table or other stream, which is not guaranteed with <code>reduce</code>.)</para></example>
                         public Fold Fold ( Object exprA, ReqlFunction2 func2 )
                         {
                             Arguments arguments = new Arguments(this);
@@ -3353,19 +3458,12 @@ namespace RethinkDb.Driver.Ast {
                            return Map ( func1 );
                         }
 /// <summary>
-/// <para>Get all the documents for which the given predicate is true.</para>
-/// <para><code>filter</code> can be called on a sequence, selection, or a field containing an array of
-/// elements. The return type is the same as the type on which the function was called on.</para>
-/// <para>The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
-/// if a non-existence errors is thrown (when you try to access a field that does not exist
-/// in a document), RethinkDB will just ignore the document.
-/// The <code>default</code> value can be changed by passing an object with a <code>default</code> field.
-/// Setting this optional argument to <code>r.error()</code> will cause any non-existence errors to
-/// return a <code>RqlRuntimeError</code>.</para>
+/// <para>Return all the elements in a sequence for which the given predicate is true. The return value of <code>filter</code> will be the same as the input (sequence, stream, or array). Documents can be filtered in a variety of ways&mdash;ranges, nested values, boolean conditions, and the results of anonymous functions.</para>
 /// </summary>
-/// <example><para>Example: Get all the users that are 30 years old.</para>
-/// <code>r.table('users').filter({age: 30}).run(conn, callback)
-/// </code></example>
+/// <example><para>Example: Get all users who are 30 years old.</para>
+/// <code>r.table('users').filter({age: 30}).run(conn, callback);
+/// </code>
+/// <para>The predicate <code>{age: 30}</code> selects documents in the <code>users</code> table with an <code>age</code> field whose value is <code>30</code>. Documents with an <code>age</code> field set to any other value <em>or</em> with no <code>age</code> field present are skipped.</para></example>
                         public Filter Filter ( Javascript js )
                         {
                             Arguments arguments = new Arguments(this);
@@ -3377,19 +3475,12 @@ namespace RethinkDb.Driver.Ast {
                            return Filter ( js );
                         }
 /// <summary>
-/// <para>Get all the documents for which the given predicate is true.</para>
-/// <para><code>filter</code> can be called on a sequence, selection, or a field containing an array of
-/// elements. The return type is the same as the type on which the function was called on.</para>
-/// <para>The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
-/// if a non-existence errors is thrown (when you try to access a field that does not exist
-/// in a document), RethinkDB will just ignore the document.
-/// The <code>default</code> value can be changed by passing an object with a <code>default</code> field.
-/// Setting this optional argument to <code>r.error()</code> will cause any non-existence errors to
-/// return a <code>RqlRuntimeError</code>.</para>
+/// <para>Return all the elements in a sequence for which the given predicate is true. The return value of <code>filter</code> will be the same as the input (sequence, stream, or array). Documents can be filtered in a variety of ways&mdash;ranges, nested values, boolean conditions, and the results of anonymous functions.</para>
 /// </summary>
-/// <example><para>Example: Get all the users that are 30 years old.</para>
-/// <code>r.table('users').filter({age: 30}).run(conn, callback)
-/// </code></example>
+/// <example><para>Example: Get all users who are 30 years old.</para>
+/// <code>r.table('users').filter({age: 30}).run(conn, callback);
+/// </code>
+/// <para>The predicate <code>{age: 30}</code> selects documents in the <code>users</code> table with an <code>age</code> field whose value is <code>30</code>. Documents with an <code>age</code> field set to any other value <em>or</em> with no <code>age</code> field present are skipped.</para></example>
                         public Filter Filter ( Object exprA )
                         {
                             Arguments arguments = new Arguments(this);
@@ -3401,19 +3492,12 @@ namespace RethinkDb.Driver.Ast {
                            return Filter ( exprA );
                         }
 /// <summary>
-/// <para>Get all the documents for which the given predicate is true.</para>
-/// <para><code>filter</code> can be called on a sequence, selection, or a field containing an array of
-/// elements. The return type is the same as the type on which the function was called on.</para>
-/// <para>The body of every filter is wrapped in an implicit <code>.default(false)</code>, which means that
-/// if a non-existence errors is thrown (when you try to access a field that does not exist
-/// in a document), RethinkDB will just ignore the document.
-/// The <code>default</code> value can be changed by passing an object with a <code>default</code> field.
-/// Setting this optional argument to <code>r.error()</code> will cause any non-existence errors to
-/// return a <code>RqlRuntimeError</code>.</para>
+/// <para>Return all the elements in a sequence for which the given predicate is true. The return value of <code>filter</code> will be the same as the input (sequence, stream, or array). Documents can be filtered in a variety of ways&mdash;ranges, nested values, boolean conditions, and the results of anonymous functions.</para>
 /// </summary>
-/// <example><para>Example: Get all the users that are 30 years old.</para>
-/// <code>r.table('users').filter({age: 30}).run(conn, callback)
-/// </code></example>
+/// <example><para>Example: Get all users who are 30 years old.</para>
+/// <code>r.table('users').filter({age: 30}).run(conn, callback);
+/// </code>
+/// <para>The predicate <code>{age: 30}</code> selects documents in the <code>users</code> table with an <code>age</code> field whose value is <code>30</code>. Documents with an <code>age</code> field set to any other value <em>or</em> with no <code>age</code> field present are skipped.</para></example>
                         public Filter Filter ( ReqlFunction1 func1 )
                         {
                             Arguments arguments = new Arguments(this);
@@ -3464,19 +3548,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy (  )
                         {
@@ -3491,19 +3565,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js )
                         {
@@ -3519,19 +3583,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA )
                         {
@@ -3548,19 +3602,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA, Javascript jsB )
                         {
@@ -3578,19 +3622,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
                         {
@@ -3609,19 +3643,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
                         {
@@ -3640,19 +3664,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA, Object exprA )
                         {
@@ -3670,19 +3684,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
                         {
@@ -3701,19 +3705,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Javascript jsA, Object exprA, Object exprB )
                         {
@@ -3732,19 +3726,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA )
                         {
@@ -3761,19 +3745,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA, Javascript jsA )
                         {
@@ -3791,19 +3765,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
                         {
@@ -3822,19 +3786,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA, Javascript jsA, Object exprB )
                         {
@@ -3853,19 +3807,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA, Object exprB )
                         {
@@ -3883,19 +3827,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA, Object exprB, Javascript jsA )
                         {
@@ -3914,19 +3848,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Javascript js, Object exprA, Object exprB, Object exprC )
                         {
@@ -3945,19 +3869,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA )
                         {
@@ -3973,19 +3887,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js )
                         {
@@ -4002,19 +3906,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js, Javascript jsA )
                         {
@@ -4032,19 +3926,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
                         {
@@ -4063,19 +3947,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js, Javascript jsA, Object exprB )
                         {
@@ -4094,19 +3968,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js, Object exprB )
                         {
@@ -4124,19 +3988,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js, Object exprB, Javascript jsA )
                         {
@@ -4155,19 +4009,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Javascript js, Object exprB, Object exprC )
                         {
@@ -4186,19 +4030,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB )
                         {
@@ -4215,19 +4049,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Javascript js )
                         {
@@ -4245,19 +4069,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Javascript js, Javascript jsA )
                         {
@@ -4276,19 +4090,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Javascript js, Object exprC )
                         {
@@ -4307,19 +4111,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Object exprC )
                         {
@@ -4337,19 +4131,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Object exprC, Javascript js )
                         {
@@ -4368,19 +4152,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Object exprC, Object exprD )
                         {
@@ -4399,19 +4173,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
                         {
@@ -4430,19 +4194,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, ReqlFunction1 func1 )
                         {
@@ -4460,19 +4214,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
                         {
@@ -4491,19 +4235,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
@@ -4522,19 +4256,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1 )
                         {
@@ -4551,19 +4275,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1, Object exprB )
                         {
@@ -4581,19 +4295,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
                         {
@@ -4612,19 +4316,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
                         {
@@ -4643,19 +4337,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
@@ -4673,19 +4357,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
                         {
@@ -4704,19 +4378,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
@@ -4735,19 +4399,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1 )
                         {
@@ -4763,19 +4417,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA )
                         {
@@ -4792,19 +4436,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA, Object exprB )
                         {
@@ -4822,19 +4456,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
                         {
@@ -4853,19 +4477,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
                         {
@@ -4884,19 +4498,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
                         {
@@ -4914,19 +4518,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
                         {
@@ -4945,19 +4539,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
@@ -4976,19 +4560,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
@@ -5005,19 +4579,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
                         {
@@ -5035,19 +4599,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
                         {
@@ -5066,19 +4620,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
                         {
@@ -5097,19 +4641,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
@@ -5127,19 +4661,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
                         {
@@ -5158,19 +4682,9 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Sort the sequence by document values of the given key(s). To specify
 /// the ordering, wrap the attribute with either <code>r.asc</code> or <code>r.desc</code>
 /// (defaults to ascending).</para>
-/// <para>Sorting without an index requires the server to hold the sequence in
-/// memory, and is limited to 100,000 documents (or the setting of the <code>arrayLimit</code> option for <a href="/api/javascript/run">run</a>). Sorting with an index can
-/// be done on arbitrarily large tables, or after a <code>between</code> command
-/// using the same index.</para>
 /// </summary>
-/// <example><para>Example: Order all the posts using the index <code>date</code>.   </para>
-/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback)
-/// </code>
-/// <para>The index must have been previously created with <a href="/api/javascript/index_create/">indexCreate</a>.</para>
-/// <code>r.table('posts').indexCreate('date').run(conn, callback)
-/// </code>
-/// <para>You can also select a descending ordering:</para>
-/// <code>r.table('posts').orderBy({index: r.desc('date')}).run(conn, callback)
+/// <example><para>Example: Order all the posts using the index <code>date</code>.</para>
+/// <code>r.table('posts').orderBy({index: 'date'}).run(conn, callback);
 /// </code></example>
                         public OrderBy OrderBy ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
                         {
@@ -5186,9 +4700,9 @@ namespace RethinkDb.Driver.Ast {
                            return OrderBy ( func1, func1A, func1B, func1C );
                         }
 /// <summary>
-/// <para>Remove duplicate elements from the sequence.</para>
+/// <para>Removes duplicates from elements in a sequence.</para>
 /// </summary>
-/// <example><para>Example: Which unique villains have been vanquished by marvel heroes?</para>
+/// <example><para>Example: Which unique villains have been vanquished by Marvel heroes?</para>
 /// <code>r.table('marvel').concatMap(function(hero) {
 ///     return hero('villainList')
 /// }).distinct().run(conn, callback)
@@ -5203,12 +4717,10 @@ namespace RethinkDb.Driver.Ast {
                            return Distinct (  );
                         }
 /// <summary>
-/// <para>Count the number of elements in the sequence. With a single argument, count the number
-/// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.</para>
+/// <para>Counts the number of elements in a sequence or key/value pairs in an object, or returns the size of a string or binary object.</para>
 /// </summary>
-/// <example><para>Example: Just how many super heroes are there?</para>
-/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// <example><para>Example: Count the number of users.</para>
+/// <code>r.table('users').count().run(conn, callback);
 /// </code></example>
                         public Count Count (  )
                         {
@@ -5220,12 +4732,10 @@ namespace RethinkDb.Driver.Ast {
                            return Count (  );
                         }
 /// <summary>
-/// <para>Count the number of elements in the sequence. With a single argument, count the number
-/// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.</para>
+/// <para>Counts the number of elements in a sequence or key/value pairs in an object, or returns the size of a string or binary object.</para>
 /// </summary>
-/// <example><para>Example: Just how many super heroes are there?</para>
-/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// <example><para>Example: Count the number of users.</para>
+/// <code>r.table('users').count().run(conn, callback);
 /// </code></example>
                         public Count Count ( Javascript js )
                         {
@@ -5238,12 +4748,10 @@ namespace RethinkDb.Driver.Ast {
                            return Count ( js );
                         }
 /// <summary>
-/// <para>Count the number of elements in the sequence. With a single argument, count the number
-/// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.</para>
+/// <para>Counts the number of elements in a sequence or key/value pairs in an object, or returns the size of a string or binary object.</para>
 /// </summary>
-/// <example><para>Example: Just how many super heroes are there?</para>
-/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// <example><para>Example: Count the number of users.</para>
+/// <code>r.table('users').count().run(conn, callback);
 /// </code></example>
                         public Count Count ( Object exprA )
                         {
@@ -5256,12 +4764,10 @@ namespace RethinkDb.Driver.Ast {
                            return Count ( exprA );
                         }
 /// <summary>
-/// <para>Count the number of elements in the sequence. With a single argument, count the number
-/// of elements equal to it. If the argument is a function, it is equivalent to calling
-/// filter before count.</para>
+/// <para>Counts the number of elements in a sequence or key/value pairs in an object, or returns the size of a string or binary object.</para>
 /// </summary>
-/// <example><para>Example: Just how many super heroes are there?</para>
-/// <code>r.table('marvel').count().add(r.table('dc').count()).run(conn, callback)
+/// <example><para>Example: Count the number of users.</para>
+/// <code>r.table('users').count().run(conn, callback);
 /// </code></example>
                         public Count Count ( ReqlFunction1 func1 )
                         {
@@ -5289,7 +4795,7 @@ namespace RethinkDb.Driver.Ast {
                            return IsEmpty (  );
                         }
 /// <summary>
-/// <para>Concatenate two or more sequences.</para>
+/// <para>Merge two or more sequences.</para>
 /// </summary>
 /// <example><para>Example: Construct a stream of all heroes.</para>
 /// <code>r.table('marvel').union(r.table('dc')).run(conn, callback);
@@ -5309,6 +4815,7 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example: Select the second element in the array.</para>
 /// <code>r.expr([1,2,3]).nth(1).run(conn, callback)
+/// r.expr([1,2,3])(1).run(conn, callback)
 /// </code></example>
                         public Nth Nth ( Object exprA )
                         {
@@ -5321,7 +4828,7 @@ namespace RethinkDb.Driver.Ast {
                            return Nth ( exprA );
                         }
 /// <summary>
-/// <para>Get a single field from an object or a single element from a sequence.</para>
+/// <para>Get a single field from an object. If called on a sequence, gets that field from every object in the sequence, skipping objects that lack it.</para>
 /// </summary>
 /// <example><para>Example: What was Iron Man's first appearance in a comic?</para>
 /// <code>r.table('marvel').get('IronMan')('firstAppearance').run(conn, callback)
@@ -5375,13 +4882,14 @@ namespace RethinkDb.Driver.Ast {
                            return InnerJoin ( exprA, func2 );
                         }
 /// <summary>
-/// <para>Returns a left outer join of two sequences.</para>
+/// <para>Returns a left outer join of two sequences. The returned sequence represents a union of the left-hand sequence and the right-hand sequence: all documents in the left-hand sequence will be returned, each matched with a document in the right-hand sequence if one satisfies the predicate condition. In most cases, you will want to follow the join with <a href="/api/javascript/zip">zip</a> to combine the left and right results.</para>
 /// </summary>
 /// <example><para>Example: Return a list of all Marvel heroes, paired with any DC heroes who could beat them in a fight.</para>
 /// <code>r.table('marvel').outerJoin(r.table('dc'), function(marvelRow, dcRow) {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>(Compare this to an <a href="/api/javascript/inner_join">innerJoin</a> with the same inputs and predicate, which would return a list only of the matchups in which the DC hero has the higher strength.)</para></example>
                         public OuterJoin OuterJoin ( Object exprA, Javascript js )
                         {
                             Arguments arguments = new Arguments(this);
@@ -5394,13 +4902,14 @@ namespace RethinkDb.Driver.Ast {
                            return OuterJoin ( exprA, js );
                         }
 /// <summary>
-/// <para>Returns a left outer join of two sequences.</para>
+/// <para>Returns a left outer join of two sequences. The returned sequence represents a union of the left-hand sequence and the right-hand sequence: all documents in the left-hand sequence will be returned, each matched with a document in the right-hand sequence if one satisfies the predicate condition. In most cases, you will want to follow the join with <a href="/api/javascript/zip">zip</a> to combine the left and right results.</para>
 /// </summary>
 /// <example><para>Example: Return a list of all Marvel heroes, paired with any DC heroes who could beat them in a fight.</para>
 /// <code>r.table('marvel').outerJoin(r.table('dc'), function(marvelRow, dcRow) {
 ///     return marvelRow('strength').lt(dcRow('strength'))
 /// }).run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>(Compare this to an <a href="/api/javascript/inner_join">innerJoin</a> with the same inputs and predicate, which would return a list only of the matchups in which the DC hero has the higher strength.)</para></example>
                         public OuterJoin OuterJoin ( Object exprA, ReqlFunction2 func2 )
                         {
                             Arguments arguments = new Arguments(this);
@@ -5414,9 +4923,6 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
-/// <para>Example: Match players with the games they've played against one another.</para>
-/// <para><code>js
-/// r.table('players').eqJoin('gameId', r.table('games')).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
                         public EqJoin EqJoin ( Javascript js, Object exprA )
@@ -5432,9 +4938,6 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
-/// <para>Example: Match players with the games they've played against one another.</para>
-/// <para><code>js
-/// r.table('players').eqJoin('gameId', r.table('games')).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
                         public EqJoin EqJoin ( Object exprA, Object exprB )
@@ -5450,9 +4953,6 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Join tables using a field or function on the left-hand sequence matching primary keys or secondary indexes on the right-hand table. <code>eqJoin</code> is more efficient than other ReQL join types, and operates much faster. Documents in the result set consist of pairs of left-hand and right-hand documents, matched when the field on the left-hand side exists and is non-null and an entry with that field's value exists in the specified index on the right-hand side.</para>
-/// <para>Example: Match players with the games they've played against one another.</para>
-/// <para><code>js
-/// r.table('players').eqJoin('gameId', r.table('games')).run(conn, callback)</code></para>
 /// </summary>
 /// <example></example>
                         public EqJoin EqJoin ( ReqlFunction1 func1, Object exprA )
@@ -5500,7 +5000,7 @@ namespace RethinkDb.Driver.Ast {
                            return InsertAt ( exprA, exprB );
                         }
 /// <summary>
-/// <para>Remove one or more elements from an array at a given index. Returns the modified array.</para>
+/// <para>Remove one or more elements from an array at a given index. Returns the modified array. (Note: <code>deleteAt</code> operates on arrays, not documents; to delete documents, see the <a href="/api/javascript/delete">delete</a> command.)</para>
 /// </summary>
 /// <example><para>Example: Delete the second element of an array.</para>
 /// <code>&gt; r(['a','b','c','d','e','f']).deleteAt(1).run(conn, callback)
@@ -5518,7 +5018,7 @@ namespace RethinkDb.Driver.Ast {
                            return DeleteAt ( exprA );
                         }
 /// <summary>
-/// <para>Remove one or more elements from an array at a given index. Returns the modified array.</para>
+/// <para>Remove one or more elements from an array at a given index. Returns the modified array. (Note: <code>deleteAt</code> operates on arrays, not documents; to delete documents, see the <a href="/api/javascript/delete">delete</a> command.)</para>
 /// </summary>
 /// <example><para>Example: Delete the second element of an array.</para>
 /// <code>&gt; r(['a','b','c','d','e','f']).deleteAt(1).run(conn, callback)
@@ -5573,9 +5073,9 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Convert a value of one type into another.</para>
 /// </summary>
-/// <example><para>Example: Coerce a stream to an array.</para>
+/// <example><para>Example: Coerce a stream to an array to store its output in a field. (A stream cannot be stored in a field directly.)</para>
 /// <code>r.table('posts').map(function (post) {
-///     post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
+///     return post.merge({ comments: r.table('comments').getAll(post('id'), {index: 'postId'}).coerceTo('array')});
 /// }).run(conn, callback)
 /// </code></example>
                         public CoerceTo CoerceTo ( Object exprA )
@@ -5589,10 +5089,12 @@ namespace RethinkDb.Driver.Ast {
                            return CoerceTo ( exprA );
                         }
 /// <summary>
-/// <para>Gets the type of a value.</para>
+/// <para>Gets the type of a ReQL query's return value.</para>
 /// </summary>
 /// <example><para>Example: Get the type of a string.</para>
-/// <code>r.expr("foo").typeOf().run(conn, callback)
+/// <code>r.expr("foo").typeOf().run(conn, callback);
+/// // Result passed to callback
+/// "STRING"
 /// </code></example>
                         public TypeOf TypeOf (  )
                         {
@@ -5604,9 +5106,7 @@ namespace RethinkDb.Driver.Ast {
                            return TypeOf (  );
                         }
 /// <summary>
-/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
-/// combination of the two. You can pass options like <code>returnChanges</code> that will return the old
-/// and new values of the row you have modified.</para>
+/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a combination of the two.</para>
 /// </summary>
 /// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
@@ -5622,9 +5122,7 @@ namespace RethinkDb.Driver.Ast {
                            return Update ( js );
                         }
 /// <summary>
-/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
-/// combination of the two. You can pass options like <code>returnChanges</code> that will return the old
-/// and new values of the row you have modified.</para>
+/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a combination of the two.</para>
 /// </summary>
 /// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
@@ -5640,9 +5138,7 @@ namespace RethinkDb.Driver.Ast {
                            return Update ( exprA );
                         }
 /// <summary>
-/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a
-/// combination of the two. You can pass options like <code>returnChanges</code> that will return the old
-/// and new values of the row you have modified.</para>
+/// <para>Update JSON documents in a table. Accepts a JSON document, a ReQL expression, or a combination of the two.</para>
 /// </summary>
 /// <example><para>Example: Update the status of the post with <code>id</code> of <code>1</code> to <code>published</code>.</para>
 /// <code>r.table("posts").get(1).update({status: "published"}).run(conn, callback)
@@ -5673,9 +5169,9 @@ namespace RethinkDb.Driver.Ast {
                            return Delete (  );
                         }
 /// <summary>
-/// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
-/// the original document with the new one. The new document must have the same primary key
-/// as the original document.</para>
+/// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression,
+/// and replaces the original document with the new one. The new document must
+/// have the same primary key as the original document.</para>
 /// </summary>
 /// <example><para>Example: Replace the document with the primary key <code>1</code>.</para>
 /// <code>r.table("posts").get(1).replace({
@@ -5696,9 +5192,9 @@ namespace RethinkDb.Driver.Ast {
                            return Replace ( js );
                         }
 /// <summary>
-/// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
-/// the original document with the new one. The new document must have the same primary key
-/// as the original document.</para>
+/// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression,
+/// and replaces the original document with the new one. The new document must
+/// have the same primary key as the original document.</para>
 /// </summary>
 /// <example><para>Example: Replace the document with the primary key <code>1</code>.</para>
 /// <code>r.table("posts").get(1).replace({
@@ -5719,9 +5215,9 @@ namespace RethinkDb.Driver.Ast {
                            return Replace ( exprA );
                         }
 /// <summary>
-/// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression, and replaces
-/// the original document with the new one. The new document must have the same primary key
-/// as the original document.</para>
+/// <para>Replace documents in a table. Accepts a JSON document or a ReQL expression,
+/// and replaces the original document with the new one. The new document must
+/// have the same primary key as the original document.</para>
 /// </summary>
 /// <example><para>Example: Replace the document with the primary key <code>1</code>.</para>
 /// <code>r.table("posts").get(1).replace({
@@ -5818,7 +5314,7 @@ namespace RethinkDb.Driver.Ast {
                            return Do_ ( func1 );
                         }
 /// <summary>
-/// <para>Compute the logical "or" of two or more values.</para>
+/// <para>Compute the logical "or" of one or more values.</para>
 /// </summary>
 /// <example><para>Example: Return whether either <code>a</code> or <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
@@ -5837,7 +5333,7 @@ namespace RethinkDb.Driver.Ast {
                            return Or ( exprs );
                         }
 /// <summary>
-/// <para>Compute the logical "and" of two or more values.</para>
+/// <para>Compute the logical "and" of one or more values.</para>
 /// </summary>
 /// <example><para>Example: Return whether both <code>a</code> and <code>b</code> evaluate to true.</para>
 /// <code>var a = true, b = false;
@@ -5934,7 +5430,8 @@ namespace RethinkDb.Driver.Ast {
 /// </ul>
 /// <para>If no match is found, returns <code>null</code>.</para>
 /// </summary>
-/// <example><para>Example: Get all users whose name starts with "A". </para>
+/// <example><para>Example: Get all users whose name starts with "A". Because <code>null</code> evaluates to <code>false</code> in
+/// <a href="/api/javascript/filter/">filter</a>, you can just use the result of <code>match</code> for the predicate.</para>
 /// <code>r.table('users').filter(function(doc){
 ///     return doc('name').match("^A")
 /// }).run(conn, callback)
@@ -5954,7 +5451,11 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").upcase().run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>Result:</para>
+/// <code>"SENTENCE ABOUT LATEX."
+/// </code>
+/// <para>Note: <code>upcase</code> and <code>downcase</code> only affect ASCII characters.</para></example>
                         public Upcase Upcase (  )
                         {
                             Arguments arguments = new Arguments(this);
@@ -5969,7 +5470,11 @@ namespace RethinkDb.Driver.Ast {
 /// </summary>
 /// <example><para>Example:</para>
 /// <code>r.expr("Sentence about LaTeX.").downcase().run(conn, callback)
-/// </code></example>
+/// </code>
+/// <para>Result:</para>
+/// <code>"sentence about latex."
+/// </code>
+/// <para>Note: <code>upcase</code> and <code>downcase</code> only affect ASCII characters.</para></example>
                         public Downcase Downcase (  )
                         {
                             Arguments arguments = new Arguments(this);
@@ -5996,21 +5501,17 @@ namespace RethinkDb.Driver.Ast {
                            return Sample ( exprA );
                         }
 /// <summary>
-/// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
-/// error related to the absence of a value is thrown in the process, or if its first
-/// argument returns <code>null</code>, returns its second argument. (Alternatively, the second argument
-/// may be a function which will be called with either the text of the non-existence error
-/// or <code>null</code>.)</para>
+/// <para>Provide a default value in case of non-existence errors. The <code>default</code> command evaluates its first argument (the value it's chained to). If that argument returns <code>null</code> or a non-existence error is thrown in evaluation, then <code>default</code> returns its second argument. The second argument is usually a default value, but it can be a function that returns a value.</para>
 /// </summary>
-/// <example><para>Example: Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
+/// <example><para>Example: Retrieve the titles and authors of the table <code>posts</code>.
 /// In the case where the author field is missing or <code>null</code>, we want to retrieve the string
 /// <code>Anonymous</code>.</para>
-/// <code>r.table("posts").map( function(post) {
+/// <code>r.table("posts").map(function (post) {
 ///     return {
 ///         title: post("title"),
 ///         author: post("author").default("Anonymous")
 ///     }
-/// }).run(conn, callback)
+/// }).run(conn, callback);
 /// </code></example>
                         public Default Default_ ( Javascript js )
                         {
@@ -6023,21 +5524,17 @@ namespace RethinkDb.Driver.Ast {
                            return Default_ ( js );
                         }
 /// <summary>
-/// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
-/// error related to the absence of a value is thrown in the process, or if its first
-/// argument returns <code>null</code>, returns its second argument. (Alternatively, the second argument
-/// may be a function which will be called with either the text of the non-existence error
-/// or <code>null</code>.)</para>
+/// <para>Provide a default value in case of non-existence errors. The <code>default</code> command evaluates its first argument (the value it's chained to). If that argument returns <code>null</code> or a non-existence error is thrown in evaluation, then <code>default</code> returns its second argument. The second argument is usually a default value, but it can be a function that returns a value.</para>
 /// </summary>
-/// <example><para>Example: Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
+/// <example><para>Example: Retrieve the titles and authors of the table <code>posts</code>.
 /// In the case where the author field is missing or <code>null</code>, we want to retrieve the string
 /// <code>Anonymous</code>.</para>
-/// <code>r.table("posts").map( function(post) {
+/// <code>r.table("posts").map(function (post) {
 ///     return {
 ///         title: post("title"),
 ///         author: post("author").default("Anonymous")
 ///     }
-/// }).run(conn, callback)
+/// }).run(conn, callback);
 /// </code></example>
                         public Default Default_ ( Object exprA )
                         {
@@ -6050,21 +5547,17 @@ namespace RethinkDb.Driver.Ast {
                            return Default_ ( exprA );
                         }
 /// <summary>
-/// <para>Handle non-existence errors. Tries to evaluate and return its first argument. If an
-/// error related to the absence of a value is thrown in the process, or if its first
-/// argument returns <code>null</code>, returns its second argument. (Alternatively, the second argument
-/// may be a function which will be called with either the text of the non-existence error
-/// or <code>null</code>.)</para>
+/// <para>Provide a default value in case of non-existence errors. The <code>default</code> command evaluates its first argument (the value it's chained to). If that argument returns <code>null</code> or a non-existence error is thrown in evaluation, then <code>default</code> returns its second argument. The second argument is usually a default value, but it can be a function that returns a value.</para>
 /// </summary>
-/// <example><para>Example: Suppose we want to retrieve the titles and authors of the table <code>posts</code>.
+/// <example><para>Example: Retrieve the titles and authors of the table <code>posts</code>.
 /// In the case where the author field is missing or <code>null</code>, we want to retrieve the string
 /// <code>Anonymous</code>.</para>
-/// <code>r.table("posts").map( function(post) {
+/// <code>r.table("posts").map(function (post) {
 ///     return {
 ///         title: post("title"),
 ///         author: post("author").default("Anonymous")
 ///     }
-/// }).run(conn, callback)
+/// }).run(conn, callback);
 /// </code></example>
                         public Default Default_ ( ReqlFunction1 func1 )
                         {
@@ -6159,11 +5652,12 @@ namespace RethinkDb.Driver.Ast {
                            return InTimezone ( exprA );
                         }
 /// <summary>
-/// <para>Return if a time is between two other times (by default, inclusive for the start, exclusive for the end).</para>
+/// <para>Return whether a time is between two other times.</para>
 /// </summary>
-/// <example><para>Example: Retrieve all the posts that were posted between December 1st, 2013 (inclusive) and December 10th, 2013 (exclusive).</para>
+/// <example><para>Example: Retrieve all the posts that were posted between December 1st, 2013
+/// (inclusive) and December 10th, 2013 (exclusive).</para>
 /// <code>r.table("posts").filter(
-///     r.row('date').during(r.time(2013, 12, 1), r.time(2013, 12, 10))
+///     r.row('date').during(r.time(2013, 12, 1, "Z"), r.time(2013, 12, 10, "Z"))
 /// ).run(conn, callback)
 /// </code></example>
                         public During During ( Object exprA, Object exprB )
@@ -6180,7 +5674,7 @@ namespace RethinkDb.Driver.Ast {
 /// <summary>
 /// <para>Return a new time object only based on the day, month and year (ie. the same day at 00:00).</para>
 /// </summary>
-/// <example><para>Example: Retrieve all the users whose birthday is today</para>
+/// <example><para>Example: Retrieve all the users whose birthday is today.</para>
 /// <code>r.table("users").filter(function(user) {
 ///     return user("birthdate").date().eq(r.now().date())
 /// }).run(conn, callback)
@@ -6364,11 +5858,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group (  )
                         {
@@ -6381,11 +5892,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js )
                         {
@@ -6399,11 +5927,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA )
                         {
@@ -6418,11 +5963,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA, Javascript jsB )
                         {
@@ -6438,11 +6000,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA, Javascript jsB, Javascript jsC )
                         {
@@ -6459,11 +6038,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA, Javascript jsB, Object exprA )
                         {
@@ -6480,11 +6076,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA, Object exprA )
                         {
@@ -6500,11 +6113,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA, Object exprA, Javascript jsB )
                         {
@@ -6521,11 +6151,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Javascript jsA, Object exprA, Object exprB )
                         {
@@ -6542,11 +6189,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA )
                         {
@@ -6561,11 +6225,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA, Javascript jsA )
                         {
@@ -6581,11 +6262,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA, Javascript jsA, Javascript jsB )
                         {
@@ -6602,11 +6300,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA, Javascript jsA, Object exprB )
                         {
@@ -6623,11 +6338,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA, Object exprB )
                         {
@@ -6643,11 +6375,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA, Object exprB, Javascript jsA )
                         {
@@ -6664,11 +6413,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Javascript js, Object exprA, Object exprB, Object exprC )
                         {
@@ -6685,11 +6451,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA )
                         {
@@ -6703,11 +6486,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js )
                         {
@@ -6722,11 +6522,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js, Javascript jsA )
                         {
@@ -6742,11 +6559,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js, Javascript jsA, Javascript jsB )
                         {
@@ -6763,11 +6597,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js, Javascript jsA, Object exprB )
                         {
@@ -6784,11 +6635,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js, Object exprB )
                         {
@@ -6804,11 +6672,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js, Object exprB, Javascript jsA )
                         {
@@ -6825,11 +6710,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Javascript js, Object exprB, Object exprC )
                         {
@@ -6846,11 +6748,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB )
                         {
@@ -6865,11 +6784,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Javascript js )
                         {
@@ -6885,11 +6821,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Javascript js, Javascript jsA )
                         {
@@ -6906,11 +6859,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Javascript js, Object exprC )
                         {
@@ -6927,11 +6897,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Object exprC )
                         {
@@ -6947,11 +6934,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Object exprC, Javascript js )
                         {
@@ -6968,11 +6972,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Object exprC, Object exprD )
                         {
@@ -6989,11 +7010,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, Object exprC, ReqlFunction1 func1 )
                         {
@@ -7010,11 +7048,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, ReqlFunction1 func1 )
                         {
@@ -7030,11 +7085,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, ReqlFunction1 func1, Object exprC )
                         {
@@ -7051,11 +7123,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, Object exprB, ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
@@ -7072,11 +7161,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1 )
                         {
@@ -7091,11 +7197,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1, Object exprB )
                         {
@@ -7111,11 +7234,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1, Object exprB, Object exprC )
                         {
@@ -7132,11 +7272,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1, Object exprB, ReqlFunction1 func1A )
                         {
@@ -7153,11 +7310,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
@@ -7173,11 +7347,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, Object exprB )
                         {
@@ -7194,11 +7385,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( Object exprA, ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
@@ -7215,11 +7423,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1 )
                         {
@@ -7233,11 +7458,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA )
                         {
@@ -7252,11 +7494,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA, Object exprB )
                         {
@@ -7272,11 +7531,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA, Object exprB, Object exprC )
                         {
@@ -7293,11 +7569,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA, Object exprB, ReqlFunction1 func1A )
                         {
@@ -7314,11 +7607,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A )
                         {
@@ -7334,11 +7644,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, Object exprB )
                         {
@@ -7355,11 +7682,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, Object exprA, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
@@ -7376,11 +7720,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A )
                         {
@@ -7395,11 +7756,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA )
                         {
@@ -7415,11 +7793,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, Object exprB )
                         {
@@ -7436,11 +7831,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A, Object exprA, ReqlFunction1 func1B )
                         {
@@ -7457,11 +7869,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B )
                         {
@@ -7477,11 +7906,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, Object exprA )
                         {
@@ -7498,11 +7944,28 @@ namespace RethinkDb.Driver.Ast {
                         }
 /// <summary>
 /// <para>Takes a stream and partitions it into multiple groups based on the
-/// fields or functions provided.  Commands chained after <code>group</code> will be
-/// called on each of these grouped sub-streams, producing grouped data.</para>
+/// fields or functions provided.</para>
 /// </summary>
-/// <example><para>Example: What is each player's best game?</para>
-/// <code>r.table('games').group('player').max('points').run(conn, callback)
+/// <example><para>Example: Group games by player.</para>
+/// <code>&gt; r.table('games').group('player').run(conn, callback)
+/// 
+/// // Result passed to callback
+/// [
+///     {
+///         group: "Alice",
+///         reduction: [
+///             {id: 5, player: "Alice", points: 7, type: "free"},
+///             {id: 12, player: "Alice", points: 2, type: "free"}
+///         ]
+///     },
+///     {
+///         group: "Bob",
+///         reduction: [
+///             {id: 2, player: "Bob", points: 15, type: "ranked"},
+///             {id: 11, player: "Bob", points: 10, type: "free"}
+///         ]
+///     }
+/// ]
 /// </code></example>
                         public Group Group ( ReqlFunction1 func1, ReqlFunction1 func1A, ReqlFunction1 func1B, ReqlFunction1 func1C )
                         {
@@ -7816,12 +8279,12 @@ namespace RethinkDb.Driver.Ast {
 /// splits, splits on that separator at most <code>max_splits</code> times.  (Can be
 /// called with <code>null</code> as the separator if you want to split on whitespace
 /// while still specifying <code>max_splits</code>.)</para>
-/// <para>Mimics the behavior of Python's <code>string.split</code> in edge cases, except
-/// for splitting on the empty string, which instead produces an array of
-/// single-character strings.</para>
 /// </summary>
 /// <example><para>Example: Split on whitespace.</para>
 /// <code>r.expr("foo  bar bax").split().run(conn, callback)
+/// </code>
+/// <para>Result:</para>
+/// <code>["foo", "bar", "bax"]
 /// </code></example>
                         public Split Split (  )
                         {
@@ -7839,12 +8302,12 @@ namespace RethinkDb.Driver.Ast {
 /// splits, splits on that separator at most <code>max_splits</code> times.  (Can be
 /// called with <code>null</code> as the separator if you want to split on whitespace
 /// while still specifying <code>max_splits</code>.)</para>
-/// <para>Mimics the behavior of Python's <code>string.split</code> in edge cases, except
-/// for splitting on the empty string, which instead produces an array of
-/// single-character strings.</para>
 /// </summary>
 /// <example><para>Example: Split on whitespace.</para>
 /// <code>r.expr("foo  bar bax").split().run(conn, callback)
+/// </code>
+/// <para>Result:</para>
+/// <code>["foo", "bar", "bax"]
 /// </code></example>
                         public Split Split ( Object exprA )
                         {
@@ -7863,12 +8326,12 @@ namespace RethinkDb.Driver.Ast {
 /// splits, splits on that separator at most <code>max_splits</code> times.  (Can be
 /// called with <code>null</code> as the separator if you want to split on whitespace
 /// while still specifying <code>max_splits</code>.)</para>
-/// <para>Mimics the behavior of Python's <code>string.split</code> in edge cases, except
-/// for splitting on the empty string, which instead produces an array of
-/// single-character strings.</para>
 /// </summary>
 /// <example><para>Example: Split on whitespace.</para>
 /// <code>r.expr("foo  bar bax").split().run(conn, callback)
+/// </code>
+/// <para>Result:</para>
+/// <code>["foo", "bar", "bax"]
 /// </code></example>
                         public Split Split ( Object exprA, Object exprB )
                         {
@@ -7891,8 +8354,8 @@ namespace RethinkDb.Driver.Ast {
 /// <example><para>Example: What is the maximum number of points scored by each
 /// player, with the highest scorers first?</para>
 /// <code>r.table('games')
-///     .group('player').max('points')['points']
-///     .ungroup().orderBy(r.desc('reduction')).run(conn)
+///    .group('player').max('points')('points')
+///    .ungroup().orderBy(r.desc('reduction')).run(conn, callback)
 /// </code></example>
                         public Ungroup Ungroup (  )
                         {
@@ -7904,12 +8367,31 @@ namespace RethinkDb.Driver.Ast {
                            return Ungroup (  );
                         }
 /// <summary>
-/// <para>Return a changefeed, an infinite stream of objects representing changes to a query. A changefeed may return changes to a table or an individual document (a "point" changefeed), and document transformation commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to affect the output.</para>
+/// <para>Turn a query into a changefeed, an infinite stream of objects representing changes to the query's results as they occur. A changefeed may return changes to a table or an individual document (a "point" changefeed). Commands such as <code>filter</code> or <code>map</code> may be used before the <code>changes</code> command to transform or filter the output, and many commands that operate on sequences can be chained after <code>changes</code>.</para>
 /// </summary>
 /// <example><para>Example: Subscribe to the changes on a table.</para>
+/// <para>Start monitoring the changefeed in one client:</para>
 /// <code>r.table('games').changes().run(conn, function(err, cursor) {
-///   cursor.each(console.log)
-/// })
+///   cursor.each(console.log);
+/// });
+/// </code>
+/// <para>As these queries are performed in a second client, the first
+/// client would receive and print the following objects:</para>
+/// <code>&gt; r.table('games').insert({id: 1}).run(conn, callback);
+/// {old_val: null, new_val: {id: 1}}
+/// 
+/// &gt; r.table('games').get(1).update({player1: 'Bob'}).run(conn, callback);
+/// {old_val: {id: 1}, new_val: {id: 1, player1: 'Bob'}}
+/// 
+/// &gt; r.table('games').get(1).replace({id: 1, player1: 'Bob', player2: 'Alice'}).run(conn, callback);
+/// {old_val: {id: 1, player1: 'Bob'},
+///  new_val: {id: 1, player1: 'Bob', player2: 'Alice'}}
+/// 
+/// &gt; r.table('games').get(1).delete().run(conn, callback)
+/// {old_val: {id: 1, player1: 'Bob', player2: 'Alice'}, new_val: null}
+/// 
+/// &gt; r.tableDrop('games').run(conn, callback);
+/// ReqlRuntimeError: Changefeed aborted (table unavailable)
 /// </code></example>
                         public Changes Changes (  )
                         {
@@ -7921,10 +8403,10 @@ namespace RethinkDb.Driver.Ast {
                            return Changes (  );
                         }
 /// <summary>
-/// <para>Convert a ReQL geometry object to a [GeoJSON][] object.</para>
+/// <para>Convert a ReQL geometry object to a <a href="http://geojson.org">GeoJSON</a> object.</para>
 /// </summary>
 /// <example><para>Example: Convert a ReQL geometry object to a GeoJSON object.</para>
-/// <code>r.table(geo).get('sfo')('location').toGeojson.run(conn, callback);
+/// <code>r.table('geo').get('sfo')('location').toGeojson.run(conn, callback);
 /// // result passed to callback
 /// {
 ///     'type': 'Point',
@@ -7947,7 +8429,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var point1 = r.point(-122.423246,37.779388);
 /// var point2 = r.point(-117.220406,32.719464);
 /// r.distance(point1, point2, {unit: 'km'}).run(conn, callback);
-/// // result returned to callback 
+/// // result returned to callback
 /// 734.1252496021841
 /// </code></example>
                         public Distance Distance ( Object exprA )
@@ -7967,7 +8449,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var point1 = r.point(-117.220406,32.719464);
 /// var point2 = r.point(-117.206201,32.725186);
 /// r.circle(point1, 2000).intersects(point2).run(conn, callback);
-/// // result returned to callback 
+/// // result returned to callback
 /// true
 /// </code></example>
                         public Intersects Intersects ( Object exprA )
@@ -7987,7 +8469,7 @@ namespace RethinkDb.Driver.Ast {
 /// <code>var point1 = r.point(-117.220406,32.719464);
 /// var point2 = r.point(-117.206201,32.725186);
 /// r.circle(point1, 2000).includes(point2).run(conn, callback);
-/// // result returned to callback 
+/// // result returned to callback
 /// true
 /// </code></example>
                         public Includes Includes ( Object exprA )
@@ -8016,7 +8498,7 @@ namespace RethinkDb.Driver.Ast {
 /// 
 /// r.table('geo').get(201).update({
 ///     rectangle: r.row('rectangle').fill()
-/// }).run(conn, callback);
+/// }, {nonAtomic: true}).run(conn, callback);
 /// </code></example>
                         public Fill Fill (  )
                         {
@@ -8043,7 +8525,7 @@ namespace RethinkDb.Driver.Ast {
 ///     [-122.0,37.6],
 ///     [-122.0,37.4]
 /// );
-/// outerPolygon.polygonSub(innerpolygon).run(conn, callback);
+/// outerPolygon.polygonSub(innerPolygon).run(conn, callback);
 /// </code></example>
                         public PolygonSub PolygonSub ( Object exprA )
                         {
@@ -8055,6 +8537,16 @@ namespace RethinkDb.Driver.Ast {
                         {
                            return PolygonSub ( exprA );
                         }
+/// <summary>
+/// <para>Return an array containing all of an object's values. <code>values()</code> guarantees the values will come out in the same order as <a href="/api/javascript/keys">keys</a>.</para>
+/// </summary>
+/// <example><para>Example: Get all of the values from a table row.</para>
+/// <code>// row: { id: 1, mail: "fred@example.com", name: "fred" }
+/// 
+/// r.table('users').get(1).values().run(conn, callback);
+/// // Result passed to callback
+/// [ 1, "fred@example.com", "fred" ]
+/// </code></example>
                         public Values Values (  )
                         {
                             Arguments arguments = new Arguments(this);

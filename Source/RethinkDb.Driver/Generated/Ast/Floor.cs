@@ -38,30 +38,33 @@ namespace RethinkDb.Driver.Ast {
 /// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
 /// </summary>
 /// <example><para>Example: Return the floor of 12.345.</para>
-/// <code>&gt; r.floor(12.345).run(conn, callback);
-/// 
+/// <code>r.floor(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 12.0
-/// </code></example>
+/// </code>
+/// <para>The <code>floor</code> command can also be chained after an expression.</para></example>
         public Floor (object arg) : this(new Arguments(arg), null) {
         }
 /// <summary>
 /// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
 /// </summary>
 /// <example><para>Example: Return the floor of 12.345.</para>
-/// <code>&gt; r.floor(12.345).run(conn, callback);
-/// 
+/// <code>r.floor(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 12.0
-/// </code></example>
+/// </code>
+/// <para>The <code>floor</code> command can also be chained after an expression.</para></example>
         public Floor (Arguments args) : this(args, null) {
         }
 /// <summary>
 /// <para>Rounds the given value down, returning the largest integer value less than or equal to the given value (the value's floor).</para>
 /// </summary>
 /// <example><para>Example: Return the floor of 12.345.</para>
-/// <code>&gt; r.floor(12.345).run(conn, callback);
-/// 
+/// <code>r.floor(12.345).run(conn, callback);
+/// // Result passed to callback
 /// 12.0
-/// </code></example>
+/// </code>
+/// <para>The <code>floor</code> command can also be chained after an expression.</para></example>
         public Floor (Arguments args, OptArgs optargs)
          : base(TermType.FLOOR, args, optargs) {
         }

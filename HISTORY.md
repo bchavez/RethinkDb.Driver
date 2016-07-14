@@ -1,3 +1,6 @@
+## v2.3.10
+* XML documentation updated. 
+
 ## v2.3.9
 * Added support for `Change<T>.Type` changefeed `include_types` OptArg.
 

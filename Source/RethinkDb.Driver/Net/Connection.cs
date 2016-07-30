@@ -510,7 +510,9 @@ namespace RethinkDb.Driver.Net
             neumino: Yes a STOP is like a very last CONTINUE
             neumino: If you have a pending CONTINUE, and send a STOP, you should get back two SUCCESS_SEQUENCE
             */
-            //this.Socket?.CancelAwaiter(cursor.Token);
+            // The cursor should already have a pending continue
+            // if the cursor is not finished. We'll read the
+            // last response off the last pendingRequest
             SendQueryNoReply(Query.Stop(cursor.Token));
         }
 
@@ -525,10 +527,7 @@ namespace RethinkDb.Driver.Net
         internal void RemoveFromCache(long token)
         {
             ICursor removed;
-            if( !cursorCache.TryRemove(token, out removed) )
-            {
-                Log.Trace($"Could not remove cursor token {token} from cursorCache.");
-            }
+            cursorCache.TryRemove(token, out removed);
         }
 
         #endregion

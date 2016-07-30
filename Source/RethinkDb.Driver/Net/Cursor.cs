@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
@@ -22,6 +23,8 @@ namespace RethinkDb.Driver.Net
 
         internal Cursor(Connection conn, Query query, Response firstResponse)
         {
+            this.closeTask = new CancellableTask(this.closeTokenSource.Token);
+
             this.conn = conn;
             this.IsFeed = firstResponse.IsFeed;
             this.Token = query.Token;
@@ -64,9 +67,12 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         public long Token { get; }
 
-        private Task<Response> pendingContinue;
+        private Task<Response> pendingResponse;
 
         private readonly Queue<JToken> items = new Queue<JToken>();
+
+        private CancellationTokenSource closeTokenSource = new CancellationTokenSource();
+        private CancellableTask closeTask;
 
         //we need these to keep track of the run options
         //for things like "time_format: 'raw'"
@@ -144,31 +150,43 @@ namespace RethinkDb.Driver.Net
 
                 //our buffer is empty, we need to expect the next batch of items.
 
-                if( !this.pendingContinue.IsCompleted )
+                if( !this.pendingResponse.IsCompleted )
                 {
                     //the next batch isn't here yet. so,
                     //let's await and honor the cancelToken.
 
                     //create a task that is controlled by the token.
-                    using( var cancelTask = new CancellableTask(cancelToken) )
+                    using( var userCancel = new CancellableTask(cancelToken) )
                     {
-                        //now await on either task, pending or the cancellation of the CancellableTask.
-                        await Task.WhenAny(this.pendingContinue, cancelTask.Task).ConfigureAwait(false);
+                        //now await on *any* of the following tasks to complete:
+                        // 1. the pending network request.
+                        // 2. the user's request to cancel the network read operation.
+                        // 3. the user's request to close the cursor.
+                        await Task.WhenAny(this.pendingResponse, userCancel.Task, this.closeTask.Task).ConfigureAwait(false);
                         //if it was the cancelTask that triggered the continuation... throw if requested.
                         cancelToken.ThrowIfCancellationRequested();
-                        //else, no cancellation was requested.
-                        //we can proceed by processing the results we awaited for.
+                        if( cancelToken.IsCancellationRequested ) return false;
                     } //ensure the disposal of the cancelToken registration upon exiting scope
                 }
+                lock( locker )
+                {
+                    //double check we're allowed to process the results
+                    if (this.closeTokenSource.IsCancellationRequested)
+                    {
+                        //if close was requested, politely return the thread
+                        //to the user signaling that we don't have any more
+                        //items available. the closer task will take care of
+                        //the very last read.
+                        return false;
+                    }
+                    //else, no cancellation was requested.
+                    //we can proceed by processing the results we awaited for.
 
-                //if we get here, the next batch should be available.
-                var newBatch = this.pendingContinue.Result;
-                this.pendingContinue = null;
-                MaybeSendContinue();
-                this.ExtendBuffer(newBatch);
+                    this.AdvanceCursor();
+                }
             }
 
-            //either way, we have something to advance.
+            //either way, we have an item to advance.
             AdvanceCurrent();
 
             return true;
@@ -176,37 +194,71 @@ namespace RethinkDb.Driver.Net
 
         void MaybeSendContinue()
         {
-            if( this.IsOpen && this.conn.Open && pendingContinue == null && !sequenceFinished )
+            if( this.IsOpen && this.conn.Open && pendingResponse == null && 
+                !sequenceFinished &&
+                !this.closeTokenSource.IsCancellationRequested)
             {
-                this.pendingContinue = this.conn.Continue(this);
+                this.pendingResponse = this.conn.Continue(this);
             }
         }
 
+        void AdvanceCursor()
+        {
+            //if we get here, the next batch should be available.
+            var response = this.pendingResponse.Result;
+            this.pendingResponse = null;
+            //is the sequence finished? read the response first
+            this.ReadResponse(response);
+            //read response should have checked if it's finished or not. so...
+            this.MaybeSendContinue();
+            //extend da buffer wit whatever we got.
+            this.ExtendBuffer(response);
+        }
+
+        void ReadResponse(Response response)
+        {
+            if (response.IsError)
+            {
+                var error = response.MakeError(null); //this would be null anyway on CONTINUE or STOP.
+                Log.Debug($"Cursor error. Token: {this.Token}, Error: {error}.");
+                throw error;
+            }
+            if( response.IsSequence )
+            {
+                this.SequenceFinished();
+            }
+        }
+
+        bool sequenceFinished;
+
+        void SequenceFinished()
+        {
+            sequenceFinished = true;
+            this.Shutdown("The sequence is finished. There are no more items to iterate over.");
+        }
+
+        private object locker = new object();
         void ExtendBuffer(Response response)
         {
-            if( this.IsOpen )
+            if( response.IsPartial )
             {
-                if( response.IsPartial )
+                //SUCCESS_PARTIAL
+                foreach( var jToken in response.Data )
                 {
-                    //SUCCESS_PARTIAL
-                    foreach( var jToken in response.Data )
-                    {
-                        items.Enqueue(jToken);
-                    }
+                    items.Enqueue(jToken);
                 }
-                else if( response.IsSequence )
+            }
+            else if( response.IsSequence )
+            {
+                //SUCCESS_SEQUENCE
+                foreach( var jToken in response.Data )
                 {
-                    //SUCCESS_SEQUENCE
-                    foreach( var jToken in response.Data )
-                    {
-                        items.Enqueue(jToken);
-                    }
-                    this.SequenceFinished();
+                    items.Enqueue(jToken);
                 }
-                else
-                {
-                    throw new NotSupportedException("Cursor cannot extend the response. The response was not a SUCCESS_PARTIAL or SUCCESS_SEQUENCE.");
-                }
+            }
+            else
+            {
+                throw new NotSupportedException("Cursor cannot extend the response. The response was not a SUCCESS_PARTIAL or SUCCESS_SEQUENCE.");
             }
         }
 
@@ -218,14 +270,6 @@ namespace RethinkDb.Driver.Net
                 return (T)(object)token; //ugh ugly. find a better way to do this.
             }
             return token.ToObject<T>(Converter.Serializer);
-        }
-
-        bool sequenceFinished;
-
-        void SequenceFinished()
-        {
-            sequenceFinished = true;
-            this.Shutdown("The sequence is finished. There are no more items to iterate over.");
         }
 
         /// <summary>
@@ -241,17 +285,62 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         public void Close()
         {
-            this.Shutdown("The Cursor was forcibly closed. Iteration cannot continue.");
+            CloseAsync().WaitSync();
+        }
+
+        /// <summary>
+        /// Asynchronously close the cursor so it cannot be used anymore.
+        /// Exercise caution when using a cancellation token with this method.
+        /// If you cancel a Cursor.CloseAsync() operation and the STOP message
+        /// is not sent to the server, then the cursor will not be closed
+        /// on the server leading to a potential memory issue. Be sure this
+        /// operation completes successfully.
+        /// </summary>
+        public async Task CloseAsync(CancellationToken cancelToken = default(CancellationToken))
+        {
+            await this.ShutdownAsync("The Cursor was forcibly closed. Iteration cannot continue.", cancelToken)
+                .ConfigureAwait(false);
         }
 
         void Shutdown(string reason)
+        {
+            ShutdownAsync(reason).WaitSync();
+        }
+        
+        async Task ShutdownAsync(string reason, CancellationToken cancelToken = default(CancellationToken))
         {
             if( this.conn.Open && this.IsOpen )
             {
                 conn.RemoveFromCache(this.Token);
                 if( !sequenceFinished )
                 {
-                    conn.Stop(this);
+                    /* So, there could potentially be a continue
+                     * in flight already over the wire, and an awaiter
+                     * waiting for a continued response. Take for example,
+                     * a ChangeFeed with nothing happening. We'd be waiting
+                     * for some changes, but if there is no activity then
+                     * a thread would potentially be blocking on that future
+                     * change.
+                     */
+                    //So, let's shutdown any reading threads
+                    this.closeTokenSource.Cancel();
+                    Monitor.Enter(locker);
+                    try
+                    {
+                        if( !this.sequenceFinished ) // is the cursor still not finished?
+                        {
+                            //now we should be free to read the response of any STOP action.
+                            // https://github.com/rethinkdb/rethinkdb/issues/6014
+                            conn.Stop(this);
+                            //wait for the STOP response to come in.
+                            await this.pendingResponse.OrCancelOn(cancelToken).ConfigureAwait(false);
+                            this.AdvanceCursor(); // last time to read the response
+                        }
+                    }
+                    finally
+                    {
+                        Monitor.Exit(locker);
+                    }
                 }
                 SetError(reason);
             }
@@ -259,6 +348,7 @@ namespace RethinkDb.Driver.Net
             {
                 SetError(reason);
             }
+            this.closeTask.Dispose();
         }
 
         //Some trickery just so we don't expose SetError

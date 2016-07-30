@@ -181,7 +181,7 @@ namespace RethinkDb.Driver.Tests.ReQL
                     .Run(conn);
             });
 
-            Thread.Sleep(3000);
+            Thread.Sleep(50000);
 
             changes.Close();
 

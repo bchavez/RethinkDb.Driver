@@ -2,6 +2,7 @@
 
 using System;
 using System.Runtime.ExceptionServices;
+using System.Threading;
 using System.Threading.Tasks;
 using RethinkDb.Driver.Net;
 
@@ -34,6 +35,24 @@ namespace RethinkDb.Driver.Utils
             catch( ArgumentException ae )
             {
                 ExceptionDispatchInfo.Capture(ae.InnerException).Throw();
+            }
+        }
+
+        public static async Task OrCancelOn(this Task taskToWaitOn, CancellationToken cancelToken)
+        {
+            using (var cancelTask = new CancellableTask(cancelToken))
+            {
+                await Task.WhenAny(taskToWaitOn, cancelTask.Task).ConfigureAwait(false);
+                cancelToken.ThrowIfCancellationRequested();
+            }
+        }
+        public static async Task<T> OrCancelOn<T>(this Task<T> taskToWaitOn, CancellationToken cancelToken)
+        {
+            using (var cancelTask = new CancellableTask(cancelToken))
+            {
+                await Task.WhenAny(taskToWaitOn, cancelTask.Task).ConfigureAwait(false);
+                cancelToken.ThrowIfCancellationRequested();
+                return taskToWaitOn.Result;
             }
         }
 

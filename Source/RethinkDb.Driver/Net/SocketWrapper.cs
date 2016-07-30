@@ -221,8 +221,7 @@ namespace RethinkDb.Driver.Net
                     else
                     {
                         //Wow, there's nobody waiting for this response.
-                        Log.Debug(
-                            $"Response Pump: There are no awaiters waiting for {response.Token} token. A cursor was probably closed and this might be a response to a QUERY:STOP. The response will be ignored.");
+                        Log.Debug($"Response Pump: There are no awaiters waiting for {response.Token} token. The response will be ignored.");
                         //I guess we'll ignore for now, perhaps a cursor was killed
                     }
                 }
@@ -285,7 +284,7 @@ namespace RethinkDb.Driver.Net
             }
 
             Awaiter awaiter = null;
-            if( awaitResponse )
+            if( awaitResponse && !awaiters.TryGetValue(token, out awaiter) )
             {
                 //Assign a new awaiter for this token,
                 //The caller is expecting a response.

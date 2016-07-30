@@ -1,5 +1,6 @@
 ## v2.3.10
 * XML documentation updated. 
+* Better `Cursor<T>` STOP message handling.  
 
 ## v2.3.9
 * Added support for `Change<T>.Type` changefeed `include_types` OptArg.

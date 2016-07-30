@@ -29,7 +29,7 @@ namespace RethinkDb.Driver.Net
 
             this.conn.AddToCache(this.Token, this);
             //is the first response all there is?
-            this.sequenceFinished = firstResponse.Type == ResponseType.SUCCESS_SEQUENCE;
+            PrepCursor(firstResponse);
             MaybeSendContinue();
             ExtendBuffer(firstResponse);
         }
@@ -64,7 +64,7 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         public long Token { get; }
 
-        private Task<Response> pendingContinue;
+        private Task<Response> pendingResponse;
 
         private readonly Queue<JToken> items = new Queue<JToken>();
 
@@ -141,31 +141,22 @@ namespace RethinkDb.Driver.Net
             while( items.Count == 0 )
             {
                 if( !this.IsOpen ) return false;
-
+                
                 //our buffer is empty, we need to expect the next batch of items.
-
-                if( !this.pendingContinue.IsCompleted )
-                {
-                    //the next batch isn't here yet. so,
-                    //let's await and honor the cancelToken.
-
-                    //create a task that is controlled by the token.
-                    using( var cancelTask = new CancellableTask(cancelToken) )
-                    {
-                        //now await on either task, pending or the cancellation of the CancellableTask.
-                        await Task.WhenAny(this.pendingContinue, cancelTask.Task).ConfigureAwait(false);
-                        //if it was the cancelTask that triggered the continuation... throw if requested.
-                        cancelToken.ThrowIfCancellationRequested();
-                        //else, no cancellation was requested.
-                        //we can proceed by processing the results we awaited for.
-                    } //ensure the disposal of the cancelToken registration upon exiting scope
-                }
-
                 //if we get here, the next batch should be available.
-                var newBatch = this.pendingContinue.Result;
-                this.pendingContinue = null;
-                MaybeSendContinue();
-                this.ExtendBuffer(newBatch);
+                var response = await this.pendingResponse.OrCancelOn(cancelToken).ConfigureAwait(false);
+                //if the current pendingResponse task is the task I received the
+                //response from, then load "null" into the pendingResponse variable
+                //interlockingly to prepare for firing off another CONTINUE.
+                //
+                //However, if the current pendingResponse task is *not* the
+                //task I received the response from, then don't set "null"
+                //because STOP was probably issued, and therefore, we 
+                //cannot fire off a CONTINUE.
+                Interlocked.CompareExchange(ref this.pendingResponse, null, this.pendingResponse);
+                this.PrepCursor(response);
+                this.MaybeSendContinue();
+                this.ExtendBuffer(response);
             }
 
             //either way, we have something to advance.
@@ -174,39 +165,57 @@ namespace RethinkDb.Driver.Net
             return true;
         }
 
+        void PrepCursor(Response response)
+        {
+            if (response.IsError)
+            {
+                var error = response.MakeError(null); //this would be null anyway on CONTINUE or STOP.
+                Log.Debug($"Cursor error. Token: {this.Token}, Error: {error}.");
+                throw error;
+            }
+            if (response.IsSequence)
+            {
+                this.SequenceFinished();
+            }
+        }
+
+        //we need this to interlock QUERY:CONTINUE
+        //and QUERY:STOP so we don't get stuck in a 
+        //situation where we CONTINUE, STOP, CONTINUE. lol.
+        private readonly object interlock = new object();
+
         void MaybeSendContinue()
         {
-            if( this.IsOpen && this.conn.Open && pendingContinue == null && !sequenceFinished )
+            lock( interlock )
             {
-                this.pendingContinue = this.conn.Continue(this);
+                if( this.IsOpen && this.conn.Open && this.pendingResponse == null && !sequenceFinished )
+                {
+                    this.pendingResponse = this.conn.Continue(this);
+                }
             }
         }
 
         void ExtendBuffer(Response response)
         {
-            if( this.IsOpen )
+            if( response.IsPartial )
             {
-                if( response.IsPartial )
+                //SUCCESS_PARTIAL
+                foreach( var jToken in response.Data )
                 {
-                    //SUCCESS_PARTIAL
-                    foreach( var jToken in response.Data )
-                    {
-                        items.Enqueue(jToken);
-                    }
+                    items.Enqueue(jToken);
                 }
-                else if( response.IsSequence )
+            }
+            else if( response.IsSequence )
+            {
+                //SUCCESS_SEQUENCE
+                foreach( var jToken in response.Data )
                 {
-                    //SUCCESS_SEQUENCE
-                    foreach( var jToken in response.Data )
-                    {
-                        items.Enqueue(jToken);
-                    }
-                    this.SequenceFinished();
+                    items.Enqueue(jToken);
                 }
-                else
-                {
-                    throw new NotSupportedException("Cursor cannot extend the response. The response was not a SUCCESS_PARTIAL or SUCCESS_SEQUENCE.");
-                }
+            }
+            else
+            {
+                throw new NotSupportedException("Cursor cannot extend the response. The response was not a SUCCESS_PARTIAL or SUCCESS_SEQUENCE.");
             }
         }
 
@@ -237,11 +246,54 @@ namespace RethinkDb.Driver.Net
         }
 
         /// <summary>
-        /// Forcibly closes the Cursor so it cannot be used anymore.
+        /// Forcibly closes the Cursor locally and on the server so it cannot be used anymore.
         /// </summary>
-        public void Close()
+        /// <param name="waitForReplyOnThisThread">
+        /// If waitForReplyOnThisThread = false (default), then it is expected 
+        /// that the last server response will be read by a thread currently 
+        /// enumerating over the cursor and will examine the last response for errors as
+        /// a result of sending a STOP message.
+        /// 
+        /// If waitForReplyOnThisThread = true, then <see cref="Close"/> assumes that the there is no
+        /// thread in the process of enumerating over the cursor. True assumes the thread calling
+        /// <see cref="Close"/> will perform the last read from the server to check for errors
+        /// as a result of sending a STOP message.
+        /// 
+        /// If the situation arises where there is no thread enumerating over the cursor
+        /// and waitForReplyOnThisThread = false, the last response from the server will simply be ignored.
+        /// No harm, no foul.
+        /// </param>
+        public void Close(bool waitForReplyOnThisThread = false)
+        {
+            this.CloseAsync(waitForReplyOnThisThread).WaitSync();
+        }
+
+        /// <summary>
+        /// Asynchronously, forces closure of the Cursor locally and on the server.
+        /// </summary>
+        /// <param name="waitForReplyOnThisThread">
+        /// If waitForReplyOnThisThread = false (default), then it is expected 
+        /// that the last server response will be read by a thread currently 
+        /// enumerating over the cursor and will examine the last response for errors as
+        /// a result of sending a STOP message.
+        /// 
+        /// If waitForReplyOnThisThread = true, then <see cref="CloseAsync"/> assumes that the there is no
+        /// thread in the process of enumerating over the cursor. True assumes the thread calling
+        /// <see cref="CloseAsync"/> will perform the last read from the server to check for errors
+        /// as a result of sending a STOP message.
+        /// 
+        /// If the situation arises where there is no thread enumerating over the cursor
+        /// and waitForReplyOnThisThread = false, the last response from the server will simply be ignored.
+        /// No harm, no foul.
+        /// </param>
+        public async Task CloseAsync(bool waitForReplyOnThisThread = false)
         {
             this.Shutdown("The Cursor was forcibly closed. Iteration cannot continue.");
+            if( waitForReplyOnThisThread && this.pendingResponse != null )
+            {
+                var lastResponse = await this.pendingResponse.ConfigureAwait(false);
+                this.PrepCursor(lastResponse);
+            }
         }
 
         void Shutdown(string reason)
@@ -251,7 +303,22 @@ namespace RethinkDb.Driver.Net
                 conn.RemoveFromCache(this.Token);
                 if( !sequenceFinished )
                 {
-                    conn.Stop(this);
+                    // The awatier task would be exactly the same
+                    // if there was an already in progress CONTINUE
+                    // being awaited on by another thread.
+                    // SocketWrapper will TryGetValue if an awater exists.
+                    //
+                    // If an awatier does not exist and no thread is awating any
+                    // cursor response then we set the pending response here.
+                    // If there is a thread a thread iterating over MoveNextAsync
+                    // (but late that it has not yet sent a CONTINUE)
+                    // the tread will use the pending response we made here as a
+                    // result of sending STOP.
+                    lock( interlock )
+                    {
+                        var stopResponse = conn.Stop(this);
+                        Interlocked.Exchange(ref this.pendingResponse, stopResponse);
+                    }
                 }
                 SetError(reason);
             }

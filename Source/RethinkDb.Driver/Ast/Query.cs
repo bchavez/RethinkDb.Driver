@@ -77,4 +77,36 @@ namespace RethinkDb.Driver.Ast
             return queryArr.ToString(Formatting.None);
         }
     }
+
+    public interface IQuerySeralizer
+    {
+        string ToProtocolString(Query q);
+        object BuildTerm(ReqlAst ast);
+    }
+
+    public class DefaultQuerySeralizer : IQuerySeralizer
+    {
+        public string ToProtocolString(Query q)
+        {
+            var queryArr = new JArray();
+
+            queryArr.Add(q.Type);
+
+            if (q.Term != null)
+            {
+                queryArr.Add(q.Term.Build());
+            }
+            if (q.GlobalOptions != null)
+            {
+                queryArr.Add(ReqlAst.BuildOptarg(q.GlobalOptions));
+            }
+
+            return queryArr.ToString(Formatting.None);
+        }
+
+        public object BuildTerm(ReqlAst ast)
+        {
+            
+        }
+    }
 }

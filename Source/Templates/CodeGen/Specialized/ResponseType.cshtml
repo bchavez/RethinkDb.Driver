@@ -4,6 +4,7 @@
 @using Humanizer
 @using Newtonsoft.Json.Linq
 @using Templates.CodeGen
+@using Templates.CodeGen.Util
 
 @inherits EnumTemplate
 
@@ -16,6 +17,19 @@
 }
 
 @section CustomMethods {
+    
+    public static class ResponseTypeLong{
+        public const long SUCCESS_ATOM = @($@"{{""t"":1,""".GetAsciiStringAsLong())
+        public const long SUCCESS_SEQUENCE = @($@"{{""t"":2,""".GetAsciiStringAsLong())
+        public const long SUCCESS_PARTIAL =@($@"{{""t"":3,""".GetAsciiStringAsLong())
+        public const long WAIT_COMPLETE = @($@"{{""t"":4,""".GetAsciiStringAsLong())
+        public const long SERVER_INFO = @($@"{{""t"":5,""".GetAsciiStringAsLong())
+        public const long CLIENT_ERROR = @($@"{{""t"":16,".GetAsciiStringAsLong())
+        public const long COMPILE_ERROR = @($@"{{""t"":17,".GetAsciiStringAsLong())
+        public const long RUNTIME_ERROR = @($@"{{""t"":18,".GetAsciiStringAsLong())
+        public const int Total = 8;
+    }
+
        public static class @("ExtensionsFor" + EnumName) {
             public static bool IsError(this ResponseType rtype){
                  switch( rtype ){

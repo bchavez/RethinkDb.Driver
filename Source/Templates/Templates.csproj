@@ -136,6 +136,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="CodeGen\Util\CSharpStyle.cs" />
+    <Compile Include="CodeGen\Util\ExtensionsForAscii.cs" />
     <Compile Include="CodeGen\Util\Signature.cs" />
     <Compile Include="CSharpTermInfoMutator.cs" />
     <Compile Include="CSharpTestMutator.cs" />

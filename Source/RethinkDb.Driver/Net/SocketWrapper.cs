@@ -204,7 +204,7 @@ namespace RethinkDb.Driver.Net
                     //WARN: Do not use or async/await code in this pump; because it is a
                     //long-running task.
                     //http://blog.i3arnon.com/2015/07/02/task-run-long-running/
-                    var response = this.Read();
+                    var response = this.Read2();
                     Awaiter awaitingTask;
                     if( awaiters.TryRemove(response.Token, out awaitingTask) )
                     {
@@ -263,12 +263,20 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// Blocking Read by the ResponsePump
         /// </summary>
-        private Response Read()
+        private OldResponse Read()
         {
             var token = this.br.ReadInt64();
             var responseLength = this.br.ReadInt32();
             var response = this.br.ReadBytes(responseLength);
-            return Response.ParseFrom(token, Encoding.UTF8.GetString(response));
+            return OldResponse.ParseFrom(token, Encoding.UTF8.GetString(response));
+        }
+
+        private Response Read2()
+        {
+            var token = this.br.ReadInt64();
+            var responseLength = this.br.ReadInt32();
+            var response = this.br.ReadBytes(responseLength);
+            return Response.ReadFrom(token, response);
         }
 
         private ConcurrentDictionary<long, Awaiter> awaiters = new ConcurrentDictionary<long, Awaiter>();

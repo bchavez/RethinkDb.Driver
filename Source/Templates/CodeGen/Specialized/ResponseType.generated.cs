@@ -44,12 +44,18 @@ namespace Templates.CodeGen.Specialized
     #line default
     #line hidden
     
+    #line 7 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+    using Templates.CodeGen.Util;
+    
+    #line default
+    #line hidden
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
     public partial class ResponseType : EnumTemplate
     {
 #line hidden
 
-        #line 14 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+        #line 15 "..\..\CodeGen\Specialized\ResponseType.cshtml"
 
     
 
@@ -67,6 +73,7 @@ WriteLiteral("\r\n");
 
 
 
+
 WriteLiteral("\r\n");
 
 
@@ -74,7 +81,7 @@ WriteLiteral("\r\n");
 
 
             
-            #line 10 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+            #line 11 "..\..\CodeGen\Specialized\ResponseType.cshtml"
   
     this.Layout = UseParentLayout(this);
 
@@ -90,11 +97,92 @@ WriteLiteral("\r\n\r\n");
 
 DefineSection("CustomMethods", () => {
 
-WriteLiteral("\r\n       public static class ");
+WriteLiteral("\r\n    \r\n    public static class ResponseTypeLong{\r\n        public const long SUCC" +
+"ESS_ATOM = ");
 
 
             
-            #line 19 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+            #line 22 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+                                     Write($@"{{""t"":1,""".GetAsciiStringAsLong());
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n        public const long SUCCESS_SEQUENCE = ");
+
+
+            
+            #line 23 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+                                         Write($@"{{""t"":2,""".GetAsciiStringAsLong());
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n        public const long SUCCESS_PARTIAL =");
+
+
+            
+            #line 24 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+                                       Write($@"{{""t"":3,""".GetAsciiStringAsLong());
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n        public const long WAIT_COMPLETE = ");
+
+
+            
+            #line 25 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+                                      Write($@"{{""t"":4,""".GetAsciiStringAsLong());
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n        public const long SERVER_INFO = ");
+
+
+            
+            #line 26 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+                                    Write($@"{{""t"":5,""".GetAsciiStringAsLong());
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n        public const long CLIENT_ERROR = ");
+
+
+            
+            #line 27 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+                                     Write($@"{{""t"":16,".GetAsciiStringAsLong());
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n        public const long COMPILE_ERROR = ");
+
+
+            
+            #line 28 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+                                      Write($@"{{""t"":17,".GetAsciiStringAsLong());
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n        public const long RUNTIME_ERROR = ");
+
+
+            
+            #line 29 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+                                      Write($@"{{""t"":18,".GetAsciiStringAsLong());
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n        public const int Total = 8;\r\n    }\r\n\r\n       public static class ");
+
+
+            
+            #line 33 "..\..\CodeGen\Specialized\ResponseType.cshtml"
                        Write("ExtensionsFor" + EnumName);
 
             
@@ -105,7 +193,7 @@ WriteLiteral(" {\r\n            public static bool IsError(this ResponseType rty
 
 
             
-            #line 22 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+            #line 36 "..\..\CodeGen\Specialized\ResponseType.cshtml"
                     foreach( var k in Enums.Keys.Where(k => k.EndsWith("ERROR")) ) { 
 
             
@@ -117,7 +205,7 @@ WriteLiteral("case ResponseType.");
 
 
             
-            #line 23 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+            #line 37 "..\..\CodeGen\Specialized\ResponseType.cshtml"
                                        Write(k);
 
             
@@ -133,7 +221,7 @@ WriteLiteral("return true;\r\n");
 
 
             
-            #line 25 "..\..\CodeGen\Specialized\ResponseType.cshtml"
+            #line 39 "..\..\CodeGen\Specialized\ResponseType.cshtml"
                     }
 
             

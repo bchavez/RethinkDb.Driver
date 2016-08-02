@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
@@ -11,6 +12,18 @@ using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
+    /// <summary>
+    /// An interface for converting Response types
+    /// </summary>
+    public interface IResponseConverter
+    {
+        Exception MakeError(Response response);
+        Cursor<T> MakeCursor<T>(Response response);
+        T MakeAtom<T>(Response response);
+    }
+
+  
+
     /// <summary>
     /// Represents a single connection to a RethinkDB Server.
     /// </summary>

@@ -71,7 +71,7 @@ namespace RethinkDb.Driver.Net
 
         private Task<Response> pendingContinue;
 
-        private readonly Queue<JToken> items = new Queue<JToken>();
+        //private readonly Queue<JToken> items = new Queue<JToken>();
 
         //we need these to keep track of the run options
         //for things like "time_format: 'raw'"

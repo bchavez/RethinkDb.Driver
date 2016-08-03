@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -67,6 +68,8 @@ namespace RethinkDb.Driver.Net
         public static Response ParseFrom(long token, string buf)
         {
             Log.Trace($"JSON Recv: Token: {token}, JSON: {buf}");
+
+            //var jsonResp = ParseJson(buf);
             var jsonResp = JObject.Parse(buf);
             var responseType = jsonResp[TypeKey].ToObject<ResponseType>();
             var responseNotes = jsonResp[NotesKey]?.ToObject<List<ResponseNote>>() ?? new List<ResponseNote>();
@@ -86,6 +89,16 @@ namespace RethinkDb.Driver.Net
 
             return res;
         }
+
+        private static JObject ParseJson(string buf)
+        {
+            using( var sr = new StringReader(buf))
+            using( var reader = new JsonTextReader(sr) )
+            {                
+                return Converter.Serializer.Deserialize<JObject>(reader);
+            }
+        }
+
 
         internal virtual bool IsWaitComplete => this.Type == ResponseType.WAIT_COMPLETE;
 

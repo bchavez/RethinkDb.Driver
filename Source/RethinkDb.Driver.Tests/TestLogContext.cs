@@ -1,19 +1,21 @@
 using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
+using NLog;
+using NLog.Targets;
 
 namespace RethinkDb.Driver.Tests
 {
-    public class TestLogContext
+    public static class TestLogContext
     {
-        public List<string> OtherLines = new List<string>();
+        private static MemoryTarget memoryTarget;
 
-        public override string ToString()
+        public static string LogText()
         {
             var sb = new StringBuilder();
             sb.AppendLine();
             sb.AppendLine("Protocol In Context:");
-            foreach (var otherLine in OtherLines)
+            foreach (var otherLine in memoryTarget.Logs)
             {
                 sb.AppendLine("\t" + otherLine);
             }
@@ -22,16 +24,11 @@ namespace RethinkDb.Driver.Tests
             return sb.ToString();
         }
 
-        public static void LogInContext(string message)
-        {
-            Context?.OtherLines.Add(message);
-        }
-
         public static void ResetContext()
         {
-            Context = new TestLogContext();
+            //Context = new TestLogContext();
+            memoryTarget = LogManager.Configuration.FindTargetByName<MemoryTarget>("memory");
+            memoryTarget.Logs.Clear();
         }
-
-        public static TestLogContext Context { get; set; }
     }
 }

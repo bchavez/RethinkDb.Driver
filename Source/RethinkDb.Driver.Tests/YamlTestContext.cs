@@ -35,7 +35,7 @@ namespace RethinkDb.Driver.Tests
             sb.AppendLine("Run C#/Java:");
             sb.AppendLine($"\t{Java}");
             sb.AppendLine($"RunOpts: {JsonConvert.SerializeObject(RunOpts)}");
-            sb.AppendLine(TestLogContext.Context.ToString());
+            sb.AppendLine(TestLogContext.LogText());
             sb.AppendLine();
             return sb.ToString();
         }

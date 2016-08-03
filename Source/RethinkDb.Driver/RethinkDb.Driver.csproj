@@ -88,6 +88,8 @@
     <Compile Include="Net\IConnection.cs" />
     <Compile Include="Net\ICursor.cs" />
     <Compile Include="Net\IncrementalSHA256.cs" />
+    <Compile Include="Net\Newtonsoft\NewtonsoftParser.cs" />
+    <Compile Include="Net\Newtonsoft\NewtonsoftResponseConverter.cs" />
     <Compile Include="Net\ScramAttributes.cs" />
     <Compile Include="Net\SecureRandom.cs" />
     <Compile Include="ReqlAssertFailure.cs" />

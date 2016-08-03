@@ -106,7 +106,7 @@ namespace RethinkDb.Driver.Ast
 
         public object BuildTerm(ReqlAst ast)
         {
-            
+            throw new System.NotImplementedException();
         }
     }
 }

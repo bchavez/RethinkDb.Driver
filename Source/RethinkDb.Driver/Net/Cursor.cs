@@ -19,11 +19,12 @@ namespace RethinkDb.Driver.Net
     public class Cursor<T> : IEnumerable<T>, IEnumerator<T>, ICursor
     {
         private readonly Connection conn;
+        private readonly ICursorBuffer<T> buffer;
 
-        internal Cursor(Connection conn, Query query, Response firstResponse)
+        internal Cursor(Connection conn, Query query, Response firstResponse, IResponseConverter converter )
         {
             this.conn = conn;
-            this.IsFeed = firstResponse.IsFeed;
+
             this.Token = query.Token;
             this.fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
 
@@ -31,6 +32,10 @@ namespace RethinkDb.Driver.Net
             //is the first response all there is?
             this.sequenceFinished = firstResponse.Type == ResponseType.SUCCESS_SEQUENCE;
             MaybeSendContinue();
+
+            this.buffer = converter.CreateCursorBuffer<T>(firstResponse);
+            this.IsFeed = this.buffer.InitialResponseIsFeed;
+
             ExtendBuffer(firstResponse);
         }
 
@@ -186,24 +191,13 @@ namespace RethinkDb.Driver.Net
         {
             if( this.IsOpen )
             {
-                if( response.IsPartial )
+                buffer.ExtendBuffer(response);
+                if (response.IsSequence)
                 {
-                    //SUCCESS_PARTIAL
-                    foreach( var jToken in response.Data )
-                    {
-                        items.Enqueue(jToken);
-                    }
-                }
-                else if( response.IsSequence )
-                {
-                    //SUCCESS_SEQUENCE
-                    foreach( var jToken in response.Data )
-                    {
-                        items.Enqueue(jToken);
-                    }
                     this.SequenceFinished();
                 }
-                else
+
+                if (!response.IsSequence && !response.IsPartial)
                 {
                     throw new NotSupportedException("Cursor cannot extend the response. The response was not a SUCCESS_PARTIAL or SUCCESS_SEQUENCE.");
                 }

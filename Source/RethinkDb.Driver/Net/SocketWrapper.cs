@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using RethinkDb.Driver.Net.Newtonsoft;
 using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
@@ -263,12 +264,12 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// Blocking Read by the ResponsePump
         /// </summary>
-        private OldResponse Read()
+        private NewtonsoftParser Read()
         {
             var token = this.br.ReadInt64();
             var responseLength = this.br.ReadInt32();
             var response = this.br.ReadBytes(responseLength);
-            return OldResponse.ParseFrom(token, Encoding.UTF8.GetString(response));
+            return NewtonsoftParser.ParseFrom(token, Encoding.UTF8.GetString(response));
         }
 
         private Response Read2()

@@ -4,10 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using RethinkDb.Driver.Ast;
-using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Proto;
 
 namespace RethinkDb.Driver.Net

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,12 +18,69 @@ namespace RethinkDb.Driver.Net
     /// </summary>
     public interface IResponseConverter
     {
-        Exception MakeError(Response response);
-        Cursor<T> MakeCursor<T>(Response response);
-        T MakeAtom<T>(Response response);
+        /// <summary>
+        /// Called when <see cref="Connection"/> needs to build an error out of the response.
+        /// </summary>
+        Exception MakeError(Query query, Response response);
+        /// <summary>
+        /// Called when <see cref="Connection"/> needs to build a cursor out of the response.
+        /// </summary>
+        Cursor<T> MakeCursor<T>(Query query, Response response, Connection conn);
+
+        /// <summary>
+        /// Called when a cursor buffer is needed.
+        /// </summary>
+        ICursorBuffer<T> CreateCursorBuffer<T>(Response firstResponse);
+        
+        /// <summary>
+        /// Called when <see cref="Connection"/> needs to build an atom object out of the response.
+        /// </summary>
+        T MakeAtom<T>(Query query, Response response);
+        /// <summary>
+        /// Normally, this would be a cursor, but the sequence is already complete, so just
+        /// directly cast the response type into T (which is probably something like IList).
+        /// </summary>
+        T MakeSequenceComplete<T>(Query query, Response response);
     }
 
-  
+    /// <summary>
+    /// Imperilments a cursor buffer.
+    /// </summary>
+    public interface ICursorBuffer<T>
+    {
+        /// <summary>
+        /// Called when a cursor response for more items is fulfilled.
+        /// </summary>
+        void ExtendBuffer(Response res);
+        /// <summary>
+        /// Should advance the cursor buffer by one
+        /// </summary>
+        void AdvanceCurrent(FormatOptions fmt);
+        /// <summary>
+        /// Clears the buffer
+        /// </summary>
+        void Clear();
+        /// <summary>
+        /// Gets the number of currently buffered items.
+        /// </summary>
+        int Count { get; }
+        /// <summary>
+        /// Gets the current item.
+        /// </summary>
+        T Current { get; }
+        /// <summary>
+        /// Should represent the initial response notes about the feed.
+        /// The response notes about a feed are in the first response
+        /// that created the cursor buffer.
+        /// </summary>
+        bool InitialResponseIsFeed { get; }
+
+        /// <summary>
+        /// Gets all the items in the current buffer.
+        /// </summary>
+        List<T> BufferedItems { get; }
+    }
+
 
     /// <summary>
     /// Represents a single connection to a RethinkDB Server.
@@ -34,6 +92,7 @@ namespace RethinkDb.Driver.Net
         private string dbname;
         private readonly TimeSpan? connectTimeout;
         private readonly Handshake handshake;
+        private readonly IResponseConverter converter;
 
         internal SocketWrapper Socket { get; private set; }
 
@@ -232,10 +291,11 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         public virtual async Task<Server> ServerAsync(CancellationToken cancelToken = default(CancellationToken))
         {
-            var response = await SendQuery(Query.ServerInfo(NewToken()), cancelToken, awaitResponse: true).ConfigureAwait(false);
+            var query = Query.ServerInfo(NewToken());
+            var response = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( response.Type == ResponseType.SERVER_INFO )
             {
-                return response.Data[0].ToObject<Server>(Converter.Serializer);
+                return this.converter.MakeAtom<Server>(query, response);
             }
             throw new ReqlDriverError("Did not receive a SERVER_INFO response.");
         }
@@ -272,11 +332,11 @@ namespace RethinkDb.Driver.Net
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( res.IsPartial || res.IsSequence )
             {
-                return new Cursor<T>(this, query, res);
+                return this.converter.MakeCursor<T>(query, res, this);
             }
             if (res.IsError)
             {
-                throw res.MakeError(query);
+                throw this.converter.MakeError(query, res);
             }
             throw new ReqlDriverError(
                 $"The query response cannot be converted to a Cursor<T>. The run helper works with SUCCESS_SEQUENCE or SUCCESS_PARTIAL results. The server response was {res.Type}. If the server response can be handled by this run method check T. Otherwise, if the server response cannot be handled by this run helper use `.RunAtom<T>` or `.RunResult<T>`.");
@@ -290,27 +350,11 @@ namespace RethinkDb.Driver.Net
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( res.IsAtom )
             {
-                try
-                {
-                    if( typeof(T).IsJToken() )
-                    {
-                        if( res.Data[0].Type == JTokenType.Null ) return (T)(object)null;
-                        var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
-                        Converter.ConvertPseudoTypes(res.Data[0], fmt);
-                        return (T)(object)res.Data[0]; //ugh ugly. find a better way to do this.
-                        //return res.Data[0].ToObject<T>();
-                    }
-                    return res.Data[0].ToObject<T>(Converter.Serializer);
-                    
-                }
-                catch( IndexOutOfRangeException ex )
-                {
-                    throw new ReqlDriverError("Atom response was empty!", ex);
-                }
+                return this.converter.MakeAtom<T>(query, res);
             }
             if( res.IsError )
             {
-                throw res.MakeError(query);
+                throw this.converter.MakeError(query, res);
             }
             throw new ReqlDriverError(
                 $"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.RunCursor` or `.RunResult<T>`.");
@@ -325,35 +369,15 @@ namespace RethinkDb.Driver.Net
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( res.IsAtom )
             {
-                try
-                {
-                    if( typeof(T).IsJToken() )
-                    {
-                        if( res.Data[0].Type == JTokenType.Null ) return (T)(object)null;
-                        var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
-                        Converter.ConvertPseudoTypes(res.Data[0], fmt);
-                        return (T)(object)res.Data[0]; //ugh ugly. find a better way to do this.
-                    }
-                    return res.Data[0].ToObject<T>(Converter.Serializer);
-                }
-                catch ( IndexOutOfRangeException ex )
-                {
-                    throw new ReqlDriverError("Atom response was empty!", ex);
-                }
+                return this.converter.MakeAtom<T>(query, res);
             }
             if( res.IsSequence )
             {
-                if( typeof(T).IsJToken() )
-                {
-                    var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
-                    Converter.ConvertPseudoTypes(res.Data, fmt);
-                    return (T)(object)res.Data; //ugh ugly. find a better way to do this.
-                }
-                return res.Data.ToObject<T>(Converter.Serializer);
+                return this.converter.MakeSequenceComplete<T>(query, res);
             }
             if (res.IsError)
             {
-                throw res.MakeError(query);
+                throw this.converter.MakeError(query, res);
             }
             throw new ReqlDriverError(
                 $"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM or SUCCESS_SEQUENCE results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.RunCursor`.");
@@ -373,7 +397,7 @@ namespace RethinkDb.Driver.Net
             }
             if (res.IsError)
             {
-                throw res.MakeError(query);
+                throw this.converter.MakeError(query, res);
             }
             throw new ReqlDriverError(
                 $"The query response is not WAIT_COMPLETE. The returned query is {res.Type}. You need to call the appropriate run method that handles the response type for your query.");
@@ -399,25 +423,11 @@ namespace RethinkDb.Driver.Net
 
             if( res.IsAtom )
             {
-                try
-                {
-                    if( typeof(T).IsJToken() )
-                    {
-                        if( res.Data[0].Type == JTokenType.Null ) return null;
-                        var fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
-                        Converter.ConvertPseudoTypes(res.Data[0], fmt);
-                        return res.Data[0];
-                    }
-                    return res.Data[0].ToObject(typeof(T), Converter.Serializer);
-                }
-                catch ( IndexOutOfRangeException ex )
-                {
-                    throw new ReqlDriverError("Atom response was empty!", ex);
-                }
+                return this.converter.MakeAtom<T>(query, res);
             }
             else if( res.IsPartial || res.IsSequence )
             {
-                return new Cursor<T>(this, query, res);
+                return this.converter.MakeCursor<T>(query, res, this);
             }
             else if( res.IsWaitComplete )
             {
@@ -425,7 +435,7 @@ namespace RethinkDb.Driver.Net
             }
             else
             {
-                throw res.MakeError(query);
+                throw this.converter.MakeError(query, res);
             }
         }
 

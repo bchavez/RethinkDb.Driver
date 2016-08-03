@@ -68,5 +68,35 @@ namespace RethinkDb.Driver.Tests.ReQL
             var result = R.Db(DbName).Table(TableName).Insert(poco).RunResult(conn);
             result.AssertInserted(1);
         }
+
+        [Test]
+        public void olivers_serilization_of_jobject_issue()
+        {
+            ClearDefaultTable();
+
+            var obj = new JObject
+            {
+                ["time"] = "2016-08-04T00:00:00+10:00"
+            };
+
+            var insertResult = R.Db(DbName).Table(TableName).Insert(obj)
+                .RunResult(conn);
+
+            insertResult.Dump();
+
+            var key = insertResult.GeneratedKeys[0];
+
+            var getResult = R.Db(DbName).Table(TableName).Get(key)
+                .RunResult<JObject>(conn);
+
+            var timeThing = getResult["time"];
+
+            timeThing.Type.Should().Be(JTokenType.String);
+
+            var putBack = R.Db(DbName).Table(TableName).Update(getResult)
+                .RunResult(conn);
+
+            putBack.Dump();
+        }
     }
 }

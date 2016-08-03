@@ -34,7 +34,8 @@ namespace RethinkDb.Driver.Net
 
             var settings = new JsonSerializerSettings()
             {
-                Converters = Converters
+                Converters = Converters,
+                DateParseHandling = DateParseHandling.None,
             };
 
             Serializer = JsonSerializer.CreateDefault(settings);

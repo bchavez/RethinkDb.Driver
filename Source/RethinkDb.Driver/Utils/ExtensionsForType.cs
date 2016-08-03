@@ -12,7 +12,7 @@ namespace RethinkDb.Driver.Utils
         }
         public static bool IsJToken(this Type type)
         {
-            return type.IsASubclassOf(typeof(JToken));
+            return typeof(JToken).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo());
         }
 
         public static bool IsGenericType(this Type type)

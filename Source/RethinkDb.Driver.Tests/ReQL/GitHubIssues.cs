@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Tests.Utils;
+using RethinkDb.Driver.Utils;
 
 
 namespace RethinkDb.Driver.Tests.ReQL
@@ -218,6 +219,15 @@ namespace RethinkDb.Driver.Tests.ReQL
 
             filter.Count.Should().Be(1);
             filter[0].BigBang.Should().Be(mindate);
+        }
+
+        [Test]
+        public void issue_78_make_sure_jtoken_is_a_jtoken_too()
+        {
+            typeof(JToken).IsJToken().Should().Be(true);
+            typeof(JObject).IsJToken().Should().Be(true);
+            typeof(JArray).IsJToken().Should().Be(true);
+            typeof(JValue).IsJToken().Should().Be(true);
         }
     }
 

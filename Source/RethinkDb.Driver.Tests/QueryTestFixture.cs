@@ -41,7 +41,7 @@ namespace RethinkDb.Driver.Tests
             var hook = FluentAssertions.Common.Services.ThrowException;
             FluentAssertions.Common.Services.ThrowException = s =>
                 {
-                    var logContext = TestLogContext.Context.ToString();
+                    var logContext = TestLogContext.LogText();
                     hook(logContext + s);
                 };
         }

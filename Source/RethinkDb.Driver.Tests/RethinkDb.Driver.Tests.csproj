@@ -124,7 +124,6 @@
     <Compile Include="ReQL\Examples.cs" />
     <Compile Include="ReQL\ExperimentalTests.cs" />
     <Compile Include="ReQL\GitHubIssues.cs" />
-    <Compile Include="ReQL\GitterIssues.cs" />
     <Compile Include="ReQL\GroupingTests.cs" />
     <Compile Include="ReQL\JObjectTests.cs" />
     <Compile Include="ReQL\MapTests.cs" />
@@ -133,6 +132,7 @@
     <Compile Include="ReQL\BinaryTests.cs" />
     <Compile Include="ReQL\RunHelperTests.cs" />
     <Compile Include="ReQL\RxReactiveExtensionTests.cs" />
+    <Compile Include="ReQL\SlackIssues.cs" />
     <Compile Include="ReQL\StackOverflowQuestions.cs" />
     <Compile Include="TestLogContext.cs" />
     <Compile Include="Utils\ExtensionsForTesting.cs" />

@@ -26,7 +26,6 @@ namespace RethinkDb.Driver.Tests
 
         public static void ResetContext()
         {
-            //Context = new TestLogContext();
             memoryTarget = LogManager.Configuration.FindTargetByName<MemoryTarget>("memory");
             memoryTarget.Logs.Clear();
         }

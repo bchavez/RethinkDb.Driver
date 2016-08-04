@@ -19,6 +19,12 @@ namespace RethinkDb.Driver.Tests.ReQL
     [TestFixture]
     public class GroupingTests : QueryTestFixture
     {
+        public override void BeforeEachTest()
+        {
+            base.BeforeEachTest();
+            ClearDefaultTable();
+        }
+
         [Test]
         public void can_read_grouping_reql_type()
         {

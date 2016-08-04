@@ -1,5 +1,7 @@
 ## v2.3.10
-* XML documentation updated. 
+* XML documentation updated.
+* Fixed Issue #78: `Run<JToken>` not working.
+* Fixed PR #80: Make respect customized serializer settings when `JObject` is involved. 
 
 ## v2.3.9
 * Added support for `Change<T>.Type` changefeed `include_types` OptArg.

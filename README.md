@@ -11,9 +11,14 @@ A [**RethinkDB**](http://rethinkdb.com/) database driver written in C# with 100%
 
 This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/next/drivers/java). The basic mechanics and architecture of both drivers are the same. Except this **C#** driver is a bit more *cool*, *stylish* and *kick-ass*. :sunglasses:
 
+###### Standout Features
+* 1,000+ Unit Tests - Passes the same ***ReQL*** test battery as the [official drivers](http://rethinkdb.com/docs/install-drivers/).
+* [Awesome documentation](https://github.com/bchavez/RethinkDb.Driver/wiki).
+* [ReGrid Support](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage) - Distributed Large Binary Storage
+
 ### Getting Help
 ###### Commercial Support
-Independent commercial support and consulting are available for this ***community driver***. To ensure best practices in .NET, proper driver usage, training, and critical bug fixes for the **C#** ***community driver*** contact [**Brian Chavez**](https://github.com/bchavez) ([twitter](https://twitter.com/bchavez)) for more information. Commercial support for **RethinkDB** ***Server*** out-of-scope of the **C#** ***community driver*** can be found [here](http://rethinkdb.com/services/). 
+Independent commercial support and consulting are available for this ***community driver***. To ensure best practices in .NET, proper driver usage, training, and critical bug fixes for the **C#** ***community driver*** contact [**Brian Chavez**](https://github.com/bchavez) ([twitter](https://twitter.com/bchavez)) for more information. Commercial support for **RethinkDB** ***server*** out-of-scope of the **C#** ***community driver*** can be found [here](http://rethinkdb.com/services/). 
 
 ###### Community Support
 [**Slack** (http://slack.rethinkdb.com)](http://slack.rethinkdb.com) is the primary means of getting help for free. If you don't receive the invite, check your spam folder. The `#general` channel has many **RethinkDB** users willing to help. If your **C#** related question can't be answered by anyone tag **@bchavez** in your question.

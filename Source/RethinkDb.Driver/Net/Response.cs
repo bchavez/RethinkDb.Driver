@@ -69,8 +69,7 @@ namespace RethinkDb.Driver.Net
         {
             Log.Trace($"JSON Recv: Token: {token}, JSON: {buf}");
 
-            //var jsonResp = ParseJson(buf);
-            var jsonResp = JObject.Parse(buf);
+            var jsonResp = ParseJson(buf);
             var responseType = jsonResp[TypeKey].ToObject<ResponseType>();
             var responseNotes = jsonResp[NotesKey]?.ToObject<List<ResponseNote>>() ?? new List<ResponseNote>();
             ErrorType? et = jsonResp[ErrorKey]?.ToObject<ErrorType>();
@@ -92,8 +91,7 @@ namespace RethinkDb.Driver.Net
 
         private static JObject ParseJson(string buf)
         {
-            using( var sr = new StringReader(buf))
-            using( var reader = new JsonTextReader(sr) )
+            using( var reader = new JsonTextReader(new StringReader(buf)) )
             {                
                 return Converter.Serializer.Deserialize<JObject>(reader);
             }

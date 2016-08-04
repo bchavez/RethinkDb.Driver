@@ -84,6 +84,7 @@ namespace RethinkDb.Driver.Tests
         [SetUp]
         public  virtual void BeforeEachTest()
         {
+            Converter.InitializeDefault();
             EnsureConnection();
 
             try

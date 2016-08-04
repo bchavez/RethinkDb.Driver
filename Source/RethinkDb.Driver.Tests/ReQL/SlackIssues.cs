@@ -1,5 +1,3 @@
-using System;
-using System.Dynamic;
 using System.Linq;
 using FluentAssertions;
 using Newtonsoft.Json;
@@ -7,13 +5,12 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using NUnit.Framework;
-using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
 using RethinkDb.Driver.Tests.Utils;
 
 namespace RethinkDb.Driver.Tests.ReQL
 {
-    public class GitterQuestions : QueryTestFixture
+    public class SlackIssues : QueryTestFixture
     {
 
         public class Person
@@ -81,7 +78,6 @@ namespace RethinkDb.Driver.Tests.ReQL
             var settings = new JsonSerializerSettings
                 {
                     ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                    // todo: this is weird, fix at EF level (to load DateTimeKind.Utc)
                     DateFormatHandling = DateFormatHandling.IsoDateFormat,
                     DateParseHandling = DateParseHandling.None,
                     DateTimeZoneHandling = DateTimeZoneHandling.Unspecified,

@@ -4,20 +4,28 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
 using RethinkDb.Driver.Model;
+using RethinkDb.Driver.Net.Newtonsoft;
 using RethinkDb.Driver.Proto;
 using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
 {
     /// <summary>
-    /// Connection configuration class
+    /// Connection adapter for extending connection internals.
     /// </summary>
-    public class Config
+    public class Adapter
     {
+        /// <summary>
+        /// Creates a new instance of a connection adapter.
+        /// </summary>
+        public Adapter()
+        {
+            this.Converter = new NewtonsoftResponseConverter();
+            this.CursorProvider = new NewtonsoftCursorProvider();
+        }
+
         /// <summary>
         /// Response Converter for converting <see cref="Response"/> types.
         /// </summary>
@@ -113,7 +121,7 @@ namespace RethinkDb.Driver.Net
         private readonly TimeSpan? connectTimeout;
         private readonly Handshake handshake;
         //private readonly IResponseConverter converter;
-        private readonly Config config;
+        private readonly Adapter adapter;
 
         internal SocketWrapper Socket { get; private set; }
 
@@ -316,7 +324,7 @@ namespace RethinkDb.Driver.Net
             var response = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( response.Type == ResponseType.SERVER_INFO )
             {
-                return this.config.Converter.MakeAtom<Server>(query, response);
+                return this.adapter.Converter.MakeAtom<Server>(query, response);
             }
             throw new ReqlDriverError("Did not receive a SERVER_INFO response.");
         }
@@ -353,11 +361,11 @@ namespace RethinkDb.Driver.Net
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( res.IsPartial || res.IsSequence )
             {
-                return this.config.CursorProvider.MakeCursor<T>(query, res, this);
+                return this.adapter.CursorProvider.MakeCursor<T>(query, res, this);
             }
             if (res.IsError)
             {
-                throw this.config.Converter.MakeError(query, res);
+                throw this.adapter.Converter.MakeError(query, res);
             }
             throw new ReqlDriverError(
                 $"The query response cannot be converted to a Cursor<T>. The run helper works with SUCCESS_SEQUENCE or SUCCESS_PARTIAL results. The server response was {res.Type}. If the server response can be handled by this run method check T. Otherwise, if the server response cannot be handled by this run helper use `.RunAtom<T>` or `.RunResult<T>`.");
@@ -371,11 +379,11 @@ namespace RethinkDb.Driver.Net
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( res.IsAtom )
             {
-                return this.config.Converter.MakeAtom<T>(query, res);
+                return this.adapter.Converter.MakeAtom<T>(query, res);
             }
             if( res.IsError )
             {
-                throw this.config.Converter.MakeError(query, res);
+                throw this.adapter.Converter.MakeError(query, res);
             }
             throw new ReqlDriverError(
                 $"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.RunCursor` or `.RunResult<T>`.");
@@ -390,15 +398,15 @@ namespace RethinkDb.Driver.Net
             var res = await SendQuery(query, cancelToken, awaitResponse: true).ConfigureAwait(false);
             if( res.IsAtom )
             {
-                return this.config.Converter.MakeAtom<T>(query, res);
+                return this.adapter.Converter.MakeAtom<T>(query, res);
             }
             if( res.IsSequence )
             {
-                return this.config.Converter.MakeSequenceComplete<T>(query, res);
+                return this.adapter.Converter.MakeSequenceComplete<T>(query, res);
             }
             if (res.IsError)
             {
-                throw this.config.Converter.MakeError(query, res);
+                throw this.adapter.Converter.MakeError(query, res);
             }
             throw new ReqlDriverError(
                 $"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM or SUCCESS_SEQUENCE results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.RunCursor`.");
@@ -418,7 +426,7 @@ namespace RethinkDb.Driver.Net
             }
             if (res.IsError)
             {
-                throw this.config.Converter.MakeError(query, res);
+                throw this.adapter.Converter.MakeError(query, res);
             }
             throw new ReqlDriverError(
                 $"The query response is not WAIT_COMPLETE. The returned query is {res.Type}. You need to call the appropriate run method that handles the response type for your query.");
@@ -444,11 +452,11 @@ namespace RethinkDb.Driver.Net
 
             if( res.IsAtom )
             {
-                return this.config.Converter.MakeAtom<T>(query, res);
+                return this.adapter.Converter.MakeAtom<T>(query, res);
             }
             else if( res.IsPartial || res.IsSequence )
             {
-                return this.config.CursorProvider.MakeCursor<T>(query, res, this);
+                return this.adapter.CursorProvider.MakeCursor<T>(query, res, this);
             }
             else if( res.IsWaitComplete )
             {
@@ -456,7 +464,7 @@ namespace RethinkDb.Driver.Net
             }
             else
             {
-                throw this.config.Converter.MakeError(query, res);
+                throw this.adapter.Converter.MakeError(query, res);
             }
         }
 

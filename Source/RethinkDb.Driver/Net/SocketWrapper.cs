@@ -260,18 +260,9 @@ namespace RethinkDb.Driver.Net
             awaiters.Clear();
         }
 
-
         /// <summary>
         /// Blocking Read by the ResponsePump
         /// </summary>
-        private NewtonsoftParser Read()
-        {
-            var token = this.br.ReadInt64();
-            var responseLength = this.br.ReadInt32();
-            var response = this.br.ReadBytes(responseLength);
-            return NewtonsoftParser.ParseFrom(token, Encoding.UTF8.GetString(response));
-        }
-
         private Response Read2()
         {
             var token = this.br.ReadInt64();

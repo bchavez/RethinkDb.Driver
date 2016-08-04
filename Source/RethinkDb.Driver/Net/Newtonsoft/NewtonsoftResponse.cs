@@ -9,9 +9,9 @@ using RethinkDb.Driver.Proto;
 namespace RethinkDb.Driver.Net.Newtonsoft
 {
     /// <summary>
-    /// Response from the server.
+    /// A fully deserialized Newtonsoft response interpretation of <see cref="Response"/>
     /// </summary>
-    public class NewtonsoftParser
+    public class NewtonsoftResponse
     {
         private const string TypeKey = "t";
         private const string NotesKey = "n";
@@ -50,7 +50,7 @@ namespace RethinkDb.Driver.Net.Newtonsoft
         /// </summary>
         public ErrorType? ErrorType { get; private set; }
 
-        private NewtonsoftParser(ResponseType responseType)
+        private NewtonsoftResponse(ResponseType responseType)
         {
             this.Type = responseType;
         }
@@ -58,7 +58,7 @@ namespace RethinkDb.Driver.Net.Newtonsoft
         /// <summary>
         /// Parses a Response from a raw JSON string
         /// </summary>
-        public static NewtonsoftParser ParseFrom(string buf)
+        public static NewtonsoftResponse ParseFrom(string buf)
         {
             var jsonResp = JObject.Parse(buf);
             var responseType = jsonResp[TypeKey].ToObject<ResponseType>();
@@ -68,7 +68,7 @@ namespace RethinkDb.Driver.Net.Newtonsoft
             var profile = Profile.FromJsonArray((JArray)jsonResp[ProfileKey]);
             var backtrace = Backtrace.FromJsonArray((JArray)jsonResp[BacktraceKey]);
 
-            var res = new NewtonsoftParser(responseType)
+            var res = new NewtonsoftResponse(responseType)
                 {
                     ErrorType = et,
                     Profile = profile,

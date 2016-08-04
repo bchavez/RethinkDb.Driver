@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Ast;
-using RethinkDb.Driver.Model;
-using RethinkDb.Driver.Proto;
 using RethinkDb.Driver.Utils;
 
 namespace RethinkDb.Driver.Net
@@ -21,38 +17,32 @@ namespace RethinkDb.Driver.Net
         private readonly Connection conn;
         private readonly ICursorBuffer<T> buffer;
 
-        internal Cursor(Connection conn, Query query, Response firstResponse, IResponseConverter converter )
+        internal Cursor(Connection conn, Query query, Response firstResponse, ICursorBuffer<T> buffer )
         {
             this.conn = conn;
-
+            this.buffer = buffer;
             this.Token = query.Token;
-            this.fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
 
             this.conn.AddToCache(this.Token, this);
             //is the first response all there is?
-            this.sequenceFinished = firstResponse.Type == ResponseType.SUCCESS_SEQUENCE;
-            MaybeSendContinue();
-
-            this.buffer = converter.CreateCursorBuffer<T>(firstResponse);
-            this.IsFeed = this.buffer.InitialResponseIsFeed;
-
-            ExtendBuffer(firstResponse);
+            this.PrimeCursor(firstResponse); //prime the cursor's internal logic
+            this.MaybeSendContinue(); //then decide to send a CONTINUE or not.
         }
 
         /// <summary>
         /// The size of the buffered items.
         /// </summary>
-        public int BufferedSize => this.items.Count;
+        public int BufferedSize => this.buffer.Count;
 
         /// <summary>
         /// The list of items in the queue. This does not include the Current item.
         /// </summary>
-        public List<T> BufferedItems => items.Select(Convert).ToList();
+        public List<T> BufferedItems => this.buffer.BufferedItems;
 
         /// <summary>
         /// Whether the Cursor is any kind of feed.
         /// </summary>
-        public bool IsFeed { get; private set; }
+        public bool IsFeed => this.buffer.InitialResponseIsFeed;
 
         /// <summary>
         /// A flag to determine if the cursor can still be used.
@@ -70,17 +60,11 @@ namespace RethinkDb.Driver.Net
         public long Token { get; }
 
         private Task<Response> pendingContinue;
-
-        //private readonly Queue<JToken> items = new Queue<JToken>();
-
-        //we need these to keep track of the run options
-        //for things like "time_format: 'raw'"
-        private FormatOptions fmt;
-
+        
         void AdvanceCurrent()
         {
-            var item = items.Dequeue();
-            this.Current = Convert(item);
+            this.buffer.AdvanceCurrent();
+            this.Current = this.buffer.Current;
         }
 
         /// <summary>
@@ -143,7 +127,7 @@ namespace RethinkDb.Driver.Net
         public async Task<bool> MoveNextAsync(CancellationToken cancelToken = default(CancellationToken))
         {
             cancelToken.ThrowIfCancellationRequested();
-            while( items.Count == 0 )
+            while( this.buffer.Count == 0 )
             {
                 if( !this.IsOpen ) return false;
 
@@ -169,7 +153,7 @@ namespace RethinkDb.Driver.Net
                 //if we get here, the next batch should be available.
                 var newBatch = this.pendingContinue.Result;
                 this.pendingContinue = null;
-                MaybeSendContinue();
+                this.MaybeSendContinue();
                 this.ExtendBuffer(newBatch);
             }
 
@@ -178,7 +162,8 @@ namespace RethinkDb.Driver.Net
 
             return true;
         }
-
+        
+        // only sends if the current cursor logic state is reasonable.
         void MaybeSendContinue()
         {
             if( this.IsOpen && this.conn.Open && pendingContinue == null && !sequenceFinished )
@@ -186,32 +171,29 @@ namespace RethinkDb.Driver.Net
                 this.pendingContinue = this.conn.Continue(this);
             }
         }
-
+        
+        // extends the buffer *and* primes the cursor logic state
         void ExtendBuffer(Response response)
         {
             if( this.IsOpen )
             {
-                buffer.ExtendBuffer(response);
-                if (response.IsSequence)
-                {
-                    this.SequenceFinished();
-                }
-
-                if (!response.IsSequence && !response.IsPartial)
-                {
-                    throw new NotSupportedException("Cursor cannot extend the response. The response was not a SUCCESS_PARTIAL or SUCCESS_SEQUENCE.");
-                }
+                this.buffer.ExtendBuffer(response);
+                this.PrimeCursor(response);
             }
         }
-
-        T Convert(JToken token)
+        
+        // Primes the internal cursor logic state based on the response.
+        void PrimeCursor(Response response)
         {
-            if( typeof(T).IsJToken() )
+            if (response.IsSequence)
             {
-                Converter.ConvertPseudoTypes(token, fmt);
-                return (T)(object)token; //ugh ugly. find a better way to do this.
+                this.SequenceFinished();
             }
-            return token.ToObject<T>(Converter.Serializer);
+
+            if (!response.IsSequence && !response.IsPartial)
+            {
+                throw new NotSupportedException("Cursor cannot extend the response. The response was not a SUCCESS_PARTIAL or SUCCESS_SEQUENCE.");
+            }
         }
 
         bool sequenceFinished;
@@ -274,7 +256,7 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         public void ClearBuffer()
         {
-            this.items.Clear();
+            this.buffer.Clear();
         }
 
         /// <summary>

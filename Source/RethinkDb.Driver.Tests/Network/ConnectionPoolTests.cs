@@ -442,6 +442,26 @@ namespace RethinkDb.Driver.Tests.Network
 
 
         }
+
+        [Test]
+        public void is_any_open_after_connect()
+        {
+            var r = RethinkDB.R;
+            var c = r.ConnectionPool()
+                .Seed(new Seed(AppSettings.TestHost))
+                .PoolingStrategy(new RoundRobinHostPool())
+                .Discover(true)
+                .Connect();
+
+            c.AnyOpen.Should().BeTrue();
+
+            int result = r.random(1, 9).add(r.random(1, 9)).Run<int>(c);
+            result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
+
+            c.Shutdown();
+
+            c.AnyOpen.Should().BeFalse();
+        }
     }
 
 }

@@ -1,3 +1,6 @@
+## v2.3.11
+* Added `ConnectionPool.AnyOpen` to check if any node is available in the host pool.
+
 ## v2.3.10
 * XML documentation updated.
 * Fixed Issue #78: `Run<JToken>` not working.

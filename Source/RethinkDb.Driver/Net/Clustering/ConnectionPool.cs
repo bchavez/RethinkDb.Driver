@@ -102,9 +102,18 @@ namespace RethinkDb.Driver.Net.Clustering
                 {
                     var conn = h.conn as Connection;
                     conn.Close(false);
+                    h.MarkFailed();
                 }
             }
         }
+
+        /// <summary>
+        /// Used to determine if a node is currently available in the host pool
+        /// to receive queries. The boolean value should be considered a "rough" estimate
+        /// of the availability of a node in the pool. This indicator may lag behind
+        /// as it does not check the exact state of every node's TCP socket.
+        /// </summary>
+        public bool AnyOpen => this.poolingStrategy.HostList.Any(h => !h.Dead);
 
         private CancellationTokenSource shutdownSignal;
         private TaskCompletionSource<ConnectionPool> poolReady;

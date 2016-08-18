@@ -462,6 +462,42 @@ namespace RethinkDb.Driver.Tests.Network
 
             c.AnyOpen.Should().BeFalse();
         }
+
+
+        [Test]
+        public void connecting_with_wrong_user_pass_should_fail_after_timeout()
+        {
+            var r = RethinkDB.R;
+            var c = r.ConnectionPool()
+                .User("admin", "bogus")
+                .Seed(new Seed(AppSettings.TestHost))
+                .PoolingStrategy(new RoundRobinHostPool())
+                .InitialTimeout(30)
+                .Discover(false);
+
+            Action act = () => c.Connect();
+
+            act.ShouldThrow<ReqlDriverError>();
+        }
+
+
+        [Test]
+        public void can_connect_to_cluster_using_user_and_password_auth()
+        {
+            var r = RethinkDB.R;
+            var c = r.ConnectionPool()
+                .User("admin", "")
+                .Seed(new Seed(AppSettings.TestHost))
+                .PoolingStrategy(new RoundRobinHostPool())
+                .InitialTimeout(30)
+                .Discover(false)
+                .Connect();
+
+            int result = r.random(1, 9).add(r.random(1, 9)).Run<int>(c);
+            result.Should().BeGreaterOrEqualTo(2).And.BeLessThan(18);
+
+            c.Shutdown();
+        }
     }
 
 }

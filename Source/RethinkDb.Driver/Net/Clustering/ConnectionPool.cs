@@ -15,7 +15,8 @@ namespace RethinkDb.Driver.Net.Clustering
     /// </summary>
     public class ConnectionPool : IConnection
     {
-        private string authKey;
+        private string user;
+        private string password;
         private string dbname;
         private Seed[] seeds;
         private bool discover;
@@ -78,7 +79,8 @@ namespace RethinkDb.Driver.Net.Clustering
 
         internal ConnectionPool(Builder builder)
         {
-            authKey = builder.authKey;
+            user = builder.user ?? "admin";
+            password = builder.password ?? builder.authKey ?? "";
             dbname = builder.dbname;
             seeds = builder.seeds;
             discover = builder.discover;
@@ -307,7 +309,10 @@ namespace RethinkDb.Driver.Net.Clustering
                                 {
                                     conn.Reconnect();
                                 }
-                                catch { }
+                                catch( Exception e )
+                                {
+                                    Log.Debug($"{nameof(Supervisor)}: EXCEPTION: '{he.Host}' -- {e.Message}.");
+                                }
 
                                 if( conn.Open )
                                 {
@@ -349,7 +354,8 @@ namespace RethinkDb.Driver.Net.Clustering
         {
             var connNew = new Connection(new Connection.Builder()
                 {
-                    authKey = authKey,
+                    user = user,
+                    password = password,
                     dbname = dbname,
                     hostname = hostname,
                     port = port
@@ -376,12 +382,14 @@ namespace RethinkDb.Driver.Net.Clustering
         /// <summary>
         /// The connection pool builder.
         /// </summary>
-        public class Builder
+        public class Builder : IConnectionBuilder<Builder>
         {
             internal bool discover;
             internal Seed[] seeds;
             internal string dbname;
             internal string authKey;
+            internal string user;
+            internal string password;
             internal IPoolingStrategy hostpool;
             internal TimeSpan? initialTimeout;
 
@@ -466,13 +474,22 @@ namespace RethinkDb.Driver.Net.Clustering
                 return this;
             }
 
-
             /// <summary>
             /// The authorization key to the cluster.
             /// </summary>
             public virtual Builder AuthKey(string val)
             {
                 this.authKey = val;
+                return this;
+            }
+
+            /// <summary>
+            /// The user account and password to connect as (default "admin", "").
+            /// </summary>
+            public Builder User(string user, string password)
+            {
+                this.user = user;
+                this.password = password;
                 return this;
             }
 

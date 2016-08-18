@@ -541,7 +541,7 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// The Connection builder.
         /// </summary>
-        public class Builder
+        public class Builder : IConnectionBuilder<Builder>
         {
             internal string hostname = null;
             internal int? port = null;

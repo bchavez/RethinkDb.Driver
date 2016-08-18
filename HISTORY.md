@@ -1,3 +1,7 @@
+## v2.3.12
+* Issue #87 - Fixed missing `.User(user,pass)` parameters on `ConnectionPool` builder.
+* Fixed some synchronous methods not unwrapping `AggregateException`.
+
 ## v2.3.11
 * Added `ConnectionPool.AnyOpen` to check if any node is available in the host pool.
 

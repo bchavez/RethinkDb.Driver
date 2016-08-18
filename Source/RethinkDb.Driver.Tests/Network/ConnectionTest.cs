@@ -100,5 +100,21 @@ namespace RethinkDb.Driver.Tests.Network
             c.Close(false);
         }
 
+
+        [Test]
+        public void we_should_fail_with_something_if_we_cant_connect_with_good_creds()
+        {
+            var c = R.Connection()
+                .User("Foo", "barb")
+                .Hostname(AppSettings.TestHost)
+                .Port(AppSettings.TestPort);
+
+            Action act = ()=> c.Connect();
+
+            act.ShouldThrow<ReqlAuthError>();
+
+
+        }
+
     }
 }

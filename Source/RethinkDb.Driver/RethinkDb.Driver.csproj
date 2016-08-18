@@ -86,6 +86,7 @@
     <Compile Include="Net\FormatOptions.cs" />
     <Compile Include="Net\Handshake.cs" />
     <Compile Include="Net\IConnection.cs" />
+    <Compile Include="Net\IConnectionBuilder.cs" />
     <Compile Include="Net\ICursor.cs" />
     <Compile Include="Net\IncrementalSHA256.cs" />
     <Compile Include="Net\ScramAttributes.cs" />

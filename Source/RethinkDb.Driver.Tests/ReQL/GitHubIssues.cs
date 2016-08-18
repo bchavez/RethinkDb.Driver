@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Newtonsoft.Json;
@@ -228,6 +229,27 @@ namespace RethinkDb.Driver.Tests.ReQL
             typeof(JObject).IsJToken().Should().Be(true);
             typeof(JArray).IsJToken().Should().Be(true);
             typeof(JValue).IsJToken().Should().Be(true);
+        }
+
+
+        [Test]
+        public void issue_86_grouping_count_transforms_reduction()
+        {
+            var games = new[]
+                {
+                    new Game {id = 2, player = "Bob", points = 15, type = "ranked"},
+                    new Game {id = 5, player = "Alice", points = 7, type = "free"},
+                    new Game {id = 12, player = "Alice", points = 2, type = "free"},
+                };
+
+            var result = R.Expr(games)
+                .Group("player")
+                .Count()
+                .RunGrouping<string, int>(conn);
+
+            var groupings = result.ToArray();
+            groupings[0].Items[0].Should().Be(2);
+            groupings[1].Items[0].Should().Be(1);
         }
     }
 

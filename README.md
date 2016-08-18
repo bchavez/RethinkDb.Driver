@@ -12,7 +12,7 @@ A [**RethinkDB**](http://rethinkdb.com/) database driver written in C# with 100%
 This driver is based on the *official* [Java Driver](https://github.com/rethinkdb/rethinkdb/tree/next/drivers/java). The basic mechanics and architecture of both drivers are the same. Except this **C#** driver is a bit more *cool*, *stylish* and *kick-ass*. :sunglasses:
 
 ###### Standout Features
-* 1,000+ Unit Tests - Passes the same ***ReQL*** test battery as the [official drivers](http://rethinkdb.com/docs/install-drivers/).
+* 1,200+ Unit Tests - This driver passes the same ***ReQL*** test harness as the [official drivers](http://rethinkdb.com/docs/install-drivers/).
 * [Awesome documentation](https://github.com/bchavez/RethinkDb.Driver/wiki).
 * [ReGrid Support](https://github.com/bchavez/RethinkDb.Driver/wiki/ReGrid-File-Storage) - Distributed Large Binary Storage
 

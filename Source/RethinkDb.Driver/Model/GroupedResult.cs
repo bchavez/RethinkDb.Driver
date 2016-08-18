@@ -20,6 +20,12 @@ namespace RethinkDb.Driver.Model
             this.Key = key.ToObject<TKey>(Converter.Serializer);
             this.Items = items.ToObject<List<TElement>>(Converter.Serializer);
         }
+        public GroupedResult(JToken key, JValue item)
+        {
+            this.Key = key.ToObject<TKey>(Converter.Serializer);
+            var value = item.ToObject<TElement>(Converter.Serializer);
+            this.Items = new List<TElement>() {value};
+        }
 
         public IEnumerator<TElement> GetEnumerator()
         {

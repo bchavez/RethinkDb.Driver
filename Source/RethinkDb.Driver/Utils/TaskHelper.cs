@@ -31,7 +31,7 @@ namespace RethinkDb.Driver.Utils
             {
                 task.Wait();
             }
-            catch( ArgumentException ae )
+            catch( AggregateException ae )
             {
                 ExceptionDispatchInfo.Capture(ae.InnerException).Throw();
             }

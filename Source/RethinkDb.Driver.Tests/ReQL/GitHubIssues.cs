@@ -251,6 +251,54 @@ namespace RethinkDb.Driver.Tests.ReQL
             groupings[0].Items[0].Should().Be(2);
             groupings[1].Items[0].Should().Be(1);
         }
+
+
+        [Test]
+        public void issue_86_group_using_index()
+        {
+            var issues = @"[{ 
+""Expires"": """", 
+""Issuer"": ""d04aad77448a"" , 
+""id"": ""0276701a-3834-4375-b0fa-5be0a691db39"" 
+},
+{ 
+""Expires"": """", 
+""Issuer"": ""f6adf92273de"" , 
+""id"": ""033325bf-c942-4fdf-af4c-0bb79f2fae3a"" 
+},
+{ 
+""Expires"": """", 
+""Issuer"": ""cf3d85de52b4"" , 
+""id"": ""038c0583-f92e-45c1-a885-1650daaf11e1"" 
+}]";
+
+            DropTable(DbName, TableName);
+            CreateTable(DbName, TableName);
+
+            var insertResult = table.Insert(R.Json(issues)).RunResult(conn);
+
+            insertResult.AssertInserted(3);
+
+            table.IndexCreate("Issuer").Run(conn);
+
+            table.IndexWait("Issuer").Run(conn);
+
+            //query using index
+
+            var groupResults = table.Group()[new { index = "Issuer" }]
+                .Count()
+                .RunGrouping<string, int>(conn);
+
+            var results = groupResults.ToArray();
+
+            results.Any(g => g.Key == "d04aad77448a").Should().BeTrue();
+            results.Any(g => g.Key == "f6adf92273de").Should().BeTrue();
+            results.Any(g => g.Key == "cf3d85de52b4").Should().BeTrue();
+
+            results[0].Items[0].Should().Be(1);
+            results[1].Items[0].Should().Be(1);
+            results[2].Items[0].Should().Be(1);
+        }
     }
 
 }

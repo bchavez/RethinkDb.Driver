@@ -1,3 +1,6 @@
+## v2.3.14
+* Issue #91 - Some error message improvements.
+
 ## v2.3.12
 * Issue #87 - Fixed missing `.User(user,pass)` parameters on `ConnectionPool` builder.
 * Fixed some synchronous methods not unwrapping `AggregateException`.

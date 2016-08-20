@@ -266,7 +266,11 @@ namespace RethinkDb.Driver.Net
                 throw res.MakeError(query);
             }
             throw new ReqlDriverError(
-                $"The query response cannot be converted to a Cursor<T>. The run helper works with SUCCESS_SEQUENCE or SUCCESS_PARTIAL results. The server response was {res.Type}. If the server response can be handled by this run method check T. Otherwise, if the server response cannot be handled by this run helper use `.RunAtom<T>` or `.RunResult<T>`.");
+                $"The query response cannot be converted to a Cursor<T>. The run helper " +
+                $"works with SUCCESS_SEQUENCE or SUCCESS_PARTIAL results. The server " +
+                $"response was {res.Type}. If the server response can be handled by " +
+                $"this run method check T. Otherwise, if the server response cannot " +
+                $"be handled by this run helper use `.RunAtom<T>` or `.RunResult<T>`.");
         }
 
         /// <summary>
@@ -343,7 +347,14 @@ namespace RethinkDb.Driver.Net
                 throw res.MakeError(query);
             }
             throw new ReqlDriverError(
-                $"The query response cannot be converted to an object of T or List<T>. This run helper works with SUCCESS_ATOM or SUCCESS_SEQUENCE results. The server response was {res.Type}. If the server response can be handled by this run method try converting to T or List<T>. Otherwise, if the server response cannot be handled by this run helper use another run helper like `.RunCursor`.");
+                $"The query response cannot be converted to an object of T or List<T> " +
+                $"because the server response was {res.Type}. The `.RunResult<T>` helper " +
+                $"only works with SUCCESS_ATOM or SUCCESS_SEQUENCE responses. When the query " +
+                $"response grows larger (over 100K), the response type from the server " +
+                $"can change from SUCCESS_SEQUENCE to SUCCESS_PARTIAL; in which case, you'll " +
+                $"need to use `.RunCursor` that handles both SUCCESS_SEQUENCE and SUCCESS_PARTIAL " +
+                $"response types. The `.RunResult` run helper is only meant to be a " +
+                $"convenience method for relatively quick and smaller responses.");
         }
 
         /// <summary>

@@ -100,7 +100,10 @@ namespace RethinkDb.Driver.Net
         }
 
         /// <summary>
-        /// Flag to check the underlying socket is connected.
+        /// Gets the connection state of the Socket. This property will return the latest
+        /// known state of the Socket. When it returns false, the Socket was either never connected
+        /// or it is not connected anymore. When it returns true, though, there's no guarantee that the Socket
+        /// is still connected, but only that it was connected at the time of the last IO operation.
         /// </summary>
         public virtual bool Open => this.Socket?.Open ?? false;
 

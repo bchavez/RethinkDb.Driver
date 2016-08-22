@@ -47,6 +47,28 @@ namespace RethinkDb.Driver.Tests.ReQL
             var e = GetReqlExpr<Game>(g => g.points > 9);
         }
 
+
+        [Test]
+        public void does_foreach_call_dispose()
+        {
+            int total = 0;
+            var cursor = R.Range(1, 250)
+                .Limit(50)
+                .RunCursor<int>(conn);
+
+            using (cursor)
+                foreach( var i in cursor )
+                {
+                    total += 1;
+                    //i.Dump();
+                }
+
+            //is it disposed?
+            total.Dump();
+            //cursor.IsOpen.Dump();
+            total.Should().Be(50);
+        }
+
         private Expression GetReqlExpr<T>(Expression<Func<T, object>> expr)
         {
             //var v = new ExprVisit();

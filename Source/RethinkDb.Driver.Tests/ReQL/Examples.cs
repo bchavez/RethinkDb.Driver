@@ -283,8 +283,15 @@ namespace RethinkDb.Driver.Tests.ReQL
         {
             var server = conn.Server();
 
-            server.Id.Should().NotBeEmpty();
-            server.Name.Should().NotBeNullOrWhiteSpace();
+            server.Id.Should().NotBeNullOrWhiteSpace();
+            if( server.Proxy )
+            {
+                server.Name.Should().BeNull();
+            }
+            else
+            {
+                server.Name.Should().NotBeNullOrWhiteSpace();
+            }
         }
 
         [Test]

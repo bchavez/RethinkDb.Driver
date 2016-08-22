@@ -1,5 +1,6 @@
 ## v2.3.14
 * Issue #91 - Some error message improvements.
+* Issue #94 - Fixed `Connection.Server` throwing exception in proxy mode. `Server.Id` is now `string`, not `Guid`.
 
 ## v2.3.12
 * Issue #87 - Fixed missing `.User(user,pass)` parameters on `ConnectionPool` builder.

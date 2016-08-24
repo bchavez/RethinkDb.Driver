@@ -184,6 +184,21 @@ namespace RethinkDb.Driver.Tests.ReQL
             var result = table.Get(Guid.NewGuid()).RunAtom<JObject>(conn);
             result.Should().BeNull();
         }
+
+        [Test]
+        public void try_basic_datetime_deseralization()
+        {
+            var obj = new JObject
+                {
+                    ["Name"] = "Brian",
+                    ["dob"] = DateTime.Parse("8/24/2016")
+                };
+
+            var fromDb = R.Expr(obj).RunResult<JObject>(conn);
+            var dateTimeValue = fromDb["dob"] as JValue;
+            dateTimeValue.Type.Should().Be(JTokenType.Date);
+            dateTimeValue.Value.Should().BeOfType<DateTime>();
+        }
         
     }
 

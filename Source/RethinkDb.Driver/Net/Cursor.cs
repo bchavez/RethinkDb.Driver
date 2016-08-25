@@ -20,11 +20,15 @@ namespace RethinkDb.Driver.Net
     {
         private readonly Connection conn;
 
+        private bool TIsJToken = false;
+
         internal Cursor(Connection conn, Query query, Response firstResponse)
         {
             this.conn = conn;
             this.IsFeed = firstResponse.IsFeed;
             this.Token = query.Token;
+            this.TIsJToken = typeof(T).IsJToken();
+
             this.fmt = FormatOptions.FromOptArgs(query.GlobalOptions);
 
             this.conn.AddToCache(this.Token, this);
@@ -47,7 +51,7 @@ namespace RethinkDb.Driver.Net
         /// <summary>
         /// Whether the Cursor is any kind of feed.
         /// </summary>
-        public bool IsFeed { get; private set; }
+        public bool IsFeed { get; }
 
         /// <summary>
         /// A flag to determine if the cursor can still be used.
@@ -212,7 +216,7 @@ namespace RethinkDb.Driver.Net
 
         T Convert(JToken token)
         {
-            if( typeof(T).IsJToken() )
+            if( this.TIsJToken )
             {
                 Converter.ConvertPseudoTypes(token, fmt);
                 return (T)(object)token; //ugh ugly. find a better way to do this.

@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 
 namespace RethinkDb.Driver.Model
 {
@@ -95,5 +97,11 @@ namespace RethinkDb.Driver.Model
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public ChangeType? Type { get; set; }
+
+        /// <summary>
+        /// Extra metadata that couldn't be parsed, if any.
+        /// </summary>
+        [JsonExtensionData]
+        public IDictionary<string, JToken> ExtraData { get; set; }
     }
 }

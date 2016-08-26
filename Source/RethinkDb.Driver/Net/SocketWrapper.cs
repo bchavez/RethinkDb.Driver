@@ -310,7 +310,8 @@ namespace RethinkDb.Driver.Net
                     var jsonBytes = Encoding.UTF8.GetBytes(json);
                     this.bw.Write(jsonBytes.Length);
                     this.bw.Write(jsonBytes);
-                    Log.Trace($"JSON Send: Token: {token}, JSON: {json}");
+                    //we check here because it's possibly very expensive to ship this json around in the call stack
+                    if (Log.IsTraceEnabled) Log.Trace($"JSON Send: Token: {token}, JSON: {json}");
                 }
                 catch( Exception e )
                 {

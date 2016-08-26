@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 #if STANDARD
 using Microsoft.Extensions.Logging;
@@ -25,15 +26,49 @@ namespace RethinkDb.Driver
 #endif
 
         /// <summary>
+        /// Returns true if trace log level is enabled.
+        /// </summary>
+        public static bool IsTraceEnabled
+        {
+            get
+            {
+#if STANDARD
+                return Instance?.IsEnabled(LogLevel.Trace) ?? false;
+#else
+                return Instance.IsTraceEnabled;
+#endif
+            }
+        }
+
+        /// <summary>
+        /// Returns true if debug log level is enabled.
+        /// </summary>
+        public static bool IsDebugEnabled
+        {
+            get
+            {
+#if STANDARD
+                return Instance?.IsEnabled(LogLevel.Debug) ?? false;
+#else
+                return Instance.IsDebugEnabled;
+#endif
+            }
+        }
+
+
+        /// <summary>
         /// Trace message
         /// </summary>
         public static void Trace(string msg)
         {
+            if( IsTraceEnabled )
+            {
 #if STANDARD
-            Instance?.LogDebug(msg);
+                Instance?.LogDebug(Filter(msg));
 #else
-            Instance.Trace(Filter(msg));
+                Instance.Trace(Filter(msg));
 #endif
+            }
         }
 
         /// <summary>
@@ -41,11 +76,15 @@ namespace RethinkDb.Driver
         /// </summary>
         public static void Debug(string msg)
         {
+
+            if( IsDebugEnabled )
+            {
 #if STANDARD
-            Instance?.LogDebug(msg);
+                Instance?.LogDebug(Filter(msg));
 #else
-            Instance.Debug(Filter(msg));
+                Instance.Debug(Filter(msg));
 #endif
+            }
         }
 
 #if STANDARD
@@ -63,23 +102,40 @@ namespace RethinkDb.Driver
         /// </summary>
         public static bool TruncateBinaryTypes = true;
 
-        private static string Filter(string msg, int startAfter = 0)
+        internal static string Filter(string msg)
         {
-            if( TruncateBinaryTypes )
+            const string BinaryStart = @"{""$reql_type$"":""BINARY"",""data"":""";
+            const string BinaryEnd = @"""}";
+
+            if ( TruncateBinaryTypes )
             {
-                var start = msg.IndexOf(@"{""$reql_type$"":""BINARY"",""data"":""", startAfter);
-                if( start == -1 )
-                    return msg;
+                int bookmark = 0;
 
-                start += 32;
+                StringBuilder sb = null;
+                while ( bookmark < msg.Length )
+                {
+                    var match = msg.IndexOf(BinaryStart, bookmark, StringComparison.Ordinal);
+                    if( match == -1 && sb == null)
+                    {
+                        return msg;
+                    }
+                    if( match != -1 && sb == null )
+                    {
+                        sb = new StringBuilder();
+                    }
+                    if( match == -1 && sb != null )
+                    {
+                        sb.Append(msg.Substring(bookmark));
+                        return sb.ToString();
+                    }
+                    var end = msg.IndexOf(BinaryEnd, match, StringComparison.Ordinal);
 
-                var end = msg.IndexOf(@"""}", start);
 
-                var sb = new StringBuilder();
-                sb.Append(msg.Substring(0, start));
-                sb.Append("BASE64_STRING_TRUNCATED_BY_LOG");
-                sb.Append(msg.Substring(end));
-                return Filter(sb.ToString(), start);
+                    sb.Append(msg.Substring(bookmark, (match + BinaryStart.Length) - bookmark ));
+                    sb.Append("BASE64_STRING_TRUNCATED_BY_LOG");
+                    sb.Append(msg.Substring(end, BinaryEnd.Length));
+                    bookmark = end + BinaryEnd.Length;
+                }
             }
 
             return msg;

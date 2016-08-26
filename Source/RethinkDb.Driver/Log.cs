@@ -26,18 +26,49 @@ namespace RethinkDb.Driver
 #endif
 
         /// <summary>
+        /// Returns true if trace log level is enabled.
+        /// </summary>
+        public static bool IsTraceEnabled
+        {
+            get
+            {
+#if STANDARD
+                return Instance?.IsEnabled(LogLevel.Trace) ?? false;
+#else
+                return Instance.IsTraceEnabled;
+#endif
+            }
+        }
+
+        /// <summary>
+        /// Returns true if debug log level is enabled.
+        /// </summary>
+        public static bool IsDebugEnabled
+        {
+            get
+            {
+#if STANDARD
+                return Instance?.IsEnabled(LogLevel.Debug) ?? false;
+#else
+                return Instance.IsDebugEnabled;
+#endif
+            }
+        }
+
+
+        /// <summary>
         /// Trace message
         /// </summary>
         public static void Trace(string msg)
         {
-#if STANDARD
-            Instance?.LogDebug(msg);
-#else
-            if( Instance.IsTraceEnabled )
+            if( IsTraceEnabled )
             {
+#if STANDARD
+                Instance?.LogDebug(Filter(msg));
+#else
                 Instance.Trace(Filter(msg));
-            }
 #endif
+            }
         }
 
         /// <summary>
@@ -45,14 +76,15 @@ namespace RethinkDb.Driver
         /// </summary>
         public static void Debug(string msg)
         {
-#if STANDARD
-            Instance?.LogDebug(msg);
-#else
-            if( Instance.IsDebugEnabled )
+
+            if( IsDebugEnabled )
             {
+#if STANDARD
+                Instance?.LogDebug(Filter(msg));
+#else
                 Instance.Debug(Filter(msg));
-            }
 #endif
+            }
         }
 
 #if STANDARD

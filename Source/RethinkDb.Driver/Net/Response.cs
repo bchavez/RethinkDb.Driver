@@ -67,7 +67,8 @@ namespace RethinkDb.Driver.Net
         /// </summary>
         public static Response ParseFrom(long token, string buf)
         {
-            Log.Trace($"JSON Recv: Token: {token}, JSON: {buf}");
+            //we check here because it's possibly very expensive to ship this buf around in the call stack
+            if( Log.IsTraceEnabled ) Log.Trace($"JSON Recv: Token: {token}, JSON: {buf}");
 
             var jsonResp = ParseJson(buf);
             var responseType = jsonResp[TypeKey].ToObject<ResponseType>();

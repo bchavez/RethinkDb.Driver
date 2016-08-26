@@ -1,3 +1,6 @@
+## v2.3.15
+* Issue 97 - Fixed `OutOfMemoryException` in rare cases with very large (~130MB) queries.
+
 ## v2.3.14
 * Issue #91 - Some error message improvements.
 * Issue #94 - Fixed `Connection.Server` throwing exception in proxy mode. `Server.Id` is now `string`, not `Guid`.

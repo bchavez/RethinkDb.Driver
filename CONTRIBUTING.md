@@ -8,9 +8,7 @@ General help with ReQL questions can be found on:
 
 Pull Requests
 ------------
-Err'body hatin' on legal :-1:, but gotta do it. Please sign the [**RethinkDB CLA**](http://rethinkdb.com/community/cla/). :pencil2: :clipboard: Technically, it isn't legally binding for a community driver, but in the event this driver is adopted as an official driver we want to have all our ducks in a row.
-
-Once the CLA is signed, here are some helpful guidelines to keep in mind when contributing.  While following them isn't absolutely required, it does help everyone to accept your pull-requests with maximum awesomeness.
+Here are some helpful guidelines to keep in mind when contributing.  While following them isn't absolutely required, it does help everyone to accept your pull-requests with maximum awesomeness.
 
 * :heavy_check_mark: **CONSIDER** adding a unit test if your PR resolves an issue.
 * :heavy_check_mark: **DO** keep pull requests small so they can be easily reviewed. 

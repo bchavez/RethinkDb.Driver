@@ -5,6 +5,8 @@
 RethinkDb.Driver
 ================
 
+[![Join the chat at https://gitter.im/bchavez/RethinkDb.Driver](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bchavez/RethinkDb.Driver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Project Description
 -------------------
 A [**RethinkDB**](http://rethinkdb.com/) database driver written in C# with 100% **ReQL** API compatibility and completeness.

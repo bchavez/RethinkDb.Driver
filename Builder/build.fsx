@@ -87,7 +87,7 @@ Target "testgen" (fun _ ->
 
     trace DriverProject.Folder
 
-    DynInvoke gen "EnsurePathsExist" [||]
+    DynInvoke gen "BeforeRunningTestSession" [||]
     DynInvoke gen "Generate_All" [||]
     
 )

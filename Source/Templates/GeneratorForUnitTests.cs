@@ -27,9 +27,8 @@ namespace Templates
         public void BeforeRunningTestSession()
         {
             //remount the working directory before we begin.
-            var location = Assembly.GetExecutingAssembly().Location;
-            var testProject = Path.Combine(location, @"..\..\..\..", ProjectFolder);
-            Console.WriteLine($"TEST PROJECT: {testProject}");
+            var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var testProject = Path.Combine(location, @"..\..\..", ProjectFolder);
             Directory.SetCurrentDirectory(testProject);
             EnsurePathsExist();
         }

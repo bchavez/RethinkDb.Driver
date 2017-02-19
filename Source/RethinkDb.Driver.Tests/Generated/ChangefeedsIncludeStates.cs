@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
         [Test]
-        public void YamlTest(){
+        public void YamlTest_ChangefeedsIncludeStates(){
 
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiY2hhbmdlZmVlZHMvaW5jbHVkZV9zdGF0ZXMueWFtbCIsIkxpbmVOdW0iOiI0IiwiT3JpZ2luYWwiOiJ0YmwuY2hhbmdlcyhzcXVhc2g9dHJ1ZSwgaW5jbHVkZV9zdGF0ZXM9dHJ1ZSkubGltaXQoMSkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJ0YmwuY2hhbmdlcygpLm9wdEFyZyhcInNxdWFzaFwiLCB0cnVlKS5vcHRBcmcoXCJpbmNsdWRlX3N0YXRlc1wiLCB0cnVlKS5saW1pdCgxTCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiW3snc3RhdGUnOidyZWFkeSd9XSIsIkV4cGVjdGVkVHlwZSI6Ikxpc3QiLCJFeHBlY3RlZEphdmEiOiJyLmFycmF5KHIuaGFzaE1hcChcInN0YXRlXCIsIFwicmVhZHlcIikpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );

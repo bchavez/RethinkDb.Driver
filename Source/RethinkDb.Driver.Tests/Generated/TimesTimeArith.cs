@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
         [Test]
-        public void YamlTest(){
+        public void YamlTest_TimesTimeArith(){
 
              
              //JavaDef, times/time_arith.yaml, #3

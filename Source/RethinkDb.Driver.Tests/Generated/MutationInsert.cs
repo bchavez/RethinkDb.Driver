@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
         [Test]
-        public void YamlTest(){
+        public void YamlTest_MutationInsert(){
 
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibXV0YXRpb24vaW5zZXJ0LnlhbWwiLCJMaW5lTnVtIjoiNiIsIk9yaWdpbmFsIjoici5kYigndGVzdCcpLnRhYmxlX2NyZWF0ZSgndGVzdDInKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZGIoXCJ0ZXN0XCIpLnRhYmxlQ3JlYXRlKFwidGVzdDJcIikiLCJFeHBlY3RlZE9yaWdpbmFsIjoicGFydGlhbCh7J3RhYmxlc19jcmVhdGVkJzoxfSkiLCJFeHBlY3RlZFR5cGUiOiJQYXJ0aWFsIiwiRXhwZWN0ZWRKYXZhIjoicGFydGlhbChyLmhhc2hNYXAoXCJ0YWJsZXNfY3JlYXRlZFwiLCAxTCkpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );

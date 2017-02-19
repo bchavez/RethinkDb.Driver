@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
         [Test]
-        public void YamlTest(){
+        public void YamlTest_DatumUuid(){
 
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZGF0dW0vdXVpZC55YW1sIiwiTGluZU51bSI6IjMiLCJPcmlnaW5hbCI6InIudXVpZCgpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici51dWlkKCkiLCJFeHBlY3RlZE9yaWdpbmFsIjoidXVpZCgpIiwiRXhwZWN0ZWRUeXBlIjoiVVVJRE1hdGNoIiwiRXhwZWN0ZWRKYXZhIjoidXVpZCgpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );

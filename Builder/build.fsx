@@ -68,6 +68,29 @@ Target "astgen" (fun _ ->
     
 )
 
+Target "testgen" (fun _ ->
+    
+    trace "ReQL YAML Unit Test Generation Task Starting ..."
+    
+    let metadata = "Metadata";
+    let templates = Project("Templates", Folders);
+    
+    !! templates.ProjectFile
+    |> MSBuildDebug null "Build"
+    |> Log "AppBuild-Output: "
+
+    let path = templates.Folder @@ "bin" @@ "Debug" @@ sprintf "%s.dll" templates.Name
+
+    let assembly = Assembly.LoadFrom(path)
+
+    let gen = assembly.CreateInstance("Templates.GeneratorForUnitTests")
+
+    trace DriverProject.Folder
+
+    DynInvoke gen "EnsurePathsExist" [||]
+    DynInvoke gen "Generate_All" [||]
+    
+)
 Target "msb" (fun _ ->
     
     let tag = "msb_build";

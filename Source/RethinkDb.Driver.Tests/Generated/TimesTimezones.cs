@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
         [Test]
-        public void YamlTest(){
+        public void YamlTest_TimesTimezones(){
 
              
              //JavaDef, times/timezones.yaml, #3

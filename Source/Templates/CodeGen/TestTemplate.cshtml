@@ -57,7 +57,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
         [Test]
-        public void YamlTest(){
+        public void @($"YamlTest_"+YamlTest.ModuleName)(){
 
      @foreach( var test in this.YamlTest.DefsAndTests )
      {

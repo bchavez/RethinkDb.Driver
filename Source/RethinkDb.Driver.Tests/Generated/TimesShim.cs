@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
         [Test]
-        public void YamlTest(){
+        public void YamlTest_TimesShim(){
 
              
              //JavaDef, times/shim.yaml, #4

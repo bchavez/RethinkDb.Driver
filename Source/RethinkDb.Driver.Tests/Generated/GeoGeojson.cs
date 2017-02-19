@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
         [Test]
-        public void YamlTest(){
+        public void YamlTest_GeoGeojson(){
 
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZ2VvL2dlb2pzb24ueWFtbCIsIkxpbmVOdW0iOiI0IiwiT3JpZ2luYWwiOiJyLmdlb2pzb24oeydjb29yZGluYXRlcyc6WzAsIDBdLCAndHlwZSc6J1BvaW50J30pIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoici5nZW9qc29uKHIuaGFzaE1hcChcImNvb3JkaW5hdGVzXCIsIHIuYXJyYXkoMEwsIDBMKSkud2l0aChcInR5cGVcIiwgXCJQb2ludFwiKSkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiKHsnJHJlcWxfdHlwZSQnOidHRU9NRVRSWScsICdjb29yZGluYXRlcyc6WzAsIDBdLCAndHlwZSc6J1BvaW50J30pIiwiRXhwZWN0ZWRUeXBlIjoiTWFwIiwiRXhwZWN0ZWRKYXZhIjoici5oYXNoTWFwKFwiJHJlcWxfdHlwZSRcIiwgXCJHRU9NRVRSWVwiKS53aXRoKFwiY29vcmRpbmF0ZXNcIiwgci5hcnJheSgwTCwgMEwpKS53aXRoKFwidHlwZVwiLCBcIlBvaW50XCIpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );

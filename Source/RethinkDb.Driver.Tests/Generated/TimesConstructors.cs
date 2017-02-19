@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
         [Test]
-        public void YamlTest(){
+        public void YamlTest_TimesConstructors(){
 
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoidGltZXMvY29uc3RydWN0b3JzLnlhbWwiLCJMaW5lTnVtIjoiNSIsIk9yaWdpbmFsIjoici5leHByKHIuZXBvY2hfdGltZSg4OTY1NzEyNDApKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InIuZXhwcihyLmVwb2NoVGltZSg4OTY1NzEyNDBMKSkiLCJFeHBlY3RlZE9yaWdpbmFsIjoiZGF0ZXRpbWUuZnJvbXRpbWVzdGFtcCg4OTY1NzEyNDAsIHIuYXN0LlJxbFR6aW5mbygnMDA6MDAnKSkiLCJFeHBlY3RlZFR5cGUiOiJPZmZzZXREYXRlVGltZSIsIkV4cGVjdGVkSmF2YSI6ImRhdGV0aW1lLmZyb210aW1lc3RhbXAoODk2NTcxMjQwTCwgYXN0LnJxbFR6aW5mbyhcIjAwOjAwXCIpKSIsIk9idGFpbmVkIjpudWxsLCJSdW5PcHRzIjpbXSwiUmVuZGVyU29tZXRoaW5nIjpmYWxzZX0=" );

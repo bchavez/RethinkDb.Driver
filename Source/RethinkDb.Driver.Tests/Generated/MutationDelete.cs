@@ -36,7 +36,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
         [Test]
-        public void YamlTest(){
+        public void YamlTest_MutationDelete(){
 
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibXV0YXRpb24vZGVsZXRlLnlhbWwiLCJMaW5lTnVtIjoiNyIsIk9yaWdpbmFsIjoidGJsLmluc2VydChbeydpZCc6aX0gZm9yIGkgaW4geHJhbmdlKDEwMCldKSIsIlZhck5hbWUiOm51bGwsIlZhclR5cGUiOm51bGwsIlJ1bklmUXVlcnkiOmZhbHNlLCJWYWx1ZSI6bnVsbCwiSmF2YSI6InRibC5pbnNlcnQoRW51bWVyYWJsZUxSYW5nZSgwLCAxMDBMKS5TZWxlY3QoaSA9PiByLmhhc2hNYXAoXCJpZFwiLCBpKSkuVG9MaXN0KCkpIiwiRXhwZWN0ZWRPcmlnaW5hbCI6Iih7J2RlbGV0ZWQnOjAsJ3JlcGxhY2VkJzowLCd1bmNoYW5nZWQnOjAsJ2Vycm9ycyc6MCwnc2tpcHBlZCc6MCwnaW5zZXJ0ZWQnOjEwMH0pIiwiRXhwZWN0ZWRUeXBlIjoiTWFwIiwiRXhwZWN0ZWRKYXZhIjoici5oYXNoTWFwKFwiZGVsZXRlZFwiLCAwTCkud2l0aChcInJlcGxhY2VkXCIsIDBMKS53aXRoKFwidW5jaGFuZ2VkXCIsIDBMKS53aXRoKFwiZXJyb3JzXCIsIDBMKS53aXRoKFwic2tpcHBlZFwiLCAwTCkud2l0aChcImluc2VydGVkXCIsIDEwMEwpIiwiT2J0YWluZWQiOm51bGwsIlJ1bk9wdHMiOltdLCJSZW5kZXJTb21ldGhpbmciOmZhbHNlfQ==" );

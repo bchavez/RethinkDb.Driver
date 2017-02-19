@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
         [Test]
-        public void YamlTest(){
+        public void YamlTest_MetaTable(){
 
              
              //JavaDef, meta/table.yaml, #4
@@ -841,7 +841,7 @@ namespace RethinkDb.Driver.Test.Generated {
                  
                      assertEquals(expected_, obtained);                 
              }
-                       
+             
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoibWV0YS90YWJsZS55YW1sIiwiTGluZU51bSI6IjI1NiIsIk9yaWdpbmFsIjoiZGIudGFibGVfZHJvcCgnYScpIiwiVmFyTmFtZSI6bnVsbCwiVmFyVHlwZSI6bnVsbCwiUnVuSWZRdWVyeSI6ZmFsc2UsIlZhbHVlIjpudWxsLCJKYXZhIjoiZGIudGFibGVEcm9wKFwiYVwiKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJwYXJ0aWFsKHsndGFibGVzX2Ryb3BwZWQnOjF9KSIsIkV4cGVjdGVkVHlwZSI6IlBhcnRpYWwiLCJFeHBlY3RlZEphdmEiOiJwYXJ0aWFsKHIuaGFzaE1hcChcInRhYmxlc19kcm9wcGVkXCIsIDFMKSkiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );
                  //JavaQuery, meta/table.yaml, #256

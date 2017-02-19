@@ -34,7 +34,7 @@ namespace RethinkDb.Driver.Test.Generated {
 
 
         [Test]
-        public void YamlTest(){
+        public void YamlTest_GeoIntersectionInclusion(){
 
              {
                  SetContext( "eyJUZXN0VHlwZSI6IkphdmFRdWVyeSIsIlRlc3RGaWxlIjoiZ2VvL2ludGVyc2VjdGlvbl9pbmNsdXNpb24ueWFtbCIsIkxpbmVOdW0iOiI0IiwiT3JpZ2luYWwiOiJyLnBvbHlnb24oWzEsMV0sIFsyLDFdLCBbMiwyXSwgWzEsMl0pLmludGVyc2VjdHMoci5wb2ludCgxLjUsMS41KSkiLCJWYXJOYW1lIjpudWxsLCJWYXJUeXBlIjpudWxsLCJSdW5JZlF1ZXJ5IjpmYWxzZSwiVmFsdWUiOm51bGwsIkphdmEiOiJyLnBvbHlnb24oci5hcnJheSgxTCwgMUwpLCByLmFycmF5KDJMLCAxTCksIHIuYXJyYXkoMkwsIDJMKSwgci5hcnJheSgxTCwgMkwpKS5pbnRlcnNlY3RzKHIucG9pbnQoMS41LCAxLjUpKSIsIkV4cGVjdGVkT3JpZ2luYWwiOiJ0cnVlIiwiRXhwZWN0ZWRUeXBlIjoiYm9vbCIsIkV4cGVjdGVkSmF2YSI6InRydWUiLCJPYnRhaW5lZCI6bnVsbCwiUnVuT3B0cyI6W10sIlJlbmRlclNvbWV0aGluZyI6ZmFsc2V9" );

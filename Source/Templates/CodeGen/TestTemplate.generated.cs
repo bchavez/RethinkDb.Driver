@@ -239,7 +239,17 @@ WriteLiteral("\");\r\n");
             
             #line default
             #line hidden
-WriteLiteral("\r\n\r\n        [Test]\r\n        public void YamlTest(){\r\n\r\n");
+WriteLiteral("\r\n\r\n        [Test]\r\n        public void ");
+
+
+            
+            #line 60 "..\..\CodeGen\TestTemplate.cshtml"
+                Write($"YamlTest_"+YamlTest.ModuleName);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("(){\r\n\r\n");
 
 
             

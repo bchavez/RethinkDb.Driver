@@ -4,7 +4,7 @@
 //#else
 //#endif
 
-let serverDownload = "https://download.rethinkdb.com/windows/rethinkdb-2.3.5.zip"
+let serverDownload = "http://thanos.atnnn.com/downloads/rc/2.3.6/1/rethinkdb.zip"
 
 
 // include Fake lib
@@ -68,6 +68,29 @@ Target "astgen" (fun _ ->
     
 )
 
+Target "testgen" (fun _ ->
+    
+    trace "ReQL YAML Unit Test Generation Task Starting ..."
+    
+    let metadata = "Metadata";
+    let templates = Project("Templates", Folders);
+    
+    !! templates.ProjectFile
+    |> MSBuildDebug null "Build"
+    |> Log "AppBuild-Output: "
+
+    let path = templates.Folder @@ "bin" @@ "Debug" @@ sprintf "%s.dll" templates.Name
+
+    let assembly = Assembly.LoadFrom(path)
+
+    let gen = assembly.CreateInstance("Templates.GeneratorForUnitTests")
+
+    trace DriverProject.Folder
+
+    DynInvoke gen "BeforeRunningTestSession" [||]
+    DynInvoke gen "Generate_All" [||]
+    
+)
 Target "msb" (fun _ ->
     
     let tag = "msb_build";

@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -26,8 +27,9 @@ namespace Templates
         public void BeforeRunningTestSession()
         {
             //remount the working directory before we begin.
-            var rootProjectPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..", ProjectFolder);
-            Directory.SetCurrentDirectory(rootProjectPath);
+            var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var testProject = Path.Combine(location, @"..\..\..", ProjectFolder);
+            Directory.SetCurrentDirectory(testProject);
             EnsurePathsExist();
         }
 

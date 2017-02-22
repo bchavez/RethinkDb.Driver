@@ -279,7 +279,7 @@ Target "test" (fun _ ->
 
 Target "citest" (fun _ ->
     RunTests()
-    UploadTestResultsXml TestResultsType.NUnit Folders.Test
+    UploadTestResultsXml TestResultsType.NUnit3 Folders.Test
 )
 
 

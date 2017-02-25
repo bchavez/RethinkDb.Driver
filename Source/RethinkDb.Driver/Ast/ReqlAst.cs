@@ -238,7 +238,10 @@ namespace RethinkDb.Driver.Ast
         /// <summary>
         /// Use this method if you're expecting SUCCESS_ATOM or SUCCESS_SEQUENCE response from your query. This
         /// method offers a slight edge in performance without the need for the
-        /// dynamic language runtime like the run() method uses.
+        /// dynamic language runtime like the run() method uses. Consider using RunAtom or RunCursor if your
+        /// response is either SUCCESS_ATOM or SUCCESS_SEQUENCE respectively. Exercise caution using this method
+        /// with large datasets as the server can switch responses from SUCESS_SEQUENCE to SUCCESS_PARTIAL for the
+        /// same exact query.  Refer to the online documentation for this run helper.
         /// </summary>
         /// <param name="conn">connection</param>
         /// <param name="runOpts">global anonymous type optional arguments</param>
@@ -251,7 +254,10 @@ namespace RethinkDb.Driver.Ast
         /// <summary>
         /// Use this method if you're expecting SUCCESS_ATOM or SUCCESS_SEQUENCE response from your query. This
         /// method offers a slight edge in performance without the need for the
-        /// dynamic language runtime like the run() method uses.
+        /// dynamic language runtime like the run() method uses.  Consider using RunAtom or RunCursor if your
+        /// response is either SUCCESS_ATOM or SUCCESS_SEQUENCE respectively. Exercise caution using this method
+        /// with large datasets as the server can switch responses from SUCESS_SEQUENCE to SUCCESS_PARTIAL for the
+        /// same exact query.  Refer to the online documentation for this run helper.
         /// </summary>
         /// <param name="conn">connection</param>
         /// <param name="cancelToken">Cancellation token used to stop *waiting* for a query response. The cancellation token does not cancel the query's execution on the server.</param>
@@ -263,7 +269,10 @@ namespace RethinkDb.Driver.Ast
         /// <summary>
         /// Use this method if you're expecting SUCCESS_ATOM or SUCCESS_SEQUENCE response from your query. This
         /// method offers a slight edge in performance without the need for the
-        /// dynamic language runtime like the run() method uses.
+        /// dynamic language runtime like the run() method uses. Consider using RunAtom or RunCursor if your
+        /// response is either SUCCESS_ATOM or SUCCESS_SEQUENCE respectively. Exercise caution using this method
+        /// with large datasets as the server can switch responses from SUCESS_SEQUENCE to SUCCESS_PARTIAL for the
+        /// same exact query. Refer to the online documentation for this run helper.
         /// </summary>
         /// <param name="conn">connection</param>
         /// <param name="runOpts">global anonymous type optional arguments</param>

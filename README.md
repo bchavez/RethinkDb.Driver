@@ -226,49 +226,49 @@ Music Wall
 :musical_score: A small collection of videos that helped in the creation of this driver. =)
 
 <table>
-        <tr>
-            <td>
-                <a href=
-                "http://www.youtube.com/watch?feature=player_embedded&v=1lyu1KKwC74"
-                target="_blank"><img alt="Summer Time" border="10" height="180"
-                src="http://img.youtube.com/vi/1lyu1KKwC74/0.jpg" width=
-                "240"></a>
-            </td>
-            <td>
-                <a href=
-                "http://www.youtube.com/watch?feature=player_embedded&v=XmSdTa9kaiQ"
-                target="_blank"><img alt="U2" border="10" height="180" src=
-                "http://img.youtube.com/vi/XmSdTa9kaiQ/0.jpg" width="240"></a>
-            </td>
-            <td>
-                <a href=
-                "http://www.youtube.com/watch?feature=player_embedded&v=7xzU9Qqdqww"
-                target="_blank"><img alt="Cudi" border="10" height="180" src=
-                "http://img.youtube.com/vi/7xzU9Qqdqww/0.jpg" width="240"></a>
-            </td>
-        </tr>
+<tr>
+<td>
+    <a href=
+    "http://www.youtube.com/watch?feature=player_embedded&v=1lyu1KKwC74"
+    target="_blank"><img alt="Summer Time" border="10" height="180"
+    src="http://img.youtube.com/vi/1lyu1KKwC74/0.jpg" width=
+    "240"></a>
+</td>
+<td>
+    <a href=
+    "http://www.youtube.com/watch?feature=player_embedded&v=XmSdTa9kaiQ"
+    target="_blank"><img alt="U2" border="10" height="180" src=
+    "http://img.youtube.com/vi/XmSdTa9kaiQ/0.jpg" width="240"></a>
+</td>
+<td>
+    <a href=
+    "http://www.youtube.com/watch?feature=player_embedded&v=7xzU9Qqdqww"
+    target="_blank"><img alt="Cudi" border="10" height="180" src=
+    "http://img.youtube.com/vi/7xzU9Qqdqww/0.jpg" width="240"></a>
+</td>
+</tr>
 
 
 
-        <tr>
-            <td>
-                <a href="http://www.youtube.com/watch?feature=player_embedded&v=nXri9t8yrr4" target="_blank">
-                    <img src="http://img.youtube.com/vi/nXri9t8yrr4/0.jpg" alt="Kuffdam & Plant" width="240" height="180" border="10" />
-                </a>
-            </td>
-            <td>
-                <a href=
-                "http://www.youtube.com/watch?feature=player_embedded&v=FyASdjZE0R0"
-                target="_blank"><img alt="NIN" border="10" height="180" src=
-                "http://img.youtube.com/vi/FyASdjZE0R0/0.jpg" width="240"></a>
-            </td>
-            <td>
-                <a href=
-                "http://www.youtube.com/watch?feature=player_embedded&v=dd00Qh9yZUg"
-                target="_blank"><img alt="Glitch Mob" border="10" height="180" src=
-                "http://img.youtube.com/vi/dd00Qh9yZUg/0.jpg" width="240"></a>
-            </td>
-        </tr>
+<tr>
+<td>
+    <a href="http://www.youtube.com/watch?feature=player_embedded&v=nXri9t8yrr4" target="_blank">
+        <img src="http://img.youtube.com/vi/nXri9t8yrr4/0.jpg" alt="Kuffdam & Plant" width="240" height="180" border="10" />
+    </a>
+</td>
+<td>
+    <a href=
+    "http://www.youtube.com/watch?feature=player_embedded&v=FyASdjZE0R0"
+    target="_blank"><img alt="NIN" border="10" height="180" src=
+    "http://img.youtube.com/vi/FyASdjZE0R0/0.jpg" width="240"></a>
+</td>
+<td>
+    <a href=
+    "http://www.youtube.com/watch?feature=player_embedded&v=dd00Qh9yZUg"
+    target="_blank"><img alt="Glitch Mob" border="10" height="180" src=
+    "http://img.youtube.com/vi/dd00Qh9yZUg/0.jpg" width="240"></a>
+</td>
+</tr>
 
 </table>
 
